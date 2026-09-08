@@ -25,7 +25,8 @@
 # 조용히 좁히는 변경은 이 시험이 아니라 리뷰가 잡는다.
 #
 # 무엇을 재지 않는가: 다른 기계의 스크래치 관례(`/tmp/…`·`C:\…`) · 존재하지만
-# 레포 밖인 상대경로 · 커밋 메시지(작업 트리만 본다).
+# 레포 밖인 상대경로 · 커밋 메시지(작업 트리만 본다) · git 이 무시하는 파일과
+# `.git` 자신(디렉터리든 연결 워크트리의 파일이든 둘 다 검사 대상 밖이다).
 #
 # rc: 0 = PASS · 1 = FAIL. 호환: macOS 기본 bash 3.2(배열·mapfile 안 쓴다).
 set -uo pipefail
@@ -43,7 +44,13 @@ trap 'rm -f "$PROBE"' EXIT INT TERM
 
 scan() {
   # 판정할 명령을 파이프 왼쪽에 두지 않는다 — 파일로 받고 rc 를 직접 읽는다.
-  grep -rIn -E "$PATTERN" "$ROOT" --exclude-dir=.git > "$1" 2>/dev/null
+  #
+  # --exclude=.git 이 왜 필요한가: 연결 워크트리(git worktree add · detached
+  # 측정에서 쓴다)에서는 `.git` 이 디렉터리가 아니라 **파일**이고 그 안에
+  # 「gitdir: <절대경로>」 한 줄이 들어 있다. --exclude-dir 만으로는 그 파일이
+  # 걸러지지 않아 계기가 자기 워크트리 배치를 결함으로 보고한다(실측:
+  # detached 회차에서 이 한 자리로 FAIL rc=1 · raw-r2B/33).
+  grep -rIn -E "$PATTERN" "$ROOT" --exclude-dir=.git --exclude=.git > "$1" 2>/dev/null
   return 0
 }
 
