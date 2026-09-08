@@ -7,3 +7,4 @@
 # 파일을 단독 실행(bash scripts/gates/70-org.sh)하면 그 사실 그대로 에러가
 # 난다 — 그 원문을 브리프 보고에 남긴다.
 run_gate "관리형 설정 예시" bash tests/test_managed_settings.sh
+run_gate "레포 밖 스크래치 경로 재유입 없음" bash tests/test_no_scratch_paths.sh
