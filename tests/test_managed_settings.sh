@@ -14,7 +14,9 @@
 #      (없으면 FAIL — 레슨의 함정을 기계로 고정)
 #   ④ hooks 블록이 가리키는 스크립트 경로가 .claude/hooks/ 에 실재하는가
 #      (main 에 아직 없으면 FAIL 이 아니라 SKIP — 조용한 통과 금지, 사유를 출력)
-#   ⑤ org/README.md 가 "비활성 예시" 와 "allowManagedHooksOnly" 함정을 언급하는가
+#   ⑤ org/README.md 의 「함정」 절이 실제로 함정을 설명하는가 — 절 제목이 아니라
+#      **본문**을 보고, JSON 의 hooks 블록이 등록하는 훅 이름 전부가 그 본문에
+#      있어야 한다(목록은 JSON 에서 뽑는다 — 시험에 하드코딩하지 않는다)
 #   ⑥ 안전 검사 — JSON 파일이 사용자 홈 경로(~/.claude)를 가리키지 않는가
 #      (실수로 자기 설정에 적용되는 사고를 막는다)
 #
@@ -230,33 +232,86 @@ REL_EOF
   fi
 fi
 
-# --- ⑤ org/README.md 가 함정을 언급하는가 ----------------------------------
+# --- ⑤ org/README.md 의 「함정」 절이 함정을 설명하는가 -----------------------
+# 옛 판은 파일 어딘가에 "비활성 예시"·"allowManagedHooksOnly"·"죽인다" 세 토큰이
+# 있기만 하면 통과했다. 그 셋은 전부 「## 🔴 함정 — allowManagedHooksOnly 가
+# 프로젝트 훅을 죽인다」 제목줄 하나에 다 들어 있어서, 함정 설명 본문 16줄을
+# 통째로 지우고 제목줄만 남겨도 green 이었다(실측: 뮤테이션 후 80줄 → 62줄 ·
+# 케이스 ⑤ PASS · 5 passed, 0 failed). 즉 토큰 존재 프록시였다.
+#
+# 지금 판은 제목줄을 빼고 **본문**만 본다. 그리고 본문이 담아야 할 것을 시험에
+# 열거하지 않고 JSON 에서 뽑는다 — 관리형 파일이 등록하는 훅 이름 전부가 함정
+# 본문에 있어야 한다. 훅을 하나 늘리고 문서를 안 고치면 그것도 red 다.
 if [ ! -f "$README" ]; then
   bad "⑤ org/README.md 없음"
 else
-  README_OK=1
-  README_MISSING=""
-  if ! grep -q "비활성 예시" "$README"; then
-    README_OK=0
-    README_MISSING="${README_MISSING}\"비활성 예시\" 문구 없음\n"
-  fi
-  # 단순히 "allowManagedHooksOnly" 문자열이 어딘가(표의 값 칸 등)에 있는 것만으로는
-  # "함정을 언급"했다고 보지 않는다 — allowManagedHooksOnly 가 프로젝트 훅을 "죽인다"는
-  # 함정 설명 자체가 있어야 통과한다. 이 마커라야 함정 문단 삭제 뮤테이션에 red 로 운다
-  # 재현: 이 함정 설명 문단(위 "죽인다" 문장)을 org/README.md 에서 지우고
-  # bash tests/test_managed_settings.sh 를 돌리면 이 케이스 ⑤가 red 로 운다.
-  if ! grep -q "allowManagedHooksOnly" "$README"; then
-    README_OK=0
-    README_MISSING="${README_MISSING}\"allowManagedHooksOnly\" 언급 없음\n"
-  fi
-  if ! grep -q "죽인다" "$README"; then
-    README_OK=0
-    README_MISSING="${README_MISSING}함정 설명(\"죽인다\") 없음 — allowManagedHooksOnly 가 프로젝트 훅에 하는 일을 설명하는 문단이 없다\n"
-  fi
-  if [ "$README_OK" -eq 1 ]; then
-    ok "⑤ org/README.md 가 비활성 예시·allowManagedHooksOnly 함정을 언급"
+  CASE5_ERR="$(python3 - "$README" "$JSONFILE" <<'PYCASE5'
+import json, re, sys
+
+readme, jsonfile = sys.argv[1], sys.argv[2]
+lines = open(readme, encoding="utf-8").read().split("\n")
+
+# 「함정」 절의 본문 — 제목줄은 제외하고 다음 「## 」 전까지.
+body, inside = [], False
+for line in lines:
+    if line.startswith("## "):
+        inside = "함정" in line
+        continue
+    if inside:
+        body.append(line)
+body_text = "\n".join(body)
+nonblank = [ln for ln in body if ln.strip()]
+
+problems = []
+if not nonblank:
+    problems.append("「함정」 절의 본문이 비었다(제목줄만 남았다)")
+elif len(nonblank) < 5:
+    problems.append("「함정」 절 본문이 %d줄뿐 — 함정 설명으로 보기엔 짧다(5줄 이상)" % len(nonblank))
+
+# 관리형 파일이 등록하는 훅 이름을 JSON 에서 뽑는다(하드코딩 아님).
+data = json.load(open(jsonfile, encoding="utf-8"))
+names = set()
+
+
+def walk(node):
+    if isinstance(node, dict):
+        cmd = node.get("command")
+        if isinstance(cmd, str):
+            for m in re.finditer(r"([A-Za-z0-9_.-]+\.sh)", cmd):
+                names.add(m.group(1))
+        for v in node.values():
+            walk(v)
+    elif isinstance(node, list):
+        for v in node:
+            walk(v)
+
+
+walk(data.get("hooks", {}))
+if not names:
+    problems.append("JSON 의 hooks 블록에서 훅 이름을 하나도 못 뽑았다 — 계기가 죽었다(못 잰 것은 통과가 아니다)")
+for n in sorted(names):
+    if n not in body_text:
+        problems.append("함정 본문이 관리형 hooks 블록의 %s 를 설명하지 않는다" % n)
+
+# 본문이 「관리형이 아닌 훅은 차단된다」는 결과를 말하는가 — 제목줄 아님.
+if "allowManagedHooksOnly" not in body_text:
+    problems.append("함정 본문에 allowManagedHooksOnly 가 없다(제목줄에만 있다)")
+if not re.search(r"차단|죽인|막는다|잃", body_text):
+    problems.append("함정 본문이 프로젝트 훅에 무슨 일이 일어나는지(차단·상실) 말하지 않는다")
+
+if "비활성 예시" not in "\n".join(lines):
+    problems.append('"비활성 예시" 문구가 파일 어디에도 없다')
+
+for p in problems:
+    print(p)
+sys.exit(1 if problems else 0)
+PYCASE5
+)"
+  CASE5_RC=$?
+  if [ "$CASE5_RC" -eq 0 ]; then
+    ok "⑤ org/README.md 「함정」 절 본문이 관리형 hooks 블록의 훅 전부와 차단 결과를 설명"
   else
-    bad "⑤ org/README.md 언급 누락" "$(printf "$README_MISSING")"
+    bad "⑤ org/README.md 「함정」 절 본문 미비" "$CASE5_ERR"
   fi
 fi
 

@@ -56,7 +56,11 @@ hooks declared in agent frontmatter."*
 경로 전제가 유효한지 스스로 검증해야 한다).
 
 `tests/test_managed_settings.sh` 케이스 ③이 이 불변식(`allowManagedHooksOnly=true` 면 `hooks`
-블록 필수)을 기계로 고정한다 — `hooks` 블록을 지우면 그 케이스가 red 로 운다.
+블록 필수)을 기계로 고정한다 — `hooks` 블록을 지우면 그 케이스가 red 로 운다(실측:
+`json` 에서 `hooks` 를 뺀 뒤 시험 rc=1). 케이스 ⑤ 는 이 절의 **본문**이 관리형 `hooks`
+블록에 등록된 훅 이름을 전부 담는지 대조한다 — 목록은 시험에 적어 두지 않고 그 JSON 에서
+뽑는다. 그래서 이 절 제목만 남기고 본문을 지우거나, 훅을 하나 늘리고 이 절을 안 고치면
+red 다(실측: 세 벡터 전부 rc=1).
 
 ## 문서에서 확인한 키
 
