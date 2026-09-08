@@ -902,11 +902,502 @@ class GateForwardsSkipNotes(unittest.TestCase):
         self.assertIn("PASS", out)
         self.assertGreaterEqual(out.count("ACCEPTED_BRANCH_CHECK_SKIPPED"), 1, out)
 
+    def _branch_is_resolvable(self):
+        """계기의 전제 — 이 체크아웃에서 브랜치 이름을 실제로 풀 수 있는가.
+
+        detached HEAD(격리 트리 리뷰·CI 의 PR 체크아웃)이고 `INTENT_CHECK_BRANCH` 도
+        없으면 그 검사는 **돌지 않는다**. 그때의 note 는 결함이 아니라 계기의 전제 부재다.
+        「안 돌았다 ≠ 통과했다」이고, 동시에 「안 돌았다 ≠ 실패했다」다.
+        """
+        proc = subprocess.run(
+            ["git", "symbolic-ref", "--quiet", "--short", "HEAD"],
+            cwd=REPO,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        if proc.returncode == 0 and proc.stdout.decode().strip():
+            return True
+        return bool(os.environ.get("INTENT_CHECK_BRANCH", "").strip())
+
     def test_a_healthy_run_prints_no_skip_note(self):
-        """이 레포에서 지금 그 검사는 **실제로 돈다** — 토큰이 0 이어야 한다."""
+        """이 레포에서 지금 그 검사는 **실제로 돈다** — 토큰이 0 이어야 한다.
+
+        전제를 세우지 못하면(브랜치를 풀 수 없다) PASS 도 FAIL 도 아닌 SKIP 이다 —
+        게이트 어휘의 rc=3 과 같은 자리. 같은 SHA 가 attached 에서 초록이고 detached 에서
+        빨간 것은 코드의 결함이 아니라 계기가 자기 전제를 안 세운 것이었다.
+        """
+        if not self._branch_is_resolvable():
+            self.skipTest(
+                "detached HEAD 이고 INTENT_CHECK_BRANCH 도 없다 — 브랜치 자기 승인 검사가 "
+                "돌 수 없는 체크아웃이라 「note 0」을 물을 수 없다(rc=3 자리)"
+            )
         rc, out = self._gate()
         self.assertEqual(rc, 0, out)
         self.assertEqual(out.count("ACCEPTED_BRANCH_CHECK_SKIPPED"), 0, out)
+
+    def test_the_gate_catches_a_planted_violation_when_the_branch_resolves(self):
+        """짝이 되는 살아 있음 시험 — 브랜치를 풀 수 있으면 심은 위반이 **실제로 잡힌다**.
+
+        위의 「note 0 = 건강」은 부재 PASS 다. 부재 PASS 는 살아 있음 계약과 짝이어야 한다:
+        여기서는 이 레포를 임시 클론해 accepted 아티팩트의 본문을 고치고, 그 클론의 게이트가
+        `ACCEPTED_ON_BRANCH` 로 죽는지 잰다(원본 저장소는 건드리지 않는다).
+        """
+        accepted = []
+        for dirpath, _dirs, files in os.walk(os.path.join(REPO, "intent")):
+            for name in files:
+                if not name.endswith(".md"):
+                    continue
+                full = os.path.join(dirpath, name)
+                with open(full, encoding="utf-8") as fh:
+                    if "\nstatus: accepted\n" in fh.read():
+                        accepted.append(os.path.relpath(full, REPO))
+        self.assertTrue(accepted, "양성 대조: intent/ 에 accepted 아티팩트가 있어야 한다")
+
+        tmp = tempfile.mkdtemp(prefix="gate-liveness-")
+        self.addCleanup(shutil.rmtree, tmp, True)
+        clone = os.path.join(tmp, "repo")
+        git(tmp, "clone", "--quiet", "--no-hardlinks", REPO, clone)
+        head = git(REPO, "rev-parse", "HEAD").strip()
+        git(clone, "checkout", "-q", "-B", "__base__", head)
+        git(clone, "checkout", "-q", "-b", "__tamper__")
+        target = os.path.join(clone, accepted[0])
+        with open(target, "a", encoding="utf-8") as fh:
+            fh.write("\n심은 위반 — accepted 아티팩트의 본문을 승인 뒤에 고친다.\n")
+        git(clone, "add", accepted[0])
+        git(clone, "commit", "-q", "-m", "planted violation")
+
+        env = dict(os.environ)
+        env["INTENT_CHECK_GATE_PROBE"] = "1"
+        env["INTENT_CHECK_DEFAULT_BRANCH"] = "__base__"
+        env.pop("INTENT_CHECK_BRANCH", None)
+        proc = subprocess.run(
+            ["bash", "scripts/check_all.sh", "check11_intent_chain"],
+            cwd=clone,
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        out = proc.stdout.decode("utf-8", "replace")
+        self.assertNotEqual(proc.returncode, 0, out)
+        self.assertIn("ACCEPTED_ON_BRANCH", out, out)
+
+
+# --------------------------------------------------------------------------
+# 축 3 — 어휘의 소유자를 「base 브랜치 이력」으로 옮긴다
+#
+# 축 1(diff 텍스트 모양)의 어휘 소유자는 git 이었고 죽었다. 축 2(사슬 id)의 어휘
+# 소유자는 **승인 PR 작성자**였다 — 디렉터리를 개명하면 `ID_DIRNAME_MISMATCH` 가 id
+# 개명을 강제하고, id 가 바뀌면 기준점 조회가 0건이 되어 브랜치 자기 커밋으로 후퇴한다.
+# 축 3 이 묻는 것은 PR 작성자가 쓸 수 없는 어휘다:
+#   「base 의 accepted 아티팩트 집합에서 사라진 것이 있는가, 그리고 head 에 그것을
+#    supersedes: 로 가리키는 아티팩트가 있는가」
+# base 의 accepted id 집합은 base 이력이 소유한다. PR 작성자는 base 에서 id 를 없앨 수 없다.
+# --------------------------------------------------------------------------
+SPEC_TEMPLATE = """---
+id: %(id)s
+kind: spec
+status: %(status)s
+upstream: %(upstream)s
+skills_applied: []
+---
+# Spec: 표본 사양 %(id)s (from intent %(id)s)
+
+## Requirements (요구)
+- R1 요구가 %(count)s 개다. 무엇을 하는지 적는다.
+
+## Out of scope (범위 밖)
+범위 밖 문장.
+
+## Acceptance criteria (수용 기준)
+- AC1 → R1 요구를 기계가 판정한다.
+
+## Open questions (열린 물음)
+- F1 사양의 열린 물음. 소유자는 product owner.
+"""
+
+
+def spec_text(status="draft", chain_id="0001-bootstrap-repo", upstream=None, count="3"):
+    return SPEC_TEMPLATE % {
+        "id": chain_id,
+        "status": status,
+        "upstream": upstream or ("intent.md@" + "0" * 40),
+        "count": count,
+    }
+
+
+def intent_text_for(chain_id, status="draft", count="7", supersedes="none"):
+    """id·supersedes 까지 바꾼 intent 원문(축 3 시험용)."""
+    text = intent_text(status=status, count=count)
+    text = text.replace("id: 0001-bootstrap-repo", "id: %s" % chain_id, 1)
+    text = text.replace("supersedes: none", "supersedes: %s" % supersedes, 1)
+    return text
+
+
+class AxisThreeBaseHistory(unittest.TestCase):
+    """base 이력이 소유하는 어휘로 묻는다 — 사라진 accepted · 대체 선언 · 필터 무관 바이트."""
+
+    PATH = "intent/0001-bootstrap-repo/intent.md"
+    SPEC = "intent/0001-bootstrap-repo/spec.md"
+
+    def _repo(self, **config):
+        tmp = tempfile.mkdtemp(prefix="axis3-")
+        self.addCleanup(shutil.rmtree, tmp, True)
+        git(tmp, "init", "-q", "-b", "main")
+        git(tmp, "config", "user.name", "t")
+        git(tmp, "config", "user.email", "t@example.invalid")
+        for key, value in config.items():
+            git(tmp, "config", key.replace("_", "."), value)
+        return tmp
+
+    def _write(self, tmp, relpath, text):
+        path = os.path.join(tmp, relpath)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(text)
+
+    def _commit(self, tmp, message):
+        git(tmp, "add", "-A")
+        git(tmp, "commit", "-q", "-m", message)
+        return git(tmp, "rev-parse", "HEAD").strip()
+
+    def _check(self, tmp, relpath, env=None):
+        rc, out, err = run_cli(
+            ["--format", "json", relpath], cwd=tmp, env=env or scrubbed_env()
+        )
+        payload = json.loads(out)
+        codes = [f["code"] for e in payload["files"] for f in e["findings"]]
+        return rc, codes, out + err
+
+    # --- 거짓 빨강: git 의 필터가 판정을 흔들면 안 된다 ---------------------
+
+    def test_eol_crlf_worktree_does_not_break_a_pure_stamp(self):
+        """`.gitattributes` 가 `eol=crlf` 여도 순수 도장은 통과한다(A2).
+
+        기준점은 blob 인데 지금 파일만 워크트리(smudge 된 바이트)로 읽으면, 같은 커밋이
+        **읽는 사람의 git 설정**에 따라 rc 가 갈린다. 견줄 것은 머지되는 바이트다.
+        """
+        tmp = self._repo()
+        self._write(tmp, ".gitattributes", "*.md text eol=crlf\n")
+        self._write(tmp, self.PATH, intent_text("draft"))
+        self._commit(tmp, "draft")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "stamp")
+        os.remove(os.path.join(tmp, self.PATH))
+        git(tmp, "checkout", "--", self.PATH)  # smudge 를 다시 태운다
+        with open(os.path.join(tmp, self.PATH), "rb") as fh:
+            self.assertGreater(fh.read().count(b"\r\n"), 0, "양성 대조: 워크트리가 CRLF 여야 한다")
+        rc, codes, raw = self._check(tmp, self.PATH)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_autocrlf_clone_does_not_break_a_pure_stamp(self):
+        """레포는 그대로인데 클론이 `core.autocrlf=true` 일 뿐이어도 순수 도장은 통과한다(A2)."""
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("draft"))
+        self._commit(tmp, "draft")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "stamp")
+        git(tmp, "config", "core.autocrlf", "true")
+        os.remove(os.path.join(tmp, self.PATH))
+        git(tmp, "checkout", "--", self.PATH)
+        with open(os.path.join(tmp, self.PATH), "rb") as fh:
+            self.assertGreater(fh.read().count(b"\r\n"), 0, "양성 대조: 워크트리가 CRLF 여야 한다")
+        rc, codes, raw = self._check(tmp, self.PATH)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_blob_body_rewrite_hidden_by_a_filter_is_still_red(self):
+        """반대 방향(A4) — 워크트리는 같아 보이는데 **머지되는 blob 의 본문 전 줄**이 갈렸다.
+
+        base blob 은 CRLF · head blob 은 LF · `core.autocrlf=true` 워크트리는 둘 다 CRLF 로
+        보인다. 워크트리를 견주면 순수 도장으로 읽히지만 머지되는 바이트는 전 줄이 다르다.
+        """
+        tmp = self._repo()
+        raw_draft = intent_text("draft").replace("\n", "\r\n").encode()
+        oid = subprocess.run(
+            ["git", "hash-object", "-w", "--no-filters", "--stdin"],
+            cwd=tmp,
+            input=raw_draft,
+            stdout=subprocess.PIPE,
+        ).stdout.decode().strip()
+        os.makedirs(os.path.join(tmp, os.path.dirname(self.PATH)), exist_ok=True)
+        git(tmp, "update-index", "--add", "--cacheinfo", "100644,%s,%s" % (oid, self.PATH))
+        git(tmp, "commit", "-q", "-m", "draft(blob 이 CRLF)")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "stamp + 본문 전 줄을 LF 로 갈아치움")
+        git(tmp, "config", "core.autocrlf", "true")
+        os.remove(os.path.join(tmp, self.PATH))
+        git(tmp, "checkout", "--", self.PATH)
+        base = subprocess.run(
+            ["git", "show", "main:" + self.PATH], cwd=tmp, stdout=subprocess.PIPE
+        ).stdout
+        head = subprocess.run(
+            ["git", "show", "HEAD:" + self.PATH], cwd=tmp, stdout=subprocess.PIPE
+        ).stdout
+        differing = sum(1 for a, b in zip(base.split(b"\n"), head.split(b"\n")) if a != b)
+        self.assertGreater(differing, 5, "양성 대조: 머지되는 두 blob 이 여러 줄 달라야 한다")
+        rc, codes, raw = self._check(tmp, self.PATH)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    # --- 거짓 빨강: base 에 같은 id 가 둘 -----------------------------------
+
+    def test_duplicate_chain_id_in_base_prefers_the_same_path(self):
+        """base 에 같은 사슬 id 가 두 경로여도(아카이브 사본) 같은 경로가 있으면 그것이 기준점이다.
+
+        「기준점을 하나로 정할 수 없다」로 reject 하면 악의 없는 아카이브 배치 하나로
+        정상 승인이 **영구 봉쇄**된다.
+        """
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("draft"))
+        self._write(tmp, "intent/archive/0001-bootstrap-repo/intent.md", intent_text("draft"))
+        self._commit(tmp, "draft + 아카이브 사본")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "stamp")
+        rc, codes, raw = self._check(tmp, self.PATH)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_duplicate_chain_id_without_a_path_match_is_still_rejected(self):
+        """포착 보존 — 같은 id 가 둘인데 브랜치가 **제3의 경로**에서 도장하면 여전히 red."""
+        tmp = self._repo()
+        self._write(tmp, "intent/a/intent.md", intent_text("draft"))
+        self._write(tmp, "intent/b/intent.md", intent_text("draft"))
+        self._commit(tmp, "draft 둘")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, "intent/c/intent.md", intent_text("accepted", count="99"))
+        self._commit(tmp, "제3 경로에서 도장")
+        rc, codes, raw = self._check(tmp, "intent/c/intent.md")
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    # --- 사라진 accepted 는 형을 가리지 않는다 ------------------------------
+
+    def test_deleting_an_accepted_spec_is_red_even_when_only_intent_is_stamped(self):
+        """base 의 accepted **spec** 을 지우고 intent 만 도장 — red.
+
+        사라짐 검사가 「검사 중인 파일과 같은 형」만 훑으면, accepted spec 을 지웠을 때
+        spec 형 스캔이 아예 돌지 않는다.
+        """
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("draft"))
+        sha = self._commit(tmp, "intent draft")
+        self._write(tmp, self.SPEC, spec_text("accepted", upstream="intent.md@" + sha))
+        self._commit(tmp, "spec accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/drop-spec")
+        os.remove(os.path.join(tmp, self.SPEC))
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "spec 삭제 + intent 도장")
+        rc, codes, raw = self._check(tmp, self.PATH)
+        self.assertIn("ACCEPTED_ARTIFACT_VANISHED", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_deleting_an_accepted_artifact_is_red_even_with_nothing_stamped(self):
+        """2-PR 세탁의 1단계 — 아무것도 도장하지 않고 accepted 만 지운 PR 도 red.
+
+        사라짐 검사가 `status: accepted` 인 파일에서만 돌면, 지우기만 하는 PR 을 먼저
+        머지시켜 base 에서 승인 기록을 없앤 뒤 두 번째 PR 에서 자기 승인할 수 있다.
+        """
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("draft"))
+        sha = self._commit(tmp, "intent draft")
+        self._write(tmp, self.SPEC, spec_text("accepted", upstream="intent.md@" + sha))
+        self._commit(tmp, "spec accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/drop-only")
+        os.remove(os.path.join(tmp, self.SPEC))
+        self._commit(tmp, "spec 만 삭제(도장 없음)")
+        rc, codes, raw = self._check(tmp, self.PATH)
+        self.assertIn("ACCEPTED_ARTIFACT_VANISHED", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_deletion_is_allowed_when_a_successor_supersedes_it(self):
+        """거짓 양성 방지 — 지운 accepted 를 `supersedes:` 로 가리키는 후속(draft)이 있으면 통과."""
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/supersede")
+        os.remove(os.path.join(tmp, self.PATH))
+        self._write(
+            tmp,
+            "intent/0002-next/intent.md",
+            intent_text_for("0002-next", "draft", supersedes="0001-bootstrap-repo"),
+        )
+        self._commit(tmp, "0001 을 0002 로 대체(후속은 draft)")
+        rc, codes, raw = self._check(tmp, "intent/0002-next/intent.md")
+        self.assertNotIn("ACCEPTED_ARTIFACT_VANISHED", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_a_successor_cannot_accept_itself_on_the_same_branch(self):
+        """포착 — 지우고 후속을 **같은 브랜치에서 accepted** 로 만들면 그것이 곧 세탁이다."""
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/launder")
+        os.remove(os.path.join(tmp, self.PATH))
+        successor = "intent/0002-next/intent.md"
+        self._write(
+            tmp,
+            successor,
+            intent_text_for("0002-next", "draft", count="9999", supersedes="0001-bootstrap-repo"),
+        )
+        self._commit(tmp, "대체본 draft")
+        self._write(
+            tmp,
+            successor,
+            intent_text_for(
+                "0002-next", "accepted", count="9999", supersedes="0001-bootstrap-repo"
+            ),
+        )
+        self._commit(tmp, "대체본 자기 도장")
+        rc, codes, raw = self._check(tmp, successor)
+        self.assertIn("ACCEPTED_ARTIFACT_VANISHED", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_shedding_with_supersedes_none_is_still_red(self):
+        """포착 보존 — `supersedes: none` 으로 갈아타는 것은 여전히 red(축 2 가 잡던 자리)."""
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("accepted"))
+        self._commit(tmp, "accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/shed")
+        moved = "intent/0001-bootstrap/intent.md"
+        os.remove(os.path.join(tmp, self.PATH))
+        self._write(tmp, moved, intent_text_for("0001-bootstrap", "draft", count="9999"))
+        self._commit(tmp, "디렉터리 개명 + 개작 + draft")
+        self._write(tmp, moved, intent_text_for("0001-bootstrap", "accepted", count="9999"))
+        self._commit(tmp, "재도장")
+        rc, codes, raw = self._check(tmp, moved)
+        self.assertIn("ACCEPTED_ARTIFACT_VANISHED", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    # --- 기준점 조회는 합집합이다 -------------------------------------------
+
+    def test_baseline_falls_back_to_content_when_the_id_was_renamed(self):
+        """id 를 갈아치우고 개명해도 **본문이 그대로면** base 의 그 문서가 기준점이다.
+
+        `ID_DIRNAME_MISMATCH` 가 디렉터리 개명 때 id 개명을 강제하므로, id 조회만으로는
+        기준점이 0건이 되어 브랜치 자기 커밋으로 후퇴한다 — 그 후퇴가 자기 승인의 통로다.
+        """
+        tmp = self._repo()
+        self._write(tmp, "intent/0003-probe/intent.md", intent_text_for("0003-probe", "draft"))
+        self._commit(tmp, "draft on main")
+        git(tmp, "checkout", "-q", "-b", "feat/renumber")
+        os.remove(os.path.join(tmp, "intent/0003-probe/intent.md"))
+        moved = "intent/0004-probe/intent.md"
+        self._write(tmp, moved, intent_text_for("0004-probe", "draft"))
+        self._commit(tmp, "id·디렉터리 개명(본문은 그대로)")
+        self._write(tmp, moved, intent_text_for("0004-probe", "accepted"))
+        self._commit(tmp, "재도장")
+        rc, codes, raw = self._check(tmp, moved)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    # --- 브랜치 이름이 기본 브랜치와 같을 때 --------------------------------
+
+    def test_head_named_like_the_default_branch_still_runs_the_check(self):
+        """fork PR 의 `head_ref` 가 'main' 이어도 검사는 돈다 — 이름이 같다고 같은 커밋이 아니다.
+
+        `branch == default` 를 이름만으로 판정해 조용히 건너뛰면, fork 의 `main` 에서 연 PR
+        하나로 D16 이 통째로 꺼진다(그 상태를 E5 계기는 note 0 = 「건강」으로 인증한다).
+        """
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("draft"))
+        self._commit(tmp, "draft on main")
+        git(tmp, "checkout", "-q", "-b", "attack")
+        self._write(tmp, self.PATH, intent_text("accepted", count="9999"))
+        self._commit(tmp, "전면 개작 + 도장")
+        git(tmp, "update-ref", "refs/remotes/origin/main", "refs/heads/main")
+        git(tmp, "checkout", "-q", "--detach", "HEAD")
+        git(tmp, "branch", "-q", "-D", "main")
+        git(tmp, "branch", "-q", "-D", "attack")
+        env = scrubbed_env(INTENT_CHECK_BRANCH="main", INTENT_CHECK_DEFAULT_BRANCH="main")
+        rc, codes, raw = self._check(tmp, self.PATH, env=env)
+        self.assertNotIn("ACCEPTED_BRANCH_CHECK_SKIPPED", codes, raw)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_on_the_real_default_branch_the_check_stays_silent(self):
+        """거짓 양성 방지 — 진짜 기본 브랜치 위(HEAD == 기본 브랜치 rev)에서는 조용히 통과한다."""
+        tmp = self._repo()
+        self._write(tmp, self.PATH, intent_text("draft"))
+        self._commit(tmp, "draft")
+        self._write(tmp, self.PATH, intent_text("accepted", count="777"))
+        self._commit(tmp, "main 위에서 개작 + 도장(머지 결과)")
+        env = scrubbed_env(INTENT_CHECK_DEFAULT_BRANCH="main")
+        rc, codes, raw = self._check(tmp, self.PATH, env=env)
+        self.assertEqual(codes, [], raw)
+        self.assertEqual(rc, 0, raw)
+
+
+class FixtureHarnessEnvironment(unittest.TestCase):
+    """픽스처 하네스는 자기 env 를 스스로 구성한다 — CI 의 base 브랜치를 상속하면 안 된다.
+
+    합성 저장소의 기본 브랜치는 언제나 `main` 인데, 서브 브랜치 PR 이면 CI 가
+    `INTENT_CHECK_DEFAULT_BRANCH=<부모 브랜치>` 를 넘긴다. 그것을 상속하면 합성 저장소에서
+    기본 브랜치를 못 찾아 **red 픽스처 둘이 note 로 죽는다**(게이트 전체가 거짓 빨강).
+    반대로 env 를 통째로 지우면 CI 배선 관측을 잃으므로, 지우는 것도 상속도 아닌 제3안이다.
+    """
+
+    def test_red_fixture_survives_a_foreign_default_branch_env(self):
+        fixture = os.path.join(HERE, "fixtures", "red", "self-accepted-on-branch")
+        saved = dict(os.environ)
+        os.environ["INTENT_CHECK_DEFAULT_BRANCH"] = "par"
+        os.environ["INTENT_CHECK_BRANCH"] = "par"
+        try:
+            ok, detail = run_fixture(fixture)
+        finally:
+            os.environ.clear()
+            os.environ.update(saved)
+        self.assertTrue(ok, "\n" + format_detail("red/self-accepted-on-branch", detail))
+
+    def test_green_fixture_survives_a_foreign_default_branch_env(self):
+        fixture = os.path.join(HERE, "fixtures", "green", "accept-only-status")
+        saved = dict(os.environ)
+        os.environ["INTENT_CHECK_DEFAULT_BRANCH"] = "feat/0001-chain-meta"
+        try:
+            ok, detail = run_fixture(fixture)
+        finally:
+            os.environ.clear()
+            os.environ.update(saved)
+        self.assertTrue(ok, "\n" + format_detail("green/accept-only-status", detail))
+
+
+class GateArgumentIsNotASilentSuccess(unittest.TestCase):
+    """`check_all.sh <인자>` 가 어느 검사와도 안 맞으면 **죽어야** 한다.
+
+    아무것도 재지 않고 rc=0 을 내는 통로는 이 레포의 명제(「안 돌았다 ≠ 통과했다」)와
+    정면으로 어긋난다. 필터가 잡는 어휘는 게이트 이름이 아니라 `run_gate` 에 넘긴
+    **명령의 첫 낱말**이라, `python3` 같은 낱말이면 게이트 하나만 돌고 rc=0 이 된다.
+    """
+
+    def _gate(self, *args):
+        proc = subprocess.run(
+            ["bash", os.path.join(REPO, "scripts", "check_all.sh")] + list(args),
+            cwd=REPO,
+            env=dict(os.environ, INTENT_CHECK_GATE_PROBE="1"),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        return proc.returncode, proc.stdout.decode("utf-8", "replace")
+
+    def test_a_typo_argument_dies(self):
+        rc, out = self._gate("check_nonexistent_gate")
+        self.assertNotEqual(rc, 0, out)
+        self.assertNotIn("0 passed, 0 failed, 0 skipped", out)
+
+    def test_a_command_word_that_is_not_a_gate_dies(self):
+        """`python3` 은 `run_gate` 에 넘긴 명령의 첫 낱말이지 게이트 이름이 아니다."""
+        rc, out = self._gate("python3")
+        self.assertNotEqual(rc, 0, out)
+
+    def test_a_real_gate_name_still_runs_exactly_that_gate(self):
+        """양성 대조 — 진짜 게이트 이름 하나는 여전히 돌고 rc=0 이다."""
+        rc, out = self._gate("check11_intent_chain")
+        self.assertEqual(rc, 0, out)
+        self.assertIn("1 passed, 0 failed, 0 skipped", out)
 
 
 if __name__ == "__main__":
