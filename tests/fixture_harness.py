@@ -169,11 +169,30 @@ def materialize(fixture_dir, workdir):
     return checks
 
 
+def fixture_env():
+    """합성 저장소를 위한 **명시적** 환경. 상속도 스크럽도 아니다.
+
+    합성 저장소의 기본 브랜치는 언제나 `main`(`git init -b main`)이고 HEAD 는 언제나
+    attached 다. 그런데 CI 는 그 회차 PR 의 base 를 `INTENT_CHECK_DEFAULT_BRANCH` 로
+    넘긴다 — 서브 브랜치 PR 이면 `main` 이 아니다. 그것을 상속하면 합성 저장소에서
+    기본 브랜치를 못 찾아 red 픽스처 둘이 note 로 죽는다(게이트 전체가 거짓 빨강).
+
+    env 를 통째로 지우면 반대로 「CI 가 실제로 무엇을 넘기는가」를 재는 자리가 사라진다.
+    그 물음은 이 하네스가 아니라 게이트 note 시험(`GateForwardsSkipNotes`)의 몫이고,
+    그쪽은 환경을 그대로 물려받는다. 여기서는 **우리가 만든 저장소의 사실**을 적는다.
+    """
+    env = os.environ.copy()
+    env["INTENT_CHECK_DEFAULT_BRANCH"] = "main"
+    env.pop("INTENT_CHECK_BRANCH", None)
+    return env
+
+
 def run_checker(workdir, targets):
     """검증기를 --format json 으로 태우고 (rc, payload) 를 돌려준다."""
     proc = subprocess.run(
         [sys.executable, CHECKER, "--format", "json"] + list(targets),
         cwd=workdir,
+        env=fixture_env(),
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
