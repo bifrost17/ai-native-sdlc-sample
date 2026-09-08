@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # scripts/check_all.sh — 게이트 정본 (= `make check`).
 #
-# 이 게이트가 재지 않는 것: 아티팩트(intent/spec/plan) 검증기는 아직 없다.
-# frontmatter · 상태 전이 · upstream sha 무결성 · 사슬 완결성은 W1 이 들여올
-# scripts/check_artifacts.py 부터 잰다. 여기 6개는 W0 골격(문서 존재 · 분량 ·
-# 라이선스 · 출처 표기 · 셸 구문 · README 경로 정합)만 확인하는 최소 게이트다.
+# 검사 1~6 은 W0 골격(문서 존재 · 분량 · 라이선스 · 출처 표기 · 셸 구문 ·
+# README 경로 정합)이고, 7~11 은 아티팩트 검증기(scripts/check_artifacts.py)를
+# 양쪽에서 잡아 둔다: 템플릿은 반드시 red · green 픽스처는 반드시 통과 ·
+# red 픽스처는 **지정한 code 로** red. 한쪽만 있으면 게이트가 조용히 빈 통과가 된다.
+#
+# 이 게이트가 재지 않는 것: 훅 배선(W1-B 가 scripts/gates/ 로 붙인다) ·
+# 산문 품질 · 「요구가 문제를 푸는가」(검증기 --help 의 배타절 참조).
 set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -12,9 +15,14 @@ cd "$REPO_ROOT" || exit 1
 
 PASS_COUNT=0
 FAIL_COUNT=0
+SKIP_COUNT=0
 
-# run_gate <이름> <검사 함수> — 함수를 실행하고 rc 로 PASS/FAIL 한 줄을 찍는다.
+# run_gate <이름> <검사 함수> — 함수를 실행하고 rc 로 PASS/FAIL/SKIP 한 줄을 찍는다.
 # 실패 시 함수가 표준출력/표준에러에 쓴 진단을 들여써서 함께 보여준다.
+#
+# rc 규약:  0 = PASS · 3 = SKIP(전제가 아직 없다 — 조용한 통과 금지) · 그 외 = FAIL.
+# SKIP 은 그린이 아니다. 요약 줄이 skipped 를 따로 세는 이유가 그것이다.
+# scripts/gates/*.sh 는 이 함수를 그대로 불러 쓴다(파일 끝의 확장 지점 참조).
 run_gate() {
   local name="$1"
   shift
@@ -24,6 +32,12 @@ run_gate() {
   if [[ "$rc" -eq 0 ]]; then
     echo "PASS  $name"
     PASS_COUNT=$((PASS_COUNT + 1))
+  elif [[ "$rc" -eq 3 ]]; then
+    echo "SKIP  $name"
+    if [[ -n "$out" ]]; then
+      echo "$out" | sed 's/^/      /'
+    fi
+    SKIP_COUNT=$((SKIP_COUNT + 1))
   else
     echo "FAIL  $name"
     if [[ -n "$out" ]]; then
@@ -135,15 +149,98 @@ check6_readme_paths() {
   return "$rc"
 }
 
+# --- 검사 7: templates/*.md 는 반드시 rc=1 (게이트 상주 음성 대조) ---
+# 템플릿엔 자리표시자 ‹…›가 남아 있으므로 검증기가 반드시 잡아야 한다. 이 검사가
+# 없으면 「검증기가 아무것도 안 잡는 상태」와 「다 통과하는 상태」를 구별할 수 없다.
+check7_templates_are_red() {
+  local f rc=0 out prc
+  if [[ ! -d templates ]]; then
+    echo "templates/ 없음"
+    return 1
+  fi
+  while IFS= read -r f || [[ -n "$f" ]]; do
+    [[ -z "$f" ]] && continue
+    out="$(python3 scripts/check_artifacts.py "$f" 2>&1)"
+    prc=$?
+    if [[ "$prc" -ne 1 ]]; then
+      echo "$f 가 rc=$prc — 템플릿은 rc=1 이어야 한다"
+      echo "$out" | sed 's/^/  /'
+      rc=1
+    fi
+  done < <(find templates -maxdepth 1 -name '*.md' | sort)
+  return "$rc"
+}
+
+# --- 검사 8: tests/fixtures/green/* 는 rc=0 (거짓 양성 대조) ---
+# 대괄호([Art. 4])·인용부호(「」『』【】)가 섞인 정상 문서를 반려하지 않는가.
+check8_fixtures_green() {
+  python3 tests/run_fixtures.py --set green
+}
+
+# --- 검사 9: tests/fixtures/red/* 는 **지정한 code** 로 rc=1 ---
+# 「red 이기만 하면 통과」로 두면 엉뚱한 이유로 빨간 픽스처가 그 축을 못 재는 채
+# 통과한다. EXPECT 의 code 다중집합과 정확히 대조한다.
+check9_fixtures_red() {
+  python3 tests/run_fixtures.py --set red
+}
+
+# --- 검사 10: 시험 묶음 일괄 실행 ---
+check10_unittest() {
+  python3 -m unittest discover -s tests
+}
+
+# --- 검사 11: intent/*/ 사슬이 있으면 전부 rc=0 · 없으면 SKIP ---
+# 사슬은 W2 에 들어온다. 지금 없다고 조용히 통과시키지 않는다 — rc=3 으로 SKIP 을
+# 명시 출력하고 요약의 skipped 로 센다.
+check11_intent_chain() {
+  local d files rc=0 out prc
+  files=""
+  while IFS= read -r d || [[ -n "$d" ]]; do
+    [[ -z "$d" ]] && continue
+    files="$files $d"
+  done < <(find intent -mindepth 2 -maxdepth 2 -name '*.md' 2>/dev/null | sort)
+  if [[ -z "${files// /}" ]]; then
+    echo "intent/*/ 사슬이 아직 없다 (W2 에 들어온다) — 검사하지 않았다"
+    return 3
+  fi
+  # shellcheck disable=SC2086
+  out="$(python3 scripts/check_artifacts.py $files 2>&1)"
+  prc=$?
+  if [[ "$prc" -ne 0 ]]; then
+    echo "사슬 검증기 rc=$prc"
+    echo "$out" | sed 's/^/  /'
+    rc=1
+  fi
+  return "$rc"
+}
+
 run_gate "docs/DESIGN.md 존재 + 200줄 이상" check1_design_doc
 run_gate "README.md/LICENSE/NOTICE 존재 + 각 10줄 이상" check2_core_docs
 run_gate "LICENSE 첫 줄 == 'MIT License'" check3_license_header
 run_gate "NOTICE 가 5개 출처(jcuervo/jsnkle/imsungbin/bashebr/simonsez9510) 포함" check4_notice_sources
 run_gate "레포 내 전체 *.sh 가 bash -n 통과" check5_shell_syntax
 run_gate "README 「지금 상태」 절 표의 경로가 실재" check6_readme_paths
+run_gate "templates/*.md 는 반드시 rc=1 (자리표시자 잔존)" check7_templates_are_red
+run_gate "fixtures/green/* 는 rc=0 (정상 문서를 반려하지 않는다)" check8_fixtures_green
+run_gate "fixtures/red/* 는 지정 code 로 rc=1" check9_fixtures_red
+run_gate "python3 -m unittest discover -s tests" check10_unittest
+run_gate "intent/*/ 사슬 전량 rc=0 (없으면 SKIP)" check11_intent_chain
+
+# --- 확장 지점 -------------------------------------------------------------
+# scripts/gates/*.sh 가 있으면 전부 source 한다. 각 파일은 위의 run_gate 를 그대로
+# 불러 자기 검사를 등록한다(rc 0=PASS · 3=SKIP · 그 외 FAIL). 디렉터리가 없으면
+# 조용히 넘어간다 — 형제 레인이 아직 안 들어왔다는 뜻이고, 그건 이 게이트의 결함이
+# 아니다. 여기 걸린 검사도 아래 요약과 종료 코드에 그대로 합산된다.
+if [[ -d scripts/gates ]]; then
+  while IFS= read -r gate_file || [[ -n "$gate_file" ]]; do
+    [[ -z "$gate_file" ]] && continue
+    # shellcheck disable=SC1090
+    . "$gate_file"
+  done < <(find scripts/gates -maxdepth 1 -name '*.sh' | sort)
+fi
 
 echo ""
-echo "${PASS_COUNT} passed, ${FAIL_COUNT} failed"
+echo "${PASS_COUNT} passed, ${FAIL_COUNT} failed, ${SKIP_COUNT} skipped"
 
 if [[ "$FAIL_COUNT" -gt 0 ]]; then
   exit 1
