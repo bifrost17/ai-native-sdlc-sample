@@ -8,6 +8,11 @@
 # 단독으로도 돈다. 대역은 **단독 실행 전용**이고, 게이트 정본은 언제나 check_all.sh
 # 쪽 run_gate 다 — 두 구현이 갈라지면 정본이 이긴다.
 #
+# 🔴 정본은 scripts/check_all.sh 의 run_gate 다. 그 계약은 rc 3분법이다:
+#   rc 0 = PASS · rc 3 = SKIP(전제가 아직 없다 — 조용한 통과 금지) · 그 밖 = FAIL.
+# 대역이 rc=3 을 FAIL 로 접으면 「아직 잴 것이 없다」가 「계기가 죽었다」로 보고돼
+# 같은 게이트가 두 실행 경로에서 다른 답을 낸다. 복사가 아니라 같은 계약이다.
+#
 # 무엇을 재는가:
 #   ① tests/test_metrics.py 전량이 그린인가.
 #   ② `python3 scripts/metrics.py --format json` 이 rc=0 이고, 그 출력이 파싱 가능한
@@ -82,7 +87,9 @@ if ! declare -F run_gate >/dev/null 2>&1; then
   fi
   PASS_COUNT=0
   FAIL_COUNT=0
-  # 단독 실행 전용 대역. 정본은 scripts/check_all.sh 의 run_gate 다.
+  SKIP_COUNT=0
+  # 단독 실행 전용 대역. 정본은 scripts/check_all.sh 의 run_gate 다 —
+  # rc 0 = PASS · 3 = SKIP · 그 밖 = FAIL 을 그대로 따른다.
   run_gate() {
     local name="$1"
     shift
@@ -92,6 +99,12 @@ if ! declare -F run_gate >/dev/null 2>&1; then
     if [ "$rc" -eq 0 ]; then
       echo "PASS  $name"
       PASS_COUNT=$((PASS_COUNT + 1))
+    elif [ "$rc" -eq 3 ]; then
+      echo "SKIP  $name"
+      if [ -n "$out" ]; then
+        echo "$out" | sed 's/^/      /'
+      fi
+      SKIP_COUNT=$((SKIP_COUNT + 1))
     else
       echo "FAIL  $name"
       if [ -n "$out" ]; then
@@ -107,7 +120,7 @@ run_gate "scripts/metrics.py --format json 이 rc=0 · 파싱 가능한 JSON" ga
 
 if [ "$GATE50_STANDALONE" -eq 1 ]; then
   echo ""
-  echo "${PASS_COUNT} passed, ${FAIL_COUNT} failed  (단독 실행 — 정본은 scripts/check_all.sh)"
+  echo "${PASS_COUNT} passed, ${FAIL_COUNT} failed, ${SKIP_COUNT} skipped  (단독 실행 — 정본은 scripts/check_all.sh)"
   if [ "$FAIL_COUNT" -gt 0 ]; then
     exit 1
   fi

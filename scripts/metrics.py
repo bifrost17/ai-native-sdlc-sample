@@ -9,7 +9,9 @@
 재는 것(사슬 = `intent/<NNNN-slug>/`):
 
   l1           레슨 2 leading  — frontmatter `created`(발의자 **신고값**) → intent.md 최초 커밋
-  l1_accepted  레슨 2 leading  — `created`(신고값) → `status: accepted` 로 바꾼 커밋
+  l1_accepted  레슨 2 leading  — `created`(신고값) → frontmatter `status` 를 accepted 로
+               바꾼 커밋(본문 코드 펜스·인라인 스팬 안의 예시는 승인이 아니다 — 후보를
+               `git show <sha>:<path>` 로 꺼내 교차 확인한다)
   l2           레슨 3 leading  — intent.md 최초 커밋 → spec.md 최초 커밋(두 git 타임스탬프)
   l3           레슨 2 lagging  — spec.md 최초 커밋 **이후** intent.md 를 바꾼 커밋 수
   l4           레슨 3 lagging  — plan.md 최초 커밋 **이후** spec.md 를 바꾼 커밋 수
@@ -29,6 +31,15 @@ import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
+
+# 코드 펜스·인라인 코드 스팬 제거와 frontmatter 파싱은 **정본을 재사용한다**.
+# 같은 규칙을 두 번 구현하면 두 판정이 갈라지고, 갈라진 쪽이 조용히 이긴다.
+# check_artifacts.py 는 실행부가 전부 `if __name__ == "__main__"` 아래라 import
+# 부작용이 없다(실측: import 중 stdout·stderr 둘 다 빈 문자열).
+_SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
+from check_artifacts import extract_frontmatter, strip_code_spans  # noqa: E402
 
 SCHEMA_VERSION = "1.0"
 
@@ -97,22 +108,84 @@ def git_first_commit(repo, path):
     return sha, iso
 
 
-def git_accepted_commit(repo, path):
-    """`status: accepted` 를 처음 넣은 커밋 (sha, ISO). 없으면 None.
+ACCEPTED_NONE = "none"              # 후보가 아예 없다 → not_applicable
+ACCEPTED_CONFIRMED = "confirmed"    # 그 시점 frontmatter 가 실제로 accepted 였다
+ACCEPTED_UNCONFIRMED = "unconfirmed"  # 후보는 있는데 하나도 확인되지 않았다 → unavailable
 
-    설계 §4: `accepted_at` 필드를 두지 않는다 — git 이 안다. 자기 신고 필드를 하나라도
-    줄이는 쪽이 지표에 유리하다.
+
+def frontmatter_status_at(repo, sha, path):
+    """`<sha>` 시점의 `<path>` frontmatter `status`. (status, None) 또는 (None, 사유).
+
+    코드 스팬을 **먼저** 벗기고(`strip_code_spans`) frontmatter 를 읽는다
+    (`extract_frontmatter`) — 둘 다 scripts/check_artifacts.py 의 정본이다.
     """
-    rc, out, _ = git(
+    rc, out, err = git(repo, "show", "%s:%s" % (sha, path))
+    if rc != 0:
+        return None, "git show %s:%s 가 rc=%d (%s)" % (
+            sha[:8], path, rc, (err or "").strip().splitlines()[:1],
+        )
+    data = extract_frontmatter(strip_code_spans(out))[0]
+    if data is None:
+        return None, "%s 시점 파일에 frontmatter 블록이 없다" % sha[:8]
+    if "status" not in data:
+        return None, "%s 시점 frontmatter 에 `status` 키가 없다" % sha[:8]
+    return data["status"], None
+
+
+def git_accepted_commit(repo, path):
+    """`status: accepted` 로 실제로 바꾼 **가장 오래된** 커밋을 교차 확인해서 고른다.
+
+    돌려주는 것: (kind, sha, iso, candidates, reason)
+      kind == ACCEPTED_NONE          후보가 없다(draft/rejected 로만 살았다)
+      kind == ACCEPTED_CONFIRMED     sha/iso 가 승인 커밋이다
+      kind == ACCEPTED_UNCONFIRMED   후보는 있는데 전부 걸러졌다 — reason 이 사유다
+
+    설계 §4: `accepted_at` 필드를 두지 않는다 — git 이 안다. 자기 신고 필드를
+    하나라도 줄이는 쪽이 지표에 유리하다.
+
+    🔴 픽스액스(`git log -S`)는 **문자열 등장 횟수**가 바뀐 커밋을 낸다. 본문의
+    인라인 코드 스팬(`` `status: accepted` ``)이나 코드 펜스 안의 예시도 똑같이
+    센다 — 그래서 가장 오래된 줄을 교차 확인 없이 쓰면 **draft 로 태어난 커밋**이
+    승인 커밋이 된다(실물 사고: PR #12 intent/0001-bootstrap-repo/intent.md L17
+    인라인 스팬이 4accbd1 을 승인 커밋으로 만들었고 l1_accepted 가 l1 과 같은
+    값으로 붕괴했다). 그래서 후보마다 `git show <sha>:<path>` 로 그 시점의 파일을
+    꺼내 코드 스팬을 벗긴 뒤 frontmatter 를 실제로 파싱해 확인한다.
+
+    🔴 알려진 한계: 같은 커밋에서 본문의 예시를 지우면서 frontmatter 를 accepted 로
+    바꾸면 `status: accepted` 등장 횟수가 1→1 이라 `-S` 가 그 커밋을 **후보로 아예
+    내지 않는다** — 교차 확인은 후보를 거를 뿐 후보를 만들지 못하므로 이 갈래는
+    여전히 보이지 않는다(그때는 후보가 0건이라 not_applicable 로 나온다).
+    """
+    rc, out, err = git(
         repo, "log", "-Sstatus: accepted", "--format=%H%x09%aI", "--", path
     )
     if rc != 0:
-        return None
+        return (
+            ACCEPTED_UNCONFIRMED, None, None, [],
+            "git log -S 가 rc=%d 로 실패했다 — 후보를 열거하지 못했다 (%s)"
+            % (rc, (err or "").strip().splitlines()[:1]),
+        )
     lines = [ln for ln in out.splitlines() if ln.strip()]
     if not lines:
-        return None
-    sha, iso = lines[-1].split("\t", 1)
-    return sha, iso
+        return ACCEPTED_NONE, None, None, [], None
+    # `git log` 는 새로 → 오래된 순이므로 뒤에서부터 본다(가장 오래된 승인이 답이다).
+    rows = []
+    for ln in reversed(lines):
+        sha, _, iso = ln.partition("\t")
+        rows.append((sha, iso))
+    candidates = [sha for sha, _ in rows]
+    rejected = []
+    for sha, iso in rows:
+        status, why = frontmatter_status_at(repo, sha, path)
+        if status == "accepted":
+            return ACCEPTED_CONFIRMED, sha, iso, candidates, None
+        rejected.append("%s(%s)" % (sha[:8], why or "status=%r" % status))
+    return (
+        ACCEPTED_UNCONFIRMED, None, None, candidates,
+        "픽스액스 후보 %d건이 전부 교차 확인에서 걸러졌다 — 그 시점 파일의 "
+        "frontmatter `status` 가 accepted 가 아니었다(본문 코드 스팬·펜스 안의 "
+        "예시를 센 것이다): %s" % (len(rows), ", ".join(rejected)),
+    )
 
 
 def git_count_commits_after(repo, base_sha, path):
@@ -246,7 +319,10 @@ def compute_chain(repo, chain_id):
     )
     method_l1a = (
         "frontmatter `created`(발의자 신고값) → "
-        "`git log -Sstatus: accepted --format=%aI -- " + ipath + "` 의 가장 오래된 것"
+        "`git log -Sstatus: accepted --format=%aI -- " + ipath + "` 의 후보 중, "
+        "`git show <sha>:" + ipath + "` 로 그 시점 파일을 꺼내 코드 스팬을 벗기고 "
+        "frontmatter `status` 가 accepted 임을 교차 확인한 가장 오래된 커밋 "
+        "(펜스·인라인 코드 스팬 안의 예시는 승인이 아니다)"
     )
     method_l2 = (
         "`" + (m_first % ipath) + "` → `" + (m_first % spath) + "` (두 git 타임스탬프)"
@@ -279,7 +355,9 @@ def compute_chain(repo, chain_id):
     intent_first = git_first_commit(repo, ipath)
     spec_first = git_first_commit(repo, spath)
     plan_first = git_first_commit(repo, ppath)
-    accepted = git_accepted_commit(repo, ipath)
+    acc_kind, acc_sha, acc_iso, acc_candidates, acc_reason = git_accepted_commit(
+        repo, ipath
+    )
 
     metrics = {}
 
@@ -321,28 +399,35 @@ def compute_chain(repo, chain_id):
         "intent_path": ipath,
         "created_reported": created_raw,
         "created_is_self_reported": True,
-        "accepted_commit": accepted[0] if accepted else None,
-        "accepted_commit_at": accepted[1] if accepted else None,
+        "accepted_commit": acc_sha,
+        "accepted_commit_at": acc_iso,
+        # 픽스액스가 낸 후보 전량. 걸러진 것까지 남겨야 이 값을 반증할 수 있다.
+        "accepted_candidates": acc_candidates,
+        "accepted_cross_checked": True,
     }
-    if accepted is None:
+    if acc_kind == ACCEPTED_NONE:
         metrics["l1_accepted"] = metric(
             "not_applicable", None, "seconds", method_l1a, inputs_l1a,
             reason="아직 `status: accepted` 로 바꾼 커밋이 없다(draft 또는 rejected)",
         )
+    elif acc_kind == ACCEPTED_UNCONFIRMED:
+        # 「승인이 아직 없다」가 아니라 「후보를 못 골랐다」다 — 0 이나 임의값을
+        # 지어내지 않는다.
+        metrics["l1_accepted"] = unavailable(method_l1a, acc_reason, inputs_l1a)
     elif created_dt is None:
         metrics["l1_accepted"] = unavailable(method_l1a, created_reason, inputs_l1a)
     else:
-        acc_dt = parse_git_iso(accepted[1])
+        acc_dt = parse_git_iso(acc_iso)
         if acc_dt is None:
             metrics["l1_accepted"] = unavailable(
-                method_l1a, "git 이 낸 시각 %r 를 읽지 못했다" % accepted[1], inputs_l1a
+                method_l1a, "git 이 낸 시각 %r 를 읽지 못했다" % acc_iso, inputs_l1a
             )
         else:
             delta = int((acc_dt - created_dt).total_seconds())
             if delta < 0:
                 metrics["l1_accepted"] = unavailable(
                     method_l1a,
-                    "신고된 `created`(%s)가 accepted 커밋(%s)보다 미래다" % (created_raw, accepted[1]),
+                    "신고된 `created`(%s)가 accepted 커밋(%s)보다 미래다" % (created_raw, acc_iso),
                     inputs_l1a,
                 )
             else:
