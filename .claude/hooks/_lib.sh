@@ -50,12 +50,17 @@ hook_read_input() {
   while IFS= read -r __l || [ -n "$__l" ]; do
     HOOK_JSON="$HOOK_JSON$__l"
   done
-  if [ -z "${HOOK_JSON//[[:space:]]/}" ]; then
+  # 「비공백이 하나라도 있는가」. ${V//[[:space:]]/} 와 동치이면서(양쪽 bash 24/24 실측)
+  # 페이로드 크기에 대해 폭발하지 않는다 — bash 3.2 에서 그 치환은 8KB 33.9s 였다.
+  case "$HOOK_JSON" in
+    *[![:space:]]*) ;;
+    *)
     hook_die \
 "[$HOOK_NAME 차단] 빈 입력 — 훅 stdin 이 비어 있다. 판정할 수 없으므로 차단한다.
   승인 경로: 훅을 손으로 시험하려면 PreToolUse 이벤트 JSON 을 stdin 으로 주어라.
              예) echo '{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"...\"}}' | $HOOK_NAME"
-  fi
+    ;;
+  esac
   if ! printf '%s' "$HOOK_JSON" | jq -e . >/dev/null 2>&1; then
     hook_die \
 "[$HOOK_NAME 차단] 훅 입력 JSON 을 파스하지 못했다. 판정할 수 없으므로 차단한다.
