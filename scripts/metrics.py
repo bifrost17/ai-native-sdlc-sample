@@ -90,6 +90,19 @@ def git(repo, *args):
     return run(["git", "-C", repo] + list(args))
 
 
+def first_line(text):
+    """명령이 낸 진단의 **첫 줄을 문장으로** 돌려준다.
+
+    사유 문자열은 사람이 읽는다 — 리스트를 `%s` 로 찍으면 `['fatal: …']` 이 되어
+    따옴표·대괄호가 진단인지 렌더 잡음인지 구별되지 않는다. 진단이 비어 있으면
+    빈 괄호로 삼키지 않고 그 사실을 적는다.
+    """
+    for line in (text or "").splitlines():
+        if line.strip():
+            return line.strip()
+    return "(진단 없음)"
+
+
 def git_first_commit(repo, path):
     """파일이 추가된 가장 오래된 커밋 (sha, author date ISO). 없으면 None.
 
@@ -122,7 +135,7 @@ def frontmatter_status_at(repo, sha, path):
     rc, out, err = git(repo, "show", "%s:%s" % (sha, path))
     if rc != 0:
         return None, "git show %s:%s 가 rc=%d (%s)" % (
-            sha[:8], path, rc, (err or "").strip().splitlines()[:1],
+            sha[:8], path, rc, first_line(err),
         )
     data = extract_frontmatter(strip_code_spans(out))[0]
     if data is None:
@@ -154,7 +167,15 @@ def git_accepted_commit(repo, path):
     🔴 알려진 한계: 같은 커밋에서 본문의 예시를 지우면서 frontmatter 를 accepted 로
     바꾸면 `status: accepted` 등장 횟수가 1→1 이라 `-S` 가 그 커밋을 **후보로 아예
     내지 않는다** — 교차 확인은 후보를 거를 뿐 후보를 만들지 못하므로 이 갈래는
-    여전히 보이지 않는다(그때는 후보가 0건이라 not_applicable 로 나온다).
+    여전히 보이지 않는다.
+
+    그때 나오는 값은 **실측**으로 `unavailable` + 사유이고 `accepted_candidates`
+    에는 예시를 들고 태어난 옛 커밋 1건이 남는다(`not_applicable` 이 아니다 —
+    tests/test_metrics.py TestCase19 가 이 결과값을 못박는다). 후보 0건은 이
+    갈래에서 도달 불가다: HEAD 파일이 `status: accepted` 를 담고 있으면 그 문자열
+    등장 횟수를 0 에서 올린 커밋이 이력에 반드시 있으므로 후보는 최소 1건이다.
+    조용한 not_applicable 이 아니라 사유가 붙은 시끄러운 unavailable 인 편이
+    **더 안전하다** — 「승인이 아직 없다」로 읽히지 않는다.
     """
     rc, out, err = git(
         repo, "log", "-Sstatus: accepted", "--format=%H%x09%aI", "--", path
@@ -163,7 +184,7 @@ def git_accepted_commit(repo, path):
         return (
             ACCEPTED_UNCONFIRMED, None, None, [],
             "git log -S 가 rc=%d 로 실패했다 — 후보를 열거하지 못했다 (%s)"
-            % (rc, (err or "").strip().splitlines()[:1]),
+            % (rc, first_line(err)),
         )
     lines = [ln for ln in out.splitlines() if ln.strip()]
     if not lines:
