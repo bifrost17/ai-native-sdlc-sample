@@ -16,5 +16,9 @@ git 을 대역으로 갈아 끼우면 계약을 증언하지 못한다.
 | `intent-created-no-offset.md` | `created` 가 오프셋 없는 ISO8601 |
 | `intent-draft-code-span.md` | `status: draft` 인데 **본문**에 인라인 코드 스팬과 코드 펜스로 `status: accepted` 예시가 있다(픽스액스 오판 재현) |
 | `intent-accepted-code-span.md` | 위와 본문이 같고 frontmatter `status` 만 `accepted` — **진짜** 승인 커밋 |
+| `intent-draft-one-example.md` | `status: draft` 인데 본문 예시가 **정확히 한 번**만 나온다 — 「같은 커밋에서 예시를 지우면서 승인(등장 1→1)」 갈래를 만들려면 등장 횟수가 1 이어야 한다 |
+| `intent-fence-before-frontmatter.md` | 예시 펜스가 **진짜 frontmatter 앞**에 있다 — 코드 펜스를 벗기지 않으면 첫 `---` 블록이 예시 쪽이라 accepted 로 읽힌다 |
+| `intent-span-valued-status.md` | frontmatter 의 **값 자체**가 인라인 스팬(`` status: `accepted` ``) — 벗기면 빈 값, 안 벗기면 백틱째로 읽힌다 |
+| `intent-fence-only-no-frontmatter.md` | frontmatter 가 아예 없고 예시 펜스만 있다 — 벗기지 않으면 그 예시가 frontmatter 로 승격한다 |
 | `spec.md` · `spec-v2.md` | spec 최초 커밋 · 그 이후 수정 1회 |
 | `plan.md` | plan 최초 커밋 |
