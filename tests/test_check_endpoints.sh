@@ -87,6 +87,29 @@ expect "red/second-allowlist — 허용 목록 재정의 → rc=1" 1 "E-ALLOWLIS
 expect "red/route-elsewhere — 다른 파일에서 라우트 등록 → rc=1" 1 "E-ROUTE-OUTSIDE" "$FIX/red/route-elsewhere"
 expect "red/aliased-record — 별칭 변수로 통로 우회 → rc=1" 1 "E-GATEWAY-BYPASS" "$FIX/red/aliased-record"
 
+# --- 2b. red 5종 — 독립 리뷰어가 백스톱을 직접 깨서 통과시킨 우회 벡터 (V1~V5) ---
+# 이 다섯은 경화 전 전부 rc=0 이었고, 실행하면 주민번호가 실제로 응답·감사로그에
+# 실려 나갔다(tests/fixtures-endpoints/leak_probe.py 가 그 사실을 상주시킨다).
+# 각 줄의 code 는 그 벡터를 닫은 규칙을 지목한다 — 「빨갛기만 하면 통과」로 두면
+# 엉뚱한 이유로 빨간 픽스처가 그 축을 못 재는 채 통과한다.
+expect "red/gateway-widen (V1) — 통로 안에서 필터 무력화 → rc=1" 1 "E-GATEWAY-SHAPE" "$FIX/red/gateway-widen"
+expect "red/foreign-decorator (V2) — 다른 데코레이터로 등록 → rc=1" 1 "E-GATEWAY-BYPASS" "$FIX/red/foreign-decorator"
+expect "red/allowlist-augassign (V3) — 허용 목록 증분 확대 → rc=1" 1 "E-ALLOWLIST-MUTATE" "$FIX/red/allowlist-augassign"
+expect "red/route-table (V4) — 데코레이터 없이 표에 등록 → rc=1" 1 "E-ROUTE-TABLE" "$FIX/red/route-table"
+expect "red/dynamic-serialize (V5) — 동적 임포트 직렬화 → rc=1" 1 "E-RECORD-ESCAPE" "$FIX/red/dynamic-serialize"
+expect "red/dynamic-serialize (V5) — 동적 임포트 자체도 빨강" 1 "E-DYNAMIC-IMPORT" "$FIX/red/dynamic-serialize"
+
+# --- 2c. 계기 유효성: red 픽스처가 실제로 유출을 일으키는가 (양성 대조) ---
+# 검사기가 red 를 잡는 것과 그 red 가 진짜 위험인 것은 다른 명제다. 픽스처를 조용히
+# 무해하게 고치면 검사기는 그대로 빨간데 재는 것이 없어진다 — 그것을 이 시험이 막는다.
+probe_out="$(python3 "$FIX/leak_probe.py" 2>&1)"
+probe_rc=$?
+if [ "$probe_rc" -eq 0 ]; then
+  ok "red 픽스처 5종이 실행 시 실제로 민감 필드를 흘린다 + green 은 흘리지 않는다"
+else
+  ng "red 픽스처 5종이 실행 시 실제로 민감 필드를 흘린다 + green 은 흘리지 않는다" "leak_probe rc=$probe_rc" "$probe_out"
+fi
+
 # --- 3. 판정 불가 rc=2 ---
 expect "missing/ — 없는 디렉터리 → rc=2" 2 "E-TARGET-MISSING" "$FIX/missing"
 
