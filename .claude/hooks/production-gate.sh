@@ -14,7 +14,11 @@
 #     백틱을 치면 40-skills 게이트가 「실재하지 않는 레포 경로」로 읽는다).
 #   · `--env=production` 은 값 부분이 production 이므로 토큰이다.
 #   · `--dry-run=false` · `tools.yaml` 같은 무해한 인자에 걸리지 않는다.
-#   · 허용목록을 차단 판정보다 먼저 돌리지 않는다 — 이 훅에는 허용목록이 없다.
+#   · 허용목록을 차단 판정보다 먼저 돌리지 않는다 — 이 훅에는 그런 목록이 없다.
+#     좁힘은 하나뿐이고 차단 판정 '안'에 있다: 세그먼트의 **명령어 자리** 토큰이 인자를
+#     실행할 수 없는 순수 읽기 명령이면(`cat scripts/deploy.sh production`) 인자 자리의
+#     배포 스크립트를 호출로 세지 않는다. 배포 스크립트가 명령어 자리에 있으면 이 집합과
+#     무관하게 차단이다. 목록을 빠뜨리면 거짓 양성이 남을 뿐 우회는 생기지 않는다.
 set -uo pipefail
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
 
@@ -64,16 +68,32 @@ bases_add "$HOOK_ROOT"
 UNRESOLVED_CD=0
 
 collect_bases() {
-  local sid tok prev_sid="" leading=1 want_dest=0 i n nb
+  local sid tok prev_sid="" leading=1 want_dest=0 lit i n nb
   while IFS=$'\t' read -r sid tok || [ -n "${sid:-}" ]; do
     [ -z "${sid:-}" ] && continue
     if [ "$sid" != "$prev_sid" ]; then
       prev_sid="$sid"; leading=1; want_dest=0
     fi
-    if [ "$want_dest" -eq 1 ]; then
+    if [ "$want_dest" -ne 0 ]; then
+      lit="$want_dest"    # 2 = `--` 뒤. `-` 로 시작해도 목적지다.
       want_dest=0
+      if [ "$lit" -eq 1 ]; then
+        case "$tok" in
+          -)  # `cd -` 의 목적지는 OLDPWD 라 셸 실행 시각에만 안다 — `cd $VAR` 와 같은
+              # 부류(해석 불가)이지 옵션이 아니다. 「모른다」는 통과가 아니다.
+              UNRESOLVED_CD=1
+              continue ;;
+          --) want_dest=2                      # 옵션 끝. 다음 토큰이 목적지다.
+              continue ;;
+          -*) # `cd -P` · `cd -L` · `pushd -n` … 옵션이지 목적지가 아니다. 여기서 목적지
+              # 찾기를 그만두면 바로 뒤의 목적지를 통째로 놓쳐 `cd -P scripts` 가
+              # PG19 와 같은 자리로 가는데도 기준 디렉터리에 안 들어온다. 계속 찾는다
+              # (넓히는 방향 — 옵션을 하나 더 만나면 또 넘긴다).
+              want_dest=1
+              continue ;;
+        esac
+      fi
       case "$tok" in
-        -*) continue ;;                       # `cd -` · `cd -P` 는 목적지가 아니다
         *'$'*|*'`'*|*'*'*|*'?'*|'~'*)
           # 확장해야 알 수 있는 목적지 — 「모른다」이지 「없다」가 아니다.
           UNRESOLVED_CD=1
@@ -117,6 +137,7 @@ seg_has_deploy=0
 seg_has_prod=0
 seg_has_inline=0
 seg_leading=1
+seg_reader=0
 VIOLATION=0
 INLINE=0
 ANY_PROD=0
@@ -131,6 +152,7 @@ flush_segment() {
   seg_has_prod=0
   seg_has_inline=0
   seg_leading=1
+  seg_reader=0
 }
 
 is_deploy_token() {
@@ -167,6 +189,20 @@ is_deploy_token() {
   return 1
 }
 
+# 인자를 실행할 수 없는 순수 읽기 명령. 인터프리터(bash · sh · env · sudo · xargs)와
+# 자기 안에서 셸을 부를 수 있는 것(less · vi · awk · perl · GNU sed 의 `e`)은 넣지 않는다 —
+# 그쪽을 잘못 넣으면 우회가 생긴다. 이쪽을 빠뜨리면 거짓 양성이 남을 뿐이다.
+READ_ONLY_CMDS=" cat head tail nl wc file stat cmp diff od xxd grep egrep fgrep "
+
+is_read_only_cmd() {
+  local b
+  b="$(hook_basename "$(hook_token_core "$1")")"
+  case "$READ_ONLY_CMDS" in
+    *" $b "*) return 0 ;;
+  esac
+  return 1
+}
+
 is_production_token() {
   local t="$1" v
   [ "$t" = "production" ] && return 0
@@ -183,6 +219,7 @@ while IFS=$'\t' read -r sid tok || [ -n "${sid:-}" ]; do
     cur_seg="$sid"
   fi
   # 세그먼트 머리의 VAR=value 대입 구간
+  is_cmdword=0
   if [ "$seg_leading" -eq 1 ]; then
     case "$tok" in
       [A-Za-z_]*=*)
@@ -191,11 +228,19 @@ while IFS=$'\t' read -r sid tok || [ -n "${sid:-}" ]; do
         esac
         continue
         ;;
-      *) seg_leading=0 ;;
+      *) seg_leading=0
+         is_cmdword=1
+         seg_reader=0
+         is_read_only_cmd "$tok" && seg_reader=1
+         ;;
     esac
   fi
   if is_deploy_token "$tok"; then
-    seg_has_deploy=1
+    # 명령어 자리의 배포 스크립트는 언제나 호출이다. 인자 자리라면, 그 세그먼트의 명령어가
+    # 인자를 실행할 수 없는 순수 읽기 명령일 때만 호출이 아니다 — `cat A B` 는 읽기다.
+    if [ "$is_cmdword" -eq 1 ] || [ "$seg_reader" -eq 0 ]; then
+      seg_has_deploy=1
+    fi
     continue
   fi
   if is_production_token "$tok"; then
@@ -247,7 +292,7 @@ if [ "$UNRESOLVED_BLOCK" -eq 1 ]; then
       그러면 훅이 실경로(device+inode)로 판정한다."
 fi
 
-printf '%s\n' \\
+printf '%s\n' \
 "[production-gate 차단] 승인 없이 프로덕션 배포를 실행할 수 없다.
   본 명령: $CMD
   왜: 레슨 12 — 에이전트는 프로덕션 게이트까지 갈 수 있고 그 게이트를 넘지는 못한다.
