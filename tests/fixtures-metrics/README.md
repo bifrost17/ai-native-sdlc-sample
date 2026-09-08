@@ -5,7 +5,7 @@
 고정해 커밋한다. 모의(mock)는 쓰지 않는다 — 재는 대상이 git 이력 그 자체이므로
 git 을 대역으로 갈아 끼우면 계약을 증언하지 못한다.
 
-치환 토큰은 `{{ID}}` 하나(사슬 ID). `created` 변형 4종은 `intent-*.md` 파일명이 구분한다:
+치환 토큰은 `{{ID}}` 하나(사슬 ID). 변형은 `intent-*.md` 파일명이 구분한다:
 
 | 파일 | 무엇을 심는가 |
 |---|---|
@@ -14,5 +14,7 @@ git 을 대역으로 갈아 끼우면 계약을 증언하지 못한다.
 | `intent-created-future.md` | `created` 가 최초 커밋보다 미래 |
 | `intent-created-missing.md` | `created` 키 자체가 없음 |
 | `intent-created-no-offset.md` | `created` 가 오프셋 없는 ISO8601 |
+| `intent-draft-code-span.md` | `status: draft` 인데 **본문**에 인라인 코드 스팬과 코드 펜스로 `status: accepted` 예시가 있다(픽스액스 오판 재현) |
+| `intent-accepted-code-span.md` | 위와 본문이 같고 frontmatter `status` 만 `accepted` — **진짜** 승인 커밋 |
 | `spec.md` · `spec-v2.md` | spec 최초 커밋 · 그 이후 수정 1회 |
 | `plan.md` | plan 최초 커밋 |

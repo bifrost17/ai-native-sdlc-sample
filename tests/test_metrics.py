@@ -25,6 +25,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = REPO_ROOT / "scripts" / "metrics.py"
+GATE50 = REPO_ROOT / "scripts" / "gates" / "50-metrics.sh"
 FIXTURES = REPO_ROOT / "tests" / "fixtures-metrics"
 
 CHAIN_ID = "0002-claims-status"
@@ -514,6 +515,123 @@ class TestCase11SurvivalWithFakeGh(MetricsTestBase):
         self.assertEqual(l5["inputs"]["closed"], 1)
         self.assertEqual(sorted(l5["inputs"]["pr_numbers"]), [1, 2])
 
+
+class TestCase12CodeSpanIsNotAcceptance(MetricsTestBase):
+    """본문의 코드 스팬 안 `status: accepted` 는 승인이 아니다 — 승인 커밋을 오판하면
+    l1_accepted 가 l1 과 같은 값으로 붕괴한다(실물 사고: PR #12 intent.md L17 인라인 스팬).
+
+    픽스액스(`git log -S`)는 **문자열 등장 횟수**만 보므로 draft 로 태어난 커밋도
+    후보로 낸다. 후보마다 그 시점 파일의 frontmatter 를 실제로 파싱해야 갈린다.
+    """
+
+    def test_draft_born_with_code_span_is_not_the_accepted_commit(self):
+        repo = self.new_repo()
+        c1 = repo.commit(
+            intent_path(), fixture("intent-draft-code-span.md"),
+            T_INTENT_CREATE, "feat: intent 발의(draft · 본문에 예시 status: accepted)",
+        )
+        c2 = repo.commit(
+            intent_path(), fixture("intent-accepted-code-span.md"),
+            T_INTENT_ACCEPT, "chore: intent 승인(frontmatter status 한 줄)",
+        )
+        # 양성 대조: 두 커밋이 **둘 다** 픽스액스 후보여야 이 시험이 뜻을 갖는다.
+        cand = repo.git(
+            "log", "-Sstatus: accepted", "--format=%H", "--", intent_path()
+        ).stdout.split()
+        self.assertEqual(sorted(cand), sorted([c1, c2]), "픽스액스 후보가 둘이 아니다 — 계기 고장")
+
+        _, doc = self.json_metrics(repo)
+        m = self.chain_of(doc)["metrics"]
+        l1a = m["l1_accepted"]
+        self.assertEqual(l1a["status"], "ok", l1a)
+        self.assertEqual(
+            l1a["inputs"]["accepted_commit"], c2,
+            "승인 커밋을 %s 로 골랐다 — draft 로 태어난 커밋(%s)이면 코드 스팬 오판이다" % (
+                l1a["inputs"]["accepted_commit"], c1,
+            ),
+        )
+        # created(10:12) → 승인 커밋(13:00) = 2시간 48분.
+        self.assertEqual(l1a["value"], (2 * 60 + 48) * 60, l1a)
+        # l1 과 같은 값으로 붕괴하지 않는다.
+        self.assertNotEqual(l1a["value"], m["l1"]["value"], "l1 과 l1_accepted 가 붕괴했다")
+
+
+class TestCase13ExampleOnlyIsUnavailable(MetricsTestBase):
+    """후보는 있는데 전부 예시였다면 `unavailable` + 사유다 — 0 도, 임의값도, 조용한
+    not_applicable 도 아니다. 「승인이 아직 없다」와 「후보를 못 골랐다」는 다른 일이다."""
+
+    def test_all_candidates_filtered_is_unavailable_with_reason(self):
+        repo = self.new_repo()
+        c1 = repo.commit(
+            intent_path(), fixture("intent-draft-code-span.md"),
+            T_INTENT_CREATE, "feat: intent 발의(draft · 예시만 있다)",
+        )
+        _, doc = self.json_metrics(repo)
+        l1a = self.chain_of(doc)["metrics"]["l1_accepted"]
+        self.assertEqual(l1a["status"], "unavailable", l1a)
+        self.assertIsNone(l1a["value"], l1a)
+        self.assertTrue(l1a.get("reason"), "unavailable 인데 사유가 없다")
+        self.assertIsNone(l1a["inputs"]["accepted_commit"], l1a)
+        self.assertEqual(
+            l1a["inputs"]["accepted_candidates"], [c1],
+            "걸러진 후보 커밋이 출력에 남지 않았다 — 반증할 수 없는 값이 된다",
+        )
+
+
+class TestCase14NoCandidateStaysNotApplicable(MetricsTestBase):
+    """예시조차 없는 순수 draft 는 기존대로 `not_applicable` 이다(두 갈래를 뭉개지 않는다)."""
+
+    def test_plain_draft_is_not_applicable(self):
+        repo = self.new_repo()
+        repo.commit(
+            intent_path(), fixture("intent-draft.md"), T_INTENT_CREATE, "feat: intent 발의"
+        )
+        _, doc = self.json_metrics(repo)
+        l1a = self.chain_of(doc)["metrics"]["l1_accepted"]
+        self.assertEqual(l1a["status"], "not_applicable", l1a)
+        self.assertEqual(l1a["inputs"]["accepted_candidates"], [], l1a)
+
+
+class TestCase15Gate50StandaloneSkipContract(MetricsTestBase):
+    """50-metrics.sh 의 **단독 실행 대역**도 정본(check_all.sh 의 run_gate)과 같은
+    3분법이어야 한다: rc 0 = PASS · 3 = SKIP · 그 밖 = FAIL.
+
+    비침습으로 잰다 — 실파일을 임시 트리의 `scripts/gates/` 로 복사하면 GATE50_ROOT
+    가 그 임시 트리가 되므로, PATH 앞의 python3 셰임만으로 rc 를 태울 수 있다.
+    대역을 한 줄도 고치지 않고 계약만 관측한다.
+    """
+
+    def _run_with_python3_shim(self, shim_rc):
+        root = self.tmp / ("gate50-rc%d" % shim_rc)
+        (root / "scripts" / "gates").mkdir(parents=True, exist_ok=True)
+        shutil.copy2(str(GATE50), str(root / "scripts" / "gates" / "50-metrics.sh"))
+        shim = root / "shim"
+        shim.mkdir(exist_ok=True)
+        fake = shim / "python3"
+        fake.write_text("#!/bin/sh\nexit %d\n" % shim_rc, encoding="utf-8")
+        fake.chmod(0o755)
+        env = dict(os.environ)
+        env["PATH"] = os.pathsep.join([str(shim), env.get("PATH", "")])
+        # 양성 대조: 셰임이 실제로 앞에 서지 않으면 이 측정은 아무것도 재지 않는다.
+        self.assertEqual(
+            shutil.which("python3", path=env["PATH"]), str(fake),
+            "python3 셰임이 PATH 앞에 서지 않았다 — 계기 고장",
+        )
+        return subprocess.run(
+            ["bash", str(root / "scripts" / "gates" / "50-metrics.sh")],
+            env=env, capture_output=True, text=True,
+        )
+
+    def test_positive_control_rc0_is_two_passes(self):
+        p = self._run_with_python3_shim(0)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        self.assertIn("2 passed, 0 failed", p.stdout, p.stdout + p.stderr)
+
+    def test_rc3_is_skip_not_fail(self):
+        p = self._run_with_python3_shim(3)
+        out = p.stdout + p.stderr
+        self.assertIn("SKIP", p.stdout, "rc=3 인데 SKIP 줄이 없다\n" + out)
+        self.assertIn("0 passed, 1 failed, 1 skipped", p.stdout, out)
 
 if __name__ == "__main__":
     unittest.main()
