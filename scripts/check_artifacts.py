@@ -665,8 +665,91 @@ def check_upstream(report, artifact_type, path, data):
     return upstream_data
 
 
+STATUS_LINE_RE = re.compile(r"^status:[ \t]*\S+[ \t]*$")
+
+
+def classify_accept_diff(diff_text):
+    """`git diff` 출력이 무엇을 바꿨는가 — identical | status_only | content.
+
+    D16 의 판정 함수다. 승인은 「이미 검토된 문서에 도장을 찍는 행위」이므로,
+    바뀐 줄이 `status:` 하나뿐이면 도장이고 그 밖의 줄이 함께 바뀌었으면
+    「고치면서 승인」이다. 파일이 통째로 새로 생긴 경우(+ 줄만 여럿)도 content 다
+    — 도장을 찍을 원본이 없기 때문이다.
+    """
+    added = []
+    removed = []
+    for line in diff_text.split("\n"):
+        if not line or line[0] not in "+-":
+            continue
+        if line.startswith("+++") or line.startswith("---"):
+            continue
+        (added if line[0] == "+" else removed).append(line[1:])
+    if not added and not removed:
+        return "identical"
+    if len(added) == 1 and len(removed) == 1:
+        if STATUS_LINE_RE.match(added[0]) and STATUS_LINE_RE.match(removed[0]):
+            return "status_only"
+    return "content"
+
+
+def run_accept_diff(git_ctx, base, relpath):
+    """base 와 작업 트리 사이의 그 파일 diff. 실패하면 (None, 사유) 를 돌려준다.
+
+    실패를 삼키지 않는다 — 삼키면 CI 에서 이 자리가 조용히 빈다(호출자가 note 로
+    남긴다). `--no-renames` 는 rename 탐지가 +/- 없는 diff 를 만들어 「안 바뀌었다」로
+    읽히는 것을 막는다.
+    """
+    rc, out, err = run_git(
+        git_ctx.root, "diff", "--no-color", "--no-renames", "-U0", base, "--", relpath
+    )
+    if rc != 0:
+        return None, (err.strip() or "rc=%d" % rc)
+    return out.decode("utf-8", "replace"), None
+
+
+def accept_baseline(git_ctx, default, relpath):
+    """무엇과 견줄 것인가 — (base, outcome, detail). outcome: ok | skip | reject.
+
+    ① 기본 브랜치에 그 파일이 있으면 기본 브랜치가 기준이다(누적 diff).
+    ② 없으면 사슬이 이 브랜치에서 태어난 경우다. 그 파일을 건드린 **가장 최근
+       커밋**을 승인 커밋으로 보고 그 부모를 기준으로 삼는다 — 승인한 뒤에 내용을
+       고쳤으면 그 편집이 diff 에 그대로 남아 red 가 된다.
+    ③ 커밋된 적이 없거나 승인 커밋에 부모가 없으면 도장을 찍을 원본이 없다 — reject.
+    """
+    rc, _out, _err = git_ctx.show(default, relpath)
+    if rc == 0:
+        return default, "ok", "기본 브랜치 %s" % default
+    rc, out, err = run_git(
+        git_ctx.root, "rev-list", "-1", "%s..HEAD" % default, "--", relpath
+    )
+    if rc != 0:
+        return None, "skip", "git rev-list 가 실패했다: %s" % (err.strip() or "rc=%d" % rc)
+    sha = out.decode("utf-8", "replace").strip()
+    if not sha:
+        return (
+            None,
+            "reject",
+            "기본 브랜치 %s 에 그 파일이 없고 이 브랜치에서 커밋된 적도 없다 "
+            "— 승인 커밋이 존재하지 않는다" % default,
+        )
+    rc, parent, _err = run_git(git_ctx.root, "rev-parse", "--verify", "--quiet", sha + "^")
+    if rc != 0:
+        return (
+            None,
+            "reject",
+            "승인 커밋 %s 에 부모가 없다 — 처음부터 accepted 로 태어났다" % sha[:12],
+        )
+    return parent.decode("utf-8", "replace").strip(), "ok", "승인 커밋 %s 의 직전 상태" % sha[:12]
+
+
 def check_accepted_on_branch(report, path, data):
-    """accepted 는 머지된 PR 로만 들어온다 — 브랜치 위 자기 승인을 막는다."""
+    """accepted 는 머지된 PR 로만 들어온다 — 브랜치 위 자기 승인을 막는다.
+
+    D16 예외: 브랜치에서도 `status:` 줄 하나만 바꾼 승인은 통과시킨다. 이 예외가
+    없으면 승인 PR 자체가 CI 에서 빨개져 사슬이 전진할 수 없다(설계안 §4 는 승인을
+    「PR 안에서 status: 를 고치고 머지」로 정의한다). 예외의 폭은 `status:` 줄
+    하나이고, 그 밖의 내용이 함께 바뀌면 여전히 ACCEPTED_ON_BRANCH 다.
+    """
     if data.get("status") != "accepted":
         return
     directory = os.path.dirname(os.path.abspath(path))
@@ -692,14 +775,40 @@ def check_accepted_on_branch(report, path, data):
     if branch == default:
         return
     relpath = os.path.relpath(os.path.abspath(path), git_ctx.root).replace(os.sep, "/")
-    rc, out, _err = git_ctx.show(default, relpath)
-    with open(path, "rb") as handle:
-        current = handle.read()
-    if rc != 0 or out != current:
+
+    # D16 — 「도장만 찍는 승인」은 브랜치에서도 통과시킨다. 무엇과 견줄지부터 정한다.
+    baseline, outcome, detail = accept_baseline(git_ctx, default, relpath)
+    if outcome == "skip":
+        report.add(
+            "ACCEPTED_BRANCH_CHECK_SKIPPED",
+            "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — %s" % (branch, detail),
+            severity=SEV_NOTE,
+        )
+        return
+    if outcome == "reject":
         report.add(
             "ACCEPTED_ON_BRANCH",
-            "브랜치 %r 에서 status: accepted 인데 %s 의 같은 파일과 다르다 — 승인은 "
-            "머지된 PR 안에서만 일어난다" % (branch, default),
+            "브랜치 %r 에서 status: accepted 인데 %s — 승인은 이미 검토된 문서에 "
+            "도장을 찍는 행위다" % (branch, detail),
+            line=1,
+        )
+        return
+    diff_text, error = run_accept_diff(git_ctx, baseline, relpath)
+    if diff_text is None:
+        report.add(
+            "ACCEPTED_BRANCH_CHECK_SKIPPED",
+            "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — git diff %s 가 "
+            "실패했다: %s" % (branch, baseline, error),
+            severity=SEV_NOTE,
+        )
+        return
+    if classify_accept_diff(diff_text) == "content":
+        report.add(
+            "ACCEPTED_ON_BRANCH",
+            "브랜치 %r 에서 status: accepted 인데 %s 와 견줘 `status:` 줄 말고도 바뀐 "
+            "곳이 있다 — 승인은 이미 검토된 문서에 도장을 찍는 행위이지 고치면서 "
+            "승인하는 일이 아니다. 내용을 바꾸려면 draft 로 되돌려 다시 검토받는다"
+            % (branch, detail),
             line=1,
         )
 
