@@ -57,10 +57,24 @@ class TempRepo:
         self.home.mkdir(parents=True, exist_ok=True)
         self.shim = self.path.parent / "shim"
         self.shim.mkdir(parents=True, exist_ok=True)
-        # PATH 셰임: 실행에 필요한 시스템 경로만 두고 homebrew(=gh) 는 뺀다.
-        self.path_env = os.pathsep.join(
-            [str(self.shim), "/usr/bin", "/bin", "/usr/sbin", "/sbin"]
-        )
+        # PATH 셰임 — 「gh 가 안 보이고 git 은 보이는」 상태를 기계마다 다시 만든다.
+        # 시스템 경로를 손으로 박지 않는다: GitHub 호스티드 러너는 `gh` 와 `git` 이
+        # **같은 디렉터리**(/usr/bin)에 있고 /bin 이 그리로 가는 심링크라, 경로를
+        # 하드코딩하면 개발자 기계에서만 성립하는 셰임이 된다. 그래서
+        #   ① 진짜 git 을 셰임 디렉터리에 심링크로 들여놓고
+        #   ② PATH 에서 `gh` 를 담고 있는 디렉터리를 전부 뺀다.
+        # git 의 하위 명령은 PATH 가 아니라 GIT_EXEC_PATH 에서 오므로 이래도 돈다.
+        real_git = shutil.which("git")
+        if real_git:
+            link = self.shim / "git"
+            if not link.exists():
+                link.symlink_to(real_git)
+        kept = [
+            d
+            for d in (os.environ.get("PATH") or "").split(os.pathsep)
+            if d and shutil.which("gh", path=d) is None
+        ]
+        self.path_env = os.pathsep.join([str(self.shim)] + kept)
         self.env = dict(os.environ)
         self.env.update(
             {
@@ -115,8 +129,13 @@ class TempRepo:
     def install_fake_gh(self, payload):
         """셰임 디렉터리에 가짜 `gh` 를 심는다 — 네트워크 없이 gh 있는 경로를 잰다."""
         gh = self.shim / "gh"
+        # 가짜 gh 는 **외부 명령을 하나도 쓰지 않는다.** 셰임 PATH 는 gh 를 담은
+        # 디렉터리를 전부 빼는데, 러너에서는 그게 /usr/bin(그리고 그리로 가는
+        # 심링크 /bin)이라 `cat`·`bash` 까지 함께 사라진다. 셰방을 이 파이썬의
+        # 절대 경로로 박고 표준 라이브러리만 쓰면 PATH 탐색이 아예 일어나지 않는다.
         gh.write_text(
-            "#!/usr/bin/env bash\ncat <<'JSON'\n%s\nJSON\n" % json.dumps(payload),
+            "#!%s\nimport sys\nsys.stdout.write(%r)\n"
+            % (sys.executable, json.dumps(payload)),
             encoding="utf-8",
         )
         gh.chmod(0o755)
