@@ -711,35 +711,37 @@ def accept_baseline(git_ctx, default, relpath):
     """무엇과 견줄 것인가 — (base, outcome, detail). outcome: ok | skip | reject.
 
     ① 기본 브랜치에 그 파일이 있으면 기본 브랜치가 기준이다(누적 diff).
-    ② 없으면 사슬이 이 브랜치에서 태어난 경우다. 그 파일을 건드린 **가장 최근
-       커밋**을 승인 커밋으로 보고 그 부모를 기준으로 삼는다 — 승인한 뒤에 내용을
-       고쳤으면 그 편집이 diff 에 그대로 남아 red 가 된다.
-    ③ 커밋된 적이 없거나 승인 커밋에 부모가 없으면 도장을 찍을 원본이 없다 — reject.
+    ② 없으면 사슬이 이 브랜치에서 태어난 경우다. 이 브랜치의 커밋 중 그 파일이 **아직
+       accepted 가 아니었던 가장 최근 판**을 기준으로 삼는다 — 그것이 도장을 찍을
+       원본이다. 「그 파일을 건드린 가장 최근 커밋」으로 잡으면 승인을 커밋하기 직전의
+       작업 트리가 red 로 읽혀 승인 커밋을 만들 수조차 없다.
+    ③ 커밋된 적이 없거나 모든 판이 이미 accepted 면 도장을 찍을 원본이 없다 — reject.
     """
     rc, _out, _err = git_ctx.show(default, relpath)
     if rc == 0:
         return default, "ok", "기본 브랜치 %s" % default
-    rc, out, err = run_git(
-        git_ctx.root, "rev-list", "-1", "%s..HEAD" % default, "--", relpath
-    )
+    rc, out, err = run_git(git_ctx.root, "rev-list", "%s..HEAD" % default, "--", relpath)
     if rc != 0:
         return None, "skip", "git rev-list 가 실패했다: %s" % (err.strip() or "rc=%d" % rc)
-    sha = out.decode("utf-8", "replace").strip()
-    if not sha:
+    shas = out.decode("utf-8", "replace").split()
+    if not shas:
         return (
             None,
             "reject",
             "기본 브랜치 %s 에 그 파일이 없고 이 브랜치에서 커밋된 적도 없다 "
-            "— 승인 커밋이 존재하지 않는다" % default,
+            "— 도장을 찍을 원본이 없다" % default,
         )
-    rc, parent, _err = run_git(git_ctx.root, "rev-parse", "--verify", "--quiet", sha + "^")
-    if rc != 0:
-        return (
-            None,
-            "reject",
-            "승인 커밋 %s 에 부모가 없다 — 처음부터 accepted 로 태어났다" % sha[:12],
-        )
-    return parent.decode("utf-8", "replace").strip(), "ok", "승인 커밋 %s 의 직전 상태" % sha[:12]
+    for sha in shas:  # rev-list 는 최신 → 과거 순이다
+        data, _error = read_upstream_frontmatter(git_ctx, sha, relpath)
+        # 읽을 수 없는 판(그 커밋에서 삭제됐거나 frontmatter 가 없다)은 accepted 가
+        # 아니다 — 기준으로 잡으면 diff 가 통째로 남아 red 가 된다(안전한 쪽).
+        if data is None or data.get("status") != "accepted":
+            return sha, "ok", "승인 전 판 %s" % sha[:12]
+    return (
+        None,
+        "reject",
+        "이 브랜치의 모든 판이 이미 accepted 다 — 도장을 찍을 draft 판이 없다",
+    )
 
 
 def check_accepted_on_branch(report, path, data):
