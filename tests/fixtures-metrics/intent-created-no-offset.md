@@ -3,7 +3,7 @@ id: {{ID}}
 kind: intent
 status: draft
 author: 홍길동 (청구운영팀)
-created: 2026-09-09T10:12:00    # 오프셋 없음
+created: 2026-09-09T01:00:00    # 오프셋 없음 — 이 값을 UTC 로 간주하면 최초 커밋(2026-09-09T11:00:00+09:00 = 02:00Z)보다 1시간 이르러 「계산 성공」으로 새어 나간다
 record: none
 supersedes: none
 ---

@@ -351,7 +351,15 @@ class TestCase04CreatedMalformed(MetricsTestBase):
             "오프셋 없는 created 를 그대로 계산했다 — 로컬 시간대에 따라 값이 달라진다: %s" % l1,
         )
         self.assertIsNone(l1["value"])
-        self.assertTrue(l1.get("reason"), "unavailable 인데 reason 이 없다")
+        # 사유가 「오프셋」을 지목해야 한다. status 만 보면 못 가른다: 오프셋 없는 시각을
+        # UTC 로 간주하는 느슨한 구현도 시간대에 따라서는 「created 가 미래」 갈래로 빠져
+        # 같은 unavailable 을 내고, 그러면 이 시험이 두 구현을 구별하지 못한다.
+        # (뮤테이션 M2 가 실제로 이 자리를 통과했다 — 그래서 픽스처 시각을 옮기고
+        #  사유까지 단정한다.)
+        self.assertIn(
+            "오프셋", l1.get("reason", ""),
+            "unavailable 사유가 오프셋 문제를 지목하지 않는다: %s" % l1.get("reason"),
+        )
 
 
 class TestCase05NoChains(MetricsTestBase):
