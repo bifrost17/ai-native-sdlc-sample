@@ -12,6 +12,7 @@
 import importlib.util
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -251,6 +252,240 @@ class CodeStripping(unittest.TestCase):
     def test_tilde_fence_is_removed(self):
         out = self.module.strip_code_spans("a\n~~~\n‹자리표시자›\n~~~\nb\n")
         self.assertNotIn("‹", out)
+
+
+# --------------------------------------------------------------------------
+# D16 — 승인 전이 예외
+# --------------------------------------------------------------------------
+INTENT_TEMPLATE = """---
+id: 0001-bootstrap-repo
+kind: intent
+status: %(status)s
+author: %(author)s
+created: 2026-09-08T20:00:00+09:00
+record: none
+supersedes: none
+---
+# Intent: 사슬을 기계가 지키는 레퍼런스가 없다
+
+## Problem (문제)
+참조 레포 %(count)s개를 실측했지만 아티팩트 검증기가 실효인 곳은 하나도 없었다.
+
+## Proposed outcome (원하는 결과)
+`make check` 하나로 강제가 살아 있는지 확인되는 레포가 남는다.
+
+## Affected users and systems (영향 범위)
+이 레포를 읽는 사람 · CI · 훅.
+
+## Constraints (제약)
+- C1 표준 라이브러리만 쓴다.
+
+## Open questions (미결)
+- Q1 예제 주제를 무엇으로 할 것인가 — 사용자.
+"""
+
+
+def intent_text(status="draft", author="부모 세션(openwebagent)", count="7"):
+    return INTENT_TEMPLATE % {"status": status, "author": author, "count": count}
+
+
+class AcceptTransitionD16(unittest.TestCase):
+    """D16 — 브랜치 위의 `accepted` 는 「status: 줄만 바꾼 승인」일 때만 통과한다.
+
+    설계안 §4 는 승인을 「PR 안에서 `status:` 를 고치고 머지」로 정의했는데, 그것을
+    브랜치에서 전면 금지하면 **승인 PR 자체가 CI 에서 빨개져** 사슬이 한 칸도 전진하지
+    못한다. 그래서 「도장만 찍는 커밋」은 통과시키고 「고치면서 승인」은 계속 막는다.
+    """
+
+    PATH = "intent/0001-bootstrap-repo/intent.md"
+
+    def _repo(self):
+        tmp = tempfile.mkdtemp(prefix="d16-")
+        self.addCleanup(shutil.rmtree, tmp, True)
+        git(tmp, "init", "-q", "-b", "main")
+        git(tmp, "config", "user.name", "t")
+        git(tmp, "config", "user.email", "t@example.invalid")
+        return tmp
+
+    def _write(self, tmp, text):
+        path = os.path.join(tmp, self.PATH)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(text)
+
+    def _commit(self, tmp, message):
+        git(tmp, "add", "-A")
+        git(tmp, "commit", "-q", "-m", message)
+
+    def _check(self, tmp):
+        rc, out, err = run_cli(["--format", "json", self.PATH], cwd=tmp)
+        payload = json.loads(out)
+        codes = [f["code"] for e in payload["files"] for f in e["findings"]]
+        return rc, codes, out + err
+
+    # --- 예외가 여는 자리 -------------------------------------------------
+
+    def test_status_only_flip_on_branch_is_allowed(self):
+        """기본 브랜치의 draft 를 브랜치에서 `status:` 줄만 바꿔 승인 — 통과."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "draft")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "accept")
+        rc, codes, raw = self._check(tmp)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_chain_born_on_branch_is_allowed_when_the_accepting_commit_is_status_only(self):
+        """사슬 전체가 한 브랜치에서 태어나도, 승인 커밋이 `status:` 줄만 바꿨으면 통과."""
+        tmp = self._repo()
+        with open(os.path.join(tmp, "README.md"), "w", encoding="utf-8") as fh:
+            fh.write("base\n")
+        self._commit(tmp, "base")
+        git(tmp, "checkout", "-q", "-b", "feat/0001-chain-meta")
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "intent draft")
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "intent accepted")
+        rc, codes, raw = self._check(tmp)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_file_identical_to_default_branch_is_allowed(self):
+        """기본 브랜치와 바이트가 같은 accepted 파일 — 예외 이전부터 통과였다."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/other")
+        with open(os.path.join(tmp, "README.md"), "w", encoding="utf-8") as fh:
+            fh.write("무관한 변경\n")
+        self._commit(tmp, "unrelated")
+        rc, codes, raw = self._check(tmp)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    # --- 예외가 닫아 두는 자리 --------------------------------------------
+
+    def test_flip_with_body_edit_is_still_red(self):
+        """「고치면서 승인」 — status 와 본문을 같은 커밋에서 함께 고치면 red."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "draft")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, intent_text("accepted", count="9"))
+        self._commit(tmp, "accept and edit")
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_flip_with_frontmatter_edit_is_still_red(self):
+        """본문이 아니라 frontmatter 의 다른 키를 함께 고쳐도 red 다."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "draft")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, intent_text("accepted", author="다른 사람"))
+        self._commit(tmp, "accept and rename author")
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_born_accepted_on_branch_is_red(self):
+        """draft 단계 없이 처음부터 accepted 로 태어나면 red — 도장 찍을 원본이 없다."""
+        tmp = self._repo()
+        with open(os.path.join(tmp, "README.md"), "w", encoding="utf-8") as fh:
+            fh.write("base\n")
+        self._commit(tmp, "base")
+        git(tmp, "checkout", "-q", "-b", "feat/0001-chain-meta")
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "intent accepted from birth")
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_body_edited_after_the_accepting_commit_is_red(self):
+        """승인한 뒤에 내용을 고치면 red — accepted 는 이후 불변이다."""
+        tmp = self._repo()
+        with open(os.path.join(tmp, "README.md"), "w", encoding="utf-8") as fh:
+            fh.write("base\n")
+        self._commit(tmp, "base")
+        git(tmp, "checkout", "-q", "-b", "feat/0001-chain-meta")
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "intent draft")
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "intent accepted")
+        self._write(tmp, intent_text("accepted", count="99"))
+        self._commit(tmp, "edit after accept")
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_uncommitted_body_edit_beside_the_flip_is_red(self):
+        """승인 커밋은 status 만 바꿨어도 작업 트리에 미커밋 편집이 있으면 red."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "draft")
+        git(tmp, "checkout", "-q", "-b", "chore/accept-0001")
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "accept")
+        self._write(tmp, intent_text("accepted", count="9"))  # 커밋하지 않는다
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    def test_accepted_file_edited_on_branch_is_red(self):
+        """기본 브랜치에서 이미 accepted 인 파일을 브랜치에서 고치면 red(포착 보존)."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "accepted on main")
+        git(tmp, "checkout", "-q", "-b", "feat/rewrite")
+        self._write(tmp, intent_text("accepted", count="42"))
+        self._commit(tmp, "rewrite accepted artifact")
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 1, raw)
+
+    # --- 못 잰 자리는 note 로 남는다 --------------------------------------
+
+    def test_detached_head_is_a_note_not_a_silent_pass(self):
+        """CI 의 detached HEAD — 판정을 포기하고 note 를 남긴다(rc 는 올리지 않는다)."""
+        tmp = self._repo()
+        self._write(tmp, intent_text("accepted"))
+        self._commit(tmp, "accepted")
+        git(tmp, "checkout", "-q", "--detach", "HEAD")
+        rc, codes, raw = self._check(tmp)
+        self.assertIn("ACCEPTED_BRANCH_CHECK_SKIPPED", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
+    def test_git_failure_in_the_exception_is_reported_not_swallowed(self):
+        """예외 판정이 git 때문에 못 돌면 조용히 통과시키지 않고 사유를 돌려준다."""
+        module = load_checker()
+        tmp = self._repo()
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "draft")
+        ctx = module.GitContext(tmp)
+        text, error = module.run_accept_diff(ctx, "0" * 40, self.PATH)
+        self.assertIsNone(text, "없는 ref 로 git diff 가 성공했다: %r" % (text,))
+        self.assertTrue(error, "실패했는데 사유가 비었다 — 그러면 CI 에서 자리가 조용히 빈다")
+
+    # --- 판정 함수 자체 ---------------------------------------------------
+
+    def test_classify_accept_diff_reads_only_the_status_line(self):
+        module = load_checker()
+        self.assertEqual(module.classify_accept_diff(""), "identical")
+        status_only = (
+            "diff --git a/x.md b/x.md\nindex 111..222 100644\n--- a/x.md\n+++ b/x.md\n"
+            "@@ -3 +3 @@\n-status: draft\n+status: accepted\n"
+        )
+        self.assertEqual(module.classify_accept_diff(status_only), "status_only")
+        with_body = status_only + "@@ -12 +12 @@\n-옛 문장\n+새 문장\n"
+        self.assertEqual(module.classify_accept_diff(with_body), "content")
+        new_file = (
+            "diff --git a/x.md b/x.md\nnew file mode 100644\n--- /dev/null\n+++ b/x.md\n"
+            "@@ -0,0 +1,2 @@\n+---\n+status: accepted\n"
+        )
+        self.assertEqual(module.classify_accept_diff(new_file), "content")
 
 
 if __name__ == "__main__":

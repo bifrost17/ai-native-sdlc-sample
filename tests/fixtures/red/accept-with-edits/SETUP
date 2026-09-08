@@ -1,0 +1,10 @@
+# D16 음성 대조 — 「고치면서 승인」은 승인이 아니다.
+# 기본 브랜치에는 draft 로 있는 intent 를, 기능 브랜치에서 status: accepted 로 바꾸면서
+# 같은 커밋에서 Problem 절의 수치까지 함께 고친다. 승인은 「이미 검토된 문서에 도장을
+# 찍는 행위」이므로, 내용이 함께 바뀌면 그 도장이 무엇을 승인한 것인지 알 수 없다.
+write intent/0002-claims-status/intent.md intent-draft.md
+commit base
+branch feat/accept-0002
+write intent/0002-claims-status/intent.md intent-accepted-edited.md
+commit flip-and-edit
+check intent/0002-claims-status/intent.md
