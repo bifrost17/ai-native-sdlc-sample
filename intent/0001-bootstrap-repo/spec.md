@@ -1,7 +1,7 @@
 ---
 id: 0001-bootstrap-repo
 kind: spec
-status: accepted
+status: draft
 upstream: intent.md@e5953ac07ca4ce5d1fc4d566820a9a40ea0cd90c
 skills_applied: []
 ---
@@ -57,9 +57,13 @@ skills_applied: []
 ## Flagged concerns (플래그)
 - F1 검증기가 그린이라는 것은 「규약을 지켰다」이지 「좋다」가 아니다. 이 구분이 README 와
   `--help` 양쪽에 없으면, 다음 사람이 검증기를 품질 게이트로 오해한다. 소유자는 이 레포.
-- F2 D16 예외는 `status:` 줄만 본다. 어느 값에서 `accepted` 로 갔는지는 보지 않으므로
-  `rejected` → `accepted` 도 통과한다. 전이 표는 그 전이를 정의하지 않았다 — 좁힐지
-  말지는 판단이 필요하다. 소유자는 product owner.
+- F2 D16 의 전이를 이제 허용 표(`ACCEPT_TRANSITIONS`)가 정의한다 — `draft`→`accepted` ·
+  `draft`→`rejected` · `draft`→`superseded` · `accepted`→`superseded` 넷뿐이고 그 밖은
+  전부 거부다. 그래서 `rejected` → `accepted` 와 `superseded` → `accepted` 되살리기는
+  red 다(둘 다 그 전까지 통과했고, 뒤엣것은 지면 어디에도 없던 갈래였다). 승인 게이트의
+  안전한 기본값이 deny-by-default 라는 근거로 **부모 세션이 잠정 결정**했고, 표 한 줄
+  편집으로 되돌릴 수 있다. 되살리기를 열어 둘지는 여전히 판단이 남아 있다 —
+  **product owner 확인 대기**. 소유자는 product owner.
 
 ## Out of scope (범위 밖)
 실제 배포 대상 · 조직(Team/Enterprise) 계정이 필요한 관리형 설정과 관리형 코드 리뷰 ·
