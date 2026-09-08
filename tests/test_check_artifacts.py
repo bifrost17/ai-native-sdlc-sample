@@ -352,6 +352,25 @@ class AcceptTransitionD16(unittest.TestCase):
         self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
         self.assertEqual(rc, 0, raw)
 
+    def test_flip_not_yet_committed_is_allowed(self):
+        """승인 커밋을 아직 만들지 않았어도, 작업 트리의 변경이 `status:` 줄뿐이면 통과.
+
+        기준점은 「그 파일을 건드린 가장 최근 커밋」이 아니라 「아직 accepted 가 아니었던
+        가장 최근 판」이어야 한다. 전자로 잡으면 승인을 커밋하기 직전의 작업 트리가
+        red 로 읽혀, 승인 커밋을 만들 수조차 없다.
+        """
+        tmp = self._repo()
+        with open(os.path.join(tmp, "README.md"), "w", encoding="utf-8") as fh:
+            fh.write("base\n")
+        self._commit(tmp, "base")
+        git(tmp, "checkout", "-q", "-b", "feat/0001-chain-meta")
+        self._write(tmp, intent_text("draft"))
+        self._commit(tmp, "intent draft")
+        self._write(tmp, intent_text("accepted"))  # 커밋하지 않는다
+        rc, codes, raw = self._check(tmp)
+        self.assertNotIn("ACCEPTED_ON_BRANCH", codes, raw)
+        self.assertEqual(rc, 0, raw)
+
     def test_file_identical_to_default_branch_is_allowed(self):
         """기본 브랜치와 바이트가 같은 accepted 파일 — 예외 이전부터 통과였다."""
         tmp = self._repo()
