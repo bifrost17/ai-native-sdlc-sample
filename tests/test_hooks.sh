@@ -172,6 +172,49 @@ expect() {
   fi
 }
 
+expect_block_msg() {
+  # expect_block_msg <케이스 이름> <stderr 첫 줄 전체(정확 일치)>
+  #
+  # 왜 부분 문자열이 아니라 첫 줄 전체인가: `expect` 의 부분 문자열 단정은 bash 가 뱉는
+  # exec 실패 진단문(`<훅>: line N: [production-gate 차단] …: File name too long`)도
+  # 만족시킨다. 진단문 안에 훅의 문장이 통째로 들어 있기 때문이다. 실제로
+  # production-gate.sh 의 주 차단 메시지가 줄끝 백슬래시 하나 때문에 「메시지를 명령으로
+  # 실행하려다 실패한 진단문」으로 바뀌었는데 시험 94/94 가 그린이었다.
+  # 첫 줄 전체를 대조하면 진단문의 앞머리(`…: line N: `)가 곧 불일치다.
+  #
+  # 함께 재는 둘째 판별자: 차단은 `exit 2` + stderr 다(_lib.sh 머리말 계약).
+  # 저 백슬래시는 stdout 으로 `\` 한 줄을 흘렸으므로 stdout 공백도 단정한다.
+  local name="$1" want="$2"
+  local first ok=1 why=""
+  first="${ERR%%$'\n'*}"
+  if [ "$RC" != "2" ]; then
+    ok=0
+    why="rc=$RC (기대 2)"
+  fi
+  if [ "$first" != "$want" ]; then
+    ok=0
+    why="$why; stderr 첫 줄 불일치"
+  fi
+  if [ -n "$OUT" ]; then
+    ok=0
+    why="$why; 차단인데 stdout 이 비어 있지 않다"
+  fi
+  if [ "$ok" -eq 1 ]; then
+    PASS=$((PASS + 1))
+    echo "PASS  $name"
+  else
+    FAIL=$((FAIL + 1))
+    FAILED_LIST="$FAILED_LIST
+  - $name — $why"
+    echo "FAIL  $name — $why"
+    echo "        기대 첫 줄| $want"
+    echo "        실제 첫 줄| $first"
+    if [ -n "$OUT" ]; then
+      echo "        stdout   | $(printf '%s' "$OUT" | od -c | sed -n '1p')"
+    fi
+  fi
+}
+
 json_edit() {
   # json_edit <도구> <경로키> <경로> [cwd]
   local tool="$1" key="$2" path="$3" cwd="${4:-}"
@@ -250,7 +293,7 @@ run_hook "$REPO" "$H" '{not json'
 expect "PA13 fail-closed: 깨진 JSON 차단" 2 "JSON"
 
 run_hook "$REPO" "$H" ''
-expect "PA14 fail-closed: 빈 stdin 차단" 2 "입력"
+expect "PA14 fail-closed: 빈 stdin 차단" 2 "빈 입력"
 
 run_hook "$REPO" "$H" '{"hook_event_name":"PreToolUse","tool_name":"Edit","tool_input":{"new_string":"x"}}'
 expect "PA15 fail-closed: 경로 키가 하나도 없으면 차단" 2 "경로"
@@ -299,7 +342,7 @@ run_hook "$REPO" "$H" '{"broken'
 expect "PT10 fail-closed: 깨진 JSON 차단" 2 "JSON"
 
 run_hook "$REPO" "$H" ''
-expect "PT11 fail-closed: 빈 stdin 차단" 2 "입력"
+expect "PT11 fail-closed: 빈 stdin 차단" 2 "빈 입력"
 
 echo ""
 # ================================================================ 3. no-secrets
@@ -377,7 +420,7 @@ run_hook "$REPO" "$H" '{"tool_input":'
 expect "NS17 fail-closed: 깨진 JSON 차단" 2 "JSON"
 
 run_hook "$REPO" "$H" ''
-expect "NS18 fail-closed: 빈 stdin 차단" 2 "입력"
+expect "NS18 fail-closed: 빈 stdin 차단" 2 "빈 입력"
 
 echo ""
 
@@ -500,6 +543,61 @@ ENVARR=(RELEASE_APPROVAL="CAB-2026-09-08")
 run_hook "$REPO" "$H" "$(json_bash 'cd $DEPLOY_DIR && ./deploy.sh production' "$REPO")"
 expect "PG31 음성: 해석 불가 cd 라도 유효한 승인값이면 통과" 0
 
+# --- 차단 메시지 자신의 신원(RD2 차단 항목) ---------------------------------------
+# `expect` 는 stderr 부분 문자열만 본다. 그래서 주 차단 메시지가 통째로 죽어도
+# (bash 가 그 메시지를 명령으로 실행하려다 실패한 진단문으로 바뀌어도) 그린이었다.
+# 아래 둘은 첫 줄 전체 + stdout 공백을 단정한다. PG33 은 인라인 경로(정상인 쪽)를
+# 같은 계기로 재는 살아 있음 대조다 — 계기가 아무 데서나 빨간 것이 아님을 보인다.
+run_hook "$REPO" "$H" "$(json_bash 'scripts/deploy.sh production' "$REPO")"
+expect_block_msg "PG32 차단 메시지 첫 줄 전체(주 경로): 진단문이 아니라 훅의 문장" \
+  "[production-gate 차단] 승인 없이 프로덕션 배포를 실행할 수 없다."
+
+run_hook "$REPO" "$H" "$(json_bash 'RELEASE_APPROVAL=self scripts/deploy.sh production' "$REPO")"
+expect_block_msg "PG33 차단 메시지 첫 줄 전체(인라인 승인 경로) — 살아 있음 대조" \
+  "[production-gate 차단] 프로덕션 배포 승인값을 명령 안에서 스스로 설정할 수 없다."
+
+# --- R1 변종: cd 옵션 뒤의 목적지(PG19 와 같은 벡터) --------------------------------
+# `cd -P scripts` 는 `cd scripts` 와 같은 자리로 간다. 옵션 토큰에서 목적지 찾기를
+# 그만두면 그 뒤의 상대경로 호출이 어느 파일에 닿는지 못 보고 통과시킨다.
+run_hook "$REPO" "$H" "$(json_bash 'cd -P scripts && ./deploy.sh production' "$REPO")"
+expect "PG34 우회 cd -P: 옵션 뒤에도 목적지는 목적지다" 2 "$G_MSG_1"
+
+run_hook "$REPO" "$H" "$(json_bash 'cd -- scripts && ./deploy.sh production' "$REPO")"
+expect "PG35 우회 cd --: 「--」 뒤에도 목적지는 목적지다" 2 "$G_MSG_1"
+
+# --- R5: collect_bases 의 `-*` 가드 자체 -------------------------------------------
+# `cd -` 의 목적지는 OLDPWD 라 셸 실행 시각에만 안다 — `cd $VAR` 와 같은 부류(해석 불가)이고
+# 옵션(`-P` · `--`)과는 다른 부류다. 「모른다」는 통과가 아니다.
+run_hook "$REPO" "$H" "$(json_bash 'cd - && ./deploy.sh production' "$REPO")"
+expect "PG36 cd - 는 목적지를 실행 시각에만 안다 — 해석 불가로 차단" 2 "$G_MSG_1"
+
+run_hook "$REPO" "$H" "$(json_bash 'cd - && echo hello' "$REPO")"
+expect "PG37 음성: cd - 라도 production 토큰이 없으면 통과" 0
+
+# --- R3: 신원 판정 (B) 의 절대경로 갈래 --------------------------------------------
+# PG18 은 상대경로(`./dep.sh`)라 기준 디렉터리 순회 갈래를 탄다. 절대경로 갈래는 어느
+# 시험도 재지 않았다. 어휘 판정 (A) 가 못 잡는 철자여야 그 갈래가 판정자다 —
+# 심링크 이름은 `*/scripts/deploy.sh` 가 아니다. (기존 행동의 계약 고정: 이미 그린)
+run_hook "$REPO" "$H" "$(json_bash "$REPO/dep.sh production" "$REPO")"
+expect "PG38 절대경로 신원: 심링크의 절대경로도 같은 파일이다" 2 "$G_MSG_1"
+
+# --- R4: 어휘 판정 (A) 갈래 ---------------------------------------------------------
+# (A) 의 선언한 존재 이유는 「배포 스크립트가 아직 없는 트리 · 다른 레포를 가리키는
+# 절대경로」다. 실재하지 않는 절대경로는 (B) 의 `-ef` 가 반드시 거짓이므로 판정자는
+# (A) 뿐이다. (기존 행동의 계약 고정: 이미 그린)
+run_hook "$REPO" "$H" "$(json_bash '/nonexistent-other-repo/scripts/deploy.sh production' "$REPO")"
+expect "PG39 어휘 판정: 다른 레포의 배포 스크립트 절대경로도 배포다" 2 "$G_MSG_1"
+
+# --- R8 거짓 양성 + 그 좁힘이 잃으면 안 되는 것(양방향) -----------------------------
+# `cat A B` 는 읽기다. 인자를 실행할 수 없는 명령의 인자로 등장한 배포 스크립트는
+# 배포 호출이 아니다. 좁히는 처방이므로 「거짓 양성 소멸」과 짝으로 「기존 포착 보존」을
+# 같은 자리에서 잰다 — PG41 은 인터프리터 인자 갈래(PG06 과 같은 자리)다.
+run_hook "$REPO" "$H" "$(json_bash 'cat scripts/deploy.sh production' "$REPO")"
+expect "PG40 음성: cat 의 인자로 읽히는 deploy.sh 는 배포 호출이 아니다" 0
+
+run_hook "$REPO" "$H" "$(json_bash 'bash scripts/deploy.sh production' "$REPO")"
+expect "PG41 보존: 인터프리터의 인자로 넘긴 배포 호출은 그대로 차단" 2 "$G_MSG_1"
+
 echo ""
 # ================================================================ 5. plan-sync
 echo "-- plan-sync (plan 의 Files that change 밖 소스를 커밋 금지) --"
@@ -598,7 +696,7 @@ run_hook "$REPO" "$H" '{"tool_name":"Bash"'
 expect "PS17 fail-closed: 깨진 JSON 차단" 2 "JSON"
 
 run_hook "$REPO" "$H" ''
-expect "PS18 fail-closed: 빈 stdin 차단" 2 "입력"
+expect "PS18 fail-closed: 빈 stdin 차단" 2 "빈 입력"
 
 run_hook "$NOGIT" "$H" "$(json_bash 'git commit -m x' "$NOGIT")"
 expect "PS19 fail-closed: git 레포가 아니면 차단" 2 "브랜치"
