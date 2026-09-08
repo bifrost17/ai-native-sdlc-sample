@@ -298,7 +298,11 @@ class TestCase02SameSecondBoundary(MetricsTestBase):
         l3 = self.chain_of(doc)["metrics"]["l3"]
         self.assertEqual(l3["status"], "ok", l3)
         self.assertEqual(l3["value"], 2, "같은 초의 조상 커밋(c3)이 세어졌다 — 시계 기반 구현이다")
-        self.assertNotIn("--since", l3["method"], "L3 이 시계 기반 명령을 쓰고 있다")
+        # 기준선이 실제로 spec 최초 커밋인가(값만 맞고 다른 곳을 재는 경우를 가른다).
+        self.assertEqual(l3["inputs"]["base_commit"], c4)
+        # 계기 서술에 계산 명령이 실려 있는가. `--since` 를 쓰는지 여부는 여기서
+        # 문자열로 재지 않는다 — method 산문이 「--since 를 쓰지 않는다」고 설명하므로
+        # 문자열 검사는 거짓 양성을 낸다. 시계/위상의 판별은 위의 값 단정이 한다.
         self.assertIn("rev-list", l3["method"])
         del c1, c2, c5, c6
 
