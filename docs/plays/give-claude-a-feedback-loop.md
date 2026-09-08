@@ -12,9 +12,10 @@
   원문을 보고에 붙이라고, 시험이 실패하면 "시험이 아니라 코드를 고친다"고
   지시한다 — 모델이 읽고 따르는 문서 규율이고, protect-tests.sh 는 「시험
   파일 편집 자체」만 막지 「보고 전 검사를 안 돌리는 것」은 막지 않는다.
-- `Makefile`(main 착지)에는 `check`·`test` 두 타깃만 있다. `test` 는 지금
-  `@echo "no tests yet (W1)"` 뿐인 placeholder — `build`·`lint` 타깃은
-  4개 열린 관련 PR 어디에도 없다(없음).
+- `Makefile`(main 착지)에는 `check`·`test` 두 타깃만 있고, `test` 는
+  `python3 -m unittest discover -s tests -v` 를 돌린다(더 이상 placeholder
+  가 아니다 — 실측: `git show origin/main:Makefile`).
+- `make build`·`make lint` 타깃은 어느 열린 PR 에도 없다(없음).
 
 ## 증거는 무엇인가
 - `bash tests/test_hooks.sh` 의 `expect` 단정(전체 79건 중 protect-tests
@@ -25,7 +26,7 @@
 
 ## 누가 승인하나
 - 사람 — `fix/*` PR 을 머지하는 product owner. verifier 서브에이전트
-  (`.claude/agents/verifier.md`, PR #5 대기)는 독립적으로 관측만 하고
+  (`.claude/agents/verifier.md`, main 착지)는 독립적으로 관측만 하고
   통과·반려를 선언하지 않는다 — 선언은 사람의 몫.
 
 ## 지금 상태

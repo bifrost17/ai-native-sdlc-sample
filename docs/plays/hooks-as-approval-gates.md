@@ -13,12 +13,11 @@
   사유+승인 경로를 stderr 에 낸다.
 - `scripts/deploy.sh`(PR #6, 대기) 자체가 그 차단 대상 — 실제 배포 대신
   흉내만 낸다(설계안 비목표: 배포 대상 없음).
-- `org/managed-settings.example.json`(관리형 설정 예시)은 **어느 열린 PR
-  에도 main 에도 없다(없음)** — `docs/DESIGN.md` §6.3·§8 은 이를 레슨 11
-  의 「구현」 근거로 적지만, 실물 인벤토리(5 브랜치 전수 `git ls-tree`)에
-  이 경로가 한 번도 나오지 않는다. `docs/PHASES.md`(PR #3)도 같은 행에서
-  "예시 파일만 비활성으로 둠"이라고 적어 파일이 있다고 전제한다 — 이는
-  지면 정정 대상으로 보고에 올린다.
+- `org/managed-settings.example.json`(관리형 설정 예시)은 main 엔 아직
+  없고 PR #11 이 들고 있다(대기) — `docs/DESIGN.md` §6.3·§8 은 이를 레슨
+  11 의 「구현」 근거로 적고 `docs/PHASES.md`(PR #3)도 같은 행에서 "예시
+  파일만 비활성으로 둠"이라 적어 파일이 있다고 전제하는데, 그 전제는 PR
+  #11 이 머지될 때 비로소 참이 된다.
 
 ## 증거는 무엇인가
 - `tests/test_hooks.sh`(PR #6, 대기)의 production-gate 관련 `expect` 단정

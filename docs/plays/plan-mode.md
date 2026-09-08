@@ -10,12 +10,12 @@
   시작하면 그 id 의 `intent/<id>/plan.md` 의 `## Files that change` 목록
   밖의 소스가 스테이징돼 있으면 exit 2 로 막는다. 같은 커밋에 plan.md 자체가
   있으면 통과.
-- `scripts/check_artifacts.py`(PR #7, 대기)의 `check_plan_proof()` 가 plan
+- `scripts/check_artifacts.py`(main 착지)의 `check_plan_proof()` 가 plan
   의 `Proof` 절이 spec 의 `AC#` 를 최소 하나 덮는지 판정한다.
-- `docs/SOURCE-OF-TRUTH.md`(PR #7, 대기)는 레슨 4 가 요구하는 「아티팩트마다
+- `docs/SOURCE-OF-TRUTH.md`(main 착지)는 레슨 4 가 요구하는 「아티팩트마다
   정본 하나 지명」을 「레포가 정본」으로 **선언**한다 — 이건 선언이지 기계
   검사가 아니다(강제 없음 — 문서 규율).
-- main 에는 위 전부가 없다(없음).
+- 위 셋 중 뒤의 둘은 main 에 있고, 훅만 PR #6 이 들고 있다(대기).
 
 ## 증거는 무엇인가
 - `tests/test_hooks.sh`(PR #6, 대기)의 plan-sync 관련 `expect` 단정(전체

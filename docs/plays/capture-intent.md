@@ -9,9 +9,9 @@
   `scripts/check_artifacts.py` 가 판정한다(코드 펜스 제거 후, rc 0/1/2).
 - `scripts/check_all.sh` 검사7(templates 는 반드시 rc=1)·검사8(green rc=0)·
   검사9(red 는 지정 code 로 rc=1)이 검증기 자체의 무동작을 잡는 상주 대조다.
-- 위 셋은 전부 `feat/0001-artifact-validator`(PR #7, 대기)에만 있다 — main 엔
-  아직 `scripts/check_artifacts.py` 도 `templates/intent.md` 도 없다.
-- `.claude/skills/capture-intent/SKILL.md`(PR #5, 대기)의 질문 순서·하드룰
+- 위 셋은 `feat/0001-artifact-validator` 로 main 에 착지했다 —
+  `scripts/check_artifacts.py` · `templates/intent.md` 둘 다 main 에 있다.
+- `.claude/skills/capture-intent/SKILL.md`(main 착지)의 질문 순서·하드룰
   (status 는 항상 draft·플레이스홀더 금지·`created` 자기 신고)은 모델이
   읽어야 작동하는 규율이다 — 어겨도 막는 기계는 없다(강제 없음 — 규율뿐).
 - GitHub ruleset `protect-main`(active, 실측: `gh api

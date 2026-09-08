@@ -5,24 +5,24 @@
 > in force are logged". 출처: 레슨 3.
 
 ## 이 레포에서 무엇이 강제되나
-- `scripts/check_artifacts.py`(PR #7, 대기)의 `check_upstream()` 이 spec 의
+- `scripts/check_artifacts.py`(main 착지)의 `check_upstream()` 이 spec 의
   `upstream: intent.md@<sha>` 가 가리키는 커밋에서 그 파일의 `status` 가
   `accepted` 인지 판정한다(아니면 red). `check_spec_inheritance()` 는 intent
   의 `C#`/`Q#` 가 spec 의 「상속한 제약」·「Open questions from intent」에
   전부 이어받아졌는지 판정한다.
-- `.claude/commands/spec.md`(PR #5, 대기)는 `/spec` 실행 전 intent 의
+- `.claude/commands/spec.md`(main 착지)는 `/spec` 실행 전 intent 의
   `status:` 가 `accepted` 인지 확인하라고 **지시**한다 — 모델이 지시를 읽고
   따르는 규율이고, 실제로 어기면 위 검증기가 뒤에서 잡는 게 강제다.
-- `secure-api-review` 스킬(PR #5, 대기) 자체는 조언적 통제다. 대신
-  `scripts/check_endpoints.sh`(같은 PR)가 응답 허용 목록·단일 통로를
+- `secure-api-review` 스킬(main 착지) 자체는 조언적 통제다. 대신
+  `scripts/check_endpoints.sh`(같은 PR 로 착지)가 응답 허용 목록·단일 통로를
   파이썬 AST 로 판정한다(R1~R6, rc 0/1/2) — 이 플레이의 유일한 기계 백스톱.
-- main 에는 위 전부가 없다(없음) — `docs/DESIGN.md` 만 있다.
+- 위 전부가 이제 main 에 있다 — 표의 「착지」 행이 그것이다.
 
 ## 증거는 무엇인가
 - `python3 scripts/check_artifacts.py intent/<id>/spec.md` 의 rc·code.
 - `bash scripts/check_endpoints.sh` 의 rc·`E-*` code(`tests/test_check_
   endpoints.sh` 가 red 4종·green 1종 픽스처로 상주 대조).
-- `.claude/agents/verifier.md`(PR #5, 대기)가 plan 의 `Proof` ↔ 실행된
+- `.claude/agents/verifier.md`(main 착지)가 plan 의 `Proof` ↔ 실행된
   시험 이름을 대조한 보고.
 
 ## 어디에 기록되나

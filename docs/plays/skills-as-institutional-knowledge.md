@@ -5,10 +5,10 @@
 
 ## 이 레포에서 무엇이 강제되나
 - `.claude/skills/capture-intent/SKILL.md` · `.claude/skills/secure-api-
-  review/SKILL.md`(둘 다 PR #5, 대기) 자체는 강제가 아니다 — 모델이 읽고
+  review/SKILL.md`(둘 다 main 착지) 자체는 강제가 아니다 — 모델이 읽고
   따르는 규율이다. `secure-api-review` 문서 본문도 스스로 「이것은 조언적
   통제다. 읽히면 작동하고 안 읽히면 작동하지 않는다」라고 명시한다.
-- 그 뒤에 둔 기계는 `scripts/check_endpoints.sh`(PR #5, 대기) — 파이썬
+- 그 뒤에 둔 기계는 `scripts/check_endpoints.sh`(main 착지) — 파이썬
   AST 로 단일 응답 통로(`build_response`)·단일 허용 목록(`RESPONSE_FIELDS`)
   ·단일 라우트 파일을 판정한다(R1~R6, rc 0/1/2, `tests/test_check_
   endpoints.sh` 가 red 4종·green 1종으로 상주 대조).
@@ -19,7 +19,7 @@
   workflows/check.yml` 이 `pull_request`·`push: main` 마다 `make check` 를
   돌린다). 손으로 `bash scripts/check_endpoints.sh`(또는 `gates/40-
   skills.sh`)를 돌려도 같은 것을 잰다.
-- main 에는 스킬·백스톱 전부 없다(없음).
+- 스킬·백스톱은 전부 main 에 있다 — 표의 「착지」 행이 그것이다.
 
 ## 증거는 무엇인가
 - `bash scripts/check_endpoints.sh [디렉터리]` 의 rc·`E-*` code.

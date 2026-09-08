@@ -5,21 +5,21 @@
 > 사람의 몫이다. 출처: 레슨 13.
 
 ## 이 레포에서 무엇이 강제되나
-- `scripts/detect_bands.py`(PR #4, 대기) — Western Electric 규칙 3종(1점
+- `scripts/detect_bands.py`(main 착지) — Western Electric 규칙 3종(1점
   3σ 이탈·9점 한쪽·3점 중 2점 2σ 이탈)만 구현하고, `ops/bands.yaml` 이
   요구하는 규칙 이름이 그 세 개 밖이면 rc=1 로 죽는다(모델 미개입·결정론).
   tier 는 rc 가 아니라 stdout JSON 필드로만 낸다(rc·tier 겸용 금지).
-- `scripts/emit_intent.py`(PR #4, 대기) — tier `2sigma`/`3sigma` 일 때만
+- `scripts/emit_intent.py`(main 착지) — tier `2sigma`/`3sigma` 일 때만
   `intent.md` 초안을 쓰고 `status` 는 항상 `draft`. `none`/`1sigma` 는
   파일을 만들지 않는다(rc=0 으로 조용히 종료).
-- `scripts/gates/30-bands.sh`(PR #4, 대기)는 `tests.test_detect_bands`
+- `scripts/gates/30-bands.sh`(main 착지)는 `tests.test_detect_bands`
   (28건, 실측: `grep -c "def test_"`)를 등록한다. **단독 실행이 안 된다** —
   다른 세 게이트(10/20/40)와 달리 `run_gate` 가 없으면 즉시 실패 메시지를
   내고 `python3 -m unittest tests.test_detect_bands` 를 직접 돌리라고
   지시한다. 이 게이트는 이제 `check_all.sh` 가 source 한다(claude-md.md
   참조 — 실측: `bash scripts/check_all.sh` 원문에 「PASS  밴드 검출 시험
   (tests/test_detect_bands.py)」 줄).
-- main 에는 위 전부가 없다(없음).
+- 위 넷은 전부 main 에 있다 — 표의 「착지」 행이 그것이다.
 
 ## 증거는 무엇인가
 - `python3 -m unittest tests.test_detect_bands` 원문(28 test, `tests/data/
