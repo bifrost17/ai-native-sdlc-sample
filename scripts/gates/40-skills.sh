@@ -73,10 +73,14 @@ GATE40_COMMAND_FIELDS="description when_to_use argument-hint arguments disable-m
 # .claude 문서가 가리키지만 아직 이 브랜치에 없는 경로. 각 줄의 주인은 형제 레인이다.
 # 영구 면제가 아니라 카운트다운이다: 경로가 실재하게 되면 ④가 STALE 로 빨개지고,
 # 그때 이 줄을 지우는 것이 닫는 방법이다. 지우지 않으면 게이트가 계속 빨갛다.
-#   templates/intent.md        · templates/spec.md      — 템플릿 레인
-#   scripts/check_artifacts.py — 검증기 레인
-#   src/claims_status/         — 0002 기능 구현 레인
-GATE40_PENDING="templates/intent.md templates/spec.md scripts/check_artifacts.py src/claims_status/"
+#
+# 지금은 비어 있다 — 네 항목이 전부 착지해 카운트다운이 끝났다:
+#   templates/intent.md · templates/spec.md   — 템플릿 레인(PR #7)
+#   scripts/check_artifacts.py                — 검증기 레인(PR #7)
+#   src/claims_status/                        — 0002 기능 구현 레인(이 PR)
+# 앞의 셋은 #7·#5 를 합친 시점에 이미 STALE 로 빨갰다(이 브랜치의 선재 빨강).
+# 새 대기 항목이 생기면 경로를 다시 넣는다.
+GATE40_PENDING=""
 
 gate40_contains() {
   local word
@@ -238,6 +242,7 @@ if [ -n "$GATE40_PENDING" ]; then
 fi
 
 run_gate "결정론 백스톱 계약 (tests/test_check_endpoints.sh)" gate40_endpoint_tests
+run_gate "엔드포인트 백스톱(src)" bash scripts/check_endpoints.sh src
 run_gate "스킬·에이전트·커맨드 frontmatter 가 확인된 허용 필드 안" gate40_frontmatter_fields
 run_gate "스킬 description 에 배타절이 있다" gate40_skill_exclusion
 run_gate ".claude 문서가 가리키는 레포 경로가 실재" gate40_referenced_paths
