@@ -76,7 +76,7 @@ GATE40_COMMAND_FIELDS="description when_to_use argument-hint arguments disable-m
 #   templates/intent.md        · templates/spec.md      — 템플릿 레인
 #   scripts/check_artifacts.py — 검증기 레인
 #   src/claims_status/         — 0002 기능 구현 레인
-GATE40_PENDING="templates/intent.md templates/spec.md scripts/check_artifacts.py src/claims_status/"
+GATE40_PENDING="src/claims_status/"
 
 gate40_contains() {
   local word
