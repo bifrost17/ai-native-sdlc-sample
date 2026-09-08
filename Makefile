@@ -4,10 +4,10 @@ check:
 	bash scripts/check_all.sh
 
 test:
-	@echo "no tests yet (W1)"
+	python3 -m unittest discover -s tests -v
 
 help:
 	@echo "Targets:"
 	@echo "  check  - run scripts/check_all.sh (gate of record)"
-	@echo "  test   - placeholder until W1"
+	@echo "  test   - run the unittest suite (tests/)"
 	@echo "  help   - this message"
