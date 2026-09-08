@@ -143,6 +143,13 @@ is_deploy_token() {
   case "$lex" in
     scripts/deploy.sh|*/scripts/deploy.sh) return 0 ;;
   esac
+  # (A2) 대소문자 변형. 대소문자 비구분 FS 에서는 아래 (B) 가 잡지만, 구분 FS(리눅스)에서는
+  #      같은 철자가 다른 파일이라 (B) 가 못 잡는다 — 실측으로 PG20 이 리눅스에서만 빨갰다
+  #      (debian:bookworm-slim · 93 passed 1 failed · raw-rdC/23). protect-tests.sh 가
+  #      TESTS/… · FIX/… 를 hook_lower 로 접는 것과 같은 처리를 여기서도 한다.
+  case "$(hook_lower "$lex")" in
+    scripts/deploy.sh|*/scripts/deploy.sh) return 0 ;;
+  esac
   # (B) 신원 판정 — 커널 stat 이 `.` · `..` · `//` · 심볼릭 링크 · 대소문자 비구분 FS 를
   #     전부 접는다. 어휘 판정이 놓친 우회는 여기서 잡힌다.
   [ -n "$DEPLOY_REAL" ] || return 1
