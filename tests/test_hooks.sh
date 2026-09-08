@@ -437,7 +437,7 @@ run_hook "$REPO" "$H" '{"tool_name":'
 expect "PG15 fail-closed: 깨진 JSON 차단" 2 "JSON"
 
 run_hook "$REPO" "$H" ''
-expect "PG16 fail-closed: 빈 stdin 차단" 2 "입력"
+expect "PG16 fail-closed: 빈 stdin 차단" 2 "빈 입력"
 
 # --- 경로 해석 우회 세트(RD1 리뷰 F6-1) -----------------------------------------
 # 아래 넷은 「배포 토큰을 문자열로 대조」하는 판정이 전부 뚫린 자리다. 판정은 어휘가 아니라
@@ -469,7 +469,7 @@ expect "PG23 음성: production 토큰만 있고 배포 호출이 없으면 통�
 # 지우면 비는가」로 판정한다. 그 관용구를 bash 3.2 에서 폭발하지 않는 형태로 바꾸므로,
 # 바꾸기 전에 바깥에서 보이는 행동을 못박는다(기존 행동의 계약 고정 — 이미 그린이다).
 run_hook "$REPO" "$H" "$(printf ' \t \n\t ')"
-expect "PG24 공백만인 stdin 은 빈 입력과 같다 — 차단" 2 "입력"
+expect "PG24 공백만인 stdin 은 빈 입력과 같다 — 차단" 2 "빈 입력"
 
 ENVARR=(RELEASE_APPROVAL="$(printf '\t')")
 run_hook "$REPO" "$H" "$(json_bash 'scripts/deploy.sh production' "$REPO")"
