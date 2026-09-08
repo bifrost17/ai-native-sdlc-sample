@@ -957,6 +957,9 @@ class GateForwardsSkipNotes(unittest.TestCase):
         self.addCleanup(shutil.rmtree, tmp, True)
         clone = os.path.join(tmp, "repo")
         git(tmp, "clone", "--quiet", "--no-hardlinks", REPO, clone)
+        # CI 러너엔 전역 git 신원이 없다 — 클론 안에서 명시로 준다(계기가 환경을 타면 죽는다).
+        git(clone, "config", "user.name", "t")
+        git(clone, "config", "user.email", "t@example.invalid")
         head = git(REPO, "rev-parse", "HEAD").strip()
         git(clone, "checkout", "-q", "-B", "__base__", head)
         git(clone, "checkout", "-q", "-b", "__tamper__")
