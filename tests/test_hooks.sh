@@ -109,6 +109,8 @@ EOF
   echo "상태 어휘 정의" > "$r/docs/STATUS.md"
   printf '#!/usr/bin/env bash\necho "deploy $*"\n' > "$r/scripts/deploy.sh"
   chmod +x "$r/scripts/deploy.sh"
+  # 배포 스크립트를 가리키는 파일 심링크 — 「토큰을 문자열로만 보는」 판정이 뚫리는 자리(PG18).
+  ln -s scripts/deploy.sh "$r/dep.sh"
 
   git -C "$r" init -q
   git -C "$r" config user.email "test@example.invalid"
@@ -436,6 +438,67 @@ expect "PG15 fail-closed: 깨진 JSON 차단" 2 "JSON"
 
 run_hook "$REPO" "$H" ''
 expect "PG16 fail-closed: 빈 stdin 차단" 2 "입력"
+
+# --- 경로 해석 우회 세트(RD1 리뷰 F6-1) -----------------------------------------
+# 아래 넷은 「배포 토큰을 문자열로 대조」하는 판정이 전부 뚫린 자리다. 판정은 어휘가 아니라
+# 경로 해석이라야 한다 — 토큰을 절대경로로 풀어 scripts/deploy.sh 의 실경로와 대조한다.
+run_hook "$REPO" "$H" "$(json_bash 'scripts/./deploy.sh production' "$REPO")"
+expect "PG17 우회 /./ (리뷰 H14): 경로 접기가 //만 접고 /./ 를 안 접는다" 2 "$G_MSG_1"
+
+run_hook "$REPO" "$H" "$(json_bash './dep.sh production' "$REPO")"
+expect "PG18 우회 파일 심링크 (리뷰 H16): dep.sh → scripts/deploy.sh 도 배포다" 2 "$G_MSG_1"
+
+run_hook "$REPO" "$H" "$(json_bash 'cd scripts && ./deploy.sh production' "$REPO")"
+expect "PG19 우회 cd 세그먼트 (리뷰 H17): 작업 디렉터리를 옮겨도 같은 파일이다" 2 "$G_MSG_1"
+
+run_hook "$REPO" "$H" "$(json_bash 'SCRIPTS/DEPLOY.SH production' "$REPO")"
+expect "PG20 우회 대소문자 (리뷰 H23): 대소문자 비구분 FS 에서 같은 파일에 닿는다" 2 "$G_MSG_1"
+
+# --- 경로 해석이 거짓 양성을 만들지 않는가(음성 대조) ---------------------------
+run_hook "$REPO" "$H" "$(json_bash 'cd scripts && ./deploy.sh staging' "$REPO")"
+expect "PG21 음성: cd 를 따라가도 staging 은 승인 없이 통과" 0
+
+run_hook "$REPO" "$H" "$(json_bash 'cd docs && cat production-notes.md' "$REPO")"
+expect "PG22 음성: cd 가 섞여도 배포 호출이 아니면 통과" 0
+
+run_hook "$REPO" "$H" "$(json_bash 'cd src && python3 -m pytest -k production' "$REPO")"
+expect "PG23 음성: production 토큰만 있고 배포 호출이 없으면 통과" 0
+
+# --- 공백 판정 관용구의 행동 계약(성능 처방이 바꾸는 두 자리) ----------------------
+# _lib.sh 의 빈-입력 검사와 production-gate.sh 의 승인값 검사는 둘 다 「공백을 전부
+# 지우면 비는가」로 판정한다. 그 관용구를 bash 3.2 에서 폭발하지 않는 형태로 바꾸므로,
+# 바꾸기 전에 바깥에서 보이는 행동을 못박는다(기존 행동의 계약 고정 — 이미 그린이다).
+run_hook "$REPO" "$H" "$(printf ' \t \n\t ')"
+expect "PG24 공백만인 stdin 은 빈 입력과 같다 — 차단" 2 "입력"
+
+ENVARR=(RELEASE_APPROVAL="$(printf '\t')")
+run_hook "$REPO" "$H" "$(json_bash 'scripts/deploy.sh production' "$REPO")"
+expect "PG25 탭만인 승인값: 차단(공백은 승인이 아니다)" 2 "$G_MSG_1"
+
+ENVARR=(RELEASE_APPROVAL="$(printf '\n')")
+run_hook "$REPO" "$H" "$(json_bash 'scripts/deploy.sh production' "$REPO")"
+expect "PG26 개행만인 승인값: 차단" 2 "$G_MSG_1"
+
+ENVARR=(RELEASE_APPROVAL="  CAB-2026-09-08  ")
+run_hook "$REPO" "$H" "$(json_bash 'scripts/deploy.sh production' "$REPO")"
+expect "PG27 음성: 앞뒤 공백이 껴도 알맹이가 있으면 승인이다" 0
+
+# --- 해석 불가한 cd 목적지는 fail-closed(F6-1 설계) -------------------------------
+# cd $VAR 는 기준 디렉터리 집합을 불완전하게 만든다 — 그 뒤의 ./deploy.sh 가 어느 파일에
+# 닿는지 훅이 증명할 수 없다. 「모르는 것을 통과시키지 않는다」(_lib.sh 머리말)에 따라
+# production 토큰이 함께 있을 때만 차단한다. 승인값이 있으면 통과한다는 계약은 그대로다.
+run_hook "$REPO" "$H" "$(json_bash 'cd $DEPLOY_DIR && ./deploy.sh production' "$REPO")"
+expect "PG28 해석 불가 cd + production: 기준 디렉터리를 모르므로 차단" 2 "$G_MSG_1"
+
+run_hook "$REPO" "$H" "$(json_bash 'cd $SOMEWHERE && echo hello' "$REPO")"
+expect "PG29 음성: 해석 불가 cd 라도 production 토큰이 없으면 통과" 0
+
+run_hook "$REPO" "$H" "$(json_bash 'cd nosuchdir && python3 -m pytest -k production' "$REPO")"
+expect "PG30 음성: 리터럴이지만 없는 cd 대상은 「해석 불가」가 아니다(cd 가 실패한다)" 0
+
+ENVARR=(RELEASE_APPROVAL="CAB-2026-09-08")
+run_hook "$REPO" "$H" "$(json_bash 'cd $DEPLOY_DIR && ./deploy.sh production' "$REPO")"
+expect "PG31 음성: 해석 불가 cd 라도 유효한 승인값이면 통과" 0
 
 echo ""
 # ================================================================ 5. plan-sync
