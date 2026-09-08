@@ -23,9 +23,21 @@ SKIP_COUNT=0
 # rc 규약:  0 = PASS · 3 = SKIP(전제가 아직 없다 — 조용한 통과 금지) · 그 외 = FAIL.
 # SKIP 은 그린이 아니다. 요약 줄이 skipped 를 따로 세는 이유가 그것이다.
 # scripts/gates/*.sh 는 이 함수를 그대로 불러 쓴다(파일 끝의 확장 지점 참조).
+# 인자를 하나 주면 그 검사 함수 하나만 돈다(`make check` 는 인자 없이 부르므로 전량).
+# 시험이 「CI 모양 출력」에서 토큰을 셀 때 이 통로를 쓴다 — 전량을 다시 돌리면
+# check10(시험 묶음)이 자기를 다시 불러 재귀가 된다.
+ONLY_GATE="${1:-}"
+
+# check11 이 rc=0 이어도 note 는 흘려보내기 위한 통로. run_gate 는 PASS 일 때 함수
+# 출력을 통째로 버리는데, fd 3 은 그 명령 치환 밖(원래 stdout)을 가리킨다.
+exec 3>&1
+
 run_gate() {
   local name="$1"
   shift
+  if [[ -n "$ONLY_GATE" && "$ONLY_GATE" != "$1" ]]; then
+    return 0
+  fi
   local out rc
   out="$("$@" 2>&1)"
   rc=$?
@@ -195,10 +207,13 @@ check10_unittest() {
 check11_intent_chain() {
   local d files rc=0 out prc
   files=""
+  # `-maxdepth 2` 는 intent/<id>/v2/intent.md 같은 깊은 경로를 안 골랐다 — 직접
+  # 검사하면 red 가 나는 파일이 게이트 사정거리 밖에 있었다(E7). 넓히는 방향이라
+  # 포착을 잃지 않는다.
   while IFS= read -r d || [[ -n "$d" ]]; do
     [[ -z "$d" ]] && continue
     files="$files $d"
-  done < <(find intent -mindepth 2 -maxdepth 2 -name '*.md' 2>/dev/null | sort)
+  done < <(find intent -mindepth 2 -name '*.md' 2>/dev/null | sort)
   if [[ -z "${files// /}" ]]; then
     echo "intent/*/ 사슬이 아직 없다 (W2 에 들어온다) — 검사하지 않았다"
     return 3
@@ -206,6 +221,11 @@ check11_intent_chain() {
   # shellcheck disable=SC2086
   out="$(python3 scripts/check_artifacts.py $files 2>&1)"
   prc=$?
+  if [[ "$prc" -eq 0 ]]; then
+    # 「검사가 안 돌았다」는 note 를 로그로 흘려보낸다. 버리면 그 자리가 조용히 비고,
+    # 「코드가 하나라서 CI 로그에서 셀 수 있다」는 지면의 주장이 거짓이 된다(E5).
+    printf '%s\n' "$out" | grep -E '^ +note ' >&3 || true
+  fi
   if [[ "$prc" -ne 0 ]]; then
     echo "사슬 검증기 rc=$prc"
     echo "$out" | sed 's/^/  /'
