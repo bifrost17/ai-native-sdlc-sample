@@ -243,7 +243,8 @@ else
   # 단순히 "allowManagedHooksOnly" 문자열이 어딘가(표의 값 칸 등)에 있는 것만으로는
   # "함정을 언급"했다고 보지 않는다 — allowManagedHooksOnly 가 프로젝트 훅을 "죽인다"는
   # 함정 설명 자체가 있어야 통과한다. 이 마커라야 함정 문단 삭제 뮤테이션에 red 로 운다
-  # (뮤테이션 대조: raw-w1k/15-mut2-result.txt).
+  # 재현: 이 함정 설명 문단(위 "죽인다" 문장)을 org/README.md 에서 지우고
+  # bash tests/test_managed_settings.sh 를 돌리면 이 케이스 ⑤가 red 로 운다.
   if ! grep -q "allowManagedHooksOnly" "$README"; then
     README_OK=0
     README_MISSING="${README_MISSING}\"allowManagedHooksOnly\" 언급 없음\n"

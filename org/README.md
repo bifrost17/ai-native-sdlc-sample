@@ -60,8 +60,8 @@ hooks declared in agent frontmatter."*
 
 ## 문서에서 확인한 키
 
-아래 URL 을 2026-09-08 에 직접 열어 각 키의 이름·타입·스코프·예시를 확인했다(전문은
-`raw-w1k/05-settings-reference.md` · `raw-w1k/05-managed-settings.md`):
+아래 URL 을 2026-09-08 에 직접 열어 각 키의 이름·타입·스코프·예시를 확인했다 — 재현은
+아래 두 URL 을 열어 이 절 끝의 15키 목록이 문서화돼 있는지 직접 대조한다:
 
 - `https://code.claude.com/docs/en/settings-reference.md`
 - `https://code.claude.com/docs/en/managed-settings.md`
