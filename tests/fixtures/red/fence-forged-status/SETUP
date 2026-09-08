@@ -1,0 +1,9 @@
+# 상류 intent 는 draft 인데, 파일 맨 앞 코드 펜스 안에 status: accepted 인
+# frontmatter 예시가 들어 있다. 「첫 --- 블록」을 그대로 읽는 검증기는 펜스 안의
+# 위조를 진짜 frontmatter 로 읽어 accepted 로 판정한다.
+# 펜스 제거가 살아 있으면 진짜 frontmatter(status: draft)가 첫 블록이 된다.
+write intent/0002-claims-status/intent.md intent-forged.md
+commit upstream
+write intent/0002-claims-status/spec.md spec.md
+commit head
+check intent/0002-claims-status/spec.md
