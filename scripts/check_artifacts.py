@@ -689,12 +689,30 @@ def check_upstream(report, artifact_type, path, data):
 # `.gitattributes` 의 diff 드라이버 · `+++`/`---` 접두 · rename 탐지)의 소유자는 git 이라,
 # git 이 형식을 바꾸거나 사용자가 속성을 거는 순간 축이 죽었다 — 실제로 8종이 뚫렸다.
 # 지금 축은 **두 blob 의 바이트**를 직접 견준다: frontmatter 키 집합과 상태 enum 은
-# 이미 이 레포가 SCHEMA 로 소유하는 닫힌 어휘다.
+# 이미 이 레포가 SCHEMA 로 소유하는 닫힌 어휘다. 「두 blob」은 말 그대로 blob 이다 —
+# 워크트리 파일은 git 의 필터(`core.autocrlf` · `.gitattributes` 의 `eol`·`ident`)를 거친
+# 바이트이지 머지되는 바이트가 아니다(`current_versions`).
+#
+# 그리고 그 축에도 소유자 문제가 남아 있었다. **사슬 id 는 승인 PR 작성자가 같은 커밋에서
+# 쓰는 어휘다** — 디렉터리를 개명하면 `ID_DIRNAME_MISMATCH` 가 id 개명을 강제하고, id 가
+# 바뀌면 기준점 조회가 0건이 되어 브랜치 자기 커밋으로 후퇴한다. 그래서 물음을 하나 더
+# 얹는다. 이 물음의 어휘는 **base 브랜치 이력**이 소유하고 PR 작성자는 쓸 수 없다:
+#
+#   base 의 accepted 아티팩트 집합에서 사라진 것이 있는가, 그리고 head 에 그것을
+#   `supersedes:` 로 가리키는 아티팩트가 있는가(`vanished_accepted_ids`).
 # --------------------------------------------------------------------------
 
-# 어떤 상태 변화가 「도장」으로 허용되는가. **한 곳에 데이터로** 두고, 표에 없는 전이는
-# 전부 거부한다 — 승인 게이트의 안전한 기본값은 deny-by-default 이고, 되돌리려면
-# 이 표에 한 줄을 더하면 된다.
+# 어떤 상태 변화가 「도장」으로 허용되는가. **한 곳에 데이터로** 둔다.
+#
+# 🔴 이 표가 다스리는 것은 **`accepted` 로 들어오는 전이뿐**이다. 이 검사 전체가
+# 「지금 파일이 `accepted` 일 때」만 도므로 도착 상태는 언제나 `accepted` 이고, 표의
+# 나머지 세 줄(`draft`→`rejected` · `draft`→`superseded` · `accepted`→`superseded`)은
+# **도달하지 않는다** — 남겨 둔 것은 「승인 아닌 상태 변화는 이 축의 사정거리 밖」임을
+# 한자리에서 읽히게 하기 위해서다. 「표에 없는 전이는 전부 거부한다」는 문면은 거짓이었다.
+#
+# 🔴 `accepted` → `draft` 를 표에 넣어 거부하면 안 된다. 그것은 이 검사가 **스스로
+# 처방하는 경로**다(내용을 바꾸려면 draft 로 되돌려 다시 검토받는다). 표를 「완성」하려는
+# 다음 사람이 그 경로를 막으면 문서를 고칠 방법이 사라진다.
 #
 # 부모 세션 잠정 결정 · product owner 확인 대기(spec 의 F2). `rejected` → `accepted`
 # 와 `superseded` → `accepted` 는 「되살리기」라 거부한다 — 되살리려면 새 아티팩트를
@@ -795,51 +813,161 @@ def tree_files(git_ctx, rev, scope):
     return [name for name in out.decode("utf-8", "replace").split("\0") if name], None
 
 
-def artifacts_in_tree(git_ctx, rev, scope, artifact_type):
-    """그 판의 트리에서 같은 형인 아티팩트를 (경로, frontmatter) 로 훑는다."""
-    names, error = tree_files(git_ctx, rev, scope)
-    if names is None:
-        return None, error
-    found = []
-    for name in names:
-        if resolve_type(name, None) != artifact_type:
-            continue
-        data, _error = read_upstream_frontmatter(git_ctx, rev, name)
-        if data is not None:
-            found.append((name, data))
-    return found, None
+_TREE_ARTIFACT_CACHE = {}
 
 
-def vanished_accepted_ids(git_ctx, default_rev, scope, artifact_type):
-    """기본 브랜치에서 `accepted` 였는데 이 브랜치 트리에서 **사슬 id 째로 사라진** 것들.
+def artifacts_in_tree(git_ctx, rev, scope, artifact_type=None):
+    """그 판의 트리에 있는 아티팩트를 (경로, 형, frontmatter) 로 훑는다.
 
-    승인된 아티팩트를 지우고 새 id 로 갈아타 그 자리에서 자기 승인하면, 파일 하나만
-    보는 검사는 「이 브랜치에서 태어난 새 사슬」로 읽어 통과시킨다(⑥c). 경로는 git 이
-    움직일 수 있지만 사슬 id 는 우리 어휘라, 그 사라짐은 셀 수 있다.
+    `artifact_type` 이 None 이면 **형을 가리지 않고** 전부다. 사라짐 검사는 형 무관
+    전량 스캔이어야 한다 — 형으로 좁히면 accepted `spec` 을 지웠을 때 spec 형 스캔이
+    아예 돌지 않는다(검사를 트리거한 파일이 intent 라서).
     """
-    base_found, error = artifacts_in_tree(git_ctx, default_rev, scope, artifact_type)
+    key = (git_ctx.root, rev, scope)
+    if key not in _TREE_ARTIFACT_CACHE:
+        names, error = tree_files(git_ctx, rev, scope)
+        if names is None:
+            _TREE_ARTIFACT_CACHE[key] = (None, error)
+        else:
+            found = []
+            for name in names:
+                kind = resolve_type(name, None)
+                if kind not in SCHEMA:
+                    continue
+                data, _error = read_upstream_frontmatter(git_ctx, rev, name)
+                if data is not None:
+                    found.append((name, kind, data))
+            _TREE_ARTIFACT_CACHE[key] = (found, None)
+    found, error = _TREE_ARTIFACT_CACHE[key]
+    if found is None:
+        return None, error
+    if artifact_type is None:
+        return list(found), None
+    return [entry for entry in found if entry[1] == artifact_type], None
+
+
+def vanished_accepted_ids(git_ctx, default_rev, scope):
+    """base 에서 `accepted` 였는데 head 트리에서 **사슬 id 째로 사라진** 것들.
+
+    이 물음의 어휘는 **base 브랜치 이력**이 소유한다 — PR 작성자는 base 에서 id 를 없앨
+    수 없다. 그래서 id 세탁(디렉터리·id 개명)과 2-PR 세탁(먼저 지우는 PR, 다음에 승인하는
+    PR)이 같은 물음 하나로 닫힌다.
+
+    **형을 가리지 않는다**: 검사를 트리거한 파일이 intent 여도 사라진 accepted `spec` 을
+    본다. `(형, 사슬 id)` 가 열쇠다 — 한 사슬의 intent·spec·plan 은 id 를 공유한다.
+
+    사라짐이 허용되는 유일한 길은 **대체 선언**이다: head 에 그 id 를 `supersedes:` 로
+    가리키는 아티팩트가 있어야 한다. 단, 그 후속이 **이 브랜치에서 스스로 accepted 가 된
+    것**이면 증인이 못 된다 — 지우고 새 id 로 갈아타 자기 승인하는 것이 곧 세탁이고,
+    그것을 `supersedes:` 한 줄로 사는 통로가 되면 이 축이 무의미해진다.
+    """
+    base_found, error = artifacts_in_tree(git_ctx, default_rev, scope)
     if base_found is None:
         return None, error
-    head_found, error = artifacts_in_tree(git_ctx, "HEAD", scope, artifact_type)
+    head_found, error = artifacts_in_tree(git_ctx, "HEAD", scope)
     if head_found is None:
         return None, error
-    head_ids = set(data.get("id") for _name, data in head_found)
+    head_keys = set((kind, data.get("id")) for _name, kind, data in head_found)
+    base_accepted_keys = set(
+        (kind, data.get("id"))
+        for _name, kind, data in base_found
+        if data.get("status") == "accepted"
+    )
+    successors = {}
+    for name, kind, data in head_found:
+        target = data.get("supersedes")
+        if isinstance(target, str) and target.strip() and target.strip() != "none":
+            successors.setdefault(target.strip(), []).append((name, kind, data))
     gone = []
-    for name, data in base_found:
+    for name, kind, data in base_found:
         if data.get("status") != "accepted":
             continue
-        if data.get("id") not in head_ids:
-            gone.append((data.get("id"), name))
+        chain_id = data.get("id")
+        if (kind, chain_id) in head_keys:
+            continue
+        witnessed = False
+        for _wname, wkind, wdata in successors.get(chain_id, []):
+            born_accepted_here = (
+                wdata.get("status") == "accepted"
+                and (wkind, wdata.get("id")) not in base_accepted_keys
+            )
+            if born_accepted_here:
+                continue
+            witnessed = True
+            break
+        if not witnessed:
+            gone.append((kind, chain_id, name))
     return gone, None
 
 
-def accept_baseline(git_ctx, default_rev, relpath, artifact_type, chain_id):
+def _baseline_by_content(git_ctx, default_rev, scope, artifact_type, current_raw):
+    """base 에서 **본문 바이트가 같은** 같은 형 아티팩트를 찾는다. 하나뿐일 때만 돌려준다.
+
+    id 조회도 경로 조회도 0건인 자리를 메운다 — 디렉터리를 개명하면 `ID_DIRNAME_MISMATCH`
+    가 id 개명을 강제하므로 그 둘만으로는 기준점이 브랜치 자기 커밋으로 후퇴한다. 넓히는
+    방향이라 포착을 잃지 않는다.
+    """
+    _fm, body = split_frontmatter_bytes(current_raw)
+    if body is None:
+        return None
+    found, _error = artifacts_in_tree(git_ctx, default_rev, scope, artifact_type)
+    if not found:
+        return None
+    hits = []
+    for name, _kind, _data in found:
+        rc, raw, _err = git_ctx.show(default_rev, name)
+        if rc != 0:
+            continue
+        _base_fm, base_body = split_frontmatter_bytes(raw)
+        if base_body is not None and base_body == body:
+            hits.append(name)
+    return hits[0] if len(hits) == 1 else None
+
+
+def current_versions(git_ctx, relpath, path):
+    """지금 판을 **머지되는 바이트**로 꺼낸다 → ([(이름, 바이트)…], 사유).
+
+    워크트리 파일은 git 의 필터(`core.autocrlf` · `.gitattributes` 의 `eol`·`ident`)를
+    거친 바이트다. 그것을 기준점 blob 과 견주면 같은 커밋이 **읽는 사람의 git 설정**에
+    따라 rc 가 갈린다(거짓 빨강). 반대로 워크트리만 보면 필터가 지운 차이를 못 본다 —
+    본문 전 줄이 갈린 커밋이 순수 도장으로 읽힌다(거짓 그린). 그래서 기준은 HEAD 의
+    blob 이다.
+
+    워크트리가 HEAD 와 **다를 때만**(그 판정도 `git diff` 가 한다 — 필터 어휘의 주인은
+    git 이다) 워크트리 바이트를 하나 더 얹고, 호출자가 둘 중 엄한 쪽으로 판정한다.
+    미커밋 편집의 포착을 잃지 않기 위해서다.
+    """
+    versions = []
+    rc, head_raw, _err = git_ctx.show("HEAD", relpath)
+    if rc == 0:
+        versions.append(("HEAD 의 blob", head_raw))
+    dirty_rc, _out, _err = run_git(git_ctx.root, "diff", "--quiet", "HEAD", "--", relpath)
+    if not versions or dirty_rc != 0:
+        try:
+            with open(path, "rb") as handle:
+                versions.append(("작업 트리", handle.read()))
+        except OSError as exc:
+            if not versions:
+                return None, "파일을 바이트로 읽지 못했다: %s" % exc
+    return versions, None
+
+
+# 판정의 엄함 순서 — 여러 판을 견줬을 때 어느 쪽을 취할 것인가.
+VERDICT_STRICTNESS = {"identical": 0, "stamp": 1, "content": 2}
+
+
+def accept_baseline(git_ctx, default_rev, relpath, artifact_type, chain_id, current_raw=None):
     """무엇과 견줄 것인가 — (rev, path, outcome, detail). outcome: ok | skip | reject.
 
+    조회는 **합집합**이다 — 좁히면 그 자리가 통로가 된다.
     ① 기본 브랜치에 **같은 사슬 id 의 같은 형** 아티팩트가 있으면 그것이 기준점이다.
-       경로가 아니라 id 로 찾는다 — 경로로 찾으면 디렉터리·파일 개명 한 번에 기준점이
-       브랜치 자기 커밋으로 후퇴해, 브랜치가 심은 draft 위에 도장을 찍을 수 있다.
-    ② 없으면 사슬이 이 브랜치에서 태어난 경우다. 이 브랜치의 커밋 중 그 파일이 **아직
+       경로가 아니라 id 로 먼저 찾는다 — 경로만으로 찾으면 디렉터리·파일 개명 한 번에
+       기준점이 브랜치 자기 커밋으로 후퇴해, 브랜치가 심은 draft 위에 도장을 찍을 수
+       있다. 같은 id 가 여럿이면 **같은 경로**가 그 중에 있을 때 그것을 쓴다(아카이브
+       사본 하나가 정상 승인을 영구 봉쇄하지 않도록).
+    ①b id 로 못 찾으면 base 의 **같은 경로**, 그것도 없으면 base 에서 **본문 바이트가
+       같은** 같은 형 아티팩트(id 를 갈아치우고 개명해도 본문이 그대로면 그것이 원본이다).
+    ② 그래도 없으면 사슬이 이 브랜치에서 태어난 경우다. 이 브랜치의 커밋 중 그 파일이 **아직
        accepted 가 아니었던 가장 최근 판**을 기준으로 삼는다 — 그것이 도장을 찍을
        원본이다. 「그 파일을 건드린 가장 최근 커밋」으로 잡으면 승인을 커밋하기 직전의
        작업 트리가 red 로 읽혀 승인 커밋을 만들 수조차 없다.
@@ -850,20 +978,39 @@ def accept_baseline(git_ctx, default_rev, relpath, artifact_type, chain_id):
         found, error = artifacts_in_tree(git_ctx, default_rev, scope, artifact_type)
         if found is None:
             return None, None, "skip", "git ls-tree 가 실패했다: %s" % error
-        hits = [name for name, data in found if data.get("id") == chain_id]
+        hits = [name for name, _kind, data in found if data.get("id") == chain_id]
         if len(hits) > 1:
-            return (
-                None,
-                None,
-                "reject",
-                "기본 브랜치에 사슬 id %r 인 %s 가 여럿이다(%s) — 기준점을 하나로 정할 수 없다"
-                % (chain_id, artifact_type, ", ".join(sorted(hits))),
-            )
+            # base 에 같은 id 가 여럿이어도 **같은 경로**가 그 중에 있으면 모호하지 않다.
+            # 「하나로 정할 수 없다」로 거부하면 악의 없는 아카이브 배치 하나가 정상
+            # 승인을 영구 봉쇄한다(그 red 는 어떤 커밋으로도 풀리지 않는다).
+            if relpath in hits:
+                hits = [relpath]
+            else:
+                return (
+                    None,
+                    None,
+                    "reject",
+                    "기본 브랜치에 사슬 id %r 인 %s 가 여럿인데(%s) 이 경로(%s)는 그 중에 "
+                    "없다 — 기준점을 하나로 정할 수 없다"
+                    % (chain_id, artifact_type, ", ".join(sorted(hits)), relpath),
+                )
         if hits:
             return default_rev, hits[0], "ok", "기본 브랜치의 %s" % hits[0]
     rc, _out, _err = git_ctx.show(default_rev, relpath)
     if rc == 0:
         return default_rev, relpath, "ok", "기본 브랜치의 %s" % relpath
+    if current_raw is not None:
+        match = _baseline_by_content(
+            git_ctx, default_rev, scope, artifact_type, current_raw
+        )
+        if match:
+            return (
+                default_rev,
+                match,
+                "ok",
+                "기본 브랜치의 %s (본문 바이트 대조로 찾았다 — id·경로가 함께 바뀌었다)"
+                % match,
+            )
     rc, out, err = run_git(git_ctx.root, "rev-list", "%s..HEAD" % default_rev, "--", relpath)
     if rc != 0:
         return None, None, "skip", "git rev-list 가 실패했다: %s" % (err.strip() or "rc=%d" % rc)
@@ -890,6 +1037,87 @@ def accept_baseline(git_ctx, default_rev, relpath, artifact_type, chain_id):
     )
 
 
+def _branch_context(git_ctx):
+    """(기본 브랜치 이름, 기본 브랜치 ref, 지금 브랜치, 사유). 못 정하면 사유가 채워진다."""
+    default_name, default_rev = git_ctx.resolve_default()
+    branch = git_ctx.current_branch()
+    if default_name is None or branch is None:
+        return (
+            None,
+            None,
+            None,
+            "기본 브랜치(%r) 또는 현재 브랜치(%r)를 못 정해 브랜치 자기 승인 검사를 "
+            "돌리지 않았다(확인 못 함 — CI 의 detached HEAD 가 대표 사례다. "
+            "INTENT_CHECK_BRANCH · INTENT_CHECK_DEFAULT_BRANCH 로 알려줄 수 있다)"
+            % (default_name, branch),
+        )
+    return default_name, default_rev, branch, None
+
+
+def head_is_the_default_commit(git_ctx, default_rev):
+    """지금 HEAD 가 기본 브랜치 **그 커밋**인가.
+
+    이름이 같다고 같은 브랜치가 아니다. fork 의 PR 은 `head_ref` 가 그 fork 의 브랜치
+    이름이라 `main` 일 수 있고, 그러면 `branch == default_name` 이 참이 되어 D16 이
+    통째로 꺼진다(그 상태를 E5 계기는 note 0 = 「건강」으로 인증한다). 이름이 아니라
+    커밋으로 판정하면 진짜 기본 브랜치 위에서만 조용해진다.
+    """
+    rc_head, head_out, _err = run_git(git_ctx.root, "rev-parse", "--verify", "--quiet", "HEAD")
+    rc_default, default_out, _err = run_git(
+        git_ctx.root, "rev-parse", "--verify", "--quiet", default_rev
+    )
+    if rc_head != 0 or rc_default != 0:
+        return False
+    return head_out.strip() == default_out.strip()
+
+
+def check_accepted_artifact_not_dropped(report, path):
+    """base 의 accepted 아티팩트가 이 브랜치에서 사라졌는가 — **모든 아티팩트에서** 돈다.
+
+    `status: accepted` 인 파일에서만 돌리면 2-PR 세탁이 열린다: 먼저 「지우기만 하는 PR」을
+    머지시켜 base 에서 승인 기록을 없애고, 그 다음 PR 에서 새 id 로 자기 승인한다. 첫 PR 은
+    아무것도 도장하지 않으므로 검사가 아예 돌지 않았다.
+    """
+    directory = os.path.dirname(os.path.abspath(path))
+    git_ctx = GitContext.for_dir(directory)
+    if not git_ctx.root:
+        return
+    default_name, default_rev, branch, reason = _branch_context(git_ctx)
+    if reason:
+        return  # 같은 자리를 check_accepted_on_branch 가 note 로 남긴다
+    if branch == default_name and head_is_the_default_commit(git_ctx, default_rev):
+        return
+    relpath = os.path.relpath(os.path.abspath(path), git_ctx.root).replace(os.sep, "/")
+    scope = relpath.split("/")[0] if "/" in relpath else None
+    gone, error = vanished_accepted_ids(git_ctx, default_rev, scope)
+    if gone is None:
+        report.add(
+            "ACCEPTED_BRANCH_CHECK_SKIPPED",
+            "브랜치 %r 에서 사라진 accepted 아티팩트를 세지 못했다(확인 못 함) — %s"
+            % (branch, error),
+            severity=SEV_NOTE,
+        )
+        return
+    if gone:
+        report.add(
+            "ACCEPTED_ARTIFACT_VANISHED",
+            "브랜치 %r 에서 기본 브랜치 %s 의 accepted 아티팩트가 사슬 id 째로 사라졌다"
+            "(%s) — 승인 기록을 지우고 새 id 로 갈아타는 것은 승인이 아니다. 지우려면 "
+            "head 에 그 id 를 supersedes: 로 가리키는 아티팩트가 있어야 하고, 그 후속은 "
+            "같은 브랜치에서 스스로 accepted 가 될 수 없다(그것이 세탁이다). 옛 것을 "
+            "superseded 로 남겨 두는 쪽이 더 싸다"
+            % (
+                branch,
+                default_name,
+                ", ".join(
+                    "%s %s(%s)" % (kind, chain_id, name)
+                    for kind, chain_id, name in sorted(gone)
+                ),
+            ),
+            line=1,
+        )
+
+
 def check_accepted_on_branch(report, path, data):
     """accepted 는 머지된 PR 로만 들어온다 — 브랜치 위 자기 승인을 막는다.
 
@@ -898,9 +1126,13 @@ def check_accepted_on_branch(report, path, data):
     승인을 「PR 안에서 status: 를 고치고 머지」로 정의한다). 예외의 폭은 그 한 값이고,
     본문이 한 바이트라도 다르거나 다른 키가 함께 바뀌면 여전히 ACCEPTED_ON_BRANCH 다.
     전이 자체도 ACCEPT_TRANSITIONS 안에 있어야 한다.
+
+    견주는 것은 **머지되는 바이트**다(`current_versions`) — 워크트리 파일이 아니다.
     """
     if data.get("status") != "accepted":
         return
+    if any(f["code"] == "ACCEPTED_ARTIFACT_VANISHED" for f in report.findings):
+        return  # 사라짐이 먼저다 — 기준점 자체가 없어진 자리라 더 물을 것이 없다
     directory = os.path.dirname(os.path.abspath(path))
     git_ctx = GitContext.for_dir(directory)
     if not git_ctx.root:
@@ -910,54 +1142,29 @@ def check_accepted_on_branch(report, path, data):
             severity=SEV_NOTE,
         )
         return
-    default_name, default_rev = git_ctx.resolve_default()
-    branch = git_ctx.current_branch()
-    if default_name is None or branch is None:
-        report.add(
-            "ACCEPTED_BRANCH_CHECK_SKIPPED",
-            "기본 브랜치(%r) 또는 현재 브랜치(%r)를 못 정해 브랜치 자기 승인 검사를 "
-            "돌리지 않았다(확인 못 함 — CI 의 detached HEAD 가 대표 사례다. "
-            "INTENT_CHECK_BRANCH · INTENT_CHECK_DEFAULT_BRANCH 로 알려줄 수 있다)"
-            % (default_name, branch),
-            severity=SEV_NOTE,
-        )
+    default_name, default_rev, branch, reason = _branch_context(git_ctx)
+    if reason:
+        report.add("ACCEPTED_BRANCH_CHECK_SKIPPED", reason, severity=SEV_NOTE)
         return
-    if branch == default_name:
+    if branch == default_name and head_is_the_default_commit(git_ctx, default_rev):
         return
     relpath = os.path.relpath(os.path.abspath(path), git_ctx.root).replace(os.sep, "/")
     artifact_type = report.type
     chain_id = data.get("id")
     if not isinstance(chain_id, str) or not chain_id:
         chain_id = None
-    scope = relpath.split("/")[0] if "/" in relpath else None
 
-    # 기준점을 지우고 새 id 로 갈아타는 우회를 먼저 본다.
-    gone, error = vanished_accepted_ids(git_ctx, default_rev, scope, artifact_type)
-    if gone is None:
+    versions, error = current_versions(git_ctx, relpath, path)
+    if versions is None:
         report.add(
             "ACCEPTED_BRANCH_CHECK_SKIPPED",
             "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — %s" % (branch, error),
             severity=SEV_NOTE,
         )
         return
-    if gone:
-        report.add(
-            "ACCEPTED_ARTIFACT_VANISHED",
-            "브랜치 %r 에서 status: accepted 인데, 기본 브랜치 %s 의 accepted %s 가 "
-            "이 브랜치에서 사슬 id 째로 사라졌다(%s) — 승인 기록을 지우고 새 id 로 "
-            "갈아타는 것은 승인이 아니다. 대체하려면 옛 것을 superseded 로 남긴다"
-            % (
-                branch,
-                default_name,
-                artifact_type,
-                ", ".join("%s(%s)" % (cid, name) for cid, name in sorted(gone)),
-            ),
-            line=1,
-        )
-        return
 
     baseline_rev, baseline_path, outcome, detail = accept_baseline(
-        git_ctx, default_rev, relpath, artifact_type, chain_id
+        git_ctx, default_rev, relpath, artifact_type, chain_id, versions[0][1]
     )
     if outcome == "skip":
         report.add(
@@ -975,7 +1182,7 @@ def check_accepted_on_branch(report, path, data):
         )
         return
 
-    # 기준점 blob 과 지금 파일을 **바이트로** 꺼낸다. 실패를 삼키지 않는다.
+    # 기준점 blob 을 **바이트로** 꺼낸다. 실패를 삼키지 않는다.
     rc, base_raw, error = git_ctx.show(baseline_rev, baseline_path)
     if rc != 0:
         report.add(
@@ -985,28 +1192,22 @@ def check_accepted_on_branch(report, path, data):
             line=1,
         )
         return
-    try:
-        with open(path, "rb") as handle:
-            current_raw = handle.read()
-    except OSError as exc:
-        report.add(
-            "ACCEPTED_BRANCH_CHECK_SKIPPED",
-            "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — 파일을 바이트로 "
-            "읽지 못했다: %s" % (branch, exc),
-            severity=SEV_NOTE,
-        )
-        return
 
-    verdict, before, after = classify_accept_transition(base_raw, current_raw)
+    # 여러 판(HEAD 의 blob · 미커밋 작업 트리)을 견줘 **엄한 쪽**으로 판정한다.
+    judged = [
+        (label,) + classify_accept_transition(base_raw, current_raw)
+        for label, current_raw in versions
+    ]
+    label, verdict, before, after = max(judged, key=lambda item: VERDICT_STRICTNESS[item[1]])
     if verdict == "identical":
         return
     if verdict == "content":
         report.add(
             "ACCEPTED_ON_BRANCH",
             "브랜치 %r 에서 status: accepted 인데 %s 와 견줘 frontmatter 의 `status` "
-            "값 말고도 바뀐 곳이 있다 — 승인은 이미 검토된 문서에 도장을 찍는 행위이지 "
-            "고치면서 승인하는 일이 아니다. 내용을 바꾸려면 draft 로 되돌려 다시 "
-            "검토받는다" % (branch, detail),
+            "값 말고도 바뀐 곳이 있다(%s 기준) — 승인은 이미 검토된 문서에 도장을 찍는 "
+            "행위이지 고치면서 승인하는 일이 아니다. 내용을 바꾸려면 draft 로 되돌려 "
+            "다시 검토받는다" % (branch, detail, label),
             line=1,
         )
         return
@@ -1194,6 +1395,7 @@ def check_file(path, forced_type=None):
     check_title(report, artifact_type, title, title_line, data)
     check_sections(report, artifact_type, sections)
     check_upstream(report, artifact_type, path, data)
+    check_accepted_artifact_not_dropped(report, path)
     check_accepted_on_branch(report, path, data)
     if artifact_type == "spec":
         check_spec_inheritance(report, path, sections)
