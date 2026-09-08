@@ -1,0 +1,9 @@
+# plan 의 Proof 절이 「전체 시험을 돌린다」로 끝나 어떤 AC 도 가리키지 않는다.
+# 절은 비어 있지 않으므로 빈 절 검사로는 안 잡힌다.
+write intent/0002-claims-status/intent.md intent.md
+commit c1
+write intent/0002-claims-status/spec.md spec.md
+commit c2
+write intent/0002-claims-status/plan.md plan.md
+commit head
+check intent/0002-claims-status/plan.md

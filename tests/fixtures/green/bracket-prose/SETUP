@@ -1,0 +1,13 @@
+# 정상 산문에 대괄호([Art. 4] · [중앙값] · [ja, en])와 한국어/일본어 인용부호
+# (「」 · 『』 · 【】)가 섞인 문서. 레퍼런스 검증기는 이런 문서를 6건 반려했다 —
+# 우리는 통과해야 한다. plan 의 코드 펜스 안에는 플레이스홀더 ‹›가 있는데,
+# 펜스 제거가 살아 있으면 그것은 잔존이 아니다(허용 방향의 양성 대조).
+write intent/0003-retention-notice/intent.md intent.md
+commit c1
+write intent/0003-retention-notice/spec.md spec.md
+commit c2
+write intent/0003-retention-notice/plan.md plan.md
+commit c3
+check intent/0003-retention-notice/intent.md
+check intent/0003-retention-notice/spec.md
+check intent/0003-retention-notice/plan.md

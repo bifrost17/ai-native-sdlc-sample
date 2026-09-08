@@ -13,5 +13,10 @@ jobs:
     name: check
     runs-on: ubuntu-latest
     steps:
+      # 사슬 검증기(scripts/check_artifacts.py)가 upstream: <파일>@<sha> 를
+      # git show <sha>:<경로> 로 실제로 연다 — 얕은 클론(기본값)이면 그 sha
+      # 객체가 없어 rc=2(판정 불가)로 죽는다. 전체 깊이로 떠서 막는다.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - run: make check
