@@ -1,7 +1,7 @@
 ---
 id: 0001-bootstrap-repo
 kind: intent
-status: draft
+status: accepted
 author: 부모 세션(openwebagent)
 created: 2026-09-08T20:00:00+09:00
 record: none
