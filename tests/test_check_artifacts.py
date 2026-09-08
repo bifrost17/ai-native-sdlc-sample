@@ -867,8 +867,12 @@ class GateForwardsSkipNotes(unittest.TestCase):
             self.skipTest("게이트 안의 회차 — 재귀 방지")
 
     def _gate(self, **extra):
+        # 여기서 재는 것은 「지금 이 환경에서 그 검사가 실제로 도는가」다 —
+        # 그러니 환경을 지우지 않는다. CI 는 브랜치를 env 로 알려주고, 그것을
+        # 걷어내면 CI 회차가 자기 배선을 못 본 채 「안 돈다」고 말한다.
         extra.setdefault("INTENT_CHECK_GATE_PROBE", "1")
-        env = scrubbed_env(**extra)
+        env = os.environ.copy()
+        env.update(extra)
         proc = subprocess.run(
             ["bash", "scripts/check_all.sh", "check11_intent_chain"],
             cwd=REPO,
