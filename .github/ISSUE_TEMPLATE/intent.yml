@@ -1,0 +1,72 @@
+name: "Intent (비엔지니어용)"
+description: "엔지니어가 아니어도 문제·원하는 결과를 신고할 수 있는 폼. 이 이슈가 승인되면 intent/<NNNN>-<slug>/intent.md 초안이 된다."
+title: "[intent] "
+labels:
+  - intent
+  - draft
+body:
+  - type: markdown
+    attributes:
+      value: |
+        이 폼을 채우면 `intent/<NNNN>-<slug>/intent.md` 초안이 만들어진다. 코드나 파일 경로를
+        몰라도 된다 — 무엇이 문제이고 무엇이 달라져야 하는지만 신고하면, 다음 단계(spec 작성)는
+        엔지니어(또는 Claude)가 이어받는다.
+
+  - type: input
+    id: first-conversation-time
+    attributes:
+      label: 첫 대화 시각
+      description: >
+        이 문제를 처음 누군가와 이야기한 시각(당신이 기억하는 대로 신고 — 정확한 시·분까지
+        아니어도 된다). ISO8601 형식 권장(예: 2026-09-09T10:12:00+09:00). intent leading 지표의
+        기점(`created:` 필드)이 된다.
+      placeholder: "2026-09-09T10:12:00+09:00"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제 (Problem)
+      description: 오늘 무엇이 안 되는가 — 관찰된 사실·건수·시간을 적어라.
+      placeholder: "예: 매주 화요일 청구 상태를 묻는 문의가 20건씩 들어오는데 확인에 10분씩 걸린다."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-outcome
+    attributes:
+      label: 원하는 결과 (Proposed outcome)
+      description: 끝났을 때 무엇이 달라지는가 — 검수 가능한 문장으로.
+      placeholder: "예: 고객이 직접 청구 상태를 조회할 수 있어 문의가 90% 줄어든다."
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected
+    attributes:
+      label: 영향 범위 (Affected users and systems)
+      description: 이 변화로 영향을 받는 사용자 · 시스템 · 데이터.
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: 제약 (Constraints)
+      description: 반드시 지켜야 할 선(C1, C2, …) — 예산·규제·범위 밖 등.
+      placeholder: |
+        - C1 …
+        - C2 …
+    validations:
+      required: false
+
+  - type: textarea
+    id: open-questions
+    attributes:
+      label: 미결 (Open questions)
+      description: 아직 답이 없는 것과, 답할 수 있는 사람(Q1, Q2, …).
+      placeholder: |
+        - Q1 … (답할 사람: …)
+    validations:
+      required: false
