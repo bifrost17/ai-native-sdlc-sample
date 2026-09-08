@@ -37,13 +37,13 @@
 ## 지금 상태
 | 조각 | 상태 | 어디 |
 |---|---|---|
-| `scripts/check_artifacts.py`(check_upstream·check_spec_inheritance) | 대기(PR #7) | `scripts/check_artifacts.py` |
-| `templates/spec.md` | 대기(PR #7) | `templates/spec.md` |
-| `.claude/commands/spec.md` | 대기(PR #5) | `.claude/commands/spec.md` |
-| `.claude/skills/secure-api-review/SKILL.md` | 대기(PR #5) | `.claude/skills/secure-api-review/SKILL.md` |
-| `scripts/check_endpoints.sh` + `tests/test_check_endpoints.sh` | 대기(PR #5) | `scripts/check_endpoints.sh` |
-| `.claude/agents/verifier.md` | 대기(PR #5) | `.claude/agents/verifier.md` |
-| `intent/0002-claims-status/spec.md` 실제 산출물 | 없음 | — |
+| `scripts/check_artifacts.py`(check_upstream·check_spec_inheritance) | 착지 | `scripts/check_artifacts.py` |
+| `templates/spec.md` | 착지 | `templates/spec.md` |
+| `.claude/commands/spec.md` | 착지 | `.claude/commands/spec.md` |
+| `.claude/skills/secure-api-review/SKILL.md` | 착지 | `.claude/skills/secure-api-review/SKILL.md` |
+| `scripts/check_endpoints.sh` + `tests/test_check_endpoints.sh` | 착지 | `scripts/check_endpoints.sh` |
+| `.claude/agents/verifier.md` | 착지 | `.claude/agents/verifier.md` |
+| `intent/0002-claims-status/spec.md` 실제 산출물 | 대기(PR #15) | `intent/0002-claims-status/spec.md` |
 
 ## 이 플레이에서 우리가 하지 않는 것
 - intent merge → spec PR 자동 생성 job 은 안 한다 — `docs/PHASES.md`

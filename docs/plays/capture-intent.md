@@ -37,13 +37,13 @@
 ## 지금 상태
 | 조각 | 상태 | 어디 |
 |---|---|---|
-| `scripts/check_artifacts.py` | 대기(PR #7) | `scripts/check_artifacts.py` |
-| `templates/intent.md` | 대기(PR #7) | `templates/intent.md` |
-| `.claude/skills/capture-intent/SKILL.md` | 대기(PR #5) | `.claude/skills/capture-intent/SKILL.md` |
+| `scripts/check_artifacts.py` | 착지 | `scripts/check_artifacts.py` |
+| `templates/intent.md` | 착지 | `templates/intent.md` |
+| `.claude/skills/capture-intent/SKILL.md` | 착지 | `.claude/skills/capture-intent/SKILL.md` |
 | `.github/CODEOWNERS`(intent/** 규칙) | 대기(PR #3) | `.github/CODEOWNERS` |
 | `.github/ISSUE_TEMPLATE/intent.yml` | 대기(PR #3) | `.github/ISSUE_TEMPLATE/intent.yml` |
 | ruleset `protect-main` | 착지(레포 설정) | GitHub rulesets API |
-| `intent/0002-claims-status/intent.md` 등 실제 사슬 | 없음 | — |
+| `intent/0002-claims-status/intent.md` 등 실제 사슬 | 대기(PR #15) | `intent/0002-claims-status/intent.md` |
 
 ## 이 플레이에서 우리가 하지 않는 것
 - 이슈 폼 → intent PR 자동 생성, claude.ai 커넥터 연동은 안 한다 —

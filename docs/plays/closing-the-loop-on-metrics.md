@@ -16,8 +16,9 @@
   (28건, 실측: `grep -c "def test_"`)를 등록한다. **단독 실행이 안 된다** —
   다른 세 게이트(10/20/40)와 달리 `run_gate` 가 없으면 즉시 실패 메시지를
   내고 `python3 -m unittest tests.test_detect_bands` 를 직접 돌리라고
-  지시한다. 이 게이트도 `check_all.sh` 가 아직 source 하지 않는다
-  (claude-md.md 와 같은 사정).
+  지시한다. 이 게이트는 이제 `check_all.sh` 가 source 한다(claude-md.md
+  참조 — 실측: `bash scripts/check_all.sh` 원문에 「PASS  밴드 검출 시험
+  (tests/test_detect_bands.py)」 줄).
 - main 에는 위 전부가 없다(없음).
 
 ## 증거는 무엇인가
@@ -36,11 +37,11 @@
 ## 지금 상태
 | 조각 | 상태 | 어디 |
 |---|---|---|
-| `ops/bands.yaml` | 대기(PR #4) | `ops/bands.yaml` |
-| `scripts/detect_bands.py` | 대기(PR #4) | `scripts/detect_bands.py` |
-| `scripts/emit_intent.py` | 대기(PR #4) | `scripts/emit_intent.py` |
-| `scripts/gates/30-bands.sh` | 대기(PR #4) | `scripts/gates/30-bands.sh` |
-| `tests/test_detect_bands.py`(28 test) | 대기(PR #4) | `tests/test_detect_bands.py` |
+| `ops/bands.yaml` | 착지 | `ops/bands.yaml` |
+| `scripts/detect_bands.py` | 착지 | `scripts/detect_bands.py` |
+| `scripts/emit_intent.py` | 착지 | `scripts/emit_intent.py` |
+| `scripts/gates/30-bands.sh` | 착지 | `scripts/gates/30-bands.sh` |
+| `tests/test_detect_bands.py`(28 test) | 착지 | `tests/test_detect_bands.py` |
 | `docs/METRICS.md`(플레이북 14쌍 표) | 대기(PR #3) | `docs/METRICS.md` |
 | 라이브 스케줄 실행(cron 등) | 없음 | — |
 

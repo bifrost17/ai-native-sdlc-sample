@@ -41,7 +41,7 @@
 | `scripts/deploy.sh` | 대기(PR #6) | `scripts/deploy.sh` |
 | `.claude/settings.json`(PreToolUse 배선) | 대기(PR #6) | `.claude/settings.json` |
 | `tests/test_hooks.sh` | 대기(PR #6) | `tests/test_hooks.sh` |
-| `org/managed-settings.example.json` | 없음 | — |
+| `org/managed-settings.example.json` | 대기(PR #11) | `org/managed-settings.example.json` |
 
 ## 이 플레이에서 우리가 하지 않는 것
 - 관리형 설정 MDM 배포 · 플러그인 마켓플레이스는 안 한다 — `docs/PHASES.md`

@@ -12,11 +12,13 @@
   AST 로 단일 응답 통로(`build_response`)·단일 허용 목록(`RESPONSE_FIELDS`)
   ·단일 라우트 파일을 판정한다(R1~R6, rc 0/1/2, `tests/test_check_
   endpoints.sh` 가 red 4종·green 1종으로 상주 대조).
-- 이 백스톱조차 지금은 자동으로 돌지 않는다 — `scripts/gates/40-skills.sh`
-  가 이 시험을 등록하지만 `scripts/check_all.sh`(= `make check` = CI 필수
-  체크 `check`)가 `scripts/gates/*.sh` 를 아직 source 하지 않는다
-  (claude-md.md 와 같은 사정). 지금은 `bash scripts/check_endpoints.sh`
-  (또는 `gates/40-skills.sh`)를 손으로 돌려야 잰다.
+- `scripts/gates/40-skills.sh` 가 이 시험을 등록하고, `scripts/check_all.sh`
+  (= `make check` = CI 필수 체크 `check`)가 이제 `scripts/gates/*.sh` 를
+  source 한다(claude-md.md 참조 — 실측: `bash scripts/check_all.sh` 원문에
+  「PASS  결정론 백스톱 계약 (tests/test_check_endpoints.sh)」 줄, `.github/
+  workflows/check.yml` 이 `pull_request`·`push: main` 마다 `make check` 를
+  돌린다). 손으로 `bash scripts/check_endpoints.sh`(또는 `gates/40-
+  skills.sh`)를 돌려도 같은 것을 잰다.
 - main 에는 스킬·백스톱 전부 없다(없음).
 
 ## 증거는 무엇인가
@@ -36,12 +38,12 @@
 ## 지금 상태
 | 조각 | 상태 | 어디 |
 |---|---|---|
-| `.claude/skills/capture-intent/SKILL.md` | 대기(PR #5) | `.claude/skills/capture-intent/SKILL.md` |
-| `.claude/skills/secure-api-review/SKILL.md` | 대기(PR #5) | `.claude/skills/secure-api-review/SKILL.md` |
-| `scripts/check_endpoints.sh` | 대기(PR #5) | `scripts/check_endpoints.sh` |
-| `tests/test_check_endpoints.sh` + `tests/fixtures-endpoints/{green,red}` | 대기(PR #5) | `tests/test_check_endpoints.sh` |
-| `scripts/gates/40-skills.sh` | 대기(PR #5) | `scripts/gates/40-skills.sh` |
-| CI 가 위 시험을 자동으로 돌리는 상태 | 없음 | — |
+| `.claude/skills/capture-intent/SKILL.md` | 착지 | `.claude/skills/capture-intent/SKILL.md` |
+| `.claude/skills/secure-api-review/SKILL.md` | 착지 | `.claude/skills/secure-api-review/SKILL.md` |
+| `scripts/check_endpoints.sh` | 착지 | `scripts/check_endpoints.sh` |
+| `tests/test_check_endpoints.sh` + `tests/fixtures-endpoints/{green,red}` | 착지 | `tests/test_check_endpoints.sh` |
+| `scripts/gates/40-skills.sh` | 착지 | `scripts/gates/40-skills.sh` |
+| CI 가 위 시험을 자동으로 돌리는 상태 | 착지 | `.github/workflows/check.yml` |
 
 ## 이 플레이에서 우리가 하지 않는 것
 - 스킬이 실제로 호출됐는지 재는 시험은 안 한다 — `docs/PHASES.md`(PR #3):

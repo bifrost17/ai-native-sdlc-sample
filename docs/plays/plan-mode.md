@@ -36,10 +36,10 @@
 | `.claude/hooks/plan-sync.sh` | 대기(PR #6) | `.claude/hooks/plan-sync.sh` |
 | `.claude/settings.json`(PreToolUse 배선) | 대기(PR #6) | `.claude/settings.json` |
 | `tests/test_hooks.sh` · `tests/test_wiring.sh` | 대기(PR #6) | `tests/test_hooks.sh` |
-| `templates/plan.md` | 대기(PR #7) | `templates/plan.md` |
-| `scripts/check_artifacts.py`(check_plan_proof) | 대기(PR #7) | `scripts/check_artifacts.py` |
-| `docs/SOURCE-OF-TRUTH.md` | 대기(PR #7) | `docs/SOURCE-OF-TRUTH.md` |
-| `intent/0002-claims-status/plan.md` 실제 산출물 | 없음 | — |
+| `templates/plan.md` | 착지 | `templates/plan.md` |
+| `scripts/check_artifacts.py`(check_plan_proof) | 착지 | `scripts/check_artifacts.py` |
+| `docs/SOURCE-OF-TRUTH.md` | 착지 | `docs/SOURCE-OF-TRUTH.md` |
+| `intent/0002-claims-status/plan.md` 실제 산출물 | 대기(PR #15) | `intent/0002-claims-status/plan.md` |
 
 ## 이 플레이에서 우리가 하지 않는 것
 - auto mode · worktree 병렬 세션은 안 한다 — `docs/PHASES.md`(PR #3, 레슨
