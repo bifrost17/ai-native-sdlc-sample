@@ -39,3 +39,4 @@ stage begins by reading it. The chain of commits is also the audit trail"* — �
 
 플레이북 인용은 짧은 축자 + 출처 표기만 한다. 원문은 Claude Academy 의
 `courses/ai-native-sdlc-playbook` (Copyright Anthropic).
+
