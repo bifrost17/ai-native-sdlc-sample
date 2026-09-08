@@ -347,17 +347,34 @@ class GitContext(object):
         return rc, out, err
 
     def current_branch(self):
-        rc, out, _err = run_git(self.root, "symbolic-ref", "--quiet", "--short", "HEAD")
-        if rc != 0:
-            return None
-        return out.decode("utf-8", "replace").strip()
+        """지금 브랜치 이름. detached HEAD 면 `INTENT_CHECK_BRANCH` 를 쓴다.
 
-    def default_branch(self):
-        for name in ("main", "master"):
-            rc, _out, _err = run_git(self.root, "rev-parse", "--verify", "--quiet", "refs/heads/" + name)
-            if rc == 0:
+        CI 는 PR 을 detached HEAD 로 체크아웃한다 — 그러면 `symbolic-ref` 가 답을
+        못 내고 브랜치 검사가 통째로 빠졌다(집행력 0). 그 자리를 **우리가 소유하는
+        env 이름**으로 메운다. env 도 없으면 None 이고, 호출자가 note 로 남긴다.
+        """
+        rc, out, _err = run_git(self.root, "symbolic-ref", "--quiet", "--short", "HEAD")
+        if rc == 0:
+            name = out.decode("utf-8", "replace").strip()
+            if name:
                 return name
-        return None
+        return os.environ.get("INTENT_CHECK_BRANCH", "").strip() or None
+
+    def resolve_default(self):
+        """(기본 브랜치 이름, git 이 풀 수 있는 ref). 못 정하면 (None, None).
+
+        이름과 ref 를 나눠 돌려준다 — 비교(`branch == default`)는 이름으로 하고
+        조회(`git show`/`ls-tree`)는 ref 로 해야 한다. 얕지 않은 CI 클론에는
+        `refs/heads/main` 이 없고 `refs/remotes/origin/main` 만 있다.
+        """
+        env = os.environ.get("INTENT_CHECK_DEFAULT_BRANCH", "").strip()
+        names = [env] if env else ["main", "master"]
+        for name in names:
+            for ref in ("refs/heads/" + name, "refs/remotes/origin/" + name):
+                rc, _out, _err = run_git(self.root, "rev-parse", "--verify", "--quiet", ref)
+                if rc == 0:
+                    return name, ref
+        return None, None
 
 
 # --------------------------------------------------------------------------
@@ -665,79 +682,208 @@ def check_upstream(report, artifact_type, path, data):
     return upstream_data
 
 
-STATUS_LINE_RE = re.compile(r"^status:[ \t]*\S+[ \t]*$")
+# --------------------------------------------------------------------------
+# D16 — 승인 전이. 이 판정의 어휘는 git 이 아니라 우리가 소유한다.
+#
+# 옛 축은 `git diff` 출력의 **텍스트 모양**을 읽었다. 그 어휘(무엇을 binary 로 볼지 ·
+# `.gitattributes` 의 diff 드라이버 · `+++`/`---` 접두 · rename 탐지)의 소유자는 git 이라,
+# git 이 형식을 바꾸거나 사용자가 속성을 거는 순간 축이 죽었다 — 실제로 8종이 뚫렸다.
+# 지금 축은 **두 blob 의 바이트**를 직접 견준다: frontmatter 키 집합과 상태 enum 은
+# 이미 이 레포가 SCHEMA 로 소유하는 닫힌 어휘다.
+# --------------------------------------------------------------------------
+
+# 어떤 상태 변화가 「도장」으로 허용되는가. **한 곳에 데이터로** 두고, 표에 없는 전이는
+# 전부 거부한다 — 승인 게이트의 안전한 기본값은 deny-by-default 이고, 되돌리려면
+# 이 표에 한 줄을 더하면 된다.
+#
+# 부모 세션 잠정 결정 · product owner 확인 대기(spec 의 F2). `rejected` → `accepted`
+# 와 `superseded` → `accepted` 는 「되살리기」라 거부한다 — 되살리려면 새 아티팩트를
+# 만들고 `supersedes:` 로 옛 것을 가리킨다.
+ACCEPT_TRANSITIONS = (
+    ("draft", "accepted"),
+    ("draft", "rejected"),
+    ("draft", "superseded"),
+    ("accepted", "superseded"),
+)
+
+# 「도장 한 줄」의 형태. 값 뒤에 주석·인용부호가 붙으면 도장이 아니다 — 승인 커밋에
+# 함께 들어온 산문은 아무도 검토하지 않았다. 끝의 공백·CR 만 눈감아 준다.
+STAMP_LINE_RE = re.compile(rb"^status:[ \t]*([A-Za-z][A-Za-z0-9_-]*)[ \t\r]*$")
 
 
-def classify_accept_diff(diff_text):
-    """`git diff` 출력이 무엇을 바꿨는가 — identical | status_only | content.
+def split_frontmatter_bytes(raw):
+    """바이트 원문 → (frontmatter 줄 목록, 그 뒤 본문 바이트). 못 가르면 (None, None).
 
-    D16 의 판정 함수다. 승인은 「이미 검토된 문서에 도장을 찍는 행위」이므로,
-    바뀐 줄이 `status:` 하나뿐이면 도장이고 그 밖의 줄이 함께 바뀌었으면
-    「고치면서 승인」이다. 파일이 통째로 새로 생긴 경우(+ 줄만 여럿)도 content 다
-    — 도장을 찍을 원본이 없기 때문이다.
+    `strip_code_spans` 를 타지 않는다 — 여기서 묻는 것은 「무엇을 뜻하는가」가 아니라
+    「무엇이 바뀌었는가」이고, 그 답은 바이트로만 낸다. 문서가 `---` 로 **시작**해야
+    한다(그렇지 않은 문서는 frontmatter 검사가 이미 결함으로 잡는다).
     """
-    added = []
-    removed = []
-    for line in diff_text.split("\n"):
-        if not line or line[0] not in "+-":
+    lines = raw.split(b"\n")
+    if not lines or lines[0].strip() != b"---":
+        return None, None
+    for j in range(1, len(lines)):
+        if lines[j].strip() in (b"---", b"..."):
+            return lines[1:j], b"\n".join(lines[j + 1 :])
+    return None, None
+
+
+def frontmatter_entries(fm_lines):
+    """frontmatter 줄을 (키, 줄 원문) 으로. 키를 못 읽는 줄(빈 줄·주석)은 키가 None."""
+    entries = []
+    for line in fm_lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith(b"#") or b":" not in line:
+            entries.append((None, line))
             continue
-        if line.startswith("+++") or line.startswith("---"):
-            continue
-        (added if line[0] == "+" else removed).append(line[1:])
-    if not added and not removed:
-        return "identical"
-    if len(added) == 1 and len(removed) == 1:
-        if STATUS_LINE_RE.match(added[0]) and STATUS_LINE_RE.match(removed[0]):
-            return "status_only"
-    return "content"
+        entries.append((line.split(b":", 1)[0].strip(), line))
+    return entries
 
 
-def run_accept_diff(git_ctx, base, relpath):
-    """base 와 작업 트리 사이의 그 파일 diff. 실패하면 (None, 사유) 를 돌려준다.
+def classify_accept_transition(base_raw, current_raw):
+    """두 판(바이트)을 견줘 (판정, 이전 status, 지금 status).
 
-    실패를 삼키지 않는다 — 삼키면 CI 에서 이 자리가 조용히 빈다(호출자가 note 로
-    남긴다). `--no-renames` 는 rename 탐지가 +/- 없는 diff 를 만들어 「안 바뀌었다」로
-    읽히는 것을 막는다.
+    판정
+      identical  두 바이트열이 실제로 같다.
+      stamp      frontmatter 의 `status` 값 하나만 바뀌었고 나머지는 전부 바이트가 같다.
+      content    그 밖 전부(본문 한 바이트 · 다른 키 · 키 순서 · 형식이 이상한 status 줄).
+
+    「identical」은 두 바이트열이 같을 때만이다 — git 이 diff 를 못 냈다는 것은
+    「안 바뀌었다」가 아니다.
     """
-    rc, out, err = run_git(
-        git_ctx.root, "diff", "--no-color", "--no-renames", "-U0", base, "--", relpath
-    )
+    if base_raw == current_raw:
+        return "identical", None, None
+    base_fm, base_body = split_frontmatter_bytes(base_raw)
+    cur_fm, cur_body = split_frontmatter_bytes(current_raw)
+    if base_fm is None or cur_fm is None:
+        return "content", None, None
+    if base_body != cur_body:
+        return "content", None, None
+    base_entries = frontmatter_entries(base_fm)
+    cur_entries = frontmatter_entries(cur_fm)
+    if len(base_entries) != len(cur_entries):
+        return "content", None, None
+    before = after = None
+    for (base_key, base_line), (cur_key, cur_line) in zip(base_entries, cur_entries):
+        if base_key != cur_key:
+            return "content", None, None
+        if base_key == b"status":
+            if before is not None:  # status 가 두 번 — 도장이 아니다
+                return "content", None, None
+            base_match = STAMP_LINE_RE.match(base_line)
+            cur_match = STAMP_LINE_RE.match(cur_line)
+            if not base_match or not cur_match:
+                return "content", None, None
+            before = base_match.group(1).decode("ascii")
+            after = cur_match.group(1).decode("ascii")
+            continue
+        if base_line != cur_line:
+            return "content", None, None
+    if before is None or before == after:
+        # status 값은 그대로인데 바이트가 다르다(파일 끝 개행 따위) — 도장이 아니다.
+        return "content", None, None
+    return "stamp", before, after
+
+
+def tree_files(git_ctx, rev, scope):
+    """그 판의 트리에 있는 파일 경로 전량(scope 아래로만). 실패하면 (None, 사유)."""
+    args = ["ls-tree", "-r", "--name-only", "-z", rev]
+    if scope:
+        args += ["--", scope]
+    rc, out, err = run_git(git_ctx.root, *args)
     if rc != 0:
         return None, (err.strip() or "rc=%d" % rc)
-    return out.decode("utf-8", "replace"), None
+    return [name for name in out.decode("utf-8", "replace").split("\0") if name], None
 
 
-def accept_baseline(git_ctx, default, relpath):
-    """무엇과 견줄 것인가 — (base, outcome, detail). outcome: ok | skip | reject.
+def artifacts_in_tree(git_ctx, rev, scope, artifact_type):
+    """그 판의 트리에서 같은 형인 아티팩트를 (경로, frontmatter) 로 훑는다."""
+    names, error = tree_files(git_ctx, rev, scope)
+    if names is None:
+        return None, error
+    found = []
+    for name in names:
+        if resolve_type(name, None) != artifact_type:
+            continue
+        data, _error = read_upstream_frontmatter(git_ctx, rev, name)
+        if data is not None:
+            found.append((name, data))
+    return found, None
 
-    ① 기본 브랜치에 그 파일이 있으면 기본 브랜치가 기준이다(누적 diff).
+
+def vanished_accepted_ids(git_ctx, default_rev, scope, artifact_type):
+    """기본 브랜치에서 `accepted` 였는데 이 브랜치 트리에서 **사슬 id 째로 사라진** 것들.
+
+    승인된 아티팩트를 지우고 새 id 로 갈아타 그 자리에서 자기 승인하면, 파일 하나만
+    보는 검사는 「이 브랜치에서 태어난 새 사슬」로 읽어 통과시킨다(⑥c). 경로는 git 이
+    움직일 수 있지만 사슬 id 는 우리 어휘라, 그 사라짐은 셀 수 있다.
+    """
+    base_found, error = artifacts_in_tree(git_ctx, default_rev, scope, artifact_type)
+    if base_found is None:
+        return None, error
+    head_found, error = artifacts_in_tree(git_ctx, "HEAD", scope, artifact_type)
+    if head_found is None:
+        return None, error
+    head_ids = set(data.get("id") for _name, data in head_found)
+    gone = []
+    for name, data in base_found:
+        if data.get("status") != "accepted":
+            continue
+        if data.get("id") not in head_ids:
+            gone.append((data.get("id"), name))
+    return gone, None
+
+
+def accept_baseline(git_ctx, default_rev, relpath, artifact_type, chain_id):
+    """무엇과 견줄 것인가 — (rev, path, outcome, detail). outcome: ok | skip | reject.
+
+    ① 기본 브랜치에 **같은 사슬 id 의 같은 형** 아티팩트가 있으면 그것이 기준점이다.
+       경로가 아니라 id 로 찾는다 — 경로로 찾으면 디렉터리·파일 개명 한 번에 기준점이
+       브랜치 자기 커밋으로 후퇴해, 브랜치가 심은 draft 위에 도장을 찍을 수 있다.
     ② 없으면 사슬이 이 브랜치에서 태어난 경우다. 이 브랜치의 커밋 중 그 파일이 **아직
        accepted 가 아니었던 가장 최근 판**을 기준으로 삼는다 — 그것이 도장을 찍을
        원본이다. 「그 파일을 건드린 가장 최근 커밋」으로 잡으면 승인을 커밋하기 직전의
        작업 트리가 red 로 읽혀 승인 커밋을 만들 수조차 없다.
     ③ 커밋된 적이 없거나 모든 판이 이미 accepted 면 도장을 찍을 원본이 없다 — reject.
     """
-    rc, _out, _err = git_ctx.show(default, relpath)
+    scope = relpath.split("/")[0] if "/" in relpath else None
+    if chain_id:
+        found, error = artifacts_in_tree(git_ctx, default_rev, scope, artifact_type)
+        if found is None:
+            return None, None, "skip", "git ls-tree 가 실패했다: %s" % error
+        hits = [name for name, data in found if data.get("id") == chain_id]
+        if len(hits) > 1:
+            return (
+                None,
+                None,
+                "reject",
+                "기본 브랜치에 사슬 id %r 인 %s 가 여럿이다(%s) — 기준점을 하나로 정할 수 없다"
+                % (chain_id, artifact_type, ", ".join(sorted(hits))),
+            )
+        if hits:
+            return default_rev, hits[0], "ok", "기본 브랜치의 %s" % hits[0]
+    rc, _out, _err = git_ctx.show(default_rev, relpath)
     if rc == 0:
-        return default, "ok", "기본 브랜치 %s" % default
-    rc, out, err = run_git(git_ctx.root, "rev-list", "%s..HEAD" % default, "--", relpath)
+        return default_rev, relpath, "ok", "기본 브랜치의 %s" % relpath
+    rc, out, err = run_git(git_ctx.root, "rev-list", "%s..HEAD" % default_rev, "--", relpath)
     if rc != 0:
-        return None, "skip", "git rev-list 가 실패했다: %s" % (err.strip() or "rc=%d" % rc)
+        return None, None, "skip", "git rev-list 가 실패했다: %s" % (err.strip() or "rc=%d" % rc)
     shas = out.decode("utf-8", "replace").split()
     if not shas:
         return (
             None,
+            None,
             "reject",
-            "기본 브랜치 %s 에 그 파일이 없고 이 브랜치에서 커밋된 적도 없다 "
-            "— 도장을 찍을 원본이 없다" % default,
+            "기본 브랜치에 그 사슬의 %s 가 없고 이 브랜치에서 커밋된 적도 없다 "
+            "— 도장을 찍을 원본이 없다" % artifact_type,
         )
     for sha in shas:  # rev-list 는 최신 → 과거 순이다
         data, _error = read_upstream_frontmatter(git_ctx, sha, relpath)
         # 읽을 수 없는 판(그 커밋에서 삭제됐거나 frontmatter 가 없다)은 accepted 가
-        # 아니다 — 기준으로 잡으면 diff 가 통째로 남아 red 가 된다(안전한 쪽).
+        # 아니다 — 기준으로 잡으면 blob 이 안 열려 red 가 된다(안전한 쪽).
         if data is None or data.get("status") != "accepted":
-            return sha, "ok", "승인 전 판 %s" % sha[:12]
+            return sha, relpath, "ok", "승인 전 판 %s" % sha[:12]
     return (
+        None,
         None,
         "reject",
         "이 브랜치의 모든 판이 이미 accepted 다 — 도장을 찍을 draft 판이 없다",
@@ -747,10 +893,11 @@ def accept_baseline(git_ctx, default, relpath):
 def check_accepted_on_branch(report, path, data):
     """accepted 는 머지된 PR 로만 들어온다 — 브랜치 위 자기 승인을 막는다.
 
-    D16 예외: 브랜치에서도 `status:` 줄 하나만 바꾼 승인은 통과시킨다. 이 예외가
-    없으면 승인 PR 자체가 CI 에서 빨개져 사슬이 전진할 수 없다(설계안 §4 는 승인을
-    「PR 안에서 status: 를 고치고 머지」로 정의한다). 예외의 폭은 `status:` 줄
-    하나이고, 그 밖의 내용이 함께 바뀌면 여전히 ACCEPTED_ON_BRANCH 다.
+    D16 예외: 브랜치에서도 **frontmatter 의 `status` 값 하나만 바뀐** 승인은 통과시킨다.
+    이 예외가 없으면 승인 PR 자체가 CI 에서 빨개져 사슬이 전진할 수 없다(설계안 §4 는
+    승인을 「PR 안에서 status: 를 고치고 머지」로 정의한다). 예외의 폭은 그 한 값이고,
+    본문이 한 바이트라도 다르거나 다른 키가 함께 바뀌면 여전히 ACCEPTED_ON_BRANCH 다.
+    전이 자체도 ACCEPT_TRANSITIONS 안에 있어야 한다.
     """
     if data.get("status") != "accepted":
         return
@@ -763,23 +910,55 @@ def check_accepted_on_branch(report, path, data):
             severity=SEV_NOTE,
         )
         return
-    default = git_ctx.default_branch()
+    default_name, default_rev = git_ctx.resolve_default()
     branch = git_ctx.current_branch()
-    if default is None or branch is None:
+    if default_name is None or branch is None:
         report.add(
             "ACCEPTED_BRANCH_CHECK_SKIPPED",
             "기본 브랜치(%r) 또는 현재 브랜치(%r)를 못 정해 브랜치 자기 승인 검사를 "
-            "돌리지 않았다(확인 못 함 — CI 의 detached HEAD 가 대표 사례다)"
-            % (default, branch),
+            "돌리지 않았다(확인 못 함 — CI 의 detached HEAD 가 대표 사례다. "
+            "INTENT_CHECK_BRANCH · INTENT_CHECK_DEFAULT_BRANCH 로 알려줄 수 있다)"
+            % (default_name, branch),
             severity=SEV_NOTE,
         )
         return
-    if branch == default:
+    if branch == default_name:
         return
     relpath = os.path.relpath(os.path.abspath(path), git_ctx.root).replace(os.sep, "/")
+    artifact_type = report.type
+    chain_id = data.get("id")
+    if not isinstance(chain_id, str) or not chain_id:
+        chain_id = None
+    scope = relpath.split("/")[0] if "/" in relpath else None
 
-    # D16 — 「도장만 찍는 승인」은 브랜치에서도 통과시킨다. 무엇과 견줄지부터 정한다.
-    baseline, outcome, detail = accept_baseline(git_ctx, default, relpath)
+    # 기준점을 지우고 새 id 로 갈아타는 우회를 먼저 본다.
+    gone, error = vanished_accepted_ids(git_ctx, default_rev, scope, artifact_type)
+    if gone is None:
+        report.add(
+            "ACCEPTED_BRANCH_CHECK_SKIPPED",
+            "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — %s" % (branch, error),
+            severity=SEV_NOTE,
+        )
+        return
+    if gone:
+        report.add(
+            "ACCEPTED_ARTIFACT_VANISHED",
+            "브랜치 %r 에서 status: accepted 인데, 기본 브랜치 %s 의 accepted %s 가 "
+            "이 브랜치에서 사슬 id 째로 사라졌다(%s) — 승인 기록을 지우고 새 id 로 "
+            "갈아타는 것은 승인이 아니다. 대체하려면 옛 것을 superseded 로 남긴다"
+            % (
+                branch,
+                default_name,
+                artifact_type,
+                ", ".join("%s(%s)" % (cid, name) for cid, name in sorted(gone)),
+            ),
+            line=1,
+        )
+        return
+
+    baseline_rev, baseline_path, outcome, detail = accept_baseline(
+        git_ctx, default_rev, relpath, artifact_type, chain_id
+    )
     if outcome == "skip":
         report.add(
             "ACCEPTED_BRANCH_CHECK_SKIPPED",
@@ -795,22 +974,54 @@ def check_accepted_on_branch(report, path, data):
             line=1,
         )
         return
-    diff_text, error = run_accept_diff(git_ctx, baseline, relpath)
-    if diff_text is None:
+
+    # 기준점 blob 과 지금 파일을 **바이트로** 꺼낸다. 실패를 삼키지 않는다.
+    rc, base_raw, error = git_ctx.show(baseline_rev, baseline_path)
+    if rc != 0:
+        report.add(
+            "ACCEPTED_ON_BRANCH",
+            "브랜치 %r 에서 status: accepted 인데 기준점(%s)을 열지 못했다 — %s"
+            % (branch, detail, error.strip() or "rc=%d" % rc),
+            line=1,
+        )
+        return
+    try:
+        with open(path, "rb") as handle:
+            current_raw = handle.read()
+    except OSError as exc:
         report.add(
             "ACCEPTED_BRANCH_CHECK_SKIPPED",
-            "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — git diff %s 가 "
-            "실패했다: %s" % (branch, baseline, error),
+            "브랜치 %r 의 승인 전이를 판정하지 못했다(확인 못 함) — 파일을 바이트로 "
+            "읽지 못했다: %s" % (branch, exc),
             severity=SEV_NOTE,
         )
         return
-    if classify_accept_diff(diff_text) == "content":
+
+    verdict, before, after = classify_accept_transition(base_raw, current_raw)
+    if verdict == "identical":
+        return
+    if verdict == "content":
         report.add(
             "ACCEPTED_ON_BRANCH",
-            "브랜치 %r 에서 status: accepted 인데 %s 와 견줘 `status:` 줄 말고도 바뀐 "
-            "곳이 있다 — 승인은 이미 검토된 문서에 도장을 찍는 행위이지 고치면서 "
-            "승인하는 일이 아니다. 내용을 바꾸려면 draft 로 되돌려 다시 검토받는다"
-            % (branch, detail),
+            "브랜치 %r 에서 status: accepted 인데 %s 와 견줘 frontmatter 의 `status` "
+            "값 말고도 바뀐 곳이 있다 — 승인은 이미 검토된 문서에 도장을 찍는 행위이지 "
+            "고치면서 승인하는 일이 아니다. 내용을 바꾸려면 draft 로 되돌려 다시 "
+            "검토받는다" % (branch, detail),
+            line=1,
+        )
+        return
+    if (before, after) not in ACCEPT_TRANSITIONS:
+        report.add(
+            "ACCEPT_TRANSITION_NOT_ALLOWED",
+            "브랜치 %r 에서 status 가 %r → %r 인데 허용 전이가 아니다(%s 기준) — "
+            "허용: %s. 되살리려면 새 아티팩트를 만들고 supersedes: 로 옛 것을 가리킨다"
+            % (
+                branch,
+                before,
+                after,
+                detail,
+                " · ".join("%s→%s" % pair for pair in ACCEPT_TRANSITIONS),
+            ),
             line=1,
         )
 
