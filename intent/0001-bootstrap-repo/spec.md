@@ -1,7 +1,7 @@
 ---
 id: 0001-bootstrap-repo
 kind: spec
-status: draft
+status: accepted
 upstream: intent.md@e5953ac07ca4ce5d1fc4d566820a9a40ea0cd90c
 skills_applied: []
 ---
