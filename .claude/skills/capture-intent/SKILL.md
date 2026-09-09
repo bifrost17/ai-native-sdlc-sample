@@ -44,6 +44,8 @@ Author: ‹name (team)›. Status: draft.
 
 Leave no `‹…›` behind. An open question you cannot answer stays in Open questions with the name
 of who can — do not invent an answer. Show the draft to the originator and let them correct it.
+If no originator is in the session (a ticket or an alert opened the chain), the PR review is
+where that correction happens — say so in the PR body (0002 and 0007 both hit this).
 From a ticket or an incident, Problem carries the observed facts themselves — input, expected,
 actual, the command that reproduces it, and the time/SHA — not only the reporter's idea of it.
 
