@@ -26,6 +26,8 @@ def get_claim_status(claim_id, session, now=None):
     if not isinstance(claim_id, str) or not CLAIM_ID_RE.match(claim_id):
         return error("invalid_claim_id")
     record = fetch_claim(claim_id, now=now)
-    if record is None or record.get("subscriber_id") != session.get("subscriber_id"):
+    # 빈 가입자 표시(None·"")는 어느 쪽이든 불일치다 — None == None 이 소유가 되면 안 된다(intent 0005).
+    owner = record.get("subscriber_id") if record is not None else None
+    if not owner or owner != session.get("subscriber_id"):
         return error("not_found")
     return build_response(record)
