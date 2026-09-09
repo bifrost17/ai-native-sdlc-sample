@@ -18,7 +18,9 @@ Unofficial; not an Anthropic project.
 
 ## What this repo does
 - Encodes the intent, spec and plan templates in skills, with `templates/` as copies.
-- Keeps the hooks the lessons name as deterministic (test protection, secrets, plan sync).
+- Keeps the hooks the lessons name as deterministic (protected paths, test protection, secrets,
+  format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
+  does not have one.
 - Runs `make check` in CI; a red check is a red PR.
 - Records every change to itself as a chain under `intent/`.
 

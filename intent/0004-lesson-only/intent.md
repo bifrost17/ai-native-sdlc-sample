@@ -27,7 +27,8 @@ it; anyone who copies this repo as a starting point.
 - Code that checks artifact form, status or transitions is removed and not rebuilt; a missing
   section is caught by the skill and the product owner reading the file (author's decision, not
   to be reopened).
-- Hooks the lessons name (test protection, credentials, plan sync, production gate) stay.
+- Hooks the lessons name (protected paths, test protection, credentials, format/lint, production
+  gate) stay. A plan-sync hook is optional (L4 329 "Consider") — this repo does not have one.
 - python3 standard library and bash 3.2 only. Quotes from the playbook are short and cite lines.
 ## Open questions
 - Does `secure-api-review`, kept verbatim from L6, keep its last line pointing at

@@ -10,7 +10,7 @@ playbook's. Files owned by other lanes are named as found on `origin/main`
 | 1 | Introduction | The chain itself: each stage writes a file the next reads | `intent/<NNNN>-<slug>/` | tool (git) |
 | 2 | Capture as intent.md (167–239) | Template embedded in a skill; approval = merge | `.claude/skills/capture-intent/`, `templates/intent.md` | skill · person |
 | 3 | Requirements and design (241–294) | Skill that refuses an unaccepted intent, restates constraints, answers or carries questions, flags concerns; `/spec` command with the lesson's prompt | `.claude/skills/design-spec/`, `.claude/commands/spec.md`, `templates/spec.md` | skill · person |
-| 4 | Plan mode (296–388) | Skill for the four-section plan; plan mode itself records acceptance; plan-sync hook where implementation departs from the plan (329) | `.claude/skills/plan/`, `templates/plan.md`, `.claude/hooks/plan-sync.sh` | skill · tool · code |
+| 4 | Plan mode (296–388) | Skill for the four-section plan; plan mode itself records acceptance. A plan-sync hook is optional (329 "Consider using a hook") — this repo does not have one | `.claude/skills/plan/`, `templates/plan.md` | skill · tool |
 | 5 | CLAUDE.md (390–448) | Four sections + verification block, under a page | `CLAUDE.md` | skill |
 | 6 | Skills as institutional knowledge (450–509) | The playbook's `secure-api-review` example, verbatim; advisory, no backstop | `.claude/skills/secure-api-review/` | skill |
 | 7 | Hooks as guardrails (511–529) | Hooks the lesson names, wired in settings.json | `.claude/hooks/`, `.claude/settings.json` | code |
