@@ -97,6 +97,13 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
   in runs B and C (hook events 107 and 131 in the implementation turns, against 0 in run A);
   "Setting `Status: accepted` in a file" (CLAUDE.md since #16) — 1 repeat, 0009 `plan.md:2`
   (the skill wording was tightened in #46).
+- L6 470 (the skill triggers): via `/spec` — 2/2, runs B and C read `secure-api-review/SKILL.md` and
+  wrote its four checks into spec.md (`raw-hac/16`, `46`); via an unbriefed free prompt — 0/1, run A
+  named the skill without opening it. The differently-worded live prompts the lesson asks for are
+  the team's trigger test (`docs/BOUNDARY.md`, `docs/ADOPTING.md`).
+- L6 505 lagging (review findings citing the policy): item ① (gateway JWT vs session) — 0002 F3, then
+  0008 F4 with the same answer, then the skill's org note (#35), then 0009 F8 closed by that note
+  with no review finding. Fell to zero once the skill carried the answer.
 - L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
 - L11 773 (time to first review): run B turn 9 (one finding, fixed in-PR), run C turn 9 (no finding) — same session, no wait.
 - L12 901 (time waiting per approval gate): `hooks.log` per-gate totals — `raw-hac/31-hooks-log-totals.txt`.
