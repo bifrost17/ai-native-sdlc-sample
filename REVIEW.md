@@ -29,3 +29,5 @@ Anything `make check` already fails on, and the record chain `intent/0001-bootst
 
 ## What findings do
 Findings inform; they neither approve nor block. The product owner approves by merging.
+A mistake flagged for the second time goes into `CLAUDE.md` as a correction (L5 401, L11 745) —
+chain 0008's three repeat findings became PR #35.
