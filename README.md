@@ -23,7 +23,9 @@ Unofficial; not an Anthropic project.
   format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
   does not have one.
 - Runs `make check` (= `make test`) in CI; a red check is a red PR. Evals need an API key and run
-  in their own workflow on config changes and on a schedule (L10 689).
+  in their own workflow on config changes and on a schedule (L10 689). Without the
+  `ANTHROPIC_API_KEY` secret that job exits 2 and shows red: it did not run, and "did not
+  run" is not "passed". Add the secret to make it real.
 - Records every change to itself as a chain under `intent/`.
 
 ## Source of truth
