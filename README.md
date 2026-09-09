@@ -21,7 +21,8 @@ Unofficial; not an Anthropic project.
 - Keeps the hooks the lessons name as deterministic (protected paths, test protection, secrets,
   format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
   does not have one.
-- Runs `make check` in CI; a red check is a red PR.
+- Runs `make check` (= `make test`) in CI; a red check is a red PR. Evals need an API key and run
+  in their own workflow on config changes and on a schedule (L10 689).
 - Records every change to itself as a chain under `intent/`.
 
 ## What this repo does not do

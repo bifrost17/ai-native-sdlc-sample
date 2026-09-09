@@ -16,7 +16,7 @@ playbook's. Files owned by other lanes are named as found on `origin/main`
 | 7 | Hooks as guardrails (511–529) | Hooks the lesson names, wired in settings.json | `.claude/hooks/`, `.claude/settings.json` | code |
 | 8 | Parallel sessions and subagents (531–594) | Verifier subagent (report, do not fix) | `.claude/agents/verifier.md` | skill |
 | 9 | Feedback loop (596–660) | `make check` with healthy output in CLAUDE.md; test-protection hook (631) | `Makefile`, `CLAUDE.md`, `.claude/hooks/protect-tests.sh` | code · skill |
-| 10 | Evals in CI (662–740) | `make evals` | `evals/` | code |
+| 10 | Evals in CI (662–740) | `make evals` with the key, in its own workflow on config change and schedule (689); the key-free half runs in `make test` | `evals/`, `.github/workflows/agent-evals.yml`, `tests/test_evals.sh` | code |
 | 11 | PR review (742–801) | REVIEW.md with three passes; findings inform, the merge decides | `REVIEW.md` | skill · person |
 | 12 | Hooks as approval gate (803–940) | Production gate hook | `.claude/hooks/production-gate.sh` | code |
 | 13 | CI/CD (942–1005) | CI runs `make check`; a red check is a red PR | `.github/workflows/` | code |

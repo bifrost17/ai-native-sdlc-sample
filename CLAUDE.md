@@ -3,10 +3,12 @@
 <!-- L5 414-436: the four sections of the playbook's CLAUDE.md. L5 412: "Keep it under a page" -->
 
 ## Commands
-- Test: `make test` (python unittest + `bash tests/test_hooks.sh`; healthy: ends with `OK` and
-  `hooks: N passed, 0 failed` — ‹exact line filled in by the parent after integration›)
-- Evals: `make evals` (`bash evals/run.sh`; healthy: ‹filled in after integration›)
-- Check: `make check` (test + evals; non-zero on any failure)
+- Test: `make test` (python unittest, `tests/test_hooks.sh`, `tests/test_evals.sh`,
+  `tests/test_managed_settings.sh`; healthy: the last line is ‹filled in after integration›)
+- Evals: `make evals` (`bash evals/run.sh`, needs `ANTHROPIC_API_KEY`; healthy: `evals: 전 케이스 통과`)
+- Check: `make check` (= `make test`; non-zero on any failure). Evals are not in it: without
+  `ANTHROPIC_API_KEY` `make evals` prints `SKIP: ANTHROPIC_API_KEY 없음` and exits 2; CI runs them
+  with the key in `.github/workflows/agent-evals.yml` (L10 689).
 
 ## Conventions
 - Prose is English in artifacts; file names, section names and `Status:` words are fixed tokens.
