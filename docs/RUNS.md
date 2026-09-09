@@ -54,15 +54,25 @@ implementation, not just the instrument (the cache needed a real snapshot, `dict
 the agent applied plus a second `CLAUDE.md` line (L11 745, "flags a mistake for the second time") —
 `raw-hac/25-turn9.jsonl`, `26-turn9-pr33-newcommit.txt`. PRs #30, #31, #33.
 
-## Run C — chain 0009 · human–agent · idea route (agent-proxy lookup) · in progress
+## Run C — chain 0009 · human–agent · idea route (agent-proxy lookup)
 
-So far: turn 1 (05:50:25Z) four-way clarifying question; intent PR #38 merged 06:00:01Z (9 min 36 s
-after turn 1); spec PR #39 merged 06:18:50Z (28 min 25 s after turn 1) — both confirmed by
-`gh pr view --json mergedAt` against `raw-hac/41-turn1.jsonl` turn-start time. F1 (console session
-key) blocked progress until the product owner's answer resolved it (`verified_subscriber_id` keys
-the session apart from the customer handler's `subscriber_id`); F4 reversed in R6 (expiry ownership
-belongs to the console, not this app). Plan not yet committed. Raw: `raw-hac/40`–`52`. **Update
-after `build` lands.**
+Same roles and harness as run B; new originator (call-centre operations lead). Gate times from commit
+timestamps and `gh pr view --json mergedAt` (`raw-hac/60-gate-timeline-exp2.txt`):
+G0 first utterance 05:50:25Z → G1 intent commit 61669a1 05:57:34Z → G2 PR #38 merged 06:00:01Z →
+G3 spec commit 2b11007 06:08:23Z → G4 PR #39 merged 06:18:50Z → G5 plan commit 0f8aa06 06:31:59Z →
+G6 test commit 18c321d 06:34:58Z → G7 PR #42 merged 06:43:23Z. **G0→G7 52 min 58 s** (run B: 66 min 32 s).
+Observed (raw turn files in `raw-hac/41`–`57`): turn 1 asked before writing and named identity
+verification as the chain's "throat"; turn 2 left `next_step` as an open question rather than deciding
+(the customer sees it, 0008 hid it from adjusters); turn 4 spec flagged F1 as blocking — a console session
+carrying the verified customer under `subscriber_id` would slip through the customer handler with no
+record — and F9 said honestly that only security was checked because the repo has no brand/UX skill;
+turn 5 reversed R6 on the owner's answer (expiry belongs to the console; `verified_at` is in the contract
+but not read, AC6 pins that); turn 7 interrogation changed the plan in three places (AC4 measures
+`upstream_calls == 0`, M5 moves the gate instead of deleting it, the `is` decision written into Proof);
+turn 8 build: red 13 (no errors) → green, `response.py`/`routes.py` untouched, five mutations each red
+with sha256 restore, M4 killed only the `is` test — the measured reason for `is`; turn 9 code-owner
+review found nothing. Hooks fired +271 lines in this run (`raw-hac/61-hooks-log-totals-exp2.txt`).
+Left open: issue #32 (failed lookups unrecorded, shared with 0008).
 
 ## Feedback loop
 
@@ -80,10 +90,10 @@ after `build` lands.**
 
 - L2 227 leading (first conversation → committed intent.md): run B 11 min (G0→G1), run C 9 min 36 s.
 - L3 283 leading (intent.md → spec.md): run B 21 min 9 s (G2→G4), run C 18 min 49 s.
-- L4 355 leading (plan approval → merged PR): run B 23 min (G5→G7 minus test-commit gap).
+- L4 355 leading (plan approval → merged PR): run B 23 min, run C 11 min 24 s (G5→G7).
 - L5 432 (CLAUDE.md correction count): PRs #19, #29, #33, #34, #35.
-- L9 642 (first-pass CI success): run A and run B — both green on first `gh pr checks`/CI run.
-- L11 773 (time to first review): run B turn 9 — code owner review same session, no separate wait.
+- L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
+- L11 773 (time to first review): run B turn 9 (one finding, fixed in-PR), run C turn 9 (no finding) — same session, no wait.
 - L12 901 (time waiting per approval gate): `hooks.log` per-gate totals — `raw-hac/31-hooks-log-totals.txt`.
 - Unmeasurable here (outside this repo — OTel export, an incident tracker): not invented.
 
