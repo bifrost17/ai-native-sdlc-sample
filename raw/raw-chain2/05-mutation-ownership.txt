@@ -1,0 +1,30 @@
+CMD: 뮤테이션(2회차 — 1회차는 치환이 콜론을 주석으로 삼켜 SyntaxError 였다, 무효) — routes.py 소유 판정 침묵 살해('False and' 접두 · 문자열 보존) → unittest → 복원 sha256 대조
+AT_UTC: 2026-09-09T02:55:12Z
+HOST: nalaui-MacBookPro.local
+SHA256_BEFORE: d9be501eaae0c008a9b9c4db50113dfe47129157b9ffdf456fb4ecddabd8661e
+MUTANT_LINE: 29:    if record is None or False and record.get("subscriber_id") != session.get("subscriber_id"):
+SHA256_MUTANT: c3985916dff31104fd3ddbbfcccc167077038fc097b429e0dac9658cc664d9c7
+....F.....
+======================================================================
+FAIL: test_ac4_foreign_and_unknown_claim_share_one_body (tests.test_claims_status.TestAC4NotFound.test_ac4_foreign_and_unknown_claim_share_one_body)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 99, in test_ac4_foreign_and_unknown_claim_share_one_body
+    self.assertEqual(json.loads(foreign), {"error": "not_found"})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1002', 'status': '지급완료', 'n[37 chars]-02'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1002',
+-  'due_date': '2026-09-02',
+-  'next_step': '없음',
+-  'status': '지급완료'}
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+FAILED (failures=1)
+RC_MUTANT: 1
+SHA256_AFTER: d9be501eaae0c008a9b9c4db50113dfe47129157b9ffdf456fb4ecddabd8661e
+RESTORED: yes
+RC_RESTORED: 0
+OK

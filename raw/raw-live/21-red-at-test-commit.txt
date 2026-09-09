@@ -1,0 +1,41 @@
+CMD: git worktree add /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/live/wt-test fcaf6b1; cd wt-test; python3 -m unittest tests.test_claims_status_format; also parent 73f8b4f ls tests
+AT_UTC: 2026-09-09T03:55:30Z
+Preparing worktree (detached HEAD fcaf6b1)
+HEAD is now at fcaf6b1 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+HEAD=fcaf6b1bc0871a32f633ed93cf0d4d3ba7d02939
+...FF.
+======================================================================
+FAIL: test_ac1_trailing_newline_is_invalid_without_upstream_call (tests.test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_is_invalid_without_upstream_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/live/wt-test/tests/test_claims_status_format.py", line 44, in test_ac1_trailing_newline_is_invalid_without_upstream_call
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+======================================================================
+FAIL: test_ac1_trailing_newline_with_empty_session_is_invalid (tests.test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_with_empty_session_is_invalid)
+세션이 비어도 형식 단계에서 끊긴다 — 소유 판정의 not_found 로 덮이지 않는다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/live/wt-test/tests/test_claims_status_format.py", line 50, in test_ac1_trailing_newline_with_empty_session_is_invalid
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=2)
+RC: 1
+--- grep anchor at test commit:
+10:CLAIM_ID_RE = re.compile(r"^C-[0-9]+$")
+26:    if not isinstance(claim_id, str) or not CLAIM_ID_RE.match(claim_id):
+--- parent 73f8b4f has test file?
+0
+--- repro at test commit
+{"error": "not_found"} 1

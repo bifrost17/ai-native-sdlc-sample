@@ -1,0 +1,103 @@
+CMD: 0006 — checkout test commit 02b30d2, run tests.test_claims_status_incident (expect red); records.py identical to main?; checkout 4bf2a07, run suite + make test; mutation 1
+AT_UTC: 2026-09-09T03:24:32Z
+HEAD=02b30d22239f3bd7af9c5e0bc22d14cbfe30ed2e
+records.py sha @02b30d2: a4eb2247be11455d  @main: a4eb2247be11455d
+--- red run
+test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup) ... FAIL
+test_ac2_existing_claim_is_still_served_from_cache_within_ttl (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac2_existing_claim_is_still_served_from_cache_within_ttl) ... ok
+test_positive_control_new_claim_is_absent_before_filing (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_positive_control_new_claim_is_absent_before_filing) ... ok
+
+======================================================================
+FAIL: test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain56R-wt-0006-build/tests/test_claims_status_incident.py", line 49, in test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup
+    self.assertEqual(set(payload), set(EXPECTED_KEYS), "원장에 생긴 건이 아직 not_found 다: %r" % payload)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'error'
+Items in the second set but not the first:
+'status'
+'claim_id'
+'due_date'
+'next_step' : 원장에 생긴 건이 아직 not_found 다: {'error': 'not_found'}
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (failures=1)
+rc=1
+--- head 4bf2a07
+HEAD=4bf2a078ee0dfbb9389367d242573ad87f1aa59c
+test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup) ... ok
+test_ac2_existing_claim_is_still_served_from_cache_within_ttl (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac2_existing_claim_is_still_served_from_cache_within_ttl) ... ok
+test_positive_control_new_claim_is_absent_before_filing (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_positive_control_new_claim_is_absent_before_filing) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+rc=0
+--- fixture == pre-fix records.py (main)? and fixture test == tests/ copy?
+fixture records.py == main records.py
+fixture test == tests/ test
+--- make test
+python3 -m unittest discover -s tests
+................................
+----------------------------------------------------------------------
+Ran 32 tests in 0.556s
+
+OK
+bash tests/test_hooks.sh
+ok   protect-paths: .github blocked (rc=2)
+ok   protect-paths: Makefile blocked (rc=2)
+ok   protect-paths: .claude/hooks blocked (rc=2)
+ok   protect-paths: settings.json blocked (rc=2)
+ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+ok   protect-paths: src file passes (rc=0)
+ok   protect-tests: fix task, test file blocked (rc=2)
+ok   protect-tests: fix task, src passes (rc=0)
+ok   protect-tests: no fix task, test passes (rc=0)
+ok   no-secrets: AWS key blocked (rc=2)
+ok   no-secrets: password literal blocked (rc=2)
+ok   no-secrets: plain edit passes (rc=0)
+ok   format-lint: broken .py reported (rc=2)
+ok   format-lint: broken .sh reported (rc=2)
+ok   format-lint: valid .py passes (rc=0)
+ok   format-lint: valid .sh passes (rc=0)
+ok   production-gate: unapproved prod deploy blocked (rc=2)
+ok   production-gate: approved prod deploy passes (rc=0)
+ok   production-gate: staging deploy passes (rc=0)
+ok   fail-closed: broken JSON blocks (rc=2)
+ok   fail-closed: no jq blocks (rc=2)
+ok   wiring: settings.json is valid JSON
+ok   wiring: protect-paths.sh wired and executable
+ok   wiring: protect-tests.sh wired and executable
+ok   wiring: no-secrets.sh wired and executable
+ok   wiring: format-lint.sh wired and executable
+ok   wiring: production-gate.sh wired and executable
+ok   decision log: block appended (2026-09-09T03:24:34Z protect-paths.sh block Makefile)
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+PASS  1. 케이스 3건 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약
+make test rc=0
+--- mutation 1 (fix site): comment out 'if record is not None:' guard, run incident suite, restore
+52:    # MUT if record is not None:
+Ran 3 tests in 0.001s
+
+FAILED (failures=1)
+mut rc=
+RESTORE: OK 61ec67f31f8d944e084460886c1904a7a1d52c2c82b9531e4f7f7a737fe8b718
+RC: 0

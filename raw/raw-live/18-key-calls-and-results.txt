@@ -1,0 +1,560 @@
+CMD: python3 dump full command + tool_result for calls 27-45, and grep INTENT_TASK/CLAUDE.md
+RC: 0
+
+===== RESULT of #27 (jsonl L131) =====
+Switched to a new branch 'chain/0007-claim-id-trailing-newline'
+{"error": "not_found"} 1
+
+===== RESULT of #28 (jsonl L133) =====
+6f45eea intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+
+===== RESULT of #29 (jsonl L146) =====
+2e5099c spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+
+===== RESULT of #30 (jsonl L151) =====
+73f8b4f plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+
+===== RESULT of #31 (jsonl L154) =====
+...FF.
+======================================================================
+FAIL: test_ac1_trailing_newline_is_invalid_without_upstream_call (tests.test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_is_invalid_without_upstream_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/live/repo/tests/test_claims_status_format.py", line 44, in test_ac1_trailing_newline_is_invalid_without_upstream_call
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+======================================================================
+FAIL: test_ac1_trailing_newline_with_empty_session_is_invalid (tests.test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_with_empty_session_is_invalid)
+세션이 비어도 형식 단계에서 끊긴다 — 소유 판정의 not_found 로 덮이지 않는다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/live/repo/tests/test_claims_status_format.py", line 50, in test_ac1_trailing_newline_with_empty_session_is_invalid
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=2)
+
+===== RESULT of #32 (jsonl L161) =====
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=2)
+23:- 출력: 단계 1 의 red 원문(FAILED, **failures=2** — AC1 두 건. 계획은 3 이라고 썼지만 AC2 는 현행에서도 통과한다: 지금 나가는 본문이 `not_found` 라 입력도 원장 값도 실리지 않는다. 새는 것은 본문이 아니라 상류 호출이다 — AC2 는 회귀 고정으로 남긴다) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문 · protect-tests 훅 BLOCKED 원문, PR 본문에 첨부.
+
+===== RESULT of #33 (jsonl L163) =====
+fcaf6b1 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+fcaf6b1 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+ intent/0007-claim-id-trailing-newline/plan.md |  2 +-
+ tests/test_claims_status_format.py            | 86 +++++++++++++++++++++++++++
+ 2 files changed, 87 insertions(+), 1 deletion(-)
+
+===== RESULT of #34 (jsonl L168) =====
+#!/bin/bash
+# .claude/hooks/_lib.sh — shared by the five hooks; not a hook itself.
+# Decision: fail-closed. No jq, or stdin that is not JSON → exit 2 (block). "Unknown" is not "clean";
+# the reference repos that did `|| exit 0` here silently switched their guardrails off.
+# L12 866행: "Allow and block decisions are logged with a timestamp." L12 934행 (OTel export) is
+# outside this repo's tree — logged here as a local file only.
+ROOT="$(cd "${BASH_SOURCE[0]%/*}/../.." && pwd -P)"
+HOOK="${0##*/}"
+block() { printf '[%s] BLOCKED: %s\n' "$HOOK" "$*" >&2; exit 2; }
+command -v jq >/dev/null 2>&1 || block "jq not found, so the hook input cannot be parsed and the action is refused. Route: install jq (brew install jq / apt-get install jq) and retry."
+IN="$(cat)"
+printf '%s' "$IN" | jq -e . >/dev/null 2>&1 || block "hook input is not valid JSON; refused. Route: run the hook with a Claude Code PreToolUse/PostToolUse JSON on stdin."
+jqr() { printf '%s' "$IN" | jq -r "$1"; }
+# Repo-relative path of the file an Edit/Write/MultiEdit/NotebookEdit call targets ("" if none).
+rel_path() {
+  local p; p="$(jqr '.tool_input.file_path // .tool_input.notebook_path // empty')"
+  case "$p" in "$ROOT"/*) p="${p#"$ROOT"/}" ;; esac
+  printf '%s' "$p"
+}
+log_verdict() { local rc=$?; local v=allow; [ "$rc" -eq 0 ] || v=block
+  printf '%s %s %s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$HOOK" "$v" "$(rel_path)" >> "$ROOT/.claude/hooks.log" 2>/dev/null; }
+trap log_verdict EXIT
+39:# protect-tests — L9 631 · L12 809
+40:run "protect-tests: fix task, test file blocked" 2 protect-tests.sh "$(edit tests/test_x.py)" INTENT_TASK=fix
+41:run "protect-tests: fix task, src passes"        0 protect-tests.sh "$(edit src/ok.py)"      INTENT_TASK=fix
+42:run "protect-tests: no fix task, test passes"    0 protect-tests.sh "$(edit tests/test_x.py)" -u INTENT_TASK
+43-# no-secrets — L7 521
+44-run "no-secrets: AWS key blocked"   2 no-secrets.sh "$(edit src/cfg.py 'KEY = \"AKIAIOSFODNN7EXAMPLE\"')"
+45-run "no-secrets: password literal blocked" 2 no-secrets.sh "$(edit src/cfg.py 'password = \"hunter2hunter2\"')"
+46-run "no-secrets: plain edit passes" 0 no-secrets.sh "$(edit src/cfg.py 'password = os.environ[\"PW\"]')"
+47-# format-lint — L7 519 (PostToolUse; exit 2 feeds stderr back to Claude)
+48-run "format-lint: broken .py reported" 2 format-lint.sh "$(edit src/bad.py)"
+--
+64:for h in protect-paths protect-tests no-secrets format-lint production-gate; do
+65-  if grep -q "hooks/$h.sh" "$S" && [ -x "$ROOT/.claude/hooks/$h.sh" ]; then PASS=$((PASS+1)); echo "ok   wiring: $h.sh wired and executable"
+66-  else FAIL=$((FAIL+1)); echo "FAIL wiring: $h.sh not wired in settings.json or not executable"; fi
+67-done
+68-
+69-# decision log — L12 866 "Allow and block decisions are logged with a timestamp."
+70-rm -f "$T/.claude/hooks.log"
+
+===== RESULT of #35 (jsonl L170) =====
+[protect-tests.sh] BLOCKED: tests/test_claims_status_format.py is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR.
+rc=2
+
+===== RESULT of #36 (jsonl L176) =====
+from .response import build_response, error
+
+# `$` 는 문자열 끝 개행 앞에서도 맞는다 — "C-1001\n" 이 형식을 통과해 상류를 부르던 자리(intent 0007).
+# 문자열 끝에서만 맞는 앵커를 쓴다; 이 상수를 손볼 때 `$` 로 되돌리지 않는다.
+CLAIM_ID_RE = re.compile(r"\AC-[0-9]+\Z")
+ROUTES = {}
+
+Ran 6 tests in 0.000s
+
+OK
+
+===== RESULT of #37 (jsonl L178) =====
+rc=0
+ok   production-gate: staging deploy passes (rc=0)
+ok   fail-closed: broken JSON blocks (rc=2)
+ok   fail-closed: no jq blocks (rc=2)
+ok   wiring: settings.json is valid JSON
+ok   wiring: protect-paths.sh wired and executable
+ok   wiring: protect-tests.sh wired and executable
+ok   wiring: no-secrets.sh wired and executable
+ok   wiring: format-lint.sh wired and executable
+ok   wiring: production-gate.sh wired and executable
+ok   decision log: block appended (2026-09-09T03:52:04Z protect-paths.sh block Makefile)
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+PASS  1. 케이스 전량 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약
+
+===== RESULT of #38 (jsonl L180) =====
+python3 -m unittest discover -s tests
+..........................................
+----------------------------------------------------------------------
+Ran 42 tests in 0.621s
+
+OK
+bash tests/test_hooks.sh
+ok   protect-paths: .github blocked (rc=2)
+ok   protect-paths: Makefile blocked (rc=2)
+ok   protect-paths: .claude/hooks blocked (rc=2)
+ok   protect-paths: settings.json blocked (rc=2)
+ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+ok   protect-paths: src file passes (rc=0)
+ok   protect-tests: fix task, test file blocked (rc=2)
+ok   protect-tests: fix task, src passes (rc=0)
+ok   protect-tests: no fix task, test passes (rc=0)
+ok   no-secrets: AWS key blocked (rc=2)
+ok   no-secrets: password literal blocked (rc=2)
+ok   no-secrets: plain edit passes (rc=0)
+ok   format-lint: broken .py reported (rc=2)
+=== mutation ===
+Ran 6 tests in 0.001s
+
+FAILED (failures=2)
+84a1178e60c430083906a83c6c7c4b78f8503247b4b6b33989c3c0ec410337ff  src/claims_status/routes.py
+
+OK
+
+===== RESULT of #39 (jsonl L183) =====
+c5dd79c fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+fcaf6b1 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+73f8b4f plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+2e5099c spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+6f45eea intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+ intent/0007-claim-id-trailing-newline/intent.md | 29 +++++++++
+ intent/0007-claim-id-trailing-newline/plan.md   | 23 +++++++
+ intent/0007-claim-id-trailing-newline/spec.md   | 30 +++++++++
+ src/claims_status/routes.py                     |  4 +-
+ tests/test_claims_status_format.py              | 86 +++++++++++++++++++++++++
+ 5 files changed, 171 insertions(+), 1 deletion(-)
+
+===== RESULT of #40 (jsonl L187) =====
+To https://github.com/bifrost17/intent-sdlc-sample
+ * [new branch]      chain/0007-claim-id-trailing-newline -> chain/0007-claim-id-trailing-newline
+branch 'chain/0007-claim-id-trailing-newline' set up to track 'origin/chain/0007-claim-id-trailing-newline'.
+
+===== RESULT of #41 (jsonl L190) =====
+https://github.com/bifrost17/intent-sdlc-sample/pull/28
+
+===== RESULT of #42 (jsonl L192) =====
+38:| 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
+
+===== RESULT of #43 (jsonl L197) =====
+| Chain | Kind | Entry path | PR(s) |
+|---|---|---|---|
+| 0001 bootstrap-repo | record · pre-slim convention | this repo, self-recorded | #12 |
+| 0002 claims-status | feature · person | `capture-intent` (person's idea) | #17, #18 |
+| 0004 lesson-only | slim | this repo, self-recorded | #16 |
+| 0005 ownerless-claim-visible | defect · ticket | GitHub issue | #20, #21 |
+| 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
+| 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |
+
+The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.
+
+check rc=0
+
+===== RESULT of #44 (jsonl L201) =====
+check	pending	0	https://github.com/bifrost17/intent-sdlc-sample/actions/runs/34308827126/job/102331019013	
+OPEN
+https://github.com/bifrost17/intent-sdlc-sample/pull/28
+6
+
+===== RESULT of #45 (jsonl L205) =====
+Refreshing checks status every 10 seconds. Press Ctrl+C to quit.
+
+check	pending	0	https://github.com/bifrost17/intent-sdlc-sample/actions/runs/34308827126/job/102331019013	
+check	pass	5s	https://github.com/bifrost17/intent-sdlc-sample/actions/runs/34308827126/job/102331019013	
+check	pass	5s	https://github.com/bifrost17/intent-sdlc-sample/actions/runs/34308827126/job/102331019013
+
+===== CALL #27 (jsonl L130) FULL =====
+git checkout -b chain/0007-claim-id-trailing-newline && python3 - <<'PY'
+import sys; sys.path.insert(0,"src")
+from claims_status import records, routes
+print(routes.get_claim_status("C-1001\n", {"subscriber_id":"S-77"}, now=0), records.upstream_calls())
+PY
+ ... [len=256] ...
+
+
+===== CALL #28 (jsonl L132) FULL =====
+mkdir -p intent/0007-claim-id-trailing-newline && cat > intent/0007-claim-id-trailing-newline/intent.md <<'EOF'
+# Intent: 청구 번호 끝의 개행이 형식 검사를 통과해 상류를 한 번 부른다
+Author: 리뷰어 (사슬 0005 입력 스윕 재현 · GitHub 이슈 #24). Status: draft.
+## Problem
+티켓 경로(GitHub 이슈 #24). 청구 상태 조회 핸들러(`src/claims_status/routes.py`, intent 0002)의 청구 번호 형식 검사가
+spec 0002 AC4「형식이 틀린 번호는 `invalid_claim_id`」와 R2 계열의 「형식이 틀리면 상류 호출 0」을 어긴다.
+사슬 0005 의 입력 스윕에서 관찰(2026-09-09 03:14 UTC, origin/main c03704d6)되어 별 티켓으로 넘긴 건이고,
+2026-09-09 origin/main 553b881 에서 다시 잰다:
+- 입력: `claim_id = "C-1001\n"`(끝에 개행 하나). 세션은 정상 `{"subscriber_id": "S-77"}`
+ ... [len=2663] ...
+· 새 개인정보 없음 · 응답 필드 넓히지 않음 · 남의 건과 없는 건은 같은 `not_found` · 오류 문구에 입력을 되비추지 않음.
+- 0002 의 시험 `tests/test_claims_status.py`, 0005 의 `tests/test_claims_status_defect.py`, 0006 의 `tests/test_claims_status_incident.py` 는 손대지 않는다 — 고친 뒤에도 그대로 통과해야 한다.
+- 범위 밖: 청구 번호 형식 규칙 자체를 넓히거나 좁히는 것(`C-<숫자>` 는 그대로) · 입력을 다듬어서 받아 주는 것(strip 후 통과는 형식 규칙 변경이다) · 세션 객체가 dict 가 아닐 때의 예외(이슈 #25) · 미스 캐시와 상류 예산(이슈 #26).
+## Open questions
+- 포털 프론트엔드나 게이트웨이가 경로 인자에 개행을 붙여 넘기는 경로가 실제로 있는가(로그 인젝션·URL 디코딩) — 답할 사람: 포털 팀.
+- 형식이 틀린 입력이 상류까지 간 횟수가 운영에서 얼마나 되는가 — 답할 사람: claims-core 팀.
+EOF
+git add -A && git commit -q -F - <<'EOF'
+intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+
+관찰한 사실 그대로: 입력 "C-1001\n" · 기대 invalid_claim_id·상류 0 · 실제 not_found·상류 1,
+재현 명령과 시각/SHA(main 553b881 재측정), 이웃 입력 대조. 해법은 쓰지 않는다(capture-intent).
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+EOF
+git log --oneline -1
+
+===== CALL #29 (jsonl L145) FULL =====
+INTENT_SHA=$(git rev-parse HEAD) && cat > intent/0007-claim-id-trailing-newline/spec.md <<EOF
+Note: intent 는 아직 draft(이 PR 안에 같이 들어 있고 머지 전이다). 엔지니어(부모 세션)가 2026-09-09 이슈 #24 해결과 PR 한 건을 지시해 design-spec 의 「accepted 가 아니면 쓰지 않는다」를 「one exception」으로 넘긴다 — 승인은 여전히 이 PR 의 머지다.
+# Spec: 청구 번호 형식 검사는 문자열 끝까지 본다 (from intent 0007-claim-id-trailing-newline)
+Upstream: intent.md@${INTENT_SHA}. Status: draft.
+Skills applied: secure-api-review (② 입력 검증만 해당), design-spec.
+EOF
+cat >> intent/0007-claim-id-trailing-newline/spec.md <<'EOF'
+## Requirements
+- R1 청구 번호는 문자열 **처음부터 끝까지** `C-<숫자>` 일 때만 형식에 맞는다. 끝에 개
+ ... [len=3472] ...
+예외(이슈 #25) · 미스 조회의 상류 예산 보호(이슈 #26) · 청구 번호 형식 규칙의 확장·축소 · 입력 정규화 전반 · 상류 호출 계기(`upstream_calls`)의 운영 노출.
+## Acceptance criteria
+- AC1 → R1·R2 `"C-1001\n"` 을 정상 세션으로 조회하면 본문이 정확히 `{"error":"invalid_claim_id"}` 이고 상류 호출 수 0. 세션 `{}` 로 조회해도 같다.
+- AC2 → R3 그 본문에 입력 문자열도 개행도 원장 값(`심사중`·`손해사정 결과 접수`·`2026-09-15`)도 없다. 판정에 쓰는 문자열은 구현에서 임포트하지 않고 시험이 따로 적은 것이다.
+- AC3 → R1 이웃 입력 `"\nC-1001"`·`"C-1001\nX"`·`"C-1001\r"`·`"C-1001\n\n"` 도 `invalid_claim_id` · 상류 호출 0 (현행에서도 그렇다 — 회귀 고정).
+- AC4 → R4 `"C-1001"` 은 네 필드가 그대로 돌아오고, 없는 번호 `"C-9999"` 는 `not_found` 이며 상류 호출 1. `make check` rc=0.
+EOF
+git add -A && git commit -q -F - <<'EOF'
+spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+
+`$` 가 끝 개행 앞에서 맞는 것이 결함. `\A…\Z` 를 고른 이유(호출부 무편집 · match 로 되돌려도
+결함이 되살아나지 않음)와 strip 거절(F1: 규칙 변경은 포털·보안 결정)을 적었다.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+EOF
+git log --oneline -1
+
+===== CALL #30 (jsonl L150) FULL =====
+SPEC_SHA=$(git rev-parse HEAD) && cat > intent/0007-claim-id-trailing-newline/plan.md <<EOF
+Note: intent·spec 이 아직 draft(같은 PR 안, 머지 전)다. 엔지니어(부모 세션)가 2026-09-09 이슈 #24 해결을 지시해 draft 위에서 계획한다(plan Inputs 「one exception」) — 승인은 이 PR 의 머지다.
+# Plan: 청구 번호 형식 검사를 문자열 끝까지 (from intent.md 2026-09-09)
+Upstream: spec.md@${SPEC_SHA}. Status: draft.
+EOF
+cat >> intent/0007-claim-id-trailing-newline/plan.md <<'EOF'
+## Files that change
+- tests/test_claims_status_format.py (new) — spec AC1~AC4 를 시험 이름으로. 0002·0005·0006 의 시험 파일은 건드리지 않는다.
+- src/claims_status/routes.py — `CLAIM_ID_RE` 상수 한 줄(앵커).
+- 그 밖엔 없다. 
+ ... [len=2532] ...
+을 더했다; 이 건은 티켓 결함이라 사슬 0005 와 같이 회귀 시험까지다).
+## Proof
+- AC1 ← TestTrailingNewlineClaimId.test_ac1_trailing_newline_is_invalid_without_upstream_call · test_ac1_trailing_newline_with_empty_session_is_invalid
+- AC2 ← TestTrailingNewlineClaimId.test_ac2_error_body_does_not_echo_input_or_ledger_values
+- AC3 ← TestNeighbouringMalformedIds.test_ac3_neighbouring_malformed_ids_stay_invalid_without_upstream_call
+- AC4 ← TestFormatPositiveControl.test_ac4_well_formed_id_still_returns_four_fields · test_ac4_unknown_well_formed_id_is_not_found_after_one_upstream_call
+- 출력: 단계 1 의 red 원문(FAILED, failures=3 — AC1 두 건과 AC2) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문 · protect-tests 훅 BLOCKED 원문, PR 본문에 첨부.
+EOF
+git add -A && git commit -q -F - <<'EOF'
+plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+EOF
+git log --oneline -1
+
+===== CALL #31 (jsonl L153) FULL =====
+cat > tests/test_claims_status_format.py <<'PY'
+"""tests/test_claims_status_format.py — intent/0007-claim-id-trailing-newline/spec.md 의 AC1~AC4.
+
+L9 625: "write the failing test first ... Commit that test. Only then ask Claude to make it pass without
+editing the test." 티켓 경로(이슈 #24)의 결함 시험 — 0002·0005·0006 의 시험 파일은 손대지 않는다.
+결함: `^C-[0-9]+$` 의 `$` 가 문자열 끝 개행 앞에서도 맞아 "C-1001\n" 이 형식 검사를 통과하고 상류를 1회 부른다.
+"""
+import json
+import os
+import sys
+import unittest
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, "src")
+if SRC not in sys.path:
+    sys.path.inser
+ ... [len=3469] ...
+", "C-", "c-1001"):
+            with self.subTest(claim_id=bad):
+                records.reset_for_test()
+                self.assertEqual(json.loads(self.body(bad)), INVALID)
+                self.assertEqual(records.upstream_calls(), 0)
+
+
+class TestFormatPositiveControl(Base):
+    def test_ac4_well_formed_id_still_returns_four_fields(self):
+        """양성 대조 — 정상 번호는 그대로다(위 시험이 「아무것도 통과 못 한다」가 되지 않게)."""
+        payload = json.loads(self.body(CLAIM))
+        self.assertEqual(set(payload), set(EXPECTED_KEYS))
+        self.assertEqual(records.upstream_calls(), 1)
+
+    def test_ac4_unknown_well_formed_id_is_not_found_after_one_upstream_call(self):
+        self.assertEqual(json.loads(self.body(UNKNOWN_CLAIM)), NOT_FOUND)
+        self.assertEqual(records.upstream_calls(), 1)
+
+
+if __name__ == "__main__":
+    unittest.main()
+PY
+python3 -m unittest tests.test_claims_status_format 2>&1 | tail -30
+
+===== CALL #32 (jsonl L160) FULL =====
+python3 -m unittest tests.test_claims_status_format 2>&1 | tail -4 > /tmp/red0007.txt; cat /tmp/red0007.txt
+python3 - <<'PY'
+import re, io
+p = "intent/0007-claim-id-trailing-newline/plan.md"
+s = open(p, encoding="utf-8").read()
+old = "- 출력: 단계 1 의 red 원문(FAILED, failures=3 — AC1 두 건과 AC2)"
+new = ("- 출력: 단계 1 의 red 원문(FAILED, **failures=2** — AC1 두 건. 계획은 3 이라고 썼지만 AC2 는 현행에서도 통과한다: "
+       "지금 나가는 본문이 `not_found` 라 입력도 원장 값도 실리지 않는다. 새는 것은 본문이 아니라 상류 호출이다 — AC2 는 회귀 고정으로 남긴다)")
+assert old in s
+open(p, "w", encoding="utf-8").write(s.replace(old, new))
+PY
+grep -n "출력:" intent/0007-claim-id-trai
+ ... [len=620] ...
+python3 -m unittest tests.test_claims_status_format 2>&1 | tail -4 > /tmp/red0007.txt; cat /tmp/red0007.txt
+python3 - <<'PY'
+import re, io
+p = "intent/0007-claim-id-trailing-newline/plan.md"
+s = open(p, encoding="utf-8").read()
+old = "- 출력: 단계 1 의 red 원문(FAILED, failures=3 — AC1 두 건과 AC2)"
+new = ("- 출력: 단계 1 의 red 원문(FAILED, **failures=2** — AC1 두 건. 계획은 3 이라고 썼지만 AC2 는 현행에서도 통과한다: "
+       "지금 나가는 본문이 `not_found` 라 입력도 원장 값도 실리지 않는다. 새는 것은 본문이 아니라 상류 호출이다 — AC2 는 회귀 고정으로 남긴다)")
+assert old in s
+open(p, "w", encoding="utf-8").write(s.replace(old, new))
+PY
+grep -n "출력:" intent/0007-claim-id-trailing-newline/plan.md
+
+===== CALL #33 (jsonl L162) FULL =====
+git add -A && git commit -q -F - <<'EOF'
+test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+
+AC1 두 건이 red: "C-1001\n" 이 not_found 로 나가고 상류 호출 1. AC2·AC3·AC4 는 현행에서도
+통과하는 계약 고정(이웃 입력·양성 대조). 계획이 예상한 failures=3 과 달라 plan.md Proof 를
+같은 커밋에서 정정한다(plan 스킬 「While implementing」).
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+EOF
+git log --oneline -1 && git show --stat --oneline HEAD | tail -4
+ ... [len=421] ...
+
+
+===== CALL #34 (jsonl L167) FULL =====
+cat .claude/hooks/_lib.sh; grep -n "protect-tests" -A6 tests/test_hooks.sh | head -40
+ ... [len=85] ...
+
+
+===== CALL #35 (jsonl L169) FULL =====
+printf '{"tool_name":"Edit","tool_input":{"file_path":"%s/tests/test_claims_status_format.py"}}' "$PWD" | INTENT_TASK=fix .claude/hooks/protect-tests.sh; echo "rc=$?"
+ ... [len=166] ...
+
+
+===== CALL #36 (jsonl L175) FULL =====
+python3 - <<'PY'
+p = "src/claims_status/routes.py"
+s = open(p, encoding="utf-8").read()
+old = 'CLAIM_ID_RE = re.compile(r"^C-[0-9]+$")\n'
+new = ('# `$` 는 문자열 끝 개행 앞에서도 맞는다 — "C-1001\\n" 이 형식을 통과해 상류를 부르던 자리(intent 0007).\n'
+       '# 문자열 끝에서만 맞는 앵커를 쓴다; 이 상수를 손볼 때 `$` 로 되돌리지 않는다.\n'
+       'CLAIM_ID_RE = re.compile(r"\\AC-[0-9]+\\Z")\n')
+assert old in s
+open(p, "w", encoding="utf-8").write(s.replace(old, new))
+PY
+sed -n 8,14p src/claims_status/routes.py; python3 -m unittest tests.test_claims_status_format 2>&1 | tail -3
+ ... [len=525] ...
+
+
+===== CALL #37 (jsonl L177) FULL =====
+make check > /tmp/check0007.txt 2>&1; echo "rc=$?"; tail -25 /tmp/check0007.txt
+ ... [len=79] ...
+
+
+===== CALL #38 (jsonl L179) FULL =====
+head -20 /tmp/check0007.txt; echo "=== mutation ==="
+cp src/claims_status/routes.py /tmp/routes.bak
+python3 - <<'PY'
+p="src/claims_status/routes.py"; s=open(p,encoding="utf-8").read()
+open(p,"w",encoding="utf-8").write(s.replace(r'r"\AC-[0-9]+\Z"', r'r"^C-[0-9]+$"'))
+PY
+python3 -m unittest tests.test_claims_status_format 2>&1 | tail -3
+cp /tmp/routes.bak src/claims_status/routes.py
+shasum -a 256 src/claims_status/routes.py && python3 -m unittest tests.test_claims_status_format 2>&1 | tail -2
+ ... [len=496] ...
+
+
+===== CALL #39 (jsonl L182) FULL =====
+git add -A && git commit -q -F - <<'EOF'
+fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+
+"C-1001\n" 이 형식을 통과해 상류를 1회 부르던 자리. 상수 한 줄만 바꾸고 호출부·판정 순서·오류
+문구는 그대로다. make check rc=0(42+28+8+1), 뮤테이션(앵커 되돌리기) red 실측 failures=2.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+EOF
+git log --oneline -5 && git diff main --stat
+ ... [len=365] ...
+
+
+===== CALL #40 (jsonl L185) FULL =====
+git push -u origin chain/0007-claim-id-trailing-newline 2>&1 | tail -3
+ ... [len=70] ...
+
+
+===== CALL #41 (jsonl L188) FULL =====
+cat > /tmp/pr0007.md <<'EOF'
+이슈 #24 를 사슬 0007 로 태웠다. 티켓 경로(L2 171) — intent → spec → plan → 실패 시험 → 수정, 각각 제 커밋.
+
+**한 PR 인 이유(「one exception」)**: 엔지니어(부모 세션)가 「이슈 #24 를 해결하고 PR 을 열어라」로 지시해
+intent 가 머지되기 전에 spec·plan 을 이어 썼다. spec.md·plan.md 맨 위에 그 사실을 한 줄로 적어 두었다.
+승인은 여전히 이 PR 의 머지다 — 파일 안의 `Status:` 는 draft 그대로다.
+
+## 결함
+`CLAIM_ID_RE = ^C-[0-9]+$` 의 `$` 가 **문자열 끝 개행 앞에서도** 맞는다. `"C-1001\n"` 이 형식 검사를 통과해
+원장 조회까지 가고, 원장에 그 키가 없으니 `not_found` 로 응답한다 — spec 0002 AC4「형식 틀린 번호 →
+`invalid_claim_id` · 상류 호출 0」위반. 새는 것은 응답 본문이 아니라 **상류 호출 예산**이다.
+
+main 553b881 재현:
+```
+$ python3 -c 'import sys;sys.path.
+ ... [len=3016] ...
+ed_settings.sh     → PASS  managed-settings 키·훅 계약
+rc=0
+```
+(CLAUDE.md 「Verifying your work」의 `make build`/`make lint` 는 이 레포에 없다 — `make check` 를 돌렸다.)
+
+**뮤테이션 1건**: 앵커를 `^…$` 로 되돌리자 새 시험이 `FAILED (failures=2)` 로 돌아왔고, 복원 후 `OK`.
+`make evals` 는 돌리지 않았다 — `ANTHROPIC_API_KEY` 가 없으면 rc=2 SKIP 이고, 「안 돌았다 ≠ 통과했다」.
+
+## 하지 않은 것
+- eval 추가 — 이 건은 티켓 결함이다. eval 은 인시던트에 붙는다(L10 693, 사슬 0006 이 그 경로).
+- 이슈 #25(세션이 dict 가 아님)·#26(미스 조회 상류 예산) — 별 사슬. spec Out of scope 에 적었다.
+- 형식 규칙 확장·입력 정규화·판정 순서 이동.
+
+## 미결(carried forward)
+- 프론트엔드·게이트웨이가 경로 인자에 개행을 붙여 넘기는 경로가 있는가 — 포털 팀.
+- 형식 틀린 입력이 상류까지 간 횟수가 운영에서 얼마나 되는가 — claims-core 팀.
+
+Closes #24
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+EOF
+gh pr create --base main --head chain/0007-claim-id-trailing-newline --title "chain(#0007): 청구 번호 끝 개행이 형식 검사를 통과해 상류를 부른다 — intent → spec → plan → 실패 시험 → 수정 (closes #24)" --body-file /tmp/pr0007.md
+
+===== CALL #42 (jsonl L191) FULL =====
+grep -n "0006 claims-status-stale-not-found\|티켓 경로는" README.md
+ ... [len=62] ...
+
+
+===== CALL #43 (jsonl L193) FULL =====
+python3 - <<'PY'
+p="README.md"; s=open(p,encoding="utf-8").read()
+old = "| 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |\n"
+new = old + "| 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |\n"
+assert old in s
+s = s.replace(old, new).replace("The ticket path is a GitHub issue — #24, #25, #26.",
+    "The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.")
+open(p,"w",encoding="utf-8").write(s)
+PY
+sed -n 32,42p README.md
+git add -A && git commit -q -F - <<'EOF'
+docs(readme): 사슬 표에 000
+ ... [len=774] ...
+python3 - <<'PY'
+p="README.md"; s=open(p,encoding="utf-8").read()
+old = "| 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |\n"
+new = old + "| 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |\n"
+assert old in s
+s = s.replace(old, new).replace("The ticket path is a GitHub issue — #24, #25, #26.",
+    "The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.")
+open(p,"w",encoding="utf-8").write(s)
+PY
+sed -n 32,42p README.md
+git add -A && git commit -q -F - <<'EOF'
+docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+EOF
+git push -q && make check >/tmp/check2.txt 2>&1; echo "check rc=$?"
+
+===== CALL #44 (jsonl L200) FULL =====
+sleep 1; gh pr checks 28 2>&1 | head -5; gh pr view 28 --json state,title,url,commits --jq '.state, .url, (.commits|length)'
+ ... [len=124] ...
+
+
+===== CALL #45 (jsonl L202) FULL =====
+gh pr checks 28 --watch --interval 10 2>&1 | tail -5
+ ... [len=52] ...
+
+
+===== grep INTENT_TASK / CLAUDE.md in assistant text & commands =====
+L150 [tool_use] 2. `INTENT_TASK=fix` 를 켠 채 `routes.py` 의 `CLAIM_ID_RE` 를 `r"\AC-[0-9]+\Z"` 로 바꾼다. 시험 파일은 편집하지 않는다(protect-tests 훅이 막는다 — stdin JSON 으로 한 번 태워 BLOCKED 를 확인한다).
+L169 [tool_use] printf '{"tool_name":"Edit","tool_input":{"file_path":"%s/tests/test_claims_status_format.py"}}' "$PWD" | INTENT_TASK=fix .claude/hooks/protect-tests.sh; echo "rc=$?"
+L182 [tool_use] fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+L188 [tool_use] $ printf '{"tool_name":"Edit","tool_input":{"file_path":"…/tests/test_claims_status_format.py"}}' | INTENT_TASK=fix .claude/hooks/protect-tests.sh
+L188 [tool_use] [protect-tests.sh] BLOCKED: tests/test_claims_status_format.py is a test file and INTENT_TASK=fix. …
+L188 [tool_use] (CLAUDE.md 「Verifying your work」의 `make build`/`make lint` 는 이 레포에 없다 — `make check` 를 돌렸다.)
+L206 [text] - `c5dd79c` fix — `INTENT_TASK=fix`, 시험 무편집. protect-tests 훅을 stdin JSON 으로 태워 `rc=2 BLOCKED` 확인
+L206 [text] **검증** (`make check` rc=0, CLAUDE.md 의 `make build`/`make lint` 는 이 레포에 없어 `make check` 를 돌렸다):
+
+===== init line system prompt mentions? =====
+{'cwd': '/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/live/repo', 'model': 'claude-opus-5[1m]', 'permissionMode': 'bypassPermissions', 'slash_commands': "['aside-browser', 'capture-intent', 'design-spec', 'plan', 'secure-api-review', 'spec', 'deep-research', 'understand-anything:understand', 'understand-anything:understand-chat', 'understand-anything:u", 'agents': "['claude', 'Explore', 'general-purpose', 'owa-exec', 'owa-impl', 'owa-investigate', 'owa-mech', 'owa-review', 'owa-trivial', 'Plan', 'statusline-setup', 'understand-anything:architecture-analyzer', 'u", 'skills': "['aside-browser', 'capture-intent', 'design-spec', 'plan', 'secure-api-review', 'deep-research', 'understand-anything:understand', 'understand-anything:understand-chat', 'understand-anything:understan"}

@@ -1,0 +1,11 @@
+CMD: INTENT_TASK=fix CLAUDE_PROJECT_DIR=$PWD bash .claude/hooks/protect-tests.sh <<< '{"tool_name":"Edit","tool_input":{"file_path":"$PWD/tests/test_claims_status_defect.py"}}'  (then same for src/claims_status/routes.py)
+AT_UTC: 2026-09-09T03:16:59Z
+HOST: nalaui-MacBookPro.local
+--- tests/ edit:
+[protect-tests.sh] BLOCKED: tests/test_claims_status_defect.py is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR.
+RC: 2
+--- src/ edit:
+RC: 0
+--- hooks.log tail:
+2026-09-09T03:16:59Z protect-tests.sh block tests/test_claims_status_defect.py
+2026-09-09T03:16:59Z protect-tests.sh allow src/claims_status/routes.py

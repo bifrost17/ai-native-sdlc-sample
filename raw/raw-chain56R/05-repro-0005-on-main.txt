@@ -1,0 +1,21 @@
+CMD: on origin/main c03704d6: intent 0005 repro command + variants (session {} / {'subscriber_id':None} / normal / record None)
+AT_UTC: 2026-09-09T03:23:10Z
+HEAD=c03704d64da70f8ac4cfa8d61cad71dbf9ea22c7 branch=main
+--- verbatim repro from intent
+{"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}
+rc=0
+--- variant: record subscriber_id=None, session {'subscriber_id': None}
+{"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}
+--- control: same ownerless row, normal session S-77
+{"error": "not_found"}
+--- control: intact row, session {} (implementer says already not_found)
+{"error": "not_found"}
+--- 0006 implementer parent-referral variant: session {"user":"anon"} + ownerless row
+{"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}
+--- 0005 referral 1: trailing newline claim id
+{"error": "not_found"}
+upstream_calls= 1
+--- 0005 referral 2: list session
+                                                        ^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+RC: 0

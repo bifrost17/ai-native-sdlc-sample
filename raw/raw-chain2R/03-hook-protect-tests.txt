@@ -1,0 +1,20 @@
+CMD: printf PreToolUse JSON | INTENT_TASK=fix bash .claude/hooks/protect-tests.sh (tests/ · src/ · INTENT_TASK 미설정)
+AT_UTC: 2026-09-09T02:59:31Z
+HOST: nalaui-MacBookPro.local
+jq: /usr/bin/jq jq-1.7.1-apple
+--- file=tests/test_claims_status.py INTENT_TASK=fix
+[protect-tests.sh] BLOCKED: tests/test_claims_status.py is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR.
+rc=2
+--- file=tests/test_claims_status.py INTENT_TASK=
+rc=0
+--- file=src/claims_status/routes.py INTENT_TASK=fix
+rc=0
+--- file=src/claims_status/routes.py INTENT_TASK=
+rc=0
+--- hooks.log tail
+2026-09-09T02:59:31Z protect-tests.sh block tests/test_claims_status.py
+2026-09-09T02:59:31Z protect-tests.sh allow tests/test_claims_status.py
+2026-09-09T02:59:31Z protect-tests.sh allow src/claims_status/routes.py
+2026-09-09T02:59:31Z protect-tests.sh allow src/claims_status/routes.py
+--- git status (hooks.log ignored?)
+RC: 0

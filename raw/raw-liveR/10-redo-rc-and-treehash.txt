@@ -1,0 +1,30 @@
+CMD: (redo, zsh-safe) tree hashes scripts/.github/Makefile main vs branch; fix-commit plan.md diff; rc of full discover at test commit; rc of make test on main
+AT_UTC: 2026-09-09T03:59:22Z
+.claude main=4882cc03fd103b5502178d21202d58d66a311395 branch=4882cc03fd103b5502178d21202d58d66a311395
+scripts main=fd4a472e45139c9604934a004322d4f22bdb2af9 branch=fd4a472e45139c9604934a004322d4f22bdb2af9
+.github main=a611e2d87aefe4a26b02c651a96c7a71fc9b6551 branch=a611e2d87aefe4a26b02c651a96c7a71fc9b6551
+Makefile main=d9da9352471fa3225479776736689b01c291b343 branch=d9da9352471fa3225479776736689b01c291b343
+evals main=ad651e632f87e123e514dbfee48eb4855e7c779c branch=ad651e632f87e123e514dbfee48eb4855e7c779c
+ops main=def9b98e0dc5c577bfb51bb2142bc21ca13fb8d9 branch=def9b98e0dc5c577bfb51bb2142bc21ca13fb8d9
+org main=0879f1e06188f798bc1e2fdc258087197b3b853d branch=0879f1e06188f798bc1e2fdc258087197b3b853d
+tests/test_hooks.sh main=cb7606e641ac8364299d20ea669eeb137b6750a5 branch=cb7606e641ac8364299d20ea669eeb137b6750a5
+=== plan.md change inside test commit fcaf6b1
+@@ -20,4 +20,4 @@ Upstream: spec.md@2e5099ce4a341b16da2946a0b3e418c8891e4346. Status: draft.
+ - AC2 ← TestTrailingNewlineClaimId.test_ac2_error_body_does_not_echo_input_or_ledger_values
+ - AC3 ← TestNeighbouringMalformedIds.test_ac3_neighbouring_malformed_ids_stay_invalid_without_upstream_call
+ - AC4 ← TestFormatPositiveControl.test_ac4_well_formed_id_still_returns_four_fields · test_ac4_unknown_well_formed_id_is_not_found_after_one_upstream_call
+-- 출력: 단계 1 의 red 원문(FAILED, failures=3 — AC1 두 건과 AC2) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문 · protect-tests 훅 BLOCKED 원문, PR 본문에 첨부.
++- 출력: 단계 1 의 red 원문(FAILED, **failures=2** — AC1 두 건. 계획은 3 이라고 썼지만 AC2 는 현행에서도 통과한다: 지금 나가는 본문이 `not_found` 라 입력도 원장 값도 실리지 않는다. 새는 것은 본문이 아니라 상류 호출이다 — AC2 는 회귀 고정으로 남긴다) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문 · protect-tests 훅 BLOCKED 원문, PR 본문에 첨부.
+=== full discover at test commit (rc to file)
+rc=1
+Ran 42 tests in 0.539s
+
+FAILED (failures=2)
+=== make test on main (rc to file)
+rc=0
+Ran 36 tests in 0.571s
+OK
+test_hooks: 28 passed, 0 failed
+8 passed, 0 failed
+PASS  managed-settings 키·훅 계약
+RC: 0

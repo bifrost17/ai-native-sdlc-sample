@@ -1,0 +1,14 @@
+CMD: cat .claude/hooks.log; git status --short; head -3 tests/test_claims_status.py
+AT_UTC: 2026-09-09T03:47:09Z
+RC: 0
+--- hooks.log
+2026-09-09T03:46:27Z production-gate.sh allow 
+2026-09-09T03:46:51Z production-gate.sh allow 
+2026-09-09T03:46:59Z no-secrets.sh allow tests/test_claims_status.py
+2026-09-09T03:46:59Z protect-paths.sh allow tests/test_claims_status.py
+2026-09-09T03:46:59Z protect-tests.sh block tests/test_claims_status.py
+--- git status
+--- head -3 tests/test_claims_status.py
+"""tests/test_claims_status.py — intent/0002-claims-status/spec.md 의 AC1~AC5 를 시험 이름으로.
+
+L9 625: "write the failing test first ... Only then ask Claude to make it pass without editing the test."

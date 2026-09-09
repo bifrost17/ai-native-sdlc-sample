@@ -1,0 +1,19 @@
+CMD: upstream sha check + gh pr checks 28 + hooks.log counts in main-run window
+AT_UTC: 2026-09-09T03:55:52Z
+RC: 0
+6f45eea7f3e9db423353985078cd90a769965c73
+2e5099ce4a341b16da2946a0b3e418c8891e4346
+Upstream: spec.md@2e5099ce4a341b16da2946a0b3e418c8891e4346. Status: draft.
+Upstream: intent.md@6f45eea7f3e9db423353985078cd90a769965c73. Status: draft.
+--- pr checks
+check	pass	5s	https://github.com/bifrost17/intent-sdlc-sample/actions/runs/34308827126/job/102331019013	
+--- hooks.log window >= 03:47:32
+  45 production-gate.sh allow
+   1 protect-tests.sh block
+--- ls intent
+0001-bootstrap-repo
+0002-claims-status
+0004-lesson-only
+0005-ownerless-claim-visible
+0006-claims-status-stale-not-found
+0007-claim-id-trailing-newline

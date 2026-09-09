@@ -1,0 +1,127 @@
+CMD: git show --stat for each commit; worktree at fcaf6b1 -> python3 -m unittest tests.test_claims_status_format; parent 73f8b4f has tests file?
+AT_UTC: 2026-09-09T03:58:32Z
+=== 6f45eea
+6f45eea7f3e9db423353985078cd90a769965c73
+bifrost17 <bifrost17@gmail.com>
+Wed Sep 9 12:49:56 2026 +0900
+intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+
+관찰한 사실 그대로: 입력 "C-1001\n" · 기대 invalid_claim_id·상류 0 · 실제 not_found·상류 1,
+재현 명령과 시각/SHA(main 553b881 재측정), 이웃 입력 대조. 해법은 쓰지 않는다(capture-intent).
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+ intent/0007-claim-id-trailing-newline/intent.md | 29 +++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+=== 2e5099c
+2e5099ce4a341b16da2946a0b3e418c8891e4346
+bifrost17 <bifrost17@gmail.com>
+Wed Sep 9 12:50:47 2026 +0900
+spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+
+`$` 가 끝 개행 앞에서 맞는 것이 결함. `\A…\Z` 를 고른 이유(호출부 무편집 · match 로 되돌려도
+결함이 되살아나지 않음)와 strip 거절(F1: 규칙 변경은 포털·보안 결정)을 적었다.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+ intent/0007-claim-id-trailing-newline/spec.md | 30 +++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+=== 73f8b4f
+73f8b4f3f63bb9b8e4600ab4ccd0095e48c6427e
+bifrost17 <bifrost17@gmail.com>
+Wed Sep 9 12:51:12 2026 +0900
+plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+ intent/0007-claim-id-trailing-newline/plan.md | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+=== fcaf6b1
+fcaf6b1bc0871a32f633ed93cf0d4d3ba7d02939
+bifrost17 <bifrost17@gmail.com>
+Wed Sep 9 12:51:47 2026 +0900
+test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+
+AC1 두 건이 red: "C-1001\n" 이 not_found 로 나가고 상류 호출 1. AC2·AC3·AC4 는 현행에서도
+통과하는 계약 고정(이웃 입력·양성 대조). 계획이 예상한 failures=3 과 달라 plan.md Proof 를
+같은 커밋에서 정정한다(plan 스킬 「While implementing」).
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+ intent/0007-claim-id-trailing-newline/plan.md |  2 +-
+ tests/test_claims_status_format.py            | 86 +++++++++++++++++++++++++++
+ 2 files changed, 87 insertions(+), 1 deletion(-)
+=== c5dd79c
+c5dd79c6d69069aa85d815b9fd408a713eab5b77
+bifrost17 <bifrost17@gmail.com>
+Wed Sep 9 12:52:15 2026 +0900
+fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+
+"C-1001\n" 이 형식을 통과해 상류를 1회 부르던 자리. 상수 한 줄만 바꾸고 호출부·판정 순서·오류
+문구는 그대로다. make check rc=0(42+28+8+1), 뮤테이션(앵커 되돌리기) red 실측 failures=2.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+ src/claims_status/routes.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+=== 38b7c8a
+38b7c8a659340bd9722a527768a2761c5c304d00
+bifrost17 <bifrost17@gmail.com>
+Wed Sep 9 12:53:00 2026 +0900
+docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+ README.md | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+=== fix commit c5dd79c touches tests/?
+0
+=== test commit fcaf6b1 file list
+intent/0007-claim-id-trailing-newline/plan.md
+tests/test_claims_status_format.py
+=== does parent 73f8b4f have tests/test_claims_status_format.py?
+0
+=== wt-test HEAD=fcaf6b1bc0871a32f633ed93cf0d4d3ba7d02939 — run new test (expect red)
+...FF.
+======================================================================
+FAIL: test_ac1_trailing_newline_is_invalid_without_upstream_call (tests.test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_is_invalid_without_upstream_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/liveR/wt-test/tests/test_claims_status_format.py", line 44, in test_ac1_trailing_newline_is_invalid_without_upstream_call
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+======================================================================
+FAIL: test_ac1_trailing_newline_with_empty_session_is_invalid (tests.test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_with_empty_session_is_invalid)
+세션이 비어도 형식 단계에서 끊긴다 — 소유 판정의 not_found 로 덮이지 않는다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/liveR/wt-test/tests/test_claims_status_format.py", line 50, in test_ac1_trailing_newline_with_empty_session_is_invalid
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=2)
+rc=1
+=== wt-test full unittest discover (baseline of other tests at test commit)
+
+----------------------------------------------------------------------
+Ran 42 tests in 0.551s
+
+FAILED (failures=2)
+rc=
+RC: 0

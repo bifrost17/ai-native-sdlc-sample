@@ -1,0 +1,51 @@
+CMD: git clone https://github.com/bifrost17/intent-sdlc-sample repo; ls -la repo/.claude repo/.claude/hooks
+AT_UTC: 2026-09-09T03:46:10Z
+Cloning into 'repo'...
+RC: 0
+repo/.claude:
+total 8
+drwxr-xr-x@  7 jake  wheel  224 Sep  9 12:46 .
+drwxr-xr-x@ 21 jake  wheel  672 Sep  9 12:46 ..
+drwxr-xr-x@  3 jake  wheel   96 Sep  9 12:46 agents
+drwxr-xr-x@  3 jake  wheel   96 Sep  9 12:46 commands
+drwxr-xr-x@  8 jake  wheel  256 Sep  9 12:46 hooks
+-rw-r--r--@  1 jake  wheel  935 Sep  9 12:46 settings.json
+drwxr-xr-x@  6 jake  wheel  192 Sep  9 12:46 skills
+
+repo/.claude/hooks:
+total 48
+-rwxr-xr-x@ 1 jake  wheel  1474 Sep  9 12:46 _lib.sh
+drwxr-xr-x@ 8 jake  wheel   256 Sep  9 12:46 .
+drwxr-xr-x@ 7 jake  wheel   224 Sep  9 12:46 ..
+-rwxr-xr-x@ 1 jake  wheel   908 Sep  9 12:46 format-lint.sh
+-rwxr-xr-x@ 1 jake  wheel  1190 Sep  9 12:46 no-secrets.sh
+-rwxr-xr-x@ 1 jake  wheel  1214 Sep  9 12:46 production-gate.sh
+-rwxr-xr-x@ 1 jake  wheel  1174 Sep  9 12:46 protect-paths.sh
+-rwxr-xr-x@ 1 jake  wheel   893 Sep  9 12:46 protect-tests.sh
+--- repo top
+total 56
+drwxr-xr-x@ 21 jake  wheel   672 Sep  9 12:46 .
+drwxr-xr-x@  3 jake  wheel    96 Sep  9 12:46 ..
+drwxr-xr-x@  7 jake  wheel   224 Sep  9 12:46 .claude
+drwxr-xr-x@ 12 jake  wheel   384 Sep  9 12:46 .git
+drwxr-xr-x@  4 jake  wheel   128 Sep  9 12:46 .github
+-rw-r--r--@  1 jake  wheel    59 Sep  9 12:46 .gitignore
+-rw-r--r--@  1 jake  wheel  2587 Sep  9 12:46 CLAUDE.md
+drwxr-xr-x@  5 jake  wheel   160 Sep  9 12:46 docs
+drwxr-xr-x@  9 jake  wheel   288 Sep  9 12:46 evals
+drwxr-xr-x@  7 jake  wheel   224 Sep  9 12:46 intent
+-rw-r--r--@  1 jake  wheel  1088 Sep  9 12:46 LICENSE
+-rw-r--r--@  1 jake  wheel   703 Sep  9 12:46 Makefile
+-rw-r--r--@  1 jake  wheel   973 Sep  9 12:46 NOTICE
+drwxr-xr-x@  3 jake  wheel    96 Sep  9 12:46 ops
+drwxr-xr-x@  4 jake  wheel   128 Sep  9 12:46 org
+-rw-r--r--@  1 jake  wheel  3276 Sep  9 12:46 README.md
+-rw-r--r--@  1 jake  wheel  1246 Sep  9 12:46 REVIEW.md
+drwxr-xr-x@  5 jake  wheel   160 Sep  9 12:46 scripts
+drwxr-xr-x@  3 jake  wheel    96 Sep  9 12:46 src
+drwxr-xr-x@  5 jake  wheel   160 Sep  9 12:46 templates
+drwxr-xr-x@ 11 jake  wheel   352 Sep  9 12:46 tests
+--- git log -3
+553b881 Merge pull request #27 from bifrost17/fix/chains-feedback
+969f9d7 docs(정정): BOUNDARY — evals 케이스 수 three → four(사슬 0006 이 케이스 04 를 더했다)
+5323872 docs(map,boundary): L9·L14 경로 실행 표시 + evals 판정 사정거리 한 줄

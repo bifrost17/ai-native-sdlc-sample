@@ -1,0 +1,30 @@
+| F1 | 60초 노출 불가(운영팀장) · 50건은 전 경로 합산, 이 규모는 여유(claims-core) | R7·AC7 유지 |
+| F2 | 닫힌 다섯 값: 접수·심사중·보완요청·지급완료·종결, 전부 반출 허가 | **R10·AC10 신설** |
+| F4 | 포털이 JWT 검증 후 세션 변환 | secure-api-review ① 닫힘 |
+| F5 | 종결 후에도 칸 유지 · 정산 30일 | R6 그대로, 별도 만료 없음 |
+| F6 | 화면은 범위 밖 유지 | Out of scope |
+| F7 | 두 필드 `adjuster_id`·`adjuster_name`, 세션 `role`·`adjuster_id` | 가정 → 확정, 파싱 없음 |
+| 예정일 | 원장 값, 계산 없음 | R1 |
+
+R10 은 상수와 시험 양쪽에 다섯 값을 적어, 원장에 여섯 번째가 들어오면 시험이 빨개지게 했습니다 —
+허가받은 것은 이 다섯이지 「status 라는 필드」가 아니기 때문입니다.
+
+### 새로 생긴 자리 하나 — F8 (진행을 막지 않습니다)
+
+F3 의 답이 만든 결입니다.
+
+1. 기록이 **열람**에만 붙으므로, 배정 안 된 번호를 훑는 시도는 `not_found` 만 받고 아무 데도 남지
+   않습니다. 청구 번호가 `C-<숫자>` 라 훑기가 쉽다는 점과 같이 보셔야 합니다. AC8 이 이 선택을
+   못 박아 뒀으니(실패 조회 기록 0건), 뒤집으려면 시험이 빨개지고 그게 결정의 기록이 됩니다.
+   → 보안팀
+2. 기록의 **보존 기간·저장소**를 이 spec 은 정하지 않았습니다(Out of scope). → 법무
+
+### 검수
+
+`make check` rc=0 — `Ran 42 tests / OK` · `test_hooks: 28 passed, 0 failed` ·
+`8 passed, 0 failed` · `PASS  managed-settings 키·훅 계약`.
+
+머지가 spec 승인입니다. 그 다음은 plan 모드로 plan.md 입니다.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+--

@@ -1,0 +1,7 @@
+CMD: make test rc on intent branches (no pipe) + build branches rc recheck
+AT_UTC: 2026-09-09T03:25:44Z
+0005-intent HEAD=56e60c8 make test rc=0 :: Ran 29 tests in 0.616s OK test_hooks: 28 passed, 0 failed 8 passed, 0 failed PASS  managed-settings 키·훅 계약 
+0006-intent HEAD=3868020 make test rc=0 :: Ran 29 tests in 0.539s OK test_hooks: 28 passed, 0 failed 8 passed, 0 failed PASS  managed-settings 키·훅 계약 
+0005-build HEAD=efd6a28 make test rc=0 :: Ran 33 tests in 0.573s OK test_hooks: 28 passed, 0 failed 8 passed, 0 failed PASS  managed-settings 키·훅 계약 
+0006-build HEAD=4bf2a07 make test rc=0 :: Ran 32 tests in 0.569s OK test_hooks: 28 passed, 0 failed 8 passed, 0 failed PASS  managed-settings 키·훅 계약 
+RC: 0

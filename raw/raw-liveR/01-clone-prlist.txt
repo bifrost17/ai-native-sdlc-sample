@@ -1,0 +1,28 @@
+CMD: git clone https://github.com/bifrost17/intent-sdlc-sample repo && gh pr list
+AT_UTC: 2026-09-09T03:57:39Z
+HOST: nalaui-MacBookPro.local
+Cloning into 'repo'...
+RC(clone): 0
+553b881ede652b9c009e59e1c84b12ee8518d256
+553b881ede652b9c009e59e1c84b12ee8518d256
+28	chain(#0007): 청구 번호 끝 개행이 형식 검사를 통과해 상류를 부른다 — intent → spec → plan → 실패 시험 → 수정 (closes #24)	chain/0007-claim-id-trailing-newline	OPEN	2026-09-09T03:52:51Z
+27	docs(사슬 되먹임): capture-intent·design-spec/plan·evals 스키마 발견·README 사슬표	fix/chains-feedback	MERGED	2026-09-09T03:40:43Z
+23	build(#0006): spec → plan → 실패 시험 → 미스 미캐시 수정 → 인시던트 eval (base: chain/0006-intent)	chain/0006-build	MERGED	2026-09-09T03:20:42Z
+22	intent(#0006): 접수 직후 청구가 60초 동안 not_found — 밴드 검출 → 자동 초안 → 트리아지 Fix now (PO 승인 = 머지)	chain/0006-intent	MERGED	2026-09-09T03:18:10Z
+21	build(#0005): 빈 가입자 표시 소유 판정 — spec → plan → 실패 시험(red) → 수정	chain/0005-build	MERGED	2026-09-09T03:17:57Z
+20	intent(#0005): 가입자 표시 없는 세션이 가입자 없는 청구 건을 본다 — intent.md (PO 승인 = 머지)	chain/0005-intent	MERGED	2026-09-09T03:15:16Z
+19	docs(#0002 되먹임): 사슬 0002 가 걸린 스킬·CLAUDE.md 문면 3건	fix/skill-feedback-0002	MERGED	2026-09-09T03:09:54Z
+18	build(#0002): spec → plan → 실패 시험 → 구현 (base: chain/0002-intent)	chain/0002-build	MERGED	2026-09-09T02:55:50Z
+17	intent(#0002): 청구 상태 셀프서비스 — intent.md (PO 승인 = 머지)	chain/0002-intent	MERGED	2026-09-09T02:51:32Z
+16	slim(#0004): 레슨이 결정론 층으로 이름 붙인 것만 코드로 — 15,740줄 → 2,767줄	slim/0004	MERGED	2026-09-09T02:33:05Z
+15	사슬 0002(기능) + src/claims_status + 백스톱 경화(우회 5종 차단)	feat/0002-claims-status	CLOSED	2026-09-08T13:01:17Z
+14	docs(정정)(#0001): 설계안 v0.2 오류 3건 — spec 절 수 · 승인 전이 예외(D16) · CODEOWNERS 현실	docs/0001-design-corrections	CLOSED	2026-09-08T12:55:14Z
+13	fix(#0001): CI 체크아웃을 전체 깊이로 — 얕은 클론에서 사슬 검증기 rc=2	fix/0001-ci-fetch-depth	MERGED	2026-09-08T12:54:04Z
+12	feat(#0001): 사슬 0001(메타) + D16 승인 전이 예외 — 「status: 줄만 바꾼 승인」은 브랜치에서도 통과	feat/0001-chain-meta	CLOSED	2026-09-08T12:49:26Z
+11	feat(#0001): org/managed-settings.example.json — 레슨 11 관리형 설정 비활성 예시	feat/0001-managed-settings-example	CLOSED	2026-09-08T12:47:41Z
+10	docs(#0001): W1-H docs/plays/ 플레이별 1장(거버넌스 4항 구조) 8종	docs/0001-plays	CLOSED	2026-09-08T12:33:57Z
+9	feat(#0001): evals 하네스 — 결정론 채점기 · 케이스 3건 · workflow_dispatch 워크플로	feat/0001-evals-harness	CLOSED	2026-09-08T12:29:59Z
+8	feat(#0001): 플레이북 Stage 1·2 지표 계기 — 위상으로 세고, 못 재는 것은 unavailable	feat/0001-metrics	MERGED	2026-09-08T12:23:20Z
+7	feat(#0001): 아티팩트 검증기 · 템플릿 5 · 뮤테이션 픽스처 · 게이트 통합	feat/0001-artifact-validator	MERGED	2026-09-08T12:18:00Z
+6	feat(#0001): 강제층 훅 5 + settings.json 배선 + 우회/배선 시험 79+53	feat/0001-enforcement-hooks	MERGED	2026-09-08T12:13:46Z
+RC(prlist): 0

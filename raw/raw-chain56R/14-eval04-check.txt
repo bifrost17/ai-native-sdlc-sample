@@ -1,0 +1,27 @@
+CMD: evals/check.sh evals/cases/04-incident-stale-not-found.json <result.json> for post-fix ws and pre-fix fixture ws; check-1 schema logic on case 04; git diff --check
+AT_UTC: 2026-09-09T03:26:11Z
+HEAD=4bf2a07
+--- post-fix ws: records.py sha 61ec67f31f8d944e
+CASE 04-incident-stale-not-found (5 판정 · /tmp/rv56-ws-post/ws)
+  PASS  [0] file_exists records.py
+  PASS  [1] regex_absent records.py
+  PASS  [2] contains records.py
+  PASS  [3] contains test_claims_status_incident.py
+  PASS  [4] contains test_claims_status_incident.py
+04-incident-stale-not-found: 5 passed, 0 failed
+check.sh rc=0
+--- pre-fix ws: records.py sha a4eb2247be11455d
+CASE 04-incident-stale-not-found (5 판정 · /tmp/rv56-ws-pre/ws)
+  PASS  [0] file_exists records.py
+  FAIL  [1] regex_absent records.py — 없어야 할 패턴이 맞음: /^    _CACHE\[claim_id\] = \(now \+ CACHE_TTL_SECONDS, record\)$/
+  PASS  [2] contains records.py
+  PASS  [3] contains test_claims_status_incident.py
+  PASS  [4] contains test_claims_status_incident.py
+04-incident-stale-not-found: 4 passed, 1 failed
+check.sh rc=1
+--- check-1 schema logic applied to case 04
+case04 schema errs: none
+--- git diff --check (both build branches vs main)
+0006-build rc=0
+0005-build rc=0
+RC: 0

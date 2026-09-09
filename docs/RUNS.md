@@ -8,8 +8,8 @@ scorecard invented for this document.
 Numbers come from four sources only: commit timestamps (`git log --format=%cI`), PR merge
 timestamps (`gh pr view --json mergedAt`), `.claude/hooks.log` line counts, and the session `.jsonl`
 transcripts (`num_turns`, `duration_ms`, `total_cost_usd`, tool-call extracts). Raw command output for
-every number below lives outside this repo, under the harness scratchpad's `raw-live/`, `raw-liveR/`
-and `raw-hac/` directories (file names cited per number); those directories are not committed here.
+every number below is under `raw/` on this experiment branch (`raw/raw-live/`, `raw/raw-liveR/`,
+`raw/raw-hac/`, `raw/raw-chain*`; file names cited per number) — see `EXPERIMENT.md`.
 
 ## Run A — chain 0007 · unbriefed solo agent · ticket route (issue #24)
 

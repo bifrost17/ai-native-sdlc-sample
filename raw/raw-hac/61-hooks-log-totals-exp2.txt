@@ -1,0 +1,52 @@
+CMD: wc -l .claude/hooks.log ; awk 훅별·파일별 집계
+AT_UTC: 2026-09-09T06:45:20Z
+RC: 0
+---
+hooks.log 전체 줄 수: 539
+
+=== 훅별 총계(레포 전체 이력, 실험1+실험2 누적) ===
+ 151 production-gate.sh
+  97 protect-tests.sh
+  97 protect-paths.sh
+  97 no-secrets.sh
+  97 format-lint.sh
+
+=== 대상(파일 또는 무대상) 별 총계(레포 전체 이력) ===
+ 151 allow
+  56 src/claims_status/agent_routes.py
+  52 intent/0009-agent-proxy-claim-status/spec.md
+  52 intent/0008-adjuster-claim-status/spec.md
+  36 /Users/jake/.claude/plans/spec-drifting-bentley.md
+  24 tests/test_adjuster_status.py
+  24 src/claims_status/audit.py
+  24 README.md
+  24 intent/0008-adjuster-claim-status/intent.md
+  20 src/claims_status/records.py
+  20 intent/0008-adjuster-claim-status/plan.md
+  12 intent/0009-agent-proxy-claim-status/plan.md
+  12 /Users/jake/.claude/plans/spec-graceful-walrus.md
+   8 src/claims_status/routes.py
+   8 src/claims_status/adjuster_routes.py
+   4 tests/test_agent_status.py
+   4 src/claims_status/response.py
+   4 intent/0009-agent-proxy-claim-status/intent.md
+   4 CLAUDE.md
+
+=== 실험2 구간만(268줄 이후, 턴1~9) 훅별 총계 ===
+  75 production-gate.sh
+  49 protect-tests.sh
+  49 protect-paths.sh
+  49 no-secrets.sh
+  49 format-lint.sh
+
+=== 실험2 구간만 파일별 총계 ===
+  75 allow
+  56 src/claims_status/agent_routes.py
+  52 intent/0009-agent-proxy-claim-status/spec.md
+  36 /Users/jake/.claude/plans/spec-drifting-bentley.md
+  16 src/claims_status/audit.py
+  12 README.md
+  12 intent/0009-agent-proxy-claim-status/plan.md
+   4 tests/test_agent_status.py
+   4 src/claims_status/records.py
+   4 intent/0009-agent-proxy-claim-status/intent.md

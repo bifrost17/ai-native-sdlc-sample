@@ -1,0 +1,17 @@
+CMD: mutation at PR head — revert anchor to ^…$ (silent kill: string kept, behaviour reverted), run new test, restore via git checkout, sha256 before/after
+AT_UTC: 2026-09-09T04:00:16Z
+sha256 before: 84a1178e60c43008
+mutated
+12:CLAIM_ID_RE = re.compile(r"^C-[0-9]+$")
+sha256 mutated: 4b155f67c2c8e205
+rc(mutated)=1
+Ran 6 tests in 0.001s
+
+FAILED (failures=2)
+sha256 restored: 84a1178e60c43008
+0
+rc(restored)=0
+Ran 6 tests in 0.000s
+
+OK
+RC: 0

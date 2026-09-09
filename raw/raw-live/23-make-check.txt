@@ -1,0 +1,16 @@
+CMD: make check (branch HEAD 38b7c8a, observer run)
+AT_UTC: 2026-09-09T03:55:31Z
+RC: 0
+Ran 42 tests in 0.582s
+OK
+test_hooks: 28 passed, 0 failed
+PASS  1. 케이스 전량 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+8 passed, 0 failed
+PASS  managed-settings 키·훅 계약

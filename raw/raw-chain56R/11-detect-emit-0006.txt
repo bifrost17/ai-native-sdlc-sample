@@ -1,0 +1,347 @@
+CMD: detect_bands on spike sample + normal control; emit_intent from detection → diff vs a21fe16 intent.md; scripts sha vs main
+AT_UTC: 2026-09-09T03:24:41Z
+HEAD=386802088852c4c707de839f131bff41ceab873d
+scripts/detect_bands.py sha here 5ee9fc3d33b887d0 main 5ee9fc3d33b887d0
+scripts/emit_intent.py sha here 6ec384b422541387 main 6ec384b422541387
+--- sample (29 lines?)
+29tests/data/bands/claims-status-not-found-spike.jsonl
+{"ts": "2026-08-31T00:00:00+09:00", "value": 0.094}
+{"ts": "2026-09-01T00:00:00+09:00", "value": 0.102}
+{"ts": "2026-09-02T00:00:00+09:00", "value": 0.31}
+--- detect spike
+rc=0
+{
+  "schema_version": 1,
+  "metric": "ci_test_failure_rate",
+  "detected_at": "2026-09-09T12:24:42+09:00",
+  "tier": "3sigma",
+  "action": "propose",
+  "rule": "rule1_one_point_beyond_3sigma",
+  "rules_fired": [
+    "rule1_one_point_beyond_3sigma"
+  ],
+  "reason": null,
+  "z": 45.32443552263554,
+  "mean": 0.101,
+  "sigma": 0.004611199181854631,
+  "n": 20,
+  "observed": {
+    "ts": "2026-09-02T00:00:00+09:00",
+    "value": 0.31
+  },
+  "evidence": {
+    "window": [
+      {
+        "ts": "2026-08-05T00:00:00+09:00",
+        "value": 0.098
+      },
+      {
+        "ts": "2026-08-06T00:00:00+09:00",
+        "value": 0.104
+      },
+      {
+        "ts": "2026-08-07T00:00:00+09:00",
+        "value": 0.096
+      },
+      {
+        "ts": "2026-08-08T00:00:00+09:00",
+        "value": 0.106
+      },
+      {
+        "ts": "2026-08-09T00:00:00+09:00",
+        "value": 0.1
+      },
+      {
+        "ts": "2026-08-10T00:00:00+09:00",
+        "value": 0.108
+      },
+      {
+        "ts": "2026-08-11T00:00:00+09:00",
+        "value": 0.094
+      },
+      {
+        "ts": "2026-08-12T00:00:00+09:00",
+        "value": 0.102
+      },
+      {
+        "ts": "2026-08-13T00:00:00+09:00",
+        "value": 0.098
+      },
+      {
+        "ts": "2026-08-14T00:00:00+09:00",
+        "value": 0.104
+      },
+      {
+        "ts": "2026-08-15T00:00:00+09:00",
+        "value": 0.096
+      },
+      {
+        "ts": "2026-08-16T00:00:00+09:00",
+        "value": 0.106
+      },
+      {
+        "ts": "2026-08-17T00:00:00+09:00",
+        "value": 0.1
+      },
+      {
+        "ts": "2026-08-18T00:00:00+09:00",
+        "value": 0.108
+      },
+      {
+        "ts": "2026-08-19T00:00:00+09:00",
+        "value": 0.094
+      },
+      {
+        "ts": "2026-08-20T00:00:00+09:00",
+        "value": 0.102
+      },
+      {
+        "ts": "2026-08-21T00:00:00+09:00",
+        "value": 0.098
+      },
+      {
+        "ts": "2026-08-22T00:00:00+09:00",
+        "value": 0.104
+      },
+      {
+        "ts": "2026-08-23T00:00:00+09:00",
+        "value": 0.096
+      },
+      {
+        "ts": "2026-08-24T00:00:00+09:00",
+        "value": 0.106
+      }
+    ],
+    "evaluated": [
+      {
+        "ts": "2026-08-25T00:00:00+09:00",
+        "value": 0.098
+      },
+      {
+        "ts": "2026-08-26T00:00:00+09:00",
+        "value": 0.104
+      },
+      {
+        "ts": "2026-08-27T00:00:00+09:00",
+        "value": 0.096
+      },
+      {
+        "ts": "2026-08-28T00:00:00+09:00",
+        "value": 0.106
+      },
+      {
+        "ts": "2026-08-29T00:00:00+09:00",
+        "value": 0.1
+      },
+      {
+        "ts": "2026-08-30T00:00:00+09:00",
+        "value": 0.108
+      },
+      {
+        "ts": "2026-08-31T00:00:00+09:00",
+        "value": 0.094
+      },
+      {
+        "ts": "2026-09-01T00:00:00+09:00",
+        "value": 0.102
+      },
+      {
+        "ts": "2026-09-02T00:00:00+09:00",
+        "value": 0.31
+      }
+    ],
+    "rules_enabled": [
+      "rule1_one_point_beyond_3sigma",
+      "rule2_nine_points_one_side",
+      "rule3_two_of_three_beyond_2sigma"
+    ],
+    "config": {
+      "window": 30,
+      "min_samples": 20,
+      "min_baseline_rate": 0.02
+    }
+  },
+  "routes": [
+    "pull_request"
+  ]
+}
+--- detect normal control
+{
+  "schema_version": 1,
+  "metric": "ci_test_failure_rate",
+  "detected_at": "2026-09-09T12:24:42+09:00",
+  "tier": "none",
+  "action": null,
+  "rule": null,
+  "rules_fired": [],
+  "reason": null,
+  "z": -0.5538132516973839,
+  "mean": 0.050125,
+  "sigma": 0.0038370335008905674,
+  "n": 24,
+  "observed": {
+    "ts": "2026-09-02T00:00:00+09:00",
+    "value": 0.048
+  },
+  "evidence": {
+    "window": [
+      {
+        "ts": "2026-08-01T00:00:00+09:00",
+        "value": 0.048
+      },
+      {
+        "ts": "2026-08-02T00:00:00+09:00",
+        "value": 0.052
+      },
+      {
+        "ts": "2026-08-03T00:00:00+09:00",
+        "value": 0.046
+      },
+      {
+        "ts": "2026-08-04T00:00:00+09:00",
+        "value": 0.054
+      },
+      {
+        "ts": "2026-08-05T00:00:00+09:00",
+        "value": 0.05
+      },
+      {
+        "ts": "2026-08-06T00:00:00+09:00",
+        "value": 0.056
+      },
+      {
+        "ts": "2026-08-07T00:00:00+09:00",
+        "value": 0.044
+      },
+      {
+        "ts": "2026-08-08T00:00:00+09:00",
+        "value": 0.051
+      },
+      {
+        "ts": "2026-08-09T00:00:00+09:00",
+        "value": 0.048
+      },
+      {
+        "ts": "2026-08-10T00:00:00+09:00",
+        "value": 0.052
+      },
+      {
+        "ts": "2026-08-11T00:00:00+09:00",
+        "value": 0.046
+      },
+      {
+        "ts": "2026-08-12T00:00:00+09:00",
+        "value": 0.054
+      },
+      {
+        "ts": "2026-08-13T00:00:00+09:00",
+        "value": 0.05
+      },
+      {
+        "ts": "2026-08-14T00:00:00+09:00",
+        "value": 0.056
+      },
+      {
+        "ts": "2026-08-15T00:00:00+09:00",
+        "value": 0.044
+      },
+      {
+        "ts": "2026-08-16T00:00:00+09:00",
+        "value": 0.051
+      },
+      {
+        "ts": "2026-08-17T00:00:00+09:00",
+        "value": 0.048
+      },
+      {
+        "ts": "2026-08-18T00:00:00+09:00",
+        "value": 0.052
+      },
+      {
+        "ts": "2026-08-19T00:00:00+09:00",
+        "value": 0.046
+      },
+      {
+        "ts": "2026-08-20T00:00:00+09:00",
+        "value": 0.054
+      },
+      {
+        "ts": "2026-08-21T00:00:00+09:00",
+        "value": 0.05
+      },
+      {
+        "ts": "2026-08-22T00:00:00+09:00",
+        "value": 0.056
+      },
+      {
+        "ts": "2026-08-23T00:00:00+09:00",
+        "value": 0.044
+      },
+      {
+        "ts": "2026-08-24T00:00:00+09:00",
+        "value": 0.051
+      }
+    ],
+    "evaluated": [
+      {
+        "ts": "2026-08-25T00:00:00+09:00",
+        "value": 0.048
+      },
+      {
+        "ts": "2026-08-26T00:00:00+09:00",
+        "value": 0.052
+      },
+      {
+        "ts": "2026-08-27T00:00:00+09:00",
+        "value": 0.046
+      },
+      {
+        "ts": "2026-08-28T00:00:00+09:00",
+        "value": 0.054
+      },
+      {
+        "ts": "2026-08-29T00:00:00+09:00",
+        "value": 0.05
+      },
+      {
+        "ts": "2026-08-30T00:00:00+09:00",
+        "value": 0.056
+      },
+      {
+        "ts": "2026-08-31T00:00:00+09:00",
+        "value": 0.044
+      },
+      {
+        "ts": "2026-09-01T00:00:00+09:00",
+        "value": 0.051
+      },
+      {
+        "ts": "2026-09-02T00:00:00+09:00",
+        "value": 0.048
+      }
+    ],
+    "rules_enabled": [
+      "rule1_one_point_beyond_3sigma",
+      "rule2_nine_points_one_side",
+      "rule3_two_of_three_beyond_2sigma"
+    ],
+    "config": {
+      "window": 30,
+      "min_samples": 20,
+      "min_baseline_rate": 0.02
+    }
+  }
+}
+rc=0
+--- emit_intent → scratch; diff vs a21fe16 intent.md
+{"status": "written", "written": "/tmp/rv56-out/0006-claims-status-stale-not-found/intent.md", "tier": "3sigma"}
+rc=0
+2c2
+< Author: detect_bands (automatic, 2026-09-09T12:16:23+09:00). Status: draft.
+---
+> Author: detect_bands (automatic, 2026-09-09T12:24:42+09:00). Status: draft.
+diff rc=1 (expect only Author timestamp line to differ)
+--- current intent.md (3868020) line count + Author line
+27intent/0006-claims-status-stale-not-found/intent.md
+Author: detect_bands (automatic, 2026-09-09T12:16:23+09:00) · triaged by 서비스 오너(청구 상태 API). Status: draft.
+RC: 0

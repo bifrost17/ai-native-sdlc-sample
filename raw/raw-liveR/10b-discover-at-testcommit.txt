@@ -1,0 +1,28 @@
+.................FF.......................
+======================================================================
+FAIL: test_ac1_trailing_newline_is_invalid_without_upstream_call (test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_is_invalid_without_upstream_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/liveR/wt-test/tests/test_claims_status_format.py", line 44, in test_ac1_trailing_newline_is_invalid_without_upstream_call
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+======================================================================
+FAIL: test_ac1_trailing_newline_with_empty_session_is_invalid (test_claims_status_format.TestTrailingNewlineClaimId.test_ac1_trailing_newline_with_empty_session_is_invalid)
+세션이 비어도 형식 단계에서 끊긴다 — 소유 판정의 not_found 로 덮이지 않는다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/liveR/wt-test/tests/test_claims_status_format.py", line 50, in test_ac1_trailing_newline_with_empty_session_is_invalid
+    self.assertEqual(json.loads(body), INVALID)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}
+- {'error': 'not_found'}
++ {'error': 'invalid_claim_id'}
+
+----------------------------------------------------------------------
+Ran 42 tests in 0.539s
+
+FAILED (failures=2)

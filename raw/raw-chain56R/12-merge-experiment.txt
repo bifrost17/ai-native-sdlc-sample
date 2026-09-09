@@ -1,0 +1,57 @@
+CMD: bash raw-chain56R/12-merge-experiment.sh (script text above in same dir)
+AT_UTC: 2026-09-09T03:25:40Z
+Deleted branch review/merge-0005 (was c03704d).
+Deleted branch review/merge-0006 (was c03704d).
+##### order: 0005-intent 0005-build 0006-intent 0006-build  wt=chain56R-wt-merge-0005 start=c03704d branch=review/merge-0005
+merge 0005-intent rc=0: Fast-forward 
+merge 0005-build rc=0: Fast-forward 
+merge 0006-intent rc=0: Merge made by the 'ort' strategy. 
+merge 0006-build rc=0: Merge made by the 'ort' strategy. 
+--- combined tree: routes.py owner line / records.py guard
+30:    owner = record.get("subscriber_id") if record is not None else None
+31:    if not owner or owner != session.get("subscriber_id"):
+52:    if record is not None:
+--- make test
+make test rc=0
+Ran 36 tests in 0.576s
+OK
+test_hooks: 28 passed, 0 failed
+8 passed, 0 failed
+PASS  managed-settings 키·훅 계약
+--- both new suites + 0002 suite verbose tail
+rc=0
+ok lines: 17
+Ran 17 tests in 0.001s
+
+OK
+--- cross-interaction: 0005 defect repro + 0006 stale repro on combined tree
+0005 repro: {"error": "not_found"}
+t0 {"error": "not_found"}
+t30 {"claim_id": "C-1003", "status": "접수", "next_step": "서류 검토", "due_date": "2026-09-20"} upstream= 2
+##### order: 0006-intent 0006-build 0005-intent 0005-build  wt=chain56R-wt-merge-0006 start=c03704d branch=review/merge-0006
+merge 0006-intent rc=0: Fast-forward 
+merge 0006-build rc=0: Fast-forward 
+merge 0005-intent rc=0: Merge made by the 'ort' strategy. 
+merge 0005-build rc=0: Merge made by the 'ort' strategy. 
+--- combined tree: routes.py owner line / records.py guard
+30:    owner = record.get("subscriber_id") if record is not None else None
+31:    if not owner or owner != session.get("subscriber_id"):
+52:    if record is not None:
+--- make test
+make test rc=0
+Ran 36 tests in 0.566s
+OK
+test_hooks: 28 passed, 0 failed
+8 passed, 0 failed
+PASS  managed-settings 키·훅 계약
+--- both new suites + 0002 suite verbose tail
+rc=0
+ok lines: 17
+Ran 17 tests in 0.001s
+
+OK
+--- cross-interaction: 0005 defect repro + 0006 stale repro on combined tree
+0005 repro: {"error": "not_found"}
+t0 {"error": "not_found"}
+t30 {"claim_id": "C-1003", "status": "접수", "next_step": "서류 검토", "due_date": "2026-09-20"} upstream= 2
+RC: 0

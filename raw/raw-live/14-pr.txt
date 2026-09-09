@@ -1,0 +1,98 @@
+CMD: gh pr list --author @me --state all; gh pr view 28 --json number,title,state,baseRefName,headRefName,body,createdAt
+AT_UTC: 2026-09-09T03:54:09Z
+RC: 0
+28	chain(#0007): 청구 번호 끝 개행이 형식 검사를 통과해 상류를 부른다 — intent → spec → plan → 실패 시험 → 수정 (closes #24)	chain/0007-claim-id-trailing-newline	OPEN	2026-09-09T03:52:51Z
+27	docs(사슬 되먹임): capture-intent·design-spec/plan·evals 스키마 발견·README 사슬표	fix/chains-feedback	MERGED	2026-09-09T03:40:43Z
+23	build(#0006): spec → plan → 실패 시험 → 미스 미캐시 수정 → 인시던트 eval (base: chain/0006-intent)	chain/0006-build	MERGED	2026-09-09T03:20:42Z
+22	intent(#0006): 접수 직후 청구가 60초 동안 not_found — 밴드 검출 → 자동 초안 → 트리아지 Fix now (PO 승인 = 머지)	chain/0006-intent	MERGED	2026-09-09T03:18:10Z
+21	build(#0005): 빈 가입자 표시 소유 판정 — spec → plan → 실패 시험(red) → 수정	chain/0005-build	MERGED	2026-09-09T03:17:57Z
+20	intent(#0005): 가입자 표시 없는 세션이 가입자 없는 청구 건을 본다 — intent.md (PO 승인 = 머지)	chain/0005-intent	MERGED	2026-09-09T03:15:16Z
+19	docs(#0002 되먹임): 사슬 0002 가 걸린 스킬·CLAUDE.md 문면 3건	fix/skill-feedback-0002	MERGED	2026-09-09T03:09:54Z
+18	build(#0002): spec → plan → 실패 시험 → 구현 (base: chain/0002-intent)	chain/0002-build	MERGED	2026-09-09T02:55:50Z
+17	intent(#0002): 청구 상태 셀프서비스 — intent.md (PO 승인 = 머지)	chain/0002-intent	MERGED	2026-09-09T02:51:32Z
+16	slim(#0004): 레슨이 결정론 층으로 이름 붙인 것만 코드로 — 15,740줄 → 2,767줄	slim/0004	MERGED	2026-09-09T02:33:05Z
+15	사슬 0002(기능) + src/claims_status + 백스톱 경화(우회 5종 차단)	feat/0002-claims-status	CLOSED	2026-09-08T13:01:17Z
+14	docs(정정)(#0001): 설계안 v0.2 오류 3건 — spec 절 수 · 승인 전이 예외(D16) · CODEOWNERS 현실	docs/0001-design-corrections	CLOSED	2026-09-08T12:55:14Z
+13	fix(#0001): CI 체크아웃을 전체 깊이로 — 얕은 클론에서 사슬 검증기 rc=2	fix/0001-ci-fetch-depth	MERGED	2026-09-08T12:54:04Z
+12	feat(#0001): 사슬 0001(메타) + D16 승인 전이 예외 — 「status: 줄만 바꾼 승인」은 브랜치에서도 통과	feat/0001-chain-meta	CLOSED	2026-09-08T12:49:26Z
+11	feat(#0001): org/managed-settings.example.json — 레슨 11 관리형 설정 비활성 예시	feat/0001-managed-settings-example	CLOSED	2026-09-08T12:47:41Z
+10	docs(#0001): W1-H docs/plays/ 플레이별 1장(거버넌스 4항 구조) 8종	docs/0001-plays	CLOSED	2026-09-08T12:33:57Z
+9	feat(#0001): evals 하네스 — 결정론 채점기 · 케이스 3건 · workflow_dispatch 워크플로	feat/0001-evals-harness	CLOSED	2026-09-08T12:29:59Z
+8	feat(#0001): 플레이북 Stage 1·2 지표 계기 — 위상으로 세고, 못 재는 것은 unavailable	feat/0001-metrics	MERGED	2026-09-08T12:23:20Z
+7	feat(#0001): 아티팩트 검증기 · 템플릿 5 · 뮤테이션 픽스처 · 게이트 통합	feat/0001-artifact-validator	MERGED	2026-09-08T12:18:00Z
+6	feat(#0001): 강제층 훅 5 + settings.json 배선 + 우회/배선 시험 79+53	feat/0001-enforcement-hooks	MERGED	2026-09-08T12:13:46Z
+5	feat(#0002): 스킬 2 · verifier · /spec · 엔드포인트 결정론 백스톱	feat/0002-skills-and-backstop	MERGED	2026-09-08T12:12:25Z
+4	feat(#0003): Stage 6 결정론 밴드 검출기 · intent 초안 생성 · 시험 28	feat/0003-band-detection	MERGED	2026-09-08T12:08:47Z
+3	docs(#0001): W1-D 문서 5(PLAYBOOK-MAP·PHASES·METRICS·REVIEW·CLAUDE) + GitHub 템플릿·CODEOWNERS + 문서 게이트	docs/0001-playbook-map	CLOSED	2026-09-08T12:02:50Z
+2	chore: ruleset 실증(머지하지 않음)	chore/ruleset-proof	CLOSED	2026-09-08T11:52:57Z
+1	chore: CI 트리거 실증(머지하지 않음)	chore/ci-trigger-proof	CLOSED	2026-09-08T11:51:15Z
+---
+{"baseRefName":"main","body":"이슈 #24 를 사슬 0007 로 태웠다. 티켓 경로(L2 171) — intent → spec → plan → 실패 시험 → 수정, 각각 제 커밋.
+
+**한 PR 인 이유(「one exception」)**: 엔지니어(부모 세션)가 「이슈 #24 를 해결하고 PR 을 열어라」로 지시해
+intent 가 머지되기 전에 spec·plan 을 이어 썼다. spec.md·plan.md 맨 위에 그 사실을 한 줄로 적어 두었다.
+승인은 여전히 이 PR 의 머지다 — 파일 안의 `Status:` 는 draft 그대로다.
+
+## 결함
+`CLAIM_ID_RE = ^C-[0-9]+$` 의 `$` 가 **문자열 끝 개행 앞에서도** 맞는다. `\"C-1001\n\"` 이 형식 검사를 통과해
+원장 조회까지 가고, 원장에 그 키가 없으니 `not_found` 로 응답한다 — spec 0002 AC4「형식 틀린 번호 →
+`invalid_claim_id` · 상류 호출 0」위반. 새는 것은 응답 본문이 아니라 **상류 호출 예산**이다.
+
+main 553b881 재현:
+```
+$ python3 -c 'import sys;sys.path.insert(0,\"src\");from claims_status import records,routes;print(routes.get_claim_status(\"C-1001\n\",{\"subscriber_id\":\"S-77\"},now=0), records.upstream_calls())'
+{\"error\": \"not_found\"} 1
+```
+고친 뒤: `{\"error\": \"invalid_claim_id\"} 0`
+
+## 수정
+`src/claims_status/routes.py` 의 상수 한 줄: `r\"^C-[0-9]+$\"` → `r\"\AC-[0-9]+\Z\"`.
+호출부(`.match`)·판정 순서(세션 → 형식 → 상류)·오류 문구는 손대지 않았다.
+`re.fullmatch` 도 같은 결과지만 앵커를 골랐다 — 나중에 누가 `fullmatch` 를 `match` 로 되돌려도 결함이
+되살아나지 않는다(spec Design). 입력을 `strip()` 해서 받아 주지 않는다 — 그것은 형식 규칙 변경이고
+포털·보안이 결정할 자리다(spec F1).
+
+## 증거
+**단계 1 — 실패 시험 먼저(L9 625), 시험만 한 커밋** `fcaf6b1`:
+```
+$ python3 -m unittest tests.test_claims_status_format
+...FF.
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}   (x2)
+Ran 6 tests   FAILED (failures=2)
+```
+계획은 failures=3 을 예상했다. AC2(본문에 입력·원장 값 없음)는 현행에서도 통과한다 — 지금 나가는 본문이
+`not_found` 라서다. 어긋난 자리를 같은 커밋에서 plan.md Proof 에 정정했다(plan 스킬 「While implementing」).
+
+**단계 2 — 수정, 시험 무편집** `c5dd79c`. protect-tests 훅을 stdin JSON 으로 한 번 태워 BLOCKED 확인:
+```
+$ printf '{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"…/tests/test_claims_status_format.py\"}}' | INTENT_TASK=fix .claude/hooks/protect-tests.sh
+[protect-tests.sh] BLOCKED: tests/test_claims_status_format.py is a test file and INTENT_TASK=fix. …
+rc=2
+```
+
+**단계 3 — `make check` rc=0**:
+```
+python3 -m unittest discover -s tests   → Ran 42 tests … OK
+bash tests/test_hooks.sh                → test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh                → 8 passed, 0 failed
+bash tests/test_managed_settings.sh     → PASS  managed-settings 키·훅 계약
+rc=0
+```
+(CLAUDE.md 「Verifying your work」의 `make build`/`make lint` 는 이 레포에 없다 — `make check` 를 돌렸다.)
+
+**뮤테이션 1건**: 앵커를 `^…$` 로 되돌리자 새 시험이 `FAILED (failures=2)` 로 돌아왔고, 복원 후 `OK`.
+`make evals` 는 돌리지 않았다 — `ANTHROPIC_API_KEY` 가 없으면 rc=2 SKIP 이고, 「안 돌았다 ≠ 통과했다」.
+
+## 하지 않은 것
+- eval 추가 — 이 건은 티켓 결함이다. eval 은 인시던트에 붙는다(L10 693, 사슬 0006 이 그 경로).
+- 이슈 #25(세션이 dict 가 아님)·#26(미스 조회 상류 예산) — 별 사슬. spec Out of scope 에 적었다.
+- 형식 규칙 확장·입력 정규화·판정 순서 이동.
+
+## 미결(carried forward)
+- 프론트엔드·게이트웨이가 경로 인자에 개행을 붙여 넘기는 경로가 있는가 — 포털 팀.
+- 형식 틀린 입력이 상류까지 간 횟수가 운영에서 얼마나 되는가 — claims-core 팀.
+
+Closes #24
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+","createdAt":"2026-09-09T03:52:51Z","headRefName":"chain/0007-claim-id-trailing-newline","number":28,"state":"OPEN","title":"chain(#0007): 청구 번호 끝 개행이 형식 검사를 통과해 상류를 부른다 — intent → spec → plan → 실패 시험 → 수정 (closes #24)"}

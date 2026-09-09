@@ -1,0 +1,152 @@
+CMD: git log --reverse --stat origin/main..origin/chain/0005-intent ; origin/chain/0005-intent..origin/chain/0005-build ; same for 0006
+AT_UTC: 2026-09-09T03:22:35Z
+##### origin/main..origin/chain/0005-intent
+--- 56e60c8 intent(#0005): 가입자 표시 없는 세션 × 가입자 없는 원장 행 → 청구 건 노출 — 티켓 경로 intent.md
+L2 171 "a ticket is filed". QA 가 routes.py 를 입력 20종으로 재어 spec 0002 R1 위반 1건을 재현했다
+(원장 subscriber_id 부재 + 세션 subscriber_id 부재 = None == None 으로 소유 판정 통과). Problem 은
+관찰(입력·기대·실제·재현 명령)만, 해법 없음. capture-intent 템플릿 구조 그대로.
+Status: draft — 이 PR 의 머지가 곧 PO 승인(L2 231). 번호 0005 는 부모가 배정(0006 과 동시 착수).
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ intent/0005-ownerless-claim-visible/intent.md | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+##### origin/chain/0005-intent..origin/chain/0005-build
+--- 8cce821 spec(#0005): 소유 판정에서 빈 가입자 표시는 불일치 — R1~R3 · 설계 한 자리 · 미결 2건 carried
+design-spec 「one exception」: 엔지니어(부모) 지시로 draft intent(PR #20) 위에 착수, 머리 한 줄로 명시.
+요구는 「원장 subscriber_id 부재/빈 값 → not_found」·「세션 subscriber_id 부재/빈 값 → not_found」·
+「0002 시험 무편집 통과」셋. 빈 세션을 unauthenticated 로 바꾸는 것은 정책이라 carried forward.
+스윕에서 본 다른 두 관찰(리스트 세션 예외 · 끝 개행 번호가 상류를 부름)은 Out of scope 에 적었다.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ intent/0005-ownerless-claim-visible/spec.md | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+--- 336b652 plan(#0005): 빈 가입자 표시 소유 판정 — 바뀌는 파일 2 · 실패 시험 먼저 · 위험 · Proof(시험 이름)
+plan 스킬 네 절. 새 시험 파일 tests/test_claims_status_defect.py(0006 과 파일 충돌 회피), 수정은
+routes.py 소유 판정 한 자리. 시험 함수 이름 4개를 Proof 에 못박아 다음 커밋이 그 이름으로 red 를 낸다.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ intent/0005-ownerless-claim-visible/plan.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+--- 0f20c46 test(#0005): 빈 가입자 표시 소유 판정 실패 시험 — red 실측 FAILED (failures=2)
+새 파일 tests/test_claims_status_defect.py, 시험 4건: 양성 대조 1(정상 세션 자기 건 네 필드) + AC1 1 + AC2 2.
+red 는 단정 실패(2 FAIL, 0 ERROR): 원장 subscriber_id 부재 × 세션 {} 와 원장 None × 세션 None 에서
+청구 건 본문이 나온다. AC2 의 「원장 S-77 × 세션 빈 값」은 현행에서 이미 not_found — 기존 행동의 계약 고정.
+plan.md Proof 의 failures 수를 실측(2)으로 같은 커밋에서 정정. 원문: raw-chain5/03-red-before-fix.txt.
+0002 의 tests/test_claims_status.py 는 손대지 않았다.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ intent/0005-ownerless-claim-visible/plan.md |  2 +-
+ tests/test_claims_status_defect.py          | 69 +++++++++++++++++++++++++++++
+ 2 files changed, 70 insertions(+), 1 deletion(-)
+--- efd6a28 fix(#0005): 소유 판정 — 빈 가입자 표시(None·"")는 불일치, None == None 을 소유로 보지 않는다
+routes.py 한 자리: 원장 subscriber_id 를 꺼내 truthy 이고 세션 값과 같을 때만 소유. INTENT_TASK=fix 아래서
+protect-tests 훅이 tests/ 편집을 BLOCKED(rc=2) 하는 것을 stdin JSON 으로 확인(raw 04). 시험 파일 sha256 전후 불변
+(test_claims_status.py 1e7b01bf… · test_claims_status_defect.py a51bc1cb…). make check rc=0 (33 unittest OK ·
+test_hooks 28/0 · evals 8/0 · managed-settings PASS, raw 05). 뮤테이션: truthy 검사 살해 → failures=2 → sha256 복원(raw 06).
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ src/claims_status/routes.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+##### origin/main..origin/chain/0006-intent
+--- a21fe16 intent(#0006): 밴드 검출 → 자동 초안 — claims-status not_found 비율 3σ 표본 + detect_bands/emit_intent 출력 그대로
+L14 1018 결정론 스크립트가 tier 3sigma(rule1, z=+45.32)를 냈고(양성 대조: normal.jsonl 은 tier none),
+L14 1036 대로 emit_intent.py 가 Stage 1 형식 초안을 썼다. 이 커밋은 기계가 쓴 그대로다 —
+Author 줄 detect_bands (automatic …) · Status draft. 사람 트리아지는 다음 커밋.
+
+- tests/data/bands/claims-status-not-found-spike.jsonl: 29점(기준선 20 + 꼬리 9, 마지막 0.310)
+- tests/data/bands/README.md: 표에 한 줄
+- intent/0006-claims-status-stale-not-found/intent.md: scripts/emit_intent.py 출력 원문
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ .../0006-claims-status-stale-not-found/intent.md   | 13 ++++++++++
+ tests/data/bands/README.md                         |  1 +
+ .../data/bands/claims-status-not-found-spike.jsonl | 29 ++++++++++++++++++++++
+ 3 files changed, 43 insertions(+)
+--- 3868020 intent(#0006): 트리아지 — 자동 초안을 서비스 오너가 정정 · 결정 Fix now
+L14 1038 "The service owner or on-call engineer triages the queue ... Fix now, schedule, or dismiss."
+초안의 anomaly·evidence 를 읽고 src/claims_status 에서 재현되는 원인을 찾았다: records.py fetch_claim 이
+「없음」도 60초 캐시해, 그 사이 원장에 생긴 건이 TTL 이 끝날 때까지 not_found 로 보인다(raw 04 재현 원문).
+지표 이름은 설정의 ci_test_failure_rate 가 아니라 청구 상태 API not_found 비율로 바로잡았다.
+Status 는 draft 그대로 — 승인은 이 PR 의 머지다.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ .../0006-claims-status-stale-not-found/intent.md   | 30 ++++++++++++++++------
+ 1 file changed, 22 insertions(+), 8 deletions(-)
+##### origin/chain/0006-intent..origin/chain/0006-build
+--- 11c9289 spec(#0006): 원장에 없던 건은 캐시하지 않는다 — R1~R3 · AC1~AC3 · Q1/Q2 carried forward · F1 예산 맞바꿈
+design-spec 스킬대로: intent 는 draft(PR A 미머지) — 엔지니어(부모 세션) 지시로 착수, 머리에 한 줄.
+0002 spec 의 「없는 건도 캐시한다」 결정을 되돌린다; 상류 예산 보호는 F1 로 서비스 오너·claims-core 팀 결정.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ intent/0006-claims-status-stale-not-found/spec.md | 26 +++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+--- 01decab plan(#0006): 파일·순서·위험·증명 — 실패 시험 먼저, records.py 한 줄, 인시던트 eval 1건
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ intent/0006-claims-status-stale-not-found/plan.md | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+--- 02b30d2 test(#0006): 인시던트 재현 시험 먼저 — 미스 뒤 원장에 생긴 건이 다음 조회에 보여야 한다 (red 실측 · failures=1)
+python3 -m unittest -v tests.test_claims_status_incident → AC1 FAIL(payload {'error':'not_found'}), AC2·양성 대조 ok.
+records.py 는 아직 손대지 않았다.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ tests/test_claims_status_incident.py | 60 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+--- 3981b17 fix(#0006): 원장에 없던 건은 캐시하지 않는다 — fetch_claim 이 None 을 _CACHE 에 쓰지 않는다 (INTENT_TASK=fix · 시험 무편집)
+red(커밋 02b30d2) → green: unittest tests.test_claims_status_incident tests.test_claims_status → Ran 13, OK.
+protect-tests 훅 수동 호출: tests/ 편집은 BLOCKED(rc=2), records.py 는 allow(rc=0) — raw 06.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ src/claims_status/records.py | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+--- 4bf2a07 evals(#0006): 인시던트 eval 1건 — 04-incident-stale-not-found (L10 693 "Each production incident gets an eval")
+픽스처 = 수정 전 records.py + 수정 전에 커밋한 실패 시험. 판정 5건: 미스 캐시 줄이 최상위 들여쓰기로 남아 있지 않고(regex_absent),
+캐시 쓰기 자체는 남아 있고(contains — 있는 건 TTL 유지), 시험 파일의 AC1 이름·상류 호출 2 단정이 그대로다(contains).
+evals/check.sh 로 손 워크스페이스 대조: 수정 후 5/5 PASS(rc=0) · 수정 전 4/5, [1] FAIL(rc=1) — raw 08.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NzhLB6C1oHJHu7uAVDe54w
+
+
+ evals/cases/04-incident-stale-not-found.json       | 17 ++++++
+ .../04-incident-stale-not-found/records.py         | 52 +++++++++++++++++++
+ .../test_claims_status_incident.py                 | 60 ++++++++++++++++++++++
+ 3 files changed, 129 insertions(+)
+##### merge-bases
+c03704d64da70f8ac4cfa8d61cad71dbf9ea22c7
+c03704d64da70f8ac4cfa8d61cad71dbf9ea22c7
+56e60c891fe42b541c4d25f1b172bb3060072539
+386802088852c4c707de839f131bff41ceab873d
+RC: 0

@@ -1,0 +1,49 @@
+CMD: gh pr view 28 --json ...; git fetch origin chain/0007-claim-id-trailing-newline; git log main..; diff --stat; gh issue view 24
+AT_UTC: 2026-09-09T03:57:51Z
+{"number": 28, "state": "OPEN", "baseRefName": "main", "headRefName": "chain/0007-claim-id-trailing-newline", "headRefOid": "38b7c8a659340bd9722a527768a2761c5c304d00", "mergeable": "MERGEABLE"}
+commits:
+  6f45eea7 intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+  2e5099ce spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+  73f8b4f3 plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+  fcaf6b1b test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+  c5dd79c6 fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험…
+  38b7c8a6 docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28
+files:
+  README.md 2 1
+  intent/0007-claim-id-trailing-newline/intent.md 29 0
+  intent/0007-claim-id-trailing-newline/plan.md 23 0
+  intent/0007-claim-id-trailing-newline/spec.md 30 0
+  src/claims_status/routes.py 3 1
+  tests/test_claims_status_format.py 86 0
+checks:
+  check COMPLETED SUCCESS https://github.com/bifrost17/intent-sdlc-sample/actions/runs/34308827126/job/102331019013
+RC(prview): 0
+From https://github.com/bifrost17/intent-sdlc-sample
+ * [new branch]      chain/0007-claim-id-trailing-newline -> chain/0007-claim-id-trailing-newline
+RC(fetch): 0
+38b7c8a659340bd9722a527768a2761c5c304d00
+--- log main..branch
+38b7c8a 2026-09-09T12:53:00+09:00 docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28
+c5dd79c 2026-09-09T12:52:15+09:00 fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+fcaf6b1 2026-09-09T12:51:47+09:00 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+73f8b4f 2026-09-09T12:51:12+09:00 plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+2e5099c 2026-09-09T12:50:47+09:00 spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+6f45eea 2026-09-09T12:49:56+09:00 intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+--- merge-base
+553b881ede652b9c009e59e1c84b12ee8518d256
+--- diff stat
+ README.md                                       |  3 +-
+ intent/0007-claim-id-trailing-newline/intent.md | 29 +++++++++
+ intent/0007-claim-id-trailing-newline/plan.md   | 23 +++++++
+ intent/0007-claim-id-trailing-newline/spec.md   | 30 +++++++++
+ src/claims_status/routes.py                     |  4 +-
+ tests/test_claims_status_format.py              | 86 +++++++++++++++++++++++++
+ 6 files changed, 173 insertions(+), 2 deletions(-)
+--- name-status
+M	README.md
+A	intent/0007-claim-id-trailing-newline/intent.md
+A	intent/0007-claim-id-trailing-newline/plan.md
+A	intent/0007-claim-id-trailing-newline/spec.md
+M	src/claims_status/routes.py
+A	tests/test_claims_status_format.py
+RC: 0

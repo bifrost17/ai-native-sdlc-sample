@@ -1,0 +1,11 @@
+CMD: INTENT_TASK=fix bash .claude/hooks/protect-tests.sh <<< '{"tool_name":"Edit","tool_input":{"file_path":"/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain6/tests/test_claims_status_incident.py"}}'  ;  같은 입력으로 src/claims_status/records.py
+AT_UTC: 2026-09-09T03:19:01Z
+HOST: nalaui-MacBookPro.local 02b30d2
+NOTE: 이 세션의 CLAUDE_PROJECT_DIR 는 다른 레포라 settings.json 훅이 자동으로 발화하지 않았다 — 수동 호출로 반응만 잰다.
+RC(test file): 2
+[protect-tests.sh] BLOCKED: tests/test_claims_status_incident.py is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR.
+RC(records.py): 0
+
+hooks.log tail:
+2026-09-09T03:19:01Z protect-tests.sh block tests/test_claims_status_incident.py
+2026-09-09T03:19:01Z protect-tests.sh allow src/claims_status/records.py

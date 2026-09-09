@@ -1,0 +1,198 @@
+CMD: gh issue view 24; gh pr view 28 (body); git diff main...branch -- src tests README
+AT_UTC: 2026-09-09T03:58:01Z
+===== ISSUE 24
+{"body":"## 관찰 (사슬 0005 입력 스윕 · 리뷰어가 main c03704d6 에서 재현)\n입력 `\"C-1001\\n\"` 이 `^C-[0-9]+$` 를 통과한다(`$` 가 끝 개행 앞에서 맞음) → `not_found` 로 응답하지만 **upstream_calls = 1**.\nspec 0002 AC4: 「형식 틀린 번호 → invalid_claim_id · 상류 호출 0」.\n\n## 재현\nraw: design/raw-chain5/01-probe-inputs.txt (세션 스크래치) · 리뷰 raw-chain56R/05.\n\n## 진입 경로\n티켓(L2 171). 수정 후보는 `re.fullmatch` 또는 `\\Z` 한 자리 — 사슬로 태울 때 실패 시험 먼저(L9 625).","createdAt":"2026-09-09T03:29:05Z","labels":[],"number":24,"state":"OPEN","title":"claim id 끝 개행이 형식 검사를 통과해 상류를 1회 호출한다 (spec 0002 AC4 위반)"}
+===== PR 28 BODY
+이슈 #24 를 사슬 0007 로 태웠다. 티켓 경로(L2 171) — intent → spec → plan → 실패 시험 → 수정, 각각 제 커밋.
+
+**한 PR 인 이유(「one exception」)**: 엔지니어(부모 세션)가 「이슈 #24 를 해결하고 PR 을 열어라」로 지시해
+intent 가 머지되기 전에 spec·plan 을 이어 썼다. spec.md·plan.md 맨 위에 그 사실을 한 줄로 적어 두었다.
+승인은 여전히 이 PR 의 머지다 — 파일 안의 `Status:` 는 draft 그대로다.
+
+## 결함
+`CLAIM_ID_RE = ^C-[0-9]+$` 의 `$` 가 **문자열 끝 개행 앞에서도** 맞는다. `"C-1001\n"` 이 형식 검사를 통과해
+원장 조회까지 가고, 원장에 그 키가 없으니 `not_found` 로 응답한다 — spec 0002 AC4「형식 틀린 번호 →
+`invalid_claim_id` · 상류 호출 0」위반. 새는 것은 응답 본문이 아니라 **상류 호출 예산**이다.
+
+main 553b881 재현:
+```
+$ python3 -c 'import sys;sys.path.insert(0,"src");from claims_status import records,routes;print(routes.get_claim_status("C-1001\n",{"subscriber_id":"S-77"},now=0), records.upstream_calls())'
+{"error": "not_found"} 1
+```
+고친 뒤: `{"error": "invalid_claim_id"} 0`
+
+## 수정
+`src/claims_status/routes.py` 의 상수 한 줄: `r"^C-[0-9]+$"` → `r"\AC-[0-9]+\Z"`.
+호출부(`.match`)·판정 순서(세션 → 형식 → 상류)·오류 문구는 손대지 않았다.
+`re.fullmatch` 도 같은 결과지만 앵커를 골랐다 — 나중에 누가 `fullmatch` 를 `match` 로 되돌려도 결함이
+되살아나지 않는다(spec Design). 입력을 `strip()` 해서 받아 주지 않는다 — 그것은 형식 규칙 변경이고
+포털·보안이 결정할 자리다(spec F1).
+
+## 증거
+**단계 1 — 실패 시험 먼저(L9 625), 시험만 한 커밋** `fcaf6b1`:
+```
+$ python3 -m unittest tests.test_claims_status_format
+...FF.
+AssertionError: {'error': 'not_found'} != {'error': 'invalid_claim_id'}   (x2)
+Ran 6 tests   FAILED (failures=2)
+```
+계획은 failures=3 을 예상했다. AC2(본문에 입력·원장 값 없음)는 현행에서도 통과한다 — 지금 나가는 본문이
+`not_found` 라서다. 어긋난 자리를 같은 커밋에서 plan.md Proof 에 정정했다(plan 스킬 「While implementing」).
+
+**단계 2 — 수정, 시험 무편집** `c5dd79c`. protect-tests 훅을 stdin JSON 으로 한 번 태워 BLOCKED 확인:
+```
+$ printf '{"tool_name":"Edit","tool_input":{"file_path":"…/tests/test_claims_status_format.py"}}' | INTENT_TASK=fix .claude/hooks/protect-tests.sh
+[protect-tests.sh] BLOCKED: tests/test_claims_status_format.py is a test file and INTENT_TASK=fix. …
+rc=2
+```
+
+**단계 3 — `make check` rc=0**:
+```
+python3 -m unittest discover -s tests   → Ran 42 tests … OK
+bash tests/test_hooks.sh                → test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh                → 8 passed, 0 failed
+bash tests/test_managed_settings.sh     → PASS  managed-settings 키·훅 계약
+rc=0
+```
+(CLAUDE.md 「Verifying your work」의 `make build`/`make lint` 는 이 레포에 없다 — `make check` 를 돌렸다.)
+
+**뮤테이션 1건**: 앵커를 `^…$` 로 되돌리자 새 시험이 `FAILED (failures=2)` 로 돌아왔고, 복원 후 `OK`.
+`make evals` 는 돌리지 않았다 — `ANTHROPIC_API_KEY` 가 없으면 rc=2 SKIP 이고, 「안 돌았다 ≠ 통과했다」.
+
+## 하지 않은 것
+- eval 추가 — 이 건은 티켓 결함이다. eval 은 인시던트에 붙는다(L10 693, 사슬 0006 이 그 경로).
+- 이슈 #25(세션이 dict 가 아님)·#26(미스 조회 상류 예산) — 별 사슬. spec Out of scope 에 적었다.
+- 형식 규칙 확장·입력 정규화·판정 순서 이동.
+
+## 미결(carried forward)
+- 프론트엔드·게이트웨이가 경로 인자에 개행을 붙여 넘기는 경로가 있는가 — 포털 팀.
+- 형식 틀린 입력이 상류까지 간 횟수가 운영에서 얼마나 되는가 — claims-core 팀.
+
+Closes #24
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+===== DIFF src/tests/README
+diff --git a/README.md b/README.md
+index 512b240..1c26e8a 100644
+--- a/README.md
++++ b/README.md
+@@ -36,8 +36,9 @@ Unofficial; not an Anthropic project.
+ | 0004 lesson-only | slim | this repo, self-recorded | #16 |
+ | 0005 ownerless-claim-visible | defect · ticket | GitHub issue | #20, #21 |
+ | 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
++| 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |
+ 
+-The ticket path is a GitHub issue — #24, #25, #26.
++The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.
+ 
+ ## Source of truth
+ This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
+diff --git a/src/claims_status/routes.py b/src/claims_status/routes.py
+index 83e9edb..7b7a563 100644
+--- a/src/claims_status/routes.py
++++ b/src/claims_status/routes.py
+@@ -7,7 +7,9 @@ import re
+ from .records import fetch_claim
+ from .response import build_response, error
+ 
+-CLAIM_ID_RE = re.compile(r"^C-[0-9]+$")
++# `$` 는 문자열 끝 개행 앞에서도 맞는다 — "C-1001\n" 이 형식을 통과해 상류를 부르던 자리(intent 0007).
++# 문자열 끝에서만 맞는 앵커를 쓴다; 이 상수를 손볼 때 `$` 로 되돌리지 않는다.
++CLAIM_ID_RE = re.compile(r"\AC-[0-9]+\Z")
+ ROUTES = {}
+ 
+ 
+diff --git a/tests/test_claims_status_format.py b/tests/test_claims_status_format.py
+new file mode 100644
+index 0000000..5a57c4b
+--- /dev/null
++++ b/tests/test_claims_status_format.py
+@@ -0,0 +1,86 @@
++"""tests/test_claims_status_format.py — intent/0007-claim-id-trailing-newline/spec.md 의 AC1~AC4.
++
++L9 625: "write the failing test first ... Commit that test. Only then ask Claude to make it pass without
++editing the test." 티켓 경로(이슈 #24)의 결함 시험 — 0002·0005·0006 의 시험 파일은 손대지 않는다.
++결함: `^C-[0-9]+$` 의 `$` 가 문자열 끝 개행 앞에서도 맞아 "C-1001\n" 이 형식 검사를 통과하고 상류를 1회 부른다.
++"""
++import json
++import os
++import sys
++import unittest
++
++ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++SRC = os.path.join(ROOT, "src")
++if SRC not in sys.path:
++    sys.path.insert(0, SRC)
++
++from claims_status import records, routes  # noqa: E402
++
++ROUTE = "/claims/<claim_id>/status"
++CLAIM = "C-1001"  # 표본 원장에서 subscriber S-77 의 건
++UNKNOWN_CLAIM = "C-9999"  # 형식은 맞고 원장에 없다
++OWNER_SESSION = {"subscriber_id": "S-77"}
++INVALID = {"error": "invalid_claim_id"}
++NOT_FOUND = {"error": "not_found"}
++EXPECTED_KEYS = frozenset(["claim_id", "status", "next_step", "due_date"])  # 구현에서 가져오지 않는다.
++# 이 건의 원장 값 — 오류 본문에 실리면 안 된다(구현에서 임포트하지 않고 손으로 옮겼다).
++LEDGER_VALUES = ("심사중", "손해사정 결과 접수", "2026-09-15")
++
++
++class Base(unittest.TestCase):
++    def setUp(self):
++        records.reset_for_test()
++
++    def tearDown(self):
++        records.reset_for_test()
++
++    def body(self, claim_id, session=OWNER_SESSION):
++        return routes.ROUTES[ROUTE](claim_id, session, now=0.0)
++
++
++class TestTrailingNewlineClaimId(Base):
++    def test_ac1_trailing_newline_is_invalid_without_upstream_call(self):
++        body = self.body(CLAIM + "\n")
++        self.assertEqual(json.loads(body), INVALID)
++        self.assertEqual(records.upstream_calls(), 0, "형식이 틀린 번호가 상류까지 갔다")
++
++    def test_ac1_trailing_newline_with_empty_session_is_invalid(self):
++        """세션이 비어도 형식 단계에서 끊긴다 — 소유 판정의 not_found 로 덮이지 않는다."""
++        body = self.body(CLAIM + "\n", session={})
++        self.assertEqual(json.loads(body), INVALID)
++        self.assertEqual(records.upstream_calls(), 0)
++
++    def test_ac2_error_body_does_not_echo_input_or_ledger_values(self):
++        bad = CLAIM + "\n"
++        body = self.body(bad)
++        self.assertNotIn(bad, body)
++        self.assertNotIn("\\n", body)
++        self.assertNotIn(CLAIM, body)
++        for value in LEDGER_VALUES:
++            self.assertNotIn(value, body, "원장 값이 본문에 실렸다: %s" % value)
++
++
++class TestNeighbouringMalformedIds(Base):
++    def test_ac3_neighbouring_malformed_ids_stay_invalid_without_upstream_call(self):
++        """이웃 입력은 현행에서도 걸린다 — 앵커를 바꾼 뒤에도 그대로여야 한다(계약 고정)."""
++        for bad in ("\n" + CLAIM, CLAIM + "\nX", CLAIM + "\r", CLAIM + "\n\n", "", "C-", "c-1001"):
++            with self.subTest(claim_id=bad):
++                records.reset_for_test()
++                self.assertEqual(json.loads(self.body(bad)), INVALID)
++                self.assertEqual(records.upstream_calls(), 0)
++
++
++class TestFormatPositiveControl(Base):
++    def test_ac4_well_formed_id_still_returns_four_fields(self):
++        """양성 대조 — 정상 번호는 그대로다(위 시험이 「아무것도 통과 못 한다」가 되지 않게)."""
++        payload = json.loads(self.body(CLAIM))
++        self.assertEqual(set(payload), set(EXPECTED_KEYS))
++        self.assertEqual(records.upstream_calls(), 1)
++
++    def test_ac4_unknown_well_formed_id_is_not_found_after_one_upstream_call(self):
++        self.assertEqual(json.loads(self.body(UNKNOWN_CLAIM)), NOT_FOUND)
++        self.assertEqual(records.upstream_calls(), 1)
++
++
++if __name__ == "__main__":
++    unittest.main()
+RC: 0

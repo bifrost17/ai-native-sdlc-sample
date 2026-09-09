@@ -1,0 +1,48 @@
+CMD: python3 -m unittest -v tests.test_claims_status_defect (red, before fix)
+AT_UTC: 2026-09-09T03:16:38Z
+HOST: nalaui-MacBookPro.local HEAD=336b652ab3e52193e6e938b264b7a81488dd9b12 routes.py sha256=d9be501eaae0c008
+test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session) ... FAIL
+test_positive_control_owned_row_still_returns_four_fields (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_positive_control_owned_row_still_returns_four_fields)
+양성 대조 — 정상 세션의 자기 건은 네 필드가 돌아온다(아래 시험이 「안 쟀다」가 되지 않게). ... ok
+test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match) ... FAIL
+test_ac2_session_without_subscriber_is_not_found_for_owned_row (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_session_without_subscriber_is_not_found_for_owned_row) ... ok
+
+======================================================================
+FAIL: test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 55, in test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session
+    self.assert_not_found(self.body({}))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 42, in assert_not_found
+    self.assertEqual(json.loads(body), NOT_FOUND)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1001', 'status': '심사중', 'ne[44 chars]-15'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1001',
+-  'due_date': '2026-09-15',
+-  'next_step': '손해사정 결과 접수',
+-  'status': '심사중'}
+
+======================================================================
+FAIL: test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 65, in test_ac2_none_on_both_sides_is_not_a_match
+    self.assert_not_found(self.body({"subscriber_id": None}))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 42, in assert_not_found
+    self.assertEqual(json.loads(body), NOT_FOUND)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1001', 'status': '심사중', 'ne[44 chars]-15'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1001',
+-  'due_date': '2026-09-15',
+-  'next_step': '손해사정 결과 접수',
+-  'status': '심사중'}
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=2)
+RC: 1

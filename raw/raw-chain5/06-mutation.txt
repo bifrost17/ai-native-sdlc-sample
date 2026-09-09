@@ -1,0 +1,51 @@
+CMD: mutation — 'if not owner or owner !=' → 'if owner !=' (truthy 검사 침묵 살해) → unittest → sha256 복원
+AT_UTC: 2026-09-09T03:17:26Z
+HOST: nalaui-MacBookPro.local HEAD=0f20c46e1966eb73413e9619b7c64a7a34bd9c1b
+fixed sha256: 01e8b729e233a04a897a19120f8f2d46c17180301db07321c932484a0feef8ec
+mutant sha256: 4b964e130e4eab2b34620b50521b811563e245e58a38af725761dbeb05746522
+-    if record is None or record.get("subscriber_id") != session.get("subscriber_id"):
++    # 빈 가입자 표시(None·"")는 어느 쪽이든 불일치다 — None == None 이 소유가 되면 안 된다(intent 0005).
++    owner = record.get("subscriber_id") if record is not None else None
++    if owner != session.get("subscriber_id"):  # MUTANT
+F.F.
+======================================================================
+FAIL: test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 55, in test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session
+    self.assert_not_found(self.body({}))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 42, in assert_not_found
+    self.assertEqual(json.loads(body), NOT_FOUND)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1001', 'status': '심사중', 'ne[44 chars]-15'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1001',
+-  'due_date': '2026-09-15',
+-  'next_step': '손해사정 결과 접수',
+-  'status': '심사중'}
+
+======================================================================
+FAIL: test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 65, in test_ac2_none_on_both_sides_is_not_a_match
+    self.assert_not_found(self.body({"subscriber_id": None}))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain5/tests/test_claims_status_defect.py", line 42, in assert_not_found
+    self.assertEqual(json.loads(body), NOT_FOUND)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1001', 'status': '심사중', 'ne[44 chars]-15'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1001',
+-  'due_date': '2026-09-15',
+-  'next_step': '손해사정 결과 접수',
+-  'status': '심사중'}
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=2)
+RC: 1
+restored sha256: 01e8b729e233a04a897a19120f8f2d46c17180301db07321c932484a0feef8ec
+RESTORE: OK

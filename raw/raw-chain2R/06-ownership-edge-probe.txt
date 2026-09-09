@@ -1,0 +1,8 @@
+CMD: python3 -c: ownership check with session lacking subscriber_id and record lacking subscriber_id (None == None)
+AT_UTC: 2026-09-09T02:59:31Z
+HOST: nalaui-MacBookPro.local
+session={} record-without-subscriber_id -> {"claim_id": "C-1003", "status": "심사중", "next_step": "x", "due_date": "2026-09-20"}
+session={} own C-1001 (record has subscriber_id) -> {"error": "not_found"}
+session={"subscriber_id":None} C-1003 -> {"claim_id": "C-1003", "status": "심사중", "next_step": "x", "due_date": "2026-09-20"}
+cache entries after 1000 unknown ids: 1002
+RC: 0

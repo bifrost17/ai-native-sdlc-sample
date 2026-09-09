@@ -1,0 +1,61 @@
+CMD: git log --reverse origin/main..pr18 ; git show --stat per commit ; git diff --name-status origin/main pr18 ; wc -l src tests
+AT_UTC: 2026-09-09T02:58:53Z
+HOST: nalaui-MacBookPro.local
+d9d55ff 2026-09-09 11:51:15 +0900 bifrost17 intent(#0002): 청구 상태 셀프서비스 — 원저자(클레임 운영팀)의 말로 intent.md
+e257572 2026-09-09 11:52:36 +0900 bifrost17 spec(#0002): 청구 상태 조회 API — 요구 R1~R5 · 설계 · secure-api-review 항목별 점검 · 미결 3건 answered/carried
+1a7e4d1 2026-09-09 11:53:07 +0900 bifrost17 plan(#0002): 청구 상태 조회 API — 바뀌는 파일 5 · 실패 시험 먼저 · 위험 · Proof(시험 이름)
+23b2a56 2026-09-09 11:54:32 +0900 bifrost17 test(#0002): AC1~AC5 실패 시험 + 스텁 패키지 — red 실측 FAILED (failures=7)
+995bee6 2026-09-09 11:55:47 +0900 bifrost17 feat(#0002): 청구 상태 조회 API 구현 — records(TTL 캐시)·response(허용 목록 통로)·routes(세션·형식·소유 판정)
+--- d9d55ff
+ intent/0002-claims-status/intent.md | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+--- e257572
+ intent/0002-claims-status/spec.md | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+--- 1a7e4d1
+ intent/0002-claims-status/plan.md | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+--- 23b2a56
+ src/claims_status/__init__.py |   1 +
+ src/claims_status/records.py  |  32 +++++++++++
+ src/claims_status/response.py |   5 ++
+ src/claims_status/routes.py   |  15 +++++
+ tests/test_claims_status.py   | 127 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 180 insertions(+)
+--- 995bee6
+ src/claims_status/records.py  | 24 ++++++++++++++++++++++--
+ src/claims_status/response.py | 17 +++++++++++++++--
+ src/claims_status/routes.py   | 20 ++++++++++++++++++--
+ 3 files changed, 55 insertions(+), 6 deletions(-)
+--- diff main..pr18
+A	intent/0002-claims-status/intent.md
+A	intent/0002-claims-status/plan.md
+A	intent/0002-claims-status/spec.md
+A	src/claims_status/__init__.py
+A	src/claims_status/records.py
+A	src/claims_status/response.py
+A	src/claims_status/routes.py
+A	tests/test_claims_status.py
+--- diff pr17..pr18
+A	intent/0002-claims-status/plan.md
+A	intent/0002-claims-status/spec.md
+A	src/claims_status/__init__.py
+A	src/claims_status/records.py
+A	src/claims_status/response.py
+A	src/claims_status/routes.py
+A	tests/test_claims_status.py
+--- wc
+       1 src/claims_status/__init__.py
+      52 src/claims_status/records.py
+      18 src/claims_status/response.py
+      31 src/claims_status/routes.py
+     127 tests/test_claims_status.py
+      27 intent/0002-claims-status/intent.md
+      29 intent/0002-claims-status/plan.md
+      36 intent/0002-claims-status/spec.md
+     321 total
+--- pr17 == chain/0002-intent: d9d55ff90ed1d6407c9304fdc5a3e00e66faf07c d9d55ff90ed1d6407c9304fdc5a3e00e66faf07c
+--- pr18 == chain/0002-build: 995bee62475733ef290eb95874d6af6b4cd6dd8e 995bee62475733ef290eb95874d6af6b4cd6dd8e
+--- merge-base pr18 pr17: d9d55ff90ed1d6407c9304fdc5a3e00e66faf07c
+--- origin/main: 72ca0d96c57494988d27149e0dfb3cb2c1420678
+RC: 0

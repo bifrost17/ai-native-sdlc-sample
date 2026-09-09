@@ -1,0 +1,17 @@
+CMD: git diff --stat main; echo ---; git diff --name-status main
+AT_UTC: 2026-09-09T03:54:02Z
+RC: 0
+ README.md                                       |  3 +-
+ intent/0007-claim-id-trailing-newline/intent.md | 29 +++++++++
+ intent/0007-claim-id-trailing-newline/plan.md   | 23 +++++++
+ intent/0007-claim-id-trailing-newline/spec.md   | 30 +++++++++
+ src/claims_status/routes.py                     |  4 +-
+ tests/test_claims_status_format.py              | 86 +++++++++++++++++++++++++
+ 6 files changed, 173 insertions(+), 2 deletions(-)
+---
+M	README.md
+A	intent/0007-claim-id-trailing-newline/intent.md
+A	intent/0007-claim-id-trailing-newline/plan.md
+A	intent/0007-claim-id-trailing-newline/spec.md
+M	src/claims_status/routes.py
+A	tests/test_claims_status_format.py

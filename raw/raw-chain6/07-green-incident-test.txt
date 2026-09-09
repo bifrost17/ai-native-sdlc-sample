@@ -1,0 +1,23 @@
+CMD: INTENT_TASK=fix PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v tests.test_claims_status_incident tests.test_claims_status
+AT_UTC: 2026-09-09T03:19:13Z
+HOST: nalaui-MacBookPro.local 02b30d2 (records.py 수정 · 미커밋)
+RC: 0
+----
+test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup) ... ok
+test_ac2_existing_claim_is_still_served_from_cache_within_ttl (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac2_existing_claim_is_still_served_from_cache_within_ttl) ... ok
+test_positive_control_new_claim_is_absent_before_filing (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_positive_control_new_claim_is_absent_before_filing) ... ok
+test_ac1_own_claim_returns_exactly_the_four_fields (tests.test_claims_status.TestAC1OwnClaim.test_ac1_own_claim_returns_exactly_the_four_fields) ... ok
+test_ac2_no_session_returns_unauthenticated_without_upstream_call (tests.test_claims_status.TestAC2NoSession.test_ac2_no_session_returns_unauthenticated_without_upstream_call) ... ok
+test_ac3_new_upstream_field_does_not_widen_the_response (tests.test_claims_status.TestAC3Allowlist.test_ac3_new_upstream_field_does_not_widen_the_response) ... ok
+test_ac3_pii_values_never_appear_in_the_body (tests.test_claims_status.TestAC3Allowlist.test_ac3_pii_values_never_appear_in_the_body) ... ok
+test_ac4_foreign_and_unknown_claim_share_one_body (tests.test_claims_status.TestAC4NotFound.test_ac4_foreign_and_unknown_claim_share_one_body) ... ok
+test_ac4_malformed_claim_id_is_rejected_without_echo (tests.test_claims_status.TestAC4NotFound.test_ac4_malformed_claim_id_is_rejected_without_echo) ... ok
+test_ac5_lookup_after_ttl_calls_upstream_again (tests.test_claims_status.TestAC5TtlCache.test_ac5_lookup_after_ttl_calls_upstream_again) ... ok
+test_ac5_second_lookup_within_ttl_does_not_call_upstream (tests.test_claims_status.TestAC5TtlCache.test_ac5_second_lookup_within_ttl_does_not_call_upstream) ... ok
+test_handler_is_registered_under_the_route (tests.test_claims_status.TestSurfaceIsReachable.test_handler_is_registered_under_the_route) ... ok
+test_upstream_record_carries_the_pii_fields (tests.test_claims_status.TestSurfaceIsReachable.test_upstream_record_carries_the_pii_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+OK

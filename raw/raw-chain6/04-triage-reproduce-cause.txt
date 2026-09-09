@@ -1,0 +1,11 @@
+CMD: PYTHONDONTWRITEBYTECODE=1 python3 ../raw-chain6/04-repro.py  (원장에 건이 생긴 뒤에도 TTL 60초 동안 not_found 가 재현되는가)
+AT_UTC: 2026-09-09T03:16:51Z
+HOST: nalaui-MacBookPro.local a21fe16
+RC: 0
+----
+t=0   C-1003 은 아직 원장에 없다 -> {"error": "not_found"} upstream_calls= 1
+      원장에 C-1003 이 생겼다
+t=30  같은 고객이 다시 조회 -> {"error": "not_found"} upstream_calls= 1
+t=59  -> {"error": "not_found"} upstream_calls= 1
+t=61  TTL 이 지나야 -> {"claim_id": "C-1003", "status": "접수", "next_step": "서류 검토", "due_date": "2026-09-20"} upstream_calls= 2
+자리: src/claims_status/records.py fetch_claim — record 가 None 이어도 _CACHE[claim_id]=(now+60, None)

@@ -1,0 +1,9 @@
+CMD: on origin/main c03704d6: 0006 cause repro — miss at t=0, register C-1003, lookup t=30/t=59/t=61
+AT_UTC: 2026-09-09T03:23:44Z
+HEAD=c03704d64da70f8ac4cfa8d61cad71dbf9ea22c7
+t=0   {"error": "not_found"} upstream= 1
+ledger now has C-1003: True
+t=30  {"error": "not_found"} upstream= 1
+t=59  {"error": "not_found"} upstream= 1
+t=61  {"claim_id": "C-1003", "status": "접수", "next_step": "서류 검토", "due_date": "2026-09-20"} upstream= 2
+RC: 0

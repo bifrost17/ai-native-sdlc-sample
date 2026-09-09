@@ -1,0 +1,191 @@
+check	Set up job	﻿2026-09-09T03:53:09.8176724Z Current runner version: '2.337.0'
+check	Set up job	2026-09-09T03:53:09.8214715Z ##[group]Runner Image Provisioner
+check	Set up job	2026-09-09T03:53:09.8216043Z Hosted Compute Agent
+check	Set up job	2026-09-09T03:53:09.8217240Z Version: 20260828.587
+check	Set up job	2026-09-09T03:53:09.8218316Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+check	Set up job	2026-09-09T03:53:09.8219639Z Build Date: 2026-08-28T16:44:25Z
+check	Set up job	2026-09-09T03:53:09.8220840Z Worker ID: {4cb747b6-baa7-43d5-b193-a36cc989187f}
+check	Set up job	2026-09-09T03:53:09.8222018Z Azure Region: eastus
+check	Set up job	2026-09-09T03:53:09.8223351Z ##[endgroup]
+check	Set up job	2026-09-09T03:53:09.8225659Z ##[group]Operating System
+check	Set up job	2026-09-09T03:53:09.8226849Z Ubuntu
+check	Set up job	2026-09-09T03:53:09.8227763Z 24.04.4
+check	Set up job	2026-09-09T03:53:09.8228696Z LTS
+check	Set up job	2026-09-09T03:53:09.8229514Z ##[endgroup]
+check	Set up job	2026-09-09T03:53:09.8230468Z ##[group]Runner Image
+check	Set up job	2026-09-09T03:53:09.8231610Z Image: ubuntu-24.04
+check	Set up job	2026-09-09T03:53:09.8232506Z Version: 20260831.293.1
+check	Set up job	2026-09-09T03:53:09.8234608Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260831.293/images/ubuntu/Ubuntu2404-Readme.md
+check	Set up job	2026-09-09T03:53:09.8237685Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260831.293
+check	Set up job	2026-09-09T03:53:09.8239507Z ##[endgroup]
+check	Set up job	2026-09-09T03:53:09.8241343Z ##[group]GITHUB_TOKEN Permissions
+check	Set up job	2026-09-09T03:53:09.8244789Z Contents: read
+check	Set up job	2026-09-09T03:53:09.8245755Z Metadata: read
+check	Set up job	2026-09-09T03:53:09.8246773Z ##[endgroup]
+check	Set up job	2026-09-09T03:53:09.8249793Z Secret source: Actions
+check	Set up job	2026-09-09T03:53:09.8251699Z Prepare workflow directory
+check	Set up job	2026-09-09T03:53:09.8752221Z Prepare all required actions
+check	Set up job	2026-09-09T03:53:09.8825631Z Getting action download info
+check	Set up job	2026-09-09T03:53:10.0765012Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+check	Set up job	2026-09-09T03:53:10.2927021Z Complete job name: check
+check	Run actions/checkout@v4	﻿2026-09-09T03:53:10.3735915Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3745362Z ##[group]Run actions/checkout@v4
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3746316Z with:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3746806Z   repository: bifrost17/intent-sdlc-sample
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3750886Z   token: ***
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3751324Z   ssh-strict: true
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3751766Z   ssh-user: git
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3752213Z   persist-credentials: true
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3752703Z   clean: true
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3753399Z   sparse-checkout-cone-mode: true
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3753934Z   fetch-depth: 1
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3754375Z   fetch-tags: false
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3754823Z   show-progress: true
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3755268Z   lfs: false
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3755684Z   submodules: false
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3756188Z   set-safe-directory: true
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3756701Z   allow-unsafe-pr-checkout: false
+check	Run actions/checkout@v4	2026-09-09T03:53:10.3757526Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4831338Z Syncing repository: bifrost17/intent-sdlc-sample
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4833873Z ##[group]Getting Git version info
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4834754Z Working directory is '/home/runner/work/intent-sdlc-sample/intent-sdlc-sample'
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4836542Z [command]/usr/bin/git version
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4942109Z git version 2.55.0
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4967462Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4983363Z Temporarily overriding HOME='/home/runner/work/_temp/73d1ddf1-5c71-47b4-83f0-cc6e70bed8c8' before making global git config changes
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4985682Z Adding repository directory to the temporary git global config as a safe directory
+check	Run actions/checkout@v4	2026-09-09T03:53:10.4989989Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/intent-sdlc-sample/intent-sdlc-sample
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5051956Z Deleting the contents of '/home/runner/work/intent-sdlc-sample/intent-sdlc-sample'
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5057555Z ##[group]Initializing the repository
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5064013Z [command]/usr/bin/git init /home/runner/work/intent-sdlc-sample/intent-sdlc-sample
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5204468Z hint: Using 'master' as the name for the initial branch. This default branch name
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5206108Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5207764Z hint: to use in all of your new repositories, which will suppress this warning,
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5208916Z hint: call:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5209335Z hint:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5209884Z hint: 	git config --global init.defaultBranch <name>
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5210528Z hint:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5211133Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5212089Z hint: 'development'. The just-created branch can be renamed via this command:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5213023Z hint:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5213819Z hint: 	git branch -m <name>
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5214690Z hint:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5215379Z hint: Disable this message with "git config set advice.defaultBranchName false"
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5217086Z Initialized empty Git repository in /home/runner/work/intent-sdlc-sample/intent-sdlc-sample/.git/
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5219967Z [command]/usr/bin/git remote add origin https://github.com/bifrost17/intent-sdlc-sample
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5271815Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5273284Z ##[group]Disabling automatic garbage collection
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5276817Z [command]/usr/bin/git config --local gc.auto 0
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5310652Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5311767Z ##[group]Setting up auth
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5319067Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5363280Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5783821Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+check	Run actions/checkout@v4	2026-09-09T03:53:10.5823750Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+check	Run actions/checkout@v4	2026-09-09T03:53:10.6056501Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.6095076Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+check	Run actions/checkout@v4	2026-09-09T03:53:10.6326154Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+check	Run actions/checkout@v4	2026-09-09T03:53:10.6367125Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.6368157Z ##[group]Fetching the repository
+check	Run actions/checkout@v4	2026-09-09T03:53:10.6377910Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +be8b4356a8baa504c822b37e1cbcb8298b265479:refs/remotes/pull/28/merge
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8688926Z From https://github.com/bifrost17/intent-sdlc-sample
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8691382Z  * [new ref]         be8b4356a8baa504c822b37e1cbcb8298b265479 -> pull/28/merge
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8695585Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8697816Z ##[group]Determining the checkout info
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8699694Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8703207Z [command]/usr/bin/git sparse-checkout disable
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8768695Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8834537Z ##[group]Checking out the ref
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8838966Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/28/merge
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8956886Z Note: switching to 'refs/remotes/pull/28/merge'.
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8957917Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8958683Z You are in 'detached HEAD' state. You can look around, make experimental
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8959951Z changes and commit them, and you can discard any commits you make in this
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8961104Z state without impacting any branches by switching back to a branch.
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8961752Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8962175Z If you want to create a new branch to retain commits you create, you may
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8963575Z do so (now or later) by using -c with the switch command. Example:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8964118Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8964364Z   git switch -c <new-branch-name>
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8964741Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8964993Z Or undo this operation with:
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8965385Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8965596Z   git switch -
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8966017Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8966828Z Turn off this advice by setting config variable advice.detachedHead to false
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8968060Z 
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8969390Z HEAD is now at be8b435 Merge 38b7c8a659340bd9722a527768a2761c5c304d00 into 553b881ede652b9c009e59e1c84b12ee8518d256
+check	Run actions/checkout@v4	2026-09-09T03:53:10.8973683Z ##[endgroup]
+check	Run actions/checkout@v4	2026-09-09T03:53:10.9022109Z [command]/usr/bin/git log -1 --format=%H
+check	Run actions/checkout@v4	2026-09-09T03:53:10.9051308Z be8b4356a8baa504c822b37e1cbcb8298b265479
+check	Run make test	﻿2026-09-09T03:53:10.9290407Z ##[group]Run make test
+check	Run make test	2026-09-09T03:53:10.9291091Z [36;1mmake test[0m
+check	Run make test	2026-09-09T03:53:10.9332648Z shell: /usr/bin/bash -e {0}
+check	Run make test	2026-09-09T03:53:10.9333676Z ##[endgroup]
+check	Run make test	2026-09-09T03:53:10.9450248Z python3 -m unittest discover -s tests
+check	Run make test	2026-09-09T03:53:11.7604369Z ..........................................
+check	Run make test	2026-09-09T03:53:11.7605404Z ----------------------------------------------------------------------
+check	Run make test	2026-09-09T03:53:11.7606223Z Ran 42 tests in 0.724s
+check	Run make test	2026-09-09T03:53:11.7606556Z 
+check	Run make test	2026-09-09T03:53:11.7606732Z OK
+check	Run make test	2026-09-09T03:53:11.7684864Z bash tests/test_hooks.sh
+check	Run make test	2026-09-09T03:53:11.7970163Z ok   protect-paths: .github blocked (rc=2)
+check	Run make test	2026-09-09T03:53:11.8154185Z ok   protect-paths: Makefile blocked (rc=2)
+check	Run make test	2026-09-09T03:53:11.8335948Z ok   protect-paths: .claude/hooks blocked (rc=2)
+check	Run make test	2026-09-09T03:53:11.8517981Z ok   protect-paths: settings.json blocked (rc=2)
+check	Run make test	2026-09-09T03:53:11.8684165Z ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+check	Run make test	2026-09-09T03:53:11.8849270Z ok   protect-paths: src file passes (rc=0)
+check	Run make test	2026-09-09T03:53:11.9030082Z ok   protect-tests: fix task, test file blocked (rc=2)
+check	Run make test	2026-09-09T03:53:11.9196477Z ok   protect-tests: fix task, src passes (rc=0)
+check	Run make test	2026-09-09T03:53:11.9325979Z ok   protect-tests: no fix task, test passes (rc=0)
+check	Run make test	2026-09-09T03:53:11.9611942Z ok   no-secrets: AWS key blocked (rc=2)
+check	Run make test	2026-09-09T03:53:11.9908555Z ok   no-secrets: password literal blocked (rc=2)
+check	Run make test	2026-09-09T03:53:12.0183294Z ok   no-secrets: plain edit passes (rc=0)
+check	Run make test	2026-09-09T03:53:12.2046270Z ok   format-lint: broken .py reported (rc=2)
+check	Run make test	2026-09-09T03:53:12.2267000Z ok   format-lint: broken .sh reported (rc=2)
+check	Run make test	2026-09-09T03:53:12.2781415Z ok   format-lint: valid .py passes (rc=0)
+check	Run make test	2026-09-09T03:53:12.2977615Z ok   format-lint: valid .sh passes (rc=0)
+check	Run make test	2026-09-09T03:53:12.3159000Z ok   production-gate: unapproved prod deploy blocked (rc=2)
+check	Run make test	2026-09-09T03:53:12.3322242Z ok   production-gate: approved prod deploy passes (rc=0)
+check	Run make test	2026-09-09T03:53:12.3483509Z ok   production-gate: staging deploy passes (rc=0)
+check	Run make test	2026-09-09T03:53:12.3573428Z ok   fail-closed: broken JSON blocks (rc=2)
+check	Run make test	2026-09-09T03:53:12.3628216Z ok   fail-closed: no jq blocks (rc=2)
+check	Run make test	2026-09-09T03:53:12.3959194Z ok   wiring: settings.json is valid JSON
+check	Run make test	2026-09-09T03:53:12.3975584Z ok   wiring: protect-paths.sh wired and executable
+check	Run make test	2026-09-09T03:53:12.3992333Z ok   wiring: protect-tests.sh wired and executable
+check	Run make test	2026-09-09T03:53:12.4006503Z ok   wiring: no-secrets.sh wired and executable
+check	Run make test	2026-09-09T03:53:12.4020898Z ok   wiring: format-lint.sh wired and executable
+check	Run make test	2026-09-09T03:53:12.4034627Z ok   wiring: production-gate.sh wired and executable
+check	Run make test	2026-09-09T03:53:12.4245160Z ok   decision log: block appended (2026-09-09T03:53:12Z protect-paths.sh block Makefile)
+check	Run make test	2026-09-09T03:53:12.4246393Z test_hooks: 28 passed, 0 failed
+check	Run make test	2026-09-09T03:53:12.4262260Z bash tests/test_evals.sh
+check	Run make test	2026-09-09T03:53:12.4601925Z PASS  1. 케이스 전량 스키마
+check	Run make test	2026-09-09T03:53:12.6111983Z PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+check	Run make test	2026-09-09T03:53:12.7648722Z PASS  3. 위반 픽스처 rc=1+FAIL
+check	Run make test	2026-09-09T03:53:12.7796838Z PASS  4. 없는 파일/워크스페이스 → rc=2
+check	Run make test	2026-09-09T03:53:12.7951724Z PASS  5. 닫힌 집합 밖 kind → rc=2
+check	Run make test	2026-09-09T03:53:12.8010070Z PASS  6. run.sh 키 없음 → rc=2+SKIP
+check	Run make test	2026-09-09T03:53:12.8063390Z PASS  7. jq 없는 PATH → rc=2
+check	Run make test	2026-09-09T03:53:12.8111794Z PASS  8. 셸 구문
+check	Run make test	2026-09-09T03:53:12.8112209Z 
+check	Run make test	2026-09-09T03:53:12.8112367Z 8 passed, 0 failed
+check	Run make test	2026-09-09T03:53:12.8114808Z bash tests/test_managed_settings.sh
+check	Run make test	2026-09-09T03:53:12.8333877Z org/managed-settings.example.json 키 11개 전부 공식 목록 안
+check	Run make test	2026-09-09T03:53:12.8367967Z PASS  managed-settings 키·훅 계약
+check	Post Run actions/checkout@v4	﻿2026-09-09T03:53:12.8577053Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.8579188Z Post job cleanup.
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9451990Z [command]/usr/bin/git version
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9495903Z git version 2.55.0
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9534021Z Temporarily overriding HOME='/home/runner/work/_temp/008052bd-ffe2-4d97-aeb4-99d3c7e17c70' before making global git config changes
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9535450Z Adding repository directory to the temporary git global config as a safe directory
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9539516Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/intent-sdlc-sample/intent-sdlc-sample
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9581419Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9618367Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9864695Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9903574Z http.https://github.com/.extraheader
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9904974Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+check	Post Run actions/checkout@v4	2026-09-09T03:53:12.9943479Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+check	Post Run actions/checkout@v4	2026-09-09T03:53:13.0198450Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+check	Post Run actions/checkout@v4	2026-09-09T03:53:13.0239363Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+check	Complete job	﻿2026-09-09T03:53:13.0639896Z Cleaning up orphan processes
+check	Complete job	2026-09-09T03:53:13.0946206Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

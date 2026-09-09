@@ -1,0 +1,56 @@
+CMD: machine-growth check — git diff --stat origin/main..<build> restricted to .claude Makefile .github scripts templates evals/*.sh tests/*.sh org ops; plus full --stat
+AT_UTC: 2026-09-09T03:23:51Z
+##### 0005-build machine paths:
+(end — empty above means no change)
+##### 0005-build full --stat:
+ intent/0005-ownerless-claim-visible/intent.md | 23 +++++++++
+ intent/0005-ownerless-claim-visible/plan.md   | 20 ++++++++
+ intent/0005-ownerless-claim-visible/spec.md   | 25 ++++++++++
+ src/claims_status/routes.py                   |  4 +-
+ tests/test_claims_status_defect.py            | 69 +++++++++++++++++++++++++++
+ 5 files changed, 140 insertions(+), 1 deletion(-)
+##### 0006-build machine paths:
+(end — empty above means no change)
+##### 0006-build full --stat:
+ evals/cases/04-incident-stale-not-found.json       | 17 ++++++
+ .../04-incident-stale-not-found/records.py         | 52 +++++++++++++++++++
+ .../test_claims_status_incident.py                 | 60 ++++++++++++++++++++++
+ .../0006-claims-status-stale-not-found/intent.md   | 27 ++++++++++
+ intent/0006-claims-status-stale-not-found/plan.md  | 21 ++++++++
+ intent/0006-claims-status-stale-not-found/spec.md  | 26 ++++++++++
+ src/claims_status/records.py                       |  6 ++-
+ tests/data/bands/README.md                         |  1 +
+ .../data/bands/claims-status-not-found-spike.jsonl | 29 +++++++++++
+ tests/test_claims_status_incident.py               | 60 ++++++++++++++++++++++
+ 10 files changed, 297 insertions(+), 2 deletions(-)
+##### fix commits touch tests/?
+(empty = no)
+##### tests/test_evals.sh case-id hardcoding claim
+18:for cid in ("01-intent-placeholder", "02-no-self-accept", "03-spec-carries-questions"):
+19:    p = "evals/cases/%s.json" % cid
+36:for pair in "01-intent-placeholder:01-pass" "02-no-self-accept:02-pass" "03-spec-carries-questions:03-pass"; do
+38:  bash evals/check.sh "evals/cases/$cid.json" "evals/testdata/$dir/result.json" >/dev/null 2>&1 || rc=1
+44:for pair in "01-intent-placeholder:01-fail-placeholder" "02-no-self-accept:02-fail-accepted" "03-spec-carries-questions:03-fail-carry"; do
+46:  o="$(bash evals/check.sh "evals/cases/$cid.json" "evals/testdata/$dir/result.json" 2>&1)"
+54:bash evals/check.sh evals/cases/does-not-exist.json evals/testdata/01-pass/result.json >/dev/null 2>&1; [ "$?" -eq 2 ] || rc=1
+55:bash evals/check.sh evals/cases/01-intent-placeholder.json evals/testdata/no-workspace/result.json >/dev/null 2>&1; [ "$?" -eq 2 ] || rc=1
+69:PATH="$empty" "$(command -v bash)" evals/check.sh evals/cases/01-intent-placeholder.json \
+##### evals/run.sh case glob
+21:for case_file in evals/cases/*.json; do
+##### evals/check.sh kinds
+5:# 닫힌 집합 밖 kind) — "안 돌았다" 를 "통과" 로 접지 않는다(L10 727행 머지 게이트).
+6:# 사용법: bash evals/check.sh <케이스.json> <결과.json> | --kinds
+8:CHECK_KINDS="file_exists contains not_contains regex_present regex_absent"
+10:[ "${1:-}" = "--kinds" ] && { for k in $CHECK_KINDS; do echo "$k"; done; exit 0; }
+11:command -v jq >/dev/null 2>&1 || die2 "jq 가 없다 — 판정 불가"
+36:  kind="$(cq "$i" kind)"
+37:  case " $CHECK_KINDS " in *" $kind "*) ;; *) die2 "checks[$i] kind 가 닫힌 집합 밖: '$kind'" ;; esac
+39:  [ -n "$path" ] || die2 "checks[$i]($kind) 에 path 가 없다"
+42:  t="$WS/$path"; label="$kind $path"
+43:  case "$kind" in
+44:    file_exists)
+46:    contains|not_contains)
+50:      [ "$kind" = contains ] && { [ "$hit" = 0 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "없어야 할/있어야 할 문자열: $v"; } \
+52:    regex_present|regex_absent)
+56:      [ "$kind" = regex_present ] && { [ "$hit" = 0 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "패턴 불일치: /$p/"; } \
+RC: 0

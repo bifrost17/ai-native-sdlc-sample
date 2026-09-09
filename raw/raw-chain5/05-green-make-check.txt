@@ -1,0 +1,67 @@
+CMD: INTENT_TASK=fix; python3 -m unittest -v tests.test_claims_status_defect; PATH=/opt/homebrew/bin:$PATH make check
+AT_UTC: 2026-09-09T03:17:11Z
+HOST: nalaui-MacBookPro.local HEAD=0f20c46e1966eb73413e9619b7c64a7a34bd9c1b (routes.py 미커밋 수정 위)
+--- new suite:
+test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session) ... ok
+test_positive_control_owned_row_still_returns_four_fields (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_positive_control_owned_row_still_returns_four_fields)
+양성 대조 — 정상 세션의 자기 건은 네 필드가 돌아온다(아래 시험이 「안 쟀다」가 되지 않게). ... ok
+test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match) ... ok
+test_ac2_session_without_subscriber_is_not_found_for_owned_row (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_session_without_subscriber_is_not_found_for_owned_row) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+RC: 0
+--- make check:
+python3 -m unittest discover -s tests
+.................................
+----------------------------------------------------------------------
+Ran 33 tests in 0.561s
+
+OK
+bash tests/test_hooks.sh
+ok   protect-paths: .github blocked (rc=2)
+ok   protect-paths: Makefile blocked (rc=2)
+ok   protect-paths: .claude/hooks blocked (rc=2)
+ok   protect-paths: settings.json blocked (rc=2)
+ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+ok   protect-paths: src file passes (rc=0)
+ok   protect-tests: fix task, test file blocked (rc=2)
+ok   protect-tests: fix task, src passes (rc=0)
+ok   protect-tests: no fix task, test passes (rc=0)
+ok   no-secrets: AWS key blocked (rc=2)
+ok   no-secrets: password literal blocked (rc=2)
+ok   no-secrets: plain edit passes (rc=0)
+ok   format-lint: broken .py reported (rc=2)
+ok   format-lint: broken .sh reported (rc=2)
+ok   format-lint: valid .py passes (rc=0)
+ok   format-lint: valid .sh passes (rc=0)
+ok   production-gate: unapproved prod deploy blocked (rc=2)
+ok   production-gate: approved prod deploy passes (rc=0)
+ok   production-gate: staging deploy passes (rc=0)
+ok   fail-closed: broken JSON blocks (rc=2)
+ok   fail-closed: no jq blocks (rc=2)
+ok   wiring: settings.json is valid JSON
+ok   wiring: protect-paths.sh wired and executable
+ok   wiring: protect-tests.sh wired and executable
+ok   wiring: no-secrets.sh wired and executable
+ok   wiring: format-lint.sh wired and executable
+ok   wiring: production-gate.sh wired and executable
+ok   decision log: block appended (2026-09-09T03:17:12Z protect-paths.sh block Makefile)
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+PASS  1. 케이스 3건 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약
+RC: 0

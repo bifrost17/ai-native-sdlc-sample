@@ -1,0 +1,19 @@
+CMD: bash evals/check.sh evals/cases/04-incident-stale-not-found.json <pass|fail 결과.json>  (pass ws = 수정 후 records.py · fail ws = 수정 전 픽스처)
+AT_UTC: 2026-09-09T03:19:37Z
+HOST: nalaui-MacBookPro.local 3981b17
+== pass RC: 0
+CASE 04-incident-stale-not-found (5 판정 · ../raw-chain6/eval04/pass/ws)
+  PASS  [0] file_exists records.py
+  PASS  [1] regex_absent records.py
+  PASS  [2] contains records.py
+  PASS  [3] contains test_claims_status_incident.py
+  PASS  [4] contains test_claims_status_incident.py
+04-incident-stale-not-found: 5 passed, 0 failed
+== fail RC: 1
+CASE 04-incident-stale-not-found (5 판정 · ../raw-chain6/eval04/fail/ws)
+  PASS  [0] file_exists records.py
+  FAIL  [1] regex_absent records.py — 없어야 할 패턴이 맞음: /^    _CACHE\[claim_id\] = \(now \+ CACHE_TTL_SECONDS, record\)$/
+  PASS  [2] contains records.py
+  PASS  [3] contains test_claims_status_incident.py
+  PASS  [4] contains test_claims_status_incident.py
+04-incident-stale-not-found: 4 passed, 1 failed

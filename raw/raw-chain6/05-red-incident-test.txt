@@ -1,0 +1,28 @@
+CMD: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v tests.test_claims_status_incident
+AT_UTC: 2026-09-09T03:18:48Z
+HOST: nalaui-MacBookPro.local 01decab (시험 파일 미커밋 · records.py 수정 전)
+RC: 1
+----
+test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup) ... FAIL
+test_ac2_existing_claim_is_still_served_from_cache_within_ttl (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac2_existing_claim_is_still_served_from_cache_within_ttl) ... ok
+test_positive_control_new_claim_is_absent_before_filing (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_positive_control_new_claim_is_absent_before_filing) ... ok
+
+======================================================================
+FAIL: test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup (tests.test_claims_status_incident.TestIncidentStaleNotFound.test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain6/tests/test_claims_status_incident.py", line 49, in test_ac1_claim_created_after_a_miss_is_visible_on_the_next_lookup
+    self.assertEqual(set(payload), set(EXPECTED_KEYS), "원장에 생긴 건이 아직 not_found 다: %r" % payload)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'error'
+Items in the second set but not the first:
+'claim_id'
+'next_step'
+'status'
+'due_date' : 원장에 생긴 건이 아직 not_found 다: {'error': 'not_found'}
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (failures=1)

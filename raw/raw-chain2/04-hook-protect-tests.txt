@@ -1,0 +1,18 @@
+CMD: printf <PreToolUse Edit JSON> | INTENT_TASK=fix bash .claude/hooks/protect-tests.sh  (tests/test_claims_status.py 와 src/claims_status/routes.py 각각 · INTENT_TASK 미설정 대조)
+AT_UTC: 2026-09-09T02:54:57Z
+HOST: nalaui-MacBookPro.local
+NOTE: 라이브 Claude Code 세션의 PreToolUse 발화는 확인 못 함 — 이 세션의 프로젝트 디렉터리는 openWebAgent 라 이 레포의 settings.json 훅이 이 세션에 물려 있지 않다. 아래는 stdin JSON 직접 투입.
+--- file=tests/test_claims_status.py env=INTENT_TASK=fix
+[protect-tests.sh] BLOCKED: tests/test_claims_status.py is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR.
+rc=2
+--- file=tests/test_claims_status.py env=INTENT_TASK=
+rc=0
+--- file=src/claims_status/routes.py env=INTENT_TASK=fix
+rc=0
+--- file=src/claims_status/routes.py env=INTENT_TASK=
+rc=0
+--- hooks.log tail:
+2026-09-09T02:54:57Z protect-tests.sh block tests/test_claims_status.py
+2026-09-09T02:54:57Z protect-tests.sh allow tests/test_claims_status.py
+2026-09-09T02:54:57Z protect-tests.sh allow src/claims_status/routes.py
+2026-09-09T02:54:57Z protect-tests.sh allow src/claims_status/routes.py

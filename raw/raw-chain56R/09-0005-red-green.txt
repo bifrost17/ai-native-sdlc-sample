@@ -1,0 +1,123 @@
+CMD: 0005 — checkout test commit 0f20c46, run tests.test_claims_status_defect (expect red); routes.py identical to main?; checkout efd6a28, run suite + make test
+AT_UTC: 2026-09-09T03:24:22Z
+HEAD=0f20c46e1966eb73413e9619b7c64a7a34bd9c1b
+routes.py sha @0f20c46: d9be501eaae0c008  @main: d9be501eaae0c008
+--- red run
+test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session) ... FAIL
+test_positive_control_owned_row_still_returns_four_fields (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_positive_control_owned_row_still_returns_four_fields)
+양성 대조 — 정상 세션의 자기 건은 네 필드가 돌아온다(아래 시험이 「안 쟀다」가 되지 않게). ... ok
+test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match) ... FAIL
+test_ac2_session_without_subscriber_is_not_found_for_owned_row (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_session_without_subscriber_is_not_found_for_owned_row) ... ok
+
+======================================================================
+FAIL: test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain56R-wt-0005-build/tests/test_claims_status_defect.py", line 55, in test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session
+    self.assert_not_found(self.body({}))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain56R-wt-0005-build/tests/test_claims_status_defect.py", line 42, in assert_not_found
+    self.assertEqual(json.loads(body), NOT_FOUND)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1001', 'status': '심사중', 'ne[44 chars]-15'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1001',
+-  'due_date': '2026-09-15',
+-  'next_step': '손해사정 결과 접수',
+-  'status': '심사중'}
+
+======================================================================
+FAIL: test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain56R-wt-0005-build/tests/test_claims_status_defect.py", line 65, in test_ac2_none_on_both_sides_is_not_a_match
+    self.assert_not_found(self.body({"subscriber_id": None}))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain56R-wt-0005-build/tests/test_claims_status_defect.py", line 42, in assert_not_found
+    self.assertEqual(json.loads(body), NOT_FOUND)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'claim_id': 'C-1001', 'status': '심사중', 'ne[44 chars]-15'} != {'error': 'not_found'}
++ {'error': 'not_found'}
+- {'claim_id': 'C-1001',
+-  'due_date': '2026-09-15',
+-  'next_step': '손해사정 결과 접수',
+-  'status': '심사중'}
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=2)
+rc=1
+--- head efd6a28
+HEAD=efd6a28abdd8792d405f1a269a9464bd5617ea48
+test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session) ... ok
+test_positive_control_owned_row_still_returns_four_fields (tests.test_claims_status_defect.TestOwnerlessLedgerRow.test_positive_control_owned_row_still_returns_four_fields)
+양성 대조 — 정상 세션의 자기 건은 네 필드가 돌아온다(아래 시험이 「안 쟀다」가 되지 않게). ... ok
+test_ac2_none_on_both_sides_is_not_a_match (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_none_on_both_sides_is_not_a_match) ... ok
+test_ac2_session_without_subscriber_is_not_found_for_owned_row (tests.test_claims_status_defect.TestOwnerlessSession.test_ac2_session_without_subscriber_is_not_found_for_owned_row) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+rc=0
+--- make test
+python3 -m unittest discover -s tests
+.................................
+----------------------------------------------------------------------
+Ran 33 tests in 0.575s
+
+OK
+bash tests/test_hooks.sh
+ok   protect-paths: .github blocked (rc=2)
+ok   protect-paths: Makefile blocked (rc=2)
+ok   protect-paths: .claude/hooks blocked (rc=2)
+ok   protect-paths: settings.json blocked (rc=2)
+ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+ok   protect-paths: src file passes (rc=0)
+ok   protect-tests: fix task, test file blocked (rc=2)
+ok   protect-tests: fix task, src passes (rc=0)
+ok   protect-tests: no fix task, test passes (rc=0)
+ok   no-secrets: AWS key blocked (rc=2)
+ok   no-secrets: password literal blocked (rc=2)
+ok   no-secrets: plain edit passes (rc=0)
+ok   format-lint: broken .py reported (rc=2)
+ok   format-lint: broken .sh reported (rc=2)
+ok   format-lint: valid .py passes (rc=0)
+ok   format-lint: valid .sh passes (rc=0)
+ok   production-gate: unapproved prod deploy blocked (rc=2)
+ok   production-gate: approved prod deploy passes (rc=0)
+ok   production-gate: staging deploy passes (rc=0)
+ok   fail-closed: broken JSON blocks (rc=2)
+ok   fail-closed: no jq blocks (rc=2)
+ok   wiring: settings.json is valid JSON
+ok   wiring: protect-paths.sh wired and executable
+ok   wiring: protect-tests.sh wired and executable
+ok   wiring: no-secrets.sh wired and executable
+ok   wiring: format-lint.sh wired and executable
+ok   wiring: production-gate.sh wired and executable
+ok   decision log: block appended (2026-09-09T03:24:23Z protect-paths.sh block Makefile)
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+PASS  1. 케이스 3건 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약
+make test rc=0
+--- mutation 1 (fix site): kill truthy check, run defect suite, restore by sha256
+31:    if owner != session.get("subscriber_id"):  # MUT
+Ran 4 tests in 0.001s
+
+FAILED (failures=2)
+mut rc=
+RESTORE: OK 01e8b729e233a04a897a19120f8f2d46c17180301db07321c932484a0feef8ec
+RC: 0

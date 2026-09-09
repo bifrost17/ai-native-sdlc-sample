@@ -1,0 +1,92 @@
+CMD: make test on intent branches; protect-tests hook reaction (stdin JSON, INTENT_TASK=fix); implementer raw dirs exist?; intent placeholder residue
+AT_UTC: 2026-09-09T03:25:00Z
+##### make test @ 0005-intent HEAD=56e60c8
+Ran 29 tests in 0.595s
+OK
+test_hooks: 28 passed, 0 failed
+PASS  1. 케이스 3건 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+8 passed, 0 failed
+PASS  managed-settings 키·훅 계약
+rc=
+##### make test @ 0006-intent HEAD=3868020
+Ran 29 tests in 0.564s
+OK
+test_hooks: 28 passed, 0 failed
+PASS  1. 케이스 3건 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+8 passed, 0 failed
+PASS  managed-settings 키·훅 계약
+rc=
+##### hook: protect-tests.sh
+#!/bin/bash
+# .claude/hooks/protect-tests.sh — PreToolUse(Edit|Write|MultiEdit|NotebookEdit)
+# Playbook L9 line 631: "A hook that blocks edits to test files during a fix task does this"
+# Playbook L12 line 809: "stop the agent editing test files during a fix task"
+# "Fix task" = the environment variable INTENT_TASK=fix, set by whoever starts the session. Nothing else.
+# Fail-closed (no jq / bad JSON → exit 2), see _lib.sh.
+. "${BASH_SOURCE[0]%/*}/_lib.sh"
+[ "${INTENT_TASK:-}" = "fix" ] || exit 0
+rel="$(rel_path)"
+case "$rel" in tests/*)
+  block "$rel is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR." ;;
+esac
+exit 0
+--- Edit tests/test_claims_status_defect.py under INTENT_TASK=fix
+[protect-tests.sh] BLOCKED: tests/test_claims_status_defect.py is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR.
+rc=2
+--- Edit src/claims_status/routes.py under INTENT_TASK=fix
+rc=0
+--- Edit tests file WITHOUT INTENT_TASK
+rc=0
+##### implementer raw dirs
+raw-chain5:
+00-clone.txt
+01-probe-inputs.txt
+02-baseline-make-check.txt
+03-red-before-fix.txt
+04-protect-tests-hook.txt
+05-green-make-check.txt
+06-mutation.txt
+
+raw-chain6:
+01-detect-3sigma.txt
+01-detection.json
+02-detect-normal-control.txt
+03-emit-intent-draft.txt
+04-repro.py
+04-triage-reproduce-cause.txt
+05-red-incident-test.txt
+06-hook-protect-tests-reaction.txt
+07-green-incident-test.txt
+08-eval04-check-pass-fail.txt
+09-make-check.txt
+10-mutation-records-fix.txt
+eval04
+records.py.pre-fix
+##### placeholder residue in new artifacts
+grep rc=1 (1 = none)
+##### line counts
+      23 chain56R-wt-0005-build/intent/0005-ownerless-claim-visible/intent.md
+      20 chain56R-wt-0005-build/intent/0005-ownerless-claim-visible/plan.md
+      25 chain56R-wt-0005-build/intent/0005-ownerless-claim-visible/spec.md
+      27 chain56R-wt-0006-build/intent/0006-claims-status-stale-not-found/intent.md
+      21 chain56R-wt-0006-build/intent/0006-claims-status-stale-not-found/plan.md
+      26 chain56R-wt-0006-build/intent/0006-claims-status-stale-not-found/spec.md
+     142 total
+##### skill template == templates/ (test_skill_template)
+
+OK
+RC: 0

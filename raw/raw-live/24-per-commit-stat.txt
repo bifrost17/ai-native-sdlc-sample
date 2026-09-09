@@ -1,0 +1,28 @@
+CMD: per-commit file lists
+AT_UTC: 2026-09-09T03:55:32Z
+RC: 0
+== 6f45eea intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+
+ intent/0007-claim-id-trailing-newline/intent.md | 29 +++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+== 2e5099c spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+
+ intent/0007-claim-id-trailing-newline/spec.md | 30 +++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+== 73f8b4f plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+
+ intent/0007-claim-id-trailing-newline/plan.md | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+== fcaf6b1 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+
+ intent/0007-claim-id-trailing-newline/plan.md |  2 +-
+ tests/test_claims_status_format.py            | 86 +++++++++++++++++++++++++++
+ 2 files changed, 87 insertions(+), 1 deletion(-)
+== c5dd79c fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+
+ src/claims_status/routes.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+== 38b7c8a docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28
+
+ README.md | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)

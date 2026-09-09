@@ -1,0 +1,14 @@
+CMD: repro on main (worktree wt-main @553b881) vs branch HEAD
+AT_UTC: 2026-09-09T03:55:30Z
+Preparing worktree (detached HEAD 553b881)
+HEAD is now at 553b881 Merge pull request #27 from bifrost17/fix/chains-feedback
+--- main:
+{"error": "not_found"} 1
+--- branch HEAD 38b7c8a:
+{"error": "invalid_claim_id"} 0
+--- branch: neighbour + positive control
+'C-1001' {"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"} 1
+'C-9999' {"error": "not_found"} 1
+'C-1001\n' {"error": "invalid_claim_id"} 0
+'C-1001\r' {"error": "invalid_claim_id"} 0
+RC: 0

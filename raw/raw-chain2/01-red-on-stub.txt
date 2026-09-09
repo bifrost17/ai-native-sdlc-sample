@@ -1,0 +1,97 @@
+CMD: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_claims_status -v  (스텁 위 · red 실측 · 2회차: 스텁이 라우트 등록·표본 원장만 갖게 고침)
+AT_UTC: 2026-09-09T02:53:58Z
+HOST: nalaui-MacBookPro.local
+HEAD: 1a7e4d102c759575b01e91bd8e98615a01a0c9d0 + 미커밋 tests/test_claims_status.py src/claims_status/*
+test_ac1_own_claim_returns_exactly_the_four_fields (tests.test_claims_status.TestAC1OwnClaim.test_ac1_own_claim_returns_exactly_the_four_fields) ... FAIL
+test_ac2_no_session_returns_unauthenticated_without_upstream_call (tests.test_claims_status.TestAC2NoSession.test_ac2_no_session_returns_unauthenticated_without_upstream_call) ... FAIL
+test_ac3_new_upstream_field_does_not_widen_the_response (tests.test_claims_status.TestAC3Allowlist.test_ac3_new_upstream_field_does_not_widen_the_response) ... FAIL
+test_ac3_pii_values_never_appear_in_the_body (tests.test_claims_status.TestAC3Allowlist.test_ac3_pii_values_never_appear_in_the_body) ... ok
+test_ac4_foreign_and_unknown_claim_share_one_body (tests.test_claims_status.TestAC4NotFound.test_ac4_foreign_and_unknown_claim_share_one_body) ... FAIL
+test_ac4_malformed_claim_id_is_rejected_without_echo (tests.test_claims_status.TestAC4NotFound.test_ac4_malformed_claim_id_is_rejected_without_echo) ... FAIL
+test_ac5_lookup_after_ttl_calls_upstream_again (tests.test_claims_status.TestAC5TtlCache.test_ac5_lookup_after_ttl_calls_upstream_again) ... FAIL
+test_ac5_second_lookup_within_ttl_does_not_call_upstream (tests.test_claims_status.TestAC5TtlCache.test_ac5_second_lookup_within_ttl_does_not_call_upstream) ... FAIL
+test_handler_is_registered_under_the_route (tests.test_claims_status.TestSurfaceIsReachable.test_handler_is_registered_under_the_route) ... ok
+test_upstream_record_carries_the_pii_fields (tests.test_claims_status.TestSurfaceIsReachable.test_upstream_record_carries_the_pii_fields) ... ok
+
+======================================================================
+FAIL: test_ac1_own_claim_returns_exactly_the_four_fields (tests.test_claims_status.TestAC1OwnClaim.test_ac1_own_claim_returns_exactly_the_four_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 64, in test_ac1_own_claim_returns_exactly_the_four_fields
+    self.assertEqual(set(payload), set(EXPECTED_KEYS))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'status'
+'due_date'
+'claim_id'
+'next_step'
+
+======================================================================
+FAIL: test_ac2_no_session_returns_unauthenticated_without_upstream_call (tests.test_claims_status.TestAC2NoSession.test_ac2_no_session_returns_unauthenticated_without_upstream_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 73, in test_ac2_no_session_returns_unauthenticated_without_upstream_call
+    self.assertEqual(json.loads(body), {"error": "unauthenticated"})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {} != {'error': 'unauthenticated'}
+- {}
++ {'error': 'unauthenticated'}
+
+======================================================================
+FAIL: test_ac3_new_upstream_field_does_not_widen_the_response (tests.test_claims_status.TestAC3Allowlist.test_ac3_new_upstream_field_does_not_widen_the_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 84, in test_ac3_new_upstream_field_does_not_widen_the_response
+    self.assertEqual(set(json.loads(body)), set(EXPECTED_KEYS))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'status'
+'due_date'
+'claim_id'
+'next_step'
+
+======================================================================
+FAIL: test_ac4_foreign_and_unknown_claim_share_one_body (tests.test_claims_status.TestAC4NotFound.test_ac4_foreign_and_unknown_claim_share_one_body)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 99, in test_ac4_foreign_and_unknown_claim_share_one_body
+    self.assertEqual(json.loads(foreign), {"error": "not_found"})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {} != {'error': 'not_found'}
+- {}
++ {'error': 'not_found'}
+
+======================================================================
+FAIL: test_ac4_malformed_claim_id_is_rejected_without_echo (tests.test_claims_status.TestAC4NotFound.test_ac4_malformed_claim_id_is_rejected_without_echo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 107, in test_ac4_malformed_claim_id_is_rejected_without_echo
+    self.assertEqual(json.loads(body), {"error": "invalid_claim_id"})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {} != {'error': 'invalid_claim_id'}
+- {}
++ {'error': 'invalid_claim_id'}
+
+======================================================================
+FAIL: test_ac5_lookup_after_ttl_calls_upstream_again (tests.test_claims_status.TestAC5TtlCache.test_ac5_lookup_after_ttl_calls_upstream_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 123, in test_ac5_lookup_after_ttl_calls_upstream_again
+    self.assertEqual(records.upstream_calls(), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_ac5_second_lookup_within_ttl_does_not_call_upstream (tests.test_claims_status.TestAC5TtlCache.test_ac5_second_lookup_within_ttl_does_not_call_upstream)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2/tests/test_claims_status.py", line 117, in test_ac5_second_lookup_within_ttl_does_not_call_upstream
+    self.assertEqual(records.upstream_calls(), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+FAILED (failures=7)
+RC: 1

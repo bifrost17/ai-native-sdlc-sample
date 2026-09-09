@@ -1,0 +1,65 @@
+CMD: python3 /tmp/probe_chain5.py (script body appended below)
+AT_UTC: 2026-09-09T03:14:02Z
+HOST: nalaui-MacBookPro.local HEAD=c03704d64da70f8ac4cfa8d61cad71dbf9ea22c7
+baseline own                               in='C-1001'               sess={'subscriber_id': 'S-77'}    -> {"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}  upstream_calls=1
+leading space                              in=' C-1001'              sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+trailing space                             in='C-1001 '              sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+lowercase c                                in='c-1001'               sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+trailing newline                           in='C-1001\n'             sess={'subscriber_id': 'S-77'}    -> {"error": "not_found"}  upstream_calls=1
+trailing CRLF                              in='C-1001\r\n'           sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+fullwidth digits                           in='C-１００１'               sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+empty string                               in=''                     sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+None claim_id                              in=None                   sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+bytes claim_id                             in=b'C-1001'              sess={'subscriber_id': 'S-77'}    -> {"error": "invalid_claim_id"}  upstream_calls=0
+empty session {}                           in='C-1001'               sess={}                           -> {"error": "not_found"}  upstream_calls=1
+session subscriber None                    in='C-1001'               sess={'subscriber_id': None}      -> {"error": "not_found"}  upstream_calls=1
+session non-dict list                      in='C-1001'               sess=['S-77']                     -> EXC AttributeError: 'list' object has no attribute 'get'  upstream_calls=1
+ledger row w/o subscriber_id, sess S-77    in='C-1001'               sess={'subscriber_id': 'S-77'}    -> {"error": "not_found"}  upstream_calls=1
+ledger row w/o subscriber_id, sess {}      in='C-1001'               sess={}                           -> {"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}  upstream_calls=1
+ledger row w/o subscriber_id, sess sub=None in='C-1001'               sess={'subscriber_id': None}      -> {"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}  upstream_calls=1
+ledger row w/o next_step                   in='C-1001'               sess={'subscriber_id': 'S-77'}    -> {"claim_id": "C-1001", "status": "심사중", "due_date": "2026-09-15"}  upstream_calls=1
+unknown status value                       in='C-1001'               sess={'subscriber_id': 'S-77'}    -> {"claim_id": "C-1001", "status": "???", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}  upstream_calls=1
+status None                                in='C-1001'               sess={'subscriber_id': 'S-77'}    -> {"claim_id": "C-1001", "status": null, "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}  upstream_calls=1
+ledger subscriber_id None, sess sub None   in='C-1001'               sess={'subscriber_id': None}      -> {"claim_id": "C-1001", "status": "심사중", "next_step": "손해사정 결과 접수", "due_date": "2026-09-15"}  upstream_calls=1
+RC: 0
+--- script:
+import sys, copy
+sys.path.insert(0, "src")
+from claims_status import records, routes
+H = routes.ROUTES["/claims/<claim_id>/status"]
+S = {"subscriber_id": "S-77"}
+def probe(label, claim_id, session, mutate=None):
+    backup = copy.deepcopy(records._UPSTREAM)
+    records.reset_for_test()
+    if mutate: mutate()
+    try:
+        out = H(claim_id, session, now=0.0)
+    except Exception as e:
+        out = "EXC %s: %s" % (type(e).__name__, e)
+    print("%-42s in=%-22r sess=%-28r -> %s  upstream_calls=%d" % (label, claim_id, session, out, records.upstream_calls()))
+    records._UPSTREAM.clear(); records._UPSTREAM.update(backup); records.reset_for_test()
+probe("baseline own", "C-1001", S)
+probe("leading space", " C-1001", S)
+probe("trailing space", "C-1001 ", S)
+probe("lowercase c", "c-1001", S)
+probe("trailing newline", "C-1001\n", S)
+probe("trailing CRLF", "C-1001\r\n", S)
+probe("fullwidth digits", "C-１００１", S)
+probe("empty string", "", S)
+probe("None claim_id", None, S)
+probe("bytes claim_id", b"C-1001", S)
+probe("empty session {}", "C-1001", {})
+probe("session subscriber None", "C-1001", {"subscriber_id": None})
+probe("session non-dict list", "C-1001", ["S-77"])
+def drop_sub(): del records._UPSTREAM["C-1001"]["subscriber_id"]
+probe("ledger row w/o subscriber_id, sess S-77", "C-1001", S, drop_sub)
+probe("ledger row w/o subscriber_id, sess {}", "C-1001", {}, drop_sub)
+probe("ledger row w/o subscriber_id, sess sub=None", "C-1001", {"subscriber_id": None}, drop_sub)
+def drop_next(): del records._UPSTREAM["C-1001"]["next_step"]
+probe("ledger row w/o next_step", "C-1001", S, drop_next)
+def unk_status(): records._UPSTREAM["C-1001"]["status"] = "???"
+probe("unknown status value", "C-1001", S, unk_status)
+def none_status(): records._UPSTREAM["C-1001"]["status"] = None
+probe("status None", "C-1001", S, none_status)
+def rec_none_sub(): records._UPSTREAM["C-1001"]["subscriber_id"] = None
+probe("ledger subscriber_id None, sess sub None", "C-1001", {"subscriber_id": None}, rec_none_sub)

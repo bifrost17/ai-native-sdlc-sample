@@ -1,0 +1,18 @@
+CMD: git branch --show-current; echo ---; git log --oneline --reverse main..HEAD; echo ---; git log --format="%h %ad %s" --date=iso --reverse main..HEAD
+AT_UTC: 2026-09-09T03:54:02Z
+RC: 0
+chain/0007-claim-id-trailing-newline
+---
+6f45eea intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+2e5099c spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+73f8b4f plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+fcaf6b1 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+c5dd79c fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+38b7c8a docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28
+---
+6f45eea 2026-09-09 12:49:56 +0900 intent(#0007): 청구 번호 끝 개행이 형식 검사를 통과 — 티켓(이슈 #24) 경로 intent.md
+2e5099c 2026-09-09 12:50:47 +0900 spec(#0007): 형식 검사는 문자열 끝까지 본다 — R1~R4 · 앵커 한 줄 · 미결 2건 carried
+73f8b4f 2026-09-09 12:51:12 +0900 plan(#0007): 파일·순서·위험·증명 — 실패 시험 먼저, routes.py 앵커 한 줄, 뮤테이션 1건
+fcaf6b1 2026-09-09 12:51:47 +0900 test(#0007): 끝 개행 청구 번호 형식 시험 먼저 — red 실측 FAILED (failures=2)
+c5dd79c 2026-09-09 12:52:15 +0900 fix(#0007): 형식 검사 앵커를 문자열 끝으로 — `^…$` → `\A…\Z` (INTENT_TASK=fix · 시험 무편집)
+38b7c8a 2026-09-09 12:53:00 +0900 docs(readme): 사슬 표에 0007 행 — defect · 티켓(이슈 #24) · PR #28

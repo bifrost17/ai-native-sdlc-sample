@@ -1,0 +1,27 @@
+CMD: wc -l .claude/hooks.log ; awk 훅별·파일별 집계
+AT_UTC: 2026-09-09T05:23:08Z
+RC: 0
+---
+hooks.log 전체 줄 수: 268
+
+=== 훅별 총계 ===
+  76 production-gate.sh
+  48 protect-tests.sh
+  48 protect-paths.sh
+  48 no-secrets.sh
+  48 format-lint.sh
+
+=== 대상(파일 또는 무대상) 별 총계 ===
+  76 allow
+  52 intent/0008-adjuster-claim-status/spec.md
+  24 tests/test_adjuster_status.py
+  24 intent/0008-adjuster-claim-status/intent.md
+  20 intent/0008-adjuster-claim-status/plan.md
+  16 src/claims_status/records.py
+  12 README.md
+  12 /Users/jake/.claude/plans/spec-graceful-walrus.md
+   8 src/claims_status/routes.py
+   8 src/claims_status/audit.py
+   8 src/claims_status/adjuster_routes.py
+   4 src/claims_status/response.py
+   4 CLAUDE.md

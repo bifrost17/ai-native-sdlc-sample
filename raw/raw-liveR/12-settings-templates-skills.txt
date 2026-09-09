@@ -1,0 +1,113 @@
+CMD: cat .claude/settings.json (matchers); section headers templates vs 0007 docs; secure-api-review SKILL.md numbered items; REVIEW.md headers
+AT_UTC: 2026-09-09T04:00:08Z
+=== settings.json
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-paths.sh\"" },
+          { "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-tests.sh\"" },
+          { "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/no-secrets.sh\"" }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/production-gate.sh\"" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/format-lint.sh\"" }
+        ]
+      }
+    ]
+  }
+}
+=== section headers: templates vs 0007
+--- intent: template
+1:# Intent: ‹what cannot be done today — the subject, not the solution›
+3:## Problem
+5:## Proposed outcome
+7:## Affected users and systems
+9:## Constraints
+11:## Open questions
+--- intent: 0007
+1:# Intent: 청구 번호 끝의 개행이 형식 검사를 통과해 상류를 한 번 부른다
+3:## Problem
+17:## Proposed outcome
+20:## Affected users and systems
+23:## Constraints
+27:## Open questions
+--- spec: template
+1:# Spec: ‹what is built› (from intent ‹NNNN-slug›)
+4:## Requirements
+6:## Design
+8:## Constraints
+10:## Open questions from intent
+12:## Flagged concerns
+14:## Out of scope
+16:## Acceptance criteria
+--- spec: 0007
+2:# Spec: 청구 번호 형식 검사는 문자열 끝까지 본다 (from intent 0007-claim-id-trailing-newline)
+5:## Requirements
+10:## Design
+15:## Constraints
+19:## Open questions from intent
+22:## Flagged concerns
+24:## Out of scope
+26:## Acceptance criteria
+--- plan: template
+1:# Plan: ‹what is built› (from intent.md ‹date›)
+3:## Files that change
+5:## Order of work
+9:## Risks
+11:## Proof
+--- plan: 0007
+2:# Plan: 청구 번호 형식 검사를 문자열 끝까지 (from intent.md 2026-09-09)
+4:## Files that change
+8:## Order of work
+13:## Risks
+18:## Proof
+=== secure-api-review
+capture-intent
+design-spec
+plan
+secure-api-review
+---
+name: secure-api-review
+description: Apply the API security standard. Use whenever creating or
+ modifying an external-facing endpoint, reviewing API code, or
+ generating an OpenAPI spec.
+---
+# Secure API review
+When you create or change an API endpoint:
+1. Authentication: every endpoint requires the gateway JWT;
+ no anonymous routes outside /health.
+2. Input validation: validate request bodies against the OpenAPI
+ schema and reject unknown fields.
+3. Audit: every state-changing endpoint emits an audit event with
+ actor, action, entity and timestamp.
+4. Data classification: fields tagged pii in the schema must never
+ appear in logs or error messages.
+Include what you checked, item by item, in your summary.
+
+<!-- L6 481-498 verbatim except the last line: the playbook's example ends "Run
+scripts/check-endpoints.sh and include its output in your summary." — this repo has no such script
+and, by the product owner's decision, no code backstop. L6 503: "A skill is a control, though an
+advisory one." -->
+=== REVIEW.md headers + must lines
+1:# Review instructions
+6:## Passes
+11:- Compliance: the change matches spec.md and plan.md of its chain under `intent/`, and the
+15:## What Important means here
+19:## Cap the nits
+22:## Do not report
+26:## What findings do
+RC: 0

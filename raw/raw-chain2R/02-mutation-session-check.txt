@@ -1,0 +1,31 @@
+CMD: mutation: routes.py line 24 'if session is None:' -> 'if False and session is None:' (문자열 보존) → unittest → git checkout 복원 → sha256 대조
+AT_UTC: 2026-09-09T02:59:30Z
+HOST: nalaui-MacBookPro.local
+SHA256_BEFORE: d9be501eaae0c008a9b9c4db50113dfe47129157b9ffdf456fb4ecddabd8661e  src/claims_status/routes.py
+MUTANT_LINE: 24:    if False and session is None:
+SHA256_MUTANT: 9985b1672a33500c0cd562128b1ed09f082f407748b4dadbf0713fb3b529096c  src/claims_status/routes.py
+.E........
+======================================================================
+ERROR: test_ac2_no_session_returns_unauthenticated_without_upstream_call (tests.test_claims_status.TestAC2NoSession.test_ac2_no_session_returns_unauthenticated_without_upstream_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2R/tests/test_claims_status.py", line 72, in test_ac2_no_session_returns_unauthenticated_without_upstream_call
+    body = self.body(session=None)
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2R/tests/test_claims_status.py", line 42, in body
+    return routes.ROUTES[ROUTE](claim_id, session, now=now)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/design/chain2R/src/claims_status/routes.py", line 29, in get_claim_status
+    if record is None or record.get("subscriber_id") != session.get("subscriber_id"):
+                                                        ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+FAILED (errors=1)
+RC_MUTANT: 1
+SHA256_AFTER: d9be501eaae0c008a9b9c4db50113dfe47129157b9ffdf456fb4ecddabd8661e  src/claims_status/routes.py
+Ran 10 tests in 0.000s
+
+OK
+RC_RESTORED: 

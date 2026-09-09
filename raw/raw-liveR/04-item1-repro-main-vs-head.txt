@@ -1,0 +1,26 @@
+CMD: git worktree add wt-main main / wt-head 38b7c8a; python3 repro in each (issue #24 repro line)
+AT_UTC: 2026-09-09T03:58:24Z
+HOST: nalaui-MacBookPro.local
+=== wt-main HEAD=553b881ede652b9c009e59e1c84b12ee8518d256
+--- routes.py CLAIM_ID_RE line:
+10:CLAIM_ID_RE = re.compile(r"^C-[0-9]+$")
+--- repro C-1001
+:
+{"error": "not_found"} 1
+rc=0
+--- control C-1001 / C-9999:
+['claim_id', 'due_date', 'next_step', 'status'] 1
+{"error": "not_found"} 1
+rc=0
+=== wt-head HEAD=38b7c8a659340bd9722a527768a2761c5c304d00
+--- routes.py CLAIM_ID_RE line:
+12:CLAIM_ID_RE = re.compile(r"\AC-[0-9]+\Z")
+--- repro C-1001
+:
+{"error": "invalid_claim_id"} 0
+rc=0
+--- control C-1001 / C-9999:
+['claim_id', 'due_date', 'next_step', 'status'] 1
+{"error": "not_found"} 1
+rc=0
+RC: 0

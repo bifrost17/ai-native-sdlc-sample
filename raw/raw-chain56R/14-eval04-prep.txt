@@ -1,0 +1,72 @@
+CMD: evals/check.sh case 04 vs post-fix ws and pre-fix fixture ws; test_evals.sh check-1 logic applied to case 04 by hand; SCHEMA.md
+AT_UTC: 2026-09-09T03:25:51Z
+HEAD=4bf2a07
+--- test_evals.sh lines 10-34 (check 1)
+ng() { echo "FAIL  $1: $2"; FAIL=$((FAIL+1)); }
+
+# 1. 케이스 3건 스키마 — 필수 키 · kind 가 닫힌 집합 안 · 픽스처 실재.
+out="$(python3 - <<'PY'
+import json, os, sys
+kinds = set(l for l in os.popen("bash evals/check.sh --kinds").read().splitlines() if l)
+req = ["schema_version", "id", "prompt", "expected_output", "files", "assertions", "checks"]
+errs = []
+for cid in ("01-intent-placeholder", "02-no-self-accept", "03-spec-carries-questions"):
+    p = "evals/cases/%s.json" % cid
+    c = json.load(open(p, encoding="utf-8"))
+    for k in req:
+        if k not in c: errs.append("%s: 키 없음 %s" % (p, k))
+    if c.get("id") != cid: errs.append("%s: id 불일치" % p)
+    for ch in c.get("checks", []):
+        if ch.get("kind") not in kinds: errs.append("%s: kind 밖 %r" % (p, ch.get("kind")))
+    for f in c.get("files", []):
+        if not os.path.exists(f): errs.append("%s: 픽스처 없음 %s" % (p, f))
+print("\n".join(errs))
+sys.exit(1 if errs else 0)
+PY
+)"
+[ -z "$out" ] && ok "1. 케이스 3건 스키마" || ng "1. 케이스 3건 스키마" "$out"
+
+# 2. 통과 픽스처 3건 → rc=0.
+--- evals/SCHEMA.md
+# evals 케이스 스키마 (레슨 9)
+
+L10 687행: "Write each task as an eval, meaning the prompt plus the checks
+that define acceptable (tests pass, lint clean, behavior unchanged, policy
+followed)."
+
+## 케이스 파일 `evals/cases/<id>.json`
+
+| 키 | 필수 | 뜻 |
+|---|---|---|
+| `schema_version` | ✓ | `1` 고정 |
+| `id` | ✓ | 파일명(확장자 제외)과 같아야 한다 |
+| `prompt` | ✓ | 에이전트에게 넘길 프롬프트 |
+| `expected_output` | ✓ | 사람이 읽는 기대 서술(채점 안 함) |
+| `files` | ✓ | 입력 픽스처 경로. `run.sh` 가 워크스페이스로 복사한다 |
+| `assertions` | ✓ | 산문 — LLM 채점용, `check.sh` 는 채점하지 않는다 |
+| `checks` | ✓ | 결정론 판정 목록(0건이면 판정 불가) |
+
+## 판정 종류 — 닫힌 집합 5종 (정본: `evals/check.sh --kinds`)
+
+`file_exists` `contains` `not_contains` `regex_present` `regex_absent`. 아티팩트의
+형식(frontmatter·절 목록)을 재는 kind 는 없다 — 형식은 스킬이 말하고 PO 가 읽는다
+(docs/BOUNDARY.md). `path` 는 워크스페이스 상대이고
+절대경로·`..` 는 판정 불가. 목록 밖 kind 를 만나면 건너뛰지 않고 rc=2 로 죽는다.
+
+## 결과 파일 (check.sh 의 두 번째 인자)
+
+`{"schema_version": 1, "case_id": "...", "workspace": "<상대경로>", "result": "...", "claude_raw": {...}}`
+— `workspace` 는 결과 파일 위치 기준 상대경로다.
+--- check.sh usage/result.json shape from testdata
+{
+  "schema_version": 1,
+  "case_id": "01-intent-placeholder",
+  "workspace": "ws",
+  "result": "손으로 쓴 시험 픽스처 — 모델을 태우지 않았다. workspace 의 파일이 판정 대상이다.",
+  "claude_raw": null
+}
+
+--- build post-fix ws
+testdata result.json keys: ['schema_version', 'case_id', 'workspace', 'result', 'claude_raw']
+(will craft result.json matching testdata shape next)
+RC: 0
