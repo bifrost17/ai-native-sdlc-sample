@@ -36,6 +36,7 @@
 | `config-unimplemented-rule.yaml` | 미구현 규칙 요구 | rc=1 |
 | `config-unsupported-syntax.yaml` | 앵커·별칭 | rc=1 (조용한 폴백 금지) |
 | `config-unknown-family.yaml` | `rules: nelson` | rc=1 |
+| `claims-status-not-found-spike.jsonl` | 사슬 0006 인시던트 표본 — 청구 상태 API `not_found` 비율(0~1). 기준선 20점(2026-08-05~08-24, 8값 주기 `0.098 0.104 0.096 0.106 0.100 0.108 0.094 0.102`, mean 0.101 · σ 0.004611) + 꼬리 9점, 마지막 0.310 | 규칙1 · `tier: 3sigma` · z = +45.32 (설정의 `metric:` 은 `ci_test_failure_rate` 하나라 검출기 출력의 이름은 그대로다 — 사람이 트리아지에서 바로잡는다) |
 
 `zero-sigma-flat.jsonl` 와 `all-zero-baseline.jsonl` 둘 다 두는 이유: 앞의 것은 평균이
 `min_baseline_rate` 위라 **σ=0 가드만** 잡고, 뒤의 것은 두 가드가 모두 참이라 **순서**를 잰다.
