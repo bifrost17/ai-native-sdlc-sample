@@ -1,54 +1,17 @@
----
-id: ‹0002-claims-status›
-kind: spec
-status: draft
-upstream: intent.md@‹accepted 된 intent 커밋 sha›
-skills_applied: [‹적용한 스킬 이름›]
----
-# Spec: ‹무엇을 만드는가› (from intent ‹0002›)
-
-> `upstream` 은 **그 커밋의 intent 가 accepted 여야** 통과한다 — 검증기가 `git show` 로
-> 실제로 열어 본다. 파일명만 적고 sha 를 비우면 「어느 판을 읽었는지」가 사라진다.
-> `skills_applied` 는 이 spec 을 쓸 때 **실제로 적용한 스킬**을 남긴다(레슨 3: 어느 판의
-> 정책이 걸려 있었는지가 나중에 감사 대상이 된다). 적용한 게 없으면 `[]`.
->
-> 빈 절을 두지 않는다 — 해당 없으면 「해당 없음 — ‹이유›」를 쓴다. 이유 없는 「해당 없음」은
-> 「생각 안 했음」과 구별되지 않는다.
-
-## Requirements (요구)
-> R 번호를 매긴다. 「좋은 사용자 경험」(판정 불가) ✗ · 「담당자는 자기 건만 조회한다」(판정 가능) ✓.
-- R1 ‹요구 — 관찰 가능한 문장›
-
-## Design (설계)
-> 어떻게 만들 것인가. intent 의 Problem 을 여기 옮겨 적지 않는다 — 검증기가 절 단위
-> 축자 복사를 red 로 잡는다. 여기 쓸 것은 **선택한 구조와 그 이유**다.
-‹구조 · 데이터 흐름 · 기존 자산 재사용›
-
-## Constraints inherited (상속한 제약)
-> intent 의 C 번호를 **전부** 다시 적는다. 하나라도 빠지면 red 다 — 상속은 「읽었다」가
-> 아니라 「여기 다시 적혀 있다」로 증명된다.
-- C1 ‹intent 의 C1 을 그대로›
-- C2 ‹intent 의 C2 를 그대로›
-
-## Constraints discovered (발견한 제약)
-> spec 을 쓰다 새로 알게 된 선. 상속한 것과 섞지 않는다 — 누가 정한 선인지가 달라진다.
-- C3 ‹설계 중 발견한 제약 — 해당 없으면 「해당 없음 — ‹이유›」›
-
-## Open questions from intent (intent 의 미결)
-> intent 의 Q 마다 `answered:` 또는 `carried:` 로 받는다. 답했으면 **누가 언제**,
-> 넘겼으면 **어디로**. 조용히 지우는 것이 레슨 3 이 막으라는 바로 그 실패다.
-- Q1 answered: ‹누가 언제 무엇으로 확정했는가› 또는 carried: ‹어디로 넘겼는가›
-
-## Flagged concerns (플래그)
-> 정책·규정과 부딪히거나 판단이 필요한 지점을 F 번호로 올린다. 여기 비면 「없다」가 아니라
-> 「아무도 안 봤다」로 읽힌다 — 정말 없으면 「해당 없음 — ‹이유›」.
-- F1 ‹충돌 지점 · 판단할 사람›
-
-## Out of scope (범위 밖)
-> 이번에 **안 하는 것**을 적는다. 안 적으면 리뷰에서 「왜 이건 없냐」가 매번 다시 나온다.
-‹이 spec 이 다루지 않는 것›
-
-## Acceptance criteria (수용 기준)
-> AC 는 R 을 가리켜야 하고, 모든 R 은 최소 하나의 AC 로 덮여야 한다 — 검증기가 양쪽을 잰다.
-> 「잘 동작한다」(판정 불가) ✗ · 「담당자 계정으로 조회하면 자기 건만 돌아온다」(판정 가능) ✓.
-- AC1 → R1 ‹관찰 가능한 결과›
+# Spec: ‹what is built› (from intent ‹NNNN-slug›)
+Upstream: intent.md@‹commit sha of the accepted intent›. Status: draft.
+Skills applied: ‹names of the organization skills read while writing this, or none›.
+## Requirements
+‹R1, R2 … — each observable, each traceable to the Problem in intent.md›
+## Design
+‹the chosen structure and why; existing assets reused; data flow›
+## Constraints
+‹every constraint from intent.md, restated; then any discovered while designing›
+## Open questions from intent
+‹each question from intent.md: "answered: …" or "carried forward: … (owner)"›
+## Flagged concerns
+‹where policies conflict or cannot be satisfied — what conflicts, who decides›
+## Out of scope
+‹what this spec deliberately does not do›
+## Acceptance criteria
+‹AC1 → R1 … — an observable result per requirement›
