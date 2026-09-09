@@ -20,7 +20,8 @@ description: Reads an accepted intent.md and the organization's skills and write
    spec — chain 0007 named one without opening it. Write each as `name@sha`, the sha from
    `git log -1 --format=%h -- .claude/skills/<name>/SKILL.md` — L3 279 logs "the skill versions
    in force"; a name alone does not say which version wrote the spec.
-3. Record `Upstream: intent.md@<sha>. Status: <draft|accepted>` at the top of spec.md.
+3. Record `Upstream: intent.md@<sha>. Status: draft.` at the top of spec.md, and leave it `draft`:
+   approval is the merge of the PR that carries the spec (L2 231), nothing flips this line by hand.
    One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
    the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
    you and why, and repeat it in the PR body — approval is still the merge, not this note.
