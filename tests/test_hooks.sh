@@ -8,9 +8,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 T="$(mktemp -d "${TMPDIR:-/tmp}/hooktest.XXXXXX")"; T="$(cd "$T" && pwd -P)"; trap 'rm -rf "$T"' EXIT INT TERM
 mkdir -p "$T/.claude" && cp -R "$ROOT/.claude/hooks" "$T/.claude/hooks"
 H="$T/.claude/hooks"
-mkdir -p "$T/intent/0001-a" "$T/intent/0002-b" "$T/.github/workflows" "$T/tests" "$T/src"
-printf -- '---\nid: 0001-a\nstatus: accepted\n---\n# a\n' > "$T/intent/0001-a/intent.md"
-printf -- '---\nid: 0002-b\nstatus: draft\n---\n# b\n'    > "$T/intent/0002-b/intent.md"
+mkdir -p "$T/intent/0001-a" "$T/.github/workflows" "$T/tests" "$T/src"
+printf '# Intent: a\nAuthor: x. Status: accepted.\n' > "$T/intent/0001-a/intent.md"
 printf 'def ok():\n    return 1\n' > "$T/src/ok.py"
 printf 'def bad(:\n'               > "$T/src/bad.py"
 printf '#!/bin/bash\necho ok\n'    > "$T/src/ok.sh"
@@ -31,10 +30,11 @@ run() {
 }
 
 # protect-paths — L7 517
-run "protect-paths: accepted intent blocked"   2 protect-paths.sh "$(edit intent/0001-a/intent.md)"
 run "protect-paths: .github blocked"           2 protect-paths.sh "$(edit .github/workflows/ci.yml)"
 run "protect-paths: Makefile blocked"          2 protect-paths.sh "$(edit Makefile)"
-run "protect-paths: draft intent passes"       0 protect-paths.sh "$(edit intent/0002-b/intent.md)"
+run "protect-paths: .claude/hooks blocked"     2 protect-paths.sh "$(edit .claude/hooks/no-secrets.sh)"
+run "protect-paths: settings.json blocked"     2 protect-paths.sh "$(edit .claude/settings.json)"
+run "protect-paths: accepted intent passes (PO reviews it, not the hook)" 0 protect-paths.sh "$(edit intent/0001-a/intent.md)"
 run "protect-paths: src file passes"           0 protect-paths.sh "$(edit src/ok.py)"
 # protect-tests — L9 631 · L12 809
 run "protect-tests: fix task, test file blocked" 2 protect-tests.sh "$(edit tests/test_x.py)" INTENT_TASK=fix
