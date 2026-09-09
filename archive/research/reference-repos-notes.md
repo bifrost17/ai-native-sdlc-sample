@@ -1,0 +1,63 @@
+# 부모 메모 — 레퍼런스 레포 분석(부모가 raw 로 대조한 것만)
+
+## A1 jcuervo/authoring-ai-sdlc — 키트 (MIT · 생성 2026-09-07 · 12커밋 48분 1세션 · stars 0 · 39파일 4,033줄)
+- 구조: 스킬 3(intent/spec/plan) 각 SKILL.md(name+description 만) + rubric.md + templates(intent 4변형) + examples + scripts/validate_artifact.py(정본 tools/validator + 사본 3 = sha 동일, sync-validator.sh --check) · tools/check-all.sh(26검사 · 템플릿은 rc=1, 예시는 rc=0 을 게이트 안에 상주) · check-conformance.py · build-zips.sh(claude.ai 업로드용) · .github 없음 · 자기 도그푸드 docs/sdlc/0001-authoring-skills/{intent,spec,plan}.md.
+- 검증기 실측(raw 20/21/22/36 부모 확인): 계기 3상태 구별(정상 0 / 빈 템플릿 1 / 파일 없음 2) · 잡음: 절 삭제·빈 절·enum 밖 상태·Upstream 줄 삭제·상류 draft · 놓침: 에이전트 자기 `accepted`(M-C2 rc=0) · 해법 제목 · 절 본문 `x` · 무관한 상류 · intent 축자 복사 spec · 요구 0건 plan · **코드 펜스 안 `Status: accepted` 로 상류 위조(X2 rc=0, 대조 X3 rc=1)** — `read_status()` = `STATUS_RE.search(text)` 첫 매치 · **거짓 양성: 정상 대괄호 산문 6건 error(X1)**.
+- 훅 examples/hooks/require-accepted-plan.json: PreToolUse `Edit|Write` · grep 없으면 echo · exit 0 → 공식 hooks 문서상 디버그 로그행(무효).
+- conformance: description 「Use when」·3인칭·미참조 번들·예약어 잡음 / frontmatter 임의 필드 놓침(열린 어휘).
+- 차용: sync-validator 패턴 · check-all 의 expect_exit 1/0 쌍 · --format json + schema_version + rc 0/1/2 · description 의 "Does not …" 배타절 · Policy constraints "Not applicable, because…" 강제 · incident 변형 템플릿. 회피: 규범 반복으로 accepted 강제 · 펜스 안 읽는 status · `[…]` 플레이스홀더 · warn-only 훅 · 열린 frontmatter 어휘 · 안 재는 Date 필드.
+- 플레이 커버: 구현 2·3·6·8 / 부분 4·5·9·11·12 / 없음 7·10·13.
+
+## A2 JHashimoto0518/ai-native-sdlc-playbook-sample — 샘플 (라이선스 null · 생성 2026-09-06 · 9커밋 author date 초 단위 동일 18:33:56+09:00 · 36분 · stars 0 · 24파일 678줄)
+- 실측(raw 07/08/13/14 부모 확인): make test 11 passed · lint All checks passed · check-endpoints 지적 없음 · 훅 보호경로 rc=2 차단, `../`·Bash payload·python3 부재 rc=0(조용한 fail-open) · check-endpoints 는 리터럴 grep — `jsonify({**record})`·별칭·app.py 익명 라우트(인증 없이 customer_name/address/id 200) 놓침(PC5 rc=0 + 11 passed) · 허용리스트 시험 동어반복(M3b: bank_account 유출 실응답인데 11 passed) · 시험 커밋 af1bf3f 는 ModuleNotFoundError rc=2(단정 미실행) · lint line-length=88 미집행.
+- 사슬: intent(7필드 일본어 · 날짜 추가 · Status accepted) → spec(발명: 요건 R1-4 · 설계 · 「intent 에서 상속한 제약 C1·C2」/「설계 중 판명 C3」 분리 · CONCERN flag · 스코프 외 · 머리에 `適用した Skill:`) → plan(레슨 4절 + 「채택 안 한 선택지」 · 출처를 spec 으로) → 테스트(이름·주석에 R/C ID) → 구현. 기계 링크 0 · R1·R2·CONCERN 하류 참조 0. docs/phases.md = 의도적 미구현 원장(Phase 2: REVIEW.md · claude-code-action · 승인 훅 · CODEOWNERS · verifier 서브에이전트; Phase 3: evals(CLAUDE.md/.claude 변경 시 실행) · bands.yaml 3σ · write-back intent).
+- 차용(아이디어만 — 라이선스 없음): phases.md 미구현 원장 · 상속/발견 제약 절 분리 · 適用 Skill 필드 · 시험 이름에 요건 ID · 커밋 타입 intent:/spec:/plan: · CLAUDE.md 「자주 틀리는 것」 절. 회피: 사후 분절 이력을 감사 증적이라 부르기 · 수집 에러 red · 미집행 설정 · 문서가 계기보다 강한 주장 · 무라이선스.
+- 플레이 커버: 구현 2·3·5·6(+Skills governance 백스톱) / 부분 4·8·11(경로 가드) / 없음 7·9·10·12·13.
+
+## 두 레포에 공통으로 없는 것(빈틈 ①~⑥ 기준)
+- ①: 둘 다 기계 파생 검증 0(A1 은 상류 존재+accepted 만, A2 는 산문). ②: 0. ③: A1 enum 3 + 디렉터리 NNNN-slug(경고급) · A2 R/C ID(파일 로컬). ④: 0(A1 은 zip 경로만, A2 는 엔지니어가 커밋). ⑤: 0(A2 는 시간축 파괴). ⑥: 둘 다 spec 구조를 발명(A1 템플릿 · A2 인스턴스).
+
+## S 검색(gh 인증 bifrost17 · 검색식 28 · raw 356 · 고유 레포 505 중 관련 실측 35 + 인접 9) — 부모가 meta 로 재확인한 것
+- 플레이북 발표(08-21) 후 2.5주 안에 정확 레포명 `ai-native-sdlc` 로 독립 키트 최소 8개(jsnkle · imsungbin · accuser · ihugang · sofus-nl · bashebr · skysthelimitpainting1779-collab · cc4i). 이름만 겹치는 선행 계보(생성일이 앞섬): jabrena/plinth(437★ · 25-02 · Java) · fabriqaai/specs.md(207★ · AI-DLC) · agzyamov(25-10 · Copilot/Spec Kit) · Ovid/paad · MeherBhaskar/agent-rigor · sigmastratum.
+- 점수 상위(30점 만점): jsnkle 26(MIT · 09-02→09-04 · 25커밋 · SKILL 6 · 템플릿 39 · hooks 3 · workflows 6 · 회고 자가채점) · imsungbin 25(MIT · 09-03 · 2커밋 · 원문 해시 대조 · hooks 5 · validator 5 · workflows 3) · cc4i 24(라이선스 없음 · 08-27 · 17커밋 · 5 에이전트 지원 · CI+CodeGraph) · hermes-labs-ai/intent-verify 23(MIT · 25-04-18 생성 · 무-LLM 커버리지 매퍼 · PyPI) · bashebr 22(MIT · **42★ 9 포크** · 08-23→08-29 · 27커밋 · Codex+Claude 겸용) · jcuervo 18 · ihugang 18(MIT · 요청 유형별 게이트 분기) · accuser 17(라이선스 없음 · 12 플레이 1:1 매핑표) · sofus-nl 16(MIT · 9 스킬 · 차용 출처 명시) · honghu-ai 15 · JHashimoto 12 · intent-md-ko 7.
+- 한계: `filename:intent.md` 16,512건 중 상위 100 · gh code search 는 legacy 엔진 · 트리 지표는 정규식 카운트.
+- 부모 선택(분석 레인): A3 honghu-ai(거버넌스 킷 · 중국어) · A4 intent-md-ko(한국어 템플릿) · A5 jsnkle · A6 imsungbin · A7 bashebr. 보류: cc4i(라이선스 없음 · 멀티에이전트 스타터) · accuser(매핑표만) · hermes-labs-ai/intent-verify(검증기 설계 참고 — 필요 시 별도).
+
+## A4 simonsez9510/intent-md-ko — 템플릿(CC BY 4.0 · 원성묵/LAIRI · 커밋 1 · 4파일 150줄 · stars 1)
+- 머리 `# Intent — (기능 이름)` / `작성: YYYY-MM-DD · 발의: (이름) · 상태: 승인 대기`(레슨과 다름: 엠대시 제목 · 작성일 추가 · 상태 기본값 「승인 대기」). 5절 직역(문제/원하는 결과/영향 범위(사용자·시스템·코드·데이터)/제약/미결) + 「완료 판정 = (숫자 또는 관찰 가능한 사실)」 + 「(비어 있어야 착수)」.
+- 설계 분기 2: 규칙 3 「미결 0건이어야 착수」(레슨은 spec 으로 "answered or carried forward") · 규칙 4 「판정을 파일 말미에」(레슨은 merge/closing review) — 판정 타임스탬프 없음 → 메트릭 불가. 배치: `intent/날짜-이름.md` → 승인분 `docs/plans/` 이동(1산출물 재배치 · spec 없음).
+- 스크립트·검증기·훅·CI 0. 차용: 발주서 대응표(검수 기준) · CLAUDE.md/AGENTS.md 3줄 드롭인 · 「길어지면 기능이 둘」 서사. 빈틈 ①②③⑤⑥ 미해결.
+
+## A3 honghu-ai/sdlc-governance-kit — 거버넌스 킷(라이선스 없음 · 08-28 1일 3커밋 · stars 2 · 38파일 · 전부 중국어)
+- 실물: 실행 코드는 `sdlc_scaffold.py`(246줄 · init/audit) 하나. 훅·CI·settings 0(부모 확인 `.github`/`hooks`/`.claude` 없음). README 「检查脚本·确定性关卡」 문면과 불일치(README 스스로 후속 작업으로 자인).
+- 감사기 뮤테이션 14: 놓침 7(절대경로 링크를 FS 루트로 · CLAUDE.md 키워드 존재만 검사 · **플레이스홀더를 영문 TODO 로 바꾸면 빈 스캐폴드가 `OK … rc=0`(M5 부모 확인)** · 빈 intent/spec/plan · 루트 intent.md · **승인 위조 intent + 무추적 spec 통과(M11 rc=0 부모 확인)** · 참조형 링크) · 거짓 양성 2(펜스 안 링크 · 사이트 루트 상대 링크) · 크래시 1(비UTF-8) · **자기 레포 self-audit ERROR 5(E6 부모 확인)**.
+- 순증분(설계·문서): `规范目录设计.md` — change-ID 규약(외부 기록 ID 재사용 → `CHG-YYYYMMDD-NNN-slug` · 사고 `INC-…`) · 디렉터리 개명 금지 · **YAML frontmatter 9필드**(change_id · artifact · status · owner · approved_by · approved_at · parent · source_record · policy_versions) · **status `draft|approved|rejected|superseded`**(부모 확인 :219) — 그러나 템플릿엔 미반영(intent `草稿` · spec `待评审` · 인덱스 예시 `已接受/已批准/待批准/未开始` — 상태 어휘 4종 공존). `spec.md.tpl` 84줄 11절(FR-/AC- 대응 · 정책 약속 5열 표 · 승인 기록 3행 · "批准状态只能由组织指定的负责人更新"). 정책 스킬 3종 동형 4절(권위 자료 없으면 「사칭 금지」 · 적용/비적용/미확인 3치 · 부재 PASS 금지 · 충돌은 판정 않고 승격) + compose-spec 라우팅(존재하지 않는 `secure-api-review` 를 가리킴). skills-hub §10 「Skill 로 만들지 말 것」 판정.
+- evals: 공식 skill-creator 형식이나 배열 이름 `expectations`(공식 `assertions`) · fixture 0(7케이스가 없는 첨부를 가리킴) · CI 0. `agents/openai.yaml`(interface/display_name/default_prompt `$skill`) 은 Claude Code 소비자 없음.
+- 판정: 차용 0(라이선스 없음 + 블로그 전문 무단 번역 동봉) · 개작: ID/frontmatter/4치 status 아이디어 · spec 11절 골격 · 「Skill 로 만들지 말 것」 · 회피: 리터럴 플레이스홀더 검사 · 검사가 요구하나 생산자 없는 파일(변경 폴더 00_Index.md) · 4종 상태 어휘.
+
+## A5 jsnkle/ai-native-sdlc — 키트+템플릿(MIT · 09-02→09-04 · 25커밋 실제 시간축 · stars 0 · 87파일 3,872줄 · v0.2.1)
+- 구조: plugin(스킬 6 · 에이전트 3 · 훅 5 · references) / plugin/template(프로젝트에 복사되는 26파일: CLAUDE.md · REVIEW.md · .claude/hooks 4 · workflows 6 · ops/{detect.py,loop.sh,bands.yaml} · evals · intent/README · CODEOWNERS) / docs 23(플레이 14 각 8절 · 역할 4 · metrics · 회고). `commands/` 없음(스킬과 이름 충돌 함정을 CHANGELOG 0.1.1 에 기록).
+- 실측(부모 확인): `tests/test_detect.py` **17 passed** · detect.py 뮤테이션 **7/7 RED** · 훅 5개 exit 2 차단(공식 계약 준수) · **jq 부재 시 4개 훅 전부 rc=0 fail-open** · 우회 12(production-gate: `prod`/대문자/변수 조립/공백 승인 · protected-paths: `../`·상대·`//`·`.path` 키 · no-secrets: URL 자격증명·MultiEdit·NotebookEdit · protect-tests: Java `FooTest.java`·RSpec) · `requirements-dev.txt`·Makefile 미동봉(워크플로 4개 3단계에서 죽음).
+- 🔴 `ops/loop.sh`: `tier=$?` 로 detect.py 의 실패 rc(1/2/3)를 정상 tier 로 오독 — rc=1 → 「tier 1 · rc=0 성공」, rc=2 → 빈 리포트로 Claude 호출, rc=3 → PR 시도. loop.sh 시험 0건.
+- 🔴 검증기 0(intent/spec/plan 구조·상태·파생 검사 스크립트 없음) → 동봉 `_example/` 이 자기 템플릿 위반(spec 3절 누락·2절 개명 · plan 2절 누락 · `Policies applied:` 없음 · `Status:` 키 없음) + draft intent 에서 accepted spec 파생(스킬이 "Refuse politely if its status is not accepted" 라 규정). 상태 어휘 3종(intent draft|accepted|closed · spec draft|accepted · plan draft|accepted by <name> <date>).
+- 회고(`docs/retrospective-2026-09-03.md`) 정직성: Implemented 주장 전수 일치 · Gap 자백 전수 참 · 초안 과장을 커밋으로 자기정정. 단 회고가 인용하는 샌드박스 실행(PR 15 · evals 5)은 비공개라 검증 불가.
+- `claude-mention.yml`: issue_comment 트리거 + `contents: write` + PR head 체크아웃 + acceptEdits — author_association 이 코멘트 작성자만 검사(pwn-request 정적 추론).
+- 플레이 커버: 구현 7 / 부분 6 / 없음 3(측정 · scans · on-call). 빈틈: ①없음 ②부분(6문항 인터뷰 · 모델 준수) ③거의 없음 ④문서만 ⑤없음 ⑥구현(`spec-template.md` 34줄 · Summary/Requirements/Design/Acceptance criteria/Areas of concern/Open questions/Out of scope).
+- 차용(MIT): `plugin/references/artifact-formats.md`(사슬 6단 1장 표) · `spec-template.md` · `detect.py`+`test_detect.py`(loop.sh 제외) · `docs/plays/*` 8절 골격 · CLAUDE.md 「두 번 틀리면 등재」. 회피: exit code 겸용 · 자연어만의 accepted 게이트 · 열린 어휘 훅 · jq fail-open · 검증 안 된 동봉 예제.
+
+## A7 bashebr/ai-native-sdlc — 단일 스킬 + 스크립트 7 + 시험 7(MIT · 08-23→08-29 · 27커밋(8건은 초 단위 한 줄 문서 커밋) · stars 42 · forks 9 전부 커밋 0 · 외부 이슈 1(디렉터리 등재 권유) · 저자 자기 결함 이슈 #4)
+- 구조: `skills/ai-native-sdlc/SKILL.md`(145줄 · 하드룰 8 + **규칙→집행 매트릭스**(하드룰|권고층|결정론층|어디서 검사) + 페이즈 6행 표) → `references/playbook.md`(190줄 · 14 레슨을 what changes/getting started/how to execute/governance/measure 5필드로 축자 재현) · `assets/` 36(intent/spec/plan 템플릿 · org/ 15 · CLAUDE.md) · `scripts/` 7(init_workflow · init_org · quick_validate · run_evals · detect_bands · gate_ledger · sync_issues) · tests 7 · `.codex-plugin/plugin.json` + `agents/openai.yaml`(Codex 겸용은 산문 치환 규칙 + `--framework codex|claude` 로 CLAUDE.md↔AGENTS.md 이름 치환뿐).
+- 실측(부모 확인 · bash 5.3 필요 — bash 3.2 에선 test_gate 13 false red): quick_validate **80/0** · test_gate **25/0** · unittest 25 OK · run_evals rc 1/0/2 계약. **산출물 뮤테이션 7건 전부 green**(intent 전 절 삭제 · 빈 파일 · 펜스 안 Accepted · 무관 상류 · 템플릿 축자 복사 · bands.yaml 파손 · 하드룰 침묵) — 양성 대조(plugin.json 판본 · PROMISED 파일)만 red → **산출물 검증기 부재**(quick_validate 는 번들 파일만 센다).
+- production-gate 훅: 계약(exit 2/stderr) 정확 · 깨진 JSON/빈 stdin fail-open · **B1 앵커 없는 read-only 허용목록**(`--dry-run=false` 의 `ls`, `tools.yaml`, `catalog`, `controls/`, `more`) · **B2 복합 명령**(`echo … && kubectl apply -n prod`) → 무승인 배포 rc=0 8건 · 미등록 도구(argocd/pulumi/gcloud/ssh/npm publish) 통과 · `RELEASE_APPROVAL=x` 자기 발급. **스캐폴드가 훅을 배선하지 않음**(settings.json 부재 · `production-gate` 참조 0).
+- gate_ledger: 레코드 스키마 11필드 + 게이트별 ID · `--require-committed` — `gates/` 가 .gitignore 면 통과(L3) · 꼬리 절단 미탐(L5) · **전체 재체인 위조 rc=0(L6b)**.
+- 상태 어휘 5벌(workflow-graph 8종 · 아티팩트 Draft|Accepted|Rejected / Draft|Approved · 원장 approved|rejected · 리뷰 · 인테이크 5종) · 전이 집행 코드 0 · 폐기 노드 없음. intent 템플릿: `# Intent:` 접두 상실 · Source/Date/Out of scope 추가 · spec 7절(`Derived from: intent.md <commit>` · Standards applied · Gotchas · Verification plan) · plan 6절. 대표 예제 expense-tracker 의 spec/plan 이 출하 앱과 다른 제품(plan 파일 5개 전부 부재).
+- 플레이 커버: 구현 8 / 부분 5(plan-sync 훅 미출하 · 서브에이전트 정의 없음 · 배선 없음 · CI 템플릿 1) / 해당없음 1. 빈틈: ①없음 ②없음 ③부분(그래프 YAML + 원장 스키마) ④부분(org/intake 3채널 · forms/email 은 .gitkeep) ⑤없음 ⑥대응(템플릿 있으나 스캐폴드가 안 만듦).
+- 차용(MIT): 규칙→집행 매트릭스 · playbook.md 5필드 서식 · SKILL(얇게)+references(두껍게) 분할. 개작: workflow-graph.yaml(전진 코드+폐기 상태 필수) · 원장 스키마(해시체인 버리고 git 앵커) · 게이트 판정 순서(토큰 단위 앵커로 재작성). 회피: 번들만 세는 검증 · PyYAML 폴백 · 인위 분할 커밋.
+
+## A6 imsungbin/ai-native-sdlc-playbook — 플러그인+설치기(MIT · 09-03 · main 2커밋 + history 브랜치 13 · 80파일 · ★0 · 태그 v0.1.0/v0.2.0 · PR #1 머지 · ruleset protect-main 활성)
+- 정본은 블로그(코스 아님) · 자체 좌표 「Play 3a…」(글에 없음). 4층 라벨 V(축자)/C(구현)/I(설치)/R(기록) + `docs/article-map.md` 37행(정본 문장↔파일 1:1 · 전부 실재).
+- **「verbatim」 주장 13/13 바이트 동일(부모 확인 raw/27 · 독립 재현)** — 단 `verbatim.lock`(자기 사본)과 `article-blocks.sha256`(원문 집계) 사이 파일↔블록 다리는 기계가 놓지 않음.
+- 실측(부모 확인): `make test` macOS rc=2(ruby Psych 가 `bands.yaml` 의 `runbook:rollback-deploy` 거부 · PyYAML 있으면 통과 · GitHub Actions Test 2/2 success) · **`claude plugin validate` rc=1 `agents: Invalid input`**(디렉터리 지정 · 파일이어야 함 · 자체 validate.sh 는 `[ -e ]` 라 초록) · 뮤테이션: 기계 5/5 잡음(verbatim · 훅 · 감지기 · 설치기 · 원문 지문) / **아티팩트 5/5 놓침**(템플릿 절 삭제 · intent 절 삭제 · `Status: bogus` · 한 줄 intent · spec=intent 복사) · 훅 4개 exit 2 정확, jq 부재/깨진 JSON fail-open, protected-paths `./`·`../`·`//` 우회, plan-sync `git  commit`/`git -C .` 우회 + 백틱 불릿 거짓 양성 + 최대 번호 plan 만 읽음 · settings.json 은 4훅 중 gate 1개만 배선 · `bands.yml` 라이브 5/5 success(`tier: none`) — 유일하게 실제로 도는 Stage 6.
+- 템플릿: intent 7필드 축자 · spec 14줄(`## Open questions from intent.md` answered/carried forward · `## Areas of concern` · `## Skills applied`) · plan 9줄(plan-sync 가 `## Files that change` 파싱) · 상태 `draft`→`accepted` 산문 · `intent/<NNNN>-<slug>/{intent,spec,plan}.md`(validate.sh 가 8개 디렉터리 하드코딩) · 8 intent/spec 전부 accepted(0003~0008 은 단일 커밋 — 승인 시점 기록 없음).
+- 플레이 커버: 구현 8(2·3·4·5·6·8·11·13) / 부분 4(7·9(evals 워크플로 disabled)·10·12) / 없음: Stage 1 지표 3종 · 관리형 설정 등(명시적 회피).
+- 차용(MIT): `detect-band.py`+19시험 · `adopt.sh` 마커 병합(begin vX … end sha256) · `article-map.md` · spec 의 「Open questions from intent.md」. 회피: protected-paths 현행 · 하드코딩 허용목록 · 자체 스키마 검사(공식 `claude plugin validate` 를 게이트에).
