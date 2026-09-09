@@ -14,7 +14,9 @@ When you create or change an API endpoint:
  actor, action, entity and timestamp.
 4. Data classification: fields tagged pii in the schema must never
  appear in logs or error messages.
-Run scripts/check-endpoints.sh and include its output in your summary.
+Include what you checked, item by item, in your summary.
 
-<!-- L6 481-499 verbatim: the playbook's only example of a policy skill. L6 503: "A skill is a
-control, though an advisory one." This repo has no deterministic backstop behind it. -->
+<!-- L6 481-498 verbatim except the last line: the playbook's example ends "Run
+scripts/check-endpoints.sh and include its output in your summary." — this repo has no such script
+and, by the product owner's decision, no code backstop. L6 503: "A skill is a control, though an
+advisory one." -->
