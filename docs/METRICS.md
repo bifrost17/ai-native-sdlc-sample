@@ -26,4 +26,44 @@ one value git does not know; the intent's author states it in the file.
   then read the list against the plan by eye.
 - Lagging — rework cycles per change: `gh pr view <n> --json reviews,commits --jq '{reviews: (.reviews|length), commits: (.commits|length)}'`
 
+## L5 CLAUDE.md (442)
+- Leading — corrections/changes to CLAUDE.md: `git log --oneline -- CLAUDE.md`
+- Lagging — outside this repo (new-joiner time-to-first-merged-PR is org PR history)
+
+## L6 skills (505)
+- Leading — policy-owner sign-off → skill merge: `git log --diff-filter=AM --format='%aI %h' -- .claude/skills/<name>/SKILL.md`
+- Lagging — outside this repo (review findings citing the policy are read by a person on the PR)
+
+## L7 hooks-as-build-time-guardrails (511)
+No separate "How to measure it" section — it rides on L6's (505); nothing to add here.
+
+## L8 parallel sessions and subagents (588)
+- Leading — outside this repo (concurrent sessions per engineer is the OTel export)
+- Lagging — merges per week: `git log --since=1.week --oneline --merges | wc -l | tr -d ' '` (rework rate is outside this repo)
+
+## L9 feedback loop (659)
+- Leading — first-pass CI success: `gh run list --workflow=check.yml --json conclusion,event`
+- Lagging — review time: `gh pr view <n> --json createdAt,mergedAt`
+  (change failure rate is outside this repo, from an incident tracker)
+
+## L10 continuous evals (729)
+- Leading — pass rate over time: stack `evals/run.sh`'s `result.json` per commit; a person reads the series (no script here)
+- Lagging — outside this repo (incident-to-eval-case time is an incident tracker)
+
+## L11 AI in the PR review loop (795)
+- Leading — time to first review: `gh pr view <n> --json createdAt,reviews --jq '.reviews[0].submittedAt'`
+- Lagging — outside this repo (pre/post-merge defects need an incident tracker)
+
+## L12 hooks as approval gates (930)
+- Leading — gate wait time and verdict: `.claude/hooks.log` (the decision log this repo writes), summed by a person
+- Lagging — outside this repo (gate violations reaching production is an incident tracker)
+
+## L13 CI/CD integration and deployment (997)
+- Leading — pipeline failures resolved without a human: `gh run list --json conclusion,event`
+- Lagging — outside this repo (DORA measures come from CI/deploy tooling itself)
+
+## L14 closing the loop on metrics (1063)
+- Leading — band breach → triage queue: compare bands.yml's run timestamp against `git log --diff-filter=A --format=%aI -- intent/*/intent.md` by hand
+- Lagging — outside this repo (repeat-incident rate is an incident tracker)
+
 Nothing here is computed by a script. The numbers are for a person to read once a quarter.
