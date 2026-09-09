@@ -15,12 +15,12 @@ playbook's. Files owned by other lanes are named as found on `origin/main`
 | 6 | Skills as institutional knowledge (450–509) | The playbook's `secure-api-review` example, verbatim; advisory, no backstop | `.claude/skills/secure-api-review/` | skill |
 | 7 | Hooks as guardrails (511–529) | Hooks the lesson names, wired in settings.json | `.claude/hooks/`, `.claude/settings.json` | code |
 | 8 | Parallel sessions and subagents (531–594) | Verifier subagent (report, do not fix) | `.claude/agents/verifier.md` | skill |
-| 9 | Feedback loop (596–660) | `make check` with healthy output in CLAUDE.md; test-protection hook (631) — executed as chain 0005 (failing test first, `.claude/hooks/protect-tests.sh` fired) | `Makefile`, `CLAUDE.md`, `.claude/hooks/protect-tests.sh` | code · skill |
+| 9 | Feedback loop (596–660) | `make check` with healthy output in CLAUDE.md; test-protection hook (631) — executed as chain 0005 on `experiment/2026-09-09-claims-status` (failing test first, `.claude/hooks/protect-tests.sh` fired) | `Makefile`, `CLAUDE.md`, `.claude/hooks/protect-tests.sh` | code · skill |
 | 10 | Evals in CI (662–740) | `make evals` with the key, in its own workflow on config change and schedule (689); the key-free half runs in `make test` | `evals/`, `.github/workflows/agent-evals.yml`, `tests/test_evals.sh` | code |
 | 11 | PR review (742–801) | REVIEW.md with three passes; findings inform, the merge decides | `REVIEW.md` | skill · person |
 | 12 | Hooks as approval gate (803–940) | Production gate hook | `.claude/hooks/production-gate.sh` | code |
 | 13 | CI/CD (942–1005) | CI runs `make check`; a red check is a red PR; on failure the playbook's `claude -p` triage step (961, 981) runs when the key is set — sandbox, MCP deploys, rollback are the team's (`docs/BOUNDARY.md`) | `.github/workflows/` | code |
-| 14 | Bands (1007–1070) | Band config as the record; detection script only where the lesson names it; the scheduled trigger (1034) runs it and uploads a tier-3 draft, never commits it (1038) — executed as chain 0006 (`scripts/detect_bands.py` → `scripts/emit_intent.py` → triage → eval 04) | `ops/bands.yaml`, `scripts/`, `.github/workflows/bands.yml` | code · person |
+| 14 | Bands (1007–1070) | Band config as the record; detection script only where the lesson names it; the scheduled trigger (1034) runs it and uploads a tier-3 draft, never commits it (1038) — executed as chain 0006 on `experiment/2026-09-09-claims-status` (`scripts/detect_bands.py` → `scripts/emit_intent.py` → triage → eval 04) | `ops/bands.yaml`, `scripts/`, `.github/workflows/bands.yml` | code · person |
 
 Not in this repo, by decision (docs/BOUNDARY.md): a checker for artifact form, status or
 transitions; a metrics script (docs/METRICS.md is git commands); managed settings and the managed
