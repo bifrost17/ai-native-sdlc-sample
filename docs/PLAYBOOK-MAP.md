@@ -20,7 +20,7 @@ playbook's. Files owned by other lanes are named as found on `origin/main`
 | 11 | PR review (742–801) | REVIEW.md with three passes; findings inform, the merge decides | `REVIEW.md` | skill · person |
 | 12 | Hooks as approval gate (803–940) | Production gate hook | `.claude/hooks/production-gate.sh` | code |
 | 13 | CI/CD (942–1005) | CI runs `make check`; a red check is a red PR | `.github/workflows/` | code |
-| 14 | Bands (1007–1070) | Band config as the record; detection script only where the lesson names it | `ops/bands.yaml`, `scripts/` | code · person |
+| 14 | Bands (1007–1070) | Band config as the record; detection script only where the lesson names it; the scheduled trigger (1034) runs it and uploads a tier-3 draft, never commits it (1038) | `ops/bands.yaml`, `scripts/`, `.github/workflows/bands.yml` | code · person |
 
 Not in this repo, by decision (docs/BOUNDARY.md): a checker for artifact form, status or
 transitions; a metrics script (docs/METRICS.md is git commands); managed settings and the managed
