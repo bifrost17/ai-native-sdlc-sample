@@ -1,0 +1,112 @@
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/contents/design/skills/ux-copy/SKILL.md?ref=2d6f7e22dd25593f0f748010430ef86f19659735' --jq .content | base64 -d > skills/ux-copy/SKILL.md; wc -c skills/ux-copy/SKILL.md; shasum -a 256 skills/ux-copy/SKILL.md
+AT_UTC: 2026-09-09T22:50:01Z
+RC: 0
+    3436 skills/ux-copy/SKILL.md
+d46a00a62ec637e9ca9d5f7823ea3e0a4ec26dffc53bb5035f59b48ebfcdcde7  skills/ux-copy/SKILL.md
+
+CMD: cmp /tmp/ux-copy.md skills/ux-copy/SKILL.md && echo IDENTICAL-to-fetched
+AT_UTC: 2026-09-09T22:50:01Z
+RC: 0
+IDENTICAL-to-fetched
+
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/contents/LICENSE?ref=2d6f7e22dd25593f0f748010430ef86f19659735' --jq .content | base64 -d > skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md; wc -c skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md; shasum -a 256 skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md
+AT_UTC: 2026-09-09T22:50:01Z
+RC: 0
+   11358 skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md
+cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30  skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md
+
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/contents/design/CONNECTORS.md?ref=2d6f7e22dd25593f0f748010430ef86f19659735' --jq .size
+AT_UTC: 2026-09-09T22:50:02Z
+RC: 0
+1139
+
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/contents/design/CONNECTORS.md?ref=2d6f7e22dd25593f0f748010430ef86f19659735' --jq .content | base64 -d > skills/ux-copy/CONNECTORS.md; shasum -a 256 skills/ux-copy/CONNECTORS.md; cat skills/ux-copy/CONNECTORS.md
+AT_UTC: 2026-09-09T22:50:16Z
+RC: 0
+242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f  skills/ux-copy/CONNECTORS.md
+# Connectors
+
+## How tool references work
+
+Plugin files use `~~category` as a placeholder for whatever tool the user connects in that category. For example, `~~design tool` might mean Figma, Sketch, or any other design tool with an MCP server.
+
+Plugins are **tool-agnostic** — they describe workflows in terms of categories (design tool, project tracker, user feedback, etc.) rather than specific products. The `.mcp.json` pre-configures specific MCP servers, but any MCP server in that category works.
+
+## Connectors for this plugin
+
+| Category | Placeholder | Included servers | Other options |
+|----------|-------------|-----------------|---------------|
+| Chat | `~~chat` | Slack | Microsoft Teams |
+| Design tool | `~~design tool` | Figma | Sketch, Adobe XD, Framer |
+| Knowledge base | `~~knowledge base` | Notion | Confluence, Guru, Coda |
+| Project tracker | `~~project tracker` | Linear, Asana, Atlassian (Jira/Confluence) | Shortcut, ClickUp |
+| User feedback | `~~user feedback` | Intercom | Productboard, Canny, UserVoice, Dovetail |
+| Product analytics | `~~product analytics` | — | Amplitude, Mixpanel, Heap, FullStory |
+
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/contents/design/.claude-plugin/plugin.json?ref=2d6f7e22dd25593f0f748010430ef86f19659735' --jq .content | base64 -d
+AT_UTC: 2026-09-09T22:50:17Z
+RC: 0
+{
+  "name": "design",
+  "version": "1.1.0",
+  "description": "Accelerate design workflows — critique, design system management, UX writing, accessibility audits, research synthesis, and dev handoff. From exploration to pixel-perfect specs.",
+  "author": {
+    "name": "Anthropic"
+  }
+}
+
+CMD: gh api 'repos/addyosmani/web-quality-skills/contents/skills/accessibility/SKILL.md?ref=c6b06ad1285cd6b129b58455b2eec96ab6b67fa7' --jq .content | base64 -d > skills/accessibility/SKILL.md; cmp /tmp/a11y.md skills/accessibility/SKILL.md && echo IDENTICAL; wc -c skills/accessibility/SKILL.md; shasum -a 256 skills/accessibility/SKILL.md
+AT_UTC: 2026-09-09T22:51:22Z
+RC: 0
+IDENTICAL
+   14358 skills/accessibility/SKILL.md
+267fb2a0707d6142f2871f22688203a42ba21291a2aa200fb740936e41362b5d  skills/accessibility/SKILL.md
+
+CMD: gh api 'repos/addyosmani/web-quality-skills/contents/skills/accessibility/references/A11Y-PATTERNS.md?ref=c6b06ad1285cd6b129b58455b2eec96ab6b67fa7' --jq .content | base64 -d > skills/accessibility/references/A11Y-PATTERNS.md; wc -c skills/accessibility/references/A11Y-PATTERNS.md; shasum -a 256 skills/accessibility/references/A11Y-PATTERNS.md
+AT_UTC: 2026-09-09T22:51:22Z
+RC: 0
+    6036 skills/accessibility/references/A11Y-PATTERNS.md
+f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140  skills/accessibility/references/A11Y-PATTERNS.md
+
+CMD: gh api 'repos/addyosmani/web-quality-skills/contents/skills/accessibility/references/WCAG.md?ref=c6b06ad1285cd6b129b58455b2eec96ab6b67fa7' --jq .content | base64 -d > skills/accessibility/references/WCAG.md; wc -c skills/accessibility/references/WCAG.md; shasum -a 256 skills/accessibility/references/WCAG.md
+AT_UTC: 2026-09-09T22:51:23Z
+RC: 0
+    9079 skills/accessibility/references/WCAG.md
+16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361  skills/accessibility/references/WCAG.md
+
+CMD: gh api 'repos/addyosmani/web-quality-skills/contents/LICENSE?ref=c6b06ad1285cd6b129b58455b2eec96ab6b67fa7' --jq .content | base64 -d > skills/accessibility/LICENSE-web-quality-skills.md; head -3 skills/accessibility/LICENSE-web-quality-skills.md; shasum -a 256 skills/accessibility/LICENSE-web-quality-skills.md
+AT_UTC: 2026-09-09T22:51:23Z
+RC: 0
+MIT License
+
+Copyright (c) 2026 Addy Osmani
+c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3  skills/accessibility/LICENSE-web-quality-skills.md
+
+CMD: sed -n '125,140p;168,175p' skills/accessibility/SKILL.md
+AT_UTC: 2026-09-09T22:51:24Z
+RC: 0
+  outline-offset: 2px;
+}
+```
+
+**Don't rely on color alone:**
+```html
+<!-- ❌ Only color indicates error -->
+<input class="error-border">
+<style>.error-border { border-color: red; }</style>
+
+<!-- ✅ Color + icon + text -->
+<div class="field-error">
+  <input aria-invalid="true" aria-describedby="email-error">
+  <span id="email-error" class="error-message">
+    <svg aria-hidden="true"><!-- error icon --></svg>
+    Please enter a valid email address
+
+### Keyboard accessible (2.1)
+
+**All functionality must be keyboard accessible.** Prefer native interactive elements — `<button>`, `<a href>`, and form controls handle Enter/Space activation, focus, and assistive-tech semantics for free. Only add manual keyboard handling when you cannot use a native element.
+
+```html
+<!-- ❌ Non-interactive element with click only: not focusable, no keyboard activation -->
+<div class="card" onclick="handleAction()">Open</div>
+
