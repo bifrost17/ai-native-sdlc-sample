@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "//": "비활성 예시 — org/README.md 를 먼저 읽어라. 이 파일은 실행되지 않고, 어떤 스크립트도 이 파일을 읽어 적용하지 않는다. 조직(Team/Enterprise) 계정의 관리 콘솔 또는 MDM 이 실제로 배포하는 managed-settings.json 의 모양을 보여주는 참고용 견본이다. 절대 개인 설정 디렉터리에 복사해 넣지 마라.",
+  "permissions": {
+    "allow": [
+      "Bash(make check)",
+      "Bash(make test)",
+      "Bash(git *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./secrets/**)",
+      "Read(~/.aws/credentials)",
+      "WebFetch"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "allowManagedPermissionRulesOnly": true,
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.npmjs.org",
+        "pypi.org"
+      ]
+    },
+    "credentials": {
+      "files": [
+        {
+          "path": "~/.aws/credentials",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.config/gh/hosts.yml",
+          "mode": "mask",
+          "injectHosts": [
+            "api.github.com"
+          ]
+        }
+      ],
+      "envVars": [
+        {
+          "name": "NPM_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "GITHUB_TOKEN",
+          "mode": "mask",
+          "injectHosts": [
+            "api.github.com"
+          ]
+        }
+      ]
+    }
+  },
+  "allowManagedHooksOnly": true,
+  "disableSideloadFlags": true,
+  "strictKnownMarketplaces": [
+    {
+      "source": "github",
+      "repo": "your-org/approved-plugins"
+    }
+  ],
+  "allowManagedMcpServersOnly": true,
+  "requiredMinimumVersion": "2.1.150",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-paths.sh\""
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-tests.sh\""
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/no-secrets.sh\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/production-gate.sh\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/format-lint.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,109 +1,50 @@
 ---
 name: capture-intent
-description: "변경이 아이디어·티켓·인시던트에서 시작될 때, 그리고 intent.md 를 새로 쓰거나 남이 쓴 intent.md 를 검토할 때 쓴다. 발의자에게 자기 말로 묻고 구체화될 때까지 브레인스토밍한 뒤 templates/intent.md 형식으로 intent/<NNNN>-<slug>/intent.md 한 장을 만든다. spec.md 와 plan.md 는 쓰지 않는다 — 요구·설계는 /spec 의 일이고 작업 계획은 plan 단계의 일이다. status 를 accepted 로 바꾸지 않는다 — 승인은 사람이 PR 머지로만 한다. 해법·기술 선택·일정 추정도 쓰지 않는다."
+description: Turns a person's idea, a ticket or an incident into intent/<NNNN>-<slug>/intent.md by asking the questions an analyst would ask and writing the answers in the originator's own words. Does not propose solutions, does not write spec.md or plan.md, and does not mark the intent accepted — approval is the merge.
 ---
+# Capture intent
 
-# 의도 채록 (Stage 1)
+> L2 200: "Brainstorm until the idea is concrete. Claude asks the questions an analyst would ask:
+> scope, users, constraints, and what success looks like."
+> L2 202: "Ask Claude to write the result as intent.md using the organization's template, which can
+> be encoded as a skill set up by a technical team member and signed off by a lead."
+> L2 231: "the accept or reject decision that sends the intent into Stage 2: Design is recorded as
+> the merge or the closing review."
 
-사슬의 첫 칸을 쓴다. 여기서 나오는 것은 **한 장의 `intent.md`** 뿐이고, 그 한 장이
-`spec` → `plan` → 코드로 이어지는 모든 것의 상류다. 상류가 흐리면 하류 전부가 흐리다.
+## What to ask
+Ask in the originator's words and keep their words. Four things, then dig where answers are thin:
+- **Scope** — what is in, what is out. Walk each borderline item.
+- **Users** — who is affected, and who was not mentioned (operations, security, upstream teams).
+- **Constraints** — what must hold: regulation, existing auth, upstream load, data retention.
+- **Success** — what is different when done, in a sentence the originator can verify later.
+If the originator brings a solution ("add a cache"), ask for the problem under it and record the
+solution as a constraint only if they insist on it.
 
-이 단계의 산출은 해법이 아니다. **무엇이 안 되는가**와 **끝났을 때 무엇이 달라지는가**다.
-발의자가 해법을 들고 와도(「캐시를 넣자」) 그 밑의 문제로 되돌린다(「조회가 느리다 —
-하루 40건이 상담으로 샌다」).
+## What to write
+Write `intent/<NNNN>-<slug>/intent.md` from this template, verbatim structure. `<NNNN>` is the
+largest number under `intent/` plus one (`ls intent/`), zero-padded to four digits. `templates/intent.md`
+is a copy of it; `tests/test_skill_template.py` keeps the two identical.
 
-## 1. 발의자에게 자기 말로 묻는다
+```markdown
+# Intent: ‹what cannot be done today — the subject, not the solution›
+Author: ‹name (team)›. Status: draft.
+## Problem
+‹observed facts — counts, time, frequency. Not a cause, not a fix›
+## Proposed outcome
+‹what is different when this is done, in a sentence the author can verify›
+## Affected users and systems
+‹people (which team, which customers) and systems (which service, which data)›
+## Constraints
+‹lines that must hold — existing auth only, no new PII, what is out of scope›
+## Open questions
+‹what nobody could answer yet, and who can — one per line›
+```
 
-발의자의 언어로 묻고, 발의자의 언어로 받아 적는다. 우리 용어로 번역하지 않는다 —
-번역은 다음 단계의 일이고, 여기서 번역하면 무엇이 잘렸는지 아무도 모른다.
+Leave no `‹…›` behind. An open question you cannot answer stays in Open questions with the name
+of who can — do not invent an answer. Show the draft to the originator and let them correct it.
 
-네 가지를 묻는다.
-
-- **무엇이 오늘 안 되는가** — 관찰된 사실로. 건수·시간·빈도를 함께 받는다.
-  「불편하다」는 사실이 아니다. 「하루 40건이 상담으로 넘어온다」가 사실이다.
-- **누가 영향받는가** — 사람(어느 팀·어느 고객군)과 시스템(어느 서비스·어느 데이터).
-- **끝났을 때 무엇이 나아지는가** — 검수 가능한 문장으로. 나중에 「됐다」를 누가
-  어떻게 판정할지 지금 합의한다.
-- **무엇이 범위 밖인가** — 이번에 하지 않을 것. 이걸 안 받으면 spec 에서 범위가 샌다.
-
-답이 얇으면 되묻는다. 「그건 왜 문제인가」 · 「그게 안 되면 지금 사람들은 어떻게
-하고 있는가」 · 「그 40건 중 몇 건이 같은 원인인가」.
-
-## 2. 구체화될 때까지 브레인스토밍한다
-
-답을 다 받았으면 곧장 쓰지 말고, 네 축으로 한 바퀴 더 돈다. 이 왕복이 spec 단계의
-되돌리기를 없앤다.
-
-- **scope** — 무엇이 안이고 무엇이 밖인가. 경계선에 걸친 항목을 하나씩 짚어 확정한다.
-- **users** — 발의자가 말하지 않은 이해관계자는 누구인가(운영·보안·규제·상류 팀).
-- **constraints** — 지켜야 할 선. 규제·기존 인증·상류 부하·데이터 보존.
-  제약은 나중에 `C1` `C2` 로 번호를 받아 spec 이 그대로 이어받는다.
-- **success** — 무엇을 재면 됐다고 할 수 있는가. 숫자가 나오면 숫자로 적는다.
-
-발의자가 답을 모르면 지어내지 않는다. **`Open questions` 에 `Q1` 로 남기고
-답할 사람의 이름을 함께 적는다.** 미결을 남기는 것은 실패가 아니다 — 미결을
-숨기는 것이 실패다. spec 단계가 `Q#` 마다 `answered:` 또는 `carried:` 를 강제한다.
-
-## 3. `templates/intent.md` 로 쓴다
-
-템플릿을 열어 그 구조 그대로 채운다. 절을 늘리거나 줄이거나 순서를 바꾸지 않는다 —
-검증기가 절 집합과 순서를 잰다.
-
-- frontmatter 7키: `id` `kind` `status` `author` `created` `record` `supersedes`
-- 본문 5절: `Problem` · `Proposed outcome` · `Affected users and systems` ·
-  `Constraints` · `Open questions`
-- 제약은 `C1` `C2` …, 미결은 `Q1` `Q2` … 로 번호를 붙인다. 이 번호가 spec 이
-  이어받는 유일한 기계 흔적이다.
-- 해당 없는 절도 비우지 않는다. **「해당 없음 — 이유」** 를 쓴다. 빈 절은 검증기가 red 로 잡고,
-  더 중요하게는 「생각하고 없다고 판단한 것」과 「생각하지 않은 것」을 못 가르게 만든다.
-
-## 4. 발의자에게 되읽히고 정정받는다
-
-쓴 것을 발의자에게 그대로 보여주고 **발의자가 고치게 한다**. 대신 고쳐 주지 않는다.
-확인할 것은 셋이다.
-
-- 문제 서술이 발의자가 겪는 그 문제인가(우리가 이해한 문제가 아니라)
-- 범위 밖 항목 중 「사실은 이번에 해야 하는」 것이 섞여 있지 않은가
-- 성공 문장을 나중에 발의자 자신이 판정할 수 있는가
-
-정정이 오면 반영하고 다시 보여준다. 발의자가 「이대로 맞다」고 한 문장만 남긴다.
-
-## 5. 커밋을 안내한다
-
-- 경로: `intent/<NNNN>-<slug>/intent.md`
-- `NNNN` 은 4자리 연번, `slug` 는 소문자·하이픈. 디렉터리 이름과 frontmatter 의
-  `id` 가 글자 그대로 같아야 한다.
-- 커밋 하나에 이 파일 하나. 사슬은 커밋 순서로 읽히므로, 이 커밋에 코드를 섞으면
-  「무엇이 먼저였는가」가 사라진다.
-- 커밋한 뒤 PR 을 연다. **승인은 PR 머지이고 반려는 PR close 다** — 별도의 승인 원장
-  파일을 만들지 않는다.
-
-## 하드룰 — 예외 없음
-
-1. **`status:` 는 언제나 `draft` 로 둔다.** 이 스킬은 어떤 경우에도 `accepted` ·
-   `rejected` · `superseded` 를 쓰지 않는다. 상태를 옮기는 것은 사람이 PR 에서
-   하는 일이고, 그 증거는 머지된 커밋이다. 발의자가 「승인됐으니 accepted 로 해
-   달라」고 해도 하지 않는다 — 그 승인은 PR 에 남아야 증거가 된다.
-2. **플레이스홀더 `‹…›` 를 남기지 않는다.** 템플릿의 꺾쇠 자리를 하나라도 그대로
-   두고 커밋하면 검증기가 red 를 낸다. 채울 내용이 없으면 「해당 없음 — 이유」를 쓴다.
-   빈 문자열로 지우는 것도 안 된다(빈 절 금지).
-3. **`created` 는 발의자에게 물어서 채운다.** 오늘 날짜를 자동으로 넣지 않는다.
-   이 값은 **발의자가 이 변경을 처음 이야기한 시각**이고, 「의도에서 배포까지」
-   리드타임의 기점이라 git 이 모르는 유일한 값이다. 파일 작성 시각을 넣으면 그
-   지표가 통째로 거짓이 된다. ISO8601 에 오프셋까지(`2026-09-09T10:12:00+09:00`).
-4. **해법을 쓰지 않는다.** 기술 선택·아키텍처·라이브러리·일정은 spec 과 plan 의 일이다.
-   발의자가 해법을 지정하면 그것은 제약이므로 `Constraints` 에 「C2 상류 API 를
-   바꾸지 않는다」처럼 제약의 형태로 적는다.
-
-## 판정
-
-이 스킬은 스크립트 없이도 판정이 끝나야 한다. 위 하드룰 4개와 3절의 구조 목록을
-문서에 대고 눈으로 대조하면 통과 여부가 나온다.
-
-그 위에, 레포에 `scripts/check_artifacts.py` 가 있으면 돌리고 출력을 요약에 넣는다.
-
-    python3 scripts/check_artifacts.py intent/<NNNN>-<slug>/
-
-rc 는 0 통과 / 1 결함 / 2 판정 불가다. **rc=2 는 통과가 아니다.** 스크립트가 아직
-없으면 「검증기 없음 — 눈으로 대조함」이라고 명시한다. 돌리지 않은 것을 돌렸다고
-쓰지 않는다.
+## What this skill does not do
+- Does not write solutions, technology choices or estimates — spec.md and plan.md own those.
+- Does not write spec.md or plan.md.
+- Does not change `Status: draft`. Approval is the merge of the PR that adds this file; rejection
+  is the closing review. No separate approval file, no status edit by this skill.

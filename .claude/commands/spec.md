@@ -1,74 +1,12 @@
 ---
-description: 승인된 intent.md 를 읽어 같은 디렉터리에 spec.md 초안을 쓴다. 제약 C# 전수 재수록 · 미결 Q# 마다 answered/carried · 정책 충돌은 Flagged concerns 로.
+description: Write spec.md for an accepted intent (L3 268 — "codify it as an organization-level slash command")
 argument-hint: [intent-id]
 ---
+Read the attached intent.md and produce a requirements and design spec for integrating it into our
+existing codebase. Apply the skills available to you so the plan conforms to our brand guidelines,
+security policies and UX standards. Document the spec fully as spec.md, ready to hand to the
+engineering team. Describe clearly any areas of concern, especially where you cannot satisfy
+contradicting policies.
 
-`$1` 이 가리키는 사슬의 `spec.md` 를 쓴다(예: `0002-claims-status`).
-인자가 없으면 어느 사슬인지 먼저 묻는다 — 짐작해서 고르지 않는다.
-
-## 먼저 읽는다
-
-1. `intent/$1/intent.md` 를 연다. **`status:` 가 `accepted` 인지 확인한다.**
-   `draft` 면 멈추고 「아직 승인되지 않았다 — 승인 PR 이 머지된 뒤에 다시 부르라」고
-   보고한다. 승인되지 않은 의도 위에 spec 을 쌓으면 하류 전부를 다시 써야 한다.
-2. `templates/spec.md` 를 연다. 절 이름과 순서가 여기서 나온다. 절을 늘리거나
-   줄이거나 순서를 바꾸지 않는다.
-3. 이 저장소의 스킬 중 이번 변경에 걸리는 것을 적용한다. 조회 API 를 다루면
-   `secure-api-review` 를 읽고 그 네 규칙을 요구와 수용 기준에 반영한다.
-   **적용한 스킬 이름을 frontmatter 의 `skills_applied` 에 남긴다** — 나중에
-   「그때 어떤 규칙 아래 썼는가」를 알 수 있어야 한다.
-
-## 쓴다
-
-`intent/$1/spec.md` 에 템플릿 형식으로 쓴다. 네 가지가 이 커맨드의 본체다.
-
-### 1. intent 의 제약 `C#` 를 「상속한 제약」에 전부 재수록한다
-
-`intent.md` 의 `Constraints` 절에 있는 `C1` `C2` … **전부**를 spec 의
-`Constraints inherited` 절에 옮긴다. 번호를 그대로 유지한다 — 번호가 두 문서를
-잇는 유일한 기계 흔적이다.
-
-- 하나라도 빠지면 검증기가 red 를 낸다. 「이번 범위에 안 걸린다」고 판단해도 옮긴 뒤
-  「이번 범위 밖 — 이유」를 붙인다. **판단을 지우지 말고 적는다.**
-- 문면을 다듬지 않는다. 제약은 발의자의 말 그대로가 증거다.
-- spec 을 쓰다 새로 알게 된 제약은 `Constraints inherited` 가 아니라
-  `Constraints discovered` 에 새 번호로 적는다. 두 출처를 섞지 않는다 —
-  상속한 것은 발의자가 건 선이고, 발견한 것은 우리가 건 선이다.
-
-### 2. intent 의 미결 `Q#` 를 「Open questions from intent」에 처분과 함께 옮긴다
-
-`Q#` 마다 정확히 둘 중 하나를 붙인다. 셋째 어휘를 만들지 않는다.
-
-- `answered:` — 이 spec 이 답한다. **답을 그 자리에 쓴다.** 「해결됨」은 답이 아니다.
-- `carried:` — 아직 답이 없다. **누가 언제까지 답하는지**와, 답이 늦어지면 무엇이
-  막히는지 함께 적는다. 답 없이 지나가도 되는 이유가 있으면 그것도 적는다.
-
-미결을 조용히 지우지 않는다. 답한 것과 아직 답 없는 것을 나중에 셀 수 있어야 한다.
-
-### 3. 만족시킬 수 없는 정책 충돌은 `Flagged concerns` 에 담당자와 함께 올린다
-
-요구를 다 만족시키려는 유혹을 이긴다. 아래는 전부 플래그 대상이다.
-
-- 두 제약이 서로를 배제한다(예: 「상류 부하를 늘리지 않는다」와 「항상 최신값을
-  보여준다」).
-- 요구가 조직 정책을 넘는다(새 PII 노출 · 새 인증 수단 · 보존 기간 초과).
-- 요구를 만족시키려면 이 사슬의 범위 밖 시스템을 바꿔야 한다.
-
-플래그마다 `F1` `F2` … 번호, **무엇과 무엇이 충돌하는가**, **누가 결정하는가**(팀이
-아니라 사람), 결정이 늦어지면 어느 요구가 막히는가를 적는다. 담당자 없는 플래그는
-플래그가 아니라 소원이다.
-
-### 4. `status:` 는 `draft` 로 둔다
-
-이 커맨드는 어떤 경우에도 `accepted` 를 쓰지 않는다. 상태를 옮기는 것은 사람이
-PR 에서 하는 일이다. frontmatter 의 `upstream:` 에는 읽은 `intent.md` 의 커밋
-sha 를 적는다 — 「그 시점의 intent」를 못박아야 나중에 intent 가 바뀐 것을 기계가 잰다.
-
-## 마무리
-
-- 빈 절을 남기지 않는다. 해당 없으면 「해당 없음 — 이유」를 쓴다.
-- 수용 기준 `AC#` 는 관찰 가능한 결과로 쓰고 각각 어느 요구 `R#` 에 붙는지 표시한다.
-  누가 어떻게 재는지가 문장에서 읽혀야 한다.
-- 다 쓴 뒤 `python3 scripts/check_artifacts.py intent/$1/` 가 있으면 돌리고 출력을
-  요약에 넣는다. 없으면 「검증기 없음」이라고 명시한다.
-- **spec 과 intent 를 나란히 보여주고 사람의 검토를 받는다.** 커밋·PR 은 사람이 한다.
+(L3 282, the playbook's prompt, verbatim.) The intent is `intent/$1/intent.md`; if `$1` is empty,
+ask which chain. Follow the `design-spec` skill — it stops if the intent is not accepted.

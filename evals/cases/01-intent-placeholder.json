@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "01-intent-placeholder",
+  "prompt": "You are a contributor to this repo. Read CLAUDE.md, .claude/skills/capture-intent/SKILL.md and templates/intent.md first.\n\nThe workspace evals/out/01-intent-placeholder/ws/ holds idea.md, a field note written by a non-engineer. Turn it into an intent exactly at:\n\n  evals/out/01-intent-placeholder/ws/intent/9001-eval-sample/intent.md\n\nRules: (1) follow the capture-intent skill's template, section for section, in the originator's words; (2) leave no ‹…› placeholder; (3) line 2 is `Author: … Status: draft.` — nobody has approved it, approval is the merge; (4) create or change nothing outside the workspace.",
+  "expected_output": "One file, intent/9001-eval-sample/intent.md: the template's five sections filled from the note (61 of 214 calls · 3 min 20 s · within 10 minutes · C1 no new contact data · C2 50 req/s · Q1 which statuses · Q2 night sending), line 2 ends with `Status: draft.`, no placeholder left.",
+  "files": [
+    "evals/fixtures/01-intent-placeholder/idea.md"
+  ],
+  "allowed_tools": "Read,Write,Glob,Grep",
+  "measures": "Whether CLAUDE.md and the capture-intent skill steer the agent: an unsteered agent copies the template with placeholders left, or invents a frontmatter the template does not have.",
+  "assertions": [
+    "The prose invents no fact (number, deadline, system name) that is not in the note",
+    "Problem states the observed counts, not a cause or a fix",
+    "Each open question names who can answer it"
+  ],
+  "checks": [
+    {
+      "kind": "file_exists",
+      "path": "intent/9001-eval-sample/intent.md"
+    },
+    {
+      "kind": "not_contains",
+      "path": "intent/9001-eval-sample/intent.md",
+      "value": "‹"
+    },
+    {
+      "kind": "regex_present",
+      "path": "intent/9001-eval-sample/intent.md",
+      "pattern": "^Author: .+\\. Status: draft\\.$"
+    },
+    {
+      "kind": "regex_absent",
+      "path": "intent/9001-eval-sample/intent.md",
+      "pattern": "Status: accepted"
+    },
+    {
+      "kind": "regex_present",
+      "path": "intent/9001-eval-sample/intent.md",
+      "pattern": "^## Open questions$"
+    }
+  ]
+}
