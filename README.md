@@ -28,6 +28,17 @@ Unofficial; not an Anthropic project.
   run" is not "passed". Add the secret to make it real.
 - Records every change to itself as a chain under `intent/`.
 
+## Chains
+| Chain | Kind | Entry path | PR(s) |
+|---|---|---|---|
+| 0001 bootstrap-repo | record · pre-slim convention | this repo, self-recorded | #12 |
+| 0002 claims-status | feature · person | `capture-intent` (person's idea) | #17, #18 |
+| 0004 lesson-only | slim | this repo, self-recorded | #16 |
+| 0005 ownerless-claim-visible | defect · ticket | GitHub issue | #20, #21 |
+| 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
+
+The ticket path is a GitHub issue — #24, #25, #26.
+
 ## Source of truth
 This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
 external system of record — no Jira, no separate requirements tool — for the artifacts under
