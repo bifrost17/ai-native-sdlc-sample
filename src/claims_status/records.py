@@ -21,6 +21,30 @@ _UPSTREAM = {
         "subscriber_rrn": "880303-2345678", "subscriber_name": "김영희",
         "bank_account": "110-233-114455", "internal_memo": "정상 지급",
     },
+    # 배정 표본 — 「담당 사정인」 칸은 두 필드다(intent/0008 spec F7): 번호가 정본, 이름은 판정에
+    # 쓰지 않는다. 기존 두 행은 0002·0005·0006·0007 의 시험이 전제를 잡고 있어 손대지 않는다.
+    "C-2001": {
+        "claim_id": "C-2001", "subscriber_id": "S-77", "status": "심사중",
+        "next_step": "손해사정 결과 접수", "due_date": "2026-09-18",
+        "adjuster_id": "A-3391", "adjuster_name": "이수진",
+        "subscriber_rrn": "900101-1234567", "subscriber_name": "홍길동",
+        "bank_account": "110-233-998877", "internal_memo": "재심사 대상 — 내부 검토중",
+    },
+    "C-2002": {
+        "claim_id": "C-2002", "subscriber_id": "S-12", "status": "보완요청",
+        "next_step": "서류 보완 대기", "due_date": "2026-09-25",
+        "adjuster_id": "A-7742", "adjuster_name": "박준호",
+        "subscriber_rrn": "880303-2345678", "subscriber_name": "김영희",
+        "bank_account": "110-233-114455", "internal_memo": "보완 서류 미도착",
+    },
+    # 담당 사정인 칸이 빈 행 — 어느 사정인에게도 보이지 않아야 한다(spec R6).
+    "C-2003": {
+        "claim_id": "C-2003", "subscriber_id": "S-12", "status": "접수",
+        "next_step": "서류 검토", "due_date": "2026-09-30",
+        "adjuster_id": "", "adjuster_name": "",
+        "subscriber_rrn": "880303-2345678", "subscriber_name": "김영희",
+        "bank_account": "110-233-114455", "internal_memo": "접수 직후",
+    },
 }
 _CACHE = {}  # claim_id → (만료 시각, 레코드 또는 None). 프로세스 메모리를 벗어나지 않는다.
 _STATS = {"upstream_calls": 0}
