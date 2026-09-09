@@ -37,7 +37,8 @@ def reset_for_test():
 
 
 def fetch_claim(claim_id, now=None):
-    """TTL 안이면 캐시, 아니면 상류. 없는 건도 캐시한다(없는 번호 반복 조회로 예산을 태우지 못하게).
+    """TTL 안이면 캐시, 아니면 상류. 없는 건은 캐시하지 않는다 — intent/0006: 「없음」을 60초 들고 있으면
+    그 사이 원장에 생긴 건이 not_found 로 보인다(없는 번호 반복 조회의 상류 예산은 0006 spec F1 로 넘겼다).
 
     `now` 는 시험이 시간을 통제하려고 주입한다; 기본은 단조 시계(벽시계가 뒤로 가도 캐시가 영생하지 않게).
     """
@@ -48,5 +49,6 @@ def fetch_claim(claim_id, now=None):
         return cached[1]
     _STATS["upstream_calls"] += 1
     record = _UPSTREAM.get(claim_id)
-    _CACHE[claim_id] = (now + CACHE_TTL_SECONDS, record)
+    if record is not None:
+        _CACHE[claim_id] = (now + CACHE_TTL_SECONDS, record)
     return record
