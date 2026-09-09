@@ -1,6 +1,6 @@
 # Spec: ‹what is built› (from intent ‹NNNN-slug›)
 Upstream: intent.md@‹commit sha of the accepted intent›. Status: draft.
-Skills applied: ‹names of the organization skills read while writing this, or none›.
+Skills applied: ‹name@sha of each organization skill read while writing this, or none›.
 ## Requirements
 ‹R1, R2 … — each observable, each traceable to the Problem in intent.md›
 ## Design
