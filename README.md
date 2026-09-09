@@ -1,4 +1,4 @@
-# intent-sdlc-sample
+# ai-native-sdlc-sample
 
 A small repo that applies the fourteen lessons of Anthropic's "The AI-Native SDLC Playbook"
 (Claude Academy) as written — skills that say what to do, a few hooks that block what the lessons
