@@ -76,7 +76,7 @@ these is a device the playbook names; this repo does not build it, and here is w
   967, 971). All four presuppose running infrastructure — containers, network policy, a deploy
   tool with MCP tools registered, a staging environment to rehearse in — that a checked-out
   source tree cannot provide or prove.
-- **20-50 real eval cases** (L10 685). `evals/cases/` holds four (one per incident, L14 1040), enough to prove the harness
+- **20-50 real eval cases** (L10 685). `evals/cases/` holds three (the incident eval from chain 0006 is on `experiment/2026-09-09-claims-status`, L14 1040), enough to prove the harness
   runs; filling it to the lesson's count needs that organization's actual recent task history,
   which this sample repo does not have.
 - **A test that a skill actually triggers** (L6 470, "confirm the skill loads each time"). That is

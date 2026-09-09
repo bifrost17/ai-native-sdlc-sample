@@ -18,7 +18,7 @@ Unofficial; not an Anthropic project.
 6. `docs/METRICS.md` — the lessons' indicators as git commands.
 7. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
    this repo's sample ones, and who (in the playbook's terms) fills each one in.
-8. `docs/RUNS.md` — actual runs against these devices, judged by each play's own governance and
+8. `docs/RUNS.md` (on the experiment branch, see Experiments below) — actual runs against these devices, judged by each play's own governance and
    measurement sections, not a separate scorecard.
 
 ## What this repo does
@@ -36,15 +36,20 @@ Unofficial; not an Anthropic project.
 | Chain | Kind | Entry path | PR(s) |
 |---|---|---|---|
 | 0001 bootstrap-repo | record · pre-slim convention | this repo, self-recorded | #12 |
-| 0002 claims-status | feature · person | `capture-intent` (person's idea) | #17, #18 |
 | 0004 lesson-only | slim | this repo, self-recorded | #16 |
-| 0005 ownerless-claim-visible | defect · ticket | GitHub issue | #20, #21 |
-| 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
-| 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |
-| 0008 adjuster-claim-status | feature · person | `capture-intent` (person's idea) | #30, #31, #33 |
-| 0009 agent-proxy-claim-status | feature · person | `capture-intent` (person's idea) | #38, #39, #42 |
+| 0010 experiments-on-branches | structure | this repo, self-recorded | #55 |
 
-The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.
+## Experiments
+`main` is the template and the template's own chains only. Each experiment — chains run *on* the
+template to see whether it works — lives on a branch `experiment/<date>-<topic>` that is never
+merged, carries its raw evidence under `raw/`, and names the `main` commit it started from in
+`EXPERIMENT.md`. What an experiment reveals about the template comes back to `main` as a PR.
+
+| Branch | Started from | What it holds |
+|---|---|---|
+| `experiment/2026-09-09-claims-status` | `main@0daf6550` (PR #54) | chains 0002 (feature) · 0005 (defect, issue #20) · 0006 (incident, band) · 0007 (defect, issue #24, unbriefed agent) · 0008 · 0009 (human–agent runs); example app `src/claims_status/`; `docs/RUNS.md`; 172 raw files. Template feedback from it: PRs #19 #27 #29 #33 #34 #35 #40 #44–#54 |
+
+Issues #24, #25, #26, #32 belong to that experiment's claims-status app.
 
 ## Source of truth
 This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
@@ -64,6 +69,6 @@ Plan mode headless: `claude -p --permission-mode plan` writes the plan outside t
 ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).
 Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
 the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
-hook events in the implementation turn, `docs/RUNS.md`).
+hook events in the implementation turn, `docs/RUNS.md` on the experiment branch).
 `.claude/settings.json` allows this repo's own safe commands without a prompt (`permissions.allow`,
 L8 545); the team replaces the list with what its organization considers safe (`docs/ADOPTING.md`).
