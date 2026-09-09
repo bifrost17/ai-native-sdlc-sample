@@ -1,41 +1,33 @@
 # intent-sdlc-sample
 
-Anthropic 「The AI-Native SDLC Playbook」(Claude Academy · 14레슨)의 아티팩트 사슬을
-**기계가 지키는 레포**로 시연하는 샘플이다. 비공식이며 Anthropic 공식 프로젝트가 아니다.
+A small repo that applies the fourteen lessons of Anthropic's "The AI-Native SDLC Playbook"
+(Claude Academy) as written — skills that say what to do, a few hooks that block what the lessons
+say to block, and an `intent/` folder where each change is recorded as intent → spec → plan.
+Unofficial; not an Anthropic project.
 
-```
-intent.md  →  spec.md  →  plan.md  →  코드·시험  →  PR·리뷰  →  merge
-   ↑                                                              │
-   └──────────  Stage 6: 밴드 위반이 다음 intent 를 쓴다  ←────────┘
-```
+## Read in this order
+1. `docs/PLAYBOOK-MAP.md` — each lesson, the device this repo uses for it, and which layer it lives
+   in (person, tool, skill, or code).
+2. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
+   why a checker inside the tree is not an approval authority.
+3. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
+4. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
+   chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history.
+5. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
+6. `docs/METRICS.md` — the lessons' indicators as git commands.
 
-레슨 1 의 주장 — *"Each stage ends by writing [an artifact] to version control … and the next
-stage begins by reading it. The chain of commits is also the audit trail"* — 을 문장이 아니라
-**검사로** 증명하는 것이 이 레포의 목적이다.
+## What this repo does
+- Encodes the intent, spec and plan templates in skills, with `templates/` as copies.
+- Keeps the hooks the lessons name as deterministic (test protection, secrets, plan sync).
+- Runs `make check` in CI; a red check is a red PR.
+- Records every change to itself as a chain under `intent/`.
 
-## 지금 상태 — W0 (골격)
+## What this repo does not do
+- It does not check artifact form, status or transitions in code. Approval is a merged PR;
+  a missing section is caught by the skill and by the product owner reading the file.
+- It does not enforce policy skills with code unless the lesson names the hook.
+- It does not replace the playbook. Quotes are short and cite the line; the original is
+  Claude Academy, `courses/ai-native-sdlc-playbook`, Copyright Anthropic.
 
-설계안이 첫 아티팩트다. 사슬 3본과 강제 장치는 W1~W3 에서 들어온다.
-
-| 읽을 것 | 무엇 |
-|---|---|
-| `docs/DESIGN.md` | 설계안 v0.2 — 결정 15건 · 14 플레이 전수 판정 · 이월 원장 |
-| `NOTICE` | 차용 조각의 출처와 라이선스 |
-| `make check` | 지금 있는 것만 검사한다. 빈 통과가 아니다 — 무엇을 재는지는 `scripts/check_all.sh` |
-
-## 앞으로 들어올 것 (설계안 §12)
-
-- W1 아티팩트 검증기 + 훅 5 + CI 차단
-- W2 사슬 0001(레포 자체) · 0002(청구 상태 기능)
-- W3 사슬 0003(결함 — 실패 시험 먼저) · 밴드 검출기 · 지표
-
-## 이 레포가 검증하지 않는 것
-
-검증기는 **닫힌 어휘만** 잰다: 파일·절·필드·상태·상류 승인·ID 이어받기.
-「제목이 해법인가」 · 「산문이 좋은가」 · 「요구가 문제를 실제로 푸는가」는 재지 않는다 —
-사람과 리뷰의 몫이고, 안 보는 것을 보는 척하지 않는다.
-
-## 출처
-
-플레이북 인용은 짧은 축자 + 출처 표기만 한다. 원문은 Claude Academy 의
-`courses/ai-native-sdlc-playbook` (Copyright Anthropic).
+## Commands
+`make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
