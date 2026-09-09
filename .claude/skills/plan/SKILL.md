@@ -11,7 +11,8 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 > L4 329: "When implementation departs from the plan, update plan.md in the same commit."
 
 ## Inputs
-`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged). Read the codebase
+`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged) — or, if an engineer
+started you on a draft (see design-spec, "one exception"), say so at the top. Read the codebase
 without changing anything — that is what plan mode is for.
 
 ## Write `plan.md` with four sections (`templates/plan.md`)
