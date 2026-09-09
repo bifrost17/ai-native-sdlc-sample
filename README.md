@@ -26,6 +26,11 @@ Unofficial; not an Anthropic project.
   in their own workflow on config changes and on a schedule (L10 689).
 - Records every change to itself as a chain under `intent/`.
 
+## Source of truth
+This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
+external system of record — no Jira, no separate requirements tool — for the artifacts under
+`intent/`; the commit is the timestamp authority.
+
 ## What this repo does not do
 - It does not check artifact form, status or transitions in code. Approval is a merged PR;
   a missing section is caught by the skill and by the product owner reading the file.
