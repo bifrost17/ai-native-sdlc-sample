@@ -21,7 +21,7 @@ Note: 엔지니어 결정(2026-09-09) — PR 은 하나(plan.md 는 자기 커�
 1. `plan.md` 커밋 — 사슬 규약은 intent → spec → plan, 각자 자기 커밋.
 2. **시험 먼저 + 스텁 → red 실측.** `tests/test_adjuster_status.py` 를 다 쓰고 `audit.py`·`adjuster_routes.py` 는 시그니처만 있는 스텁으로 둔다(핸들러는 `not_found` 고정, `record_access` 는 무동작). `python3 -m unittest tests.test_adjuster_status` 로 **단정 실패**를 확인한다 — 임포트 실패는 red 가 아니라 계기 부재다. 라우트 등록과 새 표본 행은 이 단계에서 살아 있어야 양성 대조가 초록이다. 시험+스텁을 한 커밋으로.
 3. `records.py` — `cached` 필수 키워드 인자. `cached=False` 면 TTL 을 보지 않고 상류를 부르며 받은 레코드로 캐시를 갱신한다. (구현 중 조정: 표본 새 행 셋은 단계 2 에서 함께 들어갔다 — 단계 2 의 양성 대조가 그 행들을 읽기 때문이다.)
-4. `response.py` + `routes.py` **한 커밋으로**. 나누면 그 사이 커밋에서 0002 의 시험 전부가 red 다.
+4. `response.py` + `routes.py` **한 커밋으로**. 나누면 그 사이 커밋에서 0002 의 시험 전부가 red 다. (구현 중 조정: 같은 이유로 단계 3 도 이 커밋에 합쳤다 — `cached` 를 필수로 만든 순간 `routes.py` 의 호출이 깨지므로 3 과 4 사이에 초록인 커밋이 없다.)
 5. `audit.py` 본체 — 모듈 상태는 리스트 하나. **원장 레코드를 인자로 받지 않는다**(못 받으면 실수로도 못 싣는다). 시각은 인자 `at`: `records.py` 의 `now` 는 캐시 만료용 단조 시계라 기록의 시각이 될 수 없다. 시험용 `access_records()`·`reset_for_test()`.
 6. `adjuster_routes.py` 본체 → green. 판정 순서: 세션 `None` → `unauthenticated` · dict 가 아니거나 `role != "adjuster"` 이거나 `adjuster_id` 가 비었으면 → `not_found` · `CLAIM_ID_RE` 불일치 → `invalid_claim_id` (여기까지 상류 호출 0 · 기록 0) · `fetch_claim(claim_id, now=now, cached=False)` · 배정 불일치·없는 건 → `not_found`(기록 0) · `build_response(record, ADJUSTER_FIELDS)` 뒤에 `record_access(...)`. 배정 판정은 0005 규칙 그대로 — 어느 한쪽이 비면(`None`·`""`·없음) 불일치. `adjuster_name` 은 읽지 않는다. `route` 와 `CLAIM_ID_RE` 는 `routes.py` 에서 임포트한다(번호 형식 규칙은 0007 이 고친 `\A…\Z` 하나뿐이어야 한다). 시험은 편집하지 않고 초록으로 만든다.
 7. 뮤테이션 3건 — 한 줄 침묵 살해 → 지정 시험 red 확인 → `sha256` 대조로 복원. M1 배정 판정 한 줄 삭제 → AC4 red · M2 `cached=False` → `cached=True` → AC7 red · M3 `record_access(...)` 호출 삭제 → AC8 red.

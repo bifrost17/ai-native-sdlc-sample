@@ -60,17 +60,24 @@ def reset_for_test():
     _STATS["upstream_calls"] = 0
 
 
-def fetch_claim(claim_id, now=None):
+def fetch_claim(claim_id, now=None, *, cached):
     """TTL 안이면 캐시, 아니면 상류. 없는 건은 캐시하지 않는다 — intent/0006: 「없음」을 60초 들고 있으면
     그 사이 원장에 생긴 건이 not_found 로 보인다(없는 번호 반복 조회의 상류 예산은 0006 spec F1 로 넘겼다).
 
     `now` 는 시험이 시간을 통제하려고 주입한다; 기본은 단조 시계(벽시계가 뒤로 가도 캐시가 영생하지 않게).
+
+    `cached` 는 기본값 없는 필수 키워드다 — intent/0008 spec F1·R7. 사정인 경로는 `cached=False` 로
+    부르고 배정을 매번 원장에서 다시 읽는다(이관된 사정인이 60초 더 보면 안 된다). 기본값을 두면
+    인자를 잊은 호출자가 조용히 낡은 **권한**으로 판정한다 — response.build_response 의 필드 인자를
+    필수로 둔 것과 같은 이유다. `cached=False` 도 받은 레코드로 캐시를 갱신한다(고객 경로가 더
+    신선해질 뿐 나빠지지 않는다).
     """
     if now is None:
         now = time.monotonic()
-    cached = _CACHE.get(claim_id)
-    if cached is not None and now < cached[0]:
-        return cached[1]
+    if cached:
+        hit = _CACHE.get(claim_id)
+        if hit is not None and now < hit[0]:
+            return hit[1]
     _STATS["upstream_calls"] += 1
     record = _UPSTREAM.get(claim_id)
     if record is not None:
