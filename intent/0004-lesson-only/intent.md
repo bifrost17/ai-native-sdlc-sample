@@ -7,7 +7,7 @@ the parent session on `origin/main` at 3de08318: 15,740 lines across the merged 
 of them checker code and its tests; on this lane's checkout, 10,408 tracked lines, of which the
 files this lane owns are 1,102 and the metrics script alone is 2,010. The approval check — "no
 `accepted` on a branch" — was rewritten three times and a variant got through each time. The
-playbook never asked for that machine. It puts intent approval in the merge (L2 229), spec
+playbook never asked for that machine. It puts intent approval in the merge (L2 231), spec
 approval in the product owner (L3 276), plan approval in plan mode (L4 360), and PR approval
 in branch protection (L11 762); it calls a skill "an advisory control" (L6 503).
 The author's words (2026-09-09): "너무 기계적인 검증과 플레이북에서 말하는 절차등을 체크하고

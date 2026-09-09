@@ -38,3 +38,25 @@ All seven put the three layers in one place — a validator that also carried po
 and none of the seven had a validator that held (hooks unwired, `jq` fail-open, examples that broke
 their own templates, routes to skills that did not exist). This file exists so that the next person
 does not rebuild that.
+
+## Lesson devices this repo does not build
+The lessons name more than a small repo can stand up, and more than this change touches. Each of
+these is a device the playbook names; this repo does not build it, and here is why not.
+- **Intent merge → auto-PR'd spec.md** (L3 268, "commits spec.md as a pull request" on the merge
+  of an accepted intent). This is the end state of a hand-run product-owner prompt codified as a
+  slash command; the CI trigger and model-access wiring are an org-level infrastructure decision,
+  not something the source tree alone settles.
+- **An "ask" verdict from a hook** (L12 821, "allow, ask, or block" — the worked example at 850–861
+  only shows block). All five hooks here are allow/block only; "ask" needs an interactive channel
+  back to a human mid-tool-call, and that channel is outside this repo's tree.
+- **`claude -p` triage, sandboxed jobs, MCP-exposed deploys, rehearsed rollback** (L13 961, 965,
+  967, 971). All four presuppose running infrastructure — containers, network policy, a deploy
+  tool with MCP tools registered, a staging environment to rehearse in — that a checked-out
+  source tree cannot provide or prove.
+- **20-50 real eval cases** (L10 685). `evals/cases/` holds three, enough to prove the harness
+  runs; filling it to the lesson's count needs that organization's actual recent task history,
+  which this sample repo does not have.
+- **A test that a skill actually triggers** (L6 470, "confirm the skill loads each time"). That is
+  a person running live sessions with differently-worded prompts and watching whether the skill
+  loads — coding it as a deterministic check would mean hard-coding the trigger phrase, which
+  proves the phrase matches itself, not that the skill fires on real, varied prompts.
