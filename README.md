@@ -55,3 +55,5 @@ external system of record — no Jira, no separate requirements tool — for the
 
 ## Commands
 `make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
+Plan mode headless: `claude -p --permission-mode plan` writes the plan outside the repo and has no
+ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).

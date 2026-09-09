@@ -13,7 +13,8 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 ## Inputs
 `intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged). For a defect chain
 (L9 625 failing test first) the engineer opens the session with `INTENT_TASK=fix`; nothing sets
-it for you, and without it the test-file hook (L9 631) is off. Record
+it for you, and without it the test-file hook (L9 631) is off. For a feature chain do **not** set
+it — with `INTENT_TASK=fix` on, the hook also blocks creating the new test file (chain 0008). Record
 `Upstream: spec.md@<sha>. Status: <draft|accepted>` at the top of plan.md.
 One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
 the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
@@ -25,6 +26,8 @@ Read the codebase without changing anything — that is what plan mode is for.
 - **Order of work** — the failing test comes before the change that makes it pass.
 - **Risks** — what the change could break, which step is riskiest, how you would notice.
 - **Proof** — tests by name, and the output or screenshot that shows the behaviour.
+  Mutation checks restore the original bytes you saved (compare sha256), never `git checkout --` —
+  that also discards your uncommitted fix (chain 0008).
 
 ## Interrogate before accepting
 Ask, and write the answers into Risks and Proof: what could this break? which step is most
