@@ -17,4 +17,4 @@ Upstream: spec.md@8cce821c4ef059fa7ba7f6ba6719c1e71754b5a1. Status: draft.
 - AC1 ← TestOwnerlessLedgerRow.test_ac1_ledger_row_without_subscriber_is_not_found_for_empty_session
 - AC2 ← TestOwnerlessSession.test_ac2_session_without_subscriber_is_not_found_for_owned_row · test_ac2_none_on_both_sides_is_not_a_match
 - 양성 대조 ← TestOwnerlessLedgerRow.test_positive_control_owned_row_still_returns_four_fields
-- 출력: 단계 1 의 red 원문(FAILED, failures=3) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문, PR 본문에 첨부.
+- 출력: 단계 1 의 red 원문(FAILED, failures=2 — AC2 의 「원장 S-77 × 세션 빈 값」은 현행에서 이미 not_found 라 기존 행동의 계약 고정) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문, PR 본문에 첨부.
