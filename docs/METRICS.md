@@ -51,8 +51,12 @@ No separate "How to measure it" section — it rides on L6's (505); nothing to a
   (change failure rate is outside this repo, from an incident tracker)
 
 ## L10 continuous evals (729)
-- Leading — pass rate over time: stack `evals/run.sh`'s `result.json` per commit; a person reads the series (no script here)
-- Lagging — outside this repo (incident-to-eval-case time is an incident tracker)
+- Leading — pass rate over time: each `agent evals` run uploads `evals/out` as the artifact
+  `evals-<run id>` (`gh run download <run id>`); a person reads the series of `*.json` (no script here)
+- Leading — incident → permanent eval, for an incident born in this repo's monitoring (`ops/bands.yaml`):
+  `git log --diff-filter=A --format='%cI %h' -- intent/<NNNN>-*/intent.md evals/cases/<NN>-*.json`
+  (chain 0006: 3 min 39 s). Incidents tracked outside the repo start from the tracker's timestamp.
+- Lagging — outside this repo (regressions caught in CI vs found in production is an incident tracker)
 
 ## L11 AI in the PR review loop (795)
 - Leading — time to first review: `gh pr view <n> --json createdAt,reviews --jq '.reviews[0].submittedAt'`

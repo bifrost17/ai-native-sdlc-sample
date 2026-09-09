@@ -110,6 +110,12 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
   (`raw-chain56R/06-worktrees.txt`). Isolation came from clones, not `claude --worktree` — same effect.
 - L8 564 (verifier subagent): defined, never invoked — 0 `subagent_type` calls in runs A, B and C.
   CLAUDE.md now says to hand the check to it before reporting done; not yet measured.
+- L10 727 (evals as a merge check): the `agent evals` job ran on every config-changing PR (#46, #49 and
+  the earlier docs/adopting-guide PR) and was red each time — rc=2, no `ANTHROPIC_API_KEY` — and every
+  one of those PRs merged, because no required status check is configured (single owner). The gate
+  half is unexercised here; `docs/ADOPTING.md` names the ruleset and the secret as the team's spot.
+- L10 733 (incident → permanent eval): chain 0006 — intent.md `a21fe16` 12:16:39 → eval case
+  `4bf2a07` 12:20:18 (+09:00), 3 min 39 s, written in the incident's own PR #23.
 - L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
 - L11 773 (time to first review): run B turn 9 (one finding, fixed in-PR), run C turn 9 (no finding) — same session, no wait.
 - L12 901 (time waiting per approval gate): `hooks.log` per-gate totals — `raw-hac/31-hooks-log-totals.txt`.

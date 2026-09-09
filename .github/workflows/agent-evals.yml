@@ -32,3 +32,11 @@ jobs:
       - env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: make evals
+      # L10 727행: "runs are logged so results can be compared over time" — evals/out is
+      # gitignored, so the run's result files are kept as a workflow artifact (also on failure).
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evals-${{ github.run_id }}
+          path: evals/out
+          if-no-files-found: ignore
