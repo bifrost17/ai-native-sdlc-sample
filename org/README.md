@@ -19,7 +19,7 @@ allowManagedMcpServersOnly · requiredMinimumVersion)를 이 레포 값으로 �
 
 ## 🔴 함정 — `allowManagedHooksOnly` 가 프로젝트 훅을 죽인다
 
-L12 921행: "allowManagedHooksOnly means only hooks defined in managed settings
+L12 920행: "allowManagedHooksOnly means only hooks defined in managed settings
 run; hooks in user, project, and local settings are blocked." 이 레포의 승인
 게이트 훅 5개(`protect-accepted.sh` · `protect-tests.sh` · `no-secrets.sh` ·
 `plan-sync.sh` · `production-gate.sh`)는 프로젝트 설정에 있으므로, 켤 때는

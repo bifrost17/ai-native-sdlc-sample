@@ -1,6 +1,6 @@
 # evals 케이스 스키마 (레슨 9)
 
-L10 692행: "Write each task as an eval, meaning the prompt plus the checks
+L10 687행: "Write each task as an eval, meaning the prompt plus the checks
 that define acceptable (tests pass, lint clean, behavior unchanged, policy
 followed)."
 

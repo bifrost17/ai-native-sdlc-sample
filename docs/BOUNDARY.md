@@ -11,7 +11,7 @@ deterministic layer** — a hook, a deterministic script, or a CI merge check.
 |---|---|---|
 | The machine sees | `.claude/hooks/` wired in `settings.json`; `tests/`, `evals/`, `.github/` | L7 513 "a hook is the deterministic layer behind it"; L9 631 "A hook that blocks edits to test files during a fix task"; L12 821 "each gate as a hook … allow, ask, or block"; L13 963 "arrives as a PR through branch protection" |
 | A skill says | `.claude/skills/*/SKILL.md`, `CLAUDE.md`, `REVIEW.md` | L6 503 "A skill is a control, though an advisory one." |
-| A person decides | the PR: merge or close | L2 229 approval "is recorded as the merge or the closing review"; L3 276 "A human teammate always makes this call"; L11 762 "Findings do not approve or block a PR" |
+| A person decides | the PR: merge or close | L2 231 approval "is recorded as the merge or the closing review"; L3 276 "A human teammate always makes this call"; L11 762 "Findings do not approve or block a PR" |
 
 ## Why a checker inside the tree is not an approval authority
 An in-tree validator reads the same tree the PR changes. A PR can edit the validator, its fixtures

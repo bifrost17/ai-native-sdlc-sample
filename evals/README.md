@@ -1,6 +1,6 @@
 # evals — 설정이 바뀔 때 도는 회귀 스위트
 
-L10 664행: "a suite that runs whenever the agent's configuration changes...
+L10 671행: "a suite that runs whenever the agent's configuration changes...
 says whether the agent still does the work to the same standard."
 
 ```

@@ -8,7 +8,7 @@ description: Turns a person's idea, a ticket or an incident into intent/<NNNN>-<
 > scope, users, constraints, and what success looks like."
 > L2 202: "Ask Claude to write the result as intent.md using the organization's template, which can
 > be encoded as a skill set up by a technical team member and signed off by a lead."
-> L2 229: "the accept or reject decision that sends the intent into Stage 2: Design is recorded as
+> L2 231: "the accept or reject decision that sends the intent into Stage 2: Design is recorded as
 > the merge or the closing review."
 
 ## What to ask

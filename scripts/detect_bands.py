@@ -3,7 +3,7 @@
 
 L14 1030행: "mean and standard deviation over a rolling window with rules
 (Western Electric or similar) ... detection stays entirely deterministic,
-with no model involved." L14 1036~1038행: 1sigma→log 2sigma→diagnose
+with no model involved." L14 1032행 · 1051~1054행: 1sigma→log 2sigma→diagnose
 3sigma→propose. 규칙은 최신 점에서 끝나는 구간만 본다; 기준선 창은 그 꼬리를
 제외한다(포함하면 이동이 자기 평균을 끌어올린다).
 

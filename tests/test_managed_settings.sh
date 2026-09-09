@@ -2,7 +2,7 @@
 # tests/test_managed_settings.sh — org/managed-settings.example.json 계약 시험.
 # L12 899~926행이 정의하는 관리형 전용 키의 닫힌 목록 안에서만 이 예시가
 # 키를 쓰는지 잰다(있는 척 넣은 미문서 키가 없어야 한다) + allowManagedHooksOnly
-# 를 켰으면 hooks 블록이 있어야 한다(L12 921행 — 안 두면 프로젝트 훅이 전부 죽는다).
+# 를 켰으면 hooks 블록이 있어야 한다(L12 920행 — 안 두면 프로젝트 훅이 전부 죽는다).
 set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$ROOT" || exit 1
 FILE="org/managed-settings.example.json"

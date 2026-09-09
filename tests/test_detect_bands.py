@@ -130,7 +130,7 @@ class DetectBandsTest(unittest.TestCase):
 
 
     def test_emit_intent_draft_has_no_placeholders_and_passes_check_artifacts(self):
-        """L14 1034행 — 진단을 Stage 1 intent 형식으로 쓴다: 실제로 그 형식을 통과해야 한다."""
+        """L14 1036행 — 진단을 Stage 1 intent 형식으로 쓴다: 실제로 그 형식을 통과해야 한다."""
         det = subprocess.run([sys.executable, str(SCRIPT), "--samples",
                               str(DATA / "spike-3sigma.jsonl"), "--config", str(CONFIG)],
                              capture_output=True, text=True)

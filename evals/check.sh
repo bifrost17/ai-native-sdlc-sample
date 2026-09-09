@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# evals/check.sh — 결정론 채점기(모델·API 키 불요). L10 692행: "the checks that
+# evals/check.sh — 결정론 채점기(모델·API 키 불요). L10 687행: "the checks that
 # define acceptable (tests pass, lint clean, behavior unchanged, policy
 # followed)". rc 0=전부 통과 1=하나 이상 실패 2=판정 불가(jq 없음·파일 없음·
 # 닫힌 집합 밖 kind) — "안 돌았다" 를 "통과" 로 접지 않는다(L10 727행 머지 게이트).

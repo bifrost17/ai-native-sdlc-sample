@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """scripts/emit_intent.py — 검출 결과 → Stage 1 intent 초안 (레슨 14).
 
-L14 1034행: "The agent writes its diagnosis as intent.md in the Stage 1:
+L14 1036행: "The agent writes its diagnosis as intent.md in the Stage 1:
 Plan format, covering the anomaly and its evidence, a proposed outcome,
 the affected systems, and any open questions."
 
