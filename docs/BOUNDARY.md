@@ -32,6 +32,8 @@ file must contain, the product owner reads it, and the merge records the decisio
   have one, the plan skill says to update plan.md in the same commit.
 - `make check` red on a PR (L13 963, through branch protection) — CI.
 Each of these is named by the lesson as a hook or a check. Nothing else is.
+Evals' deterministic checks (`evals/check.sh` `kind`s) only judge code shape — a regex over the
+diff. Behavior is judged by the LLM assertions in each case and by the unit/regression tests.
 
 ## What the seven reference repos did instead
 All seven put the three layers in one place — a validator that also carried policy and approval —
