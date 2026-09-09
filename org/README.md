@@ -21,7 +21,8 @@ allowManagedMcpServersOnly · requiredMinimumVersion)를 이 레포 값으로 �
 
 L12 920행: "allowManagedHooksOnly means only hooks defined in managed settings
 run; hooks in user, project, and local settings are blocked." 이 레포의 승인
-게이트 훅 5개(`protect-accepted.sh` · `protect-tests.sh` · `no-secrets.sh` ·
-`plan-sync.sh` · `production-gate.sh`)는 프로젝트 설정에 있으므로, 켤 때는
-이 예시의 `hooks` 블록에 같은 5개를 반드시 다시 등록한다. `tests/test_managed_
-settings.sh` 가 이 불변식을 잰다.
+훅 5개(`protect-paths.sh` · `protect-tests.sh` · `no-secrets.sh` ·
+`format-lint.sh` · `production-gate.sh`)는 프로젝트 설정(`.claude/settings.json`)에
+있으므로, 켤 때는 이 예시의 `hooks` 블록에 같은 5개를 반드시 다시 등록한다.
+`tests/test_managed_settings.sh` 가 이 불변식과 「여기 이름 댄 훅 파일이
+`.claude/hooks/` 에 실재한다」를 잰다.

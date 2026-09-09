@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# tests/test_managed_settings.sh — org/managed-settings.example.json 계약 시험.
+# tests/test_managed_settings.sh — org/managed-settings.example.json 계약 시험 (`make test` 안).
 # L12 899~926행이 정의하는 관리형 전용 키의 닫힌 목록 안에서만 이 예시가
 # 키를 쓰는지 잰다(있는 척 넣은 미문서 키가 없어야 한다) + allowManagedHooksOnly
 # 를 켰으면 hooks 블록이 있어야 한다(L12 920행 — 안 두면 프로젝트 훅이 전부 죽는다).
@@ -34,6 +34,11 @@ if "hooks" in cfg:
     missing = [n for n in names if n and n not in readme]
     if missing:
         print("org/README.md 가 등록된 훅을 언급하지 않는다: %s" % missing); sys.exit(1)
+    # README 가 이름 댄 훅 파일(`*.sh`)은 실재해야 한다 — 지운 훅을 가리키던 자리를 계기가 못 봤다.
+    import os, re
+    ghost = [n for n in set(re.findall(r"`([a-z-]+\.sh)`", readme)) if not os.path.isfile(".claude/hooks/" + n)]
+    if ghost:
+        print("org/README.md 가 이름 댄 훅 파일이 없다: %s" % sorted(ghost)); sys.exit(1)
 print("org/managed-settings.example.json 키 %d개 전부 공식 목록 안" % len(cfg))
 PY
 rc=$?
