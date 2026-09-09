@@ -11,7 +11,8 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 > L4 329: "When implementation departs from the plan, update plan.md in the same commit."
 
 ## Inputs
-`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged). For a defect chain
+`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged — a commit on `origin/main`
+for each file; the `Status:` line stays `draft` by design and is not the test). For a defect chain
 (L9 625 failing test first) the engineer opens the session with `INTENT_TASK=fix`; nothing sets
 it for you, and without it the test-file hook (L9 631) is off. For a feature chain do **not** set
 it — with `INTENT_TASK=fix` on, the hook also blocks creating the new test file (chain 0008). Record

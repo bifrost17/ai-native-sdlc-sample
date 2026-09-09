@@ -13,8 +13,13 @@ description: Reads an accepted intent.md and the organization's skills and write
 > plan mode play"
 
 ## Before writing
-1. Open `intent/<NNNN>-<slug>/intent.md`. **It must be accepted — merged to main.** If it is
-   still a draft, or only exists on a branch, stop and say so. No machine checks this; you do.
+1. Open `intent/<NNNN>-<slug>/intent.md`. **It must be accepted — merged to main.** Accepted is
+   a fact about git, not about the file: the `Status:` line stays `draft` forever by design (L2 231,
+   the merge is the approval), so do not read it as "not accepted". Check
+   `git log origin/main -- intent/<NNNN>-<slug>/intent.md` (a commit there = accepted) or
+   `gh pr list --state merged --search <NNNN>`. If the file exists only on a branch, stop and say
+   so. No machine checks this; you do. (Two headless runs in the org-skills experiment stopped on
+   a merged intent because they read the `Status:` line — `docs/research/spec-command/`.)
 2. Read the skills in `.claude/skills/` that apply to this change (an endpoint that returns customer
    data → `secure-api-review`). Open each one before you name it under "Skills applied" in the
    spec — chain 0007 named one without opening it. Write each as `name@sha`, the sha from
