@@ -66,5 +66,13 @@ for h in protect-paths protect-tests no-secrets format-lint production-gate; do
   else FAIL=$((FAIL+1)); echo "FAIL wiring: $h.sh not wired in settings.json or not executable"; fi
 done
 
+# decision log — L12 866 "Allow and block decisions are logged with a timestamp."
+rm -f "$T/.claude/hooks.log"
+printf '%s' "$(edit Makefile)" | /bin/bash "$H/protect-paths.sh" >/dev/null 2>&1
+last="$(tail -n1 "$T/.claude/hooks.log" 2>/dev/null)"
+case "$last" in *" protect-paths.sh block Makefile") PASS=$((PASS+1)); echo "ok   decision log: block appended ($last)" ;;
+  *) FAIL=$((FAIL+1)); echo "FAIL decision log: last line not a block ($last)" ;;
+esac
+
 echo "test_hooks: $PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ]
