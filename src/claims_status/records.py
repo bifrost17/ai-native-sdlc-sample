@@ -45,6 +45,22 @@ _UPSTREAM = {
         "subscriber_rrn": "880303-2345678", "subscriber_name": "김영희",
         "bank_account": "110-233-114455", "internal_memo": "접수 직후",
     },
+    # 상담사 대리 조회 표본 — intent/0009 spec R5. 소유의 정본은 `subscriber_id` 하나이고
+    # 판정은 0002 와 같은 필드로 한다(청중이 달라도 소유는 하나다). 「담당 사정인」 칸은 비워
+    # 두지도 않고 아예 넣지 않는다 — 이 두 행은 사정인 경로에서 보이면 안 된다(0008 R6).
+    # 기존 다섯 행은 0002·0005·0006·0007·0008 의 시험이 전제를 잡고 있어 손대지 않는다.
+    "C-3001": {
+        "claim_id": "C-3001", "subscriber_id": "S-77", "status": "심사중",
+        "next_step": "손해사정 결과 접수", "due_date": "2026-10-02",
+        "subscriber_rrn": "900101-1234567", "subscriber_name": "홍길동",
+        "bank_account": "110-233-998877", "internal_memo": "상담 이력 다수 — 내부 검토중",
+    },
+    "C-3002": {
+        "claim_id": "C-3002", "subscriber_id": "S-12", "status": "보완요청",
+        "next_step": "서류 보완 대기", "due_date": "2026-10-09",
+        "subscriber_rrn": "880303-2345678", "subscriber_name": "김영희",
+        "bank_account": "110-233-114455", "internal_memo": "보완 서류 미도착",
+    },
 }
 _CACHE = {}  # claim_id → (만료 시각, 레코드 또는 None). 프로세스 메모리를 벗어나지 않는다.
 _STATS = {"upstream_calls": 0}

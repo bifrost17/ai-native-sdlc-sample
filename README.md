@@ -42,7 +42,7 @@ Unofficial; not an Anthropic project.
 | 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
 | 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |
 | 0008 adjuster-claim-status | feature · person | `capture-intent` (person's idea) | #30, #31, #33 |
-| 0009 agent-proxy-claim-status | feature · person | `capture-intent` (person's idea) | #38, #39 |
+| 0009 agent-proxy-claim-status | feature · person | `capture-intent` (person's idea) | #38, #39, #42 |
 
 The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.
 
