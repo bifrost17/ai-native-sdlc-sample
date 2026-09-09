@@ -16,6 +16,8 @@ Unofficial; not an Anthropic project.
    convention (frontmatter, status fields); the current template is what 0004 uses.
 5. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
 6. `docs/METRICS.md` — the lessons' indicators as git commands.
+7. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
+   this repo's sample ones, and who (in the playbook's terms) fills each one in.
 
 ## What this repo does
 - Encodes the intent, spec and plan templates in skills, with `templates/` as copies.

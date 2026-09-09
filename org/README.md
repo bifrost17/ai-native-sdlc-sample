@@ -1,4 +1,5 @@
 # org/ — 관리형 설정 비활성 예시
+<!-- TEAM: real managed-settings deployment (MDM/admin console) — docs/ADOPTING.md · L19 -->
 
 **비활성 예시다.** 적용하려면 조직(Team/Enterprise) 관리 콘솔이나 MDM 이 각
 기기의 `managed-settings.json` 에 실제로 배포해야 하고, 이 레포는 그것을 하지

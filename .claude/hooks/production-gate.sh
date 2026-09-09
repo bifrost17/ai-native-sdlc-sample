@@ -11,6 +11,7 @@
 # Approval = the environment variable RELEASE_APPROVAL, set by the release manager outside the session.
 # Fail-closed (no jq / bad JSON → exit 2), see _lib.sh.
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
+# TEAM: real approval process behind this gate — docs/ADOPTING.md · L18
 cmd="$(jqr '.tool_input.command // empty')"
 if [[ "$cmd" == *"deploy"* && "$cmd" == *"production"* ]]; then
   if [ -z "${RELEASE_APPROVAL:-}" ]; then

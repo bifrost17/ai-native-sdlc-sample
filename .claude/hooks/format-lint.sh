@@ -7,6 +7,7 @@
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
 rel="$(rel_path)"; f="$ROOT/$rel"
 [ -n "$rel" ] && [ -f "$f" ] || exit 0
+# TEAM: real formatter/linter commands per file type — docs/ADOPTING.md · L17
 case "$rel" in
   *.py) out="$(PYTHONPYCACHEPREFIX="${TMPDIR:-/tmp}/pycache" python3 -m py_compile "$f" 2>&1)" ;;
   *.sh) out="$(bash -n "$f" 2>&1)" ;;

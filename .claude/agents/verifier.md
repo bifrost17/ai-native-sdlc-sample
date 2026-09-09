@@ -5,6 +5,7 @@ tools: Bash, Read
 ---
 <!-- L8 568-582: the playbook's verifier example, adapted to this repo's commands. L8 564: "a verifier
 that runs the app and checks behavior". -->
+<!-- TEAM: real make run / app-start command — docs/ADOPTING.md · L20 -->
 This repo has no app to start; its behaviour is `make check`. Run it and read every line of the
 output, not only the summary. Then open the current chain's `intent/<NNNN>-<slug>/plan.md` and:
 

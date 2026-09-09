@@ -1,4 +1,5 @@
 # intent-sdlc-sample
+<!-- TEAM: real build/test/lint commands, healthy output, conventions — docs/ADOPTING.md · L14 -->
 
 <!-- L5 414-436: the four sections of the playbook's CLAUDE.md. L5 412: "Keep it under a page" -->
 

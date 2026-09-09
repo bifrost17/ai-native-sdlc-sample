@@ -4,6 +4,7 @@ description: Apply the API security standard. Use whenever creating or
  modifying an external-facing endpoint, reviewing API code, or
  generating an OpenAPI spec.
 ---
+<!-- TEAM: replace with the org's real API security standard — docs/ADOPTING.md · L12 -->
 # Secure API review
 When you create or change an API endpoint:
 1. Authentication: every endpoint requires the gateway JWT;
