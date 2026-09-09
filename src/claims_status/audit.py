@@ -28,3 +28,8 @@ def reset_for_test():
 def record_access(adjuster_id, claim_id, at):
     """열람 한 건 = 기록 한 건. 키는 이 셋에서 늘지 않는다."""
     _ACCESS.append({"adjuster_id": adjuster_id, "claim_id": claim_id, "timestamp": at})
+
+
+def record_agent_access(agent_id, subscriber_id, claim_id, at):
+    """스텁 — 시험 먼저(L9 625). intent/0009 spec R8 의 본체는 다음 커밋에서."""
+
