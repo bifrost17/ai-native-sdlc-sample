@@ -28,6 +28,9 @@ file must contain, the product owner reads it, and the merge records the decisio
 - A credential in the diff (L7 521 "Keep credentials out of the diff") — hook.
 - A protected path edited (L7 517), a broken file after an edit (L7 519), a production deploy
   without a release authorization (L12 848–857) — hook.
+- Not here: an automated reviewer (managed Code Review or `claude-code-action`) reading `REVIEW.md`
+  on each PR (L11 750). In the sample runs a person reviewed against `REVIEW.md`; the integration
+  is the organization's (`docs/ADOPTING.md`).
 - Not here: a Stop hook that runs `make test` before the session reports done (L9 650 "both
   implemented as hooks where the organization wants them guaranteed"). Verification-before-done is
   the CLAUDE.md instruction plus the PR `check`; a team that wants it guaranteed adds the hook.
