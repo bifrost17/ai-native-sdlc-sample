@@ -7,7 +7,9 @@ import re
 from .records import fetch_claim
 from .response import build_response, error
 
-CLAIM_ID_RE = re.compile(r"^C-[0-9]+$")
+# `$` 는 문자열 끝 개행 앞에서도 맞는다 — "C-1001\n" 이 형식을 통과해 상류를 부르던 자리(intent 0007).
+# 문자열 끝에서만 맞는 앵커를 쓴다; 이 상수를 손볼 때 `$` 로 되돌리지 않는다.
+CLAIM_ID_RE = re.compile(r"\AC-[0-9]+\Z")
 ROUTES = {}
 
 
