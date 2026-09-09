@@ -47,7 +47,7 @@ Note: 엔지니어 결정(2026-09-09) — PR 은 하나(plan.md 는 자기 커�
 - AC4 ← `TestAC4NotFound.test_ac4_unassigned_and_unknown_claim_share_one_body` · `test_ac4_malformed_claim_id_is_rejected_without_echo`
 - AC5 ← `TestAC5Allowlist.test_ac5_new_upstream_field_does_not_widen_the_response` · `test_ac5_next_step_and_pii_never_appear_in_the_body`
 - AC6 ← `TestAC6AssignmentMatch.test_ac6_empty_assignment_is_not_a_match_on_either_side` · `test_ac6_matching_name_with_different_number_is_not_found`
-- AC7 ← `TestAC7ReassignmentIsImmediate.test_ac7_reassignment_within_ttl_flips_both_sides`
+- AC7 ← `TestAC7ReassignmentIsImmediate.test_ac7_reassignment_within_ttl_flips_both_sides` · `test_ac7_every_adjuster_lookup_reads_upstream` (구현 중 추가: 첫 판은 원장 행을 **제자리 수정**해서 재려 했는데, 캐시가 같은 dict 객체를 들고 있어 캐시를 통해서도 수정이 보였다 — M2(`cached=True`)가 살아남았다. 행을 갈아 끼우도록 고치고, 상류 호출 수를 직접 세는 시험을 하나 더 붙였다. 지금은 M2 가 둘을 죽인다.)
 - AC8 ← `TestAC8AccessRecord.test_ac8_successful_read_appends_one_record_of_exactly_three_keys` · `test_ac8_failed_lookups_append_nothing`
 - AC9 ← `TestAC9CustomerPathUnchanged.test_ac9_customer_path_leaves_no_access_record` + 기존 네 파일 무편집(`git diff --stat`)
 - AC10 ← `TestAC10StatusVocabulary.test_ac10_every_sample_row_status_is_in_the_closed_set`

@@ -177,12 +177,23 @@ class TestAC6AssignmentMatch(Base):
 
 class TestAC7ReassignmentIsImmediate(Base):
     def test_ac7_reassignment_within_ttl_flips_both_sides(self):
-        """TTL(60초) 안에 이관해도 옛 사정인은 즉시 못 보고 새 사정인은 즉시 본다 — spec F1."""
+        """TTL(60초) 안에 이관해도 옛 사정인은 즉시 못 보고 새 사정인은 즉시 본다 — spec F1.
+
+        원장 행을 **갈아 끼운다**. 제자리 수정은 캐시가 같은 dict 객체를 들고 있어 캐시를
+        통해서도 보이므로 우회 여부를 재지 못한다 — 그 판으로는 cached=True 뮤테이션이 살아남았다.
+        """
         self.assertEqual(set(self.call(now=0.0)), set(EXPECTED_KEYS))
-        records._UPSTREAM[ASSIGNED_CLAIM]["adjuster_id"] = OTHER_ADJUSTER
+        reassigned = dict(records._UPSTREAM[ASSIGNED_CLAIM], adjuster_id=OTHER_ADJUSTER)
+        records._UPSTREAM[ASSIGNED_CLAIM] = reassigned
         self.assertEqual(self.call(now=30.0), NOT_FOUND, "이관된 옛 사정인이 아직 본다")
         payload = self.call(session=OTHER_SESSION, now=30.0)
         self.assertEqual(set(payload), set(EXPECTED_KEYS), "새 사정인이 아직 못 본다")
+
+    def test_ac7_every_adjuster_lookup_reads_upstream(self):
+        """캐시 우회의 직접 계기 — TTL 안에 같은 건을 두 번 봐도 상류를 두 번 읽는다."""
+        self.call(now=0.0)
+        self.call(now=30.0)
+        self.assertEqual(records.upstream_calls(), 2, "사정인 경로가 캐시를 읽었다")
 
 
 class TestAC8AccessRecord(Base):
