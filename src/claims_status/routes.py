@@ -5,7 +5,7 @@
 import re
 
 from .records import fetch_claim
-from .response import build_response, error
+from .response import RESPONSE_FIELDS, build_response, error
 
 # `$` 는 문자열 끝 개행 앞에서도 맞는다 — "C-1001\n" 이 형식을 통과해 상류를 부르던 자리(intent 0007).
 # 문자열 끝에서만 맞는 앵커를 쓴다; 이 상수를 손볼 때 `$` 로 되돌리지 않는다.
@@ -27,9 +27,10 @@ def get_claim_status(claim_id, session, now=None):
         return error("unauthenticated")
     if not isinstance(claim_id, str) or not CLAIM_ID_RE.match(claim_id):
         return error("invalid_claim_id")
-    record = fetch_claim(claim_id, now=now)
+    # cached=True 는 이 경로의 정책이다 — 0002 R5 의 TTL 캐시(초당 50건). 사정인 경로는 cached=False 다.
+    record = fetch_claim(claim_id, now=now, cached=True)
     # 빈 가입자 표시(None·"")는 어느 쪽이든 불일치다 — None == None 이 소유가 되면 안 된다(intent 0005).
     owner = record.get("subscriber_id") if record is not None else None
     if not owner or owner != session.get("subscriber_id"):
         return error("not_found")
-    return build_response(record)
+    return build_response(record, RESPONSE_FIELDS)

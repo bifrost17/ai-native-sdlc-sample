@@ -37,7 +37,7 @@ Unofficial; not an Anthropic project.
 | 0005 ownerless-claim-visible | defect · ticket | GitHub issue | #20, #21 |
 | 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
 | 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |
-| 0008 adjuster-claim-status | feature · person | `capture-intent` (person's idea) | #30 |
+| 0008 adjuster-claim-status | feature · person | `capture-intent` (person's idea) | #30, #31, #33 |
 
 The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.
 
