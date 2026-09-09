@@ -1,0 +1,95 @@
+CMD: gh search code 'filename:SKILL.md error message' --limit 30 --json repository,path,url --jq '.[] | [.repository.nameWithOwner, .path] | @tsv'
+AT_UTC: 2026-09-09T09:35:19Z
+RC: 0
+
+
+CMD: gh search code 'filename:SKILL.md accessibility' --limit 30 --json repository,path --jq '.[] | [.repository.nameWithOwner, .path] | @tsv'
+AT_UTC: 2026-09-09T09:35:27Z
+RC: 1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C4A4:1B677:3E4645:4CAEB2:6AA1285F and timestamp 2026-09-09 09:35:27 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/code?page=1&per_page=30&q=filename%3A%22SKILL.md+accessibility%22)
+
+CMD: gh api -X GET search/code -f q='filename:SKILL.md error message' -f per_page=50 --jq '.total_count'
+AT_UTC: 2026-09-09T09:36:23Z
+RC: 1
+{
+	"message": "API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C7D4:32E022:3E5947:4CC530:6AA12897 and timestamp 2026-09-09 09:36:23 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https:\/\/docs.github.com\/en\/site-policy\/github-terms\/github-terms-of-service)",
+	"documentation_url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#rate-limiting",
+	"status": "403"
+}
+gh: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C7D4:32E022:3E5947:4CC530:6AA12897 and timestamp 2026-09-09 09:36:23 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (HTTP 403)
+
+CMD: gh api -X GET search/code -f q='filename:SKILL.md accessibility' -f per_page=50 --jq '.total_count, (.items[] | [.repository.full_name, .path] | @tsv)'
+AT_UTC: 2026-09-09T09:36:53Z
+RC: 1
+{
+	"message": "API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C986:1BE56:3E1B6E:4C8EE2:6AA128B6 and timestamp 2026-09-09 09:36:54 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https:\/\/docs.github.com\/en\/site-policy\/github-terms\/github-terms-of-service)",
+	"documentation_url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#rate-limiting",
+	"status": "403"
+}
+gh: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C986:1BE56:3E1B6E:4C8EE2:6AA128B6 and timestamp 2026-09-09 09:36:54 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (HTTP 403)
+
+CMD: gh api rate_limit --jq '{core:.resources.core, search:.resources.search, code_search:.resources.code_search}'
+AT_UTC: 2026-09-09T09:37:01Z
+RC: 0
+{"code_search":{"limit":10,"remaining":10,"reset":1788946682,"used":0},"core":{"limit":5000,"remaining":5000,"reset":1788950222,"used":0},"search":{"limit":30,"remaining":30,"reset":1788946682,"used":0}}
+
+CMD: date -u +%s
+AT_UTC: 2026-09-09T09:37:02Z
+RC: 0
+1788946622
+
+CMD: gh search code --filename=SKILL.md 'error message' --limit 50 --json repository,path --jq '.[] | [.repository.nameWithOwner, .path] | @tsv'
+AT_UTC: 2026-09-09T09:38:25Z
+RC: 1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID CEEC:212D6E:3D51B7:4BD044:6AA12912 and timestamp 2026-09-09 09:38:26 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/code?page=1&per_page=50&q=%22error+message%22+filename%3ASKILL.md)
+
+CMD: gh search code --filename=SKILL.md --limit 5 --json repository,path --jq '.[] | [.repository.nameWithOwner, .path] | @tsv'
+AT_UTC: 2026-09-09T09:38:56Z
+RC: 1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID D113:1B6CC:406454:4EE3A0:6AA12930 and timestamp 2026-09-09 09:38:56 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/code?page=1&per_page=5&q=filename%3ASKILL.md)
+
+CMD: gh search repos 'claude code skills' --limit 20 --json fullName,stargazersCount,description,updatedAt --jq '.[] | [.fullName, (.stargazersCount|tostring), .updatedAt, .description] | @tsv'
+AT_UTC: 2026-09-09T09:39:11Z
+RC: 0
+SimoneAvogadro/android-reverse-engineering-skill	7741	2026-09-09T09:19:16Z	Claude Code skill to support Android app's reverse engineering
+JuliusBrussee/caveman	104436	2026-09-09T09:39:00Z	🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman
+virgiliojr94/book-to-skill	29215	2026-09-09T09:33:50Z	Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.
+Agentchengfeng/chengfeng-videocut-skills	2983	2026-09-09T07:50:05Z	用 Claude Code Skills 做的视频剪辑 Agent
+daymade/claude-code-skills	1384	2026-09-09T09:23:28Z	Professional Claude Code skills marketplace featuring production-ready skills for enhanced development workflows.
+glitternetwork/pinme	3739	2026-09-08T07:26:37Z	Deploy Your Frontend in a Single Command. Claude Code Skills supported.
+trailofbits/skills	7022	2026-09-09T02:00:19Z	Trail of Bits Claude Code skills for security research, vulnerability detection, and audit workflows
+skills-directory/skill-codex	1432	2026-09-09T02:59:28Z	A claude code skill to delegate prompts to codex
+Aaronontheweb/dotnet-skills	1146	2026-09-09T03:24:04Z	Claude Code skills and sub-agents for .NET Developers
+Wechat-ggGitHub/wechat-claude-code	683	2026-09-08T07:12:06Z	Chat with Claude Code from WeChat - a Claude Code Skill
+jamesrochabrun/skills	208	2026-09-03T03:32:01Z	Claude Code Skills
+levnikolaevich/claude-code-skills	559	2026-09-07T18:03:56Z	Standalone engineering skills for Claude Code and Codex: review, audit, optimization, testing, product discovery, architecture, and safe publishing.
+bidah/skill-set	275	2026-09-03T08:03:22Z	Collection of Claude Code skills
+op7418/Humanizer-zh	16953	2026-09-09T09:01:55Z	Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。
+laolaoshiren/claude-code-skills-zh	826	2026-09-09T03:28:11Z	面向中文开发者的 Claude Code Skills / Agents / Plugins 精选与原创技能库｜按场景分类｜复制即装｜持续更新
+P4nda0s/reverse-skills	2113	2026-09-09T06:26:26Z	Reverse engineering skills for Claude Code | 逆向工程 Claude Code Skills 插件
+wshuyi/x-article-publisher-skill	862	2026-09-08T07:43:40Z	Claude Code skill for publishing Markdown articles to X (Twitter) Articles
+helloianneo/awesome-claude-code-skills	461	2026-09-08T14:56:17Z	Claude Code 最实用的 Skills / Agents / Plugins 精选合集 | 50+ 精选 | 按场景分类 | 带推荐等级 | 复制即装
+tradermonty/claude-trading-skills	2795	2026-09-08T22:12:29Z	Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.
+dominikmartn/nothing-design-skill	2779	2026-09-09T08:24:35Z	A Claude Code skill for generating UI in the Nothing design language. Monochrome, typographic, industrial.
+
+CMD: gh api rate_limit --jq '.resources.code_search, .resources.search'
+AT_UTC: 2026-09-09T09:39:28Z
+RC: 0
+{"limit":10,"remaining":10,"reset":1788946829,"used":0}
+{"limit":30,"remaining":30,"reset":1788946829,"used":0}
+
+CMD: gh search repos 'accessibility skill claude' --limit 15 --json fullName,stargazersCount,updatedAt,description --jq '.[] | [.fullName, (.stargazersCount|tostring), .updatedAt, .description] | @tsv'
+AT_UTC: 2026-09-09T09:39:34Z
+RC: 0
+
+
+CMD: gh search repos 'ux writing microcopy skill' --limit 15 --json fullName,stargazersCount,updatedAt,description --jq '.[] | [.fullName, (.stargazersCount|tostring), .updatedAt, .description] | @tsv'
+AT_UTC: 2026-09-09T09:39:39Z
+RC: 0
+
+
+CMD: gh search repos 'a11y accessibility agent skills SKILL.md' --limit 15 --json fullName,stargazersCount,updatedAt,description --jq '.[] | [.fullName, (.stargazersCount|tostring), .updatedAt, .description] | @tsv'
+AT_UTC: 2026-09-09T09:39:45Z
+RC: 0
+
+

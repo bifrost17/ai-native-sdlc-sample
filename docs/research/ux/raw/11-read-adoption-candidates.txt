@@ -1,0 +1,73 @@
+CMD: gh api repos/anthropics/knowledge-work-plugins --jq '{stars:.stargazers_count,forks:.forks_count,pushed_at,license:(.license.spdx_id // "none")}'
+AT_UTC: 2026-09-09T22:48:59Z
+RC: 0
+{"forks":2884,"license":"Apache-2.0","pushed_at":"2026-09-09T07:33:58Z","stars":23943}
+
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/git/trees/HEAD?recursive=1' --jq '.tree[] | select(.type=="blob") | .path' | grep -E '^(LICENSE|NOTICE|design/)' | head -40
+AT_UTC: 2026-09-09T22:49:00Z
+RC: 0
+LICENSE
+design/.claude-plugin/plugin.json
+design/.mcp.json
+design/CONNECTORS.md
+design/README.md
+design/skills/accessibility-review/SKILL.md
+design/skills/design-critique/SKILL.md
+design/skills/design-handoff/SKILL.md
+design/skills/design-system/SKILL.md
+design/skills/research-synthesis/SKILL.md
+design/skills/user-research/SKILL.md
+design/skills/ux-copy/SKILL.md
+
+CMD: gh api 'repos/anthropics/knowledge-work-plugins/commits?path=design/skills/ux-copy/SKILL.md&per_page=1' --jq '.[0].sha, .[0].commit.committer.date'
+AT_UTC: 2026-09-09T22:49:00Z
+RC: 0
+2d6f7e22dd25593f0f748010430ef86f19659735
+2026-03-13T15:57:57Z
+
+CMD: gh api repos/addyosmani/web-quality-skills --jq '{stars:.stargazers_count,forks:.forks_count,pushed_at,license:(.license.spdx_id // "none")}'
+AT_UTC: 2026-09-09T22:49:01Z
+RC: 0
+{"forks":249,"license":"MIT","pushed_at":"2026-08-24T21:07:36Z","stars":2774}
+
+CMD: gh api 'repos/addyosmani/web-quality-skills/git/trees/HEAD?recursive=1' --jq '.tree[] | select(.type=="blob") | .path' | head -40
+AT_UTC: 2026-09-09T22:49:01Z
+RC: 0
+.agents/plugins/marketplace.json
+.claude-plugin/marketplace.json
+.claude-plugin/plugin.json
+.gemini/skills
+.gitignore
+AGENTS.md
+CHANGELOG.md
+CLAUDE.md
+LICENSE
+README.md
+codex/.codex-plugin/plugin.json
+codex/skills
+docs/codex-setup.md
+docs/gemini-setup.md
+gemini-extension.json
+skills/accessibility/SKILL.md
+skills/accessibility/references/A11Y-PATTERNS.md
+skills/accessibility/references/WCAG.md
+skills/best-practices/SKILL.md
+skills/best-practices/references/SECURITY.md
+skills/core-web-vitals/SKILL.md
+skills/core-web-vitals/references/CLS.md
+skills/core-web-vitals/references/INP.md
+skills/core-web-vitals/references/LCP.md
+skills/performance/SKILL.md
+skills/performance/references/MEASUREMENT.md
+skills/performance/references/RUM.md
+skills/seo/SKILL.md
+skills/seo/references/STRUCTURED-DATA.md
+skills/web-quality-audit/SKILL.md
+skills/web-quality-audit/scripts/analyze.sh
+
+CMD: gh api 'repos/addyosmani/web-quality-skills/commits?path=skills/accessibility/SKILL.md&per_page=1' --jq '.[0].sha, .[0].commit.committer.date'
+AT_UTC: 2026-09-09T22:49:02Z
+RC: 0
+c6b06ad1285cd6b129b58455b2eec96ab6b67fa7
+2026-08-24T20:50:49Z
+
