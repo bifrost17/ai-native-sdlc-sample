@@ -17,7 +17,9 @@ description: Reads an accepted intent.md and the organization's skills and write
    still a draft, or only exists on a branch, stop and say so. No machine checks this; you do.
 2. Read the skills in `.claude/skills/` that apply to this change (an endpoint that returns customer
    data → `secure-api-review`). Open each one before you name it under "Skills applied" in the
-   spec — chain 0007 named one without opening it.
+   spec — chain 0007 named one without opening it. Write each as `name@sha`, the sha from
+   `git log -1 --format=%h -- .claude/skills/<name>/SKILL.md` — L3 279 logs "the skill versions
+   in force"; a name alone does not say which version wrote the spec.
 3. Record `Upstream: intent.md@<sha>. Status: <draft|accepted>` at the top of spec.md.
    One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
    the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
