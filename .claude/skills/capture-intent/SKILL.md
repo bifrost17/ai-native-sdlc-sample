@@ -21,7 +21,8 @@ If the originator brings a solution ("add a cache"), ask for the problem under i
 solution as a constraint only if they insist on it.
 
 ## What to write
-Write `intent/<NNNN>-<slug>/intent.md` from this template, verbatim structure. `templates/intent.md`
+Write `intent/<NNNN>-<slug>/intent.md` from this template, verbatim structure. `<NNNN>` is the
+largest number under `intent/` plus one (`ls intent/`), zero-padded to four digits. `templates/intent.md`
 is a copy of it; `tests/test_skill_template.py` keeps the two identical.
 
 ```markdown
