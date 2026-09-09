@@ -128,7 +128,10 @@ class TestAC4NotFound(Base):
                 records.reset_for_test()
                 body = self.body(claim_id=bad)
                 self.assertEqual(json.loads(body), {"error": "invalid_claim_id"})
-                self.assertNotIn(bad, body)
+                # 빈 문자열은 어떤 문자열에도 들어 있으므로 되비침 단정이 항진명제가 된다.
+                # 대신 오류 본문이 고정 문자열 그대로인지를 위 줄이 이미 못 박는다.
+                if bad:
+                    self.assertNotIn(bad, body)
                 self.assertEqual(records.upstream_calls(), 0)
                 self.assertEqual(audit.access_records(), [])
 
@@ -191,8 +194,11 @@ class TestAC8AccessRecord(Base):
         self.assertEqual(entries[0]["adjuster_id"], ADJUSTER)
         self.assertEqual(entries[0]["claim_id"], ASSIGNED_CLAIM)
         self.assertEqual(entries[0]["timestamp"], AT, "주입한 시각이 그대로 실리지 않았다")
+        # 기록에 실려야 하는 것은 위 셋뿐이다. 청구 번호는 그 셋에 들어 있고(entity), 응답으로
+        # 나간 상태·예정일은 들어 있으면 안 된다 — 기록은 「무엇을 봤다」지 「무엇이 보였다」가 아니다.
+        payload = json.loads(body)
         blob = json.dumps(entries, ensure_ascii=False)
-        for value in FORBIDDEN_VALUES + tuple(json.loads(body).values()):
+        for value in FORBIDDEN_VALUES + (payload["status"], payload["due_date"]):
             self.assertNotIn(value, blob, "기록이 넓어졌다: %s" % value)
 
     def test_ac8_failed_lookups_append_nothing(self):
