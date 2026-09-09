@@ -19,7 +19,7 @@ playbook's. Files owned by other lanes are named as found on `origin/main`
 | 10 | Evals in CI (662–740) | `make evals` with the key, in its own workflow on config change and schedule (689); the key-free half runs in `make test` | `evals/`, `.github/workflows/agent-evals.yml`, `tests/test_evals.sh` | code |
 | 11 | PR review (742–801) | REVIEW.md with three passes; findings inform, the merge decides | `REVIEW.md` | skill · person |
 | 12 | Hooks as approval gate (803–940) | Production gate hook | `.claude/hooks/production-gate.sh` | code |
-| 13 | CI/CD (942–1005) | CI runs `make check`; a red check is a red PR | `.github/workflows/` | code |
+| 13 | CI/CD (942–1005) | CI runs `make check`; a red check is a red PR; on failure the playbook's `claude -p` triage step (961, 981) runs when the key is set — sandbox, MCP deploys, rollback are the team's (`docs/BOUNDARY.md`) | `.github/workflows/` | code |
 | 14 | Bands (1007–1070) | Band config as the record; detection script only where the lesson names it; the scheduled trigger (1034) runs it and uploads a tier-3 draft, never commits it (1038) — executed as chain 0006 (`scripts/detect_bands.py` → `scripts/emit_intent.py` → triage → eval 04) | `ops/bands.yaml`, `scripts/`, `.github/workflows/bands.yml` | code · person |
 
 Not in this repo, by decision (docs/BOUNDARY.md): a checker for artifact form, status or
