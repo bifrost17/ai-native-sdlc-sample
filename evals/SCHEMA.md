@@ -16,10 +16,11 @@ followed)."
 | `assertions` | ✓ | 산문 — LLM 채점용, `check.sh` 는 채점하지 않는다 |
 | `checks` | ✓ | 결정론 판정 목록(0건이면 판정 불가) |
 
-## 판정 종류 — 닫힌 집합 7종 (정본: `evals/check.sh --kinds`)
+## 판정 종류 — 닫힌 집합 5종 (정본: `evals/check.sh --kinds`)
 
-`file_exists` `contains` `not_contains` `regex_present` `regex_absent`
-`frontmatter_has_keys` `frontmatter_equals`. `path` 는 워크스페이스 상대이고
+`file_exists` `contains` `not_contains` `regex_present` `regex_absent`. 아티팩트의
+형식(frontmatter·절 목록)을 재는 kind 는 없다 — 형식은 스킬이 말하고 PO 가 읽는다
+(docs/BOUNDARY.md). `path` 는 워크스페이스 상대이고
 절대경로·`..` 는 판정 불가. 목록 밖 kind 를 만나면 건너뛰지 않고 rc=2 로 죽는다.
 
 ## 결과 파일 (check.sh 의 두 번째 인자)

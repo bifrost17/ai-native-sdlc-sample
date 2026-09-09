@@ -5,7 +5,7 @@
 # 닫힌 집합 밖 kind) — "안 돌았다" 를 "통과" 로 접지 않는다(L10 727행 머지 게이트).
 # 사용법: bash evals/check.sh <케이스.json> <결과.json> | --kinds
 set -uo pipefail
-CHECK_KINDS="file_exists contains not_contains regex_present regex_absent frontmatter_has_keys frontmatter_equals"
+CHECK_KINDS="file_exists contains not_contains regex_present regex_absent"
 die2() { echo "UNDECIDABLE: $1" >&2; exit 2; }
 [ "${1:-}" = "--kinds" ] && { for k in $CHECK_KINDS; do echo "$k"; done; exit 0; }
 command -v jq >/dev/null 2>&1 || die2 "jq 가 없다 — 판정 불가"
@@ -25,13 +25,6 @@ case "$ws_field" in /*) WS="$ws_field" ;; *) WS="$RESULT_DIR/$ws_field" ;; esac
 [ -d "$WS" ] || die2 "워크스페이스 없음: $WS"
 
 cq() { jq -r --argjson i "$1" ".checks[\$i].$2 // empty" "$CASE_FILE"; }
-fm_get() { # fm_get <파일> <키> — frontmatter 최상위 키의 값(값 끝 '#주석' 제거)
-  awk -v want="$2" 'NR==1{if($0!="---"){exit 1} next}
-    $0=="---"{exit} /^[a-zA-Z_]+:/{split($0,a,":"); k=a[1];
-      v=substr($0,length(k)+2); sub(/ *#.*/,"",v); gsub(/^ +| +$/,"",v);
-      if(k==want){print v; f=1; exit}} END{exit !f}' "$1"
-}
-fm_keys() { awk 'NR==1{if($0!="---"){exit 1} next} $0=="---"{exit} /^[a-zA-Z_]+:/{split($0,a,":"); print a[1]}' "$1"; }
 regex_hit() { grep -qE "$2" "$1" 2>/dev/null; }
 
 pass=0; fail=0
@@ -62,18 +55,6 @@ for ((i = 0; i < N; i++)); do
       if regex_hit "$t" "$p"; then hit=0; else hit=1; fi
       [ "$kind" = regex_present ] && { [ "$hit" = 0 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "패턴 불일치: /$p/"; } \
         || { [ "$hit" = 1 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "없어야 할 패턴이 맞음: /$p/"; } ;;
-    frontmatter_has_keys)
-      [ -f "$t" ] || { emit "$i" 1 "$label" "대상 없음"; continue; }
-      present="$(fm_keys "$t")"; missing=""
-      while IFS= read -r k; do [ -n "$k" ] || continue
-        echo "$present" | grep -qx "$k" || missing="$missing $k"
-      done < <(jq -r --argjson i "$i" '.checks[$i].keys[]?' "$CASE_FILE")
-      [ -z "$missing" ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "누락 키:$missing" ;;
-    frontmatter_equals)
-      k="$(cq "$i" key)"; v="$(cq "$i" value)"; label="$kind $path ($k==$v)"
-      [ -f "$t" ] || { emit "$i" 1 "$label" "대상 없음"; continue; }
-      got="$(fm_get "$t" "$k")"
-      [ "$got" = "$v" ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "값이 '$got'" ;;
   esac
 done
 echo "$CASE_ID: $pass passed, $fail failed"

@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "id": "01-intent-placeholder",
-  "prompt": "당신은 이 레포의 기여자다. 이 레포의 intent 규약(CLAUDE.md · templates/intent.md · docs/STATUS.md)을 먼저 읽어라.\n\n워크스페이스 evals/out/01-intent-placeholder/ws/ 에 idea.md 가 있다. 비엔지니어가 쓴 현장 메모다. 그 메모를 이 레포의 intent 규약대로 옮겨 정확히 다음 경로에 써라:\n\n  evals/out/01-intent-placeholder/ws/intent/9001-eval-sample/intent.md\n\n규칙: (1) 템플릿의 플레이스홀더 기호 ‹ › 는 하나도 남기지 말고 메모의 실제 내용으로 채운다. (2) frontmatter 7키(id · kind · status · author · created · record · supersedes)를 전부 채운다. id 는 9001-eval-sample 이다. (3) 아직 사람이 승인하지 않았으므로 status 는 draft 다. (4) 워크스페이스 밖의 파일은 만들지도 고치지도 마라.",
-  "expected_output": "intent/9001-eval-sample/intent.md 하나. frontmatter 7키가 채워져 있고 status 는 draft 이며, 본문 5절이 메모의 실제 내용(콜 214건 중 61건 · 3분 20초 · 10분 이내 알림 · C1 신규 개인정보 수집 금지 · C2 초당 50건 · Q1 대상 상태 전이 · Q2 야간 발송)으로 채워져 플레이스홀더가 한 개도 남지 않은 상태.",
+  "prompt": "You are a contributor to this repo. Read CLAUDE.md, .claude/skills/capture-intent/SKILL.md and templates/intent.md first.\n\nThe workspace evals/out/01-intent-placeholder/ws/ holds idea.md, a field note written by a non-engineer. Turn it into an intent exactly at:\n\n  evals/out/01-intent-placeholder/ws/intent/9001-eval-sample/intent.md\n\nRules: (1) follow the capture-intent skill's template, section for section, in the originator's words; (2) leave no ‹…› placeholder; (3) line 2 is `Author: … Status: draft.` — nobody has approved it, approval is the merge; (4) create or change nothing outside the workspace.",
+  "expected_output": "One file, intent/9001-eval-sample/intent.md: the template's five sections filled from the note (61 of 214 calls · 3 min 20 s · within 10 minutes · C1 no new contact data · C2 50 req/s · Q1 which statuses · Q2 night sending), line 2 ends with `Status: draft.`, no placeholder left.",
   "files": [
     "evals/fixtures/01-intent-placeholder/idea.md"
   ],
   "allowed_tools": "Read,Write,Glob,Grep",
-  "measures": "이 레포의 설정(CLAUDE.md · templates/ · capture-intent 스킬)이 에이전트를 실제로 조종하는가 — 조종하지 못하면 템플릿을 그대로 베껴 플레이스홀더가 남거나 frontmatter 가 빈다. honghu 반례: 플레이스홀더를 한국어 리터럴로 두어 전량 통과했다.",
+  "measures": "Whether CLAUDE.md and the capture-intent skill steer the agent: an unsteered agent copies the template with placeholders left, or invents a frontmatter the template does not have.",
   "assertions": [
-    "산문이 메모에 없는 사실(숫자·기한·시스템명)을 지어내지 않는다",
-    "Problem 절이 관찰된 사실과 건수를 담는다",
-    "Open questions 절의 각 항목에 답할 사람이 붙어 있다"
+    "The prose invents no fact (number, deadline, system name) that is not in the note",
+    "Problem states the observed counts, not a cause or a fix",
+    "Each open question names who can answer it"
   ],
   "checks": [
     {
@@ -24,23 +24,19 @@
       "value": "‹"
     },
     {
-      "kind": "frontmatter_has_keys",
+      "kind": "regex_present",
       "path": "intent/9001-eval-sample/intent.md",
-      "keys": [
-        "id",
-        "kind",
-        "status",
-        "author",
-        "created",
-        "record",
-        "supersedes"
-      ]
+      "pattern": "^Author: .+\\. Status: draft\\.$"
     },
     {
-      "kind": "frontmatter_equals",
+      "kind": "regex_absent",
       "path": "intent/9001-eval-sample/intent.md",
-      "key": "status",
-      "value": "draft"
+      "pattern": "Status: accepted"
+    },
+    {
+      "kind": "regex_present",
+      "path": "intent/9001-eval-sample/intent.md",
+      "pattern": "^## Open questions$"
     }
   ]
 }

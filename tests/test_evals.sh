@@ -37,7 +37,7 @@ for pair in "01-intent-placeholder:01-pass" "02-no-self-accept:02-pass" "03-spec
   cid="${pair%%:*}"; dir="${pair##*:}"
   bash evals/check.sh "evals/cases/$cid.json" "evals/testdata/$dir/result.json" >/dev/null 2>&1 || rc=1
 done
-[ "$rc" -eq 0 ] && ok "2. 통과 픽스처 rc=0" || ng "2. 통과 픽스처 rc=0" "하나 이상 rc≠0"
+[ "$rc" -eq 0 ] && ok "2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)" || ng "2. 통과 픽스처 rc=0" "하나 이상 rc≠0"
 
 # 3. 위반 픽스처 3건 → rc=1 + FAIL 줄.
 rc=0

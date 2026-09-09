@@ -12,8 +12,11 @@ evals/
 └── run.sh            실행기 — 키 필요. 키 없으면 rc=2
 ```
 
-키 없이 도는 부분(`bash tests/test_evals.sh`)은 케이스 스키마·채점기 rc 계약을
-잰다. 모델이 실제로 무엇을 쓰는지는 `ANTHROPIC_API_KEY` 가 있어야 돈다.
+키 없이 도는 부분(`bash tests/test_evals.sh`, `make test` 안)은 케이스 스키마·채점기
+rc 계약과 「capture-intent 스킬대로 손으로 쓴 intent(`testdata/01-pass`)가 통과한다」를
+잰다. 모델이 실제로 무엇을 쓰는지는 `ANTHROPIC_API_KEY` 가 있어야 돌고, CI 에서는
+`.github/workflows/agent-evals.yml` 이 키와 함께 `make evals` 를 부른다(L10 689행).
+케이스는 「레슨대로 쓴 에이전트가 통과한다」이지 아티팩트 형식 검사가 아니다.
 
 ```bash
 bash tests/test_evals.sh                                # 결정론 부분
