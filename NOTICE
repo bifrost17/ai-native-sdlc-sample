@@ -1,31 +1,17 @@
-# NOTICE — 차용한 조각과 출처
+# NOTICE — borrowed pieces and their sources
 
-이 레포는 Anthropic 「The AI-Native SDLC Playbook」(Claude Academy)을 구현 대상으로 삼고,
-같은 플레이북을 앞서 구현한 공개 레포들에서 아래 조각을 빌렸다. 각 조각은 우리 어휘로
-다시 썼으며, 파일 단위 복제는 하지 않았다.
+This repo applies Anthropic's "The AI-Native SDLC Playbook" (Claude Academy) and borrowed the
+pieces below from earlier public implementations of the same playbook. Each was rewritten in this
+repo's own words; no file was copied.
 
-## MIT (라이선스 조건: 저작권·허가 고지 유지)
+## MIT (keep the copyright and permission notice)
+- **jcuervo/authoring-ai-sdlc** — the "Does not …" clause in skill descriptions; "not applicable —
+  because" instead of an empty section.
+- **imsungbin/ai-native-sdlc-playbook** — the lesson-sentence ↔ file table (docs/PLAYBOOK-MAP.md);
+  the "Open questions from intent" section in spec.md.
+- **bashebr/ai-native-sdlc** — the rule → layer matrix (docs/BOUNDARY.md).
 
-- **jcuervo/authoring-ai-sdlc** — 게이트 안에 상주하는 양성/음성 대조(템플릿은 반드시 실패, 예시는
-  반드시 통과) · 검증기 rc 3분법(0 통과 / 1 결함 / 2 판정 불가) · 스킬 description 의 배타절 · 빈 절 대신
-  「해당 없음 — 이유」를 쓰게 하는 규율.
-- **jsnkle/ai-native-sdlc** — 플레이 문서의 절 골격 · 사슬을 한 장 표로 적는 형식 · 결정론 검출기의 구조.
-- **imsungbin/ai-native-sdlc-playbook** — 정본 문장 ↔ 파일 1:1 대조표 · 설치기의 마커 블록 병합 규약 ·
-  spec 의 「Open questions from intent」 절.
-- **bashebr/ai-native-sdlc** — 규칙 → 집행 매트릭스(하드룰 / 권고층 / 결정론층 / 어디서 검사).
-
-## CC BY 4.0 (조건: 출처 표시)
-
-- **simonsez9510/intent-md-ko** (원성묵 / 지방자치혁신연구원) — 한국어 절 이름 · 「완료 판정 = 숫자 또는
-  관찰 가능한 사실」 · 발주서 대응표의 착상.
-
-## 아이디어만 (라이선스 미표기 레포 — 파일·문면은 쓰지 않았다)
-
-- **JHashimoto0518/ai-native-sdlc-playbook-sample** — 「상속한 제약 / 발견한 제약」 절 분리 ·
-  의도적 미구현 원장 · 시험 이름에 요건 ID 를 박는 규율.
-- **honghu-ai/sdlc-governance-kit** — change-ID 규약과 아티팩트 frontmatter 발상.
-
-## 플레이북 원문
-
-인용은 짧은 축자 + 출처 표기만 한다. 예제 코드 블록을 통째로 복사하지 않고 우리 소재로 재작성했다.
-원문: Claude Academy, "The AI-Native SDLC Playbook" — Copyright Anthropic.
+## Playbook text
+Quotes are short, verbatim, and cite the line. Example blocks are reproduced only where noted as
+verbatim (secure-api-review skill, CLAUDE.md verification block). Original: Claude Academy,
+"The AI-Native SDLC Playbook" — Copyright Anthropic.
