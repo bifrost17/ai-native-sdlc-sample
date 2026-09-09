@@ -102,4 +102,6 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
 Live GitHub Actions (no self-hosted runner registered; every check above ran locally). Linux.
 Live `evals` (no `ANTHROPIC_API_KEY` in this session). In runs B and C, "H" is the parent session
 role-playing the original playbook's human actors in sequence — not an actual separate person at
-each gate.
+each gate. Runs B and C's H turns are not in the raw jsonl — a `claude -p` stream does not echo
+its own input back, so what H said is known only indirectly, through the response quoting it and
+through the drafts it produced. A later harness should record H's turns to raw separately.

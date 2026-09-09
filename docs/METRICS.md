@@ -2,10 +2,11 @@
 
 L3 292: "Git log will give this directly." Every indicator below is one command against this repo.
 `CHAIN` is a chain directory, e.g. `intent/0004-lesson-only`. `created` (first conversation) is the
-one value git does not know; the intent's author states it in the file.
+one value git does not know; the capture-intent skill puts it on the PR body's first line, read with
+`gh pr view <n> --json body`.
 
 ## L2 capture-intent (233–239)
-- Leading — time from first conversation to committed intent.md: the author's stated time versus
+- Leading — time from first conversation to committed intent.md: the PR body's first line versus
   `git log --diff-filter=A --format='%aI %h' -- $CHAIN/intent.md`
 - Lagging — survival rate (accepted = merged, closed = rejected):
   `gh pr list --state all --search 'intent.md' --json number,state,title`
