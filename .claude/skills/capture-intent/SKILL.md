@@ -50,6 +50,10 @@ where that correction happens — say so in the PR body (0002 and 0007 both hit 
 From a ticket or an incident, Problem carries the observed facts themselves — input, expected,
 actual, the command that reproduces it, and the time/SHA — not only the reporter's idea of it.
 
+When opening the PR, put the first conversation's timestamp (ISO, UTC) on the PR body's first
+line — L2 227's leading indicator is the gap from that moment to the commit, and git does not
+record when the conversation started.
+
 ## What this skill does not do
 - Does not write solutions, technology choices or estimates — spec.md and plan.md own those.
 - Does not write spec.md or plan.md.
