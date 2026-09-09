@@ -5,7 +5,7 @@
 # (the #1 failure of the reference repos: hooks present, never wired). bash 3.2.
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
-T="$(mktemp -d "${TMPDIR:-/tmp}/hooktest.XXXXXX")"; trap 'rm -rf "$T"' EXIT INT TERM
+T="$(mktemp -d "${TMPDIR:-/tmp}/hooktest.XXXXXX")"; T="$(cd "$T" && pwd -P)"; trap 'rm -rf "$T"' EXIT INT TERM
 mkdir -p "$T/.claude" && cp -R "$ROOT/.claude/hooks" "$T/.claude/hooks"
 H="$T/.claude/hooks"
 mkdir -p "$T/intent/0001-a" "$T/intent/0002-b" "$T/.github/workflows" "$T/tests" "$T/src"
