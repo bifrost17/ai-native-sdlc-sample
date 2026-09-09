@@ -28,6 +28,9 @@ file must contain, the product owner reads it, and the merge records the decisio
 - A credential in the diff (L7 521 "Keep credentials out of the diff") — hook.
 - A protected path edited (L7 517), a broken file after an edit (L7 519), a production deploy
   without a release authorization (L12 848–857) — hook.
+- Not here: a Stop hook that runs `make test` before the session reports done (L9 650 "both
+  implemented as hooks where the organization wants them guaranteed"). Verification-before-done is
+  the CLAUDE.md instruction plus the PR `check`; a team that wants it guaranteed adds the hook.
 - Not here: a plan-sync hook. L4 329 says "Consider using a hook" — optional; this repo does not
   have one, the plan skill says to update plan.md in the same commit.
 - `make check` red on a PR (L13 963, through branch protection) — CI.

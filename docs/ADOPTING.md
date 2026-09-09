@@ -24,6 +24,7 @@ files themselves — `grep -rn 'TEAM:'` finds all of them.
 | `ops/bands.yaml` (above `metric:`) | one metric (`ci_test_failure_rate`) with Western Electric rules 1-3 | the org's own metric and baseline (5xx rate, PR cycle time, …), wired to a real metrics store and trigger | service owner / platform engineer | L14 990, L14 994-1000 |
 | `README.md` ("Source of truth" section, no marker — prose already answers it) | "this repo is the source of truth" | if the org has Jira/a requirements tool/a change board, pick repo / legacy-system / linkage-only per artifact instead | the org, per artifact | L4 367-377 |
 | no file — deployment infrastructure, no marker | nothing (`docs/BOUNDARY.md` names this as a device the sample does not build) | MCP deploy/status/rollback tools, sandboxed job containers, a rehearsed staging rollback | platform engineer + release manager | L13 933-939 |
+| no file — UI visual check tool (this sample has no UI) | nothing | a browser tool or a screenshot utility wired in via MCP, and the mock Claude compares against | engineer setting up the loop | L9 612, L9 627 |
 | no file — non-engineer contributor's commit path | nothing (this sample commits `intent/` from a CLI session via `git`/`gh`, not from a non-engineer) | a claude.ai/Cowork setup with a GitHub connector configured to commit Markdown to `intent/`, and who is allowed to use it | platform engineer | L2 185-189 |
 
 ## Why the sample does not fill these in

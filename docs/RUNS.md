@@ -117,8 +117,9 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
 
 ## Not confirmed
 
-Live GitHub Actions (no self-hosted runner registered; every check above ran locally). Linux.
-Live `evals` (no `ANTHROPIC_API_KEY` in this session). In runs B and C, "H" is the parent session
+Live `evals` (no `ANTHROPIC_API_KEY` in this session; the `evals` job on PR #33 shows FAILURE for
+that reason — `check` itself ran on GitHub-hosted Actions for every chain PR: #28, #33, #42 SUCCESS,
+`gh run list --workflow=check.yml`). Linux. In runs B and C, "H" is the parent session
 role-playing the original playbook's human actors in sequence — not an actual separate person at
 each gate. Runs B and C's H turns are not in the raw jsonl — a `claude -p` stream does not echo
 its own input back, so what H said is known only indirectly, through the response quoting it and
