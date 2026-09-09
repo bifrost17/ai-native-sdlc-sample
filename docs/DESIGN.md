@@ -25,6 +25,7 @@
 | **D13** | **인용 정책** | 플레이북 원문은 **짧은 축자 인용 + 출처 표기**만. 예제 코드 블록을 통째 복사하지 않고 **우리 소재로 재작성** | 아티팩트 말미 *"Copyright Anthropic. Personal reading copy."* — 사설 레포라도 전문 복제는 하지 않는다 |
 | **D14** | **source of truth** | 레슨 4의 3구성 중 **「The repo as the source of truth」** 를 명시 선언(`docs/SOURCE-OF-TRUTH.md`) · 외부 기록 ID 는 `record:` 필드로 링크만 | 레슨이 「artifact 마다 하나를 정본으로 지명하라」고 요구 — 안 정하면 다음 사람이 추측한다 |
 | **D15** | **사슬 3본** | 0001 메타(레포 자체) · 0002 기능(청구 상태) · **0003 결함**(레슨 8의 「실패 시험 먼저 + test-file 훅」 시연) | 레슨 8의 핵심 지시는 결함 사슬 없이는 시연 불가 |
+| **D16** | **승인 전이 예외** | 브랜치에서 `accepted` 는, 기준점(기본 브랜치에 그 파일이 있으면 기본 브랜치, 없으면 이 브랜치의 「아직 accepted 가 아니었던 가장 최근 판」)과의 `git diff` 가 `status:` 줄 하나만 바꾼 경우에만 허용 | 승인 커밋을 만들려는 순간 로컬 검증기 실행이 red 를 내는 것을 실측으로 발견(CI 아님 — detached HEAD 에서는 이 검사가 note 로 빠진다) |
 
 부모 결정(비고위험 · 되돌릴 수 있음): 레포 이름 `intent-sdlc-sample`(private · `bifrost17`) · 예제 = 플레이북 자체 예제의 한국어 재현(청구 상태 자가조회) · 구현 언어 Python stdlib + bash/jq · PO = `@bifrost17`(단일 소유자 · §6.4 에 self-review 한계와 실증 방법).
 
@@ -162,11 +163,13 @@ skills_applied: [secure-api-review]   # 레슨 3 "skill versions in force are lo
 | 전이 | 누가 | 증거 | 기계 검사 |
 |---|---|---|---|
 | — → draft | 발의자(또는 이슈 폼) | 첫 커밋 | frontmatter 필수 키 · `created` ISO8601(오프셋 필수) |
-| draft → accepted | product owner | `status:` 를 바꾼 커밋이 **머지된 PR** 안에 | 브랜치에서 accepted 금지(main 과 동일 파일 제외) · accepted 파일 이후 변경 불가 · 훅이 로컬 편집 차단 |
+| draft → accepted | product owner | `status:` 를 바꾼 커밋이 **머지된 PR** 안에 | 브랜치에서 accepted 금지(**D16** 예외) · accepted 파일 이후 변경 불가 · 훅(§6.1 · 미머지 PR #6)이 로컬 편집 차단 |
 | draft → rejected | product owner | PR close | 동일 |
 | accepted → superseded | 새 intent 발의자 | 새 intent 의 `supersedes:` + 옛 파일 상태 변경이 같은 PR | 대상 존재 · 대상이 accepted 였는가 |
 
-`accepted_at` 은 두지 않는다 — git 이 안다(`git log -S'status: accepted'`). 자기 신고 필드는 `created` 하나뿐이고, 그것이 git 이 모르는 유일한 값이다.
+`accepted_at` 은 두지 않는다 — git 이 안다. 단 `git log -S'status: accepted'` 후보만으로는 부족하다 — 템플릿·픽스처의 예시 코드 펜스 안에도 같은 문자열이 나타나 **코드 스팬을 승인으로 세는** 거짓 양성을 낸다. 후보 커밋마다 그 시점 파일을 `git show <sha>:<경로>` 로 꺼내 코드 스팬을 벗기고 frontmatter `status` 가 실제로 `accepted` 인지 교차 확인한 뒤, 그 조건을 만족하는 가장 오래된 커밋을 쓴다(`scripts/metrics.py` 의 `l1_accepted` 계산과 같은 방법). 자기 신고 필드는 `created` 하나뿐이고, 그것이 git 이 모르는 유일한 값이다.
+
+**D16** — 브랜치에서 `accepted` 는, 기준점과의 `git diff` 가 **`status:` 줄 하나만** 바꾼 경우에만 허용한다. 기준점은 ① 기본 브랜치에 **같은 사슬 id 의 같은 형** 아티팩트가 있으면 그것(경로가 아니라 id 로 찾는다 — 경로면 디렉터리·파일 개명 한 번에 기준점이 브랜치 자기 커밋으로 후퇴해 브랜치가 심은 draft 위에 도장을 찍을 수 있다) ② 없으면(사슬이 이 브랜치에서 태어났다) 이 브랜치의 「아직 accepted 가 아니었던 가장 최근 판」이다 — 「그 파일을 건드린 가장 최근 커밋」을 기준으로 잡으면 승인을 커밋하기 직전의 작업 트리가 red 로 읽혀 승인 커밋을 만들 수조차 없다 ③ 이 브랜치에서 커밋된 적이 없거나 이 브랜치의 모든 판이 이미 accepted 면 도장을 찍을 원본이 없다 — 이때는 note 가 아니라 **red**(기준점 자체가 없다는 것과 기준점을 못 정했다는 것은 다르다). 내용이 함께 바뀌면 여전히 red — 승인은 이미 검토된 문서에 도장을 찍는 행위이지 「고치면서 승인」이 아니다. 내용을 바꾸려면 `draft` 로 되돌려 다시 검토받는다. 기본 브랜치 참조가 없거나 detached HEAD 이면(①·②·③ 의 판정 자체를 못 하는 경우) 이 판정은 note 로 빠지고 그 자리는 브랜치 보호가 맡는다.
 
 ---
 
@@ -176,10 +179,10 @@ skills_applied: [secure-api-review]   # 레슨 3 "skill versions in force are lo
 |---|---|---|
 | 디렉터리 `NNNN-slug` · `id == dirname` · `kind == 파일명` | 우리 규약 | 소유권 |
 | frontmatter 키 집합 · `status` enum · `created` ISO8601 | 우리 규약 | 소유권 |
-| 절 집합(영문 토큰 5/9/6) · 순서 · 빈 절 금지 · 플레이스홀더 `‹›` 잔존 | 우리 템플릿·토큰 | 소유권 |
+| 절 집합(영문 토큰 5/8/6) · 순서 · 빈 절 금지 · 플레이스홀더 `‹›` 잔존 | 우리 템플릿·토큰 | 소유권 |
 | **코드 펜스·인라인 코드 제거 후** 위 판정 | 펜스 문법 하나만 | 기계 유도(명시) |
 | `upstream: <file>@<sha>` — sha 존재 · 그 커밋 파일이 `accepted` · id 일치 | git | 단일 통로(`git show`) |
-| C#/Q# 이어받기 · AC#→R# 고아 없음 · Proof 가 AC# 를 덮음 · Files that change 경로 실재 | 우리 ID 규약 | 소유권 |
+| C#/Q# 이어받기 · AC#→R# 고아 없음 · Proof 가 AC# 를 덮음 | 우리 ID 규약 | 소유권 |
 | spec 본문 ≠ intent 본문(정규화 후 동일 = red) | — | 단일 검사 |
 | 브랜치 규칙: accepted 는 main 에서만 · accepted 파일 불변 | git diff | 단일 통로 |
 
@@ -193,7 +196,7 @@ skills_applied: [secure-api-review]   # 레슨 3 "skill versions in force are lo
 
 ## 6. 강제층 (레슨 6b · 8 · 11)
 
-### 6.1 훅 5 — 전부 `exit 2` + stderr, `realpath` 정규화, `command -v jq || exit 2`(fail-closed), matcher 에 `NotebookEdit` 포함
+### 6.1 훅 5(**미머지 PR #6** `feat/0001-enforcement-hooks` 의 산출물 — 이 브랜치·`main` 엔 아직 `.claude/hooks/*`·`.claude/settings.json` 이 없다) — 전부 `exit 2` + stderr, `realpath` 정규화, `command -v jq || exit 2`(fail-closed), matcher 에 `NotebookEdit` 포함
 | 훅 | 무엇을 막나 | 레슨 |
 |---|---|---|
 | `protect-accepted.sh` | accepted 아티팩트 편집 | 4·11(protected paths) |
@@ -214,7 +217,7 @@ skills_applied: [secure-api-review]   # 레슨 3 "skill versions in force are lo
 > `allowManagedHooksOnly` 를 켜면 프로젝트 `.claude/settings.json` 의 훅은 **차단된다** — 이 레포의 승인 게이트를 유지하려면 관리형 파일의 hooks 블록에 다시 정의해야 한다.
 
 ### 6.4 CI · 브랜치 보호
-`check.yml`(PR·push) → `make check` 를 **필수 상태 체크**로. ruleset: PR 필수 · 상태 체크 필수 · `intent/**` 는 CODEOWNER 리뷰 필수 · force-push 금지. 레슨 12 의 원칙 *"the agent may act up to the production gate and cannot pass it"* 를 브랜치 보호로 구현한다.
+`check.yml`(PR·push) → `make check` 를 **필수 상태 체크**로. ruleset(`protect-main`)에서 **켜져 있는 것**: PR 필수 · 필수 상태 체크 `check` · 삭제 금지 · non-fast-forward 금지 · `current_user_can_bypass: never`. **켜지 못한 것**: CODEOWNER 필수 승인(`require_code_owner_review: false`) · 승인 수 ≥1(`required_approving_review_count: 0`) — **단일 소유자**라 켜면 자기 PR 을 자기가 승인 못 해 모든 머지가 영구 차단되기 때문이다. 그 자리는 **CI 필수 체크 + 검증기(§5) + 훅(§6.1 · 미머지 PR #6)** 이 대신한다. `.github/CODEOWNERS` 는 소유자를 이름으로 적는 문서로 남고, 기계 강제는 아니다(아직 `main` 에 없다 — 미머지 PR #3 에만 있다). 레슨 12 의 원칙 *"the agent may act up to the production gate and cannot pass it"* 를 브랜치 보호로 구현한다.
 단일 소유자 한계: GitHub 은 자기 PR 을 자기가 승인 못 한다 → 실증은 「리뷰 없는 PR 이 머지 불가」를 스크린샷·API 응답으로 1회 남기고, 관리자 bypass 를 쓰면 그 사실을 `docs/STATUS.md` 에 적는다.
 
 ---
