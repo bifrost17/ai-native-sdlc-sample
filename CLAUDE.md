@@ -4,7 +4,8 @@
 
 ## Commands
 - Test: `make test` (python unittest, `tests/test_hooks.sh`, `tests/test_evals.sh`,
-  `tests/test_managed_settings.sh`; healthy: the last line is ‹filled in after integration›)
+  `tests/test_managed_settings.sh`; healthy: rc=0, the four suites end with `OK`,
+  `test_hooks: 27 passed, 0 failed`, `8 passed, 0 failed`, `PASS  managed-settings 키·훅 계약`)
 - Evals: `make evals` (`bash evals/run.sh`, needs `ANTHROPIC_API_KEY`; healthy: `evals: 전 케이스 통과`)
 - Check: `make check` (= `make test`; non-zero on any failure). Evals are not in it: without
   `ANTHROPIC_API_KEY` `make evals` prints `SKIP: ANTHROPIC_API_KEY 없음` and exits 2; CI runs them
