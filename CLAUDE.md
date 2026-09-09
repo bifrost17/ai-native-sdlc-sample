@@ -18,6 +18,10 @@
   order, each its own commit. `Status: draft` until the PR merges; the merge is the approval.
 - Every code file under `.claude/hooks/`, `scripts/`, `evals/` opens with the lesson sentence it
   implements, quoted with its line number. No sentence, no file.
+- Change files with the Edit/Write tools, not shell redirection or heredocs. The hooks in
+  `.claude/settings.json` watch tool calls, not effects: chain 0007 wrote 45/45 files through
+  Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
+  detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
 
 ## Architecture

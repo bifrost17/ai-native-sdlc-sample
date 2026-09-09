@@ -11,6 +11,8 @@ Run three passes and tag each finding with its pass:
 - Compliance: the change matches spec.md and plan.md of its chain under `intent/`, and the
   boundary in docs/BOUNDARY.md — code that checks artifact form, status or transitions does
   not belong here. A code file whose header cites no lesson sentence is a compliance finding.
+  In a defect chain, a diff that touches an existing test file is a finding (L9 631: "check the
+  diff in review and reject any change that touches a test") — the hook only sees Edit/Write.
 
 ## What Important means here
 Reserve Important for findings that would break behavior, leak data or breach a policy —

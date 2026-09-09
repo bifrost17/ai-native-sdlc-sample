@@ -11,7 +11,9 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 > L4 329: "When implementation departs from the plan, update plan.md in the same commit."
 
 ## Inputs
-`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged). Record
+`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged). For a defect chain
+(L9 625 failing test first) the engineer opens the session with `INTENT_TASK=fix`; nothing sets
+it for you, and without it the test-file hook (L9 631) is off. Record
 `Upstream: spec.md@<sha>. Status: <draft|accepted>` at the top of plan.md.
 One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
 the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
