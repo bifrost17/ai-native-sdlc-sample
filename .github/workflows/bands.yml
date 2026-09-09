@@ -13,6 +13,8 @@ permissions:
 jobs:
   detect:
     runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -23,6 +25,19 @@ jobs:
           echo "tier=$tier"; mkdir -p /tmp/draft
           [ "$tier" = "3sigma" ] && python3 scripts/emit_intent.py \
             --input /tmp/detection.json --id 9999-band-breach --out /tmp/draft || true
+      # L14 1032: "at 2σ it invokes Claude read-only to diagnose, and at 3σ Claude may act, though only
+      # by opening a PR". Read-only diagnosis, appended to the draft only; the tool allowlist is the
+      # tier's `tools` in ops/bands.yaml (the tier boundary is the config, L14 1046). Needs the key —
+      # without it the draft reaches triage undiagnosed. Nothing is committed and no PR is opened here.
+      - if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          set -e
+          tier="$(python3 -c "import json;print(json.load(open('/tmp/detection.json'))['tier'])")"
+          case "$tier" in 2sigma|3sigma) ;; *) echo "tier=$tier: no diagnosis"; exit 0 ;; esac
+          tools="$(python3 -c "import re;t=open('ops/bands.yaml').read();print(re.search(r'2sigma:\s*\n\s*action: diagnose\s*\n\s*tools: \"([^\"]+)\"',t).group(1))")"
+          npm install -g @anthropic-ai/claude-code
+          claude -p "Read /tmp/detection.json and the intent draft under /tmp/draft. Diagnose the breach against this repository read-only and append your evidence and open questions to the draft's Problem and Open questions sections. Change nothing else." \
+            --allowedTools "$tools,Write(/tmp/draft/**),Edit(/tmp/draft/**)" --output-format json > /tmp/draft/diagnosis.json
       - uses: actions/upload-artifact@v4
         with: { name: bands-detection, path: /tmp/detection.json }
       - uses: actions/upload-artifact@v4
