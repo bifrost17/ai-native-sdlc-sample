@@ -11,13 +11,17 @@ Skills applied: none — no external-facing endpoint; `design-spec` read.
 ## Design
 One PR, four commits: this chain's three artifacts, then one removal commit. Removals are `git rm` by path (no `git add -A`). Text edits are local replacements, asserted to match exactly once. The experiment branch is pushed first (done: `cebc0e5`), so the removal never touches the only copy.
 ## Constraints
-—
+- Nothing is lost: the experiment branch is pushed from `0daf6550` before any removal (carried from intent.md).
+- Template tests do not import the example app (carried; checked by `grep` before the chain opened).
+- Chain mentions in skills, CLAUDE.md and REVIEW.md stay — they are lessons, not experiment output (carried).
 ## Open questions from intent
-—
+- Branch or GitHub template repository for future experiments → **answered** by the author on 2026-09-09: branch. Nothing carried forward.
 ## Flagged concerns
 - The verification document's citations of experiment paths now resolve on the branch, not `main` — its README says so (F1, resolved by a note there, not by this repo).
 ## Out of scope
-—
+- Turning the repo into a GitHub template repository.
+- Rewriting the verification document's citations — its README notes where the paths now live.
+- Any change to the template's behaviour; this chain moves files and edits references only.
 ## Acceptance criteria
 - AC1 `git ls-files` on `main` after merge contains no `src/`, no `intent/000[25-9]-*`, no `docs/RUNS.md`, no `evals/cases/04-*`.
 - AC2 `make check` exits 0 on `main` after merge.
