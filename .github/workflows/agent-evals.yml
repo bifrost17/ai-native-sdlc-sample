@@ -1,0 +1,30 @@
+# .github/workflows/agent-evals.yml
+# L10 689행: "The suite runs non-interactively in CI on a schedule and on any
+# change to CLAUDE.md, skills, or hooks, since that configuration steers the
+# agent and deserves the regression testing that code gets."
+# L10 727행: "the pass-rate threshold is enforced as a merge check."
+
+name: agent evals
+
+on:
+  pull_request:
+    paths:
+      - 'CLAUDE.md'
+      - '.claude/**'
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: make evals
