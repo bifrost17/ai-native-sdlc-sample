@@ -15,12 +15,12 @@ description: Reads an accepted intent.md and the organization's skills and write
 ## Before writing
 1. Open `intent/<NNNN>-<slug>/intent.md`. **It must be accepted — merged to main.** If it is
    still a draft, or only exists on a branch, stop and say so. No machine checks this; you do.
-   One exception: an engineer tells you to start on a draft (a single worker stacking PR B on
-   the intent PR A). Then write one line at the top of spec.md saying who told you and why, and
-   repeat it in the PR body — the intent is still approved by merging PR A, not by you.
 2. Read the skills in `.claude/skills/` that apply to this change (an endpoint that returns customer
    data → `secure-api-review`). Name them under "Skills applied" in the spec.
-3. Record `Upstream: intent.md@<sha>` — the commit of the intent you read.
+3. Record `Upstream: intent.md@<sha>. Status: <draft|accepted>` at the top of spec.md.
+   One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
+   the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
+   you and why, and repeat it in the PR body — approval is still the merge, not this note.
 
 ## Writing
 Use `templates/spec.md`, section for section. Three rules carry the lesson:

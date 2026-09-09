@@ -11,9 +11,12 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 > L4 329: "When implementation departs from the plan, update plan.md in the same commit."
 
 ## Inputs
-`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged) — or, if an engineer
-started you on a draft (see design-spec, "one exception"), say so at the top. Read the codebase
-without changing anything — that is what plan mode is for.
+`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged). Record
+`Upstream: spec.md@<sha>. Status: <draft|accepted>` at the top of plan.md.
+One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
+the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
+you and why, and repeat it in the PR body — approval is still the merge, not this note.
+Read the codebase without changing anything — that is what plan mode is for.
 
 ## Write `plan.md` with four sections (`templates/plan.md`)
 - **Files that change** — real paths, `(new)` where new.

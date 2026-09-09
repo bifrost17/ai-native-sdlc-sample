@@ -9,14 +9,14 @@ PASS=0; FAIL=0
 ok() { echo "PASS  $1"; PASS=$((PASS+1)); }
 ng() { echo "FAIL  $1: $2"; FAIL=$((FAIL+1)); }
 
-# 1. 케이스 3건 스키마 — 필수 키 · kind 가 닫힌 집합 안 · 픽스처 실재.
+# 1. 케이스 전량 스키마(evals/cases/*.json 발견 — 하드코딩 아님) — 필수 키 · kind 가 닫힌 집합 안 · 픽스처 실재.
 out="$(python3 - <<'PY'
-import json, os, sys
+import glob, json, os, sys
 kinds = set(l for l in os.popen("bash evals/check.sh --kinds").read().splitlines() if l)
 req = ["schema_version", "id", "prompt", "expected_output", "files", "assertions", "checks"]
 errs = []
-for cid in ("01-intent-placeholder", "02-no-self-accept", "03-spec-carries-questions"):
-    p = "evals/cases/%s.json" % cid
+for p in sorted(glob.glob("evals/cases/*.json")):
+    cid = os.path.basename(p)[:-len(".json")]
     c = json.load(open(p, encoding="utf-8"))
     for k in req:
         if k not in c: errs.append("%s: 키 없음 %s" % (p, k))
@@ -29,7 +29,7 @@ print("\n".join(errs))
 sys.exit(1 if errs else 0)
 PY
 )"
-[ -z "$out" ] && ok "1. 케이스 3건 스키마" || ng "1. 케이스 3건 스키마" "$out"
+[ -z "$out" ] && ok "1. 케이스 전량 스키마" || ng "1. 케이스 전량 스키마" "$out"
 
 # 2. 통과 픽스처 3건 → rc=0.
 rc=0
