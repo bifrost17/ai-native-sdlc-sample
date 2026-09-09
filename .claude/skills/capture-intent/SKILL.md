@@ -24,6 +24,8 @@ solution as a constraint only if they insist on it.
 Write `intent/<NNNN>-<slug>/intent.md` from this template, verbatim structure. `<NNNN>` is the
 largest number under `intent/` plus one (`ls intent/`), zero-padded to four digits. `templates/intent.md`
 is a copy of it; `tests/test_skill_template.py` keeps the two identical.
+If two chains start at the same moment, `<NNNN>` is not "max + 1" alone: whoever ordered the
+concurrent start assigns the numbers and writes the assignment in the PR body.
 
 ```markdown
 # Intent: ‹what cannot be done today — the subject, not the solution›
@@ -42,6 +44,8 @@ Author: ‹name (team)›. Status: draft.
 
 Leave no `‹…›` behind. An open question you cannot answer stays in Open questions with the name
 of who can — do not invent an answer. Show the draft to the originator and let them correct it.
+From a ticket or an incident, Problem carries the observed facts themselves — input, expected,
+actual, the command that reproduces it, and the time/SHA — not only the reporter's idea of it.
 
 ## What this skill does not do
 - Does not write solutions, technology choices or estimates — spec.md and plan.md own those.
