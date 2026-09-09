@@ -179,8 +179,10 @@ class TestAC7ReassignmentIsImmediate(Base):
     def test_ac7_reassignment_within_ttl_flips_both_sides(self):
         """TTL(60초) 안에 이관해도 옛 사정인은 즉시 못 보고 새 사정인은 즉시 본다 — spec F1.
 
-        원장 행을 **갈아 끼운다**. 제자리 수정은 캐시가 같은 dict 객체를 들고 있어 캐시를
-        통해서도 보이므로 우회 여부를 재지 못한다 — 그 판으로는 cached=True 뮤테이션이 살아남았다.
+        원장 행을 **갈아 끼운다**. 캐시가 스냅샷을 들게 된 뒤로는 제자리 수정으로도 재지지만,
+        갈아 끼우기는 캐시의 별칭 의미론과 무관하게 성립한다 — 스냅샷이 사라져도 이 시험은
+        계속 잰다. (첫 판은 제자리 수정이었고, 그때는 캐시가 원장 행 객체를 그대로 들고 있어
+        cached=True 뮤테이션이 살아남았다. 구현 쪽은 records.py 에서 고쳤다.)
         """
         self.assertEqual(set(self.call(now=0.0)), set(EXPECTED_KEYS))
         reassigned = dict(records._UPSTREAM[ASSIGNED_CLAIM], adjuster_id=OTHER_ADJUSTER)
@@ -194,6 +196,24 @@ class TestAC7ReassignmentIsImmediate(Base):
         self.call(now=0.0)
         self.call(now=30.0)
         self.assertEqual(records.upstream_calls(), 2, "사정인 경로가 캐시를 읽었다")
+
+
+class TestCacheSnapshot(Base):
+    """PR #33 리뷰(Bugs 1건)에서 나온 자리 — 캐시는 원장 행 객체가 아니라 그 시점의 사본을 든다.
+
+    실제 상류는 응답마다 새 객체를 준다. 표본이 `_UPSTREAM` 의 dict 를 그대로 들면 캐시가
+    원장의 변화를 공짜로 따라가 실물보다 신선해지고, 그 판에서는 캐시 우회를 잴 수 없다.
+    """
+
+    def test_cached_read_does_not_see_in_place_ledger_edits(self):
+        first = records.fetch_claim(ASSIGNED_CLAIM, now=0.0, cached=True)
+        self.assertEqual(first["adjuster_id"], ADJUSTER)
+        records._UPSTREAM[ASSIGNED_CLAIM]["adjuster_id"] = OTHER_ADJUSTER
+        second = records.fetch_claim(ASSIGNED_CLAIM, now=30.0, cached=True)
+        self.assertEqual(second["adjuster_id"], ADJUSTER, "캐시가 원장 행 객체를 공유한다")
+        self.assertEqual(records.upstream_calls(), 1)
+        fresh = records.fetch_claim(ASSIGNED_CLAIM, now=30.0, cached=False)
+        self.assertEqual(fresh["adjuster_id"], OTHER_ADJUSTER, "우회가 새 값을 읽지 못한다")
 
 
 class TestAC8AccessRecord(Base):

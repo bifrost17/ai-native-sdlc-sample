@@ -46,3 +46,7 @@ If a test fails, fix the code, not the test.
   owner reads it, the merge records it. Do not build the machine again.
 - Setting `Status: accepted` in a file. Only a merged PR means accepted.
 - Pointing a skill or a doc at a script that does not exist. Run `ls` before you cite a path.
+- Editing a sample ledger row that a test already pins. Once a test asserts a row's key set or
+  that a claim id is absent, the next chain cannot touch that row. Twice now: 0005 pinned
+  `C-1001`, and 0008 had to add `C-2001`-`C-2003` instead. A new chain uses new rows; a chain
+  that must change an existing row finds the tests that pin it first (`grep -n _UPSTREAM tests/`).

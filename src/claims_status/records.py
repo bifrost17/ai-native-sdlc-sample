@@ -81,5 +81,9 @@ def fetch_claim(claim_id, now=None, *, cached):
     _STATS["upstream_calls"] += 1
     record = _UPSTREAM.get(claim_id)
     if record is not None:
+        # 스냅샷을 든다. 실제 상류는 응답마다 새 객체를 주므로 캐시에 든 것은 그 시점의 사본이지
+        # 원장 행 자체가 아니다. 표본에서 `_UPSTREAM` 의 dict 를 그대로 들면 원장이 바뀔 때 캐시를
+        # 통해서도 그 변화가 보여 캐시가 실물보다 신선해진다 — 캐시 우회(0008 R7)를 잴 수 없게 된다.
+        record = dict(record)
         _CACHE[claim_id] = (now + CACHE_TTL_SECONDS, record)
     return record
