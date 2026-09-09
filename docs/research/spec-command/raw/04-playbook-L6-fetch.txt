@@ -1,0 +1,12 @@
+CMD: WebFetch https://academy.claude.com/courses/ai-native-sdlc-playbook/skills-as-institutional-knowledge  (프롬프트: 경험칙 · SKILL.md 꼴 · 배포 위치 · 트리거 시험 · 오너 서명 · 권고적 통제)
+AT_UTC: 2026-09-09T09:33:00Z
+RC: 0 (WebFetch 요약 — 인용부호 안만 축자로 신뢰)
+
+- Placement: write skills for institutional knowledge that must apply consistently; not "for components that belong in `CLAUDE.md` or a prompt."
+- SKILL.md: folder with SKILL.md; frontmatter `name`, `description` (say when it triggers and what to do); body = procedural instructions from the policy owner's source of truth.
+- Example frontmatter (secure-api-review): "Apply the API security standard. Use whenever creating or modifying an external-facing endpoint, reviewing API code, or generating an OpenAPI spec."
+- Deployment: `.claude/skills/<name>/` to ship with code, or "distribute it organization-wide through a plugin."
+- Trigger testing: "Ask Claude to do the relevant task in different ways and confirm the skill loads each time."
+- Policy change: "When the policy changes, change the skill and have the policy owner sign off on the change. Engineers pick up the new version automatically in their next session."
+- Control: "A skill is a control, though an advisory one. It makes Claude likely to apply the policy while the code is written, and nothing forces a session to comply with it."
+- No mention of slash commands or spec generation in this lesson.

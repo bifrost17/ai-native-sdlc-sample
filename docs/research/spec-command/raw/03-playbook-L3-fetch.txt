@@ -1,0 +1,31 @@
+CMD: WebFetch https://academy.claude.com/courses/ai-native-sdlc-playbook/requirements-and-design  (두 번, 프롬프트: PO 프롬프트 축자 · 스킬/우려/모순/slash command 문장 · How to execute it / What it looks like / Governance 절)
+AT_UTC: 2026-09-09T09:33:00Z
+RC: 0 (WebFetch 요약 — 소형 모델이 페이지를 요약한 것이라 축자성은 인용부호 안만 신뢰)
+
+## Section Headings
+- What changes / Getting started / How to execute it / What it looks like / Governance considerations / How to measure it
+
+## PO Prompt (Verbatim)
+"Read the attached intent.md and produce a requirements and design spec for integrating it into our existing codebase. Apply the skills available to you so the plan conforms to our brand guidelines, security policies and UX standards. Document the spec fully as spec.md, ready to hand to the engineering team. Describe clearly any areas of concern, especially where you cannot satisfy contradicting policies."
+
+## Key sentences on skills
+- "This is guided by the organization's skills for brand, security, compliance, and UX."
+- "The organization's skills are applied as constraints on the spec."
+
+## Concerns / conflicts
+- "Describe clearly any areas of concern, especially where you cannot satisfy contradicting policies."
+- "Work through the flagged concerns first as they are the points an analyst would have escalated."
+
+## How to execute it (six steps, WebFetch paraphrase)
+1. Product owner opens a session with organizational skills available and attaches intent.md.
+2. The PO prompt references the intent, names constraints, requests flagged concerns. Run manually first, then "codify it as an organization-level slash command." Later, accepting intent.md triggers "a non-interactive job that fires on the merge, runs the pass with the organization's skills loaded, and commits spec.md as a pull request."
+3. PO reviews the spec against the original idea: solves the problem, answers open questions.
+4. "Work through the flagged concerns first as they are the points an analyst would have escalated." PO resolves each with policy owners before engineering.
+5. Commit spec.md alongside intent.md.
+6. PO decides whether spec+intent advance to build; a human always makes this call.
+
+## Governance considerations
+- Policy conflicts surface during spec creation rather than later in reviews
+- "The organization's skills are applied as constraints on the spec"
+- "The spec, the prompt that produced it, and the skill versions in force are all logged in version control"
+- PO approves the spec and routes flagged concerns to designated policy owners
