@@ -91,7 +91,12 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
 - L2 227 leading (first conversation → committed intent.md): run B 11 min (G0→G1), run C 9 min 36 s.
 - L3 283 leading (intent.md → spec.md): run B 21 min 9 s (G2→G4), run C 18 min 49 s.
 - L4 355 leading (plan approval → merged PR): run B 23 min, run C 11 min 24 s (G5→G7).
-- L5 432 (CLAUDE.md correction count): PRs #19, #29, #33, #34, #35.
+- L5 432 (CLAUDE.md correction count): PRs #16, #19, #29, #33, #35 (`git log --oneline -- CLAUDE.md`;
+  #34 changed a skill and the README, not CLAUDE.md).
+- L5 432 leading (a mistake CLAUDE.md should have caught, repeated): Edit/Write rule (#29) — 0 repeats
+  in runs B and C (hook events 107 and 131 in the implementation turns, against 0 in run A);
+  "Setting `Status: accepted` in a file" (CLAUDE.md since #16) — 1 repeat, 0009 `plan.md:2`
+  (the skill wording was tightened in #46).
 - L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
 - L11 773 (time to first review): run B turn 9 (one finding, fixed in-PR), run C turn 9 (no finding) — same session, no wait.
 - L12 901 (time waiting per approval gate): `hooks.log` per-gate totals — `raw-hac/31-hooks-log-totals.txt`.
