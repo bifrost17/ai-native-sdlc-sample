@@ -1,0 +1,38 @@
+CMD: for p in engineering/to-spec productivity/grill-me productivity/grilling productivity/to-questionnaire engineering/wizard; do n=${p##*/}; gh api "repos/mattpocock/skills/contents/skills/$p/SKILL.md?ref=3cca18b368ae95cdbdebbff572ccafa662551015" --jq .content | base64 -d > docs/research/intent-template/raw/$n@3cca18b.SKILL.md; echo "$n: $(wc -c < docs/research/intent-template/raw/$n@3cca18b.SKILL.md) bytes"; done; echo '--- to-spec dir'; gh api "repos/mattpocock/skills/contents/skills/engineering/to-spec?ref=3cca18b368ae95cdbdebbff572ccafa662551015" --jq '.[].path'; echo '--- CHANGELOG to-prd mentions'; gh api "repos/mattpocock/skills/contents/CHANGELOG.md?ref=3cca18b368ae95cdbdebbff572ccafa662551015" --jq .content | base64 -d | grep -n -i -B2 -A2 'to-prd' | head -40; echo '--- .out-of-scope'; gh api "repos/mattpocock/skills/contents/.out-of-scope?ref=3cca18b368ae95cdbdebbff572ccafa662551015" --jq '.[].path'
+AT_UTC: 2026-09-09T09:36:25Z
+RC: 0
+to-spec:     3043 bytes
+grill-me:      157 bytes
+grilling:     1987 bytes
+to-questionnaire:     2904 bytes
+wizard:     4123 bytes
+--- to-spec dir
+skills/engineering/to-spec/SKILL.md
+skills/engineering/to-spec/agents
+--- CHANGELOG to-prd mentions
+146-  `skills/deprecated/` stays as a bucket, now empty. `skills/in-progress/` is unchanged and is now described for what it actually is: a beta channel, published on purpose, installable one skill at a time through skills.sh.
+147-
+148:- [#734](https://github.com/mattpocock/skills/pull/734) [`a2f9333`](https://github.com/mattpocock/skills/commit/a2f9333669ff53db762c87ecda5a15442060a3be) Thanks [@mattpocock](https://github.com/mattpocock)! - Finish the `to-prd` → `to-spec` rename: "spec" is now the only term in the shipped text.
+149-
+150-  - **`to-spec`** no longer opens with "you may know this document as a PRD" — the parenthetical is dropped from the skill and its docs page. The local-markdown tracker template drops the same hedge.
+151-  - **`code-review`** talks about the originating issue/spec rather than issue/PRD, in its frontmatter description, its two-axis summary, and the spec-source search order. Both READMEs re-synced.
+152-  - **The GitHub and GitLab tracker templates** now say "Issues and specs for this repo live as GitHub/GitLab issues" — they had been left on "PRDs" when the local template was updated, so the stale term propagated into every repo they were written into.
+153:  - **`docs/engineering/research.md`** pointed at `https://aihero.dev/skills-to-prd`, a dead slug for the renamed skill; it now links `to-spec` like the other nineteen docs pages do.
+154-
+155-  The CHANGELOG and existing changesets still name PRDs where they document the rename itself, which is correct.
+--
+179-- [#469](https://github.com/mattpocock/skills/pull/469) [`a0329ba`](https://github.com/mattpocock/skills/commit/a0329ba95751f58566ed7ab484475917a68f1629) Thanks [@mattpocock](https://github.com/mattpocock)! - Split the **`to-issues`** skill into a lean **Process** and a **Reference** section, and teach it to handle a **wide refactor** — a single mechanical change (like renaming a column) whose **blast radius** fans across the whole codebase, breaking thousands of call sites at once so no vertical slice can land green. The drafting step now points at two co-located reference blocks: the **Vertical slice rules** for ordinary tracer bullets, and **Wide refactors**, which slices the change by **expand–contract** (expand the new form beside the old, migrate call sites in batches sized by blast radius, then contract the old form away) so CI stays green batch to batch — or, when it can't, only at a final integrate-and-verify issue. The issue body template moves into Reference too.
+180-
+181:- [#464](https://github.com/mattpocock/skills/pull/464) [`386d4ff`](https://github.com/mattpocock/skills/commit/386d4ff719a7c420ad1454232d0436b01f1b8c17) Thanks [@mattpocock](https://github.com/mattpocock)! - Unify the planning skills. **`to-prd` is renamed to `to-spec`** — "spec" is now the single through-line term (it still opens with "you may know this document as a PRD" for discoverability). **`to-plan` and `to-issues` are merged into one `to-tickets` skill, and `to-issues` is deleted.**
+182-
+183-  `to-tickets` breaks a plan, spec, or conversation into a set of **tickets** — tracer-bullet vertical slices, each declaring its **blocking edges**. That one artifact reads two ways depending on the tracker `/setup-matt-pocock-skills` configured: a **local file** (`tickets.md`) writes the edges as text and you work it top-to-bottom by hand; a **real tracker** writes them as native blocking links, so any ticket whose blockers are done is on the frontier and several agents can run at once. The edges live in the ticket either way — the medium only decides whether anything acts on them in parallel.
+--
+215-- [#472](https://github.com/mattpocock/skills/pull/472) [`d869d45`](https://github.com/mattpocock/skills/commit/d869d45afc32beab1c2d1350f8de5e81589512cd) Thanks [@mattpocock](https://github.com/mattpocock)! - Fix **`wayfinder`** hardcoding the issue-tracker doc path, which broke the indirection the rest of the suite relies on.
+216-
+217:  `to-issues`, `to-prd`, and `triage` never name a path — they resolve the tracker through the `### Issue tracker` block that `setup-matt-pocock-skills` writes into `CLAUDE.md` / `AGENTS.md`, which points at the tracker doc wherever it lives. Wayfinder instead pinned the literal `docs/agents/issue-tracker.md`, so in a repo that keeps its agent docs elsewhere it silently fell back to the local-markdown tracker — even one whose `CLAUDE.md` clearly declares GitHub issues. It now resolves the doc via that same pointer and reads its "Wayfinding operations" section by name, keeping the indirection consistent across the suite.
+218-
+219-## 1.0.1
+--- .out-of-scope
+.out-of-scope/mainstream-issue-trackers-only.md
+.out-of-scope/question-limits.md
+.out-of-scope/setup-skill-verify-mode.md

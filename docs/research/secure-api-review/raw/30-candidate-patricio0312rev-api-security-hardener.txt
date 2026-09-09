@@ -1,0 +1,84 @@
+CMD: deep-read candidate #20 patricio0312rev/skills — api-security-hardener (+ rate-limiting-abuse-protection, auth-security-reviewer) : clone, metadata, license, full read, byte-copy to raw/
+AT_UTC: 2026-09-09T13:12:14Z
+RC: 0
+END_UTC: 2026-09-09T13:13:47Z
+
+## 1. clone
+$ git clone --depth 1 https://github.com/patricio0312rev/skills /tmp/s5-cand/20
+rc=0
+$ git -C /tmp/s5-cand/20 rev-parse HEAD
+79ea6af485698b31060b63f0066f712560757b29   rc=0
+$ git -C /tmp/s5-cand/20 describe --tags --abbrev=0
+(no tags) -> 없음   rc=128
+$ find . -type f | grep -iE 'api-security-hardener|rate-limiting-abuse|auth-security-reviewer|LICENSE|README'
+./LICENSE ./README.md ./security/auth-security-reviewer/SKILL.md ./security/api-security-hardener/SKILL.md ./backend/rate-limiting-abuse-protection/SKILL.md   rc=0
+(no per-directory LICENSE under security/ or backend/; no license header in any of the three SKILL.md)
+
+## 2. metadata
+$ head -5 LICENSE
+MIT License / Copyright (c) 2025 Patricio Marroquin   rc=0
+$ gh api repos/patricio0312rev/skills --jq '{stars,forks,watchers,open_issues,license,pushed,created,default}'
+{"created":"2025-12-30T23:30:44Z","default":"main","forks":9,"license":"MIT","open_issues":3,"pushed":"2026-01-12T01:14:03Z","stars":60,"watchers":2}   rc=0
+$ gh api repos/patricio0312rev/skills/tags --jq 'if length==0 then "없음" else .[0].name end'
+없음   rc=0
+$ gh api 'repos/patricio0312rev/skills/commits?per_page=1' -i | grep Link
+rel="last" page=162 -> 162 commits on main   rc=0
+$ gh api "repos/patricio0312rev/skills/commits?path=security/api-security-hardener/SKILL.md&per_page=1"
+c0909db0ba5ef580dcd14011636ec227cefa172f 2026-01-12T00:13:07Z   rc=0
+$ gh api "repos/patricio0312rev/skills/commits?path=security/auth-security-reviewer/SKILL.md&per_page=1"
+63451c75e50ff3a91025f3ffe1115e7d051b8a4b 2026-01-11T22:56:00Z   rc=0
+$ gh api "repos/patricio0312rev/skills/commits?path=backend/rate-limiting-abuse-protection/SKILL.md&per_page=1"
+63451c75e50ff3a91025f3ffe1115e7d051b8a4b 2026-01-11T22:56:00Z   rc=0
+$ git log -1 --format=%cI -- <each of 3 paths>   (shallow clone: HEAD commit only)
+2026-01-11T20:14:02-05:00 (= 2026-01-12T01:14:02Z)   rc=0  [not authoritative; use gh api dates above]
+$ wc -l
+590 security/api-security-hardener/SKILL.md
+428 security/auth-security-reviewer/SKILL.md
+147 backend/rate-limiting-abuse-protection/SKILL.md   rc=0
+
+## 3. usage signals seen
+- README.md L3: "155 production-ready development skills"; L85, L203, L211 list the three skills; L313 learning path "Security → secrets-scanner → auth-security-reviewer → threat-model-generator".
+- README has NO install instruction (no npx / skills.sh / marketplace line); links agentskills.io + platform.claude.com docs only.
+- CHANGELOG.md: [1.1.0] - 2026-01-11 (version in changelog only; no git tag).
+- Repo created 2025-12-30, last push 2026-01-12 -> ~2 weeks of activity, dormant since (as of 2026-09-09). forks 9, watchers 2, open issues 3, stars 60.
+- skills.sh install count: 확인 못 함 (not given, not queried).
+
+## 4. frontmatter (verbatim)
+security/api-security-hardener/SKILL.md L1-4:
+---
+name: api-security-hardener
+description: Hardens API security with rate limiting, input validation, authentication, and protection against common attacks. Use when users request "API security", "secure API", "rate limiting", "input validation", or "API protection".
+---
+backend/rate-limiting-abuse-protection/SKILL.md L1-4:
+---
+name: rate-limiting-abuse-protection
+description: Implements rate limiting and abuse prevention with per-route policies, IP/user-based limits, sliding windows, safe error responses, and observability. Use when adding "rate limiting", "API protection", "abuse prevention", or "DDoS protection".
+---
+security/auth-security-reviewer/SKILL.md L1-4:
+---
+name: auth-security-reviewer
+description: Reviews authentication and authorization implementation for session management, CSRF, cookie security, and auth flow vulnerabilities with findings, severity assessment, and fix recommendations. Use for "auth review", "session security", "CSRF protection", or "authentication audit".
+---
+
+## 5. full read
+$ cat -n security/api-security-hardener/SKILL.md          rc=0 (590 lines, read in full)
+$ cat -n backend/rate-limiting-abuse-protection/SKILL.md  rc=0 (147 lines, read in full)
+$ cat -n security/auth-security-reviewer/SKILL.md         rc=0 (428 lines, read in full)
+
+## 6. byte copies
+$ cp security/api-security-hardener/SKILL.md          raw/patricio0312rev-api-security-hardener@79ea6af.SKILL.md           rc=0
+$ cp backend/rate-limiting-abuse-protection/SKILL.md  raw/patricio0312rev-rate-limiting-abuse-protection@79ea6af.SKILL.md  rc=0
+$ cp security/auth-security-reviewer/SKILL.md         raw/patricio0312rev-auth-security-reviewer@79ea6af.SKILL.md          rc=0
+$ cmp <src> <copy>  x3 -> all identical                  rc=0
+sha256 prefixes: hardener 128973088749339f · rate-limiting 80db509a91c81a96 · auth-reviewer 25685674adc52ab8
+
+## 7. clause map (summary; quotes in structured record)
+S1 부분 L207-215 authenticate() Bearer JWT / L13 — but L249-266 optionalAuth allows anonymous, and app-level jwt.verify conflicts with org note.
+S2 부분 L12, L80-92 Zod body/query/params parse — no OpenAPI, z.object strips (not rejects) unknown keys.
+S3 부분 L572 "Log everything: Enable audit trails" — request logger L466-516 has no actor/action/entity.
+S4 부분 L557 "Don't leak internal errors to clients", L574 "Minimal responses" — no pii-tagged-field rule; L480 logs req.query, L544 logs err.message.
+S5 부분 L116-182 inbound rate limiting incl. L164 cost-based; rate-limiting skill L131 "Lower limits for expensive operations" — no upstream budget, no cache/call-count in spec.
+S6 — none; auth-security-reviewer L249-255 does the OPPOSITE (404 for not-found, 403 for not-owner).
+S7 부분 L297-317/L347 authorize(...roles) RBAC gate from JWT role — not per-role session keys; auth-reviewer L34 single session name.
+S8 부분 auth-security-reviewer L56 "Hardcoded secret" ❌ / L70 "Strong secret from env" / L31 — code only, not config/diff.
+Verdict suggestion: 기각 (MIT ok, but no S5–S8 덮음; conflicts on S1 org note and S6).

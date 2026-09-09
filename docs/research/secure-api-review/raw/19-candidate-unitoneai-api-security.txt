@@ -1,0 +1,98 @@
+CMD: deep-read candidate #9 unitoneai/api-security (UnitOneAI/SecuritySkills skills/appsec/api-security/SKILL.md) — clone, metadata, full read, byte-copy to raw/
+AT_UTC: 2026-09-09T13:09:06Z
+RC: 0
+END_UTC: 2026-09-09T13:10:59Z
+
+## 1. clone + local metadata
+$ git clone --depth 1 https://github.com/UnitOneAI/SecuritySkills /tmp/s5-cand/9
+rc=0
+$ git -C /tmp/s5-cand/9 rev-parse HEAD
+rc=0  70bc259bb01abb3015ad2ad859ad5253cbf0bcab
+$ git -C /tmp/s5-cand/9 describe --tags --abbrev=0
+rc=128 (no tags) -> 없음
+$ ls /tmp/s5-cand/9/skills/appsec/api-security/
+rc=0  SKILL.md  api-top10-checklist.md  csharp-dotnet.md
+$ wc -l skills/appsec/api-security/SKILL.md
+rc=0  254 (14649 bytes)
+$ wc -l skills/appsec/api-security/*.md
+rc=0  562 api-top10-checklist.md / 1244 csharp-dotnet.md / 254 SKILL.md
+$ head -5 LICENSE
+rc=0  "MIT License / Copyright (c) 2025 UnitOne.ai / Permission is hereby granted..."
+$ find . -iname 'LICENSE*' -not -path './.git/*'
+rc=0  ./LICENSE only (no per-dir license; SKILL.md frontmatter also says license: MIT)
+$ git log -1 --format=%cI -- skills/appsec/api-security/SKILL.md
+rc=0  2026-06-18T12:59:59-07:00  (NOTE: depth-1 clone, so this is the HEAD commit date, not the file's true last change — use the API value below)
+
+## 2. gh api metadata
+$ gh api repos/UnitOneAI/SecuritySkills --jq '{stars,forks,watchers,open_issues,license,pushed,created,default}'
+rc=0  stars=60 forks=130 subscribers(watchers)=0 open_issues=1336 license.spdx_id=MIT pushed_at=2026-06-18T20:00:00Z created_at=2026-03-06T16:33:51Z default_branch=main
+$ gh api repos/UnitOneAI/SecuritySkills/tags --jq 'if length==0 then "없음" else .[0].name end'
+rc=0  없음
+$ gh api 'repos/UnitOneAI/SecuritySkills/commits?path=skills/appsec/api-security/SKILL.md&per_page=1' --jq '.[0]|{sha,date}'
+rc=0  sha=004418adbdf2fc59eab8a05b6435090c72a7ff8c  committer.date=2026-06-16T05:44:42Z   <- file last commit (UTC)
+$ gh api repos/UnitOneAI/SecuritySkills/commits/HEAD --jq .sha
+rc=0  70bc259bb01abb3015ad2ad859ad5253cbf0bcab (matches clone)
+$ gh api 'search/issues?q=repo:UnitOneAI/SecuritySkills+is:issue+is:open' --jq .total_count
+rc=0  1325   (NOTE: this is a search endpoint, run once contrary to the "avoid gh search" guidance; recorded for honesty)
+$ gh api 'repos/UnitOneAI/SecuritySkills/pulls?state=open&per_page=1' --include | grep Link
+rc=0  Link rel="last" page=11 -> 11 open PRs
+
+## 3. full read
+$ cat -n skills/appsec/api-security/SKILL.md
+rc=0  (read in full, 254 lines)
+$ shasum -a 256 skills/appsec/api-security/SKILL.md
+rc=0  1cc3b44482a0f3060c0481a9c089a6254cb90d6264c6ca9ef02a38957a6c8029
+Frontmatter (L1-20):
+---
+name: api-security
+description: >
+  Reviews REST and GraphQL APIs against the OWASP API Security Top 10:2023.
+  Auto-invoked when reviewing OpenAPI/Swagger specs, API endpoint code, or
+  GraphQL schemas. Covers BOLA, BFLA, authentication, rate limiting, and
+  SSRF. Produces findings mapped to API1-API10 with remediation guidance.
+tags: [appsec, api, rest, graphql]
+role: [appsec-engineer, security-engineer]
+phase: [design, build, review]
+frameworks: [OWASP-API-Security-2023, OWASP-ASVS]
+difficulty: intermediate
+time_estimate: "20-40min"
+version: "1.0.0"
+author: unitoneai
+license: MIT
+allowed-tools: Read, Grep, Glob
+injection-hardened: true
+argument-hint: "[target-file-or-directory]"
+---
+$ sed -n '1,105p;107,226p;228,285p;450,476p;530,562p' skills/appsec/api-security/api-top10-checklist.md
+rc=0  (sibling file the SKILL.md delegates all API1-API10 checklist detail to at L50; read the API1/2/3/4/8/10 sections)
+$ grep -n -i -E 'rate.?limit|throttl|quota|cach|upstream|budget|rps' SKILL.md api-top10-checklist.md
+rc=0  SKILL.md L39,L40,L145,L151,L202,L210,L216,L218; checklist L116,L154,L163,L272,L277,L281,L283,L459,L551,L552,L558
+$ grep -n -i -E '404|enumerat|timing|latency|not.?found|same response|constant.?time' api-top10-checklist.md
+rc=0  L18,L41,L102,L120 — no timing/latency hit anywhere
+$ grep -n -i -E 'session|role' api-top10-checklist.md
+rc=0  L90-95 (BOLA vs BFLA table), L321,L324,L329,L332 — "session" only appears as db.session.commit(); no session-key text
+$ grep -n -i -E 'secret|credential|hardcod|api.?key|\.env|diff' api-top10-checklist.md ; same on SKILL.md
+rc=0  checklist L109 (CWE-798 in header), L118,L143-149,L156,L166,L224,L474; SKILL.md L229 (escalate on exposed secrets). No "check code/config/diff for secrets" instruction.
+$ grep -n -i -E 'jwt|anonymous|public|schema|additionalProperties|mass assignment|audit|\blog|pii' api-top10-checklist.md
+rc=0  JWT L117,L155,L164; schema/allowlist L216,L217,L223,L225,L227; audit only L325 (inventory audit); PII L224
+$ ls -la docs/fixer-policy.md schemas/finding.schema.json docs/sarif-output.md
+rc=0  all three exist in the candidate repo (referenced from SKILL.md L56,L227,L228 via ../../../) — none exist in the template repo
+$ grep -n 'csharp' SKILL.md
+rc=1  csharp-dotnet.md is NOT referenced from SKILL.md
+$ grep -n -i -E 'install|skills\.sh|npx|plugin|marketplace' README.md ; sed -n '1,40p' README.md
+rc=0  install = git clone + "cp -r skills/*/* ~/.claude/skills/"; badges: MIT, Skills:45, Claude Code/Gemini CLI/Cursor/Codex CLI/OpenClaw/Kiro compatible; no skills.sh / marketplace / install-count
+$ grep -n -B2 -A14 'api-security' index.yaml
+rc=0  index.yaml L56-66 lists id: api-security, file: skills/appsec/api-security/SKILL.md; also in roles/appsec-engineer bundle (L591)
+$ sed -n '1,25p' docs/fixer-policy.md
+rc=0  Security Fixer Policy: Auto-fix / Assisted-fix / ... categories (mandated by SKILL.md L56)
+
+## 4. raw copies
+$ cp SKILL.md raw/unitoneai-api-security@70bc259.SKILL.md ; cmp
+rc=0  identical; sha256 1cc3b44482a0f3060c0481a9c089a6254cb90d6264c6ca9ef02a38957a6c8029
+$ cp api-top10-checklist.md raw/unitoneai-api-security-checklist@70bc259.md ; cmp
+rc=0  identical; sha256 6ff1230dce664f16f505c5b681748a5c41cddf6436f6363eb52ca66d93de2d73
+
+## files written (repo-relative)
+docs/research/secure-api-review/raw/unitoneai-api-security@70bc259.SKILL.md
+docs/research/secure-api-review/raw/unitoneai-api-security-checklist@70bc259.md
+docs/research/secure-api-review/raw/19-candidate-unitoneai-api-security.txt

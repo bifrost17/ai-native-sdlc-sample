@@ -1,0 +1,866 @@
+CMD: gh search repos / gh api search/repositories for claude-skills·agent-skills·security-review·owasp·api-security queries, then gh api git/trees to list SKILL.md paths in top repos, then gh api contents to open candidate SKILL.md files
+AT_UTC: 2026-09-09T09:35:53Z
+RC: PENDING
+=== policy read: cat policies/api-security.md rc=0 (S5 upstream budget, S6 enumeration, S7 session contract, S8 secrets)
+--- gh auth status rc=0 ---
+### 09:36:06Z gh search repos "claude skills security"  --limit 30  rc=0
+51	regimentpebblehearth/r09-travisvn-awesome-claude-skills-security	🔒 Security & Compliance skill suite derived from travisvn/awesome-claude-skills.
+49	CraftsmanTuck/r08-composiohq-awesome-claude-skills-security	🔒 Security & Compliance skill suite derived from ComposioHQ/awesome-claude-skills.
+46	Axisfrommall/r02-alirezarezvani-claude-skills-security	🔒 Security & Compliance skill suite derived from alirezarezvani/claude-skills.
+44	InnerPrawn98/r14-borghei-claude-skills-security	🔒 Security & Compliance skill suite derived from borghei/Claude-Skills.
+40	lavendertalesun/r20-glebis-claude-skills-security	🔒 Security & Compliance skill suite derived from glebis/claude-skills.
+38	freewaychameleonnode/r17-behisecc-awesome-claude-skills-security	🔒 Security & Compliance skill suite derived from BehiSecc/awesome-claude-skills.
+13	RationalEyes/claude-skills-security-guide	Cybersecurity guide for Claude Skills — 12-vector threat taxonomy, installable defense ski
+8	S3DFX-CYBER/Claude-Skills-Security	A production-grade security triage skill for AI agents. 
+1	hlsitechio/claude-skills-security	Defensive security audit skills for Claude — tech-stack-keyed and audit-domain-keyed packs
+1	calliste-ui/claude-skills-security-audit	
+0	Thiernodcire/claude-skills-security	Working repo for analyzing the security implications of Claude skills: threat model, revie
+0	edithgorenVim/claude-skills-security-hook	Security system for Claude Skills in Cursor IDE - prevents dangerous commands while enabli
+0	bookmd/claude-skills-security-hook	Security system for Claude Skills in Cursor IDE - prevents dangerous commands while enabli
+0	Artais-Security/claude-skills-security-code-review	A Claude Skill with an OffSec code review slant
+### 09:36:06Z gh search repos "agent skills security review"  --limit 30  rc=0
+### 09:36:07Z gh search repos "owasp skill claude"  --limit 30  rc=0
+### 09:36:07Z gh search repos "api security skill"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C6EF:1AFDD:3E35FD:4C9FF1:6AA12887 and timestamp 2026-09-09 09:36:07 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22api+security+skill%22)
+### 09:36:07Z gh search repos "claude-code security plugin"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C6F9:224682:3EC8B6:4D30C7:6AA12887 and timestamp 2026-09-09 09:36:07 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22claude-code+security+plugin%22)
+### 09:36:07Z gh search repos "" --topic claude-skills --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C6FF:1E8AE:3D3F24:4BA4F7:6AA12887 and timestamp 2026-09-09 09:36:07 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=topic%3Aclaude-skills&sort=stars)
+### 09:36:08Z gh search repos "" --topic agent-skills --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C705:18F4A:3CB8C2:4B1F5A:6AA12888 and timestamp 2026-09-09 09:36:08 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=topic%3Aagent-skills&sort=stars)
+### 09:36:08Z gh search repos "" --topic claude-code-skills --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C709:CD8FC:3DD716:4C40B8:6AA12888 and timestamp 2026-09-09 09:36:08 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=topic%3Aclaude-code-skills&sort=stars)
+### 09:36:08Z gh search repos "skills owasp api"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C70D:157549:3CB0AD:4B1855:6AA12888 and timestamp 2026-09-09 09:36:08 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22skills+owasp+api%22)
+### 09:36:09Z gh search repos "secure code review skill"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C711:32E022:3E52DE:4CBCE0:6AA12889 and timestamp 2026-09-09 09:36:09 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22secure+code+review+skill%22)
+### 09:36:09Z gh search repos "owasp api security top 10 skill"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C719:306087:3ED046:4D39ED:6AA12889 and timestamp 2026-09-09 09:36:09 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22owasp+api+security+top+10+skill%22)
+### 09:36:10Z gh search repos "SKILL.md security"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C71C:98488:3D9758:4BFD98:6AA12889 and timestamp 2026-09-09 09:36:10 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22SKILL.md+security%22)
+### 09:36:10Z gh search repos "claude skills secrets detection"  --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C725:18E98:3D1072:4B7AEE:6AA1288A and timestamp 2026-09-09 09:36:10 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22claude+skills+secrets+detection%22)
+### 09:36:10Z gh search repos "claude-code security skills" --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C72B:1B10F:3DD1EF:4C3E5E:6AA1288A and timestamp 2026-09-09 09:36:10 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22claude-code+security+skills%22&sort=stars)
+### 09:36:10Z gh search repos "owasp claude" --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C734:157549:3CB17F:4B195D:6AA1288A and timestamp 2026-09-09 09:36:10 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22owasp+claude%22&sort=stars)
+### 09:36:11Z gh search repos "security skills" --topic claude-code --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C738:32E022:3E539F:4CBDDC:6AA1288B and timestamp 2026-09-09 09:36:11 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=%22security+skills%22+topic%3Aclaude-code&sort=stars)
+### 09:36:11Z gh search repos "" --topic claude-code-plugin --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C73E:1B677:3E5828:4CC5FE:6AA1288B and timestamp 2026-09-09 09:36:11 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=topic%3Aclaude-code-plugin&sort=stars)
+### 09:36:11Z gh search repos "" --topic claude-plugins --sort stars --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C742:1B0B2:3EBAAB:4D2665:6AA1288B and timestamp 2026-09-09 09:36:11 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=topic%3Aclaude-plugins&sort=stars)
+### 09:36:12Z gh search repos "" --topic owasp --topic claude-code --limit 30  rc=1
+HTTP 403: API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C748:278ED7:3D1B0D:4B840B:6AA1288C and timestamp 2026-09-09 09:36:12 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (https://api.github.com/search/repositories?page=1&per_page=30&q=topic%3Aclaude-code+topic%3Aowasp)
+=== NOTE: first batch hit search rate limit (403) and gh quotes multi-word arg as phrase; re-running with words as separate args (AND) and pacing ===
+### 09:36:35Z gh search repos agent skills security review --sort stars --limit 30  rc=0
+1117	google/mantis	A modular, stack-agnostic toolkit of security review skills for AI coding agents to autono
+505	slowmist/slowmist-agent-security	SlowMist Agent Security Skill: A comprehensive security review framework for AI agents ope
+128	AlexZio00/sovereign-skills	20 production-grade skills for AI coding agents — setup, scope, discipline, code review, s
+121	Houseofmvps/ultraship	"ULTRASHIP" Claude Code plugin — 39 skills, 33 tools, 11 agents for ship-ready workflows: 
+90	apache/magpie	Agent-assisted maintainership and development framework for Apache projects — Triage, Ment
+73	YuxiaoWang-520/harness-craft	A composable library of skills and rules for AI coding agents. Covers repo memory,      lo
+68	wbso-ai/omarchy-plugin-security-skill	Agent skill and field guide: the security pitfalls that block Omarchy plugins on the marke
+67	Aryia-Behroziuan/References	 Poole, Mackworth & Goebel 1998, p. 1.  Russell & Norvig 2003, p. 55.  Definition of AI as
+57	lensesio/agentic-engineering-for-apache-kafka	AI agent skills for building, operating and troubleshooting Apache Kafka applications. Top
+52	krishnakanthb13/antigravity_global_skills	22+ agentic skills for Antigravity IDE — slash-command workflows that automate code review
+43	atharvnaik1/ipaship-audit	Let your AI Agent review your iOS/Android apps for appstore policy & security bugs with ip
+40	backblaze-labs/claude-skill-b2-cloud-storage	Claude Skill for Backblaze B2 Cloud Storage management from the terminal. Manage buckets, 
+34	h4vzz/awesome-ai-agent-skills	🤖 Provide 70+ ready-to-use, platform-agnostic AI agent skills for improving tasks like cod
+27	iCodeCraft/anti-slop	Drop-in skills that stop AI coding agents from shipping garbage — kill-slop, security-revi
+25	codebygarv/Ai-skills	A community-driven catalogue of 150+ reusable AI agent skills for Claude Code , Antigravit
+20	thejefflarson/soundcheck	Simple security reviews for AI agents
+17	andyvandaric/acs	ACS (Agnostic Config Suites) — AI coding agent skill system. 25+ auto-activating skills fo
+16	michaelshimeles/code-review-analyzer	Agent Skill: A comprehensive code review skill that analyzes code for best practices, pote
+16	Coff0xc/coffee-skill	Installable Codex/AgentSkills workflow pack for dev, Agent/RAG, API/data, Office artifacts
+15	saint-viperx/SCR_Bench	🛡️SCR-Bench evaluates security risks in LLM agent skill ecosystems: skills that appear ben
+14	hustcer/nushell-pro	Nushell best practices, security hardening, and code review skill for Agents
+11	yugef3h/leo-skills	agent-skills,Expert code review skill: SOLID, security, performance, error handling, bound
+10	aldegad/security-threat-intel	Security Threat Intelligence skill for AI code review agents — MITRE ATT&CK infostealer ma
+9	PerryLink/dsh-skill-pack-security	Security-audit skill pack + plugin_vet supply-chain gate for DeepSeek Harness (dsh): 8 bil
+9	oguzhantopgul/skill-security-reviewer	An AI skill that teaches language models how to perform intelligent security reviews of ag
+9	chenghit/aws-waf-rules-reviewer	An Agent Skill that reviews AWS WAF Web ACL configurations for security issues, misconfigu
+8	thixpin/claude-config	A reusable Claude Code configuration for agentic coding and software engineering workflows
+8	khasky/awesome-agent-skills	 Skills for AI coding agents: code review, debugging, security audits, refactoring, cleani
+8	jdanigo/hydraia	Self-contained agentic development harness for Claude Code — one command runs the full fea
+8	facebookresearch/secpriv-skill	Unified LLM-agent skill for code review covering both security (CWE) and privacy (GDPR) th
+### 09:36:39Z gh search repos owasp skill claude --sort stars --limit 30  rc=0
+614	MyuriKanao/src-hunter-skill	实战 SRC / 众测 / Bug bounty 漏洞挖掘 Claude Code skill — 19 个攻击类 playbook、305 个结构化 payload、263 个 
+356	agamm/claude-code-owasp	Claude Code skill for OWASP security best practices (2025-2026). Includes Top 10:2025, ASV
+220	AgriciDaniel/claude-cybersecurity	AI-powered cybersecurity code review skill for Claude Code. 8 specialist agents, OWASP 202
+80	VicKayro/claude-security-audit	Skill Claude Code pour audit de sécurité complet (OWASP Top 10, CWE/CVE, headers, auth, pa
+74	Netxeo/skill-file-security	One command. 29 battle-tested security checks built into every AI coding assistant you alr
+60	UnitOneAI/SecuritySkills	Open-source security skills for AI coding agents. Grounded in OWASP, NIST, MITRE ATT&CK, C
+57	doncheli/don-cheli-sdd	Don Cheli — SDD Framework. The most comprehensive Specification-Driven Development framewo
+53	mastepanoski/claude-skills	UX/UI evaluation, AI governance, and AI security skills for AI coding assistants. Audit in
+41	smorky850612/Aurakit	One command. Full stack. Zero compromise. — All-in-one Claude Code skill with 33 modes, 6-
+41	netresearch/security-audit-skill	Agent Skill for PHP security audits - OWASP patterns, vulnerability detection | Claude Cod
+40	sethdford/claude-skills	454 standards-grounded Claude Code skills for every PDLC role. 8 roles, 57 plugins, 173 co
+28	bejranonda/LLM-Autonomous-Agent-Plugin-for-Claude	Autonomous self-learning agent plugin for Claude Code — 36 specialized subagents in a 4-ti
+24	allsmog/vuln-scout	AI-powered whitebox penetration testing plugin for Claude Code. 9 languages, 22 skills, 7 
+18	Raffa-jarrl/Lictor-AI	Free security skills for AI-built apps — run /lictor-security-check in Claude Code before 
+18	apisec-inc/apisec-skills	API security skills and rules for Cursor, Claude Code, Copilot, and all major AI coding ag
+17	GoldenWing-360/claude-security-skills	25 production-tested defensive security skills for Claude Code - WordPress, VPS, Cloudflar
+16	siva01c/claude-plugins	Claude Code plugin marketplace: Drupal development, DDEV, Docker, CI/CD, git workflows, an
+12	liuyi0808/android-review	Android development review skills for Claude Code — covering OWASP MASVS security audit, C
+11	vitormiziara/saas-security	Claude skill for SaaS security auditing — 16 domains, 95 checks, OWASP-based
+11	Mikaru0Mystic/sectinel	Open-source security arsenal for AI coding agents: 784 cybersecurity skills, scanner integ
+11	LichAmnesia/skill-lint	Security scanner for Claude Code / agent skills. Catches prompt injection, obfuscation, cr
+11	harshith-vaddiparthy/outskill-owasp-security-review	A Claude Code skill: launch-gate security review against the OWASP Top 10 (2025) for Next.
+11	DouglasRao/Claude-Pentest-Skills	Professional penetration testing skills for Claude Code — structured offensive workflows f
+9	jaydip1212/sentinel-secure-skills	A provider agnostic AI agent skill set that helps you build secure websites and audit exis
+8	miclivne/oc-security-audit	Full-stack security audit skill for AI coding agents. OWASP WSTG testing + infrastructure,
+8	McGo/claude-code-security-audit	Claude Code skill for automated security audits – analyzes codebases, classifies findings 
+8	leomarviegas/my-security-auditor	Comprehensive Claude skill for authorized security auditing — OWASP, MITRE ATT&CK, ISO 270
+8	anmolnagpal/devops-skills	Multi-tool DevOps skills for Claude Code, Cursor, and Codex — Terraform, Kubernetes, Docke
+8	alphaparkinc/genpark-prompt-injection-redteam-vulnerability-scanner-skill	Automated prompt injection red-teaming vulnerability scanner evaluating OWASP LLM01 compli
+7	rusel95/ios-agent-skills	Production-tested iOS Agent Skills for Claude Code, Codex, and 40+ AI coding tools. 8 ente
+### 09:36:43Z gh search repos api security skill --sort stars --limit 30  rc=0
+979	Pantheon-Security/medusa	AI-first security scanner. NEW in v2026.7: Claude Code compromise detection — vet .claude/
+617	calmrocks/ai-engineer-notebooks	Hands-on, framework-free Colab notebooks for the AI Engineer / Forward Deployed Engineer (
+590	7onez/cti-expert	CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code / Codex. 120
+475	jassics/cybersecurity-roadmap	Skills and career roadmap for various security roles like application security, cloud secu
+410	Gabson0x/bountyforge	All-round bug bounty skill for Claude Code  parallelized agents for smart contract audits 
+397	sssmmmwww/wxmini-security-audit	微信小程序全自动安全审计 Skill，基于 Claude Code Agent Teams。7 Agent 协作，覆盖敏感信息、API接口、加密分析、漏洞分析四大维度。采用脚本+L
+263	Sfedfcv/redesigned-pancake	Skip to content github / docs Code Issues 80 Pull requests 35 Discussions Actions Projects
+210	dev-toolings/superpowers-symfony	Claude Code plugin for Symfony 7.4 LTS & 8.x — 44 skills, 7 AI subagents & 13 commands for
+102	swati1024/torrents	Skip to content   Search… All gists Back to GitHub Sign in Sign up Instantly share code, n
+95	abhir98/ransomware	Project Summary This project was developed for the Computer Security course at my academic
+65	ax128/AegisGate	Open-source security gateway for LLM APIs — prompt injection detection, PII redaction, dan
+46	BEOKS/tossinvest-skill	Agent Skill for Toss Securities Open API with safe dry-run trading CLI
+43	Hazrat-Ali9/Hazrat-Ali-Assessment	🏘 Hazrat Ali 🚂 Assessment 🚃 is a powerful ✈ backend 🚀 system 🚟 designed to 🚁 handle 👘 onli
+36	SaadRahman01/claude-moodle-dev	Moodle development toolkit for AI coding assistants. Skills for XMLDB, Hooks API, PHPUnit,
+35	lifefloating/keyHunter-skill	Academic research toolkit for AI gateway panel security studies (Sub2API / New-API / One-A
+34	Mdshobu/Liberty-House-Club-Whitepaper	# Liberty House Club **A Parallel Binance Chain to Enable Smart Contracts**  _NOTE: This d
+27	CuriousLearner/devkit	Comprehensive development toolkit: 52 professional skills for Claude Code across developme
+25	peterbamuhigire/chwezi-dev-engine	Software Dev't Engine for coding. Production-grade  skills system for web apps & mobile ar
+21	ZealynxSecurity/krait	Claude Code skills for Solidity security auditing. 90% precision across 40 blind Code4rena
+18	apisec-inc/apisec-skills	API security skills and rules for Cursor, Claude Code, Copilot, and all major AI coding ag
+17	GoldenWing-360/claude-security-skills	25 production-tested defensive security skills for Claude Code - WordPress, VPS, Cloudflar
+16	Postman-Devrel/agent-skills	Postman Agent Skills for AI coding agents. Sync collections, generate code, run tests, cre
+16	mukeshlilawat1/Hotel-Mountain-Mirage	Hotel-Mountain-Mirage is a full-stack hotel booking and management web application built w
+16	Coff0xc/coffee-skill	Installable Codex/AgentSkills workflow pack for dev, Agent/RAG, API/data, Office artifacts
+14	MSayib/roblox-dev-skill	A maintained knowledge base that turns AI coding assistants into Roblox development expert
+13	tawgroup/vibesec	Pre-deploy security audit skill for vibe-coded apps. Catches unauthenticated admin APIs, m
+12	zm2231/z-audit	Security audit skill for Claude Code / OpenCode - 7-phase methodology covering secrets, AP
+10	iservicebus/agentic-coworker	Governed AI agents that work autonomously across social platforms, productivity tools, and
+10	gayanukabulegoda/AAD-Lesson-Code-Space	Explore the Advanced API Development (AAD) Code Space, featuring in-depth lessons on Jakar
+8	ablerz/claude-skill-drupal-module	Claude Code skill for Drupal 11 module development. Bundles 13 API reference docs (hooks, 
+### 09:36:48Z gh search repos claude-code security plugin --sort stars --limit 30  rc=0
+1154	affaan-m/agentshield	AI agent security scanner. Detect vulnerabilities in agent configurations, MCP servers, an
+575	hashgraph-online/hol-guard	Open-source antivirus for AI agents: block risky tools, secret access, prompt injection, m
+508	karanb192/claude-code-hooks	🪝 Claude Code hooks + an installable plugin marketplace: safety, cost, observability, prod
+499	waybarrios/opencode-power-pack	54 rigorous skills for Codex, OpenCode, and Pi: code review, security audit, feature devel
+398	GRCEngClub/claude-grc-engineering	Open-source GRC toolkit from the GRC Engineering Club. Claude Code plugins for evidence co
+294	HarmonicSecurity/claudit-sec	Security audit tool for Claude Desktop and Claude Code on macOS — single-command visibilit
+227	elvismdev/claude-wordpress-skills	Professional WordPress engineering skills for Claude Code - performance optimization, secu
+210	dev-toolings/superpowers-symfony	Claude Code plugin for Symfony 7.4 LTS & 8.x — 44 skills, 7 AI subagents & 13 commands for
+172	alexgreensh/repo-forensics	Offline security scanner for AI-agent repos, skills, plugins, and MCP servers.
+141	jar-analyzer/jar-analyzer-claude	Claude Code plugin for Java JAR security audit — 基于 jar-analyzer 的 Claude Code 安全审计插件，构建数据
+140	imgompanda/fireauto	Claude Code 자동화 플러그인 — SEO, 보안, 팀 에이전트, PRD, 레딧 리서치를 커맨드 하나로
+121	Houseofmvps/ultraship	"ULTRASHIP" Claude Code plugin — 39 skills, 33 tools, 11 agents for ship-ready workflows: 
+119	686f6c61/alfred-dev	 Tu equipo de desarrolladores en un plugin. 10 agentes, 11 skills planas, 18 comandos /alf
+70	Security-Phoenix-demo/security-skills-claude-code	This repository is a curated collection of skills, plugins, and automation pipelines desig
+67	modu-ai/cc-plugins	Collection of Claude Code plugins for various domains - Auth0 security, MFA, token securit
+60	califio/skills	Claude Code plugins and Codex skills from Calif.io for AI-assisted security research and c
+49	orcasecurity/orca-skills	Skills and plugins to accelerate security workflows with the Orca Cloud Platform
+46	armoriq/armorClaude	Intent-based security plugin for Claude Code - registers a plan per prompt and enforces po
+45	WYRE-AI/msp-claude-plugins	The community-driven Claude Code plugin marketplace for MSPs — 70+ plugins across PSA, RMM
+45	anton-abyzov/vskill	Secure multi-platform AI skill installer — scan before you install. 49 agents, 12 plugins,
+36	SaadRahman01/claude-moodle-dev	Moodle development toolkit for AI coding assistants. Skills for XMLDB, Hooks API, PHPUnit,
+34	charlesjones-dev/claude-code-plugins-dev	AI-powered plugins that streamline your entire development workflow in Claude Code.
+31	levantoan/DevVN-WordPress-Skills	Agent Skills for WordPress plugin development — security auditing, admin theming, license 
+28	bejranonda/LLM-Autonomous-Agent-Plugin-for-Claude	Autonomous self-learning agent plugin for Claude Code — 36 specialized subagents in a 4-ti
+26	Z-M-Huang/claude-codex	Multi-AI orchestration plugin for Claude Code with sequential reviews, Codex final gate, a
+26	bridge-mind/BridgeSecurity	Find vulnerabilities. Ship secure. — Senior security-engineer skill for AI coding agents. 
+25	Taimoorkhan1122/prod-readiness	Claude Code production-readiness audit plugin with 7 parallel AI agents for security, reli
+24	tobyilee/toby-plugins	Toby's personal Claude Code plugin toolkit: code analysis, TDD, Spring scaffolding, PRD ge
+24	aidongise-cell/prism-scanner	Open-source security scanner for AI Agent skills, plugins & MCP servers. 39 detection rule
+23	Myr-Aya/GouvernAI-claude-code-plugin	Runtime guardrails for Claude Code. Auto-approve what's safe, gate what's risky, block wha
+### 09:36:52Z gh search repos --topic claude-skills --sort stars --limit 30  rc=0
+93548	thedotmack/claude-mem	Persistent Context Across Sessions for Every Agent –  Captures everything your agent does 
+81858	Egonex-AI/Understand-Anything	Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph
+68838	code-yeongyu/oh-my-openagent	OmO: Just type "mass ulw" keyword with your prompt. Now you are the master of graph engine
+44010	K-Dense-AI/scientific-agent-skills	Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 1
+39516	wshobson/agents	Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub 
+33968	VoltAgent/awesome-agent-skills	A curated collection of 1000+ agent skills from official dev teams and the community, comp
+32241	ayghri/i-have-adhd	A skill to stop your coding agent from burying the answer. ADHD-friendly output.
+30727	nanocoai/nanoclaw	A lightweight alternative to OpenClaw that runs in containers for security. Connects to Wh
+26736	OthmanAdi/planning-with-files	Persistent file-based planning for AI coding agents and long-running tasks. Crash-proof ma
+25771	JimLiu/baoyu-skills	
+25742	alirezarezvani/claude-skills	380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ ski
+24458	titanwings/distilly	Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly Coll
+19222	teng-lin/notebooklm-py	Unofficial Python API and agentic skill for Google Gemini Notebook. Full programmatic acce
+15007	travisvn/awesome-claude-skills	A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI wo
+14940	yusufkaraaslan/Skill_Seekers	Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with a
+14396	NevaMind-AI/memU	Personal memory across agents
+12549	nidhinjs/prompt-master	A Claude skill that writes the accurate prompts for any AI tool. Zero tokens or credits wa
+12465	Orchestra-Research/AI-Research-SKILLs	Comprehensive open-source library of AI research and engineering skills for any AI model. 
+11379	Jeffallan/claude-skills	67 Specialized Skills for Full-Stack Developers. Transform Claude Code into your expert pa
+9170	Agents365-ai/drawio-skill	From text & real sources to maintainable .drawio architecture models: Diagram IR with sour
+8715	nexu-io/html-anything	✨ The agentic HTML editor — your local AI agent writes the HTML, you ship it. 🚀 75 Skills 
+7861	Vincentwei1021/video-shotcraft	AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 152 shot 
+6893	deanpeters/Product-Manager-Skills	Product Management skills framework built on battle-tested methods for Claude Code, Cowork
+6730	WenyuChiou/awesome-agentic-ai-zh	A trilingual (繁中 / English / 简中) learning roadmap for agentic AI: from LLM basics to multi
+6695	zenstory-ai/oh-story-claudecode	网文/小说写作 skill 包，覆盖长篇与短篇网络小说的扫榜、拆文、写作、去AI味、封面图全流程 | An all-in-one skill pack for long- and 
+6432	anbeime/skill	收录最全、更新最快的技能Skills商店：精选原创技能包（涵盖文档处理、内容创作、编程开发、机器学习、自动化工作流），全部打包好可直接安装使用！同时自动抓取GitHub上万个Ski
+6170	ikaijua/Awesome-AITools	Collection of AI-related utilities. Welcome to submit pull requests /收藏AI相关的实用工具，欢迎提交pull 
+5848	browser-act/skills	Browser automation CLI built for AI agents. Break through anti-bot walls, hand off to huma
+5773	gosom/google-maps-scraper	scrape data  from Google Maps. Extracts data such as the name, address, phone number, webs
+4397	elementalsouls/Claude-BugHunter	A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slas
+### 09:36:56Z gh search repos --topic agent-skills --sort stars --limit 30  rc=0
+175326	anthropics/skills	Public repository for Agent Skills
+132750	DietrichGebert/ponytail	Makes your AI agent think like the laziest senior dev in the room. The best code is the co
+95029	nexu-io/open-design	🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️ Local
+93117	addyosmani/agent-skills	Production-grade engineering skills for AI coding agents.
+74721	ComposioHQ/awesome-claude-skills	A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI wo
+55407	tt-a1i/archify	Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lif
+53738	hesreallyhim/awesome-claude-code	A hand-picked collection of the finest of resources for the most awesome of agents, Claude
+52465	VoltAgent/awesome-openclaw-skills	The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the
+51600	CherryHQ/cherry-studio	AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified ac
+46184	sickn33/agentic-awesome-skills	AAS Core is the local, agent-first control plane for complete catalog discovery, agent-own
+45670	blader/humanizer	Agent skill that removes signs of AI-generated writing from text
+44010	K-Dense-AI/scientific-agent-skills	Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 1
+42363	amruthpillai/reactive-resume	A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customi
+39516	wshobson/agents	Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub 
+38797	github/awesome-copilot	Community-contributed instructions, agents, skills, and configurations to help you make th
+35828	cathrynlavery/diagram-design	38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No s
+33968	VoltAgent/awesome-agent-skills	A curated collection of 1000+ agent skills from official dev teams and the community, comp
+30800	googleworkspace/cli	Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Cha
+30610	topoteretes/cognee	Cognee is the open-source AI memory platform for agents. Give your AI agents persistent lo
+29215	virgiliojr94/book-to-skill	Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use 
+26736	OthmanAdi/planning-with-files	Persistent file-based planning for AI coding agents and long-running tasks. Crash-proof ma
+26132	phuryn/pm-skills	PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to stra
+25771	JimLiu/baoyu-skills	
+25742	alirezarezvani/claude-skills	380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ ski
+25165	agentskills/agentskills	Specification and documentation for Agent Skills
+24458	titanwings/distilly	Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly Coll
+22135	alibaba/open-code-review	Fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: d
+20544	KKKKhazix/khazix-skills	数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: leader（帮你定义目标）, neat-freak 洁癖, hv-analysis, khazix
+17042	kubesphere/kubesphere	The container platform tailored for Kubernetes multi-cloud, datacenter, and edge managemen
+16800	microsoft/SkillOpt	SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen
+### 09:37:00Z gh search repos --topic claude-code-skills --sort stars --limit 30  rc=0
+65788	shanraisshan/claude-code-best-practice	from vibe coding to agentic engineering - practice makes claude perfect
+46184	sickn33/agentic-awesome-skills	AAS Core is the local, agent-first control plane for complete catalog discovery, agent-own
+33968	VoltAgent/awesome-agent-skills	A curated collection of 1000+ agent skills from official dev teams and the community, comp
+26736	OthmanAdi/planning-with-files	Persistent file-based planning for AI coding agents and long-running tasks. Crash-proof ma
+25742	alirezarezvani/claude-skills	380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ ski
+15913	wanshuiyin/Auto-claude-code-research-in-sleep	ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML rese
+7861	Vincentwei1021/video-shotcraft	AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 152 shot 
+5848	browser-act/skills	Browser automation CLI built for AI agents. Break through anti-bot walls, hand off to huma
+4611	zebbern/claude-code-guide	Claude Code Guide - Setup, Commands, workflows, agents, skills & tips-n-tricks from beginn
+4254	SamurAIGPT/Generative-Media-Skills	Multi-modal Generative Media Skills for AI Agents (Claude Code, Cursor, Gemini CLI). High-
+3937	parcadei/Continuous-Claude-v3	Context management for Claude Code. Hooks maintain state via ledgers and handoffs. MCP exe
+3223	ljagiello/ctf-skills	Agent skills for solving CTF challenges - web exploitation, binary pwn, crypto, reverse en
+2984	wesammustafa/Claude-Code-Everything-You-Need-to-Know	A practical Claude Code guide with clear mental models and copy-paste examples — setup, pr
+2873	jangviktor-web/nihaixia	倪海厦视角的中医Agent Skill，基于倪海厦教学资料开发，蒸馏倪师伤寒论、金匮要略、黄帝内经、神农本草经、针灸篇等，人纪/医案/经方思维，六经辨证，八纲辨证，天机道，天纪，紫
+2846	rohitg00/pro-workflow	Claude Code learns from your corrections: self-correcting memory that compounds over 50+ s
+2730	ciembor/agent-rules-books	AGENTS.md rules / skills for AI coding agents: Codex, Cursor & Claude Code. Inspired by Cl
+2130	wondelai/skills	Wondel.ai Agent Skills — Business, Marketing, UX & Coding Frameworks from Bestselling Book
+2129	Weizhena/Deep-Research-skills	Structured deep research skill for Claude Code/Open Code/Codex with human-in-the-loop cont
+2056	JuneYaooo/nihaisha-nishi-tcm	倪海厦中医课程资料的 Agent Skill：支持课程检索、方证穴位辨析、学习笔记整理与板书截图证据索引。 |  An Agent Skill for Ni Haisha TCM 
+1846	amElnagdy/delegate-skills	Delegate a coding task to a separate coding agent CLI, review the diff, land the commit yo
+1781	a5c-ai/babysitter	Babysitter enforces obedience on agentic workforces and enables them to manage extremely c
+1570	pedrohcgs/claude-code-my-workflow	A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. Multi-agent rev
+1563	mex-memory/mex	Team memory for engineers and their AI agents. Lives in your repo. Shared through Git.
+1325	specstoryai/getspecstory	Install our local first extensions for your favorite AI IDE or Terminal Agent. Process you
+1260	JuneYaooo/gpt-image2-ppt-skills	Clone any .pptx into your own deck — OpenAI gpt-image-2 mimics the layout, you supply the 
+1208	sunchaokun/PPT-Design-Skill	Precision PPT design skill for OpenCode/Claude Code/Codex, with 40,000+ styles, pixel-perf
+1178	alookai/alook	Rooms for people and agents.
+1017	agiwhitelist/auteur	The Claude Code skill that directs a website like a film. Commit-sheet, generated assets, 
+989	jiweiyeah/Skills-Manager	Free, open-source desktop manager for AI Agent Skills. Write a skill once, sync it to 32 A
+896	nexscope-ai/eCommerce-Skills	E-commerce skills for AI agents — product research, marketing automation, supply chain opt
+### 09:37:05Z gh search repos skills owasp api --sort stars --limit 30  rc=0
+18	apisec-inc/apisec-skills	API security skills and rules for Cursor, Claude Code, Copilot, and all major AI coding ag
+17	GoldenWing-360/claude-security-skills	25 production-tested defensive security skills for Claude Code - WordPress, VPS, Cloudflar
+5	YangKuoshih/security-audit	Universal security scanning skill for AI agents - finds hardcoded secrets, API keys, and v
+2	Rootx202/appsec-skills	AppSec Skills — 15 plug-and-play Claude Code security skills that audit, harden, and fix a
+2	GerardoAmaya/nestjs-ai-pentest-skill	Claude AI skill that generates a complete OWASP Top 10 + API security test suite for NestJ
+2	geekpartnerslab-kz/claude-enterprise-templates	Opinionated templates for running Claude Code autonomously on enterprise projects: a CLAUD
+1	pop123-ux/agent-security-skills	Production-grade security Agent Skills (SKILL.md) for Claude Code, Claude agents & OpenCla
+1	mitulpatelp112-svg/fortify	Universal Claude Code security skill: audits, hardens, and authorized-attack-tests any pro
+1	MarcSky/api-auth-skill	Skill for secure API auth in Go & Python — JWT, refresh token rotation, OAuth 2.0, OTP,   
+1	deeprpatel2/CipherClaw	CipherClaw — AI Security Architect for Claude Code. TALON persona with 7 bundled security 
+1	Darkder101/Pentest-And-Reports	This repository showcases practical penetration testing of vulnerable web applications and
+1	coldevotion/vibecheck	Seven security and quality audit skills for any AI coding assistant — Claude Code, Cursor,
+0	Viprasol-Tech/api-security-review	AI agent skill for REST/GraphQL API security review — every item of OWASP API Top 10 2023 
+0	tosevakatya/qa-portfolio	# QA Portfolio  Manual QA | API Testing (Postman) | Security Testing basics  ## Skills - F
+0	Thinkersjnr1/web_vuln_scanner	Python-based web application built on Kali Linux to automate vulnerability scanning using 
+0	Th3G0df4th3xr/OWASP-Juice-Shop-Challenge-Exposed-Metrics	🎯 **OWASP Juice Shop - Exposed Metrics Challenge**   This challenge simulates a real-world
+0	sparshsharma2510/caliber	Caliber is security-first skill pack for AI coding agents. Adds threat checks, secure defa
+0	sharmajii10/arch-security-review	A Claude Skill that turns an uploaded architecture diagram into a security architecture re
+0	sfonsecardev/owasp-auditor	Agent Skill Expert in Application Security (AppSec) Auditing, DevSecOps, and Ethical Hacki
+0	RwanElshabory/SkillSwap-AppSec-CaseStudy	Full-Stack Web & API Security Case Study: OWASP Top 10 Audit & Remediation, Enterprise RBA
+0	nakulkpadi/universal-security-skill	Stack-aware security Agent Skill for VS Code, GitHub Copilot and coding agents. Audit, fix
+0	maso-soup/ptolemy	Collection of Claude skills that cover many specific OWASP/CWE web and API related vulnera
+0	markusweldon/claude-owasp-security-skills	OWASP security skills for Claude Code — Top 10:2025, API, Mobile, LLM/Agentic, and CI/CD s
+0	kalravBhavsar/api-security-soc2-audit	Four-phase API security & SOC 2 audit skill for Claude Code. Covers OWASP Top 10, CC6/CC7/
+0	hefestocode-max/cyber-neo-smart-runner	Read-only defensive cybersecurity audit skill for Claude Code. Extended from Cyber Neo wit
+0	gdroz3r/backend-security-review	Static security review skill for NestJS / Node backends (MongoDB, web3). Claude Code CI ga
+0	elvis2121/owasp-crapi-web-and-api-security-assessment	Cybersecurity portfolio project with documented objectives, skills, tools, and evidence.
+0	catidegla/mcpaudit	Audit MCP servers and agent skills for tool poisoning, hidden instructions, leaked credent
+0	behever/app-security-audit	AI agent skill for comprehensive security auditing of web apps, Supabase, databases, mobil
+0	ahtishamshahzad/backend-security-audit-skill	A reusable AI skill to audit, fix, and verify backend/API security before launch — secrets
+### 09:37:10Z gh search repos secure code review skill --sort stars --limit 30  rc=0
+263	Sfedfcv/redesigned-pancake	Skip to content github / docs Code Issues 80 Pull requests 35 Discussions Actions Projects
+16	mamamou/ai-coding-skills	Production-grade, composable Skills for AI coding agents — code review, secure coding, arc
+13	mahmutka/cybersecurity-claude-skills	Cybersecurity expert skills for Claude Code — web hacking, pentest recon, secure code revi
+8	igbuend/grimbard	A repository of security related skills - like secure code review and pentesting - for Cla
+6	narlyseorg/superhackers	A complete offensive security workflow for AI coding agents. Penetration testing, security
+3	parsamajidipour/bugproof	A security-research skill for Claude Code — pentest, bug bounty, and secure code review
+2	uttej-badwane/secure-cloud-prompt-engineering	Security-focused prompt library and Claude Code skill for automated IaC security reviews. 
+2	stealthsrc/security-hardening	Portable defensive application security and AI-agent security skill for Claude Code, Codex
+2	MbankoKevin/SecureCodeChallenges	This repository is for intentionally vulnerable codes. i use this repo to practice secure 
+2	dymchenkko/appsec-skill	An AppSec skill for coding agents — guides secure implementation before code is written an
+1	yedinrumba-eng/Secure-Vibe	Advanced configuration of toolings, skills, and markdowns for automated code review and se
+1	sadidgit01/secure-code-review	An LLM skill that enforces 6 production-grade security rules on every line of code it touc
+1	RS-Lucifer/secure-code-review-skills	Claude Code and Codex skills for evidence-backed secure code review.
+1	Qualimetry/qualimetry-ai-skills	Agent Skills that integrate with the Qualimetry to automatically enforce Enterprise Coding
+1	NitikaRaj1/bug-free-goggles	How much is it worth to catch more bugs early in your product release process? Depending o
+1	neerajkoul/code-craft	An Agent Skill that makes an AI coding assistant write and review, production-grade sofwar
+1	m-hadi990/skillforge	As part of the secure development workflow, you are required to conduct a Static Code Anal
+1	laolaohe/code-secure-review	面向 AI 生成代码的安全审查 skill,以及一套按「发现难度」而非漏洞类型分档的评测基准方法论
+1	jassics/secure-code-review	Comprehensive, adversarial secure code review skill/prompt (18 phases) — covers OWASP Top 
+1	ivan-sincek/secure-code-review-agent-skills	Easy-to-use, customizable, high-quality secure code review skills for AI agents.
+1	eranw2000/secure-dev-guardrails	Security & privacy guardrails for dev teams on Claude Code: hard-block hooks (secrets, PII
+1	bestonlineeducation/Is-Pursuing-Health-Information-Degree-Worth-It-	Health information management covers an extensive arena combined with various elements of 
+0	thatsjet/claude_secure_coder	A skill to get Claude doing the security things BEFORE we write code instead of doing secu
+0	rsbhnv/secure-vibe-coding-skill	Claude Code skill for security-first vibe coding, including secure development practices, 
+0	Rajsharma7798/CodeAlpha_Secure_Coding_Review	A Secure Coding Review is an essential skill for Cybersecurity analysts and application se
+0	monklock/write-secure-code-skill	Codex skill for secure-by-default code generation and security review.
+0	LirielC/owasp-codex-skill	  Reusable Codex skill for OWASP Top 10 secure code reviews
+0	kai-chop/codex-write-maintainable-code	Noncommercial OpenAI Codex skill for maintainable code, software design, code review, test
+0	hannabros/secure-code-review-skill	Exhaustive Korean secure-coding guide review skill for Claude Code
+0	EliNomaLabs/secure-code-review	Expert-level security code review skill for AI agents. Finds real vulnerabilities across a
+### 09:37:54Z gh search repos SKILL.md security api --sort stars --limit 30  rc=0
+1	pop123-ux/agent-security-skills	Production-grade security Agent Skills (SKILL.md) for Claude Code, Claude agents & OpenCla
+0	VladimirPutkov/auditskill	Trust-before-use audit service for AI agent skills. Detects prompt injections, hidden inst
+0	qacodes-dev/qacodes-agent-skills-starter	A version-controlled collection of reusable QA Agent Skills (SKILL.md) across manual, auto
+0	naloura/osar-claude	Security and Impact Report toolkit for Anthropic Claude — Skill (Claude Code / Cowork / Ag
+0	Mushfiqur-Rahman-Robin/coding-rules	Univesal, reusable coding rules for LLM coding agents - packaged as SKILL.md files coverin
+### 09:37:59Z gh search repos claude skill secrets detection --sort stars --limit 30  rc=0
+979	Pantheon-Security/medusa	AI-first security scanner. NEW in v2026.7: Claude Code compromise detection — vet .claude/
+6	prize22/SIS-MD-Security-Intelligence-SkillMD-	A portable, model-agnostic Skill file that gives any LLM (Claude, ChatGPT, coding agents, 
+5	giggsoinc/raven	AI-native engineering discipline for Claude Code · 60 skills · 10 guard agents · CVE scann
+3	zorl-engine/zorath-env	AI-native .env validation in any language. Single-binary Rust CLI: typed schema validation
+2	TorpedoD/claude-sentinel	Security audit slash command for Claude Code. Runs SAST, secrets detection, SBOM, SCA, AI-
+1	AL-JANEF/janefskills	Security skills suite for Claude Code — auth hardening, vuln audit, threat modeling, secre
+0	Layton2617/shield-scan	AI-powered security scanner -- SAST, secret detection, dependency analysis. Claude Code Sk
+### 09:38:04Z gh search repos --topic claude-code-plugin security --sort stars --limit 30  rc=0
+1532	kenryu42/cc-safety-net	A pre-execution guard for AI coding agents. It blocks destructive Git and file system comm
+508	karanb192/claude-code-hooks	🪝 Claude Code hooks + an installable plugin marketplace: safety, cost, observability, prod
+463	josstei/maestro-orchestrate	Multi-agent orchestration platform for Gemini CLI, Claude Code, Codex, and Qwen Code — 39 
+398	GRCEngClub/claude-grc-engineering	Open-source GRC toolkit from the GRC Engineering Club. Claude Code plugins for evidence co
+375	mcpware/cross-code-organizer	Cross-Code Organizer (formerly Claude Code Organizer): cross-harness config dashboard for 
+286	gendigitalinc/sage	Lightweight Agent Detection & Response (ADR) layer for AI agents — guards commands, files,
+258	SepineTam/mcp-for-stata	A MCP server for integrating Stata into your agent loop with a safety-first design.
+230	yonatangross/orchestkit	The Complete AI Development Toolkit for Claude Code. 106 skills, 36 agents, 171 hooks. Ins
+210	dev-toolings/superpowers-symfony	Claude Code plugin for Symfony 7.4 LTS & 8.x — 44 skills, 7 AI subagents & 13 commands for
+202	azrtydxb/procoder	Senior-developer discipline for AI coding agents. A commit gate that counts unchecked as f
+141	jar-analyzer/jar-analyzer-claude	Claude Code plugin for Java JAR security audit — 基于 jar-analyzer 的 Claude Code 安全审计插件，构建数据
+121	Houseofmvps/ultraship	"ULTRASHIP" Claude Code plugin — 39 skills, 33 tools, 11 agents for ship-ready workflows: 
+119	pillar-labs/sail-skill	SAIL V2 (Secure AI Lifecycle) as an agent skill — the full 91-risk catalog for AI/agent ga
+119	686f6c61/alfred-dev	 Tu equipo de desarrolladores en un plugin. 10 agentes, 11 skills planas, 18 comandos /alf
+78	djadmin/fort	Audit and fix your Mac's security in one command. No agent, no signup, open source.
+45	WYRE-AI/msp-claude-plugins	The community-driven Claude Code plugin marketplace for MSPs — 70+ plugins across PSA, RMM
+41	smorky850612/Aurakit	One command. Full stack. Zero compromise. — All-in-one Claude Code skill with 33 modes, 6-
+40	backblaze-labs/claude-skill-b2-cloud-storage	Claude Skill for Backblaze B2 Cloud Storage management from the terminal. Manage buckets, 
+32	frmoretto/hardstop	Don't let AI destroy your hard work! HardStop is a rock-solid protection for AI-generated 
+30	girofu/skill-fetch	Multi-registry skill discovery and installation for AI coding agents — search 9 sources, s
+23	Myr-Aya/GouvernAI-claude-code-plugin	Runtime guardrails for Claude Code. Auto-approve what's safe, gate what's risky, block wha
+20	ogrodev/fsociety	Multi-plugin marketplace for Claude Code offensive security plugins
+18	MostAshraf/ai-sdlc-harness	Governed multi-agent SDLC pipeline for Claude Code and Qwen Code — plan → adversarial plan
+17	noobieisgod/pdf-decompiler-mcp	A MCP that turns PDFs into structured text, tables, figures, metadata, annotations, and pa
+15	Kasempiternal/Claude-Agent-System	Claude Code plugin for deep research, guarded Codex delegation, deliberate Agent Teams, an
+14	datumbrain/claude-code-privacy-guard	🛡️ Claude Code plugin that blocks prompts containing secrets, API keys, and PII before the
+11	DefaultPerson/agent-setup	Universal setup for Claude Code & Codex CLI — security guard, TTS notifications, status li
+9	maxschottke-spec/seo-survival-kit	Recovery Operating System for ecommerce/D2C. Eighteen Claude Code skills for Core-Update r
+9	felipeinf/skillRx	Security scanner for AI agent skills and plugins
+9	cylestio/agent-inspector	Local open-source dev tool to debug, secure, and evaluate LLM agents. Provides static anal
+### 09:38:09Z gh search repos --topic claude-plugins security --sort stars --limit 30  rc=0
+45	WYRE-AI/msp-claude-plugins	The community-driven Claude Code plugin marketplace for MSPs — 70+ plugins across PSA, RMM
+14	ckorhonen/claude-skills	A curated collection of skills for Claude Code and Codex — specialized capabilities across
+9	MSApps-Mobile/claude-plugins	29 free, open-source plugins for Claude Code & Cowork — Google Drive, WhatsApp, YouTube, W
+5	KhaledSaeed18/dotclaude	Reusable Claude Code extension registry. skills, subagents, slash commands, and hooks for 
+4	This-HW/claude-code-kit	Claude Code plugin — 33 agents + 16 skills. Planning, implementation, review, security. Li
+1	PradiptaPutra/cold-shower	Reality check for vibe-coded apps. 6-audit Claude Code skill: LLM costs, AI security, code
+0	Su1ph3r/claude-plugins	Claude Code plugin marketplace — custom plugins for code quality, security, and developmen
+0	rinno1058/aivory-claude-plugin	🔍 Validate compliance for Claude Code with AIVory Guard. Support 17+ standards, detect AI 
+0	open-coder-ai/chock-claude-plugins	Chock policies as installable Claude-format plugins. Generated from chock-catalog; each pl
+0	aivorynet/aivory-claude-plugin	AIVory Guard - Compliance & Security validation plugin for Claude Code
+### 09:38:14Z gh search repos --topic owasp --topic claude-code --limit 30  rc=0
+614	MyuriKanao/src-hunter-skill	实战 SRC / 众测 / Bug bounty 漏洞挖掘 Claude Code skill — 19 个攻击类 playbook、305 个结构化 payload、263 个 
+356	agamm/claude-code-owasp	Claude Code skill for OWASP security best practices (2025-2026). Includes Top 10:2025, ASV
+342	PrismorSec/prismor	 Self-hosted runtime control plane for AI agents. Observe or HITL approve or Block rogue t
+258	Hainrixz/cyber-neo	Open-source cybersecurity analysis agent for Claude Code. Scans projects for vulnerabiliti
+220	AgriciDaniel/claude-cybersecurity	AI-powered cybersecurity code review skill for Claude Code. 8 specialist agents, OWASP 202
+121	sinewaveai/agent-security-scanner-mcp	Security scanner MCP server for AI coding agents. Prompt injection firewall, package hallu
+104	benavlabs/vibe-check	Security checklist for vibe coded apps. AI rules file + automated audit + manual verificat
+74	Netxeo/skill-file-security	One command. 29 battle-tested security checks built into every AI coding assistant you alr
+70	h4ckologic/bughunter-ai	Autonomous Bug Bounty Hunting Framework powered by Claude Code. 20 AI agents, state-machin
+60	UnitOneAI/SecuritySkills	Open-source security skills for AI coding agents. Grounded in OWASP, NIST, MITRE ATT&CK, C
+60	open-agent-ai-security/praxen	Praxen — agent behavior verifier. Compares an AI agent's declared policy against the avail
+57	doncheli/don-cheli-sdd	Don Cheli — SDD Framework. The most comprehensive Specification-Driven Development framewo
+54	killertcell428/aigis	Get Claude Code and other AI agents approved for use at work — deterministic guardrails on
+45	Synvoya/codeinspectus	Local-first MCP security scanner for AI-generated apps. Scan → fix → rescan from Claude Co
+41	smorky850612/Aurakit	One command. Full stack. Zero compromise. — All-in-one Claude Code skill with 33 modes, 6-
+38	vectimus/vectimus	Deterministic governance for AI coding agents. Cedar-based policy engine that intercepts e
+32	ivan-magda/swift-security-skill	AI agent skill for secure credential storage & cryptography on Apple platforms - Keychain 
+30	inkog-io/inkog	Static security scanner for AI agents. Catches prompt injection, runaway loops, missing ov
+28	SomeStay07/code-review-agent	Code review agent for Claude Code. One .md file — 14 review categories, 4 severity levels,
+26	bridge-mind/BridgeSecurity	Find vulnerabilities. Ship secure. — Senior security-engineer skill for AI coding agents. 
+24	MaxwellCalkin/sentinel-ai	Real-time AI safety guardrails for LLM apps. 10 scanners: prompt injection, PII, harmful c
+21	lucasrosati/claude-security-agents	Red Team + Blue Team agents for Claude Code. Automated security auditing with ~100 lines o
+20	bikr/TRAP	A Claude / AI security review prompt for shipping safe apps. TRAP (True Readiness Audit Pr
+19	yurukusa/claude-code-hooks	The original 16 Claude Code safety hooks, kept for backward compatibility. The maintained 
+18	Raffa-jarrl/Lictor-AI	Free security skills for AI-built apps — run /lictor-security-check in Claude Code before 
+17	scadastrangelove/asamm	Agentic SAMM - An OWASP SAMM Extension for AI-Driven Development
+16	Twodragon0/claudesec	SecaaS toolkit for AI-assisted secure development with Claude Code
+13	sattyamjjain/agent-audit-kit	Static scanner for MCP-connected AI agent pipelines. 339 rules across 14 categories, 12 co
+13	Kaademos/secure-sdlc-agents	A team of Claude Code sub-agents that enforce security across the full SDLC, from ASVS req
+12	AS-FOSS/aegis-skills	A Collection of Defensive Cyber Security skills designed to harden your Software, Infrastr
+### 09:38:19Z gh search repos api security top 10 2023 skill --limit 30  rc=0
+0	Viprasol-Tech/api-security-review	AI agent skill for REST/GraphQL API security review — every item of OWASP API Top 10 2023 
+0	sfonsecardev/owasp-auditor	Agent Skill Expert in Application Security (AppSec) Auditing, DevSecOps, and Ethical Hacki
+### 09:38:23Z gh search repos idor bola skill claude --limit 30  rc=0
+### 09:38:28Z gh search repos rate limiting skill claude code --limit 30  rc=0
+14	sethbang/venice-py	Unofficial async-first Python SDK for the Venice.ai API — chat, image, video, music, audio
+8	Capta1nRaj/goshipit	GoShipIt is a Claude Code skill that audits your codebase before every deploy. 188 checks 
+0	tamasbege/staff-engineer-skills	Claude Code plugin marketplace for the hard, production-critical parts of engineering — ba
+0	santmun/cloudflare-security-skill	Skill de Claude Code que blinda tu app en Cloudflare paso a paso (WAF, Rate Limiting, Turn
+0	JamsusMaximus/granola-transcripts-skill	Claude Code skill + hook for fetching Granola meeting transcripts. Handles rate limiting, 
+0	damli40/claude-oft-review	Claude Code skill: LayerZero V2 OFT security review — DVN config, library pinning, enforce
+0	CodeWithHarshey/Security-v1	Production-grade security skill for Claude Code. Covers Supabase RLS, secrets management, 
+0	anypicai/vibecoding-security	Security checklist and Claude skill for vibe coders — rate limiting, race conditions, inpu
+### 09:38:34Z gh search repos secrets hook claude code --limit 30  rc=0
+979	Pantheon-Security/medusa	AI-first security scanner. NEW in v2026.7: Claude Code compromise detection — vet .claude/
+76	mintmcp/agent-security	Hooks for Claude Code and Cursor for secrets scanning
+33	skarn-security/agent-guard	Skarn plugins for Claude Code, Codex CLI, Gemini CLI, Grok Build, and Antigravity: audit s
+26	JeongJaeSoon/agent-guard	Real-time secret-leak guardrails for AI coding agents (Claude Code, Codex), Git hooks, and
+22	coo-quack/sensitive-canary	Claude Code hooks that guard secrets and PII before they reach the Anthropic API
+21	l-mb/claude-code-redaction-hooks	Hooks for Claude Code to prevent secrets and PII leakage
+20	vxcozy/sanitize	12-point pre-commit hook and Claude Code skill for blocking secrets, credentials, and sens
+11	renefichtmueller/claude-code-hardened	🛡️ Stop your AI from pushing secrets to GitHub. Security hooks, battle-tested rules, and a
+9	Manavarya09/secretscan	Real-time secret & credential detector for Claude Code — 47 patterns, PostToolUse hook, lo
+6	mourad-ghafiri/claude-guard-hook	A global Claude Code hook that intercepts sensitive data before it reaches the LLM — secre
+6	kmshihab7878/claude-code-setup	Public-safe Claude Code operating setup with commands, skills, agents, hooks, MCP governan
+6	jricramc/aigate	AI Prompt Secret Scanner: local proxy and Claude Code hook that blocks secrets before they
+5	smartwatermelon/claude-wrapper	Secure wrapper for Claude Code CLI: git identity isolation, 1Password secrets injection, m
+5	fireravenai/fireraven-agent-hooks	FireGuard hooks for AI agents: protect Cursor, Claude Code, Windsurf, Devin, and Copilot S
+4	douglance/railgun	Security hook for Claude Code - protects against secrets leakage, dangerous commands, and 
+4	blackwell-systems/blackdot	Modular development framework with multi-vault secrets, Claude Code integration, extensibl
+3	txampa/claude-code-security-kit	🛡️ Hardened permissions + secret-scanning hooks for Claude Code. Stop your AI agent from l
+3	kaiser-data/claude-code-langfuse-tracing	🔭 Zero-intrusion observability for Claude Code — a Stop hook replays session transcripts i
+2	midori-profile/claudelint	ESLint for your Claude Code workspace — catch stale memory, dead references, broken hooks,
+1	ray-amjad/awesome-claude-code-function-hooks	Claude Code function hooks worth installing. First up: secret-redactor, which keeps secret
+1	echo-lumen/claude-code-security-hooks	Drop-in security hooks for Claude Code. Blocks dangerous commands, protects sensitive file
+1	dmitriyoproii-pixel/claude-code-secrets-guard	PreToolUse hook for Claude Code that blocks commands from leaking secrets (tokens, keys, c
+1	Adarsh350/claude-code-hooks	Zero-dependency Claude Code hooks: blocks secrets written into source, gates config change
+0	trevorstenson/claude-redact-env	A Claude Code hook to reliably prevent leaking secrets to agent context
+0	Rlangel90/claude-code-guardrails	AI-assisted-engineering tooling showcase: a TDD-gate hook, a secrets-gate hook, and a plan
+0	philippkrabatsch-prog/claude-code-security-hooks	Security Hooks fuer Claude Code — Secret-Protection, Write-Safety, Session-Management
+0	melanjekahl/claude-code-guard-hooks	Five PreToolUse hooks that stop Claude Code committing secrets, publishing to live sites, 
+0	deviantintegral/cc-safe-setup	One command to make Claude Code safe for autonomous operation. 8 hooks: destructive blocke
+0	banterny/claude-code-secret-guard	Claude Code PreToolUse hook that blocks git commit/push containing secrets, without scanni
+0	adhenawer/claude-setups	Discover and share Claude Code setups — hooks, instructions, skills. Never your secrets.
+### 09:38:39Z gh search repos session auth review skill claude --limit 30  rc=0
+=== PHASE 2: tree listing (gh api repos/{o}/{r}/git/trees/HEAD?recursive=1 | jq SKILL.md paths) ===
+## 09:39:09Z gh api repos/google/mantis/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=21 truncated=false 
+    mantis-calibrate/SKILL.md
+    mantis-review/SKILL.md
+## 09:39:10Z gh api repos/agamm/claude-code-owasp/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+    .claude/skills/owasp-security/SKILL.md
+## 09:39:10Z gh api repos/AgriciDaniel/claude-cybersecurity/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+    skills/cybersecurity/SKILL.md
+## 09:39:11Z gh api repos/VicKayro/claude-security-audit/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:11Z gh api repos/Netxeo/skill-file-security/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:12Z gh api repos/UnitOneAI/SecuritySkills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=50 truncated=false 
+    roles/cloud-security-engineer/SKILL.md
+    roles/security-engineer/SKILL.md
+    skills/ai-security/agent-security/SKILL.md
+    skills/ai-security/agentic-top-10/SKILL.md
+    skills/ai-security/ai-data-privacy/SKILL.md
+    skills/ai-security/llm-top-10/SKILL.md
+    skills/ai-security/model-supply-chain/SKILL.md
+    skills/ai-security/prompt-injection/SKILL.md
+    skills/appsec/api-security/SKILL.md
+    skills/appsec/owasp-top-10-web/SKILL.md
+    skills/appsec/secure-code-review/SKILL.md
+    skills/cloud/aws-review/SKILL.md
+    skills/cloud/azure-review/SKILL.md
+    skills/cloud/container-security/SKILL.md
+    skills/cloud/gcp-review/SKILL.md
+    skills/cloud/iac-security/SKILL.md
+    skills/compliance/hipaa-review/SKILL.md
+    skills/compliance/pci-dss-review/SKILL.md
+    skills/devsecops/pipeline-security/SKILL.md
+    skills/devsecops/secrets-management/SKILL.md
+    skills/identity/access-review/SKILL.md
+    skills/identity/iam-review/SKILL.md
+    skills/identity/privileged-access/SKILL.md
+    skills/incident-response/post-incident-review/SKILL.md
+    skills/network/dns-security/SKILL.md
+    skills/network/firewall-review/SKILL.md
+    skills/vuln-management/cve-triage/SKILL.md
+    skills/vuln-management/patch-prioritization/SKILL.md
+    skills/vuln-management/sbom-analysis/SKILL.md
+    skills/vuln-management/scanner-tuning/SKILL.md
+## 09:39:12Z gh api repos/apisec-inc/apisec-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=6 truncated=false 
+    skills/api-security-review/SKILL.md
+    skills/auth-rbac-scaffold/SKILL.md
+    skills/bola-detector/SKILL.md
+    skills/openapi-hardener/SKILL.md
+    skills/security-test-generator/SKILL.md
+## 09:39:13Z gh api repos/Viprasol-Tech/api-security-review/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:13Z gh api repos/markusweldon/claude-owasp-security-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=5 truncated=false 
+    .claude/skills/owasp-api/SKILL.md
+    .claude/skills/owasp-cicd/SKILL.md
+    .claude/skills/owasp-llm/SKILL.md
+    .claude/skills/owasp-mobile/SKILL.md
+    .claude/skills/owasp-web/SKILL.md
+## 09:39:14Z gh api repos/maso-soup/ptolemy/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=110 truncated=false 
+    ptolemy-skills/01-recon/api-spec-harvest/SKILL.md
+    ptolemy-skills/01-recon/crawler-authenticated/SKILL.md
+    ptolemy-skills/01-recon/subdomain-enum/SKILL.md
+    ptolemy-skills/02-access-control/access-control-triage/SKILL.md
+    ptolemy-skills/02-access-control/bfla/SKILL.md
+    ptolemy-skills/02-access-control/forced-browsing/SKILL.md
+    ptolemy-skills/02-access-control/http-method-tampering/SKILL.md
+    ptolemy-skills/02-access-control/idor-bola/SKILL.md
+    ptolemy-skills/02-access-control/mass-assignment/SKILL.md
+    ptolemy-skills/02-access-control/multi-tenant-isolation/SKILL.md
+    ptolemy-skills/02-access-control/path-normalization-bypass/SKILL.md
+    ptolemy-skills/03-auth-session/credential-attacks/SKILL.md
+    ptolemy-skills/03-auth-session/jwt-attacks/SKILL.md
+    ptolemy-skills/03-auth-session/mechanism-triage/SKILL.md
+    ptolemy-skills/03-auth-session/mfa-bypass/SKILL.md
+    ptolemy-skills/03-auth-session/oauth-oidc-abuse/SKILL.md
+    ptolemy-skills/03-auth-session/password-reset-abuse/SKILL.md
+    ptolemy-skills/03-auth-session/saml-attacks/SKILL.md
+    ptolemy-skills/03-auth-session/session-fixation-hijack/SKILL.md
+    ptolemy-skills/03-auth-session/session-token-analysis/SKILL.md
+    ptolemy-skills/06-ssrf-request-layer/web-cache-deception/SKILL.md
+    ptolemy-skills/06-ssrf-request-layer/web-cache-poisoning/SKILL.md
+    ptolemy-skills/07-client-side/content-security-policy-bypass/SKILL.md
+    ptolemy-skills/09-business-logic/rate-limit-bypass/SKILL.md
+    ptolemy-skills/11-config-components/security-header-audit/SKILL.md
+    ptolemy-skills/12-api-protocol/graphql-abuse/SKILL.md
+    ptolemy-skills/12-api-protocol/grpc-web-testing/SKILL.md
+    ptolemy-skills/12-api-protocol/improper-inventory/SKILL.md
+    ptolemy-skills/12-api-protocol/rest-verb-tampering/SKILL.md
+    ptolemy-skills/12-api-protocol/unrestricted-resource-consumption/SKILL.md
+    ptolemy-skills/12-api-protocol/unsafe-consumption/SKILL.md
+    ptolemy-skills/12-api-protocol/websocket-testing/SKILL.md
+## 09:39:14Z gh api repos/kalravBhavsar/api-security-soc2-audit/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:15Z gh api repos/Security-Phoenix-demo/security-skills-claude-code/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=10 truncated=false 
+    skills/Security Assessment/0day-scanner/SKILL.md
+    skills/Security Assessment/Security-automated-claude-skills/.claude/skills/security-reviewer/SKILL.md
+    skills/Security Assessment/Security-automated-claude-skills/SKILL.md
+    skills/Security Assessment/security-assessment/SKILL.md
+    skills/Security Assessment/threat-modeling/SKILL.md
+    skills/secure-prd-skill/SKILL.md
+## 09:39:15Z gh api repos/GoldenWing-360/claude-security-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=38 truncated=false 
+    agent-client-security/SKILL.md
+    android-security/SKILL.md
+    api-security/SKILL.md
+    auth-hardening/SKILL.md
+    codebase-audit/SKILL.md
+    distributed-system-audit/SKILL.md
+    dns-domain-security/SKILL.md
+    docker-container-security/SKILL.md
+    email-deliverability-security/SKILL.md
+    file-upload-security/SKILL.md
+    github-actions-security/SKILL.md
+    ios-security/SKILL.md
+    kubernetes-security/SKILL.md
+    llm-app-security/SKILL.md
+    log-strategy/SKILL.md
+    mcp-security/SKILL.md
+    message-bus-security/SKILL.md
+    nextjs-security/SKILL.md
+    object-storage-security/SKILL.md
+    payload-cms-security/SKILL.md
+    rag-security/SKILL.md
+    secret-hygiene/SKILL.md
+    site-server-audit/SKILL.md
+    stripe-webhook-security/SKILL.md
+## 09:39:16Z gh api repos/harshith-vaddiparthy/outskill-owasp-security-review/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+    owasp-security-review/SKILL.md
+## 09:39:17Z gh api repos/anthropics/skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=20 truncated=false 
+    skills/claude-api/SKILL.md
+    skills/doc-coauthoring/SKILL.md
+## 09:39:17Z gh api repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=25 truncated=false 
+    skills/api-and-interface-design/SKILL.md
+    skills/code-review-and-quality/SKILL.md
+    skills/security-and-hardening/SKILL.md
+## 09:39:18Z gh api repos/wshobson/agents/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=183 truncated=false 
+    plugins/accessibility-compliance/skills/screen-reader-testing/SKILL.md
+    plugins/accessibility-compliance/skills/wcag-audit-patterns/SKILL.md
+    plugins/agent-teams/skills/multi-reviewer-patterns/SKILL.md
+    plugins/agent-teams/skills/task-coordination-strategies/SKILL.md
+    plugins/api-scaffolding/skills/fastapi-templates/SKILL.md
+    plugins/backend-development/skills/api-design-principles/SKILL.md
+    plugins/blockchain-web3/skills/solidity-security/SKILL.md
+    plugins/cicd-automation/skills/secrets-management/SKILL.md
+    plugins/developer-essentials/skills/auth-implementation-patterns/SKILL.md
+    plugins/developer-essentials/skills/code-review-excellence/SKILL.md
+    plugins/developer-essentials/skills/debugging-strategies/SKILL.md
+    plugins/documentation-generation/skills/openapi-spec-generation/SKILL.md
+    plugins/kubernetes-operations/skills/k8s-security-policies/SKILL.md
+    plugins/llm-application-dev/skills/embedding-strategies/SKILL.md
+    plugins/review-agent-governance/skills/review-agent-setup/SKILL.md
+    plugins/security-scanning/skills/attack-tree-construction/SKILL.md
+    plugins/security-scanning/skills/sast-configuration/SKILL.md
+    plugins/security-scanning/skills/security-requirement-extraction/SKILL.md
+    plugins/security-scanning/skills/stride-analysis-patterns/SKILL.md
+    plugins/security-scanning/skills/threat-mitigation-mapping/SKILL.md
+    plugins/signed-audit-trails/skills/signed-audit-trails-recipe/SKILL.md
+    plugins/skill-forge-essentials/skills/session-guard/SKILL.md
+    plugins/ui-design/skills/accessibility-compliance/SKILL.md
+## 09:39:18Z gh api repos/alirezarezvani/claude-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=846 truncated=false 
+    .gemini/skills/a11y-audit/SKILL.md
+    .gemini/skills/adversarial-reviewer/SKILL.md
+    .gemini/skills/ai-security/SKILL.md
+    .gemini/skills/aims-audit/SKILL.md
+    .gemini/skills/api-design-reviewer/SKILL.md
+    .gemini/skills/api-test-suite-builder/SKILL.md
+    .gemini/skills/caio-review/SKILL.md
+    .gemini/skills/cco-review/SKILL.md
+    .gemini/skills/cdo-review/SKILL.md
+    .gemini/skills/cfo-review/SKILL.md
+    .gemini/skills/ciso-review/SKILL.md
+    .gemini/skills/cloud-security/SKILL.md
+    .gemini/skills/cmd-a11y-audit/SKILL.md
+    .gemini/skills/cmo-review/SKILL.md
+    .gemini/skills/code-reviewer/SKILL.md
+    .gemini/skills/content-strategist/SKILL.md
+    .gemini/skills/content-strategy/SKILL.md
+    .gemini/skills/cpo-review/SKILL.md
+    .gemini/skills/cro-review/SKILL.md
+    .gemini/skills/cs-backend-review/SKILL.md
+    .gemini/skills/cs-frontend-review/SKILL.md
+    .gemini/skills/cs-fullstack-review/SKILL.md
+    .gemini/skills/cs-growth-strategist/SKILL.md
+    .gemini/skills/cs-karpathy-reviewer/SKILL.md
+    .gemini/skills/cs-product-strategist/SKILL.md
+    .gemini/skills/cto-review/SKILL.md
+    .gemini/skills/data-quality-auditor/SKILL.md
+    .gemini/skills/dependency-auditor/SKILL.md
+    .gemini/skills/env-secrets-manager/SKILL.md
+    .gemini/skills/fda-qsr-audit-prep/SKILL.md
+    .gemini/skills/free-tool-strategy/SKILL.md
+    .gemini/skills/gc-review/SKILL.md
+    .gemini/skills/gdpr-audit-prep/SKILL.md
+    .gemini/skills/generate/SKILL.md
+    .gemini/skills/grade-iterate/SKILL.md
+    .gemini/skills/information-security-manager-iso27001/SKILL.md
+    .gemini/skills/isms-audit-expert/SKILL.md
+    .gemini/skills/iso13485-audit-prep/SKILL.md
+    .gemini/skills/iso27001-audit-prep/SKILL.md
+    .gemini/skills/launch-strategy/SKILL.md
+    .gemini/skills/linkedin-strategy/SKILL.md
+    .gemini/skills/litreview/SKILL.md
+    .gemini/skills/marketing-strategy-pmm/SKILL.md
+    .gemini/skills/md-review/SKILL.md
+    .gemini/skills/memory-review/SKILL.md
+    .gemini/skills/migrate/SKILL.md
+    .gemini/skills/named-persona-adversarial-review/SKILL.md
+    .gemini/skills/operator-audit/SKILL.md
+    .gemini/skills/plugin-audit/SKILL.md
+    .gemini/skills/pr-review-expert/SKILL.md
+    .gemini/skills/pricing-strategist/SKILL.md
+    .gemini/skills/pricing-strategy/SKILL.md
+    .gemini/skills/product-strategist/SKILL.md
+    .gemini/skills/pw-review/SKILL.md
+    .gemini/skills/qms-audit-expert/SKILL.md
+    .gemini/skills/secrets-vault-manager/SKILL.md
+    .gemini/skills/security-guidance/SKILL.md
+    .gemini/skills/security-pen-testing/SKILL.md
+    .gemini/skills/senior-security/SKILL.md
+    .gemini/skills/seo-audit/SKILL.md
+## 09:39:19Z gh api repos/VoltAgent/awesome-agent-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:19Z gh api repos/waybarrios/opencode-power-pack/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=54 truncated=false 
+    skills/agentic-actions-auditor/SKILL.md
+    skills/code-review/SKILL.md
+    skills/code-reviewer/SKILL.md
+    skills/differential-review/SKILL.md
+    skills/insecure-defaults/SKILL.md
+    skills/security-review/SKILL.md
+    skills/security-threat-model/SKILL.md
+    skills/supply-chain-risk-auditor/SKILL.md
+    skills/vuln-report/SKILL.md
+## 09:39:20Z gh api repos/zm2231/z-audit/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:20Z gh api repos/Rootx202/appsec-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=15 truncated=false 
+    api-security/SKILL.md
+    authentication-security/SKILL.md
+    backend-security/SKILL.md
+    cloud-security/SKILL.md
+    code-audit/SKILL.md
+    database-security/SKILL.md
+    dependency-security/SKILL.md
+    frontend-security/SKILL.md
+    secrets-detection/SKILL.md
+    secure-review/SKILL.md
+    security-reporting/SKILL.md
+    vulnerability-scanner/SKILL.md
+## 09:39:21Z gh api repos/tawgroup/vibesec/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:21Z gh api repos/MarcSky/api-auth-skill/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+    api-auth-skill/SKILL.md
+## 09:39:22Z gh api repos/jassics/secure-code-review/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+    .claude/skills/secure-code-review/SKILL.md
+## 09:39:22Z gh api repos/GerardoAmaya/nestjs-ai-pentest-skill/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:23Z gh api repos/eranw2000/secure-dev-guardrails/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=4 truncated=false 
+    skills/dependency-review/SKILL.md
+    skills/privacy-review/SKILL.md
+    skills/secrets-remediation/SKILL.md
+## 09:39:23Z gh api repos/YangKuoshih/security-audit/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+    skills/security-audit/SKILL.md
+## 09:39:24Z gh api repos/github/awesome-copilot/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=435 truncated=false 
+    skills/acreadiness-generate-instructions/SKILL.md
+    skills/agent-owasp-compliance/SKILL.md
+    skills/ai-prompt-engineering-safety-review/SKILL.md
+    skills/apple-appstore-reviewer/SKILL.md
+    skills/aspnet-minimal-api-openapi/SKILL.md
+    skills/audit-integrity/SKILL.md
+    skills/aws-well-architected-review/SKILL.md
+    skills/azure-well-architected-review/SKILL.md
+    skills/bigquery-pipeline-audit/SKILL.md
+    skills/comment-code-generate-a-tutorial/SKILL.md
+    skills/docs-sync-audit/SKILL.md
+    skills/dotnet-design-pattern-review/SKILL.md
+    skills/generate-custom-instructions-from-codebase/SKILL.md
+    skills/generate-image/SKILL.md
+    skills/gtm-positioning-strategy/SKILL.md
+    skills/integrate-context-matic/SKILL.md
+    skills/landing-page-conversion-audit/SKILL.md
+    skills/mcp-implementation-security-review/SKILL.md
+    skills/mcp-security-audit/SKILL.md
+    skills/migrating-oracle-to-postgres-data-access-code/SKILL.md
+    skills/openapi-to-application-code/SKILL.md
+    skills/performance-review-writer/SKILL.md
+    skills/playwright-generate-test/SKILL.md
+    skills/postgresql-code-review/SKILL.md
+    skills/power-bi-model-design-review/SKILL.md
+    skills/qdrant-search-quality/search-strategies/SKILL.md
+    skills/react-audit-grep-patterns/SKILL.md
+    skills/review-and-refactor/SKILL.md
+    skills/reviewing-oracle-to-postgres-migration/SKILL.md
+    skills/secret-scanning/SKILL.md
+    skills/security-review/SKILL.md
+    skills/shopify-review-triage/SKILL.md
+    skills/sql-code-review/SKILL.md
+    skills/structured-autonomy-generate/SKILL.md
+    skills/test-gap-audit/SKILL.md
+    skills/typespec-api-operations/SKILL.md
+    skills/typespec-create-api-plugin/SKILL.md
+    skills/web-design-reviewer/SKILL.md
+    skills/winmd-api-search/SKILL.md
+## 09:39:24Z gh api repos/Jeffallan/claude-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=67 truncated=false 
+    skills/api-designer/SKILL.md
+    skills/code-reviewer/SKILL.md
+    skills/fastapi-expert/SKILL.md
+    skills/secure-code-guardian/SKILL.md
+    skills/security-reviewer/SKILL.md
+## 09:39:25Z gh api repos/sethdford/claude-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=454 truncated=false 
+    architect/architect-toolkit/skills/architecture-review-facilitation/SKILL.md
+    architect/architect-toolkit/skills/system-audit/SKILL.md
+    architect/architecture-governance/skills/architecture-review-checklist/SKILL.md
+    architect/decision-making/skills/migration-strategy/SKILL.md
+    architect/quality-attributes/skills/security-architecture/SKILL.md
+    architect/system-design/skills/api-gateway-design/SKILL.md
+    architect/system-design/skills/caching-strategy/SKILL.md
+    designer/design-ops/skills/design-review-process/SKILL.md
+    designer/design-ops/skills/version-control-strategy/SKILL.md
+    designer/design-systems/skills/accessibility-audit/SKILL.md
+    designer/design-systems/skills/design-token/SKILL.md
+    designer/designer-toolkit/skills/design-token-audit/SKILL.md
+    designer/prototyping-testing/skills/accessibility-test-plan/SKILL.md
+    designer/prototyping-testing/skills/prototype-strategy/SKILL.md
+    designer/ux-strategy/skills/competitive-analysis/SKILL.md
+    designer/ux-strategy/skills/design-brief/SKILL.md
+    designer/ux-strategy/skills/design-principles/SKILL.md
+    designer/ux-strategy/skills/experience-map/SKILL.md
+    designer/ux-strategy/skills/metrics-definition/SKILL.md
+    designer/ux-strategy/skills/north-star-vision/SKILL.md
+    designer/ux-strategy/skills/opportunity-framework/SKILL.md
+    designer/ux-strategy/skills/stakeholder-alignment/SKILL.md
+    engineer/api-development/skills/api-documentation/SKILL.md
+    engineer/api-development/skills/api-error-handling/SKILL.md
+    engineer/api-development/skills/api-testing-strategy/SKILL.md
+    engineer/api-development/skills/api-versioning-strategy/SKILL.md
+    engineer/api-development/skills/graphql-schema-design/SKILL.md
+    engineer/api-development/skills/grpc-service-design/SKILL.md
+    engineer/api-development/skills/rate-limiting-design/SKILL.md
+    engineer/api-development/skills/rest-api-design/SKILL.md
+    engineer/code-quality/skills/clean-code-review/SKILL.md
+    engineer/database-engineering/skills/migration-strategy/SKILL.md
+    engineer/devops-practices/skills/alerting-strategy/SKILL.md
+    engineer/devops-practices/skills/deployment-strategy/SKILL.md
+    engineer/engineer-toolkit/skills/code-review-checklist/SKILL.md
+    engineer/engineer-toolkit/skills/documentation-strategy/SKILL.md
+    engineer/testing/skills/test-doubles-strategy/SKILL.md
+    engineer/testing/skills/test-strategy/SKILL.md
+    product-manager/launch/skills/feature-flag-strategy/SKILL.md
+    product-manager/launch/skills/go-to-market-strategy/SKILL.md
+    product-manager/launch/skills/rollout-strategy/SKILL.md
+    product-manager/pm-toolkit/skills/product-review/SKILL.md
+    product-manager/strategy/skills/business-model-canvas/SKILL.md
+    product-manager/strategy/skills/okr-definition/SKILL.md
+    product-manager/strategy/skills/positioning-statement/SKILL.md
+    product-manager/strategy/skills/product-market-fit/SKILL.md
+    product-manager/strategy/skills/product-strategy/SKILL.md
+    product-manager/strategy/skills/product-vision/SKILL.md
+    product-manager/strategy/skills/strategic-narrative/SKILL.md
+    product-manager/strategy/skills/value-proposition/SKILL.md
+    qa-engineer/accessibility-testing/skills/accessibility-regression/SKILL.md
+    qa-engineer/accessibility-testing/skills/accessibility-test-plan/SKILL.md
+    qa-engineer/accessibility-testing/skills/aria-validation/SKILL.md
+    qa-engineer/accessibility-testing/skills/color-contrast-analysis/SKILL.md
+    qa-engineer/accessibility-testing/skills/keyboard-navigation-testing/SKILL.md
+    qa-engineer/accessibility-testing/skills/screen-reader-testing/SKILL.md
+    qa-engineer/accessibility-testing/skills/wcag-audit/SKILL.md
+    qa-engineer/api-testing/skills/api-mock-strategy/SKILL.md
+    qa-engineer/api-testing/skills/api-performance-testing/SKILL.md
+    qa-engineer/api-testing/skills/api-regression-suite/SKILL.md
+## 09:39:25Z gh api repos/facebookresearch/secpriv-skill/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:26Z gh api repos/bridge-mind/BridgeSecurity/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=2 truncated=false 
+    skills/bridgesecurity/SKILL.md
+    skills/security-audit/SKILL.md
+## 09:39:26Z gh api repos/modu-ai/cc-plugins/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=58 truncated=false 
+    .claude/skills/moai-platform-auth/SKILL.md
+## 09:39:27Z gh api repos/ahtishamshahzad/backend-security-audit-skill/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:27Z gh api repos/vxcozy/sanitize/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:28Z gh api repos/pop123-ux/agent-security-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=2 truncated=false 
+    skills/api-security/SKILL.md
+    skills/secure-auth-patterns/SKILL.md
+## 09:39:28Z gh api repos/slowmist/slowmist-agent-security/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:29Z gh api repos/mamamou/ai-coding-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=14 truncated=false 
+    skills/angular-security/SKILL.md
+    skills/code-reviewer-angular/SKILL.md
+    skills/code-reviewer-django/SKILL.md
+    skills/code-reviewer-node/SKILL.md
+    skills/code-reviewer-react/SKILL.md
+    skills/code-reviewer/SKILL.md
+    skills/react-security/SKILL.md
+    skills/secure-by-design-coding/SKILL.md
+    skills/security-auditor/SKILL.md
+## 09:39:29Z gh api repos/ivan-sincek/secure-code-review-agent-skills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=4 truncated=false 
+    json/cwe-secure-code-review/SKILL.md
+    json/security-requirements-analysis/SKILL.md
+    markdown/cwe-secure-code-review/SKILL.md
+    markdown/security-requirements-analysis/SKILL.md
+## 09:39:29Z gh api repos/sparshsharma2510/caliber/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:30Z gh api repos/gdroz3r/backend-security-review/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:31Z gh api repos/anypicai/vibecoding-security/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=1 truncated=false 
+## 09:39:31Z gh api repos/Raffa-jarrl/Lictor-AI/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=4 truncated=false 
+    skills/plugins/lictor-security-suite/skills/lictor-explain/SKILL.md
+    skills/plugins/lictor-security-suite/skills/lictor-fix-it/SKILL.md
+    skills/plugins/lictor-security-suite/skills/lictor-rotate/SKILL.md
+    skills/plugins/lictor-security-suite/skills/lictor-security-check/SKILL.md
+## 09:39:31Z gh api repos/benavlabs/vibe-check/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:32Z gh api repos/CodeWithHarshey/Security-v1/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=0 truncated=false 
+## 09:39:32Z gh api repos/AL-JANEF/janefskills/git/trees/HEAD?recursive=1  rc=0  SKILL.md_count=8 truncated=false 
+    auth-hardening/SKILL.md
+    secrets-guard/SKILL.md
+    security-logging/SKILL.md
+    vuln-audit/SKILL.md

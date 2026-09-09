@@ -1,0 +1,88 @@
+CMD: deep-read candidate #19 mukul975/anthropic-cybersecurity-skills — detecting-api-enumeration-attacks/SKILL.md + implementing-api-rate-limiting-and-throttling/SKILL.md (shallow clone + gh api metadata, byte-identical copy to raw/)
+AT_UTC: 2026-09-09T13:12:06Z
+RC: 0
+
+## 1. repo metadata (gh api) — rc=0 each
+$ gh api repos/mukul975/anthropic-cybersecurity-skills --jq '{...}'
+  default_branch=main stars=32470 forks=3911 watchers(subscribers)=258 open_issues=45
+  license.spdx_id=Apache-2.0 size=12737KB created=2026-02-25T09:47:50Z pushed=2026-08-31T04:32:44Z
+  desc="817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks ... agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
+$ gh api repos/mukul975/anthropic-cybersecurity-skills/commits/HEAD --jq '.sha+" "+.commit.committer.date'
+  54a798831d2266a3ca61ce68a7acb80b81160d57 2026-08-31T04:32:42Z
+$ gh api repos/mukul975/anthropic-cybersecurity-skills/tags --jq '.[0].name'
+  v1.3.0
+
+## 2. clone — rc=0
+$ git clone --depth 1 https://github.com/mukul975/anthropic-cybersecurity-skills /tmp/s5-cand/19
+$ git rev-parse HEAD                      -> 54a798831d2266a3ca61ce68a7acb80b81160d57 (rc=0)
+$ git describe --tags --abbrev=0          -> none in shallow clone (used gh api tags above)
+$ find . -iname '*enumeration*' -o -iname '*rate-limit*' -o -iname '*throttl*'   (rc=0)
+  ./skills/detecting-api-enumeration-attacks
+  ./skills/implementing-api-rate-limiting-and-throttling
+  (also: performing-api-rate-limiting-bypass, implementing-api-abuse-detection-with-rate-limiting — not read)
+$ head -5 LICENSE  -> "Apache License Version 2.0, January 2004"
+$ ls skills/detecting-api-enumeration-attacks       -> LICENSE references/ scripts/ SKILL.md
+$ ls skills/implementing-api-rate-limiting-and-throttling -> LICENSE references/ scripts/ SKILL.md
+$ head -3 skills/*/LICENSE (both)  -> "Apache License Version 2.0, January 2004" (rc=0) — per-dir license == root license
+  frontmatter of both files also carries `license: Apache-2.0`
+
+## 3. file dates (shallow clone has 1 commit; used gh api) — rc=0 each
+$ gh api 'repos/.../commits?path=skills/detecting-api-enumeration-attacks/SKILL.md&per_page=1'
+  2fb6a9faff42977f9e64b1f0dcb97bb2a1e67267 2026-08-02T16:32:13Z
+$ gh api 'repos/.../commits?path=skills/implementing-api-rate-limiting-and-throttling/SKILL.md&per_page=1'
+  2fb6a9faff42977f9e64b1f0dcb97bb2a1e67267 2026-08-02T16:32:13Z
+
+## 4. wc -l (rc=0)
+  431 skills/detecting-api-enumeration-attacks/SKILL.md
+  481 skills/implementing-api-rate-limiting-and-throttling/SKILL.md
+
+## 5. frontmatter (verbatim)
+--- detecting-api-enumeration-attacks/SKILL.md L1-34 ---
+name: detecting-api-enumeration-attacks
+description: Detect API enumeration attacks (BOLA/IDOR, OWASP API1:2023) by writing SIEM
+  detection rules that flag sequential or UUID identifier iteration, parameter tampering,
+  and mixed 200/401/403 response patterns from API gateway and WAF logs. Use when
+  investigating suspected object-level authorization abuse, building threat-hunting
+  queries for API access-control bypass, or hardening API logging/rate-limiting against
+  enumeration.
+domain: cybersecurity / subdomain: api-security / version: '1.0' / author: mahipal / license: Apache-2.0
+tags: api-security, enumeration, bola, idor, broken-object-level-authorization, owasp-api-top-10, access-control, rate-limiting
+nist_csf: PR.PS-01 ID.RA-01 PR.DS-10 DE.CM-01 ; mitre_attack: T1595 T1595.002 T1046 T1190 T1087
+--- implementing-api-rate-limiting-and-throttling/SKILL.md L1-32 ---
+name: implementing-api-rate-limiting-and-throttling
+description: 'Implements API rate limiting and throttling with token bucket, sliding
+  window, and fixed window algorithms, configuring per-user, per-IP, and per-endpoint
+  limits via Redis-backed counters, API gateway plugins, or middleware, and returning
+  proper HTTP 429 responses with Retry-After headers. Use when setting up request
+  quota management or preventing brute force, credential stuffing, and resource exhaustion
+  attacks against APIs.'
+domain: cybersecurity / subdomain: api-security / version: 1.0.0 / author: mahipal / license: Apache-2.0
+tags: api-security, rate-limiting, throttling, redis, token-bucket, abuse-prevention
+
+## 6. usage signals (README.md grep, rc=0)
+  README L102-103: "# Option 1: npx (recommended) / npx skills add mukul975/Anthropic-Cybersecurity-Skills"
+  README L110: works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI, agentskills.io-compatible
+  README L367: listed on SkillsLLM marketplace (skillsllm.com/skill/anthropic-cybersecurity-skills)
+  index.json: total_skills=818, generated_at 2026-08-24 — these two skills are 2 of 818 auto-indexed entries
+  skills.sh install count: 확인 못 함 (not queried)
+
+## 7. clause keyword greps over both SKILL.md (rc as shown)
+  S6 (404|not.?found|latency|timing|constant.time|same response) over SKILL.md + scripts/agent.py + references/api-reference.md: rc=0
+    hits ONLY in scripts/agent.py L80-104 ("Excessive 404s ... not-found responses" = detection of attacker-side 404 rate) and references L14 ("High 404 rate on /api/* paths") — NO hit in SKILL.md; nothing about uniform not_found for unauthorized vs missing, nothing about latency equalisation
+  S5 (cache|upstream|budget|spec|quota): rc=0 — hits are "quota" in the consumer-tier sense (L7, L39, L452); no upstream/cache/spec
+  S7 (session|role): rc=0 — single hit L114 "by src_ip, endpoint, user_session" (Splunk group-by field); no per-role key
+  S8 (secret|credential|hardcod|.env|api.?key): rc=0 — hits are "credential stuffing" (attack name) and Kong "limit_by: credential"; no no-secrets rule. NOTE: rate-limiting SKILL L99 hard-codes redis host 'localhost' with no auth — not a secret, but no guidance on secret handling either
+  S1-S4 (jwt|openapi|schema|audit|pii|unknown field): rc=1 — no hits
+
+## 8. copy to raw/ (rc=0 each, cmp identical)
+$ cp skills/detecting-api-enumeration-attacks/SKILL.md raw/mukul975-detecting-api-enumeration-attacks@54a7988.SKILL.md
+$ cp skills/implementing-api-rate-limiting-and-throttling/SKILL.md raw/mukul975-implementing-api-rate-limiting-and-throttling@54a7988.SKILL.md
+$ cmp ... -> identical (rc=0) both
+  sha256 17ee09be8d84c5c47c84e84753e961cc27cd8740426cfe07d8effa8ba4f1ff6e  mukul975-detecting-api-enumeration-attacks@54a7988.SKILL.md
+  sha256 88ec1351dc65180ee26be4ceb26b96fb28a825caa7f50deecfa182074bf68962  mukul975-implementing-api-rate-limiting-and-throttling@54a7988.SKILL.md
+
+## 9. not opened
+  skills/performing-api-rate-limiting-bypass, skills/implementing-api-abuse-detection-with-rate-limiting: 확인 못 함 (out of the assignment's two files)
+  skills/implementing-api-rate-limiting-and-throttling/scripts/agent.py, references/api-reference.md: listed (ls) but contents not read — 확인 못 함
+
+END_UTC: 2026-09-09T13:13:46Z

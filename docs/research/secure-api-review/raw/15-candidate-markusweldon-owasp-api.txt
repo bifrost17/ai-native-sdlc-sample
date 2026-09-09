@@ -1,0 +1,59 @@
+CMD: deep-read candidate #5 markusweldon/owasp-api — clone, metadata, license, full read, byte copy, S1–S8 mapping
+AT_UTC: 2026-09-09T13:07:04Z
+RC: 0
+END_UTC: 2026-09-09T13:08:03Z
+REPO: https://github.com/markusweldon/claude-owasp-security-skills
+FILE: .claude/skills/owasp-api/SKILL.md
+
+## commands (rc)
+1. git clone --depth 1 https://github.com/markusweldon/claude-owasp-security-skills /tmp/s5-cand/5   rc=0
+2. git rev-parse HEAD   rc=0
+   -> 4af4f28bd095224a3802ae49efa6ae8d179d593f
+3. git describe --tags --abbrev=0   rc=128 (no tags) -> printed "없음"
+   gh api repos/markusweldon/claude-owasp-security-skills/tags --jq length   rc=0 -> 0
+4. git log -1 --format=%cI -- .claude/skills/owasp-api/SKILL.md   rc=0
+   -> 2026-06-10T15:24:16-07:00  (= 2026-06-10T22:24:16Z)
+   git log -1 --format='%H %cI %an' -> 4af4f28... 2026-06-10T15:24:16-07:00 Markus Weldon (single-commit shallow clone; repo pushed_at 2026-06-10T22:24:17Z)
+5. gh api repos/markusweldon/claude-owasp-security-skills --jq '{stars,forks,watchers,open_issues,license,pushed,created,default_branch}'   rc=0
+   -> {"created":"2026-06-09T23:22:24Z","default_branch":"main","forks":0,"license":"MIT","open_issues":0,"pushed":"2026-06-10T22:24:17Z","stars":0,"watchers":0}
+6. head -5 LICENSE   rc=0
+   -> "MIT License / Copyright (c) 2026 / Permission is hereby granted, free of charge, ..."
+   (no per-directory LICENSE or file header under .claude/skills/owasp-api/ — only SKILL.md exists there: find .claude/skills/owasp-api -type f)
+7. wc -l .claude/skills/owasp-api/SKILL.md   rc=0 -> 197
+8. cat -n .claude/skills/owasp-api/SKILL.md   rc=0 (read in full)
+9. sed -n 1,80p README.md; grep -n -i -E 'install|skills\.sh|npx|marketplace|...' README.md CLAUDE.md install.sh; cat CLAUDE.md; cat install.sh   rc=0
+   -> install via curl|bash install.sh (project .claude/skills or ~/.claude/skills). No skills.sh / marketplace listing. README: "Once installed, skills activate automatically."
+10. cp SRC -> /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/markusweldon-owasp-api@4af4f28.SKILL.md   rc=0
+    cmp SRC DST   rc=0 (byte-identical)
+    shasum -a 256: b0ed54bd8c8e836cea413e988de7ffdcd149d13211e6bcf07b306db3c4ace73b (both files)
+    wc -c: 8315 bytes
+
+## frontmatter (verbatim)
+---
+name: owasp-api
+description: Apply OWASP API Security Top 10:2023 standards when designing or reviewing REST, GraphQL, gRPC, or WebSocket APIs. Covers BOLA/IDOR, broken auth, excessive data exposure, unrestricted resource consumption, SSRF, and improper inventory management.
+when_to_use: Use when building or reviewing API endpoints, REST or GraphQL services, microservices, API gateways, or any HTTP/WebSocket interface. Also use when someone asks about API authorization, rate limiting, object-level access control, API versioning security, or SSRF prevention.
+---
+(note: has non-standard extra key when_to_use; name+description present -> SKILL.md format = true)
+
+## usage signals seen
+stars 0 · forks 0 · watchers 0 · open issues 0 · created 2026-06-09, single push 2026-06-10 · no tags · no skills.sh/marketplace listing found · not referenced by any other repo in this lane's discovery logs (04–09).
+
+## S1–S8 mapping (line refs)
+S1 부분 — L35 "Tokens signed and verified server-side (RS256/ES256 for JWT, not HS256 with weak secret)"; L178-196 JWT checklist + PyJWT decode sample. Generic; no "every endpoint requires gateway JWT / no anonymous outside /health".
+S2 부분 — L31 "Write operations validate which fields the caller may update (mass assignment prevention)"; L110-117 explicit field allowlist. No OpenAPI-schema validation / reject-unknown-fields.
+S3 —  없음 (no audit event requirement anywhere)
+S4 부분 — L37 "No credentials, tokens, or API keys in query strings or logs"; L100 "Error responses: never expose stack traces, DB errors, or internal paths"; L185 "Sensitive data not stored in JWT payload". No pii-tag -> logs/errors rule.
+S5 부분 — L42 "Per-user and per-key rate limits on all endpoints"; L45 "Expensive operations (exports, bulk ops) are async + queued, not synchronous"; L120-133 flask_limiter tiered sample. Inbound rate limiting only; no upstream call budget, no cache policy, no call-count in spec.
+S6 부분 — L32 "Indirect object references (UUIDs not sequential IDs) preferred to reduce enumeration"; L29 BOLA check. No same-response(not_found)/same-latency rule for missing vs unauthorized.
+S7 —  없음 (no session key / per-role session contract; L184 httpOnly cookie is about token storage, not role keys)
+S8 부분 — L14 "no credentials in URLs"; L37 "No credentials, tokens, or API keys in query strings or logs"; L38 "API keys hashed in storage". Nothing about code/config/diff.
+
+## conflicts with baseline / org note
+- L35, L178-196: JWT checklist and "SAFE JWT validation (PyJWT)" instruct app-side JWT decode/verification (alg pinning, aud/iss/exp). Org note says session-only code satisfies S1 and not to re-flag; a session applying this skill would re-raise JWT validation in the app -> conflict.
+- L36 "Short-lived access tokens (≤15 min); refresh tokens rotated on use", L39 revocation: token lifecycle is the gateway/portal's concern, not the app's; would generate out-of-scope findings.
+- No external scripts/tools required (only pip package suggestions: ssrf_filter L62, flask_limiter L123 — advisory, not a run instruction). No conflict with "no code backstop".
+- Frontmatter uses extra key when_to_use (non-standard for Claude Code agent skills; harmless).
+
+## scope noise
+~70% of body unrelated to this policy: SSRF (L53-90), CORS/TLS/headers (L92-101), third-party API consumption (L135-146), GraphQL (L150-164), API inventory/versioning (L168-174), JWT algorithm pinning (L178-196), mass assignment JS sample (L103-118).

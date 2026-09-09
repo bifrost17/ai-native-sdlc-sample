@@ -1,0 +1,80 @@
+CMD: deep-read candidate #26 OWASP/API-Security 2023 edition source text (0xa1, 0xa2, 0xa4, 0xa8) — clone, metadata, license, byte-copy 4 files to raw/
+AT_UTC: 2026-09-09T13:14:01Z
+RC: 0
+
+## 1. clone + metadata
+$ git clone --depth 1 https://github.com/OWASP/API-Security /tmp/s5-cand/26
+rc=0
+$ git -C /tmp/s5-cand/26 rev-parse HEAD
+rc=0
+e85ddfa5a936d4656840ac250c039c7057e66b0d   (default branch: master; HEAD commit date 2026-01-01T18:11:08+02:00)
+$ git describe --tags --abbrev=0
+rc=128 (no tags reachable in shallow clone) -> fallback
+$ gh api repos/OWASP/API-Security/tags --jq '.[0].name'
+rc=0
+v2.7.0
+$ gh api repos/OWASP/API-Security --jq '{stars,forks,watchers,open_issues,license,pushed,default_branch}'
+rc=0
+{"default_branch":"master","forks":415,"license":"NOASSERTION","open_issues":37,"pushed":"2026-08-25T08:12:19Z","stars":2346,"watchers":167}
+$ gh api repos/OWASP/API-Security/branches/develop --jq '.commit.sha + " " + .commit.commit.committer.date'
+rc=0
+371bb40e2af5e2000c0f8c6437194b5c66584417 2026-08-25T08:12:19Z   (develop is ahead of master; master is what was cloned and copied)
+
+## 2. per-file last commit (shallow clone collapses git log to HEAD, so used the API)
+$ gh api "repos/OWASP/API-Security/commits?path=<file>&per_page=1" --jq '.[0].commit.committer.date + " " + .[0].sha'
+rc=0
+editions/2023/en/0xa1-broken-object-level-authorization.md -> 2023-06-05T13:21:06Z 73040c2075274d203086ae1c541b59e8988eaf28
+editions/2023/en/0xa2-broken-authentication.md             -> 2023-06-05T13:21:06Z 73040c2075274d203086ae1c541b59e8988eaf28
+editions/2023/en/0xa4-unrestricted-resource-consumption.md -> 2023-06-05T13:21:06Z 73040c2075274d203086ae1c541b59e8988eaf28
+editions/2023/en/0xa8-security-misconfiguration.md         -> 2024-06-16T10:19:58Z 48bc2dd3beb8a1edd397636acda98d679876a0a7
+$ git log -1 --format=%cI -- <each file>   (shallow, all show HEAD date 2026-01-01T18:11:08+02:00 — not authoritative)
+rc=0
+$ wc -l
+0xa1=108  0xa2=134  0xa4=173  0xa8=130
+
+## 3. license
+$ head -20 /tmp/s5-cand/26/LICENSE
+rc=0
+line 1: "Creative Commons Attribution-ShareAlike 4.0 International Public License"
+$ grep -rn -i "creative commons\|CC BY\|license" editions/2023/en/*.md
+rc=0
+editions/2023/en/0x00-header.md:10: "This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License][1]"
+editions/2023/en/0x01-about-owasp.md:49-50: "[Creative Commons Attribution Share-Alike 4.0 license][8]. For any reuse or distribution, you must make it clear to others the license terms of this work."
+README.md:42-47: "licensed under the Creative Commons Attribution-ShareAlike 4.0 license ... you may distribute the resulting work only under the same or similar license"
+GitHub API spdx_id = NOASSERTION (GitHub does not auto-detect CC-BY-SA); LICENSE file text = CC-BY-SA-4.0. No per-file/per-dir override for editions/2023/en.
+No SKILL.md / YAML frontmatter in any of the 4 files (first line is "# API1:2023 ..." etc.). skill_md_format=false.
+
+## 4. read in full
+$ cat -n editions/2023/en/0xa1-broken-object-level-authorization.md   rc=0
+$ cat -n editions/2023/en/0xa2-broken-authentication.md               rc=0
+$ cat -n editions/2023/en/0xa4-unrestricted-resource-consumption.md   rc=0
+$ cat -n editions/2023/en/0xa8-security-misconfiguration.md           rc=0
+
+## 5. byte-copy to raw/ and verify
+$ cp <4 files> -> raw/owasp-api-security-2023-{0xa1-bola,0xa2-broken-authentication,0xa4-unrestricted-resource-consumption,0xa8-security-misconfiguration}@e85ddfa.md
+rc=0
+$ cmp src dst (x4)
+rc=0 (all identical)
+$ shasum -a 256
+f5a827897509a005095c306d05e56b8dc713717a78cb5360a2ba4b3c29bf4b2b  owasp-api-security-2023-0xa1-bola@e85ddfa.md
+9c15446740599f7bcf709a406ca5627028793e701dd1798ba711a95e9b933971  owasp-api-security-2023-0xa2-broken-authentication@e85ddfa.md
+8df9df403fd0007bc28bd9a9a60e46739c6797b1f7135c7f0f683a7362f40e38  owasp-api-security-2023-0xa4-unrestricted-resource-consumption@e85ddfa.md
+13b9629746921f2ccd6fac1364cdfbb50f10d7b11faf668589d9994716c333de  owasp-api-security-2023-0xa8-security-misconfiguration@e85ddfa.md
+
+## 6. usage signals — which already-collected candidate skills cite the OWASP API Top 10 2023
+$ grep -l -i "API1:2023\|API4:2023\|API2:2023\|API8:2023\|OWASP API Security Top 10\|owasp.org/API-Security\|API Security Top 10" raw/*.SKILL.md raw/*.md
+rc=0
+apisec-skills-api-security-review@60350c8.SKILL.md, apisec-skills-bola-detector@60350c8.SKILL.md, markusweldon-owasp-api@4af4f28.SKILL.md,
+owasp-secure-agent-playbook-api-security-review@79fea6b.SKILL.md, pop123-ux-api-security@7bd5d59.SKILL.md, unitoneai-api-security@70bc259.SKILL.md,
+unitoneai-api-security-checklist@70bc259.md, getsentry-security-review@c2f99a5.references-api-security.md, mukul975-detecting-api-enumeration-attacks@54a7988.SKILL.md
+(9 of the previously collected candidate files cite this document; it is the upstream source they paraphrase)
+
+## 7. clause mapping (line numbers = cat -n of the copied files)
+S1 부분  0xa2 L25-27 "Doesn't validate the authenticity of tokens" / "Accepts unsigned/weakly signed JWT tokens" / "Doesn't validate the JWT expiration date"; L33 "Other microservices can access it without authentication"
+S2 부분  0xa4 L140-142 server-side validation of query/body params; 0xa8 L86-87 restrict incoming content types; L91-93 enforce response payload schemas — no OpenAPI / unknown-field rejection
+S3 —     없음
+S4 부분  0xa8 L21 "Error messages include stack traces, or expose other sensitive information"; L91-93 — no pii-tagged-field rule
+S5 부분  0xa4 L11-13 paid-per-request integrations; L26 "Third-party service providers' spending limit"; L133-136 rate limiting; L143-145 spending limits for API integrations — no upstream rps budget, no cache policy / call-count in spec
+S6 부분  0xa1 L88 "Prefer the use of random and unpredictable values as GUIDs"; 0xa2 L125 CWE-204 Observable Response Discrepancy (reference only) — no same-response/same-latency instruction
+S7 부분  0xa1 L14-17, L22-25 session user ID vs object ID — no per-role session key contract
+S8 —     없음

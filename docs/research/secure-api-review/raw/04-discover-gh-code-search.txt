@@ -1,0 +1,347 @@
+CMD: gh api -X GET search/code (filename:SKILL.md + OWASP/API security/rate limit/enumeration/IDOR/session/secrets queries), then gh api repos/{owner}/{repo}/contents/{path} raw fetch + repos/{owner}/{repo} stargazers_count for each hit
+AT_UTC: 2026-09-09T09:35:56Z
+RC: 0
+
+## 2026-09-09T09:35:56Z gh api -X GET search/code -f q='filename:SKILL.md OWASP' -F per_page=50 -F page=1  rc=1
+{
+	"message": "API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C637:2AD033:3CAA20:4B1008:6AA1287C and timestamp 2026-09-09 09:35:56 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https:\/\/docs.github.com\/en\/site-policy\/github-terms\/github-terms-of-service)",
+	"documentation_url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#rate-limiting",
+	"status": "403"
+}
+
+## 2026-09-09T09:36:05Z gh api -X GET search/code -f q='filename:SKILL.md OWASP' -F per_page=50 -F page=1  rc=1
+{
+	"message": "API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C6C3:18F4A:3CB75C:4B1D6C:6AA12884 and timestamp 2026-09-09 09:36:05 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https:\/\/docs.github.com\/en\/site-policy\/github-terms\/github-terms-of-service)",
+	"documentation_url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#rate-limiting",
+	"status": "403"
+}
+
+## 2026-09-09T09:36:12Z gh api -X GET search/code -f q='filename:SKILL.md "API security"' -F per_page=50 -F page=1  rc=1
+{
+	"message": "API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID C74D:1A8AB:3EABE1:4D1A11:6AA1288C and timestamp 2026-09-09 09:36:12 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https:\/\/docs.github.com\/en\/site-policy\/github-terms\/github-terms-of-service)",
+	"documentation_url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#rate-limiting",
+	"status": "403"
+}
+
+## 2026-09-09T09:38:07Z gh api -X GET search/code -f q='filename:SKILL.md OWASP' -F per_page=50 -F page=1  rc=1
+{
+	"message": "API rate limit exceeded for user ID 225953910. If you reach out to GitHub Support for help, please include the request ID CCA5:1B677:3E819B:4CFC2B:6AA128F0 and timestamp 2026-09-09 09:37:52 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https:\/\/docs.github.com\/en\/site-policy\/github-terms\/github-terms-of-service)",
+	"documentation_url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api#rate-limiting",
+
+## 2026-09-09T09:38:45Z gh api -X GET search/code -f q='filename:SKILL.md OWASP' -F per_page=50 -F page=1  rc=0 (attempts=8)
+total_count=80256
+majiayu000/claude-skill-registry-data	data/owasp/SKILL.md
+skjolber/3d-bin-container-packing	skills/maven/SKILL.md
+ChiChou/grapefruit	skills/mastg/SKILL.md
+woohyun212/security-skill	owasp-check/SKILL.md
+eeeeeeeeee-code/e0e1-wx	SKILL.md
+rodrigohighermind/highermind-code-skills	SKILL.md
+LeoYeAI/openclaw-master-skills	skills/fisi/SKILL.md
+jcchikikomori/skills-md	skills/owasp/SKILL.md
+xwtro0tk1t-cloud/harness	SKILL.md
+garagon/nanostack	security/SKILL.md
+vibeeval/vibecosystem	skills/swarm/SKILL.md
+Windscribe/Android-App	SKILL.md
+3stoneBrother/code-audit	SKILL.md
+rodrigohighermind/highermind-code-skills	hm-engineer/SKILL.md
+vibeeval/vibecosystem	skills/hizir/SKILL.md
+ffsshhttiikk/opencode-agents-skills	owasp/SKILL.md
+Pa55w0rd/secknowledge-skill	SKILL.md
+rodrigohighermind/highermind-code-skills	hm-qa/SKILL.md
+garagon/nanostack	help/SKILL.md
+OWASP/secure-agent-playbook	template/SKILL.md
+dsifry/metaswarm	skills/start/SKILL.md
+garagon/nanostack	SKILL.md
+fr33d3m0n/threat-modeling	SKILL.md
+vibeeval/vibecosystem	skills/premortem/SKILL.md
+DragonJAR/Android-Pentesting-Skill	SKILL.md
+ChristopherAlphonse/calphonse-skills	owasp-security/SKILL.md
+TerminalSkills/skills	skills/amass/SKILL.md
+OneWave-AI/claude-skills	code-review-pro/SKILL.md
+saeedhosan/agent-skills	owasp/SKILL.md
+ersinkoc/security-check	SKILL.md
+TerminalSkills/skills	skills/semgrep/SKILL.md
+Objective-Arts/lens-dist	canon/owasp/SKILL.md
+RaheesAhmed/SajiCode	skills/security/SKILL.md
+rodrigohighermind/highermind-code-skills	hm-security/SKILL.md
+krishnakanthb13/antigravity_global_skills	code_review/SKILL.md
+jjongguet/oh-my-product	skills/review/SKILL.md
+sparkfinderoven/r01-hesreallyhim-awesome-claude-code-security	SKILL.md
+KimYx0207/SkillSemgrep	SKILL.md
+sekirosevillans-sys/Awesome-AI-Agent-Skills	owasp-top-10/SKILL.md
+yariv1025/skills	owasp-top-10/SKILL.md
+simota/agent-skills	probe/SKILL.md
+simota/agent-skills	breach/SKILL.md
+simota/agent-skills	canon/SKILL.md
+simota/agent-skills	sentinel/SKILL.md
+simota/agent-skills	gateway/SKILL.md
+TeamArtisanThrive/r03-anthropics-skills-security	SKILL.md
+Strategic-Automation/violin	skills/web-app/SKILL.md
+darfaz/clawmoat	skill/SKILL.md
+ypyik0669/ctf-codex	skills/ctf/SKILL.md
+rodrigohighermind/highermind-code-skills	hm-deploy/SKILL.md
+
+## 2026-09-09T09:38:54Z gh api -X GET search/code -f q='filename:SKILL.md "API Security Top 10"' -F per_page=50 -F page=1  rc=0 (attempts=1)
+total_count=2980
+usestrix/strix	skills/api-security-testing/SKILL.md
+Zyrexnn/Cybermes	skills/api-testing/SKILL.md
+SnailSploit/Claude-Red	Skills/api/offensive-api-security/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/hex-security-basics/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/finta-security-basics/SKILL.md
+SnailSploit/Claude-Red	Skills/api/offensive-api-abuse/SKILL.md
+majiayu000/claude-skill-registry	skills/data/reviewing-security/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/coreweave-security-basics/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/maintainx-security-basics/SKILL.md
+majiayu000/claude-skill-registry	skills/data/api-design-architect/SKILL.md
+jd-opensource/JoySafeter	skills/pentest-api-deep/SKILL.md
+majiayu000/claude-skill-registry	skills/design/api-design-architect/SKILL.md
+majiayu000/claude-skill-registry	skills/security/reviewing-security/SKILL.md
+majiayu000/claude-skill-registry	skills/security/pentest-api-attacker/SKILL.md
+LeoYeAI/openclaw-master-skills	skills/phy-jwt-auth-audit/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/hex-pack/skills/hex-security-basics/SKILL.md
+LeoYeAI/openclaw-master-skills	skills/api-security-best-practices/SKILL.md
+majiayu000/claude-skill-registry	skills/design/moai-domain-backend/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/glean-pack/skills/glean-security-basics/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/clay-pack/skills/clay-security-basics/SKILL.md
+majiayu000/claude-skill-registry	skills/security/api-expert/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/juicebox-pack/skills/juicebox-security-basics/SKILL.md
+HoangNguyen0403/agent-skills-standard	skills/common/common-owasp/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/flexport-pack/skills/flexport-security-basics/SKILL.md
+majiayu000/claude-skill-registry	skills/api/dev-api-design/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/coreweave-pack/skills/coreweave-security-basics/SKILL.md
+majiayu000/claude-skill-registry	skills/security/reviewing-security-ryuichi1208-dotfiles/SKILL.md
+majiayu000/claude-skill-registry	skills/documents/dev-api-design/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	plugins/saas-packs/mindtickle-pack/skills/mindtickle-security-basics/SKILL.md
+HoangNguyen0403/agent-skills-standard	.codex/skills/common/common-owasp/SKILL.md
+majiayu000/claude-skill-registry	skills/data/security-expert/SKILL.md
+AgentSecOps/SecOpsAgentKit	skills/appsec/api-spectral/SKILL.md
+OneWave-AI/claude-skills	security-pentest-planner/SKILL.md
+majiayu000/claude-skill-registry	skills/data/pytm/SKILL.md
+majiayu000/claude-skill-registry	skills/data/dev-api-design/SKILL.md
+elophanto/EloPhanto	skills/api-testing/SKILL.md
+LambdaTest/agent-skills	api-skill/api-security-patterns/SKILL.md
+majiayu000/claude-skill-registry	skills/design/moai-domain-backend-kivo360-quickhooks/SKILL.md
+majiayu000/claude-skill-registry	skills/security/pytm/SKILL.md
+majiayu000/claude-skill-registry	skills/data/api-security/SKILL.md
+majiayu000/claude-skill-registry	skills/api/api-designer/SKILL.md
+majiayu000/claude-skill-registry	skills/security/software-security-appsec/SKILL.md
+majiayu000/claude-skill-registry	skills/devops/rate-limiting/SKILL.md
+majiayu000/claude-skill-registry	skills/design/api-design-architect-sandraschi-advanced-memory-mcp-7f0b00e7/SKILL.md
+majiayu000/claude-skill-registry	skills/data/sop-api-development/SKILL.md
+H-mmer/pentest-agents	skills/hunt-idor/SKILL.md
+majiayu000/claude-skill-registry	skills/data/software-security-appsec/SKILL.md
+majiayu000/claude-skill-registry	skills/development/software-backend/SKILL.md
+majiayu000/claude-skill-registry	skills/marketing/geo-optimization/SKILL.md
+majiayu000/claude-skill-registry	skills/other/suede-code-review/SKILL.md
+
+## 2026-09-09T09:38:55Z gh api -X GET search/code -f q='filename:SKILL.md "OWASP API"' -F per_page=50 -F page=1  rc=0 (attempts=1)
+total_count=6232
+SnailSploit/Claude-Red	Skills/api/offensive-api-security/SKILL.md
+Zyrexnn/Cybermes	skills/api-testing/SKILL.md
+eeeeeeeeee-code/e0e1-wx	SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/gamma-security-basics/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/finta-security-basics/SKILL.md
+SnailSploit/Claude-Red	Skills/api/offensive-api-abuse/SKILL.md
+HoangNguyen0403/agent-skills-standard	skills/common/common-owasp/SKILL.md
+majiayu000/claude-skill-registry	skills/data/reviewing-security/SKILL.md
+jeremylongshore/tons-of-skills-marketplace	skills/.curated/apollo-security-basics/SKILL.md
+majiayu000/claude-skill-registry	skills/security/api-expert/SKILL.md
+majiayu000/claude-skill-registry	skills/api/api-patterns/SKILL.md
+majiayu000/claude-skill-registry	skills/data/api-design-architect/SKILL.md
+majiayu000/claude-skill-registry	skills/data/api-patterns/SKILL.md
+jd-opensource/JoySafeter	skills/pentest-api-deep/SKILL.md
+majiayu000/claude-skill-registry	skills/design/api-design-architect/SKILL.md
+majiayu000/claude-skill-registry	skills/security/reviewing-security/SKILL.md
+majiayu000/claude-skill-registry	skills/security/pentest-api-attacker/SKILL.md
+HoangNguyen0403/agent-skills-standard	.codex/skills/common/common-owasp/SKILL.md
+dereknguyen269/programing-best-practices	skills/best-practices/SKILL.md
+LeoYeAI/openclaw-master-skills	skills/phy-jwt-auth-audit/SKILL.md
+LeoYeAI/openclaw-master-skills	skills/api-security-best-practices/SKILL.md
+majiayu000/claude-skill-registry	skills/api/api-patterns-grupous-gpus/SKILL.md
+LambdaTest/agent-skills	api-skill/api-security-patterns/SKILL.md
+dereknguyen269/programing-best-practices	.kiro/steering/best-practices/SKILL.md
+majiayu000/claude-skill-registry	skills/api/api-patterns-dgkngk-super-kit/SKILL.md
+majiayu000/claude-skill-registry	skills/security/performing-api-fuzzing/SKILL.md
+elophanto/EloPhanto	skills/api-testing/SKILL.md
+vinayaklatthe/microsoft-security-skills	skills/api-security-design/SKILL.md
+AgentSecOps/SecOpsAgentKit	skills/appsec/api-spectral/SKILL.md
+majiayu000/claude-skill-registry	skills/api/dev-api-design/SKILL.md
+majiayu000/claude-skill-registry	skills/data/security-testing-patterns/SKILL.md
+majiayu000/claude-skill-registry	skills/documents/dev-api-design/SKILL.md
+transilienceai/communitytools	skills/mobile-security/SKILL.md
+majiayu000/claude-skill-registry	skills/design/moai-domain-backend/SKILL.md
+majiayu000/claude-skill-registry	skills/data/security-expert/SKILL.md
+majiayu000/claude-skill-registry	skills/data/gamma-security-basics/SKILL.md
+OneWave-AI/claude-skills	security-pentest-planner/SKILL.md
+majiayu000/claude-skill-registry	skills/data/pytm/SKILL.md
+majiayu000/claude-skill-registry	skills/testing/api-design/SKILL.md
+majiayu000/claude-skill-registry	skills/data/dev-api-design/SKILL.md
+baotoq/micro-commerce	.agents/skills/api-patterns/SKILL.md
+majiayu000/claude-skill-registry	skills/security/gamma-security-basics/SKILL.md
+majiayu000/claude-skill-registry	skills/security/pytm/SKILL.md
+nWave-ai/nWave	nWave/skills/nw-security-by-design/SKILL.md
+majiayu000/claude-skill-registry	skills/data/api-security/SKILL.md
+PramodDutta/qaskills	seed-skills/api-security-testing/SKILL.md
+majiayu000/claude-skill-registry	skills/api/api-designer/SKILL.md
+vinayaklatthe/microsoft-security-skills	skills/defender-for-apis/SKILL.md
+gy15901580825/Argus	.claude/skills/pytest-api-testing/SKILL.md
+majiayu000/claude-skill-registry	skills/security/10-idor-hunting/SKILL.md
+
+## 2026-09-09T09:39:08Z gh api -X GET search/code -f q='filename:SKILL.md enumeration IDOR' -F per_page=50 -F page=1  rc=0 (attempts=4)
+total_count=4512
+uphiago/recon-skills	redteam/hunt-idor/SKILL.md
+zebbern/claude-code-guide	skills/idor-testing/SKILL.md
+KorekKayu/IKONA-Security	IKONA_BUGHUNTER/hunt-idor/SKILL.md
+SnailSploit/Claude-Red	Skills/web/offensive-idor/SKILL.md
+blacklanternsecurity/red-run	skills/web/idor/SKILL.md
+baiqigo/baiqi-redteam-lab	.claude/skills/hunt-idor/SKILL.md
+baiqigo/baiqi-redteam-lab	.agents/skills/hunt-idor/SKILL.md
+EntroVyx/hermes-agent-offsec	skills/offsec/redteam/hunt-idor/SKILL.md
+majiayu000/claude-skill-registry	skills/data/idor-testing/SKILL.md
+majiayu000/claude-skill-registry	skills/testing/idor-testing/SKILL.md
+majiayu000/claude-skill-registry	skills/security/idor-testing/SKILL.md
+Wyl-cmd/kxns-cli	src/kxns_cli/skills/hunt-idor/SKILL.md
+mamanwhide/Batitong	conf/skills/hunt-idor/SKILL.md
+jellaharshith/SWIFT	swift/skills/cbh/skills/hunt-idor/SKILL.md
+EmmanuelOrtiz87/gentle-vanguard	public/skills/hunt-idor-skill/SKILL.md
+marcboggs/BMAD-AppSec-Orchestrator	bughunter/skills/hunt-idor/SKILL.md
+mamanwhide/Batitong	batitong-settings/skills/hunt-idor/SKILL.md
+Carlos-Reyes-UTP/Desarrollo-de-Sistema-de-Ventas-Empresas-de-Moda	.agent/skills/hunt-idor/SKILL.md
+diegosouzapw/awesome-omni-skills	skills/idor-testing/SKILL.md
+diegosouzapw/awesome-omni-skills	skills/idor-testing-v2/SKILL.md
+diegosouzapw/awesome-omni-skills	skills_omni/idor-testing/SKILL.md
+diegosouzapw/awesome-omni-skills	skills_omni/idor-testing-v2/SKILL.md
+uphiago/recon-skills	recon/web-enumeration/SKILL.md
+H-mmer/pentest-agents	skills/hunt-idor/SKILL.md
+Cstrien/Skills_Dior	bug-bounty/hunt-idor/SKILL.md
+Encod3d-Sec/TORCH	skills/hunt/hunt-idor/SKILL.md
+dawitlabs/dawits-skills	hunt-idor/SKILL.md
+baljinnyamday/projectmsc	red-run/skills/web/idor/SKILL.md
+FrancoStino/opencode-skills-collection	bundled-skills/idor-testing/SKILL.md
+zebbern/SecOps-CLI-Guides	skills/idor-testing/SKILL.md
+OWASP/openshield	ai/knowledge/skills/offensive-idor/SKILL.md
+ShulkwiSEC/bb-huge	skills/curated/bola-idor/SKILL.md
+tighten/laravelversions	.claude/skills/frisk-scan-idor/SKILL.md
+Anhvu1107/all-agent-skill	.agent/skills/idor-testing/SKILL.md
+modbender/skill-library-mcp	data/idor-testing/SKILL.md
+Dev-Toolbelt/dev-team-agents	skills/security/idor/SKILL.md
+uphiago/recon-skills	redteam/hunt-grpc/SKILL.md
+uphiago/recon-skills	redteam/hunt-fastapi/SKILL.md
+asdfgh1445/ctf-super-hub	strix-idor/SKILL.md
+securityfortech/hacking-skills	skills/web/authz/bola-idor/SKILL.md
+majiayu000/claude-skill-registry-data	testing/idor-testing/SKILL.md
+TerminalSkills/skills	skills/burp-suite/SKILL.md
+majiayu000/claude-skill-registry-data	security/idor-testing/SKILL.md
+instavm/security-skills	skills/mitm-find-idor/SKILL.md
+anubhavg-icpl/vibe	skills/ag-idor-testing/SKILL.md
+Sultan0f1/opencode-pentest-kit	skills/api/hunt-idor/SKILL.md
+JantonioFC/skillsbank	skills/idor-testing/SKILL.md
+rootcastleco/rei-skills	skills/idor-testing/SKILL.md
+abelrguezr/hacktricks-skills	skills/pentesting-web/idor/SKILL.MD
+majiayu000/claude-skill-registry-data	data/idor-testing-axelmrak-ai/SKILL.md
+
+## 2026-09-09T09:39:48Z gh api -X GET search/code -f q='filename:SKILL.md "rate limit" API review' -F per_page=50 -F page=1  rc=0 (attempts=11)
+total_count=156160
+nattapatwakhet/Skill_Day_Dev_MD_Public	api_skill.md
+Goldentrii/AgentRecall-X	SKILL.md
+op7418/logo-generator-skill	SKILL.md
+forayconsulting/gemini_cli_skill	SKILL.md
+Jia-Ethan/pavedpath-code	SKILL.md
+asklokesh/loki-mode	SKILL.md
+Moksa1123/line-api-skill	line-api/SKILL.md
+zarazhangrui/codebase-to-course	SKILL.md
+geogons/skill-financial-analyst	SKILL.md
+jackwener/boss-cli	SKILL.md
+ZhangNy301/citation-assistant	SKILL.md
+lucasygu/redbook	SKILL.md
+TomasWard1/strava-cli	SKILL.md
+simota/agent-skills	probe/SKILL.md
+green-api/whatsapp-api-client-python	skills/SKILL.md
+nirholas/memescope-monday	SKILL.md
+Degenapetrader/EVClaw	SKILL.md
+buluslan/ecommerce-competitor-analyzer	SKILL.md
+OthmanAdi/langsmith-fetch-skill	SKILL.md
+Viniciuscarvalho/swift-code-reviewer-skill	SKILL.md
+wolverin0/clawtrol	skill/SKILL.md
+ktaletsk/learn-codebase	SKILL.md
+thelearningest/Byterover-Claude-Codex-Collaboration-	SKILL.md
+ethos-link/rails-conventions	SKILL.md
+joeseesun/qiaomu-model-cli	SKILL.md
+PHY041/claude-skill-academic-ppt	SKILL.md
+tortastudios/sentry-instrumentation	SKILL.md
+m13v/s4l	SKILL.md
+ZenAlexa/autoplex	SKILL.md
+frmoretto/stream-coding	SKILL.md
+anatasof/NatPRD	SKILL.md
+cj-vana/claude-swarm	skill/SKILL.md
+fr33d3m0n/threat-modeling	SKILL.md
+zning1994/brainforge-autoresearch	SKILL.md
+devkdas/copado-hx	SKILL.md
+SterlingChin/postman-claude-skill	SKILL.md
+O0000-code/paper-search-pro	SKILL.md
+ensp1re/api-design	SKILL.md
+hydro13/tandem-browser	skill/SKILL.md
+teambtcmap/btcmap-triage-skill	SKILL.md
+Microck/kagi-cli	docs/SKILL.md
+rawveg/skillsforge-marketplace	n8n/SKILL.md
+green-api/whatsapp-api-client-cpp	SKILL.md
+Elpulgo/azdo	Skill.md
+UditAkhourii/branerail	SKILL.md
+Gabson0x/bountyforge	SKILL.md
+zernio-dev/zernio-cli	SKILL.md
+PlutoLei/paperbanana-skill	SKILL.md
+kingside33/claude-code-pr-review-respond	SKILL.md
+magnus919/agent-skills	jira/SKILL.md
+
+## 2026-09-09T09:39:49Z gh api -X GET search/code -f q='filename:SKILL.md BOLA' -F per_page=50 -F page=1  rc=0 (attempts=1)
+total_count=5536
+ShulkwiSEC/bb-huge	skills/curated/bola-idor/SKILL.md
+apisec-inc/apisec-skills	skills/bola-detector/SKILL.md
+securityfortech/hacking-skills	skills/web/authz/bola-idor/SKILL.md
+SnailSploit/Claude-Red	Skills/web/offensive-idor/SKILL.md
+six2dez/burp-ai-agent	skills/burp-scan/SKILL.md
+dev-null-sec/pents-agent	skills/api/bola/SKILL.md
+transilienceai/communitytools	skills/api-security/SKILL.md
+Zyrexnn/Cybermes	skills/api-testing/SKILL.md
+HoangNguyen0403/agent-skills-standard	skills/common/common-owasp/SKILL.md
+devtint/API_PENTEST	testing/SKILLS/bola-idor/SKILL.md
+majiayu000/claude-skill-registry	skills/data/reviewing-security/SKILL.md
+majiayu000/claude-skill-registry	skills/data/moai-security-owasp/SKILL.md
+jd-opensource/JoySafeter	skills/pentest-api-deep/SKILL.md
+nyutonov/alfibo	.claude/skills/bola-ui/SKILL.md
+GokulRavi1/BountyKai-CLI	skills/bounty-aa-bola/SKILL.md
+DCx7C5/ai-marketplace	skills/webapp-api-bola/SKILL.md
+sandeco/mira-animator	agents/mira-sequence/SKILL.md
+hypnguyen1209/offensive-claude	skills/web-pentest/SKILL.md
+transilienceai/communitytools	skills/mobile-security/SKILL.md
+majiayu000/claude-skill-registry	skills/security/web-pentest/SKILL.md
+uphiago/recon-skills	redteam/web2-recon/SKILL.md
+telagod/code-abyss	skills/defending-applications/SKILL.md
+sandeco/mira-animator	agents/mira-tactics/SKILL.md
+Encod3d-Sec/TORCH	skills/hunt/hunt-api/SKILL.md
+cosmix/loom	skills/loom-auth/SKILL.md
+uphiago/recon-skills	redteam/hunt-api-misconfig/SKILL.md
+majiayu000/claude-skill-registry	skills/security/api-expert/SKILL.md
+asdfgh1445/ctf-super-hub	strix-idor/SKILL.md
+hypnguyen1209/offensive-claude	skills/vulnerability-analysis/SKILL.md
+yaojingang/yao-open-skills	docs/skills/yao-websecurity-skill.md
+shopsys/shopsys	.agents/skills/security-audit/SKILL.md
+cosmix/loom	skills/loom-threat-model/SKILL.md
+langbyyi/CyberStrikeAI-SRC	skills/api-sec/SKILL.md
+telagod/code-abyss	skills/securing-systems/SKILL.md
+H-mmer/pentest-agents	skills/hunt-idor/SKILL.md
+simota/agent-skills	probe/SKILL.md
+majiayu000/claude-skill-registry	skills/data/api-security/SKILL.md
+majiayu000/claude-skill-registry	skills/data/threat-model/SKILL.md
+OTT-Cybersecurity-LLC/lyrie-ai	skills/ai-pentest/SKILL.md
+majiayu000/claude-skill-registry	skills/ai-ml/yann-lecun/SKILL.md
+majiayu000/claude-skill-registry	skills/agent/yann-lecun/SKILL.md
+abisheikM1/Tribunal	skills/api-pivot/SKILL.md
+majiayu000/claude-skill-registry	skills/data/blackhat-go/SKILL.md
+KorekKayu/IKONA-Security	IKONA_HACKSKILLS/api-sec/SKILL.md
+majiayu000/claude-skill-registry	skills/security/threat-model/SKILL.md
+mn-youssef/security-skills	skills/api-security-testing/SKILL.md
+cosmix/loom	skills/loom-security-audit/SKILL.md
+mn-youssef/security-skills	skills/access-control-testing/SKILL.md
+superagent-ai/skills	skills/authz-security/SKILL.md
+Encod3d-Sec/TORCH	skills/hunt/hunt-idor/SKILL.md

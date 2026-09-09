@@ -1,0 +1,65 @@
+CMD: deep-read candidate #2 apisec-inc/apisec-skills skills/api-security-review/SKILL.md — clone, metadata, license, full read, byte-identical copy to raw
+AT_UTC: 2026-09-09T13:07:02Z
+RC: 0
+END_UTC: 2026-09-09T13:08:22Z
+WORKDIR: /tmp/s5-cand/2
+
+--- commands ---
+$ git clone --depth 1 https://github.com/apisec-inc/apisec-skills /tmp/s5-cand/2
+rc=0
+$ git rev-parse HEAD
+rc=0  60350c871ad47affe83454b510043c14ed01ae07
+$ git describe --tags --abbrev=0
+rc=128 (no tags) -> fallback
+$ gh api repos/apisec-inc/apisec-skills/tags --jq '.[0].name // "없음"'
+rc=0  없음
+$ gh api repos/apisec-inc/apisec-skills --jq '{stars,forks,watchers,open_issues,license,pushed,created,default_branch}'
+rc=0  {"created":"2026-03-12T20:52:50Z","default_branch":"main","forks":1,"license":"MIT","open_issues":0,"pushed":"2026-03-12T20:57:26Z","stars":18,"watchers":0}
+$ head -5 LICENSE
+rc=0  "MIT License / Copyright (c) 2026 apisec inc. / Permission is hereby granted, free of charge, ..."
+$ find . -iname 'LICENSE*' -not -path './.git/*'
+rc=0  ./LICENSE  (single root LICENSE; no per-dir license, no header in SKILL.md)
+$ git log -1 --format=%cI -- skills/api-security-review/SKILL.md
+rc=0  2026-03-12T16:57:15-04:00  (= 2026-03-12T20:57:15Z)
+$ git log --oneline | head ; gh api repos/apisec-inc/apisec-skills/commits --jq 'length'
+rc=0  HEAD=60350c8 "chore: merge remote, keep local .gitignore"; 4 commits total
+$ find . -name SKILL.md | sort
+rc=0  skills/{api-security-review,auth-rbac-scaffold,bola-detector,injection-checker,openapi-hardener,security-test-generator}/SKILL.md
+$ wc -l skills/api-security-review/SKILL.md
+rc=0  675
+$ ls -la skills/api-security-review/
+rc=0  SKILL.md only (24386 bytes)
+$ cat README.md
+rc=0  (read in full; vendor APIsec; claims Cursor Marketplace + agentskills.io format; install snippets reference repo name APIsec-ai/apisec-cursor-plugin, not apisec-inc/apisec-skills; "Phase 2 MCP server coming soon")
+$ cat .cursor-plugin/plugin.json ; ls rules
+rc=0  plugin name "apisec" v1.0.0; 6 skills + 5 rules (.mdc: admin-rbac, auth-required, error-sanitization, input-validation, ownership-check)
+$ cat -n skills/api-security-review/SKILL.md
+rc=0  (read in full, 675 lines)
+$ cp skills/api-security-review/SKILL.md $RAW/apisec-skills-api-security-review@60350c8.SKILL.md
+rc=0
+$ shasum -a 256 <src> <dst> ; cmp <src> <dst>
+rc=0  both 0da6d104ba58e2cf3b8c079b22563085eb564c9a2b3a6ebee3aad7ebd4864448 ; cmp identical
+$ grep -n -i -E 'secret|credential|\.env|timing|constant-time|enumerat|latency|session|cache|budget|rps|upstream|rate limit|404|403|spec' skills/api-security-review/SKILL.md
+rc=0  hits at L35,38,58,65,66,73,77,80,159,181-188,241,242,246,249,259,273,288-313,349,353,379,401,411,418,436,446-454,529,570,577,580,616,633,671
+      (no hit for: cache, budget, rps, latency, timing; "session" only at L58; "enumeration" only at L183 re password reset)
+
+--- frontmatter (verbatim, L1-10) ---
+---
+name: api-security-review
+description: >
+  Use when developer explicitly asks to review an endpoint, controller, service,
+  or API for security issues. Also triggers on: "review this for security",
+  "is this secure", "check this endpoint", "security audit", "what are the
+  vulnerabilities here", or when asked to review a full route file or controller
+  file. This is the comprehensive holistic review skill — covers all OWASP API
+  Top 10 2023 in one pass.
+---
+
+--- summary ---
+sha=60350c871ad47affe83454b510043c14ed01ae07  tag=없음  file_last_commit=2026-03-12T20:57:15Z
+stars=18 forks=1 watchers=0 open_issues=0 commits=4 created=pushed=2026-03-12
+license=MIT (API spdx + root LICENSE head)  format=SKILL.md (name+description frontmatter)  lines=675
+usage: Cursor Marketplace claim in README (not independently verified); no skills.sh count seen; repo created and last pushed same day.
+raw files written:
+  docs/research/secure-api-review/raw/apisec-skills-api-security-review@60350c8.SKILL.md
+  docs/research/secure-api-review/raw/12-candidate-apisec-skills-api-security-review.txt

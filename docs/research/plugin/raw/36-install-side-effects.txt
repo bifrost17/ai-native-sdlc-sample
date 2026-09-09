@@ -1,0 +1,30 @@
+CMD: ls -R ~/.claude/plugins/cache/intent-sdlc-skills/intent-sdlc-skills/0.1.0 | head; du -sh; grep intent-sdlc ~/.claude/plugins/known_marketplaces.json
+AT_UTC: 2026-09-09T09:38:48Z
+RC: 0
+--- cache top-level ---
+total 16
+drwxr-xr-x@ 9 jake  staff  288 Sep  9 18:37 .
+drwxr-xr-x@ 3 jake  staff   96 Sep  9 18:37 ..
+drwxr-xr-x@ 4 jake  staff  128 Sep  9 18:37 .claude-plugin
+-rw-r--r--@ 1 jake  staff  698 Sep  9 18:37 CLAUDE.md
+drwxr-xr-x@ 3 jake  staff   96 Sep  9 18:37 commands
+drwxr-xr-x@ 5 jake  staff  160 Sep  9 18:37 docs
+drwxr-xr-x@ 6 jake  staff  192 Sep  9 18:37 policies
+-rw-r--r--@ 1 jake  staff  803 Sep  9 18:37 README.md
+drwxr-xr-x@ 3 jake  staff   96 Sep  9 18:37 skills
+--- file count / size ---
+      45
+784K	/Users/jake/.claude/plugins/cache/intent-sdlc-skills/intent-sdlc-skills/0.1.0
+--- .git copied? ---
+ls: /Users/jake/.claude/plugins/cache/intent-sdlc-skills/intent-sdlc-skills/0.1.0/.git: No such file or directory
+--- user-level known_marketplaces.json entry (side effect of --scope project) ---
+{
+ "source": {
+  "source": "directory",
+  "path": "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S8"
+ },
+ "installLocation": "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S8",
+ "lastUpdated": "2026-09-09T09:37:46.933Z"
+}
+--- user settings.json mentions? ---
+0

@@ -1,0 +1,77 @@
+CMD: deep-read candidate #0 owasp/secure-agent-playbook/api-security-review — clone, metadata, SKILL.md + referenced play, byte-copy to raw/
+AT_UTC: 2026-09-09T13:07:00Z
+RC: 0
+
+# 1. clone
+$ git clone --depth 1 https://github.com/OWASP/secure-agent-playbook /tmp/s5-cand/0
+rc=0
+
+# 2. repo metadata
+$ gh api repos/OWASP/secure-agent-playbook --jq '{...}'
+rc=0
+{"archived":false,"created":"2026-03-22T18:57:46Z","desc":"OWASP Secure Agent Playbook Project","forks":23,"issues":8,"license":"NOASSERTION","pushed":"2026-08-11T07:18:43Z","sha":"main","stars":164,"watchers":1}
+$ gh api repos/OWASP/secure-agent-playbook/tags --jq '.[0].name'
+rc=0
+v0.2.7
+
+$ git rev-parse HEAD            (in /tmp/s5-cand/0)
+rc=0
+79fea6b9115b55687818f8c4073844ee9ba907a6
+$ git describe --tags --abbrev=0
+rc=0
+v0.2.7
+
+# 3. locate skill / license
+$ find . -path ./.git -prune -o -type f -iname 'SKILL.md' -print | grep -i api
+rc=0
+./plugins/code-security-skills/skills/api-security-review/SKILL.md
+$ find . -path ./.git -prune -o -type f -iname 'LICENSE*' -print
+./LICENSE.md          (only one; no per-plugin/per-dir LICENSE)
+$ cat LICENSE.md
+# License
+This work is licensed under the Creative Commons Attribution 4.0 International License.
+**SPDX-License-Identifier:** CC-BY-4.0
+(gh api .license.spdx_id = NOASSERTION because GitHub does not detect the .md variant; LICENSE.md + SKILL.md frontmatter `license: CC-BY-4.0` + plugin.json "license": "CC-BY-4.0" all agree.)
+$ cat plugins/code-security-skills/.claude-plugin/plugin.json   -> name code-security-skills, version 0.2.7, license CC-BY-4.0, author Chris Maenner
+$ head -40 THIRD_PARTY_NOTICES.md  -> OWASP API Security Top 10 (2023) listed as CC BY-SA 4.0 source for the API play (reference only, no copied text found in SKILL.md)
+
+# 4. skill file
+$ wc -l / wc -c / md5 plugins/code-security-skills/skills/api-security-review/SKILL.md
+62 lines, 2997 bytes, md5 c41f84807cdc53b1c411d4a00b0a745f
+$ git log -1 --format='%H %cI' -- <SKILL.md>      (shallow clone: shows HEAD only)
+rc=0  79fea6b9115b55687818f8c4073844ee9ba907a6 2026-06-02T13:21:37+00:00
+$ gh api 'repos/OWASP/secure-agent-playbook/commits?path=plugins/code-security-skills/skills/api-security-review/SKILL.md&per_page=3'
+rc=0
+dbcb8b1a4d046afe879da3d55362dda39254d748 2026-05-17T20:08:10Z fix: bundle plays, templates, and data inside each plugin source folder (#18) (#19)
+94eb4c76d1ba997709a2022c7fcfd174d54af9fd 2026-05-12T14:29:19Z feat(plugins): restructure for Claude Code marketplace + plugin schema
+=> last commit touching the file: 2026-05-17T20:08:10Z
+
+frontmatter (lines 1-5):
+---
+name: api-security-review
+description: Comprehensive API security review against OWASP API Security Top 10 (2023). Use when reviewing OpenAPI/Swagger specs, auditing REST/GraphQL/gRPC implementations, testing authentication mechanisms, or checking API gateway configurations. Covers BOLA/IDOR, broken auth, mass assignment, rate limiting, SSRF, and more with real-world attack scenarios.
+license: CC-BY-4.0
+---
+body: line 9 "Perform comprehensive API security assessment following `plays/api-security-review.md`." -> the skill delegates to a play
+
+# 5. referenced play (read as part of the skill)
+$ find . -name api-security-review.md -> ./plugins/code-security-skills/plays/api-security-review.md
+wc: 1506 lines, 39559 bytes
+$ gh api commits?path=<play> --jq '.[0]' -> dbcb8b1a 2026-05-17T20:08:10Z
+$ grep -n -i -E 'rate.?limit|budget|cache|cach|upstream|429|not.?found|404|403|timing|latency|constant.time|enumerat|session|cookie|role|secret|credential|hard.?coded|\.env|diff' <play>
+rc=0 — hits for rate-limit (38,271,303,330-333,471,517,545-548,740-742,1245-1268,1278,1341,1383,1391,1437,1474), hardcoded keys (159-160), session (66,292-296), role (277,373,410,419,448-449,599-632), secret (85,1139,1158,1209). ZERO hits for cache/cach, upstream, budget, 404, not found, timing, latency, constant-time.
+$ sed -n ranges 150-170 / 195-260 / 285-345 / 460-560 / 1130-1215 / 870-900   (read; excerpts used in clause mapping)
+$ grep -n -i -E 'audit|additionalProperties|unknown field|schema valid|input valid|pii|verbose error|...' <play>
+rc=0 — audit only as "security audit"/"audit-logs endpoint"/"Regular audits" (no audit-event requirement); "Input validation on all endpoints" only as a checklist line 1464; PII at 388,418; verbose errors 885-892.
+
+# 6. neighbour check
+$ head -12 plugins/code-security-skills/skills/secrets-scan/SKILL.md -> separate skill `secrets-scan` (CC-BY-4.0) delegating to plays/secrets-scan.md; not part of candidate #0.
+$ ls .claude -> skills ; no hooks found in repo (find hooks* / grep hook *.json: none)
+
+# 7. byte copy
+$ cp <SKILL.md> $RAW/owasp-secure-agent-playbook-api-security-review@79fea6b.SKILL.md ; cmp
+cp rc=0 ; cmp rc=0 ; md5 c41f84807cdc53b1c411d4a00b0a745f (identical)
+
+# usage signals
+skills.sh: owasp/secure-agent-playbook/api-security-review 202 installs at 2026-09-09T09:38Z (from task brief)
+GitHub: stars 164, forks 23, subscribers 1, open issues 8, pushed 2026-08-11, tag v0.2.7, OWASP org project, Claude Code marketplace manifest present.

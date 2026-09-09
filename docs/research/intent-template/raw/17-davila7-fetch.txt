@@ -1,0 +1,32 @@
+CMD: B=cli-tool/components; f() { gh api "repos/davila7/claude-code-templates/contents/$1?ref=aac87c82638ee9f19c598e7a4dfa006957cd6a90" --jq .content | base64 -d > docs/research/intent-template/raw/$2; echo "$2: $(wc -c < docs/research/intent-template/raw/$2) bytes"; }; f $B/skills/productivity/requirements-clarity/SKILL.md requirements-clarity@aac87c8.SKILL.md; f $B/skills/development/brainstorming/SKILL.md davila7-development-brainstorming@aac87c8.SKILL.md; f $B/skills/productivity/brainstorming/SKILL.md davila7-productivity-brainstorming@aac87c8.SKILL.md; f $B/commands/project-management/create-prd.md create-prd@aac87c8.command.md; f $B/agents/data-ai/prd.md prd-agent@aac87c8.agent.md; f $B/skills/business-marketing/product-manager-toolkit/SKILL.md product-manager-toolkit@aac87c8.SKILL.md; f $B/skills/business-marketing/product-manager-toolkit/references/prd_templates.md product-manager-toolkit-prd_templates@aac87c8.md; echo '--- diff davila7 development/brainstorming vs obra HEAD'; diff docs/research/intent-template/raw/davila7-development-brainstorming@aac87c8.SKILL.md docs/research/intent-template/raw/brainstorming@b36e082.SKILL.md | head -20; echo '--- diff davila7 productivity/brainstorming vs development/brainstorming'; diff docs/research/intent-template/raw/davila7-productivity-brainstorming@aac87c8.SKILL.md docs/research/intent-template/raw/davila7-development-brainstorming@aac87c8.SKILL.md | head -20
+AT_UTC: 2026-09-09T09:36:34Z
+RC: 0
+requirements-clarity@aac87c8.SKILL.md:     9314 bytes
+davila7-development-brainstorming@aac87c8.SKILL.md:     2505 bytes
+davila7-productivity-brainstorming@aac87c8.SKILL.md:     2505 bytes
+create-prd@aac87c8.command.md:     1507 bytes
+prd-agent@aac87c8.agent.md:     5491 bytes
+product-manager-toolkit@aac87c8.SKILL.md:     8924 bytes
+product-manager-toolkit-prd_templates@aac87c8.md:     7249 bytes
+--- diff davila7 development/brainstorming vs obra HEAD
+8,9d7
+< ## Overview
+< 
+12c10,12
+< Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design in small sections (200-300 words), checking after each section whether it looks right so far.
+---
+> Start by classifying how much process the request needs, then work
+> through your path: understand the context, refine the idea, present a
+> design, and get your human partner's approval.
+13a14,155
+> <HARD-GATE>
+> Do NOT invoke any implementation skill, write any code, scaffold any
+> project, or take any implementation action until you have told your
+> human partner what you intend and they have approved it. This applies
+> to EVERY task on EVERY path below — the ceremony scales with the task;
+> the approval gate never does.
+> </HARD-GATE>
+> 
+> ## Three Paths
+> 
+--- diff davila7 productivity/brainstorming vs development/brainstorming

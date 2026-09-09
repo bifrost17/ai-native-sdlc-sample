@@ -1,0 +1,81 @@
+CMD: deep-read candidate #15 anthropics/claude-code-security-review .claude/commands/security-review.md (slash command, format=other) — clone, metadata, byte-copy, clause mapping
+AT_UTC: 2026-09-09T13:10:04Z
+RC: 0
+
+## 1. clone
+$ git clone --depth 1 https://github.com/anthropics/claude-code-security-review /tmp/s5-cand/15
+rc=0
+$ git -C /tmp/s5-cand/15 rev-parse HEAD
+0c6a49f1fa56a1d472575da86a94dbc1edb78eda
+rc=0
+$ git -C /tmp/s5-cand/15 describe --tags --abbrev=0
+rc=128 (no tags in shallow clone) -> fallback to API below
+$ git -C /tmp/s5-cand/15 log -1 --format=%cI -- .claude/commands/security-review.md
+2026-02-11T13:01:23-05:00   (depth-1 clone: this is the HEAD commit date, NOT the file's real last change; see API below)
+rc=0
+$ git -C /tmp/s5-cand/15 log -1 --format='%H %cI %s'
+0c6a49f1fa56a1d472575da86a94dbc1edb78eda 2026-02-11T13:01:23-05:00 Merge pull request #55 from Eduard-Voiculescu/main
+rc=0
+$ ls -la /tmp/s5-cand/15 ; ls -la /tmp/s5-cand/15/.claude/commands
+rc=0  -> repo root: __init__.py .claude/ .github/ .gitignore action.yml claudecode/ docs/ examples/ LICENSE pytest.ini README.md scripts/
+      -> .claude/commands/security-review.md (10837 bytes) is the only command file; no SKILL.md anywhere in repo
+
+## 2. metadata via gh api
+$ gh api repos/anthropics/claude-code-security-review --jq '{stars,forks,watchers,open_issues,license,pushed,default}'
+{"default":"main","forks":681,"license":"MIT","open_issues":94,"pushed":"2026-02-11T18:01:23Z","stars":6190,"watchers":40}
+rc=0
+$ gh api repos/anthropics/claude-code-security-review/tags --jq '.[0].name // "없음"'
+없음
+rc=0
+$ gh api 'repos/anthropics/claude-code-security-review/commits?path=.claude/commands/security-review.md&per_page=1' --jq '.[0] | {sha,date}'
+{"date":"2025-08-06T15:40:58Z","sha":"c19afa74097b892109a6598b94297280ce7d1beb"}
+rc=0   -> file last commit (UTC): 2025-08-06T15:40:58Z
+$ gh api repos/anthropics/claude-code-security-review/commits/HEAD --jq .sha
+0c6a49f1fa56a1d472575da86a94dbc1edb78eda
+rc=0
+$ head -5 /tmp/s5-cand/15/LICENSE
+MIT License
+Copyright (c) 2025 Anthropic
+Permission is hereby granted, free of charge, to any person obtaining a copy
+rc=0   -> repo-level MIT; no per-file / per-directory LICENSE or header in .claude/commands/
+
+## 3. file read + byte copy
+$ wc -l /tmp/s5-cand/15/.claude/commands/security-review.md
+190
+rc=0
+$ head -4  (frontmatter)
+---
+allowed-tools: Bash(git diff:*), Bash(git status:*), Bash(git log:*), Bash(git show:*), Bash(git remote show:*), Read, Glob, Grep, LS, Task
+description: Complete a security review of the pending changes on the current branch
+---
+-> frontmatter has description + allowed-tools but NO name field -> skill_md_format = false (Claude Code slash command format)
+$ cat -n .claude/commands/security-review.md   (read in full, 190 lines)
+rc=0
+$ cp .claude/commands/security-review.md $RAW/anthropics-claude-code-security-review-command@0c6a49f.md
+rc=0
+$ cmp <src> <copy>
+identical, rc=0
+$ shasum -a 256 (both)
+dd1d451f909dbb8798f4a4de010c35e7dd9152f02bb2f7988442cdd138f29e39
+
+## 4. usage signals
+$ grep -n -i -E 'install|marketplace|skills\.sh|slash command|/security-review|uses:' README.md
+L37: "- uses: anthropics/claude-code-security-review@main"  (GitHub Action consumption)
+L141: "By default, Claude Code ships a `/security-review` slash command that provides the same security analysis capabilities as the GitHub Action workflow"
+L147: "Copy the security-review.md file from this repository to your project's .claude/commands/ folder."
+rc=0
+-> signals: 6190 stars, 681 forks, 40 watchers, 94 open issues; README states the command is the one shipped as Claude Code's built-in /security-review; no skills.sh count (not a skill).
+$ find . -name 'SKILL.md' -o -name '*.md'  -> README.md docs/custom-filtering-instructions.md docs/custom-security-scan-instructions.md claudecode/evals/README.md .claude/commands/security-review.md
+rc=0
+
+## 5. clause mapping (line numbers = cat -n of the file)
+S1 부분  L57-62 "Authentication bypass logic / ... / JWT token vulnerabilities / Authorization logic bypasses" — generic category, no gateway-JWT / no-anonymous-route rule
+S2 부분  L49-55 injection list; L143 hard-excludes "Lack of input validation on non-security-critical fields without proven security impact" (anti-S2 for unknown-field rejection)
+S3 —    L156 "A lack of audit logs is not a vulnerability." (explicit anti-S3)
+S4 부분  L79-81 "Sensitive data logging or storage / PII handling violations / API endpoint data leakage"; L169 only report logging if it exposes PII — no schema pii tag, no error-message clause
+S5 —    L45 / L141 exclude "Rate limiting or resource exhaustion issues" (explicit anti-S5)
+S6 —    L146 excludes theoretical timing attacks; L160 UUIDs unguessable; nothing on uniform not_found
+S7 부분  L60 "Session management flaws" — one bullet, no per-role key contract
+S8 부분  L65 "Hardcoded API keys, passwords, or tokens" reviewed over the diff (L29-32), but L44/L140 exclude "Secrets or credentials stored on disk" -> config not covered
+
+END_UTC: 2026-09-09T13:11:23Z

@@ -1,0 +1,100 @@
+CMD: curl -sL https://academy.claude.com/courses/ai-native-sdlc-playbook/skills-as-institutional-knowledge | (strip tags, grep key lines)
+AT_UTC: 2026-09-09T09:33:32Z
+HTTP:200
+RC: 0
+   62472 /tmp/s5-lesson6.html
+--- matched lines ---
+0 Skills as institutional knowledge · The AI-Native SDLC Playbook · Claude Academy
+18 Skills as institutional knowledge
+28 Skills as institutional knowledge
+33 Skills are how an organization makes its institutional knowledge operational. The instructions are explicit, version controlled, applied broadly, and updated centrally when policy changes. The rule of thumb: write a skill for institutional knowledge that must be applied consistently; don't write a skill
+37 CLAUDE.md
+43 CLAUDE.md
+54 .claude/skills/<name>/
+55 so it ships with the code, or distribute it organization-wide through a plugin.
+56 Test that the skill triggers. Ask Claude to do the relevant task in different ways and confirm the skill loads each time.
+57 When the policy changes, change the skill and have the policy owner sign off on the change.
+61 .claude/skills/secure-api-review/SKILL.md
+66 name: secure-api-review
+73 1. Authentication: every endpoint requires the gateway JWT;
+79 4. Data classification: fields tagged pii in the schema must never
+81 Run scripts/check-endpoints.sh and include its output in your summary.
+84 A skill is a control, though an advisory one. It makes Claude likely to apply the policy while the code is written, and nothing forces a session to comply with it. A policy that must always hold needs something deterministic behind the skill, such as a hook that blocks the action or a review pass that re-checks the policy at the PR. The skill makes violations rare and the hook makes them close to 
+93 A skill is an advisory control, while a hook is the deterministic layer behind it. Most of Claude's actions are file edits and shell commands during implementation, so the build phase is where hooks can end up firing most often.
+105 The CLAUDE.md
+110 Skills as institutional knowledge
+120 The CLAUDE.md
+121 Skills as institutional knowledge
+--- full lesson text lines 28-100 ---
+28 Skills as institutional knowledge
+29 
+30 Lesson 6
+31 
+32 4 min
+33 Skills are how an organization makes its institutional knowledge operational. The instructions are explicit, version controlled, applied broadly, and updated centrally when policy changes. The rule of thumb: write a skill for institutional knowledge that must be applied consistently; don't write a skill
+34 for components that belong
+35 (opens in new tab)
+36 in
+37 CLAUDE.md
+38 or a prompt.
+39 Getting started
+40 
+41 Prerequisites
+42 : None required. Having a
+43 CLAUDE.md
+44 helps, because it keeps the agent's working knowledge in the repo, but a skill does not depend on it.
+45 Infrastructure
+46 : One policy with a named owner and a written source of truth.
+47 How to execute it
+48 
+49 Pick one piece of knowledge that is enforced inconsistently today. This could be a security standard, an API design convention, or a brand rule.
+50 Write it as a skill, a folder containing a
+51 SKILL.md
+52 whose frontmatter says when it triggers and whose body says what to do. An engineer writes it from the policy owner's source of truth, using Claude to help.
+53 Put the skill in the repo at
+54 .claude/skills/<name>/
+55 so it ships with the code, or distribute it organization-wide through a plugin.
+56 Test that the skill triggers. Ask Claude to do the relevant task in different ways and confirm the skill loads each time.
+57 When the policy changes, change the skill and have the policy owner sign off on the change.
+58 Engineers pick up the new version automatically in their next session.
+59 What it looks like
+60 
+61 .claude/skills/secure-api-review/SKILL.md
+62 :
+63 markdown
+64 
+65 ---
+66 name: secure-api-review
+67 description: Apply the API security standard. Use whenever creating or
+68 modifying an external-facing endpoint, reviewing API code, or
+69 generating an OpenAPI spec.
+70 ---
+71 # Secure API review
+72 When you create or change an API endpoint:
+73 1. Authentication: every endpoint requires the gateway JWT;
+74 no anonymous routes outside /health.
+75 2. Input validation: validate request bodies against the OpenAPI
+76 schema and reject unknown fields.
+77 3. Audit: every state-changing endpoint emits an audit event with
+78 actor, action, entity and timestamp.
+79 4. Data classification: fields tagged pii in the schema must never
+80 appear in logs or error messages.
+81 Run scripts/check-endpoints.sh and include its output in your summary.
+82 Governance considerations
+83 
+84 A skill is a control, though an advisory one. It makes Claude likely to apply the policy while the code is written, and nothing forces a session to comply with it. A policy that must always hold needs something deterministic behind the skill, such as a hook that blocks the action or a review pass that re-checks the policy at the PR. The skill makes violations rare and the hook makes them close to impossible. Skill invocations are logged in session traces, and the policy owner reviews skill changes like code.
+85 How to measure it
+86 
+87 Leading indicator
+88 : Time from the policy owner approving a policy change to the updated skill merging, taken from the PR on the skill folder.
+89 Lagging indicator
+90 : PR review findings that cite the policy, which should fall toward zero once the skill is applying the policy while the code is written. Where the findings don't fall toward zero, either the skill isn't triggering or its text has drifted from the official policy.
+91 Hooks as build-time guardrails
+92 
+93 A skill is an advisory control, while a hook is the deterministic layer behind it. Most of Claude's actions are file edits and shell commands during implementation, so the build phase is where hooks can end up firing most often.
+94 Build-phase hooks can:
+95 Block edits to protected paths such as generated classes or a frozen package
+96 Run the formatter and linter after file edits so drift never accumulates
+97 Keep credentials out of the diff
+98 Back any skill whose policy has to hold without exception
+99 A hook runs on each action that matches it, so build-phase hooks should be fast and scoped to the file that changed. Heavier checks such as the full test suite belong at the commit or the PR.

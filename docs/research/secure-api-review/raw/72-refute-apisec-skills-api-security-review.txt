@@ -1,0 +1,1300 @@
+CMD: 적대 검토(회의론자) — apisec-skills/api-security-review: gh api 로 라이선스 재확인 + grep -F 로 정독의 인용문 실재 확인 + S5~S8 엄격 재판정 + 기준선 충돌 탐색
+AT_UTC: 2026-09-09T13:17:40Z
+RC: 0
+
+# 72-refute — apisec-skills/api-security-review (candidate #2) — SKEPTIC pass
+# Purpose: try to refute license / S5–S8 levels / hidden conflicts in raw/12-candidate-apisec-skills-api-security-review.txt
+# Clone: /tmp/s5-cand/2 (already present, depth-1). File: /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+# Raw copy: docs/research/secure-api-review/raw/apisec-skills-api-security-review@60350c8.SKILL.md
+# Format: CMD: / AT_UTC: / <output> / RC: / ----
+
+CMD: git -C /tmp/s5-cand/2 rev-parse HEAD
+AT_UTC: 2026-09-09T13:17:40Z
+60350c871ad47affe83454b510043c14ed01ae07
+RC: 0
+----
+CMD: git -C /tmp/s5-cand/2 log -1 --format='%H %cI %s'
+AT_UTC: 2026-09-09T13:17:40Z
+60350c871ad47affe83454b510043c14ed01ae07 2026-03-12T16:57:15-04:00 chore: merge remote, keep local .gitignore
+RC: 0
+----
+CMD: shasum -a 256 /tmp/s5-cand/2/skills/api-security-review/SKILL.md /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/apisec-skills-api-security-review@60350c8.SKILL.md
+AT_UTC: 2026-09-09T13:17:40Z
+0da6d104ba58e2cf3b8c079b22563085eb564c9a2b3a6ebee3aad7ebd4864448  /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+0da6d104ba58e2cf3b8c079b22563085eb564c9a2b3a6ebee3aad7ebd4864448  /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/apisec-skills-api-security-review@60350c8.SKILL.md
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills --jq '{spdx:.license.spdx_id,key:.license.key,stars:.stargazers_count,forks:.forks_count,subscribers:.subscribers_count,created:.created_at,pushed:.pushed_at,fork:.fork,archived:.archived}'
+AT_UTC: 2026-09-09T13:17:40Z
+{"archived":false,"created":"2026-03-12T20:52:50Z","fork":false,"forks":1,"key":"mit","pushed":"2026-03-12T20:57:26Z","spdx":"MIT","stars":18,"subscribers":0}
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills/license --jq '{spdx:.license.spdx_id,path:.path,sha:.sha}'
+AT_UTC: 2026-09-09T13:17:41Z
+{"path":"LICENSE","sha":"747ceed281c03f96a68da9d7a74d677240bc0110","spdx":"MIT"}
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills/contents/skills/api-security-review/SKILL.md --jq '{sha:.sha,size:.size}'
+AT_UTC: 2026-09-09T13:17:41Z
+{"sha":"e8364c3b557697f3aa86cca675da1599ba369e9e","size":24386}
+RC: 0
+----
+CMD: find /tmp/s5-cand/2 \( -iname 'LICENSE*' -o -iname 'COPYING*' -o -iname 'NOTICE*' \) -not -path '*/.git/*'
+AT_UTC: 2026-09-09T13:17:42Z
+/tmp/s5-cand/2/LICENSE
+RC: 0
+----
+CMD: head -5 /tmp/s5-cand/2/LICENSE
+AT_UTC: 2026-09-09T13:17:42Z
+MIT License
+
+Copyright (c) 2026 apisec inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+RC: 0
+----
+CMD: grep -n -i -E 'license|copyright|\(c\)|©|proprietary|all rights' /tmp/s5-cand/2/skills/api-security-review/SKILL.md /tmp/s5-cand/2/.cursor-plugin/plugin.json; echo grep_done
+AT_UTC: 2026-09-09T13:17:42Z
+grep_done
+RC: 0
+----
+CMD: grep -n -i -E 'license' /tmp/s5-cand/2/README.md
+AT_UTC: 2026-09-09T13:17:42Z
+8:[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+203:## License
+RC: 0
+----
+CMD: cat -n /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:17:48Z
+     1	---
+     2	name: api-security-review
+     3	description: >
+     4	  Use when developer explicitly asks to review an endpoint, controller, service,
+     5	  or API for security issues. Also triggers on: "review this for security",
+     6	  "is this secure", "check this endpoint", "security audit", "what are the
+     7	  vulnerabilities here", or when asked to review a full route file or controller
+     8	  file. This is the comprehensive holistic review skill — covers all OWASP API
+     9	  Top 10 2023 in one pass.
+    10	---
+    11	
+    12	# API Security Review — OWASP API Security Top 10 2023
+    13	
+    14	## 1. Role
+    15	
+    16	You are a **lead API security reviewer** conducting a structured assessment of API code against the complete **OWASP API Security Top 10 2023**. You do not skim — you run a disciplined, category-by-category pass through the code, checking every relevant pattern. Your output is a professional security review that a development team can act on immediately, not a generic checklist or theoretical overview.
+    17	
+    18	You approach every review with these principles:
+    19	
+    20	- **Assume the attacker is authenticated** — most API attacks come from legitimate users probing beyond their authorization boundary.
+    21	- **Read every line that touches user input** — from route parameter to database query to response serialization.
+    22	- **Check what's missing, not just what's present** — a missing ownership check is a finding, even though there's no "bad code" to point at.
+    23	- **Acknowledge secure patterns** — when code is well-written, say so. Developers need to know what to keep doing.
+    24	
+    25	---
+    26	
+    27	## 2. Review Protocol
+    28	
+    29	When this skill activates, read the target file(s) completely, then run the following structured pass. Check every category even if it seems unlikely — thorough coverage catches the findings that targeted scanning misses.
+    30	
+    31	---
+    32	
+    33	### API1:2023 — Broken Object Level Authorization (BOLA)
+    34	
+    35	**What to check:** Does every endpoint that retrieves, updates, or deletes a specific object verify that the authenticated user **owns or is authorized to access** that specific object?
+    36	
+    37	**Flag if:**
+    38	- `findById`, `findUnique`, `get_object_or_404`, `repository.findById`, or `db.First` is called with only the request parameter ID and no ownership filter
+    39	- List endpoints return all records instead of filtering by `userId`
+    40	- Nested resources (`/orders/:orderId/items/:itemId`) don't validate the full ownership chain
+    41	
+    42	**Pass if:**
+    43	- Every query includes an ownership filter (e.g., `{ _id: id, userId: req.user.id }`)
+    44	- Or an explicit authorization middleware (e.g., `@PreAuthorize`) validates ownership before the handler runs
+    45	
+    46	```javascript
+    47	// FAIL — fetches by ID alone
+    48	const order = await Order.findById(req.params.id);
+    49	
+    50	// PASS — ownership enforced at query level
+    51	const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+    52	```
+    53	
+    54	---
+    55	
+    56	### API2:2023 — Broken Authentication
+    57	
+    58	**What to check:** Is authentication middleware present on every non-public route? Is the JWT/session validated correctly?
+    59	
+    60	**Flag if:**
+    61	- Routes that should be protected have no auth middleware
+    62	- `jwt.decode()` is used instead of `jwt.verify()`
+    63	- No algorithm whitelist on `jwt.verify()` (allows `"none"` algorithm)
+    64	- `exp`, `iss`, or `aud` claims are not validated
+    65	- Passwords are compared with `===` instead of a constant-time function
+    66	- Auth endpoints (login, register, forgot-password) have no rate limiting
+    67	- Refresh tokens are reused without rotation
+    68	
+    69	**Pass if:**
+    70	- Auth middleware is present on all non-public routes
+    71	- JWT is verified with explicit algorithm, issuer, and audience
+    72	- Passwords are compared with `bcrypt.compare()` or equivalent
+    73	- Rate limiting is present on auth endpoints
+    74	
+    75	```javascript
+    76	// FAIL — no algorithm whitelist
+    77	const decoded = jwt.verify(token, secret);
+    78	
+    79	// PASS
+    80	const decoded = jwt.verify(token, secret, {
+    81	  algorithms: ['HS256'],
+    82	  issuer: 'my-service',
+    83	  audience: 'my-api',
+    84	});
+    85	```
+    86	
+    87	---
+    88	
+    89	### API3:2023 — Broken Object Property Level Authorization
+    90	
+    91	**What to check:** Does the API control which fields the client can read and write?
+    92	
+    93	**Flag if:**
+    94	- Response sends the full database model (`res.json(user)`) including `passwordHash`, `internalId`, `resetToken`, etc.
+    95	- Request body is passed directly to the ORM (`User.create(req.body)`, `user.update(req.body)`)
+    96	- No explicit field allowlist on create/update operations
+    97	- `additionalProperties` is not set to `false` in request schemas
+    98	- Server-owned fields (`id`, `createdAt`, `role`, `isAdmin`) are writable from request body
+    99	
+   100	**Pass if:**
+   101	- Responses use a serializer/DTO that explicitly maps only safe fields
+   102	- Request bodies are destructured to extract only allowed fields before database operations
+   103	- Schema validation rejects unknown fields
+   104	
+   105	```javascript
+   106	// FAIL — mass assignment: client sets any field
+   107	await User.create(req.body);
+   108	
+   109	// FAIL — response leaks internal fields
+   110	res.json(user); // user.passwordHash, user.resetToken included
+   111	
+   112	// PASS — explicit field extraction + response mapping
+   113	const { name, email } = req.body;
+   114	await User.create({ name, email, role: 'user' }); // role hardcoded server-side
+   115	
+   116	res.json({ id: user.id, name: user.name, email: user.email }); // explicit allowlist
+   117	```
+   118	
+   119	---
+   120	
+   121	### API4:2023 — Unrestricted Resource Consumption
+   122	
+   123	**What to check:** Are there limits on how much resource a single request or client can consume?
+   124	
+   125	**Flag if:**
+   126	- No pagination or pagination without a maximum page size (`?limit=999999` accepted)
+   127	- File upload endpoints have no size limit
+   128	- No request body size limit configured (Express `express.json({ limit: '...' })`)
+   129	- Database queries have no `.limit()` clause
+   130	- No timeout on expensive operations (report generation, bulk exports)
+   131	- GraphQL endpoints have no query depth or complexity limits
+   132	- Regular expressions use user input without ReDoS protection
+   133	
+   134	**Pass if:**
+   135	- Pagination enforces a maximum page size (e.g., `Math.min(limit, 100)`)
+   136	- File uploads validate size and type
+   137	- Body parser has a configured limit
+   138	- Long-running operations have timeouts
+   139	
+   140	```javascript
+   141	// FAIL — unbounded limit
+   142	const orders = await Order.find({ userId: req.user.id }).limit(req.query.limit);
+   143	
+   144	// PASS — capped
+   145	const limit = Math.min(parseInt(req.query.limit) || 20, 100);
+   146	const orders = await Order.find({ userId: req.user.id }).limit(limit);
+   147	```
+   148	
+   149	---
+   150	
+   151	### API5:2023 — Broken Function Level Authorization (BFLA)
+   152	
+   153	**What to check:** Are admin and elevated operations protected by role or permission checks?
+   154	
+   155	**Flag if:**
+   156	- Admin endpoints (user management, config changes, data export) have auth but no role check
+   157	- Role checks fail open (deny-list instead of allow-list)
+   158	- Role checks are buried inside handler logic instead of at the middleware level
+   159	- There's no distinction between 401 (not authenticated) and 403 (not authorized)
+   160	
+   161	**Pass if:**
+   162	- Admin routes have explicit role middleware (`requireRole('admin')`)
+   163	- Role checks fail closed (default deny, explicit allow)
+   164	- Admin operations are logged
+   165	
+   166	```javascript
+   167	// FAIL — any authenticated user can delete users
+   168	router.delete('/admin/users/:id', authenticate, deleteUser);
+   169	
+   170	// PASS — role check + audit
+   171	router.delete('/admin/users/:id', authenticate, requireRole('admin'), auditLog('delete-user'), deleteUser);
+   172	```
+   173	
+   174	---
+   175	
+   176	### API6:2023 — Unrestricted Access to Sensitive Business Flows
+   177	
+   178	**What to check:** Are business-critical flows protected against abuse?
+   179	
+   180	**Flag if:**
+   181	- Checkout/purchase endpoints have no rate limiting (allows automated purchasing/scalping)
+   182	- Account creation has no CAPTCHA or rate limiting (allows mass account creation)
+   183	- Password reset has no rate limiting (allows enumeration/abuse)
+   184	- Invitation/referral endpoints have no limits (allows spam)
+   185	- Comment/review submission has no rate limiting (allows spam flooding)
+   186	
+   187	**Pass if:**
+   188	- Sensitive flows have rate limiting appropriate to the business context
+   189	- Anti-automation controls (CAPTCHA, device fingerprinting) are present where applicable
+   190	- Anomaly detection or monitoring is referenced for critical flows
+   191	
+   192	---
+   193	
+   194	### API7:2023 — Server Side Request Forgery (SSRF)
+   195	
+   196	**What to check:** Does the endpoint accept a URL from the user and make a server-side request to it?
+   197	
+   198	**Flag if:**
+   199	- User-supplied URLs are fetched without validation (`fetch(req.body.url)`, `requests.get(url)`)
+   200	- URL validation only checks the scheme (http/https) but not the host
+   201	- Internal IP ranges (127.0.0.1, 10.x, 172.16-31.x, 169.254.x) are reachable
+   202	- DNS rebinding is possible (no re-resolution check)
+   203	- Redirects are followed without re-validating the destination
+   204	
+   205	**Pass if:**
+   206	- URLs are validated against an explicit allowlist of domains/hosts
+   207	- Internal/private IP ranges are blocked
+   208	- Redirect following is disabled or re-validates each hop
+   209	
+   210	```javascript
+   211	// FAIL — fetches any URL the user provides
+   212	app.post('/fetch-preview', async (req, res) => {
+   213	  const response = await fetch(req.body.url);
+   214	  res.json({ preview: await response.text() });
+   215	});
+   216	
+   217	// PASS — URL validated against allowlist
+   218	const ALLOWED_HOSTS = new Set(['api.example.com', 'cdn.example.com']);
+   219	
+   220	app.post('/fetch-preview', async (req, res) => {
+   221	  const parsed = new URL(req.body.url);
+   222	  if (!ALLOWED_HOSTS.has(parsed.hostname)) {
+   223	    return res.status(400).json({ error: 'URL not allowed' });
+   224	  }
+   225	  const response = await fetch(req.body.url, { redirect: 'error' });
+   226	  res.json({ preview: await response.text() });
+   227	});
+   228	```
+   229	
+   230	---
+   231	
+   232	### API8:2023 — Security Misconfiguration
+   233	
+   234	**What to check:** Is the API configured securely at the infrastructure and framework level?
+   235	
+   236	**Flag if:**
+   237	- CORS allows `*` origin or reflects any origin without validation
+   238	- Verbose error messages expose stack traces, file paths, or query details in production
+   239	- Debug mode is enabled or detectable
+   240	- Security headers are missing (`X-Content-Type-Options`, `Strict-Transport-Security`, `X-Frame-Options`)
+   241	- Default credentials or API keys are present in code
+   242	- `.env` files, `credentials.json`, or secrets are committed
+   243	- TLS is not enforced
+   244	
+   245	**Pass if:**
+   246	- CORS is restricted to specific origins
+   247	- Error responses are generic in production (no stack traces)
+   248	- Security headers are set (recommend `helmet` for Express)
+   249	- No hardcoded secrets in code
+   250	
+   251	```javascript
+   252	// FAIL — CORS allows everything
+   253	app.use(cors());
+   254	
+   255	// PASS — CORS restricted
+   256	app.use(cors({
+   257	  origin: ['https://app.example.com'],
+   258	  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+   259	  credentials: true,
+   260	}));
+   261	```
+   262	
+   263	---
+   264	
+   265	### API9:2023 — Improper Inventory Management
+   266	
+   267	**What to check:** Are deprecated or internal API versions still accessible?
+   268	
+   269	**Flag if:**
+   270	- Old API versions (`/v1/`, `/v2/`) are still routed and functional but unmaintained
+   271	- Internal/debug endpoints are accessible in production (`/debug`, `/metrics`, `/health` with sensitive data)
+   272	- API documentation (Swagger UI) is served in production without auth
+   273	- Environment-specific routes (staging, testing) are present in production code
+   274	
+   275	**Pass if:**
+   276	- Only the current API version is routed
+   277	- Internal endpoints require authentication or are not deployed to production
+   278	- API documentation is restricted or removed in production
+   279	
+   280	---
+   281	
+   282	### API10:2023 — Unsafe Consumption of APIs
+   283	
+   284	**What to check:** Does the code call third-party APIs and blindly trust the response?
+   285	
+   286	**Flag if:**
+   287	- Third-party API responses are used without validation or type checking
+   288	- HTTP status codes from upstream APIs are not checked
+   289	- Upstream errors cause unhandled exceptions (no try/catch, no timeout)
+   290	- Sensitive data (API keys, tokens) is sent to third-party APIs over unencrypted connections
+   291	- Webhooks from external services are processed without signature verification
+   292	
+   293	**Pass if:**
+   294	- Third-party responses are validated (schema check, type check) before use
+   295	- Upstream calls have timeouts and error handling
+   296	- Webhook payloads are signature-verified
+   297	
+   298	```javascript
+   299	// FAIL — trusts upstream response shape
+   300	const userData = await fetch('https://api.third-party.com/user/123');
+   301	const data = await userData.json();
+   302	res.json({ name: data.name, email: data.email }); // What if data is malformed?
+   303	
+   304	// PASS — validates upstream response
+   305	const userData = await fetch('https://api.third-party.com/user/123', {
+   306	  signal: AbortSignal.timeout(5000),
+   307	});
+   308	if (!userData.ok) {
+   309	  return res.status(502).json({ error: 'Upstream service error' });
+   310	}
+   311	const data = await userData.json();
+   312	if (typeof data.name !== 'string' || typeof data.email !== 'string') {
+   313	  return res.status(502).json({ error: 'Invalid upstream response' });
+   314	}
+   315	res.json({ name: data.name, email: data.email });
+   316	```
+   317	
+   318	---
+   319	
+   320	## 3. Review Output Format
+   321	
+   322	When this skill produces its review, use exactly this structure:
+   323	
+   324	```markdown
+   325	## APIsec Security Review
+   326	
+   327	**File reviewed:** `src/routes/orders.js`
+   328	**Reviewed against:** OWASP API Security Top 10 2023
+   329	**Date:** [current date]
+   330	**Security Score:** [A/B/C/D/F]
+   331	
+   332	---
+   333	
+   334	### Critical Findings
+   335	
+   336	#### [API1:2023] Broken Object Level Authorization — Line 47
+   337	**Pattern:** `Order.findById(req.params.id)` without ownership filter
+   338	**Risk:** Any authenticated user can read, modify, or delete any order by changing the ID
+   339	**Fix:**
+   340	```js
+   341	const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+   342	```
+   343	
+   344	---
+   345	
+   346	### High Findings
+   347	
+   348	#### [API2:2023] Broken Authentication — Line 12
+   349	**Pattern:** `jwt.verify(token, secret)` without algorithm whitelist
+   350	**Risk:** Algorithm confusion attack — attacker signs token with "none" or swaps RS256/HS256
+   351	**Fix:**
+   352	```js
+   353	jwt.verify(token, secret, { algorithms: ['HS256'], issuer: 'my-service' });
+   354	```
+   355	
+   356	---
+   357	
+   358	### Medium Findings
+   359	
+   360	#### [API4:2023] Unrestricted Resource Consumption — Line 58
+   361	**Pattern:** `Order.find({}).limit(req.query.limit)` — user controls limit without cap
+   362	**Risk:** Attacker sends `?limit=1000000` to exhaust server memory and database connections
+   363	**Fix:**
+   364	```js
+   365	const limit = Math.min(parseInt(req.query.limit) || 20, 100);
+   366	```
+   367	
+   368	---
+   369	
+   370	### Low Findings
+   371	
+   372	[Same format]
+   373	
+   374	---
+   375	
+   376	### Passed Checks
+   377	
+   378	- **[API5:2023]** Admin routes use `requireRole('admin')` middleware — function-level authorization is properly enforced
+   379	- **[API8:2023]** CORS is restricted to specific origins via `cors({ origin: [...] })`
+   380	- **[API2:2023]** Passwords are hashed with bcrypt (cost factor 12) — proper password storage
+   381	
+   382	---
+   383	
+   384	### Recommended Next Steps
+   385	
+   386	1. **[Critical]** Add ownership filter to all `findById` calls on lines 47, 62, 78 — prevents BOLA
+   387	2. **[High]** Add algorithm whitelist to JWT verification on line 12 — prevents algorithm confusion
+   388	3. **[Medium]** Cap pagination limit to 100 on line 58 — prevents resource exhaustion
+   389	```
+   390	
+   391	---
+   392	
+   393	## 4. Security Scoring
+   394	
+   395	Assign an overall **API Security Score** based on the highest severity finding:
+   396	
+   397	| Score | Criteria | Meaning |
+   398	|-------|----------|---------|
+   399	| **F** | Any **Critical** finding | Actively exploitable, immediate risk of data breach |
+   400	| **D** | Any **High** finding, no Critical | Significant vulnerability, exploitable with moderate effort |
+   401	| **C** | Only **Medium** findings | Security weaknesses present but require specific conditions to exploit |
+   402	| **B** | Only **Low** findings | Minor issues, defense-in-depth gaps |
+   403	| **A** | All checks pass | Follows secure coding best practices across all OWASP categories |
+   404	
+   405	### Severity Assignment Rules
+   406	
+   407	| Severity | Criteria |
+   408	|----------|----------|
+   409	| **Critical** | Unauthenticated access to data, unauthenticated mutation, no auth on endpoint, SQL/command injection with direct string concatenation |
+   410	| **High** | BOLA with authentication (any user reads any object), JWT without algorithm whitelist, mass assignment allowing role escalation, SSRF with unrestricted URL fetch |
+   411	| **Medium** | Ownership checked post-fetch instead of at query level, unbounded pagination, missing rate limiting on auth endpoints, verbose error messages in production |
+   412	| **Low** | Missing security headers, admin operations not audited, CORS slightly too permissive, deprecated API version still routed |
+   413	
+   414	---
+   415	
+   416	## 5. Quick Wins
+   417	
+   418	Every review ends with **3 specific code changes** that would have the biggest security impact. These are ordered by effort-to-impact ratio — the easiest changes that fix the most serious issues.
+   419	
+   420	Format:
+   421	
+   422	```markdown
+   423	### Quick Wins — Top 3 Changes for Maximum Security Impact
+   424	
+   425	#### 1. Add ownership filter to Order queries (fixes Critical BOLA)
+   426	
+   427	**Before:**
+   428	```js
+   429	// Line 47
+   430	const order = await Order.findById(req.params.id);
+   431	```
+   432	
+   433	**After:**
+   434	```js
+   435	const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+   436	if (!order) return res.status(404).json({ error: 'Not found' });
+   437	```
+   438	
+   439	**Impact:** Prevents any user from accessing any other user's orders. Closes the #1 API vulnerability.
+   440	
+   441	#### 2. Whitelist JWT algorithm (fixes High auth bypass)
+   442	
+   443	**Before:**
+   444	```js
+   445	// Line 12
+   446	const decoded = jwt.verify(token, secret);
+   447	```
+   448	
+   449	**After:**
+   450	```js
+   451	const decoded = jwt.verify(token, secret, {
+   452	  algorithms: ['HS256'],
+   453	  issuer: process.env.JWT_ISSUER,
+   454	  audience: process.env.JWT_AUDIENCE,
+   455	});
+   456	```
+   457	
+   458	**Impact:** Prevents algorithm confusion attacks and token forgery.
+   459	
+   460	#### 3. Destructure request body instead of passing directly (fixes High mass assignment)
+   461	
+   462	**Before:**
+   463	```js
+   464	// Line 33
+   465	await Order.create(req.body);
+   466	```
+   467	
+   468	**After:**
+   469	```js
+   470	const { item, quantity, shippingAddress } = req.body;
+   471	await Order.create({ item, quantity, shippingAddress, userId: req.user.id });
+   472	```
+   473	
+   474	**Impact:** Prevents clients from setting `isAdmin`, `role`, `userId`, or any other field not in the allowlist.
+   475	```
+   476	
+   477	---
+   478	
+   479	## 6. What Good Looks Like
+   480	
+   481	This is a reference endpoint that passes all 10 OWASP API checks. Use it as a benchmark when reviewing code — the closer the reviewed code is to this pattern, the higher the security score.
+   482	
+   483	```javascript
+   484	// routes/orders.js — reference secure endpoint
+   485	
+   486	import express from 'express';
+   487	import { z } from 'zod';
+   488	import rateLimit from 'express-rate-limit';
+   489	import { authenticate } from '../middleware/authenticate.js';
+   490	import { requireRole } from '../middleware/authorize.js';
+   491	import { auditLog } from '../middleware/audit.js';
+   492	import Order from '../models/Order.js';
+   493	
+   494	const router = express.Router();
+   495	
+   496	// ─── Input Validation Schema ──────────────────────────────────
+   497	// API3: Explicit field allowlist with constraints — rejects unknown fields
+   498	const createOrderSchema = z.object({
+   499	  item: z.string().min(1).max(200),
+   500	  quantity: z.number().int().min(1).max(10000),
+   501	  shippingAddress: z.string().min(10).max(500),
+   502	}).strict(); // strict() = additionalProperties: false
+   503	
+   504	const updateOrderSchema = z.object({
+   505	  item: z.string().min(1).max(200).optional(),
+   506	  quantity: z.number().int().min(1).max(10000).optional(),
+   507	  shippingAddress: z.string().min(10).max(500).optional(),
+   508	}).strict();
+   509	
+   510	const paginationSchema = z.object({
+   511	  page: z.coerce.number().int().min(1).default(1),
+   512	  limit: z.coerce.number().int().min(1).max(100).default(20),
+   513	});
+   514	
+   515	// ─── Response Serializer ──────────────────────────────────────
+   516	// API3: Only return explicitly allowed fields — never pass DB model through
+   517	function serializeOrder(order) {
+   518	  return {
+   519	    id: order._id,
+   520	    item: order.item,
+   521	    quantity: order.quantity,
+   522	    shippingAddress: order.shippingAddress,
+   523	    status: order.status,
+   524	    createdAt: order.createdAt,
+   525	    // Explicitly excluded: userId, internalNotes, costPrice, __v
+   526	  };
+   527	}
+   528	
+   529	// ─── Rate Limiting ────────────────────────────────────────────
+   530	// API6: Protect business-critical flow against abuse
+   531	const orderCreationLimiter = rateLimit({
+   532	  windowMs: 15 * 60 * 1000,
+   533	  max: 30, // 30 orders per 15 minutes per IP
+   534	  message: { error: 'Too many orders, try again later' },
+   535	});
+   536	
+   537	// ─── Routes ───────────────────────────────────────────────────
+   538	
+   539	// LIST — API1: scoped to authenticated user, API4: capped pagination
+   540	router.get('/',
+   541	  authenticate, // API2: auth middleware present
+   542	  async (req, res) => {
+   543	    const { page, limit } = paginationSchema.parse(req.query); // API4: bounded
+   544	    const skip = (page - 1) * limit;
+   545	
+   546	    const orders = await Order.find({ userId: req.user.id }) // API1: ownership filter
+   547	      .sort({ createdAt: -1 })
+   548	      .skip(skip)
+   549	      .limit(limit); // API4: capped at 100
+   550	
+   551	    const total = await Order.countDocuments({ userId: req.user.id });
+   552	
+   553	    res.json({
+   554	      data: orders.map(serializeOrder), // API3: filtered response
+   555	      pagination: { page, limit, total, pages: Math.ceil(total / limit) },
+   556	    });
+   557	  }
+   558	);
+   559	
+   560	// GET BY ID — API1: ownership enforced at query level
+   561	router.get('/:id',
+   562	  authenticate,
+   563	  async (req, res) => {
+   564	    const order = await Order.findOne({
+   565	      _id: req.params.id,
+   566	      userId: req.user.id, // API1: ownership filter
+   567	    });
+   568	
+   569	    if (!order) {
+   570	      return res.status(404).json({ error: 'Not found' }); // 404, not 403 — no info leak
+   571	    }
+   572	
+   573	    res.json(serializeOrder(order)); // API3: filtered response
+   574	  }
+   575	);
+   576	
+   577	// CREATE — API3: explicit field extraction, API6: rate limited
+   578	router.post('/',
+   579	  authenticate,
+   580	  orderCreationLimiter, // API6: rate limited business flow
+   581	  async (req, res) => {
+   582	    const parsed = createOrderSchema.safeParse(req.body); // API3: input validation
+   583	    if (!parsed.success) {
+   584	      return res.status(400).json({
+   585	        error: 'Validation failed',
+   586	        details: parsed.error.issues.map(i => ({ field: i.path.join('.'), message: i.message })),
+   587	      });
+   588	    }
+   589	
+   590	    const order = await Order.create({
+   591	      ...parsed.data,         // Only validated fields
+   592	      userId: req.user.id,    // Server-set — cannot be overridden by client
+   593	      status: 'pending',      // Server-set default
+   594	    });
+   595	
+   596	    res.status(201).json(serializeOrder(order)); // API3: filtered response
+   597	  }
+   598	);
+   599	
+   600	// UPDATE — API1: ownership at query level, API3: field allowlist
+   601	router.put('/:id',
+   602	  authenticate,
+   603	  async (req, res) => {
+   604	    const parsed = updateOrderSchema.safeParse(req.body);
+   605	    if (!parsed.success) {
+   606	      return res.status(400).json({ error: 'Validation failed' });
+   607	    }
+   608	
+   609	    const order = await Order.findOneAndUpdate(
+   610	      { _id: req.params.id, userId: req.user.id }, // API1: ownership
+   611	      { $set: parsed.data },                         // API3: only validated fields
+   612	      { new: true }
+   613	    );
+   614	
+   615	    if (!order) {
+   616	      return res.status(404).json({ error: 'Not found' });
+   617	    }
+   618	
+   619	    res.json(serializeOrder(order));
+   620	  }
+   621	);
+   622	
+   623	// DELETE — API1: ownership, API5: only owner can delete
+   624	router.delete('/:id',
+   625	  authenticate,
+   626	  async (req, res) => {
+   627	    const order = await Order.findOneAndDelete({
+   628	      _id: req.params.id,
+   629	      userId: req.user.id, // API1: ownership
+   630	    });
+   631	
+   632	    if (!order) {
+   633	      return res.status(404).json({ error: 'Not found' });
+   634	    }
+   635	
+   636	    res.status(204).send();
+   637	  }
+   638	);
+   639	
+   640	// ADMIN: LIST ALL — API5: role-restricted, audited
+   641	router.get('/admin/all',
+   642	  authenticate,
+   643	  requireRole('admin'),          // API5: function-level auth
+   644	  auditLog('admin:list-orders'), // Audit trail
+   645	  async (req, res) => {
+   646	    const { page, limit } = paginationSchema.parse(req.query);
+   647	    const skip = (page - 1) * limit;
+   648	
+   649	    const orders = await Order.find({}).sort({ createdAt: -1 }).skip(skip).limit(limit);
+   650	    const total = await Order.countDocuments({});
+   651	
+   652	    res.json({
+   653	      data: orders.map(serializeOrder),
+   654	      pagination: { page, limit, total, pages: Math.ceil(total / limit) },
+   655	    });
+   656	  }
+   657	);
+   658	
+   659	export default router;
+   660	```
+   661	
+   662	### Why this endpoint scores A
+   663	
+   664	| OWASP Category | How It Passes |
+   665	|----------------|---------------|
+   666	| API1 — BOLA | Every query includes `userId: req.user.id` |
+   667	| API2 — Auth | `authenticate` middleware on every route |
+   668	| API3 — Property Auth | Input: `zod.strict()` rejects extra fields. Output: `serializeOrder()` allowlists fields |
+   669	| API4 — Resource | Pagination capped at 100, body parser has limit (assumed at app level) |
+   670	| API5 — BFLA | Admin route has `requireRole('admin')` + audit logging |
+   671	| API6 — Business Flow | Order creation is rate limited (30 per 15 min) |
+   672	| API7 — SSRF | No outbound requests based on user input |
+   673	| API8 — Misconfig | No verbose errors, no debug routes (assumed helmet at app level) |
+   674	| API9 — Inventory | Single version, no deprecated routes |
+   675	| API10 — Unsafe Consumption | No third-party API calls in this file |
+RC: 0
+----
+CMD: grep -n -F 'HTTP status codes from upstream APIs are not checked' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+288:- HTTP status codes from upstream APIs are not checked
+RC: 0
+----
+CMD: grep -n -F 'Upstream errors cause unhandled exceptions (no try/catch, no timeout)' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+289:- Upstream errors cause unhandled exceptions (no try/catch, no timeout)
+RC: 0
+----
+CMD: grep -n -F 'Upstream calls have timeouts and error handling' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+295:- Upstream calls have timeouts and error handling
+RC: 0
+----
+CMD: grep -n -F 'AbortSignal.timeout(5000)' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+306:  signal: AbortSignal.timeout(5000),
+RC: 0
+----
+CMD: grep -n -F 'Auth endpoints (login, register, forgot-password) have no rate limiting' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+66:- Auth endpoints (login, register, forgot-password) have no rate limiting
+RC: 0
+----
+CMD: grep -n -F '// 404, not 403 — no info leak' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+570:      return res.status(404).json({ error: 'Not found' }); // 404, not 403 — no info leak
+RC: 0
+----
+CMD: grep -n -F "if (!order) return res.status(404).json({ error: 'Not found' });" /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+436:if (!order) return res.status(404).json({ error: 'Not found' });
+RC: 0
+----
+CMD: grep -n -F 'Password reset has no rate limiting (allows enumeration/abuse)' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+183:- Password reset has no rate limiting (allows enumeration/abuse)
+RC: 0
+----
+CMD: grep -n -F 'Is the JWT/session validated correctly?' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+58:**What to check:** Is authentication middleware present on every non-public route? Is the JWT/session validated correctly?
+RC: 0
+----
+CMD: grep -n -F 'no distinction between 401 (not authenticated) and 403 (not authorized)' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+159:- There's no distinction between 401 (not authenticated) and 403 (not authorized)
+RC: 0
+----
+CMD: grep -n -F "Admin routes have explicit role middleware (\`requireRole('admin')\`)" /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+162:- Admin routes have explicit role middleware (`requireRole('admin')`)
+RC: 0
+----
+CMD: grep -n -F 'Default credentials or API keys are present in code' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+241:- Default credentials or API keys are present in code
+RC: 0
+----
+CMD: grep -n -F 'or secrets are committed' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+242:- `.env` files, `credentials.json`, or secrets are committed
+RC: 0
+----
+CMD: grep -n -F 'No hardcoded secrets in code' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+249:- No hardcoded secrets in code
+RC: 0
+----
+CMD: grep -n -F 'additionalProperties' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+97:- `additionalProperties` is not set to `false` in request schemas
+502:}).strict(); // strict() = additionalProperties: false
+RC: 0
+----
+CMD: grep -n -F 'Admin operations are logged' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+164:- Admin operations are logged
+RC: 0
+----
+CMD: grep -n -F 'Verbose error messages expose stack traces' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:07Z
+238:- Verbose error messages expose stack traces, file paths, or query details in production
+RC: 0
+----
+CMD: grep -n -i -E 'cache|budget|quota|rps|req/s|requests per|per second|call count|call-count|number of calls|spec\b|specification|design doc|document(ed)? in' /tmp/s5-cand/2/skills/api-security-review/SKILL.md; echo sweep_done
+AT_UTC: 2026-09-09T13:18:20Z
+sweep_done
+RC: 0
+----
+CMD: grep -n -i -E 'latency|timing|constant[- ]time|same (response|error|status|message|time)|identical|indistinguish|enumerat|not_found|user exists|does not exist' /tmp/s5-cand/2/skills/api-security-review/SKILL.md; echo sweep_done
+AT_UTC: 2026-09-09T13:18:20Z
+65:- Passwords are compared with `===` instead of a constant-time function
+183:- Password reset has no rate limiting (allows enumeration/abuse)
+sweep_done
+RC: 0
+----
+CMD: grep -n -i -E 'session|cookie|req\.user|role|customer|adjuster|agent' /tmp/s5-cand/2/skills/api-security-review/SKILL.md; echo sweep_done
+AT_UTC: 2026-09-09T13:18:21Z
+14:## 1. Role
+43:- Every query includes an ownership filter (e.g., `{ _id: id, userId: req.user.id }`)
+51:const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+58:**What to check:** Is authentication middleware present on every non-public route? Is the JWT/session validated correctly?
+98:- Server-owned fields (`id`, `createdAt`, `role`, `isAdmin`) are writable from request body
+114:await User.create({ name, email, role: 'user' }); // role hardcoded server-side
+142:const orders = await Order.find({ userId: req.user.id }).limit(req.query.limit);
+146:const orders = await Order.find({ userId: req.user.id }).limit(limit);
+153:**What to check:** Are admin and elevated operations protected by role or permission checks?
+156:- Admin endpoints (user management, config changes, data export) have auth but no role check
+157:- Role checks fail open (deny-list instead of allow-list)
+158:- Role checks are buried inside handler logic instead of at the middleware level
+162:- Admin routes have explicit role middleware (`requireRole('admin')`)
+163:- Role checks fail closed (default deny, explicit allow)
+170:// PASS — role check + audit
+171:router.delete('/admin/users/:id', authenticate, requireRole('admin'), auditLog('delete-user'), deleteUser);
+341:const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+378:- **[API5:2023]** Admin routes use `requireRole('admin')` middleware — function-level authorization is properly enforced
+410:| **High** | BOLA with authentication (any user reads any object), JWT without algorithm whitelist, mass assignment allowing role escalation, SSRF with unrestricted URL fetch |
+435:const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+471:await Order.create({ item, quantity, shippingAddress, userId: req.user.id });
+474:**Impact:** Prevents clients from setting `isAdmin`, `role`, `userId`, or any other field not in the allowlist.
+490:import { requireRole } from '../middleware/authorize.js';
+546:    const orders = await Order.find({ userId: req.user.id }) // API1: ownership filter
+551:    const total = await Order.countDocuments({ userId: req.user.id });
+566:      userId: req.user.id, // API1: ownership filter
+592:      userId: req.user.id,    // Server-set — cannot be overridden by client
+610:      { _id: req.params.id, userId: req.user.id }, // API1: ownership
+629:      userId: req.user.id, // API1: ownership
+640:// ADMIN: LIST ALL — API5: role-restricted, audited
+643:  requireRole('admin'),          // API5: function-level auth
+666:| API1 — BOLA | Every query includes `userId: req.user.id` |
+670:| API5 — BFLA | Admin route has `requireRole('admin')` + audit logging |
+sweep_done
+RC: 0
+----
+CMD: grep -n -i -E 'secret|credential|api key|\.env|process\.env|diff|hook|pre-commit|gitleaks|trufflehog|config' /tmp/s5-cand/2/skills/api-security-review/SKILL.md; echo sweep_done
+AT_UTC: 2026-09-09T13:18:21Z
+77:const decoded = jwt.verify(token, secret);
+80:const decoded = jwt.verify(token, secret, {
+128:- No request body size limit configured (Express `express.json({ limit: '...' })`)
+137:- Body parser has a configured limit
+156:- Admin endpoints (user management, config changes, data export) have auth but no role check
+232:### API8:2023 — Security Misconfiguration
+234:**What to check:** Is the API configured securely at the infrastructure and framework level?
+241:- Default credentials or API keys are present in code
+242:- `.env` files, `credentials.json`, or secrets are committed
+249:- No hardcoded secrets in code
+259:  credentials: true,
+290:- Sensitive data (API keys, tokens) is sent to third-party APIs over unencrypted connections
+291:- Webhooks from external services are processed without signature verification
+296:- Webhook payloads are signature-verified
+349:**Pattern:** `jwt.verify(token, secret)` without algorithm whitelist
+353:jwt.verify(token, secret, { algorithms: ['HS256'], issuer: 'my-service' });
+446:const decoded = jwt.verify(token, secret);
+451:const decoded = jwt.verify(token, secret, {
+453:  issuer: process.env.JWT_ISSUER,
+454:  audience: process.env.JWT_AUDIENCE,
+673:| API8 — Misconfig | No verbose errors, no debug routes (assumed helmet at app level) |
+sweep_done
+RC: 0
+----
+CMD: grep -n -i -E '\brun\b|execute|npm |npx |curl |bash |\.sh\b|script|scanner|scan\b|tool|cli|mcp|apisec\.ai|api\.apisec|http[s]?://' /tmp/s5-cand/2/skills/api-security-review/SKILL.md; echo sweep_done
+AT_UTC: 2026-09-09T13:18:21Z
+3:description: >
+16:You are a **lead API security reviewer** conducting a structured assessment of API code against the complete **OWASP API Security Top 10 2023**. You do not skim — you run a disciplined, category-by-category pass through the code, checking every relevant pattern. Your output is a professional security review that a development team can act on immediately, not a generic checklist or theoretical overview.
+29:When this skill activates, read the target file(s) completely, then run the following structured pass. Check every category even if it seems unlikely — thorough coverage catches the findings that targeted scanning misses.
+46:```javascript
+75:```javascript
+91:**What to check:** Does the API control which fields the client can read and write?
+105:```javascript
+106:// FAIL — mass assignment: client sets any field
+123:**What to check:** Are there limits on how much resource a single request or client can consume?
+140:```javascript
+166:```javascript
+210:```javascript
+251:```javascript
+257:  origin: ['https://app.example.com'],
+298:```javascript
+300:const userData = await fetch('https://api.third-party.com/user/123');
+305:const userData = await fetch('https://api.third-party.com/user/123', {
+474:**Impact:** Prevents clients from setting `isAdmin`, `role`, `userId`, or any other field not in the allowlist.
+483:```javascript
+592:      userId: req.user.id,    // Server-set — cannot be overridden by client
+sweep_done
+RC: 0
+----
+CMD: grep -n -i -E 'attack|exploit|pentest|penetration|payload|fuzz|probe|send (a )?request|craft|inject|bypass|forg' /tmp/s5-cand/2/skills/api-security-review/SKILL.md; echo sweep_done
+AT_UTC: 2026-09-09T13:18:21Z
+20:- **Assume the attacker is authenticated** — most API attacks come from legitimate users probing beyond their authorization boundary.
+66:- Auth endpoints (login, register, forgot-password) have no rate limiting
+194:### API7:2023 — Server Side Request Forgery (SSRF)
+296:- Webhook payloads are signature-verified
+350:**Risk:** Algorithm confusion attack — attacker signs token with "none" or swaps RS256/HS256
+362:**Risk:** Attacker sends `?limit=1000000` to exhaust server memory and database connections
+399:| **F** | Any **Critical** finding | Actively exploitable, immediate risk of data breach |
+400:| **D** | Any **High** finding, no Critical | Significant vulnerability, exploitable with moderate effort |
+401:| **C** | Only **Medium** findings | Security weaknesses present but require specific conditions to exploit |
+409:| **Critical** | Unauthenticated access to data, unauthenticated mutation, no auth on endpoint, SQL/command injection with direct string concatenation |
+441:#### 2. Whitelist JWT algorithm (fixes High auth bypass)
+458:**Impact:** Prevents algorithm confusion attacks and token forgery.
+sweep_done
+RC: 0
+----
+CMD: grep -n -i -E 'express|mongoose|zod|helmet|django|spring|flask|fastapi|rails|\.first\b|preauthorize|get_object_or_404' /tmp/s5-cand/2/skills/api-security-review/SKILL.md | wc -l; grep -n -i -E 'express|mongoose|zod|helmet' /tmp/s5-cand/2/skills/api-security-review/SKILL.md | head -20
+AT_UTC: 2026-09-09T13:18:21Z
+      11
+128:- No request body size limit configured (Express `express.json({ limit: '...' })`)
+132:- Regular expressions use user input without ReDoS protection
+248:- Security headers are set (recommend `helmet` for Express)
+486:import express from 'express';
+487:import { z } from 'zod';
+488:import rateLimit from 'express-rate-limit';
+494:const router = express.Router();
+668:| API3 — Property Auth | Input: `zod.strict()` rejects extra fields. Output: `serializeOrder()` allowlists fields |
+673:| API8 — Misconfig | No verbose errors, no debug routes (assumed helmet at app level) |
+RC: 0
+----
+CMD: grep -n -i -E 'jwt|algorithm|issuer|audience|\biss\b|\baud\b|\bexp\b' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:21Z
+58:**What to check:** Is authentication middleware present on every non-public route? Is the JWT/session validated correctly?
+62:- `jwt.decode()` is used instead of `jwt.verify()`
+63:- No algorithm whitelist on `jwt.verify()` (allows `"none"` algorithm)
+64:- `exp`, `iss`, or `aud` claims are not validated
+71:- JWT is verified with explicit algorithm, issuer, and audience
+76:// FAIL — no algorithm whitelist
+77:const decoded = jwt.verify(token, secret);
+80:const decoded = jwt.verify(token, secret, {
+81:  algorithms: ['HS256'],
+82:  issuer: 'my-service',
+83:  audience: 'my-api',
+349:**Pattern:** `jwt.verify(token, secret)` without algorithm whitelist
+350:**Risk:** Algorithm confusion attack — attacker signs token with "none" or swaps RS256/HS256
+353:jwt.verify(token, secret, { algorithms: ['HS256'], issuer: 'my-service' });
+387:2. **[High]** Add algorithm whitelist to JWT verification on line 12 — prevents algorithm confusion
+410:| **High** | BOLA with authentication (any user reads any object), JWT without algorithm whitelist, mass assignment allowing role escalation, SSRF with unrestricted URL fetch |
+441:#### 2. Whitelist JWT algorithm (fixes High auth bypass)
+446:const decoded = jwt.verify(token, secret);
+451:const decoded = jwt.verify(token, secret, {
+452:  algorithms: ['HS256'],
+453:  issuer: process.env.JWT_ISSUER,
+454:  audience: process.env.JWT_AUDIENCE,
+458:**Impact:** Prevents algorithm confusion attacks and token forgery.
+RC: 0
+----
+CMD: grep -n -E '40[134]' /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+AT_UTC: 2026-09-09T13:18:21Z
+38:- `findById`, `findUnique`, `get_object_or_404`, `repository.findById`, or `db.First` is called with only the request parameter ID and no ownership filter
+159:- There's no distinction between 401 (not authenticated) and 403 (not authorized)
+436:if (!order) return res.status(404).json({ error: 'Not found' });
+570:      return res.status(404).json({ error: 'Not found' }); // 404, not 403 — no info leak
+616:      return res.status(404).json({ error: 'Not found' });
+633:      return res.status(404).json({ error: 'Not found' });
+RC: 0
+----
+CMD: cat /tmp/s5-cand/2/.cursor-plugin/plugin.json
+AT_UTC: 2026-09-09T13:19:30Z
+{
+  "name": "apisec",
+  "displayName": "APIsec — API Security for AI Coding Agents",
+  "description": "Embed API security intelligence directly into your coding workflow. Detects BOLA, BFLA, injection risks, auth gaps, and OWASP API Top 10 vulnerabilities as you write code.",
+  "version": "1.0.0",
+  "author": "APIsec",
+  "homepage": "https://apisec.ai",
+  "logo": "./logo.png",
+  "skills": [
+    { "path": "skills/bola-detector" },
+    { "path": "skills/auth-rbac-scaffold" },
+    { "path": "skills/injection-checker" },
+    { "path": "skills/security-test-generator" },
+    { "path": "skills/api-security-review" },
+    { "path": "skills/openapi-hardener" }
+  ],
+  "rules": [
+    { "path": "rules/auth-required.mdc" },
+    { "path": "rules/ownership-check.mdc" },
+    { "path": "rules/input-validation.mdc" },
+    { "path": "rules/error-sanitization.mdc" },
+    { "path": "rules/admin-rbac.mdc" }
+  ]
+}
+RC: 0
+----
+CMD: ls /tmp/s5-cand/2/rules; for f in /tmp/s5-cand/2/rules/*.mdc; do echo "== $f"; head -8 "$f"; done
+AT_UTC: 2026-09-09T13:19:30Z
+admin-rbac.mdc
+auth-required.mdc
+error-sanitization.mdc
+input-validation.mdc
+ownership-check.mdc
+== /tmp/s5-cand/2/rules/admin-rbac.mdc
+---
+description: "Requires explicit role assertion before executing admin-scoped operations. Prevents privilege escalation and BFLA vulnerabilities."
+alwaysApply: true
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.py"
+  - "**/*.go"
+== /tmp/s5-cand/2/rules/auth-required.mdc
+---
+description: "Enforces authentication middleware on all API route handlers. Applies to Express, FastAPI, Django, Spring, Go Gin."
+alwaysApply: true
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.py"
+  - "**/*.go"
+== /tmp/s5-cand/2/rules/error-sanitization.mdc
+---
+description: "Prevents leaking internal error details, stack traces, or database error messages in API responses."
+alwaysApply: true
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.py"
+  - "**/*.go"
+== /tmp/s5-cand/2/rules/input-validation.mdc
+---
+description: "Requires validation of all user-supplied input before use. Prevents injection, unexpected types, and missing required fields."
+alwaysApply: true
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.py"
+  - "**/*.go"
+== /tmp/s5-cand/2/rules/ownership-check.mdc
+---
+description: "Requires ownership validation on any endpoint that accesses database records by user-supplied ID. Prevents BOLA/IDOR vulnerabilities."
+alwaysApply: true
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.py"
+  - "**/*.go"
+RC: 0
+----
+CMD: grep -n -i -E 'jwt|algorithm|401|403|404|secret|session' /tmp/s5-cand/2/rules/*.mdc
+AT_UTC: 2026-09-09T13:19:30Z
+/tmp/s5-cand/2/rules/admin-rbac.mdc:22:    return res.status(403).json({ error: 'Forbidden' });
+/tmp/s5-cand/2/rules/auth-required.mdc:16:Never generate a data-touching endpoint without auth. If auth middleware is not yet defined in the codebase, note that it needs to be added and generate a placeholder that fails safely (401) until implemented.
+RC: 0
+----
+CMD: sed -n '1,60p' /tmp/s5-cand/2/README.md
+AT_UTC: 2026-09-09T13:19:30Z
+# APIsec — API Security for AI Coding Agents
+
+> Embed OWASP API Security Top 10 intelligence directly into your coding workflow. Every endpoint your AI generates is secure by default — no configuration, no API keys, no friction.
+
+[![Cursor Marketplace](https://img.shields.io/badge/Cursor-Marketplace-blue)](https://cursor.com/marketplace)
+[![Compatible](https://img.shields.io/badge/Compatible-Claude%20Code%20%7C%20Codex%20%7C%20Copilot%20%7C%20Gemini%20%7C%20Replit-green)](#installation)
+[![OWASP](https://img.shields.io/badge/OWASP-API%20Top%2010%202023-red)](https://owasp.org/API-Security)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+
+---
+
+## What It Does
+
+When you ask Cursor's AI to write an API endpoint, it normally generates the most direct answer. Without any security context, that often means no authentication checks, no ownership filters, no input validation.
+
+This plugin embeds APIsec's security rules and skills into Cursor's AI context. The same prompt produces hardened output — silently, automatically, every time.
+
+**Without the plugin:**
+```js
+app.get('/api/orders/:id', async (req, res) => {
+  const order = await Order.findById(req.params.id); // any user, any order
+  res.json(order);
+});
+```
+
+**With the plugin:**
+```js
+app.get('/api/orders/:id', authenticate, async (req, res) => {
+  const order = await Order.findOne({
+    _id: req.params.id,
+    userId: req.user.id,   // ownership enforced
+  });
+  if (!order) return res.status(404).json({ error: 'Not found' });
+  res.json(serializeOrder(order));  // filtered response
+});
+```
+
+Same 8 words typed. Completely different output.
+
+---
+
+## What's Included
+
+### 5 Security Rules (always active)
+
+Rules are injected into the AI's system prompt at session start. They fire silently on every code generation — no commands needed.
+
+| Rule | What It Enforces |
+|------|-----------------|
+| `auth-required` | Every data-touching route must have authentication middleware |
+| `ownership-check` | All queries scoped to the authenticated user's ID |
+| `input-validation` | User input validated before reaching database or commands |
+| `error-sanitization` | No stack traces, file paths, or query details in error responses |
+| `admin-rbac` | Admin and elevated operations require explicit role middleware |
+
+### 6 Security Skills (on-demand)
+
+Skills load automatically when the AI detects a relevant task. Each produces a structured security report with OWASP references and actionable fixes.
+
+| Skill | Triggers On | OWASP Coverage |
+RC: 0
+----
+CMD: grep -n -i -E 'install|marketplace|agentskills|skills\.sh|claude|cursor|mcp|scan|apisec\.ai|npm|npx' /tmp/s5-cand/2/README.md
+AT_UTC: 2026-09-09T13:19:30Z
+5:[![Cursor Marketplace](https://img.shields.io/badge/Cursor-Marketplace-blue)](https://cursor.com/marketplace)
+6:[![Compatible](https://img.shields.io/badge/Compatible-Claude%20Code%20%7C%20Codex%20%7C%20Copilot%20%7C%20Gemini%20%7C%20Replit-green)](#installation)
+14:When you ask Cursor's AI to write an API endpoint, it normally generates the most direct answer. Without any security context, that often means no authentication checks, no ownership filters, no input validation.
+16:This plugin embeds APIsec's security rules and skills into Cursor's AI context. The same prompt produces hardened output — silently, automatically, every time.
+71:## Installation
+73:This plugin uses the universal [Agent Skills](https://agentskills.io) format. The same files work across all major AI coding agents.
+75:### Cursor (one-click)
+77:Install directly from the [Cursor Marketplace](https://cursor.com/marketplace) — search **APIsec**.
+81:git clone https://github.com/APIsec-ai/apisec-cursor-plugin
+82:cp -r apisec-cursor-plugin/skills .cursor/skills/
+83:cp -r apisec-cursor-plugin/rules .cursor/rules/
+86:### Claude Code
+88:cp -r apisec-cursor-plugin/skills ~/.claude/skills/
+93:cp -r apisec-cursor-plugin/skills .agents/skills/
+98:cp -r apisec-cursor-plugin/skills .github/skills/
+103:cp -r apisec-cursor-plugin/skills ~/.gemini/skills/
+108:cp -r apisec-cursor-plugin/skills .agents/skills/
+113:cp -r apisec-cursor-plugin/skills .agents/skills/
+160:Powered by APIsec · apisec.ai
+184:The current release is Phase 1: skills and rules. Phase 2 will add a live MCP server with real-time APIsec API integration:
+186:- `@apisec scan` — run a full API security scan from inside Cursor
+197:[APIsec](https://apisec.ai) is the API security testing platform trusted by Fortune 500 enterprises. We automate continuous API security testing across the full SDLC — from development through production.
+RC: 0
+----
+CMD: wc -l /tmp/s5-cand/2/rules/*.mdc /tmp/s5-cand/2/skills/*/SKILL.md
+AT_UTC: 2026-09-09T13:19:30Z
+      25 /tmp/s5-cand/2/rules/admin-rbac.mdc
+      27 /tmp/s5-cand/2/rules/auth-required.mdc
+      24 /tmp/s5-cand/2/rules/error-sanitization.mdc
+      25 /tmp/s5-cand/2/rules/input-validation.mdc
+      24 /tmp/s5-cand/2/rules/ownership-check.mdc
+     675 /tmp/s5-cand/2/skills/api-security-review/SKILL.md
+    1227 /tmp/s5-cand/2/skills/auth-rbac-scaffold/SKILL.md
+     487 /tmp/s5-cand/2/skills/bola-detector/SKILL.md
+    1001 /tmp/s5-cand/2/skills/injection-checker/SKILL.md
+    1173 /tmp/s5-cand/2/skills/openapi-hardener/SKILL.md
+     991 /tmp/s5-cand/2/skills/security-test-generator/SKILL.md
+    5679 total
+RC: 0
+----
+CMD: sed -n '9,25p' /tmp/s5-cand/2/rules/admin-rbac.mdc
+AT_UTC: 2026-09-09T13:19:37Z
+  - "**/*.java"
+---
+
+## Admin RBAC rule
+
+Any endpoint or function that performs an admin-scoped operation — accessing all users, modifying system config, deleting records belonging to other users, or reading privileged data — must include an explicit role check before executing.
+
+Authentication alone is not sufficient. Being logged in does not imply admin access.
+
+Never generate admin operations that rely on implicit permission inheritance from authenticated state.
+
+Required pattern:
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
+This check must appear BEFORE any privileged operation. Generate it at the top of the handler, not nested inside logic.
+RC: 0
+----
+CMD: sed -n '9,27p' /tmp/s5-cand/2/rules/auth-required.mdc
+AT_UTC: 2026-09-09T13:19:37Z
+  - "**/*.java"
+---
+
+## API authentication rule
+
+Every route handler that reads, modifies, or deletes data MUST include authentication middleware or a decorator before the handler executes.
+
+Never generate a data-touching endpoint without auth. If auth middleware is not yet defined in the codebase, note that it needs to be added and generate a placeholder that fails safely (401) until implemented.
+
+Patterns that indicate missing auth — flag these:
+- Express route with no middleware before the handler function
+- FastAPI endpoint with no Depends(get_current_user) or equivalent
+- Django view with no @login_required or IsAuthenticated permission class
+- Spring endpoint with no @PreAuthorize or SecurityConfig coverage
+- Go handler registered without auth middleware in the route group
+
+When you detect missing auth, do not silently generate the insecure code. Output:
+⚠️  Auth missing — add authentication before generating this endpoint.
+Suggested fix: [framework-appropriate auth middleware pattern]
+RC: 0
+----
+CMD: sed -n '60,70p;150,165p' /tmp/s5-cand/2/README.md
+AT_UTC: 2026-09-09T13:19:37Z
+| Skill | Triggers On | OWASP Coverage |
+|-------|------------|----------------|
+| `bola-detector` | Route handlers with `:id` params, `findById`, `findUnique`, `findOne` | API1:2023 |
+| `auth-rbac-scaffold` | JWT, middleware, login flows, role checks, permissions | API2:2023, API5:2023 |
+| `injection-checker` | SQL queries, MongoDB queries, shell commands, file paths, templates | API8:2023 |
+| `security-test-generator` | Writing tests, Jest/pytest/JUnit, "add test coverage" | API1–5:2023 |
+| `api-security-review` | "Review this for security", "is this secure", full controller files | All 10 categories |
+| `openapi-hardener` | OpenAPI specs, Zod/Joi/Pydantic schemas, JSON Schema | API3:2023 |
+
+---
+
+Pattern: Order.findById(req.params.id) without ownership filter
+Risk: Any authenticated user can read, modify, or delete any order by changing the ID
+Fix:
+  const order = await Order.findOne({ _id: req.params.id, userId: req.user.id });
+
+### Quick Wins — Top 3 Changes for Maximum Security Impact
+1. [Critical] Add ownership filter to all findById calls — prevents BOLA
+2. [High] Add algorithm whitelist to JWT verification — prevents algorithm confusion
+3. [Medium] Cap pagination limit to 100 — prevents resource exhaustion
+
+Powered by APIsec · apisec.ai
+```
+
+---
+
+## OWASP API Top 10 2023 Coverage
+RC: 0
+----
+
+=== SKEPTIC SUMMARY (written by hand after the commands above) ===
+END_UTC: 2026-09-09T13:20:18Z
+File verified: /tmp/s5-cand/2/skills/api-security-review/SKILL.md @ 60350c871ad47affe83454b510043c14ed01ae07 (675 lines); raw copy sha256 0da6d104… identical to clone.
+
+(a) LICENSE — claim HOLDS. gh api repos/... spdx_id=MIT; gh api repos/.../license path=LICENSE spdx=MIT; only one LICENSE in tree (root, "Copyright (c) 2026 apisec inc."); no license/copyright header in SKILL.md or plugin.json. README L8 badge MIT, L203 "## License".
+
+(b) CLAUSE LEVELS — every quoted fragment exists at the stated line (grep -F above). Levels re-judged:
+  S5 (upstream call budget / cache + call-count in spec): DOWNGRADE 부분 -> —.
+     grep -i 'cache|budget|quota|rps|per second|call count|spec|specification' = ZERO hits.
+     L288/289/295/306 are API10 "unsafe consumption" (validate/timeout/handle upstream errors) — they protect the caller from a bad upstream, not the upstream from our call volume. L66/L181-185 rate limiting is inbound anti-abuse. L130/138 timeouts on expensive ops. No bullet would make a reviewer ask "how many claims-core calls per request, is there a cache, is it in the spec". Nothing in the clause is instructed; adjacency only.
+     Also: the skill is review-time by design (L4 "Use when developer explicitly asks to review", L16 "Your output is a professional security review") — S5's deliverable is a spec-time artefact; this skill never writes to a spec.
+  S6 (same response AND same latency for missing vs unauthorized): 부분 HOLDS, but weak.
+     L570 "// 404, not 403 — no info leak" (reference code comment) + L436/616/633 same pattern; L411 Medium "Ownership checked post-fetch instead of at query level" pushes toward single ownership-scoped query which incidentally equalises response. NOT a Flag-if bullet. grep 'latency|timing|constant-time|same response|identical' = only L65 (password compare) — no latency clause. L159 Flag-if "no distinction between 401 and 403" pulls the other way (see conflicts).
+  S7 (per-role session key names; handler reads only its role's key): DOWNGRADE 부분 -> —.
+     grep 'session|cookie' = only L58 "Is the JWT/session validated correctly?" (generic). 'role' hits (L153-163, L378, L410, L643, L670) are all admin-vs-user BFLA role middleware (`requireRole('admin')`) — authorization on a shared identity, not separate session contracts per role. No customer/adjuster/agent notion, no "different key per role", no "read only your own key". The clause's mechanism is entirely absent; BFLA is a different control.
+  S8 (no credentials in code · config · diff): 덮음 HOLDS.
+     L241 "Default credentials or API keys are present in code" (code), L242 "`.env` files, `credentials.json`, or secrets are committed" (config files + committed = diff), L249 pass-if "No hardcoded secrets in code". Concrete Flag-if bullets. Caveats: (i) the severity table L409-412 never mentions secrets -> a secrets finding has no defined severity/grade; (ii) grep 'hook|diff|gitleaks' = 0, no backstop mentioned (policy says hook no-secrets backs it, so not required of the skill).
+
+(c) HIDDEN CONFLICTS — verified:
+  1. JWT re-flag (org note on item 1): L62-64 Flag-if (jwt.decode, no algorithm whitelist, exp/iss/aud), L71 Pass-if, L349-353 sample High finding, L387 next step, L410 High severity row "JWT without algorithm whitelist", L441-458 standing Quick Win #2. Under L400 any High => grade D. In the template the portal validates the gateway JWT and hands a session; session-only handlers would be graded D on every run. Direct contradiction of "Do not flag this again".
+  2. 401/403 vs S6: L159 Flag-if "no distinction between 401 and 403" is a rule; the 404-for-both pattern is only a code comment (L570). Bundled rules/admin-rbc.mdc L21-23 "Required pattern: if (req.user.role !== 'admin') return res.status(403)…" (alwaysApply: true) — a Claude Code install per README L88 copies skills/ only, but a Cursor install pulls the 403 rule too.
+  3. Post-fetch ownership = Medium (L411): the template's claim lookup goes to upstream claims-core (S5), so ownership can only be checked after the fetch; this skill would flag that as Medium (grade C) even though post-fetch-then-not_found is exactly how S6 equalises latency.
+  4. Output contract: L322 "use exactly this structure" -> "## APIsec Security Review" (L325), A-F score (L330, L393-403), Quick Wins (L416-418), README L160 "Powered by APIsec". Replaces the baseline's "Include what you checked, item by item"; L376 Passed Checks is the only overlap.
+  5. Trigger mismatch: description L4-9 fires only on explicit "review this / is this secure" asks; baseline fires "whenever creating or modifying an external-facing endpoint … or generating an OpenAPI spec". As a replacement it would not activate in a PO spec session.
+  6. Tools/scripts: NONE instructed (grep run|npx|curl|script|scan|mcp = only prose hits L16/L29). No missing-tool problem. README L184-186 "Phase 2 … @apisec scan" is future, not in the skill.
+  7. Offensive/pentest: NONE. L20 "Assume the attacker is authenticated" is a reviewer stance; no instruction to send requests/craft payloads. Sibling skills/security-test-generator (991 lines) is bundled in a whole-tree install but is a separate SKILL.md.
+  8. Framework: Express/Mongoose/zod throughout (L46-51, L128, L248, L483-660); L38 lists Django/Spring/Go idioms so Flag-if bullets are semi-portable, but all fixes and the 180-line "What Good Looks Like" are Express-only. Mismatch, not contradiction.
+  9. S3 weaker than baseline: L164/L412 audit only for admin ops, rated Low; baseline demands audit on every state-changing endpoint (already noted by prior agent; confirmed).
+
+VERDICT: 기각 (confirmed). License fine, SKILL.md format fine, S8 덮음 — but S5 and S7 drop to —, S6 stays a weak 부분, and conflicts 1-3 make it unsafe to load next to the baseline.

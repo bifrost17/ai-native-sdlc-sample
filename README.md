@@ -39,6 +39,13 @@ Unofficial; not an Anthropic project.
 | 0004 lesson-only | slim | this repo, self-recorded | #16 |
 | 0010 experiments-on-branches | structure | this repo, self-recorded | #55 |
 
+## Organization skill set (`org-skills/`)
+This repository is also one organization's answer to the team's part of the playbook: policy
+texts under `policies/` (owner sign-off = merge), the skill set as one plugin under `org-skills/`
+(root `.claude-plugin/marketplace.json` serves it), and the research behind every adopted or
+designed skill under `docs/research/<skill>/` with decisions in `docs/decisions/`. The template's
+own skills stay in `.claude/skills/`. Chain `intent/0011` records the move.
+
 ## Experiments
 `main` is the template and the template's own chains only. Each experiment — chains run *on* the
 template to see whether it works — lives on a branch `experiment/<date>-<topic>` that is never

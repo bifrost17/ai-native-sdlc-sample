@@ -1,0 +1,62 @@
+CMD: deep-read candidate #28 trailofbits/skills plugins/spec-to-code-compliance SKILL.md — clone, metadata, byte-copy, clause mapping
+AT_UTC: 2026-09-09T13:14:50Z
+RC: 0
+
+## commands (all run from /tmp/s5-cand/28 unless noted)
+
+$ git clone --depth 1 https://github.com/trailofbits/skills /tmp/s5-cand/28
+rc=0
+
+$ git rev-parse HEAD
+rc=0  d3323cefbcf645678b8dc481de204b02ad3d02dc
+
+$ git describe --tags --abbrev=0 2>/dev/null || echo 없음
+rc=0  없음 (no tags in clone)
+$ gh api repos/trailofbits/skills/tags --jq '.[0].name'
+rc=0  (empty output — repo has no tags)
+
+$ ls plugins/spec-to-code-compliance/skills/spec-to-code-compliance/
+rc=0  agents assets resources SKILL.md
+
+$ gh api repos/trailofbits/skills --jq '{stars:.stargazers_count,forks:.forks_count,watchers:.subscribers_count,open_issues:.open_issues_count,license:.license.spdx_id,pushed:.pushed_at}'
+rc=0  {"forks":606,"license":"CC-BY-SA-4.0","open_issues":23,"pushed":"2026-09-02T17:44:12Z","stars":7023,"watchers":62}
+
+$ head -5 LICENSE
+rc=0  "Attribution-ShareAlike 4.0 International" (Creative Commons) — repo root LICENSE
+$ find plugins/spec-to-code-compliance -iname 'LICENSE*'
+rc=0  (none — no per-plugin license; root CC-BY-SA-4.0 applies)
+
+$ git log -1 --format=%cI -- plugins/spec-to-code-compliance/skills/spec-to-code-compliance/SKILL.md
+rc=0  2026-09-02T13:44:09-04:00  (depth-1 clone: this is HEAD commit date, not file's)
+$ gh api "repos/trailofbits/skills/commits?path=plugins/spec-to-code-compliance/skills/spec-to-code-compliance/SKILL.md&per_page=1" --jq '.[0] | {sha:.sha, date:.commit.committer.date}'
+rc=0  sha=798b591aa498100f7744a948c0e3cbfc40e7eded date=2026-08-05T13:37:57Z
+      msg: "Convert spec-to-code-compliance to a dynamic workflow (#230)"  (file last touched 2026-08-05Z)
+
+$ wc -l plugins/spec-to-code-compliance/skills/spec-to-code-compliance/SKILL.md
+rc=0  115
+
+$ cat -n plugins/spec-to-code-compliance/skills/spec-to-code-compliance/SKILL.md
+rc=0  frontmatter (L1-5):
+---
+name: spec-to-code-compliance
+description: Check code against the documentation that specifies it - which requirements hold, which the code contradicts, which are absent, and what the code does that no document mentions. Use when comparing an implementation against a whitepaper, protocol spec, or design document.
+allowed-tools: Workflow Task Read Grep Glob
+---
+
+$ ls -R plugins/spec-to-code-compliance/{agents,workflows}
+rc=0  agents/spec-compliance-checker.md ; workflows/spec-compliance.js
+$ grep -rniE 'rate.?limit|rps|cache|enumerat|not.?found|404|timing|latency|session|secret|credential|hardcod|api key|token' skills/spec-to-code-compliance/resources/*.md agents/*.md workflows/*   (cwd plugins/spec-to-code-compliance)
+rc=0  hits: WORKED_EXAMPLE.md:42,53 (Solidity swap example); DOMAIN_NOTES.md:57 ("enumerate every registered route"); spec-compliance.js:369,394 (agent-registry "not found" fallback). No hit is about rate limits, enumeration prevention, session keys, or secrets.
+
+$ sed -n 1,60p plugins/spec-to-code-compliance/README.md
+rc=0  Author: Omar Inuwa; install = /plugin install trailofbits/skills/plugins/spec-to-code-compliance ; use = /spec-to-code-compliance:spec-compliance <path>
+$ grep -n -i 'spec-to-code\|install\|marketplace' README.md  (root)
+rc=0  root README L87 lists plugin: "Check code against the documentation that specifies it, across contracts, C/C++, services, and firmware"; marketplace add trailofbits/skills (L12), Codex compat (L23-28)
+
+$ sed -n 40,75p .../resources/DOMAIN_NOTES.md
+rc=0  "## Services" section L49-59 read (route table as unit of checking)
+
+$ cp SKILL.md docs/research/secure-api-review/raw/trailofbits-spec-to-code-compliance@d3323ce.SKILL.md ; shasum -a 256 both ; cmp
+rc=0  sha256 eb0d91b50a9c06f50baf8763d1e23566897b9fa3e7ffcf13134eee4e1ccaefe5 on both; cmp -> IDENTICAL
+
+## clause mapping (S1-S8): all "—" — the body is a generic spec-vs-code compliance workflow with no API-security content.

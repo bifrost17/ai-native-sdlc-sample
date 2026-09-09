@@ -1,0 +1,620 @@
+CMD: 적대 검토(회의론자) — apisec-skills/openapi-hardener: 라이선스·사본 바이트 동일성 재확인 + S5~S8 재판정 + README 가 가리키는 레포 존재 확인
+AT_UTC: 2026-09-09T13:16:37Z
+RC: 0
+
+# 74-refute — apisec-skills/openapi-hardener (candidate #4) — SKEPTIC pass
+# Purpose: try to refute license / S5–S8 levels / hidden conflicts in raw/14-candidate-apisec-skills-openapi-hardener.txt
+# Clone: /tmp/s5-cand/4 (already present, depth-1). File: /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+
+CMD: git -C /tmp/s5-cand/4 rev-parse HEAD
+AT_UTC: 2026-09-09T13:16:37Z
+60350c871ad47affe83454b510043c14ed01ae07
+RC: 0
+----
+CMD: git -C /tmp/s5-cand/4 log -1 --format='%H %cI %s'
+AT_UTC: 2026-09-09T13:16:38Z
+60350c871ad47affe83454b510043c14ed01ae07 2026-03-12T16:57:15-04:00 chore: merge remote, keep local .gitignore
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills --jq '{spdx:.license.spdx_id,key:.license.key,stars:.stargazers_count,forks:.forks_count,created:.created_at,pushed:.pushed_at,default_branch:.default_branch,fork:.fork}'
+AT_UTC: 2026-09-09T13:16:38Z
+{"created":"2026-03-12T20:52:50Z","default_branch":"main","fork":false,"forks":1,"key":"mit","pushed":"2026-03-12T20:57:26Z","spdx":"MIT","stars":18}
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills/license --jq '{spdx:.license.spdx_id,path:.path,sha:.sha}'
+AT_UTC: 2026-09-09T13:16:38Z
+{"path":"LICENSE","sha":"747ceed281c03f96a68da9d7a74d677240bc0110","spdx":"MIT"}
+RC: 0
+----
+CMD: find /tmp/s5-cand/4 -iname 'LICENSE*' -o -iname 'COPYING*' -o -iname 'NOTICE*' | grep -v .git/
+AT_UTC: 2026-09-09T13:16:39Z
+/tmp/s5-cand/4/LICENSE
+RC: 0
+----
+CMD: head -5 /tmp/s5-cand/4/LICENSE
+AT_UTC: 2026-09-09T13:16:39Z
+MIT License
+
+Copyright (c) 2026 apisec inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+RC: 0
+----
+CMD: head -12 /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:16:39Z
+---
+name: openapi-hardener
+description: >
+  Use when developer is writing, reviewing, or editing an OpenAPI spec
+  (swagger.yaml, openapi.yaml, openapi.json), defining API schemas with
+  zod/joi/yup/pydantic, writing JSON Schema definitions, or asking how to
+  define API contracts. Also triggers on: "define this schema", "add validation",
+  "write the OpenAPI spec", "schema for this endpoint", swagger, jsonschema.
+  Tightens loose definitions that create security surface area — OWASP API3:2023
+  (Broken Object Property Level Authorization).
+---
+RC: 0
+----
+CMD: grep -n -i -E 'license|copyright|SPDX|proprietary|all rights reserved' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:16:39Z
+
+RC: 1
+----
+CMD: grep -rn -i -E 'license|copyright|proprietary' /tmp/s5-cand/4/skills/openapi-hardener/ /tmp/s5-cand/4/.cursor-plugin/ | grep -v -E 'LICENSE:' 
+AT_UTC: 2026-09-09T13:16:39Z
+
+RC: 1
+----
+CMD: wc -l /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:16:39Z
+    1173 /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+RC: 0
+----
+CMD: shasum /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/apisec-skills-openapi-hardener@60350c8.SKILL.md
+AT_UTC: 2026-09-09T13:16:39Z
+45098dbffc9aca0db56a04a0e18baaed167503d2  /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+45098dbffc9aca0db56a04a0e18baaed167503d2  /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/apisec-skills-openapi-hardener@60350c8.SKILL.md
+RC: 0
+----
+CMD: diff -q /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/apisec-skills-openapi-hardener@60350c8.SKILL.md
+AT_UTC: 2026-09-09T13:16:39Z
+
+RC: 0
+----
+CMD: git -C /tmp/s5-cand/4 log --format='%h %cI %s' -- skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:16:39Z
+60350c8 2026-03-12T16:57:15-04:00 chore: merge remote, keep local .gitignore
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills/tags --jq 'length'
+AT_UTC: 2026-09-09T13:16:39Z
+0
+RC: 0
+----
+CMD: gh api repos/apisec-inc/apisec-skills/commits --jq '.[]|[.sha[0:7],.commit.committer.date,.commit.message|split("
+")[0]]|@tsv'
+AT_UTC: 2026-09-09T13:16:39Z
+60350c8	2026-03-12T20:57:15Z	chore: merge remote, keep local .gitignore
+801b273	2026-03-12T20:55:40Z	chore: remove .DS_Store files
+6a6d4d8	2026-03-12T20:54:46Z	feat: APIsec API Security skills v1.0.0
+df76425	2026-03-12T20:52:50Z	Initial commit
+RC: 0
+----
+## File history via API (depth-1 clone only shows 60350c8)
+CMD: gh api 'repos/apisec-inc/apisec-skills/commits?path=skills/openapi-hardener/SKILL.md' --jq '.[]|[.sha[0:7],.commit.committer.date]|@tsv'
+AT_UTC: 2026-09-09T13:17:01Z
+6a6d4d8	2026-03-12T20:54:46Z
+RC: 0
+----
+## (b) Verify quoted lines for S2 (덮음) and S4 (부분)
+CMD: sed -n '32p;113p;245p;296p;814p;815p' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+An input schema defines the **only** fields the client is allowed to send. Everything not explicitly listed must be rejected. This is the schema equivalent of a firewall default-deny rule.
+**Rule:** Set `additionalProperties: false` on **every** request body schema. No exceptions.
+    maximum: 100           # Hard cap prevents resource exhaustion
+Server-owned fields must be `readOnly` — the server ignores them in requests. Sensitive input fields must be `writeOnly` — they are never included in responses.
+| **Critical** | Password, token, or secret field in response schema — data leak |
+| **High** | Missing `additionalProperties: false` on request schema — mass assignment |
+RC: 0
+----
+CMD: grep -n -F 'additionalProperties: false' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md | head -20
+AT_UTC: 2026-09-09T13:17:02Z
+17:You are an **API contract security specialist** who treats schema definitions as the **first line of defense** against bad input and data exposure. A loose schema is not a convenience — it is an attack surface. Every unconstrained string is a potential injection vector. Every missing `additionalProperties: false` is a mass assignment risk. Every response without an explicit field list is a data leak waiting to happen.
+22:- **Restrict** — set `additionalProperties: false`, mark server-owned fields `readOnly`
+98:      additionalProperties: false    # <-- rejects any field not listed below
+113:**Rule:** Set `additionalProperties: false` on **every** request body schema. No exceptions.
+139:  additionalProperties: false
+328:  additionalProperties: false
+378:// .strict() = additionalProperties: false — rejects unknown keys
+416:// allowUnknown: false = additionalProperties: false
+460:    model_config = ConfigDict(extra="forbid")  # additionalProperties: false
+551:      additionalProperties: false
+603:      additionalProperties: false
+623:      additionalProperties: false
+674:  additionalProperties: false
+684:### 6.3 Missing additionalProperties: false
+700:  additionalProperties: false          # <-- added
+729:  additionalProperties: false
+782:  additionalProperties: false
+815:| **High** | Missing `additionalProperties: false` on request schema — mass assignment |
+834:    additionalProperties: false
+887:All schemas have additionalProperties: false, required arrays, field constraints, and readOnly/writeOnly markers.
+RC: 0
+----
+CMD: grep -n -F 'Server-owned fields must be' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+296:Server-owned fields must be `readOnly` — the server ignores them in requests. Sensitive input fields must be `writeOnly` — they are never included in responses.
+RC: 0
+----
+CMD: grep -n -F 'Password, token, or secret field in response schema' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+814:| **Critical** | Password, token, or secret field in response schema — data leak |
+RC: 0
+----
+## S5 keyword sweep (upstream / budget / cache / call count / rps / rate)
+CMD: grep -n -i -E 'upstream|budget|cach|call[- ]?count|rps|requests per|rate.?limit|throttl|quota|backend call|fan.?out|N\+1' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+1157:            - RATE_LIMITED
+RC: 0
+----
+## S6 keyword sweep (enumeration / not_found / same response / timing / constant-time / 403 vs 404)
+CMD: grep -n -i -E 'enumerat|not.?found|404|403|forbidden|same (response|status|latency)|timing|constant.?time|oracle|exist' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+1154:            - NOT_FOUND
+1156:            - FORBIDDEN
+RC: 0
+----
+## S7 keyword sweep (session / cookie / role key / per-role)
+CMD: grep -n -i -E 'session|cookie|role|tenant|adjuster|customer|agent' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+15:## 1. Role
+62:| `additionalProperties: true` (default) | Client sends `isAdmin: true`, `role: "admin"` |
+66:| `type: string` for status/role fields | Client sends arbitrary values, bypasses business logic |
+79:# Any extra field the client sends (isAdmin, role, userId) passes validation
+261:  role:
+279:  role:
+301:# Same schema used for request and response — client can set id, createdAt, role
+311:    role:
+346:    role:
+388:const UserRole = z.enum(['user', 'editor', 'admin']);
+420:const role = Joi.string().valid('user', 'editor', 'admin');
+452:class UserRole(str, Enum):
+501:# async def get_user(id: str, db: Session = Depends(get_db)):
+530:  // Sends: { _id, email, passwordHash, resetToken, role, isAdmin, __v, createdAt, ... }
+569:        # EXPLICITLY EXCLUDED: passwordHash, resetToken, role, isAdmin, __v, internalNotes
+624:      required: [id, email, name, role, createdAt]
+635:        role:
+819:| **Medium** | Known-value field (status, role) using `type: string` instead of `enum` |
+829:Risk: Client sends { "isAdmin": true, "role": "admin" } and fields pass validation
+942:        # role: NOT HERE — server-managed
+954:        - role
+966:        role:
+RC: 0
+----
+## S8 keyword sweep (credential / secret / hardcod / env / .env / api key / diff)
+CMD: grep -n -i -E 'credential|secret|hard.?cod|api.?key|\.env|environment|password|token|commit|diff' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+24:- **Produce diffs** — every finding includes the exact corrected YAML or code, not general advice
+45:An output schema defines the **only** fields the server will return. Without this, the serializer may pass through internal fields like `passwordHash`, `resetToken`, `internalCost`, or `__v`.
+50:                  passwordHash
+127:    password:
+142:    - password
+149:    password:
+309:    password:
+331:    - password
+341:    password:
+503:#     return user   # Leaks passwordHash, resetToken, etc.
+530:  // Sends: { _id, email, passwordHash, resetToken, role, isAdmin, __v, createdAt, ... }
+569:        # EXPLICITLY EXCLUDED: passwordHash, resetToken, role, isAdmin, __v, internalNotes
+604:      required: [email, password, name]
+610:        password:
+643:        # password is NEVER here — writeOnly in request schema
+690:  required: [email, password]
+694:    password:
+701:  required: [email, password]
+707:    password:
+763:### 6.6 Password/Token in Response Schema
+766:# BEFORE — password hash returned to client
+774:    passwordHash:                      # LEAKED
+776:    resetToken:                        # LEAKED
+790:    # passwordHash: REMOVED — never returned
+791:    # resetToken: REMOVED — never returned
+814:| **Critical** | Password, token, or secret field in response schema — data leak |
+835:    required: [email, password, name]
+841:      password:
+854:Location: UserResponse.passwordHash
+855:Issue: Password hash included in response schema — returned to every client
+856:Risk: Any authenticated user who calls GET /users/:id receives the password hash, enabling offline cracking
+859:  Remove passwordHash from UserResponse entirely. If needed in request schema, mark writeOnly: true.
+907:        - password
+915:        password:
+944:        # password: separate endpoint (PUT /auth/change-password)
+979:        #   passwordHash — never returned
+980:        #   resetToken — never returned
+981:        #   resetTokenExpiry — never returned
+1015:        # userId: NOT HERE — set server-side from auth token
+RC: 0
+----
+## (c) Hidden-conflict sweep: JWT / auth middleware / gateway / validate token
+CMD: grep -n -i -E 'jwt|bearer|gateway|verify.*token|validate.*token|authenticate|authoriz' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+10:  (Broken Object Property Level Authorization).
+527:app.get('/users/:id', authenticate, async (req, res) => {
+587:app.get('/users/:id', authenticate, async (req, res) => {
+856:Risk: Any authenticated user who calls GET /users/:id receives the password hash, enabling offline cracking
+1155:            - UNAUTHORIZED
+RC: 0
+----
+## (c) Script/tool invocation sweep: run / execute / npx / pip / bash / script / .sh / spectral / cli
+CMD: grep -n -i -E 'run|execute|npx|pip|bash|script|\.sh|spectral|openapi-cli|redocly|swagger-cli|apisec|curl ' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+3:description: >
+367:### 4.1 Zod (TypeScript)
+369:```typescript
+407:```javascript
+518:    description: User details
+525:```javascript
+541:    description: User details
+574:```javascript
+889:Powered by APIsec · apisec.ai
+914:          description: User's email address
+920:          description: Must contain uppercase, lowercase, digit, and special character
+925:          description: Display name
+1014:          description: Optional order notes
+1058:          description: Target status (server validates allowed transitions)
+1159:          description: Machine-readable error code
+RC: 0
+----
+## (c) Offensive / pentest sweep
+CMD: grep -n -i -E 'attack|exploit|pentest|penetration|fuzz|inject|payload|bypass|scan' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+17:You are an **API contract security specialist** who treats schema definitions as the **first line of defense** against bad input and data exposure. A loose schema is not a convenience — it is an attack surface. Every unconstrained string is a potential injection vector. Every missing `additionalProperties: false` is a mass assignment risk. Every response without an explicit field list is a data leak waiting to happen.
+56:### A loose schema is an attack surface
+58:| Loose Definition | Attack It Enables |
+60:| `type: string` with no `maxLength` | DoS via 100MB string payload |
+63:| No `required` array | Client omits critical fields, causes null reference or logic bypass |
+66:| `type: string` for status/role fields | Client sends arbitrary values, bypasses business logic |
+173:    type: string           # Accepts SQL injection payloads
+202:Without `maxLength`, an attacker can send a request body with a 100MB string field. Even if the database rejects it, the server has already:
+203:1. Parsed the full payload into memory
+804:Risk: [what an attacker can do with this gap]
+818:| **Medium** | Numeric field with no bounds — logic bypass or overflow |
+RC: 0
+----
+## (c) Framework lock-in sweep
+CMD: grep -n -i -E 'zod|joi|yup|pydantic|express|fastapi|django|nestjs|spring|rails|flask' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md | awk -F: '{print $1}' | tr '
+' ' '; echo; grep -c -i -E 'zod|joi|yup|pydantic|express|fastapi|django|nestjs' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+6 19 365 367 370 405 408 411 412 413 414 419 420 424 425 427 428 430 431 434 437 
+21
+RC: 0
+----
+## Section headings
+CMD: grep -n -E '^#{1,3} ' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:02Z
+13:# OpenAPI Hardener — OWASP API3:2023
+15:## 1. Role
+28:## 2. The Security Mindset for Schemas
+30:### Input schemas: deny by default, whitelist what's allowed
+43:### Output schemas: explicit allowlist of fields returned
+56:### A loose schema is an attack surface
+70:## 3. OpenAPI Spec Hardening — Field by Field
+72:### 3.1 additionalProperties
+79:# Any extra field the client sends (isAdmin, role, userId) passes validation
+115:### 3.2 Required Fields
+160:### 3.3 String Constraints
+207:### 3.4 Numeric Constraints
+251:### 3.5 Enum Exhaustiveness
+294:### 3.6 readOnly / writeOnly
+301:# Same schema used for request and response — client can set id, createdAt, role
+365:## 4. Zod / Joi / Pydantic Equivalents
+367:### 4.1 Zod (TypeScript)
+405:### 4.2 Joi (Node.js)
+434:### 4.3 Pydantic (Python)
+443:# ─── Enums ─────────────────────────────────────────────────────
+458:# ─── Request Schema (Input) ───────────────────────────────────
+475:# ─── Response Schema (Output) ─────────────────────────────────
+487:# ─── Dangerous Patterns to Avoid ──────────────────────────────
+489:# BAD — extra="allow" accepts unknown fields (mass assignment)
+494:# BAD — no Field constraints
+499:# BAD — returning ORM model directly without response schema
+500:# @router.get("/users/{id}")
+501:# async def get_user(id: str, db: Session = Depends(get_db)):
+502:#     user = db.query(User).get(id)
+503:#     return user   # Leaks passwordHash, resetToken, etc.
+508:## 5. Response Schema Hardening
+510:### The Problem: Loose Response Schemas Leak Data
+515:# DANGEROUS — no properties defined, anything can leak
+534:### The Fix: Explicit Response Schema + Serializer
+593:### Separate Request and Response Schemas
+648:## 6. Common Schema Mistakes — Detection and Fix
+650:### 6.1 Unconstrained String
+653:# BEFORE
+657:# AFTER
+664:### 6.2 Object with No Properties
+667:# BEFORE
+671:# AFTER
+684:### 6.3 Missing additionalProperties: false
+687:# BEFORE
+697:# AFTER
+714:### 6.4 No Required Array
+717:# BEFORE — all fields optional, client can send empty object
+726:# AFTER — at least one field must be present
+742:### 6.5 Numeric Fields with No Bounds
+745:# BEFORE
+751:# AFTER
+763:### 6.6 Password/Token in Response Schema
+766:# BEFORE — password hash returned to client
+779:# AFTER — sensitive fields removed from response, marked writeOnly in request
+796:## 7. Output Format
+810:### Severity Classification
+823:### Example Outputs
+875:### Summary Line
+894:## 8. Complete Hardened Schema Example
+896:### User Object — Request and Response
+986:### Order Object — Request and Response
+RC: 0
+----
+## Context reads for conflict check
+CMD: sed -n '15,27p' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:16Z
+## 1. Role
+
+You are an **API contract security specialist** who treats schema definitions as the **first line of defense** against bad input and data exposure. A loose schema is not a convenience — it is an attack surface. Every unconstrained string is a potential injection vector. Every missing `additionalProperties: false` is a mass assignment risk. Every response without an explicit field list is a data leak waiting to happen.
+
+When reviewing or generating OpenAPI specs, JSON Schema, Zod, Joi, or Pydantic schemas, you:
+
+- **Tighten** — add missing constraints (lengths, ranges, patterns, enums)
+- **Restrict** — set `additionalProperties: false`, mark server-owned fields `readOnly`
+- **Separate** — define distinct request and response schemas (never share one schema for both)
+- **Produce diffs** — every finding includes the exact corrected YAML or code, not general advice
+
+---
+RC: 0
+----
+CMD: sed -n '796,822p;875,893p' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:16Z
+## 7. Output Format
+
+For each schema issue found, produce a report block:
+
+```
+Schema Risk — OWASP API3:2023
+Location: [schema name].[field name]
+Issue: [what's missing or wrong]
+Risk: [what an attacker can do with this gap]
+Severity: [Critical | High | Medium | Low]
+Fix:
+  [exact corrected YAML or code]
+```
+
+### Severity Classification
+
+| Severity | Condition |
+|----------|-----------|
+| **Critical** | Password, token, or secret field in response schema — data leak |
+| **High** | Missing `additionalProperties: false` on request schema — mass assignment |
+| **High** | No response schema defined (`schema: {}`) — uncontrolled data exposure |
+| **Medium** | String field with no `maxLength` — DoS vector |
+| **Medium** | Numeric field with no bounds — logic bypass or overflow |
+| **Medium** | Known-value field (status, role) using `type: string` instead of `enum` |
+| **Low** | Missing `readOnly` on server-owned fields (`id`, `createdAt`) |
+| **Low** | Missing `format` on structured strings (email, UUID, date-time) |
+
+### Summary Line
+
+```
+Summary: <N> schema findings — <n> Critical, <n> High, <n> Medium, <n> Low
+  Schemas reviewed: [CreateUserRequest, UserResponse, CreateOrderRequest, ...]
+```
+
+If all schemas pass:
+
+```
+Schema Check — PASSED
+Schemas reviewed: [list]
+All schemas have additionalProperties: false, required arrays, field constraints, and readOnly/writeOnly markers.
+
+Powered by APIsec · apisec.ai
+```
+
+---
+RC: 0
+----
+CMD: sed -n '520,532p;585,592p' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:16Z
+      application/json:
+        schema:
+          type: object                # What fields? ALL of them.
+```
+
+```javascript
+// DANGEROUS — the full Mongoose document is serialized
+app.get('/users/:id', authenticate, async (req, res) => {
+  const user = await User.findOne({ _id: req.params.id, userId: req.user.id });
+  res.json(user);
+  // Sends: { _id, email, passwordHash, resetToken, role, isAdmin, __v, createdAt, ... }
+});
+```
+
+// In route handler:
+app.get('/users/:id', authenticate, async (req, res) => {
+  const user = await User.findOne({ _id: req.params.id });
+  res.json(serializeUser(user));
+});
+```
+RC: 0
+----
+CMD: sed -n '1010,1018p;1140,1173p' /tmp/s5-cand/4/skills/openapi-hardener/SKILL.md
+AT_UTC: 2026-09-09T13:17:16Z
+        notes:
+          type: string
+          minLength: 0
+          maxLength: 1000
+          description: Optional order notes
+        # userId: NOT HERE — set server-side from auth token
+        # status: NOT HERE — defaults to "pending" server-side
+        # totalPrice: NOT HERE — calculated server-side
+
+    # ─── ERROR RESPONSE ───────────────────────────────────────
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          maxLength: 500
+        code:
+          type: string
+          enum:
+            - VALIDATION_ERROR
+            - NOT_FOUND
+            - UNAUTHORIZED
+            - FORBIDDEN
+            - RATE_LIMITED
+            - INTERNAL_ERROR
+          description: Machine-readable error code
+        details:
+          type: array
+          maxItems: 50
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              field:
+                type: string
+                maxLength: 100
+              message:
+                type: string
+                maxLength: 500
+```
+RC: 0
+----
+## Sibling artifacts that ship with the skill (rules/, plugin manifest) — do they inject tool/scan instructions?
+CMD: ls /tmp/s5-cand/4/rules /tmp/s5-cand/4/skills /tmp/s5-cand/4/.cursor-plugin
+AT_UTC: 2026-09-09T13:17:16Z
+/tmp/s5-cand/4/.cursor-plugin:
+plugin.json
+
+/tmp/s5-cand/4/rules:
+admin-rbac.mdc
+auth-required.mdc
+error-sanitization.mdc
+input-validation.mdc
+ownership-check.mdc
+
+/tmp/s5-cand/4/skills:
+api-security-review
+auth-rbac-scaffold
+bola-detector
+injection-checker
+openapi-hardener
+security-test-generator
+RC: 0
+----
+CMD: cat /tmp/s5-cand/4/.cursor-plugin/plugin.json
+AT_UTC: 2026-09-09T13:17:16Z
+{
+  "name": "apisec",
+  "displayName": "APIsec — API Security for AI Coding Agents",
+  "description": "Embed API security intelligence directly into your coding workflow. Detects BOLA, BFLA, injection risks, auth gaps, and OWASP API Top 10 vulnerabilities as you write code.",
+  "version": "1.0.0",
+  "author": "APIsec",
+  "homepage": "https://apisec.ai",
+  "logo": "./logo.png",
+  "skills": [
+    { "path": "skills/bola-detector" },
+    { "path": "skills/auth-rbac-scaffold" },
+    { "path": "skills/injection-checker" },
+    { "path": "skills/security-test-generator" },
+    { "path": "skills/api-security-review" },
+    { "path": "skills/openapi-hardener" }
+  ],
+  "rules": [
+    { "path": "rules/auth-required.mdc" },
+    { "path": "rules/ownership-check.mdc" },
+    { "path": "rules/input-validation.mdc" },
+    { "path": "rules/error-sanitization.mdc" },
+    { "path": "rules/admin-rbac.mdc" }
+  ]
+}
+RC: 0
+----
+CMD: grep -rn -i -E 'apisec\.ai|scan|run |npx|cli|api key|APISEC_' /tmp/s5-cand/4/rules/ | head -30
+AT_UTC: 2026-09-09T13:17:16Z
+/tmp/s5-cand/4/rules/error-sanitization.mdc:16:Never generate error handlers that return err.message, error.stack, or raw exception objects directly to the client.
+/tmp/s5-cand/4/rules/error-sanitization.mdc:24:Always generate a generic user-facing message plus a unique request/correlation ID for internal tracing. The requestId allows ops teams to find the real error in logs without exposing it to clients.
+RC: 0
+----
+CMD: grep -n -i -E 'install|apisec-cursor-plugin|marketplace|scan|cli' /tmp/s5-cand/4/README.md | head -30
+AT_UTC: 2026-09-09T13:17:16Z
+5:[![Cursor Marketplace](https://img.shields.io/badge/Cursor-Marketplace-blue)](https://cursor.com/marketplace)
+6:[![Compatible](https://img.shields.io/badge/Compatible-Claude%20Code%20%7C%20Codex%20%7C%20Copilot%20%7C%20Gemini%20%7C%20Replit-green)](#installation)
+71:## Installation
+75:### Cursor (one-click)
+77:Install directly from the [Cursor Marketplace](https://cursor.com/marketplace) — search **APIsec**.
+81:git clone https://github.com/APIsec-ai/apisec-cursor-plugin
+82:cp -r apisec-cursor-plugin/skills .cursor/skills/
+83:cp -r apisec-cursor-plugin/rules .cursor/rules/
+88:cp -r apisec-cursor-plugin/skills ~/.claude/skills/
+91:### OpenAI Codex CLI
+93:cp -r apisec-cursor-plugin/skills .agents/skills/
+98:cp -r apisec-cursor-plugin/skills .github/skills/
+101:### Gemini CLI / Google Antigravity
+103:cp -r apisec-cursor-plugin/skills ~/.gemini/skills/
+108:cp -r apisec-cursor-plugin/skills .agents/skills/
+113:cp -r apisec-cursor-plugin/skills .agents/skills/
+186:- `@apisec scan` — run a full API security scan from inside Cursor
+RC: 0
+----
+CMD: sed -n '180,190p' /tmp/s5-cand/4/README.md
+AT_UTC: 2026-09-09T13:17:29Z
+---
+
+## Phase 2 — Coming Soon
+
+The current release is Phase 1: skills and rules. Phase 2 will add a live MCP server with real-time APIsec API integration:
+
+- `@apisec scan` — run a full API security scan from inside Cursor
+- `@apisec findings` — pull live findings from your APIsec dashboard
+- `@apisec fix` — generate remediation code for open findings
+- `@apisec score` — get your API security score for the current file
+RC: 0
+----
+CMD: grep -n -i -E 'jwt|verify|validate|token|middleware' /tmp/s5-cand/4/rules/auth-required.mdc
+AT_UTC: 2026-09-09T13:17:29Z
+2:description: "Enforces authentication middleware on all API route handlers. Applies to Express, FastAPI, Django, Spring, Go Gin."
+14:Every route handler that reads, modifies, or deletes data MUST include authentication middleware or a decorator before the handler executes.
+16:Never generate a data-touching endpoint without auth. If auth middleware is not yet defined in the codebase, note that it needs to be added and generate a placeholder that fails safely (401) until implemented.
+19:- Express route with no middleware before the handler function
+23:- Go handler registered without auth middleware in the route group
+27:Suggested fix: [framework-appropriate auth middleware pattern]
+RC: 0
+----
+CMD: gh api repos/APIsec-ai/apisec-cursor-plugin --jq '{full_name:.full_name,spdx:.license.spdx_id,pushed:.pushed_at,stars:.stargazers_count}'
+AT_UTC: 2026-09-09T13:17:29Z
+{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}gh: Not Found (HTTP 404)
+RC: 1
+----
+
+## CONCLUSION (skeptic pass) — AT_UTC: 2026-09-09T13:17:56Z
+(a) License: HOLDS. gh api .license.spdx_id=MIT; /license endpoint → LICENSE (MIT, "Copyright (c) 2026 apisec inc."); only one LICENSE in tree; no license/copyright/SPDX text inside SKILL.md or skills/openapi-hardener/ or .cursor-plugin/.
+(b) Levels: nothing to downgrade — S5/S6/S7/S8 were all already "—" in the deep-read, and keyword sweeps confirm:
+    S5: only hit is enum value `RATE_LIMITED` (L1157). No upstream/budget/cache/call-count/rps text. → —
+    S6: only hits are enum values `NOT_FOUND` (L1154) / `FORBIDDEN` (L1156). No same-response/same-latency instruction. → —
+    S7: "role" appears only as schema enum field examples; no session/cookie text at all. → —
+    S8: "secret/token/password" hits are all about response-schema leakage (L45, L763-791, L814); no credential-in-code/config/diff text. → —
+    S2 (덮음) and S4 (부분) quotes verified verbatim at L32/L113/L815 and L296/L814 — S4 stays 부분 (response-body leakage only).
+(c) Hidden conflicts in the SKILL.md itself: NONE found.
+    - JWT: `authenticate` middleware appears only inside illustrative Express snippets (L527, L587); no instruction to validate/re-validate JWTs. L1015 "userId set server-side from auth token" is a schema comment, not a validation instruction.
+    - Scripts/tools: no run/execute/npx/script/.sh/CLI instructions in the file. README L186 `@apisec scan` is under "Phase 2 — Coming Soon" (roadmap), not a skill instruction.
+    - Framework lock-in: Section 4 (L365-504) gives Zod/Joi/Pydantic translations as alternatives, not requirements; Express snippets are illustrations. Mild, not a conflict.
+    - Offensive: "attack/injection/payload" words are threat-model descriptions (L17, L58-66, L173, L202), not instructions to attack.
+    - Bundle-level caveat (NOT in this file): rules/auth-required.mdc L14-16 mandates auth middleware on every data-touching handler for Express/FastAPI/Django/Spring/Gin — if the whole plugin were installed (plugin.json registers 5 rules), that rule could re-flag handler-level auth the org note says the gateway already covers. Irrelevant if only skills/openapi-hardener/SKILL.md is taken.
+    - Vendor branding "Powered by APIsec · apisec.ai" (L889) is required in the PASSED output block — friction, not a conflict.
+Corrections to the deep-read record:
+    - README install target `APIsec-ai/apisec-cursor-plugin` → gh api returns 404 (repo does not exist), so the README install commands are broken; the record hedged "may be a mirror/rename" — actual: the referenced repo is absent. Usage signal slightly weaker than recorded.
+    - `last_commit_utc` 2026-03-12T20:54:46Z is the file's only commit (6a6d4d8, confirmed via commits?path=); repo HEAD is 60350c8 at 20:57:15Z. Consistent, just noting both.
+Verdict: 기각 stands (S5–S8 all —; only baseline-covered S2/S4 intersect; ~95% off-policy OWASP API3 material).
