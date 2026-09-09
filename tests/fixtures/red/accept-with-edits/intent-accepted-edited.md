@@ -2,7 +2,7 @@
 id: 0002-claims-status
 kind: intent
 status: accepted
-author: 이영희 (청구운영팀장)
+author: 홍길동 (청구운영팀)
 created: 2026-09-09T10:12:00+09:00
 record: none
 supersedes: none
@@ -10,7 +10,7 @@ supersedes: none
 # Intent: 청구 상태를 사람이 전화로 묻는다
 
 ## Problem (문제)
-청구 담당자가 상태를 확인하려면 콜센터에 전화한다. 지난 30일 동안 이런 문의가 1,240건이었고 한 건에 평균 6분이 걸렸다.
+청구 담당자가 상태를 확인하려면 콜센터에 전화한다. 지난 30일 동안 이런 문의가 1,310건이었고 한 건에 평균 7분이 걸렸다.
 
 ## Proposed outcome (원하는 결과)
 담당자가 사람 개입 없이 30초 안에 자기 청구 건의 상태를 확인한다.

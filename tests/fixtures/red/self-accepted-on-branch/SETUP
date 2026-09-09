@@ -1,6 +1,9 @@
 # main 에는 draft 로 있는 intent 를, 기능 브랜치에서 스스로 accepted 로 바꾼다.
 # 승인은 머지된 PR 안에서만 일어나야 한다(docs/STATUS.md) — 브랜치 위의 accepted 는
 # 「자기가 자기를 승인」이다.
+# D16 이후: `status:` 줄 하나만 바꾼 승인은 예외로 통과한다(green/accept-only-status).
+# 그래서 이 픽스처는 승인 커밋이 status 와 **frontmatter 의 다른 키**(author)를 함께
+# 바꾸는 자리를 잡는다 — 도장을 찍으면서 문서를 고치는 것은 승인이 아니다.
 write intent/0002-claims-status/intent.md intent-draft.md
 commit base
 branch feat/accept-0002

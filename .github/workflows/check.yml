@@ -19,4 +19,23 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # 기준 브랜치를 로컬 참조로 확보한다 — 검증기가 승인 전이의 기준점을
+      # `git show <ref>:<경로>` 로 꺼낸다. 브랜치 이름은 셸에 보간하지 않고 env 로
+      # 넘긴다(PR 브랜치 이름은 우리가 짓는 값이 아니다).
+      - name: 기준 브랜치 확보
+        env:
+          BASE_BRANCH: ${{ github.base_ref || 'main' }}
+        run: |
+          git fetch --no-tags --quiet origin \
+            "+refs/heads/$BASE_BRANCH:refs/remotes/origin/$BASE_BRANCH" || true
+          git rev-parse --verify --quiet "refs/remotes/origin/$BASE_BRANCH" \
+            || echo "기준 브랜치 참조를 못 만들었다: $BASE_BRANCH"
+
+      # actions/checkout 은 PR 을 detached HEAD 로 둔다 — 그러면 검증기의 브랜치
+      # 자기 승인 검사(D16)가 통째로 빠져 CI 집행력이 0 이 된다. 브랜치 이름을
+      # 명시로 넘겨 그 검사가 **실제로 돌게** 한다.
       - run: make check
+        env:
+          INTENT_CHECK_BRANCH: ${{ github.head_ref || github.ref_name }}
+          INTENT_CHECK_DEFAULT_BRANCH: ${{ github.base_ref || 'main' }}

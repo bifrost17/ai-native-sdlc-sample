@@ -1,8 +1,8 @@
 ---
 id: 0002-claims-status
 kind: intent
-status: accepted
-author: 이영희 (청구운영팀장)
+status: draft
+author: 홍길동 (청구운영팀)
 created: 2026-09-09T10:12:00+09:00
 record: none
 supersedes: none

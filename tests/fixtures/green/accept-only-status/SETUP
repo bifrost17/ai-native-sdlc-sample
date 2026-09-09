@@ -1,0 +1,9 @@
+# D16 양성 대조 — 「도장만 찍는 승인」은 브랜치에서도 통과해야 한다.
+# 이 예외가 없으면 승인 PR 자체가 CI 에서 빨개져 사슬이 한 칸도 전진하지 못한다.
+# 기본 브랜치의 같은 파일과 견줘 바뀐 줄이 `status:` 하나뿐이다.
+write intent/0002-claims-status/intent.md intent-draft.md
+commit base
+branch feat/accept-0002
+write intent/0002-claims-status/intent.md intent-accepted.md
+commit accept
+check intent/0002-claims-status/intent.md
