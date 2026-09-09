@@ -104,6 +104,12 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
 - L6 505 lagging (review findings citing the policy): item ① (gateway JWT vs session) — 0002 F3, then
   0008 F4 with the same answer, then the skill's org note (#35), then 0009 F8 closed by that note
   with no review finding. Fell to zero once the skill carried the answer.
+- L8 547 (parallel sessions in their own checkout): chains 0005 and 0006 ran at the same time in two
+  clones on their own branches (`raw-chain5/00-clone.txt`, PR #21 03:17→03:29Z, #23 03:20→03:30Z),
+  file sets disjoint (`routes.py` vs `records.py`); the reviewer read both through `git worktree add`
+  (`raw-chain56R/06-worktrees.txt`). Isolation came from clones, not `claude --worktree` — same effect.
+- L8 564 (verifier subagent): defined, never invoked — 0 `subagent_type` calls in runs A, B and C.
+  CLAUDE.md now says to hand the check to it before reporting done; not yet measured.
 - L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
 - L11 773 (time to first review): run B turn 9 (one finding, fixed in-PR), run C turn 9 (no finding) — same session, no wait.
 - L12 901 (time waiting per approval gate): `hooks.log` per-gate totals — `raw-hac/31-hooks-log-totals.txt`.

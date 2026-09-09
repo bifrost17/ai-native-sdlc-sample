@@ -65,3 +65,5 @@ ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).
 Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
 the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
 hook events in the implementation turn, `docs/RUNS.md`).
+`.claude/settings.json` allows this repo's own safe commands without a prompt (`permissions.allow`,
+L8 545); the team replaces the list with what its organization considers safe (`docs/ADOPTING.md`).
