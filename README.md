@@ -12,7 +12,8 @@ Unofficial; not an Anthropic project.
    why a checker inside the tree is not an approval authority.
 3. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
 4. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
-   chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history.
+   chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history in the pre-slim
+   convention (frontmatter, status fields); the current template is what 0004 uses.
 5. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
 6. `docs/METRICS.md` — the lessons' indicators as git commands.
 
