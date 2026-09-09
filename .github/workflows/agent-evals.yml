@@ -25,6 +25,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # L10 711행: "npm install -g @anthropic-ai/claude-code" — the runner has no claude
+      # binary of its own; evals/run.sh (line 14) checks `command -v claude` and exits 2
+      # (UNDECIDABLE) without it, which make evals would then report as a false pass-shaped skip.
+      - run: npm install -g @anthropic-ai/claude-code
       - env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: make evals
