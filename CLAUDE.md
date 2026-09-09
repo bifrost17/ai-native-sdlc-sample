@@ -5,14 +5,15 @@
 ## Commands
 - Test: `make test` (python unittest, `tests/test_hooks.sh`, `tests/test_evals.sh`,
   `tests/test_managed_settings.sh`; healthy: rc=0, the four suites end with `OK`,
-  `test_hooks: 27 passed, 0 failed`, `8 passed, 0 failed`, `PASS  managed-settings 키·훅 계약`)
+  `test_hooks: 28 passed, 0 failed`, `8 passed, 0 failed`, `PASS  managed-settings 키·훅 계약`)
 - Evals: `make evals` (`bash evals/run.sh`, needs `ANTHROPIC_API_KEY`; healthy: `evals: 전 케이스 통과`)
 - Check: `make check` (= `make test`; non-zero on any failure). Evals are not in it: without
   `ANTHROPIC_API_KEY` `make evals` prints `SKIP: ANTHROPIC_API_KEY 없음` and exits 2; CI runs them
   with the key in `.github/workflows/agent-evals.yml` (L10 689).
 
 ## Conventions
-- Prose is English in artifacts; file names, section names and `Status:` words are fixed tokens.
+- Prose in artifacts is in the originator's language (L2 179 "in the originator's own terms";
+  chain 0002 is Korean); file names, section names and `Status:` words are fixed English tokens.
 - One chain per change under `intent/<NNNN>-<slug>/` — intent.md, spec.md, plan.md, in that
   order, each its own commit. `Status: draft` until the PR merges; the merge is the approval.
 - Every code file under `.claude/hooks/`, `scripts/`, `evals/` opens with the lesson sentence it
