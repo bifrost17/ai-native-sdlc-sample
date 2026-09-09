@@ -70,7 +70,9 @@ No separate "How to measure it" section — it rides on L6's (505); nothing to a
 - Lagging — outside this repo (gate violations reaching production is an incident tracker)
 
 ## L13 CI/CD integration and deployment (997)
-- Leading — pipeline failures resolved without a human: `gh run list --json conclusion,event`
+- Leading — share of pipeline failures triaged without paging a human: failed `check` runs
+  (`gh run list --workflow=check.yml --json databaseId,conclusion`) that carry a `triage-<run id>`
+  artifact (`gh run view <id>`), over all failed runs. The triage step only runs with the key.
 - Lagging — outside this repo (DORA measures come from CI/deploy tooling itself)
 
 ## L14 closing the loop on metrics (1063)
