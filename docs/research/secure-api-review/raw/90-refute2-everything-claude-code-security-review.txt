@@ -1,0 +1,223 @@
+CMD: (refutation pass 2 — candidate: everything-claude-code/security-review, WorldFlowAI copy)
+AT_UTC: 2026-09-10T00:00:00Z (session date 2026-09-10; per-command times below)
+RC: 0
+
+TARGET  https://github.com/WorldFlowAI/everything-claude-code — skills/security-review/SKILL.md
+LOCAL   docs/research/secure-api-review/raw/everything-claude-code-security-review@432485b.SKILL.md
+        (494 lines; sha256 b4fbed82c5a1741432f0da689fd96e9fa0c40011d9450ca61065dad772758494)
+        no re-clone needed — byte copy from the earlier pass was present and verified against upstream.
+
+================ 0. FILE IDENTITY ================
+CMD: git hash-object <local byte copy>
+RC: 0
+26cfaf6088d1e9504dd1562bfc140f1371a2b036
+
+CMD: gh api repos/WorldFlowAI/everything-claude-code/contents/skills/security-review/SKILL.md --jq '{sha,size}'
+RC: 0
+{"sha":"26cfaf6088d1e9504dd1562bfc140f1371a2b036","size":12202}
+=> local copy is byte-identical to upstream. NOT REFUTED (content is what the record says it is).
+=> CORRECTION: the record's "sha": 432485ba6b92c14fb357276a98957f348bcff9ee is the repo HEAD COMMIT
+   sha, not the file blob. Blob sha = 26cfaf6088d1e9504dd1562bfc140f1371a2b036.
+
+================ (a) LICENSE — ATTEMPT TO REFUTE "불명" ================
+CMD: gh api repos/WorldFlowAI/everything-claude-code --jq '{full,fork,spdx,stars,parent,src,created,pushed}'
+RC: 0
+{"created":"2026-01-23T12:41:36Z","fork":false,"full":"WorldFlowAI/everything-claude-code",
+ "parent":null,"pushed":"2026-01-23T12:42:00Z","spdx":null,"src":null,"stars":2722}
+
+CMD: gh api repos/WorldFlowAI/everything-claude-code/license
+RC: 0 (HTTP 404)
+{"message":"Not Found", ... "status":"404"}
+
+CMD: gh api repos/WorldFlowAI/everything-claude-code/contents/ --jq '.[].name'
+RC: 0
+.claude-plugin .claude .gitignore CONTRIBUTING.md README.md WORLDFLOWAI.md agents commands
+contexts examples hooks mcp-configs plugins rules scripts skills tests
+=> NO LICENSE file at root.
+
+CMD: gh api .../contents/skills/security-review --jq '.[].name'
+RC: 0
+SKILL.md
+=> no per-directory LICENSE.
+
+CMD: grep -n -i -E 'spdx|copyright|licen' <local SKILL.md>
+RC: 1  (no matches)
+=> no per-file SPDX header / no prose-vs-code split anywhere.
+
+CMD: gh api .../contents/README.md -H 'Accept: vnd.github.raw' | grep -n -i -E 'licen|MIT|copyright'
+RC: 0
+4:[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)   <- links to a 404
+386:## License
+388:MIT - Use freely, modify as needed, contribute back if you can.
+
+CMD: gh api .../contents/CONTRIBUTING.md -H 'Accept: vnd.github.raw' | grep -n -i -E 'licen|MIT|copyright'
+RC: 0
+(no license/CLA line; only unrelated "submitting"/"submit" hits)
+
+CMD: gh api repos/affaan-m/everything-claude-code --jq '{full,spdx}'   (origin, follows redirect)
+RC: 0
+{"full":"affaan-m/ECC","spdx":"MIT"}
+CMD: gh api repos/affaan-m/ECC/contents/LICENSE -H 'Accept: vnd.github.raw' | head -3
+RC: 0
+MIT License / (blank) / Copyright (c) 2026 Affaan Mustafa
+
+VERDICT (a): REFUTATION FAILED — the record's "불명" for THIS copy stands. spdx_id null, /license 404,
+no LICENSE file at root or in the skill directory, no SPDX header in the file, no content-vs-code
+split. The only license statement is a README sentence plus a badge pointing at a file that does not
+exist. The upstream text is MIT at affaan-m/ECC, but this repo carries no license grant of its own.
+Per the decision rule, a license that cannot be established is disqualifying.
+
+================ (a2) PROVENANCE — RECORD IS WRONG ================
+CMD: gh api 'repos/WorldFlowAI/everything-claude-code/commits?per_page=100' --paginate --jq '.[]|[.commit.author.date,.commit.author.name,(.commit.message|split("\n")[0])]|@tsv'
+RC: 0
+27 commits total (page 2 = 0). Newest -> oldest excerpt:
+ 2026-01-23T12:41:55Z  Zachary Bennett  docs: add WorldFlowAI setup guide            432485b (HEAD)
+ 2026-01-23T07:14:23Z  gzb1128          fix: remove version fields from marketplace.json
+ 2026-01-23T07:08:07Z  zerx-lab         feat: cross-platform support with Node.js scripts
+ 2026-01-23T06:31:20Z  gzb1128          fix: remove version field ...
+ 2026-01-23T06:29:06Z  Affaan Mustafa   style: side-by-side guide layout ...
+ ...
+ 2026-01-18T01:49:33Z  Affaan Mustafa   Initial release: Complete Claude Code configuration collection
+=> CORRECTION to the record: it is NOT "a single 'Initial release' commit". It is a 27-commit
+   history (2026-01-18 .. 2026-01-23) pushed into a fresh non-fork repo (fork=false, parent/source
+   null), i.e. the upstream history was carried over but the fork link and the LICENSE file were not.
+=> stars drifted 2696 -> 2722 (harmless).
+
+================ (b) CLAUSE LEVELS S5–S8 — STRICT RE-READ ================
+--- S5 (upstream call budget: cache policy + call-count written into the spec) ---
+CMD: grep -nF 'Rate limiting on all API endpoints' / 'Stricter limits on expensive operations' / 'Aggressive rate limiting for searches'
+RC: 0
+293:- [ ] Rate limiting on all API endpoints
+294:- [ ] Stricter limits on expensive operations
+282:// Aggressive rate limiting for searches
+=> quotes EXIST as recorded.
+CMD: grep -n -i -E 'cache|budget|upstream|rps|quota|call count|concurren' <SKILL.md>
+RC: 1   (ZERO matches in 494 lines)
+=> The file never mentions a cache, a budget, an upstream limit, rps, or a call count. Everything it
+   says is INBOUND throttling of the service's own endpoints (L450-459 even tests for HTTP 429),
+   which is a different control from "claims-core is 50 rps, write your cache policy and call-count
+   into the spec". Nothing here would make a session write either artefact.
+   DOWNGRADE S5: 부분 -> —
+
+--- S6 (missing vs unauthorized: same not_found body AND same latency) ---
+CMD: grep -n -i -E '404|not_found|not found|enumerat|timing|constant.time|403|Unauthorized|exist'
+RC: 0
+ 35:// Verify secrets exist      (unrelated)
+160:      { error: 'Unauthorized' },
+161:      { status: 403 }
+245:      { status: 403 }
+438:  expect(response.status).toBe(403)
+=> No 404/not_found, no enumeration, no timing/constant-time anywhere. The opposite is prescribed:
+   an unauthorized requester gets a distinguishable 403 body, and L434-438 makes that a REQUIRED TEST.
+   S6 stays — and is actively contradicted. CONFIRMED as recorded.
+
+--- S7 (per-role session key names; a handler reads only its own role's key) ---
+CMD: grep -n -i -E 'session|role|cookie'
+RC: 0
+145-146: httpOnly cookie example
+158:  if (requester.role !== 'admin') {
+187:- [ ] Tokens stored in httpOnly cookies (not localStorage)
+190:- [ ] Role-based access control implemented
+191:- [ ] Session management secure
+256:  `session=${sessionId}; HttpOnly; Secure; SameSite=Strict`
+261-262: SameSite / double-submit cookie
+434:test('requires admin role', ...)
+473:- [ ] **Authorization**: Role checks in place
+=> "Session management secure" is exactly the generic "validate sessions" the brief says is NOT
+   enough. Worse, the one concrete session artefact in the file (L256) is a SINGLE cookie named
+   `session` used for every user regardless of role — the opposite shape from "customer/adjuster/
+   agent each have a different session key name". No handler-reads-only-its-own-key rule.
+   DOWNGRADE S7: 부분 -> —
+
+--- S8 (no credentials in code AND config AND diff, as a rule the session applies) ---
+CMD: grep -nF 'sk-proj-xxxxx' / 'No hardcoded API keys' / '.env.local` in .gitignore' / 'No secrets in git history' / '**Secrets**'
+RC: 0
+ 26:const apiKey = "sk-proj-xxxxx"  // Hardcoded secret
+ 42:- [ ] No hardcoded API keys, tokens, or passwords
+ 44:- [ ] `.env.local` in .gitignore
+ 45:- [ ] No secrets in git history
+467:- [ ] **Secrets**: No hardcoded secrets, all in env vars
+Full section read (L20-46). It is a "### 1. Secrets Management" section with a NEVER/ALWAYS pair and
+a "#### Verification Steps" checklist the session runs when "Working with secrets or credentials"
+(L15, activation list). code = L26-27/L42; config = L43-44 (env vars, .env.local gitignored);
+diff/history = L45.
+=> S8 SURVIVES as 덮음. Caveats recorded, not enough to downgrade:
+   - L46 "- [ ] Production secrets in hosting platform (Vercel, Railway)" is stack-specific noise.
+   - It prescribes .env.local as the store (a config file, kept untracked) rather than forbidding
+     credentials in config outright; compatible with S8 only because the file must be gitignored.
+   - This is the weakest possible form of S8: the template's no-secrets hook already enforces it,
+     so adopting this candidate buys nothing new.
+
+================ (c) HIDDEN CONFLICTS WITH THE BASELINE ================
+Baseline read: docs/work/baselines/secure-api-review.SKILL.md (4 items; "Include what you checked,
+item by item, in your summary"; org note on item 1; trailing comment: no scripts/check-endpoints.sh,
+"by the product owner's decision, no code backstop").
+
+C1 (HARD, S6) CONFIRMED. L152-167 prescribe `{ error: 'Unauthorized' }, { status: 403 }` for a
+   requester who may not see the resource, and L434-438 turn that into a passing test. Policy S6
+   requires an unauthorized claim number and a non-existent claim number to be indistinguishable
+   (same not_found, same latency). A session following this skill would write the exact enumeration
+   oracle S6 forbids, and would ship a test locking it in. Disqualifying on its own.
+
+C2 (ORG NOTE, S1) CONFIRMED. L140-148 (JWT in httpOnly cookies), L187, L436 (Bearer token test),
+   L472 "**Authentication**: Proper token handling" push the application to handle/verify tokens.
+   The org note says the portal validates the gateway JWT and hands the app a session, and that
+   session-only code satisfies item 1 and must not be re-flagged. This skill re-flags it.
+
+C3 (TOOL ABSENT FROM TEMPLATE) NEW — the earlier record missed this one.
+CMD: grep -n -E '^\s*(npm|npx|pnpm|yarn|bash|sh|python|\./|git |curl|trufflehog|gitleaks|semgrep|snyk)'
+RC: 0
+395:npm audit
+398:npm audit fix
+401:npm update
+404:npm outdated
+410:git add package-lock.json
+413:npm ci  # Instead of npm install
+CMD: find /tmp/s5-sample -maxdepth 3 -name 'package*.json' -o -name 'requirements.txt' -o -name 'pyproject.toml'
+RC: 0  (no output — the template has NO package.json and NO package-lock.json anywhere)
+CMD: ls /tmp/s5-sample/.claude/hooks
+RC: 0
+_lib.sh format-lint.sh no-secrets.sh production-gate.sh protect-paths.sh protect-tests.sh
+=> The skill instructs the session to run a toolchain the template does not have, and to
+   `git add package-lock.json` — a file that does not exist. Same failure mode the baseline's
+   trailing comment deliberately removed (scripts/check-endpoints.sh; no code backstop).
+
+C4 (FRAMEWORK LOCK-IN) CONFIRMED.
+CMD: grep -n -i -E 'supabase|next\.js|nextjs|solana|vercel|railway|dependabot|prisma|stripe'
+RC: 0
+46 Vercel/Railway · 120,136,170,189,480 Supabase (incl. "Row Level Security") · 337,341 Solana
+wallet verification · 420 Dependabot · 488-489 Next.js/Supabase docs
+=> None of these exist in the template (an insurance-claim status service). Roughly the L170-224 +
+   L337-421 span is unactionable for this repo.
+
+C5 (OUTPUT CONTRACT) PARTIAL. L461-484 "## Pre-Deployment Security Checklist — Before ANY production
+   deployment" is a 17-item gate (incl. "Row Level Security: Enabled in Supabase", "Wallet
+   Signatures: Verified") that would displace the baseline's 4-item, item-by-item summary and
+   collides with the template's production-gate hook. Not a hard contradiction, but it changes the
+   deliverable.
+
+C6 (OFFENSIVE/PENTEST) NOT FOUND.
+CMD: grep -n -i -E 'exploit|attack|penetration|pentest|fuzz|payload|inject.*test|burp'
+RC: 1  (no matches)
+=> Clean on this axis; the record did not claim otherwise.
+
+================ (c2) STALENESS vs ORIGIN — RECORD CONFIRMED ================
+CMD: diff <WFAI copy> <ecc-security-review@5064474.SKILL.md>
+RC: 0 (differences present)
+ - WFAI L217-218: script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';
+ - ECC  L224-228: base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self';
+                  style-src 'self';   + a new L212-216 paragraph forbidding unsafe-inline/unsafe-eval
+ - ECC also fixes the zod bug (error.issues vs the deprecated error.errors, WFAI L68) and adds
+   `metadata: origin: ECC` to the frontmatter.
+=> The WorldFlowAI copy ships a CSP the MIT origin has since repudiated. It is a stale snapshot.
+   NOTE: the origin has no S5/S6/S7 content either — the whole diff is cosmetics + the CSP/zod fixes.
+
+================ CONCLUSION ================
+license: 불명 (not refutable — no LICENSE file exists for this copy). Alone this forces 보류.
+S5 부분 -> —   S6 — (contradicted)   S7 부분 -> —   S8 덮음 (survives, but adds nothing over the
+                                                        template's no-secrets hook)
+Conflicts C1 (S6 403-for-unauthorized, with a test), C2 (org-note re-flag), C3 (npm toolchain absent
+from the template), C4 (Supabase/Next.js/Solana lock-in), C5 (competing output gate) all apply.
+=> 기각. The (c) conflicts are independent of the license question and would not be cured by a
+   license clarification, so this does not rest in 보류. If S8 phrasing is ever wanted, cite the MIT
+   origin affaan-m/ECC (raw copy: ecc-security-review@5064474.SKILL.md), never this copy.

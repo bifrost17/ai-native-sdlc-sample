@@ -1,0 +1,141 @@
+CMD: 적대 검토(회의론자) — sickn33/api-security-best-practices: 라이선스(레포 MIT / 본문 CC-BY-4.0) 재확인 + S5~S8 재판정 + 숨은 JWT 재지적·능동 시험 절차 탐색
+AT_UTC: 2026-09-09T13:17:38Z
+RC: 0
+
+# 77 — REFUTE pass: candidate #7 sickn33/antigravity-awesome-skills api-security-best-practices
+# Skeptic re-read of raw/17-candidate-sickn33-api-security-best-practices.txt. Clone: /tmp/s5-cand/7 (HEAD bdfbf79, --depth 1, no tags fetched).
+# F = plugins/agentic-awesome-skills-claude/skills/api-security-best-practices/SKILL.md ; G = skills/api-security-best-practices/SKILL.md
+
+CMD: cd /tmp/s5-cand/7 && git rev-parse HEAD && git log -1 --format='%H %cI %s'
+AT_UTC: 2026-09-09T13:17:38Z
+RC: 0
+OUT: bdfbf79ccaabdc31f60ce60ef1703a9abe95f9c3 2026-09-09T13:05:12+00:00 "[skip pages] chore: synchronize canonical repository state"
+
+CMD: git describe --tags
+AT_UTC: 2026-09-09T13:17:38Z
+RC: 128 (depth-1 clone, no tags)
+
+CMD: shasum -a 256 $F $G ; wc -l $F ; cat -n $F
+AT_UTC: 2026-09-09T13:17:38Z
+RC: 0
+OUT: both f01d39fb4e2a134f4ae416dc03701d99b5e703d49472376a7ce488cfdd55328f ; 215 lines. Full file read (L1-215). Matches raw/sickn33-api-security-best-practices@bdfbf79.SKILL.md content used by deep-read.
+
+## (a) License
+CMD: gh api repos/sickn33/antigravity-awesome-skills --jq '{spdx:.license.spdx_id, stars:.stargazers_count, forks:.forks_count, pushed:.pushed_at, subs:.subscribers_count, issues:.open_issues_count}'
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 0
+OUT: spdx MIT, stars 46191, forks 6742, pushed 2026-09-09T13:05:12Z, subs 323, issues 0
+
+CMD: gh api repos/sickn33/antigravity-awesome-skills/tags --jq '.[0:3][] | "\(.name) \(.commit.sha)"'
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 0
+OUT: v17.0.0 78acbe3f333315cfdd887c81a11aa1ffe42f8e64 ; v16.9.1 b1aebac6 ; v16.9.0 08a77add
+NOTE: tag v17.0.0 != HEAD bdfbf79 (record paired "sha bdfbf79" with "tag v17.0.0"). See blob check below — file content identical.
+
+CMD: ls LICENSE* ; head -3 LICENSE ; head -30 LICENSE-CONTENT
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 0
+OUT: LICENSE = "MIT License / Copyright (c) 2026 Antigravity User". LICENSE-CONTENT = "Creative Commons Attribution 4.0 International (CC BY 4.0) ... Original code and tooling remain licensed under the MIT License in `LICENSE`. Original documentation and other non-code written content are licensed under the Creative Commons Attribution 4.0 International license unless a more specific upstream notice says otherwise. Third-party attributions, upstream licenses, and exceptions are tracked in `docs/sources/sources.md`."
+
+CMD: find skills/api-security-best-practices plugins/agentic-awesome-skills-claude/skills/api-security-best-practices -iname 'LICENSE*' -o -iname 'NOTICE*' ; ls both dirs
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 0
+OUT: no matches; each dir contains only SKILL.md
+
+CMD: grep -n -i license .claude-plugin/marketplace.json ; grep -n -i -E 'version|"name"' .claude-plugin/marketplace.json | head
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 0
+OUT: every plugin entry "license": "MIT" (L22,42,...); marketplace "agentic-awesome-skills" version 17.0.0
+
+CMD: grep -n -i -E 'license|copyright|©' $F
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 1 (no license header in file)
+
+CMD: grep -rn -i -E 'openclaw|LeoYeAI' $F skills_index.json docs/sources/sources.md
+AT_UTC: 2026-09-09T13:18:40Z
+RC: 0
+OUT: hits only for unrelated skills in skills_index.json (openclaw/skills source_repo at L14560; openclaw-github-repo-commander L34349-52). $F and sources.md: no hit. Upstream LeoYeAI/openclaw-master-skills provenance: 확인 못 함.
+
+CMD: python3 (json.load skills_index.json; print entry name=='api-security-best-practices')
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0
+OUT: {"id":"api-security-best-practices","path":"skills/api-security-best-practices","category":"backend","risk":"critical","source":"community","date_added":"2026-02-27","plugin":{"targets":{"codex":"supported","claude":"supported"},"setup":{"type":"none"}}} — no source_repo / source_url field.
+
+CMD: grep -n -i 'api-security-best' docs/sources/sources.md
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 1
+
+LICENSE VERDICT: record's claim holds. Repo MIT (gh api + LICENSE); LICENSE-CONTENT assigns CC-BY-4.0 to written content "unless a more specific upstream notice says otherwise". No per-dir or in-file notice. Residual risk: source "community" with no provenance entry in sources.md, so the "upstream notice" escape clause cannot be excluded. Not refuted.
+
+## Tag / sha / history
+CMD: gh api "repos/.../contents/$F?ref=v17.0.0" --jq .sha ; same with ref=bdfbf79... ; git hash-object $F
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0 / 0 / 0
+OUT: all three = 30189456170209ad287a1d82fa5ceab3e6423527 → file byte-identical at tag v17.0.0 and HEAD bdfbf79.
+
+CMD: gh api repos/.../commits/78acbe3f... --jq '.commit.committer.date + " " + (.commit.message|split("\n")[0])'
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0
+OUT: 2026-09-08T17:20:00Z "chore: release v17.0.0 (#1417)"
+
+CMD: gh api repos/.../pulls/1346 --jq '{title,merged_at,merge_commit_sha}'
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0
+OUT: "fix: refresh priority skill procedures and preserve compatibility aliases", merged 2026-09-05T02:33:53Z, ff782b59
+
+CMD: gh api "repos/.../pulls/1346/files?per_page=100" --paginate --jq 'select filename ~ api-security-best-practices'
+AT_UTC: 2026-09-09T13:21:10Z
+RC: 0
+OUT: skills/api-security-best-practices/SKILL.md +179 -879  (the file was rewritten from ~900 lines to the current 215 in PR #1346 — record claim holds)
+
+CMD: gh api "repos/.../commits?path=$F&per_page=20"   (plugin path)
+AT_UTC: 2026-09-09T13:21:10Z
+RC: 0
+OUT: b0bf1231 2026-09-05T02:39:40Z sync ; 2d74b64b 2026-07-29 sync ; a07936c9 2026-07-08 "Rename project to Agentic Awesome Skills" (plugin copy exists only since 2026-07-08)
+
+CMD: gh api "repos/.../commits?path=skills/api-security-best-practices/SKILL.md&per_page=20"
+AT_UTC: 2026-09-09T13:21:10Z
+RC: 0
+OUT: ff782b59 2026-09-05 (#1346) ; df08c3f9 2026-07-29 (#1033) ; bc6dcb0c 2026-07-05 "Harden security remediation examples" ; 2138ff8f 2026-04-13 ; aa71e76e 2026-02-27 release 6.5.0 ; 70ed8b2c 2026-02-20 ; ebdc5170 2026-01-22 "Add files via upload" → 7 commits, record claim holds.
+
+## (b) S5–S8 clause checks (grep -F on quoted fragments + semantic check)
+CMD: grep -n -F 'upstream service budgets' $F ; grep -n -i -E 'cache|caching|call[- ]count|calls per|per request|calls/|budget|rps|requests per second|spec' $F
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0 / 0
+OUT: only L156 "controls, concurrency limits and upstream service budgets. Record actual window/reset". No "cache", no "call count", no "spec", no rps anywhere in the file (the only 'budget'/'spec' hit is that same line). L163 "not ... a substitute for upstream capacity controls" is about Helmet.
+S5 VERDICT: DOWNGRADE 부분 → —. The word "upstream service budgets" appears once inside a "distinguish these four things" list about the *inbound* rate limiter; "Record actual window/reset semantics" refers to the limiter's own window for Retry-After (L157), not to an upstream budget. Nothing instructs the author to compute calls-to-upstream per request, to define a cache policy, or to write either into a spec. Naming a concept in a list is not an instruction that covers the clause.
+
+CMD: grep -n -F "resource-disclosure policy" $F ; grep -n -i -E 'latenc|timing|constant[- ]time|enumerat|same response|identical|indistinguish|not_found|nonexist|non-exist|does not exist|missing' $F
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0 / 0
+OUT: L88 hit; the second grep's only hit is L187 "missing/expired/wrong-audience tokens" (about auth tokens, not resources). Zero occurrences of latency/timing/enumeration/identical/non-existent.
+S6 VERDICT: DOWNGRADE 부분 → —. L87-88 "Use 404/403 consistently with the product's resource-disclosure policy" explicitly delegates the choice and permits 403 (i.e. a distinguishable unauthorized response) if the product policy says so. L101-102 / L191-192 test lists never include a non-existent ID and expect "the documented denial", not equality with the missing-ID response. No latency requirement. The file does not instruct what S6 says.
+
+CMD: grep -n -i -E 'session' $F ; grep -n -i -E 'role' $F ; grep -n -i -E 'session key|cookie name|key name' $F
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0 / 0 / 1
+OUT: session hits L33,66,70,72,73,77,203,211 — all about provider session middleware / refresh-token session families. role hits L85 (role name ≠ cross-tenant access), L188 (extra `role` field rejected by validator). No per-role session key / handler-reads-own-key concept.
+S7 VERDICT: — confirmed.
+
+CMD: grep -n -F 'approved secret mechanism' $F ; grep -n -i -E 'secret|credential|hardcod|hard-cod|\.env|diff|commit|repository|source code|in code' $F
+AT_UTC: 2026-09-09T13:19:50Z
+RC: 0 / 0
+OUT: L175-176 "Keep secrets in the approved secret mechanism, check required configuration at startup without printing values, and rotate exposed credentials." Other hits: L142 (SSRF credentials policy), L157 (hardcoded Retry-After), L197 (repository = this repo). No "code", "config file", "diff", "commit", "hook".
+S8 VERDICT: 부분 stands, weakly. "Keep secrets in the approved secret mechanism" is an instruction that implies not-in-code, and "without printing values" + "rotate exposed credentials" are adjacent. But it never names code/config/diff as forbidden locations and has no hook/backstop notion. Not 덮음.
+
+## (c) Hidden conflicts with baseline / org note
+CMD: grep -n -i -E 'run |execute|script|\.sh|npm |npx |curl |scan|penetration|pentest|attack|exploit|fuzz|inject' $F ; sed -n '23,26p;186,197p' $F
+AT_UTC: 2026-09-09T13:19:50Z / 13:21:10Z
+RC: 0 / 0
+FINDINGS:
+1. JWT re-flag risk (REAL, understated by the deep-read): Section 1 (L31-68) is titled "Authenticate the exact token contract" and the worked example step 2 (L187) says "Check missing/expired/wrong-audience tokens return 401 before storage access." An agent applying this skill to a claims route will test/flag JWT audience/expiry handling in the application — exactly what the org note (0002 F3, 0008 F4) says not to flag, because the portal validates the gateway JWT and the app reads only the session. L12-13 / L33 ("Prefer the established provider/session middleware") soften this but do not remove step 2 of the worked example.
+2. Active-testing posture: L23-26 requires recording "authorized test scope", "synthetic identities in a test environment", and L186-197 is a send-requests-and-observe procedure ("Send `12abc`...", "Try a different user's valid ID...", "Exercise quota/store failure") ending with "Return ... exact test command/output". This turns a PO spec/review session into a test-execution session. Not offensive/pentest (L201 disclaims penetration test; L26 requires separate authority for production scans), but the template has no script or harness and the baseline is review-only ("Include what you checked, item by item").
+3. No script/tool invocation: no `.sh`, npm/npx/curl, or scripts/check-endpoints.sh reference. RC=0 hits are only the word "scans" (L26), code fences, and "execute" in L196. OK.
+4. Framework lock-in: Express / jsonwebtoken / Zod / Prisma / Helmet / Redis INCR-EXPIRE (L27-29, L38-61, L90-97, L110-132, L148-158, L162-164) — declared as "integration sketches" (L27), but 3 of 5 sections are Node-specific.
+5. L215 "Related skills: auth-implementation-patterns, api-patterns, systematic-debugging" — these DO exist in sickn33 (ls skills/<name> rc=0 for all three) but not in the template repo → dangling if grafted.
+6. S6 conflict-lite: L87-88 permits 403 by product policy; policy S6 fixes not_found. Under-specification rather than contradiction, but an agent that has seen 403 in the app's other routes would "consistently" keep 403 — opposite of S6.
+
+## Summary
+license_confirmed: true (MIT repo; CC-BY-4.0 for written content per LICENSE-CONTENT; no per-dir/in-file notice; provenance of "community" source unrecorded).
+S5 부분→—, S6 부분→—, S7 — (confirmed), S8 부분 (kept, weak).
+Verdict: 기각 stands, with stronger grounds — plus a hidden JWT re-flag (L187) the deep-read rated as "no direct contradiction".

@@ -1,0 +1,96 @@
+CMD: deep-read candidate #25 openai/skills skills/.curated/security-best-practices/SKILL.md (git clone --depth 1 + gh api; skills.sh 8253 installs per discovery note)
+AT_UTC: 2026-09-09T13:13:56Z
+RC: 0
+
+# 0. inputs read first
+$ cat policies/api-security.md ; cat docs/work/baselines/secure-api-review.SKILL.md      rc=0
+
+# 1. clone + locate
+$ mkdir -p /tmp/s5-cand/25 && git clone --depth 1 https://github.com/openai/skills /tmp/s5-cand/25/repo
+rc=0
+$ git -C /tmp/s5-cand/25/repo rev-parse HEAD
+rc=0
+49f948faa9258a0c61caceaf225e179651397431
+$ git log -1 --format='%H %cI %s'   (HEAD)
+rc=0
+49f948faa9258a0c61caceaf225e179651397431 2026-06-23T19:36:12-07:00 [codex] Update skill installer post-install guidance (#507)
+$ git describe --tags --abbrev=0
+rc=128 -> 없음
+$ find . -path ./.git -prune -o -name SKILL.md -print | grep -i security
+rc=0
+./skills/.curated/security-ownership-map/SKILL.md
+./skills/.curated/security-threat-model/SKILL.md
+./skills/.curated/security-best-practices/SKILL.md
+NOTE: the file lives at skills/.curated/security-best-practices/SKILL.md (not a top-level security-best-practices/). No other copy exists in the tree.
+
+# 2. repo metadata
+$ gh api repos/openai/skills --jq '{default_branch,stars:.stargazers_count,forks:.forks_count,watchers:.subscribers_count,open_issues:.open_issues_count,license:.license.spdx_id,pushed:.pushed_at,created:.created_at}'
+rc=0
+{"created":"2025-11-25T06:25:42Z","default_branch":"main","forks":1793,"license":null,"open_issues":294,"pushed":"2026-09-08T20:35:26Z","stars":26737,"watchers":152}
+$ gh api repos/openai/skills/tags --jq 'length'
+rc=0
+0   -> tag 없음
+$ gh api "repos/openai/skills/commits?path=skills/.curated/security-best-practices/SKILL.md&per_page=1" --jq '.[0] | {sha,date:.commit.committer.date,msg:.commit.message}'
+rc=0
+{"date":"2026-02-02T15:58:27Z","msg":"Add security best-practices, ownership-map, and threat-model skills (#83)","sha":"5c8f1e26803bcfaffeceef1e7accbcf7e388417a"}
+$ git log -1 --format=%cI -- skills/.curated/security-best-practices/SKILL.md   (shallow clone: returns HEAD commit only, not the file's real last commit)
+rc=0
+2026-06-23T19:36:12-07:00   -> superseded by the API value above (2026-02-02T15:58:27Z)
+
+# 3. license
+$ ls LICENSE*   (repo root)
+rc=1  -> no root LICENSE; gh api .license.spdx_id = null
+$ grep -n -i 'license' README.md
+rc=0
+README.md:41:## License
+README.md:43:The license of an individual skill can be found directly inside the skill's directory inside the `LICENSE.txt` file.
+$ head -12 skills/.curated/security-best-practices/LICENSE.txt ; wc -l
+rc=0
+Apache License
+Version 2.0, January 2004
+http://www.apache.org/licenses/
+(201 lines, standard Apache-2.0 text)   -> per-directory LICENSE wins: Apache-2.0
+
+# 4. the file
+$ wc -l SKILL.md ; wc -c SKILL.md ; shasum -a 256 SKILL.md
+rc=0
+86 lines / 8612 bytes / 7b3dae1ffc5434d890f3c65c8f552af52d0307fab3b35dec13013c9ca3844c4f
+frontmatter (lines 1-4):
+---
+name: "security-best-practices"
+description: "Perform language and framework specific security best-practice reviews and suggest improvements. Trigger only when the user explicitly requests security best practices guidance, a security review/report, or secure-by-default coding help. Trigger only for supported languages (python, javascript/typescript, go). Do not trigger for general code review, debugging, or non-security tasks."
+---
+$ cat -n SKILL.md   rc=0   (read in full)
+$ find skills/.curated/security-best-practices -type f | sort
+rc=0
+agents/openai.yaml (4 lines: display_name/short_description/default_prompt)
+LICENSE.txt
+references/golang-general-backend-security.md            825
+references/javascript-express-web-server-security.md     1158
+references/javascript-general-web-frontend-security.md   747
+references/javascript-jquery-web-frontend-security.md    678
+references/javascript-typescript-nextjs-web-server-security.md 1144
+references/javascript-typescript-react-web-frontend-security.md 990
+references/javascript-typescript-vue-web-frontend-security.md   791
+references/python-django-web-server-security.md          882
+references/python-fastapi-web-server-security.md         1036
+references/python-flask-web-server-security.md           704
+SKILL.md
+
+# 5. references grep (SKILL.md L18 instructs loading these; grepped for S5-S8 topics)
+$ grep -n -i 'rate limit|rate-limit|throttl|upstream|cache|budget|rps' references/*.md      rc=0  -> generic "SHOULD implement rate limiting" (go L103, express L891-907, nextjs L1018-1044); no upstream budget / call-count / cache-policy-in-spec
+$ grep -n -i 'enumerat|timing|404|not found|constant.time|same response' references/*.md   rc=0  -> constant-time secret compare (go L669); custom 404 for fingerprinting (express L228-253); nothing on uniform not_found for unauthorized vs missing object
+$ grep -n -i 'session' references/*.md | grep -i 'key|role|name'                          rc=0  -> express L299-323 EXPRESS-SESS-001 (do not use default cookie name); nothing about per-role session keys
+$ grep -n -i 'secret|credential|hardcod|\.env|commit' references/*.md                       rc=0  -> every reference §0: "MUST NOT request, output, log, or commit secrets"; go L173-196 GO-CONFIG-001 (hard-code in source / .env or config committed); express L326-353 EXPRESS-SESS-002 (hard-coded session secret)
+$ sed -n 300,345p python-fastapi-web-server-security.md ; sed -n 326,362p javascript-express-web-server-security.md ; sed -n 885,910p javascript-express-web-server-security.md ; sed -n 173,196p golang-general-backend-security.md ; sed -n 14,26p python-fastapi-web-server-security.md ; sed -n 86,100p python-fastapi-web-server-security.md
+rc=0  (sections read in full; quotes in the record)
+
+# 6. template stack check (which reference would load?)
+$ head -40 docs/research/secure-api-review/raw/01-template-clone.txt
+rc=0  -> intent-sdlc-sample is docs/.claude only (no python/js/go source found in the clone log) => SKILL.md L38 path: "let the user know that concrete guidance is not available"
+
+# 7. raw copies
+$ cp SKILL.md $RAW/openai-security-best-practices@49f948f.SKILL.md ; cmp   rc=0 byte-identical (sha256 7b3dae1f...)
+$ cp references/golang-general-backend-security.md $RAW/openai-security-best-practices-references-golang-general-backend-security@49f948f.md ; cmp   rc=0 byte-identical
+
+END_UTC: 2026-09-09T13:16:25Z

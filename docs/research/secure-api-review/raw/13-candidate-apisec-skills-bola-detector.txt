@@ -1,0 +1,73 @@
+CMD: deep-read candidate #3 apisec-inc/apisec-skills skills/bola-detector/SKILL.md — clone, metadata, byte copy, clause grep
+AT_UTC: 2026-09-09T13:07:03Z
+RC: 0
+
+## 1. clone + local metadata
+$ git clone --depth 1 https://github.com/apisec-inc/apisec-skills /tmp/s5-cand/3        rc=0
+$ git -C /tmp/s5-cand/3 rev-parse HEAD                                                   rc=0
+  60350c871ad47affe83454b510043c14ed01ae07
+$ git -C /tmp/s5-cand/3 describe --tags --abbrev=0                                       rc=128 (no tags in depth-1 clone)
+$ ls /tmp/s5-cand/3 ; ls skills ; ls skills/bola-detector                               rc=0
+  .cursor-plugin/ .gitignore LICENSE logo.png README.md rules/ skills/
+  skills/: api-security-review auth-rbac-scaffold bola-detector injection-checker openapi-hardener security-test-generator
+  skills/bola-detector/: SKILL.md (single file, no per-dir LICENSE)
+$ git -C /tmp/s5-cand/3 log -1 --format='%cI %H' -- skills/bola-detector/SKILL.md        rc=0
+  2026-03-12T16:57:15-04:00 60350c87… (depth-1 clone: collapses to HEAD; see API below for true file commit)
+$ head -5 LICENSE                                                                        rc=0
+  MIT License / Copyright (c) 2026 apisec inc.
+$ find skills/bola-detector -maxdepth 2 -iname 'LICENSE*'                                rc=0 (no output → no per-dir license)
+$ wc -l / wc -c skills/bola-detector/SKILL.md                                            rc=0
+  487 lines, 15869 bytes
+$ shasum -a 256 skills/bola-detector/SKILL.md                                            rc=0
+  413e614d8ecba9ae618821610144a6855cc0916eaf3700b68c2a53561c7c041a
+
+## 2. gh api metadata
+$ gh api repos/apisec-inc/apisec-skills --jq '{stars,forks,watchers,open_issues,license,pushed,created}'   rc=0
+  stars=18 forks=1 subscribers(watchers)=0 open_issues=0 license=MIT
+  created=2026-03-12T20:52:50Z pushed=2026-03-12T20:57:26Z default_branch=main
+  description="API security skills and rules for Cursor, Claude Code, Copilot, and all major AI coding agents. OWASP API Top 10 coverage — zero configuration."
+$ gh api repos/apisec-inc/apisec-skills/tags --jq '.[0].name // "없음"'                 rc=0 → 없음
+$ gh api repos/apisec-inc/apisec-skills/commits/HEAD --jq .sha                           rc=0 → 60350c871ad47affe83454b510043c14ed01ae07
+$ gh api 'repos/apisec-inc/apisec-skills/commits?path=skills/bola-detector/SKILL.md&per_page=1'   rc=0
+  file last commit: 6a6d4d8eb563076106bc814e94d8fe4082b90868 at 2026-03-12T20:54:46Z
+$ gh api repos/apisec-inc/apisec-skills/commits --jq length                              rc=0 → 4 commits total (repo lived one day: 2026-03-12)
+
+## 3. README / plugin manifest (usage signals)
+$ cat README.md ; ls rules ; cat .cursor-plugin/plugin.json                              rc=0
+  - README install instructions reference a DIFFERENT repo name: "git clone https://github.com/APIsec-ai/apisec-cursor-plugin" (not apisec-inc/apisec-skills)
+  - Claims Cursor Marketplace listing ("search APIsec"); not verified here.
+  - plugin.json version 1.0.0; 6 skills + 5 .mdc rules; format "Agent Skills (agentskills.io)"
+  - no skills.sh install count available; no CI, no tests, no issues.
+
+## 4. frontmatter (verbatim)
+---
+name: bola-detector
+description: >
+  Use when writing or reviewing any API endpoint that retrieves, updates, or deletes
+  a record by user-supplied ID. Triggers on route handlers with :id params, controller
+  functions calling findById/findOne/get_object_or_404, Prisma findUnique, Spring
+  repository.findById, or any ORM lookup by identifier. Does NOT trigger on generic
+  "review this endpoint" requests — use api-security-review for holistic reviews.
+  This skill focuses narrowly on object-level authorization. Detects BOLA / IDOR —
+  OWASP API1:2023.
+---
+
+## 5. byte copy
+$ cp /tmp/s5-cand/3/skills/bola-detector/SKILL.md $RAW/apisec-skills-bola-detector@60350c8.SKILL.md   rc=0
+$ cmp <src> <copy>                                                                       rc=0 (identical)
+$ shasum -a 256 <copy> → 413e614d8ecba9ae618821610144a6855cc0916eaf3700b68c2a53561c7c041a
+
+## 6. clause keyword grep (S5–S8)
+$ grep -n -i -E 'rate.?limit|rps|cache|budget|upstream|latency|timing|same response|enumerat|session|secret|credential|hardcode|\.env|api key|apikey' SKILL.md   rc=0
+  29: An auth token (JWT, session cookie, API key) proves identity ...
+  33: | Authentication | Who is calling? | Token validation, session lookup |
+  286/303: python `db: Session = Depends(get_db)` (SQLAlchemy Session, unrelated)
+  → no hits for rate limit / cache / budget / latency / enumeration / secrets / credentials.
+
+## 7. clause mapping summary
+  S1 부분 (4.1 auth middleware before handler; no gateway JWT / /health)
+  S2 —   S3 부분 (4.3 admin bypass "explicit and auditable"; severity table "without audit logging")
+  S4 —  (4.6 mentions IDs leaking in logs/error messages, but about UUID guessability, not pii fields)
+  S5 —   S6 부분 (safe pattern returns identical 404 for missing & unauthorized via query-level filter; 403 post-fetch flagged Medium; no latency clause)
+  S7 —   S8 —
+AT_UTC_END: 2026-09-09T13:08:09Z

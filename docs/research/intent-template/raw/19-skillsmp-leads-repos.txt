@@ -1,0 +1,23 @@
+CMD: for r in nexu-io/open-design addyosmani/agent-skills bmad-code-org/BMAD-METHOD affaan-m/ECC; do echo "### $r"; gh api repos/$r --jq "{license:.license.spdx_id,pushed_at,stargazers_count,forks_count}"; H=$(gh api repos/$r/commits/HEAD --jq .sha); echo HEAD=$H; gh api "repos/$r/git/trees/$H?recursive=1" --jq ".truncated, (.tree[] | select(.path | test(\"(?i)(pm-spec|spec-driven-development|bmad-prd|prd|product-capability|brainstorm|requirement)\") and (.path | endswith(\"SKILL.md\"))) | .path)"; done
+AT_UTC: 2026-09-09T09:38:04Z
+RC: 1
+### nexu-io/open-design
+{"forks_count":10992,"license":"Apache-2.0","pushed_at":"2026-09-09T09:36:57Z","stargazers_count":95031}
+HEAD=f197844e27b897926021939e1a98805089cf84d6
+false
+expected an object but got: string ("design-templates/pm-spec")
+### addyosmani/agent-skills
+{"forks_count":9916,"license":"MIT","pushed_at":"2026-09-08T07:21:56Z","stargazers_count":93117}
+HEAD=6ca0cd7db39b41b1c37e26d335c507ee92382c6d
+false
+expected an object but got: string ("evals/cases/spec-driven- ...")
+### bmad-code-org/BMAD-METHOD
+{"forks_count":5980,"license":"NOASSERTION","pushed_at":"2026-09-09T05:32:17Z","stargazers_count":52812}
+HEAD=abe4eb1bce919c9d22cd18b3519353d5824c4b75
+false
+expected an object but got: string ("docs/cs/explanation/brai ...")
+### affaan-m/ECC
+{"forks_count":38153,"license":"MIT","pushed_at":"2026-09-09T07:58:39Z","stargazers_count":254680}
+HEAD=5064474d4d762dc9640234a41617cccb79185cec
+false
+expected an object but got: string (".agents/skills/product-c ...")

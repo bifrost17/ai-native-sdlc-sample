@@ -30,6 +30,12 @@ files themselves — `grep -rn 'TEAM:'` finds all of them.
 | no file — UI visual check tool (this sample has no UI) | nothing | a browser tool or a screenshot utility wired in via MCP, and the mock Claude compares against | engineer setting up the loop | L9 612, L9 627 |
 | no file — non-engineer contributor's commit path | nothing (this sample commits `intent/` from a CLI session via `git`/`gh`, not from a non-engineer) | a claude.ai/Cowork setup with a GitHub connector configured to commit Markdown to `intent/`, and who is allowed to use it | platform engineer | L2 185-189 |
 
+## The worked example of the team's part
+Since 2026-09-10 this repository carries one organization's own answers under `org-skills/`,
+`policies/` and `docs/research/` — adopted marketplace skills with provenance, designed skills
+transcribing `policies/*.md`, and the research that chose them. Treat them as an example of *how*
+to fill the rows below, not as the answer for another organization.
+
 ## Why the sample does not fill these in
 Policy is the organization's, not this repo's: the playbook requires a named owner, a documented
 source of truth and a sign-off for each policy skill (L6 448, L6 460) — a sample repo has none of

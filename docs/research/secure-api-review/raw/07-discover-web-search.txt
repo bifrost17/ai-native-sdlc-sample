@@ -1,0 +1,76 @@
+CMD: Angle D web discovery — WebSearch (8 queries) + WebFetch/gh api/curl on GitHub repos and skill registries (skills.sh etc.), opening SKILL.md files for API-security review skills (S5 rate budget / S6 enumeration / S7 session / S8 secrets / OWASP API Top 10)
+AT_UTC: 2026-09-09T09:35:46Z
+RC: 0
+---
+2026-09-09T09:35:52Z # log initialized rc=0
+
+## WebSearch queries (tool: WebSearch, all rc=0, run 2026-09-09T09:36Z)
+Q1 "SKILL.md OWASP API Security Top 10 claude skill" -> agamm/claude-code-owasp (.claude/skills/owasp-security/SKILL.md, ~306 stars per snippet), NickCrew/Claude-Cortex (skills/owasp-top-10/SKILL.md), owasp.org agentic-skills-top-10, snyk.io top-9 article, skillsllm.com/skill/claude-code-owasp
+Q2 "claude code skill api security review rate limiting" -> mcpmarket.com/tools/skills/api-security-hardening, mcpmarket security-review-best-practices, skills-hub.ai/skills/security-review, skillsplayground.com getsentry-skills-security-review, claudemarketplaces.com sickn33/antigravity-awesome-skills/api-security-best-practices, WorldFlowAI/everything-claude-code skills/security-review/SKILL.md, claudedirectory.org api-rate-limiting, crossaitools.com harperaa/secure-claude-skills/rate-limiting
+Q3 "agent skill IDOR enumeration prevention review" -> snyk article, arxiv papers (SkillGuard, credential leak, agent skills in wild), invicti IDOR, agentskills.me/skill/idor-vulnerability-testing
+Q4 "claude skill secrets in diff detection" -> code.claude.com/docs/en/skills, snyk article, batsov.com, mcpmarket review-diff / understand-diff, trailofbits differential-review (mentioned in snippet)
+Q5 "skills.sh security" -> vercel.com changelog automated security audits skills.sh, socket.dev blog, mondoo.com, agentskill-sh/ags, skillselion.com/best/skills-for-security, Eyadkelleh/awesome-skills-security, skillselion.com/guides/best-security-skills-for-claude-code
+Q6 "awesome claude skills security" -> Eyadkelleh/awesome-skills-security, awesomeclaude.ai/awesome-claude-skills, agentskill.work, awesomeskill.ai/category/security, skillsllm.com
+Q7 "claude code security review skill github" -> MaTriXy/github-review-skill, Dilaz/security-review-skill, ez-lbz/claude-code-security-skills, awesome-skills/code-review-skill, Security-Phoenix-demo/security-skills-claude-code, anthropics/claude-code-security-review (.claude/commands/security-review.md), trailofbits/skills
+Q8 "OWASP API security agent skill 2026" -> mcpservers.org/agent-skills/microsoft/owasp-agentic, agamm/claude-code-owasp, secureflag/adversa/practical-devsecops articles on OWASP Agentic Skills Top 10, aptori.com API security 2026 blog
+
+## Opening repos (gh api / curl raw.githubusercontent.com)
+CMD: gh api repos/<owner>/<repo> (stars/pushed/default) for 15 repos, 2026-09-09T09:38Z, rc=0 each; microsoft/owasp-agentic -> HTTP 404 (mcpservers.org listing name is not a GitHub repo path)
+  agamm/claude-code-owasp stars=356 pushed=2026-07-28
+  NickCrew/Claude-Cortex stars=39 pushed=2026-06-29
+  WorldFlowAI/everything-claude-code stars=2694 pushed=2026-01-23
+  getsentry/skills stars=986 pushed=2026-09-07
+  sickn33/antigravity-awesome-skills stars=46184 pushed=2026-09-08
+  harperaa/secure-claude-skills stars=16 pushed=2025-12-14
+  Dilaz/security-review-skill stars=7 pushed=2026-02-03
+  ez-lbz/claude-code-security-skills stars=23 pushed=2026-04-16 default=master
+  Security-Phoenix-demo/security-skills-claude-code stars=70 pushed=2026-04-29
+  anthropics/claude-code-security-review stars=6188 pushed=2026-02-11
+  trailofbits/skills stars=7022 pushed=2026-09-02
+  MaTriXy/github-review-skill stars=4 pushed=2025-12-15
+  Eyadkelleh/awesome-skills-security stars=380 pushed=2026-06-08
+  agentskill-sh/ags stars=35 pushed=2026-05-11
+CMD: gh api repos/<repo>/git/trees/<branch>?recursive=1 --jq SKILL.md paths, 2026-09-09T09:40Z, rc=0 for all 13 repos (paths listed inline below per file opened)
+CMD: curl -sfL raw.githubusercontent.com/<repo>/<branch>/<path> via /tmp/s5fetch*.sh (prints first 5 lines + keyword counts), 2026-09-09T09:41Z — all rc=0 unless noted
+  [1] agamm/claude-code-owasp .claude/skills/owasp-security/SKILL.md (303 lines) — frontmatter name: owasp-security; "Covers OWASP Top 10:2025, ASVS 5.0, LLM Top 10 (2025), Agentic AI (2026)". Hits: A06 "rate limit" (1 row), L78 "Secrets in environment/vault (not code)", L84 "Consistent error responses (no enumeration)" [ASVS checklist item], LLM10 rate-limit per user/key. No OWASP API Top 10 (API1..API10) section. Tree also has reference/languages.md, reference/owasp-report.md.
+  [2] NickCrew/Claude-Cortex skills/owasp-top-10/SKILL.md (127 lines) — name: owasp-top-10; generic web Top 10; secrets scanning tools (GitGuardian/TruffleHog) mention only. No API/enumeration/rate-limit content.
+  [3] WorldFlowAI/everything-claude-code skills/security-review/SKILL.md (494 lines) — name: security-review; sections: 1. Secrets Management (checklist: no hardcoded keys, no secrets in git history), 7. Rate Limiting (express-rate-limit code). No IDOR/enumeration, no upstream budget.
+  [4] getsentry/skills skills/security-review/SKILL.md (312 lines) — name: security-review; allowed-tools Read/Grep/Glob/Bash/Task; confidence-based; "Always Flag (Secrets)" section; references authorization.md (IDOR), data-protection.md (secrets exposure, PII, logging). No rate limit.
+  [5] getsentry/skills skills/django-access-review/SKILL.md (340 lines) — name: django-access-review; "Django access control and IDOR security review"; finding template [IDOR-001]; Django-specific.
+  [6] harperaa/secure-claude-skills rate-limiting/SKILL.md (739 lines) — name: rate-limiting; implementation (withRateLimit, Redis), cost-protection narrative. Implementation not review; no upstream-budget-in-spec.
+  [7] harperaa/secure-claude-skills auth-security/SKILL.md (850 lines) — name: authentication-authorization-clerk; Clerk-specific; session 16 hits but Clerk sessions, not per-role session keys.
+  [8] harperaa/secure-claude-skills security-awareness/information-leakage/SKILL.md (859 lines) — name: information-leakage-hardcoded-secrets-ai-code; educational on hardcoded secrets/logging.
+  [9] harperaa/secure-claude-skills security-awareness/resource-exhaustion/SKILL.md (835 lines) — name: resource-exhaustion-dos-ai-generated-code; missing rate limits / uncontrolled consumption / API cost; educational.
+  [10] Dilaz/security-review-skill SKILL.md (356 lines) — name: security-review; exploit-driven; Secret Detection section runs gitleaks/trufflehog/trivy; IDOR in severity table only.
+  [11] ez-lbz/claude-code-security-skills SKILL.md (131 lines, branch master) — name: code-security-review; derived from anthropics action; L62/L120 rate limiting is a HARD EXCLUSION.
+  [12] MaTriXy/github-review-skill SKILL.md (137 lines) — name: github-security-review; consumes GitHub Secret Scanning alerts, remediation incl. remove from git history.
+  [13] anthropics/claude-code-security-review .claude/commands/security-review.md (191 lines) — slash command (not SKILL.md); L45 & L141 explicitly EXCLUDE rate limiting / resource exhaustion; L65 flags hardcoded API keys; L146 timing attacks excluded unless practical.
+  [14] trailofbits/skills plugins/differential-review/skills/differential-review/SKILL.md (225 lines) — name: differential-review; security diff review, blast radius, test coverage; 0 hits for rate/enum/session/secret keywords.
+  [15] trailofbits/skills plugins/entry-point-analyzer/.../SKILL.md (247 lines) — smart-contract only. Not relevant.
+  [16] trailofbits/skills plugins/spec-to-code-compliance/.../SKILL.md (115 lines) — name: spec-to-code-compliance; check code vs spec/design doc (which requirements hold/contradict/absent). Generic; could carry S5 "cache policy in spec" check but no API content.
+  [17] Security-Phoenix-demo/security-skills-claude-code "skills/Security Assessment/Security-automated-claude-skills/.claude/skills/security-reviewer/SKILL.md" (87 lines) — name: security-reviewer; checklist L32 secrets & key material, L34 rate limits in config, L18 IDOR surface; severity table MEDIUM=missing rate limit.
+  [18] Security-Phoenix-demo ... security-assessment/SKILL.md (488 lines) — no frontmatter; OWASP Top 10 2025 + ASVS L1 full-codebase assessment.
+  [19] sickn33/antigravity-awesome-skills plugins/agentic-awesome-skills-claude/skills/api-security-best-practices/SKILL.md (215 lines) — name: api-security-best-practices; risk: critical; sections incl. rate limiting with distributed quota/Retry-After (L148-161), 5. Passwords, secrets and logging (L166-175), links OWASP API Security project (L209). Session 8 hits.
+  [20] same repo .../api-security/SKILL.md (205 lines) — name: api-security; risk: offensive; source zhaoxuya520/reverse-skill; BOLA/IDOR/BFLA testing phases (partly Chinese text); rate-limit testing.
+  [21] same repo .../api-security-testing/SKILL.md (176 lines) — name: api-security-testing; workflow bundle; Phase 5 Rate Limiting; delegates to idor-testing.
+  [22] same repo .../idor-testing/SKILL.md (462 lines) — name: idor-testing; risk: offensive; enumeration/IDOR checklist (L209-225), response-code interpretation table.
+  [23] same repo .../broken-authentication/SKILL.md (494 lines) — name: broken-authentication; risk: offensive; Phase 3 Credential Enumeration "Check timing differences, response codes" (L100-115), session 41 hits, rate limiting bypass headers.
+  [24] same repo .../secrets-management/SKILL.md (47 lines) — CI/CD secrets (Vault/AWS SM); not diff detection.
+  [25] same repo .../cc-skill-security-review/SKILL.md (472 lines) — copy of everything-claude-code security-review (same sections).
+  [26] same repo .../api-rate-limit-handler/SKILL.md (282 lines) — name: api-rate-limit-handler; client-side handling of upstream 429/backoff, "respects upstream quotas" (L19); closest to S5 upstream budget but implementation-oriented.
+  [27] same repo .../security-audit/SKILL.md (222 lines) — workflow bundle; "Test rate limiting", idor-testing delegation.
+CMD: WebFetch mcpmarket.com/tools/skills/api-security-hardening -> HTTP 429 (확인 못 함)
+CMD: WebFetch agentskills.me/skill/idor-vulnerability-testing -> rc=0; page says source = github.com/sickn33/antigravity-awesome-skills/tree/main/skills/idor-testing (same skill as [22])
+CMD: WebFetch skills.sh/?q=api+security -> rc=0 but page rendered only nav (client-side app; listing not retrievable)
+CMD: WebFetch skillselion.com/guides/best-security-skills-for-claude-code -> rc=0 but only header metadata; suggests llms-full.txt
+CMD: WebFetch snyk.io top-9 article -> rc=0; lists trailofbits/skills, snyk/studio-recipes, trilwu/secskills (has api-security-testing skill w/ IDOR), agamm/claude-code-owasp, snyk-labs/snyk-learning-path-skill, Eyadkelleh/awesome-claude-skills-security, dralgorhythm/claude-agentic-framework
+CMD: gh api repos/<r> for trilwu/secskills(137 stars, pushed 2026-09-04) snyk/studio-recipes(62) dralgorhythm/claude-agentic-framework(118) zhaoxuya520/reverse-skill(35205) rc=0; snyk-labs/snyk-learning-path-skill -> 404 (확인 못 함)
+CMD: gh api trees trilwu/secskills -> secskills-offense/skills/testing-apis/SKILL.md, attacking-oauth-oidc/SKILL.md, enumerating-network-services/SKILL.md rc=0
+CMD: curl agamm reference/owasp-report.md grep -> rc=0; only generic "rate limit API access", "Missing rate limiting on sensitive operations"; no API1..API10 identifiers
+CMD: curl -sL https://skills.sh/ -> http=200 (SPA shell; grep of listing failed, no server-rendered catalog)
+CMD: WebSearch Q9 'SKILL.md "BOLA" "API1:2023" OR "API4:2023" claude agent skill github' 2026-09-09T09:43Z rc=0 -> no direct hit; catalogs: michaelboeding/skills, wshobson/agents, alirezarezvani/claude-skills, simota/agent-skills, addyosmani/agent-skills
+CMD: WebSearch Q10 'claude code skill "user enumeration" "same response" timing not found authorization review' rc=0 -> nothing specific; WorldFlowAI security-review, hackwednesday.com/blog/security-claude-code-skills, engineeratheart.medium.com 4-skills article
+CMD: WebSearch Q11 'claude code hook gitleaks pre-commit secrets SKILL.md "no secrets" PreToolUse' rc=0 -> lobehub vinnie357-claude-skills-security, mcpmarket gitleaks-secret-scanning-implementation, claudemarketplaces tartinerlabs/skills/security, claude-plugins.dev liauw-media/CodeAssist/pre-commit-hooks, claudskills.com/author/gitleaks
+CMD: WebSearch Q12 'skills.sh api security owasp skill install "npx skills add"' rc=0 -> timonweb.com 5-security-skills review, claudemarketplaces agamm owasp-security, claudeskills.info hoodini/ai-agents-skills/owasp-security, llmbase.ai agentnode-dev/skills-security-audit (audits skills themselves, not APIs), owasp.org skill-scanner-integration
+CMD: WebFetch skillselion.com/llms-full.txt rc=0 -> no security list; exposes API GET /api/v1/listings?q=...&type=skill
+CMD: WebFetch skillsllm.com/skill/claude-code-owasp rc=0 -> registry page: agamm/claude-code-owasp 333 stars; related list generic (obra/superpowers etc.)

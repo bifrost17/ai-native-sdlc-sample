@@ -1,0 +1,70 @@
+CMD: deep-read candidate #6 agamm/claude-code-owasp .claude/skills/owasp-security/SKILL.md — clone, metadata, license, full read, byte-copy to raw
+AT_UTC: 2026-09-09T13:07:03Z
+RC: 0
+
+## 1. clone + head + tag + layout
+$ git clone --depth 1 https://github.com/agamm/claude-code-owasp /tmp/s5-cand/6        rc=0
+$ git -C /tmp/s5-cand/6 rev-parse HEAD                                                  rc=0
+  bfaf257b2859986a6a84d2b7491e1fab2218cd53
+$ git describe --tags --abbrev=0                                                        rc=128 (no tags) -> TAG=없음
+$ ls -la ; find . -name SKILL.md -not -path './.git/*'                                  rc=0
+  .claude/ .gitignore LICENSE README.md
+  ./.claude/skills/owasp-security/SKILL.md
+$ find .claude -type f                                                                  rc=0
+  .claude/skills/owasp-security/SKILL.md
+  .claude/skills/owasp-security/reference/owasp-report.md
+  .claude/skills/owasp-security/reference/languages.md
+  (no per-directory LICENSE or license header under .claude/)
+
+## 2. dates
+$ git log -1 --format=%cI -- .claude/skills/owasp-security/SKILL.md                      rc=0
+  2026-07-27T22:32:39-05:00
+$ TZ=UTC git log -1 --date=iso-strict-local --format=%cd -- .claude/skills/owasp-security/SKILL.md   rc=0
+  2026-07-28T03:32:39+00:00   (= 2026-07-28T03:32:39Z)
+$ git log -1 --format='%H %s'                                                           rc=0
+  bfaf257b2859986a6a84d2b7491e1fab2218cd53 Merge pull request #4 from agamm/fix/asvs-5-accuracy-and-llm-reference
+
+## 3. repo metadata (gh api, no gh search used)
+$ gh api repos/agamm/claude-code-owasp --jq '{stars,forks,watchers,open_issues,license,pushed,created,default_branch}'   rc=0
+  {"created":"2026-01-30T03:13:47Z","default_branch":"main","forks":32,"license":"MIT","open_issues":1,
+   "pushed":"2026-07-28T03:32:45Z","stars":356,"watchers":8}
+$ gh api repos/agamm/claude-code-owasp/tags --jq 'length'                               rc=0
+  0  -> tag 없음
+$ head -5 LICENSE                                                                       rc=0
+  MIT License
+  Copyright (c) 2026
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  -> README L115-117 also says "MIT License - See LICENSE file for details."
+  skills.sh install count: 확인 못 함 (not given, not queried)
+
+## 4. sizes
+$ wc -l .claude/skills/owasp-security/SKILL.md README.md                                rc=0
+  303 SKILL.md ; 121 README.md
+$ wc -l .claude/skills/owasp-security/reference/*.md                                    rc=0
+  334 languages.md ; 1099 owasp-report.md
+
+## 5. frontmatter (SKILL.md L1-4)
+---
+name: owasp-security
+description: Use when reviewing code for security vulnerabilities, implementing authentication/authorization, handling user input, or discussing web application security. Covers OWASP Top 10:2025, ASVS 5.0, LLM Top 10 (2025), and Agentic AI security (2026).
+---
+
+## 6. full read
+$ cat -n .claude/skills/owasp-security/SKILL.md                                         rc=0   (303 lines, read in full)
+$ cat -n README.md                                                                      rc=0   (121 lines, read in full)
+$ grep -n -i -E 'enumerat|timing|constant-time|same response|rate.?limit|budget|cache|secret|credential|hardcode|\.env|session key|cookie name|per-role|role' reference/owasp-report.md | head -60   rc=0
+  salient: L276 "# Use consistent timing to prevent enumeration" ; L329 "Harden against enumeration attacks (consistent responses)" ;
+           L73 "Rate limit API access" ; L93/97 SECRET_KEY hardcoded vs vault ; L854-862 per-user rate limit / daily budget (LLM10)
+$ sed -n '250,290p' reference/owasp-report.md                                            rc=0   (viewed the password-reset enumeration snippet)
+
+## 7. byte copy to raw
+$ cp .claude/skills/owasp-security/SKILL.md $RAW/agamm-owasp-security@bfaf257.SKILL.md   rc=0
+$ cmp <src> <copy>                                                                       rc=0  identical
+$ shasum -a 256 both                                                                     rc=0
+  7c7ee6971d977b301585d03ea570a98621f4eebc8bb63b08287ca83b50f6be80  (both)
+
+## 8. clause map (SKILL.md line refs) — see structured record
+S1 부분 L69/L71/L39-43 · S2 부분 L57/L60/L254 · S3 부분 L264-266 · S4 부분 L77/L268
+S5 부분 L23/L197 (generic rate limit, no upstream budget/cache-in-spec) · S6 부분 L84 (no latency)
+S7 — (sessions section L62-66 is entropy/logout only; no per-role key) · S8 부분 L78 ("not code" only; no config/diff)
+END_UTC=2026-09-09T13:08:34Z

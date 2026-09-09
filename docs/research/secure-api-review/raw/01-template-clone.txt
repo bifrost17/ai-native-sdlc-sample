@@ -1,0 +1,55 @@
+CMD: git clone --depth 1 https://github.com/bifrost17/intent-sdlc-sample /tmp/s5-sample && git -C /tmp/s5-sample rev-parse HEAD && cat .claude/skills/secure-api-review/SKILL.md && head -3 LICENSE
+AT_UTC: 2026-09-09T09:33:32Z
+RC: 0
+
+016705e01c91a422222eedfad4e2833c36bc9007
+016705e01c91a422222eedfad4e2833c36bc9007 2026-09-09T17:45:12+09:00 Merge pull request #56 from bifrost17/fix/0010-spec-sections
+--- .claude/skills/secure-api-review/SKILL.md ---
+---
+name: secure-api-review
+description: Apply the API security standard. Use whenever creating or
+ modifying an external-facing endpoint, reviewing API code, or
+ generating an OpenAPI spec.
+---
+<!-- TEAM: replace with the org's real API security standard — docs/ADOPTING.md · L12 -->
+# Secure API review
+When you create or change an API endpoint:
+1. Authentication: every endpoint requires the gateway JWT;
+ no anonymous routes outside /health.
+2. Input validation: validate request bodies against the OpenAPI
+ schema and reject unknown fields.
+3. Audit: every state-changing endpoint emits an audit event with
+ actor, action, entity and timestamp.
+4. Data classification: fields tagged pii in the schema must never
+ appear in logs or error messages.
+Include what you checked, item by item, in your summary.
+
+Org note on item 1 (answered the same way twice — 0002 F3, 0008 F4): the portal validates the
+gateway JWT and hands the application a session; code that reads only the session satisfies
+item 1. Do not flag this again unless the session contract itself changes.
+
+<!-- L6 481-498 verbatim except the last line: the playbook's example ends "Run
+scripts/check-endpoints.sh and include its output in your summary." — this repo has no such script
+and, by the product owner's decision, no code backstop. L6 503: "A skill is a control, though an
+advisory one." -->
+--- LICENSE head ---
+MIT License
+
+Copyright (c) 2026 intent-sdlc-sample contributors
+--- ls .claude/skills .claude/commands .claude/hooks ---
+/tmp/s5-sample/.claude/commands:
+spec.md
+
+/tmp/s5-sample/.claude/hooks:
+_lib.sh
+format-lint.sh
+no-secrets.sh
+production-gate.sh
+protect-paths.sh
+protect-tests.sh
+
+/tmp/s5-sample/.claude/skills:
+capture-intent
+design-spec
+plan
+secure-api-review

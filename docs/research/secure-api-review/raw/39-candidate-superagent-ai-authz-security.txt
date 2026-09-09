@@ -1,0 +1,81 @@
+CMD: deep-read candidate #29 superagent-ai/skills skills/authz-security/SKILL.md — clone, metadata, byte-copy, clause mapping
+AT_UTC: 2026-09-09T13:15:17Z
+RC: 0
+END_UTC: 2026-09-09T13:16:16Z
+
+## commands (all run from /tmp/s5-cand/29 unless noted)
+
+$ git clone --depth 1 https://github.com/superagent-ai/skills /tmp/s5-cand/29
+rc=0
+
+$ git rev-parse HEAD
+0da315b873ed141025fa601ed6e0ebe0c878d5af
+rc=0
+
+$ git describe --tags --abbrev=0 2>/dev/null || echo "없음"
+없음
+rc=0 (describe failed -> 없음)
+
+$ gh api repos/superagent-ai/skills/tags --jq 'if length==0 then "없음" else .[0].name end'
+없음
+rc=0
+
+$ gh api repos/superagent-ai/skills --jq '{stars,forks,watchers,open_issues,license,pushed,created,default_branch}'
+{"created":"2026-05-18T18:29:00Z","default_branch":"main","forks":12,"license":"MIT","open_issues":0,"pushed":"2026-08-15T12:47:01Z","stars":76,"watchers":1}
+rc=0
+
+$ gh api 'repos/superagent-ai/skills/commits?path=skills/authz-security/SKILL.md&per_page=1' --jq '.[0] | {sha,date,msg}'
+{"date":"2026-06-02T12:27:15Z","msg":"Add authz-security agent skill for broken access control review\n\nDefensive, source-level reviewer for IDOR/BOLA (API1), BFLA (API5),\nmass assignment (API3), and multi-tenant isolation gaps. Ships SKILL.md\nplus frameworks/patterns/checklist references; README updated.","sha":"adb1c052592871442243dd92322fe22e607f3fd0"}
+rc=0
+NOTE: file has exactly one commit (adb1c05, 2026-06-02T12:27:15Z). depth-1 local `git log -1 --format=%cI -- skills/authz-security/SKILL.md` printed 2026-08-15T14:47:01+02:00 (= HEAD commit date, clone truncation) — the gh api value is authoritative.
+
+$ head -20 LICENSE
+MIT License / Copyright (c) 2026 Superagent / Permission is hereby granted ... (standard MIT text)
+rc=0
+
+$ find skills/authz-security -iname 'LICENSE*'
+(no output — no per-directory license; repo-root MIT applies)
+rc=0
+
+$ ls skills/authz-security/ ; ls -la skills/authz-security/references
+SKILL.md  references/
+references: checklist.md (5418 B), frameworks.md (10084 B), patterns.md (7888 B)
+rc=0
+
+$ ls skills
+authz-security ci-cd-security crypto-secrets hacker infra-security pr-github-ops recon-security redteam-autoresearch repo-security-posture security-disclosure-triage skill-security superagent supply-chain-security vulnerability-triage
+rc=0
+
+$ wc -l skills/authz-security/SKILL.md
+203
+rc=0
+
+$ shasum -a 256 skills/authz-security/SKILL.md
+1b3213086b807e702e8818c7c003c4abd9f604317fba2a0b7f27b7ee679ec526
+rc=0
+
+$ cat -n skills/authz-security/SKILL.md            rc=0 (read in full; frontmatter below)
+$ grep -n -A 25 'authz-security</b>' README.md     rc=0 (README L133-153 describes the skill; no install counts)
+$ cat -n skills/authz-security/references/checklist.md   rc=0 (read in full)
+$ grep -n -i -E 'rate.?limit|rps|cache|budget|upstream|latenc|timing|enumerat|not.?found|404|session|secret|credential|hardcod|api.?key|token' references/patterns.md references/frameworks.md
+rc=0 — hits only for 404/session/JWT-verification lines (patterns.md L12,L17,L55,L57,L60,L116,L130; frameworks.md L9,L21,L29,L54,L70,L82,L112,L117,L205,L210). No rate-limit/cache/budget/latency/secret hits.
+$ grep -n -i -E 'audit|log|secret|credential|rate|cache|latenc|timing' skills/authz-security/SKILL.md
+rc=0 — "audit" only as "full audit"/"auditing a PR"; "log" only as "logged in"/"IDs leak via logs" (L149); "credentials" only as "no credentials needed" (L3,L8,L200); zero hits for rate/cache/latency.
+$ grep -n -i -E 'skills\.sh|install|npx' README.md
+rc=0 — no skills.sh / install-count signal; README only mentions agentskills.io format.
+
+$ cp skills/authz-security/SKILL.md            $RAW/superagent-ai-authz-security@0da315b.SKILL.md                      rc=0
+$ cp references/patterns.md                    $RAW/superagent-ai-authz-security@0da315b.references-patterns.md        rc=0
+$ cp references/checklist.md                   $RAW/superagent-ai-authz-security@0da315b.references-checklist.md       rc=0
+$ cmp <src> <copy>  x3                          rc=0 rc=0 rc=0 (byte-identical)
+
+## frontmatter (verbatim, SKILL.md L1-4)
+---
+name: authz-security
+description: Review application source code for broken authorization — IDOR / Broken Object Level Authorization (OWASP API1), Broken Function Level Authorization (API5), mass assignment (API3), multi-tenant isolation gaps, and privilege escalation. Reads routes, controllers, resolvers, and data models offline and reports the missing ownership/role check at file:line with a framework-correct fix. No running app, no credentials, no tools. Trigger when reviewing endpoints/handlers, auditing a PR diff that adds or changes routes, hardening a multi-tenant SaaS, or when the user asks "is this endpoint authorized?", "can a user access another user's data?", "IDOR", "BOLA", or "broken access control".
+---
+
+## summary
+sha=0da315b873ed141025fa601ed6e0ebe0c878d5af  tag=없음  file_last_commit=2026-06-02T12:27:15Z  stars=76 forks=12 watchers=1 open_issues=0  license=MIT (repo root LICENSE, no per-dir override)  lines=203  skill_md_format=yes
+clauses: S1 부분 · S2 부분 · S3 — · S4 — · S5 — · S6 부분 · S7 부분 · S8 —
+verdict_suggestion: 기각 (MIT, valid SKILL.md, but none of S5–S8 reaches 덮음; S6 lacks latency and accepts 403 as alternative; S7 lacks per-role session keys)

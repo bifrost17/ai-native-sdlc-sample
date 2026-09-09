@@ -1,0 +1,29 @@
+CMD: (cd proj-gh && claude plugin uninstall … --scope project -y && claude plugin marketplace remove intent-sdlc-skills --scope project); (cd proj-strict && claude --settings '{"strictKnownMarketplaces":[]}' plugin marketplace add $REPO --scope project); cleanup check
+AT_UTC: 2026-09-09T13:05:47Z
+✔ Successfully uninstalled plugin: intent-sdlc-skills (scope: project)
+RC(uninstall): 0
+✔ Successfully removed marketplace: intent-sdlc-skills (from project settings)
+RC(mp remove): 0
+--- strictKnownMarketplaces=[] via --settings (NOT managed settings) ---
+Adding marketplace…✔ Successfully added marketplace: intent-sdlc-skills (declared in project settings)
+RC(strict add): 0
+--- was it added anyway? ---
+1
+{
+  "extraKnownMarketplaces": {
+    "intent-sdlc-skills": {
+      "source": {
+        "source": "directory",
+        "path": "/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S8"
+      }
+    }
+  }
+}
+✔ Successfully removed marketplace: intent-sdlc-skills (from project settings)
+RC(remove after strict test): 0
+--- final user-level state ---
+known_marketplaces intent-sdlc count: 0
+installed_plugins intent-sdlc count: 0
+cache dir: /Users/jake/.claude/plugins/cache/intent-sdlc-skills
+marketplaces dir: ls: /Users/jake/.claude/plugins/marketplaces/intent-sdlc-skills: No such file or directory
+user settings.json intent-sdlc count: 0

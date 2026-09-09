@@ -1,0 +1,37 @@
+CMD: gh api repos/hesreallyhim/awesome-claude-code/contents --jq ".[] | \"\(.type) \(.path)\""; echo "--- grep in README for prd/brainstorm (case-insens, wider)"; gh api repos/hesreallyhim/awesome-claude-code/contents/README.md --jq .content | base64 -d | grep -n -i -E "prd|brainstorm|requirement|spec" | cut -c1-300 | head -30
+AT_UTC: 2026-09-09T09:38:28Z
+RC: 0
+dir .github
+file .gitignore
+file .pre-commit-config.yaml
+file CODE_OF_CONDUCT.md
+file CONTRIBUTING.md
+file LICENSE
+file Makefile
+file README.md
+dir README_ALTERNATIVES
+file SECURITY.md
+file THE_RESOURCES_TABLE_NEW.csv
+dir assets
+file config.yaml
+dir data
+file generate_readme.py
+file requirements-dev.txt
+file requirements.txt
+dir resources
+dir scripts
+dir templates
+dir tests
+dir ticker
+--- grep in README for prd/brainstorm (case-insens, wider)
+161:- [MDXG Redline](https://github.com/oubakiou/mdxg-redline) by [oubakiou](https://github.com/oubakiou) - A Claude Code skill plus single-file HTML tool that closes the human-review loop on AI-written docs: a person leaves inline comments in the browser, which export as structured JSON keyed by he
+167:- [RAG Learning Academy](https://github.com/TakaGoto/rag-learning-academy) by [Taka Goto](https://github.com/TakaGoto) - A multi-agent Claude Code learning environment for mastering Retrieval-Augmented Generation, with 20 specialist agents, 22 slash commands, and a 9-module hands-on curriculum t
+263:- [Vibeyard](https://github.com/elirantutia/vibeyard) by [Eliran Tutia](https://github.com/elirantutia) - A cross-platform desktop IDE that wraps Claude Code sessions with a swarm mode (parallel agents in a grid), a real-time session inspector (cost, tokens, tool-usage, context), multiple isolat
+313:- [capcut-cli](https://github.com/renezander030/capcut-cli) by [René Zander](https://github.com/renezander030) - A zero-dependency Node CLI (and Claude Code plugin/skill) that lets the agent edit CapCut / JianYing video projects programmatically — inspect timelines, build drafts, add text/audio,
+319:- [motion-skills](https://github.com/iart-ai/motion-skills) by [iart.ai](https://github.com/iart-ai) - An open-source collection of ~50 motion-graphics, animation, and video skills across 14 installable packs — kinetic typography, data-driven charts, explainers, TikTok/Reels, web/WebGL animation
+377:- [SkillSpector](https://github.com/NVIDIA/SkillSpector) by [NVIDIA](https://github.com/NVIDIA) - Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks.  
+378:<img src="https://img.shields.io/github/created-at/NVIDIA/SkillSpector?style=flat-square&labelColor=2b2b2b&color=6b6b6b" alt="created">&nbsp;&nbsp;<img src="https://img.shields.io/github/last-commit/NVIDIA/SkillSpector?style=flat-square&labelColor=2b2b2b&color=6b6b6b" alt="last-commit">&nbsp;&nb
+382:- [AB Method](https://github.com/ayoubben18/ab-method) by [Ayoub Bensalah](https://github.com/ayoubben18) - A principled, spec-driven workflow that transforms large problems into focused, incremental missions using Claude Code's specialized sub agents. Includes slash-commands, sub agents, and sp
+397:- [Harness](https://github.com/revfactory/harness) by [revfactory](https://github.com/revfactory) - A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use. Resources are in Korean but can produce high-quality English-language output. 
+424:- [Caveman](https://github.com/JuliusBrussee/caveman) by [Julius Brussee](https://github.com/JuliusBrussee) - A plugin that conserves message tokens by communicating in fragmented "caveman speak" - sort of a clever form of compression. Now accompanied by a whole caveman ecosystem including a mem
+574:- [Upkeep](https://github.com/wei18/Upkeep) by [wei18](https://github.com/wei18) - Upkeep — an AI audit crew for your repo. Catches docs/spec/asset drift with evidence; output-only. Claude Code plugin/skill + reusable CI workflow.  

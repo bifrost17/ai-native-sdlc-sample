@@ -1,0 +1,33 @@
+CMD: gh api repos/anthropics/skills --jq "{full_name,license:.license.spdx_id,pushed_at,stargazers_count,forks_count,default_branch}"; echo HEAD=$(gh api repos/anthropics/skills/commits/HEAD --jq .sha); echo "--- top-level"; gh api repos/anthropics/skills/contents --jq ".[] | \"\(.type) \(.path)\""; echo "--- skills/"; gh api repos/anthropics/skills/contents/skills --jq ".[] | \"\(.type) \(.path)\""
+AT_UTC: 2026-09-09T09:33:36Z
+RC: 0
+{"default_branch":"main","forks_count":20756,"full_name":"anthropics/skills","license":null,"pushed_at":"2026-09-03T16:37:14Z","stargazers_count":175325}
+HEAD=41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f
+--- top-level
+dir .claude-plugin
+file .gitignore
+file README.md
+file THIRD_PARTY_NOTICES.md
+dir skills
+dir spec
+dir template
+--- skills/
+dir skills/academy-guide
+dir skills/algorithmic-art
+dir skills/brand-guidelines
+dir skills/canvas-design
+dir skills/claude-api
+dir skills/discernment-nudge
+dir skills/doc-coauthoring
+dir skills/docx
+dir skills/frontend-design
+dir skills/internal-comms
+dir skills/mcp-builder
+dir skills/pdf
+dir skills/pptx
+dir skills/skill-creator
+dir skills/slack-gif-creator
+dir skills/theme-factory
+dir skills/web-artifacts-builder
+dir skills/webapp-testing
+dir skills/xlsx

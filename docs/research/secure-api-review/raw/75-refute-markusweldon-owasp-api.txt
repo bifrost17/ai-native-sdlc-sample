@@ -1,0 +1,83 @@
+CMD: 적대 검토(회의론자) — markusweldon/owasp-api: 라이선스·sha·줄 수 재확인 + S5~S8 엄격 재판정 + org note(JWT 재검증) 충돌 확인
+AT_UTC: 2026-09-09T13:15:21Z
+RC: 0
+
+# 75 — REFUTE pass: candidate #5 markusweldon/claude-owasp-security-skills :: .claude/skills/owasp-api/SKILL.md
+# Skeptic re-read of raw/15-candidate-markusweldon-owasp-api.txt claims. Source of truth: /tmp/s5-cand/5 (shallow clone, HEAD 4af4f28).
+# All commands below were actually run; RC = exit code of the compound command.
+
+CMD: ls -la /tmp/s5-cand/5; ls raw/ | grep -iE "markus|15-|75-"; date -u
+AT_UTC: 2026-09-09T13:15:21Z
+RC: 0
+NOTE: clone present; raw copy markusweldon-owasp-api@4af4f28.SKILL.md present; no 75- file existed yet.
+
+CMD: cd /tmp/s5-cand/5 && git log -1 --format='%H %cI %an'; cat -n .claude/skills/owasp-api/SKILL.md; ls -la .claude/skills/ .claude/skills/owasp-api/; find . -iname 'LICENSE*' -not -path './.git/*'; head -5 LICENSE; diff SKILL.md <raw copy> && echo IDENTICAL; gh api repos/markusweldon/claude-owasp-security-skills --jq '{spdx,stars,forks,pushed,created}'
+AT_UTC: 2026-09-09T13:15:40Z
+RC: 0
+RESULT:
+  HEAD = 4af4f28bd095224a3802ae49efa6ae8d179d593f 2026-06-10T15:24:16-07:00 (= 2026-06-10T22:24:16Z) Markus Weldon  -> matches record sha/last_commit_utc
+  SKILL.md = 197 lines (matches body_size_lines)
+  .claude/skills/owasp-api/ contains ONLY SKILL.md (no per-dir LICENSE, no header in file L1-5: frontmatter name/description/when_to_use only)
+  find LICENSE* -> ./LICENSE only; head: "MIT License / Copyright (c) 2026 / Permission is hereby granted..."
+  diff clone vs raw copy -> IDENTICAL
+  gh api -> {"created":"2026-06-09T23:22:24Z","forks":0,"pushed":"2026-06-10T22:24:17Z","spdx":"MIT","stars":0}
+  => LICENSE CLAIM (MIT) HOLDS. usage signals (0 stars/forks, single-day history) HOLD.
+
+CMD: grep -nF each quoted fragment in SKILL.md; grep -niE clause keywords (upstream|budget|cache|call.count|rps|spec|latenc|timing|constant.time|same response|not_found|404|session|cookie|role|diff|config|.env|secret|credential|hardcod|commit); grep -niE tool/attack words (run |bash |.sh|script|npm|pip install|tested|attack|exploit|pentest|burp|nmap|fuzz|scan); cat CLAUDE.md
+AT_UTC: 2026-09-09T13:16:05Z
+RC: 1  (RC 1 came from a stray zsh `echo ==` separator -> "(eval):1: = not found"; all grep steps themselves printed results; ls docs .github was re-run below with RC 0)
+RESULT — quoted fragments (grep -nF):
+  L16  "Rate limit per user/key, cap request size and result count"                      FOUND
+  L42  "Per-user and per-key rate limits on all endpoints"                                FOUND
+  L45  "Expensive operations (exports, bulk ops) are async + queued, not synchronous"     FOUND
+  L129 "per-user burst cap"                                                               FOUND
+  L32  "Indirect object references (UUIDs not sequential IDs) preferred to reduce enumeration" FOUND
+  L29  "Every endpoint verifies the authenticated user owns/can access the requested object (BOLA)" FOUND
+  L14  "Strong tokens, short expiry, rotate secrets, no credentials in URLs"              FOUND
+  L37  "No credentials, tokens, or API keys in query strings or logs"                     FOUND
+  L38  "API keys hashed in storage (not plaintext)"                                       FOUND
+  L35  "Tokens signed and verified server-side"                                           FOUND
+  L36  "Short-lived access tokens"                                                        FOUND
+  L39  "Revocation mechanism exists"                                                      FOUND
+  => every quote in the deep-read exists verbatim at the stated line.
+RESULT — clause keyword scan (what the file does NOT contain):
+  "upstream" 0 hits · "cache" 0 · "call count"/"call-count" 0 · "rps" 0 · "spec" 0 · "latenc"/"timing"/"constant-time" 0 · "not_found"/"404"/"same response" 0
+  "session" 0 · "role" 1 (L50, HTTP-method elevated role — not session keys) · "cookie" 1 (L184 httpOnly — token storage, not per-role key)
+  "diff" 0 · "config" 0 (only "Misconfiguration" heading) · ".env" 0 · "hardcod" 0 · "commit" 0
+  "secret" 2 (L14 "rotate secrets", L35 "HS256 with weak secret") · "credential" 3 (L14 URLs, L37 query strings/logs, L96 CORS credentialed requests)
+RESULT — tool/attack scan:
+  L51 "Horizontal privilege escalation tested with a low-privilege token against admin paths"  -> a test-with-token instruction (light pentest step)
+  L62 "pip install ssrf-filter" (comment, advisory) · L123 flask_limiter · L104 Express sample · L188 PyJWT sample -> framework-specific samples, advisory only
+  no "run <script>", no .sh, no scripts/check-endpoints.sh -> no nonexistent-script conflict
+RESULT — repo CLAUDE.md: "There's no code to run or tests to pass"; skills "Activate automatically when Claude Code detects relevant work"; frontmatter schema documented as name/description/when_to_use (non-standard key confirmed at L4).
+
+CMD: cd /tmp/s5-cand/5 && cat install.sh; ls docs .github; grep policy S5-S8 lines; cat baseline secure-api-review.SKILL.md
+AT_UTC: 2026-09-09T13:16:40Z
+RC: 0
+RESULT: install.sh = curl raw SKILL.md into .claude/skills/<name>/ (project) or ~/.claude/skills/ (--global); docs/ has only language-security-reference.md; .github has ISSUE_TEMPLATE + pull_request_template.md.
+  Policy S5: "청구 상태 상류(claims-core)는 50 rps 한도 — 새 경로는 캐시 정책과 호출 수 계산을 spec 에 적는다."
+  Policy S6: "존재하지 않는 청구 번호와 권한 없는 청구 번호는 같은 응답(not_found)과 같은 지연."
+  Policy S7: "역할(customer · adjuster · agent)마다 세션 키 이름이 다르고, 한 핸들러는 자기 역할의 키만 읽는다."
+  Policy S8: "코드·설정·diff 에 자격증명 금지(훅 no-secrets 가 뒤를 받친다)."
+
+## REFUTATION VERDICT PER CLAUSE (skeptic; downgrade when uncertain)
+S5  claimed 부분 -> ACTUAL —
+    L16/L42/L128-129 are inbound per-user/per-key rate limiting of the API's own endpoints. The clause is about the OUTBOUND budget to claims-core (50 rps) and about writing a cache policy + call-count calculation into the spec. Zero hits for upstream/cache/spec/rps/call count. L44 (pagination cap) and L45 (async+queued) are resource-consumption hygiene, not a call budget. A session applying this skill would never ask "how many claims-core calls per request, what is cached, is it in the spec". Nothing of the clause is instructed -> —.
+S6  claimed 부분 -> ACTUAL —
+    L32 names "enumeration" but prescribes a different mechanism (opaque UUIDs). L29 is the BOLA ownership check. Neither says (a) missing and unauthorized claim numbers return the same not_found body nor (b) the same latency. Zero hits for not_found/404/latency/timing/constant-time. Using the word "enumeration" is not instructing the clause -> —.
+S7  claimed — -> ACTUAL —  (confirmed; "session" 0 hits; L184 is token storage, L50 is HTTP-method role gating)
+S8  claimed 부분 -> ACTUAL —
+    L14 (no credentials in URLs), L37 (query strings or logs), L38 (hashed in storage) all address runtime transport/storage. None says credentials must not appear in source code, configuration files, or a diff — a reviewer following these lines would not flag a hard-coded API key in config. Zero hits for config/.env/hardcod/diff/commit. -> —.
+
+## HIDDEN CONFLICTS WITH BASELINE (confirmed by line)
+1. S1 re-flag: L35, L178-183 (alg none, pin RS256/ES256, aud/iss/exp) and L187-196 PyJWT decode sample instruct app-side JWT verification. Org note: portal validates the gateway JWT; session-only code satisfies item 1 and must NOT be re-flagged. This skill would re-raise it. L36 (≤15 min tokens, refresh rotation) and L39 (revocation) are likewise gateway-owned -> out-of-scope findings.
+2. Auto-activation overlap: L4 when_to_use triggers on "API authorization, rate limiting, object-level access control" — i.e. the same work the baseline secure-api-review skill triggers on; both would fire, giving the session two overlapping checklists with the S1 contradiction above.
+3. L51 instructs a privilege-escalation TEST with a low-privilege token — a pentest-style step a PO spec/review session should not perform; not egregious but off-mission.
+4. Framework samples (Flask/flask_limiter L123, Express L104-117, PyJWT L188, pip ssrf-filter L62) — advisory, no lock-in, but noise.
+5. No script/tool execution instructions -> no conflict with "no code backstop"; nothing references scripts/check-endpoints.sh.
+6. Frontmatter extra key when_to_use (L4) — outside documented SKILL.md schema; harmless.
+
+## OTHER RECORD FIELDS CHECKED
+sha, last_commit_utc (15:24:16-07:00 == 22:24:16Z), stars 0, forks 0, created 2026-06-09, pushed 2026-06-10, body 197 lines, license MIT, description verbatim L3, raw copy identical to clone -> all HOLD.
+
+## FINAL: 기각 (unchanged verdict, stricter grounds: S5/S6/S8 downgraded 부분 -> —; S7 —; no clause covered at all; S1 conflict with org note confirmed).

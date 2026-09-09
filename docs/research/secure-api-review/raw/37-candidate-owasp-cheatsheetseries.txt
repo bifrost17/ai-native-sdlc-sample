@@ -1,0 +1,96 @@
+CMD: deep-read candidate #27 OWASP/CheatSheetSeries — 6 cheat sheets (REST, IDOR, Session Mgmt, Secrets Mgmt, Authorization, DoS); clone, metadata, byte-copy to raw/, clause mapping S1–S8
+AT_UTC: 2026-09-09T13:14:02Z
+RC: 0
+REPO: https://github.com/OWASP/CheatSheetSeries
+CLONE_DIR: /tmp/s5-cand/27
+
+## 1. clone + metadata
+$ git clone --depth 1 https://github.com/OWASP/CheatSheetSeries /tmp/s5-cand/27        rc=0
+$ git -C /tmp/s5-cand/27 rev-parse HEAD                                                rc=0
+  382113ba1fbd7e99ffa21bcf90d7fd8a19be546b
+$ git -C /tmp/s5-cand/27 describe --tags --abbrev=0                                     rc=128 (no tags in shallow clone; printed "TAG_LOCAL=none")
+$ gh api repos/OWASP/CheatSheetSeries/tags --jq '.[0].name'                             rc=0  (empty output)
+$ gh api repos/OWASP/CheatSheetSeries/tags --jq 'length'                                rc=0  -> 0   => tag: 없음
+$ gh api repos/OWASP/CheatSheetSeries --jq '{stars,forks,watchers,open_issues,license,pushed,default_branch}'   rc=0
+  {"default_branch":"master","forks":4617,"license":"CC-BY-SA-4.0","open_issues":61,"pushed":"2026-09-08T03:59:39Z","stars":33127,"watchers":581}
+$ head -20 /tmp/s5-cand/27/LICENSE.md                                                   rc=0
+  L1: "# Attribution-ShareAlike 4.0 International"
+  L3: "// SPDX-License-Identifier: CC-BY-SA-4.0"
+$ grep -n -i licen /tmp/s5-cand/27/README.md | head -5                                   rc=0
+  L4: [![Creative Commons License](https://img.shields.io/github/license/OWASP/CheatSheetSeries)](https://creativecommons.org/licenses/by-sa/4.0/ "CC BY-SA 4.0")
+$ grep -il "license\|SPDX" cheatsheets/{REST_Security,Session_Management,Secrets_Management,Authorization,Denial_of_Service,Insecure_Direct_Object_Reference_Prevention}_Cheat_Sheet.md   rc=1 (no per-file license header)
+$ ls cheatsheets/LICENSE*                                                               rc=1 (no per-directory LICENSE) => repo LICENSE.md governs: CC-BY-SA-4.0
+$ git -C /tmp/s5-cand/27 log -1 --format=%cI                                            rc=0  HEAD commit 2026-09-07T17:57:33-10:00 (= 2026-09-08T03:57:33Z)
+$ gh api "repos/OWASP/CheatSheetSeries/commits?path=cheatsheets/<f>&per_page=1" --jq '.[0].commit.committer.date'   (shallow clone cannot give per-file dates)
+  REST_Security_Cheat_Sheet.md                                   rc=0  2026-08-03T13:15:26Z
+  Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.md     rc=0  2026-06-22T11:41:57Z
+  Session_Management_Cheat_Sheet.md                              rc=0  2026-08-13T17:03:45Z
+  Secrets_Management_Cheat_Sheet.md                              rc=0  2026-08-13T17:03:07Z
+  Authorization_Cheat_Sheet.md                                   rc=0  2026-08-31T11:52:36Z
+  Denial_of_Service_Cheat_Sheet.md                               rc=0  2026-08-04T21:54:35Z
+  => last_commit_utc (newest of the six) = 2026-08-31T11:52:36Z
+$ find /tmp/s5-cand/27 -iname SKILL.md                                                  rc=0  (no results — not a skill repo)
+
+## 2. file sizes / format
+$ ls -la + wc -l cheatsheets/<f>                                                        rc=0
+  REST_Security_Cheat_Sheet.md                                   24846 bytes  255 lines
+  Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.md      5397 bytes   88 lines
+  Session_Management_Cheat_Sheet.md                              54326 bytes  441 lines
+  Secrets_Management_Cheat_Sheet.md                              64979 bytes  749 lines
+  Authorization_Cheat_Sheet.md                                   32308 bytes  170 lines
+  Denial_of_Service_Cheat_Sheet.md                               14655 bytes  128 lines
+  total 1831 lines
+$ head -3 each                                                                          rc=0
+  no YAML frontmatter; every file starts "# <Title> Cheat Sheet" then "## Introduction" (Secrets: "## 1 Introduction")
+  skill_md_format = false; frontmatter name/description: 없음
+
+## 3. full reads (cat -n / sed -n ranges, all rc=0)
+$ cat -n REST_Security_Cheat_Sheet.md (1-255, in 2 passes)                              rc=0
+$ cat -n Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.md (1-88)              rc=0
+$ cat -n Denial_of_Service_Cheat_Sheet.md (1-128)                                       rc=0
+$ sed -n 1,90p / 91,170p Authorization_Cheat_Sheet.md                                   rc=0
+$ sed -n 1,110p / 111,220p / 221,330p / 331,441p Session_Management_Cheat_Sheet.md      rc=0
+$ sed -n 1,150p / 151,300p / 301,450p / 451,600p / 601,749p Secrets_Management_Cheat_Sheet.md   rc=0
+
+## 4. byte-identical copies to raw/
+$ cp cheatsheets/REST_Security_Cheat_Sheet.md  raw/owasp-cheatsheetseries-rest-security@382113b.md                       rc=0
+$ cp cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.md raw/owasp-cheatsheetseries-idor-prevention@382113b.md   rc=0
+$ cp cheatsheets/Session_Management_Cheat_Sheet.md raw/owasp-cheatsheetseries-session-management@382113b.md              rc=0
+$ cp cheatsheets/Secrets_Management_Cheat_Sheet.md raw/owasp-cheatsheetseries-secrets-management@382113b.md              rc=0
+$ cp cheatsheets/Authorization_Cheat_Sheet.md      raw/owasp-cheatsheetseries-authorization@382113b.md                   rc=0
+$ cp cheatsheets/Denial_of_Service_Cheat_Sheet.md  raw/owasp-cheatsheetseries-denial-of-service@382113b.md               rc=0
+$ cmp <src> <copy> x6                                                                   rc=0 (all identical)
+$ shasum -a 256 raw/owasp-cheatsheetseries-*@382113b.md                                  rc=0
+  dd56db698a11513111fc0a8e99e4f0e2492c86a5d82528c5a1db35434ca18cfc  authorization
+  1d5e3eefddb17d3c6a7f73d2339b6711bb877e04aab5a266d917fa5b77478d85  denial-of-service
+  0a0056b89acc452b4e4fece79511387406480e912f4fce8247b1381446fc4bda  idor-prevention
+  73185bf1a1163fb8b9cfcb7e034f84e32171289becc857f66947a61a87a4bb1d  rest-security
+  302a2e4cb2153616a3c41d8a79d7407f24c03207fe60752892b71ec2776bc60c  secrets-management
+  dd0f44ee671cea7be58ab51e045392e90a4d40509d6b540456dd952a0521e4e4  session-management
+
+## 5. usage evidence visible in this lane's raw/ (grep -il cheatsheetseries raw/*)      rc=0
+  getsentry-security-review@c2f99a5.SKILL.md + its 5 references-*.md cite cheatsheetseries.owasp.org
+  unitoneai-api-security@70bc259.SKILL.md, sickn33-api-security-best-practices@bdfbf79.SKILL.md cite it
+  owasp-api-security-2023-0xa1/0xa2/0xa4 (OWASP API Top 10 source text) link to it
+  08-discover-other-format.txt lists it as discovery hit
+  (self-match on owasp-cheatsheetseries-secrets-management@382113b.md excluded)
+
+## 6. clause mapping summary (line numbers = original file lines; details in structured record)
+  S1 부분  REST L33, L35-36; Authorization L41   (no gateway-JWT / no "/health only" rule)
+  S2 부분  REST L129-138                          (no OpenAPI schema / unknown-field rejection)
+  S3 부분  REST L177-178; Authorization L124-129  (no actor·action·entity·timestamp)
+  S4 부분  REST L172-173; Authorization L120; Session L419; Secrets L647  (no pii-tag rule)
+  S5 부분  Secrets L497-499 (API limits + data-key caching); DoS L102, L107-113; REST L68  (no upstream rps budget / spec write-up)
+  S6 부분  Authorization L93, L95; REST L172; IDOR L83  (poses the "not found vs access denied" distinguishability question; no same-response/same-latency rule)
+  S7 부분  Session L269, L287, L291, L179; IDOR L70    (different token names pre/post auth, verify all cookies; no per-role key / own-key-only rule)
+  S8 덮음  Secrets L616 (pre-commit hook to avoid checking secrets into code before commit/PR), L511 (never hardcode in docker ENV/ARG), L338 ("not the same as committing it to code"), L5 (hardcoded in source + config files as the problem)
+
+## 7. conflicts noted
+  - REST L50, L52-57: relying party must itself verify JWT integrity + iss/aud/exp/nbf  => conflicts with baseline org note (session-only code satisfies item 1)
+  - REST L244-245 status table: 403 for authenticated-but-unauthorized vs 404 for non-existent  => contradicts S6 (unauthorized must look like not_found)
+  - REST L13-15: stateful APIs "do not adhere to REST", passing session state "anti-pattern"  => tension with portal session model (S1 org note, S7)
+  - external tools named (Yelp detect-secrets Secrets L609; ESAPI Auth L98; Dependency-Check Auth L55; ModSecurity/CRS Session L441): not in template repo; references only, not "run X" instructions
+
+
+END_UTC: 2026-09-09T13:16:38Z
+RAW_FILES_WRITTEN: 37-candidate-owasp-cheatsheetseries.txt, owasp-cheatsheetseries-{rest-security,idor-prevention,session-management,secrets-management,authorization,denial-of-service}@382113b.md

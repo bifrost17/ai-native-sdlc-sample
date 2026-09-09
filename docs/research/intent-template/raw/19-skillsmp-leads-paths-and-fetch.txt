@@ -1,0 +1,16 @@
+CMD: fetch() { r=$1; sha=$2; pat=$3; out=$4; echo "### $r @ $sha  pattern=$pat"; paths=$(gh api "repos/$r/git/trees/$sha?recursive=1" --jq ".tree[] | select((.path | endswith(\"SKILL.md\")) and (.path | test(\"$pat\"))) | .path"); echo "$paths"; p=$(echo "$paths" | head -1); if [ -n "$p" ]; then gh api "repos/$r/contents/$p?ref=$sha" --jq .content | base64 -d > "docs/research/intent-template/raw/$out"; echo "saved $out ($(wc -c < docs/research/intent-template/raw/$out) bytes) from $p"; fi; }; fetch nexu-io/open-design f197844e27b897926021939e1a98805089cf84d6 "pm-spec" pm-spec@f197844.SKILL.md; fetch addyosmani/agent-skills 6ca0cd7db39b41b1c37e26d335c507ee92382c6d "^skills/spec-driven-development/" spec-driven-development@6ca0cd7.SKILL.md; fetch bmad-code-org/BMAD-METHOD abe4eb1bce919c9d22cd18b3519353d5824c4b75 "bmad-prd/SKILL.md$" bmad-prd@abe4eb1.SKILL.md; fetch affaan-m/ECC 5064474d4d762dc9640234a41617cccb79185cec "^skills/product-capability/" product-capability@5064474.SKILL.md
+AT_UTC: 2026-09-09T09:39:10Z
+RC: 0
+### nexu-io/open-design @ f197844e27b897926021939e1a98805089cf84d6  pattern=pm-spec
+design-templates/pm-spec/SKILL.md
+plugins/_official/examples/pm-spec/SKILL.md
+saved pm-spec@f197844.SKILL.md (    1555 bytes) from design-templates/pm-spec/SKILL.md
+### addyosmani/agent-skills @ 6ca0cd7db39b41b1c37e26d335c507ee92382c6d  pattern=^skills/spec-driven-development/
+skills/spec-driven-development/SKILL.md
+saved spec-driven-development@6ca0cd7.SKILL.md (   12238 bytes) from skills/spec-driven-development/SKILL.md
+### bmad-code-org/BMAD-METHOD @ abe4eb1bce919c9d22cd18b3519353d5824c4b75  pattern=bmad-prd/SKILL.md$
+skills/bmad-prd/SKILL.md
+saved bmad-prd@abe4eb1.SKILL.md (   13867 bytes) from skills/bmad-prd/SKILL.md
+### affaan-m/ECC @ 5064474d4d762dc9640234a41617cccb79185cec  pattern=^skills/product-capability/
+skills/product-capability/SKILL.md
+saved product-capability@5064474.SKILL.md (    4436 bytes) from skills/product-capability/SKILL.md

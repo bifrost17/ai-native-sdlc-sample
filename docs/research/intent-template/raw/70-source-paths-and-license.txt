@@ -1,0 +1,41 @@
+CMD: gh api repos/O/R/git/trees/<sha>?recursive=1 --jq 'paths matching' for ideate, superclaude brainstorm, davila7 pm-toolkit+prd agent; plus mattpocock LICENSE full
+AT_UTC: 2026-09-09T22:03:28Z
+RC: 0
+--- mock-server/mockserver-monorepo @92b0dc5 : ideate
+.claude/commands/ideate.md
+.opencode/skills/ideate
+.opencode/skills/ideate/SKILL.md
+.opencode/skills/ideate/spec-template.md
+--- SuperClaude-Org/SuperClaude_Framework @1b81e51 : brainstorm
+plugins/superclaude/commands/brainstorm.md
+plugins/superclaude/modes/MODE_Brainstorming.md
+plugins/superclaude/skills/brainstorm
+plugins/superclaude/skills/brainstorm/SKILL.md
+src/superclaude/commands/brainstorm.md
+src/superclaude/modes/MODE_Brainstorming.md
+--- davila7/claude-code-templates @aac87c8 : product-manager-toolkit SKILL.md + prd agent
+cli-tool/components/agents/data-ai/prd.md
+cli-tool/components/skills/business-marketing/product-manager-toolkit/SKILL.md
+dashboard/public/component-content/agents/data-ai/prd.json
+--- mattpocock/skills @3cca18b LICENSE (full)
+MIT License
+
+Copyright (c) 2026 Matt Pocock
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

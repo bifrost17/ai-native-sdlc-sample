@@ -1,0 +1,53 @@
+CMD: deep-read candidate #7 sickn33/antigravity-awesome-skills api-security-best-practices SKILL.md (clone --depth 1 + gh api metadata + byte copy)
+AT_UTC: 2026-09-09T13:07:03Z
+RC: 0
+END_UTC: 2026-09-09T13:08:25Z
+
+## commands (rc)
+git clone --depth 1 https://github.com/sickn33/antigravity-awesome-skills /tmp/s5-cand/7   rc=0  (23072 files)
+git -C /tmp/s5-cand/7 rev-parse HEAD   rc=0
+  bdfbf79ccaabdc31f60ce60ef1703a9abe95f9c3
+git describe --tags --abbrev=0   rc=128 (no tags in depth-1 clone) -> fallback
+gh api repos/sickn33/antigravity-awesome-skills/tags --jq '.[0].name'   rc=0
+  v17.0.0   (marketplace.json metadata.version also 17.0.0)
+ls plugins/agentic-awesome-skills-claude/skills/api-security-best-practices/ skills/api-security-best-practices/   rc=0
+  both contain SKILL.md only
+cmp plugins/agentic-awesome-skills-claude/skills/api-security-best-practices/SKILL.md skills/api-security-best-practices/SKILL.md   rc=0  IDENTICAL
+  sha256 f01d39fb4e2a134f4ae416dc03701d99b5e703d49472376a7ce488cfdd55328f (both)
+wc -l   rc=0   215 lines (each)
+git log -1 --format=%cI -- <path>   rc=0   2026-09-09T13:05:12+00:00 (depth-1 clone: equals HEAD commit date, not meaningful)
+gh api repos/sickn33/antigravity-awesome-skills --jq '{stars,forks,watchers,issues,license,pushed,default}'   rc=0
+  {"default":"main","forks":6742,"issues":0,"license":"MIT","pushed":"2026-09-09T13:05:12Z","stars":46192,"watchers":323}
+gh api "repos/.../commits?path=plugins/agentic-awesome-skills-claude/skills/api-security-best-practices/SKILL.md&per_page=1"   rc=0
+  last commit b0bf1231762ca86ed2feabf90c04f903dcd47bc0  2026-09-05T02:39:40Z  "[skip pages] chore: synchronize canonical repository state"
+gh api "repos/.../commits?path=skills/api-security-best-practices/SKILL.md&per_page=1"   rc=0
+  last commit ff782b590231b3200dc8076a921aa500270faa37  2026-09-05T02:33:52Z  "fix: refresh priority skill procedures and preserve compatibility aliases (#1346)"
+gh api "repos/.../commits?path=skills/api-security-best-practices/SKILL.md&per_page=100" --jq 'length,.[-1]'   rc=0
+  7 commits; earliest ebdc51708c3aebc85c55d5fc058948085c931777 2026-01-22T13:35:34Z "Add files via upload"
+ls LICENSE*   rc=0   LICENSE, LICENSE-CONTENT
+head -5 LICENSE   rc=0   "MIT License / Copyright (c) 2026 Antigravity User"
+head -40 LICENSE-CONTENT   rc=0
+  "Creative Commons Attribution 4.0 International (CC BY 4.0)" — original non-code written content is CC BY 4.0 unless a more specific upstream notice says otherwise; code/tooling MIT; third-party attributions tracked in docs/sources/sources.md
+find <both skill dirs> -iname 'LICENSE*'   rc=0   (none — no per-directory license)
+grep -n -i 'leoye|openclaw|source|license|credit|attribution' skills/api-security-best-practices/SKILL.md   rc=0
+  only hits: L5 "source: community"; L82/L88 unrelated words. File does NOT cite LeoYeAI/openclaw-master-skills.
+grep -n -i 'api-security-best-practices|openclaw|LeoYeAI' docs/sources/sources.md   rc=1  (no entry -> upstream attribution 확인 못 함)
+grep -n 'api-security-best-practices' CHANGELOG.md   rc=0   L8001 "api-security-best-practices: Comprehensive guide for secure API design and defense."
+python3 skills_index.json lookup   rc=0
+  {"id":"api-security-best-practices","path":"skills/api-security-best-practices","category":"backend","risk":"critical","source":"community","date_added":"2026-02-27","plugin":{"targets":{"codex":"supported","claude":"supported"},"setup":{"type":"none"}}}
+grep -rl 'api-security-best-practices' (md/json/yaml, excluding own dir)   rc=0
+  referenced by sibling skills: api-security-testing, web-security-testing, api-patterns, container-security-hardening, python-fastapi-development, production-code-audit; docs_zh-CN users docs; CATALOG.md; skills_index.json
+cat -n skills/api-security-best-practices/SKILL.md   rc=0  (read in full, 215 lines)
+cp skills/api-security-best-practices/SKILL.md $RAW/sickn33-api-security-best-practices@bdfbf79.SKILL.md   rc=0 ; cmp   rc=0 byte-identical
+
+## frontmatter (verbatim L1-7)
+---
+name: api-security-best-practices
+description: "Implement secure API design patterns including authentication, authorization, input validation, rate limiting, and protection against common API vulnerabilities"
+risk: critical
+source: community
+date_added: "2026-02-27"
+---
+
+## usage signals seen
+stars 46192, forks 6742, watchers(subscribers) 323, open issues 0; shipped in Claude Code marketplace plugin "agentic-awesome-skills" v17.0.0 (.claude-plugin/marketplace.json, source ./plugins/agentic-awesome-skills-claude); skills_index.json targets codex+claude supported; cross-referenced by 6 sibling skills. skills.sh install count: 확인 못 함.

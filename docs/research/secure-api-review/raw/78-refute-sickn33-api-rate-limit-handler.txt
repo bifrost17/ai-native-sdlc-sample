@@ -1,0 +1,632 @@
+CMD: 적대 검토(회의론자) — sickn33/api-rate-limit-handler: 라이선스·사본 동일성·배포 신호 확인 (판정 블록 전에 세션 한도로 중단)
+AT_UTC: 2026-09-09T13:18:26Z
+RC: 중단 — 판정 블록 없음. 정독 판정(기각)을 유지했다
+
+# 78 — REFUTE pass: candidate #8 sickn33/antigravity-awesome-skills :: skills/api-rate-limit-handler/SKILL.md
+# Role: skeptic re-check of raw/18-candidate-sickn33-api-rate-limit-handler.txt
+# Started AT_UTC: 2026-09-09T13:18:26Z
+# Clone: /tmp/s5-cand/8 (depth-1 clone from earlier pass; reused, not re-cloned)
+# Format: each block = ## label / CMD: / AT_UTC: / RC: / output
+
+## 0. clone state: HEAD sha, tag, remote
+CMD: cd /tmp/s5-cand/8 && git rev-parse HEAD && git describe --tags --always 2>&1; git remote -v | head -1; git log -1 --format='%H %cI %s'
+AT_UTC: 2026-09-09T13:18:26Z
+RC: 0
+bdfbf79ccaabdc31f60ce60ef1703a9abe95f9c3
+bdfbf79
+origin	https://github.com/sickn33/antigravity-awesome-skills (fetch)
+bdfbf79ccaabdc31f60ce60ef1703a9abe95f9c3 2026-09-09T13:05:12+00:00 [skip pages] chore: synchronize canonical repository state
+
+## 1. file exists + line count
+CMD: wc -l /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md && shasum -a 256 /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+AT_UTC: 2026-09-09T13:18:26Z
+RC: 0
+     282 /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+05f1666468827608d37ef3d98d546b5c2c60ae3e2be683d05e5708fa75bda3c7  /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+
+## 1b. diff clone copy vs raw copy from previous agent
+CMD: diff /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/research/secure-api-review/raw/sickn33-api-rate-limit-handler@bdfbf79.SKILL.md && echo IDENTICAL
+AT_UTC: 2026-09-09T13:18:26Z
+RC: 0
+IDENTICAL
+
+## 2a. LICENSE via gh api repos
+CMD: gh api repos/sickn33/antigravity-awesome-skills --jq '{spdx: .license.spdx_id, key: .license.key, stars: .stargazers_count, forks: .forks_count, pushed: .pushed_at, default_branch: .default_branch}'
+AT_UTC: 2026-09-09T13:18:26Z
+RC: 0
+{"default_branch":"main","forks":6742,"key":"mit","pushed":"2026-09-09T13:05:12Z","spdx":"MIT","stars":46192}
+
+## 2b. repo LICENSE* files at root
+CMD: ls -la /tmp/s5-cand/8/LICENSE* 2>&1; for f in /tmp/s5-cand/8/LICENSE*; do echo "--- $f"; head -8 $f; done
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+-rw-r--r--@ 1 jake  wheel  1073 Sep  9 22:08 /tmp/s5-cand/8/LICENSE
+-rw-r--r--@ 1 jake  wheel   652 Sep  9 22:08 /tmp/s5-cand/8/LICENSE-CONTENT
+--- /tmp/s5-cand/8/LICENSE
+MIT License
+
+Copyright (c) 2026 Antigravity User
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+--- /tmp/s5-cand/8/LICENSE-CONTENT
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+This file clarifies the license for original non-code repository content.
+
+- Original code and tooling remain licensed under the MIT License in `LICENSE`.
+- Original documentation and other non-code written content are licensed under
+  the Creative Commons Attribution 4.0 International license unless a more
+  specific upstream notice says otherwise.
+
+## 2c. LICENSE-CONTENT full text (CC BY 4.0 vs per-file override clause)
+CMD: cat /tmp/s5-cand/8/LICENSE-CONTENT 2>&1
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+This file clarifies the license for original non-code repository content.
+
+- Original code and tooling remain licensed under the MIT License in `LICENSE`.
+- Original documentation and other non-code written content are licensed under
+  the Creative Commons Attribution 4.0 International license unless a more
+  specific upstream notice says otherwise.
+- Third-party attributions, upstream licenses, and exceptions are tracked in
+  `docs/sources/sources.md`.
+
+Canonical license URL:
+https://creativecommons.org/licenses/by/4.0/
+
+Review the full license text at the canonical URL before reuse.
+
+## 2d. per-directory LICENSE / NOTICE anywhere under skills/api-rate-limit-handler
+CMD: find /tmp/s5-cand/8/skills/api-rate-limit-handler -maxdepth 2 | sort; find /tmp/s5-cand/8/skills/api-rate-limit-handler -iname 'LICENSE*' -o -iname 'NOTICE*'
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+/tmp/s5-cand/8/skills/api-rate-limit-handler
+/tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+
+## 2e. file frontmatter (L1-25)
+CMD: sed -n '1,25p' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+---
+name: api-rate-limit-handler
+description: "Implement bounded, idempotency-aware API throttling, backoff, and retry handling for 429 and transient 5xx responses."
+category: development
+risk: safe
+source: self
+source_type: self
+date_added: "2026-08-26"
+author: Prajeeth-12
+tags: [rate-limiting, retry, backoff, api, resilience, throttle, 429]
+tools: [claude, cursor, codex, gemini]
+license: "MIT"
+---
+
+# API Rate Limit Handler
+
+## Overview
+
+A skill for implementing production-grade rate limiting, exponential backoff, and retry strategies when integrating with external APIs. Prevents cascading failures, respects upstream quotas, and keeps your application resilient under load.
+
+## When to Use This Skill
+
+- Use when calling external APIs that enforce rate limits (OpenAI, Stripe, GitHub, etc.)
+- Use when you receive 429 Too Many Requests or 5xx errors and need graceful recovery
+- Use when building a client that must respect `Retry-After` headers
+
+## 2f. grep license/source/author in frontmatter
+CMD: grep -n -iE '^(license|source|author|date_added|version|risk|name|description)' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+2:name: api-rate-limit-handler
+3:description: "Implement bounded, idempotency-aware API throttling, backoff, and retry handling for 429 and transient 5xx responses."
+5:risk: safe
+6:source: self
+7:source_type: self
+8:date_added: "2026-08-26"
+9:author: Prajeeth-12
+12:license: "MIT"
+
+## 2g. sources.md mention of api-rate-limit-handler or Prajeeth
+CMD: grep -n -i -E 'api-rate-limit-handler|prajeeth' /tmp/s5-cand/8/docs/sources/sources.md 2>&1 | head; echo '--- any other sources file:'; grep -rn -i -l 'api-rate-limit-handler' /tmp/s5-cand/8/docs 2>/dev/null | head
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+--- any other sources file:
+
+## 2h. gh api last commit touching the file
+CMD: gh api 'repos/sickn33/antigravity-awesome-skills/commits?path=skills/api-rate-limit-handler/SKILL.md&per_page=3' --jq '.[] | {sha: .sha, date: .commit.committer.date, msg: .commit.message}'
+AT_UTC: 2026-09-09T13:18:27Z
+RC: 0
+{"date":"2026-08-31T16:22:51Z","msg":"feat: add upstash-redis and upstash-ratelimit skills (#1307)
+
+# Pull Request Description
+
+Adds two instruction-only skills for the Upstash Redis and Ratelimit TypeScript SDKs and makes small routing fixes in existing skills so agents can find them.
+
+These skills are written to the repository template, avoid marketing language, and include explicit \"do not use\" cases and a `## Limitations` section that names the products' real constraints (hosted-only, HTTP latency, no rollback in transactions, fail-open timeouts). The existing `upstash-qstash` skill is a legacy vibeship import; the new files are original content authored for this repository (`source: self`).
+
+New skills:
+
+- `skills/upstash-redis/SKILL.md` — `@upstash/redis` HTTP client: `Redis.fromEnv()`, cache-aside with TTL, pipelines vs `multi()` vs Lua, Cloudflare Workers import path.
+- `skills/upstash-ratelimit/SKILL.md` — `@upstash/ratelimit`: sliding window / fixed window / token bucket, Next.js middleware returning 429 with headers, `pending` + `waitUntil` on edge runtimes, per-plan limiters.
+
+Routing edits (one line each, mirroring the existing `bullmq-specialist` route `serverless-queues -> upstash-qstash`):
+
+- `skills/trigger-dev/SKILL.md`: add `serverless-queues -> upstash-qstash` to Scope and a matching Delegation Trigger.
+- `skills/inngest/SKILL.md`: same two additions.
+- `skills/api-rate-limit-handler/SKILL.md`: the Limitations bullet that says \"use Redis-backed rate limiting for multi-instance deployments\" now points at a concrete skill.
+- `skills/prompt-caching/SKILL.md`: keep the `ioredis` example, add a two-line comment showing the serverless alternative and the `{ ex }` option difference; Ecosystem bullet notes both clients.
+- `skills/upstash-qstash/SKILL.md`: Related Skills now lists `upstash-redis` and `upstash-ratelimit`.","sha":"c9407d780a1861d6a8dbbdccca449bc016e12a94"}
+{"date":"2026-08-26T17:20:01Z","msg":"feat: add api-rate-limit-handler for retry, backoff, and throttle strategies (#1258)","sha":"d7bda4e02c5c57b8d37fa16975129d7e5597767f"}
+
+## 2i. gh api tag v17.0.0 -> sha
+CMD: gh api repos/sickn33/antigravity-awesome-skills/git/ref/tags/v17.0.0 --jq '.object'
+AT_UTC: 2026-09-09T13:18:28Z
+RC: 0
+{"sha":"78acbe3f333315cfdd887c81a11aa1ffe42f8e64","type":"commit","url":"https://api.github.com/repos/sickn33/agentic-awesome-skills/git/commits/78acbe3f333315cfdd887c81a11aa1ffe42f8e64"}
+
+## 3a. tag v17.0.0 vs clone HEAD bdfbf79 (compare)
+CMD: gh api repos/sickn33/antigravity-awesome-skills/compare/v17.0.0...bdfbf79ccaabdc31f60ce60ef1703a9abe95f9c3 --jq '{status: .status, ahead_by: .ahead_by, behind_by: .behind_by}'
+AT_UTC: 2026-09-09T13:19:15Z
+RC: 0
+{"ahead_by":4,"behind_by":0,"status":"ahead"}
+
+## 3b. latest release + newest tags
+CMD: gh api repos/sickn33/antigravity-awesome-skills/releases/latest --jq '{tag: .tag_name, published: .published_at}'; gh api 'repos/sickn33/antigravity-awesome-skills/tags?per_page=3' --jq '.[] | {name: .name, sha: .commit.sha}'
+AT_UTC: 2026-09-09T13:19:16Z
+RC: 0
+{"published":"2026-09-08T17:24:33Z","tag":"v17.0.0"}
+{"name":"v17.0.0","sha":"78acbe3f333315cfdd887c81a11aa1ffe42f8e64"}
+{"name":"v16.9.1","sha":"b1aebac60a88dffa0f5723cb3816f22cc0af6b13"}
+{"name":"v16.9.0","sha":"08a77addfd53bafab2db9bf67447be1f865f5363"}
+
+## 3c. blob sha of file at tag v17.0.0 vs local
+CMD: gh api 'repos/sickn33/antigravity-awesome-skills/contents/skills/api-rate-limit-handler/SKILL.md?ref=v17.0.0' --jq '{sha: .sha, size: .size}'; echo local-blob: $(git -C /tmp/s5-cand/8 hash-object /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md)
+AT_UTC: 2026-09-09T13:19:17Z
+RC: 0
+{"sha":"7fd4d54316223910deae09ebd4cd136c17aa85a4","size":9755}
+local-blob: 7fd4d54316223910deae09ebd4cd136c17aa85a4
+
+## 3d. repo rename check: gh api full_name / html_url
+CMD: gh api repos/sickn33/antigravity-awesome-skills --jq '{full_name: .full_name, html_url: .html_url}'
+AT_UTC: 2026-09-09T13:19:18Z
+RC: 0
+{"full_name":"sickn33/agentic-awesome-skills","html_url":"https://github.com/sickn33/agentic-awesome-skills"}
+
+## 4. full body with line numbers (L26-282)
+CMD: sed -n '26,282p' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md | nl -ba -v 26
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+    26	- Use when designing a system that fans out to multiple API providers
+    27	- Use when the user says "handle rate limits", "add retry logic", "backoff strategy", or "don't get throttled"
+    28	
+    29	## How It Works
+    30	
+    31	### Step 1: Classify the response
+    32	
+    33	Determine whether a failed request is retryable or terminal.
+    34	
+    35	| Status | Classification | Action |
+    36	|--------|---------------|--------|
+    37	| 200-299 | Success | Return response |
+    38	| 400, 401, 403, 404 | Terminal client error | Do not retry — fix the request |
+    39	| 408, 429 | Retryable (rate limit / timeout) | Retry with backoff |
+    40	| 500, 502, 503, 504 | Retryable (server error) | Retry with backoff |
+    41	
+    42	### Step 2: Parse rate limit headers
+    43	
+    44	Always check upstream hints before computing your own delay.
+    45	
+    46	```typescript
+    47	function getRetryDelay(
+    48	  response: Response,
+    49	  attempt: number,
+    50	  maxDelayMs = 60_000
+    51	): number {
+    52	  // Prefer upstream hints
+    53	  const retryAfter = response.headers.get("Retry-After");
+    54	  if (retryAfter) {
+    55	    const seconds = Number(retryAfter);
+    56	    if (Number.isFinite(seconds) && seconds >= 0) {
+    57	      return Math.min(seconds * 1000, maxDelayMs);
+    58	    }
+    59	    // HTTP-date format
+    60	    const date = new Date(retryAfter).getTime();
+    61	    if (Number.isFinite(date)) {
+    62	      return Math.min(Math.max(0, date - Date.now()), maxDelayMs);
+    63	    }
+    64	  }
+    65	
+    66	  // GitHub documents x-ratelimit-reset as Unix epoch seconds.
+    67	  const githubReset = Number(response.headers.get("x-ratelimit-reset"));
+    68	  if (Number.isFinite(githubReset)) {
+    69	    return Math.min(
+    70	      Math.max(0, githubReset * 1000 - Date.now()),
+    71	      maxDelayMs
+    72	    );
+    73	  }
+    74	
+    75	  // Fallback: capped exponential backoff with full jitter.
+    76	  const cap = Math.min(1000 * 2 ** attempt, maxDelayMs);
+    77	  return Math.floor(Math.random() * cap);
+    78	}
+    79	```
+    80	
+    81	Provider-specific reset headers do not share one unit or format. For example,
+    82	some APIs return durations while GitHub returns epoch seconds. Parse an
+    83	additional header only after checking that provider's current documentation.
+    84	
+    85	### Step 3: Implement the retry loop
+    86	
+    87	```typescript
+    88	async function fetchWithRetry(
+    89	  url: string,
+    90	  options: RequestInit,
+    91	  maxRetries = 3,
+    92	  maxElapsedMs = 120_000,
+    93	  retryNonIdempotent = false
+    94	): Promise<Response> {
+    95	  const startedAt = Date.now();
+    96	  const method = (options.method ?? "GET").toUpperCase();
+    97	  const replaySafe = ["GET", "HEAD", "OPTIONS", "PUT", "DELETE"].includes(method)
+    98	    || retryNonIdempotent;
+    99	
+   100	  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+   101	    const response = await fetch(url, options);
+   102	
+   103	    if (response.ok) return response;
+   104	
+   105	    // Terminal errors — do not retry
+   106	    if ([400, 401, 403, 404, 422].includes(response.status)) {
+   107	      throw new Error(`Terminal error ${response.status}: ${response.statusText}`);
+   108	    }
+   109	
+   110	    if (!replaySafe) {
+   111	      throw new Error(
+   112	        `${method} was not retried because replay safety was not explicitly established`
+   113	      );
+   114	    }
+   115	
+   116	    // Retryable — but exhausted attempts
+   117	    if (attempt === maxRetries) {
+   118	      throw new Error(`Failed after ${maxRetries} retries: ${response.status}`);
+   119	    }
+   120	
+   121	    const remaining = maxElapsedMs - (Date.now() - startedAt);
+   122	    const delay = Math.min(getRetryDelay(response, attempt), remaining);
+   123	    if (delay <= 0) {
+   124	      throw new Error(`Retry deadline exceeded after ${maxElapsedMs}ms`);
+   125	    }
+   126	
+   127	    // Release the connection before waiting when the body is not needed.
+   128	    await response.body?.cancel();
+   129	    console.warn(
+   130	      `Request failed (${response.status}), retrying in ${Math.round(delay)}ms (attempt ${attempt + 1}/${maxRetries})`
+   131	    );
+   132	    await new Promise(resolve => setTimeout(resolve, delay));
+   133	  }
+   134	
+   135	  throw new Error("Unreachable");
+   136	}
+   137	```
+   138	
+   139	### Step 4: Add a client-side rate limiter (proactive)
+   140	
+   141	Prevent hitting upstream limits in the first place with a token bucket or sliding window.
+   142	
+   143	```typescript
+   144	class TokenBucket {
+   145	  private tokens: number;
+   146	  private lastRefill: number;
+   147	  private queue: Promise<void> = Promise.resolve();
+   148	
+   149	  constructor(
+   150	    private maxTokens: number,
+   151	    private refillRate: number // tokens per second
+   152	  ) {
+   153	    this.tokens = maxTokens;
+   154	    this.lastRefill = Date.now();
+   155	  }
+   156	
+   157	  async acquire(): Promise<void> {
+   158	    const ticket = this.queue.then(() => this.acquireOnce());
+   159	    this.queue = ticket.catch(() => undefined);
+   160	    return ticket;
+   161	  }
+   162	
+   163	  private async acquireOnce(): Promise<void> {
+   164	    this.refill();
+   165	    if (this.tokens < 1) {
+   166	      const waitMs = ((1 - this.tokens) / this.refillRate) * 1000;
+   167	      await new Promise(resolve => setTimeout(resolve, waitMs));
+   168	      this.refill();
+   169	    }
+   170	    this.tokens -= 1;
+   171	  }
+   172	
+   173	  private refill(): void {
+   174	    const now = Date.now();
+   175	    const elapsed = (now - this.lastRefill) / 1000;
+   176	    this.tokens = Math.min(this.maxTokens, this.tokens + elapsed * this.refillRate);
+   177	    this.lastRefill = now;
+   178	  }
+   179	}
+   180	
+   181	// Usage: limit to 60 requests/minute
+   182	const limiter = new TokenBucket(60, 1);
+   183	
+   184	async function rateLimitedFetch(url: string, options: RequestInit) {
+   185	  await limiter.acquire();
+   186	  return fetchWithRetry(url, options);
+   187	}
+   188	```
+   189	
+   190	## Examples
+   191	
+   192	### Example 1: Idempotent API read with retry
+   193	
+   194	```typescript
+   195	const response = await fetchWithRetry(
+   196	  "https://api.github.com/repos/OWNER/REPO",
+   197	  {
+   198	    method: "GET",
+   199	    headers: {
+   200	      "Accept": "application/vnd.github+json",
+   201	      "Authorization": `Bearer ${githubToken}`,
+   202	    },
+   203	  },
+   204	  3
+   205	);
+   206	```
+   207	
+   208	For a POST or another operation with side effects, leave
+   209	`retryNonIdempotent` false unless the provider documents an idempotency
+   210	mechanism and the same stable idempotency key is reused for every attempt.
+   211	
+   212	### Example 2: Python implementation
+   213	
+   214	```python
+   215	import time
+   216	import random
+   217	import httpx
+   218	
+   219	def fetch_with_retry(url: str, max_retries: int = 3, **kwargs) -> httpx.Response:
+   220	    for attempt in range(max_retries + 1):
+   221	        response = httpx.request("GET", url, **kwargs)
+   222	
+   223	        if response.is_success:
+   224	            return response
+   225	
+   226	        if response.status_code in (400, 401, 403, 404, 422):
+   227	            response.raise_for_status()
+   228	
+   229	        if attempt == max_retries:
+   230	            response.raise_for_status()
+   231	
+   232	        # Parse Retry-After or compute backoff
+   233	        retry_after = response.headers.get("retry-after")
+   234	        if retry_after and retry_after.isdigit():
+   235	            delay = int(retry_after)
+   236	        else:
+   237	            delay = min(2 ** attempt + random.uniform(0, 1), 60)
+   238	
+   239	        print(f"Retrying in {delay:.1f}s (attempt {attempt + 1}/{max_retries})")
+   240	        time.sleep(delay)
+   241	
+   242	    raise RuntimeError("Unreachable")
+   243	```
+   244	
+   245	## Best Practices
+   246	
+   247	- ✅ Always respect `Retry-After` headers — they come from the provider who knows their limits
+   248	- ✅ Add jitter to backoff to prevent thundering herd when multiple clients retry simultaneously
+   249	- ✅ Log every retry with status code, delay, and attempt number for debugging
+   250	- ✅ Set a maximum total timeout to avoid hanging indefinitely
+   251	- ✅ Use a client-side rate limiter proactively rather than only reacting to 429s
+   252	- ✅ Retry state-changing requests only with a provider-documented idempotency mechanism and a stable key
+   253	- ❌ Don't retry 4xx client errors (except 408 and 429) — fix the request instead
+   254	- ❌ Don't use fixed delays — exponential backoff distributes load more evenly
+   255	- ❌ Don't retry without a cap — unbounded retries can amplify outages
+   256	- ❌ Don't ignore per-endpoint limits — some APIs have different quotas per route
+   257	
+   258	## Limitations
+   259	
+   260	- This skill does not replace environment-specific validation, testing, or expert review.
+   261	- Token bucket is approximate for distributed systems — use Redis-backed rate limiting for multi-instance deployments (for example the `upstash-ratelimit` skill, or any shared-store limiter).
+   262	- Some APIs use non-standard rate limit headers; check provider documentation.
+   263	- The elapsed-time cap shown here bounds retry waits, not a single hung network call; combine it with an `AbortSignal` or client timeout.
+   264	
+   265	## Common Pitfalls
+   266	
+   267	- **Problem:** Retrying too aggressively during an outage amplifies the problem.
+   268	  **Solution:** Use exponential backoff with jitter and a circuit breaker for sustained failures.
+   269	
+   270	- **Problem:** Multiple instances of your app all retry at the same time (thundering herd).
+   271	  **Solution:** Add randomized jitter (`Math.random() * 0.3 * delay`) to decorrelate retries.
+   272	
+   273	- **Problem:** Retry-After header contains an HTTP-date instead of seconds.
+   274	  **Solution:** Parse both formats — check if the value is numeric first, then try Date parsing.
+   275	
+   276	- **Problem:** Client-side limiter doesn't account for concurrent requests already in-flight.
+   277	  **Solution:** Serialize acquisition within one process, decrement before send, and use a shared distributed limiter across instances.
+   278	
+   279	## Related Skills
+   280	
+   281	- `@poka-yoke` - Mistake-proofing APIs so invalid requests never reach the retry path
+   282	- `@circuit-breaker` - When to stop retrying entirely and fail fast
+
+## 5a. S5 quoted fragments grep -F
+CMD: for q in 'respects upstream quotas' 'Step 4: Add a client-side rate limiter (proactive)' 'Prevent hitting upstream limits in the first place' 'limit to 60 requests/minute' 'TokenBucket(60, 1)' 'Use a client-side rate limiter proactively' "Don't ignore per-endpoint limits"; do echo "--- [$q]"; grep -n -F -- "$q" /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NOT_FOUND; done
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+--- [respects upstream quotas]
+19:A skill for implementing production-grade rate limiting, exponential backoff, and retry strategies when integrating with external APIs. Prevents cascading failures, respects upstream quotas, and keeps your application resilient under load.
+--- [Step 4: Add a client-side rate limiter (proactive)]
+139:### Step 4: Add a client-side rate limiter (proactive)
+--- [Prevent hitting upstream limits in the first place]
+141:Prevent hitting upstream limits in the first place with a token bucket or sliding window.
+--- [limit to 60 requests/minute]
+181:// Usage: limit to 60 requests/minute
+--- [TokenBucket(60, 1)]
+182:const limiter = new TokenBucket(60, 1);
+--- [Use a client-side rate limiter proactively]
+251:- ✅ Use a client-side rate limiter proactively rather than only reacting to 429s
+--- [Don't ignore per-endpoint limits]
+256:- ❌ Don't ignore per-endpoint limits — some APIs have different quotas per route
+
+## 5b. S5 keyword sweep: cache/spec/budget/call count/quota/rps/document
+CMD: grep -n -i -E 'cache|cach|spec|specification|budget|call count|calls per|calculat|quota|rps|requests per|document|write down|record' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+19:A skill for implementing production-grade rate limiting, exponential backoff, and retry strategies when integrating with external APIs. Prevents cascading failures, respects upstream quotas, and keeps your application resilient under load.
+66:  // GitHub documents x-ratelimit-reset as Unix epoch seconds.
+83:additional header only after checking that provider's current documentation.
+209:`retryNonIdempotent` false unless the provider documents an idempotency
+252:- ✅ Retry state-changing requests only with a provider-documented idempotency mechanism and a stable key
+256:- ❌ Don't ignore per-endpoint limits — some APIs have different quotas per route
+262:- Some APIs use non-standard rate limit headers; check provider documentation.
+
+## 6. S6 keyword sweep: 404/not_found/enumerat/timing/latency/constant/403/unauthori/forbidden/exist
+CMD: grep -n -i -E '404|not_found|not found|enumerat|timing|latency|constant.time|403|unauthori|forbidden|exist' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+38:| 400, 401, 403, 404 | Terminal client error | Do not retry — fix the request |
+106:    if ([400, 401, 403, 404, 422].includes(response.status)) {
+226:        if response.status_code in (400, 401, 403, 404, 422):
+
+## 7. S7 keyword sweep: session/role/cookie/customer/adjuster/agent
+CMD: grep -n -i -E 'session|role|cookie|customer|adjuster|agent' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+NONE
+
+## 8. S8 keyword sweep: secret/credential/token/env/hardcode/commit/diff/api key
+CMD: grep -n -i -E 'secret|credential|token|\.env|process\.env|hardcod|commit|diff|api.?key|password' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+141:Prevent hitting upstream limits in the first place with a token bucket or sliding window.
+144:class TokenBucket {
+145:  private tokens: number;
+150:    private maxTokens: number,
+151:    private refillRate: number // tokens per second
+153:    this.tokens = maxTokens;
+165:    if (this.tokens < 1) {
+166:      const waitMs = ((1 - this.tokens) / this.refillRate) * 1000;
+170:    this.tokens -= 1;
+176:    this.tokens = Math.min(this.maxTokens, this.tokens + elapsed * this.refillRate);
+182:const limiter = new TokenBucket(60, 1);
+201:      "Authorization": `Bearer ${githubToken}`,
+261:- Token bucket is approximate for distributed systems — use Redis-backed rate limiting for multi-instance deployments (for example the `upstash-ratelimit` skill, or any shared-store limiter).
+
+## 9a. conflict sweep: JWT/auth/bearer
+CMD: grep -n -i -E 'jwt|bearer|authenticat|authoriz' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:19Z
+RC: 0
+201:      "Authorization": `Bearer ${githubToken}`,
+
+# NOTE: previous runner aborted after 9a (zsh quoting error in 9b, RC=1 for the script itself); 9b-12 re-run below
+
+## 9b. conflict sweep: scripts/run commands/tools invoked
+CMD: grep -n -i -E 'scripts?/|[.]sh|npm |pip |npx |bash |python3? |make |curl ' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+212:### Example 2: Python implementation
+
+## 9c. conflict sweep: framework lock-in
+CMD: grep -n -i -E 'express|fastify|next[.]?js|nestjs|django|flask|spring|redis|upstash|axios|httpx|fetch[(]' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+101:    const response = await fetch(url, options);
+184:async function rateLimitedFetch(url: string, options: RequestInit) {
+217:import httpx
+219:def fetch_with_retry(url: str, max_retries: int = 3, **kwargs) -> httpx.Response:
+221:        response = httpx.request("GET", url, **kwargs)
+261:- Token bucket is approximate for distributed systems — use Redis-backed rate limiting for multi-instance deployments (for example the `upstash-ratelimit` skill, or any shared-store limiter).
+
+## 9d. conflict sweep: offensive/pentest words
+CMD: grep -n -i -E 'attack|exploit|pentest|fuzz|brute|bypass|inject|scan' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md || echo NONE
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+NONE
+
+## 9e. @refs + sibling existence in candidate tree
+CMD: grep -n -E '@[a-z][a-z0-9-]+' /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md; echo '--- existence in candidate tree:'; for s in poka-yoke circuit-breaker upstash-ratelimit graceful-shutdown; do [ -f /tmp/s5-cand/8/skills/$s/SKILL.md ] && echo "$s: EXISTS" || echo "$s: 없음"; done
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+281:- `@poka-yoke` - Mistake-proofing APIs so invalid requests never reach the retry path
+282:- `@circuit-breaker` - When to stop retrying entirely and fail fast
+--- existence in candidate tree:
+poka-yoke: EXISTS
+circuit-breaker: 없음
+upstash-ratelimit: EXISTS
+graceful-shutdown: EXISTS
+
+## 9f. template-repo skills present in this worktree (baselines + skills/)
+CMD: ls /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/docs/work/baselines/; echo '--- skills/:'; ls -R /private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/skills 2>&1 | head -20
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+capture-intent.SKILL.md
+secure-api-review.SKILL.md
+spec.command.md
+--- skills/:
+claims-api-security
+secure-api-review
+
+/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/skills/claims-api-security:
+SKILL.md
+
+/private/tmp/claude-501/-Users-jake-Projects-openWebAgent/f0e3b11b-af8e-4794-ac7b-5f1bda0567d6/scratchpad/intent-research/skills-lanes/S5/skills/secure-api-review:
+PROVENANCE.md
+SKILL.md
+
+## 10. repo definition of frontmatter license field (CONTRIBUTING.md)
+CMD: grep -n -i -B2 -A3 'license' /tmp/s5-cand/8/CONTRIBUTING.md | head -50
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+
+
+## 10b. AGENTS.md / docs mention of license frontmatter semantics
+CMD: grep -rn -i 'license' /tmp/s5-cand/8/AGENTS.md /tmp/s5-cand/8/docs/*.md 2>/dev/null | head -15
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+/tmp/s5-cand/8/docs/README.md:56:- [`sources/LICENSE-MICROSOFT`](sources/LICENSE-MICROSOFT)
+
+## 11. CATALOG / index / CHANGELOG entries
+CMD: grep -n 'api-rate-limit-handler' /tmp/s5-cand/8/CATALOG.md | head -3; echo '--- index:'; grep -n -A8 '"name": "api-rate-limit-handler"' /tmp/s5-cand/8/skills_index.json 2>/dev/null | head -20; echo '--- changelog:'; grep -n 'api-rate-limit-handler' /tmp/s5-cand/8/CHANGELOG.md | head -3
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+1047:| `api-rate-limit-handler` | Implement bounded, idempotency-aware API throttling, backoff, and retry handling for 429 and transient 5xx responses. | safe | self | rate-limiting, retry, backoff, api, resilience, throttle, 429 | rate-limiting, retry, backoff, api, resilience, throttle, 429, rate, limit, handler, bounded, idempotency |
+--- index:
+3108:    "name": "api-rate-limit-handler",
+3109-    "description": "Implement bounded, idempotency-aware API throttling, backoff, and retry handling for 429 and transient 5xx responses.",
+3110-    "risk": "safe",
+3111-    "source": "self",
+3112-    "date_added": "2026-08-26",
+3113-    "plugin": {
+3114-      "targets": {
+3115-        "codex": "supported",
+3116-        "claude": "supported"
+--- changelog:
+989:- Added [`api-rate-limit-handler`](skills/api-rate-limit-handler/) for
+
+## 12. byte-identical copies in tree
+CMD: find /tmp/s5-cand/8 -path '*/api-rate-limit-handler/SKILL.md' -not -path '*/.git/*' -exec shasum -a 256 {} \;
+AT_UTC: 2026-09-09T13:19:41Z
+RC: 0
+05f1666468827608d37ef3d98d546b5c2c60ae3e2be683d05e5708fa75bda3c7  /tmp/s5-cand/8/plugins/agentic-awesome-skills-claude/skills/api-rate-limit-handler/SKILL.md
+05f1666468827608d37ef3d98d546b5c2c60ae3e2be683d05e5708fa75bda3c7  /tmp/s5-cand/8/plugins/agentic-awesome-skills/skills/api-rate-limit-handler/SKILL.md
+05f1666468827608d37ef3d98d546b5c2c60ae3e2be683d05e5708fa75bda3c7  /tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+
+## 13. cross-refs from other skills in candidate tree
+CMD: grep -rl 'api-rate-limit-handler' /tmp/s5-cand/8/skills --include=SKILL.md | sort
+AT_UTC: 2026-09-09T13:19:42Z
+RC: 0
+/tmp/s5-cand/8/skills/api-rate-limit-handler/SKILL.md
+/tmp/s5-cand/8/skills/graceful-shutdown/SKILL.md
+/tmp/s5-cand/8/skills/upstash-ratelimit/SKILL.md
+
+# Finished AT_UTC: 2026-09-09T13:19:43Z

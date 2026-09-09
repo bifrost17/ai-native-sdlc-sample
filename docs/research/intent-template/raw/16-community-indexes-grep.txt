@@ -1,0 +1,62 @@
+CMD: for r in hesreallyhim/awesome-claude-code ComposioHQ/awesome-claude-skills; do echo "### $r"; gh api repos/$r --jq "{license:.license.spdx_id,pushed_at,stargazers_count}"; echo HEAD=$(gh api repos/$r/commits/HEAD --jq .sha); gh api repos/$r/contents/README.md --jq .content | base64 -d | grep -n -i -E "brainstorm|PRD|requirement|product spec|specify|intent|elicit" | cut -c1-400; done; echo "### davila7/claude-code-templates"; gh api repos/davila7/claude-code-templates --jq "{license:.license.spdx_id,pushed_at,stargazers_count}"; H=$(gh api repos/davila7/claude-code-templates/commits/HEAD --jq .sha); echo HEAD=$H; gh api "repos/davila7/claude-code-templates/git/trees/$H?recursive=1" --jq ".truncated, (.tree[] | select(.path | test(\"(?i)prd|brainstorm|requirement|specify|intent|discover\")) | .path)" | grep -v -i -E "node_modules|/dist/|\.png$|\.jpg$"
+AT_UTC: 2026-09-09T09:35:53Z
+RC: 0
+### hesreallyhim/awesome-claude-code
+{"license":"NOASSERTION","pushed_at":"2026-09-09T09:11:17Z","stargazers_count":53738}
+HEAD=74859518c440055dd6495b188ca0ff3cb9405c61
+11:The current iteration of the list, such as you see it today, was launched with the express intent to highlight resources that were _not_ on the last iteration, and in particular to make selections from the list of recommendations. However, this is only temporary - resources will continue to be added over the coming weeks, and "legacy" resources will be migrated to the new format. So, if you had
+### ComposioHQ/awesome-claude-skills
+{"license":null,"pushed_at":"2026-08-10T21:45:44Z","stargazers_count":74721}
+HEAD=be2a406907dbc61b73e6827ded415c96139d13a2
+142:- [pypict-claude-skill](https://github.com/omkamal/pypict-claude-skill) - Design comprehensive test cases using PICT (Pairwise Independent Combinatorial Testing) for requirements or code, generating optimized test suites with pairwise coverage.
+166:- [Domain Name Brainstormer](./domain-name-brainstormer/) - Generates creative domain name ideas and checks availability across multiple TLDs including .com, .io, .dev, and .ai extensions.
+173:- [brainstorming](https://github.com/obra/superpowers/tree/main/skills/brainstorming) - Transform rough ideas into fully-formed designs through structured questioning and alternative exploration.
+### davila7/claude-code-templates
+{"license":"MIT","pushed_at":"2026-09-09T03:10:21Z","stargazers_count":30570}
+HEAD=aac87c82638ee9f19c598e7a4dfa006957cd6a90
+false
+cli-tool/components/agents/data-ai/prd.md
+cli-tool/components/agents/expert-advisors/atlassian-requirements-to-jira.md
+cli-tool/components/commands/project-management/create-prd.md
+cli-tool/components/sandbox/e2b/requirements.txt
+cli-tool/components/skills/ai-research/loki-mode/examples/todo-app-generated/PRD.md
+cli-tool/components/skills/analytics/google-analytics/requirements.txt
+cli-tool/components/skills/business-marketing/product-manager-toolkit/references/prd_templates.md
+cli-tool/components/skills/creative-design/slack-gif-creator/requirements.txt
+cli-tool/components/skills/development/architecture/context-discovery.md
+cli-tool/components/skills/development/brainstorming
+cli-tool/components/skills/development/brainstorming/SKILL.md
+cli-tool/components/skills/development/mcp-builder/scripts/requirements.txt
+cli-tool/components/skills/development/senior-secops/references/compliance_requirements.md
+cli-tool/components/skills/development/webapp-testing/examples/element_discovery.py
+cli-tool/components/skills/enterprise-communication/frontend-to-backend-requirements
+cli-tool/components/skills/enterprise-communication/frontend-to-backend-requirements/README.md
+cli-tool/components/skills/enterprise-communication/frontend-to-backend-requirements/SKILL.md
+cli-tool/components/skills/enterprise-communication/slack-gif-creator/requirements.txt
+cli-tool/components/skills/productivity/brainstorming
+cli-tool/components/skills/productivity/brainstorming/SKILL.md
+cli-tool/components/skills/productivity/notebooklm/requirements.txt
+cli-tool/components/skills/productivity/requirements-clarity
+cli-tool/components/skills/productivity/requirements-clarity/README.md
+cli-tool/components/skills/productivity/requirements-clarity/SKILL.md
+cli-tool/components/skills/scientific/scientific-brainstorming
+cli-tool/components/skills/scientific/scientific-brainstorming/SKILL.md
+cli-tool/components/skills/scientific/scientific-brainstorming/references
+cli-tool/components/skills/scientific/scientific-brainstorming/references/brainstorming_methods.md
+cli-tool/components/skills/scientific/scientific-visualization/references/journal_requirements.md
+cli-tool/components/skills/scientific/venue-templates/references/grants_requirements.md
+cli-tool/components/skills/security/webapp-testing/examples/element_discovery.py
+cli-tool/components/skills/utilities/domain-name-brainstormer
+cli-tool/components/skills/utilities/domain-name-brainstormer/README.md
+cli-tool/components/skills/utilities/domain-name-brainstormer/SKILL.md
+cli-tool/components/skills/web-development/building-blog/blog-technical-requirements.md
+cli-tool/components/skills/web-development/shopify-development/scripts/requirements.txt
+dashboard/public/component-content/agents/data-ai/prd.json
+dashboard/public/component-content/agents/expert-advisors/atlassian-requirements-to-jira.json
+dashboard/public/component-content/commands/project-management/create-prd.json
+dashboard/public/component-content/skills/development/brainstorming.json
+dashboard/public/component-content/skills/enterprise-communication/frontend-to-backend-requirements.json
+dashboard/public/component-content/skills/productivity/brainstorming.json
+dashboard/public/component-content/skills/productivity/requirements-clarity.json
+dashboard/public/component-content/skills/scientific/scientific-brainstorming.json
+dashboard/public/component-content/skills/utilities/domain-name-brainstormer.json

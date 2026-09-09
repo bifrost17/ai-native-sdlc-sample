@@ -1,0 +1,21 @@
+CMD: for q in "awesome-claude-skills in:name" "awesome-claude-code in:name" "claude-code-templates in:name"; do echo "### $q"; gh search repos "$q" --sort stars --limit 5 --json fullName,stargazersCount,pushedAt,license --jq ".[] | \"\(.fullName) stars=\(.stargazersCount) pushed=\(.pushedAt) license=\(.license.key)\""; done
+AT_UTC: 2026-09-09T09:35:01Z
+RC: 0
+### awesome-claude-skills in:name
+ComposioHQ/awesome-claude-skills stars=74721 pushed=2026-08-10T21:45:44Z license=
+travisvn/awesome-claude-skills stars=15007 pushed=2026-04-28T19:30:24Z license=
+BehiSecc/awesome-claude-skills stars=10114 pushed=2026-08-02T11:06:52Z license=
+karanb192/awesome-claude-skills stars=507 pushed=2026-09-01T19:05:00Z license=mit
+helloianneo/awesome-claude-code-skills stars=461 pushed=2026-04-13T15:47:12Z license=mit
+### awesome-claude-code in:name
+hesreallyhim/awesome-claude-code stars=53738 pushed=2026-09-09T09:11:17Z license=other
+VoltAgent/awesome-claude-code-subagents stars=24956 pushed=2026-09-07T08:53:31Z license=mit
+rohitg00/awesome-claude-code-toolkit stars=2602 pushed=2026-05-12T07:18:34Z license=apache-2.0
+ccplugins/awesome-claude-code-plugins stars=933 pushed=2026-08-12T15:32:27Z license=apache-2.0
+jqueryscript/awesome-claude-code stars=510 pushed=2026-09-03T12:51:04Z license=cc0-1.0
+### claude-code-templates in:name
+davila7/claude-code-templates stars=30570 pushed=2026-09-09T03:10:21Z license=mit
+altmemy/claude-code-templates stars=24 pushed=2026-03-26T11:53:37Z license=
+Justdvp/claude-code-templates stars=7 pushed=2026-09-09T04:45:53Z license=mit
+Josansanchez/claude-code-java-templates stars=3 pushed=2025-11-06T18:03:32Z license=mit
+swesmith/davila7__claude-code-templates.734b8a50 stars=2 pushed=2025-12-20T00:10:01Z license=mit
