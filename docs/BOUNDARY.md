@@ -35,6 +35,19 @@ Each of these is named by the lesson as a hook or a check. Nothing else is.
 Evals' deterministic checks (`evals/check.sh` `kind`s) only judge code shape — a regex over the
 diff. Behavior is judged by the LLM assertions in each case and by the unit/regression tests.
 
+## Hooks watch tool calls, not effects
+
+A `PreToolUse` hook fires on the tool it matches. `protect-tests.sh` matches Edit/Write; an
+agent that writes files through Bash (`cat > file <<EOF`, `python - <<EOF`, `sed -i`) never
+reaches it. Chain 0007 did exactly that: 45 of 45 file operations went through Bash, the
+Edit/Write hooks fired zero times, and the one `block` in `hooks.log` was the agent piping a
+JSON to the hook by hand to show it works. The tests stayed untouched because the skill said
+so, not because the hook stopped anything. Enumerating the ways Bash can write a file is an
+open vocabulary; this repo does not do it. The backstops are the ones the playbook names:
+CLAUDE.md tells the agent to use Edit/Write (advisory, and chain 0007 shows it follows
+CLAUDE.md), and review rejects a diff that touches a test (L9 631). `INTENT_TASK=fix` is
+declared by the engineer at session start; nothing detects a fix task from the tree.
+
 ## What the seven reference repos did instead
 All seven put the three layers in one place — a validator that also carried policy and approval —
 and none of the seven had a validator that held (hooks unwired, `jq` fail-open, examples that broke
