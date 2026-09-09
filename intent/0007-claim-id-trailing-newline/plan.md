@@ -20,4 +20,4 @@ Upstream: spec.md@2e5099ce4a341b16da2946a0b3e418c8891e4346. Status: draft.
 - AC2 ← TestTrailingNewlineClaimId.test_ac2_error_body_does_not_echo_input_or_ledger_values
 - AC3 ← TestNeighbouringMalformedIds.test_ac3_neighbouring_malformed_ids_stay_invalid_without_upstream_call
 - AC4 ← TestFormatPositiveControl.test_ac4_well_formed_id_still_returns_four_fields · test_ac4_unknown_well_formed_id_is_not_found_after_one_upstream_call
-- 출력: 단계 1 의 red 원문(FAILED, failures=3 — AC1 두 건과 AC2) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문 · protect-tests 훅 BLOCKED 원문, PR 본문에 첨부.
+- 출력: 단계 1 의 red 원문(FAILED, **failures=2** — AC1 두 건. 계획은 3 이라고 썼지만 AC2 는 현행에서도 통과한다: 지금 나가는 본문이 `not_found` 라 입력도 원장 값도 실리지 않는다. 새는 것은 본문이 아니라 상류 호출이다 — AC2 는 회귀 고정으로 남긴다) · 단계 3 의 `make check` rc=0 원문 · 뮤테이션 red 원문 · protect-tests 훅 BLOCKED 원문, PR 본문에 첨부.
