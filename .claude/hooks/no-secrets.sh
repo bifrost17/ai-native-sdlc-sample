@@ -6,6 +6,7 @@
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
 text="$(jqr '.tool_input | [.content?, .new_string?, .new_source?, (.edits // [])[].new_string?] | map(select(. != null)) | join("\n")')"
 [ -n "$text" ] || exit 0
+# TEAM: org's real secret-shape patterns — docs/ADOPTING.md · L16
 PATTERNS='AKIA[0-9A-Z]{16}
 -----BEGIN [A-Z ]*PRIVATE KEY-----
 \bsk-[A-Za-z0-9_-]{20,}

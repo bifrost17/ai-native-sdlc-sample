@@ -7,6 +7,7 @@
 # 직접 파싱한다. 앵커·별칭·블록 스칼라·흐름 매핑을 쓰면 조용히 넘어가지 않고
 # rc=1 로 죽는다 — 의미상 깨진 설정이 통과하는 것보다 멈추는 편이 싸다.
 
+# TEAM: real metric + baseline, metrics store, trigger wiring — docs/ADOPTING.md · L23
 metric: ci_test_failure_rate
 
 # baseline 의 일수와 window 는 반드시 일치해야 한다(검출기가 대조한다).

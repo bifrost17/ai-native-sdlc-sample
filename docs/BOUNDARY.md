@@ -57,6 +57,8 @@ does not rebuild that.
 ## Lesson devices this repo does not build
 The lessons name more than a small repo can stand up, and more than this change touches. Each of
 these is a device the playbook names; this repo does not build it, and here is why not.
+- **Policy skills (brand, compliance, UX)** — the team adopting this template builds and owns
+  them; see `docs/ADOPTING.md`.
 - **Intent merge → auto-PR'd spec.md** (L3 268, "commits spec.md as a pull request" on the merge
   of an accepted intent). This is the end state of a hand-run product-owner prompt codified as a
   slash command; the CI trigger and model-access wiring are an org-level infrastructure decision,

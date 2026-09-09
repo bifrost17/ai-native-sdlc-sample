@@ -1,4 +1,5 @@
 # evals — 설정이 바뀔 때 도는 회귀 스위트
+<!-- TEAM: 20-50 real task cases + ANTHROPIC_API_KEY secret — docs/ADOPTING.md · L22 -->
 
 L10 671행: "a suite that runs whenever the agent's configuration changes...
 says whether the agent still does the work to the same standard."

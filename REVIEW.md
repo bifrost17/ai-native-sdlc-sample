@@ -3,6 +3,7 @@
 <!-- L11 776-789: the playbook's REVIEW.md, cut to this repo. L11 762: "Findings do not approve or
 block a PR on their own" — the product owner merges. -->
 
+<!-- TEAM: add a design-principles pass if wanted, and real CODEOWNERS people — docs/ADOPTING.md · L21 -->
 ## Passes
 Run three passes and tag each finding with its pass:
 - Bugs: logic errors, broken edge cases, subtle regressions — in hooks and scripts, a case the

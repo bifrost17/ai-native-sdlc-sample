@@ -27,6 +27,7 @@ is a copy of it; `tests/test_skill_template.py` keeps the two identical.
 If two chains start at the same moment, `<NNNN>` is not "max + 1" alone: whoever ordered the
 concurrent start assigns the numbers and writes the assignment in the PR body.
 
+<!-- TEAM: adjust the intent.md template to the org's own — docs/ADOPTING.md · L13 -->
 ```markdown
 # Intent: ‹what cannot be done today — the subject, not the solution›
 Author: ‹name (team)›. Status: draft.

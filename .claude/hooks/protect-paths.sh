@@ -8,6 +8,7 @@
 # Fail-closed (no jq / bad JSON → exit 2), see _lib.sh.
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
 set -f  # no filename globbing: the patterns below are matched by case, not expanded by the shell
+# TEAM: real frozen/generated paths for PROTECTED — docs/ADOPTING.md · L15
 PROTECTED='.github/* Makefile .claude/hooks/* .claude/settings.json'
 rel="$(rel_path)"; [ -n "$rel" ] || exit 0
 for pat in $PROTECTED; do
