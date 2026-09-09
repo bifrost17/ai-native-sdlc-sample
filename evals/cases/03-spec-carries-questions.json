@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "03-spec-carries-questions",
+  "prompt": "워크스페이스 evals/out/03-spec-carries-questions/ws/ 에 accepted 상태의 intent.md 가 있다. 이 레포의 spec 규약(templates/spec.md · docs/DESIGN.md §3.2)대로 spec 을 써서 같은 워크스페이스의 spec.md 에 저장해라.\n\n규칙: (1) intent 의 미결 Q1 · Q2 는 spec 의 「Open questions from intent」 절에 「- Q1 answered: …」 또는 「- Q1 carried: …」 형식으로 하나도 빠짐없이 나타나야 한다. (2) intent 의 제약 C1 · C2 는 「Constraints inherited」 절에 그대로 재수록한다. (3) 플레이스홀더 기호 ‹ › 를 남기지 마라. (4) frontmatter 에 id · kind · status · upstream · skills_applied 를 둔다.",
+  "expected_output": "spec.md 하나. Open questions from intent 절에 Q1 · Q2 가 각각 answered: 또는 carried: 로 나타나고, Constraints inherited 절이 C1 · C2 를 담고, 플레이스홀더가 남지 않은 상태.",
+  "files": [
+    "evals/fixtures/03-spec-carries-questions/intent.md"
+  ],
+  "allowed_tools": "Read,Write,Glob,Grep",
+  "measures": "레슨 3 의 「intent 의 미결이 answered 또는 carried forward 인가」가 기계가 잡는 계약으로 서 있는가. 이어받기가 끊기면 사슬은 커밋만 남고 감사 추적이 아니게 된다 — 설계안 §5 가 「Q# 누락 = red」로 못 박은 자리다.",
+  "assertions": [
+    "carried 로 넘긴 미결에 결정할 사람 또는 팀이 붙어 있다",
+    "Acceptance criteria 가 각각 어떤 요구(R#)에 대응하는지 밝힌다",
+    "Flagged concerns 절이 비어 있지 않거나 「해당 없음 — 이유」를 적는다"
+  ],
+  "checks": [
+    {
+      "kind": "file_exists",
+      "path": "spec.md"
+    },
+    {
+      "kind": "frontmatter_has_keys",
+      "path": "spec.md",
+      "keys": [
+        "id",
+        "kind",
+        "status",
+        "upstream",
+        "skills_applied"
+      ]
+    },
+    {
+      "kind": "regex_present",
+      "path": "spec.md",
+      "pattern": "^- Q1 (answered|carried):"
+    },
+    {
+      "kind": "regex_present",
+      "path": "spec.md",
+      "pattern": "^- Q2 (answered|carried):"
+    },
+    {
+      "kind": "not_contains",
+      "path": "spec.md",
+      "value": "‹"
+    }
+  ]
+}

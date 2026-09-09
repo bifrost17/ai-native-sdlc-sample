@@ -1,0 +1,81 @@
+# .github/workflows/agent-evals.yml
+#
+# 레슨 9(continuous-evals-in-ci)는 evals 스위트를 "on a schedule and on any change to
+# CLAUDE.md, skills, or hooks" 로 돌리고 "gate configuration changes on the results" 하라고
+# 요구한다. 이 레포는 그 둘을 **아직 하지 않는다**. 설계안 docs/DESIGN.md §10(의도적 미구현
+# 원장)이 이유와 승격 조건을 적어 둔다 — evals 20~50 케이스 · 스케줄 · 머지 게이트화는
+# 「API 키 예산 확보」될 때 승격한다.
+#
+# 아래 schedule · pull_request 트리거는 **주석이다 = 돌지 않는다.**
+# 비활성 사유(둘 다 같다): 이 레포에 ANTHROPIC_API_KEY 시크릿이 없어 모델을 태울 수 없고,
+# 자동 트리거를 켜면 매 PR·매주 「키 없음」으로 skip 만 쌓여 신호가 죽는다.
+#
+# 「있는 척」 방지: tests/test_evals.sh 8번이 이 두 트리거가 주석 밖(활성)으로
+# 새어 나오지 않았는지, 그리고 주석 처리된 두 트리거가 여전히 여기 있는지를 매 게이트마다
+# 잰다. imsungbin 은 워크플로를 만들어 놓고 disabled_manually 로 두어 한 번도 안 돌렸다.
+
+name: agent evals (수동 전용 · workflow_dispatch)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: '이 실행의 목적(예: CLAUDE.md 개정 후 회귀 확인)'
+        required: false
+        default: '수동 확인'
+
+  # ↓↓↓ 비활성 — 승격 조건은 docs/DESIGN.md §10 「evals 20~50 케이스 · 스케줄 · 머지 게이트화」
+  # schedule:
+  #   - cron: '17 4 * * 1'     # 매주 월 04:17 UTC — 키 예산이 붙으면 켠다
+  # pull_request:
+  #   paths:
+  #     - 'CLAUDE.md'
+  #     - '.claude/**'
+  #     - 'evals/**'
+  # ↑↑↑ 비활성 사유: ANTHROPIC_API_KEY 시크릿이 없다(위 머리글 참조)
+
+permissions:
+  contents: read
+
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1단계는 키가 없어도 항상 돈다 — 이게 실제 게이트다.
+      # 케이스 스키마 · 채점기 rc 3분법 · 「키 없음 = rc=2」 계약 · 트리거 비활성 여부.
+      - name: 결정론 게이트 (키 불요)
+        run: bash tests/test_evals.sh
+
+      # 2단계는 키가 있을 때만 실질적으로 돈다.
+      # 키가 없으면 evals/run.sh 가 rc=2 를 내고, 우리는 그 상태를 **명시적으로 보고**한 뒤
+      # 잡을 실패로 만들지 않는다(수동 실행이므로 skip 로 표시). rc=2 를 rc=0 처럼
+      # 흘려보내지 않는 것이 이 단계의 전부다 — 「안 돌았다」와 「통과했다」는 다른 값이다.
+      - name: evals 실행 (ANTHROPIC_API_KEY 가 있을 때만 실질 실행)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          rc=0
+          bash evals/run.sh || rc=$?
+          echo "evals/run.sh rc=$rc"
+          case "$rc" in
+            0)
+              echo "::notice title=evals::전 케이스 통과 (모델을 실제로 태웠다)"
+              ;;
+            2)
+              echo "::notice title=evals SKIPPED::rc=2 — evals 는 돌지 않았다(ANTHROPIC_API_KEY 없음 또는 판정 불가). 통과가 아니다."
+              ;;
+            *)
+              echo "::error title=evals FAILED::rc=$rc — 판정 실패가 있다"
+              exit 1
+              ;;
+          esac
+
+      - name: 산출물 보관 (키가 있었을 때만 내용이 있다)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evals-out
+          path: evals/out/
+          if-no-files-found: ignore
