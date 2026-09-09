@@ -18,6 +18,8 @@ Unofficial; not an Anthropic project.
 6. `docs/METRICS.md` — the lessons' indicators as git commands.
 7. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
    this repo's sample ones, and who (in the playbook's terms) fills each one in.
+8. `docs/RUNS.md` — actual runs against these devices, judged by each play's own governance and
+   measurement sections, not a separate scorecard.
 
 ## What this repo does
 - Encodes the intent, spec and plan templates in skills, with `templates/` as copies.
