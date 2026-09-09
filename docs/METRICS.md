@@ -76,7 +76,10 @@ No separate "How to measure it" section — it rides on L6's (505); nothing to a
 - Lagging — outside this repo (DORA measures come from CI/deploy tooling itself)
 
 ## L14 closing the loop on metrics (1063)
-- Leading — band breach → triage queue: compare bands.yml's run timestamp against `git log --diff-filter=A --format=%aI -- intent/*/intent.md` by hand
+- Leading — band breach → intent.md in the triage queue: the breach time is the `detected_at` the
+  detector wrote into the draft's `Author:` line; the queue time is that file's first commit —
+  `grep -h '^Author: detect_bands' intent/*/intent.md` against
+  `git log --diff-filter=A --format='%cI %h' -- intent/*/intent.md` (chain 0006: 16 s)
 - Lagging — outside this repo (repeat-incident rate is an incident tracker)
 
 Nothing here is computed by a script. The numbers are for a person to read once a quarter.

@@ -116,6 +116,11 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
   half is unexercised here; `docs/ADOPTING.md` names the ruleset and the secret as the team's spot.
 - L10 733 (incident → permanent eval): chain 0006 — intent.md `a21fe16` 12:16:39 → eval case
   `4bf2a07` 12:20:18 (+09:00), 3 min 39 s, written in the incident's own PR #23.
+- L14 1058 (band breach → intent.md in the triage queue): chain 0006 — `detected_at`
+  2026-09-09T12:16:23+09:00 → intent.md committed `a21fe16` 12:16:39, 16 s; finding → merged fix 1/1 (#23).
+  `bands.yml` first ran on GitHub during the verification (workflow_dispatch, run 34328016812,
+  08:14:16Z → 08:14:26Z, tier=3sigma, artifacts `bands-detection` and `bands-intent-draft`); the
+  diagnosis step added afterwards has not run (no key).
 - L13 961 (failed builds triaged without a human): the triage step in `check.yml` has not run —
   no `check` failure in the verification period and no `ANTHROPIC_API_KEY`; 0 of 0.
 - L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
