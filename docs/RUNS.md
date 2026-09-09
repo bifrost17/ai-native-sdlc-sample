@@ -118,6 +118,9 @@ Left open: issue #32 (failed lookups unrecorded, shared with 0008).
   `4bf2a07` 12:20:18 (+09:00), 3 min 39 s, written in the incident's own PR #23.
 - L9 642 (first-pass CI success): runs A, B and C — all green on the first CI run.
 - L11 773 (time to first review): run B turn 9 (one finding, fixed in-PR), run C turn 9 (no finding) — same session, no wait.
+  PR #33: opened 05:10:27Z, the agent's reply comment 05:19:32Z (9 min 5 s); resolved without a human commit 1/1.
+  Evidence limit: the finding itself was handed to the agent as a prompt, so PR #33 holds only the reply
+  (1 comment, 0 reviews) — the audit record is half; REVIEW.md now says to post findings on the PR.
 - L12 901 (time waiting per approval gate): `hooks.log` per-gate totals — `raw-hac/31-hooks-log-totals.txt`.
 - Unmeasurable here (outside this repo — OTel export, an incident tracker): not invented.
 

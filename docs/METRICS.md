@@ -59,7 +59,10 @@ No separate "How to measure it" section — it rides on L6's (505); nothing to a
 - Lagging — outside this repo (regressions caught in CI vs found in production is an incident tracker)
 
 ## L11 AI in the PR review loop (795)
-- Leading — time to first review: `gh pr view <n> --json createdAt,reviews --jq '.reviews[0].submittedAt'`
+- Leading — time to first review: `gh pr view <n> --json createdAt,reviews,comments --jq '[.reviews[].submittedAt, .comments[].createdAt] | min'`
+  (this repo's findings arrived as comments, so `reviews` alone is null)
+- Leading — review comments resolved without a human touching the branch: `gh pr view <n> --json comments,commits`
+  — count comments answered by a commit whose author is the agent's session, not a person; a person reads it
 - Lagging — outside this repo (pre/post-merge defects need an incident tracker)
 
 ## L12 hooks as approval gates (930)

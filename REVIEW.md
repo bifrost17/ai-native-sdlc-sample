@@ -29,5 +29,7 @@ Anything `make check` already fails on, and the record chain `intent/0001-bootst
 
 ## What findings do
 Findings inform; they neither approve nor block. The product owner approves by merging.
+Post findings on the PR as review comments — the PR is the audit record (L11 766); a finding
+handed over in a prompt leaves only the reply in the thread (chain 0008, PR #33).
 A mistake flagged for the second time goes into `CLAUDE.md` as a correction (L5 401, L11 745) —
 chain 0008's three repeat findings became PR #35.
