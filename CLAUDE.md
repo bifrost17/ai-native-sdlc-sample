@@ -43,6 +43,8 @@ Run all three before reporting any task complete, and paste the output.
 If a test fails, fix the code, not the test.
 
 (L9 635-645 verbatim. This repo has no `make build`/`make lint`; run `make check` and paste it.)
+Before reporting a chain done, hand the check to the `verifier` subagent (`.claude/agents/verifier.md`)
+and paste its report — chains 0007-0009 never invoked it (L8 564).
 
 ## Things Claude gets wrong
 - Writing a checker for artifact sections, status or transitions. The skill says it, the product
