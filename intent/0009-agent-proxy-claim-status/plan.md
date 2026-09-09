@@ -8,7 +8,7 @@ Note: 엔지니어 결정(2026-09-09) — PR 은 하나(plan.md 는 자기 커�
 - `src/claims_status/audit.py` — `record_agent_access(agent_id, subscriber_id, claim_id, at)` 하나 추가. 기존 `record_access`(셋)는 **한 글자도 고치지 않는다**. 머리글에 이 파일이 이제 0009 R8 도 구현한다는 한 줄을 더한다.
 - `src/claims_status/agent_routes.py` (new) — `/agent/claims/<claim_id>/status` 핸들러.
 - `README.md` — 사슬 표 0009 행의 PR 칸.
-- **손대지 않는 것:** `src/claims_status/response.py`(R7 이 상수를 공유하라고 했으므로 더할 것이 없다) · `src/claims_status/routes.py` · 기존 시험 다섯 파일(`test_claims_status.py`·`_defect.py`·`_format.py`·`_incident.py`·`test_adjuster_status.py`). 규모 눈금: `src/` 추가 ≤ 60줄, `tests/` 추가 ≤ 230줄.
+- **손대지 않는 것:** `src/claims_status/response.py`(R7 이 상수를 공유하라고 했으므로 더할 것이 없다) · `src/claims_status/routes.py` · 기존 시험 다섯 파일(`test_claims_status.py`·`_defect.py`·`_format.py`·`_incident.py`·`test_adjuster_status.py`). 규모 눈금: `src/` 추가 ≤ 60줄, `tests/` 추가 ≤ 230줄. (구현 중 조정: 실측은 `src/` +99 · `tests/` +290 으로 둘 다 눈금을 넘었다. `src/` 초과분은 전부 주석·머리글이다 — 코드 줄은 `agent_routes.py` 판정 15줄 + `audit.py` 2줄 + 표본 행 16줄이고, 나머지는 「왜 0008 과 반대로 하는가」를 파일 안에 적은 것이다. `tests/` 초과분은 AC4·AC5·AC6 이 `subTest` 로 여러 갈래를 도는 데서 온다 — 갈래를 줄이면 0005 의 함정과 만료 미측정을 못 잰다. 눈금을 넘긴 것은 사실대로 두고, 줄이지 않은 이유를 여기 남긴다.)
 - 새 `src/` 파일의 첫 줄은 자기가 구현하는 spec 조항을 적는다(기존 파일들과 같은 꼴): `agent_routes.py` → 0009 R1·R3·R4·R5·R7·R8·R10. 시험 파일은 기존 시험처럼 L9 625 를 인용한다.
 
 표본에 넣을 새 행 — `C-3001`(가입자 `S-77`) · `C-3002`(가입자 `S-12`, 「확인된 고객의 건이 아님」 판정용).
@@ -38,6 +38,7 @@ Note: 엔지니어 결정(2026-09-09) — PR 은 하나(plan.md 는 자기 커�
    가입자 불일치·없는 건 → `not_found`(기록 0) ·
    `build_response(record, RESPONSE_FIELDS)` 뒤에 `record_agent_access(...)`.
    소유 판정은 0005 규칙 그대로 — 어느 한쪽이 비면(`None`·`""`·없음) 불일치. `route`·`CLAIM_ID_RE` 는 `routes.py` 에서, `RESPONSE_FIELDS` 는 `response.py` 에서 **임포트한다**(복사하지 않는다). 시험은 편집하지 않고 초록으로 만든다.
+   (구현 중 추가: `at` 이 `None` 인 호출에 `_utc_now()` 기본값을 둔다 — 0008 의 `adjuster_routes.py` 와 같은 자리다. 계획에 없던 다섯 줄이고, 없으면 `at` 을 안 준 배선 호출이 기록에 `None` 을 남긴다. 시험은 `at` 을 주입하므로 이 기본값은 AC8 이 재는 값이 아니다.)
 5. 뮤테이션 5건 — 한 줄 침묵 살해 → 지정 시험 red 확인 → **`sha256` 대조로 복원**(`git checkout --` 은 쓰지 않는다: 커밋 안 한 수정까지 버린다, 사슬 0008).
    M1 소유 판정 한 줄 삭제 → AC5 red · M2 본인확인 게이트 삭제 → AC4 red · M3 `record_agent_access(...)` 호출 삭제 → AC8 red · M4 `RESPONSE_FIELDS` 임포트를 같은 내용의 리터럴 튜플로 교체 → AC7 red · **M5 본인확인 게이트를 `fetch_claim` 호출 아래로 옮긴다(지우지 않고 순서만 바꾼다) → AC4 의 상류 호출 수 0 단정 red**. M5 가 M2 와 다른 것을 잰다: M2 는 게이트의 존재를, M5 는 게이트의 **자리**를 잰다.
 6. `README.md` 사슬 표 0009 행 PR 칸.
