@@ -5,9 +5,10 @@ L14 1036행: "The agent writes its diagnosis as intent.md in the Stage 1:
 Plan format, covering the anomaly and its evidence, a proposed outcome,
 the affected systems, and any open questions."
 
-templates/intent.md(레인 B 소유)을 읽어 frontmatter 키·섹션 제목 순서를
-가져온다 — 하드코딩하면 템플릿이 바뀔 때 조용히 어긋난다. tier none/1sigma 는
-초안을 만들지 않는다(행동이 log 뿐). status 는 언제나 draft.
+templates/intent.md 를 읽어 섹션 제목(## …) 순서를 가져온다 — 하드코딩하면
+템플릿이 바뀔 때 조용히 어긋난다. 템플릿엔 frontmatter 가 없고 2행이
+'Author: …. Status: draft.' 다. tier none/1sigma 는 초안을 만들지 않는다
+(행동이 log 뿐). Status 는 언제나 draft — 승인은 머지다.
 """
 import argparse, json, os, re, sys
 
@@ -20,9 +21,7 @@ class InputError(Exception):
 
 
 def load_template():
-    text = open(TEMPLATE, encoding="utf-8").read()
-    return (re.findall(r"^([a-z_]+):", text.split("---")[1], re.M),
-            re.findall(r"^## (.+)$", text, re.M))
+    return re.findall(r"^## (.+)$", open(TEMPLATE, encoding="utf-8").read(), re.M)
 
 
 def load_detection(path):
@@ -36,11 +35,7 @@ def load_detection(path):
     return data
 
 
-def render(d, intent_id, keys, heads):
-    vals = {"id": intent_id, "kind": "intent", "status": "draft",
-            "author": "detect_bands (자동)", "created": d["detected_at"],
-            "record": "none", "supersedes": "none"}
-    front = ["---"] + ["%s: %s" % (k, vals.get(k, "none")) for k in keys] + ["---"]
+def render(d, heads):
     body = {
         heads[0]: "`%s` 최신 표본 %s=%s 이 규칙 `%s` 로 tier `%s` 를 냈다 (n=%s mean=%s sigma=%s z=%s)."
                   % (d["metric"], d["observed"]["ts"], d["observed"]["value"], d["rule"],
@@ -48,14 +43,15 @@ def render(d, intent_id, keys, heads):
         heads[1]: "`%s` 가 기준선 안으로 돌아오고, 행동 `%s` 가 이 초안으로 이행됐다."
                   % (d["metric"], d["action"]),
         heads[2]: "지표 `%s` 를 생산하는 CI 와 그 지표로 머지를 판단하는 사람 전부." % d["metric"],
-        heads[3]: "- C1 status 는 draft — accepted 전엔 하류(spec·plan)를 시작하지 않는다.\n"
+        heads[3]: "- C1 Status 는 draft — 이 초안의 PR 이 머지되기 전엔 하류(spec·plan)를 시작하지 않는다.\n"
                   "- C2 원인·처방은 여기 없다 — diagnose 단계의 몫이다.",
         heads[4]: "- Q1 이탈이 코드 변경 때문인지 인프라 변동 때문인지 diagnose 단계가 답한다.",
     }
-    out = front + ["# Intent: %s 밴드 이탈 (%s · %s)" % (d["metric"], d["tier"], d["rule"]), ""]
+    out = ["# Intent: %s 밴드 이탈 (%s · %s)" % (d["metric"], d["tier"], d["rule"]),
+           "Author: detect_bands (automatic, %s). Status: draft." % d["detected_at"]]
     for h in heads:
-        out += ["## " + h, "", body.get(h, "‹자동 미채움 — 사람이 채운다›"), ""]
-    return "\n".join(out)
+        out += ["## " + h, body.get(h, "(자동 미채움 — 사람이 채운다)")]
+    return "\n".join(out) + "\n"
 
 
 def main(argv=None):
@@ -75,11 +71,11 @@ def main(argv=None):
     if data["tier"] not in WRITE_TIERS:
         print(json.dumps({"status": "skipped", "tier": data["tier"]}))
         return 0
-    keys, heads = load_template()
+    heads = load_template()
     target = os.path.join(args.out, args.intent_id, "intent.md")
     try:
         os.makedirs(os.path.dirname(target), exist_ok=True)
-        open(target, "w", encoding="utf-8").write(render(data, args.intent_id, keys, heads))
+        open(target, "w", encoding="utf-8").write(render(data, heads))
     except OSError as exc:
         sys.stderr.write("초안을 쓸 수 없다: %s (%s)\n" % (target, exc))
         return 2

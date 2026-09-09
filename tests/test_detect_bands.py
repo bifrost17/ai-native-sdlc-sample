@@ -6,6 +6,7 @@ tier 3 을 낸다) · σ=0 가드 · 미구현 규칙/rules 계열 거부 · rc 
 """
 import json
 import pathlib
+import re
 import subprocess
 import sys
 import tempfile
@@ -14,7 +15,7 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCRIPT = ROOT / "scripts" / "detect_bands.py"
 EMIT = ROOT / "scripts" / "emit_intent.py"
-CHECK = ROOT / "scripts" / "check_artifacts.py"
+TEMPLATE = ROOT / "templates" / "intent.md"
 DATA = ROOT / "tests" / "data" / "bands"
 CONFIG = ROOT / "ops" / "bands.yaml"
 
@@ -129,8 +130,9 @@ class DetectBandsTest(unittest.TestCase):
             tmp.unlink()
 
 
-    def test_emit_intent_draft_has_no_placeholders_and_passes_check_artifacts(self):
-        """L14 1036행 — 진단을 Stage 1 intent 형식으로 쓴다: 실제로 그 형식을 통과해야 한다."""
+    def test_emit_intent_draft_follows_the_template(self):
+        """L14 1036행 — 진단을 Stage 1 intent 형식으로 쓴다: 자기 산출물 시험(레포 절차 검사가 아니다).
+        플레이스홀더 ‹ 가 없고, 템플릿의 5절 제목이 그 순서로 있고, 2행이 Status: draft 다."""
         det = subprocess.run([sys.executable, str(SCRIPT), "--samples",
                               str(DATA / "spike-3sigma.jsonl"), "--config", str(CONFIG)],
                              capture_output=True, text=True)
@@ -141,9 +143,10 @@ class DetectBandsTest(unittest.TestCase):
             path = pathlib.Path(tmp) / "0099-band-test" / "intent.md"
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("‹", text)
-            check = subprocess.run([sys.executable, str(CHECK), str(path)],
-                                   capture_output=True, text=True)
-            self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+            heads = re.findall(r"^## .+$", TEMPLATE.read_text(encoding="utf-8"), re.M)
+            self.assertEqual(len(heads), 5)
+            self.assertEqual(re.findall(r"^## .+$", text, re.M), heads)
+            self.assertRegex(text.splitlines()[1], r"^Author: .+\. Status: draft\.$")
 
     def test_emit_intent_skips_1sigma(self):
         det = subprocess.run([sys.executable, str(SCRIPT), "--samples",
