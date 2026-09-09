@@ -36,8 +36,9 @@ Unofficial; not an Anthropic project.
 | 0004 lesson-only | slim | this repo, self-recorded | #16 |
 | 0005 ownerless-claim-visible | defect · ticket | GitHub issue | #20, #21 |
 | 0006 claims-status-stale-not-found | incident · band | `ops/bands.yaml` → `scripts/detect_bands.py` → auto-draft | #22, #23 |
+| 0007 claim-id-trailing-newline | defect · ticket | GitHub issue #24 | #28 |
 
-The ticket path is a GitHub issue — #24, #25, #26.
+The ticket path is a GitHub issue — #24 (chain 0007), #25, #26.
 
 ## Source of truth
 This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
