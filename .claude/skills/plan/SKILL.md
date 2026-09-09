@@ -15,7 +15,9 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 (L9 625 failing test first) the engineer opens the session with `INTENT_TASK=fix`; nothing sets
 it for you, and without it the test-file hook (L9 631) is off. For a feature chain do **not** set
 it — with `INTENT_TASK=fix` on, the hook also blocks creating the new test file (chain 0008). Record
-`Upstream: spec.md@<sha>. Status: <draft|accepted>` at the top of plan.md.
+`Upstream: spec.md@<sha>. Status: draft.` at the top of plan.md, and leave it `draft`: approval
+is the merge of the PR that carries the plan (L2 231), nothing flips this line by hand. (Chain 0009
+wrote `accepted` there for the upstream spec's PR, and the line stopped saying whose status it was.)
 One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
 the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
 you and why, and repeat it in the PR body — approval is still the merge, not this note.

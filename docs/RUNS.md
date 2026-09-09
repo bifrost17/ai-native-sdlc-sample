@@ -105,3 +105,7 @@ role-playing the original playbook's human actors in sequence — not an actual 
 each gate. Runs B and C's H turns are not in the raw jsonl — a `claude -p` stream does not echo
 its own input back, so what H said is known only indirectly, through the response quoting it and
 through the drafts it produced. A later harness should record H's turns to raw separately.
+L4 317 (an engineer who never saw the conversation implements from plan.md alone) was not
+measured: in runs B and C the implementation turn resumed the plan-mode session (0008
+`836163ef`, 0009 `f643bd77`), so the implementer had seen the conversation. A next run starts
+the implementation turn as a fresh session given plan.md only.

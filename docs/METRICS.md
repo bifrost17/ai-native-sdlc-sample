@@ -20,11 +20,14 @@ one value git does not know; the capture-intent skill puts it on the PR body's f
   `git log --format=%h --since="$(git log --diff-filter=A --format=%aI -1 -- $CHAIN/plan.md)" -- $CHAIN/spec.md`
 
 ## L4 plan-mode (362–366)
+- Leading — share of changes merged from the first implementation pass:
+  `gh pr list --state all --search "$CHAIN" --json number,state,title` — one implementation PR per
+  chain and no CLOSED one is a first pass.
 - Leading — plan approval (its merge) → merged PR of the code:
   `gh pr list --state merged --json number,title,mergedAt --search "$CHAIN"`
 - Lagging — does the merged diff still match plan.md's "Files that change":
-  `git diff --name-only $(git log --diff-filter=A --format=%h -1 -- $CHAIN/plan.md)..HEAD`
-  then read the list against the plan by eye.
+  `gh pr diff <n> --name-only` for the PR that carried the code, then read the list against the
+  plan by eye. (Not `<plan commit>..HEAD` — that picks up every later chain's files; measured on 0008.)
 - Lagging — rework cycles per change: `gh pr view <n> --json reviews,commits --jq '{reviews: (.reviews|length), commits: (.commits|length)}'`
 
 ## L5 CLAUDE.md (442)
