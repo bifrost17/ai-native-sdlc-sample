@@ -1,6 +1,7 @@
 # Plan: 담당자별 조회(`list --owner`)와 상태 요약(`summary`) (from intent 0001-owner-list-and-summary)
 Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에서 Constraints로 정정한 것 외
-기능 결정은 동일). Status: draft.
+기능 결정은 동일); spec.md@5e6cdd68ed87a7dfdab76b823edafe09a10c9278에서 R8/AC9(`summary --json`)를
+제품 책임자가 수락(2026-09-11, HUMAN 커밋·수락). Status: draft.
 
 두 기능은 같은 파일(`tracker.py`)을 바꾸고 순서 우선순위(조회 먼저)가 정해져 있으므로 순차로
 진행한다. 동시에 맡기면 같은 파일을 두 작업이 바꿔 병합 충돌과 교차 검증 비용이 생기고,
@@ -42,6 +43,11 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 
 **PR2 — `summary [--owner <ID>]` (PR1 머지 후 최신 `main`에서 시작)**
 
+> 편차: PR2 구현·리뷰 중 내부 자동화가 `summary` 결과를 파싱해 써야 한다는 필요가 드러나,
+> 제품 책임자(HUMAN)가 2026-09-11 `--json` 옵션 추가를 PR2 범위로 승인했다(spec.md R8/AC9에 반영).
+> 대상 선택·집계 로직은 기존과 완전히 공유하고 마지막 출력 형식만 분기하므로 순차 진행·파일 목록
+> 변경은 없다.
+
 1. PR1이 머지된 `main`에서 새 브랜치를 만들고, `python3 -m unittest discover -s tests -v`로 PR1의
    기준이 그대로 통과하는지 먼저 확인한다.
 2. `tracker.py`에 `summary` 서브파서(`--owner` 선택 인자, `--data`는 전역 옵션 공유)를 추가한다.
@@ -55,10 +61,13 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
    - `summary`/`summary --owner` 실행 전후 데이터 파일 바이트 동일 (AC6의 summary 부분).
    - 임시 복사본에서 `complete R-101` 실행 후 같은 복사본으로 `summary --owner hana` →
      `open\t0`, `done\t2` (AC7, 상태 변화 반영 확인).
+   - `summary --json`, `summary --owner hana --json`, `summary --owner nobody --json`이 각각
+     `{"open": 3, "done": 1}`, `{"open": 1, "done": 1}`, `{"open": 0, "done": 0}`을(키 순서·공백
+     무관하게 파싱해) 반환하고 데이터 파일이 바뀌지 않는지 확인 (AC9).
 4. 전체 시험 실행, PR1이 추가한 `list --owner` 시험과 기존 `show`/`complete` 시험이 함께 통과하는지
    확인한다(회귀 없음).
-5. `README.md`에 `summary`, `summary --owner <ID>` 사용법(예시 명령과 예시 출력)을 PR1에서 남긴
-   `list --owner` 설명 옆에 이어 적는다.
+5. `README.md`에 `summary`, `summary --owner <ID>`, `summary --json` 사용법(예시 명령과 예시 출력)을
+   PR1에서 남긴 `list --owner` 설명 옆에 이어 적는다.
 6. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
 
 ## Risks
@@ -75,8 +84,9 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 
 - PR1: `python3 -m unittest discover -s tests -v` 전체 통과(기존 3개 + 신규 `list --owner` 시험),
   `python3 tracker.py --data requests.json list --owner hana` 수동 실행 결과 관찰.
-- PR2: 위 시험군 전체 통과(기존 3개 + PR1 시험 + 신규 `summary` 시험),
+- PR2: 위 시험군 전체 통과(기존 3개 + PR1 시험 + 신규 `summary`/`summary --json` 시험),
   `python3 tracker.py --data requests.json summary`와 `summary --owner hana` 수동 실행 결과 관찰,
+  `summary --json`/`summary --owner hana --json` 수동 실행 결과 관찰,
   복사본에서 `complete` 후 `summary` 재실행한 결과 관찰.
 - 아직 실행하지 않은 항목: 위 명령들은 각 PR 구현 시점에 실제로 실행해 근거를 남긴다. 이 계획
   단계에서는 실행하지 않았다.

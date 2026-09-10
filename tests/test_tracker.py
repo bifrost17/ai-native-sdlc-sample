@@ -44,6 +44,48 @@ class ExistingTrackerTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout, "")
 
+    def test_summary_without_owner_counts_all_including_unassigned(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t3\ndone\t1\n")
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_with_owner_counts_only_that_owner(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t1\ndone\t1\n")
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_owner_unknown_is_zero_not_error(self):
+        result = self.invoke("summary", "--owner", "nobody")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t0\ndone\t0\n")
+
+    def test_summary_reflects_completed_state_in_copy(self):
+        self.invoke("complete", "R-101")
+        result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t0\ndone\t2\n")
+
+    def test_summary_json_outputs_open_and_done_counts(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 3, "done": 1})
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_json_with_owner(self):
+        result = self.invoke("summary", "--owner", "hana", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 1, "done": 1})
+
+    def test_summary_json_owner_unknown_is_zero(self):
+        result = self.invoke("summary", "--owner", "nobody", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 0, "done": 0})
+
     def test_show_existing_and_missing_id(self):
         row = self.original["requests"][0]
         result = self.invoke("show", row["id"])
