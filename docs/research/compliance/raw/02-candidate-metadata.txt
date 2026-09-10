@@ -1,0 +1,112 @@
+CMD: for each candidate: gh api repos/<repo> ; gh api repos/<repo>/commits/HEAD ; gh api repos/<repo>/contents/<path> ; gh api repos/<repo>/commits?path=<path>&per_page=1 ; content -> raw/<owner>--<name>@<blob7>.SKILL.md
+AT_UTC: 2026-09-09T23:40:33Z
+RC: 0 (all 18 fetches rc=0)
+NOTE: 후보 목록의 출처 = 이 세션의 앞선 조사(웹 검색 17 질의 + gh api). 여기 값은 모두 이 시각에 직접 재조회한 것.
+### 01 github/awesome-copilot :: skills/gdpr-compliant/SKILL.md :: gdpr-compliant
+REPO_META: {"archived":false,"default_branch":"main","forks":4918,"license":"MIT","pushed_at":"2026-09-09T20:51:49Z","stars":38817}
+HEAD: 7568a482ce2df38f8965ab5336a3220db796a4ba 2026-09-09T00:23:17Z
+FILE: {"sha":"a2fde315002d904d9530cad70c4f5bc83173e5dc","size":11923}  blob7=a2fde31 fetch_rc=0 bytes=11923
+FILE_LAST_COMMIT: 2026-03-30T23:53:25Z
+RAWCOPY: github--gdpr-compliant@a2fde31.SKILL.md
+### 02 SkillMedev/skills :: skills/pii-scrubber/SKILL.md :: pii-scrubber
+REPO_META: {"archived":false,"default_branch":"main","forks":0,"license":"MIT","pushed_at":"2026-07-05T03:17:43Z","stars":11}
+HEAD: a28c4ce9366b5a8540577bed8f70b6a60f8fde27 2026-07-05T03:17:42Z
+FILE: {"sha":"7eb6f5e41aadcc47819560f0538941d7e68cb359","size":7416}  blob7=7eb6f5e fetch_rc=0 bytes=7416
+FILE_LAST_COMMIT: 2026-07-05T03:17:42Z
+RAWCOPY: SkillMedev--pii-scrubber@7eb6f5e.SKILL.md
+### 03 affaan-m/everything-claude-code :: skills/healthcare-phi-compliance/SKILL.md :: healthcare-phi-compliance
+REPO_META: {"archived":false,"default_branch":"main","forks":38222,"license":"MIT","pushed_at":"2026-09-09T19:00:49Z","stars":255145}
+HEAD: cc91c24f9a35dc79811f2326b6cbf4a74739009a 2026-09-09T19:00:49Z
+FILE: {"sha":"316d3991093c4a7568f2dc64a9e99f317cb26a92","size":5696}  blob7=316d399 fetch_rc=0 bytes=5696
+FILE_LAST_COMMIT: 2026-08-12T03:58:14Z
+RAWCOPY: affaan-m--healthcare-phi-compliance@316d399.SKILL.md
+### 04 TerminalSkills/skills :: skills/audit-logging/SKILL.md :: audit-logging
+REPO_META: {"archived":false,"default_branch":"main","forks":17,"license":"Apache-2.0","pushed_at":"2026-09-04T19:42:42Z","stars":146}
+HEAD: 56037efc04d0ffd20a0a85b18894115df74bd70f 2026-09-04T19:39:47Z
+FILE: {"sha":"cb6bc0027113c86e2c125685dced29a259ba668f","size":13293}  blob7=cb6bc00 fetch_rc=0 bytes=13293
+FILE_LAST_COMMIT: 2026-03-18T17:03:05Z
+RAWCOPY: TerminalSkills--audit-logging@cb6bc00.SKILL.md
+### 05 TerminalSkills/skills :: skills/data-masking/SKILL.md :: data-masking
+REPO_META: {"archived":false,"default_branch":"main","forks":17,"license":"Apache-2.0","pushed_at":"2026-09-04T19:42:42Z","stars":146}
+HEAD: 56037efc04d0ffd20a0a85b18894115df74bd70f 2026-09-04T19:39:47Z
+FILE: {"sha":"8d36a1142f49f2d3b2a74ab036ae97041c02c485","size":10832}  blob7=8d36a11 fetch_rc=0 bytes=10832
+FILE_LAST_COMMIT: 2026-03-26T21:30:17Z
+RAWCOPY: TerminalSkills--data-masking@8d36a11.SKILL.md
+### 06 TerminalSkills/skills :: skills/hipaa-compliance/SKILL.md :: hipaa-compliance
+REPO_META: {"archived":false,"default_branch":"main","forks":17,"license":"Apache-2.0","pushed_at":"2026-09-04T19:42:42Z","stars":146}
+HEAD: 56037efc04d0ffd20a0a85b18894115df74bd70f 2026-09-04T19:39:47Z
+FILE: {"sha":"e8d34e652a50c52b48a30e7b1fb46c925759ad53","size":9689}  blob7=e8d34e6 fetch_rc=0 bytes=9689
+FILE_LAST_COMMIT: 2026-03-18T17:03:05Z
+RAWCOPY: TerminalSkills--hipaa-compliance@e8d34e6.SKILL.md
+### 07 TerminalSkills/skills :: skills/gdpr-compliance/SKILL.md :: gdpr-compliance
+REPO_META: {"archived":false,"default_branch":"main","forks":17,"license":"Apache-2.0","pushed_at":"2026-09-04T19:42:42Z","stars":146}
+HEAD: 56037efc04d0ffd20a0a85b18894115df74bd70f 2026-09-04T19:39:47Z
+FILE: {"sha":"eb278e0c5cdbd06bd19f144ff1198975fb61a7a3","size":6690}  blob7=eb278e0 fetch_rc=0 bytes=6690
+FILE_LAST_COMMIT: 2026-02-17T16:54:26Z
+RAWCOPY: TerminalSkills--gdpr-compliance@eb278e0.SKILL.md
+### 08 mukul975/Privacy-Data-Protection-Skills :: plugins/privacy-by-design-skills/skills/implementing-data-minimization-architecture/SKILL.md :: implementing-data-minimization-architecture
+REPO_META: {"archived":false,"default_branch":"main","forks":59,"license":"Apache-2.0","pushed_at":"2026-03-16T20:06:52Z","stars":271}
+HEAD: 9b2ef9eae161c00a17241d42a388571321b33e9f 2026-03-16T20:06:51Z
+FILE: {"sha":"a68a1773c99db726dd7c67907d1173fb1f19890b","size":11908}  blob7=a68a177 fetch_rc=0 bytes=11908
+FILE_LAST_COMMIT: 2026-03-15T00:40:32Z
+RAWCOPY: mukul975--implementing-data-minimization-architecture@a68a177.SKILL.md
+### 09 mukul975/Privacy-Data-Protection-Skills :: plugins/consent-management-skills/skills/consent-record-keeping/SKILL.md :: consent-record-keeping
+REPO_META: {"archived":false,"default_branch":"main","forks":59,"license":"Apache-2.0","pushed_at":"2026-03-16T20:06:52Z","stars":271}
+HEAD: 9b2ef9eae161c00a17241d42a388571321b33e9f 2026-03-16T20:06:51Z
+FILE: {"sha":"08870b9934045795af35cf2348d842aecc33e5f4","size":8513}  blob7=08870b9 fetch_rc=0 bytes=8513
+FILE_LAST_COMMIT: 2026-03-15T00:40:32Z
+RAWCOPY: mukul975--consent-record-keeping@08870b9.SKILL.md
+### 10 mukul975/Privacy-Data-Protection-Skills :: plugins/privacy-engineering-skills/skills/purpose-based-access/SKILL.md :: purpose-based-access
+REPO_META: {"archived":false,"default_branch":"main","forks":59,"license":"Apache-2.0","pushed_at":"2026-03-16T20:06:52Z","stars":271}
+HEAD: 9b2ef9eae161c00a17241d42a388571321b33e9f 2026-03-16T20:06:51Z
+FILE: {"sha":"b120c9e4ae2033ea149b82c73ffcf328cc3d8274","size":16111}  blob7=b120c9e fetch_rc=0 bytes=16111
+FILE_LAST_COMMIT: 2026-03-15T00:40:32Z
+RAWCOPY: mukul975--purpose-based-access@b120c9e.SKILL.md
+### 11 mukul975/Privacy-Data-Protection-Skills :: plugins/consent-management-skills/skills/double-opt-in-email/SKILL.md :: double-opt-in-email
+REPO_META: {"archived":false,"default_branch":"main","forks":59,"license":"Apache-2.0","pushed_at":"2026-03-16T20:06:52Z","stars":271}
+HEAD: 9b2ef9eae161c00a17241d42a388571321b33e9f 2026-03-16T20:06:51Z
+FILE: {"sha":"6102f4faaeddfc98835d5c97594604fd4625fa9d","size":6674}  blob7=6102f4f fetch_rc=0 bytes=6674
+FILE_LAST_COMMIT: 2026-03-15T00:40:32Z
+RAWCOPY: mukul975--double-opt-in-email@6102f4f.SKILL.md
+### 12 chunkydotdev/email-skills :: skills/sending/notification-design/SKILL.md :: notification-design
+REPO_META: {"archived":false,"default_branch":"main","forks":0,"license":"MIT","pushed_at":"2026-03-31T09:13:17Z","stars":2}
+HEAD: dca18fc8e4840a05716947f49c25a692cd2b1b17 2026-03-30T15:12:07Z
+FILE: {"sha":"5717a78bca40e95b864faaab169740cfef62e868","size":23976}  blob7=5717a78 fetch_rc=0 bytes=23976
+FILE_LAST_COMMIT: 2026-03-30T11:26:32Z
+RAWCOPY: chunkydotdev--notification-design@5717a78.SKILL.md
+### 13 chunkydotdev/email-skills :: skills/compliance/email-compliance/SKILL.md :: email-compliance
+REPO_META: {"archived":false,"default_branch":"main","forks":0,"license":"MIT","pushed_at":"2026-03-31T09:13:17Z","stars":2}
+HEAD: dca18fc8e4840a05716947f49c25a692cd2b1b17 2026-03-30T15:12:07Z
+FILE: {"sha":"57d751bb6518f07414879e4dfe9b7e027118b29c","size":23275}  blob7=57d751b fetch_rc=0 bytes=23275
+FILE_LAST_COMMIT: 2026-03-30T11:26:02Z
+RAWCOPY: chunkydotdev--email-compliance@57d751b.SKILL.md
+### 14 coreyhaines31/marketingskills :: skills/sms/SKILL.md :: sms
+REPO_META: {"archived":false,"default_branch":"main","forks":7521,"license":"MIT","pushed_at":"2026-09-05T04:48:10Z","stars":49240}
+HEAD: 5b2c0007766c6a1cf1d53fd8fc73e979e0821022 2026-09-05T04:48:02Z
+FILE: {"sha":"50cfa8d32c434ca948fecaa596aa5cd23f91d8cd","size":16809}  blob7=50cfa8d fetch_rc=0 bytes=16809
+FILE_LAST_COMMIT: 2026-05-21T23:44:47Z
+RAWCOPY: coreyhaines31--sms@50cfa8d.SKILL.md
+### 15 addyosmani/agent-skills :: skills/observability-and-instrumentation/SKILL.md :: observability-and-instrumentation
+REPO_META: {"archived":false,"default_branch":"main","forks":9922,"license":"MIT","pushed_at":"2026-09-08T07:21:56Z","stars":93214}
+HEAD: 6ca0cd7db39b41b1c37e26d335c507ee92382c6d 2026-09-08T07:21:56Z
+FILE: {"sha":"84d9cb373467fe0e15236e190833ecc90f840c38","size":13948}  blob7=84d9cb3 fetch_rc=0 bytes=13948
+FILE_LAST_COMMIT: 2026-09-08T07:19:30Z
+RAWCOPY: addyosmani--observability-and-instrumentation@84d9cb3.SKILL.md
+### 16 addyosmani/agent-skills :: skills/security-and-hardening/SKILL.md :: security-and-hardening
+REPO_META: {"archived":false,"default_branch":"main","forks":9922,"license":"MIT","pushed_at":"2026-09-08T07:21:56Z","stars":93214}
+HEAD: 6ca0cd7db39b41b1c37e26d335c507ee92382c6d 2026-09-08T07:21:56Z
+FILE: {"sha":"c168e65e0d8e2ce1ec48bdaf0c1a76c0a4aa9d30","size":27993}  blob7=c168e65 fetch_rc=0 bytes=27993
+FILE_LAST_COMMIT: 2026-09-07T20:46:11Z
+RAWCOPY: addyosmani--security-and-hardening@c168e65.SKILL.md
+### 17 davila7/claude-code-templates :: cli-tool/components/skills/enterprise-communication/data-privacy-compliance/SKILL.md :: data-privacy-compliance
+REPO_META: {"archived":false,"default_branch":"main","forks":3452,"license":"MIT","pushed_at":"2026-09-09T14:11:44Z","stars":30576}
+HEAD: e3f33c4bee472b919b2d7aa254f8aded40126c88 2026-09-09T14:11:38Z
+FILE: {"sha":"cd804d32c5f8ba0b51743add48df2429089a7d50","size":17415}  blob7=cd804d3 fetch_rc=0 bytes=17415
+FILE_LAST_COMMIT: 2025-12-20T02:14:16Z
+RAWCOPY: davila7--data-privacy-compliance@cd804d3.SKILL.md
+### 18 jorgealves/agent_skills :: pii-sanitizer/SKILL.md :: pii-sanitizer
+REPO_META: {"archived":false,"default_branch":"main","forks":1,"license":"GPL-3.0","pushed_at":"2026-01-25T18:01:53Z","stars":2}
+HEAD: 85014ad37d71ac52dbb6b4fa724dcd548796f107 2026-01-25T18:01:38Z
+FILE: {"sha":"2583d6ded4ca594d555955e2a7ed45a0b3507462","size":1729}  blob7=2583d6d fetch_rc=0 bytes=1729
+FILE_LAST_COMMIT: 2026-01-25T18:01:38Z
+RAWCOPY: jorgealves--pii-sanitizer@2583d6d.SKILL.md
