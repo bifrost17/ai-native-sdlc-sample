@@ -41,9 +41,11 @@ claude plugin list --json
 | 현황·질문·단순 산문 정정 | 불필요한 문서 변경·독립 구현 검토를 하지 않음 |
 
 원본은 [SKILL.md](skills/sdlc-feedback/SKILL.md), 공통 판단 기준은
-[review-criteria.md](skills/sdlc-feedback/references/review-criteria.md)다.
+[sdlc-verifier.md의 Review criteria](agents/sdlc-verifier.md#review-criteria)다.
 [sdlc-verifier](agents/sdlc-verifier.md)는 동등한 프로젝트 검증자가 없을 때 쓸 기본 예시다.
 업무 대화는 주 세션에 유지하고 필요한 합의·수락·기준·증거를 검증자에게 전달한다.
+기본 검증자는 자신의 정의에 공통 판단 기준을 함께 받는다. 별도 기준 파일을 찾거나 그 경로를
+전달할 필요가 없다. 다른 프로젝트 검증자를 쓰면 동등한 기준을 확인·인계한다.
 
 일반적인 작은 구현은 Sonnet과 적정 추론을 사용한다. 기본 검증자는 여러 문서의 중요한 합의를
 대조하므로 Opus/high로 설정했다. 팀은 난도·영향·불확실성과 사용자 한도에 맞게 조정한다.

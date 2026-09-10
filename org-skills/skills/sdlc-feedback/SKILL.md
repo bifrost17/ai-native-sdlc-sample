@@ -5,7 +5,9 @@ description: Keep agreed requirements, spec, plan and implementation aligned dur
 # SDLC feedback
 
 Work in the developer's conversation so that the human's decisions remain available. Read
-[review-criteria.md](references/review-criteria.md) when comparing agreements, artifacts and evidence.
+the **Review criteria** section of [sdlc-verifier.md](../../agents/sdlc-verifier.md) when comparing
+agreements, artifacts and evidence. Its reviewer-only permissions apply to the verifier, not to
+your developer session.
 Use the part below that fits the current event; this is not an extra phase for every response.
 
 ## Change or acceptance
@@ -35,8 +37,9 @@ is still pending. Do not run both for the same purpose. A routine prose correcti
 status/decision question does not require this independent implementation review.
 
 Give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
-paths, the agreed diff base, checks already run with their evidence, and the absolute path of the
-review criteria read above. Include uncommitted and untracked work. Do not ask it to trust your
+paths, the agreed diff base, and checks already run with their evidence. The default team verifier
+receives the common criteria in its own definition; confirm or supply equivalent criteria when
+using a project verifier. Include uncommitted and untracked work. Do not ask it to trust your
 completion claim. It should read the current files and return findings, not edit or approve.
 
 Choose model and effort for difficulty, impact and uncertainty within the user's limits. The default
