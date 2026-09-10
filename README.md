@@ -42,6 +42,30 @@ R-103	done	hana	회의록 정리
 없는 ID나 대소문자가 다른 값을 주면 빈 결과와 종료코드 0을 반환한다. `--owner` 없이 `list`를
 실행하면 지금처럼 전체 요청을 보여준다. `list`, `list --owner`는 데이터 파일을 바꾸지 않는다.
 
+```
+$ python3 tracker.py --data requests.json summary
+open	3
+done	1
+$ python3 tracker.py --data requests.json summary --owner hana
+open	1
+done	1
+```
+
+`summary`는 대상 집합(전체 또는 `--owner`로 고른 대상)의 open/done 건수를 이 순서로 두 줄 출력한다.
+`--owner`가 데이터에 없거나 대소문자가 다른 값이면 `open\t0`, `done\t0`을 반환한다. `summary`,
+`summary --owner`도 데이터 파일을 바꾸지 않는다.
+
+```
+$ python3 tracker.py --data requests.json summary --output summary.txt
+$ cat summary.txt
+open	3
+done	1
+```
+
+`--output <path>`를 주면 같은 두 줄을 표준출력 대신 그 경로에 UTF-8로 저장하고 표준출력은 비운다.
+`--owner`와 함께 쓸 수 있다. 이미 있는 경로를 주면 덮어쓰지 않고 stderr 설명과 종료코드 2로 끝난다.
+부모 디렉터리가 없거나 쓰기가 실패해도 종료코드 2이며 요청 데이터 파일(`--data`)은 바뀌지 않는다.
+
 ## 제품 시작과 작업 브랜치
 
 템플릿의 판을 기록해 제품 저장소를 초기화하고 제품의 `main`을 통합 기준으로 삼는다.

@@ -1,6 +1,7 @@
 # Plan: 담당자별 조회(`list --owner`)와 상태 요약(`summary`) (from intent 0001-owner-list-and-summary)
-Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에서 Constraints로 정정한 것 외
-기능 결정은 동일). Status: draft.
+Upstream: spec.md@8dea18c6f1a6def4c3a645b70331d762a7f7082c (R8/R9, AC9/AC10 — `summary --output` 파일
+저장 요구와, TOCTOU 경쟁 조건을 피하는 배타적 생성(`open("x", ...)`) 설계를 HUMAN이 수락한 판.
+그 외 기능 결정은 이전과 동일). Status: draft.
 
 두 기능은 같은 파일(`tracker.py`)을 바꾸고 순서 우선순위(조회 먼저)가 정해져 있으므로 순차로
 진행한다. 동시에 맡기면 같은 파일을 두 작업이 바꿔 병합 충돌과 교차 검증 비용이 생기고,
@@ -40,14 +41,21 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 6. HUMAN이 diff와 동작을 검토하고 PR1을 `main`에 merge commit으로 통합한다. 통합 후 담당자들이
    `list --owner`를 바로 쓸 수 있다 — `summary` 완료를 기다리지 않는다.
 
-**PR2 — `summary [--owner <ID>]` (PR1 머지 후 최신 `main`에서 시작)**
+**PR2 — `summary [--owner <ID>] [--output <path>]` (PR1 머지 후 최신 `main`에서 시작)**
+
+PR2 구현 중 제품 책임자가 `summary --output <path>`(파일로 저장) 요청을 승인해 범위에 추가됐다
+(spec R8–R9, AC9–AC10). 아래 순서는 그 추가를 반영한다.
 
 1. PR1이 머지된 `main`에서 새 브랜치를 만들고, `python3 -m unittest discover -s tests -v`로 PR1의
    기준이 그대로 통과하는지 먼저 확인한다.
-2. `tracker.py`에 `summary` 서브파서(`--owner` 선택 인자, `--data`는 전역 옵션 공유)를 추가한다.
-   `main()`에 `summary` 분기를 만들어 PR1의 필터 로직과 같은 방식으로 대상 집합을 고르고
+2. `tracker.py`에 `summary` 서브파서(`--owner`, `--output` 선택 인자, `--data`는 전역 옵션 공유)를
+   추가한다. `main()`에 `summary` 분기를 만들어 PR1의 필터 로직과 같은 방식으로 대상 집합을 고르고
    (`--owner` 없으면 전체, 있으면 `list --owner`와 동일한 선택), `status`별 개수를 세어
-   `open\t<건수>`, `done\t<건수>` 순서로 출력한다(spec R4–R6).
+   `open\t<건수>`, `done\t<건수>` 순서로 낸다(spec R4–R6). `--output`이 있으면 그 두 줄을
+   표준출력 대신 해당 경로에 UTF-8로 쓰고 표준출력은 비운다. 존재 확인 후 쓰기(TOCTOU 경쟁 조건)
+   대신 `Path.open("x", encoding="utf-8")` 배타적 생성 모드로 열어 대상 경로가 이미 있으면
+   `FileExistsError`로 원자적으로 잡아 덮어쓰지 않고 stderr·종료코드 2로 끝낸다. 부모 디렉터리
+   부재 등 다른 쓰기 실패는 별도 `OSError` 처리로 종료코드 2를 낸다(spec R8–R9).
 3. `tests/test_tracker.py`에 다음을 추가한다.
    - `summary`(옵션 없음) → `requests.json` 기준 `open\t3`, `done\t1` (AC4).
    - `summary --owner hana` → `open\t1`, `done\t1` (AC4).
@@ -55,10 +63,14 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
    - `summary`/`summary --owner` 실행 전후 데이터 파일 바이트 동일 (AC6의 summary 부분).
    - 임시 복사본에서 `complete R-101` 실행 후 같은 복사본으로 `summary --owner hana` →
      `open\t0`, `done\t2` (AC7, 상태 변화 반영 확인).
+   - `summary --output <신규 경로>`(옵션 있음/없음, `--owner` 병행) → 표준출력이 비고 대상 경로
+     파일에 두 줄이 담김 (AC9).
+   - 이미 존재하는 `--output` 경로, 부모 디렉터리가 없는 `--output` 경로 → 각각 종료코드 2,
+     stderr 설명, 대상 파일·요청 데이터 파일 불변 (AC10).
 4. 전체 시험 실행, PR1이 추가한 `list --owner` 시험과 기존 `show`/`complete` 시험이 함께 통과하는지
    확인한다(회귀 없음).
-5. `README.md`에 `summary`, `summary --owner <ID>` 사용법(예시 명령과 예시 출력)을 PR1에서 남긴
-   `list --owner` 설명 옆에 이어 적는다.
+5. `README.md`에 `summary`, `summary --owner <ID>`, `summary --output <path>` 사용법(예시 명령과
+   예시 출력)을 PR1에서 남긴 `list --owner` 설명 옆에 이어 적는다.
 6. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
 
 ## Risks

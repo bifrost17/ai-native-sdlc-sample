@@ -16,6 +16,9 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     list_command = commands.add_parser("list")
     list_command.add_argument("--owner")
+    summary_command = commands.add_parser("summary")
+    summary_command.add_argument("--owner")
+    summary_command.add_argument("--output")
     for name in ("show", "complete"):
         command = commands.add_parser(name)
         command.add_argument("id")
@@ -29,6 +32,26 @@ def main(argv=None):
                 requests = [request for request in requests if request["owner"] == args.owner]
             for request in requests:
                 print(display(request))
+            return 0
+        if args.command == "summary":
+            if args.owner is not None:
+                requests = [request for request in requests if request["owner"] == args.owner]
+            open_count = sum(1 for request in requests if request["status"] == "open")
+            done_count = sum(1 for request in requests if request["status"] == "done")
+            text = "open\t" + str(open_count) + "\ndone\t" + str(done_count) + "\n"
+            if args.output is not None:
+                output_path = Path(args.output)
+                try:
+                    with output_path.open("x", encoding="utf-8") as output_file:
+                        output_file.write(text)
+                except FileExistsError:
+                    print("Output file already exists: " + args.output, file=sys.stderr)
+                    return 2
+                except OSError as error:
+                    print("Cannot write summary output: " + str(error), file=sys.stderr)
+                    return 2
+                return 0
+            print(text, end="")
             return 0
         request = next((row for row in requests if row["id"] == args.id), None)
         if request is None:
