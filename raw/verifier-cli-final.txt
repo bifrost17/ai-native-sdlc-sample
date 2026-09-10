@@ -1,0 +1,13 @@
+list-all rc= 0 stdout= 'R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n' stderr= ''
+list-hana rc= 0 stdout= 'R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n' stderr= ''
+summary-all rc= 0 stdout= 'open\t3\ndone\t1\n' stderr= ''
+summary-hana rc= 0 stdout= 'open\t1\ndone\t1\n' stderr= ''
+summary-none rc= 0 stdout= 'open\t0\ndone\t0\n' stderr= ''
+output-all rc= 0 stdout= '' stderr= ''
+output-hana rc= 0 stdout= '' stderr= ''
+output-existing rc= 2 stdout= '' stderr= 'Output file already exists: /var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmpj40r3vfa/old.txt\n'
+output-missing-parent rc= 2 stdout= '' stderr= "Cannot write summary output: [Errno 2] No such file or directory: '/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmpj40r3vfa/missing/x.txt'\n"
+complete-copy rc= 0 stdout= 'R-101\tdone\thana\t회의실 키 확인\n' stderr= ''
+summary-after-complete rc= 0 stdout= 'open\t0\ndone\t2\n' stderr= ''
+fixture_unchanged= True
+CLI_ASSERTIONS=PASS

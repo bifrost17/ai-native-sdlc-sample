@@ -32,3 +32,7 @@ Git 조작은 HUMAN이고 새 PR·통합·배포는 없다. 전체 단계의 고
 숨겨진 추론과 이메일은 제외했다. 비공개 판단/전송 도우미는
 `/Users/jake/Projects/ai-native-sdlc-experiments/human-sync-r02`에 두고 AGENT에게 주지 않았다.
 종료 후 기록만 추가하며 제품 검증 커밋과 기록 커밋을 구분한다.
+
+최종 독립 12개 시험·CLI·쓰기 권한 오류 출력은 `raw/verifier-tests-final.txt`,
+`raw/verifier-cli-final.txt`, `raw/verifier-write-error-final.txt`다. 이전 11개 시험 출력도
+기록에 유지한다. 최종 출력 3개를 추가한 기록 보완은 제품·사슬을 바꾸지 않았다.
