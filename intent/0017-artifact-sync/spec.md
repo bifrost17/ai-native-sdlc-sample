@@ -1,4 +1,4 @@
-# Spec: 後続 요구와 완료 조건에 설계·계획 갱신 연결
+# Spec: 후속 요구와 완료 조건에 설계·계획 갱신 연결
 Upstream: intent.md@bdc1cbee49c1c26a00f65633c3d7d8417202c2fe. Status: draft.
 사용자의 중요한 실패 지적과 기존 개선 반복 위임에 따라 root가 다음 단계 진행을 수락했다.
 
