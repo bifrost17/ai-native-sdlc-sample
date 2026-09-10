@@ -44,6 +44,28 @@ class ExistingTrackerTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout, "")
 
+    def test_summary_all_and_by_owner(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t3\ndone\t1\n")
+        owner_result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(owner_result.returncode, 0, owner_result.stderr)
+        self.assertEqual(owner_result.stdout, "open\t1\ndone\t1\n")
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_unknown_owner_is_zero(self):
+        result = self.invoke("summary", "--owner", "nobody")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t0\ndone\t0\n")
+
+    def test_summary_reflects_completed_status_on_copy(self):
+        complete_result = self.invoke("complete", "R-101")
+        self.assertEqual(complete_result.returncode, 0, complete_result.stderr)
+        result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t0\ndone\t2\n")
+
     def test_show_existing_and_missing_id(self):
         row = self.original["requests"][0]
         result = self.invoke("show", row["id"])
