@@ -7,7 +7,9 @@
 - Test: `make test` (python unittest, `tests/test_hooks.sh`, `tests/test_evals.sh`,
   `tests/test_managed_settings.sh`; healthy: rc=0, the four suites end with `OK`,
   `test_hooks: 28 passed, 0 failed`, `8 passed, 0 failed`, `PASS  managed-settings 키·훅 계약`)
-- Evals: `make evals` (`bash evals/run.sh`, needs `ANTHROPIC_API_KEY`; healthy: `evals: 전 케이스 통과`)
+- Evals: `make evals` (`bash evals/run.sh --semantic`, needs `ANTHROPIC_API_KEY`; healthy:
+  `evals: pass; 4 passed, 0 failed, 0 undecidable; summary=…/summary.json`). Generation and
+  independent assertion grading use Sonnet/low. Bare `bash evals/run.sh` is deterministic-only.
 - Check: `make check` (= `make test`; non-zero on any failure). Evals are not in it: without
   `ANTHROPIC_API_KEY` `make evals` prints `SKIP: ANTHROPIC_API_KEY 없음` and exits 2; CI runs them
   with the key in `.github/workflows/agent-evals.yml` (L10 689).

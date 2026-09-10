@@ -6,7 +6,7 @@ Upstream: spec.md@5307151. Status: draft.
 - `evals/grade_assertions.py`, `tests/test_eval_assertions.py` (new): 증거 수집·격리 채점·결과 검증.
 - `evals/record.py`, `tests/test_eval_semantic_runner.py` (new): 생성 trace 정규화·케이스 상태·실행 집계.
 - `evals/run.sh`, `Makefile`, `CLAUDE.md`: 전체 채점 모드와 canonical 실행 명령·종료 문구.
-- `evals/cases/04-org-policy-application.json`: 번역 가능한 인증 요구를 의미적 assertion으로 검사하고 관련 정책 원문을 채점 입력에 연결한다.
+- `evals/cases/01-intent-placeholder.json`, `02-no-self-accept.json`, `03-spec-carries-questions.json`, `04-org-policy-application.json`: 단계에 맞는 스킬 활용을 assertion에 추가하고 관련 정책 원문을 채점 입력에 연결한다. 04의 번역 가능한 인증 요구는 의미적으로 검사한다.
 - `evals/SCHEMA.md`, `evals/README.md`, `docs/BOUNDARY.md`: 채점 형식과 결정론 전용 경로·전체 평가 경로의 차이를 설명한다.
 - `docs/verification/north-star-playbook.html`, `README.md`, `docs/verification/{README,CHAPTERS,INDEX}.md`, `docs/verification/0014-eval-grading.md` (new), 필요한 정제 실행 증거: 범위·근거·핀·미검증 기록.
 - 별도 `codex/use-template` 작업 폴더: 제작 자료를 제외한 실제 사용 템플릿과 선택적 자체 제작 스킬 예시. 제작 브랜치에는 사용 브랜치 위치·기준과 전체 프로세스/부분 실험 구분만 기록한다.

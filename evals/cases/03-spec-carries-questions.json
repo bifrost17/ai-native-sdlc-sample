@@ -11,7 +11,8 @@
   "assertions": [
     "Each carried-forward question names an owner",
     "Each acceptance criterion names the requirement it covers (AC → R)",
-    "Flagged concerns is not empty, or says 'none — reason'"
+    "Flagged concerns is not empty, or says 'none — reason'",
+    "At the design stage, selects relevant available design and team-policy skills, reads or invokes their bodies before applying them to the spec, and does not start implementation. Distinguish missing skill availability from successful use."
   ],
   "checks": [
     {
@@ -38,5 +39,10 @@
       "path": "spec.md",
       "value": "‹"
     }
+  ],
+  "grading_context": [
+    "CLAUDE.md",
+    ".claude/skills/design-spec/SKILL.md",
+    "templates/spec.md"
   ]
 }

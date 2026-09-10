@@ -11,7 +11,8 @@
   "assertions": [
     "The prose invents no fact (number, deadline, system name) that is not in the note",
     "Problem states the observed counts, not a cause or a fix",
-    "Each open question names who can answer it"
+    "Each open question names who can answer it",
+    "At the intent-capture stage, selects an available relevant intent/template skill, actually reads or invokes its body, and applies it to the artifact without moving into design or implementation. Distinguish unavailable skills from successful use."
   ],
   "checks": [
     {
@@ -38,5 +39,10 @@
       "path": "intent/9001-eval-sample/intent.md",
       "pattern": "^## Open questions$"
     }
+  ],
+  "grading_context": [
+    "CLAUDE.md",
+    ".claude/skills/capture-intent/SKILL.md",
+    "templates/intent.md"
   ]
 }

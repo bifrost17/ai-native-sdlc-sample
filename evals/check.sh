@@ -2,7 +2,7 @@
 # evals/check.sh — 결정론 채점기(모델·API 키 불요). L10 687행: "the checks that
 # define acceptable (tests pass, lint clean, behavior unchanged, policy
 # followed)". rc 0=전부 통과 1=하나 이상 실패 2=판정 불가(jq 없음·파일 없음·
-# 닫힌 집합 밖 kind) — "안 돌았다" 를 "통과" 로 접지 않는다(L10 727행 머지 게이트).
+# 닫힌 집합 밖 kind·grep 구문/실행/읽기 오류) — "안 돌았다" 를 "통과" 로 접지 않는다(L10 727행 머지 게이트).
 # 사용법: bash evals/check.sh <케이스.json> <결과.json> | --kinds
 set -uo pipefail
 CHECK_KINDS="file_exists contains not_contains regex_present regex_absent"
@@ -25,7 +25,12 @@ case "$ws_field" in /*) WS="$ws_field" ;; *) WS="$RESULT_DIR/$ws_field" ;; esac
 [ -d "$WS" ] || die2 "워크스페이스 없음: $WS"
 
 cq() { jq -r --argjson i "$1" ".checks[\$i].$2 // empty" "$CASE_FILE"; }
-regex_hit() { grep -qE "$2" "$1" 2>/dev/null; }
+# -q can return success after a match despite a later read error. Read the file
+# fully, retain grep ERE semantics, and distinguish no match (1) from errors.
+regex_hit() { grep -E -- "$2" "$1" >/dev/null; }
+require_search_result() {
+  case "$1" in 0|1) ;; *) die2 "checks[$i]($kind) grep 구문/실행/읽기 오류(rc=$1): $path" ;; esac
+}
 
 pass=0; fail=0
 emit() { if [ "$2" = 0 ]; then echo "  PASS  [$1] $3"; pass=$((pass+1));
@@ -46,13 +51,15 @@ for ((i = 0; i < N; i++)); do
     contains|not_contains)
       v="$(cq "$i" value)"; [ -n "$v" ] || die2 "checks[$i] 에 value 없음"
       [ -f "$t" ] || { emit "$i" 1 "$label" "대상 없음"; continue; }
-      if grep -qF -- "$v" "$t"; then hit=0; else hit=1; fi
+      if grep -F -- "$v" "$t" >/dev/null; then hit=0; else hit=$?; fi
+      require_search_result "$hit"
       [ "$kind" = contains ] && { [ "$hit" = 0 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "없어야 할/있어야 할 문자열: $v"; } \
         || { [ "$hit" = 1 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "없어야 할 문자열이 남음: $v"; } ;;
     regex_present|regex_absent)
       p="$(cq "$i" pattern)"; [ -n "$p" ] || die2 "checks[$i] 에 pattern 없음"
       [ -f "$t" ] || { emit "$i" 1 "$label" "대상 없음"; continue; }
-      if regex_hit "$t" "$p"; then hit=0; else hit=1; fi
+      if regex_hit "$t" "$p"; then hit=0; else hit=$?; fi
+      require_search_result "$hit"
       [ "$kind" = regex_present ] && { [ "$hit" = 0 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "패턴 불일치: /$p/"; } \
         || { [ "$hit" = 1 ] && emit "$i" 0 "$label" || emit "$i" 1 "$label" "없어야 할 패턴이 맞음: /$p/"; } ;;
   esac
