@@ -709,7 +709,7 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <p><code>CLAUDE.md</code>는 new joiner가 필요로 할 context를 Claude에게 주며, convention과 명령어, 아키텍처, 팀이 가장 자주 보는 실수를 담는다. 사람들 머릿속과 위키에 있던 지식이 agent가 매 session 시작에 읽는 파일이 되고, 팀 전체가 유지하며 실수가 날 때마다 다듬는다.</p>
 <details class="verify v-ok" open id="V5-01"><summary>▸ <a class="vid" href="#V5-01">V5-01</a> · 검증 · <b>충실</b> — <span class="q">도입 — new joiner 의 context · 매 session 읽는 파일 · 팀이 유지하고 실수마다 다듬는다</span></summary><div class="v-body">
 <p><b>템플릿</b> <code>CLAUDE.md</code> 55행 · 3,607 바이트, 네 절(Commands :6 · Conventions :15 · Architecture :30 · Things Claude gets wrong :47) + L9 검증 블록(:36-45). 매 세션 자동 로드.</p>
-<p><b>실험</b> git 이력 8커밋 · PR 6건(#16 #19 #29 #33 #35 #40) — 그중 #19·#29·#33·#35 가 「실수가 났을 때의 다듬기」(RUNS.md:79-86 되먹임 표). 무브리핑 단독 에이전트(Run A, 0007)가 명시 Read 없이 CLAUDE.md 내용을 인용하며 사슬을 완주(RUNS.md:20-22).</p>
+<p><b>실험</b> git 이력 8커밋 · PR 6건(#16 #19 #29 #33 #35 #40) — 그중 #19·#29·#33·#35 가 「실수가 났을 때의 다듬기」(<code>RUNS.md</code> 되먹임 표 · 실험 핀). 무브리핑 단독 에이전트(Run A, 0007)가 명시 Read 없이 CLAUDE.md 내용을 인용하며 사슬을 완주(<code>RUNS.md</code> Run A 절).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <h2>시작하기</h2>
@@ -717,7 +717,7 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <li><strong>전제 조건</strong>: 없음.</li>
 <li><strong>인프라</strong>: repo 하나, 설치된 Claude Code, 그리고 코드베이스를 잘 아는 엔지니어 한 명.</li>
 <details class="verify v-ok" open id="V5-02"><summary>▸ <a class="vid" href="#V5-02">V5-02</a> · 검증 · <b>충실</b> — <span class="q">인프라 — repo · Claude Code · 코드베이스를 아는 엔지니어 한 명</span></summary><div class="v-body">
-<p><b>템플릿</b> 이 샘플의 CLAUDE.md 는 코드베이스를 만든 세션이 썼다. 채택 팀의 자리: <code>docs/ADOPTING.md</code>:14 「engineer, cut from <code>/init</code> output to a day-one page」 · CLAUDE.md:2 TEAM 마커.</p>
+<p><b>템플릿</b> 이 샘플의 CLAUDE.md 는 코드베이스를 만든 세션이 썼다. 채택 팀의 자리: <code>docs/ADOPTING.md</code> 의 <code>CLAUDE.md</code> 행 「engineer, cut from <code>/init</code> output to a day-one page」 · <code>CLAUDE.md</code> 머리의 TEAM 마커.</p>
 <p><b>실험</b> —</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -726,14 +726,14 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <ol>
 <li>repo에서 <code>/init</code>을 실행하라. Claude가 찾아낸 것으로 출발점이 될 <code>CLAUDE.md</code>를 생성한다.</li>
 <details class="verify v-team" open id="V5-03"><summary>▸ <a class="vid" href="#V5-03">V5-03</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">1 — /init 으로 출발점 생성</span></summary><div class="v-body">
-<p><b>템플릿</b> 샘플은 <code>/init</code> 을 돌리지 않았다 — CLAUDE.md 는 플레이북의 네 절을 그대로 옮겨 시작했다(16abc9a 「L5 414-436 four sections … verbatim」). 팀 자리는 ADOPTING.md:14 가 「<code>/init</code> 출력에서 잘라낸다」로 명시.</p>
+<p><b>템플릿</b> 샘플은 <code>/init</code> 을 돌리지 않았다 — CLAUDE.md 는 플레이북의 네 절을 그대로 옮겨 시작했다(16abc9a 「L5 414-436 four sections … verbatim」). 팀 자리는 <code>docs/ADOPTING.md</code> 의 <code>CLAUDE.md</code> 행이 「cut from <code>/init</code> output to a day-one page」 로 명시.</p>
 <p><b>실험</b> 없는 코드베이스에 /init 을 돌릴 수는 없다 — 채택 팀이 자기 레포에서 하는 첫 단계.</p>
 <p><b>보완</b> 없음 — 팀 몫.</p>
 </div></details>
 <li>생성된 파일을 new joiner가 첫날 필요로 할 만큼으로 줄여라. build·test·lint 명령어, 중요한 convention, Claude가 계속 틀리는 것을 남겨라.</li>
 <details class="verify v-ok" open id="V5-04"><summary>▸ <a class="vid" href="#V5-04">V5-04</a> · 검증 · <b>충실</b> — <span class="q">2 — 첫날치로 줄여라: build·test·lint 명령 · convention · 계속 틀리는 것</span></summary><div class="v-body">
 <p><b>템플릿</b> Commands :7-13 = <code>make test</code>/<code>evals</code>/<code>check</code> + 건강한 출력 축자. Conventions :16-28(5개). Things Claude gets wrong :48-55(4개). build/lint 가 없는 레포임을 :45 가 밝힌다.</p>
-<p><b>실험</b> 0008 턴4·턴8, 0009 같은 턴의 응답이 <code>make check</code> 를 CLAUDE.md 문면대로 돌리고 붙였다(raw-hac/16·23 응답에 「make check」). Run A 도 같다(RUNS.md:20).</p>
+<p><b>실험</b> 0008 턴4·턴8, 0009 같은 턴의 응답이 <code>make check</code> 를 CLAUDE.md 문면대로 돌리고 붙였다(raw-hac/16·23 응답에 「make check」). Run A 도 같다(<code>RUNS.md</code> Run A 절).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>팀 전체가 한 판본을 공유하고 변경이 코드처럼 review되도록 <code>CLAUDE.md</code>를 repo 루트에서 Git에 체크인하라.</li>
@@ -744,13 +744,13 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 </div></details>
 <li>여기서는 하나의 실무 규칙이 도움이 된다. Claude가 실수를 두 번 하면 그 정정을 <code>CLAUDE.md</code>에 넣는다.</li>
 <details class="verify v-ok" open id="V5-06"><summary>▸ <a class="vid" href="#V5-06">V5-06</a> · 검증 · <b>충실</b> — <span class="q">4 — 실수를 두 번 하면 정정을 CLAUDE.md 에</span></summary><div class="v-body">
-<p><b>템플릿</b> 실천: CLAUDE.md:20-23 「(0002 and 0007 each guessed differently; this settles it)」(#35) · :52-55 「Twice now: 0005 pinned C-1001, and 0008 had to add C-2001…」(#33). 규칙 문면: <code>REVIEW.md</code>:32-33 「A mistake flagged for the second time goes into CLAUDE.md as a correction (L5 401, L11 745) — chain 0008's three repeat findings became PR #35」(#47).</p>
-<p><b>실험</b> RUNS.md:86 「the three findings caught a second time (L11 745 'second time', L5 401) → #35」. 정정 뒤 재발 0: Edit/Write 규칙(#29) 이후 0008·0009 는 훅 발화 107·131(0007 은 0).</p>
+<p><b>템플릿</b> 실천: <code>CLAUDE.md</code> 「(0002 and 0007 each guessed differently; this settles it)」(#35) · 「Twice now: 0005 pinned <code>C-1001</code>, and 0008 had to add <code>C-2001</code>…」(#33). 규칙 문면: <code>REVIEW.md</code> 「A mistake flagged for the second time goes into CLAUDE.md as a correction (L5 401, L11 745) — chain 0008's three repeat findings became PR #35」(#47).</p>
+<p><b>실험</b> <code>RUNS.md</code> 「the three findings caught a second time (L11 745 'second time', L5 401) → #35」. 정정 뒤 재발 0: Edit/Write 규칙(#29) 이후 0008·0009 는 훅 발화 107·131(0007 은 0).</p>
 <p><b>보완</b> 반영 #47(6084fcf) — v1 에서 템플릿 어디에도 없던 규칙 문장을 REVIEW.md 에 넣었다.</p>
 </div></details>
 <li>Claude가 session 시작에 전부 읽고 낡은 내용은 아무 이득 없이 context만 차지하므로, 한 페이지 안으로 유지하라.</li>
 <details class="verify v-ok" open id="V5-07"><summary>▸ <a class="vid" href="#V5-07">V5-07</a> · 검증 · <b>충실</b> — <span class="q">5 — 한 페이지 안으로</span></summary><div class="v-body">
-<p><b>템플릿</b> 55행 · 3.6KB. CLAUDE.md:4 주석이 L5 412 「Keep it under a page」를 인용. 낡은 줄: 없음 — :45 가 존재하지 않는 <code>make build/lint</code> 를 L9 축자 블록의 것이라고 밝힌다(그 블록은 L9 의 요구).</p>
+<p><b>템플릿</b> 55행 · 3.6KB. <code>CLAUDE.md</code> 머리 주석이 L5 412 「Keep it under a page」를 인용. 낡은 줄: 없음 — 「This repo has no <code>make build</code>/<code>make lint</code>; run <code>make check</code>」 가 존재하지 않는 타깃을 L9 축자 블록의 것이라고 밝힌다(그 블록은 L9 의 요구).</p>
 <p><b>실험</b> —</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -784,20 +784,20 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <details class="verify v-part" open id="V5-09"><summary>▸ <a class="vid" href="#V5-09">V5-09</a> · 검증 · <b>부분</b> — <span class="q">governance — version 관리 · review·감사 · code owner 가 PR 에서 승인</span></summary><div class="v-body">
 <p><b>템플릿</b> git ✓ · CODEOWNERS:12-13 ✓ · 변경 8커밋 전부 PR ✓. <b>다른 사람의 승인은 실행되지 않았다</b> — 단일 계정이라 코드오너 필수 승인을 켤 수 없다(CODEOWNERS:4-7 이 한계로 명시).</p>
 <p><b>실험</b> PR #19 #29 #33 #35 #40 reviews 0 · mergedBy 작성자. 감사 가능성 자체는 있다: <code>git log -p -- CLAUDE.md</code> 로 어느 정정이 어느 사슬에서 왔는지 커밋 메시지가 말한다(「#0007 실증 되먹임」 등).</p>
-<p><b>보완</b> 템플릿 문면은 충실. 미검증 부분은 사람 둘 이상인 조직에서만 잴 수 있다 — <code>docs/ADOPTING.md:22</code>(<code>REVIEW.md</code> 행)가 「the real people in CODEOWNERS; <code>intent/**</code>'s PO account, and if more than one, a ruleset with <code>require_code_owner_review</code>」 를 팀 자리로 둔다.</p>
+<p><b>보완</b> 템플릿 문면은 충실. 미검증 부분은 사람 둘 이상인 조직에서만 잴 수 있다 — <code>docs/ADOPTING.md</code> 의 <code>REVIEW.md</code> 행이 「the real people in CODEOWNERS; <code>intent/**</code>'s PO account, and if more than one, a ruleset with <code>require_code_owner_review</code>」 를 팀 자리로 둔다.</p>
 </div></details>
 <h2>측정 방법</h2>
 <ul>
 <li><strong>leading indicator</strong>: <code>CLAUDE.md</code>가 잡았어야 할 실수를 Claude가 얼마나 자주 되풀이하는가. <code>CLAUDE.md</code>의 정정이나 변경은 Git 이력 안에서 추적해야 한다.</li>
 <details class="verify v-ok" open id="V5-10"><summary>▸ <a class="vid" href="#V5-10">V5-10</a> · 검증 · <b>충실</b> — <span class="q">측정 leading — 잡았어야 할 실수의 반복 빈도 · 정정은 Git 이력에</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/METRICS.md</code>:34 「corrections/changes to CLAUDE.md: <code>git log --oneline -- CLAUDE.md</code>」 ✓. <code>docs/RUNS.md</code>:94-99 — 정정 PR 목록 #16 #19 #29 #33 #35(#34 제외 · #47 정정) + 반복 실측: Edit/Write 규칙 0회(훅 발화 107·131 vs 0007 의 0) · 「Status: accepted」 규칙 1회(0009 plan.md:2).</p>
-<p><b>실험</b> 반복 실측 2건: ① Edit/Write 규칙(CLAUDE.md:24, #29) — 이후 0008·0009 반복 0(훅 발화 107·131 vs 0007 의 0). ② 「Setting <code>Status: accepted</code> in a file」(CLAUDE.md:50, #16 부터) — <b>1회 반복</b>: 0009 plan.md:2 가 accepted 를 적었다(챕터 4 governance 블록 · #46 이 스킬 문면을 보강).</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「corrections/changes to CLAUDE.md: <code>git log --oneline -- CLAUDE.md</code>」 ✓. <code>docs/RUNS.md</code>(실험 핀) — 정정 PR 목록 #16 #19 #29 #33 #35(#34 제외 · #47 정정) + 반복 실측: Edit/Write 규칙 0회(훅 발화 107·131 vs 0007 의 0) · 「Status: accepted」 규칙 1회(0009 <code>plan.md</code> 머리).</p>
+<p><b>실험</b> 반복 실측 2건: ① Edit/Write 규칙(<code>CLAUDE.md</code> 「Change files with the Edit/Write tools, not shell redirection or heredocs」, #29) — 이후 0008·0009 반복 0(훅 발화 107·131 vs 0007 의 0). ② 「Setting <code>Status: accepted</code> in a file」(<code>CLAUDE.md</code>, #16 부터) — <b>1회 반복</b>: 0009 <code>plan.md</code> 머리가 accepted 를 적었다(챕터 4 governance 블록 · #46 이 스킬 문면을 보강).</p>
 <p><b>보완</b> 반영 #47(6084fcf) — v1 의 오기(#34)와 미기록(반복 횟수)을 RUNS 에 고쳤다.</p>
 </div></details>
 <li><strong>lagging indicator</strong>: PR 이력에서 읽는, 팀 신규 구성원의 첫 merge된 PR까지 걸린 시간.</li>
 <details class="verify v-ok" open id="V5-11"><summary>▸ <a class="vid" href="#V5-11">V5-11</a> · 검증 · <b>충실</b> — <span class="q">측정 lagging — 신규 구성원의 첫 merged PR 까지 시간</span></summary><div class="v-body">
-<p><b>템플릿</b> METRICS.md:35 「outside this repo (new-joiner time-to-first-merged-PR is org PR history)」 — 지어내지 않고 밖이라고 적었다.</p>
-<p><b>실험</b> 가장 가까운 유사치(같은 지표는 아님): 무브리핑 에이전트 Run A 가 첫 호출부터 PR #28 머지까지 6분 15초(RUNS.md:16-18).</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「outside this repo (new-joiner time-to-first-merged-PR is org PR history)」 — 지어내지 않고 밖이라고 적었다.</p>
+<p><b>실험</b> 가장 가까운 유사치(같은 지표는 아님): 무브리핑 에이전트 Run A 가 첫 호출부터 PR #28 머지까지 6분 15초(<code>RUNS.md</code> Run A 절).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 </ul>
@@ -808,7 +808,7 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <p class="src"><a href="https://academy.claude.com/courses/ai-native-sdlc-playbook/skills-as-institutional-knowledge" target="_blank" rel="noopener">원문 보기</a></p>
 <p>skill은 조직이 자신의 institutional knowledge를 실제로 작동하게 만드는 방법이다. 그 지시는 명시적이고, version 관리되고, 폭넓게 적용되며, 정책이 바뀌면 중앙에서 갱신된다. 경험칙은 이렇다: 일관되게 적용되어야 하는 institutional knowledge는 skill로 쓰고, <code>CLAUDE.md</code>나 prompt에 <a href="https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more">속하는 구성 요소</a>는 skill로 쓰지 마라.</p>
 <details class="verify v-ok" open id="V6-01"><summary>▸ <a class="vid" href="#V6-01">V6-01</a> · 검증 · <b>충실</b> — <span class="q">도입 — 명시적 · version 관리 · 중앙 갱신 · 경험칙(일관 적용 지식은 skill, CLAUDE.md/prompt 것은 아님)</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>.claude/skills/</code> 넷: 정책 스킬 <code>secure-api-review</code>(27행) + 절차 스킬 <code>capture-intent</code>(61)·<code>design-spec</code>(45)·<code>plan</code>(46, 템플릿을 품는다 — L2 197 계열). <code>CLAUDE.md</code>:31 「skills — what the agent is told (advisory)」 · <code>docs/BOUNDARY.md</code>:13 「A skill says … L6 503」. 명령·건강 출력·틀리는 것은 CLAUDE.md 에, 스킬에는 없다 — 경험칙대로 갈라져 있다.</p>
+<p><b>템플릿</b> <code>.claude/skills/</code> 넷: 정책 스킬 <code>secure-api-review</code>(27행) + 절차 스킬 <code>capture-intent</code>(61)·<code>design-spec</code>(45)·<code>plan</code>(46, 템플릿을 품는다 — L2 197 계열). <code>CLAUDE.md</code> 「<code>.claude/skills/</code> — what the agent is told (advisory)」 · <code>docs/BOUNDARY.md</code> 「A skill says … L6 503」. 명령·건강 출력·틀리는 것은 CLAUDE.md 에, 스킬에는 없다 — 경험칙대로 갈라져 있다.</p>
 <p><b>실험</b> 네 스킬 모두 git(이력 5커밋, <code>git log -- .claude/skills/secure-api-review/SKILL.md</code>). 0009 턴4 가 #35 로 바뀐 판을 그대로 받았다(아래 6번 블록).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -818,7 +818,7 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <li><strong>인프라</strong>: 지정된 오너와 문서화된 source of truth가 있는 정책 하나.</li>
 <details class="verify v-ok" open id="V6-02"><summary>▸ <a class="vid" href="#V6-02">V6-02</a> · 검증 · <b>팀 몫(미검증) → 충실</b> — <span class="q">인프라 — 오너와 source of truth 가 있는 정책 하나</span></summary><div class="v-body">
 <p><b>템플릿</b> v3 에서 이 레포가 그 자리를 자기 몫으로 채웠다(체인 0012). <b>문서화된 source of truth</b>: <code>policies/{brand,compliance,ux,api-security}.md</code> — 조항 ID <code>B</code>/<code>C</code>/<code>U</code>/<code>S</code> 로 번호가 매겨져 스킬이 값을 지어내는 대신 ID 를 인용한다. <b>오너</b>: 각 파일 2행 <code>Owner: 정책 오너</code>, 서명은 머지 — <code>.github/CODEOWNERS:19</code> <code>policies/** @bifrost17</code>. <code>policies/README.md</code> 「서명과 판」 이 L6 460 을 인용해 그 절차를 적는다(정책 PR 머지 = 서명 · 정책이 바뀌면 인용 스킬도 같은 PR · <code>plugin.json</code> version 범프). 값이 필요한 자리는 지어내지 않고 프로젝트 슬롯(<code>PROJECT-POLICY.template.md</code>, <code>P1</code>~<code>P6</code>)으로 넘긴다.</p>
-<p><b>실험</b> 이 정책을 스킬로 옮긴 과정 자체가 기록이다 — 근거 조사 <code>docs/research/{brand,compliance,ux,secure-api-review}/</code>, 결정 <code>docs/decisions/S2-brand.md</code> · <code>S3-compliance.md</code> · <code>S4-ux.md</code> · <code>S5-secure-api-review.md</code>, 미결 물음 <code>docs/decisions/OWNER-QUESTIONS.md</code>. 채택 팀을 위한 자리는 <code>docs/ADOPTING.md:11</code> 에 그대로 남아 있다.</p>
+<p><b>실험</b> 이 정책을 스킬로 옮긴 과정 자체가 기록이다 — 근거 조사 <code>docs/research/{brand,compliance,ux,secure-api-review}/</code>, 결정 <code>docs/decisions/S2-brand.md</code> · <code>S3-compliance.md</code> · <code>S4-ux.md</code> · <code>S5-secure-api-review.md</code>, 미결 물음 <code>docs/decisions/OWNER-QUESTIONS.md</code>. 채택 팀을 위한 자리는 <code>docs/ADOPTING.md</code> 의 정책 스킬 행에 그대로 남아 있다.</p>
 <p><b>보완</b> 없음 — L6 448·454·460 이 요구한 셋(정본 · 오너 · 오너 서명)이 레포 안에 다 있다.</p>
 </div></details>
 </ul>
@@ -826,7 +826,7 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <ol>
 <li>오늘 일관되지 않게 강제되고 있는 지식 하나를 고르라. 보안 표준, API 설계 convention, 브랜드 규칙 같은 것일 수 있다.</li>
 <details class="verify v-ok" open id="V6-03"><summary>▸ <a class="vid" href="#V6-03">V6-03</a> · 검증 · <b>팀 몫(미검증) → 충실</b> — <span class="q">1 — 오늘 일관되지 않게 강제되는 지식 하나</span></summary><div class="v-body">
-<p><b>템플릿</b> v3 에서 이 레포가 실제로 「하나」를 골랐고, 고른 기록이 남아 있다. 넷을 순서대로 집었다 — 문구(<code>policies/brand.md</code> · <code>B1</code>~), 데이터 취급(<code>compliance.md</code> · <code>C1</code>~), 사용성(<code>ux.md</code> · <code>U1</code>~), API 보안(<code>api-security.md</code> · <code>S1</code>~). 고른 지식이 왜 「일관되지 않게 강제되던 것」인지와 무엇을 채택·설계했는지는 <code>docs/decisions/S2-brand.md</code> · <code>S3-compliance.md</code> · <code>S4-ux.md</code> 가 적고, 그 앞의 후보 조사는 <code>docs/research/&lt;skill&gt;/</code> 에 있다. 채택 팀의 자리는 <code>docs/ADOPTING.md:11</code> 에 남는다.</p>
+<p><b>템플릿</b> v3 에서 이 레포가 실제로 「하나」를 골랐고, 고른 기록이 남아 있다. 넷을 순서대로 집었다 — 문구(<code>policies/brand.md</code> · <code>B1</code>~), 데이터 취급(<code>compliance.md</code> · <code>C1</code>~), 사용성(<code>ux.md</code> · <code>U1</code>~), API 보안(<code>api-security.md</code> · <code>S1</code>~). 고른 지식이 왜 「일관되지 않게 강제되던 것」인지와 무엇을 채택·설계했는지는 <code>docs/decisions/S2-brand.md</code> · <code>S3-compliance.md</code> · <code>S4-ux.md</code> 가 적고, 그 앞의 후보 조사는 <code>docs/research/&lt;skill&gt;/</code> 에 있다. 채택 팀의 자리는 <code>docs/ADOPTING.md</code> 의 정책 스킬 행에 남는다.</p>
 <p><b>실험</b> 조직 스킬 실험 S2~S6 가 이 단계를 실제로 돈 회차다 — 각 결정 문서가 채택(<code>stop-slop-ko</code> · <code>ux-copy</code> · <code>accessibility</code>)과 설계(<code>brand</code> · <code>data-compliance</code> · <code>spec-policy-pass</code>)를 갈라 적고 상류 PR 번호를 단다.</p>
 <p><b>보완</b> 없음 — 「지식 하나를 고른다」 단계는 이 레포에서 실행됐다.</p>
 </div></details>
@@ -844,8 +844,8 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 </div></details>
 <li>skill이 trigger되는지 test하라. 관련 작업을 여러 방식으로 Claude에게 요청해 매번 skill이 로드되는지 확인하라.</li>
 <details class="verify v-ok" open id="V6-06"><summary>▸ <a class="vid" href="#V6-06">V6-06</a> · 검증 · <b>충실</b> — <span class="q">4 — 여러 방식으로 요청해 매번 로드되는지 확인</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/BOUNDARY.md</code>:76-79 「A test that a skill actually triggers (L6 470) … is a person running live sessions with differently-worded prompts」 — 스크립트로 대신하지 않는다고 명시. <code>ADOPTING.md:11</code> 「a trigger test」 팀 자리.</p>
-<p><b>실험</b> 세 방식의 실측: ① <code>/spec</code> 명령(0008 raw-hac/16 · 0009 46) → 두 번 다 <code>secure-api-review/SKILL.md</code> 본문을 읽고 spec 에 ①~④ 점검을 적었다(2/2). ② 무브리핑 자유 프롬프트(0007 raw-live/10 「resolve issue #24」) → 이름만 적고 열지 않았다(design-spec SKILL.md:20 이 기록, 0/1). ③ 구현 턴(0008 raw-hac/23) 은 다시 열었고 0009 55 는 열지 않았다(spec 이 이미 점검을 담아서). <code>docs/RUNS.md</code>:100-103 에 기록(#48).</p>
+<p><b>템플릿</b> <code>docs/BOUNDARY.md</code> 「A test that a skill actually triggers (L6 470) … is a person running live sessions with differently-worded prompts」 — 스크립트로 대신하지 않는다고 명시. <code>docs/ADOPTING.md</code> 정책 스킬 행의 「a trigger test」 가 팀 자리.</p>
+<p><b>실험</b> 세 방식의 실측: ① <code>/spec</code> 명령(0008 raw-hac/16 · 0009 46) → 두 번 다 <code>secure-api-review/SKILL.md</code> 본문을 읽고 spec 에 ①~④ 점검을 적었다(2/2). ② 무브리핑 자유 프롬프트(0007 raw-live/10 「resolve issue #24」) → 이름만 적고 열지 않았다(<code>design-spec/SKILL.md</code> 「chain 0007 named one without opening it」 이 그 기록, 0/1). ③ 구현 턴(0008 raw-hac/23) 은 다시 열었고 0009 55 는 열지 않았다(spec 이 이미 점검을 담아서). <code>docs/RUNS.md</code>(실험 핀) L6 절에 기록(#48).</p>
 <p><b>보완</b> 반영 #48(1adef5a) — 경로별 로드 실측을 RUNS 에. 매번 로드는 <code>/spec</code> 경로에서 성립했고, 여러 문구의 자유 프롬프트로 재는 트리거 시험은 팀 몫(BOUNDARY:76-79 · ADOPTING:10)으로 남는다.</p>
 </div></details>
 <li>정책이 바뀌면 skill을 바꾸고, 그 변경을 policy owner가 승인하게 하라.</li>
@@ -857,7 +857,7 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <li>엔지니어는 다음 session에서 새 버전을 자동으로 받는다.</li>
 <details class="verify v-ok" open id="V6-08"><summary>▸ <a class="vid" href="#V6-08">V6-08</a> · 검증 · <b>충실</b> — <span class="q">6 — 다음 session 이 새 버전을 자동으로 받는다</span></summary><div class="v-body">
 <p><b>템플릿</b> 레포 안 파일이므로 체크아웃이 곧 배포.</p>
-<p><b>실험</b> #35 머지 05:49:37Z → 0009 스펙 턴(raw-hac/46, 06:0x) 이 개정판을 읽고 spec.md:32 에 「스킬의 org note(포털이 게이트웨이 JWT 를 …)」를 인용, :84 F8 을 그 note 로 닫았다.</p>
+<p><b>실험</b> #35 머지 05:49:37Z → 0009 스펙 턴(raw-hac/46, 06:0x) 이 개정판을 읽고 <code>spec.md</code> 에 「스킬의 org note(포털이 게이트웨이 JWT 를 …)」를 인용, F8 을 그 note 로 닫았다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 </ol>
@@ -882,14 +882,14 @@ When you create or change an API endpoint:
 Run scripts/check-endpoints.sh and include its output in your summary.
 </code></pre>
 <details class="verify v-ok" open id="V6-09"><summary>▸ <a class="vid" href="#V6-09">V6-09</a> · 검증 · <b>충실</b> — <span class="q">실제 모습 — secure-api-review SKILL.md</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>.claude/skills/secure-api-review/SKILL.md</code>:1-18 = 예시 축자(마지막 줄만 다름: 존재하지 않는 <code>scripts/check-endpoints.sh</code> 대신 「Include what you checked, item by item」 — :24-27 주석이 사유). :7 TEAM 마커 · :20-22 org note(#35).</p>
+<p><b>템플릿</b> <code>.claude/skills/secure-api-review/SKILL.md</code> 본문 = 예시 축자(마지막 줄만 다름: 존재하지 않는 <code>scripts/check-endpoints.sh</code> 대신 「Include what you checked, item by item」 — 아래 주석이 사유). TEAM 마커와 org note(#35)도 그 파일 안.</p>
 <p><b>실험</b> 0002·0005·0006·0007·0008·0009 spec 이 모두 <code>Skills applied: secure-api-review …</code> 줄과 ①~④ 점검을 갖는다(<code>grep -n 'Skills applied' intent/*/spec.md</code>).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <h2>governance 고려사항</h2>
 <p>skill은 통제 수단이지만, 권고적인 통제 수단이다. skill은 코드를 쓰는 동안 Claude가 정책을 적용할 가능성을 높이지만, session이 그것을 따르도록 강제하는 것은 없다. 언제나 성립해야 하는 정책에는 동작을 막는 hook이나 PR에서 정책을 다시 확인하는 review pass처럼, skill 뒤를 받치는 deterministic한 무언가가 필요하다. skill은 위반을 드물게 만들고, hook은 위반을 거의 불가능하게 만든다. skill 호출은 session traces에 기록되고, policy owner는 skill 변경을 코드처럼 review한다.</p>
 <details class="verify v-ok" open id="V6-10"><summary>▸ <a class="vid" href="#V6-10">V6-10</a> · 검증 · <b>충실</b> — <span class="q">governance — 권고적 · 항상 성립할 정책은 deterministic 뒷받침 · 호출은 트레이스에 · 오너가 코드처럼 review</span></summary><div class="v-body">
-<p><b>템플릿</b> BOUNDARY.md:13 「A skill says」 행 · secure-api-review:26-27 「by the product owner's decision, no code backstop … L6 503 advisory」. 항상 성립할 정책의 뒷받침: 자격증명 → <code>no-secrets.sh</code>, 수정 작업 중 시험 파일 → <code>protect-tests.sh</code>, PR 에서 다시 확인 → <code>REVIEW.md</code>:11 Security pass. 오너 review: CODEOWNERS:14-16.</p>
+<p><b>템플릿</b> <code>docs/BOUNDARY.md</code> 「A skill says」 행 · <code>secure-api-review/SKILL.md</code> 「by the product owner's decision, no code backstop … L6 503 advisory」. 항상 성립할 정책의 뒷받침: 자격증명 → <code>no-secrets.sh</code>, 수정 작업 중 시험 파일 → <code>protect-tests.sh</code>, PR 에서 다시 확인 → <code>REVIEW.md</code> Security pass. 오너 review: <code>.github/CODEOWNERS</code> 의 <code>.claude/skills/**</code> 행.</p>
 <p><b>실험</b> 트레이스: raw-hac 에 Skill 호출 5건(capture-intent 2 · design-spec 2 · plan 1)이 tool_use 로 남아 있다. 권고의 한계 실측: 0007 이 스킬을 열지 않고 이름만 적었다 — 아무것도 막지 않았고(설계대로) 리뷰 pass 가 잡을 자리.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -897,14 +897,14 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 <ul>
 <li><strong>leading indicator</strong>: policy owner가 정책 변경을 승인한 시점부터 갱신된 skill이 merge되기까지의 시간 — skill 폴더의 PR에서 취한다.</li>
 <details class="verify v-ok" open id="V6-11"><summary>▸ <a class="vid" href="#V6-11">V6-11</a> · 검증 · <b>충실</b> — <span class="q">측정 leading — 오너 승인 → skill merge 시간</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/METRICS.md</code>:38 「<code>git log --diff-filter=AM --format='%aI %h' -- .claude/skills/&lt;name&gt;/SKILL.md</code>」.</p>
-<p><b>실험</b> #35: PR 열림 05:48:50Z → 머지 05:49:37Z(47초, 커밋 1). 승인 시점은 0008 턴5 에서 F4 를 닫은 오너 답이지만 H 발화가 raw 에 없어(RUNS.md:104-106 한계) PR 시각으로만 잰다.</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「<code>git log --diff-filter=AM --format='%aI %h' -- .claude/skills/&lt;name&gt;/SKILL.md</code>」.</p>
+<p><b>실험</b> #35: PR 열림 05:48:50Z → 머지 05:49:37Z(47초, 커밋 1). 승인 시점은 0008 턴5 에서 F4 를 닫은 오너 답이지만 H 발화가 raw 에 없어(<code>RUNS.md</code> L6 절이 그 한계를 적는다) PR 시각으로만 잰다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li><strong>lagging indicator</strong>: 그 정책을 인용하는 PR review 발견 건수인데, 코드를 쓰는 동안 skill이 정책을 적용하게 되면 0을 향해 떨어져야 한다. 발견 건수가 0을 향해 떨어지지 않는다면, skill이 trigger되지 않고 있거나 그 문면이 공식 정책에서 벗어난 것이다.</li>
 <details class="verify v-ok" open id="V6-12"><summary>▸ <a class="vid" href="#V6-12">V6-12</a> · 검증 · <b>충실</b> — <span class="q">측정 lagging — 정책 인용 발견이 0 을 향해</span></summary><div class="v-body">
-<p><b>템플릿</b> METRICS.md:39 「outside this repo (review findings citing the policy are read by a person on the PR)」 — 자동 집계는 없다고 적었다.</p>
-<p><b>실험</b> 읽어서 센 값: ① 인증 인용 — 0002 F3(1) → 0008 F4(1, 같은 답) → #35 스킬 개정 → 0009 F8 이 note 로 닫힘, 리뷰 발견 0. 정확히 이 문단의 곡선(스킬이 정책을 적용하게 되자 0). <code>docs/RUNS.md</code>:104-106 에 기록(#48).</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「outside this repo (review findings citing the policy are read by a person on the PR)」 — 자동 집계는 없다고 적었다.</p>
+<p><b>실험</b> 읽어서 센 값: ① 인증 인용 — 0002 F3(1) → 0008 F4(1, 같은 답) → #35 스킬 개정 → 0009 F8 이 note 로 닫힘, 리뷰 발견 0. 정확히 이 문단의 곡선(스킬이 정책을 적용하게 되자 0). <code>docs/RUNS.md</code>(실험 핀) L6 절에 기록(#48).</p>
 <p><b>보완</b> 반영 #48(1adef5a).</p>
 </div></details>
 </ul>
@@ -918,7 +918,7 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 <p>build 단계 hook은 다음을 할 수 있다:</p>
 <details class="verify v-ok" open id="V6-14"><summary>▸ <a class="vid" href="#V6-14">V6-14</a> · 검증 · <b>충실</b> — <span class="q">build 단계 hook 넷 — protected path · 포매터/린터 · credentials · 예외 없는 정책의 뒷받침</span></summary><div class="v-body">
 <p><b>템플릿</b> protected path → <code>protect-paths.sh</code>(.github/** · Makefile · .claude/hooks/** · settings.json). 포매터/린터 → <code>format-lint.sh</code>(PostToolUse). credentials → <code>no-secrets.sh</code>(6 패턴). 예외 없는 정책 → <code>protect-tests.sh</code>(수정 작업 중 시험 파일, L9 631). secure-api-review 는 PO 결정으로 뒷받침 없음(권고).</p>
-<p><b>실험</b> <code>tests/test_hooks.sh</code> 28건이 각 훅의 block/allow 를 고정(CLAUDE.md:9 「test_hooks: 28 passed」). 0007 의 45 Bash 우회는 훅이 도구 호출만 본다는 한계로 기록(CLAUDE.md:24-27, #29).</p>
+<p><b>실험</b> <code>tests/test_hooks.sh</code> 28건이 각 훅의 block/allow 를 고정(<code>CLAUDE.md</code> 「<code>test_hooks: 28 passed, 0 failed</code>」). 0007 의 45 Bash 우회는 훅이 도구 호출만 본다는 한계로 기록(<code>CLAUDE.md</code> 「The hooks in <code>.claude/settings.json</code> watch tool calls, not effects」, #29).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <ul>
@@ -929,7 +929,7 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 </ul>
 <p>hook은 자신과 맞는 동작마다 돌기 때문에, build 단계 hook은 빠르고 변경된 파일로 범위가 좁혀져 있어야 한다. 전체 test suite 같은 더 무거운 검사는 commit이나 PR에 속한다.</p>
 <details class="verify v-ok" open id="V6-15"><summary>▸ <a class="vid" href="#V6-15">V6-15</a> · 검증 · <b>충실</b> — <span class="q">hook 은 빠르고 변경 파일로 범위 한정 · 무거운 검사는 commit/PR</span></summary><div class="v-body">
-<p><b>템플릿</b> format-lint.sh:4 「Scoped to the one file that changed: .py → py_compile, .sh → bash -n. Nothing more」 · no-secrets.sh 머리 「Looks only at the text being written」. 전체 시험은 <code>make test</code> → CI <code>.github/workflows/check.yml</code>(PR), 훅에는 없다.</p>
+<p><b>템플릿</b> <code>format-lint.sh</code> 「Scoped to the one file that changed: .py → py_compile, .sh → bash -n. Nothing more」 · no-secrets.sh 머리 「Looks only at the text being written」. 전체 시험은 <code>make test</code> → CI <code>.github/workflows/check.yml</code>(PR), 훅에는 없다.</p>
 <p><b>실험</b> 구현 턴 훅 131건이 세션을 멈추지 않았다(0009 턴8 189초 전체).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -953,9 +953,9 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 </div></details>
 <p><strong><a href="https://code.claude.com/docs/en/sub-agents">subagent</a></strong>는 자체 context window와 도구 제한을 가진 범위 한정 조력자로서 단일 session 안에서 돌고, 앱이 기대대로 도는지 검증하는 일처럼 여러 작업에서 반복되는 일에 어울린다.</p>
 <details class="verify v-part" open id="V7-02"><summary>▸ <a class="vid" href="#V7-02">V7-02</a> · 검증 · <b>부분</b> — <span class="q">도입 — subagent = 자체 context · 도구 제한 · 반복되는 검증 일</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>.claude/agents/verifier.md</code>:1-5 — name · description · <code>tools: Bash, Read</code>(도구 제한). 본문 :9-20 이 「보고만, 고치지 않는다」. <code>CLAUDE.md</code>:46-47 「Before reporting a chain done, hand the check to the verifier subagent … and paste its report」(#49).</p>
+<p><b>템플릿</b> <code>.claude/agents/verifier.md</code> frontmatter — name · description · <code>tools: Bash, Read</code>(도구 제한). 본문이 「보고만, 고치지 않는다」. <code>CLAUDE.md</code> 「Before reporting a chain done, hand the check to the verifier subagent … and paste its report」(#49).</p>
 <p><b>실험</b> <b>어느 사슬도 verifier 를 부르지 않았다</b> — raw-hac·raw-live 전체에 <code>subagent_type</code> 호출 0. 정의만 있고 「session 이 끝났다고 보고하기 전에」 부를 계기가 CLAUDE.md 에 없다(:36-45 검증 블록은 <code>make check</code> 만 말한다).</p>
-<p><b>보완</b> 반영 #49(2f00415) — 부를 계기를 CLAUDE.md 에 한 줄(권고, 강제 없음). 다음 사슬이 실제로 부르는지 볼 때까지 <b>부분</b>(RUNS.md:111-112 「not yet measured」).</p>
+<p><b>보완</b> 반영 #49(2f00415) — 부를 계기를 CLAUDE.md 에 한 줄(권고, 강제 없음). 다음 사슬이 실제로 부르는지 볼 때까지 <b>부분</b>(<code>RUNS.md</code> 「not yet measured」).</p>
 </div></details>
 <p>parallel session은 엔지니어가 동시에 진행할 수 있는 작업 수를 늘리고, subagent는 각 session이 자기 작업에 집중하도록 붙잡는다. 엔지니어의 일은 그 전부를 조종하고 review하는 것이다.</p>
 <h2>무엇이 달라지는가</h2>
@@ -964,14 +964,14 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 <ul>
 <li><strong>전제 조건</strong>: <code>CLAUDE.md</code> — 모든 session이 이 파일을 읽기 때문이다. feedback loop(<strong>Stage 4: Test</strong>)도 여기서 도움이 되는데, session이 자기 작업을 검증할 수 있으면 엔지니어의 감독이 덜 필요하기 때문이다.</li>
 <details class="verify v-ok" open id="V7-03"><summary>▸ <a class="vid" href="#V7-03">V7-03</a> · 검증 · <b>충실</b> — <span class="q">전제 — CLAUDE.md · session 이 자기 작업을 검증할 수 있는 feedback loop</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>CLAUDE.md</code> 55행(매 세션 로드) · 검증 수단 <code>make check</code>(CLAUDE.md:11-13) · <code>.claude/agents/verifier.md</code>.</p>
+<p><b>템플릿</b> <code>CLAUDE.md</code> 55행(매 세션 로드) · 검증 수단 <code>make check</code>(<code>CLAUDE.md</code> Commands 절) · <code>.claude/agents/verifier.md</code>.</p>
 <p><b>실험</b> 0005·0006 레인 모두 <code>make check</code> 를 스스로 돌려 red→green 을 기록(raw-chain5/03-red-before-fix.txt · 05-green-make-check.txt).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li><strong>인프라</strong>: 격리가 worktree에서 나오므로 Git repository, 그리고 조직이 안전하다고 보는 명령을 두고 session이 승인 prompt를 기다리는 일이 없도록 조정한 권한 설정.</li>
 <details class="verify v-ok" open id="V7-04"><summary>▸ <a class="vid" href="#V7-04">V7-04</a> · 검증 · <b>충실</b> — <span class="q">인프라 — Git repository · 안전한 명령에 승인 prompt 가 없도록 조정한 권한 설정</span></summary><div class="v-body">
-<p><b>템플릿</b> Git ✓. <code>.claude/settings.json</code>:3-13 <code>permissions.allow</code> — 이 레포의 안전한 명령 <code>make test/check/evals</code> · <code>git status/diff/log</code>(#49). 팀 자리: <code>docs/ADOPTING.md</code>:20 「the commands the organization considers safe」 · README.md:68-69.</p>
-<p><b>실험</b> 실험은 헤드리스 <code>bypassPermissions</code>(README.md:65)로 돌아 prompt 자체가 없었다 — 대화형으로 쓰는 팀은 <code>make test</code>·<code>git status</code> 마다 승인을 묻게 된다.</p>
+<p><b>템플릿</b> Git ✓. <code>.claude/settings.json</code> 의 <code>permissions.allow</code> — 이 레포의 안전한 명령 <code>make test/check/evals</code> · <code>git status/diff/log</code>(#49). 팀 자리: <code>docs/ADOPTING.md</code> 의 <code>.claude/settings.json</code> 행 「the commands the organization considers safe」 · <code>README.md</code> 「the team replaces the list with what its organization considers safe」.</p>
+<p><b>실험</b> 실험은 헤드리스 <code>bypassPermissions</code>(<code>README.md</code> 「Implementation turns ran in auto mode」)로 돌아 prompt 자체가 없었다 — 대화형으로 쓰는 팀은 <code>make test</code>·<code>git status</code> 마다 승인을 묻게 된다.</p>
 <p><b>보완</b> 반영 #49(2f00415) — v1 에서 없던 allow 목록. 실험(헤드리스 bypass)에서는 드러나지 않았던 빈틈.</p>
 </div></details>
 </ul>
@@ -979,8 +979,8 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 <ol>
 <li>엔지니어는 plan mode play(<strong>Stage 3: Build</strong>)에서 나온 계획으로 작업이 어디서 독립적인지 확인해, 서로 다른 파일을 건드리는 작업들로 일을 쪼갠다. 파일을 공유하는 작업은 한 session에서 차례로 돌린다.</li>
 <details class="verify v-ok" open id="V7-05"><summary>▸ <a class="vid" href="#V7-05">V7-05</a> · 검증 · <b>충실</b> — <span class="q">1 — 계획으로 독립성을 보고 파일이 다른 작업으로 쪼갠다 · 공유하면 한 session 에서 차례로</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>plan/SKILL.md</code>:25 Files that change 절이 판단 재료. <code>docs/PLAYBOOK-MAP.md</code>:5-6 「Files owned by other lanes … the three-lane contract」 — 슬림 단계 세 레인의 파일 소유 계약.</p>
-<p><b>실험</b> 0005(#21: routes.py · test_claims_status_defect.py) 와 0006(#23: records.py · test_claims_status_incident.py · evals/…) — 겹치는 파일 0(<code>comm -12</code> 빈 출력)이라 동시에 돌렸다. 0009 는 0008 과 records.py·audit.py 를 공유하므로 뒤에 차례로 돌았고 plan.md:11 이 「손대지 않는 것: response.py · routes.py」를 적었다.</p>
+<p><b>템플릿</b> <code>plan/SKILL.md</code> 의 Files that change 절이 판단 재료. <code>docs/PLAYBOOK-MAP.md</code> 「Files owned by other lanes … the three-lane contract」 — 슬림 단계 세 레인의 파일 소유 계약.</p>
+<p><b>실험</b> 0005(#21: routes.py · test_claims_status_defect.py) 와 0006(#23: records.py · test_claims_status_incident.py · evals/…) — 겹치는 파일 0(<code>comm -12</code> 빈 출력)이라 동시에 돌렸다. 0009 는 0008 과 records.py·audit.py 를 공유하므로 뒤에 차례로 돌았고 <code>plan.md</code> 가 「손대지 않는 것: response.py · routes.py」를 적었다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>병렬 작업은 각각 자기 worktree를 갖는다 — 예를 들어 한 터미널에서는 <code>claude --worktree feature-auth</code>, 다른 터미널에서는 <code>claude --worktree fix-rate-limit</code>이다. worktree는 자기 branch 위의 별도 checkout이고, session들이 파일에서 충돌하는 것을 막는다.</li>
@@ -997,7 +997,7 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 </div></details>
 <li>반복되는 일은 <code>.claude/agents/</code>의 Markdown 파일에 정의하는 subagent로 만들되, 각각 이름과 언제 쓰는지를 적은 설명과 건드려도 되는 도구를 갖게 한다. 예로는 메인 agent가 끝난 뒤 불필요한 복잡도를 걷어내는 code simplifier, 앱을 띄워 동작을 확인하는 verifier, 메인 context를 채우지 않으면서 코드베이스를 탐색해 보고하는 researcher가 있다. 팀 전체가 공유하도록 그 정의를 Git에 commit해 둔다.</li>
 <details class="verify v-ok" open id="V7-08"><summary>▸ <a class="vid" href="#V7-08">V7-08</a> · 검증 · <b>충실</b> — <span class="q">4 — .claude/agents/ 의 Markdown 으로 subagent · 이름·설명·도구 · Git 에 commit</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>.claude/agents/verifier.md</code> — name/description/tools 셋 다 있고 git 에 있다(README.md:17). code simplifier · researcher 는 없다(예시일 뿐, 요구 아님).</p>
+<p><b>템플릿</b> <code>.claude/agents/verifier.md</code> — name/description/tools 셋 다 있고 git 에 있다(<code>README.md</code> 「Read in this order」 목록). code simplifier · researcher 는 없다(예시일 뿐, 요구 아님).</p>
 <p><b>실험</b> 정의는 있으나 호출 0(위 subagent 블록).</p>
 <p><b>보완</b> 정의·commit 은 충실. 호출 계기는 #49 의 CLAUDE.md 한 줄(위 subagent 블록).</p>
 </div></details>
@@ -1023,21 +1023,21 @@ behavior that does not match plan.md. Do not fix anything; report only.
 <h2>governance 고려사항</h2>
 <p>session이 늘면 artifact도 늘어나므로, 통제는 repo 안의 설정에서 나와야 한다. 거기 있는 hook과 권한 설정은 모든 session에 적용되고, session이 하는 일은 기록되어 그것을 돌린 엔지니어에게 귀속된다.</p>
 <details class="verify v-ok" open id="V7-10"><summary>▸ <a class="vid" href="#V7-10">V7-10</a> · 검증 · <b>충실</b> — <span class="q">governance — 통제는 repo 안 설정에서 · hook·권한이 모든 session 에 · 기록은 엔지니어에게 귀속</span></summary><div class="v-body">
-<p><b>템플릿</b> hook: <code>.claude/settings.json</code> 이 클론마다 같이 온다 — 레인 셋 모두 훅이 돌았다(raw-chain2/04 · chain5/04 · chain6/06 protect-tests 반응). 권한: settings.json <code>permissions.allow</code>(#49) 도 클론마다 같이 온다. 기록: <code>.claude/hooks.log</code>(_lib.sh:20-22, 시각·훅·판정·경로; gitignore:6) 는 체크아웃마다 따로 남고, 귀속은 git author·PR mergedBy 로. OTel 은 밖(_lib.sh:5-6).</p>
+<p><b>템플릿</b> hook: <code>.claude/settings.json</code> 이 클론마다 같이 온다 — 레인 셋 모두 훅이 돌았다(raw-chain2/04 · chain5/04 · chain6/06 protect-tests 반응). 권한: settings.json <code>permissions.allow</code>(#49) 도 클론마다 같이 온다. 기록: <code>.claude/hooks.log</code>(<code>_lib.sh</code> 가 시각·훅·판정·경로를 적고 <code>.gitignore</code> 가 뺀다)는 체크아웃마다 따로 남고, 귀속은 git author·PR mergedBy 로. OTel 은 밖(<code>_lib.sh</code> 머리가 그렇게 적는다).</p>
 <p><b>실험</b> hooks.log 에 「누가」 열이 없다 — 체크아웃 = 엔지니어라는 전제로 귀속. 단일 계정 실험이라 귀속을 가를 수 없었다.</p>
-<p><b>보완</b> 권한 설정 반영 #49. 귀속의 「누가」는 조직 OTel(L12 934) 몫으로 _lib.sh:5-6 이 밖이라고 적는다.</p>
+<p><b>보완</b> 권한 설정 반영 #49. 귀속의 「누가」는 조직 OTel(L12 934) 몫으로 <code>_lib.sh</code> 머리가 밖이라고 적는다.</p>
 </div></details>
 <h2>측정 방법</h2>
 <ul>
 <li><strong>leading indicator</strong>: OpenTelemetry 익스포트에서 세는, review 품질이 유지되는 동안의 엔지니어당 동시 session 수, 그리고 기다리기보다 조종에 쓴 하루의 비중.</li>
 <details class="verify v-ok" open id="V7-11"><summary>▸ <a class="vid" href="#V7-11">V7-11</a> · 검증 · <b>충실</b> — <span class="q">측정 leading — 엔지니어당 동시 session 수 · 조종에 쓴 비중</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/METRICS.md</code>:45 「outside this repo (concurrent sessions per engineer is the OTel export)」.</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「outside this repo (concurrent sessions per engineer is the OTel export)」.</p>
 <p><b>실험</b> 이 검증의 관측치: 동시 2 세션(0005·0006). 조종/대기 비중은 재지 않았다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li><strong>lagging indicator</strong>: PR 이력으로 판정한 rework rate와 나란히 읽는, 엔지니어당 주간 merge된 변경 수.</li>
 <details class="verify v-ok" open id="V7-12"><summary>▸ <a class="vid" href="#V7-12">V7-12</a> · 검증 · <b>충실</b> — <span class="q">측정 lagging — 엔지니어당 주간 merge 수 · rework rate 와 나란히</span></summary><div class="v-body">
-<p><b>템플릿</b> METRICS.md:46 「<code>git log --since=1.week --oneline --merges | wc -l</code>」 · rework 는 L4 절(:31)의 <code>gh pr view --json reviews,commits</code>.</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「<code>git log --since=1.week --oneline --merges | wc -l</code>」 · rework 는 L4 절의 <code>gh pr view --json reviews,commits</code>.</p>
 <p><b>실험</b> 2026-09-09 하루 머지 37건(<code>git log --merges --since=…</code>), 단일 엔지니어 계정.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -1049,13 +1049,13 @@ behavior that does not match plan.md. Do not fix anything; report only.
 <p class="src"><a href="https://academy.claude.com/courses/ai-native-sdlc-playbook/give-claude-a-feedback-loop" target="_blank" rel="noopener">원문 보기</a></p>
 <p>test든 build든 스크린샷 diff든, Claude에게 자기 작업을 검증할 수단을 언제나 준다. session은 엔지니어가 보기 전에 자기 작업을 확인하고 자기 실수를 고친다.</p>
 <details class="verify v-ok" open id="V8-01"><summary>▸ <a class="vid" href="#V8-01">V8-01</a> · 검증 · <b>충실</b> — <span class="q">도입 — 자기 작업을 검증할 수단을 언제나 · 엔지니어가 보기 전에 스스로 고친다</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>make test</code>/<code>make check</code>(Makefile:1 이 L9 619 인용) + CLAUDE.md:36-47 검증 블록.</p>
-<p><b>실험</b> 0008 턴8: red 13 → green, 뮤테이션 5건 각각 red 확인 뒤 sha256 복원(RUNS.md:72-73) — 사람이 보기 전에 루프가 돌았다. 0005·0007: red 실측 → 수정 → green(raw-chain5/03·05, raw-live/21).</p>
+<p><b>템플릿</b> <code>make test</code>/<code>make check</code>(<code>Makefile</code> 머리가 L9 619 인용) + <code>CLAUDE.md</code> 「Verifying your work」 블록.</p>
+<p><b>실험</b> 0008 턴8: red 13 → green, 뮤테이션 5건 각각 red 확인 뒤 sha256 복원(<code>RUNS.md</code> L9 절) — 사람이 보기 전에 루프가 돌았다. 0005·0007: red 실측 → 수정 → green(raw-chain5/03·05, raw-live/21).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <p>feedback loop를 verifier subagent(<strong>Stage 3: Build</strong>)와 혼동하면 안 된다. feedback loop는 작업이 요구하는 횟수만큼 작업 전체를 관통하며 돈다. 반면 verifier subagent는 session이 작업을 끝냈다고 판단한 시점에 새 context window를 띄워 최종 확인을 묶어 내는 한 가지 방법이다. 이렇게 하면 코드를 만들어 낸 가정이 판정을 물들이지 않는다.</p>
 <details class="verify v-ok" open id="V8-02"><summary>▸ <a class="vid" href="#V8-02">V8-02</a> · 검증 · <b>충실</b> — <span class="q">도입 — loop 는 작업 내내, verifier 는 끝에 새 context 로 최종 확인</span></summary><div class="v-body">
-<p><b>템플릿</b> loop = <code>make check</code>(작업 중 반복). verifier = <code>.claude/agents/verifier.md</code>(새 context · Bash/Read 만 · 보고만). CLAUDE.md:46-47 가 순서를 「검증 블록 → 완료 보고 전 verifier」로 둔다(#49).</p>
+<p><b>템플릿</b> loop = <code>make check</code>(작업 중 반복). verifier = <code>.claude/agents/verifier.md</code>(새 context · Bash/Read 만 · 보고만). <code>CLAUDE.md</code> 「Before reporting a chain done, hand the check to the <code>verifier</code> subagent」 가 순서를 「검증 블록 → 완료 보고 전 verifier」로 둔다(#49).</p>
 <p><b>실험</b> loop 는 매 사슬에서 돌았고(위), verifier 는 0회(챕터 7) — 둘이 섞이지 않았다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -1066,7 +1066,7 @@ behavior that does not match plan.md. Do not fix anything; report only.
 <li><strong>전제 조건</strong>: 없음.</li>
 <li><strong>인프라</strong>: 각각 명령 하나로 로컬에서 도는 test suite와 build. UI 작업에서는 Claude가 결과를 볼 수단이 결정적인데, 브라우저 도구이거나 MCP로 연결한 스크린샷 유틸리티다.</li>
 <details class="verify v-ok" open id="V8-03"><summary>▸ <a class="vid" href="#V8-03">V8-03</a> · 검증 · <b>충실</b> — <span class="q">인프라 — 명령 하나의 test suite 와 build · UI 면 스크린샷 수단</span></summary><div class="v-body">
-<p><b>템플릿</b> test: <code>make test</code> 한 명령(Makefile:6-10). build: 없다 — CLAUDE.md:45 「This repo has no make build/make lint」. UI: 없다 — 스크린샷 도구는 UI 가 생길 때 팀 인프라.</p>
+<p><b>템플릿</b> test: <code>make test</code> 한 명령(<code>Makefile</code> 의 <code>test:</code> 타깃). build: 없다 — <code>CLAUDE.md</code> 「This repo has no <code>make build</code>/<code>make lint</code>」. UI: 없다 — 스크린샷 도구는 UI 가 생길 때 팀 인프라.</p>
 <p><b>실험</b> —</p>
 <p><b>보완</b> 없음(UI 도구는 아래 5단계 블록).</p>
 </div></details>
@@ -1081,37 +1081,37 @@ behavior that does not match plan.md. Do not fix anything; report only.
 </div></details>
 <li><code>CLAUDE.md</code>의 명령어 절에 각 명령을 정상 출력 예시와 함께 나열한다.</li>
 <details class="verify v-ok" open id="V8-05"><summary>▸ <a class="vid" href="#V8-05">V8-05</a> · 검증 · <b>충실</b> — <span class="q">2 — Commands 절에 정상 출력 예시</span></summary><div class="v-body">
-<p><b>템플릿</b> CLAUDE.md:7-13 — <code>make test</code> healthy 출력 축자(「28 passed, 0 failed」·「8 passed, 0 failed」·「PASS managed-settings」), evals 「전 케이스 통과」, check 의 SKIP 문구까지.</p>
+<p><b>템플릿</b> <code>CLAUDE.md</code> Commands 절 — <code>make test</code> healthy 출력 축자(「28 passed, 0 failed」·「8 passed, 0 failed」·「PASS managed-settings」), evals 「전 케이스 통과」, check 의 SKIP 문구까지.</p>
 <p><b>실험</b> 830e4d9 「healthy make test output filled from the integrated tree's real run」 — 실제 실행 출력에서 채웠다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>Claude가 되묻지 않고 작업을 확인할 수 있도록 목표를 진술하고 정량화한다 — 예를 들어 「<code>test_status.py</code>의 모든 test가 통과한다」, 「스크린샷이 첨부된 mock과 일치한다」, 「엔드포인트가 새 필드와 함께 200을 반환한다」이다.</li>
 <details class="verify v-ok" open id="V8-06"><summary>▸ <a class="vid" href="#V8-06">V8-06</a> · 검증 · <b>충실</b> — <span class="q">3 — 목표를 진술하고 정량화</span></summary><div class="v-body">
-<p><b>템플릿</b> spec 의 「Acceptance criteria」(0008 spec.md:77 AC1~AC10) → plan 의 Proof 가 AC ↔ 시험 이름을 1:1 로(0008 plan.md Proof 절). <code>plan/SKILL.md</code>:28 「Proof — tests by name」.</p>
+<p><b>템플릿</b> spec 의 「Acceptance criteria」(0008 <code>spec.md</code> 의 AC1~AC10) → plan 의 Proof 가 AC ↔ 시험 이름을 1:1 로(0008 <code>plan.md</code> Proof 절). <code>plan/SKILL.md</code> 「Proof — tests by name」.</p>
 <p><b>실험</b> 0008 턴8 「red 10건을 단정 실패로 실측」(526a5ae) → green. 되묻지 않았다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>버그 수정에서는 실패하는 test를 먼저 쓴다. Claude에게 버그를 test로 재현하고, 돌리고, 예상한 이유로 실패하는지 확인하게 한다. 그 test를 commit한다. 그러고 나서야 test를 고치지 않고 통과시키라고 Claude에게 요청하며, 마지막 단계의 test 파일 hook이 그 제한을 강제한다. 수정 전부터 있었고 agent가 다시 쓸 수 없었던 test는 버그가 사라졌다는 증명이다.</li>
 <details class="verify v-ok" open id="V8-07"><summary>▸ <a class="vid" href="#V8-07">V8-07</a> · 검증 · <b>충실</b> — <span class="q">4 — 실패 test 먼저 · commit · test 안 고치고 통과 · hook 이 강제</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>plan/SKILL.md</code>:15 「L9 625 failing test first … <code>INTENT_TASK=fix</code>」 · :28 「the failing test comes before the change」. <code>.claude/hooks/protect-tests.sh</code>(INTENT_TASK=fix 이면 tests/* 편집 block). CLAUDE.md:26-27 「A fix task is declared by the engineer」.</p>
+<p><b>템플릿</b> <code>plan/SKILL.md</code> 「L9 625 failing test first … <code>INTENT_TASK=fix</code>」 · 「the failing test comes before the change」. <code>.claude/hooks/protect-tests.sh</code>(INTENT_TASK=fix 이면 tests/* 편집 block). <code>CLAUDE.md</code> 「A fix task is declared by the engineer, not detected」.</p>
 <p><b>실험</b> 0007: fcaf6b1 test 커밋(red 「FAILED (failures=2)」 raw-live/21) → c5dd79c 수정 커밋은 routes.py 만(시험 무편집). 0005: 0f20c46 red 커밋 → 훅 실측 raw-chain5/04 「BLOCKED: tests/test_claims_status_defect.py … INTENT_TASK=fix」 rc=2, src 편집 rc=0, hooks.log 두 줄.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>UI 작업에서는 시각 확인으로 loop를 닫는다. Claude에게 브라우저나 스크린샷 도구를 주고, mock을 주고, 반복하게 한다. 구현하고, 스크린샷을 찍고, 비교하고, 조정한다. 두세 라운드가 정상이고, 결과는 라운드마다 나아져야 한다.</li>
 <details class="verify v-team" open id="V8-08"><summary>▸ <a class="vid" href="#V8-08">V8-08</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">5 — UI 는 스크린샷으로 loop</span></summary><div class="v-body">
-<p><b>템플릿</b> 이 샘플에는 UI 가 없다. 브라우저/스크린샷 도구(MCP)와 mock 은 <code>docs/ADOPTING.md:30</code> 「no file — UI visual check tool」 행이 팀 자리로 적는다(#50). 문구·접근성 쪽 정책 스킬은 v3 에서 생겼지만(<code>org-skills/skills/ux-copy</code> · <code>accessibility</code>) 스크린샷 loop 자체는 여전히 레포 밖 도구다.</p>
+<p><b>템플릿</b> 이 샘플에는 UI 가 없다. 브라우저/스크린샷 도구(MCP)와 mock 은 <code>docs/ADOPTING.md</code> 「no file — UI visual check tool」 행이 팀 자리로 적는다(#50). 문구·접근성 쪽 정책 스킬은 v3 에서 생겼지만(<code>org-skills/skills/ux-copy</code> · <code>accessibility</code>) 스크린샷 loop 자체는 여전히 레포 밖 도구다.</p>
 <p><b>실험</b> —</p>
 <p><b>보완</b> 반영 #50(64c7100) — 팀 몫.</p>
 </div></details>
 <li>검증을 「완료」의 일부로 만든다. 그 지시는 <code>CLAUDE.md</code>에 있다: 「작업 완료를 보고하기 전에 test를 돌리고, 그 출력을 보여라.」</li>
 <details class="verify v-ok" open id="V8-09"><summary>▸ <a class="vid" href="#V8-09">V8-09</a> · 검증 · <b>충실</b> — <span class="q">6 — 「완료 보고 전에 test 를 돌리고 출력을 보여라」가 CLAUDE.md 에</span></summary><div class="v-body">
-<p><b>템플릿</b> CLAUDE.md:42-43 「Run all three before reporting any task complete, and paste the output. If a test fails, fix the code, not the test」(L9 축자) + :45 이 레포식(<code>make check</code>).</p>
-<p><b>실험</b> 0008·0009 턴8 응답이 <code>make check</code> 출력을 붙였다(raw-hac/23·55). Run A 도 같다(RUNS.md:20).</p>
+<p><b>템플릿</b> <code>CLAUDE.md</code> 「Run all three before reporting any task complete, and paste the output. If a test fails, fix the code, not the test」(L9 축자) + 그 아래 이 레포식(<code>make check</code>).</p>
+<p><b>실험</b> 0008·0009 턴8 응답이 <code>make check</code> 출력을 붙였다(raw-hac/23·55). Run A 도 같다(<code>RUNS.md</code> Run A 절).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>마지막으로 loop 자체를 보호해야 하는데, 코드를 고치는 agent가 그 코드를 보는 검사를 약화시킬 수 있어서는 안 되기 때문이다. 수정 작업 중 test 파일 편집을 막는 hook이 그 일을 한다. 대안은 review에서 diff를 확인하고 test를 건드리는 변경을 전부 반려하는 것이다.</li>
 <details class="verify v-ok" open id="V8-10"><summary>▸ <a class="vid" href="#V8-10">V8-10</a> · 검증 · <b>충실</b> — <span class="q">7 — 수정 중 test 파일 편집을 막는 hook · 대안은 review 반려</span></summary><div class="v-body">
-<p><b>템플릿</b> hook: <code>protect-tests.sh</code>(tests/test_hooks.sh 케이스 5). 대안: <code>REVIEW.md</code>:16-17 「In a defect chain, a diff that touches an existing test file is a finding (L9 631) — the hook only sees Edit/Write」. 한계 명시: CLAUDE.md:24-27(Bash heredoc 은 훅이 못 본다).</p>
+<p><b>템플릿</b> hook: <code>protect-tests.sh</code>(tests/test_hooks.sh 케이스 5). 대안: <code>REVIEW.md</code> 「In a defect chain, a diff that touches an existing test file is a finding (L9 631) — the hook only sees Edit/Write」. 한계 명시: <code>CLAUDE.md</code> 「The hooks … watch tool calls, not effects」(Bash heredoc 은 훅이 못 본다).</p>
 <p><b>실험</b> 0005 에서 block 실측(위). 0007 은 45/45 Bash 로 써서 훅 0회 — 그래서 REVIEW.md 의 대안 경로가 문면이 됐다(#29).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -1128,7 +1128,7 @@ Run all three before reporting any task complete, and paste the output.
 If a test fails, fix the code, not the test.
 </code></pre>
 <details class="verify v-ok" open id="V8-11"><summary>▸ <a class="vid" href="#V8-11">V8-11</a> · 검증 · <b>충실</b> — <span class="q">실제 모습 — CLAUDE.md 검증 블록</span></summary><div class="v-body">
-<p><b>템플릿</b> CLAUDE.md:36-43 이 예시와 한 글자 같다(:45 주석 「L9 635-645 verbatim」).</p>
+<p><b>템플릿</b> <code>CLAUDE.md</code> 「Verifying your work」 블록이 예시와 한 글자 같다(바로 아래 주석 「L9 635-645 verbatim」).</p>
 <p><b>실험</b> —</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -1136,25 +1136,25 @@ If a test fails, fix the code, not the test.
 <ul>
 <li><strong>강제되는 것</strong>: 작업 완료를 보고하기 전의 검증, 그리고 수정 중 agent의 test 파일 편집 차단이며, 조직이 이를 보장받고자 하는 곳에서는 둘 다 hook으로 구현한다.</li>
 <details class="verify v-ok" open id="V8-12"><summary>▸ <a class="vid" href="#V8-12">V8-12</a> · 검증 · <b>충실</b> — <span class="q">governance — 강제되는 것: 완료 전 검증 · 수정 중 test 편집 차단(둘 다 hook 으로, 보장하려는 곳에서)</span></summary><div class="v-body">
-<p><b>템플릿</b> test 편집 차단 = hook ✓. 완료 전 검증 = CLAUDE.md 지시(:42-47) + PR 의 <code>check</code>(check.yml). Stop hook 은 두지 않았다 — <code>docs/BOUNDARY.md</code>:31-33 「Not here: a Stop hook that runs make test before the session reports done (L9 650 …); a team that wants it guaranteed adds the hook」(#50).</p>
+<p><b>템플릿</b> test 편집 차단 = hook ✓. 완료 전 검증 = <code>CLAUDE.md</code> 「Verifying your work」 지시 + PR 의 <code>check</code>(check.yml). Stop hook 은 두지 않았다 — <code>docs/BOUNDARY.md</code> 「Not here: a Stop hook that runs make test before the session reports done (L9 650 …); a team that wants it guaranteed adds the hook」(#50).</p>
 <p><b>실험</b> 실험에서 검증 없이 완료를 보고한 세션은 0(모든 사슬이 make check 를 붙였다).</p>
 <p><b>보완</b> 반영 #50(64c7100) — 「보장하려는 곳에서는 hook」 선택지를 안 고른 결정을 BOUNDARY 에 명시.</p>
 </div></details>
 <li><strong>증거</strong>: Claude가 돌려서 붙여 넣은 <code>make test</code>의 원문 출력, build 로그, 또는 스크린샷 diff이며, 따라서 증거는 toolchain에서 나온다.</li>
 <details class="verify v-ok" open id="V8-13"><summary>▸ <a class="vid" href="#V8-13">V8-13</a> · 검증 · <b>충실</b> — <span class="q">governance — 증거는 toolchain 의 원문 출력</span></summary><div class="v-body">
-<p><b>템플릿</b> CLAUDE.md:42 「paste the output」 · verifier.md:18-20 「commands, verbatim, with exit codes … Do not say green when the output was red」.</p>
+<p><b>템플릿</b> <code>CLAUDE.md</code> 「paste the output」 · <code>verifier.md</code> 「commands, verbatim, with exit codes … Do not say green when the output was red」.</p>
 <p><b>실험</b> raw-chain5/05-green-make-check.txt 등 원문 파일 · 0008 턴8 응답의 make check 출력.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li><strong>기록 위치</strong>: OpenTelemetry 익스포트가 조직의 observability stack으로 전달하는 session transcript, 그리고 reviewer와 나중의 감사자가 둘 다 볼 수 있는 PR의 check run.</li>
 <details class="verify v-ok" open id="V8-14"><summary>▸ <a class="vid" href="#V8-14">V8-14</a> · 검증 · <b>충실</b> — <span class="q">governance — session transcript(OTel) · PR 의 check run</span></summary><div class="v-body">
-<p><b>템플릿</b> PR check run ✓ — check.yml 이 모든 PR·main push 에 돈다(사슬 PR #28·#33·#42 check=SUCCESS). transcript 는 하네스가 raw 로 보관, OTel 은 밖(_lib.sh:5-6). <code>docs/RUNS.md</code>:120-122 가 「check 는 호스티드 Actions 에서 실제로 돌았다 · 미확인은 evals(키 없음)」로 정정됨(#50).</p>
+<p><b>템플릿</b> PR check run ✓ — check.yml 이 모든 PR·main push 에 돈다(사슬 PR #28·#33·#42 check=SUCCESS). transcript 는 하네스가 raw 로 보관, OTel 은 밖(<code>_lib.sh</code> 머리). <code>docs/RUNS.md</code>(실험 핀)가 「check 는 호스티드 Actions 에서 실제로 돌았다 · 미확인은 evals(키 없음)」로 정정됨(#50).</p>
 <p><b>실험</b> check.yml 실행 이력: 사슬 PR 3건 + 검증 PR #44~#49 전부 success.</p>
 <p><b>보완</b> 반영 #50(64c7100) — v1 에서 RUNS 가 Actions 를 미확인이라 적은 오기 정정.</p>
 </div></details>
 <li><strong>승인자</strong>: PR을 review하는 code owner이며, 기계적 증거가 이미 붙어 있으므로 의도와 위험에 집중할 수 있다.</li>
 <details class="verify v-ok" open id="V8-15"><summary>▸ <a class="vid" href="#V8-15">V8-15</a> · 검증 · <b>충실</b> — <span class="q">governance — 승인자는 code owner</span></summary><div class="v-body">
-<p><b>템플릿</b> CODEOWNERS + REVIEW.md:31 「The product owner approves by merging」. 기계적 증거(check) 가 붙은 뒤 사람이 의도·위험을 본다.</p>
+<p><b>템플릿</b> <code>.github/CODEOWNERS</code> + <code>REVIEW.md</code> 「The product owner approves by merging」. 기계적 증거(check) 가 붙은 뒤 사람이 의도·위험을 본다.</p>
 <p><b>실험</b> #33 리뷰(턴9)는 발견 1건(계기 결함, 패스 안 수정), #42 는 0 — 기계 증거 뒤의 사람 리뷰가 짧았다(3~11분, 아래 lagging).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -1163,13 +1163,13 @@ If a test fails, fix the code, not the test.
 <ul>
 <li><strong>leading indicator</strong>: agent가 쓴 변경의 CI 첫 시도 성공률이며, CI 시스템이 이미 지원한다.</li>
 <details class="verify v-ok" open id="V8-16"><summary>▸ <a class="vid" href="#V8-16">V8-16</a> · 검증 · <b>충실</b> — <span class="q">측정 leading — CI 첫 시도 성공률</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/METRICS.md</code>:49 「<code>gh run list --workflow=check.yml --json conclusion,event</code>」.</p>
-<p><b>실험</b> 사슬 PR #28·#33·#42 check 첫 실행 success(3/3, RUNS.md:113). #33 의 evals=FAILURE 는 키 없음(README.md:29-31 「did not run」).</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「<code>gh run list --workflow=check.yml --json conclusion,event</code>」.</p>
+<p><b>실험</b> 사슬 PR #28·#33·#42 check 첫 실행 success(3/3, <code>RUNS.md</code> L10 절). #33 의 evals=FAILURE 는 키 없음(<code>README.md</code> 「it did not run, and "did not run" is not "passed"」).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li><strong>lagging indicator</strong>: test가 reviewer들이 잡던 것을 잡기 시작하면 줄어야 할 PR당 review 시간(PR 메타데이터에서), 그리고 incident tracker에서 얻는 change failure rate.</li>
 <details class="verify v-ok" open id="V8-17"><summary>▸ <a class="vid" href="#V8-17">V8-17</a> · 검증 · <b>충실</b> — <span class="q">측정 lagging — PR 당 review 시간 · change failure rate</span></summary><div class="v-body">
-<p><b>템플릿</b> METRICS.md:50-51 「<code>gh pr view &lt;n&gt; --json createdAt,mergedAt</code>」 · CFR 은 밖(incident tracker).</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 「<code>gh pr view &lt;n&gt; --json createdAt,mergedAt</code>」 · CFR 은 밖(incident tracker).</p>
 <p><b>실험</b> PR 열림→머지: #21 11m39s · #23 9m40s · #28 16m31s · #33 11m12s · #42 3m04s.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
@@ -1202,8 +1202,8 @@ If a test fails, fix the code, not the test.
 </div></details>
 <li><strong>인프라</strong>: Claude Code를 non-interactive로 돌릴 수 있는 CI, 그리고 eval 실행에 쓸 예산이 있는 API 키.</li>
 <details class="verify v-team" open id="V9-04"><summary>▸ <a class="vid" href="#V9-04">V9-04</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">인프라 — non-interactive CI · 예산 있는 API 키</span></summary><div class="v-body">
-<p><b>템플릿</b> CI ✓: 호스티드 러너 + <code>npm install -g @anthropic-ai/claude-code</code>(workflow:27-30 주석) + <code>claude -p</code>(run.sh:38). 키 ✗: 비밀이 없다 — <code>README.md:31-33</code> 「Without the <code>ANTHROPIC_API_KEY</code> secret that job exits 2 and shows red … Add the secret to make it real」 · <code>evals/README.md:2</code> TEAM · <code>ADOPTING.md:23</code>.</p>
-<p><b>실험</b> 설정 PR 마다 evals 잡 failure(rc=2 SKIP) — 「안 돌았다」를 「통과」로 접지 않는 설계(run.sh:3-6)가 그대로 보인다.</p>
+<p><b>템플릿</b> CI ✓: 호스티드 러너 + <code>npm install -g @anthropic-ai/claude-code</code>(<code>agent-evals.yml</code> 주석) + <code>claude -p</code>(<code>evals/run.sh</code>). 키 ✗: 비밀이 없다 — <code>README.md</code> 「Without the <code>ANTHROPIC_API_KEY</code> secret that job exits 2 and shows red … Add the secret to make it real」 · <code>evals/README.md</code> TEAM 마커 · <code>docs/ADOPTING.md</code> 의 <code>evals/README.md</code> 행.</p>
+<p><b>실험</b> 설정 PR 마다 evals 잡 failure(rc=2 SKIP) — 「안 돌았다」를 「통과」로 접지 않는 설계(<code>evals/run.sh</code> 머리)가 그대로 보인다.</p>
 <p><b>보완</b> 없음 — 키는 팀 몫.</p>
 </div></details>
 </ul>
@@ -1211,25 +1211,25 @@ If a test fails, fix the code, not the test.
 <ol>
 <li>platform engineer는 최근 작업에서 실제 작업 20~50건을 모으고, 각각에 기대 결과 또는 수용된 결과를 붙인다.</li>
 <details class="verify v-team" open id="V9-05"><summary>▸ <a class="vid" href="#V9-05">V9-05</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">1 — 실제 작업 20~50건 + 기대 결과</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>main</code> 기준 3건(<code>evals/cases/01-intent-placeholder</code> · <code>02-no-self-accept</code> · <code>03-spec-carries-questions</code>, 각각 <code>expected_output</code>) — 사슬 0006 의 incident 케이스 <code>04</code> 는 체인 0010 이 실험 브랜치로 뺐다(두 핀을 합치면 4건). <code>docs/BOUNDARY.md:80</code> 「filling it to the lesson's count needs that organization's actual recent task history」 · <code>ADOPTING.md:23</code> 팀 자리(「3 cases (the incident eval from chain 0006 is on the experiment branch)」).</p>
+<p><b>템플릿</b> <code>main</code> 기준 3건(<code>evals/cases/01-intent-placeholder</code> · <code>02-no-self-accept</code> · <code>03-spec-carries-questions</code>, 각각 <code>expected_output</code>) — 사슬 0006 의 incident 케이스 <code>04</code> 는 체인 0010 이 실험 브랜치로 뺐다(두 핀을 합치면 4건). <code>docs/BOUNDARY.md</code> 「filling it to the lesson's count needs that organization's actual recent task history」 · <code>docs/ADOPTING.md</code> 의 <code>evals/README.md</code> 행이 팀 자리(「3 cases (the incident eval from chain 0006 is on the experiment branch)」).</p>
 <p><b>실험</b> 네 건 모두 이 레포의 실제 사슬에서 나왔다(01 ← 0002 intent, 02 ← 「승인 = 머지」, 03 ← L3 270 open questions, 04 ← incident 0006). 어느 것도 지어낸 과제가 아니지만 수는 레슨이 말한 20~50 에 한참 못 미친다.</p>
 <p><b>보완</b> 없음 — 팀 몫.</p>
 </div></details>
 <li>각 작업을 eval로 쓰는데, eval이란 prompt에 무엇이 수용 가능한지 정의하는 검사(test 통과, lint clean, 동작 불변, 정책 준수)를 더한 것이다.</li>
 <details class="verify v-ok" open id="V9-06"><summary>▸ <a class="vid" href="#V9-06">V9-06</a> · 검증 · <b>충실</b> — <span class="q">2 — prompt + 수용 기준 검사</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>evals/SCHEMA.md</code>: prompt · expected_output · files · assertions(LLM 채점용 산문) · checks(결정론, 닫힌 kind 5종: file_exists/contains/not_contains/regex_present/regex_absent). <code>check.sh</code> 는 checks 0건이면 rc=2(판정 없는 케이스는 통과가 아니다). BOUNDARY.md:38-39 「deterministic checks only judge code shape … behavior is judged by the LLM assertions and by the unit/regression tests」.</p>
+<p><b>템플릿</b> <code>evals/SCHEMA.md</code>: prompt · expected_output · files · assertions(LLM 채점용 산문) · checks(결정론, 닫힌 kind 5종: file_exists/contains/not_contains/regex_present/regex_absent). <code>check.sh</code> 는 checks 0건이면 rc=2(판정 없는 케이스는 통과가 아니다). <code>docs/BOUNDARY.md</code> 「deterministic checks only judge code shape … behavior is judged by the LLM assertions and by the unit/regression tests」.</p>
 <p><b>실험</b> 채점기 자체를 재는 손픽스처 testdata/(01·02·03 의 pass/fail 짝 + bad-kind + no-workspace) 가 <code>tests/test_evals.sh</code>(make test 안, 8 passed)로 매 PR 돈다. 「tests pass」는 kind 가 아니라 케이스 04 처럼 시험 파일 무변경 + 코드 형태로 잰다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>suite는 CI에서 non-interactive로, 예약된 일정에 따라 그리고 <code>CLAUDE.md</code>·skill·hook에 변경이 있을 때마다 도는데, 그 설정이 agent를 조종하므로 코드가 받는 regression test를 받을 자격이 있기 때문이다.</li>
 <details class="verify v-ok" open id="V9-07"><summary>▸ <a class="vid" href="#V9-07">V9-07</a> · 검증 · <b>충실</b> — <span class="q">3 — non-interactive · 예약 일정 · CLAUDE.md/skill/hook 변경마다</span></summary><div class="v-body">
-<p><b>템플릿</b> workflow on: pull_request paths(CLAUDE.md · .claude/** — skills·hooks·settings·agents·commands 전부) · schedule <code>17 4 * * 1</code>(주 1회; 예시는 매일) · workflow_dispatch. run.sh:38 <code>claude -p … --output-format json</code>.</p>
+<p><b>템플릿</b> workflow on: pull_request paths(CLAUDE.md · .claude/** — skills·hooks·settings·agents·commands 전부) · schedule <code>17 4 * * 1</code>(주 1회; 예시는 매일) · workflow_dispatch. <code>evals/run.sh</code> 의 <code>claude -p … --output-format json</code>.</p>
 <p><b>실험</b> 위 1번 블록의 트리거 실측(설정 PR 에서만 발화).</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
 <li>설정 변경은 그 결과를 gate로 삼는다. pass rate를 떨어뜨리는 skill 변경은 merge되기 전에 review를 받는다.</li>
 <details class="verify v-part" open id="V9-08"><summary>▸ <a class="vid" href="#V9-08">V9-08</a> · 검증 · <b>부분</b> — <span class="q">4 — 결과가 설정 변경의 gate · pass rate 떨어뜨리는 skill 변경은 merge 전 review</span></summary><div class="v-body">
-<p><b>템플릿</b> 잡은 돈다. gate 는 아직 아니다: 브랜치 보호(required status checks)가 없고 키가 없어 잡이 항상 failure 인데 #44~#51 이 그 위로 머지됐다. 팀 자리는 이제 있다 — <code>docs/ADOPTING.md:29</code> 「no file — branch protection … <code>check</code> and <code>agent evals</code> as required status checks and the ANTHROPIC_API_KEY secret … until the secret is in, the red agent evals job blocks every config PR, which is the point」(#51).</p>
+<p><b>템플릿</b> 잡은 돈다. gate 는 아직 아니다: 브랜치 보호(required status checks)가 없고 키가 없어 잡이 항상 failure 인데 #44~#51 이 그 위로 머지됐다. 팀 자리는 이제 있다 — <code>docs/ADOPTING.md</code> 「no file — branch protection … <code>check</code> and <code>agent evals</code> as required status checks and the ANTHROPIC_API_KEY secret … until the secret is in, the red agent evals job blocks every config PR, which is the point」(#51).</p>
 <p><b>실험</b> evals failure 5회(#44 #45 #46 #49 + adopting-guide) · 전부 머지됨 — 단일 오너·키 없음의 결과.</p>
 <p><b>보완</b> 반영 #51(cd5c3af) — 자리 명시. 실제 gate 는 오너 둘 이상·키가 있는 조직에서만 실행되므로 <b>부분</b>.</p>
 </div></details>
@@ -1273,7 +1273,7 @@ jobs:
 <h2>governance 고려사항</h2>
 <p>eval은 agent artifact를 따라잡는 gate를 QA에 준다. pass rate 문턱은 merge 체크로 강제되고, 실행은 기록되어 결과를 시간에 걸쳐 비교할 수 있으며, 설정 변경을 소유한 팀이 그것을 승인한다.</p>
 <details class="verify v-ok" open id="V9-11"><summary>▸ <a class="vid" href="#V9-11">V9-11</a> · 검증 · <b>충실</b> — <span class="q">governance — pass rate 문턱 = merge 체크 · 실행 기록 · 설정 소유 팀 승인</span></summary><div class="v-body">
-<p><b>템플릿</b> merge 체크: 위 4번(팀 자리, #51). 실행 기록: Actions 이력 + <code>agent-evals.yml</code>:34-41 이 <code>evals/out</code> 을 artifact <code>evals-&lt;run id&gt;</code> 로 보존(<code>if: always()</code>, #51). 승인: CODEOWNERS <code>.claude/**</code>·<code>CLAUDE.md</code> ✓.</p>
+<p><b>템플릿</b> merge 체크: 위 4번(팀 자리, #51). 실행 기록: Actions 이력 + <code>agent-evals.yml</code> 의 upload 단계가 <code>evals/out</code> 을 artifact <code>evals-&lt;run id&gt;</code> 로 보존(<code>if: always()</code>, #51). 승인: CODEOWNERS <code>.claude/**</code>·<code>CLAUDE.md</code> ✓.</p>
 <p><b>실험</b> 키가 없어 결과 파일이 만들어진 적이 없다 — 보존 결손은 실측이 아니라 워크플로 읽기로 확인.</p>
 <p><b>보완</b> 반영 #51(cd5c3af) — v1 에서 결과 파일이 어디에도 남지 않던 결손을 artifact 업로드로 닫음.</p>
 </div></details>
@@ -1281,13 +1281,13 @@ jobs:
 <ul>
 <li><strong>leading indicator</strong>: 매 실행마다 suite가 보고하는, 시간에 따른 eval pass rate, 그리고 프로덕션 incident가 영구 eval이 되기까지 걸리는 시간.</li>
 <details class="verify v-ok" open id="V9-12"><summary>▸ <a class="vid" href="#V9-12">V9-12</a> · 검증 · <b>충실</b> — <span class="q">측정 leading — pass rate 추이 · incident → 영구 eval 시간</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/METRICS.md</code>:54-58 — pass rate 는 artifact(<code>gh run download &lt;run id&gt;</code>)의 <code>*.json</code> 시계열, incident→영구 eval 은 <code>git log --diff-filter=A --format='%cI %h' -- intent/&lt;NNNN&gt;-*/intent.md evals/cases/&lt;NN&gt;-*.json</code>(밴드에서 난 incident) · 밖의 incident 는 tracker 시각부터(#51). <code>docs/RUNS.md</code>:117-118 실측.</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 의 L10 절 — pass rate 는 artifact(<code>gh run download &lt;run id&gt;</code>)의 <code>*.json</code> 시계열, incident→영구 eval 은 <code>git log --diff-filter=A --format='%cI %h' -- intent/&lt;NNNN&gt;-*/intent.md evals/cases/&lt;NN&gt;-*.json</code>(밴드에서 난 incident) · 밖의 incident 는 tracker 시각부터(#51). <code>docs/RUNS.md</code>(실험 핀) L10 절에 실측.</p>
 <p><b>실험</b> 0006: 3분 39초(a21fe16 → 4bf2a07). pass rate: 측정 0회(키 없음).</p>
 <p><b>보완</b> 반영 #51(cd5c3af). pass rate 자체는 키가 들어와야 첫 값이 생긴다.</p>
 </div></details>
 <li><strong>lagging indicator</strong>: incident tracker에서 도출한, 프로덕션에서 발견된 regression 대비 CI에서 잡힌 regression.</li>
 <details class="verify v-ok" open id="V9-13"><summary>▸ <a class="vid" href="#V9-13">V9-13</a> · 검증 · <b>충실</b> — <span class="q">측정 lagging — CI 가 잡은 regression vs 프로덕션 발견</span></summary><div class="v-body">
-<p><b>템플릿</b> METRICS.md:55 계열 — incident tracker 는 밖. 지어내지 않았다.</p>
+<p><b>템플릿</b> <code>docs/METRICS.md</code> 의 같은 절 — incident tracker 는 밖. 지어내지 않았다.</p>
 <p><b>실험</b> 이 레포의 incident 는 1건(0006)이고 그 회귀는 eval 04 + 시험(test_claims_status_incident.py)이 잡는다 — 비율을 말할 표본이 아니다.</p>
 <p><b>보완</b> 없음.</p>
 </div></details>
