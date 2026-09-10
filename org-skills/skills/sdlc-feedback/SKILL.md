@@ -30,7 +30,8 @@ Git policy; permission to inspect or review does not itself authorize a commit, 
 
 Before reporting an implementation task complete, delegate a final check to a fresh-context
 verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills:sdlc-verifier`
-as a default team example. Do not run both for the same purpose. A routine prose correction or a
+as a default team example. Wait for its result before a final completion report; a pending review
+is still pending. Do not run both for the same purpose. A routine prose correction or a
 status/decision question does not require this independent implementation review.
 
 Give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
