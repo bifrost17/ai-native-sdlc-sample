@@ -78,6 +78,6 @@ intent.md에서 이어받음:
   `test_list_preserves_order_and_does_not_write`와 같은 방식으로 검증).
 - AC7 → R6(복사본 시나리오): 임시 복사본에서 `complete R-101`을 실행한 뒤 그 복사본으로
   `summary --owner hana`를 실행하면 `open\t0`, `done\t2`를 반환한다(상태 변화가 반영됨).
-- AC8 → R7: 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1, stderr 메시지)는 이번 변경으로
-  달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
+- AC8 → Constraints(기존 명령·저장 필드 유지): 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1,
+  stderr 메시지)는 이번 변경으로 달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
   `test_complete_changes_only_target_status_and_is_repeatable`가 그대로 통과해야 한다.
