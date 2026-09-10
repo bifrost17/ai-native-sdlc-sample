@@ -1,5 +1,6 @@
 # Plan: ‹what is built› (from intent ‹NNNN-slug›)
 Upstream: spec.md@‹commit sha of the accepted spec›. Status: draft.
+‹Keep this brief: record the key decisions and references needed to implement and verify the change without guessing from the conversation.›
 ## Files that change
 ‹real paths, one per line, (new) where new›
 ## Order of work
