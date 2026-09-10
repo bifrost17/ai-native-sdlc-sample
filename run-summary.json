@@ -1,0 +1,147 @@
+{
+  "run": "F02-plan-sync",
+  "kind": "partial",
+  "input": "F02 v2.0.0/seed102 + published turn-02 JSON requirement",
+  "template_commit": "80e90016a6b507d98d563e6abcdbbf56aecdca41",
+  "base_product": "28b8fa8bff56d5becf2f8bfd63ffaa99b7f3dfac",
+  "setup_commit": "d22a9fe2f0d3bc5ea367ab6fd99545a347d90404",
+  "accepted_spec_commit": "4d310729d5b9061b12441061737a6773b28c0502",
+  "implementation_and_plan_commit": "34c351beb60a1597db10ad9b998c9c73f2c6f40c",
+  "git_operator": "HUMAN (Codex, simulated)",
+  "requested_model": "sonnet",
+  "effort": "low",
+  "metrics": {
+    "turns": 5,
+    "resumes": 4,
+    "models": [
+      "claude-sonnet-5"
+    ],
+    "sessions": [
+      "39830ae6-37fd-4eb1-8ee8-a104d7028a33"
+    ],
+    "plugin_counts": [
+      0
+    ],
+    "builtin_skill_counts": [
+      18
+    ],
+    "skill_calls": [],
+    "cost_usd_cli_reported": 0.895381,
+    "process_seconds": 240.07,
+    "started_at": "2026-09-10T15:56:14.879862+00:00",
+    "ended_at": "2026-09-10T16:03:24.659723+00:00",
+    "dialog_seconds": 429.78,
+    "tool_errors": [
+      {
+        "tool": {
+          "turn": 1,
+          "name": "Bash",
+          "input": {
+            "command": "python3 tracker.py --data requests.json summary && echo --- && python3 tracker.py --data requests.json summary --owner hana && echo --- && cp requests.json /tmp/req_copy.json && python3 tracker.py --data /tmp/req_copy.json complete R-101 && python3 tracker.py --data /tmp/req_copy.json summary --owner hana && rm /tmp/req_copy.json && git status"
+          }
+        },
+        "result": "Permission for this tool use was denied. It requires approval, and this session has no approval surface — nobody can answer a permission prompt here — so it was denied automatically. The action was NOT performed; do not claim it succeeded, and do not retry it: this action, and anything else that req"
+      }
+    ],
+    "successful_reads": [
+      {
+        "turn": 1,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/intent.md"
+      },
+      {
+        "turn": 1,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/spec.md"
+      },
+      {
+        "turn": 1,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/plan.md"
+      },
+      {
+        "turn": 1,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/tracker.py"
+      },
+      {
+        "turn": 1,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/tests/test_tracker.py"
+      },
+      {
+        "turn": 2,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/tracker.py"
+      },
+      {
+        "turn": 3,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/docs/PROCESS.md"
+      },
+      {
+        "turn": 3,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/docs/GIT-WORKFLOW.md"
+      },
+      {
+        "turn": 3,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/README.md"
+      },
+      {
+        "turn": 3,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/spec.md"
+      },
+      {
+        "turn": 4,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/spec.md"
+      },
+      {
+        "turn": 4,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/plan.md"
+      },
+      {
+        "turn": 5,
+        "path": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync/intent/0001-owner-list-and-summary/plan.md"
+      }
+    ]
+  },
+  "outcome": {
+    "unprompted_revision": "failed: spec/plan omitted in turn2",
+    "human_review_recovery": "observed",
+    "tests": 10,
+    "root_independent_observations": 12,
+    "verifier_cli_invocations": 13,
+    "existing_tests_and_helpers_ast": "unchanged"
+  },
+  "not_observed": [
+    "autonomous Git commit compliance",
+    "new PR integration",
+    "new delivery or production deployment",
+    "team skill use",
+    "general success rate"
+  ],
+  "scope_note": "Plan self-update is explicit in Revision; Files that change lists product files only. Root judged no hidden scope and did not require duplicate listing.",
+  "sha256": {
+    "raw/observed-metrics.json": "7ce60bef1e42954000f461d6f63536df8a6bfcebff99831bb95395289dbed1bc",
+    "raw/root-verification.md": "7af2ee19fb674807b00a59625ec1d011a644f35ceaf4059d83996c93ba608e8b",
+    "raw/turn-01-working.diff.json": "ff960d051c44c67b36845dfec7985e35dffcfffbc9c029dca5e5b5d0786df39d",
+    "raw/turn-01.agent.jsonl": "9a431b92d7e9557614a00f153cf7c152a7676ef8cc32a3bea506d0848dffeee2",
+    "raw/turn-01.human.md": "8548162556dde39ad9dc0f80c8d797fefd8bd6698f6968b367c8897a2b5aab5e",
+    "raw/turn-01.meta.json": "ce2fe465ef8e65519824693cfec70e80c7b51285d98fa05c07ad3ec6db5c49f8",
+    "raw/turn-01.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-02-working.diff.json": "67fd277efa5ea0a9a856a9a1a4c383e84bcf5ee02973dd1739e4e1fa21d20143",
+    "raw/turn-02.agent.jsonl": "0756700a73175bb757ebe3308d1bae8e6df56366f659c4de6ce018dd7f283fae",
+    "raw/turn-02.human.md": "c7a956cfe7123fbd48f040bd0a9fd9eb8d3b071c9740f9c0e8192d8dfcd5592c",
+    "raw/turn-02.meta.json": "67c9d6630a3ff75371d222e94cca9fa8baa7971354e11b54ca9e148c768f7e34",
+    "raw/turn-02.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-03.agent.jsonl": "3d664c5139954e0835df56e7a367544fd974f289ec7d4441c7da5d42546c8e27",
+    "raw/turn-03.human.md": "4f2a353514200037a6c942b8fc9c6e8b6a095b1679483eb5a7ed7a0b84bcfe47",
+    "raw/turn-03.meta.json": "1ce554a5de3ce1751141b6b83416e03d48cfa09c85a64c73e97b52d5ad33fd78",
+    "raw/turn-03.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-04.agent.jsonl": "46ec5911dc509288f6fdb9af0d145e7e9a76883ba5672e101c27f796a66f3923",
+    "raw/turn-04.human.md": "533c12a13fcec5f051416b5c659f2777945d503b8e43b50a1565607a9a124598",
+    "raw/turn-04.meta.json": "68172e73c688ea180e0facce47c753fa0bc62008c7d49592bb76e5c814dbe170",
+    "raw/turn-04.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-05.agent.jsonl": "3b29d38a5235e57cc6da8ecf8c47735a78080abdcf48db55f14dda89afc6e7cf",
+    "raw/turn-05.human.md": "fe694c6ee16da85685b5a75825ce5757d49c0a7b8a28a34687299896641831f9",
+    "raw/turn-05.meta.json": "5d1678cf65e5c8448a7473aba052858e6c0d23c9cad75c64fc64ba190ae44ff4",
+    "raw/turn-05.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/verifier-cli.txt": "d2e268e129729f81e5de58113cd393e29e2ead7a53d281c5dd1e921d25089dd2",
+    "raw/verifier-summary.txt": "b2f175a063a64a394a57f9901e598a3c079a4eea727a76838f662c733c4c7bc5",
+    "raw/verifier-tests.txt": "e682253a374e7e820f530a1852a94195b8ed6e64306cb1ed6f51e3a8a7021ec1",
+    "EXPERIMENT.md": "db034785968c13f60e7d6dcae55bec493dcce6c964b08abc0496c22f4ad16935"
+  }
+}

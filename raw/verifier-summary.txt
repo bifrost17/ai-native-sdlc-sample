@@ -1,0 +1,70 @@
+# F02 plan-sync independent verifier
+
+## 1. 실행한 것
+
+- 대상 확인: `git status --short`, `git rev-parse HEAD`, `git show -s --format=... HEAD`.
+  시작 시 clean, 브랜치 `codex/experiment-2026-09-11-plan-sync`, HEAD
+  `34c351beb60a1597db10ad9b998c9c73f2c6f40c`, 부모
+  `4d310729d5b9061b12441061737a6773b28c0502`.
+- 커밋 대조: `git diff --name-status 4d310729...34c351b` 및 `git diff --check`.
+  실제 변경은 `README.md`, `intent/0001-owner-list-and-summary/plan.md`,
+  `tests/test_tracker.py`, `tracker.py` 네 파일이며 diff-check rc=0.
+- spec 선행 확인: `git diff --name-status d22a9fe...4d31072`는
+  `intent/0001-owner-list-and-summary/spec.md` 한 파일뿐. 최종 plan의 Upstream은
+  `spec.md@4d310729d5b9061b12441061737a6773b28c0502`와 정확히 일치.
+- 전체 시험:
+  `PYTHONPYCACHEPREFIX=/tmp/plan-sync-pycache python3 -m unittest discover -s tests -v`
+  rc=0. 전체 원문은 `/tmp/plan-sync-verifier.txt`.
+- 독립 CLI: 기존 `list`, `list --owner`, `show`와 신규 `summary` 기본/owner/unknown,
+  `summary --json` 기본/owner/unknown, 임시 복사본 `complete` 뒤 JSON summary를 실행.
+  기대한 rc와 다른 실행 0건. 전체 원문은 `/tmp/plan-sync-cli.txt`.
+- 회귀 대조: Python AST로 PR1 통합판 `28b8fa8`의 기존 test 5개와 `setUp`/`invoke`
+  helper를 최종판과 비교. 7/7 동일, 누락/변경 0. `requests.json` blob도 양쪽
+  `090aa5da12a2af586c2ca63b5e641523715b6a73`로 동일.
+- 공개 기록: `turn-01..05.human.md`, 각 `agent.jsonl`의 init/result/tool event,
+  `meta.json`을 읽어 모델·세션·행동 순서를 대조. 비공개 oracle과 oracle 스크립트는 읽지 않음.
+
+## 2. 관측한 것
+
+- 첫 실패 시험 줄: 없음. `Ran 10 tests in 0.521s`, `OK`, rc=0.
+- 기존 CLI는 목록 4건 원순서, hana 필터 R-101/R-103, 대소문자 불일치 빈 결과,
+  기존/없는 ID show의 rc 0/1과 stderr를 유지했다.
+- 기본 summary는 전체 3/1, hana 1/1, unknown 0/0. JSON summary는 각각
+  `{open:3,done:1}`, `{open:1,done:1}`, `{open:0,done:0}`. 임시 복사본에서
+  R-101 complete 뒤 hana JSON summary는 0/2. 조회 전후 원본 SHA-256은 모두
+  `c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795`.
+- 공개 5턴은 같은 session `39830ae6-37fd-4eb1-8ee8-a104d7028a33`, 요청
+  sonnet/low, 실제 `claude-sonnet-5`, CLI 2.1.265, 매 turn process rc=0이다.
+- 행동 순서는 기록 주장과 일치한다. turn 2에서 AGENT는 JSON 코드·시험·README만 바꾸고
+  spec/plan을 누락했다. turn 3 HUMAN 리뷰가 불일치를 발견했다. AGENT의 첫 문서 복구는
+  `같은 커밋 계열` 표현과 수락되지 않은 이전 Upstream을 남겼다. turn 4 HUMAN이 R5/R8 모순,
+  정확히 같은 커밋 규칙, 위험/Proof 표현을 지적해 수정했다. turn 5에서 HUMAN이 spec
+  `4d31072`를 먼저 커밋·수락한 뒤 AGENT가 plan Upstream을 갱신했다.
+- 따라서 이 실험은 자발적 same-commit 준수 통과가 아니라, 초기 누락과 불완전한 첫 복구를
+  HUMAN 리뷰가 발견해 최종 커밋 구조로 복구한 관측이다.
+
+## 3. plan.md와 맞지 않는 것
+
+- 최종 기능·설계·시험·README·커밋 순서는 spec/plan/code와 일치한다. spec R5는 기본 출력,
+  R8/AC9는 JSON 출력을 분리하고 코드와 시험도 그 경계를 따른다.
+- 최종 구현 커밋은 plan 개정을 코드·시험·README와 같은 커밋에 담았고, 부모는 먼저 커밋·수락한
+  spec 판이다. same-commit 및 accepted-spec Upstream 규칙을 최종 상태에서 충족한다.
+- 파일 목록의 형식 차이는 남는다. 실제 최종 커밋은 네 파일이지만 plan의 `Files that change`는
+  제품 변경 세 파일만 열거하고 plan.md 자체는 재기재하지 않는다. 다만 바로 위 Revision 절과
+  HUMAN/AGENT 최종 인계가 plan.md를 포함한 정확한 네 파일을 같은 커밋 대상으로 명시한다.
+  사용 템플릿은 계획 문서 자신을 `Files that change`에 다시 적도록 강제하지 않으므로, root는 이를
+  숨은 범위나 중요한 제품 누락으로 판정하지 않았다. 제작 verifier의 엄격한 양방향 목록 규칙과는
+  형식상 차이가 있다는 사실은 보존한다.
+
+## 4. 확인하지 못한 것과 이유
+
+- 이 부분 실험은 로컬 최종 제품 커밋까지 확인했다. 실제 PR 생성·merge, 호스티드 CI, 운영 배포는
+  아직 범위에 없으므로 확인하지 않았다.
+- HUMAN 비공개 oracle과 독립 oracle 스크립트는 요청대로 읽지 않았다. 기대 동작은 공개
+  spec/plan/code에서 독립적으로 정했다.
+- 검증 시작 뒤 나타난 untracked `EXPERIMENT.md`는 root가 종료 후 작성 중인 기록 파일이다.
+  verifier는 읽거나 수정하지 않았고 이번 제품 동작 판정에 사용하지 않았다.
+
+최종 판정: 제품 동작·회귀·최종 커밋 원자성·Upstream은 통과. 행동 준수는 HUMAN 리뷰에 의한
+복구 성공으로 제한하며 자발적 준수 성공으로 세지 않는다. 위 파일목록 형식 차이 외에 중요한
+기능 누락이나 문서-코드 모순은 발견하지 못했다.

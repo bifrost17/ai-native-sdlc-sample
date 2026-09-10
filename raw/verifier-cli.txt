@@ -1,0 +1,105 @@
+COMMAND=python3 tracker.py --data requests.json list
+STDOUT_BEGIN
+R-101	open	hana	회의실 키 확인
+R-102	open	min	문구함 채우기
+R-103	done	hana	회의록 정리
+R-104	open	-	책장 위치 확인
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json list --owner hana
+STDOUT_BEGIN
+R-101	open	hana	회의실 키 확인
+R-103	done	hana	회의록 정리
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json list --owner HANA
+STDOUT_BEGIN
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json show R-101
+STDOUT_BEGIN
+R-101	open	hana	회의실 키 확인
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json show R-999
+STDOUT_BEGIN
+STDOUT_END
+STDERR_BEGIN
+Request not found: R-999
+STDERR_END
+EXIT_CODE=1 EXPECTED_EXIT_CODE=1
+COMMAND=python3 tracker.py --data requests.json summary
+STDOUT_BEGIN
+open	3
+done	1
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json summary --owner hana
+STDOUT_BEGIN
+open	1
+done	1
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json summary --owner nobody
+STDOUT_BEGIN
+open	0
+done	0
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json summary --json
+STDOUT_BEGIN
+{"open": 3, "done": 1}
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json summary --owner hana --json
+STDOUT_BEGIN
+{"open": 1, "done": 1}
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data requests.json summary --owner nobody --json
+STDOUT_BEGIN
+{"open": 0, "done": 0}
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+SOURCE_SHA256_BEFORE=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795
+SOURCE_SHA256_AFTER=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795
+SOURCE_UNCHANGED=yes
+COMMAND=python3 tracker.py --data <temp-copy> complete R-101
+STDOUT_BEGIN
+R-101	done	hana	회의실 키 확인
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+COMMAND=python3 tracker.py --data <same-temp-copy> summary --owner hana --json
+STDOUT_BEGIN
+{"open": 0, "done": 2}
+STDOUT_END
+STDERR_BEGIN
+STDERR_END
+EXIT_CODE=0 EXPECTED_EXIT_CODE=0
+UNEXPECTED_RC_OR_SOURCE_FAILURES=0
+FINAL_GIT_STATUS_BEGIN
+?? EXPERIMENT.md
+FINAL_GIT_STATUS_END
+__WRAPPER_EXIT_CODE__=0
