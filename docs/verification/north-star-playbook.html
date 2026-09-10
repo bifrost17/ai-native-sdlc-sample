@@ -197,11 +197,12 @@ html{scroll-behavior:smooth}
         <p><strong>플레이북 원문은 설계와 판단의 기준이고, 각 문단에 붙인 주석은 그 기준을 얼마나 충실히 따랐는지 점검한 기록</strong>이다. 주석에는 우리 프로젝트의 구현, 실제 실행 증거, 판정과 보완 내용을 담는다. 이 안내와 평가 주석은 우리 프로젝트가 작성한 내용이다.</p>
         <p>템플릿·스킬·정책을 만들거나 개선할 때는 해당 플레이북 문단과 기존 주석을 먼저 확인한다. 가이드가 조직에 맡긴 부분은 우리 팀의 실제 기준과 상황으로 채우고, 각 문단이 요구하는 구현과 실행 근거로 충실도를 평가한다.</p>
       </section>
-      <p class="dek">검증 기준 핀 — v2 <code>main@0daf655</code> · <b>v3 <code>main@5599dcf</code></b>(현재) ·
+      <p class="dek">검증 기준 핀 — v2 <code>main@0daf655</code> · <b>v3 <code>main@5599dcf</code></b>(기준 라운드) ·
       실험 <code>experiment/2026-09-09-claims-status@cebc0e5</code>. 인용은 <b>경로 + 축자 인용문</b>이고
       줄 번호는 쓰지 않는다 — 핀은 그 문면을 읽은 시점을 말하고, 번호가 필요하면
       <code>git grep -F</code> 가 그 시점 값을 돌려준다. 재판정은 인용문이 사라졌을 때 한다.
-      어느 챕터가 어느 라운드에 있는지는 <code>CHAPTERS.md</code> 가 정본이다.</p>
+      어느 챕터가 어느 라운드에 있는지는 <code>CHAPTERS.md</code> 가 정본이다.
+      <a href="0013-controls.md">0013 보완</a>의 9개 주석은 <code>91727d2</code>와 후속 검증 기록을 쓴다.</p>
     </header>
     <div class="overview"><p>많은 엔지니어링 팀이 여전히 같은 approval gate, review, handoff, 정책을 그대로 두고 있어, Claude Code 같은 agentic coding 솔루션으로 얻은 생산성 향상을 정체시킨다.</p>
 <p>이 가이드에서는 고객과 함께 일하며 얻은 경험을 바탕으로, SDLC 각 단계에 Claude를 사내 통합해 개발을 가속하고 process를 더 빠르게 돌리는 Applied AI 팀의 best practice 몇 가지를 살펴본다.</p>
@@ -446,9 +447,9 @@ Do third-party loss adjusters need access too?
 <p class="src"><a href="https://academy.claude.com/courses/ai-native-sdlc-playbook/requirements-and-design" target="_blank" rel="noopener">원문 보기</a></p>
 <p>product owner가 <code>intent.md</code>를 승인하면 Claude가 그것을 받아 요구사항·설계 스펙을 만든다. 이 과정은 브랜드·보안·compliance·UX를 다루는 조직의 <a href="https://claude.com/blog/complete-guide-to-building-skills-for-claude">skill</a>이 이끈다.</p>
 <details class="verify v-part" open id="V3-01"><summary>▸ <a class="vid" href="#V3-01">V3-01</a> · 검증 · <b>부분</b> — <span class="q">도입 — 조직의 skill(브랜드·보안·compliance·UX)이 spec 을 이끈다</span></summary><div class="v-body">
-<p><b>템플릿</b> 네 영역이 v3 에서 다 찼다(체인 0011·0012). 템플릿 자신의 스킬은 <code>.claude/skills/</code>(<code>capture-intent</code> · <code>design-spec</code> · <code>plan</code> · <code>secure-api-review</code>)에 그대로 두고, 조직 정책 스킬은 <code>org-skills/skills/</code> 플러그인으로 갈랐다 — 브랜드 <code>brand</code>, compliance <code>data-compliance</code>, UX <code>ux-copy</code>·<code>accessibility</code>, 보안 <code>secure-api-review</code>·<code>secrets-scan</code>. 각 스킬이 인용하는 정본은 <code>policies/{brand,compliance,ux,api-security}.md</code>(조항 ID <code>B</code>/<code>C</code>/<code>U</code>/<code>S</code>)이고, <code>org-skills/skills/spec-policy-pass/SKILL.md</code> 가 「정책 스킬을 하나도 빠뜨리지 않고 건다」를 절차로 세운다. <code>docs/ADOPTING.md</code> 의 「a skill per policy that is enforced inconsistently today (brand, compliance, UX, …)」 행은 여전히 채택 팀의 자리로 남아 있다.</p>
-<p><b>실험</b> 0008 spec F6 · 0009 spec F9 — A 가 스스로 적음: 「브랜드·UX 기준 스킬이 레포에 없어서 보안만 점검했다 … 없는 기준을 맞췄다고 쓰지 않았다」(raw-hac/16 · 46). 즉 spec 은 <b>있는 스킬만</b> 제약으로 받았고, 빈 자리가 빈 자리로 보였다.</p>
-<p><b>보완</b> 없음. v2 에서 부분이던 이유(전제 넷 중 하나만 있었다)는 사라졌다 — 이제 넷이 다 있다. 그럼에도 <b>부분</b>인 이유가 바뀌었다: 그 스킬들 위에서 돈 사슬이 아직 없다. CHAPTERS.md 가 「부분」에 넣는 「다음 사슬에서 확인할 문면」에 해당한다 — 다음 spec 이 <code>spec-policy-pass</code> 를 실제로 걸고 네 정책을 <code>Skills applied</code> 에 남기는 것을 볼 때까지.</p>
+<p><b>템플릿</b> 로컬 <code>.claude/skills/</code>와 조직 플러그인 <code>org-skills/skills/</code>을 함께 쓴다. <code>.claude/skills/design-spec/SKILL.md</code>는 “Enumerate the skills actually available in this session”을 요구하고 <code>spec-policy-pass</code>를 함께 적용한다. <code>org-skills/skills/spec-policy-pass/SKILL.md</code>는 “적용한다면 파일을 연다.”와 적용/미적용 이유를 요구한다. <code>evals/run.sh</code>의 <code>--plugin-dir "$PLUGIN_DIR"</code>가 현재 체크아웃의 조직 스킬을 평가 세션에 로드한다.</p>
+<p><b>실험</b> 체인 0013의 새 <code>04-org-policy-application</code>은 브랜드·개인정보·접근 기록·인증·오류 문구를 실제 spec 요구로 연결한다. 가짜 CLI 통합 5건은 플러그인 인자와 작업 공간을 확인하며, 이름만 나열한 결과는 실패한다. 실제 모델의 읽기와 적용 결과는 <a href="0013-controls.md">0013 검증 기록</a>에 분리했다.</p>
+<p><b>보완</b> 로컬 폴더만 열거하던 누락과 평가 연결을 보완했다. 실제 개발 사슬에서 정책 적용 후 오너 검토·수락까지 확인한 것은 아니므로 <b>부분</b>을 유지한다. 기존 assertions의 의미적 채점 보완은 이번 범위 밖이다.</p>
 </div></details>
 <p>product owner는 그 스펙을 review하지만 직접 쓰지는 않는다. 이 과정의 목표는 우려 지점이 표시된 채로, 엔지니어링 팀이 계획을 세울 기준이 될 스펙을 만드는 것이다.</p>
 <details class="verify v-ok" open id="V3-02"><summary>▸ <a class="vid" href="#V3-02">V3-02</a> · 검증 · <b>충실</b> — <span class="q">도입 — PO 는 review 만, 목표는 우려 지점이 표시된 spec</span></summary><div class="v-body">
@@ -534,9 +535,9 @@ Do third-party loss adjusters need access too?
 <h2>governance 고려사항</h2>
 <p>정책 충돌이 몇 주 뒤 review에서 발견되는 대신, 살아 있는 정책을 스펙을 쓰는 동안 읽어 적용한다. 조직의 skill이 스펙의 제약으로 적용된다. 스펙, 그것을 만든 prompt, 그리고 효력을 가진 skill 버전이 모두 version control에 기록된다. product owner가 스펙을 승인하고, 표시된 우려 지점을 지정된 policy owner에게 보낸다.</p>
 <details class="verify v-part" open id="V3-14"><summary>▸ <a class="vid" href="#V3-14">V3-14</a> · 검증 · <b>부분</b> — <span class="q">governance — 정책을 쓰는 동안 적용 · spec/prompt/skill 버전 기록 · PO 서명 · 라우팅</span></summary><div class="v-body">
-<p><b>템플릿</b> spec ✓ prompt ✓(<code>commands/spec.md</code>) skill ✓ — 셋 다 git. PO 서명 = 머지 ✓. 라우팅 = flagged concern 의 「누가 정하는가」 ✓. 「효력을 가진 skill 버전」 — <code>templates/spec.md</code> 의 <code>Skills applied: ‹name@sha …›</code> 줄과 <code>design-spec/SKILL.md</code> 「Open each one before you name it under "Skills applied" in the spec — chain 0007 named one without opening it. Write each as <code>name@sha</code>」 가 판까지 요구한다(#45). <code>policies/README.md</code> 「서명과 판」 도 같은 것을 정책 쪽에서 요구한다. 기존 spec(0008·0009)은 이름만 — v1 발견.</p>
-<p><b>실험</b> 0008 spec 이 적용한 <code>secure-api-review</code> 는 그 뒤 PR #35 로 바뀌었다 — 이름만으로는 어느 판이 적용됐는지 알 수 없었다(사후 <code>git log --before=&lt;spec 커밋 시각&gt;</code> 로 복원만 가능). #45 뒤 새 사슬이 <code>name@sha</code> 줄을 실제로 쓰는지는 아직 실행 전.</p>
-<p><b>보완</b> 반영 #45(409ea98). 다음 사슬 실행에서 <code>name@sha</code> 줄이 실제로 적히는 것을 볼 때까지 <b>부분</b>.</p>
+<p><b>템플릿</b> spec·프롬프트·스킬은 버전 관리하며 PO 서명은 머지다. <code>design-spec/SKILL.md</code>는 “Record its source (project path or plugin namespace and actual file path) and the version read.”를 요구한다. Git 이력이 있으면 해당 스킬 저장소의 SHA와 변경 상태, 캐시·도구 제한으로 이력이 없으면 그 플러그인의 manifest/설치 버전과 출처를 쓴다. “If no version can be verified, say <code>version-unverified</code> and why.” <code>templates/spec.md</code>와 <code>policies/README.md</code>도 같은 안내다.</p>
+<p><b>실험</b> 0013은 로컬 경로와 플러그인 캐시를 구분하는 안내 및 plugin 0.1.1을 도입했다. 가짜 CLI 검증은 호출 경로만 증명한다. 실제 모델의 출처·판 기록과 확인하지 못한 Git 상태는 <a href="0013-controls.md">0013 검증 기록</a>에 남겼다.</p>
+<p><b>보완</b> 캐시에서 소비 프로젝트 SHA를 잘못 쓰거나 판을 지어내는 안내를 없앴다. 설치 캐시에서의 실제 배포, 정책 오너의 검토·머지까지 확인하지 않았으므로 <b>부분</b>을 유지한다.</p>
 </div></details>
 <h2>측정 방법</h2>
 <ul>
@@ -844,9 +845,9 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 </div></details>
 <li>skill을 repo의 <code>.claude/skills/&lt;name&gt;/</code>에 두어 코드와 함께 배포되게 하거나, plugin을 통해 조직 전체에 배포하라.</li>
 <details class="verify v-ok" open id="V6-05"><summary>▸ <a class="vid" href="#V6-05">V6-05</a> · 검증 · <b>충실</b> — <span class="q">3 — .claude/skills/<name>/ 에 두어 코드와 함께 배포</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>.claude/skills/{capture-intent,design-spec,plan,secure-api-review}/SKILL.md</code>. 플러그인 배포는 쓰지 않았다(레포 단위).</p>
-<p><b>실험</b> 클론(<code>claude -p</code> 헤드리스)마다 같은 판이 로드됐다 — raw-hac 의 Skill 호출이 레포 안 파일을 가리킨다.</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿</b> 템플릿 스킬은 <code>.claude/skills/</code>, 조직 스킬은 <code>org-skills/</code> 플러그인(plugin 0.1.1)으로 배포한다. 가이드의 로컬 폴더 또는 조직 플러그인 경로에 대응한다. <code>design-spec/SKILL.md</code>의 “an installed copy can live in a cache elsewhere”가 실제 세션의 출처를 따르게 하고, <code>evals/run.sh</code>는 현재 플러그인을 <code>--plugin-dir</code>로 명시한다.</p>
+<p><b>실험</b> <code>tests/test_eval_plugin.py</code>가 네 케이스의 플러그인 인자와 파일 구조를 검증한다. 실제 Claude 실행의 로드·읽기 기록은 <a href="0013-controls.md">0013 검증 기록</a>에 있다. 후속 요청으로 로컬 마켓플레이스를 사용자 범위에 영구 설치했고, <code>--plugin-dir</code> 없는 새 Sonnet·low 세션의 자동 로드와 스킬 읽기도 확인했다. 독립된 설치 캐시의 전체 정책 평가·자동 갱신은 이번 시험에 포함하지 않았다.</p>
+<p><b>보완</b> 플러그인 배포를 쓰지 않는다고 하던 이전 주석을 현재 구조와 실행 경로로 교체했다.</p>
 </div></details>
 <li>skill이 trigger되는지 test하라. 관련 작업을 여러 방식으로 Claude에게 요청해 매번 skill이 로드되는지 확인하라.</li>
 <details class="verify v-ok" open id="V6-06"><summary>▸ <a class="vid" href="#V6-06">V6-06</a> · 검증 · <b>충실</b> — <span class="q">4 — 여러 방식으로 요청해 매번 로드되는지 확인</span></summary><div class="v-body">
@@ -923,9 +924,9 @@ Run scripts/check-endpoints.sh and include its output in your summary.
 </div></details>
 <p>build 단계 hook은 다음을 할 수 있다:</p>
 <details class="verify v-ok" open id="V6-14"><summary>▸ <a class="vid" href="#V6-14">V6-14</a> · 검증 · <b>충실</b> — <span class="q">build 단계 hook 넷 — protected path · 포매터/린터 · credentials · 예외 없는 정책의 뒷받침</span></summary><div class="v-body">
-<p><b>템플릿</b> protected path → <code>protect-paths.sh</code>(.github/** · Makefile · .claude/hooks/** · settings.json). 포매터/린터 → <code>format-lint.sh</code>(PostToolUse). credentials → <code>no-secrets.sh</code>(6 패턴). 예외 없는 정책 → <code>protect-tests.sh</code>(수정 작업 중 시험 파일, L9 631). secure-api-review 는 PO 결정으로 뒷받침 없음(권고).</p>
-<p><b>실험</b> <code>tests/test_hooks.sh</code> 28건이 각 훅의 block/allow 를 고정(<code>CLAUDE.md</code> 「<code>test_hooks: 28 passed, 0 failed</code>」). 0007 의 45 Bash 우회는 훅이 도구 호출만 본다는 한계로 기록(<code>CLAUDE.md</code> 「The hooks in <code>.claude/settings.json</code> watch tool calls, not effects」, #29).</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿</b> <code>protect-paths.sh</code>는 .github/**·Makefile·.claude/hooks/**·settings.json, <code>protect-tests.sh</code>는 수정 중 tests/**를 보호한다. 공통 <code>_lib.sh</code>가 cwd·절대/상대 경로·점 구간·심볼릭 링크·파일시스템 별칭을 해석해 논리 경로와 실제 대상을 함께 검사한다. <code>format-lint.sh</code>의 <code>f="$TARGET_PATH"</code>가 실제 파일을 검사한다. <code>no-secrets.sh</code>의 자격 증명 검사도 유지한다.</p>
+<p><b>실험</b> 기존 훅 28건과 새 <code>tests/test_hook_paths.py</code> 20개 메서드가 보호·허용·오류 처리를 검증한다. macOS 대소문자 별칭 회귀도 통과했다. 대소문자를 구분하는 파일시스템의 대조 1건은 이 Mac에서 skipped다. 수정 전 반례와 후속 검증은 <a href="0013-controls.md">0013 검증 기록</a>에 있다.</p>
+<p><b>보완</b> 경로 별칭 우회를 보완했다. <code>CLAUDE.md</code>의 “watch tool calls, not effects” 한계는 유지한다. Bash 쓰기나 검사와 쓰기 사이의 동시 파일 변경까지 막는다고 주장하지 않는다.</p>
 </div></details>
 <ul>
 <li>생성된 클래스나 동결된 패키지 같은 protected path의 편집을 막는다</li>
@@ -1117,9 +1118,9 @@ behavior that does not match plan.md. Do not fix anything; report only.
 </div></details>
 <li>마지막으로 loop 자체를 보호해야 하는데, 코드를 고치는 agent가 그 코드를 보는 검사를 약화시킬 수 있어서는 안 되기 때문이다. 수정 작업 중 test 파일 편집을 막는 hook이 그 일을 한다. 대안은 review에서 diff를 확인하고 test를 건드리는 변경을 전부 반려하는 것이다.</li>
 <details class="verify v-ok" open id="V8-10"><summary>▸ <a class="vid" href="#V8-10">V8-10</a> · 검증 · <b>충실</b> — <span class="q">7 — 수정 중 test 파일 편집을 막는 hook · 대안은 review 반려</span></summary><div class="v-body">
-<p><b>템플릿</b> hook: <code>protect-tests.sh</code>(tests/test_hooks.sh 케이스 5). 대안: <code>REVIEW.md</code> 「In a defect chain, a diff that touches an existing test file is a finding (L9 631) — the hook only sees Edit/Write」. 한계 명시: <code>CLAUDE.md</code> 「The hooks … watch tool calls, not effects」(Bash heredoc 은 훅이 못 본다).</p>
-<p><b>실험</b> 0005 에서 block 실측(위). 0007 은 45/45 Bash 로 써서 훅 0회 — 그래서 REVIEW.md 의 대안 경로가 문면이 됐다(#29).</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿</b> <code>protect-tests.sh</code>는 <code>INTENT_TASK=fix</code>에서 공통 경로 해석기가 찾은 모든 보호 대상 경로를 검사한다. 대안은 <code>REVIEW.md</code>의 “In a defect chain, a diff that touches an existing test file is a finding”. 훅은 Edit/Write 계열 호출을 보고 Bash의 파일 효과를 보지 않는다.</p>
+<p><b>실험</b> 0013의 새 <code>tests/test_hook_paths.py</code>에서 상대 경로·점 구간·심볼릭 링크·새 파일·cwd와 macOS의 <code>TESTS</code> 별칭을 확인했다. 기존 <code>tests/test_hooks.sh</code> 28건은 수정 없이 통과했다. 이번 보완은 기존 테스트를 고치지 않고 새 테스트 파일로 반례를 추가했다(<a href="0013-controls.md">0013 검증 기록</a>).</p>
+<p><b>보완</b> 경로 표기 차이로 시험 파일 보호를 우회하던 문제를 수정했다. 훅이 보지 못하는 Bash 쓰기는 여전히 리뷰 경로의 대상이다.</p>
 </div></details>
 </ol>
 <h2>실제 모습</h2>
@@ -1229,9 +1230,9 @@ If a test fails, fix the code, not the test.
 </div></details>
 <li>suite는 CI에서 non-interactive로, 예약된 일정에 따라 그리고 <code>CLAUDE.md</code>·skill·hook에 변경이 있을 때마다 도는데, 그 설정이 agent를 조종하므로 코드가 받는 regression test를 받을 자격이 있기 때문이다.</li>
 <details class="verify v-ok" open id="V9-07"><summary>▸ <a class="vid" href="#V9-07">V9-07</a> · 검증 · <b>충실</b> — <span class="q">3 — non-interactive · 예약 일정 · CLAUDE.md/skill/hook 변경마다</span></summary><div class="v-body">
-<p><b>템플릿</b> workflow on: pull_request paths(CLAUDE.md · .claude/** — skills·hooks·settings·agents·commands 전부) · schedule <code>17 4 * * 1</code>(주 1회; 예시는 매일) · workflow_dispatch. <code>evals/run.sh</code> 의 <code>claude -p … --output-format json</code>.</p>
-<p><b>실험</b> 위 1번 블록의 트리거 실측(설정 PR 에서만 발화).</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿</b> <code>.github/workflows/agent-evals.yml</code>은 CLAUDE.md·.claude/** 외에 <code>org-skills/**</code>·<code>policies/**</code>·<code>templates/**</code>·<code>evals/**</code>·<code>.claude-plugin/**</code>·워크플로 자체 변경을 PR 트리거에 포함한다. 주 1회 일정과 수동 실행을 유지한다. <code>evals/run.sh</code>는 <code>claude -p</code>에 현재 플러그인을 명시한다.</p>
+<p><b>실험</b> <code>tests/test_eval_plugin.py</code>가 관련 경로의 트리거 매칭, 네 케이스의 플러그인 전달, CLI 실패·플러그인 누락의 비0 종료를 확인한다. 실제 모델 단일 케이스와 로컬 가짜 CLI 검증은 <a href="0013-controls.md">0013 검증 기록</a>에서 구분한다. 변경된 GitHub Actions 트리거 자체는 호스티드 CI에서 아직 실행하지 않았다.</p>
+<p><b>보완</b> 조직 스킬·정책만 변경할 때 평가가 누락되던 경로를 보완했다. 전체 평가와 의미적 assertions 채점이 완료됐다는 뜻은 아니다.</p>
 </div></details>
 <li>설정 변경은 그 결과를 gate로 삼는다. pass rate를 떨어뜨리는 skill 변경은 merge되기 전에 review를 받는다.</li>
 <details class="verify v-part" open id="V9-08"><summary>▸ <a class="vid" href="#V9-08">V9-08</a> · 검증 · <b>부분</b> — <span class="q">4 — 결과가 설정 변경의 gate · pass rate 떨어뜨리는 skill 변경은 merge 전 review</span></summary><div class="v-body">
@@ -1725,9 +1726,9 @@ exit 0
 <div class="compare"><div class="pane legacy"><p class="pane-label">Traditional</p><p>유지보수는 반응형 phase이다. 모든 ticket이나 incident는 사람이 손을 대고 process를 다시 시작해 주기를 기다린다. 새벽 3시에 알림이 울려도 놓칠 수 있고, ticket은 누군가 집어 갈 때까지 backlog에 앉아 있을 수 있으며, 다른 불이 먼저 나면 post-mortem 후속 조치가 코드베이스에 아예 닿지 못할 수도 있다.</p></div><div class="pane native"><p class="pane-label">AI-native</p><p>control band 이탈, ticket, 채널 메시지, 예약된 일정 같은 trigger가 경로에 사람 없이 Claude를 호출한다. Claude는 진단하고, gate를 거치는 경로로만 행동하며, 찾아낸 것을 <code>intent.md</code>로 쓰고, 그것이 앞서 설명한 단계들을 통과한다. 사람은 그 작업을 분류하고 review하며, 더 이상 그 일을 시작할 필요가 없다.</p></div></div>
 <p>deterministic 스크립트가 프로덕션을 감시하다가 control band를 벗어나면 Claude를 호출한다. 이탈 감시는 loop가 자율적으로 도는 패턴을 보여 주는 좋은 예시이고, 이 단계 끝의 Claude Tag(퍼블릭 베타) 절은 다른 채널로 들어오는 일을 다룬다.</p>
 <details class="verify v-ok" open id="V13-02"><summary>▸ <a class="vid" href="#V13-02">V13-02</a> · 검증 · <b>충실</b> — <span class="q">패턴 — deterministic 감시가 이탈 때 Claude 를 호출</span></summary><div class="v-body">
-<p><b>템플릿</b> 감시·검출은 결정론(detect_bands.py, 모델 없음) ✓. 이탈 때 Claude 호출: <code>.github/workflows/bands.yml</code> 의 진단 단계 — 2σ/3σ 이면 <code>claude -p</code> 읽기 전용 진단, <code>--allowedTools</code> 는 <code>ops/bands.yaml</code> 2sigma tier 의 <code>tools</code>(Read,Grep) + 초안 디렉터리 쓰기뿐, 커밋·PR 없음, 키 없으면 건너뜀(#54).</p>
-<p><b>실험</b> 0006 의 「진단」은 사람이 코드에서 재현했다(<code>intent.md</code> 「트리아지(코드에서 재현)」).</p>
-<p><b>보완</b> 반영 #54(0daf655). 재실행 run 34328747296(08:22:24Z) success — 진단 단계는 키가 없어 skipped, 초안 artifact 는 그대로. 키를 넣은 조직에서 첫 이탈 때 처음 돈다.</p>
+<p><b>템플릿</b> 감시·검출은 <code>scripts/detect_bands.py</code>가 결정론으로 처리한다. <code>bands.yml</code>은 탐지 JSON을 <code>scripts/run_bands.py</code>로 넘긴다. 실행기는 none/1σ를 기록하고 2σ/3σ에서 Claude를 호출한다. <code>--tools Read,Grep</code>와 <code>--allowedTools Read,Grep</code>로 모델 도구를 제한하며 파일 저장은 실행기가 맡는다.</p>
+<p><b>실험</b> <code>tests/test_bands_workflow.py</code>가 가짜 모델로 등급별 호출·산출물·종료 코드를 확인한다. 키 없음은 <code>skipped_no_api_key</code>로 기록하고 모델·진단·초안 오류는 비0으로 전파한다. <code>bands.yml</code>은 실패 때도 <code>if: always()</code>로 탐지 근거와 실행 기록을 업로드한다(<a href="0013-controls.md">0013 검증 기록</a>).</p>
+<p><b>보완</b> 없는 2σ 초안에 쓰라고 하던 호출과 실패를 삼키던 <code>|| true</code>를 제거했다. 이번 검증에 실제 모델의 운영 진단이나 호스티드 CI 실행은 포함하지 않았다.</p>
 </div></details>
 <h2>시작하기</h2>
 <ul>
@@ -1760,9 +1761,9 @@ exit 0
 </div></details>
 <li>대응 등급은 version 관리되는 설정(아래 <code>bands.yaml</code>)에 정의한다. 1σ에서는 스크립트가 기록만 하고, 2σ에서는 진단을 위해 Claude를 읽기 전용으로 호출하며, 3σ에서는 Claude가 행동할 수 있으나 review gate로 PR을 열거나 사전 승인된 runbook을 trigger하는 방법으로만 가능하다.</li>
 <details class="verify v-ok" open id="V13-07"><summary>▸ <a class="vid" href="#V13-07">V13-07</a> · 검증 · <b>충실</b> — <span class="q">3 — tier 를 설정에: 1σ 기록 · 2σ 읽기 전용 진단 · 3σ PR 또는 사전 승인 runbook 으로만</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>ops/bands.yaml</code> 의 <code>tiers</code>(1sigma log · 2sigma diagnose tools "Read,Grep" · 3sigma propose routes [pull_request]). runbook 은 「없는 것을 적지 않는다」로 뺌(그 위 주석). 검출기는 tier 를 stdout JSON 으로만 알린다(rc 와 분리). 2σ 진단 호출은 <code>bands.yml</code> 의 진단 단계가 tier 와 설정의 tools 로 게이트한다(#54).</p>
-<p><b>실험</b> run-of-9 → 2sigma/diagnose · spike → 3sigma/propose (tests:46 · :32). 3σ 의 행동은 「PR 초안 artifact」 — PR 자체를 여는 것은 사람.</p>
-<p><b>보완</b> 반영 #54(0daf655). 3σ 의 PR 열기는 사람 분류 뒤로 두는 설계(<code>bands.yml</code> 머리 「triage is a person's」).</p>
+<p><b>템플릿</b> <code>ops/bands.yaml</code>의 1sigma log·2sigma diagnose·3sigma propose를 <code>scripts/run_bands.py</code>가 분기한다. none/1σ는 기록만, 2σ는 읽기 전용 진단, 3σ는 사람이 검토할 제안 초안이다. 모델에는 Read/Grep만 제공하고, 스크립트가 결과를 저장한다. 2σ 진단도 다음 문단의 intent 형식으로 기록하지만 코드 수정·PR 권한은 주지 않는다.</p>
+<p><b>실험</b> 새 <code>tests/test_bands_workflow.py</code>가 등급마다 도구 인자·진단·제안 경로를 검증한다. 기존 검출기 시험도 그대로 유지했다. 3σ의 PR은 사람이 분류한 뒤 여는 기존 설계이며 자동 PR·커밋·프로덕션 실행은 없다(<a href="0013-controls.md">0013 검증 기록</a>).</p>
+<p><b>보완</b> 2σ의 존재하지 않는 초안 의존과 모델 Write/Edit 권한을 제거했다. 실제 운영 표본·진단과 PR 분류는 다음 운영 실행에서 확인할 부분이다.</p>
 </div></details>
 <li>trigger 계층은 GitHub나 GitLab의 예약된 workflow, 기존 모니터링 스택에서 오는 webhook, 또는 네트워크 안의 크론 job일 수 있다. Claude는 CI runner 위의 non-interactive 단계로든 sandboxing된 컨테이너 안의 Agent SDK 서비스로든 stateless로 돌고, 배포와 모델 접근 선택지는 CI/CD play가 다룬다. 실행이 stateless이고 non-interactive이므로, 아무도 시작하지 않아도 loop가 시작되고 끝날 수 있다.</li>
 <details class="verify v-ok" open id="V13-08"><summary>▸ <a class="vid" href="#V13-08">V13-08</a> · 검증 · <b>충실</b> — <span class="q">4 — trigger: 예약 workflow/webhook/cron · stateless non-interactive · 아무도 시작하지 않아도 끝난다</span></summary><div class="v-body">
@@ -1772,9 +1773,9 @@ exit 0
 </div></details>
 <li>agent는 진단을 <strong>Stage 1: Plan</strong> 형식의 <code>intent.md</code>로 쓰며, anomaly와 그 증거, 제안하는 결과, 영향받는 시스템, 미결 질문을 담는다. 거기서부터 그 finding은 다른 무엇과 마찬가지로 pipeline을 통과한다.</li>
 <details class="verify v-ok" open id="V13-09"><summary>▸ <a class="vid" href="#V13-09">V13-09</a> · 검증 · <b>충실</b> — <span class="q">5 — 진단을 intent.md(anomaly·증거·제안 결과·영향 시스템·미결 질문)로</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>scripts/emit_intent.py</code> 가 templates/intent.md 의 절(Problem · Proposed outcome · Affected users and systems · Constraints · Open questions)을 그대로 쓰고 Author 줄에 <code>detect_bands (automatic, &lt;detected_at&gt;)</code>, Status 는 draft(:10-11 「승인은 머지다」). tests:133 「draft follows the template」.</p>
-<p><b>실험</b> 0006 <code>intent.md</code> 머리 「# Intent: … Author: detect_bands (automatic, 2026-09-09T12:16:23+09:00) · triaged by 서비스 오너」 — Problem 절에 z·규칙·표본·양성 대조.</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿</b> <code>scripts/emit_intent.py</code>는 <code>templates/intent.md</code>의 Problem·Proposed outcome·Affected users and systems·Constraints·Open questions를 쓰고 <code>Author: detect_bands (automatic, &lt;detected_at&gt;). Status: draft.</code>를 남긴다. 새 <code>--diagnosis</code> 입력의 evidence와 open_questions를 Problem과 Open questions에 합친다. 진단 전에 초안이 존재할 필요는 없다.</p>
+<p><b>실험</b> <code>tests/test_bands_workflow.py</code>가 2σ/3σ 진단 포함, 키 없는 3σ의 미진단 표시, 모델·출력·초안 생성 실패를 검증한다. 기존 emitter·검출기 시험은 수정 없이 유지했다. 상세 출력은 <a href="0013-controls.md">0013 검증 기록</a>에 있다.</p>
+<p><b>보완</b> 모델이 직접 초안을 편집하던 단계를 스크립트의 저장으로 바꾸고 오류를 전파한다. 실제 운영에서 나온 진단을 사람이 검토한 증거까지 확보한 것은 아니다.</p>
 </div></details>
 <li>service owner나 on-call 엔지니어가 대기열을 분류하고, 제품 쪽 finding은 product owner에게 보낸다. 지금 고치거나, 일정을 잡거나, 기각한다. 기각은 대역을 조율하고 노이즈를 줄이는 데 도움이 된다.</li>
 <details class="verify v-ok" open id="V13-10"><summary>▸ <a class="vid" href="#V13-10">V13-10</a> · 검증 · <b>충실</b> — <span class="q">6 — 분류: 지금 고침/일정/기각 · 기각은 대역 조율</span></summary><div class="v-body">
