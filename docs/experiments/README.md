@@ -199,6 +199,13 @@ case/판/seed, 기준·최종 해시, 브랜치, 범위, 결과, 근거 경로�
 
 ## 실행 색인
 
+0018부터 팀 실행 경로 실험에는 제작판의 [별도 하네스](../../team-harness/README.md)를 사용자 위치에
+설치하여 호출한다. 사용 템플릿에 하네스를 복사하지 않는다. HUMAN의 업무 프롬프트·수락을 명령의
+stdin에 전달하고 표시된 session을 resume한다. 개발은 Sonnet/low, 검토는 Sonnet/medium이다.
+현재 파일과 과거 편집 이력을 구분하며 자동 검토·보완·wait·unknown을 모두 기록한다. 불필요한
+문서 편집은 요구하지 않고, 실제 원본 누락·통제된 결함·검토 오류를 서로 구분한다.
+질문/수락 대기의 응답도 저장해 짧은 HUMAN 답변을 해석할 수 있게 한다.
+
 첫 로컬 pilot에 이어 실제 GitHub PR 통합 실험을 완료했다. 현재 사용 후보는
 `codex/use-template-0017@add296d`다. F01은 제목 보완 전 후보 de1b1b7, F02는 210bcfa에서 고정했다.
 80e9001의 후속 검증은 중요한 spec/plan 누락 실패이며 리뷰 후 복구를 통과로 계산하지 않는다.
@@ -214,3 +221,4 @@ add296d의 두 부분 실행은 지침 전문 읽기를 확인한 새 세션에�
 | F02-plan-sync | F02 / 2.0.0 / 102 + 공개 JSON 요구 | 28b8fa8 + 후보 80e9001 → 5e5b71d (제품 34c351b) | `codex/experiment-2026-09-11-plan-sync` · [검증 기록](0016-flow-pilot.md) | partial · 중요한 문서 갱신 실패. 5회 대화에서 HUMAN 지적 후 복구만 확인 |
 | R01-json | R01 / 3.0.0 / 102 | 28b8fa8 + 후보 add296d → f5c4ac4 (제품 9f42449) | `codex/experiment-2026-09-11-sync-r01` · [검증 기록](0017-artifact-sync.md) | partial · 3회 대화, 문서 상기 없이 spec/plan 개정·수락 참조·동시 커밋, 관측 범위 root 통과 |
 | R02-output | R02 / 3.0.0 / 102 | 28b8fa8 + 후보 add296d → 39c8c2a (제품 7c7f9e4) | `codex/experiment-2026-09-11-sync-r02` · [검증 기록](0017-artifact-sync.md) | partial · 6회 대화, 요구·설계 수정에서 문서 개정. 제품 결함은 발견 후 복구·회귀 통과 |
+| H01-team-harness | H01–H05 / 4.0.0 / 102 | 8dbf319 → 5666b1f (제품 0732201) | `codex/experiment-2026-09-11-harness-r01` · [검증 기록](0018-team-harness.md) | partial · 8회 HUMAN 대화/2회 자동 보완, 문서·수락 참조 복구와 정상 wait. 초기 false pass·비교 검토 오류도 보존 |

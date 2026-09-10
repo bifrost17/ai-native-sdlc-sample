@@ -5,6 +5,13 @@ stay flexible; code is added only where a lesson says a check matters and code c
 breaking. The test is one sentence: **code stays only where the lesson itself names a
 deterministic layer** — a hook, a deterministic script, or a CI merge check.
 
+On 2026-09-11 the user explicitly extended the goal to an installed, separate team execution
+entry point: independent review must actually run and feed important omissions back to the agent.
+`team-harness/` implements that transport and bounded retry loop. It does not decide artifact
+meaning, sections, status, or approval in code. A separate model reviews evidence; a person still
+accepts business decisions and merges. The bare adopting template stays unchanged. This explicit
+extension permits runtime orchestration, not a general process validator.
+
 ## The three layers
 
 | Layer | Lives in | Lesson sentence that puts it there |
@@ -36,6 +43,10 @@ file must contain, the product owner reads it, and the merge records the decisio
   the CLAUDE.md instruction plus the PR `check`; a team that wants it guaranteed adds the hook.
 - Not here: a plan-sync hook. L4 329 says "Consider using a hook" — optional; this repo does not
   have one, the plan skill says to update plan.md in the same commit.
+- Separate opt-in team entry point: `sdlc-claude` calls a tool-free independent reviewer after
+  each developer response and automatically resumes for concrete corrections, at most twice.
+  Review failures and unresolved findings return a handoff; questions/acceptance waits return
+  normally. It is not a Stop hook, PR approval, or coverage of direct `claude` invocations.
 - `make check` red on a PR (L13 963, through branch protection) — CI.
 Each of these is named by the lesson as a hook or a check. Nothing else is.
 Evals' deterministic checks (`evals/check.sh` `kind`s) judge file presence and literal/pattern
