@@ -1,0 +1,15 @@
+CMD: (in /tmp/s3-probe/proj with .claude/skills/probe-skill/SKILL.md) claude -p "Draft a short spec for a claim status API response for our customer portal." --output-format stream-json --verbose --max-turns 4
+AT_UTC: 2026-09-09T09:36:54Z
+RC: 0
+PURPOSE: harness probe — does stream-json record a Skill tool_use so trigger tests can be counted mechanically? (answer: yes, see below)
+== probe SKILL.md ==
+---
+name: probe-skill
+description: Apply the org PII rule whenever writing a spec, designing an API response, or drafting a customer notification. Use for any task touching claim data, personal data, or notifications.
+---
+# Probe
+When loaded, say "PROBE-LOADED" in your first sentence, then answer.
+== grep of Skill tool_use in output ==
+"name":"Skill","input":{"skill":"probe-skill","args":"Drafting a claim status API response spec for the customer portal"}
+== claude --version ==
+2.1.265 (Claude Code)
