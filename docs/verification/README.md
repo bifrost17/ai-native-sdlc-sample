@@ -3,8 +3,8 @@
 이 템플릿이 AI-Native SDLC Playbook 이 지향하는 방향대로 도는지를, **플레이북 한국어판 문서의 가이드 문단마다
 증거를 삽입하며** 검증한 기록이다. 플레이북 자신이 검증 기준이다 — 별도 점검표를 만들지 않는다.
 
-🔴 **이 폴더는 Anthropic 저작물(플레이북 한국어판)의 개인 열람용 사본을 담는다.** 그래서 이 레포는 비공개다.
-공개로 되돌릴 때는 이 폴더를 먼저 들어낸다.
+이 폴더는 Anthropic 저작물(플레이북 한국어판)의 사본을 담는다. 원문은 Claude Academy,
+`courses/ai-native-sdlc-playbook`, Copyright Anthropic.
 
 | 파일 | 무엇 |
 |---|---|
@@ -29,7 +29,7 @@
 플레이북 한국어판 문서의 **가이드 문단마다 증거를 삽입하며** 검증한 기록이다.
 플레이북 자신이 검증 기준이다 — 별도 점검표를 만들지 않는다.
 
-- `source/playbookkoen3.html` — 원문(개인 열람용 사본 · 무변경 · 이 레포는 비공개).
+- `source/playbookkoen3.html` — 원문(무변경).
 - `playbook-annotated.html` — 원문 + 가이드 문단 아래 `<details class="verify …">` 블록.
   원문 문장은 한 글자도 바꾸지 않는다; 서술 문단은 비워 둔다.
 - `CHAPTERS.md` — 챕터별 집계와 반영 PR.
