@@ -16,6 +16,11 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
   `open\t0`, `done\t0`을 출력하고 종료코드는 0이다.
 - R6. `list --owner`와 `summary`는 어떤 경우에도 데이터 파일을 쓰지 않는다(조회 전용).
 - R7. 담당자 ID 비교는 대소문자를 구분하는 정확 일치만 사용한다. 정규화나 유사 일치를 하지 않는다.
+- R8. `summary`에 `--json` 옵션을 추가한다. 지정하면 R5의 탭 출력 대신 `open`과 `done` 두 키에
+  정수 건수를 담은 JSON 객체 하나를 stdout에 출력한다. 키 순서·공백은 자유롭다. `--owner`와 함께
+  쓸 수 있고, 대상 선택(R4)·미배정 포함·없는 담당자 0/0(R5)·읽기 전용(R6)·대소문자 정확 일치(R7)는
+  `--json` 유무와 무관하게 동일하다. `--json` 없는 기본 출력(R5의 탭 형식)은 바뀌지 않는다.
+  (내부 자동화가 결과를 파싱해야 한다는 필요로, 제품 책임자가 PR2 범위에 추가 승인함.)
 
 ## Design
 
@@ -81,3 +86,7 @@ intent.md에서 이어받음:
 - AC8 → Constraints(기존 명령·저장 필드 유지): 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1,
   stderr 메시지)는 이번 변경으로 달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
   `test_complete_changes_only_target_status_and_is_repeatable`가 그대로 통과해야 한다.
+- AC9 → R8: `summary --json`이 `requests.json` 기준 `open`과 `done` 키에 각각 `3`, `1`을 담은 JSON
+  객체를 출력하고 종료코드 0이다(예: `{"open": 3, "done": 1}`, 키 순서·공백 무관). `summary --owner
+  hana --json`은 `open`이 `1`, `done`이 `1`이다. `summary --owner nobody --json`은 `open`, `done` 모두
+  `0`이다. `--json` 실행 전후 데이터 파일 바이트가 동일하다.
