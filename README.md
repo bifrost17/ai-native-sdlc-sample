@@ -30,7 +30,8 @@ Unofficial; not an Anthropic project.
   in their own workflow on config changes and on a schedule (L10 689). Without the
   `ANTHROPIC_API_KEY` secret that job exits 2 and shows red: it did not run, and "did not
   run" is not "passed". Add the secret to make it real.
-- Records every change to itself as a chain under `intent/`.
+- Records each change to what the template *is* as a chain under `intent/`. Upkeep of the repo
+  (factual corrections, citation refreshes, chores) is a PR, not a chain — `CLAUDE.md` scopes this.
 
 ## Chains
 | Chain | Kind | Entry path | PR(s) |

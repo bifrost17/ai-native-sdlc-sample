@@ -17,6 +17,9 @@
   chain 0002 is Korean); file names, section names and `Status:` words are fixed English tokens.
 - One chain per change under `intent/<NNNN>-<slug>/` — intent.md, spec.md, plan.md, in that
   order, each its own commit. `Status: draft` until the PR merges; the merge is the approval.
+  A chain is for a change to what the template *is* (0001 · 0004 · 0010 · 0011 · 0012); upkeep —
+  factual corrections, citation refreshes, chores — is a PR, not a chain. Ask the engineer rather
+  than opening one on your own reading of this line.
 - Every code file under `.claude/hooks/`, `scripts/`, `evals/` opens with the lesson sentence it
   implements, quoted with its line number. No sentence, no file. Files under `src/` and `tests/`
   open with the spec clause (R/AC) they implement instead — no lesson line there (0002 and 0007
@@ -47,6 +50,12 @@ Before reporting a chain done, hand the check to the `verifier` subagent (`.clau
 and paste its report — chains 0007-0009 never invoked it (L8 564).
 
 ## Things Claude gets wrong
+- Applying the process this template prescribes to *adopting teams* to this repo's own upkeep.
+  **This repo builds the template; it is not a product repo run by it.** Chains are for changes to
+  the template (see Conventions). Separation of duties (`REVIEW.md`, `docs/BOUNDARY.md` "approval
+  is a person merging") prescribes a team's account structure; here the engineer directing the work
+  *is* the owner, and a merge they asked for is their approval. Twice in one session: a chain
+  proposed for a two-line fix, and an owner-requested merge refused on separation grounds.
 - Writing a checker for artifact sections, status or transitions. The skill says it, the product
   owner reads it, the merge records it. Do not build the machine again.
 - Setting `Status: accepted` in a file. Only a merged PR means accepted.
