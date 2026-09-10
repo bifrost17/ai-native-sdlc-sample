@@ -36,7 +36,7 @@ ID = `V<챕터>-<문서 순서>`. 판정: 충실 · 부분 · 팀 몫(미검증)
 | V3-02 | 충실 | 도입 — PO 는 review 만, 목표는 우려 지점이 표시된 spec |
 | V3-03 | 팀 몫(미검증) | 도입 — Claude Design 으로 mock → Claude Code |
 | V3-04 | 충실 | 표 우측 — 요구+설계가 한 session 에서 |
-| V3-05 | 부분 | 시작하기 — 전제(intent.md + 정책 skill 넷) |
+| V3-05 | 충실 | 시작하기 — 전제(intent.md + 정책 skill 넷) |
 | V3-06 | 충실 | 시작하기 — 인프라(PO + Claude · 엔지니어링 역량 불요) |
 | V3-07 | 충실 | 실행 1 — skill 을 갖춘 session 에 intent 첨부 |
 | V3-08 | 부분 | 실행 2 — prompt(가리킴·제약·우려 요구) → 슬래시 명령 → merge 트리거 job |
@@ -200,7 +200,7 @@ ID = `V<챕터>-<문서 순서>`. 판정: 충실 · 부분 · 팀 몫(미검증)
 | V11-10 | 충실 | governance — 매번 모두에게 강제 · 허용/차단이 타임스탬프와 기록 · gate 가 승인의 정의를 정한다 |
 | V11-11 | 충실 | managed settings — MDM/admin console 배포 · 엔지니어는 덮어쓸 수 없다 |
 | V11-12 | 충실 | managed settings — 여덟 키가 예시 파일에 있는가 |
-| V11-13 | 팀 몫(미검증) | managed settings — 출발점, 균형은 repo 의 data classification 에 |
+| V11-13 | 부분 | managed settings — 출발점, 균형은 repo 의 data classification 에 |
 | V11-14 | 충실 | 측정 leading — gate 별 대기 시간 · 결정마다 타임스탬프 + 판정 |
 | V11-15 | 충실 | 측정 lagging — 프로덕션에 도달한 gate 위반(전후) |
 

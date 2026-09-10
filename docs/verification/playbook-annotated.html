@@ -466,10 +466,10 @@ Do third-party loss adjusters need access too?
 <h2>시작하기</h2>
 <ul>
 <li><strong>전제 조건</strong>: <code>intent.md</code> 파일을 작성하고, 브랜드·보안·compliance·UX 정책을 skill로 써 둔다.</li>
-<details class="verify v-part" open id="V3-05"><summary>▸ <a class="vid" href="#V3-05">V3-05</a> · 검증 · <b>부분</b> — <span class="q">시작하기 — 전제(intent.md + 정책 skill 넷)</span></summary><div class="v-body">
+<details class="verify v-ok" open id="V3-05"><summary>▸ <a class="vid" href="#V3-05">V3-05</a> · 검증 · <b>부분 → 충실</b> — <span class="q">시작하기 — 전제(intent.md + 정책 skill 넷)</span></summary><div class="v-body">
 <p><b>템플릿</b> intent.md ✓(승인 = 머지 · #30 · #38). 정책 skill 넷 ✓ — <code>org-skills/skills/</code> 의 <code>brand</code> · <code>data-compliance</code> · <code>ux-copy</code>(+<code>accessibility</code>) · <code>secure-api-review</code>(+<code>secrets-scan</code>), 정본은 <code>policies/</code> 의 팀 조항(체인 0011·0012). L3 253 의 전제 넷이 v3 에서 갖춰졌다.</p>
 <p><b>실험</b> 0008·0009 spec 모두 머리에 「Skills applied: secure-api-review, design-spec」. 전제 넷 중 하나로 돌았고 그 사실을 F6/F9 로 적었다.</p>
-<p><b>보완</b> 없음. 전제는 갖춰졌고(정본 <code>policies/</code> · 오너 서명 <code>.github/CODEOWNERS:19</code>, L6 448·454 가 요구한 그것), <b>부분</b>인 이유는 그 전제 위에서 spec 을 쓴 사슬이 아직 없다는 것 하나다.</p>
+<p><b>보완</b> 없음. 이 문단은 <b>전제 조건</b>만 묻는다 — 「intent.md 파일을 작성하고, 브랜드·보안·compliance·UX 정책을 skill 로 써 둔다」. 넷이 다 있고 정본(<code>policies/</code>)과 오너 서명(<code>.github/CODEOWNERS</code> 의 <code>policies/**</code>)까지 붙었으므로 <b>충실</b>이다. 그 스킬이 실제로 spec 을 이끄는지는 이 문단이 아니라 <a href="#V3-01">V3-01</a>(「조직의 skill 이 spec 을 이끈다」)이 묻고, 거기가 <b>부분</b>으로 남는다 — v3 에서 준비물 문단(V6-02 도 같은 꼴)과 작동 문단을 갈라 판정했다.</p>
 </div></details>
 <li><strong>인프라</strong>: Claude에 접근할 수 있는 product owner. 엔지니어링 역량은 필요 없다.</li>
 <details class="verify v-ok" open id="V3-06"><summary>▸ <a class="vid" href="#V3-06">V3-06</a> · 검증 · <b>충실</b> — <span class="q">시작하기 — 인프라(PO + Claude · 엔지니어링 역량 불요)</span></summary><div class="v-body">
@@ -1560,10 +1560,10 @@ exit 0
 <li><code>requiredMinimumVersion</code>은 승인된 하한보다 낮은 버전에서는 시작을 거부하므로, 조직이 실제로 평가한 build가 통제를 강제하게 된다.</li>
 </ul>
 <p>이 예시는 각자의 환경에 맞게 다듬을 출발점으로 삼으라. 각 거부 규칙은 어떤 능력을 없애며, 적절한 균형은 repo의 data classification에 달려 있다. <a href="https://code.claude.com/docs/en/settings">설정 레퍼런스</a>가 managed-only key를 포함한 모든 키를 문서화한다.</p>
-<details class="verify v-team" open id="V11-13"><summary>▸ <a class="vid" href="#V11-13">V11-13</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">managed settings — 출발점, 균형은 repo 의 data classification 에</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>org/README.md</code> 「각 키의 뜻은 원문이 정본 — 되풀이하지 않는다」 · <code>docs/ADOPTING.md</code> 의 <code>org/README.md</code> 행이 팀 자리.</p>
-<p><b>실험</b> —</p>
-<p><b>보완</b> 없음 — 팀 몫.</p>
+<details class="verify v-part" open id="V11-13"><summary>▸ <a class="vid" href="#V11-13">V11-13</a> · 검증 · <b>팀 몫(미검증) → 부분</b> — <span class="q">managed settings — 출발점, 균형은 repo 의 data classification 에</span></summary><div class="v-body">
+<p><b>템플릿</b> 문단이 요구하는 두 축 중 <b>data classification 이 v3 에서 레포 안에 생겼다</b>(체인 0012) — <code>policies/compliance.md</code> 의 <code>C1</code> 자격증명 · <code>C2</code> 「임직원 개인정보와 인증 정보는 … 로그 · 오류 메시지 · 감사 이벤트에」 · <code>C3</code> 접근·변경 이력, <code>policies/api-security.md</code> 의 <code>S4</code> 「데이터 분류: 민감으로 표시된 필드는 로그·오류 메시지에 나오지 않는다」, 프로젝트 값은 <code>PROJECT-POLICY.template.md</code> 의 <code>P2</code> 슬롯(무엇이 민감한가 · 어떻게 가리는가 · 보존 기간). <code>org-skills/skills/data-compliance</code> 가 <code>C1</code>·<code>C2</code>·<code>C3</code>·<code>P2</code>·<code>P3</code> 를 인용해 건다. 다른 축인 관리형 설정은 <code>org/managed-settings.example.json</code> 이 <b>비활성 예시</b>이고 그 분류에 맞춰 조정돼 있지 않다 — <code>org/README.md</code> 「각 키의 뜻은 원문이 정본 — 되풀이하지 않는다」 · <code>docs/ADOPTING.md</code> 의 <code>org/README.md</code> 행이 배포를 팀 자리로 둔다.</p>
+<p><b>실험</b> 예시가 실제로 강제하는지는 재지 못했다 — 조직 계정이 없어 배포 대상이 없다.</p>
+<p><b>보완</b> 없음. 「균형이 달린」 기준(data classification)은 이제 레포 안에 있으므로 미검증이 아니다; 그 기준에 맞춘 거부 규칙을 실제로 배포해 재는 것만 남아 <b>부분</b>.</p>
 </div></details>
 <h2>측정 방법</h2>
 <p>hook 자체는 이렇게 잰다:</p>
