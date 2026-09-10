@@ -19,6 +19,10 @@ rc 계약과 「capture-intent 스킬대로 손으로 쓴 intent(`testdata/01-pa
 `.github/workflows/agent-evals.yml` 이 키와 함께 `make evals` 를 부른다(L10 689행).
 케이스는 「레슨대로 쓴 에이전트가 통과한다」이지 아티팩트 형식 검사가 아니다.
 
+현재 네 케이스 중 `04-org-policy-application` 은 조직 정책을 읽고 직원 연락처·로그·타임스탬프·인증·오류 문구에 적용해 spec 을 쓰게 한다. 실행기는 모든 케이스에 현재 체크아웃의 `org-skills` 를 `--plugin-dir` 로 명시하고, 케이스별 작업 디렉터리와 그 안의 `PROJECT-POLICY.md` 를 안내한다. CI 변경 경로에는 `org-skills/**`, `policies/**`, `templates/**`, `evals/**`, `.claude-plugin/**` 와 평가 워크플로 자체도 포함된다.
+
+`tests/test_eval_plugin.py` 는 가짜 Claude CLI로 플러그인 인자·작업 디렉터리·오류 전파를 시험한다. 정책 이름만 나열한 결과가 실패하는지도 확인한다. 이는 실제 모델이 스킬을 읽었다는 증거가 아니다. 새 케이스도 기존 `file_exists`/`contains` 채점만 쓰며, `assertions` 의 의미적 채점과 정규식 채점 문제는 체인 0013의 범위에서 제외했다. 실제 정책 적용은 모델의 도구 기록과 spec 내용을 함께 읽어 확인해야 한다.
+
 ```bash
 bash tests/test_evals.sh                                # 결정론 부분
 bash evals/check.sh --kinds                              # 판정 종류 목록

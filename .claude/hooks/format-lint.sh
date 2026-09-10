@@ -5,7 +5,7 @@
 # exit 2 on PostToolUse feeds stderr back to Claude (the edit already happened; this is the loop, not a wall).
 # Fail-closed (no jq / bad JSON → exit 2), see _lib.sh.
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
-rel="$(rel_path)"; f="$ROOT/$rel"
+rel="$(rel_path)"; f="$TARGET_PATH"
 [ -n "$rel" ] && [ -f "$f" ] || exit 0
 # TEAM: real formatter/linter commands per file type — docs/ADOPTING.md · L17
 case "$rel" in

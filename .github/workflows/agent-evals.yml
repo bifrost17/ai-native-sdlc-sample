@@ -11,6 +11,12 @@ on:
     paths:
       - 'CLAUDE.md'
       - '.claude/**'
+      - 'org-skills/**'
+      - 'policies/**'
+      - 'templates/**'
+      - 'evals/**'
+      - '.claude-plugin/**'
+      - '.github/workflows/agent-evals.yml'
   schedule:
     - cron: '17 4 * * 1'
   workflow_dispatch:

@@ -35,7 +35,22 @@ def load_detection(path):
     return data
 
 
-def render(d, heads):
+def load_diagnosis(path):
+    if not path:
+        return None
+    try:
+        data = json.loads(open(path, encoding="utf-8").read())
+    except (OSError, ValueError) as exc:
+        raise InputError("진단 산출물을 읽을 수 없다 — %s" % exc)
+    if not isinstance(data, dict) or not isinstance(data.get("evidence"), str):
+        raise InputError("진단 산출물에 evidence 문자열이 없다.")
+    questions = data.get("open_questions")
+    if not isinstance(questions, list) or not all(isinstance(x, str) for x in questions):
+        raise InputError("진단 산출물에 open_questions 문자열 배열이 없다.")
+    return data
+
+
+def render(d, heads, diagnosis=None):
     body = {
         heads[0]: "`%s` 최신 표본 %s=%s 이 규칙 `%s` 로 tier `%s` 를 냈다 (n=%s mean=%s sigma=%s z=%s)."
                   % (d["metric"], d["observed"]["ts"], d["observed"]["value"], d["rule"],
@@ -47,6 +62,13 @@ def render(d, heads):
                   "- C2 원인·처방은 여기 없다 — diagnose 단계의 몫이다.",
         heads[4]: "- Q1 이탈이 코드 변경 때문인지 인프라 변동 때문인지 diagnose 단계가 답한다.",
     }
+    if diagnosis:
+        body[heads[0]] += "\n\n### Diagnosis record\n" + diagnosis["evidence"].strip()
+        if diagnosis["open_questions"]:
+            body[heads[4]] += "\n" + "\n".join(
+                "- Q%d %s" % (i, question.strip())
+                for i, question in enumerate(diagnosis["open_questions"], 2)
+            )
     out = ["# Intent: %s 밴드 이탈 (%s · %s)" % (d["metric"], d["tier"], d["rule"]),
            "Author: detect_bands (automatic, %s). Status: draft." % d["detected_at"]]
     for h in heads:
@@ -62,21 +84,23 @@ def main(argv=None):
     p.add_argument("--input", default=None)
     p.add_argument("--id", required=True, dest="intent_id")
     p.add_argument("--out", required=True)
+    p.add_argument("--diagnosis", default=None)
     args = p.parse_args(argv)
     try:
         data = load_detection(args.input)
+        diagnosis = load_diagnosis(args.diagnosis)
     except InputError as exc:
         sys.stderr.write("입력 오류: %s\n" % exc)
         return 1
     if data["tier"] not in WRITE_TIERS:
         print(json.dumps({"status": "skipped", "tier": data["tier"]}))
         return 0
-    heads = load_template()
     target = os.path.join(args.out, args.intent_id, "intent.md")
     try:
+        heads = load_template()
         os.makedirs(os.path.dirname(target), exist_ok=True)
-        open(target, "w", encoding="utf-8").write(render(data, heads))
-    except OSError as exc:
+        open(target, "w", encoding="utf-8").write(render(data, heads, diagnosis))
+    except (OSError, KeyError, IndexError, TypeError) as exc:
         sys.stderr.write("초안을 쓸 수 없다: %s (%s)\n" % (target, exc))
         return 2
     print(json.dumps({"status": "written", "written": target, "tier": data["tier"]}))

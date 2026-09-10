@@ -13,6 +13,10 @@ if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
 fi
 command -v claude >/dev/null 2>&1 || { echo "UNDECIDABLE: claude 없음" >&2; exit 2; }
 command -v jq >/dev/null 2>&1 || { echo "UNDECIDABLE: jq 없음" >&2; exit 2; }
+PLUGIN_DIR="$ROOT/org-skills"
+[ -f "$PLUGIN_DIR/.claude-plugin/plugin.json" ] || {
+  echo "UNDECIDABLE: 현재 체크아웃의 조직 플러그인 없음: $PLUGIN_DIR" >&2; exit 2;
+}
 
 OUT="evals/out"; mkdir -p "$OUT" || exit 2
 worst=0
@@ -34,8 +38,15 @@ for case_file in evals/cases/*.json; do
   done < <(jq -r '.files[]?' "$case_file")
   [ "$ok" -eq 1 ] || { bump 2; continue; }
 
+  # Keep the repository cwd for the existing prompts and project guidance. Each case writes
+  # into its own workspace; the fixture PROJECT-POLICY.md, when present, belongs to that case.
+  prompt="$prompt
+
+Evaluation workspace (absolute): $ROOT/$ws
+Create or change files only in this workspace. Read repository and loaded plugin guidance as
+needed; use this workspace's PROJECT-POLICY.md for this case's project policy when present."
   raw="$OUT/$cid.claude.json"
-  claude -p "$prompt" --allowedTools "$tools" --output-format json > "$raw"
+  claude -p "$prompt" --plugin-dir "$PLUGIN_DIR" --allowedTools "$tools" --output-format json > "$raw"
   crc=$?
   if [ "$crc" -ne 0 ]; then echo "UNDECIDABLE: $cid claude rc=$crc" >&2; bump 2; continue; fi
 

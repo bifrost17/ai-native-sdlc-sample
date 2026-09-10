@@ -5,10 +5,11 @@ Upstream: spec.md@e152f50. Status: draft.
 - `.claude/hooks/_lib.sh`, 필요 시 `protect-paths.sh`·`protect-tests.sh`·`format-lint.sh`: 경로 정규화와 오류 전파.
 - `tests/test_hook_paths.py` (new): 경로·심볼릭 링크·새 파일·정상 대조 회귀 시험.
 - `.claude/skills/design-spec/SKILL.md`, `org-skills/skills/spec-policy-pass/SKILL.md`, `org-skills/commands/spec-policy.md`, `org-skills/.claude-plugin/plugin.json`, 관련 PROVENANCE: 배포 위치와 판 기록 안내.
+- `templates/spec.md`: 설치 캐시에서도 실제 출처·판을 기록할 수 있도록 스킬 인용 안내를 맞춘다.
 - `.github/workflows/agent-evals.yml`, `evals/run.sh`, `evals/cases/04-org-policy-application.json` (new), 대응 fixtures (new), `tests/test_eval_plugin.py` (new): 조직 스킬 평가 연결.
 - `.github/workflows/bands.yml`, `scripts/run_bands.py` (new), 필요 시 `scripts/emit_intent.py`, `tests/test_bands_workflow.py` (new): 등급별 실행·오류 전파.
-- `docs/verification/north-star-playbook.html`, `docs/verification/README.md`, `docs/verification/CHAPTERS.md`, `docs/verification/INDEX.md`, `docs/verification/0013-controls.md` (new): 반례·수정·검증 근거와 해당 판정 갱신.
-- `CLAUDE.md`, `README.md`, `evals/README.md`, `docs/BOUNDARY.md`: 변경으로 달라진 실행 안내가 있을 때만 동기화.
+- `docs/verification/north-star-playbook.html`, `docs/verification/README.md`, `docs/verification/CHAPTERS.md`, `docs/verification/INDEX.md`, `docs/verification/0013-controls.md`·`0013-policy-evidence.json` (new): 반례·수정·검증 근거, 실제 모델의 정책 읽기·출력과 해당 판정 갱신.
+- `evals/README.md`, `docs/BOUNDARY.md`, `docs/ADOPTING.md`, `policies/README.md`: 네 번째 평가 케이스, 플러그인 연결, 출처·판 기록 안내를 동기화.
 ## Order of work
 1. intent·spec·plan을 각각 기록한다. 기존 목표 문서의 미커밋 수정은 유지한다.
 2. 서로 다른 파일을 맡은 작업으로 훅, 조직 스킬, bands를 병렬 구현한다. 각 작업은 새 회귀 시험으로 기존 실패를 확인한 뒤 구현한다.

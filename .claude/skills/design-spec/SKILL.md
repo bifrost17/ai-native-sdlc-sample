@@ -20,11 +20,26 @@ description: Reads an accepted intent.md and the organization's skills and write
    `gh pr list --state merged --search <NNNN>`. If the file exists only on a branch, stop and say
    so. No machine checks this; you do. (Two headless runs in the org-skills experiment stopped on
    a merged intent because they read the `Status:` line — `docs/research/spec-command/`.)
-2. Read the skills in `.claude/skills/` that apply to this change (an endpoint that returns customer
-   data → `secure-api-review`). Open each one before you name it under "Skills applied" in the
-   spec — chain 0007 named one without opening it. Write each as `name@sha`, the sha from
-   `git log -1 --format=%h -- .claude/skills/<name>/SKILL.md` — L3 279 logs "the skill versions
-   in force"; a name alone does not say which version wrote the spec.
+2. Enumerate the skills actually available in this session: project-local `.claude/skills/` and
+   the session's loaded plugin skill catalog. A directory listing of `.claude/skills/` alone misses
+   plugin policy skills. Use the catalog's namespace and actual location; `org-skills/skills/` is
+   this repository's plugin source, while an installed copy can live in a cache elsewhere. Do not
+   assume that a source directory is installed or that a cached plugin lives under `.claude/skills/`.
+   Record apply/skip with a reason for each available skill. If `spec-policy-pass` is available,
+   open it and apply its policy procedure with this skill.
+
+   Open every applicable skill's actual `SKILL.md` before naming it under "Skills applied" —
+   chain 0007 named one without opening it. Record its source (project path or plugin namespace
+   and actual file path) and the version read. For a Git-tracked file, use
+   `git log -1 --format=%h -- <actual-path-relative-to-its-repository>` in that repository;
+   check for local changes and label them `uncommitted` with the base SHA if known. For an
+   organization plugin whose Git history is unavailable (including tool access), read that plugin's own
+   `.claude-plugin/plugin.json` or installation metadata and record
+   `namespace:skill@<manifest-or-installed-version>` plus its source. For a directory-loaded
+   checkout, label the value as the manifest version and note any unverified Git/working-tree state.
+   A cache without `.git` does not imply `uncommitted`; never borrow the consuming project's SHA.
+   If no version can be verified, say `version-unverified` and why. L3 279 logs "the skill versions
+   in force"; a name or guessed SHA cannot identify the file actually read.
 3. Record `Upstream: intent.md@<sha>. Status: draft.` at the top of spec.md, and leave it `draft`:
    approval is the merge of the PR that carries the spec (L2 231), nothing flips this line by hand.
    One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
