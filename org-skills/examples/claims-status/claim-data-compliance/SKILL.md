@@ -2,6 +2,8 @@
 name: claim-data-compliance
 description: Apply the organization's compliance policy to claim data on the wire, in logs and in the access trail. Use whenever writing or reviewing a spec.md, designing or changing an endpoint or its response fields, writing a query or DTO that reads claim or customer data, adding logging, error handling or audit events, or building a lookup path for a call-centre agent or an adjuster. Covers policy clauses C1, C2, C3, C6, C7. Apply this instead of deciding field, log or retention questions from general privacy knowledge.
 ---
+<!-- 예시 — 팀 스킬이 아니다. 플러그인은 org-skills/skills/ 만 로드한다. 이 파일은 청구 상태 서비스를 한 프로젝트로 보고
+     PROJECT-POLICY.md(같은 폴더)의 슬롯을 채웠을 때 스킬이 어떤 모습이 되는지 보여 준다. org-skills/examples/README.md -->
 <!-- 정본: policies/compliance.md v0 (Status: draft — 오너 서명 대기). 이 스킬은 정책을 옮긴다. 조항 문면이 정본과 다르면 정본이 이긴다. -->
 <!-- L6: "write a skill for institutional knowledge that must be applied consistently". L6: "A skill is a control, though an advisory one." -->
 

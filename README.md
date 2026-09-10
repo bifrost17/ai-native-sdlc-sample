@@ -40,11 +40,18 @@ Unofficial; not an Anthropic project.
 | 0010 experiments-on-branches | structure | this repo, self-recorded | #55 |
 
 ## Organization skill set (`org-skills/`)
-This repository is also one organization's answer to the team's part of the playbook: policy
-texts under `policies/` (owner sign-off = merge), the skill set as one plugin under `org-skills/`
-(root `.claude-plugin/marketplace.json` serves it), and the research behind every adopted or
-designed skill under `docs/research/<skill>/` with decisions in `docs/decisions/`. The template's
-own skills stay in `.claude/skills/`. Chain `intent/0011` records the move.
+This repository is also one team's answer to the team's part of the playbook, in two layers:
+
+- **팀 조항** — `policies/*.md`, thin on purpose (the team builds internal-only software; about a
+  dozen clauses). Owner sign-off is the merge (`.github/CODEOWNERS`).
+- **프로젝트 슬롯** — each project copies `policies/PROJECT-POLICY.template.md` into its own
+  repository and fills six slots; skills cite the slot IDs rather than inventing values.
+
+The skill set is one plugin under `org-skills/skills/` (root `.claude-plugin/marketplace.json`
+serves it); `org-skills/examples/` holds one project's filled-in example and does **not** load.
+The research behind every adopted or designed skill is under `docs/research/<skill>/`, decisions in
+`docs/decisions/`. The template's own skills stay in `.claude/skills/`. Chains `intent/0011` and
+`intent/0012` record the move and the split.
 
 ## Experiments
 `main` is the template and the template's own chains only. Each experiment — chains run *on* the

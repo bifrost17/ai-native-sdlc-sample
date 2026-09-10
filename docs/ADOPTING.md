@@ -31,10 +31,13 @@ files themselves — `grep -rn 'TEAM:'` finds all of them.
 | no file — non-engineer contributor's commit path | nothing (this sample commits `intent/` from a CLI session via `git`/`gh`, not from a non-engineer) | a claude.ai/Cowork setup with a GitHub connector configured to commit Markdown to `intent/`, and who is allowed to use it | platform engineer | L2 185-189 |
 
 ## The worked example of the team's part
-Since 2026-09-10 this repository carries one organization's own answers under `org-skills/`,
-`policies/` and `docs/research/` — adopted marketplace skills with provenance, designed skills
-transcribing `policies/*.md`, and the research that chose them. Treat them as an example of *how*
-to fill the rows below, not as the answer for another organization.
+Since 2026-09-10 this repository carries one team's own answers under `org-skills/`, `policies/`
+and `docs/research/` — adopted marketplace skills with provenance, designed skills transcribing
+`policies/*.md`, and the research that chose them. Two layers: team clauses in `policies/*.md`
+(thin — this team builds internal-only software) and per-project values in a `PROJECT-POLICY.md`
+filled from `policies/PROJECT-POLICY.template.md`. A project adopting this template fills that
+file first; `org-skills/examples/claims-status/` shows one filled-in example. Treat all of it as an
+example of *how* to fill the rows below, not as the answer for another team.
 
 ## Why the sample does not fill these in
 Policy is the organization's, not this repo's: the playbook requires a named owner, a documented

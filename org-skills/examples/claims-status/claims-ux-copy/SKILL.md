@@ -2,6 +2,8 @@
 name: claims-ux-copy
 description: Apply the org's UX wording policy (U1 error messages · U2 the five claim status labels and their next step · U3 waiting notices) to any Korean customer-facing text of the claims status service — error and empty states, status screens, loading and delay notices, SMS/email notifications for the customer portal, adjuster and agent paths. Use whenever writing or reviewing spec.md, UI strings, screen copy or a customer notification, and whenever a change adds a failure path, a status display or a wait, instead of inventing wording or looking up the policy files yourself.
 ---
+<!-- 예시 — 팀 스킬이 아니다. 플러그인은 org-skills/skills/ 만 로드한다. 이 파일은 청구 상태 서비스를 한 프로젝트로 보고
+     PROJECT-POLICY.md(같은 폴더)의 슬롯을 채웠을 때 스킬이 어떤 모습이 되는지 보여 준다. org-skills/examples/README.md -->
 # Claims UX — wording (U1 · U2 · U3)
 
 `policies/ux.md` v0 is the source of truth. Each clause below is quoted verbatim (Korean); the lines

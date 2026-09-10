@@ -2,6 +2,8 @@
 name: claims-api-security
 description: Apply the org's API security standard beyond the four secure-api-review items — upstream call budget (claims-core 50 rps), enumeration prevention, per-role session keys, no secrets in the diff. Use whenever adding, changing, reviewing or writing the spec for a route or handler of the claims status service (customer portal, adjuster, agent paths), when a change calls claims-core or adds caching, and when touching config, environment or credentials.
 ---
+<!-- 예시 — 팀 스킬이 아니다. 플러그인은 org-skills/skills/ 만 로드한다. 이 파일은 청구 상태 서비스를 한 프로젝트로 보고
+     PROJECT-POLICY.md(같은 폴더)의 슬롯을 채웠을 때 스킬이 어떤 모습이 되는지 보여 준다. org-skills/examples/README.md -->
 # Claims API security — S5 to S8
 
 `policies/api-security.md` v0 is the source of truth; the four playbook items (S1–S4) live in the
