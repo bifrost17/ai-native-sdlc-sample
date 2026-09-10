@@ -37,7 +37,7 @@
   mistakes, check the evidence/context and adjust the model or effort; hand off when the needed
   capability is unavailable. Respect the user's resource limits. Agent and reviewer fallibility is
   expected: retain relevant tests and human review, but do not add a new rule or checker for every
-  model error. See [team operating guidance](team-harness/README.md#모델과-추론-선택).
+  model error. See [team skill guidance](org-skills/README.md).
 
 ## Architecture
 - The project's north star is [AI-Native SDLC Playbook](docs/verification/north-star-playbook.html).

@@ -27,11 +27,12 @@
   사람의 읽기 속도나 고정 줄 수만으로 크기를 강제하지 않는다.
 - **통제와 검증** — 플레이북이 제시한 사람의 판단·승인, 훅, 테스트, 리뷰, CI를 구현하고 실제 개발 과제로 작동을 확인.
 
-문서 갱신의 목표는 **중요한 요구·설계·계획 누락을 사람의 별도 상기 없이 독립 검토하고 보완하는 것**이다.
-이를 위해 템플릿과 별도로 [팀 실행 진입점](team-harness/README.md)을 둔다. 개발 응답 뒤 독립 검토를
-실행하고 필요한 경우 같은 세션에 피드백한다. 문서 의미는 모델이 판단하며, 실행 도구는 호출·기록·
-실패 인계만 맡는다. 정상 질문·수락 대기와 문서 영향이 없는 작업은 불필요한 수정으로 막지 않는다.
-적용 범위는 이 팀 명령으로 시작한 작업이며, 직접 `claude` 호출이나 조직의 병합 권한까지 통제하지 않는다.
+문서 갱신의 목표는 **중요한 요구·설계·계획 누락을 사람의 별도 상기 없이 발견하고 보완하는 것**이다.
+기본 팀 경로는 별도 설치하는 [sdlc-feedback 스킬과 네이티브 검증자](org-skills/README.md)다.
+변경 시에는 영향받는 문서를 갱신하고, 관련 커밋에서 계획과 구현을 함께 기록하며, 구현 완료 전에는
+새 문맥에서 실제 근거를 검토한다. 질문·수락 대기와 영향 없는 문서에 불필요한 수정을 요구하지 않는다.
+스킬은 사용을 판단하는 지침이며 무오류나 호출 강제를 보장하지 않는다. 조직의 사람 승인과 병합 권한은
+별개다. 기존 [팀 CLI](team-harness/README.md)는 0018의 선택적인 실행·기록 실험 도구로 보존한다.
 
 Unofficial; not an Anthropic project.
 
@@ -91,6 +92,7 @@ This repository is also one team's answer to the team's part of the playbook, in
 
 The skill set is one plugin under `org-skills/skills/` (root `.claude-plugin/marketplace.json`
 serves it); `org-skills/examples/` holds one project's filled-in example and does **not** load.
+설치·갱신 명령과 이벤트별 사용법은 [팀 스킬 안내](org-skills/README.md)에 있다.
 The research behind every adopted or designed skill is under `docs/research/<skill>/`, decisions in
 `docs/decisions/`. The template's own skills stay in `.claude/skills/`. Chains `intent/0011` and
 `intent/0012` record the move and the split.

@@ -1,0 +1,17 @@
+{
+  "dataset_version": "5.0.0",
+  "kind": "partial-event-driven-skill",
+  "source_template": {
+    "branch": "codex/use-template-0017",
+    "commit": "add296d3875fb5555b583fdb5fce9ca4696b424c"
+  },
+  "baseline_product_commit": "28b8fa8bff56d5becf2f8bfd63ffaa99b7f3dfac",
+  "experiment_base": {
+    "branch": "codex/experiment-base-0019",
+    "commit": "8dbf319f19fd8be2e006151867363b7867665bfb"
+  },
+  "fixture_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+  "cases": "cases.json",
+  "exposure": "HUMAN만 전체 사례와 평가 조건을 읽고 실제 대화에서 업무 사실을 공개한다. 팀 스킬은 별도 설치하며 사용 템플릿에는 복사하지 않는다.",
+  "history": "v1-v4는 불변. 제품 기준과 0017 안내는 재사용하고 native skill/agent 사용은 새로 관측한다."
+}

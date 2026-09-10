@@ -18,7 +18,14 @@ capability and reasoning effort for the difficulty, impact and uncertainty; use 
 upfront for important judgments and reconsider them after repeated mistakes. Preserve useful tests,
 review and human decisions without growing a bespoke control for each model error. An execution
 failure in the harness still needs a fix; a model's mistaken judgment does not by itself justify a
-new gate. The team's concrete guidance is in `team-harness/README.md`.
+new gate. The team's concrete guidance is in `org-skills/README.md`.
+
+The user then selected event-driven team skills and native subagents as the normal path (0019).
+`org-skills/skills/sdlc-feedback` keeps the developer conversation and updates affected artifacts;
+`org-skills/agents/sdlc-verifier.md` is an optional default for completion review in a fresh context.
+The trigger is meaningful work, not every response. The 0018 CLI and its packet-specific prompt
+remain a separate experiment tool; they are not invoked by this skill. Skill adoption does not
+guarantee invocation, correctness or approval. No new semantic checker or runtime gate is added.
 
 ## The three layers
 
