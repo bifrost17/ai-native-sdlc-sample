@@ -1,0 +1,8 @@
+Product merge: 3f342c1d355c6941287127ff8969ec6f37c8943c
+Command: git revert --no-edit -m 1 3f342c1d355c6941287127ff8969ec6f37c8943c
+Revert commit: cf6379955ed327a5a97874fe8657b867a41556e1
+Command: git diff --exit-code 28b8fa8bff56d5becf2f8bfd63ffaa99b7f3dfac HEAD
+Exit: 0; empty diff. The reverted tree equals the first product integration.
+Command: python3 tracker.py summary
+Exit: 2; invalid choice 'summary' (choose from 'list', 'show', 'complete').
+This is a local code rollback rehearsal. No production deployment or data rollback was performed.

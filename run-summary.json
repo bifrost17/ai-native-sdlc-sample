@@ -1,0 +1,147 @@
+{
+  "run": "F02-r01",
+  "dataset_version": "2.0.0",
+  "seed": 102,
+  "scope": "full conversational small CLI flow; real GitHub product PRs; local delivery and code revert",
+  "template": {
+    "branch": "codex/use-template-0016",
+    "commit": "210bcfab3063a47abac147f2b19953085cb22c6f",
+    "files": 18
+  },
+  "setup_commit": "a1935fabd974f6196248869c09f74578fc6e6fc4",
+  "product_commit": "3f342c1d355c6941287127ff8969ec6f37c8943c",
+  "pr1_merge": "28b8fa8bff56d5becf2f8bfd63ffaa99b7f3dfac",
+  "revert_commit": "cf6379955ed327a5a97874fe8657b867a41556e1",
+  "remote_base": "codex/experiment-2026-09-11-f02-r01",
+  "product_prs": [
+    71,
+    72
+  ],
+  "human_actor": "HUMAN (Codex, simulated)",
+  "git_operator": "HUMAN",
+  "requested_model": "sonnet",
+  "effort": "low",
+  "actual_models": [
+    "claude-sonnet-5"
+  ],
+  "cli_versions": [
+    "2.1.265"
+  ],
+  "plugin_counts": [
+    0
+  ],
+  "builtin_skill_counts": [
+    18
+  ],
+  "metrics": {
+    "turns": 8,
+    "sessions": [
+      "ab3c2b91-54ad-44bc-9a68-5f3bb7975683"
+    ],
+    "cli_reported_cost_usd": 1.035306,
+    "process_seconds": 280.09,
+    "dialog_seconds": 967.83,
+    "started": "2026-09-10T15:18:14.424523+00:00",
+    "ended": "2026-09-10T15:34:22.256648+00:00",
+    "successful_guide_read": true,
+    "skill_calls": [],
+    "tool_errors": [
+      {
+        "tool": [
+          "turn-05.agent.jsonl",
+          "Bash",
+          {
+            "command": "python3 -m unittest discover -s tests -v && echo --- && python3 tracker.py --data requests.json list --owner hana && echo --- && python3 tracker.py --data requests.json list --owner HANA; echo \"exit=$?\" && echo --- && python3 tracker.py --data requests.json list"
+          }
+        ],
+        "result": "Permission for this tool use was denied. It requires approval, and this session has no approval surface — nobody can answer a permission prompt here — so it was denied automatically. The action was NOT performed; do not "
+      },
+      {
+        "tool": [
+          "turn-06.agent.jsonl",
+          "Bash",
+          {
+            "command": "python3 tracker.py --data requests.json summary; echo ===; python3 tracker.py --data requests.json summary --owner hana; echo ===; python3 tracker.py --data requests.json summary --owner nobody"
+          }
+        ],
+        "result": "Exit code 1\nopen\t3\ndone\t1\n(eval):1: == not found"
+      },
+      {
+        "tool": [
+          "turn-07.agent.jsonl",
+          "Bash",
+          {
+            "command": "python3 tracker.py --data requests.json list --owner hana; echo ===; python3 tracker.py --data requests.json summary; echo ===; python3 tracker.py --data requests.json summary --owner hana"
+          }
+        ],
+        "result": "Exit code 1\nR-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n(eval):1: == not found"
+      }
+    ]
+  },
+  "result": "pass within observed scope, judged by Codex root",
+  "not_observed": [
+    "agent autonomous GitHub operations",
+    "multi-human account approval",
+    "hosted CI",
+    "production deployment",
+    "parallel Claude sessions",
+    "optional/team skill application",
+    "optimal PR LOC comparison"
+  ],
+  "sha256": {
+    "raw/delivery-oracles.txt": "011a9a4fa018d68ac24b93133613f5e3a9b3edde5663c985786c8aca43c3b76f",
+    "raw/delivery-tests.txt": "be15a7b7fdb4182b85a86fc9f974856881a315c10d3f84c6dc7cdff70ddf77ec",
+    "raw/github-pr-71.json": "36ec1dd40b8bde72396496923e5fb78715a8e67dd702daba2d1130cfc72012ee",
+    "raw/github-pr-72.json": "195c228166eb8b58007a10e5c3b218742167682c3c43b1b9581027479b6f8e30",
+    "raw/independent-verifier.md": "4432dbd22c52b0971be0eef1a2dd493b268739ecef6afdc5dadd059a5738bd7c",
+    "raw/maker-make-check.txt": "0d1c4d78a56640064b4b4b1a0dd520a474bde13ec811d753820fd6c5c77835fd",
+    "raw/observed-metrics.json": "fb65d53ce754868b5073998ba11434bf183fcb7709db9bed105423edeb5f40c0",
+    "raw/pr1-acceptance.md": "a6cbfcf60fc313807111082b2ea72fc26e4fadf3b1563f7fbe03e36fd7c6ee7f",
+    "raw/pr1-body.md": "023e479480fc41c44e64fbf5f0232e35a5927e3898cd10ed32ee3a5ee0df01e2",
+    "raw/pr1-plan-review.md": "a5b2b87f004cb3af2388f9d2600ce752b209d67bcbb17e2db4cafee16173bce0",
+    "raw/pr1-postmerge-0.txt": "d607e93ce6f9e2a88765f5b8ce07d1d86651d8ed21cc6a48200e05c156ce5258",
+    "raw/pr1-postmerge-1.txt": "629f0d035620b428b8aa6c50ea89f1bbe302ab1ccdad50f2625bfd7d5eb1247d",
+    "raw/pr1-stage-review.md": "d596b3fab38b76fd1558aab1263c34a503aa2489aa9fb84aee8cbe4a7f286cd1",
+    "raw/pr2-acceptance.md": "8f6811efa05bb3cb67a7b9d79058dca17dd1cc76cecac42f54d75790064c4236",
+    "raw/pr2-body.md": "f633236b087533d382c2f34e58b2a1bd8a843d39e3b86d2da62b5b3b408f39db",
+    "raw/pr2-premerge-0.txt": "12a7794a8f6dc84d64b45a72d84211d773a67c4132e11fba4123d7a956c9d3de",
+    "raw/pr2-premerge-1.txt": "b8dce24aaffb3a62dbbdd49e3826443c7ec3eca12dbf792f795344d613c6a4e0",
+    "raw/pr2-premerge-2.txt": "ef29a5ab0896a3d4ba07aebadfbcbc783f59536ffcd429b0e57323c7c4f60244",
+    "raw/revert-identity.txt": "882048948e4d044a9f6b0ed35123171105b85af6159b0f35ead0008ec8327b12",
+    "raw/revert-oracles.txt": "b66b2263e439c178a2048e1067af1ee4e780a8f1e087e2ff7f28d107c8ab3dfd",
+    "raw/revert-tests.txt": "b441da7733fe38ab68737de6a5ea97078b11307fb5129ad4cb96437f2e658cef",
+    "raw/turn-01.agent.jsonl": "cee7e1928a6b682edc875d75e5473c3ab61ace24743e580f0ca1ee8905063ed3",
+    "raw/turn-01.human.md": "d39c6a857da36afddc670d1b318bc8c7172cf50aa33f6ef5a7fdad96542a60b3",
+    "raw/turn-01.meta.json": "8778e628a42451348af9f2a5d4c53ffbb9ec6abf40456057451e08c9115aa3d6",
+    "raw/turn-01.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-02.agent.jsonl": "52cca0d60d8413e12713d86cb223d31bb0f59ceb2ec07c16fbf89a748dc713fb",
+    "raw/turn-02.human.md": "0da4fd6adc9a5570abb4bee946c20863e2ea47c6403727ae21600ba07875cfa2",
+    "raw/turn-02.meta.json": "d5dd4fc4dfd12533ad162d3f9c4da9292ffb4f73afe0e2a960f0e695850dbfc7",
+    "raw/turn-02.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-03.agent.jsonl": "24859bfddba65fd9defde5bf050447d1761a01d6ca6c9ac0597fa45cec6cbe7b",
+    "raw/turn-03.human.md": "ced57efb1f6e75c9f2efc09e4613c4584da56614f10b704d33ab4229e345e6b0",
+    "raw/turn-03.meta.json": "84ce9ef6294a659e5271f197d780c38e072c457b2c46bb6a86fa25b6f63f4785",
+    "raw/turn-03.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-04.agent.jsonl": "17c8558bacfd903decf051c476054a3109a6661c3cfdb472d5f3e2f76339aebf",
+    "raw/turn-04.human.md": "1bbb98a1a0dc547ea41e168036111f3e99b25eae6ca531387433037ee37ed0e7",
+    "raw/turn-04.meta.json": "4805e754fe74ea556b2e76727b684f63a1286aa9bbb6e37dc0faa0495f8eb38e",
+    "raw/turn-04.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-05.agent.jsonl": "f890e5c8c1aa68f27a7c5e6dce779249ee8c21223c014d4250542938b8f626d3",
+    "raw/turn-05.human.md": "b41d6f073327dd5aa07d0482f30afbf913cf4d1e1105bb3c40fc6485f99ced19",
+    "raw/turn-05.meta.json": "07fe046a6bf15aab4170b88bc081491f5b4c261adc102edb4ee11a3a518bce7f",
+    "raw/turn-05.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-06.agent.jsonl": "c5ce3f67d95001bd45929edcceb68b83f7d133f8c4ae396c739cdeadbaeeacc4",
+    "raw/turn-06.human.md": "0193555a120358c0a8efcaf2346856f25022e760b02b18790fd76476a10e5cda",
+    "raw/turn-06.meta.json": "76b33ae95a779bd2fbe4b80464be0a0feb21714a72e43ca56233d72af3ebcee5",
+    "raw/turn-06.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-07.agent.jsonl": "3ab0b3aceec15fba21fead0e02659384e2afe39db8bed87b419667c9c57432f9",
+    "raw/turn-07.human.md": "f894e70952a838d825b493d3ec40e0ff67c82ea732b15907233e274641e7b758",
+    "raw/turn-07.meta.json": "d234144789ba38b763b22f9d35220eb530d6404cea4138934812dc3b310ec99f",
+    "raw/turn-07.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-08.agent.jsonl": "483112a1eb9c9ba734d0ab1877472d33c6539dae6c1e4119455e16aa8a11383e",
+    "raw/turn-08.human.md": "9c4eb38ca92d08e8c2a7b6f2f1bee802017b9919cabcad561c8d9ef401adb99b",
+    "raw/turn-08.meta.json": "567484409044b48e5306795ce6a0565562ee68c60ba6939374d01cde7c62e138",
+    "raw/turn-08.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "EXPERIMENT.md": "1694c322a6b4e943da999580ec9bfbb4b406c17442ad0849c69cde6778a32984"
+  }
+}

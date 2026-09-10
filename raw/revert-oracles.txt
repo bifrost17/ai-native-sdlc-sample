@@ -1,0 +1,48 @@
+{
+  "phase": "list",
+  "work": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-r01-revert",
+  "results": [
+    {
+      "id": "F02-O1",
+      "arguments": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "setup": null,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n",
+      "stderr": "",
+      "data_unchanged": true,
+      "pass": true
+    },
+    {
+      "id": "F02-O2",
+      "arguments": [
+        "list",
+        "--owner",
+        "HANA"
+      ],
+      "setup": null,
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "data_unchanged": true,
+      "pass": true
+    },
+    {
+      "id": "F02-O3",
+      "arguments": [
+        "list"
+      ],
+      "setup": null,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": "",
+      "data_unchanged": true,
+      "pass": true
+    }
+  ],
+  "passed": 3,
+  "total": 3
+}
