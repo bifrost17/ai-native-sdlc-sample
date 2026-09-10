@@ -2,8 +2,8 @@
 
 ## Commands
 
-제품의 빌드·테스트·린트·실행 명령은 아직 정하지 않았다. `PROJECT-POLICY.md`의 검증 항목을 확인하고,
-작업에서 실제 도구를 정하면 명령과 성공 기준을 함께 갱신한다. 존재하지 않는 명령을 실행하라고 하거나
+시험은 `python3 -m unittest discover -s tests -v`, 실행은 `python3 tracker.py --data requests.json list`다.
+별도 빌드·린트·호스티드 CI는 없다. `PROJECT-POLICY.md`의 실제 검증 범위를 따른다.
 명령을 실행하지 않은 채 통과했다고 보고하지 않는다.
 
 ## Conventions
