@@ -98,12 +98,14 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 사용 템플릿의 고정 커밋에서
 시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
 계획에서 정한 PR 단위로 실험 통합 브랜치에 합치며 그 브랜치를 제작 `main`으로 머지하지 않는다.
-현재 사용 후보는 `codex/use-template-0016@210bcfa`다. [PR 크기 가이드](docs/PR-SIZE.md)와
+현재 사용 후보는 `codex/use-template-0016-r2@80e9001`다. [PR 크기 가이드](docs/PR-SIZE.md)와
 [GitHub Flow 정책](docs/GIT-WORKFLOW.md)은 채택 제품용 배포 원문이며 사용 후보의 docs/에도 동일하게 둔다.
 [조사 보고서](docs/research/pr-size/README.md)는 근거·사례·반례와 한계를 담는다.
-[F02 최종 실험](docs/experiments/0016-flow-pilot.md)은 이 후보에서 8회 대화와 실제 제품 PR 2건의
+[F02 최종 실험](docs/experiments/0016-flow-pilot.md)은 원래 후보 210bcfa에서 8회 대화와 실제 제품 PR 2건의
 순차 통합을 수행했다. 계획에 PR 묶음·의존성·머지 순서를 반영하고, 전체 시험 8개·독립 동작 7개·
 새 복제본 인도·두 번째 PR 코드 되돌리기가 통과했다. 호스티드 CI·실제 조직 승인·운영 배포는 미관측이다.
+후속 후보는 계획 이탈을 해당 구현과 같은 커밋에 기록하도록 명확히 했다. 추가 부분 실험에서는
+초기 설계·계획 갱신 누락을 발견했고, HUMAN 리뷰 후 수정 spec의 수락 SHA와 계획·코드 동시 커밋을 확인했다.
 [F01 첫 대화형 실험](docs/experiments/0015-f01-pilot.md)은
 Sonnet·low와 같은 세션에서 9회 주고받고 로컬 인도까지 통과했다. 실제 실행 핀은 de1b1b7이며,
 후속 후보의 정책 표 제목 두 곳은 정적 리뷰로 확인했다. 전체 플레이북이나 운영 배포의 성공률을 뜻하지 않는다.

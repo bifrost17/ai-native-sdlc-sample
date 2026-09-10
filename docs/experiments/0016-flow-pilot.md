@@ -99,6 +99,59 @@ Sol·high가 `.claude/agents/verifier.md`의 읽기 전용 검증을 수행했�
   `8 passed, 0 failed` / `PASS  managed-settings 키·훅 계약`. skip은 macOS 파일시스템의 조건부 대조다.
   의도한 음성 입력은 `[production-gate.sh] BLOCKED: hook input is not valid JSON; refused.`로 차단됐다.
   인도판 8개 시험과 별도 동작이 통과했고 fixture 해시는 전후 같았다.
-- **계획 대조:** 1차 확인에서 구현 파일의 계획 밖 변경은 없었고 마지막 결과·주석 5개 문서는 작성 중이었다.
-  최종 문서 검증은 아래에 추가한다.
+- **계획 대조:** 1차의 작성 중 문서까지 마무리한 0c8c81e를 재확인했다. 제작 diff 18파일과 사용판
+  8파일이 계획과 양방향으로 일치했다. 상대 링크 49개 정상, 공개 기록 54개 해시 일치,
+  원문 불변·179 ID·139/23/17 집계 유지, 실제 PR #71~#73의 상태·크기·범위가 기록과 같았다.
+  기록 PR 전후 제품 blob도 같았다. 중요한 과장·누락·계획 불일치 없음으로 보고했다.
 - **확인 불가:** 실제 동료 승인·호스티드 CI·운영 환경은 없으며 사용판에 제작 hook/스킬의 성공을 승계하지 않는다.
+  외부 DOI 1개는 자동 curl 요청에 403을 반환해 그 방식의 도달성만 확인할 수 없었다.
+
+## 후속 요청 — 구현 중 설계·계획 개정의 부분 실험
+
+사용자가 계획 이탈 시 같은 커밋 갱신의 반영·실행을 추가 검증하도록 요청했다. 원문에는 정확히
+“구현이 계획에서 벗어나면 같은 commit에서 plan.md를 갱신하라”가 있고 동기화 hook은 선택이다.
+제작용 plan 스킬은 명시했지만 사용판 CLAUDE는 ‘같은 변경’이라고 표현해 같은 PR로도 읽힐 여지가 있었다.
+
+후속 사용 후보 `codex/use-template-0016-r2@80e90016a6b507d98d563e6abcdbbf56aecdca41`에서
+CLAUDE.md·PROCESS·REVIEW·GIT-WORKFLOW 네 문서(11줄 추가/3줄 삭제)를 명확히 했다.
+계획의 파일·순서·PR 경계·검증이 달라지면 이유와 plan.md를 해당 구현과 **같은 커밋**에 담는다.
+요구·설계 변경은 spec과 영향받는 결정을 확인하고 수락 판을 먼저 고정한 뒤 plan의 Upstream에 연결한다.
+기존 210bcfa와 전체 F02-r01 기록은 유지했다. 후속 후보를 전체 흐름의 새 성공 표본으로 세지 않는다.
+
+부분 실험은 F02 PR1 통합 28b8fa8에서 지침을 반영한 d22a9fe로 시작했다. Sonnet·low의 같은
+세션에서 summary를 구현한 후, 미커밋 상태에서 기본 출력은 유지하는 `--json` 요구를 전달했다.
+**턴2에서 코드·시험·README만 수정하고 spec/plan은 누락했다.** HUMAN 리뷰 후 턴3에서 문서를
+갱신했지만 ‘같은 커밋 계열’과 이전 Upstream 표기를 남겼다. 턴4에서 문서 정합성을 정정하고,
+수정 spec을 4d31072로 커밋·수락한 뒤 턴5에서 그 SHA를 plan Upstream으로 연결했다.
+
+HUMAN이 만든 **34c351beb60a1597db10ad9b998c9c73f2c6f40c**에는 코드·시험·README·수정 plan이
+정확히 한 커밋으로 들어갔다. AGENT의 전체 시험 10개와 HUMAN의 별도 CLI 관측 12개가 통과했고,
+기존 시험 5개·helper AST와 fixture 바이트도 보존됐다. Git 조작은 HUMAN이 수행했다.
+**자발적 문서 동기화는 초기 실패, 사람 리뷰를 포함한 복구는 확인**으로 구분한다. V4-11은 부분을 유지한다.
+
+5회 대화/4회 resume, 실제 claude-sonnet-5, 7분 10초, 프로세스 합계 240.07초,
+CLI 표시 비용 $0.895381이다. 복합 shell 명령 거부 1건과 그 뒤 성공한 별도 확인을 그대로 기록했다.
+팀 스킬 적용·새 통합 PR·배포는 이 부분 실험에서 수행하지 않았다. 고정 입력 v2는 바꾸지 않았고,
+새 업무 요구와 실제 리뷰는 부분 실험의 공개 프롬프트에 보존한다.
+
+기록 포함 최종은 `codex/experiment-2026-09-11-plan-sync@5e5b71d0581651ca26afc14367c52a5a69d50607`다.
+[EXPERIMENT.md](https://github.com/bifrost17/ai-native-sdlc-sample/blob/5e5b71d0581651ca26afc14367c52a5a69d50607/EXPERIMENT.md),
+같은 판의 `raw/`와 `run-summary.json`에 공개 기록 28개의 해시를 보존했다. 종료 후 기록만 추가했으며
+제품 검증 핀 34c351b와 구분한다. 중간 미커밋 diff는 공백을 보존하는 JSON 문자열로 저장했다.
+비공개 oracle·전송 도우미는 `/Users/jake/Projects/ai-native-sdlc-experiments/human-f02-plan-sync`에 남긴다.
+
+후속 독립 verifier(Sol·high)의 보고:
+
+- **실행:** 제품 34c351b에서 `python3 -m unittest discover -s tests -v` rc0, CLI 13회 관측,
+  기존 5개 시험·helper 2개 AST와 fixture 대조, spec→구현 부모 관계·plan Upstream·5회 공개 대화 확인.
+- **관측:** `Ran 10 tests in 0.521s` / `OK`. CLI의 예상 출력·종료코드 일치, fixture SHA 전후 동일,
+  plan과 구현이 같은 커밋이고 Upstream은 수락된 4d31072였다. 제품 검사에서 예상 밖 실패 줄은 없었다.
+- **계획 대조:** Files에는 제품 3파일, plan 자체는 Revision 절에 동시 커밋 대상으로 명시돼 있었다.
+  root는 최종 인계의 네 파일과 실제 변경이 일치하고 숨은 범위가 없어 중요한 누락으로 판단하지 않았다.
+  이 차이를 기록하되 사용판에 계획 자체의 중복 기재를 강제하지 않았다.
+- **확인 불가:** 초기 자발적 동기화는 실패했다. 복구와 커밋 조작에 HUMAN이 개입했고,
+  새 PR 통합·실제 조직 승인·배포는 부분 실험 범위 밖이다.
+
+독립 보고 원문은 기록 판의 `raw/verifier-summary.txt`, 실제 출력은 `raw/verifier-tests.txt`와
+`raw/verifier-cli.txt`다. 부분 실험 뒤 제작 원문·179개 ID와 집계, 데이터 v1/v2, 배포 정책 동일성,
+기록 해시와 제품 불변을 정적으로 재확인했다. 제작 코드·시험은 그대로라 앞선 make check 결과를 재사용했다.
