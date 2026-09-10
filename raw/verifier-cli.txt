@@ -1,0 +1,8 @@
+summary rc= 0 stdout= 'open\t3\ndone\t1\n' stderr= ''
+json-all rc= 0 stdout= '{"open": 3, "done": 1}\n' stderr= ''
+json-hana rc= 0 stdout= '{"open": 1, "done": 1}\n' stderr= ''
+json-none rc= 0 stdout= '{"open": 0, "done": 0}\n' stderr= ''
+complete-copy rc= 0 stdout= 'R-101\tdone\thana\t회의실 키 확인\n' stderr= ''
+json-after-complete rc= 0 stdout= '{"open": 0, "done": 2}\n' stderr= ''
+fixture_unchanged= True
+CLI_ASSERTIONS=PASS

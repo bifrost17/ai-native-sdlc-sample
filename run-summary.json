@@ -1,0 +1,590 @@
+{
+  "case": "r01",
+  "dataset": "3.0.0",
+  "seed": 102,
+  "kind": "partial-followup-revision",
+  "candidate": "add296d3875fb5555b583fdb5fce9ca4696b424c",
+  "baseline_product": "28b8fa8bff56d5becf2f8bfd63ffaa99b7f3dfac",
+  "setup": "8dbf319f19fd8be2e006151867363b7867665bfb",
+  "product": "9f42449bc786535ceaa1d52df4fd34315a88c842",
+  "human_turns": 3,
+  "resumes": 2,
+  "process_seconds": 155.77,
+  "cli_display_cost_usd": 0.4426748,
+  "skill_calls": 0,
+  "tool_errors": [],
+  "turns": [
+    {
+      "meta": {
+        "started_at": "2026-09-10T16:23:45.691498+00:00",
+        "duration_seconds": 44.91,
+        "command": [
+          "claude",
+          "-p",
+          "--model",
+          "sonnet",
+          "--effort",
+          "low",
+          "--restricted",
+          "--setting-sources",
+          "project,local",
+          "--settings",
+          "{\"enabledPlugins\": {\"clangd-lsp@claude-plugins-official\": false, \"understand-anything@understand-anything\": false, \"intent-sdlc-skills@intent-sdlc-skills\": false}}",
+          "--strict-mcp-config",
+          "--mcp-config",
+          "{\"mcpServers\":{}}",
+          "--no-chrome",
+          "--permission-mode",
+          "acceptEdits",
+          "--permission-prompts",
+          "none",
+          "--tools",
+          "Read,Write,Edit,Glob,Grep,Bash,Skill",
+          "--allowedTools",
+          "Read,Write,Edit,Glob,Grep,Skill,Bash(python3 *),Bash(git status*),Bash(git diff*),Bash(git show*),Bash(git log*),Bash(git rev-parse*),Bash(git ls-files*),Bash(ls *),Bash(pwd)",
+          "--output-format",
+          "stream-json",
+          "--verbose"
+        ],
+        "cwd": "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r01",
+        "process_rc": 0,
+        "resumed_session": null,
+        "actor": "HUMAN (Codex, simulated)"
+      },
+      "init": {
+        "type": "system",
+        "subtype": "init",
+        "session_id": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "cwd": "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r01",
+        "tools": [
+          "Bash",
+          "Edit",
+          "Glob",
+          "Grep",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "skills": [
+          "deep-research",
+          "design",
+          "design-sync",
+          "dataviz",
+          "update-config",
+          "verify",
+          "debug",
+          "code-review",
+          "simplify",
+          "batch",
+          "fewer-permission-prompts",
+          "doctor",
+          "loop",
+          "schedule",
+          "claude-api",
+          "workflow-authoring",
+          "run",
+          "run-skill-generator"
+        ],
+        "plugins": [],
+        "model": "claude-sonnet-5",
+        "permissionMode": "acceptEdits",
+        "claude_code_version": "2.1.265"
+      },
+      "result": {
+        "duration_api_ms": 43203,
+        "stop_reason": "end_turn",
+        "session_id": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "total_cost_usd": 0.16345379999999998,
+        "usage": {
+          "input_tokens": 18,
+          "cache_creation_input_tokens": 20295,
+          "cache_read_input_tokens": 232669,
+          "output_tokens": 3449,
+          "output_tokens_details": {
+            "thinking_tokens": 13
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 20295,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 639,
+              "cache_read_input_tokens": 33124,
+              "cache_creation_input_tokens": 189,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 189
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "claude-haiku-4-5-20251001": {
+            "inputTokens": 1114,
+            "outputTokens": 20,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.001214,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "thinkingTokens": 0,
+            "canonicalModel": "claude-haiku-4-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          },
+          "claude-sonnet-5": {
+            "inputTokens": 18,
+            "outputTokens": 3449,
+            "cacheReadInputTokens": 232669,
+            "cacheCreationInputTokens": 20295,
+            "webSearchRequests": 0,
+            "costUSD": 0.1622398,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 64000,
+            "thinkingTokens": 13,
+            "canonicalModel": "claude-sonnet-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "fast_mode_disabled_reason": "sdk_opt_in_required",
+        "subagent_stats": {
+          "spawned": 0,
+          "requested": {
+            "background": 0,
+            "foreground": 0,
+            "unset": 0
+          },
+          "started_in_background": 0,
+          "max_depth": 0,
+          "spawned_by_subagents": 0,
+          "completed": 0,
+          "failed": 0,
+          "killed": {
+            "parent": 0,
+            "user": 0,
+            "system": 0
+          },
+          "refused": {
+            "depth_limit": 0,
+            "concurrency_limit": 0,
+            "budget": 0
+          },
+          "by_type": {}
+        },
+        "is_error": false,
+        "num_turns": 15,
+        "subtype": "success",
+        "api_error_status": null,
+        "result": "PR2 `summary` 구현을 완료했습니다.\n\n## 변경 내용\n\n- `tracker.py`: `summary` 서브파서(`--owner` 선택 인자)를 추가. `list`/`summary`가 같은 필터 표현을 공유하도록 통합해, `--owner` 필터 로직 불일치 위험(plan의 Risks)을 피했다. `summary`는 필터된 대상에서 `open`/`done` 개수를 세어 고정 순서로 출력하며 파일을 쓰지 않는다.\n- `tests/test_tracker.py`: AC4~AC7에 대응하는 4개 시험 추가 (옵션 없음/​`--owner hana`/​`--owner nobody`/복사본에서 `complete` 후 반영 확인).\n- `README.md`: `summary`, `summary --owner <ID>` 사용법을 `list --owner` 설명 옆에 이어 추가.\n\n## 검증\n\n- `python3 -m unittest discover -s tests -v` — 9개 전체 통과 (기존 3개 + PR1의 `list --owner` 2개 + 신규 `summary` 4개). 기존 `show`/`complete` 시험도 그대로 통과해 AC8 회귀 없음 확인.\n- 수동 실행: `summary`(옵션 없음) → `open\\t3`, `done\\t1`; `summary --owner hana` → `open\\t1`, `done\\t1`; `summary --owner nobody` → `open\\t0`, `done\\t0`. spec AC4/AC5와 일치.\n\n미실행 항목 없음 — plan.md의 Proof에 명시된 항목 모두 실행함. `plan.md`에서 계획한 범위와 구현이 일치해 별도 편차 기록은 없다. Git 커밋/PR 통합은 진행하지 않았으니 확인 후 알려주세요.",
+        "ttft_ms": 1946,
+        "type": "result",
+        "duration_ms": 43373,
+        "uuid": "8bcee99f-cea9-40ad-a11a-0d99b918006b",
+        "ttft_stream_ms": 1429,
+        "time_to_request_ms": 51,
+        "first_content_frame_ms": 1541,
+        "queued_turn_count": 0
+      }
+    },
+    {
+      "meta": {
+        "started_at": "2026-09-10T16:26:01.039908+00:00",
+        "duration_seconds": 69.45,
+        "command": [
+          "claude",
+          "-p",
+          "--model",
+          "sonnet",
+          "--effort",
+          "low",
+          "--restricted",
+          "--setting-sources",
+          "project,local",
+          "--settings",
+          "{\"enabledPlugins\": {\"clangd-lsp@claude-plugins-official\": false, \"understand-anything@understand-anything\": false, \"intent-sdlc-skills@intent-sdlc-skills\": false}}",
+          "--strict-mcp-config",
+          "--mcp-config",
+          "{\"mcpServers\":{}}",
+          "--no-chrome",
+          "--permission-mode",
+          "acceptEdits",
+          "--permission-prompts",
+          "none",
+          "--tools",
+          "Read,Write,Edit,Glob,Grep,Bash,Skill",
+          "--allowedTools",
+          "Read,Write,Edit,Glob,Grep,Skill,Bash(python3 *),Bash(git status*),Bash(git diff*),Bash(git show*),Bash(git log*),Bash(git rev-parse*),Bash(git ls-files*),Bash(ls *),Bash(pwd)",
+          "--output-format",
+          "stream-json",
+          "--verbose",
+          "--resume",
+          "dc727d57-2fd8-4849-8a50-4025a1fa0c87"
+        ],
+        "cwd": "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r01",
+        "process_rc": 0,
+        "resumed_session": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "actor": "HUMAN (Codex, simulated)"
+      },
+      "init": {
+        "type": "system",
+        "subtype": "init",
+        "session_id": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "cwd": "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r01",
+        "tools": [
+          "Bash",
+          "Edit",
+          "Glob",
+          "Grep",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "skills": [
+          "deep-research",
+          "design",
+          "design-sync",
+          "dataviz",
+          "update-config",
+          "verify",
+          "debug",
+          "code-review",
+          "simplify",
+          "batch",
+          "fewer-permission-prompts",
+          "doctor",
+          "loop",
+          "schedule",
+          "claude-api",
+          "workflow-authoring",
+          "run",
+          "run-skill-generator"
+        ],
+        "plugins": [],
+        "model": "claude-sonnet-5",
+        "permissionMode": "acceptEdits",
+        "claude_code_version": "2.1.265"
+      },
+      "result": {
+        "duration_api_ms": 65690,
+        "stop_reason": "end_turn",
+        "session_id": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "total_cost_usd": 0.1625258,
+        "usage": {
+          "input_tokens": 16,
+          "cache_creation_input_tokens": 9784,
+          "cache_read_input_tokens": 308289,
+          "output_tokens": 6170,
+          "output_tokens_details": {
+            "thinking_tokens": 85
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 9784,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 601,
+              "cache_read_input_tokens": 42898,
+              "cache_creation_input_tokens": 199,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 199
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "claude-sonnet-5": {
+            "inputTokens": 16,
+            "outputTokens": 6170,
+            "cacheReadInputTokens": 308289,
+            "cacheCreationInputTokens": 9784,
+            "webSearchRequests": 0,
+            "costUSD": 0.1625258,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 64000,
+            "thinkingTokens": 85,
+            "canonicalModel": "claude-sonnet-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "fast_mode_disabled_reason": "sdk_opt_in_required",
+        "subagent_stats": {
+          "spawned": 0,
+          "requested": {
+            "background": 0,
+            "foreground": 0,
+            "unset": 0
+          },
+          "started_in_background": 0,
+          "max_depth": 0,
+          "spawned_by_subagents": 0,
+          "completed": 0,
+          "failed": 0,
+          "killed": {
+            "parent": 0,
+            "user": 0,
+            "system": 0
+          },
+          "refused": {
+            "depth_limit": 0,
+            "concurrency_limit": 0,
+            "budget": 0
+          },
+          "by_type": {}
+        },
+        "is_error": false,
+        "num_turns": 14,
+        "subtype": "success",
+        "api_error_status": null,
+        "result": "`summary --json` 요구를 PR2 범위에 반영했습니다.\n\n## 변경 내용\n\n- `intent/0001-owner-list-and-summary/spec.md`: R8/AC9 추가, Design에 `--json`은 기존 대상 선택·집계와 출력 형식만 분기함을 기록.\n- `intent/0001-owner-list-and-summary/plan.md`: 편차 기록(2026-09-11 제품 책임자 승인)과 PR2 작업 목록·Proof에 `--json` 시험/수동 실행 추가.\n- `tracker.py`: `summary` 서브파서에 `--json`(store_true) 추가. 대상 선택·집계 로직은 그대로 재사용하고 출력만 `json.dumps({\"open\":..,\"done\":..})`로 분기. 기존 텍스트 출력(`--json` 미사용 시)은 변경 없음.\n- `tests/test_tracker.py`: `summary --json` 기본/​`--owner hana`/​`--owner nobody` 3개 시험 추가, 데이터 파일 불변 확인 포함.\n- `README.md`: `summary --json` 사용 예시와 설명 추가.\n\n## 검증\n\n- `python3 -m unittest discover -s tests -v` — 12개 전체 통과(기존 9개 + 신규 `--json` 시험 3개).\n- 수동 실행: `summary --json` → `{\"open\": 3, \"done\": 1}`; `--owner hana --json` → `{\"open\": 1, \"done\": 1}`; `--owner nobody --json` → `{\"open\": 0, \"done\": 0}`. AC9와 일치.\n\n미실행 항목 없음. Git 커밋/PR 반영은 요청하신 대로 진행하지 않았습니다.",
+        "ttft_ms": 3095,
+        "type": "result",
+        "duration_ms": 67845,
+        "uuid": "7961cfb8-2bfc-4b18-9d7d-92edf008451c",
+        "ttft_stream_ms": 1711,
+        "time_to_request_ms": 35,
+        "first_content_frame_ms": 2179,
+        "queued_turn_count": 0
+      }
+    },
+    {
+      "meta": {
+        "started_at": "2026-09-10T16:31:45.605113+00:00",
+        "duration_seconds": 41.41,
+        "command": [
+          "claude",
+          "-p",
+          "--model",
+          "sonnet",
+          "--effort",
+          "low",
+          "--restricted",
+          "--setting-sources",
+          "project,local",
+          "--settings",
+          "{\"enabledPlugins\": {\"clangd-lsp@claude-plugins-official\": false, \"understand-anything@understand-anything\": false, \"intent-sdlc-skills@intent-sdlc-skills\": false}}",
+          "--strict-mcp-config",
+          "--mcp-config",
+          "{\"mcpServers\":{}}",
+          "--no-chrome",
+          "--permission-mode",
+          "acceptEdits",
+          "--permission-prompts",
+          "none",
+          "--tools",
+          "Read,Write,Edit,Glob,Grep,Bash,Skill",
+          "--allowedTools",
+          "Read,Write,Edit,Glob,Grep,Skill,Bash(python3 *),Bash(git status*),Bash(git diff*),Bash(git show*),Bash(git log*),Bash(git rev-parse*),Bash(git ls-files*),Bash(ls *),Bash(pwd)",
+          "--output-format",
+          "stream-json",
+          "--verbose",
+          "--resume",
+          "dc727d57-2fd8-4849-8a50-4025a1fa0c87"
+        ],
+        "cwd": "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r01",
+        "process_rc": 0,
+        "resumed_session": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "actor": "HUMAN (Codex, simulated)"
+      },
+      "init": {
+        "type": "system",
+        "subtype": "init",
+        "session_id": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "cwd": "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r01",
+        "tools": [
+          "Bash",
+          "Edit",
+          "Glob",
+          "Grep",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "skills": [
+          "deep-research",
+          "design",
+          "design-sync",
+          "dataviz",
+          "update-config",
+          "verify",
+          "debug",
+          "code-review",
+          "simplify",
+          "batch",
+          "fewer-permission-prompts",
+          "doctor",
+          "loop",
+          "schedule",
+          "claude-api",
+          "workflow-authoring",
+          "run",
+          "run-skill-generator"
+        ],
+        "plugins": [],
+        "model": "claude-sonnet-5",
+        "permissionMode": "acceptEdits",
+        "claude_code_version": "2.1.265"
+      },
+      "result": {
+        "duration_api_ms": 37825,
+        "stop_reason": "end_turn",
+        "session_id": "dc727d57-2fd8-4849-8a50-4025a1fa0c87",
+        "total_cost_usd": 0.1166952,
+        "usage": {
+          "input_tokens": 14,
+          "cache_creation_input_tokens": 6867,
+          "cache_read_input_tokens": 326396,
+          "output_tokens": 2392,
+          "output_tokens_details": {
+            "thinking_tokens": 689
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 6867,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 562,
+              "cache_read_input_tokens": 49509,
+              "cache_creation_input_tokens": 455,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 455
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "claude-sonnet-5": {
+            "inputTokens": 14,
+            "outputTokens": 2392,
+            "cacheReadInputTokens": 326396,
+            "cacheCreationInputTokens": 6867,
+            "webSearchRequests": 0,
+            "costUSD": 0.1166952,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 64000,
+            "thinkingTokens": 689,
+            "canonicalModel": "claude-sonnet-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "fast_mode_disabled_reason": "sdk_opt_in_required",
+        "subagent_stats": {
+          "spawned": 0,
+          "requested": {
+            "background": 0,
+            "foreground": 0,
+            "unset": 0
+          },
+          "started_in_background": 0,
+          "max_depth": 0,
+          "spawned_by_subagents": 0,
+          "completed": 0,
+          "failed": 0,
+          "killed": {
+            "parent": 0,
+            "user": 0,
+            "system": 0
+          },
+          "refused": {
+            "depth_limit": 0,
+            "concurrency_limit": 0,
+            "budget": 0
+          },
+          "by_type": {}
+        },
+        "is_error": false,
+        "num_turns": 8,
+        "subtype": "success",
+        "api_error_status": null,
+        "result": "인도 준비 완료됐습니다.\n\n## 최종 상태\n\n- 승인한 spec 판(`5e6cdd6`, R8/AC9 `summary --json`)과 현재 구현이 일치함을 확인했습니다.\n- `plan.md`에 이 spec 수락 판(SHA)과 결정 근거(제품 책임자 2026-09-11 수락)를 이어 기록했습니다. `Status: draft.`는 CLAUDE.md 지침에 따라 직접 승인 표시로 바꾸지 않았습니다 — PROJECT-POLICY.md상 단계 수락 기록 위치는 \"공개 대화와 GitHub 실험 PR\"이므로, 실제 승인 기록은 PR에서 남겨주시면 됩니다.\n\n## 변경 파일 (미커밋, working tree)\n\n- `tracker.py` — `summary --json` 구현\n- `tests/test_tracker.py` — `--json` 시험 3개\n- `README.md` — `--json` 사용법\n- `intent/0001-owner-list-and-summary/plan.md` — 편차 기록 + 수락 SHA 갱신\n\n## 검증\n\n- `python3 -m unittest discover -s tests -v` → 12개 전체 통과.\n- 수동 실행: `summary`, `summary --json`, `--owner hana --json`, `--owner nobody --json` 모두 spec AC4/AC5/AC9와 일치하는 결과 확인.\n\nGit 커밋·PR 작업은 그대로 맡아주시면 됩니다. 필요하시면 커밋 메시지 초안도 도와드릴 수 있습니다.",
+        "ttft_ms": 2955,
+        "type": "result",
+        "duration_ms": 39799,
+        "uuid": "c121a0ae-cb32-410d-93a3-9a452753b26b",
+        "ttft_stream_ms": 1636,
+        "time_to_request_ms": 62,
+        "first_content_frame_ms": 2100,
+        "queued_turn_count": 0
+      }
+    }
+  ],
+  "context_condition": "T1 explicitly asked to read CLAUDE.md; successful Bash cat returned exact content. T2+ did not remind artifact updates.",
+  "outcome": {
+    "artifact_revision": "pass within observed scope; no follow-up document reminder",
+    "product": "pass",
+    "human_git": true,
+    "new_pr": false
+  },
+  "limits": "Partial local run; Git by HUMAN; no new PR, production, team-skill use, or general success-rate estimate.",
+  "sha256": {
+    "raw/after-turn02.diff.json": "19e10205ab0aa2b4ac09d8b2a4c8bb7e4100236f2a45e137961bbb996c7a9594",
+    "raw/after-turn03.diff.json": "e6c53112329585a3090109cee57f95c9f6cbcae28357532a3524d2cbdf8b5839",
+    "raw/human-cli.json": "4fc8ddaa607cf2c176aa860b41d81bdb743a957583749f328b0ce224bd83f5a5",
+    "raw/human-decisions.md": "50fba3242192d7031c188cb506df96d918d8c6024a8f592cc641ee064b62dd70",
+    "raw/human-tests.txt": "6be8706316e99684782f4cfbd31ca7497d4e6ff78798c6e33e6d316b0a507e0b",
+    "raw/independent-verifier.md": "661b250e4e8fae068adaa593589976064aea008d625b8704ab24f88f1ae03e7f",
+    "raw/instruction-exposure.json": "8c5f1b658c31cd9257392fef031ff198f572770ae9958500c1fc645f7bf39624",
+    "raw/maker-bad-hook.txt": "8e0c24f9526cb91a80b40c10b1482c2ae3e0c02a5279d80a554ba24b4fdba4a9",
+    "raw/maker-make-check.txt": "e76436c5591955ea93fed40eae8bd91b9590f9eb2d2b7a3256d6350052309bbe",
+    "raw/runtime-audit.md": "3756f23b8bc32005461d2fe1c964e5a2325c1fefec6fb3476307171a89374629",
+    "raw/turn-01.agent.jsonl": "c95cc9127a6368bce7b132b0b932050f7db6ff49c46473e8e69bd2f2c5f5a1f1",
+    "raw/turn-01.human.md": "bfe7ea94a9e7ec6aa81f08aa5609ec5c3444ff20e6bff22998d2218eb2eb8e02",
+    "raw/turn-01.meta.json": "5b33c123127c0c1be362426a686a5f1f197e0e5e00af6b8f0490e90b10fae634",
+    "raw/turn-01.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-02.agent.jsonl": "fddd65cc13c853e47f0cb1176605f7125383e6bcc5e1982fd22c4df724e0e5ea",
+    "raw/turn-02.human.md": "c7a956cfe7123fbd48f040bd0a9fd9eb8d3b071c9740f9c0e8192d8dfcd5592c",
+    "raw/turn-02.meta.json": "886f0867c8f4d4025a2baeedd88ae79223cca607b020f9704b7ed22624b983a1",
+    "raw/turn-02.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/turn-03.agent.jsonl": "d543b107f410ff78d651d62c435ed76597a93bb6dda779183032381b609a4c3e",
+    "raw/turn-03.human.md": "cc421c7e83f7b57e16c90ceae7fe4df987ba4a2c45339d0c0bf7656a2f8bcf2a",
+    "raw/turn-03.meta.json": "1bbbe3e9e747d4028212072aa33a083900a8547f5640ffc4b0774185625752ff",
+    "raw/turn-03.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/verifier-cli.txt": "6ca105ed02e25d43ec8fb91f575276849071b4f6b8df6a1b652ab06fb60725dc",
+    "raw/verifier-tests.txt": "a5f0ca0f01d9752f329a46e6edf1cbf931ac9363e013697a559a86f416a32e29",
+    "raw/product-commits.txt": "03de109a392fdb914fc8989c0084882beafc5d727fddaf7a564eadcef6c3fae5"
+  }
+}
