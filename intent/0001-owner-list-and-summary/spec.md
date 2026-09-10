@@ -2,6 +2,10 @@
 Upstream: intent.md@17bf490414d601ee2da197b7e5363831d2fc7cea. Status: draft.
 References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 내 데이터셋 계약 파일로 직접 확인.
 
+R8, R9(및 AC9, AC10)는 PR2 구현 중 제품 책임자(HUMAN)가 "summary를 파일로 저장해 전달해야 한다"는
+후속 요청으로 승인한 범위 확장이다. intent.md의 문제·목표·제약은 바뀌지 않아 intent.md는 갱신하지
+않았다(작은 CLI 조회 기능 추가, 서버·외부 서비스 없음 제약과 일관).
+
 ## Requirements
 
 - R1. `list`에 `--owner <ID>` 옵션을 추가한다. 지정하면 그 담당자의 요청만, 기존 `list`와 같은
@@ -14,8 +18,16 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
   집계한다.
 - R5. `summary`의 출력은 `open\t<건수>`, `done\t<건수>` 두 줄, 이 순서로 고정한다. 대상이 0건이면
   `open\t0`, `done\t0`을 출력하고 종료코드는 0이다.
-- R6. `list --owner`와 `summary`는 어떤 경우에도 데이터 파일을 쓰지 않는다(조회 전용).
+- R6. `list --owner`와 `summary`는 어떤 경우에도 데이터 파일(요청 데이터, `--data`)을 쓰지 않는다
+  (조회 전용).
 - R7. 담당자 ID 비교는 대소문자를 구분하는 정확 일치만 사용한다. 정규화나 유사 일치를 하지 않는다.
+- R8. `summary`에 `--output <path>` 선택 옵션을 추가한다. 지정하면 R5의 두 줄(`open\t<건수>`,
+  `done\t<건수>`)을 표준출력 대신 UTF-8로 그 경로에 저장하고, 표준출력은 비운 채 종료코드 0으로
+  끝낸다. `--owner`와 함께 쓸 수 있으며 대상 선택·집계 로직은 R4와 동일하다. `--output`이 없으면
+  지금처럼 표준출력에 낸다.
+- R9. `--output` 경로에 이미 파일이 있으면 덮어쓰지 않고 stderr에 설명을 출력한 뒤 종료코드 2로
+  끝낸다. 부모 디렉터리가 없거나 파일 쓰기가 실패해도 종료코드 2, stderr 설명이다. 두 경우 모두
+  `--data`가 가리키는 요청 데이터는 바꾸지 않는다.
 
 ## Design
 
@@ -32,6 +44,12 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
   파일이 없거나 스키마가 깨진 경우 기존과 같은 오류 메시지·종료코드를 낸다.
 - 데이터 흐름: `--data` 경로 읽기 → JSON 파싱(원본 dict 유지) → `requests` 리스트 선택/필터 →
   출력. `list --owner`와 `summary`는 파싱한 `data`를 쓰기 없이 그대로 버린다(`complete`만 쓰기).
+- `summary --output`은 집계까지 R4와 동일한 경로를 거친 뒤, 출력 단계에서만 갈라진다: 대상 경로가
+  이미 존재하면 `pathlib.Path.exists()`로 먼저 확인해 덮어쓰지 않고 종료코드 2로 끝낸다. 존재하지
+  않으면 `Path.write_text(..., encoding="utf-8")`로 쓰되, 부모 디렉터리 부재나 다른 `OSError`는
+  기존 예외 처리 경로(R6/기존 설계의 `OSError, ValueError, KeyError, TypeError` → 종료코드 2)로
+  묶어 처리한다. 요청 데이터(`--data`) 읽기와 출력 파일 쓰기는 별개 파일이므로, 출력 파일 쓰기
+  실패가 요청 데이터에 영향을 주지 않는다(원래 읽기만 했으므로 자연히 만족됨).
 
 ## Constraints
 
@@ -81,3 +99,9 @@ intent.md에서 이어받음:
 - AC8 → Constraints(기존 명령·저장 필드 유지): 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1,
   stderr 메시지)는 이번 변경으로 달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
   `test_complete_changes_only_target_status_and_is_repeatable`가 그대로 통과해야 한다.
+- AC9 → R8: `summary --output <path>`(신규 경로)를 실행하면 표준출력이 비고, 그 경로 파일이
+  `open\t<건수>\ndone\t<건수>\n`을 담으며 종료코드 0이다. `--owner`와 함께 써도(`summary --owner
+  hana --output <path>`) AC4의 대상과 같은 건수가 파일에 담긴다.
+- AC10 → R9: 이미 존재하는 `--output` 경로로 실행하면 그 파일 내용이 바뀌지 않고, stderr에 설명이
+  있으며 종료코드 2다. 부모 디렉터리가 없는 `--output` 경로로 실행해도 종료코드 2, stderr 설명이고
+  요청 데이터 파일(`--data`)은 바이트가 바뀌지 않는다.
