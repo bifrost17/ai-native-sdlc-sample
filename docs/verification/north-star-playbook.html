@@ -194,15 +194,18 @@ html{scroll-behavior:smooth}
       <section class="overview" aria-labelledby="north-star-title">
         <h2 id="north-star-title">프로젝트 북극성 — 플레이북과 충실도 평가</h2>
         <p>우리의 목표는 <strong>Anthropic의 AI-Native SDLC Playbook을 충실히 따라, 우리 팀이 실제 소프트웨어 개발에 사용할 템플릿·스킬·정책을 구축하는 것</strong>이다.</p>
+        <p>목표 수준은 <strong>사람이 개입하는 개발에서 주요 흐름이 대체로 잘 작동하는 것</strong>이다. 완벽한 재현을 위해 템플릿을 비대하게 만들거나 에이전트의 재량을 제한하지 않는다. 반복 실험에서는 중요한 전체 흐름의 회귀를 확인하고, 영향이 없는 고정 가이드는 기존 근거를 재사용한다.</p>
         <p><strong>플레이북 원문은 설계와 판단의 기준이고, 각 문단에 붙인 주석은 그 기준을 얼마나 충실히 따랐는지 점검한 기록</strong>이다. 주석에는 우리 프로젝트의 구현, 실제 실행 증거, 판정과 보완 내용을 담는다. 이 안내와 평가 주석은 우리 프로젝트가 작성한 내용이다.</p>
         <p>템플릿·스킬·정책을 만들거나 개선할 때는 해당 플레이북 문단과 기존 주석을 먼저 확인한다. 가이드가 조직에 맡긴 부분은 우리 팀의 실제 기준과 상황으로 채우고, 각 문단이 요구하는 구현과 실행 근거로 충실도를 평가한다.</p>
       </section>
       <p class="dek">검증 기준 핀 — v2 <code>main@0daf655</code> · <b>v3 <code>main@5599dcf</code></b>(기준 라운드) ·
       실험 <code>experiment/2026-09-09-claims-status@cebc0e5</code>. 인용은 <b>경로 + 축자 인용문</b>이고
       줄 번호는 쓰지 않는다 — 핀은 그 문면을 읽은 시점을 말하고, 번호가 필요하면
-      <code>git grep -F</code> 가 그 시점 값을 돌려준다. 재판정은 인용문이 사라졌을 때 한다.
+      <code>git grep -F</code> 가 그 시점 값을 돌려준다. 인용문·관련 설정·연결 단계의 변경이나 새 실패가 재평가의 계기다.
       어느 챕터가 어느 라운드에 있는지는 <code>CHAPTERS.md</code> 가 정본이다.
-      <a href="0013-controls.md">0013 보완</a>의 9개 주석은 <code>91727d2</code>와 후속 검증 기록을 쓴다.</p>
+      <a href="0013-controls.md">0013 보완</a>의 9개 주석은 <code>91727d2</code>와 후속 검증 기록을 쓴다.
+      기존 집계는 제작 저장소의 역사적 근거이며, 가벼운 사용 템플릿에 자동 승계하지 않는다.</p>
+      <p class="dek">0014 보완 — <code>fb87006</code> · V9-06·07·10·11·12. <a href="0014-eval-grading.md">실제 채점·오류·회귀 검증</a>.</p>
     </header>
     <div class="overview"><p>많은 엔지니어링 팀이 여전히 같은 approval gate, review, handoff, 정책을 그대로 두고 있어, Claude Code 같은 agentic coding 솔루션으로 얻은 생산성 향상을 정체시킨다.</p>
 <p>이 가이드에서는 고객과 함께 일하며 얻은 경험을 바탕으로, SDLC 각 단계에 Claude를 사내 통합해 개발을 가속하고 process를 더 빠르게 돌리는 Applied AI 팀의 best practice 몇 가지를 살펴본다.</p>
@@ -1224,15 +1227,15 @@ If a test fails, fix the code, not the test.
 </div></details>
 <li>각 작업을 eval로 쓰는데, eval이란 prompt에 무엇이 수용 가능한지 정의하는 검사(test 통과, lint clean, 동작 불변, 정책 준수)를 더한 것이다.</li>
 <details class="verify v-ok" open id="V9-06"><summary>▸ <a class="vid" href="#V9-06">V9-06</a> · 검증 · <b>충실</b> — <span class="q">2 — prompt + 수용 기준 검사</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>evals/SCHEMA.md</code>: prompt · expected_output · files · assertions(LLM 채점용 산문) · checks(결정론, 닫힌 kind 5종: file_exists/contains/not_contains/regex_present/regex_absent). <code>check.sh</code> 는 checks 0건이면 rc=2(판정 없는 케이스는 통과가 아니다). <code>docs/BOUNDARY.md</code> 「deterministic checks only judge code shape … behavior is judged by the LLM assertions and by the unit/regression tests」.</p>
-<p><b>실험</b> 채점기 자체를 재는 손픽스처 testdata/(01·02·03 의 pass/fail 짝 + bad-kind + no-workspace) 가 <code>tests/test_evals.sh</code>(make test 안, 8 passed)로 매 PR 돈다. 「tests pass」는 kind 가 아니라 케이스 04 처럼 시험 파일 무변경 + 코드 형태로 잰다.</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿 · 0014</b> <code>fb87006</code>: <code>evals/check.sh</code>가 일치·불일치·오류를 구분하고, <code>grade_assertions.py</code>가 실제 산출물·성공한 도구 기록·정책을 독립 Sonnet·low 세션에서 채점한다. 인용 누락·오류는 판정 불가다. <code>make evals</code>는 두 검사를 모두 실행한다.</p>
+<p><b>실험</b> 기존 시험을 유지한 전체 검사 통과. 실제 원본 spec 재채점은 5 통과·1 실패이며, 한국어 JWT 양성·익명 접근 음성 합성 대조는 기대대로 구별했다. 앞선 인용 오류 2회도 보존했다.</p>
+<p><b>보완</b> 정규식 오류의 거짓 통과와 미실행 assertions를 보완했다. <a href="0014-eval-grading.md">0014 기록</a>은 평가기 통과와 산출물 실패를 구분한다. 이 평가기는 제작 저장소에만 있다.</p>
 </div></details>
 <li>suite는 CI에서 non-interactive로, 예약된 일정에 따라 그리고 <code>CLAUDE.md</code>·skill·hook에 변경이 있을 때마다 도는데, 그 설정이 agent를 조종하므로 코드가 받는 regression test를 받을 자격이 있기 때문이다.</li>
 <details class="verify v-ok" open id="V9-07"><summary>▸ <a class="vid" href="#V9-07">V9-07</a> · 검증 · <b>충실</b> — <span class="q">3 — non-interactive · 예약 일정 · CLAUDE.md/skill/hook 변경마다</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>.github/workflows/agent-evals.yml</code>은 CLAUDE.md·.claude/** 외에 <code>org-skills/**</code>·<code>policies/**</code>·<code>templates/**</code>·<code>evals/**</code>·<code>.claude-plugin/**</code>·워크플로 자체 변경을 PR 트리거에 포함한다. 주 1회 일정과 수동 실행을 유지한다. <code>evals/run.sh</code>는 <code>claude -p</code>에 현재 플러그인을 명시한다.</p>
-<p><b>실험</b> <code>tests/test_eval_plugin.py</code>가 관련 경로의 트리거 매칭, 네 케이스의 플러그인 전달, CLI 실패·플러그인 누락의 비0 종료를 확인한다. 실제 모델 단일 케이스와 로컬 가짜 CLI 검증은 <a href="0013-controls.md">0013 검증 기록</a>에서 구분한다. 변경된 GitHub Actions 트리거 자체는 호스티드 CI에서 아직 실행하지 않았다.</p>
-<p><b>보완</b> 조직 스킬·정책만 변경할 때 평가가 누락되던 경로를 보완했다. 전체 평가와 의미적 assertions 채점이 완료됐다는 뜻은 아니다.</p>
+<p><b>템플릿 · 0013/0014</b> <code>.github/workflows/agent-evals.yml</code>은 지침·스킬·정책·양식·평가 설정 변경 및 주간 일정을 포함한다. <code>fb87006</code>의 <code>make evals</code>는 <code>evals/run.sh --semantic</code>으로 생성과 양쪽 채점을 연결한다.</p>
+<p><b>실험</b> 기존 플러그인 연결 5건과 새 실행기 시험 7건이 호출·실패 전파·다음 사례 진행을 확인한다. 실제 Sonnet 기록은 부분 재채점이며 canonical 네 사례 전체나 호스티드 CI 실행은 아니다.</p>
+<p><b>보완</b> 누락되던 변경 경로와 의미 채점 실행 연결을 보완했다. <a href="0014-eval-grading.md">0014 검증</a>. 사용 템플릿의 CI 도입 여부는 프로젝트가 정한다.</p>
 </div></details>
 <li>설정 변경은 그 결과를 gate로 삼는다. pass rate를 떨어뜨리는 skill 변경은 merge되기 전에 review를 받는다.</li>
 <details class="verify v-part" open id="V9-08"><summary>▸ <a class="vid" href="#V9-08">V9-08</a> · 검증 · <b>부분</b> — <span class="q">4 — 결과가 설정 변경의 gate · pass rate 떨어뜨리는 skill 변경은 merge 전 review</span></summary><div class="v-body">
@@ -1273,24 +1276,24 @@ jobs:
           done
 </code></pre>
 <details class="verify v-ok" open id="V9-10"><summary>▸ <a class="vid" href="#V9-10">V9-10</a> · 검증 · <b>충실</b> — <span class="q">실제 모습 — agent-evals.yml</span></summary><div class="v-body">
-<p><b>템플릿</b> 같은 뼈대: pull_request paths · schedule · checkout · npm install claude-code · 키 env · 루프+check.sh(루프는 evals/run.sh 로, <code>make evals</code> 한 줄). 다른 점: cron 주 1회, <code>fetch-depth: 0</code>, dispatch.</p>
-<p><b>실험</b> —</p>
-<p><b>보완</b> 없음.</p>
+<p><b>템플릿 · 0014</b> 원문의 워크플로 뼈대를 유지한다. 실제 워크플로의 <code>make evals</code>는 생성·결정론 검사·독립 assertion 채점·집계를 실행한다. 주간 일정과 수동 실행이 있으며 출력은 항상 업로드하도록 구성했다.</p>
+<p><b>실험</b> 로컬 가짜 CLI로 canonical 연결을 검증했다. 호스티드 실행은 미관측이다.</p>
+<p><b>보완</b> <code>fb87006</code>·<a href="0014-eval-grading.md">0014 기록</a>. 예시 코드 자체는 원문 그대로다.</p>
 </div></details>
 <h2>governance 고려사항</h2>
 <p>eval은 agent artifact를 따라잡는 gate를 QA에 준다. pass rate 문턱은 merge 체크로 강제되고, 실행은 기록되어 결과를 시간에 걸쳐 비교할 수 있으며, 설정 변경을 소유한 팀이 그것을 승인한다.</p>
 <details class="verify v-ok" open id="V9-11"><summary>▸ <a class="vid" href="#V9-11">V9-11</a> · 검증 · <b>충실</b> — <span class="q">governance — pass rate 문턱 = merge 체크 · 실행 기록 · 설정 소유 팀 승인</span></summary><div class="v-body">
-<p><b>템플릿</b> merge 체크: 위 4번(팀 자리, #51). 실행 기록: Actions 이력 + <code>agent-evals.yml</code> 의 upload 단계가 <code>evals/out</code> 을 artifact <code>evals-&lt;run id&gt;</code> 로 보존(<code>if: always()</code>, #51). 승인: CODEOWNERS <code>.claude/**</code>·<code>CLAUDE.md</code> ✓.</p>
-<p><b>실험</b> 키가 없어 결과 파일이 만들어진 적이 없다 — 보존 결손은 실측이 아니라 워크플로 읽기로 확인.</p>
-<p><b>보완</b> 반영 #51(cd5c3af) — v1 에서 결과 파일이 어디에도 남지 않던 결손을 artifact 업로드로 닫음.</p>
+<p><b>템플릿 · 0014</b> <code>record.py</code>와 <code>run.sh --semantic</code>이 실행별 새 디렉터리에 케이스·단계·근거·<code>summary.json</code>을 보존한다. 오류를 통과에 포함하지 않으며 최종 종료 코드는 2 &gt; 1 &gt; 0이다. 승인과 required checks 설정은 사람이 관리한다.</p>
+<p><b>실험</b> 반복 실행 분리와 실패·판정 불가 분모는 자동 시험으로 확인했다. 실제 부분 채점의 실패와 인용 오류도 <a href="0014-grading-evidence.json">근거 JSON</a>에 남았다.</p>
+<p><b>보완</b> 결과 보존·집계를 보완했다. 실제 조직 merge gate의 집행은 여전히 V9-08의 부분 판정 범위다. 채점기는 승인자가 아니다.</p>
 </div></details>
 <h2>측정 방법</h2>
 <ul>
 <li><strong>leading indicator</strong>: 매 실행마다 suite가 보고하는, 시간에 따른 eval pass rate, 그리고 프로덕션 incident가 영구 eval이 되기까지 걸리는 시간.</li>
 <details class="verify v-ok" open id="V9-12"><summary>▸ <a class="vid" href="#V9-12">V9-12</a> · 검증 · <b>충실</b> — <span class="q">측정 leading — pass rate 추이 · incident → 영구 eval 시간</span></summary><div class="v-body">
-<p><b>템플릿</b> <code>docs/METRICS.md</code> 의 L10 절 — pass rate 는 artifact(<code>gh run download &lt;run id&gt;</code>)의 <code>*.json</code> 시계열, incident→영구 eval 은 <code>git log --diff-filter=A --format='%cI %h' -- intent/&lt;NNNN&gt;-*/intent.md evals/cases/&lt;NN&gt;-*.json</code>(밴드에서 난 incident) · 밖의 incident 는 tracker 시각부터(#51). <code>docs/RUNS.md</code>(실험 핀) L10 절에 실측.</p>
-<p><b>실험</b> 0006: 3분 39초(a21fe16 → 4bf2a07). pass rate: 측정 0회(키 없음).</p>
-<p><b>보완</b> 반영 #51(cd5c3af). pass rate 자체는 키가 들어와야 첫 값이 생긴다.</p>
+<p><b>템플릿 · 0014</b> <code>summary.json</code>은 전체 케이스 수·통과/실패/판정 불가·pass rate를 기록한다. 판정 불가를 분모에서 빼지 않는다. 기존 <code>docs/METRICS.md</code>의 incident→영구 eval 시간 측정법은 유지한다.</p>
+<p><b>실험</b> 전체 분모 집계와 실행별 보존은 자동 시험으로 확인했다. 실제 모델은 단일 산출물 재채점과 합성 대조이므로 네 사례 suite의 실측 성공률이나 추세로 보고하지 않는다. 과거 0006의 3분 39초 기록은 역사적 근거다.</p>
+<p><b>보완</b> <code>fb87006</code>·<a href="0014-eval-grading.md">0014 기록</a>. 장기·운영 지표는 이번 범위 밖이다.</p>
 </div></details>
 <li><strong>lagging indicator</strong>: incident tracker에서 도출한, 프로덕션에서 발견된 regression 대비 CI에서 잡힌 regression.</li>
 <details class="verify v-ok" open id="V9-13"><summary>▸ <a class="vid" href="#V9-13">V9-13</a> · 검증 · <b>충실</b> — <span class="q">측정 lagging — CI 가 잡은 regression vs 프로덕션 발견</span></summary><div class="v-body">

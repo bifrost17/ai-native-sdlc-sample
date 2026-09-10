@@ -1,0 +1,182 @@
+{
+  "scope": "partial grader validation; synthetic controls are handwritten, not agent development evidence",
+  "model": "sonnet",
+  "effort": "low",
+  "preserved_original": "docs/verification/0013-policy-evidence.json",
+  "records": [
+    {
+      "path": "evals/out/0014-policy-first.assertions.json",
+      "sha256": "2b2ffe0d13db9fb773ae4675f792820f79d4aeb289a72742f6a0776ef4521239",
+      "kind": "actual-0013-output-regrade",
+      "result": "undecidable",
+      "rc": 2,
+      "counts": {
+        "pass": 0,
+        "fail": 0,
+        "undecidable": 6
+      },
+      "error": "assertion 2 cites absent source text",
+      "assertions": []
+    },
+    {
+      "path": "evals/out/0014-policy-recheck.assertions.json",
+      "sha256": "44b2a1c0d1ed0e3d541b6743bef2900dcf1a1a7be069d1223968c9618cc2baa0",
+      "kind": "actual-0013-output-regrade",
+      "result": "undecidable",
+      "rc": 2,
+      "counts": {
+        "pass": 0,
+        "fail": 0,
+        "undecidable": 6
+      },
+      "error": "assertion 4 cites absent source text",
+      "assertions": []
+    },
+    {
+      "path": "evals/out/0014-policy-citation-fix.assertions.json",
+      "sha256": "18d6c8de23721de3bec03d73884a686dafa1c208cca46cf19f73f7493bcd8e48",
+      "kind": "actual-0013-output-regrade",
+      "result": "fail",
+      "rc": 1,
+      "counts": {
+        "pass": 5,
+        "fail": 1,
+        "undecidable": 0
+      },
+      "error": null,
+      "assertions": [
+        {
+          "index": 0,
+          "result": "pass",
+          "reason": "Trace shows Read calls on design-spec, spec-policy-pass, brand, data-compliance, secure-api-review (both plugin and local), and ux-copy SKILL.md files before spec.md names them in 'Skills applied', with sources matching the exact files read (plugin org-skills/skills/* and project .claude/skills/*).",
+          "evidence": [
+            {
+              "source": "trace:tool:toolu_01BmBfsyJbg3QiTRpWU1yvsH",
+              "excerpt": "tool: Read\nsuccess: true\ninput: {\"file_path\": \"/Users/jake/Projects/ai-native-sdlc-sample/org-skills/skills/brand/SKILL.md\"}"
+            },
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "intent-sdlc-skills:brand · `org-skills/skills/brand/SKILL.md` (plugin source) ·"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "result": "pass",
+          "reason": "spec.md R4/Design requires absolute KST timestamp per B3, and R3/R8/Design exclude employee_email/employee_phone and raw headers/responses from logs and response fields per C2.",
+          "evidence": [
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "완료 시각은 절대 시각(`YYYY-MM-DD`, 24시간제, KST 명시)으로 표시한다. 상대 시간만 단독으로"
+            },
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "화면과 엔드포인트 응답에는 employee_email, employee_phone 을 포함하지 않는다"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "result": "pass",
+          "reason": "R7/Design specify actor(role+internal ID), task ID, and UTC timestamp per C3, and the immediate-deletion request is flagged as an open conflict with decision left blank for the policy owner rather than being approved.",
+          "evidence": [
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "접근 이력에는 누가(역할+내부 임직원 ID)·무엇을(작업 ID)·언제(UTC)가 한 줄에 남는다. 보존"
+            },
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "PROJECT-POLICY P2 는 접근·변경 이력을 90일 보존한다고 정했다 (intent Open questions Q1과 동일 사안) | 충돌"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "result": "pass",
+          "reason": "R5 requires gateway-JWT-validated session per S1, and the error design follows U1/ux-copy's three-element structure (what happened, why, next action).",
+          "evidence": [
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "엔드포인트는 읽기 전용이며 인증된 세션(게이트웨이 JWT 를 검증한 포털 세션)에서만 응답한다. (S1)"
+            },
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "조회할 수 없습니다. [원인을 알 수 있으면 한 줄로]. 다시 조회를 눌러"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "result": "fail",
+          "reason": "Comparing trace:catalog against the spec's applicability table shows several catalog entries with no decision at all: deep-research, intent-sdlc-skills:to-questionnaire, design, design-sync, verify, debug, batch, and run-skill-generator are present in the session catalog but never appear (individually or in a grouped decision) in spec.md's skill table, so not every available skill received an apply/skip decision.",
+          "evidence": [
+            {
+              "source": "trace:catalog",
+              "excerpt": "skill: deep-research"
+            },
+            {
+              "source": "trace:catalog",
+              "excerpt": "skill: verify"
+            },
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "| aside-browser | 아니오 | 브라우저·개인 메모리 조회가 필요 없다 |"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "result": "pass",
+          "reason": "Policy skills (brand, data-compliance, secure-api-review, ux-copy) are applied concretely to change requirements/design fields, irrelevant capabilities like dataviz, claude-api, run are skipped with task-phase reasons, and the agent stayed within design-spec scope, explicitly refusing to write plan.md or code and leaving approval to the owner.",
+          "evidence": [
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "plan.md, 코드, 정책 파일 변경 — 이 spec 은 요구·설계 문서만이다."
+            },
+            {
+              "source": "workspace:spec.md",
+              "excerpt": "| dataviz | 아니오 | 차트·대시보드를 만들지 않는다 |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "evals/out/0014-jwt-synthetic/assertions.json",
+      "sha256": "d69b107cb93f4626caf2090d54b7155b25ddb64cf14d6a32f3af899f600db950",
+      "kind": "synthetic-grader-control",
+      "result": "fail",
+      "rc": 1,
+      "counts": {
+        "pass": 1,
+        "fail": 1,
+        "undecidable": 0
+      },
+      "error": null,
+      "assertions": [
+        {
+          "index": 0,
+          "result": "pass",
+          "reason": "positive.md states GET /claims only responds within authenticated session validated by gateway JWT signature, else 401.",
+          "evidence": [
+            {
+              "source": "workspace:positive.md",
+              "excerpt": "게이트웨이 JWT 서명을 검증한 인증 세션에서만 응답하며"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "result": "fail",
+          "reason": "negative.md explicitly allows anonymous access and only mentions logging the word JWT, no gateway validation.",
+          "evidence": [
+            {
+              "source": "workspace:negative.md",
+              "excerpt": "이 엔드포인트는 익명 접근을 허용한다."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
