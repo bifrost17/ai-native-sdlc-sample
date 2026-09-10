@@ -1,6 +1,11 @@
 # Plan: 담당자별 조회(`list --owner`)와 상태 요약(`summary`) (from intent 0001-owner-list-and-summary)
-Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에서 Constraints로 정정한 것 외
-기능 결정은 동일). Status: draft.
+Upstream: spec.md@f706c6d12d392206b931c4c2a7a81454f17f192c (R8/AC9 `summary --json` 추가 반영판).
+PO(HUMAN)가 이 판을 요구와 일치한다고 수락함(2026-09-11, 이 저장소는 이관 시 얕은 복제라 이전
+intent/spec/plan의 수락 이력은 앞선 인계 그대로 유효). Status: draft.
+
+PR2 구현 중 후속 요청으로 `summary --json`(R8/AC9)이 추가됐다. PR2는 아직 `main`에 머지되지 않았으므로
+별도 PR3을 만들지 않고 같은 PR2 범위 안에서 이어 구현한다(같은 명령·같은 파일, 텍스트 출력 경로와
+집계 로직을 그대로 공유).
 
 두 기능은 같은 파일(`tracker.py`)을 바꾸고 순서 우선순위(조회 먼저)가 정해져 있으므로 순차로
 진행한다. 동시에 맡기면 같은 파일을 두 작업이 바꿔 병합 충돌과 교차 검증 비용이 생기고,
@@ -59,7 +64,16 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
    확인한다(회귀 없음).
 5. `README.md`에 `summary`, `summary --owner <ID>` 사용법(예시 명령과 예시 출력)을 PR1에서 남긴
    `list --owner` 설명 옆에 이어 적는다.
-6. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
+6. (추가, R8/AC9) `summary` 서브파서에 `--json`(`store_true`) 플래그를 추가한다. 텍스트 출력 직전의
+   집계 결과(open/done 카운트)를 재사용해 `--json`이면 `json.dumps({"open": ..., "done": ...})`를
+   한 줄 출력하고, 아니면 기존 두 줄 텍스트를 출력한다. `--owner`와 파일 미변경 조건은 그대로 공유한다.
+7. (추가) `tests/test_tracker.py`에 `summary --json`(전체: open 3/done 1), `summary --owner hana --json`
+   (open 1/done 1), `summary --owner nobody --json`(open 0/done 0) 시험과, `--json` 실행 전후 데이터
+   파일 바이트 동일 시험을 추가한다. 출력은 `json.loads`로 파싱해 키·값만 비교하고 키 순서는 고정하지
+   않는다(spec R8).
+8. (추가) `README.md`에 `summary --json` 사용법과 예시 출력을 이어 적는다.
+9. 전체 시험 재실행(기존 + PR2 텍스트 시험 + 신규 `--json` 시험)로 회귀 없음을 확인한다.
+10. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
 
 ## Risks
 
@@ -78,5 +92,9 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 - PR2: 위 시험군 전체 통과(기존 3개 + PR1 시험 + 신규 `summary` 시험),
   `python3 tracker.py --data requests.json summary`와 `summary --owner hana` 수동 실행 결과 관찰,
   복사본에서 `complete` 후 `summary` 재실행한 결과 관찰.
-- 아직 실행하지 않은 항목: 위 명령들은 각 PR 구현 시점에 실제로 실행해 근거를 남긴다. 이 계획
-  단계에서는 실행하지 않았다.
+- PR2(추가, R8): 위 시험군 + 신규 `summary --json` 시험 전체 통과, `summary --json`·
+  `summary --owner hana --json`·`summary --owner nobody --json`·`summary --owner HANA --json`
+  수동 실행 결과 관찰(JSON 파싱해 키·값 확인), `--json` 실행 전후 데이터 파일 바이트 동일 확인.
+- 실행 완료: 위 PR1·PR2·PR2(추가) 세 항목 모두 이 계획 갱신과 같은 세션에서 실제로 실행해
+  결과를 관찰했다(`python3 -m unittest discover -s tests -v` 12개 전체 통과 포함). 커밋·PR·머지는
+  아직 하지 않았다 — 이 근거는 실제 구현 커밋과 PR 설명에도 함께 남긴다.
