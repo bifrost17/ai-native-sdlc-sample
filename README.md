@@ -18,6 +18,8 @@
 - **템플릿** — 의도, 요구사항과 설계, 구현 계획을 기록하고 다음 단계로 이어받을 문서와 작업 구조.
 - **스킬** — 플레이북의 작업 방식과 우리 팀의 지식을 AI가 개발 과정에서 적용할 수 있는 지침.
 - **정책** — 브랜드·보안·컴플라이언스·UX 등에 관한 우리 팀의 실제 기준과 책임자, 이를 적용하는 스킬.
+- **브랜치·PR 전략** — GitHub Flow를 템플릿에 포함하고 목적·의존성·검증을 기준으로 PR을 나눈다.
+  사람의 읽기 속도나 고정 줄 수만으로 크기를 강제하지 않는다.
 - **통제와 검증** — 플레이북이 제시한 사람의 판단·승인, 훅, 테스트, 리뷰, CI를 구현하고 실제 개발 과제로 작동을 확인.
 
 Unofficial; not an Anthropic project.
@@ -96,7 +98,10 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 `codex/use-template`의 고정 커밋에서
 시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
 실험 통합 브랜치로 단계별 작업을 합치며 그 브랜치를 `main`으로 머지하지 않는다.
-현재 사용 후보는 `codex/use-template-0015@15ab8a6`이다. [F01 첫 대화형 실험](docs/experiments/0015-f01-pilot.md)은
+현재 사용 후보는 `codex/use-template-0016@210bcfa`다. [PR 크기 가이드](docs/PR-SIZE.md)와
+[GitHub Flow 정책](docs/GIT-WORKFLOW.md)은 채택 제품용 배포 원문이며 사용 후보의 docs/에도 동일하게 둔다.
+[조사 보고서](docs/research/pr-size/README.md)는 근거·사례·반례와 한계를 담는다.
+[F01 첫 대화형 실험](docs/experiments/0015-f01-pilot.md)은
 Sonnet·low와 같은 세션에서 9회 주고받고 로컬 인도까지 통과했다. 실제 실행 핀은 de1b1b7이며,
 후속 후보의 정책 표 제목 두 곳은 정적 리뷰로 확인했다. 전체 플레이북이나 운영 배포의 성공률을 뜻하지 않는다.
 아래 기존 실험은 당시 `main`에서 시작한 역사적 실행이다. 실험에서 얻은 템플릿 개선만 별도 변경으로 가져온다.

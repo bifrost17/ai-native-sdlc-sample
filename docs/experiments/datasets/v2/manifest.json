@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "dataset_version": "2.0.0",
+  "kind": "synthetic-small-development-cases",
+  "domain": "local-team-request-tracker",
+  "description": "F02: 조회를 먼저 인도하고 상태 요약을 이어 개발하는 작은 관련 기능 두 개. seed는 고정 입력 식별자이며 난수 실행은 없다.",
+  "source_template": {"branch": "codex/use-template-0016", "commit": "210bcfab3063a47abac147f2b19953085cb22c6f", "previous_commit": "15ab8a63d85da27590fa436579d201f2ddde33b1"},
+  "baseline_files": [
+    {"source": "../v1/baseline/tracker.py", "destination": "tracker.py", "sha256": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653"},
+    {"source": "../v1/baseline/test_tracker.py", "destination": "tests/test_tracker.py", "sha256": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3"}
+  ],
+  "baseline_test_command": "python3 -m unittest discover -s tests -v",
+  "case_copy_rule": "public.json을 case.json으로 전달하고 requests.json을 복사한다. human.json과 oracle은 HUMAN만 읽는다.",
+  "cases": [{"id": "F02", "seed": 102, "public": "F02/public.json", "human": "F02/human.json", "data": "F02/requests.json"}],
+  "sha256": {
+    "F02/human.json": "e7d95cd3104919a21a6eaf1119f4fe1eaa0ce600f3db34636ff3000d8c63126b",
+    "F02/public.json": "7e3a2f35dec458fae6c8438c0d286409335be336aa8ee49a7e578bcdca0f66a9",
+    "F02/requests.json": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795"
+  },
+  "versioning": "v1과 원래 실행은 그대로 보존한다. 공개 사실·결정·oracle·baseline을 바꾸면 새 판으로 기록한다."
+}

@@ -10,5 +10,6 @@
 | spec-command | S6 | `spec-command/` | (진행 중) | |
 | pr-loop | S7 | `pr-loop/` | 채택 0 · **설계** `pr-loop` · 실 PR 4/4 완주 | 2026-09-09 |
 | plugin | S8 | `plugin/` | 레포 = 플러그인 1 + 마켓플레이스 1(`.claude-plugin/`) · 헤드리스 로드 12/12 · 대체 경로 `.claude/skills/` 복사 · 오너 질문 6 · PR #1 | 2026-09-09 |
+| PR 크기·GitHub Flow | 0016 | [pr-size/](pr-size/README.md) | 연구·공식 운영·공개 PR 사례를 비교해 유연한 크기 기준과 GitHub Flow 채택 | 2026-09-11 |
 
 겹치는 후보는 부모 세션이 여기서 한 번 묶는다.
