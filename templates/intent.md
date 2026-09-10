@@ -7,6 +7,6 @@ Author: ‹name (team)›. Status: draft.
 ## Affected users and systems
 ‹people (which team, which customers) and systems (which service, which data)›
 ## Constraints
-‹lines that must hold — existing auth only, no new PII, what is out of scope›
+‹the originator's constraints and what is out of scope; name any unknowns and their owners›
 ## Open questions
 ‹what nobody could answer yet, and who can — one per line›

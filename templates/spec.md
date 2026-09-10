@@ -1,6 +1,6 @@
 # Spec: ‹what is built› (from intent ‹NNNN-slug›)
 Upstream: intent.md@‹commit sha of the accepted intent›. Status: draft.
-Skills applied: ‹each organization skill actually read: name@sha and source path, or plugin:name@installed-version and source when Git history is unavailable; or none›.
+References applied: ‹applicable team policies or other references actually used, with source and verified version when available; otherwise none or the reason verification was unavailable›.
 ## Requirements
 ‹R1, R2 … — each observable, each traceable to the Problem in intent.md›
 ## Design

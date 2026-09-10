@@ -1,17 +1,18 @@
-# NOTICE — borrowed pieces and their sources
+# 출처와 고지
 
-This repo applies Anthropic's "The AI-Native SDLC Playbook" (Claude Academy) and borrowed the
-pieces below from earlier public implementations of the same playbook. Each was rewritten in this
-repo's own words; no file was copied.
+이 사용 템플릿은 ai-native-sdlc-sample의 프로젝트 자체 작성 문서와 문서 양식을 제품 개발에 맞게
+정리한 것이다. 출발점은 commit c9e5747d6b044b7f1cecd8ec2166b501467d61c8 이며, MIT 라이선스와
+저작권 표시는 LICENSE에 보존했다.
 
-## MIT (keep the copyright and permission notice)
-- **jcuervo/authoring-ai-sdlc** — the "Does not …" clause in skill descriptions; "not applicable —
-  because" instead of an empty section.
-- **imsungbin/ai-native-sdlc-playbook** — the lesson-sentence ↔ file table (docs/PLAYBOOK-MAP.md);
-  the "Open questions from intent" section in spec.md.
-- **bashebr/ai-native-sdlc** — the rule → layer matrix (docs/BOUNDARY.md).
+원 프로젝트: https://github.com/bifrost17/ai-native-sdlc-sample
 
-## Playbook text
-Quotes are short, verbatim, and cite the line. Example blocks are reproduced only where noted as
-verbatim (secure-api-review skill, CLAUDE.md verification block). Original: Claude Academy,
-"The AI-Native SDLC Playbook" — Copyright Anthropic.
+절차의 바탕은 Anthropic의 “The AI-Native SDLC Playbook”(Claude Academy)이다. Anthropic의 공식
+프로젝트가 아니며, 플레이북 원문과 예제 코드를 이 사용 템플릿에 수록하지 않았다.
+
+원 프로젝트가 기록한 다음 아이디어의 출처도 남긴다.
+- jcuervo/authoring-ai-sdlc: 해당하지 않는 항목에는 이유를 적는 방식.
+- imsungbin/ai-native-sdlc-playbook: spec에서 intent의 미결 질문을 이어받는 방식.
+- bashebr/ai-native-sdlc: 도구의 검사, 작업 지침, 사람의 결정을 구분하는 방식.
+
+examples/의 세 가지 선택형 작업 지침은 원 프로젝트가 작성한 작업 절차를 여기에서 다시 편집한
+예시다. 외부에서 채택한 스킬 파일이나 플러그인 묶음은 포함하지 않는다.

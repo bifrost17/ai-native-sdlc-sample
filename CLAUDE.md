@@ -1,69 +1,36 @@
-# ai-native-sdlc-sample
-<!-- TEAM: real build/test/lint commands, healthy output, conventions — docs/ADOPTING.md · L14 -->
-
-<!-- L5 414-436: the four sections of the playbook's CLAUDE.md. L5 412: "Keep it under a page" -->
+# 프로젝트 작업 지침
 
 ## Commands
-- Test: `make test` (python unittest, `tests/test_hooks.sh`, `tests/test_evals.sh`,
-  `tests/test_managed_settings.sh`; healthy: rc=0, the four suites end with `OK`,
-  `test_hooks: 28 passed, 0 failed`, `8 passed, 0 failed`, `PASS  managed-settings 키·훅 계약`)
-- Evals: `make evals` (`bash evals/run.sh`, needs `ANTHROPIC_API_KEY`; healthy: `evals: 전 케이스 통과`)
-- Check: `make check` (= `make test`; non-zero on any failure). Evals are not in it: without
-  `ANTHROPIC_API_KEY` `make evals` prints `SKIP: ANTHROPIC_API_KEY 없음` and exits 2; CI runs them
-  with the key in `.github/workflows/agent-evals.yml` (L10 689).
+
+제품의 빌드·테스트·린트·실행 명령은 아직 정하지 않았다. `PROJECT-POLICY.md`의 검증 항목을 확인하고,
+작업에서 실제 도구를 정하면 명령과 성공 기준을 함께 갱신한다. 존재하지 않는 명령을 실행하라고 하거나
+명령을 실행하지 않은 채 통과했다고 보고하지 않는다.
 
 ## Conventions
-- Prose in artifacts is in the originator's language (L2 179 "in the originator's own terms";
-  chain 0002 is Korean); file names, section names and `Status:` words are fixed English tokens.
-- One chain per change under `intent/<NNNN>-<slug>/` — intent.md, spec.md, plan.md, in that
-  order, each its own commit. `Status: draft` until the PR merges; the merge is the approval.
-  A chain is for a change to what the template *is* (0001 · 0004 · 0010 · 0011 · 0012); upkeep —
-  factual corrections, citation refreshes, chores — is a PR, not a chain. Ask the engineer rather
-  than opening one on your own reading of this line.
-- Every code file under `.claude/hooks/`, `scripts/`, `evals/` opens with the lesson sentence it
-  implements, quoted with its line number. No sentence, no file. Files under `src/` and `tests/`
-  open with the spec clause (R/AC) they implement instead — no lesson line there (0002 and 0007
-  each guessed differently; this settles it).
-- Change files with the Edit/Write tools, not shell redirection or heredocs. The hooks in
-  `.claude/settings.json` watch tool calls, not effects: chain 0007 wrote 45/45 files through
-  Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
-  detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
-- python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
+
+- 변경의 문제와 의도를 `intent/<NNNN>-<slug>/intent.md`, 요구·설계를 `spec.md`, 구현 계획을
+  `plan.md`로 이어 기록한다. 단계와 역할은 `docs/PROCESS.md`를 따른다.
+- 산문은 의도를 제시한 사람의 언어로 쓴다. 양식의 영문 절 제목과 `Status:` 표기는 유지한다.
+- 승인 대상은 `PROJECT-POLICY.md`에 정한 통합 브랜치다. PR 머지가 해당 문서의 승인을 기록한다.
+  파일의 `Status: draft.`를 직접 승인 표시로 바꾸지 않는다.
+- 사람이 다음 단계를 미리 진행하도록 명시했다면, 무엇을 누가 왜 허용했는지 문서와 PR에 적는다.
+  그 지시는 승인 기록을 대신하지 않는다.
+- 구현이 계획에서 벗어나면 계획과 이유를 같은 변경에 반영한다. 문제를 숨기려고 기존 검증을 약화하지 않는다.
 
 ## Architecture
-- The project's north star is [AI-Native SDLC Playbook](docs/verification/north-star-playbook.html).
-  Its annotations assess our template, skills and policies against the playbook. Read the relevant
-  passage and annotation before proposing or making changes; fill the team's choices from its actual standards.
-- `.claude/skills/` — what the agent is told (advisory). `.claude/hooks/` + `settings.json` —
-  what the machine blocks. `tests/`, `evals/`, `.github/` — what CI proves. See docs/BOUNDARY.md.
-- `intent/` — the artifact chains; `templates/` — copies of the skill-embedded templates.
-- `docs/PLAYBOOK-MAP.md` maps the 14 lessons to files; `docs/METRICS.md` is git commands.
 
-## Verifying your work
+`templates/`는 문서 양식, `intent/`는 제품 변경의 기록이다. 정책의 적용 범위와 책임자는
+`PROJECT-POLICY.md`에서 확인한다. 정책이 충돌하거나 필요한 값이 없으면 결정자와 함께 우려로 남긴다.
+제품 구조와 기술 선택은 해당 변경의 요구·설계에서 정한다. 팀이 선택한 스킬이나 도구가 있으면
+관련 작업에 활용할 수 있다.
 
-- Build: make build (must finish with "Build succeeded")
-- Test: make test (all green; never skip or delete a failing test)
-- Lint: make lint (zero warnings)
+## Verification
 
-Run all three before reporting any task complete, and paste the output.
-If a test fails, fix the code, not the test.
+완료를 보고하기 전에 작업에서 정한 검증을 실행한다. 명령, 결과, 관측한 동작, 미실행 항목과 이유를
+구분해 남긴다. 기존 동작에 미치는 영향도 확인한다. 리뷰는 `REVIEW.md`를 따르며, 사람의 승인과
+실행 결과를 별개의 근거로 다룬다.
 
-(L9 635-645 verbatim. This repo has no `make build`/`make lint`; run `make check` and paste it.)
-Before reporting a chain done, hand the check to the `verifier` subagent (`.claude/agents/verifier.md`)
-and paste its report — chains 0007-0009 never invoked it (L8 564).
+## Things to avoid
 
-## Things Claude gets wrong
-- Applying the process this template prescribes to *adopting teams* to this repo's own upkeep.
-  **This repo builds the template; it is not a product repo run by it.** Chains are for changes to
-  the template (see Conventions). Separation of duties (`REVIEW.md`, `docs/BOUNDARY.md` "approval
-  is a person merging") prescribes a team's account structure; here the engineer directing the work
-  *is* the owner, and a merge they asked for is their approval. Twice in one session: a chain
-  proposed for a two-line fix, and an owner-requested merge refused on separation grounds.
-- Writing a checker for artifact sections, status or transitions. The skill says it, the product
-  owner reads it, the merge records it. Do not build the machine again.
-- Setting `Status: accepted` in a file. Only a merged PR means accepted.
-- Pointing a skill or a doc at a script that does not exist. Run `ls` before you cite a path.
-- Editing a sample ledger row that a test already pins. Once a test asserts a row's key set or
-  that a claim id is absent, the next chain cannot touch that row. Twice now: 0005 pinned
-  `C-1001`, and 0008 had to add `C-2001`-`C-2003` instead. A new chain uses new rows; a chain
-  that must change an existing row finds the tests that pin it first (`grep -n _UPSTREAM tests/`).
+사용자가 제공하지 않은 정책 값·계정·성능 수치·검증 결과를 지어내지 않는다. 읽지 않은 자료를
+적용했다고 쓰지 않는다. 도구가 할 수 있다는 이유만으로 배포·승인·머지를 수행하지 않는다.

@@ -1,35 +1,16 @@
-# Review instructions
+# 리뷰 지침
 
-<!-- L11 776-789: the playbook's REVIEW.md, cut to this repo. L11 762: "Findings do not approve or
-block a PR on their own" — the product owner merges. -->
+변경의 intent, spec, plan과 실제 diff, 검증 근거를 함께 읽는다. 다음 세 관점에서 동작에 영향을 주는
+발견을 설명하고 해당 파일이나 요구사항, 재현 방법을 가리킨다.
 
-<!-- TEAM: add a design-principles pass if wanted, and real CODEOWNERS people — docs/ADOPTING.md · L21 -->
-## Passes
-Run three passes and tag each finding with its pass:
-- Bugs: logic errors, broken edge cases, subtle regressions — in hooks and scripts, a case the
-  test file does not cover.
-- Security: secrets in the diff, PII in logs, a hook that fails open when `jq` is missing.
-- Compliance: the change matches spec.md and plan.md of its chain under `intent/`, and the
-  boundary in docs/BOUNDARY.md — code that checks artifact form, status or transitions does
-  not belong here. A code file under `.claude/hooks/`, `scripts/`, `evals/` whose header cites no
-  lesson sentence is a compliance finding; `src/` and `tests/` cite their spec clause instead.
-  In a defect chain, a diff that touches an existing test file is a finding (L9 631: "check the
-  diff in review and reject any change that touches a test") — the hook only sees Edit/Write.
+- **Bugs** — 잘못된 결과, 경계 조건, 기존 동작의 회귀. 관측한 사실과 추정을 구분한다.
+- **Security** — 프로젝트가 정한 인증·권한·민감 데이터·외부 접근 정책에 어긋나는 동작.
+- **Policy and scope** — 요구·설계와 계획의 일치, 범위를 벗어난 변경, 미결 정책 충돌의 처리.
 
-## What Important means here
-Reserve Important for findings that would break behavior, leak data or breach a policy —
-including the boundary above. Style and naming are nits.
+기존 테스트를 약화하거나 생략해 실패를 숨긴 변경은 지적한다. 테스트 자체가 잘못됐다는 주장은
+요구사항과 근거를 제시하고 사람이 별도로 판단하게 한다. 사소한 표현 문제보다 실제 동작과 정책
+위반을 우선하며, 확인할 수 없었던 사항은 그 이유를 적는다.
 
-## Cap the nits
-Report at most five nits per review; summarize the rest as a count.
-
-## Do not report
-Anything `make check` already fails on, and the record chain `intent/0001-bootstrap-repo/`
-(history, not a target).
-
-## What findings do
-Findings inform; they neither approve nor block. The product owner approves by merging.
-Post findings on the PR as review comments — the PR is the audit record (L11 766); a finding
-handed over in a prompt leaves only the reply in the thread (chain 0008, PR #33).
-A mistake flagged for the second time goes into `CLAUDE.md` as a correction (L5 401, L11 745) —
-chain 0008's three repeat findings became PR #35.
+발견에는 영향, 근거, 필요한 수정 또는 결정자를 담는다. 해결된 발견은 수정과 재검증 근거로 연결한다.
+검토 의견이나 자동 검사 통과만으로 승인됐다고 쓰지 않는다. 팀이 정한 검토자가 검토하고,
+통합 대상 브랜치로의 PR 머지가 결정을 기록한다.
