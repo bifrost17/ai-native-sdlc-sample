@@ -1,0 +1,21 @@
+{
+  "case_id": "C01",
+  "dataset_version": "1.0.0",
+  "seed": 301,
+  "audience": "HUMAN only; do not copy into AGENT checkout",
+  "owner_decisions": [
+    {"id": "C01-D1", "topic": "새 동작", "decision": "cancel <ID> 명령을 추가하고 open 요청만 cancelled 상태로 바꾼다. list/show에서 그 상태를 표시한다.", "reason": "기존 complete와 같은 사용 형태로 철회를 구별한다."},
+    {"id": "C01-D2", "topic": "종료 상태", "decision": "done에서 cancel과 cancelled에서 complete는 rc=1이며 데이터를 바꾸지 않는다. cancelled에서 cancel 반복은 rc=0이며 파일을 다시 쓰지 않는다.", "reason": "완료와 취소는 서로 덮어쓰지 않는 종료 상태다."},
+    {"id": "C01-D3", "topic": "범위와 오류", "decision": "취소 이유·복구·이력 테이블은 추가하지 않는다. 없는 ID는 기존 명령처럼 rc=1이며 다른 행과 필드를 보존한다.", "reason": "이번에는 상태 구분만 필요하다."}
+  ],
+  "reveal_rule": "관련 질문이나 spec 상태 전이 검토 때 D1~D3를 설명한다. 구현을 제시하지 않고 외부 동작으로 합의한다.",
+  "oracle_rules": "각 oracle은 원래 데이터 복사본에서 시작한다. sequence 안의 호출만 같은 파일을 공유한다. arguments는 --data <임시파일> 뒤에 붙인다.",
+  "oracles": [
+    {"id": "C01-O1", "decision": "C01-D1", "arguments": ["cancel", "R-301"], "exit": 0, "json_change": {"id": "R-301", "field": "status", "to": "cancelled"}, "all_other_fields": "unchanged", "followup": {"arguments": ["show", "R-301"], "exit": 0, "status_column": "cancelled"}},
+    {"id": "C01-O2", "decision": "C01-D2", "arguments": ["cancel", "R-302"], "exit": 1, "file": "byte-unchanged"},
+    {"id": "C01-O3", "decision": "C01-D2", "sequence": [{"arguments": ["cancel", "R-301"], "exit": 0}, {"arguments": ["cancel", "R-301"], "exit": 0, "file": "unchanged-from-previous-step"}, {"arguments": ["complete", "R-301"], "exit": 1, "file": "unchanged-from-previous-step"}]},
+    {"id": "C01-O4", "decision": "C01-D3", "arguments": ["cancel", "R-999"], "exit": 1, "file": "byte-unchanged"},
+    {"id": "C01-O5", "decision": "C01-D3", "arguments": ["complete", "R-303"], "exit": 0, "json_change": {"id": "R-303", "field": "status", "to": "done"}, "all_other_fields": "unchanged"}
+  ],
+  "negative_skill_selection": "작은 CLI 상태 변경에 불필요한 결제·배포·외부 계정 스킬을 요구하지 않는다. 선택한 일반 설계/시험 스킬도 적용 근거로만 평가한다."
+}

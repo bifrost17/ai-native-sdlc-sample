@@ -6,6 +6,11 @@
 개발에 사용할 템플릿·스킬·정책을 구축하는 것**이다. 공개된 가이드의 이론과 방법론을 우리 팀이
 사용할 수 있는 개발 체계로 구체화한다.
 
+목표 수준은 **사람이 개입하는 실제 개발에서 플레이북의 주요 흐름이 대체로 잘 작동하는 것**이다.
+템플릿만으로 모든 가이드를 완벽하게 재현하려 하지 않는다. 누락을 없애려고 템플릿을 프로그램처럼
+키우거나 검증 스크립트와 절차를 계속 추가하지 않는다. 사람의 판단과 에이전트의 창의적 재량을
+유지하고, 실제 개발 흐름이나 결과에 중요한 차이를 만드는 보완을 우선한다.
+
 - **템플릿** — 의도, 요구사항과 설계, 구현 계획을 기록하고 다음 단계로 이어받을 문서와 작업 구조.
 - **스킬** — 플레이북의 작업 방식과 우리 팀의 지식을 AI가 개발 과정에서 적용할 수 있는 지침.
 - **정책** — 브랜드·보안·컴플라이언스·UX 등에 관한 우리 팀의 실제 기준과 책임자, 이를 적용하는 스킬.
@@ -82,10 +87,12 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 [CHAPTERS.md](docs/verification/CHAPTERS.md)에 있다.
 
 ## Experiments
-`main` is the template and the template's own chains only. Each experiment — chains run *on* the
-template to see whether it works — lives on a branch `experiment/<date>-<topic>` that is never
-merged, carries its raw evidence under `raw/`, and names the `main` commit it started from in
-`EXPERIMENT.md`. What an experiment reveals about the template comes back to `main` as a PR.
+실험 방법·HUMAN 역할·초기 사례 데이터는 [실험 가이드](docs/experiments/README.md)에 있다.
+`main`에는 제작 자산과 방법·데이터·실행 색인을 두고, 실제 개발 사슬의 대화·제품 코드·시험 결과는
+실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 `codex/use-template`의 고정 커밋에서
+시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
+실험 통합 브랜치로 단계별 작업을 합치며 그 브랜치를 `main`으로 머지하지 않는다.
+아래 기존 실험은 당시 `main`에서 시작한 역사적 실행이다. 실험에서 얻은 템플릿 개선만 별도 변경으로 가져온다.
 
 | Branch | Started from | What it holds |
 |---|---|---|

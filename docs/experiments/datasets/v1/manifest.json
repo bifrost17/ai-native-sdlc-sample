@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "dataset_version": "1.0.0",
+  "kind": "synthetic-small-development-cases",
+  "domain": "local-team-request-tracker",
+  "description": "Python 표준 라이브러리 CLI/JSON의 독립적인 초기 개발 문제. seed는 고정 fixture 식별자이며 난수 실행은 없다.",
+  "source_template": {
+    "branch": "codex/use-template",
+    "commit": "a2bbfe1bdc00152c9c063a764d1e32667ce2e2b4",
+    "tree_files": 16,
+    "history_note": "부모 c9e5747에는 제작 자료가 있다. AGENT 실행은 depth 1의 별도 복제본에서 이력 노출을 확인한다."
+  },
+  "default_pilot": "F01",
+  "baseline_files": [
+    {"source": "baseline/tracker.py", "destination": "tracker.py"},
+    {"source": "baseline/test_tracker.py", "destination": "tests/test_tracker.py"}
+  ],
+  "baseline_test_command": "python3 -m unittest discover -s tests -v",
+  "case_copy_rule": "선택 사례의 public.json만 case.json으로 전달하고 requests.json을 같은 이름으로 복사한다. human.json은 HUMAN만 읽는다.",
+  "cases": [
+    {"id": "F01", "kind": "feature", "seed": 101, "public": "F01/public.json", "human": "F01/human.json", "data": "F01/requests.json"},
+    {"id": "B01", "kind": "bug", "seed": 201, "public": "B01/public.json", "human": "B01/human.json", "data": "B01/requests.json"},
+    {"id": "C01", "kind": "change-request", "seed": 301, "public": "C01/public.json", "human": "C01/human.json", "data": "C01/requests.json"}
+  ],
+  "versioning": "공개 사실·오너 결정·oracle·baseline을 바꾸면 dataset_version을 올리고 기존 실행과 원래 판을 보존한다.",
+  "sha256": {
+    "B01/human.json": "39fa044a533cd017aec41a6d21c44b89eb14cf352368d26ef09b4889389767f5",
+    "B01/public.json": "4389acb3b38757a964bb8cebceb638330c0575b3797dbeb0f1517da2f33013af",
+    "B01/requests.json": "3092fab6bf33de6ed0ac91638c768f7e08fbee693e95e30bff80684d4b9a649f",
+    "C01/human.json": "cfcd9687371bfb4a9892eb451b3de08b8e9ada2e73090af32bbd1d4e9ee271ee",
+    "C01/public.json": "8ee2c4478e34d682cdf799775b7de968fd10896661843dbc82adfda6329e8094",
+    "C01/requests.json": "022f3fc1ad0a12f8d27ddd4633b6eb393466014e7db2cf9259b43ea8e0bdf882",
+    "F01/human.json": "af42b83e275d8482afaed7f8897ed52e06137e4c05968cabce0e95a2d0743c9f",
+    "F01/public.json": "e45d442bee5936e874507a2d10a910fecc823ab1110bf43d74b4ac01cf8b8a62",
+    "F01/requests.json": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+    "baseline/test_tracker.py": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3",
+    "baseline/tracker.py": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653"
+  }
+}
