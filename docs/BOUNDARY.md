@@ -12,6 +12,14 @@ meaning, sections, status, or approval in code. A separate model reviews evidenc
 accepts business decisions and merges. The bare adopting template stays unchanged. This explicit
 extension permits runtime orchestration, not a general process validator.
 
+The user's clarification on 2026-09-11: neither the developer nor the reviewer becomes infallible
+because a harness invokes it. Eliminating every agent mistake is not a harness goal. Choose model
+capability and reasoning effort for the difficulty, impact and uncertainty; use stronger settings
+upfront for important judgments and reconsider them after repeated mistakes. Preserve useful tests,
+review and human decisions without growing a bespoke control for each model error. An execution
+failure in the harness still needs a fix; a model's mistaken judgment does not by itself justify a
+new gate. The team's concrete guidance is in `team-harness/README.md`.
+
 ## The three layers
 
 | Layer | Lives in | Lesson sentence that puts it there |

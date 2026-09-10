@@ -31,6 +31,13 @@
   Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
   detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
+- Choose models and reasoning effort for the task's difficulty, impact and uncertainty, including
+  subagents. Use more capable models and higher reasoning upfront for important or error-prone
+  judgments (complex design, cross-artifact consistency, consequential changes). For repeated
+  mistakes, check the evidence/context and adjust the model or effort; hand off when the needed
+  capability is unavailable. Respect the user's resource limits. Agent and reviewer fallibility is
+  expected: retain relevant tests and human review, but do not add a new rule or checker for every
+  model error. See [team operating guidance](team-harness/README.md#모델과-추론-선택).
 
 ## Architecture
 - The project's north star is [AI-Native SDLC Playbook](docs/verification/north-star-playbook.html).
