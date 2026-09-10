@@ -1,0 +1,93 @@
+CMD: (조사 갈래 8개가 실행한 질의 목록 — WebSearch · gh api search/code · gh api search/repositories · WebFetch)
+AT_UTC: 2026-09-09T09:33:37Z
+RC: 0 (완주 3갈래) / 세션 한도로 중단 5갈래
+
+완주한 갈래: gh-code-search(영어 웹+GitHub API 대조) · web-search-en · web-search-ko
+중단된 갈래(질의 미기록): awesome-lists · linters-tools · style-guide-skills · plugin-marketplaces
+주: gh search code --owner anthropics 는 HTTP 403(rate limit)으로 두 번 실패 — 조직 전역 코드 검색 미완.
+
+===== gh-code-search — 질의 36건 =====
+  WebSearch: SKILL.md brand voice
+  WebSearch: claude skill brand guidelines
+  WebSearch: agent skills brand voice tone
+  WebSearch: skills.sh brand
+  WebSearch: claude code skill ux writing
+  WebSearch: claude skill copywriting tone
+  WebSearch: anthropic skills brand-guidelines
+  WebSearch: claude plugin marketplace brand voice
+  WebSearch: agentskills.io brand
+  WebSearch: SKILL.md "tone of voice" customer communication skill github
+  WebSearch: SKILL.md terminology enforcement style guide vale claude skill
+  WebSearch: SKILL.md microcopy writing style guide agent skill
+  WebSearch: skillsmp.com brand voice tone
+  WebSearch: clawhub brand voice skill
+  WebSearch: claude skill customer support response tone empathy apology SKILL.md
+  WebSearch: claude skill writing style guide docs "SKILL.md" microsoft style guide OR google developer documentation style guide
+  WebSearch: vale linter claude code skill SKILL.md prose style terminology
+  WebSearch: "brandlint" OR "stringly-typed" off-brand UI copy lint tool
+  WebSearch: claude skill number date currency formatting style guide customer notification email SKILL.md
+  WebFetch: https://skills.sh/?q=brand (no listings rendered)
+  WebFetch: https://www.skills.sh/search?q=brand%20voice (no listings rendered)
+  WebFetch: https://skillsmp.com/search?q=brand+voice
+  WebFetch: https://clawhub.ai/skills?q=brand%20voice
+  WebFetch: https://smithery.ai/search?q=brand%20voice (only MCP servers: brand-kit-mcp, Brand Me Please, ai-marketing-agent, Moltline Creator, Niche, Brandfetch)
+  WebFetch: https://github.com/timescale/marketing-skills (404)
+  WebFetch: clawhub pages for mariokarras/abm-brand-voice, erikjager55/branddock-skill, gitflopez/brand-voice-style-guide-generator, mupengi-bot/brand-voice, leooooooow/brand-voice-guide
+  WebFetch: skillsmp pages for jamesgray007 applying-brand-guidelines and borghei marketing-brand-guidelines
+  WebFetch: https://mcp.directory/skills/brand-voice (claims anthropics/knowledge-work-plugins marketing/skills/brand-voice; raw path 404 — not present in current tree)
+  WebFetch: https://claude.com/plugins/marketing
+  WebFetch: https://vale.sh/
+  WebFetch: https://aiuxplayground.com/skills/for-copywriters/
+  WebFetch: https://mcpmarket.com/tools/skills/technical-writing-1 (429)
+  WebFetch: https://skills.rest/skill/google-developer-style-guide-structure (403)
+  GitHub API: recursive trees for anthropics/knowledge-work-plugins, anthropics/skills, jaimeschwarz/brandvoice, content-designer/ux-writing-skill, TribeAI/claude-cowork-brand-voice-plugin, boraoztunc/skills, whyashthakker/agent-skills-marketing, rampstackco/claude-skills, Human-Codex/skills, alirezarezvani/claude-skills, composio-community/support-skills, coreyhaines31/marketingskills, slb2248/ai-ux-skills, entpnomad/tone-of-voice, mcltyl/brand-voice-skills, catrinmdonnelly/COPY.md, efeoncepro/voice.md, ai-orchestrators/voice-scoring-expert, whystrohm/whystrohm-audit, 0xelitesystem/claude-skills-templates, cofoundy/brand-skills, arnabbagxd/Brand-building-skills, freerk/archetype-writer, kkarpushin/tone-of-voice, ohanatais/brand-and-copy, borghei/Claude-Skills, jamesgray007/hoai-course, MoizIbnYousaf/marketing-cli, JuanMarchetto/doc-standards-skill, onlydole/tailord, ShiYuPro/localize-naturally, MohamedAbdallah-14/unslop, ai-orchestrators/voice-humaniser, Tasdax123/claude-fidelity-translator, w00ing/skills
+  GitHub API: search/repositories topic:brand-voice; 'brand voice skill SKILL.md'; 'ux writing SKILL.md claude'; '"tone of voice" claude skill'; 'unslop cursor'; 'vale linter claude skill'; 'terminology consistency claude skill'; 'mupengism brand-voice' (0 results)
+  curl raw.githubusercontent.com SKILL.md for ~40 candidates listed in evidence fields
+
+===== web-search-en — 질의 25건 =====
+  클로드 스킬 브랜드 톤앤매너 SKILL.md
+  Claude Code 스킬 UX 라이팅
+  SKILL.md 존댓말 문체
+  에이전트 스킬 금칙어 용어집
+  브랜드 보이스 스킬 깃허브
+  UX writing 가이드 한국어 github
+  금융 고객 안내문 문체 가이드 github
+  보험 용어 표준 안내문 github
+  github SKILL.md 한국어 글쓰기 문체 톤 스킬 "SKILL.md" 고객 안내
+  github "SKILL.md" 마이크로카피 UX 라이팅 스킬
+  국립국어원 공공언어 바르게 쓰기 지침 저작권 공공누리
+  토스 UX writing 가이드 공개 라이선스
+  금융감독원 금융소비자 안내문 쉬운 용어 가이드라인 문구
+  awesome-claude-skills brand voice writing style guide skill
+  github claude skill 한국어 존댓말 어투 변환 skill
+  토스 앱인토스 UX 라이팅 가이드 해요체 능동형 developers-apps-in-toss
+  github SKILL.md 고객센터 답변 CS 응대 문구 존댓말 스킬 claude
+  github 금칙어 사전 한국어 마케팅 광고 표현 "최고" "완벽" 검사 도구
+  카카오 UX writing 가이드 공개 github OR 배민 글쓰기 가이드 공개
+  보험 광고 심의 금지 표현 "보장합니다" "무조건" 생명보험협회 광고 규정 표현
+  claude code plugin 브랜드 가이드라인 문체 검사 linter 한국어 github vale 스타일
+  github SKILL.md 공공언어 쉬운 공문서 쓰기 스킬 국립국어원 기준 에이전트
+  github claude skill 알림 메시지 카카오 알림톡 문구 작성 스킬 SKILL.md 존댓말
+  Claude skill "tone of voice" Korean "해요체" OR "합쇼체" OR "하십시오체" SKILL.md github
+  gh api trees/contents for: NomaDamas/k-skill, anthropics/knowledge-work-plugins, content-designer/ux-writing-skill, szilu/ux-designer-skill, amondnet/yoonmoon, anthropics/skills, roboco-io/plugins, limleesol/stop-slop-ko, DaleSeo/korean-skills, JangHyun-bin/korean-report-skills, rampstackco/claude-skills, entpnomad/tone-of-voice, epoko77-ai/im-not-ai, jeongsk/claude-skills, clwmfksek/claude-skills, glebis/claude-skills
+
+===== web-search-ko — 질의 19건 =====
+  gh api repos/{anthropics/skills,anthropics/claude-plugins-official,anthropics/claude-code,anthropics/courses}/commits/HEAD -q .sha  -> 41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f / 517b2fcd1b60fa2181ac52dcf8492361ba341180 / 347b38e4a733d95b2f00690a4ca58ac1544f8a1c / f4dbb137d7b02dddaf3cc73e32e20a702d3b5e77 (courses default branch = master)
+  gh api repos/<repo>/git/trees/HEAD?recursive=1 --paginate | grep -i 'SKILL.md$' for all four repos (skills: 20 SKILL.md; claude-plugins-official: 31; claude-code: 10; courses: 0)
+  Frontmatter dump of all 19 skills in anthropics/skills/skills/*/SKILL.md
+  Full read: anthropics/skills skills/brand-guidelines/SKILL.md, skills/internal-comms/SKILL.md (+examples/faq-answers.md, general-comms.md, 3p-updates.md), skills/doc-coauthoring/SKILL.md, template/SKILL.md
+  Tree grep for brand|tone|voice|style|writing|copy|terminolog|glossar|ux-writ|communic|microcopy|localiz|i18n|korean|customer across all four repos
+  anthropics/claude-plugins-official .claude-plugin/marketplace.json parsed (292 plugins), filtered on brand|tone|voice|writ|copy|style|docs|content|communic|terminolog|glossar|localiz|translat|korean|customer|support|notif|email|message|ux
+  Opened claude-plugins-official README.md, anthropics/skills README.md, plugins/hookify/skills/writing-rules/SKILL.md (hook-rule syntax, excluded), plugins/explanatory-output-style/README.md (code-explanation output style, excluded)
+  git clone --depth 1 anthropics/skills and anthropics/claude-plugins-official to /tmp; grep -rilE 'brand voice|tone of voice|style guide|honorific|ux writing|microcopy|customer-facing|apolog|exclamation|emoji' *.md; grep -rniw tone skills/*/SKILL.md
+  gh api repos/canva-sdks/canva-skills tree + opened plugins/canva/skills/brand-check/SKILL.md and inactive-skills/branded-presentation/SKILL.md (sha b56291ea0a36d0a941e1478b47959be5f1771dee)
+  gh api repos/carta/plugins tree + opened plugins/carta-investors/skills/carta-brand-extraction/SKILL.md head (sha 309f6a583d33ef8a1ec7fc610424f6f9c1d6734c) - visual brand board only, excluded
+  gh api repos/anthropics/claude-cookbooks tree | grep SKILL.md; opened skills/custom_skills/applying-brand-guidelines/{SKILL.md,REFERENCE.md,validate_brand.py} (sha a97b9a2dc300635f0c26b5e05d0b54bbe0279ee5)
+  anthropics/courses: opened real_world_prompting/05_customer_support_ai.ipynb cells matching tone/brand/apolog/style
+  gh search code '"brand voice"' / '"tone of voice"' / '"style guide"' / terminology / '"UX writing"' / honorific --owner anthropics  -> HTTP 403 rate limit on both attempts (no results obtained)
+  WebFetch https://docs.claude.com/en/docs/agents-and-tools/agent-skills/ (302 -> platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+  WebFetch https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview and /best-practices
+  WebFetch https://agentskills.io , https://agentskills.io/llms.txt , /skill-creation/quickstart.md , /skill-creation/best-practices.md
+  WebFetch https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+  WebFetch https://code.claude.com/docs/en/skills
+  WebFetch https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction
