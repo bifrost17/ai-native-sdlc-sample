@@ -16,6 +16,13 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
   `open\t0`, `done\t0`을 출력하고 종료코드는 0이다.
 - R6. `list --owner`와 `summary`는 어떤 경우에도 데이터 파일을 쓰지 않는다(조회 전용).
 - R7. 담당자 ID 비교는 대소문자를 구분하는 정확 일치만 사용한다. 정규화나 유사 일치를 하지 않는다.
+- R8. `summary`에 `--json` 옵션을 추가한다. 지정하면 R4의 대상 집합(전체 또는 `--owner` 선택)에서
+  집계한 open/done 건수를 `open`, `done` 두 키와 정수 값을 가진 JSON 객체로 표준출력에 출력한다.
+  키 순서와 공백은 규정하지 않는다(파싱 가능한 JSON이면 충분). `--json` 없이 실행하면 R5의 탭
+  두 줄 출력을 그대로 유지한다. `--owner`의 존재하지 않는/대소문자가 다른 ID 처리(R3와 동일하게
+  open 0, done 0, 종료코드 0)와 R6(파일 미변경)은 `--json` 유무와 무관하게 동일하게 적용된다.
+  PO(HUMAN)가 대화에서 결정: 동료가 자동화에 연결하기 위한 기계 판독 가능한 출력이 필요하다는
+  후속 요청(2026-09-11).
 
 ## Design
 
@@ -27,6 +34,9 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
 - `summary`는 `--owner` 유무로 대상 집합을 고른 뒤(`--owner` 없으면 전체, 있으면 위와 같은 필터),
   그 집합 안에서 `status == "open"`/`"done"` 개수를 세어 고정 순서로 출력한다. 별도 카운팅 유틸을
   두 명령이 공유할 필요는 없다 — `summary`는 필터링 후 집계만 하면 된다.
+- `summary`에 `--json`(선택, `store_true`, 기본 `False`) 플래그를 추가한다. 집계까지는 텍스트
+  출력과 같은 경로를 공유하고, 마지막 출력 단계에서만 `--json` 여부로 분기한다(`json.dumps({"open":
+  count, "done": count})` 대 두 줄 텍스트). 카운팅 로직 자체는 R8을 위해 새로 만들지 않는다.
 - 기존 `display()`, `list`/`show`/`complete`의 파일 읽기·쓰기 로직, 예외 처리(`OSError, ValueError,
   KeyError, TypeError` → 종료코드 2)는 그대로 재사용한다. 새 명령도 같은 예외 처리 경로를 공유해
   파일이 없거나 스키마가 깨진 경우 기존과 같은 오류 메시지·종료코드를 낸다.
@@ -81,3 +91,9 @@ intent.md에서 이어받음:
 - AC8 → Constraints(기존 명령·저장 필드 유지): 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1,
   stderr 메시지)는 이번 변경으로 달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
   `test_complete_changes_only_target_status_and_is_repeatable`가 그대로 통과해야 한다.
+- AC9 → R8: `summary --json`이 `requests.json` 기준 `open`과 `done` 키에 각각 정수 `3`, `1`을 담은
+  JSON 객체를 출력한다(키 순서 무관). `summary --owner hana --json`은 `open: 1`, `done: 1`을,
+  `summary --owner nobody --json`과 `summary --owner HANA --json`(대소문자 다른 값)은 각각
+  `open: 0`, `done: 0`을 출력하고 종료코드 0이다. `--json` 없는
+  기존 호출(AC4, AC5)은 그대로 탭 두 줄을 출력한다. `--json` 유무와 무관하게 데이터 파일은
+  바뀌지 않는다(AC6과 동일한 방식으로 검증).
