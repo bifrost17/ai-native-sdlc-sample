@@ -51,7 +51,7 @@ clone이다. 제품 Commands는 유지하고 후보의 나머지 CLAUDE와 세 �
 | 실행 | 수락 spec → plan·구현 동시 커밋 | 보존 브랜치·기록 핀 | 관측 |
 |---|---|---|---|
 | R01-json | 5e6cdd6 → 9f42449 | `codex/experiment-2026-09-11-sync-r01@f5c4ac433b588780ee002be5fa232f833571cf00` | 3회 대화/2회 resume. 업무 JSON 요구만으로 spec·plan 갱신, 수락 SHA 인계. |
-| R02-output | 1ce4506 → 설계 개정 8dea18c → 7c7f9e4 | `codex/experiment-2026-09-11-sync-r02@0b60f006c5ec00b2519a199907562f030ba780ac` | 6회 대화/5회 resume. 업무 파일 요구·설계 결함 피드백 각각에서 spec·plan 갱신. |
+| R02-output | 1ce4506 → 설계 개정 8dea18c → 7c7f9e4 | `codex/experiment-2026-09-11-sync-r02@39c8c2ab391ffbcda4f33fea16552ffa912b6b09` | 6회 대화/5회 resume. 업무 파일 요구·설계 결함 피드백 각각에서 spec·plan 갱신. |
 
 실제 Claude Code 2.1.265, 요청 sonnet·low, 관측 모델 claude-sonnet-5다. 사례마다 새 세션으로
 시작하고 그 안에서는 resume으로 이어갔다. HUMAN은 제품 책임자의 업무 결정·문서 수락·Git을 맡았다.
@@ -99,8 +99,8 @@ V4-11에 이 범위만 반영하며 역사적 실패·부분 판정·제작 집�
 ## 공개 기록·비용·독립 verifier
 
 [R01 기록](https://github.com/bifrost17/ai-native-sdlc-sample/blob/f5c4ac433b588780ee002be5fa232f833571cf00/EXPERIMENT.md),
-[R02 기록](https://github.com/bifrost17/ai-native-sdlc-sample/blob/0b60f006c5ec00b2519a199907562f030ba780ac/EXPERIMENT.md)의
-`raw/`와 `run-summary.json`에 각각 25/38개 공개 파일의 SHA256, 대화·성공/실패 도구 결과·실행·결정을
+[R02 기록](https://github.com/bifrost17/ai-native-sdlc-sample/blob/39c8c2ab391ffbcda4f33fea16552ffa912b6b09/EXPERIMENT.md)의
+`raw/`와 `run-summary.json`에 각각 25/41개 공개 파일의 SHA256, 대화·성공/실패 도구 결과·실행·결정을
 보존했다. 숨겨진 추론·이메일은 제외했다. 비공개 도우미와 판단은 제품 밖
 `/Users/jake/Projects/ai-native-sdlc-experiments/human-sync-r01`, `human-sync-r02`에 남겼다.
 
@@ -109,6 +109,8 @@ R01 CLI 표시 비용 $0.4426748/프로세스 155.77초, R02 $1.262176/357.61초
 R02의 도구 거부 4건과 의도한 결함 변이 실패를 통과로 바꾸지 않았다. 최초 독립 경쟁 재현 출력은
 verifier가 파일을 덮어써 도구 콘솔에서 복원한 사본임을 명시했다. T6의 실제 변이 실패·복원과
 최종 독립 경쟁 검사 출력은 별도 원문으로 남아 있다.
+R02의 중간 기록 0b60f00도 보존했다. 최종 기록은 이전 11개 시험 출력에 더해
+`raw/verifier-tests-final.txt`의 12개 시험과 최종 CLI·쓰기 권한 오류 출력을 담는다.
 
 Sol·high 독립 verifier 보고를 다음 네 부분으로 보존한다. 전체 출력은 두 실행의
 `raw/maker-make-check.txt`, 제품별 `raw/independent-verifier.md`와 `raw/verifier-*.txt`에 있다.
@@ -125,3 +127,8 @@ Sol·high 독립 verifier 보고를 다음 네 부분으로 보존한다. 전체
   최종 제작 문서·주석·기록의 정적 대조는 아래 마감 기록에 남긴다.
 - **확인 불가:** 원래 실패 실행의 자동 지침 주입, 문구만의 독립 효과, 실제 조직 승인·새 PR·CI·배포·
   팀 스킬 적용·장기 성공률. 관측하지 않은 항목은 통과로 세지 않는다.
+
+마감 정적 검토에서 제작 변경 14파일이 계획과 양방향으로 일치했다. 상대 Markdown 링크 56개,
+사용 정책 동일성, v3 입력 해시, 원문·v1/v2 불변, 179 unique ID와 139/23/17 집계, R01 25개·
+R02 41개 공개 해시와 기록 추가 전후 제품 불변을 확인했다. 독립 verifier도 중요한 불일치가
+없음을 확인했다. 사용 후보와 두 실험 기록은 원격 refs에 보존했으며 제작 main의 반영은 로컬이다.
