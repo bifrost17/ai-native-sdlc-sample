@@ -221,4 +221,4 @@ add296d의 두 부분 실행은 지침 전문 읽기를 확인한 새 세션에�
 | F02-plan-sync | F02 / 2.0.0 / 102 + 공개 JSON 요구 | 28b8fa8 + 후보 80e9001 → 5e5b71d (제품 34c351b) | `codex/experiment-2026-09-11-plan-sync` · [검증 기록](0016-flow-pilot.md) | partial · 중요한 문서 갱신 실패. 5회 대화에서 HUMAN 지적 후 복구만 확인 |
 | R01-json | R01 / 3.0.0 / 102 | 28b8fa8 + 후보 add296d → f5c4ac4 (제품 9f42449) | `codex/experiment-2026-09-11-sync-r01` · [검증 기록](0017-artifact-sync.md) | partial · 3회 대화, 문서 상기 없이 spec/plan 개정·수락 참조·동시 커밋, 관측 범위 root 통과 |
 | R02-output | R02 / 3.0.0 / 102 | 28b8fa8 + 후보 add296d → 39c8c2a (제품 7c7f9e4) | `codex/experiment-2026-09-11-sync-r02` · [검증 기록](0017-artifact-sync.md) | partial · 6회 대화, 요구·설계 수정에서 문서 개정. 제품 결함은 발견 후 복구·회귀 통과 |
-| H01-team-harness | H01–H05 / 4.0.0 / 102 | 8dbf319 → 5666b1f (제품 0732201) | `codex/experiment-2026-09-11-harness-r01` · [검증 기록](0018-team-harness.md) | partial · 8회 HUMAN 대화/2회 자동 보완, 문서·수락 참조 복구와 정상 wait. 초기 false pass·비교 검토 오류도 보존 |
+| H01-team-harness | H01–H05 / 4.0.0 / 102 | 8dbf319 → 6d4be0c (제품 0732201) | `codex/experiment-2026-09-11-harness-r01` · [검증 기록](0018-team-harness.md) | partial · 8회 HUMAN 대화/2회 자동 보완, 문서·수락 참조 복구와 정상 wait. 초기 false pass·비교 검토 오류도 보존 |

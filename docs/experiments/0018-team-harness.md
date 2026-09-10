@@ -141,3 +141,9 @@ PATH·개인 Claude 설정·사용 템플릿은 수정하지 않았다. 실행 �
 최종 설치본은 제작 source 및 비교 실험의 source와 동일하다. 실행 파일 SHA256은
 `b81ab06d64b28d9c8e8f93f73a9dbe5a14016dd2a9fa79cab5cab599eec7da09`, 검토 지침은
 `db7946fd394965c114e21d053a2886bdd0b31cdc572b3ceba2b09404047876dd`다.
+
+독립 정적 마감은 제작 `9f20f46..97451de`의 19파일과 계획의 양방향 일치, 원기록 263개 공개 해시,
+기록 커밋의 제품 불변, 북극성 원문·ID·집계를 확인했다. 중요한 불일치는 없었다.
+[마감 보고](https://github.com/bifrost17/ai-native-sdlc-sample/blob/6d4be0cecc696161ff8e55a9950a98bc9fd89d4e/raw/verification/0018-closing-verifier.md)를
+추가한 최종 보존 핀은 `6d4be0cecc696161ff8e55a9950a98bc9fd89d4e`이며 공개 해시는 264개다.
+사용 후보와 실험 기록은 원격에 보존했고, 제작 main 반영은 로컬이다.
