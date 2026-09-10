@@ -3,7 +3,8 @@
 A small repo that applies the fourteen lessons of Anthropic's "The AI-Native SDLC Playbook"
 (Claude Academy) as written — skills that say what to do, a few hooks that block what the lessons
 say to block, and an `intent/` folder where each change is recorded as intent → spec → plan.
-Unofficial; not an Anthropic project.
+Unofficial; not an Anthropic project. Private repository — `docs/verification/` carries a personal
+reading copy of the playbook (see that folder's README before changing visibility).
 
 ## Read in this order
 1. `docs/PLAYBOOK-MAP.md` — each lesson, the device this repo uses for it, and which layer it lives
@@ -52,6 +53,13 @@ serves it); `org-skills/examples/` holds one project's filled-in example and doe
 The research behind every adopted or designed skill is under `docs/research/<skill>/`, decisions in
 `docs/decisions/`. The template's own skills stay in `.claude/skills/`. Chains `intent/0011` and
 `intent/0012` record the move and the split.
+
+## Verification (`docs/verification/`)
+The playbook itself is the standard: every guidance paragraph of the Korean edition carries an
+evidence block naming the file and line in this repository that implements it, with the verdict
+(충실 · 부분 · 팀 몫 · 보완 필요). 179 blocks, `V2-01`~`V13-16`. What the verification found became
+PRs #44-#54. 🔴 That folder holds a personal reading copy of Anthropic's playbook, which is why
+this repository is private.
 
 ## Experiments
 `main` is the template and the template's own chains only. Each experiment — chains run *on* the
