@@ -1,0 +1,45 @@
+{
+  "turns": 8,
+  "sessions": [
+    "ab3c2b91-54ad-44bc-9a68-5f3bb7975683"
+  ],
+  "cli_reported_cost_usd": 1.035306,
+  "process_seconds": 280.09,
+  "dialog_seconds": 967.83,
+  "started": "2026-09-10T15:18:14.424523+00:00",
+  "ended": "2026-09-10T15:34:22.256648+00:00",
+  "successful_guide_read": true,
+  "skill_calls": [],
+  "tool_errors": [
+    {
+      "tool": [
+        "turn-05.agent.jsonl",
+        "Bash",
+        {
+          "command": "python3 -m unittest discover -s tests -v && echo --- && python3 tracker.py --data requests.json list --owner hana && echo --- && python3 tracker.py --data requests.json list --owner HANA; echo \"exit=$?\" && echo --- && python3 tracker.py --data requests.json list"
+        }
+      ],
+      "result": "Permission for this tool use was denied. It requires approval, and this session has no approval surface — nobody can answer a permission prompt here — so it was denied automatically. The action was NOT performed; do not "
+    },
+    {
+      "tool": [
+        "turn-06.agent.jsonl",
+        "Bash",
+        {
+          "command": "python3 tracker.py --data requests.json summary; echo ===; python3 tracker.py --data requests.json summary --owner hana; echo ===; python3 tracker.py --data requests.json summary --owner nobody"
+        }
+      ],
+      "result": "Exit code 1\nopen\t3\ndone\t1\n(eval):1: == not found"
+    },
+    {
+      "tool": [
+        "turn-07.agent.jsonl",
+        "Bash",
+        {
+          "command": "python3 tracker.py --data requests.json list --owner hana; echo ===; python3 tracker.py --data requests.json summary; echo ===; python3 tracker.py --data requests.json summary --owner hana"
+        }
+      ],
+      "result": "Exit code 1\nR-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n(eval):1: == not found"
+    }
+  ]
+}
