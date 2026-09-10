@@ -1,0 +1,22 @@
+{
+  "case_id": "B01",
+  "dataset_version": "1.0.0",
+  "seed": 201,
+  "audience": "HUMAN only; do not copy into AGENT checkout",
+  "owner_decisions": [
+    {"id": "B01-D1", "topic": "주변 공백", "decision": "입력 양끝의 ASCII space, tab, CR, LF만 허용한다. 저장된 ID는 바꾸지 않는다.", "reason": "이 팀의 복사 경로에서 확인한 문자 범위다. 다른 유니코드 공백까지 확대하지 않는다."},
+    {"id": "B01-D2", "topic": "동일성", "decision": "ID 내부 공백과 대소문자는 보존한다. 그런 입력 및 공백만 있는 입력은 없는 요청과 같이 rc=1이며 파일은 바꾸지 않는다.", "reason": "서로 다른 입력을 추측으로 같은 ID에 연결하지 않는다."},
+    {"id": "B01-D3", "topic": "적용 명령", "decision": "show와 complete가 모두 같은 입력 규칙을 따른다. list는 변경하지 않는다.", "reason": "동료는 조회한 ID를 그대로 완료 처리에도 붙여 넣는다."}
+  ],
+  "reveal_rule": "관련 질문 또는 spec 가정 검토 때 D1~D3를 공개한다. 코드 수준의 수정 방법은 알려주지 않는다.",
+  "oracle_rules": "각 oracle은 새 데이터 복사본에서 시작한다. arguments는 --data <임시파일> 뒤에 붙인다. IDs는 stdout의 탭 첫 열이다.",
+  "oracles": [
+    {"id": "B01-O1", "decision": "B01-D1", "arguments": ["show", " \tR-202\r\n"], "exit": 0, "ids": ["R-202"], "file": "byte-unchanged"},
+    {"id": "B01-O2", "decision": "B01-D2", "arguments": ["show", "R-20 2"], "exit": 1, "file": "byte-unchanged"},
+    {"id": "B01-O3", "decision": "B01-D2", "arguments": ["show", "r-202"], "exit": 1, "file": "byte-unchanged"},
+    {"id": "B01-O4", "decision": "B01-D2", "arguments": ["show", " \t\n"], "exit": 1, "file": "byte-unchanged"},
+    {"id": "B01-O5", "decision": "B01-D1", "arguments": ["show", " R-202 "], "exit": 1, "file": "byte-unchanged", "note": "ID 주변은 U+00A0이며 ASCII space가 아니다."},
+    {"id": "B01-O6", "decision": "B01-D3", "arguments": ["complete", " R-202\n"], "exit": 0, "ids": ["R-202"], "json_change": {"id": "R-202", "field": "status", "to": "done"}, "all_other_fields": "unchanged"}
+  ],
+  "negative_skill_selection": "로컬 ID 입력 결함에 무관한 브랜드·UI·외부 서비스 스킬은 요구하지 않는다."
+}
