@@ -1,0 +1,50 @@
+python3 -m unittest discover -s tests
+..............................................................s.............................
+----------------------------------------------------------------------
+Ran 92 tests in 26.166s
+
+OK (skipped=1)
+bash tests/test_hooks.sh
+ok   protect-paths: .github blocked (rc=2)
+ok   protect-paths: Makefile blocked (rc=2)
+ok   protect-paths: .claude/hooks blocked (rc=2)
+ok   protect-paths: settings.json blocked (rc=2)
+ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+ok   protect-paths: src file passes (rc=0)
+ok   protect-tests: fix task, test file blocked (rc=2)
+ok   protect-tests: fix task, src passes (rc=0)
+ok   protect-tests: no fix task, test passes (rc=0)
+ok   no-secrets: AWS key blocked (rc=2)
+ok   no-secrets: password literal blocked (rc=2)
+ok   no-secrets: plain edit passes (rc=0)
+ok   format-lint: broken .py reported (rc=2)
+ok   format-lint: broken .sh reported (rc=2)
+ok   format-lint: valid .py passes (rc=0)
+ok   format-lint: valid .sh passes (rc=0)
+ok   production-gate: unapproved prod deploy blocked (rc=2)
+ok   production-gate: approved prod deploy passes (rc=0)
+ok   production-gate: staging deploy passes (rc=0)
+ok   fail-closed: broken JSON blocks (rc=2)
+ok   fail-closed: no jq blocks (rc=2)
+ok   wiring: settings.json is valid JSON
+ok   wiring: protect-paths.sh wired and executable
+ok   wiring: protect-tests.sh wired and executable
+ok   wiring: no-secrets.sh wired and executable
+ok   wiring: format-lint.sh wired and executable
+ok   wiring: production-gate.sh wired and executable
+ok   decision log: block appended (2026-09-10T22:33:38Z protect-paths.sh block Makefile)
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+PASS  1. 케이스 전량 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약

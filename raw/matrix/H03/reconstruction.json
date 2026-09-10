@@ -1,0 +1,22 @@
+{
+  "variant": "H03",
+  "scope": "review-only; this is not a rerun of the original F02 experiment",
+  "source_repository": "/Users/jake/Projects/ai-native-sdlc-experiments/f02-plan-sync",
+  "baseline_commit": "d22a9fe2f0d3bc5ea367ab6fd99545a347d90404",
+  "template_candidate_applied_by_baseline": "80e90016a6b507d98d563e6abcdbbf56aecdca41",
+  "applied_diff": "/Users/jake/Projects/ai-native-sdlc-experiments/human-f02-plan-sync/turn-02-working.diff",
+  "applied_diff_sha256": "e62c8740e005a830c9b82668dd9ceddf3ad04079741cabd4616911101a68eb0a",
+  "workspace_digest": "c1abb80412037b431cda7883fd70a2833ce154878576bf04de45442c971b290c",
+  "git_status": " M README.md\n M intent/0001-owner-list-and-summary/plan.md\n M intent/0001-owner-list-and-summary/spec.md\n M tests/test_tracker.py\n M tracker.py\n",
+  "controlled_mutations": [
+    {
+      "path": "intent/0001-owner-list-and-summary/spec.md",
+      "kind": "meaningless HTML comment"
+    },
+    {
+      "path": "intent/0001-owner-list-and-summary/plan.md",
+      "kind": "meaningless HTML comment"
+    }
+  ],
+  "interpretation": "format-only injection; comments add no requirement or plan content"
+}

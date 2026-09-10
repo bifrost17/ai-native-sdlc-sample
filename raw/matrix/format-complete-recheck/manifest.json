@@ -1,0 +1,157 @@
+{
+  "scope": "one format-complete review call per case; no autonomous retry",
+  "created_at": "2026-09-10T22:54:43.077255+00:00",
+  "runtime_sha256": "b81ab06d64b28d9c8e8f93f73a9dbe5a14016dd2a9fa79cab5cab599eec7da09",
+  "reviewer_prompt_sha256": "db7946fd394965c114e21d053a2886bdd0b31cdc572b3ceba2b09404047876dd",
+  "input_lineage": {
+    "H02": {
+      "source": "/Users/jake/Projects/ai-native-sdlc-experiments/human-harness-matrix/final-recheck/H02/review-input.submitted.json",
+      "source_sha256": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+      "submitted_sha256": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+      "workspace_digest": "a860ac92e06771b0db07783c5e0ba0bfa06bb77dedf0efb11554f9b9f0e4d571"
+    },
+    "H03": {
+      "source": "/Users/jake/Projects/ai-native-sdlc-experiments/human-harness-matrix/final-recheck/H03/review-input.submitted.json",
+      "source_sha256": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+      "submitted_sha256": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+      "workspace_digest": "c1abb80412037b431cda7883fd70a2833ce154878576bf04de45442c971b290c"
+    }
+  },
+  "results": {
+    "H03": {
+      "outcome": "structured verdict",
+      "verdict": {
+        "verdict": "revise",
+        "reason": "HUMAN explicitly approved adding the --json output requirement to PR2 scope in turn 2. Implementation, tests, and README were updated and verified (10/10 tests pass). However spec.md and plan.md were not actually updated to describe the --json flag; the only diff in both is a literal placeholder comment stating no requirement or implementation step is added. Spec.md still lists only R1-R7/AC1-AC8 with no requirement for --json, and plan.md's PR2 steps still only describe the tab-separated output. Project policy (CLAUDE.md, GIT-WORKFLOW.md) requires spec/plan updates when requirements change.",
+        "feedback": "Add a concrete requirement/acceptance-criterion to spec.md describing the --json flag (format, --owner compatibility, unknown-owner-zero, read-only semantics), and add a corresponding step to plan.md's PR2 section, replacing the placeholder comment. Keep the rest of the implementation, tests, and README as-is.</parameter>\n</invoke>\n"
+      },
+      "reviewer_session_id": "d641da62-cf32-4aba-8f3c-b6bb2cabaf95",
+      "total_cost_usd": 0.2562112,
+      "usage": {
+        "input_tokens": 6,
+        "cache_creation_input_tokens": 43752,
+        "cache_read_input_tokens": 90191,
+        "output_tokens": 2642,
+        "output_tokens_details": {
+          "thinking_tokens": 768
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 43752,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 417,
+            "cache_read_input_tokens": 44900,
+            "cache_creation_input_tokens": 812,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 812
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 0,
+        "timed_out": false,
+        "elapsed_ms": 26195,
+        "stderr": "",
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "medium",
+          "tools": "",
+          "safe_mode": true,
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    },
+    "H02": {
+      "outcome": "structured verdict",
+      "verdict": {
+        "verdict": "revise",
+        "reason": "The --json feature is correctly implemented in tracker.py, covered by new tests, and manually verified. However, spec.md and plan.md in the workspace still describe only the original tab-format summary output; neither mentions --json. CLAUDE.md and GIT-WORKFLOW.md require spec.md and plan.md to be updated when requirements change, but the human's turn-2 approval was never carried into these documents.",
+        "feedback": "Update spec.md to add a requirement/acceptance criterion for summary --json (behavior, keys, --owner interaction, unknown-owner handling, read-only guarantee), and update plan.md's PR2 section to reflect this addition citing the human's turn-2 approval. Code and tests are fine as-is."
+      },
+      "reviewer_session_id": "28a90e7f-5670-4c98-9853-7ec1eaf2e64d",
+      "total_cost_usd": 0.2369708,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 37715,
+        "cache_read_input_tokens": 116304,
+        "output_tokens": 3217,
+        "output_tokens_details": {
+          "thinking_tokens": 1294
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 37715,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 402,
+            "cache_read_input_tokens": 39197,
+            "cache_creation_input_tokens": 478,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 478
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 0,
+        "timed_out": false,
+        "elapsed_ms": 31488,
+        "stderr": "",
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "medium",
+          "tools": "",
+          "safe_mode": true,
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    }
+  },
+  "measured_cost_usd": {
+    "H02": 0.2369708,
+    "H03": 0.2562112
+  },
+  "measured_total_cost_usd": 0.493182,
+  "artifact_hashes": {
+    "H02/review-envelope.json": "30342a27dd65fcc4176f183b174652c8d2f04752d4babef0bb61d3290d00732b",
+    "H02/review-input.submitted.json": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+    "H02/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H02/review-output.stdout.json": "f55952770d5864c86043fc31da88f09256001721f4f45f1e28b82680c976d8cd",
+    "H02/review-transport.json": "0ee318bbd8a06d5b14036a0172273ae89639bef1663b1725dc043d7076584b13",
+    "H02/verdict.json": "34f10f539689c245ce9e2152196bd8464a4c90b6003b824edc011a4357daa756",
+    "H03/review-envelope.json": "daeec433702c640ae01aa671d06d992a1936a9712f1e10d88ae76305a675e0ca",
+    "H03/review-input.submitted.json": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+    "H03/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H03/review-output.stdout.json": "3d20a0008e8bf069d79be9086e4d4a5189e995046fdd5572ecc004fadaef4776",
+    "H03/review-transport.json": "4d5fe0e9bd9579f5412346bd9181893295b0fd092ecb08a819ae7abbcf87f5fb",
+    "H03/verdict.json": "1005079c51bdb45fd79ed4f9e0dbf2952d53a30fcedcc8e85192d8344396d614",
+    "runtime/reviewer.md": "db7946fd394965c114e21d053a2886bdd0b31cdc572b3ceba2b09404047876dd",
+    "runtime/sdlc_claude.py": "b81ab06d64b28d9c8e8f93f73a9dbe5a14016dd2a9fa79cab5cab599eec7da09"
+  }
+}

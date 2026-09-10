@@ -1,0 +1,192 @@
+{
+  "matrix": "H02/H03 installed-runtime independent semantic reviewer",
+  "scope": "review-only reconstruction; not the original experiment and not an automatic-resume run",
+  "created_at": "2026-09-10T22:36:06.793870+00:00",
+  "runtime": "/Users/jake/.local/share/intent-sdlc-harness/sdlc_claude.py",
+  "runtime_sha256": "31ecf1ae4167124a253473dd6e8e81527edbc36547d81da44c1c01b96c616d95",
+  "reviewer_prompt": "/Users/jake/.local/share/intent-sdlc-harness/reviewer.md",
+  "reviewer_prompt_sha256": "d8f67d1099185ab28286984c42eff0e3cfd5206ea70366790307032db179ff31",
+  "source_hashes": {
+    "turn-01.human.md": "8548162556dde39ad9dc0f80c8d797fefd8bd6698f6968b367c8897a2b5aab5e",
+    "turn-01.agent.jsonl": "9a431b92d7e9557614a00f153cf7c152a7676ef8cc32a3bea506d0848dffeee2",
+    "turn-02.human.md": "c7a956cfe7123fbd48f040bd0a9fd9eb8d3b071c9740f9c0e8192d8dfcd5592c",
+    "turn-02.agent.jsonl": "0756700a73175bb757ebe3308d1bae8e6df56366f659c4de6ce018dd7f283fae",
+    "turn-02-working.diff": "e62c8740e005a830c9b82668dd9ceddf3ad04079741cabd4616911101a68eb0a"
+  },
+  "results": {
+    "H02": {
+      "verdict": {
+        "verdict": "revise",
+        "reason": "The --json feature (human-approved scope addition to PR2) was implemented and verified correctly in tracker.py, tests, and README, but plan.md still describes only the original summary scope with no mention of the --json addition or acceptance criteria for it. CLAUDE.md/GIT-WORKFLOW.md require that when implementation departs from (or adds to) the plan, plan.md be updated in the same working tree to reflect it.",
+        "feedback": "Update intent/0001-owner-list-and-summary/plan.md (and ideally spec.md's requirements/AC list) to record the --json flag: its behavior, that it was added as an approved in-flight scope change to PR2, and the corresponding test/AC evidence. This keeps plan.md in sync with the implemented and tested behavior before the human does the final review/merge."
+      },
+      "reviewer_session_id": "5c170f5c-767e-42aa-b843-c978fa1713eb",
+      "total_cost_usd": 0.5096404,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 103707,
+        "cache_read_input_tokens": 1472,
+        "output_tokens": 621,
+        "output_tokens_details": {
+          "thinking_tokens": 265
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 103707,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 621,
+            "cache_read_input_tokens": 1472,
+            "cache_creation_input_tokens": 103707,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 103707
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 0,
+        "timed_out": false,
+        "elapsed_ms": 11619,
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "low",
+          "tools": "",
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    },
+    "H03": {
+      "verdict": {
+        "verdict": "revise",
+        "reason": "The --json feature was implemented, tested, and documented in README, but spec.md and plan.md were not updated to reflect the new PO-approved requirement. The only change to spec.md/plan.md in the diff is an unrelated inserted comment; there is no new requirement/AC or plan step for the --json flag semantics.",
+        "feedback": "Update spec.md to add a requirement/acceptance criterion for the --json flag on summary (works with --owner, includes unassigned when no --owner, unknown/mismatched-case owner yields open:0/done:0, read-only, JSON object with integer open/done counts). Update plan.md's PR2 section to record the --json addition as an approved scope change with a brief step describing the work done. Implementation and tests are already correct and verified; this is a documentation-sync gap only."
+      },
+      "reviewer_session_id": "3d36d846-45d1-4140-84cb-a4dac78c035b",
+      "total_cost_usd": 0.66441,
+      "usage": {
+        "input_tokens": 10,
+        "cache_creation_input_tokens": 113094,
+        "cache_read_input_tokens": 453830,
+        "output_tokens": 2687,
+        "output_tokens_details": {
+          "thinking_tokens": 435
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 113094,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 350,
+            "cache_read_input_tokens": 114034,
+            "cache_creation_input_tokens": 532,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 532
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 0,
+        "timed_out": false,
+        "elapsed_ms": 35527,
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "low",
+          "tools": "",
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    }
+  },
+  "artifact_hashes": {
+    "H02/reconstructed-tree/.gitignore": "ef4871e8ce95c9453aaad2d1dad1898f9a91381327efa0176855c6d81db9ec9a",
+    "H02/reconstructed-tree/CLAUDE.md": "8416eba2d243dd673eaf39255c80a7bf82b098d72ebff133c71bdb500dc2b4be",
+    "H02/reconstructed-tree/LICENSE": "a01f6da1e7fccdcd1d321714038cb7f11c15ec86899fb662b8c7600f28c28d6d",
+    "H02/reconstructed-tree/NOTICE": "3a0dd3f9df5cf3546dc8923b8f073d0ebfacfcd8278ea421d9365cf2852b2d9b",
+    "H02/reconstructed-tree/PROJECT-POLICY.md": "7e6384fbc3deb3bfa78f11f4df4bac09f261ec4625a2c8bd00a33d8ad05e2d73",
+    "H02/reconstructed-tree/README.md": "547cbddc15a7c91084f79fa7067d314f3fcf107a1afb5de2bf65236a4f8fe796",
+    "H02/reconstructed-tree/REVIEW.md": "030f371d53c6d00681f8bb70656e64b51af055660e0af157a268ac024f3a142c",
+    "H02/reconstructed-tree/case.json": "7e3a2f35dec458fae6c8438c0d286409335be336aa8ee49a7e578bcdca0f66a9",
+    "H02/reconstructed-tree/docs/GIT-WORKFLOW.md": "8d62c0ca91c69a166006e8cb2c5e264800e65f82931d660681eda600bddd214a",
+    "H02/reconstructed-tree/docs/PR-SIZE.md": "c36c93ce085e4949b8f1064eb2206391f23d8a9c5232bf57330d2a3b0c14ee91",
+    "H02/reconstructed-tree/docs/PROCESS.md": "43cd0e3225cfc85db1bc6e4a11fb4efc0a2e3f3678c994863492ab6012ed8868",
+    "H02/reconstructed-tree/examples/README.md": "3f4f78021e8328a7cff24e8e76737c966622cdd45265037cc0d88ecf526f643a",
+    "H02/reconstructed-tree/examples/skills/capture-intent/SKILL.md": "2bd5a23a8092a9e3e5d6bb6e64660f108621b1d638074e8c60509b899861a169",
+    "H02/reconstructed-tree/examples/skills/design-spec/SKILL.md": "815400c527c83cfa474baf3b29e0eb06c0844f51271bd72f09bd2584993d943d",
+    "H02/reconstructed-tree/examples/skills/plan/SKILL.md": "96864a3d503d9eaca24cd18f40ea34180bed62d1f8200b52bf8528cee3ce4764",
+    "H02/reconstructed-tree/intent/0001-owner-list-and-summary/intent.md": "d00ba3ddb616a8d791f3dc5dde0a07e35eb420a8f23337c6d8bbf6ae69c8fe1c",
+    "H02/reconstructed-tree/intent/0001-owner-list-and-summary/plan.md": "e92993e9109537aaf45653ae2afe8363b5cf2f3dc02802d0321fc2443100efb7",
+    "H02/reconstructed-tree/intent/0001-owner-list-and-summary/spec.md": "625b9b82c9b1a65eff3772b195f472caca2cfd9028b60843fea5388d2429fbbe",
+    "H02/reconstructed-tree/intent/README.md": "1595906c0dab6bb35d5d26aa4dd7dc37460aa4ee937312189e9b2c74f36e3fae",
+    "H02/reconstructed-tree/requests.json": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+    "H02/reconstructed-tree/templates/intent.md": "849bf344cb3e17e66948580dc1570ee58d4577cdc0e9652ee7dde14d8a2f33de",
+    "H02/reconstructed-tree/templates/plan.md": "10fbd1ade3a692c88a2bf94d9fc34ba03a3fd02e6774e87ad181a3337b7d031d",
+    "H02/reconstructed-tree/templates/spec.md": "dd2c36b19dc97253c8522139edf0006e75564a596c559bebe8699cc9be0bcc96",
+    "H02/reconstructed-tree/tests/test_tracker.py": "8af568ea296f9596612424a5fa52e8d9681298665ba001756839a0156ce56e71",
+    "H02/reconstructed-tree/tracker.py": "c504dd5f66007d1f689df75cebd5893c7e6b2adae88cc71727278ba746623886",
+    "H02/reconstruction.json": "b47770816fbe88a39c3d165f96820a762a37ec1f220c41cfd3591ac4c4699724",
+    "H02/review-envelope.json": "b1fd0af64489743cbb270de0a4bc52da3997f64e485d55623cf6230f2308ae79",
+    "H02/review-input.json": "7c51d2c5e7a5bbe889f729db871c4fbdfa66fbaf946737b223415c1bc16eb8e7",
+    "H02/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H02/review-output.stdout.json": "c69a150d08f56748a5dc445f43709dcbadbb9d573e61b718367fcbe8ac3ed7f6",
+    "H02/review-transport.json": "8b17bc62f8074870a49b047313c739ec3aa91137c6410c185aa6db7a83dddef2",
+    "H02/verdict.json": "80302764a23588c4f83127a3452ce50ff4467313424f9d282d09e51bc551636d",
+    "H03/reconstructed-tree/.gitignore": "ef4871e8ce95c9453aaad2d1dad1898f9a91381327efa0176855c6d81db9ec9a",
+    "H03/reconstructed-tree/CLAUDE.md": "8416eba2d243dd673eaf39255c80a7bf82b098d72ebff133c71bdb500dc2b4be",
+    "H03/reconstructed-tree/LICENSE": "a01f6da1e7fccdcd1d321714038cb7f11c15ec86899fb662b8c7600f28c28d6d",
+    "H03/reconstructed-tree/NOTICE": "3a0dd3f9df5cf3546dc8923b8f073d0ebfacfcd8278ea421d9365cf2852b2d9b",
+    "H03/reconstructed-tree/PROJECT-POLICY.md": "7e6384fbc3deb3bfa78f11f4df4bac09f261ec4625a2c8bd00a33d8ad05e2d73",
+    "H03/reconstructed-tree/README.md": "547cbddc15a7c91084f79fa7067d314f3fcf107a1afb5de2bf65236a4f8fe796",
+    "H03/reconstructed-tree/REVIEW.md": "030f371d53c6d00681f8bb70656e64b51af055660e0af157a268ac024f3a142c",
+    "H03/reconstructed-tree/case.json": "7e3a2f35dec458fae6c8438c0d286409335be336aa8ee49a7e578bcdca0f66a9",
+    "H03/reconstructed-tree/docs/GIT-WORKFLOW.md": "8d62c0ca91c69a166006e8cb2c5e264800e65f82931d660681eda600bddd214a",
+    "H03/reconstructed-tree/docs/PR-SIZE.md": "c36c93ce085e4949b8f1064eb2206391f23d8a9c5232bf57330d2a3b0c14ee91",
+    "H03/reconstructed-tree/docs/PROCESS.md": "43cd0e3225cfc85db1bc6e4a11fb4efc0a2e3f3678c994863492ab6012ed8868",
+    "H03/reconstructed-tree/examples/README.md": "3f4f78021e8328a7cff24e8e76737c966622cdd45265037cc0d88ecf526f643a",
+    "H03/reconstructed-tree/examples/skills/capture-intent/SKILL.md": "2bd5a23a8092a9e3e5d6bb6e64660f108621b1d638074e8c60509b899861a169",
+    "H03/reconstructed-tree/examples/skills/design-spec/SKILL.md": "815400c527c83cfa474baf3b29e0eb06c0844f51271bd72f09bd2584993d943d",
+    "H03/reconstructed-tree/examples/skills/plan/SKILL.md": "96864a3d503d9eaca24cd18f40ea34180bed62d1f8200b52bf8528cee3ce4764",
+    "H03/reconstructed-tree/intent/0001-owner-list-and-summary/intent.md": "d00ba3ddb616a8d791f3dc5dde0a07e35eb420a8f23337c6d8bbf6ae69c8fe1c",
+    "H03/reconstructed-tree/intent/0001-owner-list-and-summary/plan.md": "af6945c1e038fd0859392dad882dc7dd81eb7506bde70c7a63e4637eca4c4094",
+    "H03/reconstructed-tree/intent/0001-owner-list-and-summary/spec.md": "14d9b7153f4dd001682bab24119360c23fea495681c075f6b420b79a60cf7524",
+    "H03/reconstructed-tree/intent/README.md": "1595906c0dab6bb35d5d26aa4dd7dc37460aa4ee937312189e9b2c74f36e3fae",
+    "H03/reconstructed-tree/requests.json": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+    "H03/reconstructed-tree/templates/intent.md": "849bf344cb3e17e66948580dc1570ee58d4577cdc0e9652ee7dde14d8a2f33de",
+    "H03/reconstructed-tree/templates/plan.md": "10fbd1ade3a692c88a2bf94d9fc34ba03a3fd02e6774e87ad181a3337b7d031d",
+    "H03/reconstructed-tree/templates/spec.md": "dd2c36b19dc97253c8522139edf0006e75564a596c559bebe8699cc9be0bcc96",
+    "H03/reconstructed-tree/tests/test_tracker.py": "8af568ea296f9596612424a5fa52e8d9681298665ba001756839a0156ce56e71",
+    "H03/reconstructed-tree/tracker.py": "c504dd5f66007d1f689df75cebd5893c7e6b2adae88cc71727278ba746623886",
+    "H03/reconstruction.json": "9d8f4a9deb4667982d09c28cbe12061c0b7c6189ba825836ed26815d4a3d5903",
+    "H03/review-envelope.json": "7ea5da38c01b32e23ec7e1b184928a24f9029e5dd563de0e678d118325ff560a",
+    "H03/review-input.json": "6c2d00630583d5c84d5b706df74891ec7fdde07f04418ba1da875e71af19c67e",
+    "H03/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H03/review-output.stdout.json": "a99277bac7a29e883a261cd37725a6c450f86e4228c95bc55e6193dd727046a2",
+    "H03/review-transport.json": "77a316ea1fb561648810b80a819603da45ebe9ad1ecba16d3d481568f95a9889",
+    "H03/verdict.json": "9a4d5200a0cd75b87595da761f51ebedffc39225bb0207549b5ad59a95fcc818"
+  }
+}

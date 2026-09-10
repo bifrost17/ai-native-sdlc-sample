@@ -1,0 +1,156 @@
+{
+  "scope": "acceptance-aware final review-only recheck; all earlier records are immutable",
+  "outcome": "fail-closed unknown; no extra retry was launched",
+  "created_at": "2026-09-10T22:51:33.957501+00:00",
+  "runtime_sha256": "b81ab06d64b28d9c8e8f93f73a9dbe5a14016dd2a9fa79cab5cab599eec7da09",
+  "reviewer_prompt_sha256": "e665997d6e284b430311f5d3fbbcafb11ad2c89b10fa91871d88ed4eff8684ef",
+  "input_lineage": {
+    "H02": {
+      "source": "/Users/jake/Projects/ai-native-sdlc-experiments/human-harness-matrix/final-recheck/H02/review-input.submitted.json",
+      "source_sha256": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+      "submitted_sha256": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+      "workspace_digest": "a860ac92e06771b0db07783c5e0ba0bfa06bb77dedf0efb11554f9b9f0e4d571"
+    },
+    "H03": {
+      "source": "/Users/jake/Projects/ai-native-sdlc-experiments/human-harness-matrix/final-recheck/H03/review-input.submitted.json",
+      "source_sha256": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+      "submitted_sha256": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+      "workspace_digest": "c1abb80412037b431cda7883fd70a2833ce154878576bf04de45442c971b290c"
+    }
+  },
+  "results": {
+    "H02": {
+      "verdict": {
+        "verdict": "unknown",
+        "reason": "reviewer failed closed: error_max_structured_output_retries; Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'feedback'",
+        "feedback": "Inspect the preserved reviewer envelope before any rerun."
+      },
+      "reviewer_session_id": "5cc7b52c-d365-45b2-b454-d062834826a8",
+      "total_cost_usd": 0.2432462,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 37987,
+        "cache_read_input_tokens": 115841,
+        "output_tokens": 3746,
+        "output_tokens_details": {
+          "thinking_tokens": 820
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 37987,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 656,
+            "cache_read_input_tokens": 39132,
+            "cache_creation_input_tokens": 752,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 752
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 1,
+        "timed_out": false,
+        "elapsed_ms": 47849,
+        "stderr": "",
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "medium",
+          "tools": "",
+          "safe_mode": true,
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    },
+    "H03": {
+      "verdict": {
+        "verdict": "unknown",
+        "reason": "reviewer failed closed: error_max_structured_output_retries; Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'feedback'",
+        "feedback": "Inspect the preserved reviewer envelope before any rerun."
+      },
+      "reviewer_session_id": "1382c5ff-9107-4545-a256-63023a0c0126",
+      "total_cost_usd": 0.2709372,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 44196,
+        "cache_read_input_tokens": 135296,
+        "output_tokens": 3035,
+        "output_tokens_details": {
+          "thinking_tokens": 610
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 44196,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 453,
+            "cache_read_input_tokens": 45475,
+            "cache_creation_input_tokens": 618,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 618
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 1,
+        "timed_out": false,
+        "elapsed_ms": 42329,
+        "stderr": "",
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "medium",
+          "tools": "",
+          "safe_mode": true,
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    }
+  },
+  "measured_cost_usd": {
+    "H02": 0.2432462,
+    "H03": 0.2709372
+  },
+  "measured_total_cost_usd": 0.5141834,
+  "artifact_hashes": {
+    "H02/review-envelope.json": "9bc3df03ecd968adaabcc18fb1da6c93ec746acf58190d9e1d7712189b40fc1f",
+    "H02/review-input.submitted.json": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+    "H02/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H02/review-output.stdout.json": "80fe66b934f6500e8c6b94b3d04f7393a9bdaad7da1d9b3742a84d832e9944aa",
+    "H02/review-transport.json": "ea2eeb5ee93f3016efa7042491f0a2a1794f3c6fb92ec1b1b3e0d40d71aa0ff0",
+    "H02/verdict.json": "341bf607610c5338b56f43125effbbf0c70060269f90cfc93e4cfbff031c35cb",
+    "H03/review-envelope.json": "d84cde74b76e33581fbc468ee7b17db47cd2f76e033d685b2182b1a2b8ecda64",
+    "H03/review-input.submitted.json": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+    "H03/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H03/review-output.stdout.json": "c89e1a259d1605a7ef172ffc8339577710255949ef3538a874bd96cd13d2edf7",
+    "H03/review-transport.json": "255e0077fad5bda81e9c07712d45da1cd5c287ff823d2444b02ff98ff8febbe1",
+    "H03/verdict.json": "341bf607610c5338b56f43125effbbf0c70060269f90cfc93e4cfbff031c35cb",
+    "runtime/reviewer.md": "e665997d6e284b430311f5d3fbbcafb11ad2c89b10fa91871d88ed4eff8684ef",
+    "runtime/sdlc_claude.py": "b81ab06d64b28d9c8e8f93f73a9dbe5a14016dd2a9fa79cab5cab599eec7da09"
+  }
+}

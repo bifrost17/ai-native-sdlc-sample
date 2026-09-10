@@ -1,0 +1,5 @@
+{
+  "verdict": "revise",
+  "reason": "The --json feature (human-approved scope addition to PR2) was implemented and verified correctly in tracker.py, tests, and README, but plan.md still describes only the original summary scope with no mention of the --json addition or acceptance criteria for it. CLAUDE.md/GIT-WORKFLOW.md require that when implementation departs from (or adds to) the plan, plan.md be updated in the same working tree to reflect it.",
+  "feedback": "Update intent/0001-owner-list-and-summary/plan.md (and ideally spec.md's requirements/AC list) to record the --json flag: its behavior, that it was added as an approved in-flight scope change to PR2, and the corresponding test/AC evidence. This keeps plan.md in sync with the implemented and tested behavior before the human does the final review/merge."
+}

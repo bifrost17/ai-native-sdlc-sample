@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "turn": 1,
+  "kind": "human",
+  "input_digest": "78a72675953045542274df5eb9b10334f2a22956c4f96ed06f81c9c8eafe732e",
+  "base_commit": "8dbf319f19fd8be2e006151867363b7867665bfb",
+  "review_input_digest": "99afd7215679f4ce603028554837cdb606b498e1d72519d55a624934e660da75",
+  "head_commit": "8dbf319f19fd8be2e006151867363b7867665bfb",
+  "workspace_digest": "4ba3774d0adab4bb81197c72a6684866464e63636e0309978104b002ab1e71d2",
+  "developer": {
+    "session_id": "12ed90a4-c429-4e7b-a7ef-07183dfb4f32",
+    "total_cost_usd": 0.2808074,
+    "duration_ms": 51383,
+    "duration_api_ms": 49588,
+    "num_turns": 18,
+    "usage": {
+      "input_tokens": 36,
+      "cache_creation_input_tokens": 34545,
+      "cache_read_input_tokens": 486847,
+      "output_tokens": 4399,
+      "output_tokens_details": {
+        "thinking_tokens": 252
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 34545,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 801,
+          "cache_read_input_tokens": 33848,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 1116,
+        "outputTokens": 16,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.001196,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5": {
+        "inputTokens": 36,
+        "outputTokens": 4399,
+        "cacheReadInputTokens": 486847,
+        "cacheCreationInputTokens": 34545,
+        "webSearchRequests": 0,
+        "costUSD": 0.2796114,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 252,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  "developer_elapsed_ms": 52859,
+  "reviewer": {
+    "session_id": "cae638d1-3698-454a-ba27-c1fd2ac475c7",
+    "total_cost_usd": 0.41389499999999996,
+    "duration_ms": 4796,
+    "duration_api_ms": 6695,
+    "num_turns": 2,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 84503,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 341,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 84503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 72369,
+        "outputTokens": 20,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.072469,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5": {
+        "inputTokens": 2,
+        "outputTokens": 341,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 84503,
+        "webSearchRequests": 0,
+        "costUSD": 0.34142599999999995,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  "reviewer_elapsed_ms": 6288,
+  "verdict": "pass",
+  "reason": "summary [--owner] implemented per spec/plan; 8 tests pass with tool evidence covering AC4/AC5/AC7/AC8; manual runs match; requests.json unmodified confirmed; no plan/spec deviation requiring doc update; git/merge correctly deferred to human.",
+  "finished_at": "2026-09-10T22:32:18.101021+00:00"
+}

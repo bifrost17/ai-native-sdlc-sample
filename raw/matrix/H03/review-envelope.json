@@ -1,0 +1,114 @@
+{
+  "duration_api_ms": 36492,
+  "stop_reason": "tool_use",
+  "session_id": "3d36d846-45d1-4140-84cb-a4dac78c035b",
+  "total_cost_usd": 0.66441,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 113094,
+    "cache_read_input_tokens": 453830,
+    "output_tokens": 2687,
+    "output_tokens_details": {
+      "thinking_tokens": 435
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 113094,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 350,
+        "cache_read_input_tokens": 114034,
+        "cache_creation_input_tokens": 532,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 532
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 94263,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.094378,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 10,
+      "outputTokens": 2687,
+      "cacheReadInputTokens": 453830,
+      "cacheCreationInputTokens": 113094,
+      "webSearchRequests": 0,
+      "costUSD": 0.5700320000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 435,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "result": "{\"verdict\":\"revise\",\"reason\":\"The --json feature was implemented, tested, and documented in README, but spec.md and plan.md were not updated to reflect the new PO-approved requirement. The only change to spec.md/plan.md in the diff is an unrelated inserted comment; there is no new requirement/AC or plan step for the --json flag semantics.\",\"feedback\":\"Update spec.md to add a requirement/acceptance criterion for the --json flag on summary (works with --owner, includes unassigned when no --owner, unknown/mismatched-case owner yields open:0/done:0, read-only, JSON object with integer open/done counts). Update plan.md's PR2 section to record the --json addition as an approved scope change with a brief step describing the work done. Implementation and tests are already correct and verified; this is a documentation-sync gap only.\"}",
+  "structured_output": {
+    "verdict": "revise",
+    "reason": "The --json feature was implemented, tested, and documented in README, but spec.md and plan.md were not updated to reflect the new PO-approved requirement. The only change to spec.md/plan.md in the diff is an unrelated inserted comment; there is no new requirement/AC or plan step for the --json flag semantics.",
+    "feedback": "Update spec.md to add a requirement/acceptance criterion for the --json flag on summary (works with --owner, includes unassigned when no --owner, unknown/mismatched-case owner yields open:0/done:0, read-only, JSON object with integer open/done counts). Update plan.md's PR2 section to record the --json addition as an approved scope change with a brief step describing the work done. Implementation and tests are already correct and verified; this is a documentation-sync gap only."
+  },
+  "ttft_ms": 8248,
+  "type": "result",
+  "duration_ms": 34461,
+  "uuid": "dc393dda-bf6b-40df-89af-b1acafc7f046",
+  "ttft_stream_ms": 3109,
+  "time_to_request_ms": 23,
+  "first_content_frame_ms": 3493,
+  "queued_turn_count": 0
+}

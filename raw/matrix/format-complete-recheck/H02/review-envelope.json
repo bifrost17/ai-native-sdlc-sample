@@ -1,0 +1,114 @@
+{
+  "duration_api_ms": 31554,
+  "stop_reason": "tool_use",
+  "session_id": "28a90e7f-5670-4c98-9853-7ec1eaf2e64d",
+  "total_cost_usd": 0.2369708,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 37715,
+    "cache_read_input_tokens": 116304,
+    "output_tokens": 3217,
+    "output_tokens_details": {
+      "thinking_tokens": 1294
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 37715,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 402,
+        "cache_read_input_tokens": 39197,
+        "cache_creation_input_tokens": 478,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 478
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 30564,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.030664,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 8,
+      "outputTokens": 3217,
+      "cacheReadInputTokens": 116304,
+      "cacheCreationInputTokens": 37715,
+      "webSearchRequests": 0,
+      "costUSD": 0.20630679999999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 1294,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 5,
+  "subtype": "success",
+  "result": "{\"verdict\":\"revise\",\"reason\":\"The --json feature is correctly implemented in tracker.py, covered by new tests, and manually verified. However, spec.md and plan.md in the workspace still describe only the original tab-format summary output; neither mentions --json. CLAUDE.md and GIT-WORKFLOW.md require spec.md and plan.md to be updated when requirements change, but the human's turn-2 approval was never carried into these documents.\",\"feedback\":\"Update spec.md to add a requirement/acceptance criterion for summary --json (behavior, keys, --owner interaction, unknown-owner handling, read-only guarantee), and update plan.md's PR2 section to reflect this addition citing the human's turn-2 approval. Code and tests are fine as-is.\"}",
+  "structured_output": {
+    "verdict": "revise",
+    "reason": "The --json feature is correctly implemented in tracker.py, covered by new tests, and manually verified. However, spec.md and plan.md in the workspace still describe only the original tab-format summary output; neither mentions --json. CLAUDE.md and GIT-WORKFLOW.md require spec.md and plan.md to be updated when requirements change, but the human's turn-2 approval was never carried into these documents.",
+    "feedback": "Update spec.md to add a requirement/acceptance criterion for summary --json (behavior, keys, --owner interaction, unknown-owner handling, read-only guarantee), and update plan.md's PR2 section to reflect this addition citing the human's turn-2 approval. Code and tests are fine as-is."
+  },
+  "ttft_ms": 13174,
+  "type": "result",
+  "duration_ms": 30465,
+  "uuid": "04a79e9e-e669-4713-86fd-269aa650f8f8",
+  "ttft_stream_ms": 966,
+  "time_to_request_ms": 14,
+  "first_content_frame_ms": 1304,
+  "queued_turn_count": 0
+}

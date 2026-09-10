@@ -1,0 +1,114 @@
+{
+  "duration_api_ms": 10209,
+  "stop_reason": "tool_use",
+  "session_id": "1ed4339c-9c8f-47af-8807-99a2b224691d",
+  "total_cost_usd": 0.383482,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 77731,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 566,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 77731,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 566,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 77731,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 77731
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 66774,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.066894,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 2,
+      "outputTokens": 566,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 77731,
+      "webSearchRequests": 0,
+      "costUSD": 0.316588,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "result": "{\"verdict\":\"pass\",\"reason\":\"Current workspace spec.md contains R8/AC9 for summary --json, accepted at commit 76a38cca43a4cf5b17432bd289256120b30916b0 which equals workspace.head_commit — lineage reference matches human acceptance. plan.md documents the PR2 scope addition and updated test/README steps referencing AC9. tracker.py implements --json (open/done integer counts, --owner compatible, unassigned included, unknown owner 0/0, read-only) matching R8. tests/test_tracker.py includes test_summary_json_all_and_by_owner and test_summary_json_owner_unknown_is_zero plus existing list/show/complete/summary tab tests. Tool evidence shows full unittest suite passing 10/10 and manual CLI runs matching expected JSON outputs, with requests.json byte-unchanged (git status clean) confirming read-only behavior. All prior turns' requirements (list --owner, summary tab output, case-sensitive owner matching, existing show/complete behavior) remain intact per diff and test results.\",\"feedback\":\"\"}",
+  "structured_output": {
+    "verdict": "pass",
+    "reason": "Current workspace spec.md contains R8/AC9 for summary --json, accepted at commit 76a38cca43a4cf5b17432bd289256120b30916b0 which equals workspace.head_commit — lineage reference matches human acceptance. plan.md documents the PR2 scope addition and updated test/README steps referencing AC9. tracker.py implements --json (open/done integer counts, --owner compatible, unassigned included, unknown owner 0/0, read-only) matching R8. tests/test_tracker.py includes test_summary_json_all_and_by_owner and test_summary_json_owner_unknown_is_zero plus existing list/show/complete/summary tab tests. Tool evidence shows full unittest suite passing 10/10 and manual CLI runs matching expected JSON outputs, with requests.json byte-unchanged (git status clean) confirming read-only behavior. All prior turns' requirements (list --owner, summary tab output, case-sensitive owner matching, existing show/complete behavior) remain intact per diff and test results.",
+    "feedback": ""
+  },
+  "ttft_ms": 3475,
+  "type": "result",
+  "duration_ms": 8194,
+  "uuid": "59af0b2e-e1cd-4f73-8495-3b1e8c99c09c",
+  "ttft_stream_ms": 1550,
+  "time_to_request_ms": 35,
+  "first_content_frame_ms": 1551,
+  "queued_turn_count": 0
+}

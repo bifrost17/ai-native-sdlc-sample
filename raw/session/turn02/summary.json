@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "turn": 2,
+  "kind": "human",
+  "input_digest": "94e40ab3326a105c4e5284661e6b4d6f5e0ea73aaade0e5ed8d42cb1039ef6c8",
+  "base_commit": "8dbf319f19fd8be2e006151867363b7867665bfb",
+  "review_input_digest": "a999c3b22ac1ee7a8343dbf9845f8e96624832a316602a8f992ea4b5e12bdaa6",
+  "head_commit": "8dbf319f19fd8be2e006151867363b7867665bfb",
+  "workspace_digest": "3da832a1da291890a3bab1bee8e122124d9761326a909e6880c488cc48623dd9",
+  "developer": {
+    "session_id": "12ed90a4-c429-4e7b-a7ef-07183dfb4f32",
+    "total_cost_usd": 0.21071360000000003,
+    "duration_ms": 59386,
+    "duration_api_ms": 57345,
+    "num_turns": 13,
+    "usage": {
+      "input_tokens": 26,
+      "cache_creation_input_tokens": 9830,
+      "cache_read_input_tokens": 526308,
+      "output_tokens": 6608,
+      "output_tokens_details": {
+        "thinking_tokens": 97
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 770,
+          "cache_read_input_tokens": 44263,
+          "cache_creation_input_tokens": 112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 26,
+        "outputTokens": 6608,
+        "cacheReadInputTokens": 526308,
+        "cacheCreationInputTokens": 9830,
+        "webSearchRequests": 0,
+        "costUSD": 0.21071360000000003,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 97,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  "developer_elapsed_ms": 61086,
+  "reviewer": {
+    "session_id": "2e53114e-96cd-42ba-8229-52deb3741011",
+    "total_cost_usd": 0.658702,
+    "duration_ms": 9258,
+    "duration_api_ms": 11909,
+    "num_turns": 2,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 134093,
+      "cache_read_input_tokens": 1190,
+      "output_tokens": 591,
+      "output_tokens_details": {
+        "thinking_tokens": 393
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 134093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 591,
+          "cache_read_input_tokens": 1190,
+          "cache_creation_input_tokens": 134093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 134093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 116088,
+        "outputTokens": 18,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.116178,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5": {
+        "inputTokens": 2,
+        "outputTokens": 591,
+        "cacheReadInputTokens": 1190,
+        "cacheCreationInputTokens": 134093,
+        "webSearchRequests": 0,
+        "costUSD": 0.542524,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 393,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  "reviewer_elapsed_ms": 10468,
+  "verdict": "pass",
+  "reason": "summary --json was implemented correctly, spec.md/plan.md updated in the same working tree to reflect the PR2 scope addition per CLAUDE.md conventions, and all 10 tests plus manual runs (json output, --owner, unknown owner, file-unchanged check) are backed by actual tool results.",
+  "finished_at": "2026-09-10T22:33:43.316092+00:00"
+}

@@ -1,0 +1,153 @@
+{
+  "verdict": "pass",
+  "cli_cases": 15,
+  "baseline_function_ast_preserved": 7,
+  "fixture_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+  "observations": [
+    {
+      "args": [
+        "summary"
+      ],
+      "rc": 0,
+      "stdout": "open\t3\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 3, \"done\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "rc": 0,
+      "stdout": "open\t1\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "hana",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 1, \"done\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "nobody"
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "nobody",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "HANA"
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "HANA",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "list"
+      ],
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "show",
+        "R-101"
+      ],
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "show",
+        "R-999"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Request not found: R-999\n"
+    },
+    {
+      "args": [
+        "complete",
+        "R-101"
+      ],
+      "rc": 0,
+      "stdout": "R-101\tdone\thana\t회의실 키 확인\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "hana",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 2}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    }
+  ]
+}

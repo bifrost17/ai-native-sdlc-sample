@@ -1,0 +1,5 @@
+{
+  "verdict": "revise",
+  "reason": "HUMAN explicitly approved adding the --json output requirement to PR2 scope in turn 2. Implementation, tests, and README were updated and verified (10/10 tests pass). However spec.md and plan.md were not actually updated to describe the --json flag; the only diff in both is a literal placeholder comment stating no requirement or implementation step is added. Spec.md still lists only R1-R7/AC1-AC8 with no requirement for --json, and plan.md's PR2 steps still only describe the tab-separated output. Project policy (CLAUDE.md, GIT-WORKFLOW.md) requires spec/plan updates when requirements change.",
+  "feedback": "Add a concrete requirement/acceptance-criterion to spec.md describing the --json flag (format, --owner compatibility, unknown-owner-zero, read-only semantics), and add a corresponding step to plan.md's PR2 section, replacing the placeholder comment. Keep the rest of the implementation, tests, and README as-is.</parameter>\n</invoke>\n"
+}

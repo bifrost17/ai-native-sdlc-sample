@@ -1,0 +1,5 @@
+{
+  "verdict": "revise",
+  "reason": "The --json feature is correctly implemented in tracker.py, covered by new tests, and manually verified. However, spec.md and plan.md in the workspace still describe only the original tab-format summary output; neither mentions --json. CLAUDE.md and GIT-WORKFLOW.md require spec.md and plan.md to be updated when requirements change, but the human's turn-2 approval was never carried into these documents.",
+  "feedback": "Update spec.md to add a requirement/acceptance criterion for summary --json (behavior, keys, --owner interaction, unknown-owner handling, read-only guarantee), and update plan.md's PR2 section to reflect this addition citing the human's turn-2 approval. Code and tests are fine as-is."
+}

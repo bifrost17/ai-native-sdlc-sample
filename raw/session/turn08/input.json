@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "turn": 8,
+  "kind": "reviewer_feedback",
+  "prompt": "Independent reviewer feedback for automatic revision 1/2. This is reviewer feedback, not a new HUMAN request. Correct the current work, rerun relevant verification, and report the current result.\n\nReason: Functionality is correct and verified (10/10 tests pass; --json/--owner/read-only semantics match spec R8/AC9), but the plan's lineage reference was not updated to the HUMAN-accepted spec commit. plan.md still reads Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b, which is the pre-R8 spec commit. In turn 6 the HUMAN explicitly accepted spec commit 76a38cca43a4cf5b17432bd289256120b30916b0 (adding R8/AC9) and asked that PR2 final delivery be prepared against that accepted version. plan.md has a prose note citing R8/AC9 but does not update the pinned Upstream SHA, which project convention requires.\n\nFeedback: Update intent/0001-owner-list-and-summary/plan.md Upstream line from spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b to spec.md@76a38cca43a4cf5b17432bd289256120b30916b0 (the HUMAN-accepted commit, which includes R8/AC9). Keep the existing prose note about the --json scope addition, but the pinned SHA itself must reflect the accepted spec version. Confirm with git diff and grep for Upstream that plan.md now cites 76a38cc, then re-report PR2 status.",
+  "input_digest": "a2728160d9dcaad1f7e970a85973d5a18bdd1463a144fb79c2b0310202f33b55",
+  "received_at": "2026-09-10T22:49:58.471761+00:00",
+  "automatic_revision_index": 1
+}

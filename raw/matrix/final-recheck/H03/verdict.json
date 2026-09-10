@@ -1,0 +1,5 @@
+{
+  "verdict": "revise",
+  "reason": "The --json flag is implemented correctly and tested, matching the human's turn-2 requirements. But spec.md and plan.md were only edited to add a marker comment saying no requirement was added; the actual new --json requirement is not documented in spec.md's Requirements/AC or plan.md's task list.",
+  "feedback": "Add an explicit requirement/acceptance criterion to spec.md for the --json flag (JSON object with open/done integer keys, same --owner/unassigned/unknown-owner/read-only semantics as tabular output) and a corresponding step in plan.md's PR2 section, rather than leaving only the comment claiming nothing was added."
+}

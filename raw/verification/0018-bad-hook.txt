@@ -1,0 +1,3 @@
+command: printf '{not json' | .claude/hooks/production-gate.sh
+[production-gate.sh] BLOCKED: hook input is not valid JSON; refused. Route: run the hook with a Claude Code PreToolUse/PostToolUse JSON on stdin.
+rc=2

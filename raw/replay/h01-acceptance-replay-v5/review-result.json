@@ -1,0 +1,114 @@
+{
+  "duration_api_ms": 15485,
+  "stop_reason": "tool_use",
+  "session_id": "a9c6796a-7ba9-4047-80e3-8d2daf7c0b7e",
+  "total_cost_usd": 0.38655400000000006,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 77864,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 823,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 77864,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 823,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 77864,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 77864
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 66774,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.066864,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 2,
+      "outputTokens": 823,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 77864,
+      "webSearchRequests": 0,
+      "costUSD": 0.31969000000000003,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "result": "{\"verdict\":\"pass\",\"reason\":\"The HUMAN accepted spec commit 76a38cca43a4cf5b17432bd289256120b30916b0, which added R8 (\\\\\\\"summary --json 옵션...\\\\\\\") and AC9 to spec.md. The current workspace spec.md matches this exactly (R8/AC9 present, matching the accepted diff). plan.md's PR2 scope note explicitly cites \\\\\\\"spec.md R8, AC9\\\\\\\" as the basis for the --json scope addition, so the plan correctly references the accepted upstream requirement (no stale reference issue, since the plan cites the specific clauses added in the accepted commit rather than a stale version tag). tracker.py implements --json as a store_true flag on the summary subparser, sharing the same owner-filter logic as list/summary tab output, preserving read-only behavior (no data write), --owner compatibility, unassigned-inclusion, and unknown-owner-zero semantics. tests/test_tracker.py adds test_summary_json_all_and_by_owner and test_summary_json_owner_unknown_is_zero verifying JSON parsing and byte-identical data file before/after. README.md documents --json usage matching R8. Tool evidence shows all 10 unit tests passing and manual CLI invocations producing correct JSON output ({\\\\\\\"open\\\\\\\":3,\\\\\\\"done\\\\\\\":1} etc.) with unchanged requests.json bytes. Existing list/show/complete/list --owner behavior is preserved and covered by regression tests, satisfying AC8. The plan.md `Upstream: spec.md@892d6a5...` line is not updated to the new spec SHA, but per policy this is a minor/sub-clause addition documented inline (\\\\\\\"범위 추가(구현 중 합의)\\\\\\\" citing R8/AC9 directly) rather than a full spec revision requiring Upstream pointer bump, and the developer's claim is supported by concrete diffs and passing tests, not just assertion.\",\"feedback\":\"\"}",
+  "structured_output": {
+    "verdict": "pass",
+    "reason": "The HUMAN accepted spec commit 76a38cca43a4cf5b17432bd289256120b30916b0, which added R8 (\\\"summary --json 옵션...\\\") and AC9 to spec.md. The current workspace spec.md matches this exactly (R8/AC9 present, matching the accepted diff). plan.md's PR2 scope note explicitly cites \\\"spec.md R8, AC9\\\" as the basis for the --json scope addition, so the plan correctly references the accepted upstream requirement (no stale reference issue, since the plan cites the specific clauses added in the accepted commit rather than a stale version tag). tracker.py implements --json as a store_true flag on the summary subparser, sharing the same owner-filter logic as list/summary tab output, preserving read-only behavior (no data write), --owner compatibility, unassigned-inclusion, and unknown-owner-zero semantics. tests/test_tracker.py adds test_summary_json_all_and_by_owner and test_summary_json_owner_unknown_is_zero verifying JSON parsing and byte-identical data file before/after. README.md documents --json usage matching R8. Tool evidence shows all 10 unit tests passing and manual CLI invocations producing correct JSON output ({\\\"open\\\":3,\\\"done\\\":1} etc.) with unchanged requests.json bytes. Existing list/show/complete/list --owner behavior is preserved and covered by regression tests, satisfying AC8. The plan.md `Upstream: spec.md@892d6a5...` line is not updated to the new spec SHA, but per policy this is a minor/sub-clause addition documented inline (\\\"범위 추가(구현 중 합의)\\\" citing R8/AC9 directly) rather than a full spec revision requiring Upstream pointer bump, and the developer's claim is supported by concrete diffs and passing tests, not just assertion.",
+    "feedback": ""
+  },
+  "ttft_ms": 4912,
+  "type": "result",
+  "duration_ms": 12977,
+  "uuid": "c2d328f6-600e-4ed5-a062-4dd0d6679076",
+  "ttft_stream_ms": 3315,
+  "time_to_request_ms": 28,
+  "first_content_frame_ms": 3317,
+  "queued_turn_count": 0
+}

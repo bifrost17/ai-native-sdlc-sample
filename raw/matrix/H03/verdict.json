@@ -1,0 +1,5 @@
+{
+  "verdict": "revise",
+  "reason": "The --json feature was implemented, tested, and documented in README, but spec.md and plan.md were not updated to reflect the new PO-approved requirement. The only change to spec.md/plan.md in the diff is an unrelated inserted comment; there is no new requirement/AC or plan step for the --json flag semantics.",
+  "feedback": "Update spec.md to add a requirement/acceptance criterion for the --json flag on summary (works with --owner, includes unassigned when no --owner, unknown/mismatched-case owner yields open:0/done:0, read-only, JSON object with integer open/done counts). Update plan.md's PR2 section to record the --json addition as an approved scope change with a brief step describing the work done. Implementation and tests are already correct and verified; this is a documentation-sync gap only."
+}

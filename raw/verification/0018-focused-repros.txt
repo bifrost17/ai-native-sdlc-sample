@@ -1,0 +1,13 @@
+resume-after-developer-error
+first_rc 2
+first_stdout 'unknown: developer exited 17\nHandoff: inspect /private/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/team-harness-ls005xso/state/569f2834-12a9-4199-9617-e5b0e885e750/turn01 and resume with --resume 569f2834-12a9-4199-9617-e5b0e885e750.\n'
+second_rc 2
+second_stdout 'unknown: incomplete saved turn: turn01\nHandoff: inspect /private/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/team-harness-ls005xso/state/569f2834-12a9-4199-9617-e5b0e885e750/turn02 and resume with --resume 569f2834-12a9-4199-9617-e5b0e885e750.\n'
+installer-temp-symlink
+rc 0
+sentinel_preserved False
+sentinel_prefix '#!/usr/bin/env python3\n# L4 329: "When implementation departs from the plan, upd'
+unsupported-symlink-loop
+rc 1
+stdout ''
+stderr_tail '/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 344, in _resolve\n    raise RuntimeError("Symlink loop from %r" % newpath)\nRuntimeError: Symlink loop from \'/private/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/team-harness-lbrhf0k8/project/loop\'\n'

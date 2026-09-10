@@ -1,0 +1,162 @@
+{
+  "scope": "final review-only recheck; original H02/H03 results remain unchanged",
+  "created_at": "2026-09-10T22:42:51.140440+00:00",
+  "runtime_sha256": "5188f81d6d4f2f003815538b99d678a3e33a3c81c268cfe80bbadf29f1e043cc",
+  "reviewer_prompt_sha256": "59c3caec0dcce6ed7ce6e9fa7f3d95be3be69bdce5aded724be9428d038214cf",
+  "input_lineage": {
+    "H02": {
+      "original_input_path": "/Users/jake/Projects/ai-native-sdlc-experiments/human-harness-matrix/H02/review-input.json",
+      "original_input_sha256": "7c51d2c5e7a5bbe889f729db871c4fbdfa66fbaf946737b223415c1bc16eb8e7",
+      "preserved_source_input_sha256": "7c51d2c5e7a5bbe889f729db871c4fbdfa66fbaf946737b223415c1bc16eb8e7",
+      "workspace_digest_unchanged": "a860ac92e06771b0db07783c5e0ba0bfa06bb77dedf0efb11554f9b9f0e4d571",
+      "projection": "final protocol tool-evidence projection from the same sanitized public logs",
+      "submitted_input_sha256": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1"
+    },
+    "H03": {
+      "original_input_path": "/Users/jake/Projects/ai-native-sdlc-experiments/human-harness-matrix/H03/review-input.json",
+      "original_input_sha256": "6c2d00630583d5c84d5b706df74891ec7fdde07f04418ba1da875e71af19c67e",
+      "preserved_source_input_sha256": "6c2d00630583d5c84d5b706df74891ec7fdde07f04418ba1da875e71af19c67e",
+      "workspace_digest_unchanged": "c1abb80412037b431cda7883fd70a2833ce154878576bf04de45442c971b290c",
+      "projection": "final protocol tool-evidence projection from the same sanitized public logs",
+      "submitted_input_sha256": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6"
+    }
+  },
+  "results": {
+    "H02": {
+      "verdict": {
+        "verdict": "revise",
+        "reason": "The --json implementation itself matches the human's turn-2 approval (flag added to summary, keeps default output, works with --owner, preserves unassigned/unknown-owner/read-only semantics) and is backed by real test and manual-run evidence. However, the current spec.md and plan.md in the workspace still only describe the original R4–R6 two-line output contract and make no mention of the --json requirement the product owner approved in turn 2. Per CLAUDE.md's rule that departures from the plan must be reflected in plan.md in the same commit, and per REVIEW.md's check that spec/plan match the implementation, this is a real gap in the current documents, not just missing history.",
+        "feedback": "Update spec.md to add a requirement/acceptance criterion for `summary --json` (JSON object with integer open/done keys, order/whitespace not significant, composable with --owner, same owner-selection/unassigned-inclusion/unknown-owner-zero/read-only semantics as the text output), and update plan.md's PR2 section (and Proof) to record this addition and its verification steps. Keep the code/tests as-is; this is a documentation-sync fix, not a code defect."
+      },
+      "reviewer_session_id": "650ac5a3-8cb1-4788-aee6-24babf194237",
+      "total_cost_usd": 0.1782652,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 34660,
+        "cache_read_input_tokens": 1586,
+        "output_tokens": 865,
+        "output_tokens_details": {
+          "thinking_tokens": 395
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 34660,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 865,
+            "cache_read_input_tokens": 1586,
+            "cache_creation_input_tokens": 34660,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 34660
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 0,
+        "timed_out": false,
+        "elapsed_ms": 12674,
+        "stderr": "",
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "low",
+          "tools": "",
+          "safe_mode": true,
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    },
+    "H03": {
+      "verdict": {
+        "verdict": "revise",
+        "reason": "The --json flag is implemented correctly and tested, matching the human's turn-2 requirements. But spec.md and plan.md were only edited to add a marker comment saying no requirement was added; the actual new --json requirement is not documented in spec.md's Requirements/AC or plan.md's task list.",
+        "feedback": "Add an explicit requirement/acceptance criterion to spec.md for the --json flag (JSON object with open/done integer keys, same --owner/unassigned/unknown-owner/read-only semantics as tabular output) and a corresponding step in plan.md's PR2 section, rather than leaving only the comment claiming nothing was added."
+      },
+      "reviewer_session_id": "ea27b089-f52e-42ea-81d9-e70dac1d78be",
+      "total_cost_usd": 0.2597172,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 43534,
+        "cache_read_input_tokens": 133136,
+        "output_tokens": 2221,
+        "output_tokens_details": {
+          "thinking_tokens": 521
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 43534,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "not_available",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 301,
+            "cache_read_input_tokens": 44573,
+            "cache_creation_input_tokens": 547,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 547
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard"
+      },
+      "transport": {
+        "returncode": 0,
+        "timed_out": false,
+        "elapsed_ms": 22867,
+        "stderr": "",
+        "command_contract": {
+          "model": "sonnet",
+          "effort": "low",
+          "tools": "",
+          "safe_mode": true,
+          "no_session_persistence": true,
+          "output_format": "json"
+        }
+      }
+    }
+  },
+  "artifact_hashes": {
+    "H02/review-envelope.json": "69d97c393bc8e5a092ef761f544bf45948d9a7290959b426ad557818d224b79f",
+    "H02/review-input.json": "cdd31082aa1be31196b6bbdacfa1e70533dd44118aab022e917c6696de152ac2",
+    "H02/review-input.submitted.json": "c78cabed99d89176a6a0e122c16232e98580b9440dfaf89faa201fe03303a3e1",
+    "H02/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H02/review-output.stdout.json": "bd694c5a4939926a927689a992e4d111424ee18cd579c7c977b4dbd1ac8b9479",
+    "H02/review-transport.json": "105f34140791f87e14842402fdbc5ecd7b41e9ca82724088fc94c49e52ebbb07",
+    "H02/source-input.json": "7c51d2c5e7a5bbe889f729db871c4fbdfa66fbaf946737b223415c1bc16eb8e7",
+    "H02/source-logs/turn01.jsonl": "7c6552ea46c6c9ad0ac5742cf20ac15fe235bb84592f8ff851275985f1232142",
+    "H02/source-logs/turn02.jsonl": "9db698be2cc9506183e7574eb20384d20e4153c3ca2438773a9354c29734550c",
+    "H02/verdict.json": "403023aa184904e85228f3ad1f3919518610c61ecff445f2fc677ccd0ff5c8bd",
+    "H03/review-envelope.json": "344aafd51d7ffccb67c0f92692e8c2e7453c736ffd4baecfdeac2164c0435159",
+    "H03/review-input.json": "68c4ffe0c21351e9e92b69f1a1b82733a77892848808378b3740ae1d64248d3b",
+    "H03/review-input.submitted.json": "9e92a8027326ac8a8e32ba0b86e968113ee0525fda3c914b02e433f9f84a59d6",
+    "H03/review-output.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "H03/review-output.stdout.json": "417c97a868668569c268d89bb51b786387a80ddddfe80e34d9c979f983e84e40",
+    "H03/review-transport.json": "a315db1a0b06ca265f5e9e5aa82604f2b6aa79275b988c5c9ed407545b5fba21",
+    "H03/source-input.json": "6c2d00630583d5c84d5b706df74891ec7fdde07f04418ba1da875e71af19c67e",
+    "H03/source-logs/turn01.jsonl": "7c6552ea46c6c9ad0ac5742cf20ac15fe235bb84592f8ff851275985f1232142",
+    "H03/source-logs/turn02.jsonl": "9db698be2cc9506183e7574eb20384d20e4153c3ca2438773a9354c29734550c",
+    "H03/verdict.json": "52a8b374e856053267018daf243c04f2468236f092ac5a63400ff39c659dcba0",
+    "runtime/reviewer.md": "59c3caec0dcce6ed7ce6e9fa7f3d95be3be69bdce5aded724be9428d038214cf",
+    "runtime/sdlc_claude.py": "5188f81d6d4f2f003815538b99d678a3e33a3c81c268cfe80bbadf29f1e043cc"
+  }
+}

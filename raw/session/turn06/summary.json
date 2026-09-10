@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "turn": 6,
+  "kind": "human",
+  "input_digest": "cfb05a629761c2e5aba8a3ab0b6f4ca24cd6178829f0862799a0cada5d57f254",
+  "base_commit": "8dbf319f19fd8be2e006151867363b7867665bfb",
+  "review_input_digest": "835c0061719366cdd9f8cd26467cc5ad60c24ba77f6fddbab3e40ea61980b342",
+  "reviewer_prompt_sha256": "59c3caec0dcce6ed7ce6e9fa7f3d95be3be69bdce5aded724be9428d038214cf",
+  "runtime_sha256": "5188f81d6d4f2f003815538b99d678a3e33a3c81c268cfe80bbadf29f1e043cc",
+  "head_commit": "76a38cca43a4cf5b17432bd289256120b30916b0",
+  "workspace_digest": "cfb6a48111b071d37a52c7385308bb48ceb830576b04f60d0d5682d5369892f3",
+  "developer": {
+    "session_id": "12ed90a4-c429-4e7b-a7ef-07183dfb4f32",
+    "total_cost_usd": 0.14844600000000002,
+    "duration_ms": 21898,
+    "duration_api_ms": 19554,
+    "num_turns": 7,
+    "usage": {
+      "input_tokens": 14,
+      "cache_creation_input_tokens": 5835,
+      "cache_read_input_tokens": 547740,
+      "output_tokens": 1553,
+      "output_tokens_details": {
+        "thinking_tokens": 409
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 80765,
+          "cache_creation_input_tokens": 320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 14,
+        "outputTokens": 1553,
+        "cacheReadInputTokens": 547740,
+        "cacheCreationInputTokens": 5835,
+        "webSearchRequests": 0,
+        "costUSD": 0.14844600000000002,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 409,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  "developer_elapsed_ms": 23490,
+  "reviewer": {
+    "session_id": "fbe66376-4181-45fa-b16d-095bcb2c065f",
+    "total_cost_usd": 0.37588720000000003,
+    "duration_ms": 8682,
+    "duration_api_ms": 10522,
+    "num_turns": 2,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 75894,
+      "cache_read_input_tokens": 1586,
+      "output_tokens": 520,
+      "output_tokens_details": {
+        "thinking_tokens": 171
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 75894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 520,
+          "cache_read_input_tokens": 1586,
+          "cache_creation_input_tokens": 75894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 75894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 66715,
+        "outputTokens": 15,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.06679,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5": {
+        "inputTokens": 2,
+        "outputTokens": 520,
+        "cacheReadInputTokens": 1586,
+        "cacheCreationInputTokens": 75894,
+        "webSearchRequests": 0,
+        "costUSD": 0.3090972,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 171,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  "reviewer_elapsed_ms": 9906,
+  "verdict": "pass",
+  "reason": "Accepted spec.md (head 76a38cc) includes R8/AC9 for summary --json. plan.md now carries the matching PR2 scope note and test plan entries. tracker.py implements --json via json.dumps({open,done}) alongside unchanged tab output and existing list/show/complete logic; tests/test_tracker.py adds test_summary_json_all_and_by_owner and test_summary_json_owner_unknown_is_zero plus prior summary/list/show/complete tests. Tool evidence shows 10/10 unittest pass and manual runs matching AC9 (open/done ints, --owner compatible, unknown owner zero, requests.json bytes unchanged per git status). No discrepancy between accepted spec, plan, code, and verification remains.",
+  "finished_at": "2026-09-10T22:45:06.483820+00:00"
+}

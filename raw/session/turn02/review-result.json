@@ -1,0 +1,128 @@
+{
+  "transport": {
+    "returncode": 0,
+    "stderr": "",
+    "timed_out": false,
+    "elapsed_ms": 10468
+  },
+  "envelope": {
+    "duration_api_ms": 11909,
+    "stop_reason": "tool_use",
+    "session_id": "2e53114e-96cd-42ba-8229-52deb3741011",
+    "total_cost_usd": 0.658702,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 134093,
+      "cache_read_input_tokens": 1190,
+      "output_tokens": 591,
+      "output_tokens_details": {
+        "thinking_tokens": 393
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 134093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 591,
+          "cache_read_input_tokens": 1190,
+          "cache_creation_input_tokens": 134093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 134093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 116088,
+        "outputTokens": 18,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.116178,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5": {
+        "inputTokens": 2,
+        "outputTokens": 591,
+        "cacheReadInputTokens": 1190,
+        "cacheCreationInputTokens": 134093,
+        "webSearchRequests": 0,
+        "costUSD": 0.542524,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 393,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 2,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "{\"verdict\":\"pass\",\"reason\":\"summary --json was implemented correctly, spec.md/plan.md updated in the same working tree to reflect the PR2 scope addition per CLAUDE.md conventions, and all 10 tests plus manual runs (json output, --owner, unknown owner, file-unchanged check) are backed by actual tool results.\",\"feedback\":\"\"}",
+    "structured_output": {
+      "verdict": "pass",
+      "reason": "summary --json was implemented correctly, spec.md/plan.md updated in the same working tree to reflect the PR2 scope addition per CLAUDE.md conventions, and all 10 tests plus manual runs (json output, --owner, unknown owner, file-unchanged check) are backed by actual tool results.",
+      "feedback": ""
+    },
+    "ttft_ms": 7763,
+    "type": "result",
+    "duration_ms": 9258,
+    "uuid": "defccbf1-4655-43c1-b06c-a8f0783b1ac1",
+    "ttft_stream_ms": 2336,
+    "time_to_request_ms": 22,
+    "first_content_frame_ms": 2678,
+    "queued_turn_count": 0
+  },
+  "verdict": {
+    "verdict": "pass",
+    "reason": "summary --json was implemented correctly, spec.md/plan.md updated in the same working tree to reflect the PR2 scope addition per CLAUDE.md conventions, and all 10 tests plus manual runs (json output, --owner, unknown owner, file-unchanged check) are backed by actual tool results.",
+    "feedback": ""
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "transport": {
+    "returncode": 0,
+    "stderr": "",
+    "timed_out": false,
+    "elapsed_ms": 6288
+  },
+  "envelope": {
+    "duration_api_ms": 6695,
+    "stop_reason": "tool_use",
+    "session_id": "cae638d1-3698-454a-ba27-c1fd2ac475c7",
+    "total_cost_usd": 0.41389499999999996,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 84503,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 341,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 84503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 72369,
+        "outputTokens": 20,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.072469,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5": {
+        "inputTokens": 2,
+        "outputTokens": 341,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 84503,
+        "webSearchRequests": 0,
+        "costUSD": 0.34142599999999995,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 2,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "{\"verdict\":\"pass\",\"reason\":\"summary [--owner] implemented per spec/plan; 8 tests pass with tool evidence covering AC4/AC5/AC7/AC8; manual runs match; requests.json unmodified confirmed; no plan/spec deviation requiring doc update; git/merge correctly deferred to human.\",\"feedback\":\"\"}",
+    "structured_output": {
+      "verdict": "pass",
+      "reason": "summary [--owner] implemented per spec/plan; 8 tests pass with tool evidence covering AC4/AC5/AC7/AC8; manual runs match; requests.json unmodified confirmed; no plan/spec deviation requiring doc update; git/merge correctly deferred to human.",
+      "feedback": ""
+    },
+    "ttft_ms": 3367,
+    "type": "result",
+    "duration_ms": 4796,
+    "uuid": "5fdf170c-6751-4dcb-aaeb-cf00be60a8e6",
+    "ttft_stream_ms": 1477,
+    "time_to_request_ms": 20,
+    "first_content_frame_ms": 1478,
+    "queued_turn_count": 0
+  },
+  "verdict": {
+    "verdict": "pass",
+    "reason": "summary [--owner] implemented per spec/plan; 8 tests pass with tool evidence covering AC4/AC5/AC7/AC8; manual runs match; requests.json unmodified confirmed; no plan/spec deviation requiring doc update; git/merge correctly deferred to human.",
+    "feedback": ""
+  }
+}
