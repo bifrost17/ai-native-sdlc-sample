@@ -2,6 +2,15 @@
 Upstream: intent.md@17bf490414d601ee2da197b7e5363831d2fc7cea. Status: draft.
 References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 내 데이터셋 계약 파일로 직접 확인.
 
+## Revision (PR2 진행 중)
+
+- 결정: `summary`에 `--json` 옵션 추가(R8). 내부 자동화가 `summary` 결과를 구조적으로 읽어야 하는
+  필요가 PR2 구현·리뷰 중 드러났다.
+- 결정자: 제품 책임자(HUMAN). 이번 대화에서 PR2 범위로 승인.
+- 이유: 기존 탭 출력은 사람이 읽기 위한 형식이고, 자동화 소비자는 파싱 가능한 구조를 필요로 한다.
+- 영향: 기존 `summary` 기본 출력, `list`/`list --owner`, `show`/`complete`는 바뀌지 않는다. 새 옵션은
+  읽기 전용이며 대상 선택 규칙(R4, R7)을 그대로 따른다.
+
 ## Requirements
 
 - R1. `list`에 `--owner <ID>` 옵션을 추가한다. 지정하면 그 담당자의 요청만, 기존 `list`와 같은
@@ -12,10 +21,15 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
 - R4. 새 `summary` 명령을 추가한다. `--owner` 없이 실행하면 전체 요청(owner가 null인 미배정 포함)
   대상으로, `--owner <ID>`를 주면 `list --owner <ID>`와 같은 선택 대상으로 open 건수와 done 건수를
   집계한다.
-- R5. `summary`의 출력은 `open\t<건수>`, `done\t<건수>` 두 줄, 이 순서로 고정한다. 대상이 0건이면
-  `open\t0`, `done\t0`을 출력하고 종료코드는 0이다.
+- R5. `--json` 없이 `summary`를 실행할 때(기본 출력)의 출력은 `open\t<건수>`, `done\t<건수>` 두 줄,
+  이 순서로 고정한다. 대상이 0건이면 `open\t0`, `done\t0`을 출력하고 종료코드는 0이다. `--json`을
+  줄 때의 출력 형식은 R8이 정한다.
 - R6. `list --owner`와 `summary`는 어떤 경우에도 데이터 파일을 쓰지 않는다(조회 전용).
 - R7. 담당자 ID 비교는 대소문자를 구분하는 정확 일치만 사용한다. 정규화나 유사 일치를 하지 않는다.
+- R8. `summary`에 `--json` 옵션을 추가한다. 주면 open/done 건수를 `open`, `done` 두 키의 정수 값으로
+  담은 JSON 객체를 stdout에 한 번 출력한다(키 순서·공백은 규정하지 않는다). 이때 R5의 탭 두 줄
+  형식 대신 이 형식을 쓴다. 대상 선택(`--owner` 유무, R4)과 집계값은 R5의 기본 출력과 같다.
+  `--json` 없이 실행하면 R5가 정한 탭 두 줄 출력이다.
 
 ## Design
 
@@ -27,6 +41,8 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
 - `summary`는 `--owner` 유무로 대상 집합을 고른 뒤(`--owner` 없으면 전체, 있으면 위와 같은 필터),
   그 집합 안에서 `status == "open"`/`"done"` 개수를 세어 고정 순서로 출력한다. 별도 카운팅 유틸을
   두 명령이 공유할 필요는 없다 — `summary`는 필터링 후 집계만 하면 된다.
+- `--json`(R8)은 같은 집계 결과의 출력 형식만 바꾼다. 대상 선택·집계 로직은 공유하고, `--json`
+  유무에 따라 탭 두 줄 또는 JSON 객체 한 줄 중 하나로 렌더링한다.
 - 기존 `display()`, `list`/`show`/`complete`의 파일 읽기·쓰기 로직, 예외 처리(`OSError, ValueError,
   KeyError, TypeError` → 종료코드 2)는 그대로 재사용한다. 새 명령도 같은 예외 처리 경로를 공유해
   파일이 없거나 스키마가 깨진 경우 기존과 같은 오류 메시지·종료코드를 낸다.
@@ -71,9 +87,9 @@ intent.md에서 이어받음:
   `test_list_preserves_order_and_does_not_write`가 계속 통과).
 - AC3 → R3: `list --owner HANA`(데이터에 없는 대소문자 변형)와 `list --owner nobody`가 표준출력
   없이 종료코드 0을 반환한다.
-- AC4 → R4, R5: `summary`(옵션 없음)가 `requests.json` 기준 `open\t3`, `done\t1` 두 줄을 이 순서로
-  출력한다. `summary --owner hana`는 `open\t1`, `done\t1`을 출력한다.
-- AC5 → R5: `summary --owner nobody`가 `open\t0`, `done\t0`을 출력하고 종료코드 0이다.
+- AC4 → R4, R5: `summary`(기본 출력, `--json` 없음)가 `requests.json` 기준 `open\t3`, `done\t1` 두
+  줄을 이 순서로 출력한다. `summary --owner hana`(기본 출력)는 `open\t1`, `done\t1`을 출력한다.
+- AC5 → R5: `summary --owner nobody`(기본 출력)가 `open\t0`, `done\t0`을 출력하고 종료코드 0이다.
 - AC6 → R6: `list --owner`와 `summary` 실행 전후로 데이터 파일의 바이트가 동일하다(기존
   `test_list_preserves_order_and_does_not_write`와 같은 방식으로 검증).
 - AC7 → R6(복사본 시나리오): 임시 복사본에서 `complete R-101`을 실행한 뒤 그 복사본으로
@@ -81,3 +97,7 @@ intent.md에서 이어받음:
 - AC8 → Constraints(기존 명령·저장 필드 유지): 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1,
   stderr 메시지)는 이번 변경으로 달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
   `test_complete_changes_only_target_status_and_is_repeatable`가 그대로 통과해야 한다.
+- AC9 → R8: `summary --json`이 `{"open": 3, "done": 1}`(키·값만 확인, 순서·공백 불문)을 출력한다.
+  `summary --owner hana --json`은 `{"open": 1, "done": 1}`, `summary --owner nobody --json`은
+  `{"open": 0, "done": 0}`을 출력하고 종료코드는 0이다. `--json` 실행 전후 데이터 파일 바이트는
+  동일하다(R6 유지).
