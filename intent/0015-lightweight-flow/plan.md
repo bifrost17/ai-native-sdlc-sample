@@ -2,8 +2,9 @@
 Upstream: spec.md@2efb6fa. Status: draft.
 사용자 위임에 따라 구현과 실험을 진행한다.
 ## Files that change
-- 별도 사용 후보 `codex/use-template-0015`: CLAUDE.md, docs/PROCESS.md, REVIEW.md, templates/plan.md. 안내·검토 방식·계획의 충분성만 보완한다.
+- 별도 사용 후보 `codex/use-template-0015`: CLAUDE.md, docs/PROCESS.md, REVIEW.md, templates/plan.md, PROJECT-POLICY.md. 안내·검토 방식·계획의 충분성만 보완한다. 독립 검토에서 발견한 정책 표의 PR 전용 제목도 같은 검토·수락 용어로 맞춘다.
 - 제작 브랜치 docs/experiments/README.md, docs/experiments/0015-f01-pilot.md(new): 기준·평가 범위·실행 색인·판정과 근거.
+- README.md와 docs/experiments/PERSONA.md: 사용자 후속 설명인 사내 프로그램·얇은 정책·직접 대응 가능한 환경을 반영한다.
 - docs/verification/north-star-playbook.html, README.md, INDEX.md, CHAPTERS.md: 해당 주석의 관측 근거와 범위를 추가한다.
 - 독립 실험 복제본: PROJECT-POLICY.md·CLAUDE.md의 실제 프로젝트 값, 선택 F01 fixture/baseline, intent 사슬, 코드·시험·사용 안내, 공개된 대화·도구 기록. 결과는 실험 브랜치에 보존하며 제작 브랜치로 합치지 않는다.
 ## Order of work

@@ -206,6 +206,7 @@ html{scroll-behavior:smooth}
       <a href="0013-controls.md">0013 보완</a>의 9개 주석은 <code>91727d2</code>와 후속 검증 기록을 쓴다.
       기존 집계는 제작 저장소의 역사적 근거이며, 가벼운 사용 템플릿에 자동 승계하지 않는다.</p>
       <p class="dek">0014 보완 — <code>fb87006</code> · V9-06·07·10·11·12. <a href="0014-eval-grading.md">실제 채점·오류·회귀 검증</a>.</p>
+      <p class="dek">0015 사용판 — <code>de1b1b7</code> → 실험 <code>58f1172</code> · V2-09·V2-11·V3-09·V4-08·V4-11에 <a href="../experiments/0015-f01-pilot.md">9회 대화·전체 흐름 회귀·root 수락</a>을 추가했다. 기존 집계는 제작 이력이며, 현재 사용 후보 <code>15ab8a6</code>의 정책 표 제목 보완은 정적 검토다.</p>
     </header>
     <div class="overview"><p>많은 엔지니어링 팀이 여전히 같은 approval gate, review, handoff, 정책을 그대로 두고 있어, Claude Code 같은 agentic coding 솔루션으로 얻은 생산성 향상을 정체시킨다.</p>
 <p>이 가이드에서는 고객과 함께 일하며 얻은 경험을 바탕으로, SDLC 각 단계에 Claude를 사내 통합해 개발을 가속하고 process를 더 빠르게 돌리는 Applied AI 팀의 best practice 몇 가지를 살펴본다.</p>
@@ -372,6 +373,7 @@ html{scroll-behavior:smooth}
 <p><b>템플릿</b> <code>SKILL.md</code> “## What to ask — Ask in the originator's words … Four things, then dig where answers are thin: <b>Scope</b> … <b>Users</b> … <b>Constraints</b> … <b>Success</b> … If the originator brings a solution ("add a cache"), ask for the problem under it”.</p>
 <p><b>실험</b> 0008 턴1(raw-hac/11): 첫 도구 호출 <code>Skill capture-intent</code> → 선례 0002 intent/spec 읽기 → 질문 6개(<b>범위</b> 3 · <b>사용자</b> 2 · <b>성공</b> 1) · Write/Edit 0 · duration_ms 67206(타임라인 71초) · 「제 말로 채워 넣으면 나중에 검수가 안 되는 자리들입니다」. 0009 턴1(raw-hac/41): 4갈래(본인 확인 · 무엇을 보여 줍니까 · 아무 고객이나 조회되는 문제 · 다 됐을 때 무엇이 달라집니까) 8질문 · Write 0 · 55202ms(60초). 0007(raw-live/17): 물을 사람이 없어 호출 #2~#9 로 선례(0002 spec · 0005 사슬 전문 · README)를 읽어 빈칸을 채웠다.</p>
 <p><b>보완</b> 없음</p>
+<p><b>0015 사용판 · 관측 통과</b> 후보 <code>de1b1b7</code>의 F01-r01 턴 1에서 Claude가 공개 문제와 저장소를 읽고 명령 형태·미배정·정확 일치·빈 결과를 질문했다. 공개 카드에 질문 목록을 넣지 않았다. 완료 포함 결정은 HUMAN의 후속 리뷰로 보충했고, 질문 수나 모든 쟁점의 독립 발견을 요구하지 않았다. <a href="../experiments/0015-f01-pilot.md">9회 대화와 범위</a>.</p>
 </div></details>
 
 <li>조직의 template을 써서 결과를 <code>intent.md</code>로 쓰도록 Claude에게 요청하라. 그 template은 기술 팀 구성원이 세우고 리드가 승인한 skill로 인코딩할 수 있다. 여기에는 문제, 제안하는 결과, 영향받는 사용자와 시스템, 제약, 미결 질문이 담길 수 있다.</li>
@@ -386,6 +388,7 @@ html{scroll-behavior:smooth}
 <p><b>템플릿</b> <code>SKILL.md</code> “Leave no <code>‹…›</code> behind. An open question you cannot answer stays in Open questions with the name of who can — do not invent an answer. Show the draft to the originator and let them correct it.”</p>
 <p><b>실험</b> 0008 턴3(raw-hac/13 Edit 4건 diff): 원저자가 답한 셋을 본문으로 — 「40통·5분」의 출처(교환기 기록) → Problem · 배정 칸의 정체(개인 이름+사정인 번호 · 한 건 한 사람)와 이관 즉시 반영 → Constraints · Author 이름. 열린 물음 7(raw-hac/12) → 4(최종 <code>intent/0008…:35-43</code>). 에이전트 보고 「답해 주신 세 가지를 Open questions 에서 빼서 본문으로 옮겼습니다 … 남은 열린 물음 넷은 그대로」. 0009 턴3(raw-hac/43): intent.md Edit 0 — 「요구 문장은 「고객이 포털에서 보는 것과 같은 값」으로 두고, 상담사에게서 뺄지는 열린 물음으로 남겼습니다」 · 열린 물음 7 유지 — 잘못 이해 0.</p>
 <p><b>보완</b> 없음</p>
+<p><b>0015 사용판 · 관측 통과</b> HUMAN은 턴 3에서 완료 포함·순서 유지와 작성자 역할을 바로잡았다. Claude가 intent에 반영한 뒤 HUMAN이 읽고 로컬 수락했다. 실제 입력과 응답을 모두 보존했고 임의 계정 정보는 공개 기록에서 마스킹했다. 사람의 리뷰로 편차를 고친 관측이며 첫 초안부터 완벽했던 것은 아니다. <a href="../experiments/0015-f01-pilot.md">실행 58f1172</a>.</p>
 </div></details>
 
 <li><code>intent.md</code>를 공유 home에 commit하라. 작성자와 타임스탬프가 기록에 함께 들어가고, product owner가 거기서 아이디어를 이어받는다.</li>
@@ -507,6 +510,7 @@ Do third-party loss adjusters need access too?
 <p><b>템플릿</b> <code>design-spec/SKILL.md</code> 「## Review question — Show the spec beside the intent and ask the product owner the lesson's question, verbatim: "Does the spec solve the stated problem, and are the open questions from intent.md answered or carried forward?"」 · <code>templates/spec.md</code> 「## Open questions from intent — each question: answered / carried forward (owner)」.</p>
 <p><b>실험</b> 0008 턴4 A 의 마지막 문장이 그 물음 축자(raw-hac/16). 턴5 PO: 「문제를 풉니다. 열린 물음 처리도 맞습니다 — 둘은 답과 출처가 있고 둘은 지어내지 않고 넘겼습니다」(raw-hac/18) → 소유자 답 뒤 e867650 「carried 0」. 0009 턴4 spec: 열린 물음 7 전부 answered(정책 6줄이 닫음, raw-hac/46) · 턴5 뒤 43e298e 「carried 0 · F7만 열림」.</p>
 <p><b>보완</b> 없음</p>
+<p><b>0015 사용판 · 관측 통과</b> HUMAN이 요구 5개와 수용 조건을 읽어 완료 포함·정확 일치·빈 결과·기존 동작 보존과 사내 CLI 범위를 확인하고 spec을 수락했다. 실제 코드와 독립 동작 4건에서도 결정이 유지됐다. 별도 팀 정책 스킬은 선택하지 않았으므로 조직 스킬 적용의 실증으로 확대하지 않는다. <a href="../experiments/0015-f01-pilot.md">사용판 기록</a>.</p>
 </div></details>
 <li>표시된 우려 지점은 분석가라면 escalation했을 지점이므로 먼저 처리하라. product owner는 엔지니어링이 스펙을 보기 전에 각 항목을 해당 policy owner와 함께 해소한다.</li>
 <details class="verify v-ok" open id="V3-10"><summary>▸ <a class="vid" href="#V3-10">V3-10</a> · 검증 · <b>충실</b> — <span class="q">실행 4 — flagged concern 을 policy owner 와 먼저 해소</span></summary><div class="v-body">
@@ -615,6 +619,7 @@ Do third-party loss adjusters need access too?
 <p><b>템플릿</b> <code>.claude/skills/plan/SKILL.md</code> 가 L4 321 을 축자로 인용하고(“Iterate until an engineer who has never seen the conversation could implement the change from the plan alone”), 「Interrogate before accepting」 절이 수락 기준을 둔다 — v3 에서 문면이 「Iterate until the plan stands without the conversation. Then the engineer accepts the plan — plan mode itself records that」 로 조여졌다(뜻은 같고 수락의 주체가 명시됐다).</p>
 <p><b>실험</b> <b>실험으로는 재지 못했다.</b> 0008·0009 의 구현 턴 8 은 plan 턴과 <b>같은 세션</b>(session 836163ef · f643bd77 을 resume)이라 구현자가 대화를 봤다. 대화를 못 본 구현자(새 세션 + plan.md 만)로 돌린 회차가 없다.</p>
 <p><b>보완</b> 템플릿 문면은 충실. 검증 공백은 실험 설계 쪽 — 반영 #46(8350fc1): <code>docs/RUNS.md</code>(실험 핀)에 「L4 317 미측정 — 구현 턴이 plan 세션을 resume 했다 · 다음 회차는 구현 턴을 새 세션으로 plan.md 만 주고 시작」을 기록. 실제로 잴 때까지 <b>부분</b>.</p>
+<p><b>0015 사용판 · 문서 검토 통과, 실제 별도 구현 미관측</b> 대화를 전달하지 않은 Astra·ultra 검토자가 공개 파일과 계획만 읽고 핵심 변경·검증을 실행하기에 충분하다고 판단했다. 실제 구현자는 같은 Claude 세션을 이어갔으므로 이 문단의 ‘대화를 못 본 구현’은 여전히 확인하지 않았다. <b>부분을 유지</b>하고 재현을 위해 절차나 집행 장치를 더하지 않는다. <a href="../experiments/0015-f01-pilot.md">근거와 한계</a>.</p>
 </div></details>
 <li>승인된 계획을 <code>plan.md</code>로 commit하라. 그 계획은 audit trail에 합류하고, PR review play(<strong>Stage 5: Deploy</strong>)가 최종 diff를 그것과 대조한다.</li>
 <details class="verify v-ok" open id="V4-09"><summary>▸ <a class="vid" href="#V4-09">V4-09</a> · 검증 · <b>충실</b> — <span class="q">5 — 승인된 계획을 plan.md 로 commit · PR review 가 diff 를 대조</span></summary><div class="v-body">
@@ -633,6 +638,7 @@ Do third-party loss adjusters need access too?
 <p><b>템플릿</b> <code>.claude/skills/plan/SKILL.md</code> 「If the work departs from the plan, edit plan.md in the same commit」(머리에 L4 329 축자). hook: <code>docs/BOUNDARY.md</code> 「Not here: a plan-sync hook. L4 329 says ‘Consider using a hook’ — optional; this repo does not」 — <code>README.md</code> 「A plan-sync hook is optional in L4 329 ("Consider") — this repo does not have one」 도 같은 결정.</p>
 <p><b>실험</b> 같은 커밋 갱신 실측 4건: 0008 526a5ae(plan.md + 시험·스텁) · 2dca73f(plan.md + records/response/routes — 「구현 중 조정: 단계 3 을 이 커밋에 합쳤다」) · 25f4ef5(plan.md + 시험) · 0009 67e8c10(plan.md + agent_routes — 「계획에 없던 다섯 줄」). <b>놓친 것 1건</b>: PR #33 diff 에 <code>CLAUDE.md</code>(「Things Claude gets wrong」 4줄)가 있는데 plan.md Files that change 에 없고 리뷰도 지나쳤다. 0009 #42 는 diff 6파일 = plan 6파일 일치.</p>
 <p><b>보완</b> 템플릿 문면은 충실하고 실행은 4/5. hook 이 없어 사람 리뷰가 놓친 사례가 곧 이 문장이 「고려하라」고 한 이유 — 도입은 팀 결정(<code>BOUNDARY.md</code> 가 명시). 대조 측정 명령은 #46 으로 PR 단위가 됐다(아래 lagging 블록). 놓친 1건이 기록으로 남는 한 <b>부분</b>.</p>
+<p><b>0015 사용판 · 이번 인계 관측 통과</b> 기존 시험 재사용과 사용 안내 추가를 HUMAN이 리뷰했고, Claude가 plan을 실제 변경에 맞췄다. <code>f49fe19</code>에 구현·시험·README·사용 안내와 plan 갱신이 함께 들어갔다. 새 동기화 hook 없이 리뷰로 해결했다. 과거 누락을 지우지 않고 이번 작은 흐름의 성공만 <a href="../experiments/0015-f01-pilot.md">추가 기록</a>한다.</p>
 </div></details>
 </ol>
 <h2>실제 모습</h2>
