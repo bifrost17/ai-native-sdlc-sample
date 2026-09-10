@@ -1,0 +1,229 @@
+{
+  "observations": [
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary"
+      ],
+      "rc": 0,
+      "stdout": "open\t3\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/0.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "output_file_content": "open\t3\ndone\t1\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "rc": 0,
+      "stdout": "open\t1\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "hana",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/1.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "output_file_content": "open\t1\ndone\t1\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "min"
+      ],
+      "rc": 0,
+      "stdout": "open\t1\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "min",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/2.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "output_file_content": "open\t1\ndone\t0\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "nobody"
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "nobody",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/3.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "output_file_content": "open\t0\ndone\t0\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "HANA"
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--owner",
+        "HANA",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/4.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "output_file_content": "open\t0\ndone\t0\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/existing.txt"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "Output file already exists: /var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/existing.txt\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/missing/output.txt"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "Cannot write summary output: [Errno 2] No such file or directory: '/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/missing/output.txt'\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json",
+        "summary",
+        "--output",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "Output file already exists: /Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/requests.json\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/requests.json",
+        "complete",
+        "R-101"
+      ],
+      "rc": 0,
+      "stdout": "R-101\tdone\thana\t회의실 키 확인\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/jake/Projects/ai-native-sdlc-experiments/sync-r02/tracker.py",
+        "--data",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/requests.json",
+        "summary",
+        "--owner",
+        "hana",
+        "--output",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmph80jc4zu/after.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "output_file_content": "open\t0\ndone\t2\n"
+    }
+  ],
+  "passed": 15,
+  "fixture_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795"
+}

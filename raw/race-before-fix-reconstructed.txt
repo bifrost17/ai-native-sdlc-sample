@@ -1,0 +1,16 @@
+# Reconstructed verifier console record (not raw tee)
+
+The raw tee file was accidentally overwritten after the product changed concurrently.
+The following lines are copied from the preceding verifier tool result for the original
+uncommitted `Path.exists()` then `Path.write_text()` implementation:
+
+rc= 0
+stdout= "peer_created_before_write= 'created-by-peer\n'\n"
+stderr= ''
+final_output= 'open\t3\ndone\t1\n'
+peer_content_preserved= False
+request_data_unchanged= True
+R9_RACE_REPRODUCED=YES
+
+The extra stdout text came from the mock diagnostic executed inside redirected stdout;
+the tracker path itself emitted no stdout before returning rc 0.

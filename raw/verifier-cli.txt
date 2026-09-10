@@ -1,0 +1,7 @@
+summary rc= 0 stdout= 'open\t3\ndone\t1\n' stderr= ''
+output-all rc= 0 stdout= '' stderr= ''
+output-hana rc= 0 stdout= '' stderr= ''
+output-existing rc= 2 stdout= '' stderr= 'Output file already exists: /var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmpn5xq0x8j/old.txt\n'
+output-missing-parent rc= 2 stdout= '' stderr= "Cannot write summary output: [Errno 2] No such file or directory: '/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/tmpn5xq0x8j/missing/x.txt'\n"
+fixture_unchanged= True
+CLI_ASSERTIONS=PASS
