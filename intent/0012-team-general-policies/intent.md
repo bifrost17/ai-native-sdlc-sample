@@ -19,6 +19,10 @@ Adopters (they now receive a team-general set plus one worked example); the seve
 skills; `spec-policy-pass`, whose examples cite moved clauses; `docs/ADOPTING.md`.
 ## Constraints
 - Light: structure and generic basics only. No invented organization-specific values.
+- The team builds software used **inside the company only** — not sold or served to outside
+  customers (author, 2026-09-10). Clauses that only earn their keep on a customer-facing or
+  regulated product do not belong in the team layer; a project that does face outside goes to a
+  project slot.
 - Nothing is lost: the claims-status skills and all research under `docs/research/` stay.
 - Adopted marketplace skills are untouched (they are domain-neutral already).
 - Process policy (verification, review, delivery, documentation) is out of scope here — the

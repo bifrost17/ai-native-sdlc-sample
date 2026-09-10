@@ -2,6 +2,8 @@
 name: claims-ux-interaction
 description: Apply the org's UX behaviour and accessibility policy (U4 destructive actions need a confirmation step and a way back · U5 no duplicated information or buttons on a screen · U6 alt text, never colour alone, keyboard-only operation) to any screen or flow of the claims status service — customer portal, adjuster and agent paths. Use whenever writing or reviewing spec.md, designing a screen or flow, adding a cancel/withdraw/delete action, or building and reviewing UI markup and components, instead of deciding these yourself or reading the policy files.
 ---
+<!-- 예시 — 팀 스킬이 아니다. 플러그인은 org-skills/skills/ 만 로드한다. 이 파일은 청구 상태 서비스를 한 프로젝트로 보고
+     PROJECT-POLICY.md(같은 폴더)의 슬롯을 채웠을 때 스킬이 어떤 모습이 되는지 보여 준다. org-skills/examples/README.md -->
 # Claims UX — behaviour and accessibility (U4 · U5 · U6)
 
 `policies/ux.md` v0 is the source of truth. Each clause is quoted verbatim (Korean); the lines after
