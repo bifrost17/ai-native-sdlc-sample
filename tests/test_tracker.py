@@ -44,6 +44,42 @@ class ExistingTrackerTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout, "")
 
+    def test_summary_all_and_by_owner(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t3\ndone\t1\n")
+        owner_result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(owner_result.returncode, 0, owner_result.stderr)
+        self.assertEqual(owner_result.stdout, "open\t1\ndone\t1\n")
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_owner_unknown_is_zero(self):
+        result = self.invoke("summary", "--owner", "nobody")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t0\ndone\t0\n")
+
+    def test_summary_reflects_completed_state_in_copy(self):
+        self.invoke("complete", "R-101")
+        result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "open\t0\ndone\t2\n")
+
+    def test_summary_json_all_and_by_owner(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 3, "done": 1})
+        owner_result = self.invoke("summary", "--owner", "hana", "--json")
+        self.assertEqual(owner_result.returncode, 0, owner_result.stderr)
+        self.assertEqual(json.loads(owner_result.stdout), {"open": 1, "done": 1})
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_json_owner_unknown_is_zero(self):
+        result = self.invoke("summary", "--owner", "nobody", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 0, "done": 0})
+
     def test_show_existing_and_missing_id(self):
         row = self.original["requests"][0]
         result = self.invoke("show", row["id"])

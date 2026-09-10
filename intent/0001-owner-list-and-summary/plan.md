@@ -1,6 +1,6 @@
 # Plan: 담당자별 조회(`list --owner`)와 상태 요약(`summary`) (from intent 0001-owner-list-and-summary)
-Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에서 Constraints로 정정한 것 외
-기능 결정은 동일). Status: draft.
+Upstream: spec.md@76a38cca43a4cf5b17432bd289256120b30916b0 (AC8 참조를 R7에서 Constraints로 정정한 것,
+R8/AC9로 `summary --json` 범위를 추가 승인한 것 외 기능 결정은 동일). Status: draft.
 
 두 기능은 같은 파일(`tracker.py`)을 바꾸고 순서 우선순위(조회 먼저)가 정해져 있으므로 순차로
 진행한다. 동시에 맡기면 같은 파일을 두 작업이 바꿔 병합 충돌과 교차 검증 비용이 생기고,
@@ -42,6 +42,12 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 
 **PR2 — `summary [--owner <ID>]` (PR1 머지 후 최신 `main`에서 시작)**
 
+> 범위 추가(구현 중 합의): 내부 자동화가 `summary` 결과를 파싱해야 한다는 필요로, 제품 책임자가
+> `summary --json` 옵션을 이번 PR2 범위에 추가로 승인했다(spec.md R8, AC9). 기본 탭 출력(R5)은
+> 그대로 두고, `--json`을 주면 같은 대상 집합을 `open`/`done` 정수 건수를 담은 JSON 객체로 출력한다.
+> `--owner`, 미배정 포함, 없는 담당자 0/0, 읽기 전용, 대소문자 정확 일치는 `--json` 유무와 무관하게
+> 동일하다.
+
 1. PR1이 머지된 `main`에서 새 브랜치를 만들고, `python3 -m unittest discover -s tests -v`로 PR1의
    기준이 그대로 통과하는지 먼저 확인한다.
 2. `tracker.py`에 `summary` 서브파서(`--owner` 선택 인자, `--data`는 전역 옵션 공유)를 추가한다.
@@ -55,10 +61,13 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
    - `summary`/`summary --owner` 실행 전후 데이터 파일 바이트 동일 (AC6의 summary 부분).
    - 임시 복사본에서 `complete R-101` 실행 후 같은 복사본으로 `summary --owner hana` →
      `open\t0`, `done\t2` (AC7, 상태 변화 반영 확인).
+   - `summary --json` → `{"open": 3, "done": 1}`(키 순서·공백 무관), `summary --owner hana --json` →
+     `open` 1 / `done` 1, `summary --owner nobody --json` → 둘 다 0, 실행 전후 데이터 파일 바이트
+     동일 (AC9).
 4. 전체 시험 실행, PR1이 추가한 `list --owner` 시험과 기존 `show`/`complete` 시험이 함께 통과하는지
    확인한다(회귀 없음).
-5. `README.md`에 `summary`, `summary --owner <ID>` 사용법(예시 명령과 예시 출력)을 PR1에서 남긴
-   `list --owner` 설명 옆에 이어 적는다.
+5. `README.md`에 `summary`, `summary --owner <ID>`, `summary --json` 사용법(예시 명령과 예시 출력)을
+   PR1에서 남긴 `list --owner` 설명 옆에 이어 적는다.
 6. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
 
 ## Risks
