@@ -16,6 +16,11 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
   `open\t0`, `done\t0`을 출력하고 종료코드는 0이다.
 - R6. `list --owner`와 `summary`는 어떤 경우에도 데이터 파일을 쓰지 않는다(조회 전용).
 - R7. 담당자 ID 비교는 대소문자를 구분하는 정확 일치만 사용한다. 정규화나 유사 일치를 하지 않는다.
+- R8. `summary`에 `--json` 옵션을 추가한다. 지정하면 `open`, `done` 두 키에 정수 건수를 담은 JSON
+  객체(예: `{"open": 3, "done": 1}`)를 stdout에 출력한다. 키 순서·공백은 규정하지 않는다. `--owner`와
+  함께 쓸 수 있으며, 대상 선택(담당자 선택·미배정 포함·없는 담당자는 0/0)·읽기 전용 성질은
+  기존 텍스트 출력과 동일하다. `--json` 없으면 기존 `open\t<건수>`/`done\t<건수>` 출력을 그대로
+  유지한다(내부 자동화가 이 결과를 파싱해 쓰기 위한 요구, 2026-09-11 제품 책임자 승인).
 
 ## Design
 
@@ -27,6 +32,9 @@ References applied: case.json (F02-F1~F4, constraints, baseline) — 저장소 �
 - `summary`는 `--owner` 유무로 대상 집합을 고른 뒤(`--owner` 없으면 전체, 있으면 위와 같은 필터),
   그 집합 안에서 `status == "open"`/`"done"` 개수를 세어 고정 순서로 출력한다. 별도 카운팅 유틸을
   두 명령이 공유할 필요는 없다 — `summary`는 필터링 후 집계만 하면 된다.
+- `--json`은 같은 집계 결과(open 건수, done 건수)를 출력 형식만 바꿔 내보낸다. 대상 선택·집계
+  로직은 텍스트 출력과 완전히 공유하고, 마지막 출력 단계에서만 텍스트 두 줄 대신
+  `json.dumps({"open": ..., "done": ...})`로 분기한다.
 - 기존 `display()`, `list`/`show`/`complete`의 파일 읽기·쓰기 로직, 예외 처리(`OSError, ValueError,
   KeyError, TypeError` → 종료코드 2)는 그대로 재사용한다. 새 명령도 같은 예외 처리 경로를 공유해
   파일이 없거나 스키마가 깨진 경우 기존과 같은 오류 메시지·종료코드를 낸다.
@@ -81,3 +89,7 @@ intent.md에서 이어받음:
 - AC8 → Constraints(기존 명령·저장 필드 유지): 기존 `show`/`complete`의 ID 미존재 처리(종료코드 1,
   stderr 메시지)는 이번 변경으로 달라지지 않는다 — 기존 시험 `test_show_existing_and_missing_id`,
   `test_complete_changes_only_target_status_and_is_repeatable`가 그대로 통과해야 한다.
+- AC9 → R8: `summary --json`이 `requests.json` 기준 `{"open": 3, "done": 1}`(키 순서·공백 무관)을
+  출력하고 종료코드 0이다. `summary --owner hana --json`은 `{"open": 1, "done": 1}`을,
+  `summary --owner nobody --json`은 `{"open": 0, "done": 0}`을 출력한다. `--json` 사용 시에도
+  데이터 파일은 바뀌지 않는다.
