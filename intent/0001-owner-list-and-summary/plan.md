@@ -4,13 +4,18 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 
 두 기능은 같은 파일(`tracker.py`)을 바꾸고 순서 우선순위(조회 먼저)가 정해져 있으므로 순차로
 진행한다. 동시에 맡기면 같은 파일을 두 작업이 바꿔 병합 충돌과 교차 검증 비용이 생기고,
-PR-SIZE 가이드도 같은 파일을 바꾸는 작업은 순차 진행을 권한다. `list --owner`를 먼저 검증·인도해
-바로 쓰게 하고, `summary`는 그 위에서 이어간다.
+[GIT-WORKFLOW.md의 "작업과 PR"](../../docs/GIT-WORKFLOW.md)이 "같은 파일을 바꾸는 작업은 순차
+진행하고, 파일이 달라도 공유 계약이나 실행 순서에 의존하면 독립적이라고 보지 않는다"고 명시한다.
+`list --owner`를 먼저 검증·인도해 바로 쓰게 하고, `summary`는 그 위에서 이어간다.
+
+각 기능의 구현·시험·사용 설명은 [PR-SIZE.md](../../docs/PR-SIZE.md)의 "한 동작의 구현·관련 시험·
+사용 설명은 함께 둘 수 있다"에 따라 같은 PR에서 함께 다룬다.
 
 ## Files that change
 
 - `tracker.py`
 - `tests/test_tracker.py`
+- `README.md`
 
 ## Order of work
 
@@ -29,7 +34,10 @@ PR-SIZE 가이드도 같은 파일을 바꾸는 작업은 순차 진행을 권�
    - `list --owner HANA`, `list --owner nobody` → 빈 stdout, 종료코드 0 (AC3).
    - `list --owner hana` 실행 전후 데이터 파일 바이트 동일 (AC6의 list 부분).
 4. 전체 시험 실행, `show`/`complete` 관련 기존 시험이 그대로 통과하는지 확인(AC8).
-5. HUMAN이 diff와 동작을 검토하고 PR1을 `main`에 merge commit으로 통합한다. 통합 후 담당자들이
+5. `README.md`에 `list --owner <ID>` 실제 사용법(예시 명령과 예시 출력)을 남긴다. 기존 `list`,
+   `show`, `complete` 사용법이 문서화돼 있지 않으므로 이번에 `list --owner`만 추가하면 동료가 참고할
+   최소 사용 설명이 된다.
+6. HUMAN이 diff와 동작을 검토하고 PR1을 `main`에 merge commit으로 통합한다. 통합 후 담당자들이
    `list --owner`를 바로 쓸 수 있다 — `summary` 완료를 기다리지 않는다.
 
 **PR2 — `summary [--owner <ID>]` (PR1 머지 후 최신 `main`에서 시작)**
@@ -49,7 +57,9 @@ PR-SIZE 가이드도 같은 파일을 바꾸는 작업은 순차 진행을 권�
      `open\t0`, `done\t2` (AC7, 상태 변화 반영 확인).
 4. 전체 시험 실행, PR1이 추가한 `list --owner` 시험과 기존 `show`/`complete` 시험이 함께 통과하는지
    확인한다(회귀 없음).
-5. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
+5. `README.md`에 `summary`, `summary --owner <ID>` 사용법(예시 명령과 예시 출력)을 PR1에서 남긴
+   `list --owner` 설명 옆에 이어 적는다.
+6. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
 
 ## Risks
 

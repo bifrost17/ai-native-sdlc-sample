@@ -14,7 +14,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description="Local team request tracker")
     parser.add_argument("--data", default="requests.json")
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("list")
+    list_command = commands.add_parser("list")
+    list_command.add_argument("--owner")
     for name in ("show", "complete"):
         command = commands.add_parser(name)
         command.add_argument("id")
@@ -24,6 +25,8 @@ def main(argv=None):
         data = json.loads(path.read_text(encoding="utf-8"))
         requests = data["requests"]
         if args.command == "list":
+            if args.owner is not None:
+                requests = [request for request in requests if request["owner"] == args.owner]
             for request in requests:
                 print(display(request))
             return 0

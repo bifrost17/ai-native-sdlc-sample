@@ -31,6 +31,19 @@ class ExistingTrackerTests(unittest.TestCase):
                          [row["id"] for row in self.original["requests"]])
         self.assertEqual(self.data.read_bytes(), before)
 
+    def test_list_owner_filters_and_keeps_order_including_done(self):
+        before = self.data.read_bytes()
+        result = self.invoke("list", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual([line.split("\t")[0] for line in result.stdout.splitlines()], ["R-101", "R-103"])
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_list_owner_unknown_or_mismatched_case_is_empty(self):
+        for owner in ("HANA", "nobody"):
+            result = self.invoke("list", "--owner", owner)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(result.stdout, "")
+
     def test_show_existing_and_missing_id(self):
         row = self.original["requests"][0]
         result = self.invoke("show", row["id"])
