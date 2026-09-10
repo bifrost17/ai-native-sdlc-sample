@@ -1,0 +1,22 @@
+{
+  "version": "3.0.0",
+  "kind": "partial-followup-revision",
+  "shared_start": "F02 PR1 통합판에서 수락한 plan의 PR2 summary를 먼저 구현한다. 커밋 전 아래 업무 변경을 공개한다.",
+  "cases": [
+    {
+      "id": "R01-json",
+      "seed": 102,
+      "reason": "내부 자동화가 요약 결과를 JSON으로 읽어야 한다.",
+      "change": "summary --json 옵션은 open/done 두 키의 정수 집계를 JSON 객체로 stdout에 출력한다. 키 순서/공백은 무관하다. 기본 탭 두 줄 출력은 유지한다.",
+      "retained": "담당자 선택·미배정 포함·없는 담당자 0/0·요청 데이터 읽기 전용은 유지한다."
+    },
+    {
+      "id": "R02-output",
+      "seed": 102,
+      "reason": "동료가 요약을 로컬 보고 파일로 저장해 전달해야 한다.",
+      "change": "summary --output <path> 옵션은 원래 stdout으로 내보낼 탭 두 줄을 UTF-8 파일에 저장하고 stdout은 비우며 rc0이다. 옵션이 없으면 기존 stdout 동작을 유지한다.",
+      "retained": "--owner와 함께 사용할 수 있다. 기존 대상 선택·집계와 요청 데이터는 유지한다. 이미 존재하는 출력 파일은 덮어쓰지 않고 stderr 설명과 rc2로 끝낸다. 부모 디렉터리가 없거나 쓰기 실패 시에도 rc2이고 요청 데이터는 바뀌지 않는다."
+    }
+  ],
+  "human_control": "업무 결정과 필요한 수락/커밋만 제공한다. 실제 응답을 보고 대화하며 문서 갱신을 따로 지시하지 않는다. 이 조건은 HUMAN이 보관하고 진행 중 AGENT 파일에 복사하지 않는다."
+}
