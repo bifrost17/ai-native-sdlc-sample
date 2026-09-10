@@ -31,6 +31,9 @@
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
 
 ## Architecture
+- The project's north star is [AI-Native SDLC Playbook](docs/verification/north-star-playbook.html).
+  Its annotations assess our template, skills and policies against the playbook. Read the relevant
+  passage and annotation before proposing or making changes; fill the team's choices from its actual standards.
 - `.claude/skills/` — what the agent is told (advisory). `.claude/hooks/` + `settings.json` —
   what the machine blocks. `tests/`, `evals/`, `.github/` — what CI proves. See docs/BOUNDARY.md.
 - `intent/` — the artifact chains; `templates/` — copies of the skill-embedded templates.

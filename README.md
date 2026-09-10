@@ -1,24 +1,43 @@
 # ai-native-sdlc-sample
 
-A small repo that applies the fourteen lessons of Anthropic's "The AI-Native SDLC Playbook"
-(Claude Academy) as written — skills that say what to do, a few hooks that block what the lessons
-say to block, and an `intent/` folder where each change is recorded as intent → spec → plan.
+## Project goal
+
+우리의 목표는 **Anthropic의 AI-Native SDLC Playbook을 충실히 따라, 우리 팀이 실제 소프트웨어
+개발에 사용할 템플릿·스킬·정책을 구축하는 것**이다. 공개된 가이드의 이론과 방법론을 우리 팀이
+사용할 수 있는 개발 체계로 구체화한다.
+
+- **템플릿** — 의도, 요구사항과 설계, 구현 계획을 기록하고 다음 단계로 이어받을 문서와 작업 구조.
+- **스킬** — 플레이북의 작업 방식과 우리 팀의 지식을 AI가 개발 과정에서 적용할 수 있는 지침.
+- **정책** — 브랜드·보안·컴플라이언스·UX 등에 관한 우리 팀의 실제 기준과 책임자, 이를 적용하는 스킬.
+- **통제와 검증** — 플레이북이 제시한 사람의 판단·승인, 훅, 테스트, 리뷰, CI를 구현하고 실제 개발 과제로 작동을 확인.
+
 Unofficial; not an Anthropic project.
 
+## North star
+
+프로젝트의 북극성은 **[AI-Native SDLC Playbook](docs/verification/north-star-playbook.html)**이다.
+**플레이북 원문은 설계와 판단의 기준이고, 각 문단에 붙인 주석은 그 기준을 얼마나 충실히 따랐는지
+점검한 기록**이다. 주석은 우리 프로젝트의 구현, 실제 실행 증거, 판정과 보완 내용을 담는다.
+
+템플릿·스킬·정책을 만들거나 개선할 때는 해당 플레이북 문단과 기존 주석을 먼저 확인한다.
+플레이북이 정한 원칙과 역할을 충실히 따르고, 조직이 채워야 하는 부분은 우리 팀의 실제 기준과
+상황으로 채운다. 완성 여부는 각 문단이 요구하는 구현과 실행 근거로 판단하며, 주석에 그 결과를 남긴다.
+
 ## Read in this order
-1. `docs/PLAYBOOK-MAP.md` — each lesson, the device this repo uses for it, and which layer it lives
+1. [프로젝트 북극성 — 플레이북과 충실도 평가](docs/verification/north-star-playbook.html) — 가이드 원문과 문단별 평가 근거.
+2. `docs/PLAYBOOK-MAP.md` — each lesson, the device this repo uses for it, and which layer it lives
    in (person, tool, skill, or code).
-2. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
+3. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
    why a checker inside the tree is not an approval authority.
-3. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
-4. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
+4. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
+5. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
    chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history in the pre-slim
    convention (frontmatter, status fields); the current template is what 0004 uses.
-5. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
-6. `docs/METRICS.md` — the lessons' indicators as git commands.
-7. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
+6. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
+7. `docs/METRICS.md` — the lessons' indicators as git commands.
+8. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
    this repo's sample ones, and who (in the playbook's terms) fills each one in.
-8. `docs/RUNS.md` (on the experiment branch, see Experiments below) — actual runs against these devices, judged by each play's own governance and
+9. `docs/RUNS.md` (on the experiment branch, see Experiments below) — actual runs against these devices, judged by each play's own governance and
    measurement sections, not a separate scorecard.
 
 ## What this repo does
@@ -55,10 +74,12 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 `intent/0012` record the move and the split.
 
 ## Verification (`docs/verification/`)
-The playbook itself is the standard: every guidance paragraph of the Korean edition carries an
-evidence block naming the file and line in this repository that implements it, with the verdict
-(충실 · 부분 · 팀 몫 · 보완 필요). 179 blocks, `V2-01`~`V13-16`. What the verification found became
-PRs #44-#54.
+[북극성 문서](docs/verification/north-star-playbook.html)의 주석은 플레이북을 얼마나 충실히 따랐는지
+평가한 기록이다. 가이드 문단마다 구현 파일의 경로와 축자 인용문, 실제 실험 증거, 판정
+(충실 · 부분 · 팀 몫 · 보완 필요)을 연결한다. 179개 블록(`V2-01`~`V13-16`)이며,
+평가에서 발견한 보완점은 PR #44~#54로 반영했다. 항목별 판정은
+[INDEX.md](docs/verification/INDEX.md), 챕터별 집계와 라운드 이력은
+[CHAPTERS.md](docs/verification/CHAPTERS.md)에 있다.
 
 ## Experiments
 `main` is the template and the template's own chains only. Each experiment — chains run *on* the

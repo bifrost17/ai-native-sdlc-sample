@@ -1,14 +1,17 @@
-# docs/verification — 플레이북 문단별 검증
+# docs/verification — 북극성 플레이북과 충실도 평가
 
-이 템플릿이 AI-Native SDLC Playbook 이 지향하는 방향대로 도는지를, **플레이북 한국어판 문서의 가이드 문단마다
-증거를 삽입하며** 검증한 기록이다. 플레이북 자신이 검증 기준이다 — 별도 점검표를 만들지 않는다.
+**[AI-Native SDLC Playbook](north-star-playbook.html)은 이 프로젝트의 북극성이다.**
+우리의 목표는 이 가이드를 충실히 따라, 우리 팀이 실제 소프트웨어 개발에 사용할 템플릿·스킬·정책을 구축하는 것이다.
+플레이북 원문은 설계와 판단의 기준이고, **각 가이드 문단에 붙인 주석은 그 기준을 얼마나 충실히 따랐는지
+구현과 실제 실행 증거로 점검한 기록**이다. 플레이북 자신이 검증 기준이다 — 별도 점검표를 만들지 않는다.
+템플릿·스킬·정책을 만들거나 개선할 때는 해당 문단과 기존 주석을 먼저 확인한다.
 
 이 폴더는 Anthropic 저작물(플레이북 한국어판)의 사본을 담는다. 원문은 Claude Academy,
 `courses/ai-native-sdlc-playbook`, Copyright Anthropic.
 
 | 파일 | 무엇 |
 |---|---|
-| `playbook-annotated.html` | 주석판 — 원문 + 가이드 문단 아래 `<details class="verify …">` 증거 블록 179개(ID `V2-01`~`V13-16`) |
+| [north-star-playbook.html](north-star-playbook.html) | 프로젝트 북극성 — 플레이북 원문 + 가이드 문단 아래 충실도 평가 주석 179개(ID `V2-01`~`V13-16`) |
 | `source/playbookkoen3.html` | 원문(무변경) |
 | `CHAPTERS.md` | 챕터별 집계와 반영 PR · 라운드 이력 |
 | `INDEX.md` | 검증 항목 ID 색인(ID · 판정 · 문단) |
@@ -56,7 +59,7 @@ v3 에서 판정이 바뀐 블록은 다섯 — `V2-05`·`V3-05`(부분 → 충�
 플레이북 자신이 검증 기준이다 — 별도 점검표를 만들지 않는다.
 
 - `source/playbookkoen3.html` — 원문(무변경).
-- `playbook-annotated.html` — 원문 + 가이드 문단 아래 `<details class="verify …">` 블록.
+- `north-star-playbook.html` — 프로젝트 북극성: 원문 + 가이드 문단 아래 `<details class="verify …">` 평가 블록.
   원문 문장은 한 글자도 바꾸지 않는다; 서술 문단은 비워 둔다.
 - `CHAPTERS.md` — 챕터별 집계와 반영 PR.
 - `INDEX.md` — 검증 항목 ID 색인. ID = `V<챕터>-<문서 순서>`(예 `V4-07`), 주석판의 `#V4-07` 앵커이자 각 블록 제목의 링크.
