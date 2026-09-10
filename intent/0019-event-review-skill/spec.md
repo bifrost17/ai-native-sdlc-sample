@@ -25,8 +25,10 @@ Upstream: intent.md@c190fc7 (사용자가 설계·실험·반영을 위임). Sta
 
 ## Design
 주 개발 세션에서 `sdlc-feedback/SKILL.md`를 읽고 이벤트에 맞는 작업만 수행한다. 공통 의미 판단은
-`references/review-criteria.md`에 한 번 적는다. 네이티브 `sdlc-verifier` agent는 그 기준을 읽고
-제한된 도구로 독립 검증한다. 별도 프로그램·hook·판정 JSON 스키마를 추가하지 않는다.
+`agents/sdlc-verifier.md`의 Review criteria에 한 번 적는다. 주 세션은 그 공통 부분을 읽고,
+네이티브 검증자는 자신의 정의로 기준을 받는다. 호출자의 파일 경로 전달에 의존하지 않는다.
+검증자 전용 권한 제한은 주 개발 세션에 적용하지 않는다. 동등한 프로젝트 검증자를 선택하면
+같은 기준을 적용할 수 있는지 확인·인계한다. 별도 프로그램·hook·판정 JSON 스키마를 추가하지 않는다.
 커밋 직전 및 후속 요구/수락 판 이벤트는 북극성의 같은 커밋·단계 인계를 실천하는 팀 선택이다.
 
 ## Acceptance criteria
