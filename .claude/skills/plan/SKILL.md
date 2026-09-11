@@ -27,7 +27,8 @@ a demand for four independent lists. Connect files, steps and proof so the next 
 - **Files that change:** verified paths and each change's role; mark new files, including relevant tests/docs.
 - **Order of work:** concrete results and needed inputs, including wiring into the product. A small change
   can be a few steps in one PR. For multiple PRs, name each reviewable purpose, included work,
-  dependency/merge order, working main state after merge, remaining scope and proof. Keep one behavior's
+  dependency/merge order, working main state after merge, remaining scope and proof. Where release is
+  controlled, distinguish ordinary/test exposure from executable code and plan the release decision. Keep one behavior's
   implementation/tests/docs together unless there is a substantive reason to split.
 - **Risks:** material neighboring regressions, the riskiest step, its detection/response and significant
   rejected execution alternatives. Do not duplicate the spec's entire design discussion.

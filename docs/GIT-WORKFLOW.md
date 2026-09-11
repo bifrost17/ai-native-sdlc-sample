@@ -64,7 +64,9 @@ PR이 만들어졌다는 사실도 승인이 아니다. 기록을 남기는 위�
 머지 후 통합 결과를 확인하고 완료된 작업 브랜치와 worktree를 정리한다. PR·커밋·결정 기록은 남긴다.
 문제가 발견되면 영향과 의존성을 보고 수정 PR 또는 revert PR로 대응하며, 데이터·외부 효과는 별도로
 복구한다. 머지는 배포나 기능 공개와 같지 않다. 배포·노출·되돌리기는 프로젝트의 실제 운영 방식에
-따르며 필요한 경우에만 호환 단계나 기능 노출 제어를 사용한다.
+따른다. 미완성 공개 단위를 일반 사용자에게 열지 않고 시험하며 통합하려면
+[기능 공개 제어](RELEASE-CONTROL.md)를 적용한다. 관련 PR의 계획과 검증에는 main의 실행 상태와
+일반/테스트 대상의 노출 상태를 함께 남긴다. 공개 결정자·설정 위치·수락/중단 기록은 프로젝트가 정한다.
 
 근거: [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow),
 [플레이북의 계획 분할과 병렬 실행](https://academy.claude.com/courses/ai-native-sdlc-playbook/parallel-sessions-and-subagents).

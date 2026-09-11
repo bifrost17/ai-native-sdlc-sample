@@ -10,7 +10,9 @@ Upstream: spec.md@‹commit sha of the accepted spec›. Status: draft.
 2. ‹Implement and connect the concrete behavior, with its checks.›
 3. ‹Verify the integrated result and prepare the handoff.›
 ‹For multiple PRs, group by reviewable purpose: scope, dependencies/merge order, what works on main
-after each merge, what remains, and its proof. Tasks, commits, agents and PRs need not map one-to-one.
+after each merge, what remains, and its proof. When release is controlled, include ordinary/test exposure
+after each PR and the shared control/configuration, release/disable steps, owner and removal condition
+(docs/RELEASE-CONTROL.md). Tasks, commits, agents and PRs need not map one-to-one.
 For parallel work, identify worktree/file boundaries, shared contract references and integration/plan coordination.
 Use only the detail this change needs; follow docs/GIT-WORKFLOW.md and docs/PR-SIZE.md.›
 

@@ -54,7 +54,7 @@ the important change and choice; put a concern needing human decision up front w
   when it clarifies a real decision. No fixed number of alternatives. Separate binding contracts
   from illustrative names/code; leave incidental implementation choices to planning and implementation.
   Add detail when changing it could change acceptance or implementation direction. For API/UI,
-  migration, performance or shared boundaries, consult [conditional depth](references/design-depth.md)
+  migration, staged exposure, performance or shared boundaries, consult [conditional depth](references/design-depth.md)
   when relevant; do not add every heading from it to every spec.
 - **Constraints and scope**: preserve every upstream limit and explicit exclusion. State discovered
   constraints with their basis. Refer to an already clear R/design clause instead of duplicating its

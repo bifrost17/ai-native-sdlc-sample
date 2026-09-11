@@ -10,7 +10,9 @@ Run three passes and tag each finding with its pass:
   test file does not cover.
 - Security: secrets in the diff, PII in logs, a hook that fails open when `jq` is missing.
 - Compliance: the change matches spec.md and plan.md of its chain under `intent/` for this PR's
-  declared slice; future PR work is not missing from this slice. Also check the
+  declared slice; future PR work is not missing from this slice. When release is controlled, check
+  the declared ordinary/test exposure and effect boundaries against docs/RELEASE-CONTROL.md;
+  partial verification or merge does not approve general release. Also check the
   boundary in docs/BOUNDARY.md — code that checks artifact form, status or transitions does
   not belong here. A code file under `.claude/hooks/`, `scripts/`, `evals/` whose header cites no
   lesson sentence is a compliance finding; `src/` and `tests/` cite their spec clause instead.
