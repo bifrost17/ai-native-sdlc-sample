@@ -16,7 +16,7 @@ Upstream: intent.md@c89632f. Status: draft.
 - R6. root의 완성 예시와 두 배치 비교 후 Astra/ultra와 Claude Code CLI Fable/max의 독립 검토를
   받는다. 같은 최종 후보의 중요 지적을 해결한다. 실제 Sonnet 실행과 독립 verifier의 한계도 기록한다.
 - R7. 사용판을 0021에서 별도 파생하고 양식·선택 스킬/예시만 전달한다. 기존 메타데이터와 네 절을
-  유지하며 현재 verifier의 PR 범위 해석만 바로잡는다. 역사 자료·실험 원본·기존 검사 기준은 보존한다.
+  유지하며 현재 verifier·REVIEW·lesson map의 범위/수락 해석을 맞춘다. 역사 자료·실험 원본·기존 검사 기준은 보존한다.
 
 ## Design
 네 절을 공통 골격으로 유지한다. 작업은 구체적인 결과로 적고 필요한 경우 Order of work 안에
