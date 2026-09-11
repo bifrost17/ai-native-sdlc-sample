@@ -464,6 +464,7 @@ Do third-party loss adjusters need access too?
 <p><b>템플릿</b> <code>.claude/skills/design-spec/SKILL.md</code> 「Does not set the spec to accepted. The product owner signs off; the merge records it.」 · 「Flagged concerns — where two policies conflict … say what conflicts and who decides. Do not resolve a policy conflict yourself.」</p>
 <p><b>실험</b> 0008 턴4(raw-hac/16 · 04:27:11Z~04:33:25Z): spec.md 는 A 가 Write 했고 PO 는 한 글자도 쓰지 않았다. 턴5(raw-hac/18)에서 PO 는 F1~F7 을 소유자 답으로 넘겼을 뿐. flagged concerns 실물: 0008 <b>8건</b>(F1~F8 · <code>intent/0008-adjuster-claim-status/spec.md</code>) · 0009 <b>9건</b>. 0009 턴4 A: 「먼저 보시라고 하신 것 — F1 하나가 진행을 막습니다」.</p>
 <p><b>보완</b> 없음</p>
+<p><b>0021 spec 양식 설계 · 2026-09-11</b> root가 기능·버그·이행 예시를 먼저 쓰고 요구·수용 기준·설계·제약/범위·질문·우려의 여섯 구획을 도출했다. 중요한 보존 계약·선택 이유·필요한 상세를 남기고 파일·실행 순서는 plan에 둔다. 같은 R2 후보를 Astra/ultra와 실제 Claude Code Fable/max가 PASS했다. 조직 승인이나 실제 이행의 증거는 아니며 기존 판정을 유지한다. <a href="../research/sdlc-documentation/spec-design/review-record.md">설계·수정·리뷰 근거</a>.</p>
 </div></details>
 <p>프런트엔드 작업이 가장 분명한 예다. <code>intent.md</code>가 수락되면 product owner는 그 <code>intent.md</code>를 바탕으로 <a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Claude Design</a>(베타)에서 설계를 mock으로 만들고, mock을 반복해 다듬은 뒤, build하도록 Claude Code로 내보낸다.</p>
 <details class="verify v-team" open id="V3-03"><summary>▸ <a class="vid" href="#V3-03">V3-03</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">도입 — Claude Design 으로 mock → Claude Code</span></summary><div class="v-body">
@@ -513,12 +514,14 @@ Do third-party loss adjusters need access too?
 <p><b>실험</b> 0008 턴4 A 의 마지막 문장이 그 물음 축자(raw-hac/16). 턴5 PO: 「문제를 풉니다. 열린 물음 처리도 맞습니다 — 둘은 답과 출처가 있고 둘은 지어내지 않고 넘겼습니다」(raw-hac/18) → 소유자 답 뒤 e867650 「carried 0」. 0009 턴4 spec: 열린 물음 7 전부 answered(정책 6줄이 닫음, raw-hac/46) · 턴5 뒤 43e298e 「carried 0 · F7만 열림」.</p>
 <p><b>보완</b> 없음</p>
 <p><b>0015 사용판 · 관측 통과</b> HUMAN이 요구 5개와 수용 조건을 읽어 완료 포함·정확 일치·빈 결과·기존 동작 보존과 사내 CLI 범위를 확인하고 spec을 수락했다. 실제 코드와 독립 동작 4건에서도 결정이 유지됐다. 별도 팀 정책 스킬은 선택하지 않았으므로 조직 스킬 적용의 실증으로 확대하지 않는다. <a href="../experiments/0015-f01-pilot.md">사용판 기록</a>.</p>
+<p><b>0021 현재 양식과 부분 인계</b> 위 인용은 당시 양식이다. 현재 <code>Open questions</code>는 intent의 각 질문과 설계에서 생긴 질문을 함께 다루며 답의 근거·이월 영향과 필요한 시점을 남긴다. 세 합성 예시의 독자 인계를 두 모델이 검토했다. 별도 Sonnet/medium 6회 대화에서는 HUMAN 리뷰 뒤 spec을 수락해 plan으로 넘기고, 후속 결정에 맞춰 두 문서와 상류 SHA가 갱신됨을 확인했다. 초기 검증 범위·계획 오류와 수정도 보존한다. <a href="../research/sdlc-documentation/spec-design/probe/README.md">명시적으로 문서 작업을 허용한 부분 실험</a>이며 자율 갱신 성공률이나 제품 구현 검증은 아니다.</p>
 </div></details>
 <li>표시된 우려 지점은 분석가라면 escalation했을 지점이므로 먼저 처리하라. product owner는 엔지니어링이 스펙을 보기 전에 각 항목을 해당 policy owner와 함께 해소한다.</li>
 <details class="verify v-ok" open id="V3-10"><summary>▸ <a class="vid" href="#V3-10">V3-10</a> · 검증 · <b>충실</b> — <span class="q">실행 4 — flagged concern 을 policy owner 와 먼저 해소</span></summary><div class="v-body">
 <p><b>템플릿</b> <code>design-spec/SKILL.md</code> 「Flagged concerns … say what conflicts and who decides. Do not resolve a policy conflict yourself.」 — 해소는 PO 몫.</p>
 <p><b>실험</b> 0008 턴5(raw-hac/18): PO 가 F1(운영팀장·claims-core) F2(claims-core·법무) F3(보안·법무) F4(포털·보안) F5(claims-core·운영팀장) F6(PO) F7(claims-core·포털) 을 소유자별 답으로 → 커밋 e867650 「소유자 결정 반영 — R8 반전 · carried 0」. 0009 턴5(raw-hac/49): F1~F9 → 43e298e. 못 닫은 것은 이슈 #32(0008 F8 · 0009 F7)로 소유자에게 — 엔지니어(plan)가 보기 전에 정리됐다(plan 커밋 444f88f · 0f8aa06 은 spec 머지 뒤).</p>
 <p><b>보완</b> 없음</p>
+<p><b>0021 미결과 복구 판단</b> 새 지침은 설계를 무효화할 질문·정책 충돌을 담당자 이름만 붙여 plan에 넘기지 않도록 한다. M01 합성 예시는 보고서 소비자를 확인하기 전의 미결과 결정 후 현재 계약을 대조한다. 리뷰에서 복구 후 구버전 쓰기가 동시 갱신 유실을 재발시킬 수 있음을 찾아, 데이터와 안전한 쓰기 경로를 함께 확보한 뒤 재개하는 조건을 보완했다. 두 최종 리뷰 PASS는 이 문서 판단의 검토이며 실제 정책 오너 수락·복구 실행이 아니다. <a href="../research/sdlc-documentation/spec-design/change-walkthrough.md">발견 전후</a> · <a href="../research/sdlc-documentation/spec-design/reviews/r2-changes.md">리뷰 수정</a>.</p>
 </div></details>
 <li><code>spec.md</code>를 <code>intent.md</code> 옆에 commit하라. 이 파일 쌍이 무엇을 요청했고 무엇을 결정했는지를 기록한다.</li>
 <details class="verify v-ok" open id="V3-11"><summary>▸ <a class="vid" href="#V3-11">V3-11</a> · 검증 · <b>충실</b> — <span class="q">실행 5 — intent.md 옆에 spec.md</span></summary><div class="v-body">

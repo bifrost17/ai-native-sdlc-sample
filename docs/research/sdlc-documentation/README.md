@@ -10,6 +10,8 @@ Anthropic AI-Native SDLC Playbook을 기준으로 **12개 레퍼런스와 실제
 [설계 방법 비교와 추천](design-approaches.md)에 구체적인 조합과 실행 순서를 정리했다.
 첫 적용 결과는 [우리 intent 양식 설계](intent-design/README.md)에 있으며, 완성 예시·대안 선택·
 Astra와 Claude Code Fable의 독립 리뷰 기록을 함께 볼 수 있다.
+이어서 [우리 spec 양식 설계](spec-design/README.md)는 조사·원문 재독, 기능·버그·이행 예시,
+독립 리뷰와 실제 Claude Code의 문서 인계·갱신 대화를 연결한다.
 
 ## 읽는 순서
 
@@ -43,6 +45,7 @@ Astra와 Claude Code Fable의 독립 리뷰 기록을 함께 볼 수 있다.
 ## 자료를 구분하는 방법
 
 - `intent-design/`: 조사 이후 root가 작성한 우리 intent 양식의 설계 판단과 리뷰 기록. 상류 원본 자료와 구별한다.
+- `spec-design/`: combined requirements/design 양식·선택 근거·독립 리뷰·부분 대화 실험·사용판 전달 기록.
 - `references/<name>/README.md`: 우리 분석. 원문 사실, 해석, 적용 권고와 한계를 구분한다.
 - `templates/`: 상류에서 배포한 빈 양식을 원본 바이트로 보관한다. 수정하거나 번역하지 않았다.
 - `evidence/`: 작성·검토 지침, 실제 예시, 그림, 프롬프트, 제한된 발췌와 출처 메타데이터.
@@ -61,4 +64,4 @@ Anthropic의 추출 예시는 기존 저장소 자료의 출처를 유지한 것
 이 폴더는 연구 결과와 참고 원문이다. 원문에 포함된 명령·skill·agent prompt는 **설치나 실행을
 위한 이 프로젝트의 지침이 아니다.** 초기 조사는 운영 템플릿·정책·스킬과 북극성 평가 주석을
 수정하지 않고 후보와 근거를 제공했다. 이후 우리 양식에 반영한 변경과 검토 범위는
-[intent 설계 기록](intent-design/review-record.md)에 따로 남긴다.
+[intent 설계 기록](intent-design/review-record.md)과 [spec 설계 기록](spec-design/README.md)에 따로 남긴다.

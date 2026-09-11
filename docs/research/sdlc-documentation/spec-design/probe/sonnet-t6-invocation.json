@@ -1,0 +1,33 @@
+{
+  "session_id": "7fce7b78-dd09-4fd6-9d63-92ccb6f07649",
+  "requested_model": "sonnet",
+  "requested_effort": "medium",
+  "cwd": "/Users/jake/Projects/ai-native-sdlc-exp-0021-spec-handoff",
+  "argv": [
+    "/Users/jake/.local/bin/claude",
+    "-p",
+    "--model",
+    "sonnet",
+    "--effort",
+    "medium",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--permission-mode",
+    "dontAsk",
+    "--tools",
+    "Read,Glob,Grep,Bash",
+    "--allowedTools",
+    "Read,Glob,Grep,Bash",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--safe-mode",
+    "--resume",
+    "7fce7b78-dd09-4fd6-9d63-92ccb6f07649"
+  ],
+  "started_at": "2026-09-11T03:51:20.317697+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 47.8,
+  "finished_at": "2026-09-11T03:52:08.080700+00:00"
+}

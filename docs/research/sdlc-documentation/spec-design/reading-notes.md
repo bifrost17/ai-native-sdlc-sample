@@ -29,3 +29,9 @@ F01/B01 입력·HUMAN 답변·실제 baseline 코드를 읽었다. Astra의 별�
 실사용 후보는 제작 원본에서 자동 생성되지 않는다. 기존 사용판은 References applied와 선택형
 예시 스킬을 쓰므로 그 차이를 유지한 별도 전달·검토가 필요하다. 원본 수정이나 plugin 설치만으로
 실사용 템플릿까지 갱신됐다고 보고하지 않는다.
+
+합성 이행 예시의 기술 설명을 쓰며 SQLite 공식 [transaction](https://www.sqlite.org/lang_transaction.html)과
+[atomic commit](https://www.sqlite.org/atomiccommit.html)을 2026-09-11에 추가 확인했다.
+동시 reader와 단일 writer, 경합·COMMIT 실패, 명시적인 오류 정리와 영속성 전제를 확인한 것이다.
+이는 예시의 도메인 정확도를 위한 확인이며 양식 조사 레퍼런스를 하나 더 채택하거나 실제 이행을
+검증한 결과가 아니다. 서비스의 5초 상한과 API 상태 코드는 root가 명시한 합성 입력의 값이다.

@@ -55,3 +55,19 @@ tests/test_team_harness.py의 전체 문서 인계 회귀,
 make check 전체 로그와 기존 skill quick_validate.py,
 가용한 경우 make evals(생성+독립 의미 채점) 또는 명시된 범위의 실제 CLI 대화 결과,
 독립 verifier 네 부분 보고. 정적 파싱 통과를 의미·행동 검증 통과로 바꾸어 쓰지 않는다.
+
+## Execution record
+
+root 재독·합성 예시·두 배치 비교 후 R1 후보를 maker 4f52028/adopter 3e2f693에 보존했다.
+Astra R1 FAIL의 복구 회귀를 R2에서 고치고 Fable의 필요한 비차단 보완과 실제 대화의 검증 범위
+오류도 반영했다. R2 maker efc65d9/adopter ca87cdb의 같은 33파일을 Astra/ultra와 실제
+Claude Code Fable/max가 PASS했다. [판정·수정·실행 기록](../../docs/research/sdlc-documentation/spec-design/review-record.md).
+
+Sonnet/medium과 같은 세션에서 여섯 차례 문서 인계·변경·리뷰 대화를 수행했다. 초기 오류를 HUMAN이
+고친 최종 문서 인계 통과이며 자율성·제품 구현·전체 SDLC 성능으로 확대하지 않는다. make evals는
+키 없음 rc=2 SKIP이다. 독립 verifier의 Codex validator 실패는 Claude 전용 필드와의 도구 범위
+차이로 원문 로그를 보존했다. 사용판 옵션을 지우거나 새 검사기를 추가하지 않았다.
+최종 독립 검사에서 make check·03 양성/음성·33파일 해시·배포 scope·북극성 원문 불변이 확인됐다.
+[최종 verifier 보고](../../docs/research/sdlc-documentation/spec-design/reviews/verifier-final.md)와
+[자료 검사](../../docs/research/sdlc-documentation/spec-design/reviews/artifact-checks.json)에 근거를 남겼다.
+이후 root는 보고서·로그·완료 링크만 추가했고 R2 핵심 파일은 유지했다. 이 계획의 작업은 로컬 반영까지 완료했다.

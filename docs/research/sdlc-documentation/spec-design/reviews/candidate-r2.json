@@ -1,0 +1,245 @@
+{
+  "round": 2,
+  "recipe": "sorted root groups maker then adopter; sorted paths within each; sha256 of root/path + NUL + file sha256 + LF for each file",
+  "roots": {
+    "maker": "/Users/jake/Projects/ai-native-sdlc-sample",
+    "adopter": "/Users/jake/Projects/ai-native-sdlc-use-0021"
+  },
+  "base_heads": {
+    "maker": "4f5202824e9e800c293ccbc2b126037e9b08ac0a",
+    "adopter": "3e2f693d5ca171d34aa3f464893b96dfd9429d2e"
+  },
+  "files": [
+    {
+      "root": "maker",
+      "path": ".claude/commands/spec.md",
+      "sha256": "8bbe6d5c8bab6542fdd8224cc9e58dd3923431da09f8f6e164a713b76d2618aa"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/SKILL.md",
+      "sha256": "b957cea53cfe9cc4fe31956fd95a474629111c4eabfc73e17552efd3141ec9ca"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/bug/context.md",
+      "sha256": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/bug/intent.md",
+      "sha256": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/bug/spec.md",
+      "sha256": "d080b9dde05cdd7c6c9a1de7adaa7d79e06750dc99e5b37521f216af6b5541c0"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/feature/context.md",
+      "sha256": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/feature/intent.md",
+      "sha256": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/feature/spec.md",
+      "sha256": "251b38eff44f7297c1ddd3de11c7eb0a4e12e93d45c9f2439a8f601f7969ad99"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/migration/context.md",
+      "sha256": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/migration/intent.md",
+      "sha256": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/examples/migration/spec.md",
+      "sha256": "98fc6b2ba1540aa86d919b3ca702704095f325f59b2a472177c4dcb4cc50581d"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/references/design-depth.md",
+      "sha256": "022a87e9f1803d1cc5ffa61a63ffb2660152a4ac218c259d2a56b7db1cbe14aa"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/design-spec/references/skill-provenance.md",
+      "sha256": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc"
+    },
+    {
+      "root": "maker",
+      "path": "CLAUDE.md",
+      "sha256": "8497c72007c095c7010387901dde2deeb788c26ff3b52f84a9a80c1dc6e418b2"
+    },
+    {
+      "root": "maker",
+      "path": "evals/cases/03-spec-carries-questions.json",
+      "sha256": "1f4b2fa320b956d62df18671c6aed9b82c0ff94b6aca68c4d9c2f277e9aeaf87"
+    },
+    {
+      "root": "maker",
+      "path": "evals/testdata/03-fail-carry/ws/spec.md",
+      "sha256": "00be5a1971a7c4f01e32558c8f27000e0de150b9a4ff666f1b33fc00000fcc88"
+    },
+    {
+      "root": "maker",
+      "path": "evals/testdata/03-pass/ws/spec.md",
+      "sha256": "f1935c321a25126417516ef8ef63af36f75ae9bd79001c119b3c1e544a7971e8"
+    },
+    {
+      "root": "maker",
+      "path": "templates/spec.md",
+      "sha256": "35fb8fa239a07d49c01b76e1e521755664e15f627d0df7ccca4513b1e45a82af"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/README.md",
+      "sha256": "fdf822279c84541d1bcfe81e9d4009de90d5bfc9981bc42177098c38fc3f9302"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/capture-intent/SKILL.md",
+      "sha256": "8841a9c6d532adfb98945f5b739a864f9819139e620400b3338d5a6e3baeecab"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/SKILL.md",
+      "sha256": "fb0355afd1448b3ff87e56e642f8a9ba43e03e2cefa98c71528a6f34d78fe275"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/bug/context.md",
+      "sha256": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/bug/intent.md",
+      "sha256": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/bug/spec.md",
+      "sha256": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/feature/context.md",
+      "sha256": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/feature/intent.md",
+      "sha256": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/feature/spec.md",
+      "sha256": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/migration/context.md",
+      "sha256": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/migration/intent.md",
+      "sha256": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/examples/migration/spec.md",
+      "sha256": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/design-spec/references/design-depth.md",
+      "sha256": "022a87e9f1803d1cc5ffa61a63ffb2660152a4ac218c259d2a56b7db1cbe14aa"
+    },
+    {
+      "root": "adopter",
+      "path": "templates/intent.md",
+      "sha256": "ed0a1cc1307daa7c03c72a48b988e87d4b3c4d614987eaa9783c6f955ecbddb7"
+    },
+    {
+      "root": "adopter",
+      "path": "templates/spec.md",
+      "sha256": "3f01438faea5052da51d5fb81550a63bcf819d0d4c920a4843de0bf1bf6e8d35"
+    }
+  ],
+  "combined_sha256": "f4b37b76c06a28360bdf6bce56f2ebd3289b905b88d5135011ac6c43e337de02",
+  "changed_from_r1": [
+    "maker/.claude/commands/spec.md",
+    "maker/.claude/skills/design-spec/examples/feature/spec.md",
+    "maker/.claude/skills/design-spec/examples/migration/context.md",
+    "maker/.claude/skills/design-spec/examples/migration/spec.md",
+    "maker/.claude/skills/design-spec/references/design-depth.md",
+    "maker/CLAUDE.md",
+    "maker/evals/testdata/03-fail-carry/ws/spec.md",
+    "maker/evals/testdata/03-pass/ws/spec.md",
+    "adopter/examples/skills/design-spec/SKILL.md",
+    "adopter/examples/skills/design-spec/examples/feature/spec.md",
+    "adopter/examples/skills/design-spec/examples/migration/context.md",
+    "adopter/examples/skills/design-spec/examples/migration/spec.md",
+    "adopter/examples/skills/design-spec/references/design-depth.md"
+  ],
+  "parity_checks": [
+    {
+      "comparison": "feature/intent.md",
+      "equal": true
+    },
+    {
+      "comparison": "feature/context.md",
+      "equal": true
+    },
+    {
+      "comparison": "feature/spec except lines 2,4",
+      "equal": true
+    },
+    {
+      "comparison": "bug/intent.md",
+      "equal": true
+    },
+    {
+      "comparison": "bug/context.md",
+      "equal": true
+    },
+    {
+      "comparison": "bug/spec except lines 2,4",
+      "equal": true
+    },
+    {
+      "comparison": "migration/intent.md",
+      "equal": true
+    },
+    {
+      "comparison": "migration/context.md",
+      "equal": true
+    },
+    {
+      "comparison": "migration/spec except lines 2,4",
+      "equal": true
+    },
+    {
+      "comparison": "templates/intent.md",
+      "equal": true
+    },
+    {
+      "comparison": "templates/spec.md except line 3",
+      "equal": true
+    },
+    {
+      "comparison": "design-depth reference",
+      "equal": true
+    }
+  ]
+}

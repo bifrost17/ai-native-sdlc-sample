@@ -1,0 +1,35 @@
+declared_files 33
+hash_mismatches 0
+combined_declared f4b37b76c06a28360bdf6bce56f2ebd3289b905b88d5135011ac6c43e337de02
+combined_actual f4b37b76c06a28360bdf6bce56f2ebd3289b905b88d5135011ac6c43e337de02
+combined_equal True
+changed_from_r1_actual 13
+CHANGED adopter/examples/skills/design-spec/SKILL.md
+CHANGED adopter/examples/skills/design-spec/examples/feature/spec.md
+CHANGED adopter/examples/skills/design-spec/examples/migration/context.md
+CHANGED adopter/examples/skills/design-spec/examples/migration/spec.md
+CHANGED adopter/examples/skills/design-spec/references/design-depth.md
+CHANGED maker/.claude/commands/spec.md
+CHANGED maker/.claude/skills/design-spec/examples/feature/spec.md
+CHANGED maker/.claude/skills/design-spec/examples/migration/context.md
+CHANGED maker/.claude/skills/design-spec/examples/migration/spec.md
+CHANGED maker/.claude/skills/design-spec/references/design-depth.md
+CHANGED maker/CLAUDE.md
+CHANGED maker/evals/testdata/03-fail-carry/ws/spec.md
+CHANGED maker/evals/testdata/03-pass/ws/spec.md
+changed_list_equal True
+removed_from_r1 0
+PARITY feature/intent True
+PARITY feature/context True
+PARITY feature/spec except 2,4 True
+PARITY bug/intent True
+PARITY bug/context True
+PARITY bug/spec except 2,4 True
+PARITY migration/intent True
+PARITY migration/context True
+PARITY migration/spec except 2,4 True
+PARITY templates/intent True
+PARITY templates/spec except 3 True
+PARITY design-depth True
+parity_all True
+parity_receipt_all True
