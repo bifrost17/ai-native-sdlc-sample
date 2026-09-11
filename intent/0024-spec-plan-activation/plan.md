@@ -10,6 +10,7 @@ Upstream: spec.md@dc2cbcb. Status: draft.
   org-skills/agents/sdlc-verifier.md, org-skills/README.md, org-skills/.claude-plugin/plugin.json,
   .claude-plugin/marketplace.json: 실제 팀 스킬/검토·설치 안내와 판.
 - CLAUDE.md, docs/ADOPTING.md, README.md: 얇은 TDD 정책·선택 예시/사용판·완료 결과 안내.
+- docs/GIT-WORKFLOW.md 및 후속 사용판의 동일 파일: 최초 단계별 커밋과 구현 시작 뒤 재계획의 같은 구현 커밋을 구별하는 기존 문구 정정.
 - docs/research/sdlc-documentation/spec-plan-activation/** (new), docs/experiments/datasets/v6/** (new),
   docs/experiments/0024-spec-plan-activation.md (new), docs/experiments/README.md: 실행 입력·후속 사실·설치/리뷰/실험 근거.
 - docs/verification/north-star-playbook.html: 통과한 실제 관측의 기존 관련 주석만 보강.
@@ -40,6 +41,13 @@ root는 PERSONA의 HUMAN으로 질문에 실제 답하고 산출물을 읽어 in
 완성 코드의 공개/중단을 확인한다. cleanup은 모의 조건과 범위를 구분해 필요하면 같은 실행의 짧은 후속으로 확인한다.
 제품 코드는 root가 대신 구현하지 않는다. 중요한 자발적 동기화 실패는 복구와 새 시험을 구분한다.
 기본 60분/12 HUMAN 턴의 한 실행을 기준으로, 초과나 재실험이 필요하면 실제 사유·범위와 모델 조건을 기록한다.
+
+실행 중 조정: 첫 JSON 변경은 spec/plan을 자발적으로 갱신했지만 plan을 별도 커밋했고 intent의 절대 출력 표현도
+남겼다. 현재 제품은 HUMAN 리뷰 후 정정·통합하고 최초 실패는 보존한다. 새 Opus/high 부분 실행에서도 계획을
+먼저 별도 커밋하는 관측이 반복되어, 독립 Astra 검토로 최초 단계별 커밋과 후속 변경 규칙의 적용 범위 중첩을 확인했다.
+새 절·검사기·필수 스킬을 만들지 않고 Git 정책의 기존 두 문장을 명확히 한다. 원래 use0024는 고정한 채 후속
+use0024-r2를 파생하고, 기존 텍스트 요약 경계의 새 clone·업무 요청으로 해당 조건만 확인한다. 설치 플러그인
+소스/판은 바꾸지 않는다. 최종 판정은 각 원 실행·복구·부분 재시험을 구분하며 전체 재실행을 하지 않는다.
 
 ### 4. 검증·반영·기록
 독립 verifier가 .claude/agents/verifier.md에 따라 make check와 해당 사슬·두 인접 흐름을 확인한다.
