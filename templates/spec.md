@@ -1,17 +1,23 @@
-# Spec: ‹what is built› (from intent ‹NNNN-slug›)
+# Spec: ‹이번에 만들거나 바꿀 것›
 Upstream: intent.md@‹commit sha of the accepted intent›. Status: draft.
-Skills applied: ‹each organization skill actually read: name@sha and source path, or plugin:name@installed-version and source when Git history is unavailable; or none›.
+Skills applied: ‹실제로 읽고 적용한 팀 스킬의 이름·출처·확인한 판. 없으면 none, 판 미확인은 이유›.
+
+‹핵심 변화와 선택을 짧게 설명한다. 사람의 판단이 필요한 중요한 우려가 있으면 먼저 밝힌다.›
+
 ## Requirements
-‹R1, R2 … — each observable, each traceable to the Problem in intent.md›
-## Design
-‹the chosen structure and why; existing assets reused; data flow›
-## Constraints
-‹every constraint from intent.md, restated; then any discovered while designing›
-## Open questions from intent
-‹each question from intent.md: "answered: …" or "carried forward: … (owner)"›
-## Flagged concerns
-‹where policies conflict or cannot be satisfied — what conflicts, who decides›
-## Out of scope
-‹what this spec deliberately does not do›
+‹R1, R2 … — 바뀔 동작과 유지할 계약. 의도·제약·정책 중 어디에서 나온 것인지 불분명하면 근거를 연결한다.›
+
 ## Acceptance criteria
-‹AC1 → R1 … — an observable result per requirement›
+‹AC1 → R1 … — 조건·행동·기대 결과로 확인할 대표 성공·실패·회귀. 관련 요구를 함께 연결할 수 있다.›
+
+## Design
+‹기존 구조와의 연결, 주요 흐름과 선택 이유·영향. 중요한 계약·실패 상태는 구체화하고 구현 예시는 구별한다.›
+
+## Constraints and scope
+‹이어받은 제약과 설계에서 확인한 제한, 이번에 하지 않을 것. 이미 명시한 조건은 해당 요구를 참조해도 된다.›
+
+## Open questions
+‹intent의 각 질문을 answered: … 또는 carried forward: …로 처리하고 새 질문도 기록한다. 답의 근거나 이월 영향·담당을 적으며, 모르면 미정이라고 밝힌다.›
+
+## Flagged concerns
+‹정책 충돌이나 사람의 판단이 필요한 중요한 우려: 근거·영향·결정할 사람·해소가 필요한 시점. 없으면 살핀 범위와 함께 없음이라고 적는다.›
