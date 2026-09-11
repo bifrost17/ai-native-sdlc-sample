@@ -1,0 +1,15 @@
+$ rg -n -C 4 allowed_properties /Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py
+36-            return False, "Frontmatter must be a YAML dictionary"
+37-    except yaml.YAMLError as e:
+38-        return False, f"Invalid YAML in frontmatter: {e}"
+39-
+40:    allowed_properties = {"name", "description", "license", "allowed-tools", "metadata"}
+41-
+42:    unexpected_keys = set(frontmatter.keys()) - allowed_properties
+43-    if unexpected_keys:
+44:        allowed = ", ".join(sorted(allowed_properties))
+45-        unexpected = ", ".join(sorted(unexpected_keys))
+46-        return (
+47-            False,
+48-            f"Unexpected key(s) in SKILL.md frontmatter: {unexpected}. Allowed properties are: {allowed}",
+exit_code=0

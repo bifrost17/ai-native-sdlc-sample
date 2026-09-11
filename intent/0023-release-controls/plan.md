@@ -32,3 +32,21 @@ Upstream: spec.md@5800b05. Status: draft.
 - AC2: 실제 Claude Code 대화·분기·커밋·두 통합 결과, 기존 시험 및 OFF/ON·입력 보존·설정 전환 관측.
 - AC3: make check와 독립 verifier, 사용판 경계·파일 대응·로컬 링크·북극성 원문/기존 주석 불변 대조.
   스킬은 frontmatter와 참조를 확인한다. 예정 시험은 실행 증거와 구별한다.
+
+실행 기록(2026-09-11): root가 1차 자료와 원문을 읽고 조건부 지침을 작성했다. 최종 core
+maker 4e766f8 / adopter 787af77의 23파일을 Astra/ultra와 실제 Claude Code Fable/max가 PASS했다.
+비차단 도입 위치·출처 표기를 보완했고, Fable의 양식 byte-identical 오판도 실제 파일로 정정했다.
+[검토·전달](../../docs/research/release-controls/review-and-delivery.md).
+
+F03은 출처 footer 보강 전 사용판 f89a92a에서 초기 제품 f35b19e를 만들고 순차 작업을 파생했다.
+Sonnet/medium 네 세션·다섯 턴에서 초기 spec/plan 혼동을 HUMAN 피드백으로 수정한 뒤 새 세션에
+수락 문서를 인계했다. PR1 main 4c5bf2e는 7시험/27관측, PR2 main 2e2bd22는 10시험/36관측,
+같은 코드의 모의 공개·중단은 6관측, 정리 main f3126d1은 8시험/36관측이 통과했다. 10→8은
+수락된 R6에 따라 두 OFF 거부 시험을 퇴역시킨 것이며 나머지 회귀 계약은 유지했다.
+[실험·오류·회복·판·한계](../../docs/research/release-controls/probe/result.md).
+
+독립 1차 verifier의 make check와 스킬 검증은 통과했고 make evals는 키 없음 rc2 SKIP이다.
+원문·기존 179개 주석/등급을 보존하며 V4-08과 V12-08에 관측 범위만 추가했다. 상시 검사기·필수
+설치·실제 운영 공개는 추가하지 않았다. [최종 독립 verifier](../../docs/research/release-controls/reviews/verification/phase2.md)가
+23개 core 파일의 실제 커밋·사용판 경계·세 구현 단계·제거·원문 보존을 확인해 중요한 불일치가 없었다.
+root가 기록·색인·로컬 링크를 확인하고 로컬 반영까지 완료한다. 운영/서버 보안은 미검증 범위로 남는다.

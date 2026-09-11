@@ -18,7 +18,7 @@
 | [DORA: Trunk-based development](https://dora.dev/capabilities/trunk-based-development/) | 연구 조직의 실천 안내: 작은 변경과 잦은 통합, 짧은 브랜치 | 공개 대기 때문에 장기 기능 브랜치를 기본으로 만들지 않는다. |
 | [GitHub, How we ship with feature flags](https://github.blog/engineering/infrastructure/ship-code-faster-safer-feature-flags/) | 2021-04-27 자체 엔지니어링 사례: 직원 대상으로 미완성 기능 시험, 작은 배치, 배포 후 대상 확대/중단, 플래그 제거 | 같은 제어를 유지하고 설정을 바꾼다. 당시 사례이며 현재 GitHub 내부 구현을 확인한 것은 아니다. 규모와 자동 제거 도구까지 복제하지 않는다. |
 | [Pete Hodgson, Feature Toggles](https://martinfowler.com/articles/feature-toggles.html) | 2017-10-09 개정 작성자 글: release와 deploy 분리, 수명이 다른 토글 종류, 판단과 사용 지점 분리, 운영/다음/복구 설정 시험 | 임시 공개 제어를 상시 권한과 구별하고 필요한 OFF/ON 및 상호작용만 확인한다. 모든 조합이나 거대한 프레임워크를 요구하지 않는다. |
-| [OpenFeature Flag Evaluation API](https://openfeature.dev/specification/sections/flag-evaluation/) | 공식 규격 1.3·1.4: 호출자가 기본값을 제공하며 평가 오류 때 그 기본값 반환 | 미완성 release flag의 기본값 OFF는 우리 선택이다. 모든 종류의 플래그 OFF를 규격 의무로 오독하지 않는다. SDK 도입도 필수가 아니다. |
+| [OpenFeature Flag Evaluation API](https://openfeature.dev/specification/sections/flag-evaluation/) | 공식 규격 §1.3·§1.4: 호출자가 기본값을 제공하며 평가 오류 때 그 기본값 반환 | 미완성 release flag의 기본값 OFF는 우리 선택이다. 모든 종류의 플래그 OFF를 규격 의무로 오독하지 않는다. SDK 도입도 필수가 아니다. |
 | [Martin Fowler, Branch By Abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html) | 작성자 글: 추상화 아래 구현을 점진적으로 바꾸며 통합 유지 | 내부 교체에 적합하다. 단순 신규 기능마다 추상 계층을 만들 이유는 없다. |
 | [Martin Fowler, Keystone Interface](https://martinfowler.com/bliki/KeystoneInterface.html) | 작성자 글: 기능으로 들어가는 인터페이스를 늦게 제공하는 대안 | 호출 경계가 실제로 닫혀 있고 부수 효과가 없어야 한다. 메뉴만 숨기는 것으로 서버 기능 비공개를 보장하지 않는다. |
 
@@ -42,4 +42,5 @@
 [사용 지침](../../RELEASE-CONTROL.md)을 기존 GitHub Flow·PR 크기·spec/plan·선택 스킬·리뷰에 연결한다.
 기존 F02의 두 독립 기능은 각각 완성 후 공개할 수 있었으므로 역사 기록을 바꾸지 않는다. 새 실험은 같은
 작은 데이터를 사용하되 목록+집계가 **한 공개 단위**라는 다른 입력을 명시한다. 실행 결과·독립 리뷰·전달
-판정은 이 폴더의 후속 기록에 남긴다. 로컬 CLI 관측은 서버 권한·운영 배포 검증을 대신하지 않는다.
+판정은 [독립 리뷰·전달](review-and-delivery.md)과 [실험 결과](probe/result.md)에 남겼다.
+로컬 CLI 관측은 서버 권한·운영 배포 검증을 대신하지 않는다.

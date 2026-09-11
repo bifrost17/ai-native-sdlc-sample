@@ -1,0 +1,450 @@
+{
+  "stage": "pr2",
+  "head": "2e2bd2272bf483e9e7580dbffe6e89cb07c32178",
+  "source_sha256": "afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567",
+  "fixture_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+  "git_status_before_after": "",
+  "observations": [
+    {
+      "flag": null,
+      "arguments": [
+        "list"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": null,
+      "arguments": [
+        "show",
+        "R-102"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-102\topen\tmin\t문구함 채우기\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": null,
+      "arguments": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner hana\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": null,
+      "arguments": [
+        "summary"
+      ],
+      "missing_data": true,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": null,
+      "arguments": [
+        "list",
+        "--owner=hana"
+      ],
+      "missing_data": true,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner=hana\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "0",
+      "arguments": [
+        "list"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "0",
+      "arguments": [
+        "show",
+        "R-102"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-102\topen\tmin\t문구함 채우기\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "0",
+      "arguments": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner hana\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "0",
+      "arguments": [
+        "summary"
+      ],
+      "missing_data": true,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "0",
+      "arguments": [
+        "list",
+        "--owner=hana"
+      ],
+      "missing_data": true,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner=hana\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "bad",
+      "arguments": [
+        "list"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "bad",
+      "arguments": [
+        "show",
+        "R-102"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-102\topen\tmin\t문구함 채우기\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "bad",
+      "arguments": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner hana\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "bad",
+      "arguments": [
+        "summary"
+      ],
+      "missing_data": true,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "bad",
+      "arguments": [
+        "list",
+        "--owner=hana"
+      ],
+      "missing_data": true,
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner=hana\n",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "list"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "show",
+        "R-102"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-102\topen\tmin\t문구함 채우기\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t4\nopen\t3\ndone\t1\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t2\nopen\t1\ndone\t1\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "TrUe",
+      "arguments": [
+        "list"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "TrUe",
+      "arguments": [
+        "show",
+        "R-102"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-102\topen\tmin\t문구함 채우기\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "TrUe",
+      "arguments": [
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "TrUe",
+      "arguments": [
+        "summary"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t4\nopen\t3\ndone\t1\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "TrUe",
+      "arguments": [
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t2\nopen\t1\ndone\t1\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "list",
+        "--owner",
+        "nobody"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        "nobody"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t0\nopen\t0\ndone\t0\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "list",
+        "--owner",
+        "HANA"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        "HANA"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t0\nopen\t0\ndone\t0\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "list",
+        "--owner",
+        "-"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        "-"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t0\nopen\t0\ndone\t0\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "list",
+        "--owner",
+        ""
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        ""
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t0\nopen\t0\ndone\t0\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        "min"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t1\nopen\t1\ndone\t0\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    },
+    {
+      "flag": null,
+      "arguments": [
+        "complete",
+        "R-101"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "R-101\tdone\thana\t회의실 키 확인\n",
+      "stderr": "",
+      "input_bytes_preserved": false
+    },
+    {
+      "flag": "1",
+      "arguments": [
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "missing_data": false,
+      "rc": 0,
+      "stdout": "all\t2\nopen\t0\ndone\t2\n",
+      "stderr": "",
+      "input_bytes_preserved": true
+    }
+  ],
+  "passed": 36,
+  "source_and_fixture_unchanged": true
+}

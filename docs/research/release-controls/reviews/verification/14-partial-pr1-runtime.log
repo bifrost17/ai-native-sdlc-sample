@@ -1,0 +1,52 @@
+$ partial PR1 verification at exp/f03-owner@3fefacd
+HEAD=3fefacd1b177f706850774d9e3f00a684b4350e9
+STATUS_BEFORE=
+TRACKER_SHA_BEFORE=be28924a9b12d8827e912949e0502489a514c6b42751ae5d3ebad197a473000c  tracker.py
+REQUESTS_SHA_BEFORE=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795  requests.json
+$ python3 -m unittest discover -s tests -v
+test_off_baseline_commands_unaffected (test_owner.OwnerFilterTests) ... ok
+test_off_rejects_owner_option_and_summary (test_owner.OwnerFilterTests) ... ok
+test_on_no_match_is_empty_and_read_only (test_owner.OwnerFilterTests) ... ok
+test_on_owner_filter_exact_match_and_order (test_owner.OwnerFilterTests) ... ok
+test_complete_changes_only_target_status_and_is_repeatable (test_tracker.ExistingTrackerTests) ... ok
+test_list_preserves_order_and_does_not_write (test_tracker.ExistingTrackerTests) ... ok
+test_show_existing_and_missing_id (test_tracker.ExistingTrackerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.463s
+
+OK
+tests_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data requests.json list
+R-101	open	hana	회의실 키 확인
+R-102	open	min	문구함 채우기
+R-103	done	hana	회의록 정리
+R-104	open	-	책장 위치 확인
+off_list_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data requests.json show R-102
+R-102	open	min	문구함 채우기
+off_show_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data /definitely/missing.json list --owner hana
+usage: tracker.py [-h] [--data DATA] {list,show,complete} ...
+tracker.py: error: unrecognized arguments: --owner hana
+off_direct_owner_missing_data_exit_code=2
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data /definitely/missing.json summary
+usage: tracker.py [-h] [--data DATA] {list,show,complete} ...
+tracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')
+off_direct_summary_missing_data_exit_code=2
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data requests.json list --owner hana
+R-101	open	hana	회의실 키 확인
+R-103	done	hana	회의록 정리
+on_owner_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data /definitely/missing.json summary
+usage: tracker.py [-h] [--data DATA] {list,show,complete} ...
+tracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')
+on_summary_absent_exit_code=2
+$ TRACKER_OWNER_INSIGHTS=yes python3 tracker.py --data /definitely/missing.json list --owner hana
+usage: tracker.py [-h] [--data DATA] {list,show,complete} ...
+tracker.py: error: unrecognized arguments: --owner hana
+invalid_value_owner_exit_code=2
+TRACKER_SHA_AFTER=be28924a9b12d8827e912949e0502489a514c6b42751ae5d3ebad197a473000c  tracker.py
+REQUESTS_SHA_AFTER=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795  requests.json
+STATUS_AFTER=
+exit_code=0

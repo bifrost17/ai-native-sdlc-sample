@@ -627,6 +627,7 @@ Do third-party loss adjusters need access too?
 <p><b>보완</b> 템플릿 문면은 충실. 검증 공백은 실험 설계 쪽 — 반영 #46(8350fc1): <code>docs/RUNS.md</code>(실험 핀)에 「L4 317 미측정 — 구현 턴이 plan 세션을 resume 했다 · 다음 회차는 구현 턴을 새 세션으로 plan.md 만 주고 시작」을 기록. 실제로 잴 때까지 <b>부분</b>.</p>
 <p><b>0015 사용판 · 문서 검토 통과, 실제 별도 구현 미관측</b> 대화를 전달하지 않은 Astra·ultra 검토자가 공개 파일과 계획만 읽고 핵심 변경·검증을 실행하기에 충분하다고 판단했다. 실제 구현자는 같은 Claude 세션을 이어갔으므로 이 문단의 ‘대화를 못 본 구현’은 여전히 확인하지 않았다. <b>부분을 유지</b>하고 재현을 위해 절차나 집행 장치를 더하지 않는다. <a href="../experiments/0015-f01-pilot.md">근거와 한계</a>.</p>
 <p><b>0022 plan 양식 · 새 세션 구현 관측</b> 네 절의 파일·작업 결과·검증 연결과 필요한 PR 상세를 보완했다. Astra/ultra와 실제 Claude Code Fable/max가 같은 최종 23파일 후보를 PASS했다. F02에서 계획 세션 e66d9410의 대화를 전달하지 않고 plan과 선언된 문서·현재 코드/정책을 새 구현 세션 dbd35e85에 주자 첫 기능을 구현해 8시험이 통과했다. HUMAN의 인계 점검 질문 뒤 문서 branch 기준을 보완한 과정과 구현 후 plan 설명 누락은 별도로 남겼다. 새 문맥의 작은 구현 관측이며 모든 사람 독자·전체 SDLC 성공으로 확대하지 않는다. 기존 부분 판정을 유지한다. <a href="../research/sdlc-documentation/plan-design/probe/README.md">입력·대화·판과 한계</a>.</p>
+<p><b>0023 릴리스 제어 · 부분 통합과 공개 구분</b> spec의 공개 계약을 plan의 PR별 실행/일반·테스트 노출 상태와 연결했다. F03의 첫 초안에서 부분 테스트와 일반 공개를 혼동한 문구는 HUMAN 리뷰 후 개정했다. 수락된 문서를 새 Sonnet 세션에 인계해 PR1 목록과 PR2 집계를 순차 통합했고 같은 제어를 재사용했다. 각 실제 main에서 7/10시험과 독립 27/36동작 확인을 통과했다. 조건부 지침의 작은 관측이며 무오류 작성이나 전체 SDLC 성공을 뜻하지 않는다. <a href="../research/release-controls/probe/README.md">F03 입력·대화·판과 한계</a>.</p>
 </div></details>
 <li>승인된 계획을 <code>plan.md</code>로 commit하라. 그 계획은 audit trail에 합류하고, PR review play(<strong>Stage 5: Deploy</strong>)가 최종 diff를 그것과 대조한다.</li>
 <details class="verify v-ok" open id="V4-09"><summary>▸ <a class="vid" href="#V4-09">V4-09</a> · 검증 · <b>충실</b> — <span class="q">5 — 승인된 계획을 plan.md 로 commit · PR review 가 diff 를 대조</span></summary><div class="v-body">
@@ -1681,6 +1682,7 @@ exit 0
 <p><b>템플릿</b> prod gate ✓: <code>production-gate.sh</code> 가 「production」 배포만 <code>RELEASE_APPROVAL</code> 을 요구하고 staging 은 통과시킨다 — <code>tests/test_hooks.sh</code> 의 세 케이스(unapproved prod 차단 · approved prod 통과 · staging 통과). 환경별 배포 권한 자체(dev/staging 도구)는 없다.</p>
 <p><b>실험</b> 훅 단위의 등급은 시험으로 매 PR 실측. 실제 배포 등급은 인프라 몫.</p>
 <p><b>보완</b> 없음 — gate 는 충실, 등급의 나머지는 팀 몫. <b>부분</b>.</p>
+<p><b>0023 팀의 기능 공개 제어 보완</b> 배포와 기능 공개를 구분하고, 미완성 공개 단위는 일반 OFF·테스트 ON으로 통합한 뒤 담당자가 설정으로 공개하도록 안내했다. release flag는 원문의 의무가 아닌 팀의 구현 선택이다. 실제 F03 main <code>2e2bd22</code>에서 소스·HEAD를 고정하고 두 명령을 OFF→ON→OFF로 전환한 여섯 로컬 관측이 통과했다. 서버 권한·운영 배포·실제 안정화 기간은 검증하지 않았으며 기존 부분 판정은 유지한다. <a href="../research/release-controls/README.md">조사와 적용</a> · <a href="../research/release-controls/probe/release-decision.md">모의 공개 결정</a>.</p>
 </div></details>
 <li>롤백은 pipeline에서 가장 많이 리허설한 경로, 즉 agent가 실행할 수 있고 스테이징에서 정기적으로 돌려 보는 명령 하나여야 한다. loop 닫기 play(<strong>Stage 6: Maintain</strong>)가 control band를 벗어났을 때 이 롤백을 호출하므로, 롤백은 미리 증명되어 있어야 한다.</li>
 <details class="verify v-team" open id="V12-09"><summary>▸ <a class="vid" href="#V12-09">V12-09</a> · 검증 · <b>팀 몫(미검증)</b> — <span class="q">6 — 롤백은 명령 하나, 스테이징에서 정기 리허설</span></summary><div class="v-body">

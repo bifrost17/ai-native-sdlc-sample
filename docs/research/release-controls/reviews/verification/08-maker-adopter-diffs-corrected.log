@@ -1,0 +1,245 @@
+$ corrected maker/adopter delivered-file semantic diff
+--- REVIEW.md	2026-09-11 14:08:48
++++ /Users/jake/Projects/ai-native-sdlc-use-0023/REVIEW.md	2026-09-11 14:09:53
+@@ -1,38 +1,24 @@
+-# Review instructions
++# 리뷰 지침
+ 
+-<!-- L11 776-789: the playbook's REVIEW.md, cut to this repo. L11 762: "Findings do not approve or
+-block a PR on their own" — the product owner merges. -->
++변경의 intent, spec, plan과 실제 diff, 검증 근거를 함께 읽는다. 다음 세 관점에서 동작에 영향을 주는
++발견을 설명하고 해당 파일이나 요구사항, 재현 방법을 가리킨다.
+ 
+-<!-- TEAM: add a design-principles pass if wanted, and real CODEOWNERS people — docs/ADOPTING.md · L21 -->
+-## Passes
+-Run three passes and tag each finding with its pass:
+-- Bugs: logic errors, broken edge cases, subtle regressions — in hooks and scripts, a case the
+-  test file does not cover.
+-- Security: secrets in the diff, PII in logs, a hook that fails open when `jq` is missing.
+-- Compliance: the change matches spec.md and plan.md of its chain under `intent/` for this PR's
+-  declared slice; future PR work is not missing from this slice. When release is controlled, check
+-  the declared ordinary/test exposure and effect boundaries against docs/RELEASE-CONTROL.md;
+-  partial verification or merge does not approve general release. Also check the
+-  boundary in docs/BOUNDARY.md — code that checks artifact form, status or transitions does
+-  not belong here. A code file under `.claude/hooks/`, `scripts/`, `evals/` whose header cites no
+-  lesson sentence is a compliance finding; `src/` and `tests/` cite their spec clause instead.
+-  In a defect chain, a diff that touches an existing test file is a finding (L9 631: "check the
+-  diff in review and reject any change that touches a test") — the hook only sees Edit/Write.
++- **Bugs** — 잘못된 결과, 경계 조건, 기존 동작의 회귀. 관측한 사실과 추정을 구분한다.
++- **Security** — 프로젝트가 정한 인증·권한·민감 데이터·외부 접근 정책에 어긋나는 동작.
++- **Policy and scope** — 요구·설계와 계획의 일치, 범위를 벗어난 변경, 미결 정책 충돌의 처리.
+ 
+-## What Important means here
+-Reserve Important for findings that would break behavior, leak data or breach a policy —
+-including the boundary above. Style and naming are nits.
++[PR 크기 가이드](docs/PR-SIZE.md)와 [GitHub Flow 정책](docs/GIT-WORKFLOW.md)에 따라 묶음의 목적,
++선행 관계, 부분 완료 범위와 최신 통합 상태의 정상 동작을 확인한다. 줄 수만으로 반려하지 않는다.
++공개를 제어하는 변경은 [공개 제어](docs/RELEASE-CONTROL.md)에 따라 일반/테스트 대상의 노출과
++직접 호출·부수 효과 경계도 확인한다. 부분 검증이나 merge가 일반 공개 수락을 대신하지 않는다.
++구현이 계획에서 벗어났다면 이유와 `plan.md` 갱신이 해당 구현 커밋에 함께 있는지 확인한다.
++후속 요청에서 합의한 변경이 spec의 요구·수용 기준과 plan의 구현·검증 계획에 반영됐는지 대조한다.
++코드와 시험이 맞아도 필요한 설계·계획 갱신이 빠졌다면 중요한 미해결 발견으로 남긴다.
+ 
+-## Cap the nits
+-Report at most five nits per review; summarize the rest as a count.
++기존 테스트를 약화하거나 생략해 실패를 숨긴 변경은 지적한다. 테스트 자체가 잘못됐다는 주장은
++요구사항과 근거를 제시하고 사람이 별도로 판단하게 한다. 사소한 표현 문제보다 실제 동작과 정책
++위반을 우선하며, 확인할 수 없었던 사항은 그 이유를 적는다.
+ 
+-## Do not report
+-Anything `make check` already fails on, and the record chain `intent/0001-bootstrap-repo/`
+-(history, not a target).
+-
+-## What findings do
+-Findings inform; they neither approve nor block. The product owner approves by merging.
+-Post findings on the PR as review comments — the PR is the audit record (L11 766); a finding
+-handed over in a prompt leaves only the reply in the thread (chain 0008, PR #33).
+-A mistake flagged for the second time goes into `CLAUDE.md` as a correction (L5 401, L11 745) —
+-chain 0008's three repeat findings became PR #35.
++발견에는 영향, 근거, 필요한 수정 또는 결정자를 담는다. 해결된 발견은 수정과 재검증 근거로 연결한다.
++검토 의견이나 자동 검사 통과만으로 승인됐다고 쓰지 않는다. 팀이 정한 검토자가 검토하고,
++프로젝트 정책에 정한 위치에 결정을 기록하고 PR을 통합한다. 단계 문서의 수락은 최종 머지와 구분한다.
+--- templates/spec.md	2026-09-11 14:08:48
++++ /Users/jake/Projects/ai-native-sdlc-use-0023/templates/spec.md	2026-09-11 14:10:14
+@@ -1,6 +1,6 @@
+ # Spec: ‹이번에 만들거나 바꿀 것›
+ Upstream: intent.md@‹commit sha of the accepted intent›. Status: draft.
+-Skills applied: ‹실제로 읽고 적용한 팀 스킬의 이름·출처·확인한 판. 없으면 none, 판 미확인은 이유›.
++References applied: ‹실제로 사용한 관련 정책·자료·선택한 팀 스킬의 출처와 확인한 판. 없으면 none, 판 미확인은 이유›.
+ 
+ ‹핵심 변화와 선택을 짧게 설명한다. 사람의 판단이 필요한 중요한 우려가 있으면 먼저 밝힌다.›
+ 
+--- .claude/skills/design-spec/SKILL.md	2026-09-11 14:09:19
++++ /Users/jake/Projects/ai-native-sdlc-use-0023/examples/skills/design-spec/SKILL.md	2026-09-11 14:10:03
+@@ -1,101 +1,48 @@
+ ---
+ name: design-spec
+-description: Turns an accepted intent into a combined requirements and design spec, or revises that spec when facts and decisions change. Uses the organization's applicable skills, preserves constraints and questions, and makes behavior, design choices, acceptance criteria and material concerns reviewable by people and agents. Leaves implementation planning and approval to their own stages.
++description: Explicitly selected example for creating or revising a combined requirements and design spec with observable behavior, preserved contracts, design rationale, acceptance criteria and material concerns.
++disable-model-invocation: true
+ ---
+-# Design spec
++# 요구·설계 작성 예시
+ 
+-> L3 245: "Once the product owner approves the intent.md, Claude takes it and produces a
+-> requirements and design spec. This is guided by the organization's skills for brand, security,
+-> compliance, and UX."
+-> L3 270: "Does the spec solve the stated problem, and are the open questions from intent.md
+-> answered or carried forward?"
+-> L3 276: "A human teammate always makes this call, and accepting the spec is what starts the
+-> plan mode play"
++팀이나 사용자가 이 예시를 선택했을 때 사용한다. 대상 `intent.md`와 `PROJECT-POLICY.md`를 읽고,
++프로젝트가 정한 통합 대상과 실제 승인 판을 확인한다. `Status: draft.`만으로 미승인이라고 판단하지
++않으며, 예전 판의 승인을 현재 수정본의 승인으로 오인하지 않는다. 이미 받은 수락은 사용한다.
++초안에서 진행하도록 허용한 지시가 있다면 누가 어떤 범위를 왜 허용했는지 기록한다.
+ 
+-## Before writing
+-1. Open the intended chain's `intent.md` and identify the accepted revision from the project's
+-   actual acceptance record. `Status: draft` is not an approval test: merge records approval.
+-   An older revision on main does not approve newer branch or working-tree changes. Use an
+-   acceptance already supplied; ask only when the required acceptance is missing or unclear.
+-   An engineer may authorize work on a draft, including stacked work. In that case record who
+-   authorized which scope and why directly below the Upstream/Status line and in the PR body.
+-   This permission is not a fabricated merge. Otherwise wait for acceptance before authoring the spec.
+-2. Read the relevant existing code, interfaces, tests and design references. Understand the changed
+-   path and its important neighbors; do not reverse-specify the whole product. Distinguish observed
+-   facts from assumptions. If essential context is unavailable, expose the gap and its effect.
+-3. Find the applicable team skills in the project's local skills and the session's loaded plugin
+-   catalog. A source directory is not proof of installation. Open each applicable skill's actual
+-   body before applying it; record selection and meaningful exclusions with reasons. If this team's
+-   `spec-policy-pass` procedure is available, read and apply it alongside this authoring skill.
+-   Keep its findings in the relevant requirements/design/concerns, not only a list of names.
+-   Record the source and verified version under `Skills applied`; use `none` or an explicit
+-   limitation when appropriate. For Git, cache or uncommitted versions, use
+-   [the provenance reference](references/skill-provenance.md). Do not invent versions or policy values.
+-4. Keep line 2 as `Upstream: intent.md@<actual-revision>. Status: draft.` and leave it draft.
+-   The upstream identifies what you used; a draft exception does not turn it into accepted input.
+-   Keep the originating prompt and applied skill versions with the versioned spec/PR record (L3 279).
++관련 코드·기존 계약·시험을 읽고 실제 상태와 가정을 구별한다. `templates/spec.md`의 여섯 구획으로
++같은 변경 폴더에 `spec.md`를 쓴다. 앞에는 핵심 변화·선택과 사람이 먼저 판단할 우려를 짧게 설명한다.
+ 
+-## Writing
+-Use `templates/spec.md` in the chain beside intent.md. Write in the originator's language and
+-retain the six English section names. Brief prose, bullets and tables are all valid. Start with
+-the important change and choice; put a concern needing human decision up front when one exists.
++- Requirements: 바뀔 동작과 중요한 보존 계약에 R 이름을 붙이고 의도·제약·정책과 연결한다.
++  intent에 담긴 해결 제안의 목적을 이해하고 실제 설계 선택·근거와 구별한다.
++- Acceptance criteria: AC를 관련 R과 연결하고 대표 성공·실패·회귀의 조건과 기대 결과를 쓴다.
++  하나의 기준이 여러 요구를 확인할 수 있다. R 문장을 그대로 반복하거나 수치를 만들어 넣지 않는다.
++- Design: 기존 구조·흐름과 주요 계약, 선택 이유·의미 있는 대안이나 단점을 설명한다.
++  구현 예시와 확정 계약을 구별한다. 내부 함수명·파일별 순서·실행 명령은 필요 없이 고정하지 않는다.
++  이행·API·공개 대상 전환·공유 상태처럼 상세가 필요한 경우에만 [설계 깊이 참고](references/design-depth.md)를 읽는다.
++- Constraints and scope: 의도의 제약·제외 범위를 빠뜨리지 않는다. 이미 명확한 R은 참조할 수 있다.
++  현재 환경 사실을 확인받지 않은 금지 조건으로 바꾸지 않는다.
++- Open questions: 기존 질문을 answered 또는 carried forward로 처리하고 새 질문도 담는다.
++  실제 답의 근거, 이월 영향·필요 시점·답할 사람을 적는다. 모르면 담당 미정이라고 밝힌다.
++- Flagged concerns: 정책 충돌과 사람의 판단이 필요한 중요한 우려에 근거·영향·결정자를 적는다.
++  이미 설계에 반영한 일반적인 위험을 모두 새 승인 관문으로 만들지는 않는다.
+ 
+-- **Requirements**: name the changed behavior and important preserved contracts with R identifiers.
+-  Ground them in the intent, confirmed constraints or applicable policy, not only the Problem
+-  paragraph. Clarify the outcome beneath a proposed solution before turning it into a design choice.
+-  User-visible behavior, system invariants and supported quality requirements can all be verifiable.
+-- **Acceptance criteria**: link AC identifiers to the R identifiers they cover. Use representative
+-  conditions, actions and expected results, including material failure and neighboring behavior.
+-  One criterion may cover several requirements and a requirement may need several cases. Avoid
+-  merely repeating every R as an AC or inventing numerical success targets. Manual observation
+-  can be appropriate; concrete test files, commands and task order belong in plan.md.
+-- **Design**: explain the selected approach, existing assets reused, important interfaces and flow,
+-  and why significant choices fit this change. Include a credible alternative or accepted drawback
+-  when it clarifies a real decision. No fixed number of alternatives. Separate binding contracts
+-  from illustrative names/code; leave incidental implementation choices to planning and implementation.
+-  Add detail when changing it could change acceptance or implementation direction. For API/UI,
+-  migration, staged exposure, performance or shared boundaries, consult [conditional depth](references/design-depth.md)
+-  when relevant; do not add every heading from it to every spec.
+-- **Constraints and scope**: preserve every upstream limit and explicit exclusion. State discovered
+-  constraints with their basis. Refer to an already clear R/design clause instead of duplicating its
+-  text. Current environment facts and unconfirmed preferences are not automatically new prohibitions.
+-- **Open questions**: account for every intent question, retaining supplied identifiers, and add new
+-  material questions found during design. `answered:` needs an actual answer and its basis; an agent's
+-  unconfirmed assumption is not a human answer. `carried forward:` says what is unknown, its impact
+-  and who can answer, or that the owner is unassigned. Explain why it can wait and when it is needed.
+-- **Flagged concerns**: expose policy conflicts and material issues needing human decision, with
+-  evidence, consequence and the responsible person/role when known. Do not invent an owner or
+-  resolve a policy conflict yourself. An addressed technical risk can stay in Design/AC; it need
+-  not become a new approval gate. No important concern is a valid result with the scope examined.
++팀이 정한 관련 정책과 자료를 실제로 읽고 적용한다. 읽지 않은 자료를 적용했다고 쓰거나 확인할 수
++없는 판을 지어내지 않는다. `References applied`에 실제 출처와 확인한 판 또는 미확인 이유를 쓴다.
++작성에 사용한 요청과 자료의 판도 spec·PR·보존 대화의 기존 기록에 함께 남긴다.
++팀이 스킬을 선택해 두었다면 필요한 작업에 활용할 수 있다. 특정 스킬 설치는 이 양식의 조건이 아니다.
++정책 충돌, 빈 정책 값, 확인하지 못한 사실과 가정은 근거·영향·결정자를 붙여 우려로 기록한다.
++양쪽 정책의 충돌을 임의로 승인하거나 조용히 해소하지 않는다.
+ 
+-If an unanswered question could invalidate the selected design, or a policy conflict remains,
+-bring it to the product owner and relevant owner before handing it to planning. A name under
+-`carried forward` is not resolution. A draft can expose incomplete decisions honestly without
+-claiming readiness. Use decisions already given and reflect them; do not ask for approval twice.
++요구·설계를 바꿀 미결 질문이나 정책 충돌은 사람이 해소하기 전 계획에 넘기지 않는다. 담당자 이름을
++붙인 이월은 해소가 아니다. 중요한 우려가 없으면 살핀 범위와 함께 없음이라고 적을 수 있다.
++검토자에게 intent와 spec을 함께 넘겨 문제를 푸는지, 질문이 답을 얻거나 적절히 이어졌는지 확인하게 한다.
+ 
+-When useful, read one complete synthetic example: [small feature](examples/feature/spec.md),
+-[precise bug fix](examples/bug/spec.md), or [migration with a discovered consumer](examples/migration/spec.md).
+-Each has its input and context beside it. Their facts, constraints and choices are not project defaults.
++답이나 설계가 바뀌면 관련 R·AC·Design·제약을 고치고 질문/우려에도 반영한다. 변경 메모만으로
++현재 계약을 대신하지 않는다. 실행·검증이 달라지는 기존 plan과 목적·제약이 바뀌는 intent도
++프로젝트의 갱신 절차에 따라 맞추고, 영향 없는 문서는 그대로 둔다. 승인된 상류 판 참조를 사용한다.
+ 
+-## Review question
+-Show the spec beside the intent and ask the product owner the lesson's question, verbatim:
+-"Does the spec solve the stated problem, and are the open questions from intent.md answered or
+-carried forward?"
+-
+-The product owner decides whether to proceed, resolving flagged concerns with the relevant owner
+-and involving a tech lead where the organization considers the change high risk. A model review
+-does not grant this acceptance.
+-
+-## When the design changes
+-Put material answers and revised behavior/choices into the affected requirements, design,
+-constraints and acceptance criteria; update the question or concern too. A discussion appendix
+-alone does not change the contract. Preserve the reason in the relevant text and Git history.
+-Align an existing plan when its execution/verification changes, and revisit intent if its purpose
+-or constraints changed. Use the project's feedback procedure; update affected upstream references
+-to the supplied accepted revision. Leave unaffected documents alone. Do not build a new state ledger.
+-
+-## What this skill does not do
+-- Does not proceed without accepted intent or the explicitly recorded draft authorization above.
+-- Does not create plan.md — initial planning follows the product owner's acceptance of the spec.
+-  Changes to an existing plan follow the project's feedback procedure.
+-- Does not set the spec to accepted. The product owner signs off; the merge records it.
++필요할 때만 완성 예시와 그 옆 입력을 읽는다: [작은 기능](examples/feature/spec.md),
++[정밀한 버그](examples/bug/spec.md), [이행과 소비자 발견](examples/migration/spec.md).
++합성 사례의 사실·선택·제약은 새 프로젝트의 기본값이 아니다.
++이 작업으로 새 구현 계획이나 코드를 만들거나 spec을 승인하지 않는다.
+--- .claude/skills/plan/SKILL.md	2026-09-11 14:08:48
++++ /Users/jake/Projects/ai-native-sdlc-use-0023/examples/skills/plan/SKILL.md	2026-09-11 14:09:53
+@@ -1,14 +1,11 @@
+ ---
+ name: plan
+-description: Turns accepted requirements and design into an implementation plan before code changes, or revises that plan when execution changes. Reads real files, connects work and PR boundaries to proof, and iterates with the engineer for a handoff that stands without the conversation. Does not approve the plan.
++description: Explicitly selected workflow example that turns accepted requirements and design into an implementation plan before code changes, or revises that plan when execution changes. Reads real files, connects work and PR boundaries to proof, and iterates with the engineer for a handoff that stands without the conversation. Does not approve the plan.
++disable-model-invocation: true
+ ---
+ # Plan
+ 
+-> L4 317: "The engineer gives Claude the intent.md and the spec.md and asks for an implementation
+-> plan that names the files that change, the order of the work, and the tests that prove it."
+-> L4 321: "Iterate until an engineer who has never seen the conversation could implement the
+-> change from the plan alone."
+-> L4 329: "When implementation departs from the plan, update plan.md in the same commit."
++이것은 팀이 선택해 읽거나 채택할 작성 예시다. 설치된 기능이나 필수 외부 스킬이 아니다.
+ 
+ ## Read before writing
+ Read the change's intent.md, spec.md and the actual code, checks and relevant project policies.
+@@ -38,9 +35,7 @@
+ 
+ For defects, add the regression test, observe failure for the expected reason and commit it before
+ the fix; then make it pass without weakening it. Other changes use the appropriate baseline and
+-feedback loop. In this maker repo, write and commit the reproduction test before the engineer starts
+-the fix session with INTENT_TASK=fix: the hook also blocks creating new tests while that mode is on.
+-Do not enable fix mode for ordinary features. When using mutation checks, restore saved original
++feedback loop. Use the project's actual test-protection setup when it has one. When using mutation checks, restore saved original
+ bytes rather than discarding unrelated uncommitted work.
+ 
+ For multi-PR, parallel or operational changes, read [conditional guidance](references/execution-depth.md).
+exit_code=0 (diff differences printed; each diff intentionally allowed to continue)
