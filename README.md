@@ -117,9 +117,11 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 사용 템플릿의 고정 커밋에서
 시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
 계획에서 정한 PR 단위로 실험 통합 브랜치에 합치며 그 브랜치를 제작 `main`으로 머지하지 않는다.
-현재 사용 후보는 `codex/use-template-0024@fbc23c0`다. 직전 `0023@787af77`에서 파생해
-상세 spec·plan 양식, 구체적 다섯 작성 예시와 얇은 TDD 정책을 반영했다.
-[활성화·설치·제품 실험 기록](docs/research/sdlc-documentation/spec-plan-activation/README.md)에서 실제 완료 범위를 확인한다.
+현재 사용 후보는 `codex/use-template-0024-r2@d4d2153`다. `0023@787af77`에서 파생한
+`0024@fbc23c0`의 상세 spec·plan 양식, 다섯 작성 예시와 얇은 TDD 정책을 유지하고,
+최초 문서 작성과 구현 중 계획 개정의 커밋 범위를 명확히 했다.
+팀 플러그인 0.1.5 영구 설치와 실제 CLI의 두 PR 개발·통합 및 후속 JSON 변경을 실험했다.
+[완료 범위·실패와 재시험](docs/experiments/0024-spec-plan-activation.md)에서 근거와 한계를 확인한다.
 기존 양식의 [기능 공개 제어](docs/RELEASE-CONTROL.md)를 이어 유지한다.
 미완성 기능은 일반 OFF·테스트 ON으로 통합하며 공개는 별도 결정한다.
 [조사·설계 판단](docs/research/release-controls/README.md)과 [두 PR 공개 실험](docs/research/release-controls/probe/README.md)에
