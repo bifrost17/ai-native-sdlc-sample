@@ -13,6 +13,9 @@ Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합
 | [design/storage.md](design/storage.md) | 데이터 스키마·원자성·동시성·import/export 계약 |
 | [design/operations.md](design/operations.md) | 중지·전환·복구·재개 조건 |
 
+제품 docs/operations.md는 위 조건을 실행하는 실제 호스트 명령·경로·리허설 절차를 소유한다.
+조건의 정본은 design/operations.md이며, 운영 명령을 이 spec에 중복 복사하지 않는다.
+
 중요 결정을 요약과 상세에 중복 정의하지 않는다. 예를 들어 저장 필드 제약의 정본은 storage.md다.
 어느 문서만 바뀌어도 spec 집합 변경이며 관련 구현과 같은 커밋에서 영향받는 문서와 plan을 갱신한다.
 

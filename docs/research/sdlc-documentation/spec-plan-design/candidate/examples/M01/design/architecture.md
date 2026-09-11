@@ -30,14 +30,14 @@ classDiagram
   class Request {
     +str id
     +str title
-    +str owner_or_null
+    +Optional~str~ owner
     +str status
   }
   SQLiteStore ..> Request : 반환
 ```
 
-Request는 런타임에 기존 dict이며 별도 도메인 클래스 생성 요구가 아니다. 그림의 owner_or_null은
-설명 표기이고 실제 키는 owner다. list는 별도 dict들의 원순서 목록, complete는 완료된 행 dict를 반환한다.
+Request는 런타임에 기존 dict이며 별도 도메인 클래스 생성 요구가 아니다. Optional[str] owner는
+문자열 또는 null을 뜻한다. list는 별도 dict들의 원순서 목록, complete는 완료된 행 dict를 반환한다.
 외부에 연결/트랜잭션 객체를 넘기지 않는다. 호출 단위 연결을 열고 닫아 스레드 간 연결을 공유하지 않는다.
 실제 필드/제약은 [storage](storage.md)가 정본이다.
 
@@ -59,5 +59,7 @@ flowchart TB
 ```
 보고서와 서비스는 별도 실행 주체라 중지 때 둘 다 확인한다. config의 기본 backend=json을 유지하며
 sqlite는 명시 선택한다. 알 수 없는 backend·사용 불가 DB에서 JSON으로 자동 fallback하지 않는다.
-backend와 path는 서비스 시작 시 읽고, 잘못된 선택은 시작 실패로 드러낸다. 실제 설정 키 이외의 호스트
+backend와 path는 서비스 시작 시 읽고, sqlite 선택은 이미 존재하는 DB만 열어 user_version=1과
+storage.md의 필수 테이블/열·제약을 확인한 뒤 수락한다. 경로 누락·잘못된 스키마/버전·열기 실패는
+새 빈 DB를 생성하거나 JSON으로 돌아가지 않고 시작 실패로 드러낸다. 실제 설정 키 이외의 호스트
 경로/서비스 관리 명령은 Q4가 정한다. DB를 여러 호스트가 공유하는 배포는 범위 밖이다.

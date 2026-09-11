@@ -4,6 +4,7 @@ Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합
 작성 권한: 사용자가 설계 패키지 작성을 허가했다. Upstream은 제작 입력이며 제품 수락을 뜻하지 않는다.
 
 [입력](context.md). 두 구현 PR이 같은 공개 제어를 쓴다. 이 파일이 spec 정본이며 과거 실행 결과는 참고 자료다.
+팀의 [공개 제어 정책](../../../../../../RELEASE-CONTROL.md)을 이 CLI 사례에 적용한다.
 
 ## Requirements
 | ID | 변경·보존 계약 | 근거 |
@@ -45,7 +46,7 @@ stateDiagram-v2
   state "PR1: 일반 OFF / 목록 TEST ON" as Partial
   state "PR2: 일반 OFF / 목록+집계 TEST ON" as Complete
   state "같은 코드: 일반 ON" as Released
-  state "cleanup: 최종 기능" as Clean
+  state "상시 제공" as Clean
   Partial --> Complete: PR2 merge + 통합 검증
   Complete --> Released: 전체 검증 + 오너 공개 결정
   Released --> Complete: 환경 설정 OFF
@@ -54,7 +55,9 @@ stateDiagram-v2
 
 PR1의 TEST ON은 목록만 구현된 상태다. summary는 ON에서도 아직 없다. PR2부터 ON에서는 있어야 한다.
 공개 담당은 합성 업무 오너(root 역할), 환경 조작·관측은 개발 실행자다. 공개는 전체 AC1–6와
-최신 main 통합 검증 후 별도 결정한다. 일반 실행 환경에 ON을 적용/제거하고 새 CLI 프로세스로 확인한다.
+최신 main 통합 검증 후 별도 결정한다. AC6는 그 전에 개발자 프로세스와 사본에서 전환 리허설로
+확인할 수 있다. 실제 일반 실행 환경의 ON 적용/제거는 별도 결정 후 새 CLI 프로세스로 확인한다.
+이 예시의 기존 공개 기록 위치는 제품의 intent/f03-owner-insights/decisions.md로 정한다.
 중단 OFF는 이미 한 쓰기를 되돌리지 않는다(새 기능은 조회뿐).
 
 cleanup은 PR2 통합·공개/중단 관측, 알려진 구버전/복구 대상의 flag 의존 없음, 오너의 정리 요청이

@@ -4,9 +4,14 @@ description: Turn an accepted spec and its linked design documents into an execu
 ---
 # Plan
 
+North star L4 317–321: name changed files, work order and proving tests; support an engineer without the conversation.
+L4 329: update plan.md in the same implementation commit when work departs from it.
+
 Read intent, spec.md and every declared required design document, actual code/tests and applicable project policies.
 Confirm the spec revision and human acceptance or already-authorized draft scope. Keep Upstream at that real revision,
-Status draft and the authorization limitation where relevant. Initial planning does not edit production code.
+Status draft and the authorization limitation where relevant. Follow the project's
+[Git policy](../../../../../../GIT-WORKFLOW.md) for the document/SHA/decision maker/reason recorded at stage acceptance.
+Initial planning does not edit production code.
 
 Use the project's templates/plan.md; this candidate's copy is [the form](../../templates/plan.md).
 Keep four roles linked, not four disconnected lists: actual paths/new files and responsibilities; concrete order and
@@ -18,6 +23,10 @@ Sequence behavior slices, minimal implementation and necessary refactoring; the 
 mechanics. Already-GREEN regressions and pure refactors need no artificial RED. Defects require the observed
 reproduction test committed before protected fixing. Protection that blocks new tests needs the tests before that stage.
 Do not force a commit/PR per cycle or copy every test body into the plan.
+
+In this maker repo's protected fix workflow, the engineer starts INTENT_TASK=fix only after reproduction tests
+are written, observed and committed; the hook blocks creating tests too. Do not enable it for ordinary features.
+When a validation temporarily mutates a fixture/source, restore the saved original bytes, not unrelated user work.
 
 Use [execution blocks](../../guidance/execution-blocks.md) only for relevant multi-PR/parallel/operational work.
 Keep cohesive code/tests/docs together, main deployable and latest combined-result checks explicit. Tasks, agents,

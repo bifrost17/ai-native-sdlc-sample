@@ -4,6 +4,9 @@ description: Create or revise a combined requirements and design spec from the a
 ---
 # Design spec
 
+North star L3 245: "requirements and design spec"; L3 270: open questions must be answered or carried forward.
+Human acceptance starts planning (L3 276). These source principles remain separate from the team's concrete form.
+
 Confirm the actual intent revision and recorded human acceptance, or the already-authorized draft scope.
 Keep Upstream with the actual input revision and Status draft. An old accepted version does not approve new edits.
 Do not ask twice when authorization already covers this work; do not invent acceptance.
@@ -11,7 +14,9 @@ Do not ask twice when authorization already covers this work; do not invent acce
 Read the changed code, neighboring flows, interfaces and tests. Find applicable installed team skills, read their
 bodies, and apply their decisions to the artifact. A source folder is not proof of installation. Record actual
 skill source/version (or Git revision + dirty hash/limitation), not just a list of names. Use the team's policy review
-method when available. Do not invent policy values or require a particular external skill.
+method when available. In this team's default set, that is spec-policy-pass when actually available; its material
+findings belong in the spec. Use the existing [provenance reference](references/skill-provenance.md) for tracked,
+cached or directory-loaded versions. Do not invent policy values or require a particular external skill.
 
 Use the project's templates/spec.md. This candidate's review copy is [the form](../../templates/spec.md);
 [conditional design blocks](../../guidance/design-blocks.md) provide fillable contracts and diagrams.

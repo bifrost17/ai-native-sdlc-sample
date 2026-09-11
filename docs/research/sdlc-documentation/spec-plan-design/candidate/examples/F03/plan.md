@@ -1,5 +1,6 @@
 # Plan: 두 PR로 구현하고 설정으로 한 번 공개
 Upstream: spec.md@23845b5. Status: draft.
+Current change: 이 커밋의 spec 개정과 함께 읽는다. 공개 전 리허설·실제 공개 기록 위치를 명료화한 연구 r2 개정이다.
 합성 작성 예시. 사용자 허가 범위는 설계 패키지이며 제품 계획 승인/구현 성공이 아니다.
 [spec](spec.md)와 [입력](context.md)을 함께 읽는다. 모든 시험은 예정이며 이름은 추가 계획이다.
 
@@ -34,12 +35,14 @@ summary가 ON에서도 없어야 한다는 PR1의 단계 한정 관측은 영구
 각 PR의 필요한 리팩터링 후 전체 시험, 최신 main과 결합한 판·통합 main 검증을 한다.
 RED/GREEN의 명령·코드판·실패 이유·출력과 일반/시험 환경을 PR 기록에 남긴다.
 
-공개 담당(root 역할)이 P0–P4 전체와 완료 범위를 확인해 공개 여부를 결정한다.
+공개 전 개발자 프로세스/사본에서 P4 전환 리허설과 P0–P3 전체를 확인한다.
+공개 담당(root 역할)이 이 근거와 완료 범위를 확인해 실제 일반 공개 여부를 결정한다.
 같은 완성 코드에서 일반 실행 환경의 TRACKER_OWNER_INSIGHTS=1로 새 프로세스를 실행해 ON,
 설정을 제거해 OFF를 관측한다. 명령 예:
 `env TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data <사본> summary`,
 `env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data <사본> summary`.
-후자는 제어가 있는 판에서 rc2. 설정 변경은 코드 PR이 아니며 결정·적용·관측 판/시각을 기존 공개 기록에 남긴다.
+후자는 제어가 있는 판에서 rc2. 설정 변경은 코드 PR이 아니며 결정·적용·관측 판/시각을 제품의 기존
+intent/f03-owner-insights/decisions.md에 남긴다. 사본 리허설과 실제 일반 환경 관측을 구별한다.
 
 cleanup은 조건이 충족됐다는 근거와 오너 요청이 있을 때 시작한다. 최종 무설정 동작 시험을 먼저 실행해
 기존 OFF 거부가 예상 RED인지 확인한 뒤 flag 판정/조건을 제거한다. 최종 AC1–4는 유지하며 이전 OFF
@@ -59,7 +62,7 @@ cleanup은 조건이 충족됐다는 근거와 오너 요청이 있을 때 시�
 | P1 AC1/2 | test_owner.py의 test_owner_exact_and_order, test_owner_nonmatching | ON에서 순서/열·rc·바이트, null/-/HANA/nobody |
 | P2 AC5 | test_release_control.py의 test_off_rejects_new_commands, test_setting_values | unset/0/false/공백true는 OFF; 1/true/TRUE는 ON. 기존 명령은 양쪽 정상. PR1 ON summary 부재는 단계 관측 |
 | P3 AC3/4 | test_summary.py의 test_counts_and_owner, test_counts_after_complete | 네 담당자 조합·전체 세 줄, 완료 후 (2,0,2), all=open+done, 조회 무쓰기 |
-| P4 AC6 | PR2 결합/통합 main 동일 판 OFF→ON→OFF 수동 명령 + P0–3 | 설정만으로 전환. 일부 PR의 ON 성공만으로 전체 통과 아님 |
+| P4 AC6 | PR2 결합/통합 main 동일 판의 사본에서 OFF→ON→OFF 수동 명령 + P0–3 | 설정만으로 전환. 일반 공개는 이 리허설 뒤 별도 결정·실제 환경 관측. 일부 PR의 ON 성공만으로 전체 통과 아님 |
 | P5 AC7 | cleanup 전체 시험 + 설정 없는 직접 목록/집계 | 최종 기능 유지. 없어진 OFF 계약은 제외, 제거된 제어에 의존하는 실행 대상 없음 |
 
 검증 한계: 로컬 모의, 실제 배포/인증/장기 안정성 아님. 계약·단계가 바뀌면 영향 spec/plan과 시험을
