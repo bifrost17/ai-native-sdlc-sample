@@ -1,0 +1,21 @@
+From dcde97441df591314eebca65ead2749c4357be4c Mon Sep 17 00:00:00 2001
+From: showms <showms@users.noreply.github.com>
+Date: Sun, 26 Jul 2026 23:42:09 +0800
+Subject: [PATCH] test(schema): assert successful forced init exit status
+
+---
+ test/commands/schema.test.ts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/test/commands/schema.test.ts b/test/commands/schema.test.ts
+index 9c359efc10..e7d11fa67a 100644
+--- a/test/commands/schema.test.ts
++++ b/test/commands/schema.test.ts
+@@ -301,6 +301,7 @@ artifacts:
+         '--json',
+       ]);
+ 
++      expect(process.exitCode).toBeUndefined();
+       const output = consoleLogSpy.mock.calls.at(-1)?.[0];
+       expect(typeof output).toBe('string');
+       expect(JSON.parse(output as string)).toMatchObject({

@@ -1,0 +1,42 @@
+{
+  "sha": "204da5a4433aa8e7b41b509cafc40ee99b94da07",
+  "html_url": "https://github.com/ljquan/opentu/commit/204da5a4433aa8e7b41b509cafc40ee99b94da07",
+  "commit": {
+    "author": {
+      "name": "liquid",
+      "email": "ljquan@qq.com",
+      "date": "2026-04-09T12:14:24Z"
+    },
+    "committer": {
+      "name": "liquid",
+      "email": "ljquan@qq.com",
+      "date": "2026-04-09T12:14:24Z"
+    },
+    "message": "fix: 音乐播放器时间展示回退\\n\\n问题描述：音乐播放器列表在拿不到音频时长时展示 --:--，无法向用户提供有效时间信息。\\n修复思路：新增统一时间副标题格式化，优先展示解析/已有时长，缺失时回退展示素材生成时间。\\n更新代码架构：在 MusicPlayerTool 收敛音频时间展示策略，并为素材列表补充元数据时长解析链路。",
+    "tree": {
+      "sha": "25524c8666c4e1b2ebb7f6a5e7de48449c54b463",
+      "url": "https://api.github.com/repos/ljquan/opentu/git/trees/25524c8666c4e1b2ebb7f6a5e7de48449c54b463"
+    },
+    "url": "https://api.github.com/repos/ljquan/opentu/git/commits/204da5a4433aa8e7b41b509cafc40ee99b94da07",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "parents": [
+    {
+      "sha": "6ab178e12cc1bce08a7dbc6b8e0e2e439c75a110",
+      "url": "https://api.github.com/repos/ljquan/opentu/commits/6ab178e12cc1bce08a7dbc6b8e0e2e439c75a110",
+      "html_url": "https://github.com/ljquan/opentu/commit/6ab178e12cc1bce08a7dbc6b8e0e2e439c75a110"
+    }
+  ],
+  "stats": {
+    "total": 613,
+    "additions": 555,
+    "deletions": 58
+  }
+}
