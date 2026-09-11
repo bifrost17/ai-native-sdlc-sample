@@ -12,6 +12,7 @@
 | [datasets/v3/manifest.json](datasets/v3/manifest.json) | R01/R02: 구현 중 JSON·파일 출력 요구 변경과 문서 개정 |
 | [datasets/v4/manifest.json](datasets/v4/manifest.json) | H01–H05: 별도 CLI의 독립 검토·자동 보완·정상 대기 |
 | [datasets/v5/manifest.json](datasets/v5/manifest.json) | E01–E03: 설치한 팀 스킬·native 검증자·이벤트 인식과 문서 개정 |
+| [datasets/v6/manifest.json](datasets/v6/manifest.json) | F04: 새 구체 양식·TDD·두 PR/한 공개 단위·구현 중 JSON 요구 변경 |
 | [run-record.template.md](run-record.template.md) | 실행별 환경·대화·결정·단계·측정·결과 기록 |
 
 현재 데이터는 합성된 초기 사례다. 실제 최근 업무 20~50건이나 다양한 조직을 대표한다고 주장하지 않는다.
@@ -216,16 +217,24 @@ stdin에 전달하고 표시된 session을 resume한다. 개발은 Sonnet/low, �
 문서 편집은 요구하지 않고, 실제 원본 누락·통제된 결함·검토 오류를 서로 구분한다.
 질문/수락 대기의 응답도 저장해 짧은 HUMAN 답변을 해석할 수 있게 한다.
 
-첫 로컬 pilot에 이어 실제 GitHub PR 통합 실험을 완료했다. 현재 사용 후보는
-`codex/use-template-0017@add296d`다. F01은 제목 보완 전 후보 de1b1b7, F02는 210bcfa에서 고정했다.
+첫 로컬 pilot에 이어 실제 GitHub PR 통합 실험을 완료했다. 당시 0017 사용 후보는
+`codex/use-template-0017@add296d`였다. F01은 제목 보완 전 후보 de1b1b7, F02는 210bcfa에서 고정했다.
 80e9001의 후속 검증은 중요한 spec/plan 누락 실패이며 리뷰 후 복구를 통과로 계산하지 않는다.
 add296d의 두 부분 실행은 지침 전문 읽기를 확인한 새 세션에서 후속 업무 요구만 전달하여 검증했다.
 데이터 manifest의 원래 기준 a2bbfe1과 이전 후보 15ab8a6도 보존한다.
 후속 후보를 쓸 때는 실행 기록에 branch/commit을 명시해 기본값과 구분한다. 데이터 검증과 단일 단계
 평가는 전체 프로세스 실행으로 세지 않는다.
 
+현재 0024 후보는 `codex/use-template-0024-r2@d4d2153`다. 원 전체 실행은 `fbc23c0`을 고정했고,
+후속 후보의 Git 정책 한 파일은 별도 부분 실행으로 시험했다. [0024 결과](0024-spec-plan-activation.md)에
+활성화·영구 설치·실제 개발·실패/복구/재시험·기록 refs를 함께 둔다. 작은 한 사례의 결과이며
+다문서/UI 교육 예시까지 실제 제품 구현으로 검증했다는 뜻은 아니다.
+
 | Run | Case / dataset / seed | 기준 → 최종 해시 | 브랜치·근거 | 범위·결과 |
 |---|---|---|---|---|
+| F04-r01 | F04 / 6.0.0 / 102 | fbc23c0 → f77217f (제품 b712a2f) | `codex/experiment-2026-09-11-f04-r01` · [0024 기록](0024-spec-plan-activation.md) | 전체 11회 대화·두 local PR 통합·기능/공개 검증. 첫 문서·커밋 경계 실패와 HUMAN 복구 보존 |
+| F04-json-r01 | F04 후속 / 6.0.0 / 102 | d4e24d9 → 1959913 (제품 b4aad4c) | `codex/experiment-2026-09-11-f04-json-retest` · [0024 기록](0024-spec-plan-activation.md) | partial 1회 대화. 기능 16시험·50관측, 같은 커밋 기준 실패·미통합 |
+| F04-json-r02 | F04 후속 / 6.0.0 / 102 | fe61fe7 (정책 d4d2153) → 0fe8aae (제품 910e2ac) | `codex/experiment-2026-09-11-f04-json-r2` · [0024 기록](0024-spec-plan-activation.md) | partial 2회 대화. 같은 커밋·native 보완·HUMAN 문서 정정, 통합 17시험·50관측·관측 범위 root 통과 |
 | F01-r01 | F01 / 1.0.0 / 101 | de1b1b7 → 58f1172 | `codex/experiment-2026-09-10-f01-r01` · [검증 기록](0015-f01-pilot.md) | 9회 대화·로컬 인도, root 통과 |
 | F02-r01 | F02 / 2.0.0 / 102 | 210bcfa → 11cb93c (제품 3f342c1) | `codex/experiment-2026-09-11-f02-r01` · [검증 기록](0016-flow-pilot.md) | 8회 대화·실제 제품 PR 2건·새 복제본·revert, 관측 범위 root 통과 |
 | F02-plan-sync | F02 / 2.0.0 / 102 + 공개 JSON 요구 | 28b8fa8 + 후보 80e9001 → 5e5b71d (제품 34c351b) | `codex/experiment-2026-09-11-plan-sync` · [검증 기록](0016-flow-pilot.md) | partial · 중요한 문서 갱신 실패. 5회 대화에서 HUMAN 지적 후 복구만 확인 |

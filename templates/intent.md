@@ -1,12 +1,17 @@
-# Intent: ‹what cannot be done today — the subject, not the solution›
-Author: ‹name (team)›. Status: draft.
+# Intent: ‹요청자가 바라는 변화의 짧은 이름›
+Author: ‹작성자와 팀 또는 요청의 출처›. Status: draft.
+
 ## Problem
-‹observed facts — counts, time, frequency. Not a cause, not a fix›
+‹현재 상황이나 기회, 왜 바꾸려는지. 알려진 사례나 근거가 있으면 함께 적는다.›
+
 ## Proposed outcome
-‹what is different when this is done, in a sentence the author can verify›
+‹누구에게 무엇이 달라지며 어떻게 나아졌다고 알 수 있는지. 요청자의 해결 제안은 제안임을 밝혀 보존한다.›
+
 ## Affected users and systems
-‹people (which team, which customers) and systems (which service, which data)›
+‹영향받는 사람·팀·시스템. 현재 아는 범위만 적는다.›
+
 ## Constraints
-‹lines that must hold — existing auth only, no new PII, what is out of scope›
+‹확인된 제한, 유지할 동작, 이번에 하지 않을 범위. 확인되지 않은 조건은 질문으로 남긴다.›
+
 ## Open questions
-‹what nobody could answer yet, and who can — one per line›
+‹남은 질문과 답할 사람·팀. 담당을 모르면 미정, 남은 질문이 없으면 없음이라고 적는다.›

@@ -12,19 +12,23 @@ Use the part below that fits the current event; this is not an extra phase for e
 
 ## Change or acceptance
 
-Read the applicable project instructions and current intent/spec/plan. Update the artifacts whose
-meaning changed: requirements/design/acceptance criteria in spec, implementation/verification/PR
+Read the applicable project instructions and current intent/spec/plan, including the complete design
+document set declared by spec. Apply the common Review criteria to update the artifacts whose meaning
+changed: requirements/design/acceptance criteria in their spec documents, implementation/verification/PR
 boundaries in plan, and intent only if the problem or constraints changed. A conversation or README
 does not substitute for the affected artifact. Existing planning and policy skills retain their roles.
 
 Use human decisions already supplied. If the accepted upstream version changed, update downstream
 references under the project's policy. Ask only for material decisions still missing; do not turn
 an already clear answer into another approval request. Leave unaffected documents alone.
+Distinguish an accepted baseline from current changes the human has already authorized drafting or
+implementing. A draft label does not erase that authorization or create a new acceptance gate.
 
 ## Implementation and commit
 
-Run the relevant feedback loop as work proceeds. When implementation departs from plan, include
-the changed plan and reason in the same commit as that implementation. Before committing, inspect
+Run the relevant feedback loop as work proceeds and keep the actual test-first and regression evidence
+needed by the common Review criteria. Include affected spec documents and plan changes, with the reason,
+in the same commit as the related implementation. Before committing, inspect
 what will actually be included, including new files. Follow the project's upstream acceptance and
 Git policy; permission to inspect or review does not itself authorize a commit, push or merge.
 
@@ -37,9 +41,11 @@ is still pending. Do not run both for the same purpose. A routine prose correcti
 status/decision question does not require this independent implementation review.
 
 Give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
-paths, the agreed diff base, and checks already run with their evidence. The default team verifier
-receives the common criteria in its own definition; confirm or supply equivalent criteria when
-using a project verifier. Include uncommitted and untracked work. Do not ask it to trust your
+paths, the agreed diff base, and checks already run with their evidence. Also include the declared
+spec document set and the current PR, integration or whole-release scope.
+Distinguish the tested combined/merged revision from planned checks or a previous branch result.
+The default team verifier receives the common criteria in its own definition; confirm or supply
+equivalent criteria when using a project verifier. Include uncommitted and untracked work. Do not ask it to trust your
 completion claim. It should read the current files and return findings, not edit or approve.
 
 Choose model and effort for difficulty, impact and uncertainty within the user's limits. The default

@@ -1,0 +1,40 @@
+{
+  "round": 2,
+  "created_at": "2026-09-11T02:34:25.159951+00:00",
+  "candidate_sha256": "4d8431b42d872243d71ac727eef2086ed474be53856da1d2eb4a3d78bdd3a118",
+  "hash_recipe": "sha256 of concatenated path + NUL + sha256 + newline, in files order",
+  "files": [
+    {
+      "path": "templates/intent.md",
+      "sha256": "ed0a1cc1307daa7c03c72a48b988e87d4b3c4d614987eaa9783c6f955ecbddb7"
+    },
+    {
+      "path": ".claude/skills/capture-intent/SKILL.md",
+      "sha256": "5f083d34c2d3fcb015b2fc85a9619954e951db28b2bd64948a768a97e894fd91"
+    },
+    {
+      "path": ".claude/skills/capture-intent/examples/feature.md",
+      "sha256": "a573db1778d470e4cfd810f3e35979f5c3858d84b858e3a1402267f4045b2489"
+    },
+    {
+      "path": ".claude/skills/capture-intent/examples/bug.md",
+      "sha256": "bfb02ddc2e155d061a1641b6125fdcdf74ea76542f18ec0ecfaa0d44a0452710"
+    },
+    {
+      "path": ".claude/skills/capture-intent/examples/incomplete-ticket.md",
+      "sha256": "1a2d6c71d7767ec04c2c240d2b6e7310e8e63aff0f90a9670a6e476feb321e98"
+    }
+  ],
+  "supporting_files": [
+    "docs/research/sdlc-documentation/intent-design/examples-inputs.md",
+    "docs/research/sdlc-documentation/intent-design/alternatives.md",
+    "docs/research/sdlc-documentation/intent-design/README.md",
+    "docs/research/sdlc-documentation/intent-design/review-request.md"
+  ],
+  "changes_since_r1": [
+    "Remove angle brackets from skill description to satisfy existing skill validator.",
+    "Remove obsolete history aside from skill.",
+    "Keep F01 runtime environment as a current fact rather than a new mandatory constraint.",
+    "Describe I03 unverified cause and proposal without adding a pre-design process gate."
+  ]
+}

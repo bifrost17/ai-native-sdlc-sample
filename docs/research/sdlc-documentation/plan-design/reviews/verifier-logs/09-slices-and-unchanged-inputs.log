@@ -1,0 +1,70 @@
+SLICE DIFFS
+M	USAGE.md
+M	intent/0001-owner-list-summary/plan.md
+A	tests/test_owner_list.py
+M	tracker.py
+M	USAGE.md
+M	intent/0001-owner-list-summary/plan.md
+A	tests/test_summary.py
+M	tracker.py
+UNCHANGED CONTRACT AND BASELINE FILES
+intent/0001-owner-list-summary/intent.md d6660fb=6891f1382bacadb96135da470fed1ad926f977b0 f20a165=6891f1382bacadb96135da470fed1ad926f977b0 equal=yes
+intent/0001-owner-list-summary/spec.md d6660fb=909b223cfcd83abbaed7e8b1976392ccc4356ae4 f20a165=909b223cfcd83abbaed7e8b1976392ccc4356ae4 equal=yes
+requests.json 34f41eee=090aa5da12a2af586c2ca63b5e641523715b6a73 f20a165=090aa5da12a2af586c2ca63b5e641523715b6a73 equal=yes
+tests/test_tracker.py 34f41eee=cba756203b378f2d0340141cb857cb08c213b0a2 f20a165=cba756203b378f2d0340141cb857cb08c213b0a2 equal=yes
+RECOVERY COMMIT MESSAGES
+commit 10b08bcc897bcbe74a6ad1b1e9290b75abdb5420
+Author:     bifrost17 <bifrost17@gmail.com>
+AuthorDate: Fri Sep 11 13:42:47 2026 +0900
+Commit:     bifrost17 <bifrost17@gmail.com>
+CommitDate: Fri Sep 11 13:44:26 2026 +0900
+
+    feat: add list --owner exact-match filter (F02 PR1)
+    
+    Delivers the owner list first per plan e14345b/9cb9894: list --owner ID
+    selects by exact string match, preserves original order, includes done
+    rows, and treats null owner as matching nothing. summary is deferred to
+    PR2 per the plan's sequencing.
+    
+    Also updates plan.md's branch-base paragraph, written before the docs
+    merged to main, to record that HUMAN root integrated intent/spec/plan
+    into main at d6660fb and that feat/owner-list branches from that commit
+    (confirmed via git merge-base). The prior "docs not yet on main" note
+    was stale relative to current Git fact; original pre-fix state is
+    preserved at evidence/pr1-before-plan-fix.
+    
+    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+commit 63328e1870d73d0e8312f08aee5a40ad30f7c1b2
+Author:     bifrost17 <bifrost17@gmail.com>
+AuthorDate: Fri Sep 11 13:47:54 2026 +0900
+Commit:     bifrost17 <bifrost17@gmail.com>
+CommitDate: Fri Sep 11 13:49:52 2026 +0900
+
+    feat: add summary --owner status counts (F02 PR2)
+    
+    Add _owner_matches helper shared by list and the new summary
+    subcommand, which reports open/done counts for the same
+    exact-match owner selection without writing. Also close a review
+    gap HUMAN root flagged: confirm via actual subprocess runs that
+    complete's missing-id error matches show's, and that a missing
+    data file still returns rc=2 with the existing error prefix
+    (existing behavior AC3 already required but no test executed).
+    
+    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+INTEGRATION COMMIT MESSAGES
+commit 91ccf7f51007ad31b2565a288e13b286b331c83d
+Merge: d6660fb 10b08bc
+Author:     bifrost17 <bifrost17@gmail.com>
+AuthorDate: Fri Sep 11 13:46:23 2026 +0900
+Commit:     bifrost17 <bifrost17@gmail.com>
+CommitDate: Fri Sep 11 13:46:23 2026 +0900
+
+    experiment: HUMAN accepts PR1 10b08bc after plan recovery and six checks
+commit f20a165859be6f409e8284e457b1eef01ef5d21b
+Merge: 91ccf7f 63328e1
+Author:     bifrost17 <bifrost17@gmail.com>
+AuthorDate: Fri Sep 11 13:52:10 2026 +0900
+Commit:     bifrost17 <bifrost17@gmail.com>
+CommitDate: Fri Sep 11 13:52:10 2026 +0900
+
+    experiment: HUMAN accepts PR2 63328e1 after 16 tests and 12 independent checks

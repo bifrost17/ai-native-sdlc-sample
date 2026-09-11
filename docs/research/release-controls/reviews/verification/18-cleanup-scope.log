@@ -1,0 +1,194 @@
+$ cleanup regression-retention and runtime flag-reference audit
+METHODS_BEFORE_CLEANUP
+    def test_off_rejects_owner_option_and_summary(self):
+    def test_off_baseline_commands_unaffected(self):
+    def test_on_owner_filter_exact_match_and_order(self):
+    def test_on_no_match_is_empty_and_read_only(self):
+    def test_off_rejects_summary(self):
+    def test_on_summary_totals_and_by_owner(self):
+    def test_on_summary_reflects_latest_state_after_complete(self):
+METHODS_AFTER_CLEANUP
+tests/test_summary.py:    def test_summary_totals_and_by_owner(self):
+tests/test_summary.py:    def test_summary_reflects_latest_state_after_complete(self):
+tests/test_owner.py:    def test_baseline_commands_unaffected(self):
+tests/test_owner.py:    def test_owner_filter_exact_match_and_order(self):
+tests/test_owner.py:    def test_no_match_is_empty_and_read_only(self):
+CLEANUP_TEST_DIFF
+diff --git a/tests/test_owner.py b/tests/test_owner.py
+index 0c2e1fa..504aed5 100644
+--- a/tests/test_owner.py
++++ b/tests/test_owner.py
+@@ -1,73 +1,51 @@
+-"""PR1 contract: TRACKER_OWNER_INSIGHTS gates `list --owner` exact-match filtering."""
++"""Stabilized contract: `list --owner` applies exact-match filtering unconditionally."""
+ 
+ import json
+-import os
+ from pathlib import Path
+ import subprocess
+ import sys
+ import tempfile
+ import unittest
+ 
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ 
+ 
+ class OwnerFilterTests(unittest.TestCase):
+     def setUp(self):
+         self.temp = tempfile.TemporaryDirectory()
+         self.addCleanup(self.temp.cleanup)
+         self.data = Path(self.temp.name) / "requests.json"
+         self.data.write_bytes((ROOT / "requests.json").read_bytes())
+         self.original = json.loads(self.data.read_text(encoding="utf-8"))
+ 
+-    def invoke(self, *args, env=None):
++    def invoke(self, *args):
+         return subprocess.run([sys.executable, str(ROOT / "tracker.py"), "--data", str(self.data), *args],
+-                              capture_output=True, text=True, check=False, env=env)
++                              capture_output=True, text=True, check=False)
+ 
+-    def env_with(self, value=None):
+-        env = dict(os.environ)
+-        if value is None:
+-            env.pop("TRACKER_OWNER_INSIGHTS", None)
+-        else:
+-            env["TRACKER_OWNER_INSIGHTS"] = value
+-        return env
+-
+-    def test_off_rejects_owner_option_and_summary(self):
+-        before = self.data.read_bytes()
+-        for env in (self.env_with(None), self.env_with("yes")):
+-            result = self.invoke("list", "--owner", "hana", env=env)
+-            self.assertNotEqual(result.returncode, 0)
+-            self.assertIn("unrecognized arguments", result.stderr)
+-            summary_result = self.invoke("summary", env=env)
+-            self.assertNotEqual(summary_result.returncode, 0)
+-        self.assertEqual(self.data.read_bytes(), before)
+-
+-    def test_off_baseline_commands_unaffected(self):
+-        env = self.env_with(None)
+-        list_result = self.invoke("list", env=env)
++    def test_baseline_commands_unaffected(self):
++        list_result = self.invoke("list")
+         self.assertEqual(list_result.returncode, 0, list_result.stderr)
+         self.assertEqual([line.split("\t")[0] for line in list_result.stdout.splitlines()],
+                          [row["id"] for row in self.original["requests"]])
+-        show_result = self.invoke("show", self.original["requests"][0]["id"], env=env)
++        show_result = self.invoke("show", self.original["requests"][0]["id"])
+         self.assertEqual(show_result.returncode, 0, show_result.stderr)
+ 
+-    def test_on_owner_filter_exact_match_and_order(self):
+-        env = self.env_with("1")
++    def test_owner_filter_exact_match_and_order(self):
+         before = self.data.read_bytes()
+-        result = self.invoke("list", "--owner", "hana", env=env)
++        result = self.invoke("list", "--owner", "hana")
+         self.assertEqual(result.returncode, 0, result.stderr)
+         self.assertEqual([line.split("\t")[0] for line in result.stdout.splitlines()], ["R-101", "R-103"])
+         self.assertEqual(self.data.read_bytes(), before)
+ 
+-    def test_on_no_match_is_empty_and_read_only(self):
+-        env = self.env_with("1")
++    def test_no_match_is_empty_and_read_only(self):
+         before = self.data.read_bytes()
+         for owner in ("nobody", "HANA", "-"):
+-            result = self.invoke("list", "--owner", owner, env=env)
++            result = self.invoke("list", "--owner", owner)
+             self.assertEqual(result.returncode, 0, result.stderr)
+             self.assertEqual(result.stdout, "")
+         self.assertEqual(self.data.read_bytes(), before)
+ 
+ 
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/tests/test_summary.py b/tests/test_summary.py
+index a6feb92..a72b639 100644
+--- a/tests/test_summary.py
++++ b/tests/test_summary.py
+@@ -1,73 +1,55 @@
+-"""PR2 contract: TRACKER_OWNER_INSIGHTS gates `summary` all/open/done aggregation."""
++"""Stabilized contract: `summary` computes all/open/done aggregation unconditionally."""
+ 
+ import json
+-import os
+ from pathlib import Path
+ import subprocess
+ import sys
+ import tempfile
+ import unittest
+ 
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ 
+ 
+ class SummaryTests(unittest.TestCase):
+     def setUp(self):
+         self.temp = tempfile.TemporaryDirectory()
+         self.addCleanup(self.temp.cleanup)
+         self.data = Path(self.temp.name) / "requests.json"
+         self.data.write_bytes((ROOT / "requests.json").read_bytes())
+         self.original = json.loads(self.data.read_text(encoding="utf-8"))
+ 
+-    def invoke(self, *args, env=None):
++    def invoke(self, *args):
+         return subprocess.run([sys.executable, str(ROOT / "tracker.py"), "--data", str(self.data), *args],
+-                              capture_output=True, text=True, check=False, env=env)
++                              capture_output=True, text=True, check=False)
+ 
+-    def env_with(self, value=None):
+-        env = dict(os.environ)
+-        if value is None:
+-            env.pop("TRACKER_OWNER_INSIGHTS", None)
+-        else:
+-            env["TRACKER_OWNER_INSIGHTS"] = value
+-        return env
+-
+-    def test_off_rejects_summary(self):
+-        before = self.data.read_bytes()
+-        for env in (self.env_with(None), self.env_with("yes")):
+-            result = self.invoke("summary", env=env)
+-            self.assertNotEqual(result.returncode, 0)
+-        self.assertEqual(self.data.read_bytes(), before)
+-
+-    def test_on_summary_totals_and_by_owner(self):
+-        env = self.env_with("1")
++    def test_summary_totals_and_by_owner(self):
+         before = self.data.read_bytes()
+         cases = {
+             (): "all\t4\nopen\t3\ndone\t1\n",
+             ("--owner", "hana"): "all\t2\nopen\t1\ndone\t1\n",
+             ("--owner", "min"): "all\t1\nopen\t1\ndone\t0\n",
+             ("--owner", "nobody"): "all\t0\nopen\t0\ndone\t0\n",
+         }
+         for extra_args, expected in cases.items():
+-            result = self.invoke("summary", *extra_args, env=env)
++            result = self.invoke("summary", *extra_args)
+             self.assertEqual(result.returncode, 0, result.stderr)
+             self.assertEqual(result.stdout, expected)
+         self.assertEqual(self.data.read_bytes(), before)
+ 
+-    def test_on_summary_reflects_latest_state_after_complete(self):
+-        env = self.env_with("1")
+-        complete_result = self.invoke("complete", "R-101", env=env)
++    def test_summary_reflects_latest_state_after_complete(self):
++        complete_result = self.invoke("complete", "R-101")
+         self.assertEqual(complete_result.returncode, 0, complete_result.stderr)
+         before = self.data.read_bytes()
+-        summary_result = self.invoke("summary", "--owner", "hana", env=env)
++        summary_result = self.invoke("summary", "--owner", "hana")
+         self.assertEqual(summary_result.returncode, 0, summary_result.stderr)
+         self.assertEqual(summary_result.stdout, "all\t2\nopen\t0\ndone\t2\n")
+-        list_result = self.invoke("list", "--owner", "hana", env=env)
++        list_result = self.invoke("list", "--owner", "hana")
+         self.assertEqual(list_result.returncode, 0, list_result.stderr)
+         statuses = [line.split("\t")[1] for line in list_result.stdout.splitlines()]
+         self.assertEqual(statuses, ["done", "done"])
+         self.assertEqual(self.data.read_bytes(), before)
+ 
+ 
+ if __name__ == "__main__":
+     unittest.main()
+RUNTIME_FLAG_REFERENCES
+runtime_flag_reference_rg_exit_code=1 (1 means no matches)
+exit_code=0

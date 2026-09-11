@@ -1,0 +1,74 @@
+$ final cleanup verification at product main@f3126d1
+HEAD_BEFORE=f3126d1470f97cb112afe13e04150549cb49aeb3
+STATUS_BEFORE=
+TRACKER_SHA_BEFORE=be4a70e02a10d71fbd3575bf07abed2c3bc1927394136af7de9420b9da8a1f0c  tracker.py
+REQUESTS_SHA_BEFORE=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795  requests.json
+$ env -u TRACKER_OWNER_INSIGHTS python3 -m unittest discover -s tests -v
+test_baseline_commands_unaffected (test_owner.OwnerFilterTests) ... ok
+test_no_match_is_empty_and_read_only (test_owner.OwnerFilterTests) ... ok
+test_owner_filter_exact_match_and_order (test_owner.OwnerFilterTests) ... ok
+test_summary_reflects_latest_state_after_complete (test_summary.SummaryTests) ... ok
+test_summary_totals_and_by_owner (test_summary.SummaryTests) ... ok
+test_complete_changes_only_target_status_and_is_repeatable (test_tracker.ExistingTrackerTests) ... ok
+test_list_preserves_order_and_does_not_write (test_tracker.ExistingTrackerTests) ... ok
+test_show_existing_and_missing_id (test_tracker.ExistingTrackerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.578s
+
+OK
+tests_unset_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data requests.json list --owner hana
+R-101	open	hana	회의실 키 확인
+R-103	done	hana	회의록 정리
+unset_owner_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data requests.json summary
+all	4
+open	3
+done	1
+unset_summary_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=0 python3 tracker.py --data requests.json summary --owner hana
+all	2
+open	1
+done	1
+legacy_0_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=bad python3 tracker.py --data requests.json summary --owner hana
+all	2
+open	1
+done	1
+legacy_bad_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data requests.json summary --owner hana
+all	2
+open	1
+done	1
+legacy_1_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=TrUe python3 tracker.py --data requests.json summary --owner hana
+all	2
+open	1
+done	1
+legacy_TrUe_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data requests.json list
+R-101	open	hana	회의실 키 확인
+R-102	open	min	문구함 채우기
+R-103	done	hana	회의록 정리
+R-104	open	-	책장 위치 확인
+baseline_list_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data requests.json show R-102
+R-102	open	min	문구함 채우기
+baseline_show_exit_code=0
+TEMP_COPY=/tmp/f03-cleanup-verifier.ydKrUP
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data <temp-copy> complete R-101
+R-101	done	hana	회의실 키 확인
+complete_copy_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=0 python3 tracker.py --data <temp-copy> summary --owner hana
+all	2
+open	0
+done	2
+legacy_zero_post_complete_exit_code=0
+$ rg -n TRACKER_OWNER_INSIGHTS tracker.py tests USAGE.md
+runtime_flag_reference_rg_exit_code=1 (1 means no matches)
+HEAD_AFTER=f3126d1470f97cb112afe13e04150549cb49aeb3
+TRACKER_SHA_AFTER=be4a70e02a10d71fbd3575bf07abed2c3bc1927394136af7de9420b9da8a1f0c  tracker.py
+REQUESTS_SHA_AFTER=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795  requests.json
+STATUS_AFTER=
+exit_code=0

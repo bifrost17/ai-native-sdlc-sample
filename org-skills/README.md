@@ -16,6 +16,7 @@ claude plugin install intent-sdlc-skills@intent-sdlc-skills --scope user
 이미 이 마켓플레이스와 플러그인을 설치했다면 소스를 갱신한 뒤 다음을 실행한다.
 
 ```bash
+claude plugin validate --strict ./org-skills
 claude plugin marketplace update intent-sdlc-skills
 claude plugin update intent-sdlc-skills@intent-sdlc-skills --scope user
 claude plugin list --json
@@ -26,6 +27,37 @@ claude plugin list --json
 복사본을 읽었다고 판단하지 않는다. 소스 폴더 수정만으로 기존 세션이 갱신됐다고 쓰지 않는다.
 플러그인 배포/갱신은 [공식 문서](https://code.claude.com/docs/en/plugin-marketplaces)를 따른다.
 
+## spec-policy-pass와 spec-policy
+
+[spec-policy-pass](skills/spec-policy-pass/SKILL.md)는 요구·설계 작성 시 관련 팀 정책 스킬을
+실제로 읽고 적용하며, 적용 출처·판과 중요한 정책 충돌/미확인 판단의 근거를 남긴다.
+프로젝트의 `design-spec` 등 작성 절차가 문서 형식과 수락 경계를 맡는다. spec.md가 연결한 설계
+정본 전체를 같은 판으로 검토하므로 한 파일을 강제하지 않으며, 우려가 없으면 살핀 범위를 밝힌다.
+기존 허가와 사람의 결정을 재사용한다. 스킬 부재와 정책 부재를 혼동하지 않는다.
+
+명시적으로 `/intent-sdlc-skills:spec-policy-pass`를 사용하거나
+[/intent-sdlc-skills:spec-policy <intent-id>](commands/spec-policy.md)로 조직 수준 명령을 실행한다.
+명령은 북극성 PO 프롬프트를 축자로 보존하고 위 정책 검토 역할을 연결한다. 작성 스킬은 프로젝트가
+채택한 것을 사용하며 이 플러그인이 별도 작성 단계를 설치하지 않는다.
+[PROVENANCE](skills/spec-policy-pass/PROVENANCE.md)는 개정 안내와 초기 설계의 역사적 출처를 보존한다.
+
+## tdd
+
+소스는 [SKILL.md](skills/tdd/SKILL.md), 출처는 [PROVENANCE](skills/tdd/PROVENANCE.md)다.
+위 플러그인 설치·갱신으로 함께 배포하거나, 이 `skills/tdd/` 폴더 전체를 채택 프로젝트의
+`.claude/skills/tdd/`에 배치한다. 단독 폴더는 다른 연구 자료나 특정 외부 스킬을 필수로 읽지 않는다.
+프로젝트가 두 설치 방식을 중복 채택할 필요는 없다.
+
+새·변경 동작의 구현/수정 요청에서 사용하며 명시 호출은 `/intent-sdlc-skills:tdd`다
+(프로젝트 폴더로 설치했다면 `/tdd`). 팀의 TDD 의무는 프로젝트 정책, 공통 실행법은 이 스킬,
+작업의 첫 시험·실행 순서는 해당 plan에 둔다. 스킬이 새로운 의무나 승인 권한을 만들지 않는다.
+독립 기대의 선행 시험과 의미 있는 RED, 같은 기대의 GREEN, 필요한 리팩터링·회귀를 실제로 확인한다.
+이미 GREEN인 동작에는 실패를 꾸미지 않으며, 정당한 시험 수정과 종료된 공개 제어 단계는
+현재 계약과 남은 회귀 근거에 따라 다룬다.
+
+새 세션에서 실제 읽은 경로·판과 구현 전 시험/실패 이유·후속 통과의 실행 근거를 확인한다.
+소스 폴더나 설치 목록만으로 로드·자연 호출·TDD 준수를 입증했다고 쓰지 않는다.
+
 ## sdlc-feedback
 
 일반 `claude` 세션에서 관련 업무를 요청하면 에이전트가 스킬 설명으로 사용을 판단한다.
@@ -34,8 +66,8 @@ claude plugin list --json
 
 | 이벤트 | 수행 |
 |---|---|
-| 요구·설계 변경, 계획 이탈, 새 수락 판 | 필요한 spec/plan과 하위 참조를 갱신 |
-| 관련 커밋 준비 | 실제 포함 파일을 확인하고 바뀐 계획과 구현을 함께 기록 |
+| 요구·설계 변경, 계획 이탈, 새 수락 판 | 연결된 설계 정본을 포함한 필요한 spec/plan과 하위 참조를 갱신 |
+| 관련 커밋 준비 | 실제 포함 파일·test-first 근거를 확인하고 영향 문서와 구현을 함께 기록 |
 | 구현 완료 보고 전 | 새 문맥의 검증자로 현재 결과를 확인하고 중요한 발견을 보완 |
 | PR의 변경 검토 | 제출 diff와 spec/plan 대조; 댓글·CI·push는 기존 PR 도구가 담당 |
 | 현황·질문·단순 산문 정정 | 불필요한 문서 변경·독립 구현 검토를 하지 않음 |
@@ -44,6 +76,8 @@ claude plugin list --json
 [sdlc-verifier.md의 Review criteria](agents/sdlc-verifier.md#review-criteria)다.
 [sdlc-verifier](agents/sdlc-verifier.md)는 동등한 프로젝트 검증자가 없을 때 쓸 기본 예시다.
 업무 대화는 주 세션에 유지하고 필요한 합의·수락·기준·증거를 검증자에게 전달한다.
+해당 PR 범위와 전체 공개 단위를 구별하고, 최신 결합/머지 결과와 실제 시험 근거를 인계한다.
+이미 허가된 현재 draft 작업을 과거 수락 판과 혼동해 새 승인 절차를 만들지 않는다.
 기본 검증자는 자신의 정의에 공통 판단 기준을 함께 받는다. 별도 기준 파일을 찾거나 그 경로를
 전달할 필요가 없다. 다른 프로젝트 검증자를 쓰면 동등한 기준을 확인·인계한다.
 

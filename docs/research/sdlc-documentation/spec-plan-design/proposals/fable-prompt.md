@@ -1,0 +1,1 @@
+Read docs/research/sdlc-documentation/spec-plan-design/brief.md and submit the independent design proposal it requests. Do not read other proposals or previous model reviews. Read only necessary references. Return the proposal in Korean, about 1000 words maximum. Do not edit files or run commands.

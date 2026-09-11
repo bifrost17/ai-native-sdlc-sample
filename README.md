@@ -53,6 +53,9 @@ Unofficial; not an Anthropic project.
 3. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
    why a checker inside the tree is not an approval authority.
 4. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
+   [구체적 spec·plan 작성 예시](docs/sdlc-authoring/README.md)는 작은 기능·버그·한 공개 단위의 두 PR·
+   다문서 저장소 이행·웹 UI/API 사례를 입력과 함께 제공한다. 구조·동작·계약은 spec 집합에,
+   실제 파일·선행 시험·작업·PR 통합과 검증은 plan에 기록한다. 모든 문서를 한 파일로 강제하지 않는다.
 5. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
    chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history in the pre-slim
    convention (frontmatter, status fields); the current template is what 0004 uses.
@@ -64,7 +67,10 @@ Unofficial; not an Anthropic project.
    measurement sections, not a separate scorecard.
 
 ## What this repo does
-- Encodes the intent, spec and plan templates in skills, with `templates/` as copies.
+- Keeps the intent, spec and plan forms in `templates/`; the authoring skills explain how to fill
+  and revise them, with concrete examples under `docs/sdlc-authoring/`.
+- 새·변경 동작의 TDD 의무는 얇은 프로젝트 정책에, 공통 실행법은 선택 설치하는
+  [팀 TDD 스킬](org-skills/skills/tdd/SKILL.md)에, 작업별 첫 시험과 실행 순서는 plan에 둔다.
 - Keeps the hooks the lessons name as deterministic (protected paths, test protection, secrets,
   format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
   does not have one.
@@ -111,7 +117,18 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 사용 템플릿의 고정 커밋에서
 시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
 계획에서 정한 PR 단위로 실험 통합 브랜치에 합치며 그 브랜치를 제작 `main`으로 머지하지 않는다.
-현재 사용 후보는 `codex/use-template-0017@add296d`다. [PR 크기 가이드](docs/PR-SIZE.md)와
+현재 사용 후보는 `codex/use-template-0024-r2@d4d2153`다. `0023@787af77`에서 파생한
+`0024@fbc23c0`의 상세 spec·plan 양식, 다섯 작성 예시와 얇은 TDD 정책을 유지하고,
+최초 문서 작성과 구현 중 계획 개정의 커밋 범위를 명확히 했다.
+팀 플러그인 0.1.5 영구 설치와 실제 CLI의 두 PR 개발·통합 및 후속 JSON 변경을 실험했다.
+[완료 범위·실패와 재시험](docs/experiments/0024-spec-plan-activation.md)에서 근거와 한계를 확인한다.
+기존 양식의 [기능 공개 제어](docs/RELEASE-CONTROL.md)를 이어 유지한다.
+미완성 기능은 일반 OFF·테스트 ON으로 통합하며 공개는 별도 결정한다.
+[조사·설계 판단](docs/research/release-controls/README.md)과 [두 PR 공개 실험](docs/research/release-controls/probe/README.md)에
+근거와 적용 범위를 남긴다. [plan 양식 설계·독립 리뷰·실제 부분 실험](docs/research/sdlc-documentation/plan-design/README.md)에
+PR별 main 상태·검증·계획 갱신과 실제 반영 범위/한계를 남겼다. 별도 스킬·플러그인 설치는 필수가 아니다.
+[직전 spec 설계 기록](docs/research/sdlc-documentation/spec-design/README.md)과 그 사용판도 보존했다.
+[PR 크기 가이드](docs/PR-SIZE.md)와
 [GitHub Flow 정책](docs/GIT-WORKFLOW.md)은 채택 제품용 배포 원문이며 사용 후보의 docs/에도 동일하게 둔다.
 [조사 보고서](docs/research/pr-size/README.md)는 근거·사례·반례와 한계를 담는다.
 [F02 최종 실험](docs/experiments/0016-flow-pilot.md)은 원래 후보 210bcfa에서 8회 대화와 실제 제품 PR 2건의
@@ -154,7 +171,9 @@ external system of record — no Jira, no separate requirements tool — for the
 ## Commands
 `make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
 Plan mode headless: `claude -p --permission-mode plan` writes the plan outside the repo and has no
-ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).
+ExitPlanMode; chain 0008 used the engineer's next prompt to accept the plan (L4 327).
+For current work, record the document SHA and human decision per [GIT-WORKFLOW](docs/GIT-WORKFLOW.md);
+the mode or a next prompt by itself is not acceptance evidence.
 Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
 the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
 hook events in the implementation turn, `docs/RUNS.md` on the experiment branch).

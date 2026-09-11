@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-09-11",
+  "openverse_snapshot": "c815ba4942a3d53cb687d51121f7d44caec7b7e3",
+  "plan": {
+    "url": "https://docs.openverse.org/projects/proposals/ingestion_server_removal/20240328-implementation_plan_ingestion_server_removal.html",
+    "pinned_url": "https://github.com/WordPress/openverse/blob/c815ba4942a3d53cb687d51121f7d44caec7b7e3/documentation/projects/proposals/ingestion_server_removal/20240328-implementation_plan_ingestion_server_removal.md",
+    "blob_sha": "09eeba0a2a94f8666c33b5822dda5d2d3cd5ab29",
+    "document_date": "2024-03-28",
+    "author": "stacimc"
+  },
+  "prs": [
+    {
+      "number": 4026,
+      "url": "https://github.com/WordPress/openverse/pull/4026",
+      "title": "Implementation plan: Ingestion server removal",
+      "created_at": "2024-04-03T18:54:40Z",
+      "merged_at": "2024-04-17T01:09:57Z",
+      "merge_commit_sha": "797b32c8e76a72a123a1338e6c8768d57f6ed885"
+    },
+    {
+      "number": 4684,
+      "url": "https://github.com/WordPress/openverse/pull/4684",
+      "title": "Add alter data step to the data refresh DAG ",
+      "created_at": "2024-07-31T21:46:58Z",
+      "merged_at": "2024-08-20T20:33:57Z",
+      "merge_commit_sha": "716f68c8ba1e6df93fb6300010c457ab45088ce1"
+    }
+  ],
+  "plan_revision": {
+    "number": 4615,
+    "url": "https://github.com/WordPress/openverse/pull/4615",
+    "title": "Update ingestion server removal IP with EC2 approach",
+    "created_at": "2024-07-16T01:41:15Z",
+    "merged_at": "2024-07-19T00:11:41Z",
+    "merge_commit_sha": "61986010f5cdc0b139666bc6148302af71c294da"
+  },
+  "approvals": [
+    {
+      "reviewer": "AetherUnbound",
+      "state": "APPROVED",
+      "submitted_at": "2024-04-12T23:24:54Z",
+      "url": "https://github.com/WordPress/openverse/pull/4026#pullrequestreview-1998688566"
+    },
+    {
+      "reviewer": "sarayourfriend",
+      "state": "APPROVED",
+      "submitted_at": "2024-04-16T03:06:46Z",
+      "url": "https://github.com/WordPress/openverse/pull/4026#pullrequestreview-2002490278"
+    }
+  ],
+  "project_status": {
+    "number": 3925,
+    "url": "https://github.com/WordPress/openverse/issues/3925",
+    "state": "open",
+    "closed_at": null,
+    "limitation": "Entire migration not confirmed complete; checked project remains open."
+  },
+  "limitations": [
+    "Read-only source and Git history verification; no Openverse runtime tests executed.",
+    "Observed tests in PR are published test instructions, not independently rerun results.",
+    "Document snapshot includes later amendments; original PR merged 2024-04-17, not a claim all snapshot content existed then."
+  ]
+}

@@ -1,0 +1,695 @@
+{
+  "total_count": 10,
+  "jobs": [
+    {
+      "id": 90092615571,
+      "name": "Test (macos-bash)",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092615571",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:00:22Z",
+          "completed_at": "2026-07-27T20:00:23Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:00:23Z",
+          "completed_at": "2026-07-27T20:00:26Z"
+        },
+        {
+          "name": "Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:00:26Z",
+          "completed_at": "2026-07-27T20:00:30Z"
+        },
+        {
+          "name": "Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-07-27T20:00:30Z",
+          "completed_at": "2026-07-27T20:00:39Z"
+        },
+        {
+          "name": "Print environment diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-07-27T20:00:39Z",
+          "completed_at": "2026-07-27T20:00:39Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-07-27T20:00:39Z",
+          "completed_at": "2026-07-27T20:00:46Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-07-27T20:00:46Z",
+          "completed_at": "2026-07-27T20:00:50Z"
+        },
+        {
+          "name": "Run tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-07-27T20:00:50Z",
+          "completed_at": "2026-07-27T20:02:28Z"
+        },
+        {
+          "name": "Upload test coverage",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-07-27T20:02:28Z",
+          "completed_at": "2026-07-27T20:02:28Z"
+        },
+        {
+          "name": "Post Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-07-27T20:02:28Z",
+          "completed_at": "2026-07-27T20:02:28Z"
+        },
+        {
+          "name": "Post Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-07-27T20:02:28Z",
+          "completed_at": "2026-07-27T20:02:29Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-07-27T20:02:29Z",
+          "completed_at": "2026-07-27T20:02:29Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-07-27T20:02:29Z",
+          "completed_at": "2026-07-27T20:02:30Z"
+        }
+      ]
+    },
+    {
+      "id": 90092615584,
+      "name": "Lint & Type Check",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092615584",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:00:12Z",
+          "completed_at": "2026-07-27T20:00:14Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:00:14Z",
+          "completed_at": "2026-07-27T20:00:15Z"
+        },
+        {
+          "name": "Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:00:15Z",
+          "completed_at": "2026-07-27T20:00:20Z"
+        },
+        {
+          "name": "Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-07-27T20:00:20Z",
+          "completed_at": "2026-07-27T20:00:25Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-07-27T20:00:25Z",
+          "completed_at": "2026-07-27T20:00:29Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-07-27T20:00:29Z",
+          "completed_at": "2026-07-27T20:00:32Z"
+        },
+        {
+          "name": "Type check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-07-27T20:00:32Z",
+          "completed_at": "2026-07-27T20:00:34Z"
+        },
+        {
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-07-27T20:00:34Z",
+          "completed_at": "2026-07-27T20:00:36Z"
+        },
+        {
+          "name": "Check for build artifacts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-07-27T20:00:36Z",
+          "completed_at": "2026-07-27T20:00:36Z"
+        },
+        {
+          "name": "Post Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-07-27T20:00:36Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Post Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        }
+      ]
+    },
+    {
+      "id": 90092615637,
+      "name": "Validate Release Tracking",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092615637",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:00:13Z",
+          "completed_at": "2026-07-27T20:00:15Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:00:15Z",
+          "completed_at": "2026-07-27T20:00:17Z"
+        },
+        {
+          "name": "Determine release tracking",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:00:17Z",
+          "completed_at": "2026-07-27T20:00:17Z"
+        },
+        {
+          "name": "Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-07-27T20:00:17Z",
+          "completed_at": "2026-07-27T20:00:23Z"
+        },
+        {
+          "name": "Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-07-27T20:00:23Z",
+          "completed_at": "2026-07-27T20:00:30Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-07-27T20:00:30Z",
+          "completed_at": "2026-07-27T20:00:36Z"
+        },
+        {
+          "name": "Validate release-tracked changesets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-07-27T20:00:36Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Post Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Post Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        }
+      ]
+    },
+    {
+      "id": 90092615659,
+      "name": "Detect changes",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092615659",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:00:12Z",
+          "completed_at": "2026-07-27T20:00:13Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:00:13Z",
+          "completed_at": "2026-07-27T20:00:16Z"
+        },
+        {
+          "name": "Check for Nix-related changes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:00:16Z",
+          "completed_at": "2026-07-27T20:00:16Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-07-27T20:00:16Z",
+          "completed_at": "2026-07-27T20:00:16Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-07-27T20:00:16Z",
+          "completed_at": "2026-07-27T20:00:16Z"
+        }
+      ]
+    },
+    {
+      "id": 90092615672,
+      "name": "Test (windows-pwsh)",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092615672",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:00:16Z",
+          "completed_at": "2026-07-27T20:00:18Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:00:18Z",
+          "completed_at": "2026-07-27T20:00:25Z"
+        },
+        {
+          "name": "Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:00:25Z",
+          "completed_at": "2026-07-27T20:00:38Z"
+        },
+        {
+          "name": "Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-07-27T20:00:38Z",
+          "completed_at": "2026-07-27T20:00:51Z"
+        },
+        {
+          "name": "Print environment diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-07-27T20:00:51Z",
+          "completed_at": "2026-07-27T20:00:56Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-07-27T20:00:56Z",
+          "completed_at": "2026-07-27T20:01:04Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-07-27T20:01:04Z",
+          "completed_at": "2026-07-27T20:01:10Z"
+        },
+        {
+          "name": "Run tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-07-27T20:01:10Z",
+          "completed_at": "2026-07-27T20:04:29Z"
+        },
+        {
+          "name": "Upload test coverage",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-07-27T20:04:29Z",
+          "completed_at": "2026-07-27T20:04:29Z"
+        },
+        {
+          "name": "Post Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-07-27T20:04:29Z",
+          "completed_at": "2026-07-27T20:04:30Z"
+        },
+        {
+          "name": "Post Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-07-27T20:04:30Z",
+          "completed_at": "2026-07-27T20:04:30Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-07-27T20:04:30Z",
+          "completed_at": "2026-07-27T20:04:32Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-07-27T20:04:32Z",
+          "completed_at": "2026-07-27T20:04:32Z"
+        }
+      ]
+    },
+    {
+      "id": 90092615715,
+      "name": "Test (linux-bash)",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092615715",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:00:13Z",
+          "completed_at": "2026-07-27T20:00:15Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:00:15Z",
+          "completed_at": "2026-07-27T20:00:16Z"
+        },
+        {
+          "name": "Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:00:16Z",
+          "completed_at": "2026-07-27T20:00:20Z"
+        },
+        {
+          "name": "Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-07-27T20:00:20Z",
+          "completed_at": "2026-07-27T20:00:27Z"
+        },
+        {
+          "name": "Print environment diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-07-27T20:00:27Z",
+          "completed_at": "2026-07-27T20:00:27Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-07-27T20:00:27Z",
+          "completed_at": "2026-07-27T20:00:32Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-07-27T20:00:32Z",
+          "completed_at": "2026-07-27T20:00:37Z"
+        },
+        {
+          "name": "Run tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-07-27T20:00:37Z",
+          "completed_at": "2026-07-27T20:02:13Z"
+        },
+        {
+          "name": "Upload test coverage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-07-27T20:02:13Z",
+          "completed_at": "2026-07-27T20:02:13Z"
+        },
+        {
+          "name": "Post Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-07-27T20:02:13Z",
+          "completed_at": "2026-07-27T20:02:13Z"
+        },
+        {
+          "name": "Post Setup pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-07-27T20:02:13Z",
+          "completed_at": "2026-07-27T20:02:13Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-07-27T20:02:13Z",
+          "completed_at": "2026-07-27T20:02:13Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-07-27T20:02:13Z",
+          "completed_at": "2026-07-27T20:02:13Z"
+        }
+      ]
+    },
+    {
+      "id": 90092654234,
+      "name": "Nix Flake Validation",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90092654234",
+      "status": "completed",
+      "conclusion": "skipped",
+      "steps": []
+    },
+    {
+      "id": 90093688002,
+      "name": "Test",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90093688002",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:04:37Z",
+          "completed_at": "2026-07-27T20:04:38Z"
+        },
+        {
+          "name": "Verify matrix tests passed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:04:38Z",
+          "completed_at": "2026-07-27T20:04:38Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:04:38Z",
+          "completed_at": "2026-07-27T20:04:38Z"
+        }
+      ]
+    },
+    {
+      "id": 90093688083,
+      "name": "All checks passed",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90093688083",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-07-27T20:04:43Z",
+          "completed_at": "2026-07-27T20:04:43Z"
+        },
+        {
+          "name": "Verify all checks passed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-07-27T20:04:43Z",
+          "completed_at": "2026-07-27T20:04:43Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-07-27T20:04:44Z",
+          "completed_at": "2026-07-27T20:04:44Z"
+        }
+      ]
+    },
+    {
+      "id": 90093689027,
+      "name": "All checks passed",
+      "head_sha": "5348da930c4038ffd5b5a521702b71315dcd0019",
+      "html_url": "https://github.com/Fission-AI/OpenSpec/actions/runs/30300699482/job/90093689027",
+      "status": "completed",
+      "conclusion": "skipped",
+      "steps": []
+    }
+  ]
+}

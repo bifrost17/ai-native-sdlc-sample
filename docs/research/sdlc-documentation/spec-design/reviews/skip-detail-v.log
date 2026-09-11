@@ -1,0 +1,34 @@
+test_absent_cwd_uses_hook_working_directory (tests.test_hook_paths.HookPathTests) ... ok
+test_bash_without_file_target_keeps_existing_behavior (tests.test_hook_paths.HookPathTests) ... ok
+test_case_sensitive_distinct_directories_remain_unprotected (tests.test_hook_paths.HookPathTests) ... skipped 'this filesystem aliases differently-cased directories'
+test_checkout_alias_preserves_protected_lexical_path (tests.test_hook_paths.HookPathTests) ... ok
+test_file_link_and_symlink_before_parent_component (tests.test_hook_paths.HookPathTests) ... ok
+test_filesystem_case_aliases_preserve_outgoing_protected_links (tests.test_hook_paths.HookPathTests) ... ok
+test_filesystem_case_aliases_protect_future_paths (tests.test_hook_paths.HookPathTests) ... ok
+test_fix_task_dot_paths_and_notebook_paths (tests.test_hook_paths.HookPathTests) ... ok
+test_format_lint_checks_actual_relative_and_external_file (tests.test_hook_paths.HookPathTests) ... ok
+test_format_lint_checks_filesystem_case_alias_extension (tests.test_hook_paths.HookPathTests) ... ok
+test_links_into_protected_directories_and_missing_destinations (tests.test_hook_paths.HookPathTests) ... ok
+test_malformed_or_unresolvable_cwd_fails_closed (tests.test_hook_paths.HookPathTests) ... ok
+test_malformed_paths_fail_closed (tests.test_hook_paths.HookPathTests) ... ok
+test_missing_edit_target_and_malformed_payload_fail_closed (tests.test_hook_paths.HookPathTests) ... ok
+test_payload_cwd_controls_relative_paths (tests.test_hook_paths.HookPathTests) ... ok
+test_protected_absolute_relative_and_dot_paths (tests.test_hook_paths.HookPathTests) ... ok
+test_protected_lexical_paths_stay_protected_when_links_point_out (tests.test_hook_paths.HookPathTests) ... ok
+test_symlink_loop_and_non_directory_ancestor_fail_closed (tests.test_hook_paths.HookPathTests) ... ok
+test_unprotected_links_and_dangling_links_pass (tests.test_hook_paths.HookPathTests) ... ok
+test_unprotected_new_paths_and_parent_components_pass (tests.test_hook_paths.HookPathTests) ... ok
+test_error_takes_precedence_over_an_earlier_failed_check (tests.test_eval_regex.EvalRegexTests) ... ok
+test_fixed_string_match_and_miss_keep_original_verdicts (tests.test_eval_regex.EvalRegexTests) ... ok
+test_grep_execution_errors_are_undecidable_for_all_search_kinds (tests.test_eval_regex.EvalRegexTests) ... ok
+test_invalid_regex_is_undecidable_for_both_kinds (tests.test_eval_regex.EvalRegexTests) ... ok
+test_leading_hyphen_regex_is_a_pattern_not_an_option (tests.test_eval_regex.EvalRegexTests) ... ok
+test_missing_grep_is_undecidable (tests.test_eval_regex.EvalRegexTests) ... ok
+test_missing_target_and_file_exists_contract_stays_unchanged (tests.test_eval_regex.EvalRegexTests) ... ok
+test_unreadable_regular_file_is_undecidable (tests.test_eval_regex.EvalRegexTests) ... ok
+test_valid_ere_match_and_miss_keep_original_verdicts (tests.test_eval_regex.EvalRegexTests) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 6.905s
+
+OK (skipped=1)

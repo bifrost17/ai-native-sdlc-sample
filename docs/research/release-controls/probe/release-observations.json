@@ -1,0 +1,99 @@
+{
+  "head": "2e2bd2272bf483e9e7580dbffe6e89cb07c32178",
+  "source_sha256": "afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567",
+  "approved_scope": "HUMAN local mock release then disable only",
+  "observations": [
+    {
+      "setting": null,
+      "command": [
+        "python3",
+        "tracker.py",
+        "--data",
+        "requests.json",
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner hana\n"
+    },
+    {
+      "setting": null,
+      "command": [
+        "python3",
+        "tracker.py",
+        "--data",
+        "requests.json",
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')\n"
+    },
+    {
+      "setting": "1",
+      "command": [
+        "python3",
+        "tracker.py",
+        "--data",
+        "requests.json",
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "rc": 0,
+      "stdout": "R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n",
+      "stderr": ""
+    },
+    {
+      "setting": "1",
+      "command": [
+        "python3",
+        "tracker.py",
+        "--data",
+        "requests.json",
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "rc": 0,
+      "stdout": "all\t2\nopen\t1\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "setting": null,
+      "command": [
+        "python3",
+        "tracker.py",
+        "--data",
+        "requests.json",
+        "list",
+        "--owner",
+        "hana"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: unrecognized arguments: --owner hana\n"
+    },
+    {
+      "setting": null,
+      "command": [
+        "python3",
+        "tracker.py",
+        "--data",
+        "requests.json",
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "usage: tracker.py [-h] [--data DATA] {list,show,complete} ...\ntracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')\n"
+    }
+  ],
+  "source_data_head_unchanged": true,
+  "git_status": ""
+}

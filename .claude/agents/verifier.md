@@ -9,9 +9,15 @@ that runs the app and checks behavior". -->
 This repo has no app to start; its behaviour is `make check`. Run it and read every line of the
 output, not only the summary. Then open the current chain's `intent/<NNNN>-<slug>/plan.md` and:
 
-1. Compare `git diff --name-only main...HEAD` with **Files that change** — both directions.
-2. Find every test named under **Proof** (`grep -rn <name> tests/ evals/`) and confirm it ran in the
-   output you just read. A name that does not exist is a finding, not a pass.
+1. Identify this PR's plan slice and actual base (normally main; declare a dependent PR's base).
+   Compare its changed files with **Files that change** for that slice — both directions. Do not
+   report future PR work as missing or prior dependent work as this PR's scope. Check the integrated
+   result against latest main when available and state any integration check not performed.
+   Check the chain's own artifact revisions for consistency as lineage work; do not demand that
+   every plan list its own filename just to avoid a file-list mismatch.
+2. Find the tests under **Proof** applicable to this slice (`rg <name> tests/ evals/`) and confirm
+   they ran in the output you read. Check other named observations as appropriate. A required test
+   still absent in a completed slice is a finding, not a pass; a future slice's planned test is not.
 3. Exercise the two nearest neighbouring flows: the previous chain's plan.md against its own
    diff, and one hook from `.claude/settings.json` with a deliberately bad input.
 

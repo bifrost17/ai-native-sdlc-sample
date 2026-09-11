@@ -12,6 +12,7 @@ files themselves — `grep -rn 'TEAM:'` finds all of them.
 | `.claude/skills/secure-api-review/SKILL.md` (head) | the playbook's worked example verbatim, minus the `check-endpoints.sh` line | the org's actual API standard, replacing the four checklist items; restore a script line only if one exists | engineer, from the security policy owner's standard | L6 466-484 |
 | `.claude/skills/capture-intent/SKILL.md` (above the template) | a generic intent.md template (problem / outcome / users / constraints) | the org's own intent template, adjusted to what a lead needs to sign off on | technical team member writes it, a lead signs off | L2 197-202 |
 | `CLAUDE.md` (head, Commands section) | this repo's `make test`/`make evals`/`make check` and their exact healthy output | the team's real build/test/lint commands and healthy output, plus its own conventions, architecture and "things Claude gets wrong" | engineer, cut from `/init` output to a day-one page | L5 397-401 |
+| Use template `PROJECT-POLICY.md` / 검증과 운영, `CLAUDE.md` / Conventions | new/changed behavior is developed test-first; existing GREEN and pure refactors need no artificial RED | actual test commands, evidence location and engineer who decides bounded exceptions. Team skills are recommended; the optional own TDD skill supplies the method | engineering team owns this extension; defect test-first comes from L9 | L9 600-611; team choice for all behavior |
 | `.claude/hooks/protect-paths.sh` (above `PROTECTED`) | a static list: `.github/*`, `Makefile`, `.claude/hooks/*`, `.claude/settings.json` | the team's actual frozen/generated paths | platform engineer expresses the gate as a hook | L7 517, L12 791-801 |
 | `.claude/hooks/no-secrets.sh` (above the patterns) | six generic credential regexes (AWS key, PEM, `sk-`, `gh*_`, URL creds, `password=`) | the org's own secret shapes (internal gateway tokens, etc.) | platform engineer | L7 521 |
 | `.claude/hooks/format-lint.sh` (above the commands) | `py_compile` for `.py`, `bash -n` for `.sh` only | the team's real formatter/linter commands per file type | platform engineer | L7 519 |
@@ -52,3 +53,9 @@ other lesson in the map builds on one or both. Policy skills go in before the fi
 written (L3 253 lists them as a `spec.md` prerequisite). Hook values go in before the first real
 `make check`/`make build` run, since an unfilled `PROTECTED` or credential pattern is a gate that
 does not gate anything yet.
+
+운영·배포 결정자는 미완성 기능이 main에 들어갈 때 [공개 제어](RELEASE-CONTROL.md)의 적용 방법도
+정한다. 별도 사용 템플릿의 PROJECT-POLICY.md에는 ‘배포·기능 공개 권한’ 운영 행이 있다. 그 행이나
+제품의 기존 운영 정책에 공개 결정자·설정 위치·수락/중단 기록을 남긴다. 제작 예제인
+policies/PROJECT-POLICY.template.md의 여섯 정책 슬롯은 이 운영 행과 별개다. 특정 플래그 서비스나
+모든 변경의 추가 승인 문서를 요구하지 않는다.

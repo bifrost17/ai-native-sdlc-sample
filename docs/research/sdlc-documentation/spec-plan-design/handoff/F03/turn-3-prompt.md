@@ -1,0 +1,1 @@
+핵심 수정은 이해했습니다. 다만 이번 후보 spec에는 R6가 없고 요구는 R1–R5, cleanup은 R5/AC7입니다. 방금 답의 일부 인용·plan 단계 번호는 과거 입력 문서와 혼동한 것으로 보입니다. 이번에는 docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/spec.md와 plan.md 두 현행 파일을 실제로 다시 읽고 그 두 파일만 정본으로 사용하세요. cleanup 전제·확인 역할·최초 시험과 최종 유지/폐기 시험을 정확한 현행 절·ID로 짧게 재구성하세요. 실제 조건 충족/공개를 관측한 것으로 쓰지 마세요. 파일 편집이나 명령 실행은 하지 마세요.

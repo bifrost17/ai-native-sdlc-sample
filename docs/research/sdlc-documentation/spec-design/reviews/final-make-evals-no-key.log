@@ -1,0 +1,4 @@
+COMMAND: env -u ANTHROPIC_API_KEY make evals
+SKIP: ANTHROPIC_API_KEY 없음 — evals 는 돌지 않았다(rc=2, 통과 아님)
+make: *** [evals] Error 2
+EXIT: 2

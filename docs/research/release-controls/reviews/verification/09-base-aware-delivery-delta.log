@@ -1,0 +1,386 @@
+$ base-aware maker/adopter release delta
+MAKER
+diff --git a/.claude/skills/design-spec/SKILL.md b/.claude/skills/design-spec/SKILL.md
+index 08b8f6c..f145f79 100644
+--- a/.claude/skills/design-spec/SKILL.md
++++ b/.claude/skills/design-spec/SKILL.md
+@@ -54,7 +54,7 @@ the important change and choice; put a concern needing human decision up front w
+   when it clarifies a real decision. No fixed number of alternatives. Separate binding contracts
+   from illustrative names/code; leave incidental implementation choices to planning and implementation.
+   Add detail when changing it could change acceptance or implementation direction. For API/UI,
+-  migration, performance or shared boundaries, consult [conditional depth](references/design-depth.md)
++  migration, staged exposure, performance or shared boundaries, consult [conditional depth](references/design-depth.md)
+   when relevant; do not add every heading from it to every spec.
+ - **Constraints and scope**: preserve every upstream limit and explicit exclusion. State discovered
+   constraints with their basis. Refer to an already clear R/design clause instead of duplicating its
+diff --git a/.claude/skills/design-spec/references/design-depth.md b/.claude/skills/design-spec/references/design-depth.md
+index 76ddc65..ccc42f8 100644
+--- a/.claude/skills/design-spec/references/design-depth.md
++++ b/.claude/skills/design-spec/references/design-depth.md
+@@ -7,6 +7,7 @@ requiring an N/A explanation for every row. Keep the important decision and its
+ |---|---|
+ | API, UI or integration boundary | Who can do what; request/response or state meaning; representative full user journey; empty, denied and failure behavior; compatibility with existing consumers. Link an actual approved mock/contract when used and distinguish its binding parts from illustration. |
+ | Stored data or migration | Current and target representation, invariants and ownership, partial failure, retries, coexistence or downtime, conditions for cutover and recovery. Account for writes after cutover and preserve the important invariants when service resumes. Exact run commands and operator steps belong in plan. |
++| Incomplete integration or staged exposure | Agreed release unit, ordinary default and trusted test audience, directly reachable/effect boundaries, failure/default behavior and release/disable contract. Follow docs/RELEASE-CONTROL.md; the plan owns the control/configuration, responsible person, verification and eventual removal steps. A flag does not replace authorization or data recovery. |
+ | Concurrency or shared state | Which updates must be atomic, what a repeat/conflict means, and what readers can see. Identify the shared contract so separately implemented parts do not choose incompatible assumptions. |
+ | Performance or external dependency | Actual workload/measurement basis when known, acceptable degradation or failure, important limits and operating cost. If evidence is missing, state the uncertainty and what decision it affects rather than inventing a target. |
+ | Several modules or teams | Shared interfaces and constraints, existing components reused, changes that must agree and the integration result to verify. Let plan own work packages, file ownership and PR order. |
+diff --git a/.claude/skills/plan/SKILL.md b/.claude/skills/plan/SKILL.md
+index 8407af8..a81d52a 100644
+--- a/.claude/skills/plan/SKILL.md
++++ b/.claude/skills/plan/SKILL.md
+@@ -27,7 +27,8 @@ a demand for four independent lists. Connect files, steps and proof so the next
+ - **Files that change:** verified paths and each change's role; mark new files, including relevant tests/docs.
+ - **Order of work:** concrete results and needed inputs, including wiring into the product. A small change
+   can be a few steps in one PR. For multiple PRs, name each reviewable purpose, included work,
+-  dependency/merge order, working main state after merge, remaining scope and proof. Keep one behavior's
++  dependency/merge order, working main state after merge, remaining scope and proof. Where release is
++  controlled, distinguish ordinary/test exposure from executable code and plan the release decision. Keep one behavior's
+   implementation/tests/docs together unless there is a substantive reason to split.
+ - **Risks:** material neighboring regressions, the riskiest step, its detection/response and significant
+   rejected execution alternatives. Do not duplicate the spec's entire design discussion.
+diff --git a/.claude/skills/plan/references/execution-depth.md b/.claude/skills/plan/references/execution-depth.md
+index 52eccd4..a79cfb9 100644
+--- a/.claude/skills/plan/references/execution-depth.md
++++ b/.claude/skills/plan/references/execution-depth.md
+@@ -14,6 +14,14 @@ Order of work 안에 PR별 짧은 블록을 둔다. 목적·포함 작업·선
+ stacked 작업을 선택하면 실제 base·의존성을 표시하고 선행 merge 뒤 남은 diff와 대상 main을
+ 다시 맞춘다. 장기 기능 통합 브랜치를 만들지 않는다. 단계 문서 커밋·사람 수락과 PR 통합은 별개다.
+ 
++## 통합과 공개가 다를 때
++docs/RELEASE-CONTROL.md를 읽고 spec의 공개 계약을 실행 순서로 옮긴다. 관련 PR별 main의 동작과
++일반 OFF/테스트 ON 상태, 남은 공개 단위와 증거를 적는다. 같은 제어·설정 위치를 PR 사이에 재사용하며
++소스의 숨김 코드를 매번 고치지 않는다. 담당자의 공개 판단, 설정 반영/중단 방법(재시작이 필요하면 포함),
++최종 전체 확인과 제거 조건을 기존 Order/Proof에 둔다. OFF도 빌드·기존 동작·호환성을 유지해야 한다.
++부분 ON 시험을 전체 완료로 쓰지 않고, 제어 제거 전 구버전/복구 경로와 설정 정리 순서를 고려한다.
++작은 완결 변경에 플래그나 별도 공개 문서를 추가하지 않는다.
++
+ ## 병렬 인계
+ 독립 세션은 branch/worktree별로 나눈다. 각 작업의 파일·결과·필요한 입력과 읽을 공유 계약의 위치/판을
+ 남긴다. 같은 파일을 수정하는 작업은 순차 실행한다. 파일이 달라도 계약·순서 의존이 있으면 먼저
+diff --git a/REVIEW.md b/REVIEW.md
+index f6a55c1..4dca555 100644
+--- a/REVIEW.md
++++ b/REVIEW.md
+@@ -10,7 +10,9 @@ Run three passes and tag each finding with its pass:
+   test file does not cover.
+ - Security: secrets in the diff, PII in logs, a hook that fails open when `jq` is missing.
+ - Compliance: the change matches spec.md and plan.md of its chain under `intent/` for this PR's
+-  declared slice; future PR work is not missing from this slice. Also check the
++  declared slice; future PR work is not missing from this slice. When release is controlled, check
++  the declared ordinary/test exposure and effect boundaries against docs/RELEASE-CONTROL.md;
++  partial verification or merge does not approve general release. Also check the
+   boundary in docs/BOUNDARY.md — code that checks artifact form, status or transitions does
+   not belong here. A code file under `.claude/hooks/`, `scripts/`, `evals/` whose header cites no
+   lesson sentence is a compliance finding; `src/` and `tests/` cite their spec clause instead.
+diff --git a/docs/GIT-WORKFLOW.md b/docs/GIT-WORKFLOW.md
+index f6331f9..52018b9 100644
+--- a/docs/GIT-WORKFLOW.md
++++ b/docs/GIT-WORKFLOW.md
+@@ -64,7 +64,9 @@ PR이 만들어졌다는 사실도 승인이 아니다. 기록을 남기는 위
+ 머지 후 통합 결과를 확인하고 완료된 작업 브랜치와 worktree를 정리한다. PR·커밋·결정 기록은 남긴다.
+ 문제가 발견되면 영향과 의존성을 보고 수정 PR 또는 revert PR로 대응하며, 데이터·외부 효과는 별도로
+ 복구한다. 머지는 배포나 기능 공개와 같지 않다. 배포·노출·되돌리기는 프로젝트의 실제 운영 방식에
+-따르며 필요한 경우에만 호환 단계나 기능 노출 제어를 사용한다.
++따른다. 미완성 공개 단위를 일반 사용자에게 열지 않고 시험하며 통합하려면
++[기능 공개 제어](RELEASE-CONTROL.md)를 적용한다. 관련 PR의 계획과 검증에는 main의 실행 상태와
++일반/테스트 대상의 노출 상태를 함께 남긴다. 공개 결정자·설정 위치·수락/중단 기록은 프로젝트가 정한다.
+ 
+ 근거: [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow),
+ [플레이북의 계획 분할과 병렬 실행](https://academy.claude.com/courses/ai-native-sdlc-playbook/parallel-sessions-and-subagents).
+diff --git a/docs/PR-SIZE.md b/docs/PR-SIZE.md
+index 6ff2666..89c273b 100644
+--- a/docs/PR-SIZE.md
++++ b/docs/PR-SIZE.md
+@@ -7,7 +7,9 @@ PR은 하나의 목적과 영향 범위를 이해하고, 검증하며, 문제 
+ ## 나누거나 함께 두는 판단
+ 
+ - 독립적으로 수락·사용·되돌릴 수 있는 변경, 서로 다른 목적의 기능과 큰 리팩터링은 분리할 이점이 크면 나눈다.
+-  먼저 끝난 부분의 검증과 사용자 피드백을 전체 기능 완료까지 미루지 않는다.
++  먼저 끝난 부분의 검증과 허용된 대상의 피드백을 전체 개발 완료까지 미루지 않는다. 독립적으로 완성·
++  수락한 기능은 먼저 공개할 수 있다. 하나의 미완성 공개 단위를 나눈 PR은 [공개 제어](RELEASE-CONTROL.md)로
++  일반 OFF를 유지하며 시험하고, 각 통합의 기존 동작·노출 상태를 증명한다.
+ - 한 동작의 구현·관련 시험·사용 설명은 함께 둘 수 있다. 줄 수를 맞추려고 시험만 떼어 내거나,
+   불필요한 임시 코드와 복잡한 의존 브랜치를 만들지 않는다.
+ - 대량 삭제, 확인 가능한 기계적 치환, 한 계약을 일관되게 바꾸는 작업은 큰 PR이 합리적일 수 있다.
+diff --git a/docs/RELEASE-CONTROL.md b/docs/RELEASE-CONTROL.md
+new file mode 100644
+index 0000000..544b4df
+--- /dev/null
++++ b/docs/RELEASE-CONTROL.md
+@@ -0,0 +1,55 @@
++# 개발 중인 기능의 테스트와 공개
++
++GitHub Flow의 main은 기존 사용자 흐름을 유지하며 배포 가능하게 둔다. 코드 통합, 환경에 배포,
++사용자에게 기능 공개는 서로 다른 결정이다. 합의한 **공개 단위**가 완성·검증되고 담당자가 공개를
++수락하기 전에는 일반 사용자에게 열지 않는다. 독립적으로 완성·수락한 다른 기능은 먼저 제공할 수 있다.
++이것은 우리 팀의 운영 선택이며, 모든 변경에 feature flag를 요구하는 GitHub Flow 규칙은 아니다.
++
++## 필요한 경우에만 제어 선택
++
++| 상황 | 기본 선택 |
++|---|---|
++| 한 PR로 완결되는 수정, 문서 변경, 호출되지 않는 안전한 호환 준비 | 추가 플래그 없이 기존 검증·배포 절차 사용 |
++| 여러 PR의 미완성 기능이 일반 사용자용 배포물에도 들어감 | 단기 **release flag**로 일반 OFF, 개발·테스트 환경 또는 허용한 시험 대상만 ON |
++| 큰 내부 구현 교체 | 안정된 인터페이스 아래 구·신 구현을 공존시키는 branch by abstraction; 전환 제어는 필요한 경우만 |
++| 별도 미리보기 환경에서만 시험 | 환경 분리로 시험하되, main을 배포했을 때 미완성 기능이 열리지 않는지도 확인 |
++
++한 공개 단위의 제어 지점을 도입하고 이후 PR에서도 같은 판단·설정을 재사용한다. PR마다 숨기는 코드를
++넣었다 빼지 않는다. 작은 서비스는 기존 환경 변수나 설정 파일로 충분할 수 있다. 설정 반영에 재시작이나
++설정 배포가 필요한지는 명시한다. 실시간 전환·다수 대상 관리가 필요해질 때 기존 SDK/서비스를 검토한다.
++
++## 제어해야 하는 경계
++
++- 미완성 release flag는 미설정·유효하지 않은 값·평가 오류 때 OFF가 기본이다. 기존 동작은 유지한다.
++  캐시나 원격 설정을 쓴다면 오래된 값의 효력과 OFF 전파 지연도 정한다. 운영용 kill switch의 안전값은 별도 판단이다.
++- 버튼이나 메뉴만 숨겨서는 부족하다. 직접 접근 가능한 API/명령과 쓰기·알림·외부 호출·작업 예약/실행 등
++  실제 효과의 경계도 막는다. 시작 시 실행, 백그라운드 작업, 저장소 migration처럼 화면과 무관한 경로를 살핀다.
++- 서버의 테스트 대상은 신뢰된 환경·인증 정보에서 정한다. 사용자가 임의로 보낸 쿼리·쿠키·로컬 설정을
++  공개 권한으로 믿지 않는다. 플래그는 기존 인증·권한 검사를 대체하지 않는다.
++- OFF라도 빌드·시작·기존 기능이 깨지거나 스키마가 비호환이면 통합 준비가 된 것이 아니다. OFF는
++  이미 쓴 데이터나 진행 중인 작업을 되돌리지 않는다. 필요하면 호환 단계와 별도 복구 방법을 설계한다.
++
++## spec, plan, 리뷰에 남길 것
++
++별도 필수 문서를 늘리지 않고 해당 변경의 기존 절에 기록한다.
++
++- **spec / Design·AC:** 공개 단위, 일반 기본 상태와 테스트 대상, 제어 경계·설정 실패 시 동작,
++  공개 조건과 중단 시 유지할 계약. 정책의 결정자·기록 위치를 참조한다.
++- **plan / Order·Proof:** 관련 PR마다 main에서 실행 가능한 부분, 일반/테스트 노출 상태, 남은 범위와
++  OFF/ON 확인을 연결한다. 사용할 제어 이름·설정 위치, 담당자, 공개·중단 방법과 제거 조건도 함께 적는다.
++  공개 단위가 끝나기 전 ON 시험은 그 PR 범위의 증거이며 전체 AC 통과가 아니다.
++- **리뷰·공개:** 일반 OFF에서 기존 흐름과 직접 접근 차단, 테스트 ON에서 해당 기능, 최종 공개 전 전체
++  공개 단위와 되돌릴 OFF 경로를 확인한다. 필요한 플래그 상호작용을 시험하며 모든 조합을 강제하지 않는다.
++  공개 결정은 실제 코드 판·대상·설정 값·결정자·근거와 함께 프로젝트의 기존 운영 기록에 남긴다.
++  테스트 ON 수락이나 PR merge가 일반 공개 수락을 대신하지 않는다.
++
++예: 담당자 목록과 집계를 한 공개 단위로 합의했다면 PR1은 목록을 시험 가능하게 만들고 일반 OFF,
++PR2는 같은 제어 아래 집계를 완성하고 일반 OFF를 유지한다. 두 PR 모두 기존 기능이 동작해야 한다.
++전체 확인 후 담당자가 설정으로 공개한다. 아직 테스트하지 않은 일반 설정·대상에서 성공을 가정하지 않는다.
++
++공개 후 안정성 관측과 필요한 되돌림 기간이 끝나면 담당자가 제어 제거를 결정한다. 먼저 최종 동작을
++유지하는 소스·시험·문서를 반영하고, 그 설정을 읽는 구버전/복구 버전이 남아 있는지도 확인한 뒤 설정을
++정리한다. OFF 기본값을 읽는 코드가 남았는데 설정부터 지우면 기능이 다시 꺼질 수 있다. 상시 권한이나
++운영 제어는 단기 릴리스 플래그와 구분한다. 고정 만료 일수나 별도 관리 시스템은 요구하지 않는다.
++
++관련 정책: [브랜치](GIT-WORKFLOW.md), [PR 크기](PR-SIZE.md).
+diff --git a/templates/plan.md b/templates/plan.md
+index 5d947ee..1260131 100644
+--- a/templates/plan.md
++++ b/templates/plan.md
+@@ -10,7 +10,9 @@ Upstream: spec.md@‹commit sha of the accepted spec›. Status: draft.
+ 2. ‹Implement and connect the concrete behavior, with its checks.›
+ 3. ‹Verify the integrated result and prepare the handoff.›
+ ‹For multiple PRs, group by reviewable purpose: scope, dependencies/merge order, what works on main
+-after each merge, what remains, and its proof. Tasks, commits, agents and PRs need not map one-to-one.
++after each merge, what remains, and its proof. When release is controlled, include ordinary/test exposure
++after each PR and the shared control/configuration, release/disable steps, owner and removal condition
++(docs/RELEASE-CONTROL.md). Tasks, commits, agents and PRs need not map one-to-one.
+ For parallel work, identify worktree/file boundaries, shared contract references and integration/plan coordination.
+ Use only the detail this change needs; follow docs/GIT-WORKFLOW.md and docs/PR-SIZE.md.›
+ 
+diff --git a/templates/spec.md b/templates/spec.md
+index 580f407..6d38d22 100644
+--- a/templates/spec.md
++++ b/templates/spec.md
+@@ -12,6 +12,8 @@ Skills applied: ‹실제로 읽고 적용한 팀 스킬의 이름·출처·확
+ 
+ ## Design
+ ‹기존 구조와의 연결, 주요 흐름과 선택 이유·영향. 중요한 계약·실패 상태는 구체화하고 구현 예시는 구별한다.›
++‹미완성 기능을 통합하거나 공개를 나눌 때만: 공개 단위·기본/테스트 대상·제어 경계·설정 실패 시 동작과
++공개/중단 조건을 적는다. docs/RELEASE-CONTROL.md와 프로젝트의 공개 결정·기록 정책을 따른다.›
+ 
+ ## Constraints and scope
+ ‹이어받은 제약과 설계에서 확인한 제한, 이번에 하지 않을 것. 이미 명시한 조건은 해당 요구를 참조해도 된다.›
+ADOPTER
+diff --git a/REVIEW.md b/REVIEW.md
+index 14f18f6..3c5eed1 100644
+--- a/REVIEW.md
++++ b/REVIEW.md
+@@ -9,6 +9,8 @@
+ 
+ [PR 크기 가이드](docs/PR-SIZE.md)와 [GitHub Flow 정책](docs/GIT-WORKFLOW.md)에 따라 묶음의 목적,
+ 선행 관계, 부분 완료 범위와 최신 통합 상태의 정상 동작을 확인한다. 줄 수만으로 반려하지 않는다.
++공개를 제어하는 변경은 [공개 제어](docs/RELEASE-CONTROL.md)에 따라 일반/테스트 대상의 노출과
++직접 호출·부수 효과 경계도 확인한다. 부분 검증이나 merge가 일반 공개 수락을 대신하지 않는다.
+ 구현이 계획에서 벗어났다면 이유와 `plan.md` 갱신이 해당 구현 커밋에 함께 있는지 확인한다.
+ 후속 요청에서 합의한 변경이 spec의 요구·수용 기준과 plan의 구현·검증 계획에 반영됐는지 대조한다.
+ 코드와 시험이 맞아도 필요한 설계·계획 갱신이 빠졌다면 중요한 미해결 발견으로 남긴다.
+diff --git a/docs/GIT-WORKFLOW.md b/docs/GIT-WORKFLOW.md
+index f6331f9..52018b9 100644
+--- a/docs/GIT-WORKFLOW.md
++++ b/docs/GIT-WORKFLOW.md
+@@ -64,7 +64,9 @@ PR이 만들어졌다는 사실도 승인이 아니다. 기록을 남기는 위
+ 머지 후 통합 결과를 확인하고 완료된 작업 브랜치와 worktree를 정리한다. PR·커밋·결정 기록은 남긴다.
+ 문제가 발견되면 영향과 의존성을 보고 수정 PR 또는 revert PR로 대응하며, 데이터·외부 효과는 별도로
+ 복구한다. 머지는 배포나 기능 공개와 같지 않다. 배포·노출·되돌리기는 프로젝트의 실제 운영 방식에
+-따르며 필요한 경우에만 호환 단계나 기능 노출 제어를 사용한다.
++따른다. 미완성 공개 단위를 일반 사용자에게 열지 않고 시험하며 통합하려면
++[기능 공개 제어](RELEASE-CONTROL.md)를 적용한다. 관련 PR의 계획과 검증에는 main의 실행 상태와
++일반/테스트 대상의 노출 상태를 함께 남긴다. 공개 결정자·설정 위치·수락/중단 기록은 프로젝트가 정한다.
+ 
+ 근거: [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow),
+ [플레이북의 계획 분할과 병렬 실행](https://academy.claude.com/courses/ai-native-sdlc-playbook/parallel-sessions-and-subagents).
+diff --git a/docs/PR-SIZE.md b/docs/PR-SIZE.md
+index 6ff2666..89c273b 100644
+--- a/docs/PR-SIZE.md
++++ b/docs/PR-SIZE.md
+@@ -7,7 +7,9 @@ PR은 하나의 목적과 영향 범위를 이해하고, 검증하며, 문제 
+ ## 나누거나 함께 두는 판단
+ 
+ - 독립적으로 수락·사용·되돌릴 수 있는 변경, 서로 다른 목적의 기능과 큰 리팩터링은 분리할 이점이 크면 나눈다.
+-  먼저 끝난 부분의 검증과 사용자 피드백을 전체 기능 완료까지 미루지 않는다.
++  먼저 끝난 부분의 검증과 허용된 대상의 피드백을 전체 개발 완료까지 미루지 않는다. 독립적으로 완성·
++  수락한 기능은 먼저 공개할 수 있다. 하나의 미완성 공개 단위를 나눈 PR은 [공개 제어](RELEASE-CONTROL.md)로
++  일반 OFF를 유지하며 시험하고, 각 통합의 기존 동작·노출 상태를 증명한다.
+ - 한 동작의 구현·관련 시험·사용 설명은 함께 둘 수 있다. 줄 수를 맞추려고 시험만 떼어 내거나,
+   불필요한 임시 코드와 복잡한 의존 브랜치를 만들지 않는다.
+ - 대량 삭제, 확인 가능한 기계적 치환, 한 계약을 일관되게 바꾸는 작업은 큰 PR이 합리적일 수 있다.
+diff --git a/docs/RELEASE-CONTROL.md b/docs/RELEASE-CONTROL.md
+new file mode 100644
+index 0000000..544b4df
+--- /dev/null
++++ b/docs/RELEASE-CONTROL.md
+@@ -0,0 +1,55 @@
++# 개발 중인 기능의 테스트와 공개
++
++GitHub Flow의 main은 기존 사용자 흐름을 유지하며 배포 가능하게 둔다. 코드 통합, 환경에 배포,
++사용자에게 기능 공개는 서로 다른 결정이다. 합의한 **공개 단위**가 완성·검증되고 담당자가 공개를
++수락하기 전에는 일반 사용자에게 열지 않는다. 독립적으로 완성·수락한 다른 기능은 먼저 제공할 수 있다.
++이것은 우리 팀의 운영 선택이며, 모든 변경에 feature flag를 요구하는 GitHub Flow 규칙은 아니다.
++
++## 필요한 경우에만 제어 선택
++
++| 상황 | 기본 선택 |
++|---|---|
++| 한 PR로 완결되는 수정, 문서 변경, 호출되지 않는 안전한 호환 준비 | 추가 플래그 없이 기존 검증·배포 절차 사용 |
++| 여러 PR의 미완성 기능이 일반 사용자용 배포물에도 들어감 | 단기 **release flag**로 일반 OFF, 개발·테스트 환경 또는 허용한 시험 대상만 ON |
++| 큰 내부 구현 교체 | 안정된 인터페이스 아래 구·신 구현을 공존시키는 branch by abstraction; 전환 제어는 필요한 경우만 |
++| 별도 미리보기 환경에서만 시험 | 환경 분리로 시험하되, main을 배포했을 때 미완성 기능이 열리지 않는지도 확인 |
++
++한 공개 단위의 제어 지점을 도입하고 이후 PR에서도 같은 판단·설정을 재사용한다. PR마다 숨기는 코드를
++넣었다 빼지 않는다. 작은 서비스는 기존 환경 변수나 설정 파일로 충분할 수 있다. 설정 반영에 재시작이나
++설정 배포가 필요한지는 명시한다. 실시간 전환·다수 대상 관리가 필요해질 때 기존 SDK/서비스를 검토한다.
++
++## 제어해야 하는 경계
++
++- 미완성 release flag는 미설정·유효하지 않은 값·평가 오류 때 OFF가 기본이다. 기존 동작은 유지한다.
++  캐시나 원격 설정을 쓴다면 오래된 값의 효력과 OFF 전파 지연도 정한다. 운영용 kill switch의 안전값은 별도 판단이다.
++- 버튼이나 메뉴만 숨겨서는 부족하다. 직접 접근 가능한 API/명령과 쓰기·알림·외부 호출·작업 예약/실행 등
++  실제 효과의 경계도 막는다. 시작 시 실행, 백그라운드 작업, 저장소 migration처럼 화면과 무관한 경로를 살핀다.
++- 서버의 테스트 대상은 신뢰된 환경·인증 정보에서 정한다. 사용자가 임의로 보낸 쿼리·쿠키·로컬 설정을
++  공개 권한으로 믿지 않는다. 플래그는 기존 인증·권한 검사를 대체하지 않는다.
++- OFF라도 빌드·시작·기존 기능이 깨지거나 스키마가 비호환이면 통합 준비가 된 것이 아니다. OFF는
++  이미 쓴 데이터나 진행 중인 작업을 되돌리지 않는다. 필요하면 호환 단계와 별도 복구 방법을 설계한다.
++
++## spec, plan, 리뷰에 남길 것
++
++별도 필수 문서를 늘리지 않고 해당 변경의 기존 절에 기록한다.
++
++- **spec / Design·AC:** 공개 단위, 일반 기본 상태와 테스트 대상, 제어 경계·설정 실패 시 동작,
++  공개 조건과 중단 시 유지할 계약. 정책의 결정자·기록 위치를 참조한다.
++- **plan / Order·Proof:** 관련 PR마다 main에서 실행 가능한 부분, 일반/테스트 노출 상태, 남은 범위와
++  OFF/ON 확인을 연결한다. 사용할 제어 이름·설정 위치, 담당자, 공개·중단 방법과 제거 조건도 함께 적는다.
++  공개 단위가 끝나기 전 ON 시험은 그 PR 범위의 증거이며 전체 AC 통과가 아니다.
++- **리뷰·공개:** 일반 OFF에서 기존 흐름과 직접 접근 차단, 테스트 ON에서 해당 기능, 최종 공개 전 전체
++  공개 단위와 되돌릴 OFF 경로를 확인한다. 필요한 플래그 상호작용을 시험하며 모든 조합을 강제하지 않는다.
++  공개 결정은 실제 코드 판·대상·설정 값·결정자·근거와 함께 프로젝트의 기존 운영 기록에 남긴다.
++  테스트 ON 수락이나 PR merge가 일반 공개 수락을 대신하지 않는다.
++
++예: 담당자 목록과 집계를 한 공개 단위로 합의했다면 PR1은 목록을 시험 가능하게 만들고 일반 OFF,
++PR2는 같은 제어 아래 집계를 완성하고 일반 OFF를 유지한다. 두 PR 모두 기존 기능이 동작해야 한다.
++전체 확인 후 담당자가 설정으로 공개한다. 아직 테스트하지 않은 일반 설정·대상에서 성공을 가정하지 않는다.
++
++공개 후 안정성 관측과 필요한 되돌림 기간이 끝나면 담당자가 제어 제거를 결정한다. 먼저 최종 동작을
++유지하는 소스·시험·문서를 반영하고, 그 설정을 읽는 구버전/복구 버전이 남아 있는지도 확인한 뒤 설정을
++정리한다. OFF 기본값을 읽는 코드가 남았는데 설정부터 지우면 기능이 다시 꺼질 수 있다. 상시 권한이나
++운영 제어는 단기 릴리스 플래그와 구분한다. 고정 만료 일수나 별도 관리 시스템은 요구하지 않는다.
++
++관련 정책: [브랜치](GIT-WORKFLOW.md), [PR 크기](PR-SIZE.md).
+diff --git a/examples/skills/design-spec/SKILL.md b/examples/skills/design-spec/SKILL.md
+index 7ad5332..6039606 100644
+--- a/examples/skills/design-spec/SKILL.md
++++ b/examples/skills/design-spec/SKILL.md
+@@ -19,7 +19,7 @@ disable-model-invocation: true
+   하나의 기준이 여러 요구를 확인할 수 있다. R 문장을 그대로 반복하거나 수치를 만들어 넣지 않는다.
+ - Design: 기존 구조·흐름과 주요 계약, 선택 이유·의미 있는 대안이나 단점을 설명한다.
+   구현 예시와 확정 계약을 구별한다. 내부 함수명·파일별 순서·실행 명령은 필요 없이 고정하지 않는다.
+-  이행·API·공유 상태처럼 상세가 필요한 경우에만 [설계 깊이 참고](references/design-depth.md)를 읽는다.
++  이행·API·공개 대상 전환·공유 상태처럼 상세가 필요한 경우에만 [설계 깊이 참고](references/design-depth.md)를 읽는다.
+ - Constraints and scope: 의도의 제약·제외 범위를 빠뜨리지 않는다. 이미 명확한 R은 참조할 수 있다.
+   현재 환경 사실을 확인받지 않은 금지 조건으로 바꾸지 않는다.
+ - Open questions: 기존 질문을 answered 또는 carried forward로 처리하고 새 질문도 담는다.
+diff --git a/examples/skills/design-spec/references/design-depth.md b/examples/skills/design-spec/references/design-depth.md
+index 76ddc65..ccc42f8 100644
+--- a/examples/skills/design-spec/references/design-depth.md
++++ b/examples/skills/design-spec/references/design-depth.md
+@@ -7,6 +7,7 @@ requiring an N/A explanation for every row. Keep the important decision and its
+ |---|---|
+ | API, UI or integration boundary | Who can do what; request/response or state meaning; representative full user journey; empty, denied and failure behavior; compatibility with existing consumers. Link an actual approved mock/contract when used and distinguish its binding parts from illustration. |
+ | Stored data or migration | Current and target representation, invariants and ownership, partial failure, retries, coexistence or downtime, conditions for cutover and recovery. Account for writes after cutover and preserve the important invariants when service resumes. Exact run commands and operator steps belong in plan. |
++| Incomplete integration or staged exposure | Agreed release unit, ordinary default and trusted test audience, directly reachable/effect boundaries, failure/default behavior and release/disable contract. Follow docs/RELEASE-CONTROL.md; the plan owns the control/configuration, responsible person, verification and eventual removal steps. A flag does not replace authorization or data recovery. |
+ | Concurrency or shared state | Which updates must be atomic, what a repeat/conflict means, and what readers can see. Identify the shared contract so separately implemented parts do not choose incompatible assumptions. |
+ | Performance or external dependency | Actual workload/measurement basis when known, acceptable degradation or failure, important limits and operating cost. If evidence is missing, state the uncertainty and what decision it affects rather than inventing a target. |
+ | Several modules or teams | Shared interfaces and constraints, existing components reused, changes that must agree and the integration result to verify. Let plan own work packages, file ownership and PR order. |
+diff --git a/examples/skills/plan/SKILL.md b/examples/skills/plan/SKILL.md
+index bbad88f..56dc995 100644
+--- a/examples/skills/plan/SKILL.md
++++ b/examples/skills/plan/SKILL.md
+@@ -24,7 +24,8 @@ a demand for four independent lists. Connect files, steps and proof so the next
+ - **Files that change:** verified paths and each change's role; mark new files, including relevant tests/docs.
+ - **Order of work:** concrete results and needed inputs, including wiring into the product. A small change
+   can be a few steps in one PR. For multiple PRs, name each reviewable purpose, included work,
+-  dependency/merge order, working main state after merge, remaining scope and proof. Keep one behavior's
++  dependency/merge order, working main state after merge, remaining scope and proof. Where release is
++  controlled, distinguish ordinary/test exposure from executable code and plan the release decision. Keep one behavior's
+   implementation/tests/docs together unless there is a substantive reason to split.
+ - **Risks:** material neighboring regressions, the riskiest step, its detection/response and significant
+   rejected execution alternatives. Do not duplicate the spec's entire design discussion.
+diff --git a/examples/skills/plan/references/execution-depth.md b/examples/skills/plan/references/execution-depth.md
+index 52eccd4..a79cfb9 100644
+--- a/examples/skills/plan/references/execution-depth.md
++++ b/examples/skills/plan/references/execution-depth.md
+@@ -14,6 +14,14 @@ Order of work 안에 PR별 짧은 블록을 둔다. 목적·포함 작업·선
+ stacked 작업을 선택하면 실제 base·의존성을 표시하고 선행 merge 뒤 남은 diff와 대상 main을
+ 다시 맞춘다. 장기 기능 통합 브랜치를 만들지 않는다. 단계 문서 커밋·사람 수락과 PR 통합은 별개다.
+ 
++## 통합과 공개가 다를 때
++docs/RELEASE-CONTROL.md를 읽고 spec의 공개 계약을 실행 순서로 옮긴다. 관련 PR별 main의 동작과
++일반 OFF/테스트 ON 상태, 남은 공개 단위와 증거를 적는다. 같은 제어·설정 위치를 PR 사이에 재사용하며
++소스의 숨김 코드를 매번 고치지 않는다. 담당자의 공개 판단, 설정 반영/중단 방법(재시작이 필요하면 포함),
++최종 전체 확인과 제거 조건을 기존 Order/Proof에 둔다. OFF도 빌드·기존 동작·호환성을 유지해야 한다.
++부분 ON 시험을 전체 완료로 쓰지 않고, 제어 제거 전 구버전/복구 경로와 설정 정리 순서를 고려한다.
++작은 완결 변경에 플래그나 별도 공개 문서를 추가하지 않는다.
++
+ ## 병렬 인계
+ 독립 세션은 branch/worktree별로 나눈다. 각 작업의 파일·결과·필요한 입력과 읽을 공유 계약의 위치/판을
+ 남긴다. 같은 파일을 수정하는 작업은 순차 실행한다. 파일이 달라도 계약·순서 의존이 있으면 먼저
+diff --git a/templates/plan.md b/templates/plan.md
+index 5d947ee..1260131 100644
+--- a/templates/plan.md
++++ b/templates/plan.md
+@@ -10,7 +10,9 @@ Upstream: spec.md@‹commit sha of the accepted spec›. Status: draft.
+ 2. ‹Implement and connect the concrete behavior, with its checks.›
+ 3. ‹Verify the integrated result and prepare the handoff.›
+ ‹For multiple PRs, group by reviewable purpose: scope, dependencies/merge order, what works on main
+-after each merge, what remains, and its proof. Tasks, commits, agents and PRs need not map one-to-one.
++after each merge, what remains, and its proof. When release is controlled, include ordinary/test exposure
++after each PR and the shared control/configuration, release/disable steps, owner and removal condition
++(docs/RELEASE-CONTROL.md). Tasks, commits, agents and PRs need not map one-to-one.
+ For parallel work, identify worktree/file boundaries, shared contract references and integration/plan coordination.
+ Use only the detail this change needs; follow docs/GIT-WORKFLOW.md and docs/PR-SIZE.md.›
+ 
+diff --git a/templates/spec.md b/templates/spec.md
+index a5cda53..df43912 100644
+--- a/templates/spec.md
++++ b/templates/spec.md
+@@ -12,6 +12,8 @@ References applied: ‹실제로 사용한 관련 정책·자료·선택한 팀
+ 
+ ## Design
+ ‹기존 구조와의 연결, 주요 흐름과 선택 이유·영향. 중요한 계약·실패 상태는 구체화하고 구현 예시는 구별한다.›
++‹미완성 기능을 통합하거나 공개를 나눌 때만: 공개 단위·기본/테스트 대상·제어 경계·설정 실패 시 동작과
++공개/중단 조건을 적는다. docs/RELEASE-CONTROL.md와 프로젝트의 공개 결정·기록 정책을 따른다.›
+ 
+ ## Constraints and scope
+ ‹이어받은 제약과 설계에서 확인한 제한, 이번에 하지 않을 것. 이미 명시한 조건은 해당 요구를 참조해도 된다.›
+exit_code=0
