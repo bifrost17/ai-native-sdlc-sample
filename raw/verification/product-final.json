@@ -1,0 +1,173 @@
+{
+  "result": "pass",
+  "calls": [
+    {
+      "args": [
+        "summary",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 3, \"done\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary"
+      ],
+      "rc": 0,
+      "stdout": "open\t3\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "hana",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 1, \"done\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "hana"
+      ],
+      "rc": 0,
+      "stdout": "open\t1\ndone\t1\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "nobody",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "nobody"
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "HANA",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "HANA"
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        ""
+      ],
+      "rc": 0,
+      "stdout": "open\t0\ndone\t0\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "complete",
+        "R-101"
+      ],
+      "rc": 0,
+      "stdout": "R-101\tdone\thana\t회의실 키 확인\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--owner",
+        "hana",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 2}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "show",
+        "R-NOT-FOUND"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Request not found: R-NOT-FOUND\n"
+    },
+    {
+      "args": [
+        "complete",
+        "R-NOT-FOUND"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Request not found: R-NOT-FOUND\n"
+    },
+    {
+      "args": [
+        "summary",
+        "--json"
+      ],
+      "rc": 0,
+      "stdout": "{\"open\": 0, \"done\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "summary",
+        "--json"
+      ],
+      "rc": 2,
+      "stdout": "",
+      "stderr": "Cannot read or update requests: Expecting value: line 1 column 1 (char 0)\n"
+    }
+  ],
+  "original_test_helpers_preserved": [
+    "invoke",
+    "setUp",
+    "test_complete_changes_only_target_status_and_is_repeatable",
+    "test_list_owner_filters_and_keeps_order_including_done",
+    "test_list_owner_unknown_or_mismatched_case_is_empty",
+    "test_list_preserves_order_and_does_not_write",
+    "test_show_existing_and_missing_id"
+  ],
+  "fixture_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+  "scope": "product behavior only"
+}
