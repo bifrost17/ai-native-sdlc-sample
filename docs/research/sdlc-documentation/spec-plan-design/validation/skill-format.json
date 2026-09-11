@@ -33,5 +33,13 @@
       "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
     }
   ],
+  "finalFollowup": {
+    "candidate": "979771d",
+    "changedSkills": ["design-spec", "plan"],
+    "command": "uv run --with pyyaml --no-project python /Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py <candidate skill folder>",
+    "exitCodes": [0, 0],
+    "stdoutEach": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n",
+    "tdd": "SKILL.md unchanged since initial validation; added PROVENANCE only"
+  },
   "limits": "Frontmatter and skill file shape only; not actual selection/behavior"
 }

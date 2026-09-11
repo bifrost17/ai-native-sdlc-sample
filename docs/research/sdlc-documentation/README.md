@@ -17,6 +17,10 @@ Astra와 Claude Code Fable의 독립 리뷰 기록을 함께 볼 수 있다.
 병렬 인계를 필요한 만큼 확장했다. Astra/Fable 독립 리뷰와 실제 새 세션 구현·순차 통합·계획 갱신의
 통과 범위 및 에이전트 누락/복구를 함께 기록했다.
 
+[spec·plan 상세화와 TDD 설계 패키지](spec-plan-design/README.md)는 실제 채울 양식·조건부 설계 도식·
+단일/다중 문서 예시와 TDD 역할 분리를 보강했다. Astra와 Claude Code Opus의 최종 리뷰, Fable의 독립
+제안과 사용 한도 기록, 새 Sonnet 인계 대화를 보존했다. 설계 후보이며 활성화/제품 실행 실험은 후속 단계다.
+
 ## 읽는 순서
 
 1. [설계 방법 비교와 추천](design-approaches.md): 우리 양식을 만드는 여덟 가지 접근과 권하는 조합.
