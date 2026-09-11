@@ -37,8 +37,8 @@ a demand for four independent lists. Connect files, steps and proof so the next 
 
 For defects, add the regression test, observe failure for the expected reason and commit it before
 the fix; then make it pass without weakening it. Other changes use the appropriate baseline and
-feedback loop. In this maker repo the engineer declares fix mode with INTENT_TASK=fix; check the
-test-protection setup before the reproduction-writing phase so it does not block creating the test.
+feedback loop. In this maker repo, write and commit the reproduction test before the engineer starts
+the fix session with INTENT_TASK=fix: the hook also blocks creating new tests while that mode is on.
 Do not enable fix mode for ordinary features. When using mutation checks, restore saved original
 bytes rather than discarding unrelated uncommitted work.
 

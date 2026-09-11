@@ -13,6 +13,8 @@ output, not only the summary. Then open the current chain's `intent/<NNNN>-<slug
    Compare its changed files with **Files that change** for that slice — both directions. Do not
    report future PR work as missing or prior dependent work as this PR's scope. Check the integrated
    result against latest main when available and state any integration check not performed.
+   Check the chain's own artifact revisions for consistency as lineage work; do not demand that
+   every plan list its own filename just to avoid a file-list mismatch.
 2. Find the tests under **Proof** applicable to this slice (`rg <name> tests/ evals/`) and confirm
    they ran in the output you read. Check other named observations as appropriate. A required test
    still absent in a completed slice is a finding, not a pass; a future slice's planned test is not.

@@ -1,5 +1,5 @@
 # Plan: 예시에서 도출한 실행 계획과 PR 통합 인계 검증
-Upstream: spec.md@d77832f. Status: draft.
+Upstream: spec.md@1ab184e. Status: draft.
 사용자의 작성·반영 위임으로 draft에서 진행한다. 제작 기준은 선행 0021 완료 064c785이며,
 codex/plan-template-design은 그 판에 의존한다. 실제 PR을 열면 선행 작업을 base로 표시하고
 선행 merge 뒤 최신 main에 재설정한다. 이번 변경 자체는 한 목적의 PR이며 원격 작업은 하지 않는다.
@@ -9,6 +9,8 @@ codex/plan-template-design은 그 판에 의존한다. 실제 PR을 열면 선�
 - templates/plan.md, .claude/skills/plan/SKILL.md: 네 절 양식·작성/인계/갱신 지침.
 - .claude/skills/plan/{examples,references}/** (new): root의 기능·버그·여러 PR·이행 예시와 조건부 상세.
 - .claude/agents/verifier.md: 현재 PR 범위를 확인하여 미래 PR 파일을 누락으로 판정하지 않도록 수정.
+- REVIEW.md, docs/PLAYBOOK-MAP.md: 독립 리뷰에서 확인한 현재 소비자의 PR 범위·수락 설명을
+  기존 GIT-WORKFLOW와 맞춘다. 사용자 위임 범위의 연동 정정이며 spec 1ab184e에 범위를 기록했다.
 - docs/research/sdlc-documentation/plan-design/** (new): 정독·예시 맥락·대안·갱신·리뷰·전달·실험 근거.
 - docs/research/sdlc-documentation/README.md, README.md: 최종 결과와 실제 사용 후보 연결.
 - docs/verification/north-star-playbook.html: 이번에 확인한 범위만 기존 주석에 추가. 원문·등급 보존.

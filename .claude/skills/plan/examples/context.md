@@ -7,7 +7,7 @@ root가 작성한 합성 계획들이다. 실행 결과나 사람의 실제 수�
 
 ## F01, B01, F02의 코드 맥락
 
-제작 저장소 datasets/v1/baseline/tracker.py와 test_tracker.py를 읽었다. 제품 배치에서는
+제작 저장소 docs/experiments/datasets/v1/baseline/tracker.py와 test_tracker.py를 읽었다. 제품 배치에서는
 tracker.py, tests/test_tracker.py, requests.json이다. argparse의 list/show/complete를 사용한다.
 list는 JSON requests의 순서대로 display를 호출한다. show/complete는 같은 ID 조회를 공유하며
 complete만 대상 상태를 바꾸고 이미 done이면 쓰지 않는다. 기본 시험 명령은
@@ -16,7 +16,9 @@ list 순서·읽기 전용, show 기존/없는 ID, complete 대상 상태 변경
 I/O 실패와 새 옵션은 아직 시험하지 않는다. 새 시험은 매번 별도 데이터 복사본에서 실행한다.
 
 F01과 B01의 계약은 각각 ../../design-spec/examples/feature/와 bug/의 spec.md·context.md다.
-F02는 아래 two-pr-spec.md가 계약이며 F01과 같은 네 행을 쓴다. 이 예시에는 제품 README.md가
+F02는 아래 two-pr-spec.md가 계약이며 F01과 같은 네 행을 쓴다. 예시 Upstream의 spec.md는 이
+링크된 계약의 역할을 나타낸다. 실제 계획은 제품의 실제 spec.md 경로와 수락 SHA를 사용한다.
+이 예시에는 제품 README.md가
 있고 기본 명령만 설명한다고 가정한다. baseline 소스에는 README가 없으므로 추가한 합성 조건이다.
 
 ## M01의 합성 실행 맥락
