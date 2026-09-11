@@ -45,11 +45,11 @@ stateDiagram-v2
   state "PR1: 일반 OFF / 목록 TEST ON" as Partial
   state "PR2: 일반 OFF / 목록+집계 TEST ON" as Complete
   state "같은 코드: 일반 ON" as Released
-  state "cleanup: 최종 기능 상시 제공" as Clean
+  state "cleanup: 최종 기능" as Clean
   Partial --> Complete: PR2 merge + 통합 검증
   Complete --> Released: 전체 검증 + 오너 공개 결정
   Released --> Complete: 환경 설정 OFF
-  Released --> Clean: 안정화 / 복구 의존 해소 / 정리 요청
+  Released --> Clean: 제거 조건 충족
 ```
 
 PR1의 TEST ON은 목록만 구현된 상태다. summary는 ON에서도 아직 없다. PR2부터 ON에서는 있어야 한다.

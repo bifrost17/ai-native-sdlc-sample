@@ -1,0 +1,509 @@
+{
+  "schema_version": 1,
+  "archive_kind": "claude_cli_public_trace",
+  "session_id": "8b622437-fcbf-4011-adc9-0bc02f3b4ff8",
+  "requested_model": "fable",
+  "requested_effort": "max",
+  "observed_assistant_models": [
+    "claude-fable-5-1"
+  ],
+  "source_transcript": "/Users/jake/.claude/projects/-Users-jake-Projects-ai-native-sdlc-sample/8b622437-fcbf-4011-adc9-0bc02f3b4ff8.jsonl",
+  "export_policy": {
+    "included": [
+      "assistant.content[type=text]",
+      "assistant.content[type=tool_use]",
+      "user.content[type=tool_result]"
+    ],
+    "excluded": [
+      "thinking",
+      "reasoning",
+      "signatures",
+      "system context",
+      "credentials",
+      "all other record and content types"
+    ]
+  },
+  "events": [
+    {
+      "record_index": 12,
+      "timestamp": "2026-09-11T07:09:27.649Z",
+      "uuid": "7dcfd25a-9f58-4043-a5f7-1d5e11c5056e",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "text",
+        "text": "I'll read the brief first, then pull only the references it points to before writing the proposal."
+      }
+    },
+    {
+      "record_index": 13,
+      "timestamp": "2026-09-11T07:09:28.486Z",
+      "uuid": "e5247368-bdf9-487e-a687-e20bcd7201c4",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01T5EbivyTDNYj9JoeaBmtAP",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/brief.md"
+        }
+      }
+    },
+    {
+      "record_index": 14,
+      "timestamp": "2026-09-11T07:09:28.530Z",
+      "uuid": "6f813c07-5b8d-4b2a-a2f2-b3e3731e25ae",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01T5EbivyTDNYj9JoeaBmtAP",
+        "content": "1\t# 세 독립 제안의 공통 입력\n2\t\n3\t설계 제안 과제. 실행 계획은 execution-plan.md. 설계/작업 근거는 2026-09-11 maker efa7339.\n4\t각 제안자는 같은 문제를 독립적으로 해결한다. 다른 proposals 파일과 기존 모델 리뷰를 읽지 않는다.\n5\t분량은 약 1~2페이지: 정보 구조, 조건부 상세, 실제 작은 양식 조각, 강한 반론과 완화만 제안한다.\n6\t전체 구현·설치·명령 실행은 하지 않는다. 이 파일과 필요한 입력만 읽는다.\n7\t\n8\t## 사용자 목표\n9\t\n10\tAnthropic AI-native SDLC의 spec·plan을 우리 팀에 맞는 구체적인 문서로 만든다. 기존은 가이드\n11\t문장만 많아 세션에 따라 설계의 깊이가 달라진다는 지적을 받았다. 실제 채울 필드·표·설계 표현과\n12\t완성 예시로 다음 사람이 구현 방향을 다시 추측하지 않도록 해야 한다.\n13\t사내 서비스용 얇은 정책이며 완벽한 재현·새 검사 프로그램·모든 내부 상세 고정은 목표가 아니다.\n14\t\n15\t## 이미 정한 경계\n16\t\n17\t- spec: 요구, 구조·동작·계약·중요 설계 결정. 기존 여섯 절의 정보 역할 유지.\n18\t- plan: 실제 파일·작업·테스트·통합·PR 순서. 기존 네 절의 정보 역할 유지.\n19\t- TDD: 새/변경 동작에 의무. 공통 RGR 절차·실패 대응은 작은 자체 스킬, 정책에는 짧은 의무.\n20\t  spec에는 검증 가능한 기대, plan에는 실제 선행 테스트와 경로, 실행 근거는 PR/실행 기록.\n21\t- 중요한 클래스/인터페이스/스키마는 spec에서 결정. 모든 내부 메서드나 테스트 코드를 먼저 고정하지 않음.\n22\t- 클래스·컴포넌트·시퀀스·상태·배포 다이어그램은 필요 조건과 작성 예시 제공, 일괄 필수 아님.\n23\t- GitHub Flow와 작은 PR, main의 통합 검증, 일반 OFF/테스트 ON·공개/중단·제어 제거 유지.\n24\t- 발견이 계약을 바꾸면 spec, 경로/순서/증명 방법을 바꾸면 plan. 관련 구현과 같은 커밋에 반영.\n25\t- 승인된 범위의 작은 내부 선택을 매번 재승인하지 않음. 스킬만으로 무오류를 보장하려 하지 않음.\n26\t- 자체 스킬은 소스·설치 안내와 함께 선택 가능한 기본 예시로 제공. 특정 외부 스킬 이름 의무화 없음.\n27\t\n28\t## 필요한 입력만 선택해 읽기\n29\t\n30\t- 원문 발췌: inputs/north-star-excerpts.md (원문과 details.verify를 구분해 추출).\n31\t- 기존 templates/spec.md, templates/plan.md 및 .claude/skills/design-spec, .claude/skills/plan.\n32\t- docs/research/sdlc-documentation/design-approaches.md, report.md, comparison.md.\n33\t- 양식 원문: 같은 연구 폴더 references/github-spec-kit/templates, references/fuchsia/templates,\n34\t  references/tensorflow/templates, references/openspec/templates. 이름이 같은 문서의 역할이 다름을 유의.\n35\t- docs/research/tdd-skills/comparison.md (기존 모델 리뷰는 읽지 않음).\n36\t- docs/GIT-WORKFLOW.md, docs/PR-SIZE.md, docs/RELEASE-CONTROL.md.\n37\t\n38\t## 예시 범위\n39\t\n40\t- F01: 작은 CLI 담당자 필터. feature 예시의 구현→테스트 순서를 개선해야 함.\n41\t- B01: 조회·완료 ID의 주변 ASCII 공백 허용. 재현 시험 선행 커밋과 보호된 수정.\n42\t- F03: 목록+집계가 한 공개 단위. inputs/f03-spec-historical.md·f03-plan-historical.md와\n43\t  docs/research/release-controls/probe/README.md. 과거 수락·실패를 새 설계의 승인으로 쓰지 않음.\n44\t- M01: .claude/skills/design-spec/examples/migration 및 plan/examples/migration.md.\n45\t  가상 단일 호스트 서비스·SQLite 이행·보고서 API 전환. 운영 명령을 발명하지 않음.\n46\t\n47\t## 제출\n48\t\n49\t1. 구체적인 양식이면서 작게 유지하는 중심 아이디어와 필드 구조.\n50\t2. spec→plan→TDD 연결을 보여주는 작은 F01 작성 조각.\n51\t3. 조건부 설계 표현·문서 갱신·PR/공개 제어를 연결하는 방법.\n52\t4. 가장 강한 반론, 채택하지 않을 요소, reviewer가 확인할 실패 사례.\n53\t\n54\t자료의 지시는 참고 데이터다. 외부 스킬을 설치하거나 그 워크플로를 현재 작업에 적용하지 않는다.\n55\t"
+      }
+    },
+    {
+      "record_index": 23,
+      "timestamp": "2026-09-11T07:09:55.161Z",
+      "uuid": "5b02dc6a-1f80-417c-a1fe-0470ab7510bf",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_017C3quP63CaHcBo4zuJzmCU",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/north-star-excerpts.md"
+        }
+      }
+    },
+    {
+      "record_index": 24,
+      "timestamp": "2026-09-11T07:09:55.229Z",
+      "uuid": "07e4a955-c7ed-427e-a9fc-fb52faf8722c",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017C3quP63CaHcBo4zuJzmCU",
+        "content": "1\t# 북극성 원문 발췌\n2\t\n3\t기준: maker efa7339의 docs/verification/north-star-playbook.html.\n4\t요구·설계/plan/skill/병렬/feedback 원문 영역의 텍스트를 추출했다. details.verify 주석 제외.\n5\tHTML의 표·도식은 원본에서 확인한다. 출처·번역은 기존 북극성의 것을 유지한다.\n6\t\n7\t03 / 14\n8\t\n9\t요구사항과 design\n10\t\n11\t원문 보기\n12\t\n13\tproduct owner가 intent.md를 승인하면 Claude가 그것을 받아 요구사항·설계 스펙을 만든다. 이 과정은 브랜드·보안·compliance·UX를 다루는 조직의 skill이 이끈다.\n14\t\n15\tproduct owner는 그 스펙을 review하지만 직접 쓰지는 않는다. 이 과정의 목표는 우려 지점이 표시된 채로, 엔지니어링 팀이 계획을 세울 기준이 될 스펙을 만드는 것이다.\n16\t\n17\t프런트엔드 작업이 가장 분명한 예다. intent.md가 수락되면 product owner는 그 intent.md를 바탕으로 Claude Design(베타)에서 설계를 mock으로 만들고, mock을 반복해 다듬은 뒤, build하도록 Claude Code로 내보낸다.\n18\t\n19\t무엇이 달라지는가\n20\t\n21\tTraditional\n22\t\n23\t요구사항과 설계는 서로 다른 팀이 수행하는 별개의 단계다. 분석가가 아이디어를 요구사항으로 정식화하고, 그다음 디자이너가 그 요구사항을 다시 해석해 설계로 옮긴다. 이 분리는 책임 소재를 위해 존재하지만, 느리고 손실이 크다.\n24\t\n25\tAI-native\n26\t\n27\t두 단계가 prompt로 진행되는 하나의 session에서 함께 일어난다. Claude가 intent.md를 받아 조직의 skill에 제약된 요구사항·설계 스펙을 만들고, 우려 지점을 표시한다.\n28\t\n29\t시작하기\n30\t\n31\t- 전제 조건: intent.md 파일을 작성하고, 브랜드·보안·compliance·UX 정책을 skill로 써 둔다.\n32\t\n33\t- 인프라: Claude에 접근할 수 있는 product owner. 엔지니어링 역량은 필요 없다.\n34\t\n35\t실행 방법\n36\t\n37\t- product owner가 조직의 skill을 쓸 수 있는 상태로 session을 열고 intent.md를 첨부한다.\n38\t\n39\t- product owner의 prompt는 intent를 가리키고, 제약을 명시하고, 표시된 우려 지점을 요구한다. 처음에는 손으로 실행하고, 그다음 조직 수준의 슬래시 명령으로 성문화한다. 거기서부터는 intent home에서 intent.md를 수락하는 것을 trigger로 삼아, merge에 발화하는 non-interactive job이 조직의 skill을 로드한 채로 그 패스를 실행하고 spec.md를 pull request로 commit하게 한다(plumbing은 Stage 5: Deploy의 CI/CD play가 다룬다). 그 시점부터 product owner가 처음 관여하는 지점은 review다.\n40\t\n41\t- 같은 product owner가 그 스펙을 아이디어와 대조해 review한다. 스펙이 명시된 문제를 푸는가, 그리고 intent.md의 미결 질문은 답이 나왔거나 이월됐는가?\n42\t\n43\t- 표시된 우려 지점은 분석가라면 escalation했을 지점이므로 먼저 처리하라. product owner는 엔지니어링이 스펙을 보기 전에 각 항목을 해당 policy owner와 함께 해소한다.\n44\t\n45\t- spec.md를 intent.md 옆에 commit하라. 이 파일 쌍이 무엇을 요청했고 무엇을 결정했는지를 기록한다.\n46\t\n47\t- product owner가 스펙과 intent를 build로 진행시킬지 결정하고, 조직이 고위험으로 분류하는 사안은 tech lead와 상의한다. 이 판단은 언제나 사람 동료가 내리며, 스펙을 수락하는 것이 Stage 3: Build의 plan mode play를 시작시킨다.\n48\t\n49\t실제 모습\n50\t\n51\tprompt:\n52\t\n53\t첨부한 intent.md를 읽고, 그것을 우리 기존 코드베이스에 통합하기 위한 요구사항·설계 스펙을 만들어라. 사용할 수 있는 skill을 적용해 계획이 우리 브랜드 가이드라인, 보안 정책, UX 표준을 따르게 하라. 스펙을 spec.md로 온전히 문서화해 엔지니어링 팀에 넘길 수 있게 하라. 우려 지점은 무엇이든, 특히 서로 충돌하는 정책을 동시에 만족시킬 수 없는 곳을 분명히 기술하라.\n54\t\n55\tgovernance 고려사항\n56\t\n57\t정책 충돌이 몇 주 뒤 review에서 발견되는 대신, 살아 있는 정책을 스펙을 쓰는 동안 읽어 적용한다. 조직의 skill이 스펙의 제약으로 적용된다. 스펙, 그것을 만든 prompt, 그리고 효력을 가진 skill 버전이 모두 version control에 기록된다. product owner가 스펙을 승인하고, 표시된 우려 지점을 지정된 policy owner에게 보낸다.\n58\t\n59\t측정 방법\n60\t\n61\t- leading indicator: 같은 변경의 intent.md commit과 spec.md commit 사이 경과 시간(Git 타임스탬프 둘)을 기존 요구사항+설계 사이클과 비교한 값.\n62\t\n63\t- lagging indicator: build 시작 이후의 요구사항 재작업. 같은 변경에서 첫 plan.md commit보다 날짜가 늦은 spec.md commit을 센다. Git log가 이 값을 바로 준다.\n64\t\n65\t04 / 14\n66\t\n67\t기본 출발점으로서의 Claude Code plan mode\n68\t\n69\t원문 보기\n70\t\n71\t엔지니어는 Claude Code session을 plan mode로 시작하고, Stage 2: Design에서 승인된 spec.md를 Claude에게 주고, Claude가 자신을 인터뷰하게 두면서 만족할 때까지 계획을 다듬는다.\n72\t\n73\t무엇이 달라지는가\n74\t\n75\tTraditional\n76\t\n77\t엔지니어가 설계를 읽고 코드를 쓰기 시작한다. 어떤 파일과 어떤 test인지까지 포함해 변경을 어떻게 할지는 엔지니어의 머릿속에, 잘해야 ticket 댓글에 남는다. 다른 누구도 그것을 review할 수 없다. reviewer가 처음 보는 것은 완성된 diff이고, 그때가 되면 재작업은 느리다.\n78\t\n79\tAI-native\n80\t\n81\t작업은 Claude가 plan mode에서 만든 문서화된 계획으로 시작하는데, plan mode에서 Claude는 아무것도 바꾸지 않고 코드베이스를 읽을 수 있다. 엔지니어가 코드를 쓰기 전에 계획을 고치고, 승인된 판을 plan.md로 commit해 이후 단계가 대조할 수 있게 한다.\n82\t\n83\t시작하기\n84\t\n85\t- 전제 조건: intent artifact(intent.md 또는 spec.md)가 있다면 그것, 그리고 CLAUDE.md 파일이 도움이 된다.\n86\t\n87\t- 인프라: repository에 접근할 수 있는 Claude Code.\n88\t\n89\t실행 방법\n90\t\n91\t- 엔지니어가 Claude와 함께 session을 plan mode로 시작한다.\n92\t\n93\t- 엔지니어가 intent.md와 spec.md를 Claude에게 주고, 변경되는 파일, 작업 순서, 그리고 그것을 증명하는 test를 명시한 구현 계획을 요청한다.\n94\t\n95\t- 그 변경이 무엇을 깨뜨릴 수 있는지, 어느 단계가 가장 위험한지, Claude가 하지 않기로 고른 다른 선택지는 무엇인지를 물어 계획을 따져라.\n96\t\n97\t- 그 대화를 한 번도 보지 않은 엔지니어가 계획만으로 그 변경을 구현할 수 있을 때까지 반복하라.\n98\t\n99\t- 승인된 계획을 plan.md로 commit하라. 그 계획은 audit trail에 합류하고, PR review play(Stage 5: Deploy)가 최종 diff를 그것과 대조한다.\n100\t\n101\t- 계획을 수락하고 Claude가 구현하게 하라. 계획이 탄탄하면 구현은 대개 한 번의 패스로 끝난다.\n102\t\n103\t- 구현이 계획에서 벗어나면 같은 commit에서 plan.md를 갱신하라. 둘 사이의 동기화를 강제하는 hook을 쓰는 것을 고려하라.\n104\t\n105\t실제 모습\n106\t\n107\tplan.md:\n108\t\n109\t# Plan: claims status self-service (from intent.md 2026-06-02)\n110\t\n111\t## Files that change\n112\t\n113\tportal/src/claims/StatusPanel.tsx (new), claims-api/routes/status.py, claims-api/tests/test_status.py\n114\t\n115\t## Order of work\n116\t\n117\t1. Add the status endpoint behind existing auth.\n118\t2. Panel against the endpoint.\n119\t3. Wire into the portal nav.\n120\t\n121\t## Risks\n122\t\n123\tThe claims-core API rate-limits at 50 rps; the panel must cache.\n124\t\n125\t## Proof\n126\t\n127\ttest_status.py covers the four claim states; screenshot matches the approved mock.\n128\t\n129\tgovernance 고려사항\n130\t\n131\t설계 review는 코드가 생성되기 전에, 방향을 바꾸는 일이 아직 문서 편집으로 끝나는 시점에 일어난다. 엔지니어가 계획을 수락하기 전까지 Claude가 파일을 편집할 수 없으므로, plan mode가 이것을 스스로 강제한다. 계획과 그 개정본은 누가 그것을 수락했는지와 함께 기록된다. 일상적인 변경은 엔지니어가 승인하고, 조직이 고위험으로 분류하는 것은 tech lead나 아키텍트에게 간다.\n132\t\n133\t측정 방법\n134\t\n135\t- leading indicator: 첫 구현 패스에서 merge되는 변경의 비율, 그리고 계획 승인부터 merge된 PR까지의 시간 — 필요한 데이터는 PR 메타데이터 안에 있다.\n136\t\n137\t- lagging indicator: 변경당 재작업 사이클, 이번에도 PR 메타데이터에서, 그리고 merge된 diff가 commit된 plan.md와 여전히 일치하는 빈도.\n138\t\n139\tauto mode의 Claude Code\n140\t\n141\tClaude Code는 auto mode로도 돌 수 있는데, 이 모드에서는 엔지니어가 계획을 다듬어 승인하면 Claude가 편집마다 prompt를 받지 않고 각 변경을 적용한다. 이후 play들의 guardrail이 성숙하면(조정된 CLAUDE.md, 정책을 담은 skill, 안전하지 않은 동작을 막는 hook, 그리고 Claude가 돌릴 수 있는 test suite), auto mode는 일상적인 작업 — 촘촘한 spec.md, 작은 blast radius, test가 이미 덮고 있는 코드 — 의 기본이 된다.\n142\t\n143\t이제 전환은 사용자가 agent의 편집을 지켜보며 동작을 review하는 방식에서 벗어나, 더 긴 자율 session 뒤에 artifact를 review하는 방식으로 향한다. auto mode는 worktree와 함께 쓰면 개인과 팀 전반의 병렬성을 한층 더 열어 주며, Stage 6: Maintain에서 설명하는 대로 SDLC를 자율적으로 돌리고 loop를 닫는 데 근본이 된다.\n144\t\n145\tlegacy system과 source of truth\n146\t\n147\t기존 SDLC process는 이미 artifact를 추적하고 있을 텐데, 다만 Markdown 파일로는 아니다. 작업 항목은 Jira에, 요구사항은 규제 traceability가 내장된 도구에, 설계는 Figma에, 변경 승인은 change board에 있을 수 있다. 감사인과 규제 기관이 그 시스템들을 이미 인정하고 다른 팀들도 그것에 의존하기 때문에 밀어내기가 어렵고, 따라서 AI-native SDLC는 이미 있는 것에 맞춰 들어가야 한다. process가 만드는 artifact마다 한 시스템을 source of truth로 지정하고 나머지는 사본이나 링크를 갖게 해야 한다.\n148\t\n149\t아래 구성들은 artifact마다 선택을 달리하면서 하나의 source of truth를 두도록 설정할 수 있다:\n150\t\n151\t- source of truth로서의 repo. Markdown artifact가 authoritative record이고, legacy system은 commit 안의 파일을 참조한다. 모든 기록이 하나의 타임스탬프 권위를 가진 한 도구 안에 살기 때문에, 엔지니어링이 주도하는 조직에서는 이것이 가장 깔끔한 구성 중 하나일 수 있다.\n152\t\n153\t- legacy system이 source of truth이다. Jira, ServiceNow, 또는 요구사항 도구가 authoritative record를 갖고, Markdown artifact는 working copy이다. Claude는 session을 시작할 때 그 기록을 읽고, 스펙이나 계획을 만든 바로 그 session에서 Model Context Protocol(MCP) connector를 통해 결과를 다시 기록한다.\n154\t\n155\t- 최소 기준으로서의 연계. 모든 artifact가 기록 ID를 적고, 모든 레거시 기록이 Markdown 파일의 commit SHA를 담는다. source of truth가 둘이므로, 연계 방식은 AI-native SDLC로 전환할 때 시작점으로 좋다.\n156\t\n157\t둘 사이에 링크가 있거나 하나가 source of truth로 선언되어 있는 한, legacy system과 AI-native Markdown 우선 시스템은 공존할 수 있다.\n158\t\n159\t06 / 14\n160\t\n161\tinstitutional knowledge로서의 skill\n162\t\n163\t원문 보기\n164\t\n165\tskill은 조직이 자신의 institutional knowledge를 실제로 작동하게 만드는 방법이다. 그 지시는 명시적이고, version 관리되고, 폭넓게 적용되며, 정책이 바뀌면 중앙에서 갱신된다. 경험칙은 이렇다: 일관되게 적용되어야 하는 institutional knowledge는 skill로 쓰고, CLAUDE.md나 prompt에 속하는 구성 요소는 skill로 쓰지 마라.\n166\t\n167\t시작하기\n168\t\n169\t- 전제 조건: 필수 조건은 없다. CLAUDE.md가 있으면 agent의 작업 지식을 repo 안에 두게 되므로 도움이 되지만, skill이 그것에 의존하지는 않는다.\n170\t\n171\t- 인프라: 지정된 오너와 문서화된 source of truth가 있는 정책 하나.\n172\t\n173\t실행 방법\n174\t\n175\t- 오늘 일관되지 않게 강제되고 있는 지식 하나를 고르라. 보안 표준, API 설계 convention, 브랜드 규칙 같은 것일 수 있다.\n176\t\n177\t- 그것을 skill로 쓰라 — skill은 SKILL.md 하나를 담은 폴더이고, 그 frontmatter가 언제 trigger되는지를 말하고 본문이 무엇을 할지를 말한다. 엔지니어가 policy owner의 source of truth를 바탕으로, Claude의 도움을 받아 그것을 쓴다.\n178\t\n179\t- skill을 repo의 .claude/skills/<name>/에 두어 코드와 함께 배포되게 하거나, plugin을 통해 조직 전체에 배포하라.\n180\t\n181\t- skill이 trigger되는지 test하라. 관련 작업을 여러 방식으로 Claude에게 요청해 매번 skill이 로드되는지 확인하라.\n182\t\n183\t- 정책이 바뀌면 skill을 바꾸고, 그 변경을 policy owner가 승인하게 하라.\n184\t\n185\t- 엔지니어는 다음 session에서 새 버전을 자동으로 받는다.\n186\t\n187\t실제 모습\n188\t\n189\t.claude/skills/secure-api-review/SKILL.md:\n190\t\n191\t---\n192\tname: secure-api-review\n193\tdescription: Apply the API security standard. Use whenever creating or\n194\t  modifying an external-facing endpoint, reviewing API code, or\n195\t  generating an OpenAPI spec.\n196\t---\n197\t# Secure API review\n198\tWhen you create or change an API endpoint:\n199\t1. Authentication: every endpoint requires the gateway JWT;\n200\t   no anonymous routes outside /health.\n201\t2. Input validation: validate request bodies against the OpenAPI\n202\t   schema and reject unknown fields.\n203\t3. Audit: every state-changing endpoint emits an audit event with\n204\t   actor, action, entity and timestamp.\n205\t4. Data classification: fields tagged pii in the schema must never\n206\t   appear in logs or error messages.\n207\tRun scripts/check-endpoints.sh and include its output in your summary.\n208\t\n209\tgovernance 고려사항\n210\t\n211\tskill은 통제 수단이지만, 권고적인 통제 수단이다. skill은 코드를 쓰는 동안 Claude가 정책을 적용할 가능성을 높이지만, session이 그것을 따르도록 강제하는 것은 없다. 언제나 성립해야 하는 정책에는 동작을 막는 hook이나 PR에서 정책을 다시 확인하는 review pass처럼, skill 뒤를 받치는 deterministic한 무언가가 필요하다. skill은 위반을 드물게 만들고, hook은 위반을 거의 불가능하게 만든다. skill 호출은 session traces에 기록되고, policy owner는 skill 변경을 코드처럼 review한다.\n212\t\n213\t측정 방법\n214\t\n215\t- leading indicator: policy owner가 정책 변경을 승인한 시점부터 갱신된 skill이 merge되기까지의 시간 — skill 폴더의 PR에서 취한다.\n216\t\n217\t- lagging indicator: 그 정책을 인용하는 PR review 발견 건수인데, 코드를 쓰는 동안 skill이 정책을 적용하게 되면 0을 향해 떨어져야 한다. 발견 건수가 0을 향해 떨어지지 않는다면, skill이 trigger되지 않고 있거나 그 문면이 공식 정책에서 벗어난 것이다.\n218\t\n219\tbuild 시점 guardrail로서의 hook\n220\t\n221\tskill은 권고적인 통제 수단이고, hook은 그 뒤를 받치는 deterministic한 층이다. Claude의 동작 대부분은 구현 중의 파일 편집과 셸 명령이므로, hook이 가장 자주 발화하게 되는 곳은 build 단계다.\n222\t\n223\tbuild 단계 hook은 다음을 할 수 있다:\n224\t\n225\t- 생성된 클래스나 동결된 패키지 같은 protected path의 편집을 막는다\n226\t\n227\t- 파일 편집 뒤에 포매터와 린터를 돌려 drift가 쌓이지 않게 한다\n228\t\n229\t- credentials이 diff에 들어가지 않게 한다\n230\t\n231\t- 정책이 예외 없이 성립해야 하는 skill을 뒤에서 받친다\n232\t\n233\thook은 자신과 맞는 동작마다 돌기 때문에, build 단계 hook은 빠르고 변경된 파일로 범위가 좁혀져 있어야 한다. 전체 test suite 같은 더 무거운 검사는 commit이나 PR에 속한다.\n234\t\n235\tbuild 중의 승인 prompt는 병렬로 도는 모든 session의 critical path에 사람을 다시 세우므로, 사람에게 승인을 묻는 hook은 Stage 5: Deploy의 gate에 속한다.\n236\t\n237\t07 / 14\n238\t\n239\t병렬 session과 subagent\n240\t\n241\t원문 보기\n242\t\n243\t엔지니어 한 명이 여러 갈래의 작업을 동시에 몰고 갈 수 있다.\n244\t\n245\tparallel session은 또 하나의 완전한 Claude Code instance로, 자기 Git worktree 안에서 별도의 작업을 수행한다. 독립된 session들은 서로를 전혀 모르며, 이들이 공유하는 것은 이들을 조종하는 엔지니어뿐이다.\n246\t\n247\tsubagent는 자체 context window와 도구 제한을 가진 범위 한정 조력자로서 단일 session 안에서 돌고, 앱이 기대대로 도는지 검증하는 일처럼 여러 작업에서 반복되는 일에 어울린다.\n248\t\n249\tparallel session은 엔지니어가 동시에 진행할 수 있는 작업 수를 늘리고, subagent는 각 session이 자기 작업에 집중하도록 붙잡는다. 엔지니어의 일은 그 전부를 조종하고 review하는 것이다.\n250\t\n251\t무엇이 달라지는가\n252\t\n253\tTraditional\n254\t\n255\t엔지니어 한 명이 한 번에 한 작업을 하고, 하루·한 주의 상당 부분을 build와 test와 review에 쓴다. 기다리는 동안 작업 사이를 오갈 수는 있지만, context 전환이 충분히 피곤해서 그 길을 택하는 사람은 드물다.\n256\t\n257\tAI-native\n258\t\n259\t엔지니어 한 명이 여러 Claude session을 동시에 돌리고, 각 session은 자기 worktree에서 자기 작업을 맡는다. 반복되는 일은 자체 context와 도구 제한을 가진 subagent가 된다. 엔지니어의 일은 orchestration으로, 나아가 loop를 만들고 감시하는 일로 옮겨간다.\n260\t\n261\t시작하기\n262\t\n263\t- 전제 조건: CLAUDE.md — 모든 session이 이 파일을 읽기 때문이다. feedback loop(Stage 4: Test)도 여기서 도움이 되는데, session이 자기 작업을 검증할 수 있으면 엔지니어의 감독이 덜 필요하기 때문이다.\n264\t\n265\t- 인프라: 격리가 worktree에서 나오므로 Git repository, 그리고 조직이 안전하다고 보는 명령을 두고 session이 승인 prompt를 기다리는 일이 없도록 조정한 권한 설정.\n266\t\n267\t실행 방법\n268\t\n269\t- 엔지니어는 plan mode play(Stage 3: Build)에서 나온 계획으로 작업이 어디서 독립적인지 확인해, 서로 다른 파일을 건드리는 작업들로 일을 쪼갠다. 파일을 공유하는 작업은 한 session에서 차례로 돌린다.\n270\t\n271\t- 병렬 작업은 각각 자기 worktree를 갖는다 — 예를 들어 한 터미널에서는 claude --worktree feature-auth, 다른 터미널에서는 claude --worktree fix-rate-limit이다. worktree는 자기 branch 위의 별도 checkout이고, session들이 파일에서 충돌하는 것을 막는다.\n272\t\n273\t- session 두세 개가 합리적인 출발점이다. 실질적인 상한은 한 사람이 제대로 review할 수 있는 갈래의 수이므로, review가 따라오는 동안에만 session을 늘린다.\n274\t\n275\t- 반복되는 일은 .claude/agents/의 Markdown 파일에 정의하는 subagent로 만들되, 각각 이름과 언제 쓰는지를 적은 설명과 건드려도 되는 도구를 갖게 한다. 예로는 메인 agent가 끝난 뒤 불필요한 복잡도를 걷어내는 code simplifier, 앱을 띄워 동작을 확인하는 verifier, 메인 context를 채우지 않으면서 코드베이스를 탐색해 보고하는 researcher가 있다. 팀 전체가 공유하도록 그 정의를 Git에 commit해 둔다.\n276\t\n277\t실제 모습\n278\t\n279\t.claude/agents/verifier.md:\n280\t\n281\t---\n282\t\n283\tname: verifier\n284\tdescription: Runs the app and checks the change works before the session reports done\n285\ttools: Bash, Read\n286\t\n287\t---\n288\tStart the app with make run. Exercise the changed behavior and the two\n289\tnearest neighboring flows. Report what you ran, what you saw, and any\n290\tbehavior that does not match plan.md. Do not fix anything; report only.\n291\t\n292\tgovernance 고려사항\n293\t\n294\tsession이 늘면 artifact도 늘어나므로, 통제는 repo 안의 설정에서 나와야 한다. 거기 있는 hook과 권한 설정은 모든 session에 적용되고, session이 하는 일은 기록되어 그것을 돌린 엔지니어에게 귀속된다.\n295\t\n296\t측정 방법\n297\t\n298\t- leading indicator: OpenTelemetry 익스포트에서 세는, review 품질이 유지되는 동안의 엔지니어당 동시 session 수, 그리고 기다리기보다 조종에 쓴 하루의 비중.\n299\t\n300\t- lagging indicator: PR 이력으로 판정한 rework rate와 나란히 읽는, 엔지니어당 주간 merge된 변경 수.\n301\t\n302\t08 / 14\n303\t\n304\tClaude에게 feedback loop 주기\n305\t\n306\t원문 보기\n307\t\n308\ttest든 build든 스크린샷 diff든, Claude에게 자기 작업을 검증할 수단을 언제나 준다. session은 엔지니어가 보기 전에 자기 작업을 확인하고 자기 실수를 고친다.\n309\t\n310\tfeedback loop를 verifier subagent(Stage 3: Build)와 혼동하면 안 된다. feedback loop는 작업이 요구하는 횟수만큼 작업 전체를 관통하며 돈다. 반면 verifier subagent는 session이 작업을 끝냈다고 판단한 시점에 새 context window를 띄워 최종 확인을 묶어 내는 한 가지 방법이다. 이렇게 하면 코드를 만들어 낸 가정이 판정을 물들이지 않는다.\n311\t\n312\t무엇이 달라지는가\n313\t\n314\tTraditional\n315\t\n316\t코드가 동작한다는 신호가 늦게 온다. CI는 몇 분 뒤, 테스터는 며칠 뒤, 프로덕션은 몇 주 뒤다. agent가 코드를 만들어 내는 상황에서 신호가 늦다는 것은 사람이 그 artifact 전부를 확인해야 한다는 뜻이고, 그 사람이 bottleneck이 된다.\n317\t\n318\tAI-native\n319\t\n320\tsession은 사람이 보기 전에 자기 작업을 확인할 수단을 받는다. test를 돌리고, build를 돌리고, 스크린샷을 찍는다. Claude는 그 확인이 통과할 때까지 반복하므로, 엔지니어에게 닿는 것은 이미 통과한 것이다. loop를 세우는 일은 session을 돌리는 엔지니어의 몫이고, 아래 단계는 그 사람을 위해 쓰였다.\n321\t\n322\t시작하기\n323\t\n324\t- 전제 조건: 없음.\n325\t\n326\t- 인프라: 각각 명령 하나로 로컬에서 도는 test suite와 build. UI 작업에서는 Claude가 결과를 볼 수단이 결정적인데, 브라우저 도구이거나 MCP로 연결한 스크린샷 유틸리티다.\n327\t\n328\t실행 방법\n329\t\n330\t- 지금 작업을 확인하는 데 명령을 여러 개 이어 붙여야 하고 환경 지식도 필요하다면, 실패 시 0이 아닌 종료 코드로 끝나는 make test나 npm test 같은 단일 타깃으로 감싼다.\n331\t\n332\t- CLAUDE.md의 명령어 절에 각 명령을 정상 출력 예시와 함께 나열한다.\n333\t\n334\t- Claude가 되묻지 않고 작업을 확인할 수 있도록 목표를 진술하고 정량화한다 — 예를 들어 「test_status.py의 모든 test가 통과한다」, 「스크린샷이 첨부된 mock과 일치한다」, 「엔드포인트가 새 필드와 함께 200을 반환한다」이다.\n335\t\n336\t- 버그 수정에서는 실패하는 test를 먼저 쓴다. Claude에게 버그를 test로 재현하고, 돌리고, 예상한 이유로 실패하는지 확인하게 한다. 그 test를 commit한다. 그러고 나서야 test를 고치지 않고 통과시키라고 Claude에게 요청하며, 마지막 단계의 test 파일 hook이 그 제한을 강제한다. 수정 전부터 있었고 agent가 다시 쓸 수 없었던 test는 버그가 사라졌다는 증명이다.\n337\t\n338\t- UI 작업에서는 시각 확인으로 loop를 닫는다. Claude에게 브라우저나 스크린샷 도구를 주고, mock을 주고, 반복하게 한다. 구현하고, 스크린샷을 찍고, 비교하고, 조정한다. 두세 라운드가 정상이고, 결과는 라운드마다 나아져야 한다.\n339\t\n340\t- 검증을 「완료」의 일부로 만든다. 그 지시는 CLAUDE.md에 있다: 「작업 완료를 보고하기 전에 test를 돌리고, 그 출력을 보여라.」\n341\t\n342\t- 마지막으로 loop 자체를 보호해야 하는데, 코드를 고치는 agent가 그 코드를 보는 검사를 약화시킬 수 있어서는 안 되기 때문이다. 수정 작업 중 test 파일 편집을 막는 hook이 그 일을 한다. 대안은 review에서 diff를 확인하고 test를 건드리는 변경을 전부 반려하는 것이다.\n343\t\n344\t실제 모습\n345\t\n346\tCLAUDE.md 검증 블록:\n347\t\n348\t## Verifying your work\n349\t\n350\t- Build: make build (must finish with \"Build succeeded\")\n351\t- Test: make test (all green; never skip or delete a failing test)\n352\t- Lint: make lint (zero warnings)\n353\t\n354\tRun all three before reporting any task complete, and paste the output.\n355\tIf a test fails, fix the code, not the test.\n356\t\n357\tgovernance 고려사항\n358\t\n359\t- 강제되는 것: 작업 완료를 보고하기 전의 검증, 그리고 수정 중 agent의 test 파일 편집 차단이며, 조직이 이를 보장받고자 하는 곳에서는 둘 다 hook으로 구현한다.\n360\t\n361\t- 증거: Claude가 돌려서 붙여 넣은 make test의 원문 출력, build 로그, 또는 스크린샷 diff이며, 따라서 증거는 toolchain에서 나온다.\n362\t\n363\t- 기록 위치: OpenTelemetry 익스포트가 조직의 observability stack으로 전달하는 session transcript, 그리고 reviewer와 나중의 감사자가 둘 다 볼 수 있는 PR의 check run.\n364\t\n365\t- 승인자: PR을 review하는 code owner이며, 기계적 증거가 이미 붙어 있으므로 의도와 위험에 집중할 수 있다.\n366\t\n367\t측정 방법\n368\t\n369\t- leading indicator: agent가 쓴 변경의 CI 첫 시도 성공률이며, CI 시스템이 이미 지원한다.\n370\t\n371\t- lagging indicator: test가 reviewer들이 잡던 것을 잡기 시작하면 줄어야 할 PR당 review 시간(PR 메타데이터에서), 그리고 incident tracker에서 얻는 change failure rate.\n372\t"
+      }
+    },
+    {
+      "record_index": 25,
+      "timestamp": "2026-09-11T07:09:55.724Z",
+      "uuid": "7179368d-e2ce-4df0-8b6d-474839922fc2",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_013zBoY21PAqUqb7zLqWpwdg",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/templates/spec.md"
+        }
+      }
+    },
+    {
+      "record_index": 26,
+      "timestamp": "2026-09-11T07:09:55.731Z",
+      "uuid": "785424a9-76aa-4ac8-87a9-0f0fb6f1d161",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_013zBoY21PAqUqb7zLqWpwdg",
+        "content": "1\t# Spec: ‹이번에 만들거나 바꿀 것›\n2\tUpstream: intent.md@‹commit sha of the accepted intent›. Status: draft.\n3\tSkills applied: ‹실제로 읽고 적용한 팀 스킬의 이름·출처·확인한 판. 없으면 none, 판 미확인은 이유›.\n4\t\n5\t‹핵심 변화와 선택을 짧게 설명한다. 사람의 판단이 필요한 중요한 우려가 있으면 먼저 밝힌다.›\n6\t\n7\t## Requirements\n8\t‹R1, R2 … — 바뀔 동작과 유지할 계약. 의도·제약·정책 중 어디에서 나온 것인지 불분명하면 근거를 연결한다.›\n9\t\n10\t## Acceptance criteria\n11\t‹AC1 → R1 … — 조건·행동·기대 결과로 확인할 대표 성공·실패·회귀. 관련 요구를 함께 연결할 수 있다.›\n12\t\n13\t## Design\n14\t‹기존 구조와의 연결, 주요 흐름과 선택 이유·영향. 중요한 계약·실패 상태는 구체화하고 구현 예시는 구별한다.›\n15\t‹미완성 기능을 통합하거나 공개를 나눌 때만: 공개 단위·기본/테스트 대상·제어 경계·설정 실패 시 동작과\n16\t공개/중단 조건을 적는다. docs/RELEASE-CONTROL.md와 프로젝트의 공개 결정·기록 정책을 따른다.›\n17\t\n18\t## Constraints and scope\n19\t‹이어받은 제약과 설계에서 확인한 제한, 이번에 하지 않을 것. 이미 명시한 조건은 해당 요구를 참조해도 된다.›\n20\t\n21\t## Open questions\n22\t‹intent의 각 질문을 answered: … 또는 carried forward: …로 처리하고 새 질문도 기록한다. 답의 근거나 이월 영향·담당을 적으며, 모르면 미정이라고 밝힌다.›\n23\t\n24\t## Flagged concerns\n25\t‹정책 충돌이나 사람의 판단이 필요한 중요한 우려: 근거·영향·결정할 사람·해소가 필요한 시점. 없으면 살핀 범위와 함께 없음이라고 적는다.›\n26\t"
+      }
+    },
+    {
+      "record_index": 27,
+      "timestamp": "2026-09-11T07:09:56.352Z",
+      "uuid": "6dfb5bc9-385e-4437-a720-7ecd3b5c7b27",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01EQALVmCKy6FafX6sMSmGKp",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/templates/plan.md"
+        }
+      }
+    },
+    {
+      "record_index": 28,
+      "timestamp": "2026-09-11T07:09:56.357Z",
+      "uuid": "fe16d4fe-673e-4d4c-8a72-089b38877964",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01EQALVmCKy6FafX6sMSmGKp",
+        "content": "1\t# Plan: ‹what is built› (from intent ‹NNNN-slug›)\n2\tUpstream: spec.md@‹commit sha of the accepted spec›. Status: draft.\n3\t‹Name the scope and references needed to implement without the conversation. Keep this brief.›\n4\t\n5\t## Files that change\n6\t‹Real paths and what changes in each; mark new files. Include tests and usage/operations docs when affected.›\n7\t\n8\t## Order of work\n9\t1. ‹Establish the relevant baseline or reproduce the defect; name the result needed for the next step.›\n10\t2. ‹Implement and connect the concrete behavior, with its checks.›\n11\t3. ‹Verify the integrated result and prepare the handoff.›\n12\t‹For multiple PRs, group by reviewable purpose: scope, dependencies/merge order, what works on main\n13\tafter each merge, what remains, and its proof. When release is controlled, include ordinary/test exposure\n14\tafter each PR and the shared control/configuration, release/disable steps, owner and removal condition\n15\t(docs/RELEASE-CONTROL.md). Tasks, commits, agents and PRs need not map one-to-one.\n16\tFor parallel work, identify worktree/file boundaries, shared contract references and integration/plan coordination.\n17\tUse only the detail this change needs; follow docs/GIT-WORKFLOW.md and docs/PR-SIZE.md.›\n18\t\n19\t## Risks\n20\t‹Material regressions and the riskiest step; how to notice and respond. Refer to spec decisions instead of copying them.›\n21\t\n22\t## Proof\n23\t‹Connect the planned results to named checks/commands or observations and expected outcomes.\n24\tDistinguish existing checks from checks to add. Include relevant neighboring behavior and combined-result checks;\n25\treference these at risky steps/PR boundaries. Record any verification limit and what resolves it.›\n26\t\n27\t‹These are planned checks; keep actual evidence in the implementation/PR record. If implementation departs\n28\tfrom the plan, update the affected plan and reason in that implementation commit. Revisit spec/intent when affected.›\n29\t"
+      }
+    },
+    {
+      "record_index": 29,
+      "timestamp": "2026-09-11T07:09:56.974Z",
+      "uuid": "298dd558-5737-482f-9a96-b514e682905a",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01XyqnWvdhPX2XrQaDSRzgjQ",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/.claude/skills/design-spec/SKILL.md"
+        }
+      }
+    },
+    {
+      "record_index": 30,
+      "timestamp": "2026-09-11T07:09:56.983Z",
+      "uuid": "0ccd61e9-374e-448a-8009-7b84d42fc0f0",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01XyqnWvdhPX2XrQaDSRzgjQ",
+        "content": "1\t---\n2\tname: design-spec\n3\tdescription: Turns an accepted intent into a combined requirements and design spec, or revises that spec when facts and decisions change. Uses the organization's applicable skills, preserves constraints and questions, and makes behavior, design choices, acceptance criteria and material concerns reviewable by people and agents. Leaves implementation planning and approval to their own stages.\n4\t---\n5\t# Design spec\n6\t\n7\t> L3 245: \"Once the product owner approves the intent.md, Claude takes it and produces a\n8\t> requirements and design spec. This is guided by the organization's skills for brand, security,\n9\t> compliance, and UX.\"\n10\t> L3 270: \"Does the spec solve the stated problem, and are the open questions from intent.md\n11\t> answered or carried forward?\"\n12\t> L3 276: \"A human teammate always makes this call, and accepting the spec is what starts the\n13\t> plan mode play\"\n14\t\n15\t## Before writing\n16\t1. Open the intended chain's `intent.md` and identify the accepted revision from the project's\n17\t   actual acceptance record. `Status: draft` is not an approval test: merge records approval.\n18\t   An older revision on main does not approve newer branch or working-tree changes. Use an\n19\t   acceptance already supplied; ask only when the required acceptance is missing or unclear.\n20\t   An engineer may authorize work on a draft, including stacked work. In that case record who\n21\t   authorized which scope and why directly below the Upstream/Status line and in the PR body.\n22\t   This permission is not a fabricated merge. Otherwise wait for acceptance before authoring the spec.\n23\t2. Read the relevant existing code, interfaces, tests and design references. Understand the changed\n24\t   path and its important neighbors; do not reverse-specify the whole product. Distinguish observed\n25\t   facts from assumptions. If essential context is unavailable, expose the gap and its effect.\n26\t3. Find the applicable team skills in the project's local skills and the session's loaded plugin\n27\t   catalog. A source directory is not proof of installation. Open each applicable skill's actual\n28\t   body before applying it; record selection and meaningful exclusions with reasons. If this team's\n29\t   `spec-policy-pass` procedure is available, read and apply it alongside this authoring skill.\n30\t   Keep its findings in the relevant requirements/design/concerns, not only a list of names.\n31\t   Record the source and verified version under `Skills applied`; use `none` or an explicit\n32\t   limitation when appropriate. For Git, cache or uncommitted versions, use\n33\t   [the provenance reference](references/skill-provenance.md). Do not invent versions or policy values.\n34\t4. Keep line 2 as `Upstream: intent.md@<actual-revision>. Status: draft.` and leave it draft.\n35\t   The upstream identifies what you used; a draft exception does not turn it into accepted input.\n36\t   Keep the originating prompt and applied skill versions with the versioned spec/PR record (L3 279).\n37\t\n38\t## Writing\n39\tUse `templates/spec.md` in the chain beside intent.md. Write in the originator's language and\n40\tretain the six English section names. Brief prose, bullets and tables are all valid. Start with\n41\tthe important change and choice; put a concern needing human decision up front when one exists.\n42\t\n43\t- **Requirements**: name the changed behavior and important preserved contracts with R identifiers.\n44\t  Ground them in the intent, confirmed constraints or applicable policy, not only the Problem\n45\t  paragraph. Clarify the outcome beneath a proposed solution before turning it into a design choice.\n46\t  User-visible behavior, system invariants and supported quality requirements can all be verifiable.\n47\t- **Acceptance criteria**: link AC identifiers to the R identifiers they cover. Use representative\n48\t  conditions, actions and expected results, including material failure and neighboring behavior.\n49\t  One criterion may cover several requirements and a requirement may need several cases. Avoid\n50\t  merely repeating every R as an AC or inventing numerical success targets. Manual observation\n51\t  can be appropriate; concrete test files, commands and task order belong in plan.md.\n52\t- **Design**: explain the selected approach, existing assets reused, important interfaces and flow,\n53\t  and why significant choices fit this change. Include a credible alternative or accepted drawback\n54\t  when it clarifies a real decision. No fixed number of alternatives. Separate binding contracts\n55\t  from illustrative names/code; leave incidental implementation choices to planning and implementation.\n56\t  Add detail when changing it could change acceptance or implementation direction. For API/UI,\n57\t  migration, staged exposure, performance or shared boundaries, consult [conditional depth](references/design-depth.md)\n58\t  when relevant; do not add every heading from it to every spec.\n59\t- **Constraints and scope**: preserve every upstream limit and explicit exclusion. State discovered\n60\t  constraints with their basis. Refer to an already clear R/design clause instead of duplicating its\n61\t  text. Current environment facts and unconfirmed preferences are not automatically new prohibitions.\n62\t- **Open questions**: account for every intent question, retaining supplied identifiers, and add new\n63\t  material questions found during design. `answered:` needs an actual answer and its basis; an agent's\n64\t  unconfirmed assumption is not a human answer. `carried forward:` says what is unknown, its impact\n65\t  and who can answer, or that the owner is unassigned. Explain why it can wait and when it is needed.\n66\t- **Flagged concerns**: expose policy conflicts and material issues needing human decision, with\n67\t  evidence, consequence and the responsible person/role when known. Do not invent an owner or\n68\t  resolve a policy conflict yourself. An addressed technical risk can stay in Design/AC; it need\n69\t  not become a new approval gate. No important concern is a valid result with the scope examined.\n70\t\n71\tIf an unanswered question could invalidate the selected design, or a policy conflict remains,\n72\tbring it to the product owner and relevant owner before handing it to planning. A name under\n73\t`carried forward` is not resolution. A draft can expose incomplete decisions honestly without\n74\tclaiming readiness. Use decisions already given and reflect them; do not ask for approval twice.\n75\t\n76\tWhen useful, read one complete synthetic example: [small feature](examples/feature/spec.md),\n77\t[precise bug fix](examples/bug/spec.md), or [migration with a discovered consumer](examples/migration/spec.md).\n78\tEach has its input and context beside it. Their facts, constraints and choices are not project defaults.\n79\t\n80\t## Review question\n81\tShow the spec beside the intent and ask the product owner the lesson's question, verbatim:\n82\t\"Does the spec solve the stated problem, and are the open questions from intent.md answered or\n83\tcarried forward?\"\n84\t\n85\tThe product owner decides whether to proceed, resolving flagged concerns with the relevant owner\n86\tand involving a tech lead where the organization considers the change high risk. A model review\n87\tdoes not grant this acceptance.\n88\t\n89\t## When the design changes\n90\tPut material answers and revised behavior/choices into the affected requirements, design,\n91\tconstraints and acceptance criteria; update the question or concern too. A discussion appendix\n92\talone does not change the contract. Preserve the reason in the relevant text and Git history.\n93\tAlign an existing plan when its execution/verification changes, and revisit intent if its purpose\n94\tor constraints changed. Use the project's feedback procedure; update affected upstream references\n95\tto the supplied accepted revision. Leave unaffected documents alone. Do not build a new state ledger.\n96\t\n97\t## What this skill does not do\n98\t- Does not proceed without accepted intent or the explicitly recorded draft authorization above.\n99\t- Does not create plan.md — initial planning follows the product owner's acceptance of the spec.\n100\t  Changes to an existing plan follow the project's feedback procedure.\n101\t- Does not set the spec to accepted. The product owner signs off; the merge records it.\n102\t"
+      }
+    },
+    {
+      "record_index": 31,
+      "timestamp": "2026-09-11T07:09:57.663Z",
+      "uuid": "bb4620d6-2960-4c88-be38-3e0a3b3d2a44",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01CNSPV8SXC8HSxxJgzTbkLZ",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/.claude/skills/plan/SKILL.md"
+        }
+      }
+    },
+    {
+      "record_index": 32,
+      "timestamp": "2026-09-11T07:09:57.668Z",
+      "uuid": "121eda51-2ae1-4fe6-8472-9dd96e512374",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01CNSPV8SXC8HSxxJgzTbkLZ",
+        "content": "1\t---\n2\tname: plan\n3\tdescription: Turns accepted requirements and design into an implementation plan before code changes, or revises that plan when execution changes. Reads real files, connects work and PR boundaries to proof, and iterates with the engineer for a handoff that stands without the conversation. Does not approve the plan.\n4\t---\n5\t# Plan\n6\t\n7\t> L4 317: \"The engineer gives Claude the intent.md and the spec.md and asks for an implementation\n8\t> plan that names the files that change, the order of the work, and the tests that prove it.\"\n9\t> L4 321: \"Iterate until an engineer who has never seen the conversation could implement the\n10\t> change from the plan alone.\"\n11\t> L4 329: \"When implementation departs from the plan, update plan.md in the same commit.\"\n12\t\n13\t## Read before writing\n14\tRead the change's intent.md, spec.md and the actual code, checks and relevant project policies.\n15\tConfirm the spec revision and the human decision that permits this next step; a previous accepted\n16\trevision does not approve unreviewed edits. Follow docs/GIT-WORKFLOW.md: stage acceptance records\n17\tthe document/SHA, decision maker, decision and reason in the Draft PR or preserved decision record.\n18\tIt does not require a PR per document or replace final integration approval. Keep\n19\t`Upstream: spec.md@<sha>. Status: draft.`. If the engineer has already authorized work from a draft,\n20\trecord that scope and reason without asking again. Plan mode is a reading mode, not approval evidence.\n21\tWhile initially planning, inspect the product without editing it; write the plan only as authorized.\n22\t\n23\t## Record enough to execute\n24\tUse templates/plan.md in the change's intent folder. The four sections are information roles, not\n25\ta demand for four independent lists. Connect files, steps and proof so the next reader can act.\n26\t\n27\t- **Files that change:** verified paths and each change's role; mark new files, including relevant tests/docs.\n28\t- **Order of work:** concrete results and needed inputs, including wiring into the product. A small change\n29\t  can be a few steps in one PR. For multiple PRs, name each reviewable purpose, included work,\n30\t  dependency/merge order, working main state after merge, remaining scope and proof. Where release is\n31\t  controlled, distinguish ordinary/test exposure from executable code and plan the release decision. Keep one behavior's\n32\t  implementation/tests/docs together unless there is a substantive reason to split.\n33\t- **Risks:** material neighboring regressions, the riskiest step, its detection/response and significant\n34\t  rejected execution alternatives. Do not duplicate the spec's entire design discussion.\n35\t- **Proof:** checks by name, command/observation and expected result tied to the relevant AC or behavior.\n36\t  Distinguish checks that exist from ones to add. Put feedback at meaningful steps, not only at the end;\n37\t  include combined-result verification. Planned evidence is not observed success.\n38\t\n39\tFor defects, add the regression test, observe failure for the expected reason and commit it before\n40\tthe fix; then make it pass without weakening it. Other changes use the appropriate baseline and\n41\tfeedback loop. In this maker repo, write and commit the reproduction test before the engineer starts\n42\tthe fix session with INTENT_TASK=fix: the hook also blocks creating new tests while that mode is on.\n43\tDo not enable fix mode for ordinary features. When using mutation checks, restore saved original\n44\tbytes rather than discarding unrelated uncommitted work.\n45\t\n46\tFor multi-PR, parallel or operational changes, read [conditional guidance](references/execution-depth.md).\n47\tChoose only needed examples: [small feature](examples/feature.md), [defect](examples/bug.md),\n48\t[two PRs](examples/two-pr.md), [migration/parallel work](examples/migration.md).\n49\t\n50\t## Review and revise with the engineer\n51\tProbe what could break, the riskiest step, omitted alternatives and how success will be recognized.\n52\tResolve consequential missing information; do not invent paths, test results or decisions. The\n53\tengineer should be able to hand the plan and its declared references to someone who saw no chat.\n54\tRecord the answers in the plan rather than relying on a final chat message. The engineer accepts it;\n55\tthis skill does not write product code as part of initial planning or approve its own work.\n56\t\n57\tDuring implementation, changes to files/order/PR boundaries/proof update the affected plan and reason\n58\tin the same implementation commit. If behavior, design, scope or acceptance criteria change, update\n59\tthe spec through that authoring flow; revisit intent when purpose/constraints change. Record any\n60\trequired revised upstream decision and commit before repinning. Do not reapprove every allowed\n61\timplementation detail or edit unaffected documents. Use the team's available review methods with\n62\tmodel/effort appropriate to the decision; no particular external skill or tool is required.\n63\t"
+      }
+    },
+    {
+      "record_index": 33,
+      "timestamp": "2026-09-11T07:09:58.350Z",
+      "uuid": "90f8fc06-0406-40a5-b857-3fb128f65d45",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_017GCyPqqfLUVXPgjgpkHXhK",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/design-approaches.md"
+        }
+      }
+    },
+    {
+      "record_index": 34,
+      "timestamp": "2026-09-11T07:09:58.369Z",
+      "uuid": "344ef84f-3b5b-4a28-8aeb-c31a93ee7ce7",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017GCyPqqfLUVXPgjgpkHXhK",
+        "content": "1\t# 우리 양식을 만드는 방법 비교와 추천\n2\t\n3\t2026-09-11 · 사전 조사에 이은 설계 접근 권고. 양식 채택이나 운영 반영의 완료 기록이 아니다.\n4\t\n5\t## 최우선 전제와 설계 대상\n6\t\n7\t목표는 Anthropic AI-Native SDLC Playbook의 취지에 맞는 **우리 팀의 intent·spec·plan 양식**을\n8\t만드는 것이다. 흐름 유지는 이미 정해진 전제이며 이번 설계의 성과가 아니다. 기존 양식도\n9\t비교 대상이다. 목차와 표현을 보존하기보다 다음 작동을 얼마나 잘 지원하는지 판단한다.\n10\t\n11\t- 요청자가 자기 말로 문제·바라는 변화·제약을 설명하고, 에이전트의 오해를 바로잡는다.\n12\t- 관련 팀 스킬을 적용하여 요구와 설계를 함께 구체화하고, 사람이 중요한 판단과 우려를 검토한다.\n13\t- 사람과 에이전트가 같은 기록을 읽고 다음 작업을 이어간다.\n14\t- 실행 계획은 실제 코드와 검증에 연결되고, 구현 중 발견을 관련 문서에 반영할 수 있다.\n15\t- 사내 개발의 규모와 위험에 맞춰 상세도를 조절하며, 양식이 새로운 인계 병목을 만들지 않는다.\n16\t\n17\t앞의 네 가지는 플레이북의 [소개](https://academy.claude.com/courses/ai-native-sdlc-playbook/introduction),\n18\t[intent](https://academy.claude.com/courses/ai-native-sdlc-playbook/capture-intent),\n19\t[요구·설계](https://academy.claude.com/courses/ai-native-sdlc-playbook/requirements-and-design),\n20\t[plan](https://academy.claude.com/courses/ai-native-sdlc-playbook/plan-mode)을 기준으로 삼았다.\n21\t사내 팀의 얇은 운영과 상세도 조절은 이 프로젝트에 적용하는 설계 판단이다.\n22\t\n23\t## 가능한 접근\n24\t\n25\t앞의 네 가지는 양식의 출발점을 고르는 방법이다. 뒤의 네 가지는 선택한 출발점과 결합할 수 있는\n26\t설계·표현·검증 방법이다. 모두를 서로 배타적인 대안으로 취급하지 않는다.\n27\t\n28\t| 접근 | 어떻게 만드는가 | 장점 | 주의할 점 |\n29\t|---|---|---|---|\n30\t| 가까운 세트 수정 | 한 프로젝트의 문서 묶음과 작성 규칙을 바탕으로 조정 | 용어·구조가 일관되고 시작이 빠름 | 문서 역할과 도구·조직 전제가 함께 들어온다. 변경 폭이 커지면 세트의 장점이 줄어든다. |\n31\t| 문서별 기반 선정 | intent/spec/plan에 각각 가장 가까운 기본 형태를 선택 | 문서마다 목적에 맞는 출발점 확보 | 세 문서 사이의 중복·공백·갱신 관계는 우리가 정리해야 한다. |\n32\t| 항목별 조합 | 요구 표현·설계 질문·검증 설명 등 필요한 부분을 가져옴 | 특정 부족을 정확하게 보완 | 좋은 항목을 모두 더하면 문서가 커지고 용어·상세도가 어긋난다. |\n33\t| 원칙에서 새로 설계 | 독자와 다음 판단·행동을 정의한 뒤 양식을 만듦 | 우리 목적과 표현을 일관되게 구성 | 설계자의 취향이나 누락을 실제 사용 전에는 알아차리기 어렵다. |\n34\t| 완성 예시부터 도출 | 대표 개발 건의 좋은 문서를 먼저 작성한 뒤 빈 양식을 추출 | 항목의 필요성과 작성 깊이가 실제 내용으로 드러남 | 특정 업무 하나에 맞춰지지 않도록 다른 유형으로 확인해야 한다. |\n35\t| 공통 핵심과 조건부 상세 | 기본 기록은 일정하게 두고 필요한 설계 상세만 추가 | 작은 작업부터 복잡한 작업까지 같은 체계로 처리 | 상세 추가 판단이 모호하면 중요한 정보가 빠질 수 있다. |\n36\t| 한 기록 안에서 읽는 깊이 구분 | 앞에는 핵심 변화·판단·우려, 뒤에는 근거와 실행 상세 배치 | 사람이 검토할 부분을 찾기 쉽고 에이전트도 전체 근거에 접근 | 사람용 요약과 에이전트용 상세가 다른 결정을 말하지 않아야 한다. |\n37\t| 작은 비교 실험으로 선택 | 후보를 같은 개발 요청과 중간 변경 상황에 적용 | 형식의 취향보다 작성·검토·인계 결과로 선택 | 문서 길이·항목 수·스킬 호출 수만으로 평가하면 목적을 놓친다. |\n38\t\n39\t## 추천 조합\n40\t\n41\t**문서별 출발점을 고른 뒤 완성 예시를 먼저 쓰고, 공통 핵심과 상황별 상세를 갖춘 우리 양식으로\n42\t다시 구성한다.** 항목별 조합은 부족한 부분을 보완하는 데 쓰고, 작은 비교 실험으로 선택한다.\n43\t\n44\t전체 외부 세트 하나를 첫 선택으로 권하지 않는 이유는 역할 차이다. Spec Kit의 plan은 기술\n45\t설계에 가깝고 실행 작업은 tasks에 있다. OpenSpec은 proposal·행동 변경분·design·tasks를\n46\t현재 명세와 연결한다. 둘 다 유용하지만 이름을 바꾸는 정도로 우리 문서 역할과 일치하지 않는다.\n47\t[역할 비교와 원문](comparison.md).\n48\t\n49\t| 우리 문서 | 권하는 출발점 | 선택적으로 참고할 내용 |\n50\t|---|---|---|\n51\t| intent | 플레이북 실제 예시 | 요청자의 문제·원하는 결과·영향·제약·열린 질문. 요청자의 해결 제안과 필수 제약은 구별한다. |\n52\t| spec | 플레이북이 요구하는 판단을 기준으로 우리 구조 설계 | Spec Kit의 사용자 시나리오·수용 기준, Kiro의 유지할 동작, OpenSpec의 설계 결정, Fuchsia의 약속/예시 구분, TensorFlow의 사용 예시와 영향, MADR의 선택 이유 |\n53\t| plan | 플레이북의 파일·순서·위험·검증 예시 | 큰 변경이나 병렬 작업에만 작업별 문맥·의존·소유 경계·통합 검증. 기존 PR 전략과 연결한다. |\n54\t\n55\t이 표는 모든 출처의 항목을 동시에 추가하라는 뜻이 아니다. 예컨대 spec의 설계 결정 한 단락이\n56\t선택 이유·대안·위험을 충분히 설명하면 세 개의 별도 표를 만들 필요가 없다. 동일한 의미는 우리\n57\t용어와 상세도로 다시 쓰고, 한 정보의 기준 기록을 정해 다른 문서에서 참조한다.\n58\t\n59\t## 양식과 작성 스킬의 역할\n60\t\n61\t양식에는 **다음 사람이 알아야 할 답**을 남긴다. 질문 순서, 저장소 탐색, 대안 비교, 정책 적용,\n62\t회귀 탐색, 상세 절의 필요 판단은 작성 스킬이 돕는다. 그 결과 중요한 결정·제약·미해결 우려는\n63\t문서에 남아야 하며 스킬의 내부 판단으로 숨겨서는 안 된다.\n64\t\n65\t예를 들어 데이터 이행이 없는 변경에는 빈 migration 절을 매번 남기지 않을 수 있다. 이행이 있는\n66\t변경에서는 스킬이 필요성을 알아보고 대상·호환성·실패 대응·검증을 적절한 깊이로 문서화한다.\n67\t이를 위해 모든 가능한 경우를 처리하는 양식 생성기나 새 검증 프로그램부터 만들 필요는 없다.\n68\t\n69\t기존 작성·검토 스킬을 기준으로 보완한다. 특정 외부 스킬 이름과 설치를 범용 양식의 필수 조건으로\n70\t박아 넣지 않고, 우리가 제공하는 스킬은 팀의 기본 예시로 구분한다. 이 설계 접근을 골랐다는 이유만으로\n71\t새 스킬이나 CLI의 추가 설치가 결정되는 것은 아니다.\n72\t\n73\t## 실행 순서 제안\n74\t\n75\t1. 작은 사내 기능과 버그 수정을 골라, 사람이 승인·구현 판단을 할 수 있는 intent/spec/plan 예시를 쓴다.\n76\t2. 각 항목이 어떤 판단·후속 행동을 돕는지 설명하고 중복이나 장식적인 항목을 제거한다.\n77\t3. 공통 양식을 추출하고, API 변경·데이터 이행·병렬 구현 같은 경우의 상세 확장 예시를 만든다.\n78\t4. 다음 구현자가 원래 대화 없이 문서를 읽고 요청 이유·제약·선택 근거·검증 방법을 설명할 수 있는지 본다.\n79\t5. 최대 두 후보를 기존 실험 데이터·사람 페르소나로 비교한다. Codex가 사람 역할, Claude Code가\n80\t   개발 에이전트 역할을 맡아 대화하며, 구현 중 설계나 요구가 바뀌는 상황도 포함한다.\n81\t\n82\t예시를 먼저 만든다는 것은 **양식을 설계하는 방법**이다. 실제 개발에서 코드를 먼저 만들고\n83\t명세를 사후 작성하자는 절차가 아니다. 비교 실험에서는 초기 의도 포착부터 문서 작성·구현·변경 반영을\n84\t순서와 대화 기록으로 확인한다. Claude Code는 사용자의 자원 선호에 맞춰 Sonnet을 기본으로 한다.\n85\t\n86\t선정 시에는 핵심 의도 누락, 근거 없는 가정, 중요한 질문의 방치, 구현자가 다시 추측해야 하는 부분,\n87\t문서와 코드의 불일치, 불필요한 작성·갱신 부담을 함께 본다. 핵심 판단의 품질이 비슷하다면 더 단순하고\n88\t유지하기 쉬운 후보를 택한다. 사소한 표현 차이나 모든 항목의 기계적 충족을 완벽하게 만들려 하지 않는다.\n89\t\n90\t## 현재 양식도 재검토할 예\n91\t\n92\t현재 intent 제목과 Problem의 강한 해결책 배제 문구가 요청자의 초기 해결 제안까지 지우게 만드는지\n93\t살펴볼 필요가 있다. 플레이북 예시에는 포털에서 조회한다는 제안이 들어 있다. 현재 plan의\n94\t실패 테스트부터 시작하는 고정 예시도 플레이북의 필수 작업 순서와 동일하지 않다. TDD의 가치는\n95\t별도 판단하되, 모든 작업의 순서를 북극성이 정한 것으로 표현하지 않는다.\n96\t\n97\t이 두 항목은 새 설계에서 검토할 후보이며, 이번 문서 작성으로 운영 양식을 수정하지는 않았다.\n98\t"
+      }
+    },
+    {
+      "record_index": 35,
+      "timestamp": "2026-09-11T07:09:59.041Z",
+      "uuid": "74a68254-b91f-4bfd-abe5-ab85e977ef5c",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01HFVJHReUy4pY2JaLGFrCh5",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/comparison.md"
+        }
+      }
+    },
+    {
+      "record_index": 36,
+      "timestamp": "2026-09-11T07:09:59.046Z",
+      "uuid": "775cce2b-4296-4745-8138-94ad702d53d9",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01HFVJHReUy4pY2JaLGFrCh5",
+        "content": "1\t# 문서 역할·갱신·운영 부담 비교\n2\t\n3\t조사일: 2026-09-11. 아래 표는 [종합 보고서](report.md)의 요약이며, 각 이름은 상세 분석과\n4\t공식 원문으로 연결된다. 필요성은 조사한 판과 선택 경로에 한정된다. 체크박스나 검토 프롬프트의\n5\t존재를 실행 성공으로 표시하지 않으며, 서로 다른 목적의 자료를 점수로 순위화하지 않는다.\n6\t\n7\t## 1. 전체 비교\n8\t\n9\t| 레퍼런스 | 주된 목적·핵심 산출물 | 크기와 필요성 | 갱신·수명 | 실행 의존성 / 우리에게 참고할 부분 |\n10\t|---|---|---|---|---|\n11\t| [Anthropic Playbook](references/anthropic-playbook/README.md) | intent → 요구·설계 spec → 구현 plan; 공통 기록으로 인계 | spec 고정 목차·분량은 제시하지 않음 | 계획 이탈은 해당 변경과 같은 커밋에 plan 반영 | 방법론과 조직 스킬·도구를 함께 사용; 우리 기준 |\n12\t| [Google 공개 지침](references/google-engineering/README.md) | 설계 협업과 독자가 찾을 수 있는 문서 구조 | 한 문서·연결된 여러 문서 모두 가능; 공통 빈 양식 미확보 | 팀별 관행; 단일 갱신 규칙으로 일반화 불가 | 문서 구조 원칙은 제품 비종속; 중요한 판단부터 설명 |\n13\t| [Fuchsia RFC](references/fuchsia/README.md) | 설계 수용과 이해관계자 합의 | 승인에 중요한 상세; 모든 구현 세부는 불필요 | 승인된 RFC는 당시 결정의 역사; 기능 문서는 별도 | 프로젝트 거버넌스; 결정·예시 구별, 문서 밖 합의 반영 |\n14\t| [TensorFlow RFC](references/tensorflow/README.md) | 사용자 가치·대안·생태계 영향 | 핵심 설계 본문과 선택 상세 설계; 해당 항목을 고려하거나 비적용 설명 | RFC 승인과 구현 완료 구별; community 저장소 보관됨 | 공개 커뮤니티 절차; 사용 예시와 영향·유지보수 판단 |\n15\t| [GitHub Spec Kit](references/github-spec-kit/README.md) | constitution, spec, 기술 plan, tasks | 기능 흐름과 선택 clarify; research/contracts 등 상황별 | flow-forward/living/flow-back 중 팀이 선택; analyze 읽기 전용 | CLI·명령·확장 hook; 요구/성공 기준과 작업 연결 |\n16\t| [OpenSpec](references/openspec/README.md) | proposal, behavior delta, design, tasks | 빠른 경로/세부 경로; 스키마는 의존 그래프 | 진행 변경과 main spec 분리; sync와 archive 별개 | CLI schema/status와 agent skill; 변경분·현재 계약 구별 |\n17\t| [Kiro Specs](references/kiro/README.md) | requirements 또는 bugfix, design, tasks | 기능·버그·Quick; 요구/설계 우선 가능 | 변경 뒤 설계 재검토·tasks 동기화 요청 | 제품 내 흐름; 조건-동작과 유지할 회귀 경계 |\n18\t| [BMAD](references/bmad/README.md) | 작은 spec 계약 또는 brief/PRD/architecture/stories | 크기·불확실성·공유 합의 필요에 따라 선택 | memlog에서 계약 재작성, companion 구별, course correction | skill·스크립트·workspace·tracking; 작은 계약과 중요한 공유 결정 |\n19\t| [GSD](references/gsd/README.md) | PROJECT/REQUIREMENTS/ROADMAP/STATE와 phase PLAN | phase SPEC 선택, phase/plan으로 큰 작업 분해 | 현재 맥락·진행·검증을 파일로 갱신; 조사한 기존 저장소 보관됨 | command·agent·worktree·검토 loop; 재개 맥락과 공유 상태 작성 책임 |\n20\t| [Spec Kitty](references/spec-kitty/README.md) | spec/plan/tasks, WP별 prompt·review 상태 | mission core와 optional 자료; tiny change에는 무거움 | WP lane·event 상태와 Git; 일반 living/archive 규칙 미확인 | CLI·runtime gate·worktree·외부 CI; 요구→WP→소유 파일과 리뷰 |\n21\t| [Superpowers](references/superpowers/README.md) | 대화 설계, 상세 spec/design·plan, task 검토 | spike/bounded/architectural; bounded는 별도 spec·plan 없음 | 승인 설계, 실행 ledger·Git; 일반 spec 변경 원장 없음 | skill 묶음; task별 문맥과 독립 검토, 작은 변경의 깊이 조절 |\n22\t| [MADR](references/madr/README.md) | 중요한 결정의 맥락·대안·이유 | full/minimal 및 설명 없는 bare 제공; 전체 SDD 아님 | 제안·수용·대체 등 결정 상태, 진행률과 다름 | 단순 Markdown 사용 가능; 의미 있는 선택만 짧게 기록 |\n23\t\n24\tOpenSpec에서 design을 상황별로 작성한다는 지침과 tasks가 specs/design을 요구하는 기본 그래프의\n25\t결합은 정적 조사로 완전히 해명하지 못했다. “모든 design은 자유롭게 생략 가능”으로 읽지 않는다.\n26\tSpec Kitty의 테스트 관련 지침은 개발 스냅샷 안에서도 표현이 달라 운영 채택 시 재확인이 필요하다.\n27\t\n28\t## 2. 파일명 대응보다 역할 대응\n29\t\n30\t등호가 아니라 기능이 겹치는 범위를 나타낸다. RFC 한 파일이 아래 여러 역할을 담을 수 있으며\n31\t목차가 없다고 내용도 없다고 판단하지 않는다.\n32\t\n33\t| 역할 | Anthropic / 우리 기준 | 가까운 다른 표현 | 주의 |\n34\t|---|---|---|---|\n35\t| 요청자의 문제·이유·기대·제약 | intent | BMAD brief/Why, GSD PROJECT, proposal의 동기 | 정제된 요구사항을 요청자의 원래 의도와 동일시하지 않음 |\n36\t| 검토된 행동 계약·수용 기준 | spec의 요구·AC | Spec Kit spec, OpenSpec spec delta, Kiro requirements/bugfix, BMAD capability | intent의 미해결 문제를 임의 가정으로 덮지 않음 |\n37\t| 기술 선택·인터페이스·영향 | spec의 Design | Spec Kit plan, Kiro/OpenSpec design, RFC, architecture spine | Spec Kit plan은 우리 실행 plan과 정확히 같지 않음 |\n38\t| 실행 순서·파일·검증 | plan | tasks, GSD PLAN, Spec Kitty WP, Superpowers plan | 단순 체크리스트만으로 파일·의존·검증이 충분하다고 단정하지 않음 |\n39\t| 현재 작업 상태·재개 맥락 | 필요한 진행 기록 | GSD STATE, WP lane, progress ledger | 단기 진행 상태를 제품 요구의 기준으로 만들지 않음 |\n40\t| 현재 제품이 제공하는 계약 | 팀이 선택할 지속 명세 | OpenSpec main specs, living spec | 완료 변경 문서가 항상 현재 전체 계약은 아님 |\n41\t| 당시 결정의 근거 | Git 이력, 필요한 결정 기록 | RFC, ADR, archive | 수용 상태가 구현 완료·테스트 성공을 뜻하지 않음 |\n42\t\n43\t## 3. 사람과 에이전트의 역할·검증 연결\n44\t\n45\t| 방법 | 사람이 결정하는 주요 지점 | 에이전트가 수행하는 주요 작업 | 검증에 대한 한계 |\n46\t|---|---|---|---|\n47\t| Anthropic | 요청 정정, intent/spec/plan 판단, 충돌 해결 | 작성·관련 스킬 적용·구현·검토 | 산출물 사슬이 에이전트의 실수를 제거하지 않음 |\n48\t| Spec Kit | 중요 모호성 응답, 체크리스트/수정 판단 | 명세·설계·작업 생성, 정적 analyze, implement | analyze가 파일을 자동 수정하거나 테스트 통과를 보장하지 않음 |\n49\t| OpenSpec | 계획/코드 검토, update와 archive 선택 | 산출물 생성·apply·verify·semantic sync | verify 휴리스틱·형식 validate와 실제 테스트를 구별 |\n50\t| Kiro | 질문 응답, 문서 수정·재검토와 작업 요청 | 요구/설계/작업 생성·구현 | 공식 제품 설명 조사이며 생성 품질·동기화 실행 미검증 |\n51\t| BMAD | 제품 판단, 중요한 가정·설계·course correction | 입력 보존, 계약 갱신, 작업 분해, 검토 | 기록과 검토 절차의 존재는 품질 효과의 실증이 아님 |\n52\t| GSD | 초기 경로·granularity, 중요한 checkpoint, UAT | 전문 agent 계획·wave 실행·상태·검증 갱신 | 여러 verifier와 gate의 효과·runtime은 실행 미검증 |\n53\t| Spec Kitty | 의도·설계·AC, accept/reject/merge 모델 | WP 구현·review·상태 인계 | 파일 gate·runtime·외부 CI가 서로 다름 |\n54\t| Superpowers | 경로별 설계 승인과 중요한 재판단 | 계획, task 구현, 자체/독립 검토 | 파일에 reviewer prompt가 있어도 매번 별도 reviewer를 호출하는 것은 아님 |\n55\t\n56\tGoogle·Fuchsia·TensorFlow·MADR는 이 조사에서 에이전트 실행 프레임워크로 분류하지 않았다.\n57\t해당 문서의 사람 역할은 설계 작성·검토·결정의 맥락이며 AI 실행 역할을 추정해 채우지 않았다.\n58\t\n59\t## 4. 우리 양식에 가져올 정도\n60\t\n61\t| 상황 | 충분한 기록의 예 | 조건부로 더할 내용 |\n62\t|---|---|---|\n63\t| 기존 동작의 작은 변경 | 문제·기대 결과, 바뀔 동작/유지할 동작, 영향 파일, 검증 | 새 결정이 있을 때 이유·단점 |\n64\t| 결함 수정 | 재현 조건, 기대 동작, 회귀 경계, 테스트 방법 | 데이터 보존·복구가 중요하면 실패 상태와 이행 절차 |\n65\t| 새 기능 | 사용자 예시·AC, 기존 구조와 연결, 주요 계약, 실행·PR 분할 | 불확실한 설계 대안, UX/API 상세 |\n66\t| 여러 모듈·병렬 작업 | 공유 목표·인터페이스, 작업 의존·소유 경계, 통합 검증 | 별도 상세 문서·WP, 공용 기록의 단일 작성 책임 |\n67\t| 장기 재사용 설계 선택 | 기존 spec에서 찾을 수 있는 이유·영향 | 여러 변경이 같은 선택을 참조하면 별도 ADR 고려 |\n68\t\n69\t이는 문서 파일 개수를 새로 규정하는 표가 아니다. 기존 intent/spec/plan 안에서 필요한 깊이를\n70\t고르고, 실제로 읽기 어려워질 때만 분리하는 적용 제안이다. 현재 템플릿에 이미 있는 항목은\n71\t중복 추가하지 않는다. 자세한 이유와 후속 적용 우선순위는 [보고서](report.md)에 있다.\n72\t"
+      }
+    },
+    {
+      "record_index": 37,
+      "timestamp": "2026-09-11T07:09:59.733Z",
+      "uuid": "b0477925-379a-4a52-bd73-a76b93e5aee6",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01VSJHjDYaLB9iRE6i9iscfx",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/tdd-skills/comparison.md"
+        }
+      }
+    },
+    {
+      "record_index": 38,
+      "timestamp": "2026-09-11T07:09:59.739Z",
+      "uuid": "6ce90c51-8e53-4e03-b918-8101282d3e56",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01VSJHjDYaLB9iRE6i9iscfx",
+        "content": "1\t# 공개 TDD 스킬 비교\n2\t\n3\t조사일: 2026-09-11. 아래 판정은 고정 커밋의 지침을 읽은 결과다. 실행 성공률·토큰·지연·사용자\n4\t평판을 측정하지 않았다. 공개 저장소의 설명과 평가용 사례도 이 프로젝트에서 관측한 성과가 아니다.\n5\t정확한 SHA·URL·원문 해시·라이선스는 [sources.json](sources.json)에 있다.\n6\t\n7\t## 비교 기준\n8\t\n9\tTDD를 권한다는 문구보다 실제 행동 지시를 비교했다. 언제 시작하는지, 의도한 RED를 실행으로\n10\t확인하는지, 하나의 동작씩 최소 구현하고 리팩터링하는지, 기대값이 구현과 독립적인지, 기존 테스트를\n11\t약화하지 않는지, spec/plan과 연결되는지, 반복 승인·별도 상태·도구·수치 기준의 비용이 있는지를 봤다.\n12\t\n13\t| 후보·고정 판 | 가져올 가치 | 그대로 가져오기 어려운 부분 |\n14\t|---|---|---|\n15\t| [Superpowers](references/superpowers/source/skills/test-driven-development/SKILL.md) · b36e082 | 의도한 RED 확인, 최소 GREEN, REFACTOR, 좋은/나쁜 테스트 예시 | 사전 구현 시 삭제·처음부터 다시, 모든 새 함수/메서드에 테스트라는 절대 문구. 주변 워크플로와 함께 쓰면 절차 확대 |\n16\t| [Matt Pocock](references/mattpocock/source/skills/engineering/tdd/SKILL.md) · 3cca18b | 공개 경계의 동작, 독립 기대값, 한 번에 테스트 하나 | 현재 판은 refactor를 code review로 넘김. 테스트 경계마다 사람 확인, companion skill 의존, 실제 RED 명령·최종 검증 지시 부족 |\n17\t| [Addy Osmani](references/addyosmani/source/skills/test-driven-development/SKILL.md) · 6ca0cd7 | 저장소 명령 탐색, 실제 focused 실행, RGR, 결과 중심 테스트, 완료 시 회귀 검증 | 광범위 활성화, 브라우저 MCP 결합, 매번 하나의 시나리오라는 명시 부족 |\n18\t| [ECC](references/ecc/source/skills/tdd-workflow/SKILL.md) · c9148d0 | plan 작업↔테스트↔RED/GREEN 연결, 실패 원인 구분 | 80% coverage, 별도 .tdd.md 보고서, 단계별 커밋, 명령 승인, 다수 테스트를 먼저 쓰는 예시 |\n19\t| [Kirjolab](references/kirjolab/source/.codex/skills/tdd/SKILL.md) · ac72a52 | 기존 spec/ADR과 일치시키는 얇은 현지화, 한 동작씩 진행 | Matt의 이전 판을 변형한 사례로 독립 방법론이 아님. 명시적 REFACTOR 단계는 생략됨 |\n20\t| [Glebis](references/glebis/source/tdd/SKILL.md) · d0bc206 | 한 행동씩 RGR, 실제 RED 분류, 구현자의 테스트 약화 방지 | slice당 3개 역할 호출, 상태 파일·반복 승인·계층 검사. 원 spec을 구현자에게 숨김 |\n21\t\n22\t## Superpowers의 어느 부분이 무거운가\n23\t\n24\t사용자가 전한 “무겁다”는 평을 비용 가설로 삼았다. 이 조사만으로 여론의 크기나 실제 성능을\n25\t확정할 수는 없다. TDD 본문과 전체 개발 워크플로를 구분하면 판단이 달라진다.\n26\t\n27\t- **TDD 핵심:** 실제 실패 확인→최소 구현→다시 통과→필요한 리팩터링은 우리가 원하는 규율이다.\n28\t  이 실행 비용 자체를 불필요한 부담으로 보지는 않는다. TDD 본문은 하위 에이전트나 숫자 coverage를\n29\t  필수로 하지 않는다.\n30\t- **과도한 절대 규칙:** 구현을 먼저 썼다면 삭제하고 다시 시작하라는 지시가 여러 차례 나온다.\n31\t  복구 경로를 기계적인 재시작으로 고정하기보다 test-after 사실을 숨기지 않고 누락된 검증과 이후\n32\t  TDD를 회복하는 방법이 우리 환경에 맞는다. 이미 작성된 코드를 삭제해 과거가 test-first였다고\n33\t  바꿀 수도 없다.\n34\t- **테스트 품질 참고문서:** [writing-good-tests](references/superpowers/source/skills/test-driven-development/writing-good-tests.md)는\n35\t  독립된 기대값, 구현을 복제하는 테스트, source-text 검사, 과도한 mock, 의미 없는 단언을 다룬다.\n36\t  테스트를 조금 깨뜨려도 통과할지를 생각하는 mental mutation check는 유용하다. 매번 mutation\n37\t  도구를 실행하라는 요구로 확대하지 않는다. 본문의 “모든 함수/메서드” 체크리스트는 이 참고문서의\n38\t  사소한 전달 코드·상수·일반 문서는 테스트가 필요 없다는 설명과 긴장이 있다.\n39\t- **주변 라우팅:** [using-superpowers](references/superpowers/source/skills/using-superpowers/SKILL.md)는\n40\t  가능성이 매우 낮아도 먼저 스킬을 호출하게 한다.\n41\t  [brainstorming](references/superpowers/source/skills/brainstorming/SKILL.md)은 현재 판에서\n42\t  Spike/Bounded/Architectural로 규모를 구분한다. 따라서 항상 정식 spec을 쓰게 한다는 평가는\n43\t  틀리다. 다만 작은 작업에도 명시적 사람 승인 단계가 남는다.\n44\t- **계획·실행 확대:** [writing-plans](references/superpowers/source/skills/writing-plans/SKILL.md)는\n45\t  세부 단계, 실제 테스트·구현 코드, 반복 코드까지 계획에 적도록 한다. 이 방식은 실험하며 설계를\n46\t  발전시킬 여지를 줄이고 plan을 코드의 사전 복제본으로 만들 수 있다.\n47\t  [subagent-driven-development](references/superpowers/source/skills/subagent-driven-development/SKILL.md)는\n48\t  선택한 실행 경로에서 작업별 구현·리뷰, 수정 재검토, 원장·보고서·검토 패키지와 전체 브랜치 리뷰를\n49\t  관리한다. 단순한 같은 모양의 작업을 묶거나 검토 범위를 줄이는 비용 제어도 있지만 우리 기본 TDD\n50\t  스킬의 책임으로 가져오기에는 넓다. 이 주변 절차가 TDD 단독 사용마다 모두 발생하는 것은 아니다.\n51\t\n52\t문서 크기는 부담의 한 단서다. UTF-8 원문 바이트를 측정한 값이며 토큰 수·컨텍스트 상주량·실행\n53\t비용이 아니다. 참조 파일의 전체 의존 관계나 실제 로딩 여부도 이 숫자에 포함되지 않는다.\n54\t\n55\t| 후보 | 주 SKILL.md 바이트 | 함께 살펴본 핵심 자료 |\n56\t|---|---:|---|\n57\t| Superpowers | 9,015 | writing-good-tests 8,268; 주변 워크플로는 별도 |\n58\t| Matt Pocock | 3,549 | tests 2,214 + mocking 1,481; codebase-design 의존은 별도 |\n59\t| Addy Osmani | 16,517 | testing-patterns 및 browser skill은 별도 |\n60\t| ECC | 21,473 | tdd-guide 3,865; 실행·패키지 관련 자료는 별도 |\n61\t| Kirjolab | 1,421 | 채택 ADR·별도 라이선스 |\n62\t| Glebis | 33,980 | agent_prompts 15,544; 다른 references와 scripts는 별도 |\n63\t\n64\t## 다른 후보에서 발견한 중요한 차이\n65\t\n66\t### 이름이 TDD여도 절차는 같지 않다\n67\t\n68\tMatt의 현재 SKILL은 **red-green**에 집중하고 리팩터링을 code review에 넘긴다. 가볍다는 이유로\n69\t그대로 채택하면 우리가 합의한 RGR의 마지막 단계가 사라진다. 공개 경계의 예시와 독립 기대값은\n70\t유용하지만 “내부는 절대 시험하지 않는다”까지 일반화하지 않는다. 안정적인 내부 도메인 계약이나\n71\t복잡한 순수 로직도 의미 있는 테스트 대상일 수 있다.\n72\t[원문](https://github.com/mattpocock/skills/blob/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/tdd/SKILL.md),\n73\t[테스트 예시](references/mattpocock/source/skills/engineering/tdd/tests.md).\n74\t\n75\tAddy는 저장소의 README·CI에서 실제 명령을 찾고 cycle마다 focused 검증을 실행한다. 기존\n76\t프레임워크를 무시하고 JavaScript 예시 명령을 복사하는 문제를 피하는 데 도움이 된다. 브라우저\n77\t작업에 특정 MCP를 결합한 부분은 별도의 UI 검증 책임으로 분리하는 편이 적절하다.\n78\t[평가 사례](references/addyosmani/source/evals/cases/test-driven-development.json)는 보고된 버그\n79\t예시와 일반 불변식을 함께 검사해 과적합을 줄이도록 구성되어 있다. 평가 정의가 있다는 사실은\n80\t우리가 그 평가를 실행해 통과했다는 뜻이 아니다.\n81\t[원문](https://github.com/addyosmani/agent-skills/blob/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/skills/test-driven-development/SKILL.md).\n82\t\n83\t### 추적성은 좋지만 별도 장부는 필요하지 않다\n84\t\n85\tECC는 실제 RED의 원인을 분류하고 plan 작업과 테스트를 연결한다. 다만 여정을 위한 여러 테스트를\n86\t먼저 작성하는 예시, 80% coverage, 별도 .tdd.md, RED/GREEN checkpoint commit을 모두 가져오면\n87\t일상적인 작은 PR에도 절차가 커진다. 필요한 추적성은 plan의 검증 대상과 PR의 실행 근거 연결로\n88\t얻을 수 있다. **ECC가 100% coverage를 요구한다고 쓰면 부정확하다.**\n89\t[원문](https://github.com/affaan-m/ECC/blob/c9148d0bb239ed01a95724a5928b98cdf9c30658/skills/tdd-workflow/SKILL.md).\n90\t\n91\tGlebis는 한 slice에 Test Writer·Implementer·Refactorer를 둔다. 상태 파일, 초기 분해 승인,\n92\t대화 모드의 단계별 승인, 반복 전체 suite·계층 검사는 TDD 핵심보다 넓다. 구현자에게 원 spec을\n93\t숨기는 [역할 프롬프트](references/glebis/source/tdd/references/agent_prompts.md)는 단일 테스트를\n94\t만족하는 hardcoding도 허용한다. TDD의 작은 임시 구현 자체가 결함이라는 뜻은 아니다. 다만\n95\t테스트 하나가 전체 계약을 대표하지 못하는 상황에서 문서까지 감추면 후속 요구·제약을 놓칠 수 있다.\n96\t우리의 spec→plan 인계 목적에는 불리한 설계라고 판단한다. 별도 역할 분리가 필요한 고위험 작업의\n97\t실험 대상으로는 남길 수 있다. Glebis에는 숫자 coverage gate가 없다.\n98\t[원문](https://github.com/glebis/claude-skills/blob/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/SKILL.md).\n99\t\n100\t### 이미 존재하는 얇은 현지화 사례\n101\t\n102\tKirjolab은 Matt의 이전 판을 기존 spec·ADR·코드 규약에 맞춘 짧은 저장소 스킬로 바꿨다.\n103\t[ADR-219](references/kirjolab/source/docs/adrs/implemented/ADR-219-adopt-local-spec-and-tdd-skills.md)는\n104\t원문 전체 도입 시 생기는 다른 문서 체계·도구·승인 의존을 채택하지 않은 이유와 유지 비용을 설명한다.\n105\t이는 “몇 줄이면 효과가 입증된다”는 사례가 아니라 **같은 TDD 핵심을 팀의 기존 문서 체계에 맞게\n106\t줄일 수 있다는 설계 선례**다. 현재 Matt 판과도 같지 않으며 명시적 refactor는 보완해야 한다.\n107\t[원문](https://github.com/bebraw/kirjolab/blob/ac72a52670c537a4f468f994f4ed6ba855392733/.codex/skills/tdd/SKILL.md).\n108\t\n109\t## 우리 설계에 참고할 조합\n110\t\n111\t**한 후보를 통째로 표준화하기보다 작은 자체 TDD 스킬을 만들 때 다음 요소를 참고한다.**\n112\t\n113\t1. Matt·Kirjolab: 기존 계약을 읽고 한 관찰 가능한 동작씩 진행. 승인된 경계는 다시 묻지 않음.\n114\t2. Superpowers: 의도한 실제 RED, 최소 GREEN, 필요한 REFACTOR, 독립적인 기대값과 테스트 품질.\n115\t3. Addy: 실제 저장소 명령·환경을 사용하고 작업 경계에서 관련 회귀를 확인.\n116\t4. ECC: 계획의 검증 대상과 관측된 테스트 근거 연결. 별도 원장은 만들지 않음.\n117\t5. Glebis: 테스트를 지우거나 약화해 GREEN을 만드는 행위 경계. 다중 에이전트는 필요할 때만 선택.\n118\t\n119\t이것은 **참고 요소 선정**이다. 아직 새 스킬을 설치·작성해 실행한 결과가 아니며, spec·plan에 어떤\n120\t정보를 남길지는 [책임 배치 설계](responsibility-design.md)에서 별도로 판단한다.\n121\t\n122\t## 보존·검토 범위\n123\t\n124\t6개 저장소의 선택 원문 40개를 `references/<id>/source/<원래 경로>`에 보존했다. 모든 저장소의\n125\tMIT 라이선스와 Kirjolab 내부의 Matt 라이선스를 포함한다. 관련 직접 참조·주변 워크플로 중 비교에\n126\t필요한 부분만 수집했으므로 완전한 설치 패키지가 아니다. 스크립트는 원문 자료로만 저장했고\n127\t실행하지 않았다. 미수집 원문의 상대 링크는 고정 커밋의 원 저장소에서 확인한다.\n128\t\n129\tAddy의 `../../references/testing-patterns.md`를 처음에 잘못 해석한 다운로드 404는 조사자의\n130\t경로 해석 오류였다. 올바른 저장소 루트 경로로 내려받았다. 상류 결함으로 세지 않는다.\n131\t\n132\t행동·테스트 품질 비교와 오케스트레이션 비교는 Sol/high 하위 에이전트 두 개가 독립적으로 읽고\n133\troot가 원문과 종합했다. 인기도 순위나 외부 스킬의 성능을 입증하는 테스트는 수행하지 않았다.\n134\t"
+      }
+    },
+    {
+      "record_index": 39,
+      "timestamp": "2026-09-11T07:10:00.355Z",
+      "uuid": "8f5f14ca-d1b2-4259-81f2-952b726ae7f9",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_013zQH2pQEPRbr1m1oXM4HuB",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/GIT-WORKFLOW.md"
+        }
+      }
+    },
+    {
+      "record_index": 40,
+      "timestamp": "2026-09-11T07:10:00.363Z",
+      "uuid": "5b3209bb-72f0-482d-b1e1-f9cb33515d19",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_013zQH2pQEPRbr1m1oXM4HuB",
+        "content": "1\t# GitHub Flow 브랜치 정책\n2\t\n3\t이 템플릿은 GitHub Flow를 기본 브랜치 전략으로 사용한다. 제품의 통합 기준은 `main`이다.\n4\t`main`은 프로젝트가 정한 기존 동작과 검증 기준을 만족하도록 유지한다. 큰 개발건도 장기\n5\t`develop`이나 기능 통합 브랜치에 전부 모으는 대신 검토 가능한 변경부터 이어서 통합한다.\n6\t\n7\t## 시작과 계획\n8\t\n9\t제품 저장소를 처음 만들 때 사용 템플릿의 판을 기록한다. 이후 작업 브랜치는 고정 템플릿 판이\n10\t아닌 최신 제품 `main`에서 만든다. 브랜치 이름은 짧게 목적을 드러내며 Codex 작업은 기본적으로\n11\t`codex/<작업명>`을 쓴다. 긴급 수정도 같은 흐름에서 필요한 검증을 거쳐 통합한다.\n12\t\n13\t범위나 실현 가능성이 불명확하면 필요한 조사를 먼저 하고, 사람과 이번 결과와 완료 기준을 정한다.\n14\t큰 요구는 `plan.md`의 작업 순서에 선행 관계, 함께 검토할 PR 범위와 통합 순서, 각 통합에서 확인할\n15\t동작을 적는다. [PR 크기 가이드](PR-SIZE.md)에 따라 하나의 계획을 여러 PR로 실행할 수 있다.\n16\t작업·세션·서브에이전트마다 PR 하나를 만들 필요는 없다.\n17\t\n18\tintent, spec, plan은 단계별로 커밋하고 다음 단계에서 사용할 판을 담당 사람이 수락한다.\n19\t대상 문서·커밋 SHA, 결정자, 결정과 이유를 같은 Draft PR이나 보존하는 대화·결정 기록에 남긴다.\n20\t문서마다 별도 PR을 만들 필요는 없다. 공유 계획을 먼저 문서 PR로 통합하는 방법도 가능하다.\n21\t단계 수락은 다음 작업의 근거를 정하는 결정이며, 최종 구현 PR의 통합 승인과 구분한다.\n22\t`Status: draft.`는 유지하고, 중요한 내용이 달라졌을 때 영향받는 결정만 다시 확인한다.\n23\t\n24\t후속 요청·리뷰·구현 중 발견으로 바뀐 사용자 동작·설계·범위·수용 기준은 `spec.md`에,\n25\t구현 파일·작업 순서·PR 경계·검증 계획의 변경은 `plan.md`에 반영한다. 문제·목표·제약 자체가\n26\t달라지면 `intent.md`도 갱신한다. 영향받는 문서의 합의 내용을 갱신하고 담당 사람과 필요한 결정을 확인한다.\n27\t대화에서 새 요구가 수락돼도 문서 갱신은 이번 작업에 포함한다.\n28\t\n29\t상위 문서의 수락 판이 바뀌면 그 커밋과 결정을 먼저 남기고 하위 문서의 `Upstream`을 갱신한다.\n30\t변경된 계획과 이유는 해당 구현과 같은 커밋에 담는다. 이미 허용된 범위의 사소한 구현 선택까지\n31\t다시 승인받거나, 영향 없는 문서를 형식적으로 수정하지 않는다.\n32\t\n33\t## 작업과 PR\n34\t\n35\t독립 작업을 동시에 진행할 이점이 있으면 별도 세션마다 브랜치와 worktree를 둔다.\n36\t같은 파일을 바꾸는 작업은 순차 진행하고, 파일이 달라도 공유 계약이나 실행 순서에 의존하면\n37\t독립적이라고 보지 않는다. 조사·검증 등 한정된 도움은 세션 안의 서브에이전트에 맡길 수 있다.\n38\t사람이 검토할 수 있는 범위 안에서 병렬화한다. 특정 스킬·서브에이전트 도구는 필수가 아니다.\n39\t\n40\t일찍 피드백이 필요하면 Draft PR을 연다. PR 설명에는 계획의 해당 범위, 의존하는 PR,\n41\t변경과 검증 근거·미확인 사항을 적는다. 일부 작업의 PR이 머지돼도 전체 요구를 완료로 표시하지 않는다.\n42\t같은 목적의 리뷰 수정은 같은 브랜치와 PR에 이어간다.\n43\t\n44\t의존하는 작업은 선행 PR을 표시한다. 기본은 선행 변경을 `main`에 머지한 뒤 그 판에서 진행한다.\n45\t기다리는 비용이 크면 선행 작업 브랜치에서 갈라 미리 개발·검토할 수 있다. 이때 PR의 기준 브랜치와\n46\t의존성을 명시하고, 선행 PR 머지 후 대상과 남은 diff를 최신 `main`에 맞춰 다시 확인한다.\n47\t의존 브랜치를 장기 통합 브랜치로 유지하지 않는다.\n48\t\n49\t## 검토와 통합\n50\t\n51\t담당 에이전트는 `REVIEW.md`에 따라 동작·정책·범위를 검토하고 발견을 수정·재검증한다.\n52\t지정된 사람은 의도·위험·검증 근거를 보고 통합을 수락한다. AI 리뷰나 검사 통과만으로 승인하지 않는다.\n53\tPR이 만들어졌다는 사실도 승인이 아니다. 기록을 남기는 위치와 책임자는 `PROJECT-POLICY.md`에 적는다.\n54\t\n55\t머지 전에는 최신 `main`과 합쳐진 결과에서 관련 검사와 인접 동작을 확인한다. `main`이나 변경이\n56\t그 뒤 달라져 검증 결과에 영향을 줄 수 있으면 해당 검증을 갱신한다. 충돌 해결이 끝났다는 사실만으로\n57\t통합 동작이 검증됐다고 보지 않는다. 필요한 검사가 아직 없거나 실행되지 않았으면 사람에게 그 범위를 남긴다.\n58\t\n59\t기본 머지 방식은 merge commit이다. 승인된 문서의 Upstream SHA를 이력에 보존하기 쉽기 때문이다.\n60\t프로젝트가 squash/rebase를 선택하면 승인 원본을 조회 가능하게 보존하거나, PR·결정 기록에\n61\t원본과 통합 후 커밋의 대응 및 문서 내용이 같은지 확인한 근거를 남긴다. 내용이 바뀌었다면 승인을\n62\t자동 승계하지 않는다. 공유된 브랜치의 이력 재작성은 협의하고, `main`을 force push하지 않는다.\n63\t\n64\t머지 후 통합 결과를 확인하고 완료된 작업 브랜치와 worktree를 정리한다. PR·커밋·결정 기록은 남긴다.\n65\t문제가 발견되면 영향과 의존성을 보고 수정 PR 또는 revert PR로 대응하며, 데이터·외부 효과는 별도로\n66\t복구한다. 머지는 배포나 기능 공개와 같지 않다. 배포·노출·되돌리기는 프로젝트의 실제 운영 방식에\n67\t따른다. 미완성 공개 단위를 일반 사용자에게 열지 않고 시험하며 통합하려면\n68\t[기능 공개 제어](RELEASE-CONTROL.md)를 적용한다. 관련 PR의 계획과 검증에는 main의 실행 상태와\n69\t일반/테스트 대상의 노출 상태를 함께 남긴다. 공개 결정자·설정 위치·수락/중단 기록은 프로젝트가 정한다.\n70\t\n71\t근거: [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow),\n72\t[플레이북의 계획 분할과 병렬 실행](https://academy.claude.com/courses/ai-native-sdlc-playbook/parallel-sessions-and-subagents).\n73\t구체적인 PR 단위·merge commit·단계 수락 기록·기능 공개 제어는 이 템플릿이 선택한 팀 정책이다.\n74\t"
+      }
+    },
+    {
+      "record_index": 41,
+      "timestamp": "2026-09-11T07:10:00.976Z",
+      "uuid": "fa49b483-5820-4bbd-9109-6b0856c69e73",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_017Vucps9CKukqA7PcPKw8pj",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/PR-SIZE.md"
+        }
+      }
+    },
+    {
+      "record_index": 42,
+      "timestamp": "2026-09-11T07:10:00.982Z",
+      "uuid": "a24c08fd-f116-49f0-b4fd-a3f6750df0b6",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017Vucps9CKukqA7PcPKw8pj",
+        "content": "1\t# PR 크기 가이드\n2\t\n3\tPR은 하나의 목적과 영향 범위를 이해하고, 검증하며, 문제 발생 시 대응할 수 있는 단위로 구성한다.\n4\t작고 응집된 변경을 기본으로 하되 줄 수나 파일 수의 고정 상한을 두지 않는다. AI가 작성하거나\n5\t리뷰해도 이 원칙은 같다. AI의 검토 능력과 실제 검증 근거에 따라 더 큰 변경을 함께 다룰 수 있다.\n6\t\n7\t## 나누거나 함께 두는 판단\n8\t\n9\t- 독립적으로 수락·사용·되돌릴 수 있는 변경, 서로 다른 목적의 기능과 큰 리팩터링은 분리할 이점이 크면 나눈다.\n10\t  먼저 끝난 부분의 검증과 허용된 대상의 피드백을 전체 개발 완료까지 미루지 않는다. 독립적으로 완성·\n11\t  수락한 기능은 먼저 공개할 수 있다. 하나의 미완성 공개 단위를 나눈 PR은 [공개 제어](RELEASE-CONTROL.md)로\n12\t  일반 OFF를 유지하며 시험하고, 각 통합의 기존 동작·노출 상태를 증명한다.\n13\t- 한 동작의 구현·관련 시험·사용 설명은 함께 둘 수 있다. 줄 수를 맞추려고 시험만 떼어 내거나,\n14\t  불필요한 임시 코드와 복잡한 의존 브랜치를 만들지 않는다.\n15\t- 대량 삭제, 확인 가능한 기계적 치환, 한 계약을 일관되게 바꾸는 작업은 큰 PR이 합리적일 수 있다.\n16\t  생성 코드·lockfile·fixture와 직접 작성한 동작 변경을 구분해 읽을 범위를 설명한다.\n17\t  LLM이 생성했다는 사실만으로 기계적 변환이라고 보지 않는다.\n18\t- 같은 PR에 넣으면 Git 변경은 함께 통합되지만 배포·데이터 변경까지 동시에 일어나는 것은 아니다.\n19\t  스키마·API·호출부를 바꿀 때는 실제 실행 중인 이전 버전과의 호환성과 복구 방법도 확인한다.\n20\t\n21\t## 검토 가능한 근거\n22\t\n23\t계획이나 PR 설명에 목적과 포함 범위, 중요한 의존성, 실행한 검증과 미확인 사항을 남긴다.\n24\t크거나 여러 영역에 걸친 PR이면 함께 둔 이유와 읽을 순서, 위험한 동작과 복구 방법을 짧게 보탠다.\n25\t사람은 의도·위험·검증의 충분성을 판단하고, AI 리뷰는 그 판단을 돕는다. AI가 문제를 지적하지\n26\t않았다는 사실을 결함 없음이나 승인으로 바꾸지 않는다.\n27\t\n28\t검토 중 서로 다른 결정이 섞여 있거나 검증 범위를 설명하기 어렵다면 분할을 다시 검토한다.\n29\t큰 변경을 여러 에이전트가 나눠 읽었어도 경계 사이의 상호작용과 통합 후 회귀를 확인한다.\n30\t작은 PR 여러 개로 나눴어도 이 확인을 생략하지 않는다.\n31\t\n32\t## 예시와 조정\n33\t\n34\t| 변경 | 판단 예 |\n35\t|---|---|\n36\t| 알림 음소거 설정 + 그 시험 + 사용법 | 하나의 동작으로 함께 검토 |\n37\t| 알림 기능과 별개인 저장 형식 교체 | 목적·위험·복구가 달라 분리 |\n38\t| 여러 파일의 동일한 이름 변경 | 동작 불변 근거가 있으면 큰 묶음 허용 |\n39\t| 장기간 걸리는 새 서비스 | 먼저 검증·사용할 수 있는 결과부터 나누어 통합 |\n40\t\n41\t에이전트 작업 단위와 PR 단위는 일대일일 필요가 없다. 팀은 리뷰·수정에 든 시간과 비용,\n42\t통합 후 결함·재작업·복구 경험을 보고 경계를 조정한다. 이 가이드를 위한 별도 점수표나\n43\t줄 수 차단 검사는 요구하지 않는다. 브랜치와 수락 절차는 [GitHub Flow 정책](GIT-WORKFLOW.md)을 따른다.\n44\t\n45\t근거: [Google의 응집된 변경과 예외](https://google.github.io/eng-practices/review/developer/small-cls.html),\n46\t[DORA의 AI 개발과 작은 작업 단위](https://dora.dev/capabilities/working-in-small-batches/),\n47\t[Anthropic의 큰 PR에 대한 AI 리뷰](https://claude.com/blog/code-review).\n48\tAI 전담 리뷰에 보편적으로 적합한 PR 줄 수는 이 자료들로 확정할 수 없다.\n49\t"
+      }
+    },
+    {
+      "record_index": 43,
+      "timestamp": "2026-09-11T07:10:01.522Z",
+      "uuid": "079cbf21-00ae-4dc5-88cb-83b402cc2f5e",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01G2QgSQAHtQL1SNHWEm9eCD",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/RELEASE-CONTROL.md"
+        }
+      }
+    },
+    {
+      "record_index": 44,
+      "timestamp": "2026-09-11T07:10:01.526Z",
+      "uuid": "b87a5d65-b553-419d-a336-0436dffc1219",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01G2QgSQAHtQL1SNHWEm9eCD",
+        "content": "1\t# 개발 중인 기능의 테스트와 공개\n2\t\n3\tGitHub Flow의 main은 기존 사용자 흐름을 유지하며 배포 가능하게 둔다. 코드 통합, 환경에 배포,\n4\t사용자에게 기능 공개는 서로 다른 결정이다. 합의한 **공개 단위**가 완성·검증되고 담당자가 공개를\n5\t수락하기 전에는 일반 사용자에게 열지 않는다. 독립적으로 완성·수락한 다른 기능은 먼저 제공할 수 있다.\n6\t이것은 우리 팀의 운영 선택이며, 모든 변경에 feature flag를 요구하는 GitHub Flow 규칙은 아니다.\n7\t\n8\t## 필요한 경우에만 제어 선택\n9\t\n10\t| 상황 | 기본 선택 |\n11\t|---|---|\n12\t| 한 PR로 완결되는 수정, 문서 변경, 호출되지 않는 안전한 호환 준비 | 추가 플래그 없이 기존 검증·배포 절차 사용 |\n13\t| 여러 PR의 미완성 기능이 일반 사용자용 배포물에도 들어감 | 단기 **release flag**로 일반 OFF, 개발·테스트 환경 또는 허용한 시험 대상만 ON |\n14\t| 큰 내부 구현 교체 | 안정된 인터페이스 아래 구·신 구현을 공존시키는 branch by abstraction; 전환 제어는 필요한 경우만 |\n15\t| 별도 미리보기 환경에서만 시험 | 환경 분리로 시험하되, main을 배포했을 때 미완성 기능이 열리지 않는지도 확인 |\n16\t\n17\t한 공개 단위의 제어 지점을 도입하고 이후 PR에서도 같은 판단·설정을 재사용한다. PR마다 숨기는 코드를\n18\t넣었다 빼지 않는다. 작은 서비스는 기존 환경 변수나 설정 파일로 충분할 수 있다. 설정 반영에 재시작이나\n19\t설정 배포가 필요한지는 명시한다. 실시간 전환·다수 대상 관리가 필요해질 때 기존 SDK/서비스를 검토한다.\n20\t\n21\t## 제어해야 하는 경계\n22\t\n23\t- 미완성 release flag는 미설정·유효하지 않은 값·평가 오류 때 OFF가 기본이다. 기존 동작은 유지한다.\n24\t  캐시나 원격 설정을 쓴다면 오래된 값의 효력과 OFF 전파 지연도 정한다. 운영용 kill switch의 안전값은 별도 판단이다.\n25\t- 버튼이나 메뉴만 숨겨서는 부족하다. 직접 접근 가능한 API/명령과 쓰기·알림·외부 호출·작업 예약/실행 등\n26\t  실제 효과의 경계도 막는다. 시작 시 실행, 백그라운드 작업, 저장소 migration처럼 화면과 무관한 경로를 살핀다.\n27\t- 서버의 테스트 대상은 신뢰된 환경·인증 정보에서 정한다. 사용자가 임의로 보낸 쿼리·쿠키·로컬 설정을\n28\t  공개 권한으로 믿지 않는다. 플래그는 기존 인증·권한 검사를 대체하지 않는다.\n29\t- OFF라도 빌드·시작·기존 기능이 깨지거나 스키마가 비호환이면 통합 준비가 된 것이 아니다. OFF는\n30\t  이미 쓴 데이터나 진행 중인 작업을 되돌리지 않는다. 필요하면 호환 단계와 별도 복구 방법을 설계한다.\n31\t\n32\t## spec, plan, 리뷰에 남길 것\n33\t\n34\t별도 필수 문서를 늘리지 않고 해당 변경의 기존 절에 기록한다.\n35\t\n36\t- **spec / Design·AC:** 공개 단위, 일반 기본 상태와 테스트 대상, 제어 경계·설정 실패 시 동작,\n37\t  공개 조건과 중단 시 유지할 계약. 정책의 결정자·기록 위치를 참조한다.\n38\t- **plan / Order·Proof:** 관련 PR마다 main에서 실행 가능한 부분, 일반/테스트 노출 상태, 남은 범위와\n39\t  OFF/ON 확인을 연결한다. 사용할 제어 이름·설정 위치, 담당자, 공개·중단 방법과 제거 조건도 함께 적는다.\n40\t  공개 단위가 끝나기 전 ON 시험은 그 PR 범위의 증거이며 전체 AC 통과가 아니다.\n41\t- **리뷰·공개:** 일반 OFF에서 기존 흐름과 직접 접근 차단, 테스트 ON에서 해당 기능, 최종 공개 전 전체\n42\t  공개 단위와 되돌릴 OFF 경로를 확인한다. 필요한 플래그 상호작용을 시험하며 모든 조합을 강제하지 않는다.\n43\t  공개 결정은 실제 코드 판·대상·설정 값·결정자·근거와 함께 프로젝트의 기존 운영 기록에 남긴다.\n44\t  테스트 ON 수락이나 PR merge가 일반 공개 수락을 대신하지 않는다.\n45\t\n46\t예: 담당자 목록과 집계를 한 공개 단위로 합의했다면 PR1은 목록을 시험 가능하게 만들고 일반 OFF,\n47\tPR2는 같은 제어 아래 집계를 완성하고 일반 OFF를 유지한다. 두 PR 모두 기존 기능이 동작해야 한다.\n48\t전체 확인 후 담당자가 설정으로 공개한다. 아직 테스트하지 않은 일반 설정·대상에서 성공을 가정하지 않는다.\n49\t\n50\t공개 후 안정성 관측과 필요한 되돌림 기간이 끝나면 담당자가 제어 제거를 결정한다. 먼저 최종 동작을\n51\t유지하는 소스·시험·문서를 반영하고, 그 설정을 읽는 구버전/복구 버전이 남아 있는지도 확인한 뒤 설정을\n52\t정리한다. OFF 기본값을 읽는 코드가 남았는데 설정부터 지우면 기능이 다시 꺼질 수 있다. 상시 권한이나\n53\t운영 제어는 단기 릴리스 플래그와 구분한다. 고정 만료 일수나 별도 관리 시스템은 요구하지 않는다.\n54\t\n55\t관련 정책: [브랜치](GIT-WORKFLOW.md), [PR 크기](PR-SIZE.md).\n56\t\n57\t설계 참고: [Hodgson의 Feature Toggles](https://martinfowler.com/articles/feature-toggles.html),\n58\t[GitHub의 2021년 적용 사례](https://github.blog/engineering/infrastructure/ship-code-faster-safer-feature-flags/),\n59\t[OpenFeature의 호출자 기본값 규격](https://openfeature.dev/specification/sections/flag-evaluation/).\n60\t적용 조건과 미완성 기능의 OFF 기본값은 이 템플릿의 팀 선택이다.\n61\t"
+      }
+    },
+    {
+      "record_index": 52,
+      "timestamp": "2026-09-11T07:10:16.439Z",
+      "uuid": "651caaf1-900e-4ba7-8405-f6851d5a6b03",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_0125u5sHbkQXdfEFMzSjUr2i",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/.claude/skills/design-spec/examples/feature/spec.md"
+        }
+      }
+    },
+    {
+      "record_index": 53,
+      "timestamp": "2026-09-11T07:10:16.448Z",
+      "uuid": "2ce2daee-50e6-4725-8f0b-f0e0f4a42f3d",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0125u5sHbkQXdfEFMzSjUr2i",
+        "content": "1\t# Spec: 담당자 조건으로 요청 목록 좁히기\n2\tUpstream: intent.md@ac0963b. Status: draft.\n3\t작성 조건: root가 허용한 합성 예시 작성이며 실제 제품 수락 기록이 아니다. 입력은 intent.md와 context.md다.\n4\tSkills applied: none — 합성 입력만 사용했으며 조직 정책 스킬 적용을 실행한 예시는 아니다.\n5\t\n6\t기존 목록 사용법을 유지하면서 `list --owner <ID>`로 담당자의 완료·미완료 요청을 함께 조회한다.\n7\t기존 목록 흐름에서 조건을 적용하면 충분하다. 현재 입력에서 별도 사람 결정이 필요한 우려는 없다.\n8\t\n9\t## Requirements\n10\t- R1. `list --owner <ID>`는 담당자가 문자열 ID와 정확히 일치하는 행을 기존 순서로 출력한다.\n11\t  완료 건도 포함하며 null 담당자는 어떤 문자열과도 일치하지 않는다.\n12\t- R2. 옵션 없는 list, show/complete의 동작과 출력 열·JSON 필드를 유지한다.\n13\t- R3. 조회는 파일을 바꾸지 않는다. 일치하는 행이 없으면 stdout이 비고 rc=0이다.\n14\t\n15\t## Acceptance criteria\n16\t각 사례는 [context.md](context.md)의 새 데이터 복사본을 사용한다. 예시 ID는 입력 데이터다.\n17\t- AC1 → R1,R3: `list --owner hana`는 R-101, R-103만 그 순서로 출력하고 파일 바이트는 같다.\n18\t- AC2 → R1,R3: nobody, HANA, `-`로 각각 조회하면 출력이 없고 rc=0이며 파일은 같다.\n19\t  마지막 사례는 화면상의 미배정 표시를 실제 담당자 문자열로 오인하지 않는지 확인한다.\n20\t- AC3 → R2,R3: 옵션 없는 list는 네 행을 원래 순서·열로 출력한다. 기존 show/complete 동작도\n21\t  유지한다. baseline의 기존 세 시험은 목록·조회·완료를 확인하지만 I/O 오류 경로는 다루지 않는다.\n22\t  필요한 추가 회귀 확인과 새 시험의 파일명·실행 명령은 plan에서 정한다.\n23\t\n24\t## Design\n25\targparse의 list 하위 명령에 선택 인자를 추가하고, 현재 JSON 읽기 뒤 순서를 유지하는 필터를\n26\t적용한다. 출력은 기존 display를 사용한다. 비교는 대소문자 변환이나 부분 일치를 하지 않는다.\n27\tshow/complete의 ID 조회 흐름에 조건을 끼워 넣지 않는다.\n28\t\n29\t별도 인덱스·DB·캐시는 도입하지 않는다. 이 기능은 이미 읽는 배열을 한 번 걸러내는 선택이며,\n30\t입력에는 기존 순회를 대체할 규모나 성능 문제가 없다. 내부 함수 이름은 구현자가 정할 수 있다.\n31\t\n32\t## Constraints and scope\n33\t기존 명령·필드와 조회의 읽기 전용 성격을 보존한다(R2,R3). 업무 코드는 2~4파일 이내의 작은\n34\t변경이고 시험·문서는 별도다. 미배정 전용 조회, 복수 담당자, 부분 일치·정렬·새 저장소는 범위 밖이다.\n35\t\n36\t## Open questions\n37\t- Q1 answered: 완료 건 포함·원래 순서 유지. 합성 요청자의 후속 답변이며 R1에 반영했다.\n38\t- Q2 answered: 정확 일치, null 제외, 없는 담당자는 빈 결과. R1,R3과 AC2에 반영했다.\n39\t- Q3 answered: `list --owner <ID>`, 기존 list 유지. R1,R2에 반영했다.\n40\t설계 중 추가된 중요한 미결 질문은 현재 없다.\n41\t\n42\t## Flagged concerns\n43\t없음 — 알려진 입력 범위에서는 외부 연동·권한·저장 형식을 바꾸지 않는다. 이는 실제 팀 정책을\n44\t모두 검토했다는 뜻이 아니며, 채택 팀이 별도 제약을 제공하면 관련 요구와 설계를 다시 검토한다.\n45\t"
+      }
+    },
+    {
+      "record_index": 54,
+      "timestamp": "2026-09-11T07:10:17.058Z",
+      "uuid": "6f5fe273-9a64-4cdd-a352-5b58fc6922b8",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_018KgpsTyhrAWNpUgxjyc62e",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/.claude/skills/plan/examples/feature.md"
+        }
+      }
+    },
+    {
+      "record_index": 55,
+      "timestamp": "2026-09-11T07:10:17.062Z",
+      "uuid": "fadb10bb-2b85-4636-9c11-282a667a788b",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_018KgpsTyhrAWNpUgxjyc62e",
+        "content": "1\t# Plan: 담당자별 요청 목록\n2\tUpstream: spec.md@efc65d9. Status: draft.\n3\t합성 예시: [입력 경계](context.md), [계약과 AC](../../design-spec/examples/feature/spec.md)를 읽는다.\n4\t\n5\t## Files that change\n6\t- tracker.py: list 인자와 정확 일치 필터. 기존 display와 show/complete 경로 보존.\n7\t- tests/test_owner.py (new): 새 옵션과 읽기 전용·기존 동작 회귀 시험.\n8\t- README.md: list --owner 예시와 정확 일치·완료 포함 설명.\n9\t\n10\t## Order of work\n11\t한 PR로 기능·시험·설명을 함께 검토한다. 최신 제품 main에서 시작한다.\n12\t1. 기존 세 시험으로 기준 동작을 확인한다. list 파서에 선택 인자를 연결하고 읽은 행에서 필터링한다.\n13\t2. tests/test_owner.py의 AC1–3 사례와 사용 설명을 추가한다. Proof가 맞는지 확인하며 구현을 조정한다.\n14\t3. 최신 main과 합친 결과를 다시 확인하고 인도한다. 이 PR 뒤 목록 필터가 동작하며 후속 PR은 없다.\n15\t\n16\t## Risks\n17\t공용 출력/조회 코드를 바꾸면 show/complete까지 영향받는다. 기존 경로를 재사용하되 필터는 list에만\n18\t적용하고 기존 세 시험으로 발견한다. UI·DB·캐시를 추가할 이유가 없는 변경이다.\n19\t\n20\t## Proof\n21\t`python3 -m unittest discover -s tests -v`가 기존 세 시험과 새 시험을 모두 실행해 통과해야 한다.\n22\t추가할 test_owner_exact_and_order는 hana→R-101/R-103, nobody/HANA/-→빈 stdout·rc=0과\n23\t매번 파일 바이트 보존을 확인한다(AC1/2). test_owner_no_option_and_io_error는 무옵션 출력 보존과\n24\t없는 파일의 기존 rc=2·오류 접두사를 확인한다(AC3). 기존 complete 시험은 정상 쓰기까지 금지하지 않는다.\n25\t이는 예정 검사이며 실행 출력은 구현/PR에 남긴다.\n26\t"
+      }
+    },
+    {
+      "record_index": 56,
+      "timestamp": "2026-09-11T07:10:17.775Z",
+      "uuid": "1fe5c00c-cf0f-4b07-a0cb-85a2881b13c0",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_0151f8Y3vAEtzcrAMQPYcq1A",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/.claude/skills/design-spec/references/design-depth.md"
+        }
+      }
+    },
+    {
+      "record_index": 57,
+      "timestamp": "2026-09-11T07:10:17.788Z",
+      "uuid": "f4ddc4d1-ad5a-4687-b685-f953ee0be811",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0151f8Y3vAEtzcrAMQPYcq1A",
+        "content": "1\t# Add only the design detail that changes a decision\n2\t\n3\tUse the rows that fit the change. They are prompts for judgment, not headings to copy or a checklist\n4\trequiring an N/A explanation for every row. Keep the important decision and its consequences in the spec.\n5\t\n6\t| Change | Detail worth considering |\n7\t|---|---|\n8\t| API, UI or integration boundary | Who can do what; request/response or state meaning; representative full user journey; empty, denied and failure behavior; compatibility with existing consumers. Link an actual approved mock/contract when used and distinguish its binding parts from illustration. |\n9\t| Stored data or migration | Current and target representation, invariants and ownership, partial failure, retries, coexistence or downtime, conditions for cutover and recovery. Account for writes after cutover and preserve the important invariants when service resumes. Exact run commands and operator steps belong in plan. |\n10\t| Incomplete integration or staged exposure | Agreed release unit, ordinary default and trusted test audience, directly reachable/effect boundaries, failure/default behavior and release/disable contract. Follow docs/RELEASE-CONTROL.md; the plan owns the control/configuration, responsible person, verification and eventual removal steps. A flag does not replace authorization or data recovery. |\n11\t| Concurrency or shared state | Which updates must be atomic, what a repeat/conflict means, and what readers can see. Identify the shared contract so separately implemented parts do not choose incompatible assumptions. |\n12\t| Performance or external dependency | Actual workload/measurement basis when known, acceptable degradation or failure, important limits and operating cost. If evidence is missing, state the uncertainty and what decision it affects rather than inventing a target. |\n13\t| Several modules or teams | Shared interfaces and constraints, existing components reused, changes that must agree and the integration result to verify. Let plan own work packages, file ownership and PR order. |\n14\t\n15\tA short decision paragraph can explain context, the chosen option, a meaningful rejected option and\n16\tthe drawback. Add tables, examples or a diagram only when they improve understanding. Internal\n17\tmethod names or sample pseudocode are illustrative unless the contract depends on them.\n18\t\n19\tPrefer relevant subsections inside Design. If an existing external artifact carries contract detail,\n20\tidentify its exact source/version and which part is authoritative; distinguish background references.\n21\tKeep important behavior, choices and concerns visible in this spec so a short summary does not conceal\n22\ta different contract. This does not require a second design approval workflow or a new document type.\n23\t"
+      }
+    },
+    {
+      "record_index": 58,
+      "timestamp": "2026-09-11T07:10:18.436Z",
+      "uuid": "a812a350-bf91-469a-97f5-92b0d5440b2e",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_014cE8etihSDfRWWShqSjAyK",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/.claude/skills/plan/references/execution-depth.md"
+        }
+      }
+    },
+    {
+      "record_index": 59,
+      "timestamp": "2026-09-11T07:10:18.458Z",
+      "uuid": "2446aec6-158c-40b4-b86e-ecd11c63afcc",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_014cE8etihSDfRWWShqSjAyK",
+        "content": "1\t# 필요한 경우에만 늘리는 실행 상세\n2\t\n3\t이 문서는 선택한 상세를 어디에 남길지 돕는다. 기본 양식에 모든 표·항목을 추가하지 않는다.\n4\t프로젝트의 docs/GIT-WORKFLOW.md와 docs/PR-SIZE.md가 기준이며, 계획은 이 변경의 구체적인 답을 기록한다.\n5\t\n6\t## 여러 PR\n7\tOrder of work 안에 PR별 짧은 블록을 둔다. 목적·포함 작업·선행 관계·통합 후 main의 동작·남은\n8\t범위·Proof 참조면 충분하다. 사용자에게 새 기능이 노출되지 않는 호환 준비도 기존 동작을 보존하고\n9\t독립 검증할 수 있으면 합리적이다. 단순 DB/API/UI 층별 제목만으로 분할을 끝내지 않는다.\n10\t기능·시험·필요한 설명을 응집되게 묶으며 줄 수를 맞추려 쪼개거나 큰 계획 전체를 한 PR로 고정하지 않는다.\n11\t큰 묶음이 더 낫다면 함께 둔 이유, 읽을 순서, 위험·복구를 적는다.\n12\t\n13\t종속 작업은 선행 PR을 main에 통합한 뒤 최신 main에서 시작하는 것이 기본이다. 대기 비용 때문에\n14\tstacked 작업을 선택하면 실제 base·의존성을 표시하고 선행 merge 뒤 남은 diff와 대상 main을\n15\t다시 맞춘다. 장기 기능 통합 브랜치를 만들지 않는다. 단계 문서 커밋·사람 수락과 PR 통합은 별개다.\n16\t\n17\t## 통합과 공개가 다를 때\n18\tdocs/RELEASE-CONTROL.md를 읽고 spec의 공개 계약을 실행 순서로 옮긴다. 관련 PR별 main의 동작과\n19\t일반 OFF/테스트 ON 상태, 남은 공개 단위와 증거를 적는다. 같은 제어·설정 위치를 PR 사이에 재사용하며\n20\t소스의 숨김 코드를 매번 고치지 않는다. 담당자의 공개 판단, 설정 반영/중단 방법(재시작이 필요하면 포함),\n21\t최종 전체 확인과 제거 조건을 기존 Order/Proof에 둔다. OFF도 빌드·기존 동작·호환성을 유지해야 한다.\n22\t부분 ON 시험을 전체 완료로 쓰지 않고, 제어 제거 전 구버전/복구 경로와 설정 정리 순서를 고려한다.\n23\t작은 완결 변경에 플래그나 별도 공개 문서를 추가하지 않는다.\n24\t\n25\t## 병렬 인계\n26\t독립 세션은 branch/worktree별로 나눈다. 각 작업의 파일·결과·필요한 입력과 읽을 공유 계약의 위치/판을\n27\t남긴다. 같은 파일을 수정하는 작업은 순차 실행한다. 파일이 달라도 계약·순서 의존이 있으면 먼저\n28\t합의하거나 선행 작업을 기다린다. 한정된 조사·검증 subagent가 필요하다고 PR을 따로 만들지는 않는다.\n29\t\n30\t통합 책임과 공유 plan 조정 책임을 정한다. 병렬 담당의 변경은 관련 구현 커밋에 반영할 수 있도록\n31\t조정하며, 공유 문서 편집은 순차로 처리한다. 다른 branch의 계획 변경을 덮어쓰거나 마지막에 한꺼번에\n32\t갱신하지 않는다. 개별 PASS 뒤에도 최신 main과 합친 계약·데이터·사용 흐름을 함께 확인한다.\n33\t사람이 검토할 수 있는 범위 안에서만 병렬도를 늘린다.\n34\t\n35\t## 전환·복구 또는 큰 불확실성\n36\tGit merge는 배포·데이터 전환의 원자성을 보장하지 않는다. 실제로 운영 영향이 있을 때 중지/호환\n37\t조건, 전환 전 확인, 실패 후 데이터와 기존 사용자 흐름의 처리, 재개 판단을 적는다. 없는 호스트 명령이나\n38\t무중단 요구를 만들지 않는다. 미확인 사항은 영향과 해결할 단계/담당을 적고 그 결정에 의존하는 작업은\n39\t해결 전 진행하지 않는다. 이미 합의한 구현을 막지 않는 질문까지 일괄 중지 조건으로 만들지는 않는다.\n40\t\n41\t기존 테스트로 확인하지 못하는 중요한 동작은 실제 시험이나 관측 방법을 정한다. 시험 코드 전체와\n42\t사소한 함수 선택까지 plan에 복제하지 않는다. 모델의 실수 가능성을 없애려는 체크리스트보다\n43\t변경 영향에 맞는 모델·추론, 반복 검증과 사람 판단을 사용한다.\n44\t"
+      }
+    },
+    {
+      "record_index": 60,
+      "timestamp": "2026-09-11T07:10:19.336Z",
+      "uuid": "33f56fbc-ee90-4c87-88b2-8155f921dc4b",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01Q6WETDyKnzutZHotwudWc5",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f03-plan-historical.md"
+        }
+      }
+    },
+    {
+      "record_index": 61,
+      "timestamp": "2026-09-11T07:10:19.343Z",
+      "uuid": "e926fe6c-a3ec-4ea3-a6ab-4ce33460f90a",
+      "role": "user",
+      "model": null,
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Q6WETDyKnzutZHotwudWc5",
+        "content": "1\t# Plan: 담당자 목록 필터와 all/open/done 집계 (from intent f03-owner-insights)\n2\tUpstream: spec.md@f1ba82ecb285f69ae12136578e131972f6281753. Status: draft.\n3\tDRAFT 허용: HUMAN(Codex root)이 spec과 함께 검토하도록 초안 작성을 허용했다\n4\t(`intent/f03-owner-insights/decisions.md` \"초안 동시 작성 허용\"). 이 plan 자체의 실행·구현 허가는\n5\t아니며, HUMAN이 spec을 수락한 뒤 이 plan을 별도로 수락해야 한다.\n6\t새 세션이 대화 없이 실행할 수 있도록 필요한 참조: EXPERIMENT.md(검증 명령·역할·데이터),\n7\tdocs/RELEASE-CONTROL.md, docs/GIT-WORKFLOW.md, docs/PR-SIZE.md, USAGE.md, tracker.py,\n8\ttests/test_tracker.py, requests.json, 위 spec.md 전체.\n9\t\n10\t## Files that change\n11\t- `tracker.py`: PR1에서 플래그 읽기·조건부 서브파서 구성·`--owner` 필터, PR2에서 같은 플래그·\n12\t  필터를 재사용하는 `summary` 서브파서와 집계. 새 파일 아님.\n13\t- `tests/test_owner.py` (new, PR1): 플래그 OFF 거부, ON exact-match·순서·null 비매칭·빈 결과·\n14\t  read-only(AC1-AC3).\n15\t- `tests/test_summary.py` (new, PR2): all/open/done 형식·전체/담당자별/없는 담당자 집계·\n16\t  complete 이후 최신 상태 반영·read-only(AC4-AC5). PR2 시점에 test_owner.py도 재실행한다.\n17\t- `USAGE.md`: 플래그 이름·기본 OFF·개발자 시험 실행 예시, `list --owner`(PR1)와\n18\t  `summary [--owner]`(PR2) 사용법을 추가한다. 두 PR 모두 기존 세 줄(list/show/complete) 설명은 유지한다.\n19\t- 조건부(4단계, root의 명시적 정리 요청 후에만): `tracker.py`에서 플래그 읽기·조건부 분기 제거,\n20\t  `tests/test_owner.py`·`tests/test_summary.py`에서 OFF 거부를 확인하던 케이스 제거,\n21\t  `USAGE.md`에서 플래그 설정 언급 제거. 세 파일 모두 이번 PR1/PR2에서는 바꾸지 않는다.\n22\t\n23\t## Order of work\n24\t1. **기준 확인.** 작업 브랜치를 최신 `main`에서 만들고 `python3 -m unittest discover -s tests -v`로\n25\t   기존 3개 시험이 그대로 통과하는지 먼저 확인한다(회귀 기준선).\n26\t2. **PR1 — 담당자 목록 필터, 공개 제어 도입.** `TRACKER_OWNER_INSIGHTS` 읽기와 조건부 argparse\n27\t   구성을 넣고, OFF에서 `--owner`/`summary`가 존재하지 않음을 먼저 확인한 뒤 ON 경로의 필터를\n28\t   구현한다(R1,R2,R4). `tests/test_owner.py`와 `USAGE.md`의 목록 절을 함께 커밋한다.\n29\t   main에 머지되면 일반 실행은 기존과 동일(OFF)하고, 개발자 프로세스만 플래그를 켜 목록 필터를\n30\t   시험할 수 있다. summary는 아직 없다 — 이 PR만으로 공개 단위가 끝난 것은 아니다.\n31\t3. **PR2 — all/open/done 집계.** PR1이 검토·통합된 뒤 그 최신 `main`에서 새 브랜치를 만들고\n32\t   `summary` 서브파서와 집계를 같은 플래그·같은 exact-match 의미로 연결한다(R3,R4,R5).\n33\t   `tests/test_summary.py`와 `USAGE.md`의 요약 절을 추가하고, `test_owner.py`를 다시 실행해\n34\t   목록 동작이 그대로인지 확인한다. main에서 목록·요약·기존 list/show/complete가 모두 ON/OFF\n35\t   양쪽에서 의도대로 동작하면 이번 공개 단위(F03)의 구현 범위가 끝난다.\n36\t4. **공개/중단 결정.** PR2 통합 후 root가 실제로 `TRACKER_OWNER_INSIGHTS`를 일반 기본으로 켤지\n37\t   결정한다(EXPERIMENT.md의 이후 단계: \"같은 코드에서 설정 공개/중단\"). 이 plan은 켜는 코드\n38\t   변경을 만들지 않는다 — 값 전환은 root의 로컬 환경 설정과 결정 기록\n39\t   (`intent/f03-owner-insights/decisions.md`)으로 이루어진다.\n40\t5. **정리 PR(조건부 — root의 명시적 요청 후에만 실행).** 트리거는 spec R6/Design \"정리\"의 모의\n41\t   안정화 조건: PR2의 ON/OFF와 인접 흐름(list/show/complete) 검증 완료, root의 모의 공개/중단\n42\t   관측 기록, 이 제어를 읽는 구버전 프로세스·롤백 대상이 없다는 root의 선언 — 이 세 가지가\n43\t   `intent/f03-owner-insights/decisions.md`에 기록된 뒤에만 착수한다. 이 단계는 이번 PR1/PR2\n44\t   작업의 일부로 지금 실행하지 않으며, root가 별도로 착수를 요청할 때 새 브랜치에서 수행한다.\n45\t   범위: `tracker.py`에서 `TRACKER_OWNER_INSIGHTS` 읽기와 조건부 서브파서 분기를 제거해\n46\t   `list --owner`/`summary`를 무조건 사용 가능한 명령으로 만든다(R6). `tests/test_owner.py`·\n47\t   `tests/test_summary.py`에서 OFF 거부를 확인하던 케이스만 제거하고, exact-match·all/open/done·\n48\t   read-only 등 최종 동작을 확인하는 나머지 시험은 그대로 남겨 회귀 시험으로 유지한다.\n49\t   `USAGE.md`에서 플래그 설정·시험 방법 언급을 지우고 두 명령을 기본 사용법으로 옮긴다. 기존\n50\t   list/show/complete 관련 시험·설명은 전혀 건드리지 않는다.\n51\t\n52\t두 PR은 `tracker.py`·`USAGE.md`와 플래그·exact-match 의미를 공유하므로 병렬 세션 없이 순차\n53\t진행한다. 코드량이 작다는 이유로 한 PR에 몰아 목록 인도를 늦추거나, 시험만 별도 PR로 떼지 않는다.\n54\t실제 브랜치명·PR 번호·수락 SHA·머지 커밋은 실행 시 `intent/f03-owner-insights/decisions.md`에 남긴다.\n55\t\n56\t## Risks\n57\t- 가장 위험한 단계는 PR2에서 플래그 읽기·필터 로직을 목록과 공유하도록 리팩터링하는 부분이다.\n58\t  잘못 공유하면 PR1이 이미 통과시킨 exact-match·null 비매칭·순서·OFF 거부가 깨질 수 있다.\n59\t  대응: PR2에서 `test_owner.py`를 반드시 재실행하고, 실패하면 공유 리팩터링을 수정한 뒤\n60\t  재검증한다 — 이미 사용 가능한 목록 기능이 계속 됐다고 재판정하지 않는다.\n61\t- OFF 기본값이 새지 않는지가 두 번째 위험이다. argparse 구성을 조건 없이 항상 추가해 버리면\n62\t  일반 실행에서도 `--owner`/`summary`가 노출된다. 대응: AC1을 각 PR에서 실제로 실행해 OFF에서\n63\t  거부됨을 관측하고, 커밋 전 플래그 관련 조건문 위치를 diff에서 직접 확인한다.\n64\t- status 값이 open/done 외의 값을 갖게 되는 향후 변경이 있으면 all과 open+done 합이 달라질 수\n65\t  있음을 spec Design에 남겼다 — 지금 데이터·완료 흐름(complete는 done만 만든다)에서는 발생하지\n66\t  않는 낮은 위험이라 이번 plan에서 추가 코드를 두지 않는다.\n67\t\n68\t## Proof\n69\t각 PR은 `python3 -m unittest discover -s tests -v`로 그 시점의 전체 시험을 통과해야 한다(기존\n70\t3개 + 해당 PR까지 추가된 시험).\n71\t- PR1: `test_owner.py`에 다음을 포함한다 — 플래그 미설정/무효 값에서 `list --owner hana`와\n72\t  `summary`가 각각 argparse 오류로 거부됨(AC1); 플래그 `\"1\"`에서 `list --owner hana`가 R-101,\n73\t  R-103만 원래 순서로 출력(AC2); 같은 상태에서 `nobody`/`HANA`/`-`가 빈 stdout·rc=0(AC3); 위 모든\n74\t  케이스에서 파일 바이트 불변. 기존 3개 시험도 변경 없이 통과해야 한다(R5 회귀 확인).\n75\t- PR2: `test_summary.py`에 다음을 포함한다 — ON에서 옵션 없는 `summary`가\n76\t  `all\\t4\\nopen\\t3\\ndone\\t1\\n`(AC4); `--owner hana`가 `all\\t2\\nopen\\t1\\ndone\\t1\\n`, `--owner min`이\n77\t  `all\\t1\\nopen\\t1\\ndone\\t0\\n`, `--owner nobody`가 `all\\t0\\nopen\\t0\\ndone\\t0\\n`(AC4); 별도 복사본에서\n78\t  `complete R-101` 후 `summary --owner hana`가 `all\\t2\\nopen\\t0\\ndone\\t2\\n`이고 `list --owner hana`의\n79\t  두 행이 모두 done(AC5); 모든 케이스 파일 바이트 불변(R4). `test_owner.py`를 다시 실행해 회귀가\n80\t  없는지 확인한다.\n81\t- 두 PR 모두 머지 전 최신 `main`과 합친 판에서 위 명령을 다시 실행하고, 실제 실행한 명령·판·출력을\n82\t  해당 PR 기록에 남긴다(로컬 merge만 했다면 hosted CI·운영 인도라고 쓰지 않는다 — EXPERIMENT.md는\n83\t  로컬 모의만 다룬다).\n84\t- 수동 관측(자동 시험 보완): 개발자 셸에서 `TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data\n85\t  requests.json list --owner hana`와 동일 조건의 `summary`를 직접 실행해 OFF 기본과 ON 동작의\n86\t  차이를 눈으로도 확인하고, 그 출력을 PR 설명에 붙인다.\n87\t- 정리 PR(조건부, 5단계 실행 시): `python3 -m unittest discover -s tests -v`를 플래그를 전혀\n88\t  설정하지 않은 셸에서 실행해 `list --owner`/`summary`가 이제 기본으로 통과함을 확인한다(R6).\n89\t  OFF 거부를 확인하던 옛 케이스가 삭제됐는지, 나머지 exact-match/all·open·done/read-only 시험과\n90\t  기존 list/show/complete 시험이 모두 그대로 통과하는지 diff와 실행 결과로 함께 남긴다.\n91\t\n92\t이 Proof는 계획된 검사이며 실제 근거는 각 구현 PR/커밋 기록에 남긴다. 구현 중 파일·순서·PR\n93\t경계·검증이 달라지면 그 이유를 같은 구현 커밋에서 이 plan에 반영한다. 수용 기준·동작·범위가\n94\t바뀌면 spec.md를 먼저 개정하고 Upstream을 다시 고정한다.\n95\t"
+      }
+    },
+    {
+      "record_index": 68,
+      "timestamp": "2026-09-11T07:15:39.479Z",
+      "uuid": "0e114720-0dd4-4787-aeb0-aeeaf822230a",
+      "role": "assistant",
+      "model": "claude-fable-5-1",
+      "content": {
+        "type": "text",
+        "text": "제안은 아래와 같다. brief, 북극성 발췌, 현재 spec·plan 템플릿, design-spec·plan 스킬과 depth 참조, 연구 요약 두 편, TDD 스킬 비교, 세 운영 정책 문서, F01 feature 예시, F03 과거 plan만 읽었다. 다른 제안과 모델 리뷰는 열지 않았고 파일 편집과 명령 실행은 하지 않았다.\n\n## 1. 중심 아이디어와 필드 구조\n\n여섯 절과 네 절은 그대로 두고, 각 절의 안내 문장을 이름 붙은 슬롯으로 바꾼다. 슬롯은 표 하나 또는 고정된 한 줄이며, 채우거나 없음과 그 이유를 쓴다. 세션마다 깊이가 달라지는 원인은 자유 서술이므로, 다음 사람이 다시 추측하게 되는 세 가지만 표로 고정한다. 계약의 정확한 형태, 조건별 기대 결과, 그것을 증명하는 선행 테스트다. 나머지는 짧은 서술로 남긴다.\n\nspec 슬롯:\n\n| 절 | 슬롯 | 채울 열 |\n|---|---|---|\n| 머리 | 요약 세 줄 | 바꾸는 것, 유지하는 것, 사람이 결정할 것 |\n| Requirements | R 목록 | ID, 조건과 결과 한 문장, 변경 또는 유지, 출처 |\n| Acceptance criteria | AC 표 | ID, 조건, 행동, 기대 결과, 덮는 R. 실패나 인접 동작 사례 하나 이상 |\n| Design | 접근 단락 | 선택, 버린 대안 하나, 감수하는 단점 |\n| Design | 계약 표 | 이름, 종류, 형태, 구속력, 근거 R |\n| Constraints and scope | 유지·제외 목록 | 이어받은 제약, 발견한 제약과 근거, 하지 않을 것 |\n| Open questions | Q 표 | ID, answered 또는 carried forward, 답이나 미정, 근거·담당, 반영 위치 |\n| Flagged concerns | 우려 표 | 근거, 영향, 결정자, 필요 시점. 없으면 살핀 범위 |\n\n계약 표의 종류는 명령 옵션, 함수 시그니처, 스키마, 파일 형식, 상태 전이 중 하나다. 구속력이 계약인 행만 spec이 결정한 것이고, 예시 행은 구현자가 바꿀 수 있다.\n\nplan 슬롯:\n\n| 절 | 슬롯 | 채울 열 |\n|---|---|---|\n| Files that change | 파일 표 | 경로, 신규 또는 변경, 역할, 관련 AC나 계약 |\n| Order of work | PR 블록 | 목적, 포함, 선행 PR, 머지 후 main 동작과 노출 상태, 남은 범위. 안의 단계는 기준, RED, GREEN, 정리, 통합으로 표기 |\n| Risks | 위험 단락 | 가장 위험한 단계, 감지와 대응, 버린 실행 대안 |\n| Proof | 증명 표 | AC, 테스트 파일::이름, 기존 또는 추가, 선행 여부, 명령, 기대 결과. 통합 확인과 검증 한계 행 포함 |\n\nTDD 연결은 AC 표의 행이 증명 표의 행이 되고, 증명 표의 선행 열이 커밋 순서를 정하는 것이다. 정책 문장은 하나다. \"새 동작과 변경 동작은 증명 표의 테스트를 먼저 써서 의도한 이유로 실패하는 것을 확인한 뒤 구현하고, 실행 출력을 PR에 남긴다.\" 결함은 재현 테스트 커밋과 수정 커밋으로 단계가 고정되고 선행 열에 재현 커밋을 적는다. 한 동작씩 진행, 저장소 실제 명령으로 RED 확인, 최소 GREEN, 리팩터, 테스트 약화 금지, test-after가 생기면 삭제 대신 사실을 밝히고 누락 테스트를 보강하는 절차는 `.claude/skills/tdd/SKILL.md` 한 파일에 둔다. 소스와 폴더 복사 설치 안내를 붙인 선택 가능한 기본 예시이며 외부 스킬 이름을 요구하지 않는다.\n\n## 2. F01 작성 조각\n\n현재 feature 예시는 구현 뒤 테스트를 추가한다. 아래 조각이 그 순서를 바꾼다.\n\n```markdown\n## Acceptance criteria\n| AC | 조건 | 행동 | 기대 결과 | R |\n|---|---|---|---|---|\n| AC1 | context.md 데이터 복사본 | list --owner hana | R-101, R-103만 원래 순서. 파일 바이트 동일 | R1,R3 |\n| AC2 | 같은 데이터 | --owner nobody, HANA, - 각각 | stdout 없음, rc=0, 파일 동일 | R1,R3 |\n| AC3 | 같은 데이터 | 옵션 없는 list, 그리고 없는 파일 경로 | 네 행 원래 열. 없는 파일은 기존 rc=2와 오류 접두사 | R2,R3 |\n\n## Design\n| 이름 | 종류 | 형태 | 구속력 | R |\n|---|---|---|---|---|\n| list --owner | 명령 옵션 | 선택 인자 <ID>. 문자열 정확 일치, null 담당자는 비일치 | 계약 | R1 |\n| 필터 위치 | 흐름 | JSON 읽기 뒤, display 앞, list에만 적용 | 계약 | R2 |\n| filter_by_owner(rows, owner) | 함수 | 순서 유지 | 예시 | R1 |\n```\n\n```markdown\n## Order of work\nPR1, 유일. 목적: 담당자 필터. 선행: 없음. 머지 후: list --owner 즉시 사용, 공개 제어 없음. 남은 범위: 없음.\n1. 기준: python3 -m unittest discover -s tests -v 로 기존 세 시험 통과 확인.\n2. RED: tests/test_owner.py::test_owner_exact_and_order 작성 후 실행. --owner 미인식 argparse 오류로 실패해야 함.\n3. GREEN: tracker.py list 파서에 인자 추가, 읽은 행 필터. 2의 시험만 통과시킴.\n4. RED, GREEN 반복: test_owner_no_match_cases는 AC2, test_owner_no_option_and_io_error는 AC3.\n5. 정리: 중복 제거, README.md 사용 예시. 전체 시험 재실행.\n6. 통합: 최신 main과 합친 뒤 Proof 재실행, 출력을 PR에 첨부.\n\n## Proof\n| AC | 테스트 | 기존/추가 | 선행 | 명령 | 기대 |\n|---|---|---|---|---|---|\n| AC1 | tests/test_owner.py::test_owner_exact_and_order | 추가 | RED 먼저 | discover -p test_owner.py | 3단계 전 argparse 오류, 후 통과 |\n| AC2 | 같은 파일::test_owner_no_match_cases | 추가 | RED 먼저 | 같음 | 빈 stdout, rc=0, 바이트 동일 |\n| AC3 | 같은 파일::test_owner_no_option_and_io_error, 기존 세 시험 | 추가, 기존 | RED 먼저 | discover 전체 | 모두 통과 |\n| 통합 | 최신 main 합친 판 | 기존 | 아니오 | discover 전체 | 모두 통과, 출력 PR 첨부 |\n```\n\n## 3. 조건부 표현, 문서 갱신, PR과 공개 제어의 연결\n\n조건부 슬롯은 트리거가 맞을 때만 Design의 하위 절로 만든다. 트리거가 없으면 절도 N/A도 쓰지 않는다.\n\n| 트리거 | spec Design에 추가 | plan에 대응 | 다이어그램 조건 |\n|---|---|---|---|\n| 공개 단위가 PR 여럿에 걸침, F03 | 공개 계약 표: 공개 단위, 일반 기본 OFF, 테스트 대상, 직접 접근을 포함한 제어 경계, 설정 실패 시 동작, 공개·중단 조건, 제거 후 유지 계약 | PR 블록의 노출 상태, 증명 표의 OFF 거부·ON 동작 행, 제어 이름·설정 위치·담당·제거 조건 | 없음 |\n| 저장 표현 변경·이행, M01 | 이행 표: 현재·목표 표현, 불변식, 부분 실패, 공존·전환·복구 조건 | 전환 순서, 중지 조건, 확인 방법. 모르는 운영 명령은 담당과 해결 단계로 표기 | 상태, 전환 상태가 셋 이상일 때 |\n| 외부 경계·API 전환 | 요청·응답 의미, 거부·실패 동작, 기존 소비자 호환 | 소비자별 확인 행 | 시퀀스, 호출 순서가 계약이고 참여자가 셋 이상일 때 |\n| 새 타입이 여러 모듈에 걸침 | 계약 표에 의존 방향 | 파일 소유 경계 | 클래스 또는 컴포넌트 |\n\n실행 위치나 설정 위치가 바뀔 때만 배포 다이어그램을 둔다. 다이어그램은 Mermaid 텍스트로 두고 계약 표처럼 계약인지 예시인지 표시한다. F03의 과거 spec과 plan은 형태 참고일 뿐 새 설계의 승인 근거가 아니다.\n\n갱신 규칙은 행 단위다. 발견이 R, AC, 계약 표, 공개 계약 표를 바꾸면 spec의 해당 행을 고치고 이유를 커밋에 남긴 뒤 plan의 Upstream을 다시 고정한다. 파일, 순서, PR 경계, 증명 표만 바뀌면 plan 행만 고친다. 두 경우 모두 관련 구현과 같은 커밋이다. 계약 표에 없는 내부 선택은 재승인 대상이 아니다. PR 설명은 plan의 PR 블록을 옮기고 실행한 증명 표 행의 명령과 출력을 붙인다. reviewer는 diff를 계약 표와 증명 표에 대조한다. 공개 결정은 merge와 별개로 기존 운영 기록에 남긴다.\n\n**가장 강한 반론과 완화.** 표를 강제하면 작은 변경도 형식 채우기가 되고, 표는 서술보다 사고를 덜 담아 채웠지만 얕은 문서가 된다. 완화는 세 가지다. 필수 표는 spec의 AC·계약·Q와 plan의 PR 블록·증명뿐이고 행은 한 문장이면 된다. 조건부 표는 트리거가 맞을 때만 만든다. 깊이는 표가 아니라 F01, B01, F03, M01의 완성 예시가 보여 주고, 접근 단락은 서술로 남긴다. 두 번째 반론은 AC와 테스트를 행으로 묶으면 테스트가 AC 복제가 되어 과적합한다는 것이다. 한 AC에 여러 테스트와 한 테스트에 여러 AC를 허용하고, 기대값은 구현이 아니라 데이터에서 정한다는 규칙을 TDD 스킬에 둔다.\n\n**채택하지 않을 것.** Spec Kit식 tasks 파일이나 OpenSpec식 design 파일 분리, 모든 변경의 다이어그램 의무, 커버리지 수치, 별도 TDD 원장과 단계별 커밋 승인, plan에 테스트 코드 전문 복제, test-after 코드를 지우고 다시 시작하는 규칙, 특정 외부 스킬 이름 의무화.\n\n**reviewer가 확인할 실패 사례.**\n- AC 행이 R을 되풀이하고 기대 결과에 값이 없다. 예를 들어 \"필터가 동작한다\".\n- 계약 표에서 내부 함수명이 계약으로 표시되거나 명령 옵션의 형태가 비어 있다.\n- 증명 표의 테스트가 저장소에 없거나, 선행 표시인데 커밋 순서에서 구현이 먼저다.\n- 공개 제어에서 OFF의 직접 접근 차단 행이 없거나 부분 ON 결과를 전체 AC 통과로 적었다.\n- AC가 바뀌었는데 plan만 고치고 spec과 Upstream을 다시 고정하지 않았다.\n- 트리거 없는 조건부 절을 N/A로 채워 문서가 커졌다.\n- 다이어그램이 계약 표와 다른 흐름을 말한다.\n- 계약 표 밖의 내부 선택이 Open questions로 올라와 재승인을 요구한다."
+      }
+    }
+  ]
+}

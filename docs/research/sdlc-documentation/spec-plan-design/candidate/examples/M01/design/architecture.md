@@ -50,9 +50,9 @@ Request는 런타임에 기존 dict이며 별도 도메인 클래스 생성 요�
 ## 배포 경계
 ```mermaid
 flowchart TB
-  subgraph HOST["기존 단일 호스트 / SQLite 지원 로컬 파일시스템"]
-    API["API 서비스 프로세스"] --> DB[("선택된 저장소 파일")]
-    REPORT["별도 야간 보고서 프로세스"] -->|"기존 HTTP·읽기 자격"| API
+  subgraph HOST["단일 호스트 / 로컬 저장소"]
+    API["API 서비스"] --> DB[("저장소 파일")]
+    REPORT["야간 보고서"] -->|"기존 HTTP·읽기 자격"| API
     CFG["config/service.toml\nbackend=json 또는 sqlite / path"] --> API
     OP["중지 중 운영 import/export"] --> DB
   end
