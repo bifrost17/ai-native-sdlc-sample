@@ -50,3 +50,18 @@ E02 첫 실행은 문서 누락을 발견했지만 주 세션이 기준 파일 �
 plugin validate/skill validate, 새 세션 init과 Skill/Agent 도구 기록, 실제 모델과 추론 설정·실행 시간·비용,
 업무 대화·수락 SHA·문서/코드 diff와 commit, 기존 시험/fixture 보존·독립 제품 동작, 제작 make check,
   원문/179 IDs 불변 및 verifier 네 부분 보고. 첫 묶음은 소규모 두 세션과 필요한 정상 대조로 시작한다.
+
+## Execution record
+
+- 최종 설치 후보: 893b79e / plugin 0.1.4. strict plugin/marketplace 검사와 skill quick validation 통과.
+- E01 5턴, E02a 1턴, E02b 3턴으로 세 실제 세션에서 진행했다. 첫 미호출과 기준 전달 실패를
+  보존한 재실험이므로 처음 계획한 두 세션보다 하나 늘었다. 고정 대본이나 별도 자동 검토 도구는 쓰지 않았다.
+- E01은 spec f706c6d 수락 뒤 plan·구현·시험·README를 3873db9에 함께 커밋했다. 제목 정정 후
+  제품 c547048. E02b는 spec 8b4395f 수락 뒤 동일 네 파일을 f14c811에 함께 커밋했다.
+- 두 제품 각각 unittest 12개와 독립 CLI16/원본7AST/fixture 보존 통과. E02b는 native Agent를
+  직접 선택했으며 0.1.4 주 Skill의 새 자연 호출로 계산하지 않는다. 최종 커밋을 native가 재승인한
+  것으로 쓰지 않고 주 세션 확인·HUMAN/별도 verifier 근거를 구분한다.
+- 제작 make check rc0(96 unittest/skip1, hooks28, eval8, managed settings PASS), production hook
+  부정 입력 rc2. 검증 원문과 네 부분 보고는 실험 raw에 보존한다. 기록·주석 마감 검사는 별도로 잇는다.
+- 주석의 8개 ID에 새 관측만 추가하며 고정 가이드·원문·역사적 실패·139/23/17 집계는 유지한다.
+  전체 평가 범위·미관측 운영·모델/비용·제품/보존 핀은 docs/experiments/0019-event-review-skill.md가 정본이다.

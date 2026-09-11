@@ -10,6 +10,8 @@
 | [datasets/v1/manifest.json](datasets/v1/manifest.json) | 독립 사례 세 개, 버전·seed·공개/비공개 자료 위치 |
 | [datasets/v2/manifest.json](datasets/v2/manifest.json) | F02: 담당자 조회와 상태 요약의 두 번의 업무 인도 |
 | [datasets/v3/manifest.json](datasets/v3/manifest.json) | R01/R02: 구현 중 JSON·파일 출력 요구 변경과 문서 개정 |
+| [datasets/v4/manifest.json](datasets/v4/manifest.json) | H01–H05: 별도 CLI의 독립 검토·자동 보완·정상 대기 |
+| [datasets/v5/manifest.json](datasets/v5/manifest.json) | E01–E03: 설치한 팀 스킬·native 검증자·이벤트 인식과 문서 개정 |
 | [run-record.template.md](run-record.template.md) | 실행별 환경·대화·결정·단계·측정·결과 기록 |
 
 현재 데이터는 합성된 초기 사례다. 실제 최근 업무 20~50건이나 다양한 조직을 대표한다고 주장하지 않는다.
@@ -199,7 +201,15 @@ case/판/seed, 기준·최종 해시, 브랜치, 범위, 결과, 근거 경로�
 
 ## 실행 색인
 
-0018부터 팀 실행 경로 실험에는 제작판의 [별도 하네스](../../team-harness/README.md)를 사용자 위치에
+0019의 기본 팀 경로는 [설치 가능한 스킬과 native 검증자](../../org-skills/README.md)다. 일반
+Claude Code 세션을 열고 실제 업무 요청에 맞춰 사용을 판단하는지 확인한다. 요구 변경·수락·커밋
+준비·완료·PR 리뷰가 대상 이벤트이며 질문이나 단순 산문 정정까지 검토를 반복시키지 않는다.
+설치 메타데이터뿐 아니라 init의 실제 판/경로, Skill 또는 Agent 호출, 현재 파일 읽기와 발견·보완을
+보존한다. 기본 검증자가 직접 선택된 실행과 주 스킬을 읽은 실행도 구분한다. 주 개발은 Sonnet,
+중요한 합의 대조는 높은 추론, 기본 독립 검증은 Opus/high를 사용한다. 무조건 강한 모델로 올리거나
+실수마다 새 규칙을 만들지 않는다. 스킬 미호출·잘못된 인계도 실패로 남긴다.
+
+0018의 별도 실행 경로 실험에는 제작판의 [CLI 하네스](../../team-harness/README.md)를 사용자 위치에
 설치하여 호출한다. 사용 템플릿에 하네스를 복사하지 않는다. HUMAN의 업무 프롬프트·수락을 명령의
 stdin에 전달하고 표시된 session을 resume한다. 개발은 Sonnet/low, 검토는 Sonnet/medium이다.
 현재 파일과 과거 편집 이력을 구분하며 자동 검토·보완·wait·unknown을 모두 기록한다. 불필요한
@@ -222,3 +232,6 @@ add296d의 두 부분 실행은 지침 전문 읽기를 확인한 새 세션에�
 | R01-json | R01 / 3.0.0 / 102 | 28b8fa8 + 후보 add296d → f5c4ac4 (제품 9f42449) | `codex/experiment-2026-09-11-sync-r01` · [검증 기록](0017-artifact-sync.md) | partial · 3회 대화, 문서 상기 없이 spec/plan 개정·수락 참조·동시 커밋, 관측 범위 root 통과 |
 | R02-output | R02 / 3.0.0 / 102 | 28b8fa8 + 후보 add296d → 39c8c2a (제품 7c7f9e4) | `codex/experiment-2026-09-11-sync-r02` · [검증 기록](0017-artifact-sync.md) | partial · 6회 대화, 요구·설계 수정에서 문서 개정. 제품 결함은 발견 후 복구·회귀 통과 |
 | H01-team-harness | H01–H05 / 4.0.0 / 102 | 8dbf319 → 6d4be0c (제품 0732201) | `codex/experiment-2026-09-11-harness-r01` · [검증 기록](0018-team-harness.md) | partial · 8회 HUMAN 대화/2회 자동 보완, 문서·수락 참조 복구와 정상 wait. 초기 false pass·비교 검토 오류도 보존 |
+| E01/E03 | E01/E03 / 5.0.0 / 102 | 8dbf319 → 5a3ae7b (제품 c547048) | `codex/experiment-2026-09-11-event-r01` · [기록](0019-event-review-skill.md) | partial · 5회 대화, 후속 요구·수락·동시 커밋·정상 경계. 첫 미호출 실패 보존 |
+| E02a | E02 / 5.0.0 / 102 | 8dbf319 + 통제 fixture → 9cb0fd1 | `codex/experiment-2026-09-11-event-r02` · [기록](0019-event-review-skill.md) | partial · 문서 누락 발견, 기준 파일 인계 실패 보존 |
+| E02b | E02 / 5.0.0 / 102 | 8dbf319 + 같은 fixture → 62353f2 (제품 f14c811) | `codex/experiment-2026-09-11-event-r03` · [기록](0019-event-review-skill.md) | partial · 0.1.4 native 검토·3회 대화·보완·수락·동시 커밋, 관측 범위 root 통과 |
