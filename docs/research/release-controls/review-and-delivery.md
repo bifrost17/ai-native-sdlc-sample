@@ -53,6 +53,6 @@ Fable R1의 “두 spec 양식이 byte-identical” 주장은 root가 실제 파
 [원문 보존 대조](reviews/north-star-preservation.json). 새 생산용 스크립트·훅·필수 서비스는 없다.
 
 마지막 원문 로그에는 unified diff의 공백 접두사 등이 있어 전체 git diff --check가 공백 경고를 냈다.
-실행 원문을 수정하지 않고 .log만 제외한 문서·양식·스킬 diff 검사를 통과시켰다. 로컬 링크 132개도
+실행 원문을 수정하지 않고 .log만 제외한 문서·양식·스킬 diff 검사를 통과시켰다. 로컬 링크 133개도
 모두 유효했다. root의 [최종 자료 대조](reviews/final-artifact-checks.json)는 결합 해시의 직렬화 방식과
 재계산 결과를 함께 명시한다. 독립 verifier의 구성 파일별 검증에 더한 일회성 자료 확인이다.
