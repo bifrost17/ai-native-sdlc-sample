@@ -4,6 +4,7 @@ Upstream: spec.md@dc2cbcb. Status: draft.
 
 ## Files that change
 - templates/spec.md, plan.md, .claude/skills/{design-spec,plan}/와 해당 references: 실제 양식/작성 지침과 링크.
+  기존 작은 examples에는 현행 교육 세트를 가리키는 README를 추가하고 원래 사례는 보존한다.
 - docs/sdlc-authoring/** (new): 다섯 자체 예시·필수 교육 입력·갱신 예·색인. 이전 연구/예시는 보존.
 - org-skills/skills/{spec-policy-pass,tdd,sdlc-feedback}/, org-skills/commands/spec-policy.md,
   org-skills/agents/sdlc-verifier.md, org-skills/README.md, org-skills/.claude-plugin/plugin.json,

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "dataset_version": "6.0.0",
+  "kind": "synthetic-full-release-followup",
+  "domain": "local-team-request-tracker",
+  "description": "F04-release-json: 담당자 목록과 상태 요약을 한 공개 단위로 개발하고 PR2 최초 구현 뒤 JSON 요약 계약을 추가하는 합성 후속 사례. seed는 고정 입력 식별자이며 난수 실행은 없다.",
+  "source_template": {
+    "branch": "codex/use-template-0024",
+    "commit": "fbc23c04348bf9009f461c396ac23df1b3139f48",
+    "tree_files": 71,
+    "status": "frozen",
+    "freeze_note": "codex/use-template-0024의 branch tip과 고정 commit tree 파일 수를 확인했다. 실행 시작 시 같은 SHA와 파일 목록을 다시 기록한다."
+  },
+  "baseline_files": [
+    {"source": "../v1/baseline/tracker.py", "destination": "tracker.py", "sha256": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653"},
+    {"source": "../v1/baseline/test_tracker.py", "destination": "tests/test_tracker.py", "sha256": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3"}
+  ],
+  "baseline_test_command": "python3 -m unittest discover -s tests -v",
+  "case_copy_rule": "F04-release-json/public.json만 case.json으로 전달하고 requests.json을 같은 이름으로 복사한다. human.json과 oracle은 HUMAN만 읽는다.",
+  "cases": [
+    {"id": "F04-release-json", "kind": "two-related-features-with-followup", "seed": 102, "public": "F04-release-json/public.json", "human": "F04-release-json/human.json", "data": "F04-release-json/requests.json"}
+  ],
+  "source_references": {
+    "baseline_manifest": "../v1/manifest.json",
+    "fixture_manifest": "../v2/manifest.json",
+    "fixture_source": "../v2/F02/requests.json",
+    "experiment_design": "../../../research/sdlc-documentation/spec-plan-activation/experiment-design.md"
+  },
+  "fixture_identity": {
+    "source": "../v2/F02/requests.json",
+    "sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+    "bytes": 394,
+    "rule": "F04-release-json/requests.json은 source와 같은 바이트여야 한다."
+  },
+  "sha256": {
+    "F04-release-json/human.json": "7b6ea95259ae143c58d7643a2fd008c7905e789e2d57746621b7ed46a802da82",
+    "F04-release-json/public.json": "a9a5d0f3cb149dbf51e8e9f670032bd38e9c684085bd09c04d5c6298d376009e",
+    "F04-release-json/requests.json": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+    "README.md": "8ed2f977daaa743a2b96a490a13c1aed779cba8451ab3b09f6b4a9bba1f73cf4"
+  },
+  "versioning": "v1-v5와 원래 실행은 그대로 보존한다. 공개 사실, 결정, oracle, baseline 또는 공개 시점을 바꾸면 새 판으로 기록한다."
+}

@@ -53,6 +53,9 @@ Unofficial; not an Anthropic project.
 3. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
    why a checker inside the tree is not an approval authority.
 4. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
+   [구체적 spec·plan 작성 예시](docs/sdlc-authoring/README.md)는 작은 기능·버그·한 공개 단위의 두 PR·
+   다문서 저장소 이행·웹 UI/API 사례를 입력과 함께 제공한다. 구조·동작·계약은 spec 집합에,
+   실제 파일·선행 시험·작업·PR 통합과 검증은 plan에 기록한다. 모든 문서를 한 파일로 강제하지 않는다.
 5. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
    chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history in the pre-slim
    convention (frontmatter, status fields); the current template is what 0004 uses.
@@ -64,7 +67,10 @@ Unofficial; not an Anthropic project.
    measurement sections, not a separate scorecard.
 
 ## What this repo does
-- Encodes the intent, spec and plan templates in skills, with `templates/` as copies.
+- Keeps the intent, spec and plan forms in `templates/`; the authoring skills explain how to fill
+  and revise them, with concrete examples under `docs/sdlc-authoring/`.
+- 새·변경 동작의 TDD 의무는 얇은 프로젝트 정책에, 공통 실행법은 선택 설치하는
+  [팀 TDD 스킬](org-skills/skills/tdd/SKILL.md)에, 작업별 첫 시험과 실행 순서는 plan에 둔다.
 - Keeps the hooks the lessons name as deterministic (protected paths, test protection, secrets,
   format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
   does not have one.
@@ -111,8 +117,10 @@ The research behind every adopted or designed skill is under `docs/research/<ski
 실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 사용 템플릿의 고정 커밋에서
 시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
 계획에서 정한 PR 단위로 실험 통합 브랜치에 합치며 그 브랜치를 제작 `main`으로 머지하지 않는다.
-현재 사용 후보는 `codex/use-template-0023@787af77`다. 직전 `0022@82d7ad2`에서 파생해
-검토한 intent·spec·plan 양식과 선택형 작성 예시에 [기능 공개 제어](docs/RELEASE-CONTROL.md)를 연결했다.
+현재 사용 후보는 `codex/use-template-0024@fbc23c0`다. 직전 `0023@787af77`에서 파생해
+상세 spec·plan 양식, 구체적 다섯 작성 예시와 얇은 TDD 정책을 반영했다.
+[활성화·설치·제품 실험 기록](docs/research/sdlc-documentation/spec-plan-activation/README.md)에서 실제 완료 범위를 확인한다.
+기존 양식의 [기능 공개 제어](docs/RELEASE-CONTROL.md)를 이어 유지한다.
 미완성 기능은 일반 OFF·테스트 ON으로 통합하며 공개는 별도 결정한다.
 [조사·설계 판단](docs/research/release-controls/README.md)과 [두 PR 공개 실험](docs/research/release-controls/probe/README.md)에
 근거와 적용 범위를 남긴다. [plan 양식 설계·독립 리뷰·실제 부분 실험](docs/research/sdlc-documentation/plan-design/README.md)에

@@ -31,6 +31,10 @@
   Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
   detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
+- Develop new or changed behavior test-first: observe the intended failure, make the smallest adequate
+  implementation, then recheck and refactor as needed. Preserve already-satisfied behavior and pure
+  refactors without manufacturing RED. Relevant team development skills are recommended. Agree meaningful
+  exceptions/deviations with the engineer and record the reason in the existing execution/PR evidence.
 - Choose models and reasoning effort for the task's difficulty, impact and uncertainty, including
   subagents. Use more capable models and higher reasoning upfront for important or error-prone
   judgments (complex design, cross-artifact consistency, consequential changes). For repeated

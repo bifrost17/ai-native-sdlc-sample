@@ -1,0 +1,84 @@
+{
+  "case_id": "F04-release-json",
+  "dataset_version": "6.0.0",
+  "seed": 102,
+  "audience": "HUMAN only; do not copy into AGENT checkout",
+  "interaction": "HUMAN은 AGENT의 실제 질문과 제출 결과에 맞춰 관련 사실, 이유, 오너를 자연스럽게 설명한다. 이 파일을 고정 질문 순서나 답변 대본으로 읽어 주지 않는다.",
+  "owner_decisions": [
+    {
+      "id": "F04-D1",
+      "topic": "담당자 목록",
+      "decision": "list --owner <ID>는 정확 일치이며 done도 포함하고 원본 순서를 유지한다. 없는 ID와 HANA는 빈 stdout과 rc0이고 null은 문자열과 일치하지 않는다. 옵션 없는 list는 기존 전체 목록이다.",
+      "reason": "최근 완료 요청도 담당자의 업무 확인에 필요하고 기존 전체 목록 사용법은 유지해야 한다.",
+      "reveal": "관련 질문을 받거나 intent/spec에 다른 가정이 나타나면 구현 전에 공개한다."
+    },
+    {
+      "id": "F04-D2",
+      "topic": "상태 요약",
+      "decision": "summary [--owner <ID>]는 all<TAB>N, open<TAB>N, done<TAB>N 순서의 세 줄과 rc0을 출력한다. owner 선택은 목록과 같고 옵션이 없으면 미배정도 포함한다. 없는 owner는 세 수가 모두 0이며 현재 상태 계약에서는 all=open+done이다.",
+      "reason": "주간 확인에서 전체 크기와 열린 건, 완료 건을 같은 선택 기준으로 바로 비교해야 한다.",
+      "reveal": "관련 질문을 받거나 intent/spec에 다른 가정이 나타나면 구현 전에 공개한다."
+    },
+    {
+      "id": "F04-D3",
+      "topic": "공개 단위",
+      "decision": "일반 사용은 두 기능을 모두 완성하고 HUMAN이 전체 흐름을 확인한 뒤 시작한다. PR1 목록만 담당 엔지니어가 시험할 수 있어도 일반 공개는 아니다. 하나의 로컬 프로세스 설정으로 새 목록 선택과 요약을 함께 켜고 끈다. 설정 이름과 오류 안내 문구는 AGENT의 제안을 보고 합의한다.",
+      "reason": "두 기능을 한 사용자 업무로 안내하고 같은 공개 상태로 운영하려 한다.",
+      "reveal": "공개 방식, PR1 인도 또는 설정 계약이 논의될 때 공개한다."
+    },
+    {
+      "id": "F04-D4",
+      "topic": "일반 OFF 동작",
+      "decision": "일반 OFF에서는 새 동작을 비0 종료와 분명한 stderr로 거부하고 데이터나 부분 결과를 내보내지 않는다. 기존 list, show, complete는 유지한다. 설정은 운영자가 선택하는 로컬 프로세스 환경이며 인증 장벽이 아니다.",
+      "reason": "부분 상태를 일반 사용으로 오해하지 않게 하면서 기존 사용은 중단하지 않아야 한다.",
+      "reveal": "공개 제어의 OFF 동작이나 보안 성격이 논의될 때 구현 전에 공개한다."
+    },
+    {
+      "id": "F04-D5",
+      "topic": "데이터 보존과 최신 상태",
+      "decision": "읽기 동작은 원본 바이트를 바꾸지 않는다. complete는 새 데이터 사본에서 해당 상태만 바꾸고 반복 호출은 무쓰기여야 한다. 그 뒤 목록과 요약에는 최신 상태가 반영되어야 한다.",
+      "reason": "조회가 입력을 손상시키지 않아야 하고 기존 변경 명령의 계약도 보존해야 한다.",
+      "reveal": "읽기 부작용, complete 회귀 또는 인도 검증이 논의될 때 구현 전에 공개한다."
+    },
+    {
+      "id": "F04-D6",
+      "topic": "판단자와 인도",
+      "decision": "공개 판단자와 로컬 설정 적용자는 이번 모의 HUMAN이다. 인도 직후 같은 소스에서 ON/OFF 대조까지 수행한다. 정리는 별도 수락 조건 전까지 하지 않는다.",
+      "reason": "이번 실험에는 실제 운영 조직이나 배포 서비스가 없으므로 로컬 공개 경계만 관측한다.",
+      "reveal": "수락 주체, 인도 검증 또는 정리 시점이 논의될 때 공개한다."
+    },
+    {
+      "id": "F04-D7",
+      "topic": "구현 중 JSON 요구",
+      "decision": "내부 자동화도 결과를 읽게 되어 summary --json이 필요하다. stdout은 정확히 all, open, done 세 키의 정수 집계를 가진 JSON 객체다. 키 순서와 공백은 무관하다. 기본 세 줄 출력, --owner, 빈 결과, 요청 파일 불변, 공개 제어는 그대로이며 파일 출력은 요구하지 않는다.",
+      "reason": "사람이 읽는 기본 출력과 함께 내부 자동화가 같은 집계를 구조화해 소비해야 한다.",
+      "reveal": "PR2에서 상태 요약의 최초 코드와 시험 결과를 HUMAN이 실제로 관측한 뒤 처음 공개한다. 최초 구현 전에 공개하지 않으며, 문서 갱신이나 파일명 또는 스킬 호출을 별도로 지시하지 않는다."
+    }
+  ],
+  "oracles": [
+    {"id": "F04-O1", "arguments": ["list", "--owner", "hana"], "exit": 0, "ids": ["R-101", "R-103"], "file": "byte-unchanged"},
+    {"id": "F04-O2", "arguments": ["list", "--owner", "HANA"], "exit": 0, "stdout": "", "file": "byte-unchanged"},
+    {"id": "F04-O3", "arguments": ["list"], "exit": 0, "ids": ["R-101", "R-102", "R-103", "R-104"], "file": "byte-unchanged"},
+    {"id": "F04-O4", "arguments": ["summary"], "exit": 0, "stdout": "all\t4\nopen\t3\ndone\t1\n", "file": "byte-unchanged"},
+    {"id": "F04-O5", "arguments": ["summary", "--owner", "hana"], "exit": 0, "stdout": "all\t2\nopen\t1\ndone\t1\n", "file": "byte-unchanged"},
+    {"id": "F04-O6", "arguments": ["summary", "--owner", "nobody"], "exit": 0, "stdout": "all\t0\nopen\t0\ndone\t0\n", "file": "byte-unchanged"},
+    {"id": "F04-O7", "arguments": ["summary", "--owner", "HANA"], "exit": 0, "stdout": "all\t0\nopen\t0\ndone\t0\n", "file": "byte-unchanged"},
+    {"id": "F04-O8", "arguments": ["summary", "--json"], "exit": 0, "json": {"all": 4, "open": 3, "done": 1}, "exact_keys": ["all", "open", "done"], "file": "byte-unchanged"},
+    {"id": "F04-O9", "arguments": ["summary", "--owner", "hana", "--json"], "exit": 0, "json": {"all": 2, "open": 1, "done": 1}, "exact_keys": ["all", "open", "done"], "file": "byte-unchanged"},
+    {"id": "F04-O10", "arguments": ["summary", "--owner", "nobody", "--json"], "exit": 0, "json": {"all": 0, "open": 0, "done": 0}, "exact_keys": ["all", "open", "done"], "file": "byte-unchanged"},
+    {"id": "F04-O11", "setup": ["complete", "R-101"], "arguments": ["summary", "--owner", "hana"], "exit": 0, "stdout": "all\t2\nopen\t0\ndone\t2\n", "file": "unchanged-after-setup"}
+  ],
+  "release_oracles": [
+    {"id": "F04-RO1", "state": "PR1 integrated, general OFF", "expectation": "기존 명령은 유지되고 새 목록 선택은 일반 사용자에게 거부된다. 담당 엔지니어의 개발 중 시험은 가능하며 summary는 아직 제공되지 않는다."},
+    {"id": "F04-RO2", "state": "PR2 integrated, general OFF", "expectation": "두 새 동작과 JSON 계약은 일반 사용자에게 비0과 stderr로 거부되고 데이터나 부분 stdout이 없다. 기존 명령은 유지된다."},
+    {"id": "F04-RO3", "state": "PR2 integrated, general ON", "expectation": "목록 선택, 기본 요약, JSON 요약과 complete 이후 최신 집계가 같은 소스에서 동작한다."},
+    {"id": "F04-RO4", "state": "PR2 integrated, returned OFF", "expectation": "소스 변경 없이 두 새 동작이 다시 거부되고 기존 명령은 유지된다."}
+  ],
+  "process_observations": [
+    "D7이 PR2 최초 코드와 시험 결과 관측 뒤 공개되었는지와 최초 구현 전 유출 여부를 기록한다.",
+    "새 계약의 예상 RED가 동작 부재 때문에 실패하고 GREEN 및 기존 세 시험 회귀가 통과했는지 기록한다.",
+    "D7 공개 뒤 별도 문서 상기 없이 관련 spec/plan과 수락 참조가 구현에 맞게 갱신되었는지 기록한다.",
+    "PR1 부분 시험과 PR2 전체 일반 공개가 실제 통합 상태에서 구분되고 OFF-ON-OFF가 소스 변경 없이 관측되었는지 기록한다.",
+    "fresh directory에서 기본, owner, 빈 결과, JSON, complete 후 조회와 원본 보존을 확인한다."
+  ]
+}

@@ -1,9 +1,9 @@
 ---
-description: 정책 스킬을 빠짐없이 걸어 spec.md 를 쓴다 — 축자 PO 프롬프트 + 정책 통과 절차 (L3 268 "codify it as an organization-level slash command")
+description: 관련 팀 정책을 실제로 적용해 요구·설계 정본을 작성하고 중요한 우려를 드러낸다 — 축자 PO 프롬프트와 정책 검토 방법
 argument-hint: [intent-id]
 ---
-먼저 `spec-policy-pass` 스킬을 연다. 아래 프롬프트를 실행하되, 정책을 거는 방식과 우려를 적는 꼴은
-그 스킬이 정한다.
+프로젝트의 요구·설계 작성 절차를 따르고, 팀의 `spec-policy-pass`가 제공되면 함께 적용한다.
+정책 검토는 문서 파일 수나 형식을 대신 정하지 않는다.
 
 Read the attached intent.md and produce a requirements and design spec for integrating it into our
 existing codebase. Apply the skills available to you so the plan conforms to our brand guidelines,
@@ -12,14 +12,10 @@ Document the spec fully as spec.md, ready to hand to the
 engineering team. Describe clearly any areas of concern, especially where you cannot satisfy
 contradicting policies.
 
-(L3 282, the playbook's prompt, verbatim — 한 글자도 바꾸지 않는다.)
+(L3 282, the playbook's prompt, verbatim — 원문은 유지한다.)
 
-대상 intent 는 `intent/$1/intent.md`. `$1` 이 비면 `intent/` 아래에서 intent.md 는 있고 spec.md 는 없는
-폴더를 세어 어느 것인지 묻는다. 뼈대(수락 확인 · `templates/spec.md` · 리뷰 질문)는 `design-spec` 스킬을
-따르고, 그 위에 `spec-policy-pass` 의 네 절차를 겹친다.
-
-끝내기 전에 스스로 확인한다 — 로컬·로드된 플러그인 목록을 함께 확인하고 미적용 이유를 남겼는가.
-연 정책 스킬을 `Skills applied` 에 실제 파일 출처와 확인한 판(Git SHA 또는 설치 버전)까지 적었는가.
-캐시에 Git 이력이 없다고 SHA 를 지어내지 않았는가. 열지 않고 적은
-이름은 없는가. 우려 표의 「충돌」 행마다 조항 ID 가 양쪽 다 있는가. 「공백」을 조항의 정신으로 논증하지
-않았는가. 결정 칸을 비워 두었는가.
+대상 intent는 `intent/$1/intent.md`. 식별자가 없으면 현재 요청·작업 맥락으로 식별하고, 여러 후보라면
+대상을 확인한다. 기존에 허가된 draft 작성 범위를 다시 승인받지 않는다.
+`design-spec`이 요구·설계 정본과 수락 경계를 맡고, 정책 검토 스킬은 실제 정책 적용·출처·우려를 다룬다.
+끝내기 전에 적용 스킬 본문·출처·판, 정책에 영향을 받은 설계 정본, 중요한 미결 판단의 근거를 확인한다.
+관련 스킬이 없으면 직접 확인한 정책 근거와 적용 한계를 밝힌다. 같은 요구를 여러 표/파일에 중복 정의하지 않는다.
