@@ -1,0 +1,34 @@
+{
+  "round": 1,
+  "created_at": "2026-09-11T02:21:56.702343+00:00",
+  "candidate_sha256": "f9d625f18407ae07f5abbe235e9da25eb92b731ca541d27a96b33d2a319f1ed9",
+  "hash_recipe": "sha256 of concatenated path + NUL + sha256 + newline, in files order",
+  "files": [
+    {
+      "path": "templates/intent.md",
+      "sha256": "ed0a1cc1307daa7c03c72a48b988e87d4b3c4d614987eaa9783c6f955ecbddb7"
+    },
+    {
+      "path": ".claude/skills/capture-intent/SKILL.md",
+      "sha256": "9f61ba18500221f39b843237c20b41dc25f7d6fbdc5591f5a9f928a60d044371"
+    },
+    {
+      "path": ".claude/skills/capture-intent/examples/feature.md",
+      "sha256": "07b79f6bbd317d9b62c15f53cebd02f4f5510547480177059606f86f3d410512"
+    },
+    {
+      "path": ".claude/skills/capture-intent/examples/bug.md",
+      "sha256": "bfb02ddc2e155d061a1641b6125fdcdf74ea76542f18ec0ecfaa0d44a0452710"
+    },
+    {
+      "path": ".claude/skills/capture-intent/examples/incomplete-ticket.md",
+      "sha256": "473d799794c1dd7a1c442ed45bce6c05f914ff1452eea6cfb129b328b550d690"
+    }
+  ],
+  "supporting_files": [
+    "docs/research/sdlc-documentation/intent-design/examples-inputs.md",
+    "docs/research/sdlc-documentation/intent-design/alternatives.md",
+    "docs/research/sdlc-documentation/intent-design/README.md",
+    "docs/research/sdlc-documentation/intent-design/review-request.md"
+  ]
+}

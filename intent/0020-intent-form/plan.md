@@ -3,6 +3,9 @@ Upstream: spec.md@8269b15. Status: draft.
 사용자의 root 작성·리뷰 위임으로 draft 위에서 진행한다. 실제 승인 표시는 기존 merge 정책을 따른다.
 
 ## Files that change
+이번 제작 변경의 기준은 사전 조사 보존 커밋 540ce05다. main과의 전체 차이에는 그 이전 조사
+보존 커밋도 포함되며, 그것은 이번 양식 구현의 변경 범위와 구분해서 검토한다.
+
 - intent/0020-intent-form/{intent,spec,plan}.md: 제작 변경의 기록.
 - templates/intent.md: 사용 양식.
 - .claude/skills/capture-intent/SKILL.md: 동일한 양식과 작성·질문 지침.
@@ -33,5 +36,22 @@ Upstream: spec.md@8269b15. Status: draft.
 ## Proof
 root 작성 입력과 예시 대조, 두 독립 리뷰의 실제 파일 읽기·최종 해시·PASS,
 tests/test_skill_template.py의 test_skill_embeds_template_verbatim,
-tests/test_monitoring.py의 기존 intent 출력 검사(실제 테스트 이름은 검사 시 확인),
+tests/test_detect_bands.py의 test_emit_intent_draft_follows_the_template,
+tests/test_bands_workflow.py의 기존 intent 출력·진단 인계 검사,
 make check 전체 출력, skill-creator quick_validate.py, verifier의 네 부분 보고.
+
+## Execution record
+
+2026-09-11, root 작성. 예시에서 다섯 구획 안과 여덟 구획 안을 비교하고 다섯 구획을 선택했다.
+실제 양식·스킬·합성 예시 세 개를 고친 뒤 R1 해시를 고정해 두 독립 리뷰를 받았다.
+Fable의 비차단 지적 중 사실을 제약으로 강화한 표현, 불필요한 절차 표현과 역사 참조를 수정했다.
+기존 skill validator가 거부한 description의 꺾쇠 경로도 고쳤다. 테스트 이름은 실제 소비자 검사인
+test_detect_bands.py와 test_bands_workflow.py로 확인하여 위 Proof를 바로잡았다.
+
+같은 R2 후보 `4d8431b42d872243d71ac727eef2086ed474be53856da1d2eb4a3d78bdd3a118`을
+Astra/ultra와 Claude Code CLI Fable/max가 각각 PASS했다. 근거와 한계는
+[리뷰 기록](../../docs/research/sdlc-documentation/intent-design/review-record.md)에 있다.
+북극성 V2-10/V2-13에는 이번 부분 설계 검토 근거만 추가했다. 원문과 기존 등급은 유지했다.
+독립 verifier의 make check와 소비자 proof, 기존 skill validation, 인접 0019 범위 대조와
+훅의 부정 입력 검사를 통과했다. 실제 출력은 위 리뷰 기록에 연결했다. 코드·테스트·검증 규칙은
+변경하지 않았으며, 사슬과 함께 로컬 커밋으로 보존한다.
