@@ -8,7 +8,7 @@ Upstream: spec.md@1bc0573. Status: draft.
 
 - intent/0021-spec-form/{intent,spec,plan}.md: 제작 변경과 실행 근거.
 - templates/spec.md, .claude/skills/design-spec/SKILL.md: 공통 양식과 작성 지침.
-- .claude/skills/design-spec/examples/*.md(new): root가 작성한 합성 완성 예시.
+- .claude/skills/design-spec/examples/**(new): root가 작성한 합성 입력과 완성 예시.
 - .claude/skills/design-spec/references/*.md(new): 필요할 때 읽는 작성 상세와 출처 확인 지침.
 - evals/cases/03-spec-carries-questions.json, evals/testdata/{03-pass,03-fail-carry}/ws/spec.md:
   새 절 이름/배치에 맞춘 안내. 누락 실패·정책 적용·R/AC 기준은 유지한다.
