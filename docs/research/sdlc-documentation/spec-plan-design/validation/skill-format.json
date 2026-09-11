@@ -1,0 +1,37 @@
+{
+  "candidate": "2634f07",
+  "tool": "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+  "initialAttempt": {
+    "command": "bundled python3 quick_validate.py candidate/skills/tdd",
+    "exitCode": 1,
+    "error": "ModuleNotFoundError: No module named 'yaml' (environment dependency, not candidate failure)"
+  },
+  "retry": "uv run --with pyyaml --no-project python <validator> <folder>; transient dependency environment, no skill installation",
+  "results": [
+    {
+      "name": "design-spec",
+      "chunk_id": "398537",
+      "wall_time_seconds": 0.287466083,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    },
+    {
+      "name": "plan",
+      "chunk_id": "6d9779",
+      "wall_time_seconds": 0.280586209,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    },
+    {
+      "name": "tdd",
+      "chunk_id": "235b76",
+      "wall_time_seconds": 0.296773,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    }
+  ],
+  "limits": "Frontmatter and skill file shape only; not actual selection/behavior"
+}
