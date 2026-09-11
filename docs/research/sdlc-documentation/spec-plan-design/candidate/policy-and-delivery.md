@@ -22,6 +22,8 @@
 | docs/ADOPTING.md / day-one 채택 안내 | TDD 정책·실제 시험 명령/근거·예외 결정자를 채우는 위치를 위 사용판 정책 행으로 연결 |
 | org-skills/skills/sdlc-feedback/SKILL.md / Change or acceptance, Implementation and commit | 아래 검토 기준의 정본을 참조하며 연결된 spec 문서 집합·test-first 근거를 해당 이벤트에서 인계 |
 | org-skills/agents/sdlc-verifier.md / Review criteria | 아래 검토 문장을 관련 기존 bullet에 통합. 새 검토 loop·모델 호출은 추가하지 않음 |
+| org-skills/skills/spec-policy-pass/SKILL.md | 아래 후보로 본문 교체. 다문서 정본 허용, 실제 정책 적용·근거 유지, 우려 수/일률 표·미결칸 강제 해소 |
+| org-skills/commands/spec-policy.md | 아래 명령 후보로 교체. 북극성 PO 프롬프트는 축자 보존하며 한 파일/표 강제 절차 참조를 제거 |
 
 사용판 파일은 maker의 현재 작업 트리에 없으며 codex/use-template-0023의 두 파일에서 위치를 확인했다.
 다음 사용판을 만들 때 그 새 branch의 경로에 적용한다. 과거 기준/실험 branch를 덮어쓰지 않는다.
@@ -44,9 +46,11 @@
 | skills/design-spec/SKILL.md | 기존 .claude/skills/design-spec/SKILL.md의 새 진입점 본문으로 교체. 아래 보존 매핑 확인 |
 | skills/design-spec/references/skill-provenance.md | 기존 동일 reference의 보존본. 내용 변경 없음 |
 | skills/plan/SKILL.md | 기존 .claude/skills/plan/SKILL.md의 새 진입점 본문으로 교체. 아래 보존 매핑 확인 |
+| [skills/spec-policy-pass/SKILL.md](skills/spec-policy-pass/SKILL.md) | org-skills/skills/spec-policy-pass/SKILL.md 교체. 기존 팀 스킬의 후속판이며 별도 이름의 중복 스킬로 설치하지 않음 |
+| [commands/spec-policy.md](commands/spec-policy.md) | org-skills/commands/spec-policy.md 교체. 정책 검토 역할과 작성 역할의 경계를 같은 판에 전달 |
 | guidance/design-blocks.md | .claude/skills/design-spec/references/design-depth.md의 후속 정본으로 교체·파일명 유지 |
 | guidance/execution-blocks.md | .claude/skills/plan/references/execution-depth.md의 후속 정본으로 교체·파일명 유지 |
-| examples/F01,B01,F03,M01 | docs/sdlc-authoring/examples/ 아래 새 기본 예시로 보존 |
+| examples/F01,B01,F03,M01,W01 | docs/sdlc-authoring/examples/ 아래 새 기본 예시로 보존. M01/inputs/current-contract.md, W01/context.md·intent.md도 함께 전달 |
 | change-walkthrough.md | docs/sdlc-authoring/change-walkthrough.md |
 | 예시가 읽는 cases·baseline·JSON·M01 context | docs/sdlc-authoring/inputs/ 아래 필요한 교육 입력만 보존. 아래 입력 매핑 적용 |
 | skills/tdd 전체 | org-skills/skills/tdd/에 소스·PROVENANCE 포함, org-skills/README.md에 설치/적용 항목 추가 |
@@ -56,12 +60,20 @@ guidance를 제3의 새 규칙 위치에 병설하지 않는다. 기존 referenc
 원래 references의 제약 중 이 후보가 바꾸지 않은 의미는 아래 매핑대로 보존되며 역사 판은 Git에 남는다.
 후보의 상대 링크는 검토 배치용이다. 진입점·양식·reference·예시·walkthrough 내부 링크 전부를 실제 활성
 배치에 맞춰 고친다. 작성 스킬 두 폴더만 단독 복사하면 링크가 깨지므로 그 방식으로 설치하지 않는다.
+design-spec 본문의 `revised candidate` 링크는 연구용 비교 링크이므로 활성 본문에서는 제거하고 정책 검토 역할 설명은 유지한다.
+실제 팀 스킬은 설치된 namespace/경로로 찾는다. 제품 안에 org-skills 소스 폴더가 있다고 가정하지 않는다.
+양식의 설계 블록 링크는 프로젝트 .claude/skills/design-spec/references/design-depth.md로,
+작성 스킬의 예시 링크는 docs/sdlc-authoring/examples/의 해당 사례로 맞춘다.
 
 ### 기존 작성 지침 보존/교체 매핑
 | 기존 대상·내용 | 새 본문/정본에서 처리 |
 |---|---|
 | design-spec L3 근거·사람 수락/초안 허가·Status/Upstream | 후보 첫 부분과 끝 Review/갱신 절에 의미 유지. 원문 출처 줄 번호 유지, 사용자의 기존 허가 재질문 금지 |
 | design-spec 팀 스킬 선택·spec-policy-pass 기본 예시·출처/판·생성 prompt | 후보 앞부분에 유지, 원 요청 prompt와 적용 스킬 판·초안 허가를 versioned spec/PR에 보존(L3 279), 기존 skill-provenance.md 그대로 보존 |
+| spec-policy-pass 본문 읽기·정책 적용·출처/판·충돌 근거 | 후보 Apply relevant policies에 보존. 관련 정책 스킬의 누락/미적용 이유는 살피되 무관한 모든 도구/스킬 목록을 의례적으로 작성하지 않음 |
+| spec-policy-pass “한 파일”·우려 0건 의심·표/빈 결정칸 강제 | 폐기. Review the complete spec/Surface material concerns로 대체. 결정의 정본·실제 미해결 영향에 따라 작성 |
+| spec-policy-pass 정책 부재·공백·비대화형 실행 | 스킬 부재와 정책 부재 구별, 확인한 정책 근거와 한계 명시. 정책 공백을 위반으로 단정하지 않으며 허가 범위 밖 사람 결정을 대신하지 않음 |
+| spec-policy 명령의 네 절차/우려 표 확인 | 후보 명령의 역할/실제 적용 확인으로 대체. L3 원 prompt는 그대로 보존 |
 | design-spec Writing 여섯 역할/중요 미정·우려 | 후보 역할 목록과 spec 양식/조건부 reference로 교체, 작성자 언어·고정 영문 절 이름 유지, 연결 정본을 추가 |
 | plan L4 근거·단계 수락/문서 SHA·권한 | 후보 앞부분에 유지, docs/GIT-WORKFLOW.md를 정본으로 연결 |
 | plan 결함 재현 선행 커밋·INTENT_TASK=fix·mutation 원본 복구 | 후보 중간에 유지. 일반 기능에 fix 모드를 켜지 않음 |
@@ -72,8 +84,9 @@ guidance를 제3의 새 규칙 위치에 병설하지 않는다. 기존 referenc
 
 ### 예시 입력의 전달
 F01/B01/F03의 cases는 이 패키지 inputs/cases.md의 해당 제품 맥락을 보존한다. baseline 두 파일과
-f01/b01-requests.json도 교육 입력으로 함께 옮긴다. M01 합성 context의 근거 파일은 현재
-.claude/skills/design-spec/examples/migration/context.md@efa7339를 inputs/m01-context.md로 보존한다.
+f01/b01-requests.json도 교육 입력으로 함께 옮긴다. M01은 현재 후보의 inputs/current-contract.md를
+그 예시 옆에 함께 전달하며 필수 읽기는 여기서 닫힌다. efa7339의 과거 합성 context는 연구 출처로 보존한다.
+W01의 합성 현행 계약/명령/데이터/오너 답은 W01/context.md에 있어 외부 제품이나 과거 연구를 필수 입력으로 하지 않는다.
 기존 예시의 입력 판 표기는 제작 자료라는 한계를 유지한다. 옮긴 예시의 입력 링크는 새 위치로 바꾼다.
 
 F03 역사 spec/plan·과거 결과는 이 연구 폴더 inputs/에 그대로 보존하며 현행 구현 인계에서는 읽기를
@@ -96,5 +109,6 @@ claude plugin list --json
 ```
 최초 설치는 기존 [org-skills/README.md](../../../../../org-skills/README.md)의 marketplace add/install 절차다.
 그 안내의 정본은 그대로 두고 TDD 항목만 추가한다. 갱신 후 새 세션에서 실제 로드 경로·판과 자연 요청
-적용을 검증한다. 이번에는 설치하지 않는다. 후속 사용판/파생 실험 branch에서 실제 대화·구현·TDD·
+적용을 검증한다. README의 spec-policy-pass/명령 설명도 개정된 역할로 맞추며, design-spec과 함께 읽었을 때
+다문서 허용/우려 없는 결과와 충돌하지 않는지 확인한다. 이번에는 설치하지 않는다. 후속 사용판/파생 실험 branch에서 실제 대화·구현·TDD·
 문서 동기화·회귀를 평가하고 통과한 범위만 북극성 주석에 반영한다.

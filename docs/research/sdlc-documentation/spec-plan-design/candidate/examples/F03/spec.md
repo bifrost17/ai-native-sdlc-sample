@@ -1,5 +1,6 @@
 # Spec: 목록과 집계를 하나의 공개 단위로 제공
 Upstream: intent.md@4a74823. Status: draft.
+Current change: 재검토에 따라 설계 상태의 이름과 구현 PR 번호의 대응을 구별했다. R/AC와 제어 계약은 유지한다.
 Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합성 예시）.
 작성 권한: 사용자가 설계 패키지 작성을 허가했다. Upstream은 제작 입력이며 제품 수락을 뜻하지 않는다.
 
@@ -42,18 +43,19 @@ summary는 읽은 배열에 R1과 같은 필터를 적용한 뒤 all=len, open/d
 
 ```mermaid
 stateDiagram-v2
-  [*] --> Partial: PR1 merge
-  state "PR1: 일반 OFF / 목록 TEST ON" as Partial
-  state "PR2: 일반 OFF / 목록+집계 TEST ON" as Complete
+  [*] --> Partial: 목록 연결·통합 검증
+  state "일반 OFF / 목록 TEST ON" as Partial
+  state "일반 OFF / 목록+집계 TEST ON" as Complete
   state "같은 코드: 일반 ON" as Released
   state "상시 제공" as Clean
-  Partial --> Complete: PR2 merge + 통합 검증
+  Partial --> Complete: 집계 연결·통합 검증
   Complete --> Released: 전체 검증 + 오너 공개 결정
   Released --> Complete: 환경 설정 OFF
   Released --> Clean: 제거 조건 충족
 ```
 
-PR1의 TEST ON은 목록만 구현된 상태다. summary는 ON에서도 아직 없다. PR2부터 ON에서는 있어야 한다.
+현재 plan은 Partial 상태를 PR1, Complete 상태를 PR2에 대응시킨다. 목록만 구현된 TEST ON에서는
+summary가 아직 없다. 목록+집계가 완성된 TEST ON에서는 있어야 한다. 상태의 의미는 이 spec, PR 분할은 plan이 소유한다.
 공개 담당은 합성 업무 오너(root 역할), 환경 조작·관측은 개발 실행자다. 공개는 전체 AC1–6와
 최신 main 통합 검증 후 별도 결정한다. AC6는 그 전에 개발자 프로세스와 사본에서 전환 리허설로
 확인할 수 있다. 실제 일반 실행 환경의 ON 적용/제거는 별도 결정 후 새 CLI 프로세스로 확인한다.

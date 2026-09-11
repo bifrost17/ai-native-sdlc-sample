@@ -1,10 +1,16 @@
 # Spec: 동시 완료 보존과 SQLite 이행
 Upstream: intent.md@4a74823. Status: draft.
+Current change: 같은 변경의 plan과 설계 정본을 함께 읽는다. 기존 계약을 보존하며 설명·입력 경로를 재구성한 후보 개정이다.
 Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합성 예시）.
 작성 권한: 사용자가 설계 패키지 작성을 허가했다. Upstream은 제작 입력이며 제품 수락을 뜻하지 않는다.
 
-[입력](context.md). 기존 API를 보존하면서 저장소를 전환하고 보고서를 API 소비자로 바꾼다.
-이 spec은 아래 문서 집합이 정본이다. 구현/리뷰 전에 모두 읽으며 plan도 같은 판을 참조한다.
+현재 JSON 전체 쓰기는 겹친 완료 결과를 덮을 수 있다. 기존 웹/API를 유지하며 완료를 SQLite의
+행 단위 트랜잭션으로 옮기고, 옛 JSON을 직접 읽던 보고서를 기존 API의 소비자로 전환한다.
+실제 제품이 없는 합성 설계다. 실제 운영 경로·명령은 Q4에 남아 있으며 확인과 리허설 전에는 전환하지 않는다.
+
+읽기 순서는 이 파일 → [현재 입력 계약](inputs/current-contract.md) → 아래 설계 세 문서 → [plan](plan.md)이다.
+현재 API와 주어진 제약은 입력 계약에서 바로 확인할 수 있다. [context](context.md)는 가상 파일 배치와 제작 출처를
+설명하며, 과거 합성 문서는 출처 확인용이다. 이 spec 집합은 아래 결정의 정본이며 plan도 같은 판을 참조한다.
 
 | 설계 정본 | 소유하는 결정 |
 |---|---|
@@ -42,10 +48,25 @@ Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합
 | AC8 → R2 | sqlite를 선택했는데 DB 경로가 없거나 버전/필수 스키마가 다름 | architecture의 시작 검증으로 시작 거부, 새 DB 비생성·JSON fallback 없음 |
 
 ## Design
-[architecture](design/architecture.md)·[storage](design/storage.md)·[operations](design/operations.md)의
-선택이 설계 본문이다. SQLite는 기존 단일 호스트에 들어오며 외부 서비스를 늘리지 않는다.
-JSON 전체 쓰기를 잠금으로 보강하는 대안은 보고서 소비자와 이행/복구까지 다시 다뤄야 하므로
-이번에는 트랜잭션 저장소를 택한다. 운영 중지와 이행 도구를 유지하는 비용을 감수한다.
+현재 서비스는 완료할 때 요청 목록 전체를 읽어 다시 쓴다. 서로 다른 요청을 동시에 완료하면 나중에
+저장한 목록이 앞선 요청의 옛 상태를 포함할 수 있다. 이번 선택은 완료 대상 행만 짧은 트랜잭션에서
+바꾸어 이 덮어쓰기를 없앤다. ID·필드·목록 순서와 외부 API는 기존 의미를 유지한다.
+
+단일 호스트이고 운영 중지가 허용되므로 SQLite를 선택했다. JSON 파일 잠금을 보강하는 대안도 가능하지만
+전체 파일 갱신의 잠금·내구성·실패 정리를 직접 유지해야 한다. SQLite는 외부 DB 서비스를 늘리지 않으면서
+트랜잭션을 제공하는 대신 단일 writer 경합과 중지 상태의 이행·복구 도구를 관리하는 비용을 남긴다.
+이 선택은 성능 개선 수치를 약속하지 않는다. 구체적인 잠금·대기·실패 계약은 [storage](design/storage.md)가 소유한다.
+
+보고서는 현재 JSON을 직접 읽으므로 저장소만 전환하면 오래된 결과를 읽는다.
+[주어진 소비자 결정](inputs/current-contract.md#confirmed-follow-up)에 따라 기존 읽기 계정과 GET API로 먼저 옮긴다.
+이후 API의 facade가 선택한 활성 저장소 하나를 모든 소비자가
+같은 경로로 읽는다. 영구 JSON 미러·이중 쓰기를 운영하지 않는다.
+
+완료 요청 한 건의 권한 검사 → 활성 저장소 → 트랜잭션 → 응답과 재조회는
+[architecture의 대표 흐름](design/architecture.md#representative-flow)에서 끝까지 설명한다.
+정확한 저장 인터페이스는 architecture, 데이터·원자성·이행 도구는 storage가 소유한다.
+전환 뒤 최신 쓰기 보존과 안전한 재개 조건은 [operations](design/operations.md)가 소유하며,
+실행할 PR과 실제 호스트 절차는 plan과 제품 운영 문서가 구체화한다.
 
 ## Constraints and scope
 외부 서비스·계정·새 API·무중단/다중 호스트·추정 성능 목표 없음. 지원 status/필드의 정본은 storage다.

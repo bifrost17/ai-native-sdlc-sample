@@ -17,7 +17,8 @@ Read the changed code, neighboring flows, interfaces and tests. Find applicable 
 bodies, and apply their decisions to the artifact. A source folder is not proof of installation. Record actual
 skill source/version (or Git revision + dirty hash/limitation), not just a list of names. Use the team's policy review
 method when available. In this team's default set, that is spec-policy-pass when actually available; its material
-findings belong in the spec. Use the existing [provenance reference](references/skill-provenance.md) for tracked,
+findings belong in the spec. Its [revised candidate](../spec-policy-pass/SKILL.md) reviews policy decisions without
+overriding document structure. Use the existing [provenance reference](references/skill-provenance.md) for tracked,
 cached or directory-loaded versions. Do not invent policy values or require a particular external skill.
 
 Use the project's templates/spec.md. This candidate's review copy is [the form](../../templates/spec.md);
@@ -31,16 +32,22 @@ revision or snapshot. Do not put architecture/classes/contracts in plan merely t
 - Requirements: changed and preserved contracts with their intent/answer/policy basis.
 - Acceptance criteria: representative input, action, observable outcome and important failure/neighbor invariants.
   Map AC/R many-to-many as useful. Do not invent metrics or copy a vague R sentence as its own proof.
-- Design: actual structure, important interfaces/data/errors/flows and meaningful choice/reason/tradeoff.
-  Use conditional blocks only where a decision matters; distinguish binding contracts from illustrative internals.
+- Design: connect the current problem and constraints to the chosen structure, a representative flow and exact
+  contracts. Explain meaningful alternatives and accepted operating/maintenance costs; do not invent numerical goals.
+  Use prose for causal explanation and tables for comparable fields/contracts. A small change may combine these in
+  one paragraph/table. Distinguish confirmed context, proposed decisions and illustrative internals.
 - Constraints and scope: all upstream limits, discovered restrictions with evidence, explicit exclusions.
 - Open questions: account for every input Q as answered with basis or carried forward with impact/owner/needed time.
   A question that can invalidate this design must be resolved before dependent handoff, not merely assigned.
 - Flagged concerns: material conflicts/decisions with evidence, effect and responsible role; if none, state examined scope.
 
 Choose a worked example by need: [small F01](../../examples/F01/spec.md), [defect B01](../../examples/B01/spec.md),
-[staged release F03](../../examples/F03/spec.md), [multi-document M01](../../examples/M01/spec.md).
+[staged release F03](../../examples/F03/spec.md), [multi-document M01](../../examples/M01/spec.md),
+[web/API W01](../../examples/W01/spec.md).
 Read its input too; example facts are not universal policy. No mandatory class/diagram or private-method catalogue.
+Explain names and ownership when they matter to the flow; label current/target/transitional states in a shared diagram.
+Link required current contracts directly. History is supporting evidence, not an implicit detour needed for implementation.
+Keep provenance/authorization findable in the existing record without overwhelming the product explanation.
 
 Review with the owner: "Does the spec solve the stated problem, and are the open questions from intent.md answered
 or carried forward?" Show linked design documents with it. Model review does not grant owner acceptance.

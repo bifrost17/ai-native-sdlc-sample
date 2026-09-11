@@ -1,8 +1,8 @@
 # Plan: 두 PR로 구현하고 설정으로 한 번 공개
 Upstream: spec.md@23845b5. Status: draft.
-Current change: 이 커밋의 spec 개정과 함께 읽는다. 공개 전 리허설·실제 공개 기록 위치를 명료화한 연구 r2 개정이다.
-합성 작성 예시. 사용자 허가 범위는 설계 패키지이며 제품 계획 승인/구현 성공이 아니다.
-[spec](spec.md)와 [입력](context.md)을 함께 읽는다. 모든 시험은 예정이며 이름은 추가 계획이다.
+Current change: 이 커밋의 spec 설명 개정과 함께 읽는다. 재검토에 따라 같은 계약의 작업/검증을 가까이 배치했다.
+[spec](spec.md)의 같은 공개 제어 아래 목록을 먼저 넣고 집계를 연결한다. [입력](context.md)은 기준 코드/데이터를 연결한다.
+합성 설계 예시이며 아래 시험은 추가 계획이다. 작성 허가·출처는 입력과 연구 기록에 있고 제품 승인/실행 성공은 아니다.
 
 ## Files that change
 | PR | 경로 | 목적 |
@@ -22,15 +22,30 @@ PR1→PR2 순차. tracker.py/USAGE.md를 공유하므로 두 구현을 병렬 br
 | 2 | 집계와 같은 제어. PR1 main에 의존 | 일반 OFF 유지, TEST ON에서 목록+집계 전체 가능 | 공개/중단 결정과 조건부 제거 남음. P0–P4 |
 | cleanup | 공개/중단 관측·안정화/구버전 의존 해소·오너 정리 요청 뒤 | 설정 없이 최종 기능 제공 | 제품 범위 완료, 설정 제거 확인. P0/P1/P3/P5 |
 
-PR1: 기준 P0 → AC1 전체 stdout·rc0를 기대하는 목록 시험을 ON 환경에서 먼저 작성·실행한다.
-현재는 --owner 미지원 rc2가 예상 RED다. 최소 목록/제어 연결로 GREEN 후 OFF 거부/설정 값별 P2를 확인한다.
-OFF는 기존 코드에서도 실패할 수 있으므로 그 자체를 새 기능 RED로 주장하지 않는다.
-ON 성공과 OFF 거부를 함께 보여 제어가 작동하는지 판정한다. ON의 summary 부재는 PR1 시점 관측만 남긴다.
+### PR1: owner list and shared control
 
-PR2: 새 tests/test_summary.py에서 all/open/done 세 줄 시험을 먼저 실행, 현재 명령 미지원 rc2 RED 확인
-→ 최소 집계 → 담당자별/완료 후 사례와 읽기 전용·설정 조합 확인. 각 새 동작의 예상 실패를 확인하며
-이미 GREEN인 경우에는 그대로 회귀로 보존한다. PR1의 목록·OFF 거부 시험은 유지한다.
-summary가 ON에서도 없어야 한다는 PR1의 단계 한정 관측은 영구 회귀로 고정하지 않는다.
+spec AC1/2와 제어 계약을 읽는다. Files: tracker.py·USAGE.md, 새 tests/test_owner.py·test_release_control.py.
+기준 P0를 `python3 -m unittest discover -s tests -v`로 확인한다.
+1. test_owner_exact_and_order에 ON의 list --owner hana가 AC1 전체 stdout·rc0를 낸다는 기대를 먼저 쓴다.
+   `python3 -m unittest discover -s tests -p test_owner.py -v`의 예상 RED는 현재 --owner 미지원 rc2다.
+2. list에 최소 필터/공유 제어를 연결하고 통과시킨다. 다음에 no-match/null·읽기 전용과 설정별 동작을 시험 먼저 확장한다.
+   이미 GREEN인 회귀는 보존한다. OFF 거부만으로 새 기능 RED를 주장하지 않는다.
+3. 같은 focused 명령과 `python3 -m unittest discover -s tests -p test_release_control.py -v`로 P1/P2를 확인한다.
+   ON 성공과 OFF 거부를 함께 보여 제어를 판정한다. ON의 summary 부재는 현재 단계 관측으로만 남긴다.
+완료 뒤 일반 OFF/목록 TEST ON이다. 집계와 전체 공개는 다음 범위로 남는다.
+
+### PR2: summary in the same release unit
+
+PR1 통합 main의 spec AC3/4가 입력이다. Files: tracker.py·USAGE.md, 새 tests/test_summary.py와 기존 제어 시험.
+1. test_counts_and_owner의 전체 집계 사례에 ON summary의 정확한 all/open/done 세 줄·rc0 기대를 먼저 쓴다.
+   `python3 -m unittest discover -s tests -p test_summary.py -v`에서 현재 summary 미지원 rc2가 예상 RED다.
+2. 같은 제어의 읽기·집계·출력 경로를 최소 연결한다. 담당자별/완료 후·무쓰기 사례를 시험 먼저 확장하고 통과시킨다.
+   이미 GREEN이면 회귀로 보존하며, complete 뒤 새 바이트를 무쓰기 비교의 기준으로 쓴다.
+3. 같은 focused 명령으로 P3를, 기존 owner/control 시험으로 P1/P2를 함께 확인한다.
+   ON의 summary 부재라는 PR1의 단계 관측은 영구 회귀로 남기지 않는다.
+완료 뒤 일반 OFF/목록+집계 TEST ON이다. 이 작업의 통과만으로 일반 공개를 승인하지 않는다.
+
+### Integration and release
 
 각 PR의 필요한 리팩터링 후 전체 시험, 최신 main과 결합한 판·통합 main 검증을 한다.
 RED/GREEN의 명령·코드판·실패 이유·출력과 일반/시험 환경을 PR 기록에 남긴다.
@@ -59,9 +74,9 @@ cleanup은 조건이 충족됐다는 근거와 오너 요청이 있을 때 시�
 | ID·연결 | 시험/관측 | 기대 |
 |---|---|---|
 | P0 R3 | tests/test_tracker.py + 각 명령의 기존 파일 오류 회귀 | 기존 list/show/complete·없는 ID·I/O rc2 유지 |
-| P1 AC1/2 | test_owner.py의 test_owner_exact_and_order, test_owner_nonmatching | ON에서 순서/열·rc·바이트, null/-/HANA/nobody |
-| P2 AC5 | test_release_control.py의 test_off_rejects_new_commands, test_setting_values | unset/0/false/공백true는 OFF; 1/true/TRUE는 ON. 기존 명령은 양쪽 정상. PR1 ON summary 부재는 단계 관측 |
-| P3 AC3/4 | test_summary.py의 test_counts_and_owner, test_counts_after_complete | 네 담당자 조합·전체 세 줄, 완료 후 (2,0,2), all=open+done, 조회 무쓰기 |
+| P1 AC1/2 | PR1 작업의 test_owner.py | spec AC1/2의 출력·null/-/HANA/nobody·바이트, 실행 명령은 PR1에 있음 |
+| P2 AC5 | PR1의 test_release_control.py, test_off_rejects_new_commands/test_setting_values | spec 제어 값·기존 명령 유지. ON summary 부재는 단계 관측 |
+| P3 AC3/4 | PR2의 test_summary.py, test_counts_and_owner/test_counts_after_complete | spec AC3/4의 전체·담당자·완료 후 결과/불변식. 실행 명령은 PR2에 있음 |
 | P4 AC6 | PR2 결합/통합 main 동일 판의 사본에서 OFF→ON→OFF 수동 명령 + P0–3 | 설정만으로 전환. 일반 공개는 이 리허설 뒤 별도 결정·실제 환경 관측. 일부 PR의 ON 성공만으로 전체 통과 아님 |
 | P5 AC7 | cleanup 전체 시험 + 설정 없는 직접 목록/집계 | 최종 기능 유지. 없어진 OFF 계약은 제외, 제거된 제어에 의존하는 실행 대상 없음 |
 
