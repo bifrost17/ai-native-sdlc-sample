@@ -1,6 +1,10 @@
 # Plan: 담당자별 조회(`list --owner`)와 상태 요약(`summary`) (from intent 0001-owner-list-and-summary)
-Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에서 Constraints로 정정한 것 외
-기능 결정은 동일). Status: draft.
+Upstream: spec.md@8b4395f0fcb17a48a64d93ed79dca1f18831d1e5 (R8/AC9 `summary --json` 추가 개정을
+HUMAN이 수락한 판. AC8 참조를 R7에서 Constraints로 정정한 것 포함, 그 외 기능 결정은 동일). Status: draft.
+
+계획 이탈: PR2 구현 중 `summary --json` 옵션이 인계된 추가 합의로 반영됐으나, 이 계획 문서에는
+반영돼 있지 않았다. 기존 두 줄 텍스트 출력·`--owner` 정확 일치·데이터 불변 등 PR2의 원래 결정은
+바뀌지 않았으므로, 아래 PR2 절차에 `--json` 관련 단계만 추가한다.
 
 두 기능은 같은 파일(`tracker.py`)을 바꾸고 순서 우선순위(조회 먼저)가 정해져 있으므로 순차로
 진행한다. 동시에 맡기면 같은 파일을 두 작업이 바꿔 병합 충돌과 교차 검증 비용이 생기고,
@@ -46,8 +50,10 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
    기준이 그대로 통과하는지 먼저 확인한다.
 2. `tracker.py`에 `summary` 서브파서(`--owner` 선택 인자, `--data`는 전역 옵션 공유)를 추가한다.
    `main()`에 `summary` 분기를 만들어 PR1의 필터 로직과 같은 방식으로 대상 집합을 고르고
-   (`--owner` 없으면 전체, 있으면 `list --owner`와 동일한 선택), `status`별 개수를 세어
-   `open\t<건수>`, `done\t<건수>` 순서로 출력한다(spec R4–R6).
+   (`--owner` 없으면 전체, 있으면 `list --owner`와 동일한 선택), `status`별 개수를 센다. `--json`
+   플래그(선택, 기본 false)를 추가해, 지정하지 않으면 `open\t<건수>`, `done\t<건수>` 순서로(spec
+   R4–R6), 지정하면 같은 집계를 `{"open": <건수>, "done": <건수>}` JSON 객체 한 줄로 출력한다(spec
+   R8). 집계는 한 번만 하고 출력 형식만 분기한다.
 3. `tests/test_tracker.py`에 다음을 추가한다.
    - `summary`(옵션 없음) → `requests.json` 기준 `open\t3`, `done\t1` (AC4).
    - `summary --owner hana` → `open\t1`, `done\t1` (AC4).
@@ -55,10 +61,15 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
    - `summary`/`summary --owner` 실행 전후 데이터 파일 바이트 동일 (AC6의 summary 부분).
    - 임시 복사본에서 `complete R-101` 실행 후 같은 복사본으로 `summary --owner hana` →
      `open\t0`, `done\t2` (AC7, 상태 변화 반영 확인).
+   - `summary --json` → `{"open": 3, "done": 1}` (AC9).
+   - `summary --owner hana --json` → `{"open": 1, "done": 1}` (AC9).
+   - `summary --owner HANA --json`, `summary --owner nobody --json` → 각각 `{"open": 0, "done": 0}`,
+     종료코드 0 (AC9).
+   - 위 `--json` 실행 전후 데이터 파일 바이트 동일 (AC9).
 4. 전체 시험 실행, PR1이 추가한 `list --owner` 시험과 기존 `show`/`complete` 시험이 함께 통과하는지
    확인한다(회귀 없음).
-5. `README.md`에 `summary`, `summary --owner <ID>` 사용법(예시 명령과 예시 출력)을 PR1에서 남긴
-   `list --owner` 설명 옆에 이어 적는다.
+5. `README.md`에 `summary`, `summary --owner <ID>`, `summary --json` 사용법(예시 명령과 예시 출력)을
+   PR1에서 남긴 `list --owner` 설명 옆에 이어 적는다.
 6. HUMAN이 diff와 동작을 검토하고 PR2를 `main`에 merge commit으로 통합한다.
 
 ## Risks
@@ -67,6 +78,8 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
   `--owner`에 걸리는 것이다 — AC3/필터 테스트로 바로 드러난다.
 - `summary`가 필터 로직을 `list --owner`와 다르게 구현하면 두 명령의 대상 집합이 어긋날 수 있다.
   같은 필터 표현을 재사용해 방지한다.
+- `--json` 출력이 텍스트 출력과 다른 집계를 내면(예: 별도 카운팅 경로) 두 형식이 어긋날 수 있다.
+  집계를 한 번만 하고 직렬화만 분기해 방지한다.
 - PR2를 시작하기 전 `main`이 PR1 이후 추가로 바뀌었다면 최신 판에서 다시 시험을 돌려 확인한다.
 - 기존 `list`/`show`/`complete` 동작 회귀는 기존 시험 3개가 그대로 신호를 준다 — 실패 시 숨기지
   않고 원인을 고친다.
@@ -75,8 +88,9 @@ Upstream: spec.md@892d6a501c2653a0a66e9cc2a7b4899b3e42462b (AC8 참조를 R7에�
 
 - PR1: `python3 -m unittest discover -s tests -v` 전체 통과(기존 3개 + 신규 `list --owner` 시험),
   `python3 tracker.py --data requests.json list --owner hana` 수동 실행 결과 관찰.
-- PR2: 위 시험군 전체 통과(기존 3개 + PR1 시험 + 신규 `summary` 시험),
+- PR2: 위 시험군 전체 통과(기존 3개 + PR1 시험 + 신규 `summary` 시험, `--json` 시험 포함),
   `python3 tracker.py --data requests.json summary`와 `summary --owner hana` 수동 실행 결과 관찰,
-  복사본에서 `complete` 후 `summary` 재실행한 결과 관찰.
+  복사본에서 `complete` 후 `summary` 재실행한 결과 관찰, `summary --json`과
+  `summary --owner hana --json` 수동 실행 결과 관찰(출력을 JSON으로 파싱해 값 확인).
 - 아직 실행하지 않은 항목: 위 명령들은 각 PR 구현 시점에 실제로 실행해 근거를 남긴다. 이 계획
   단계에서는 실행하지 않았다.
