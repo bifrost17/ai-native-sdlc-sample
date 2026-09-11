@@ -1,0 +1,74 @@
+{
+  "requestedModel": "fable",
+  "requestedEffort": "max",
+  "observedModels": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 958,
+      "outputTokens": 12,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001018,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-fable-5-1": {
+      "inputTokens": 98,
+      "outputTokens": 32021,
+      "cacheReadInputTokens": 66155,
+      "cacheCreationInputTokens": 57183,
+      "webSearchRequests": 0,
+      "costUSD": 2.7622287500000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 25826,
+      "canonicalModel": "claude-fable-5-1",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "sessionId": "8b622437-fcbf-4011-adc9-0bc02f3b4ff8",
+  "durationMs": 374156,
+  "costUsd": 2.7632467500000004,
+  "isError": false,
+  "exitCode": 0,
+  "usage": {
+    "input_tokens": 98,
+    "cache_creation_input_tokens": 57183,
+    "cache_read_input_tokens": 66155,
+    "output_tokens": 32021,
+    "output_tokens_details": {
+      "thinking_tokens": 25826
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 57183,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 32,
+        "output_tokens": 27375,
+        "cache_read_input_tokens": 50084,
+        "cache_creation_input_tokens": 11235,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 11235
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "independence": "Initial brief; no peer proposals/reviews. The later spec-document-set clarification was not available in this invocation.",
+  "command": "claude -p <prompt.md> --model fable --effort max --safe-mode --tools Read --allowedTools Read --permission-mode dontAsk --output-format json"
+}
