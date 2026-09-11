@@ -45,7 +45,7 @@
   passage and annotation before proposing or making changes; fill the team's choices from its actual standards.
 - `.claude/skills/` — what the agent is told (advisory). `.claude/hooks/` + `settings.json` —
   what the machine blocks. `tests/`, `evals/`, `.github/` — what CI proves. See docs/BOUNDARY.md.
-- `intent/` — the artifact chains; `templates/` — copies of the skill-embedded templates.
+- `intent/` — the artifact chains; `templates/` — the forms used by the authoring skills.
 - `docs/PLAYBOOK-MAP.md` maps the 14 lessons to files; `docs/METRICS.md` is git commands.
 
 ## Verifying your work

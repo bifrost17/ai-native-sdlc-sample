@@ -11,4 +11,5 @@ engineering team. Describe clearly any areas of concern, especially where you ca
 contradicting policies.
 
 (L3 282, the playbook's prompt, verbatim.) The intent is `intent/$1/intent.md`; if `$1` is empty,
-ask which chain. Follow the `design-spec` skill — it stops if the intent is not accepted.
+ask which chain. Follow the `design-spec` skill, including its accepted-revision check and
+explicitly recorded authorization to work on a draft.
