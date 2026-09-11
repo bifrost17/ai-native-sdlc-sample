@@ -1,0 +1,398 @@
+UTC 2026-09-11T04:52:45Z
+b4ab13270836f97c67f72817200dbde55f0d096b
+ M docs/research/sdlc-documentation/plan-design/alternative-feature.md
+?? docs/research/sdlc-documentation/plan-design/delivery.md
+?? docs/research/sdlc-documentation/plan-design/probe/
+?? docs/research/sdlc-documentation/plan-design/review-r2-request.md
+?? docs/research/sdlc-documentation/plan-design/review-r3-request.md
+?? docs/research/sdlc-documentation/plan-design/review-request.md
+?? docs/research/sdlc-documentation/plan-design/reviews/
+82d7ad20128399c51492503db0788167cf774a8c
+{
+  "round": 3,
+  "recipe": "sha256 of maker then adopter, sorted paths, root/path + NUL + file sha256 + LF",
+  "roots": {
+    "maker": "/Users/jake/Projects/ai-native-sdlc-sample",
+    "adopter": "/Users/jake/Projects/ai-native-sdlc-use-0022"
+  },
+  "heads": {
+    "maker": "b4ab13270836f97c67f72817200dbde55f0d096b",
+    "adopter": "82d7ad20128399c51492503db0788167cf774a8c"
+  },
+  "files": [
+    {
+      "root": "maker",
+      "path": ".claude/agents/verifier.md",
+      "sha256": "de01e577a0cdaacda538c0197adff6e11eaaec32561011f13717911ac3a1b395"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/SKILL.md",
+      "sha256": "49e0d3192c14cd32d39ccca55d7b86d4a404500b453e80e3ca80e13a7044d148"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/examples/bug.md",
+      "sha256": "b46253779de3be4823f3171acbcd166c12e48470d23497b69bffe0cae6bea511"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/examples/context.md",
+      "sha256": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/examples/feature.md",
+      "sha256": "a013084a76bc586ed15b7d3cf7f2ee7c2a550c6b89afb91a740e231fe06a3762"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/examples/migration.md",
+      "sha256": "12dec035f6b37c9262752d839c26d9d46e57e313d435fe90e390bf54e995147d"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/examples/two-pr-spec.md",
+      "sha256": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/examples/two-pr.md",
+      "sha256": "1ff12b235695e0a20a3d9b6c440991102d193c344c5f6c9836db1a0b09b12e2d"
+    },
+    {
+      "root": "maker",
+      "path": ".claude/skills/plan/references/execution-depth.md",
+      "sha256": "db922d104286ca53d989d06aed63fcb09d4e304eda6e631d46e8d7039ef75933"
+    },
+    {
+      "root": "maker",
+      "path": "REVIEW.md",
+      "sha256": "53431c29b2d2b3af8c369cdbda0e3eb975e5dffc417b924ed01940148a77d60b"
+    },
+    {
+      "root": "maker",
+      "path": "docs/METRICS.md",
+      "sha256": "c119b97f328e0a6cebd6ed82a521402546f40780d508f2c0f7826f9fc041bcab"
+    },
+    {
+      "root": "maker",
+      "path": "docs/PLAYBOOK-MAP.md",
+      "sha256": "52d9c5864e6d8e85dfada9f8057a2ba1571dfcd7075384866852a9c6e8b85cff"
+    },
+    {
+      "root": "maker",
+      "path": "templates/plan.md",
+      "sha256": "adbe39fc43f59ec99f5616f01840658943918bfd50ee67dc9bf22824fe0136bd"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/README.md",
+      "sha256": "e76ac085f4788cfbc2135c3f2707e601d883ff0b535ef0eddf51c61d30ca8811"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/SKILL.md",
+      "sha256": "b2b90c1ec3de42cb7e49a809871b08742a2639ccb9273cc648ba48c07d5bfa90"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/examples/bug.md",
+      "sha256": "b46253779de3be4823f3171acbcd166c12e48470d23497b69bffe0cae6bea511"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/examples/context.md",
+      "sha256": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/examples/feature.md",
+      "sha256": "a013084a76bc586ed15b7d3cf7f2ee7c2a550c6b89afb91a740e231fe06a3762"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/examples/migration.md",
+      "sha256": "12dec035f6b37c9262752d839c26d9d46e57e313d435fe90e390bf54e995147d"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/examples/two-pr-spec.md",
+      "sha256": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/examples/two-pr.md",
+      "sha256": "1ff12b235695e0a20a3d9b6c440991102d193c344c5f6c9836db1a0b09b12e2d"
+    },
+    {
+      "root": "adopter",
+      "path": "examples/skills/plan/references/execution-depth.md",
+      "sha256": "db922d104286ca53d989d06aed63fcb09d4e304eda6e631d46e8d7039ef75933"
+    },
+    {
+      "root": "adopter",
+      "path": "templates/plan.md",
+      "sha256": "adbe39fc43f59ec99f5616f01840658943918bfd50ee67dc9bf22824fe0136bd"
+    }
+  ],
+  "combined_sha256": "bbba590806c2afb160d858553fdf5d86815ce259ed4abdbe003551247e3537b1"
+}
+b4ab132 docs: align plan measurements with planned PR slices
+ README.md                     |  4 +++-
+ docs/METRICS.md               | 15 +++++++++------
+ intent/0022-plan-form/plan.md |  2 ++
+ 3 files changed, 14 insertions(+), 7 deletions(-)
+diff --git a/README.md b/README.md
+index a7b7f78..7034e5e 100644
+--- a/README.md
++++ b/README.md
+@@ -80,86 +80,88 @@ Unofficial; not an Anthropic project.
+ |---|---|---|---|
+ | 0001 bootstrap-repo | record · pre-slim convention | this repo, self-recorded | #12 |
+ | 0004 lesson-only | slim | this repo, self-recorded | #16 |
+ | 0010 experiments-on-branches | structure | this repo, self-recorded | #55 |
+ 
+ ## Organization skill set (`org-skills/`)
+ This repository is also one team's answer to the team's part of the playbook, in two layers:
+ 
+ - **팀 조항** — `policies/*.md`, thin on purpose (the team builds internal-only software; about a
+   dozen clauses). Owner sign-off is the merge (`.github/CODEOWNERS`).
+ - **프로젝트 슬롯** — each project copies `policies/PROJECT-POLICY.template.md` into its own
+   repository and fills six slots; skills cite the slot IDs rather than inventing values.
+ 
+ The skill set is one plugin under `org-skills/skills/` (root `.claude-plugin/marketplace.json`
+ serves it); `org-skills/examples/` holds one project's filled-in example and does **not** load.
+ 설치·갱신 명령과 이벤트별 사용법은 [팀 스킬 안내](org-skills/README.md)에 있다.
+ The research behind every adopted or designed skill is under `docs/research/<skill>/`, decisions in
+ `docs/decisions/`. The template's own skills stay in `.claude/skills/`. Chains `intent/0011` and
+ `intent/0012` record the move and the split.
+ 
+ ## Verification (`docs/verification/`)
+ [북극성 문서](docs/verification/north-star-playbook.html)의 주석은 플레이북을 얼마나 충실히 따랐는지
+ 평가한 기록이다. 가이드 문단마다 구현 파일의 경로와 축자 인용문, 실제 실험 증거, 판정
+ (충실 · 부분 · 팀 몫 · 보완 필요)을 연결한다. 179개 블록(`V2-01`~`V13-16`)이며,
+ 평가에서 발견한 보완점은 PR #44~#54로 반영했다. 항목별 판정은
+ [INDEX.md](docs/verification/INDEX.md), 챕터별 집계와 라운드 이력은
+ [CHAPTERS.md](docs/verification/CHAPTERS.md)에 있다.
+ 
+ ## Experiments
+ 실험 방법·HUMAN 역할·초기 사례 데이터는 [실험 가이드](docs/experiments/README.md)에 있다.
+ `main`에는 제작 자산과 방법·데이터·실행 색인을 두고, 실제 개발 사슬의 대화·제품 코드·시험 결과는
+ 실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 사용 템플릿의 고정 커밋에서
+ 시작한다. Codex가 HUMAN, Claude Code가 개발 AGENT를 맡아 실제 응답에 따라 대화한다.
+ 계획에서 정한 PR 단위로 실험 통합 브랜치에 합치며 그 브랜치를 제작 `main`으로 머지하지 않는다.
+ 현재 사용 후보는 `codex/use-template-0021@ca87cdb`다. 이전 `0017@add296d`에서 파생했으며
+ 검토한 intent·spec 양식과 선택형 작성 예시를 전달했다. [spec 양식 설계·리뷰·부분 실험](docs/research/sdlc-documentation/spec-design/README.md)에
+ 실제 반영 범위와 한계를 남긴다. 별도 스킬·플러그인 설치는 이 사용판의 필수 조건이 아니다.
+ [PR 크기 가이드](docs/PR-SIZE.md)와
+ [GitHub Flow 정책](docs/GIT-WORKFLOW.md)은 채택 제품용 배포 원문이며 사용 후보의 docs/에도 동일하게 둔다.
+ [조사 보고서](docs/research/pr-size/README.md)는 근거·사례·반례와 한계를 담는다.
+ [F02 최종 실험](docs/experiments/0016-flow-pilot.md)은 원래 후보 210bcfa에서 8회 대화와 실제 제품 PR 2건의
+ 순차 통합을 수행했다. 계획에 PR 묶음·의존성·머지 순서를 반영하고, 전체 시험 8개·독립 동작 7개·
+ 새 복제본 인도·두 번째 PR 코드 되돌리기가 통과했다. 호스티드 CI·실제 조직 승인·운영 배포는 미관측이다.
+ 후속 부분 실험의 spec/plan 누락은 **중요한 실패**다. HUMAN이 지적한 뒤 복구된 것을 자발적 갱신
+ 통과로 계산하지 않는다. 현재 후보는 후속 요구를 받을 때와 완료를 보고할 때 문서 갱신을 연결한다.
+ [두 새 사례의 재검증](docs/experiments/0017-artifact-sync.md)은 문서 갱신을 상기하지 않은 업무 대화,
+ spec 수락·plan 참조·구현과 같은 커밋, 제품 결함 발견과 복구를 각각 기록한다.
+ [설치한 팀 실행 경로](docs/experiments/0018-team-harness.md)는 독립 검토와 같은 개발 세션의 자동
+ 보완을 실제 실행했다. 현재 문서 누락·옛 수락 참조를 각각 자동 피드백으로 복구했고 정상 대기와
+ 문서 영향 없는 작업도 확인했다. 초기 오판과 검토 오류를 보존하며 개발 Sonnet/low·검토 Sonnet/medium을
+ 사용한다. 일반 Claude 호출은 그 CLI 실험의 적용 범위 밖이다.
+ [이벤트 기반 스킬 실험](docs/experiments/0019-event-review-skill.md)은 영구 설치한 팀 플러그인을
+ 일반 Claude Code 세션에서 사용한다. 주 개발 대화의 문서 개정과 새 문맥의 완료·브랜치 검토를
+ 분리하고 실제 Skill/Agent 호출, 미호출·인계 실패, 관련 커밋과 회귀를 기록한다.
+ [F01 첫 대화형 실험](docs/experiments/0015-f01-pilot.md)은
+ Sonnet·low와 같은 세션에서 9회 주고받고 로컬 인도까지 통과했다. 실제 실행 핀은 de1b1b7이며,
+ 후속 후보의 정책 표 제목 두 곳은 정적 리뷰로 확인했다. 전체 플레이북이나 운영 배포의 성공률을 뜻하지 않는다.
+ 아래 기존 실험은 당시 `main`에서 시작한 역사적 실행이다. 실험에서 얻은 템플릿 개선만 별도 변경으로 가져온다.
+ 
+ | Branch | Started from | What it holds |
+ |---|---|---|
+ | `experiment/2026-09-09-claims-status` | `main@0daf6550` (PR #54) | chains 0002 (feature) · 0005 (defect, issue #20) · 0006 (incident, band) · 0007 (defect, issue #24, unbriefed agent) · 0008 · 0009 (human–agent runs); example app `src/claims_status/`; `docs/RUNS.md`; 172 raw files. Template feedback from it: PRs #19 #27 #29 #33 #34 #35 #40 #44–#54 |
+ 
+ Issues #24, #25, #26, #32 belong to that experiment's claims-status app.
+ 
+ ## Source of truth
+ This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
+ external system of record — no Jira, no separate requirements tool — for the artifacts under
+ `intent/`; the commit is the timestamp authority.
+ 
+ ## What this repo does not do
+ - It does not check artifact form, status or transitions in code. Approval is a merged PR;
+   a missing section is caught by the skill and by the product owner reading the file.
+ - It does not enforce policy skills with code unless the lesson names the hook.
+ - It does not replace the playbook. Quotes are short and cite the line; the original is
+   Claude Academy, `courses/ai-native-sdlc-playbook`, Copyright Anthropic.
+ 
+ ## Commands
+ `make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
+ Plan mode headless: `claude -p --permission-mode plan` writes the plan outside the repo and has no
+-ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).
++ExitPlanMode; chain 0008 used the engineer's next prompt to accept the plan (L4 327).
++For current work, record the document SHA and human decision per [GIT-WORKFLOW](docs/GIT-WORKFLOW.md);
++the mode or a next prompt by itself is not acceptance evidence.
+ Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
+ the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
+ hook events in the implementation turn, `docs/RUNS.md` on the experiment branch).
+ `.claude/settings.json` allows this repo's own safe commands without a prompt (`permissions.allow`,
+ L8 545); the team replaces the list with what its organization considers safe (`docs/ADOPTING.md`).
+diff --git a/docs/METRICS.md b/docs/METRICS.md
+index c887ac7..1be0951 100644
+--- a/docs/METRICS.md
++++ b/docs/METRICS.md
+@@ -1,85 +1,88 @@
+ # Metrics — the lessons' indicators as git commands
+ 
+ L3 292: "Git log will give this directly." Every indicator below is one command against this repo.
+ `CHAIN` is a chain directory, e.g. `intent/0004-lesson-only`. `created` (first conversation) is the
+ one value git does not know; the capture-intent skill puts it on the PR body's first line, read with
+ `gh pr view <n> --json body`.
+ 
+ ## L2 capture-intent (233–239)
+ - Leading — time from first conversation to committed intent.md: the PR body's first line versus
+   `git log --diff-filter=A --format='%aI %h' -- $CHAIN/intent.md`
+ - Lagging — survival rate (accepted = merged, closed = rejected):
+   `gh pr list --state all --search 'intent.md' --json number,state,title`
+ - Lagging — intent.md changed after the first spec.md commit:
+   `git log --format=%h --since="$(git log --diff-filter=A --format=%aI -1 -- $CHAIN/spec.md)" -- $CHAIN/intent.md`
+ 
+ ## L3 requirements-and-design (288–294)
+ - Leading — intent.md commit → spec.md commit (two timestamps):
+   `git log --diff-filter=A --format='%aI %f' -- $CHAIN/intent.md $CHAIN/spec.md`
+ - Lagging — spec.md commits dated after the first plan.md commit:
+   `git log --format=%h --since="$(git log --diff-filter=A --format=%aI -1 -- $CHAIN/plan.md)" -- $CHAIN/spec.md`
+ 
+ ## L4 plan-mode (362–366)
+-- Leading — share of changes merged from the first implementation pass:
+-  `gh pr list --state all --search "$CHAIN" --json number,state,title` — one implementation PR per
+-  chain and no CLOSED one is a first pass.
+-- Leading — plan approval (its merge) → merged PR of the code:
+-  `gh pr list --state merged --json number,title,mergedAt --search "$CHAIN"`
++- Leading — share of planned PR slices merged from the first implementation pass: use
++  `gh pr list --state all --search "$CHAIN" --json number,state,title` to locate the PRs, then read
++  their review/rework evidence. Multiple planned PRs in one chain are not rework; PR count or CLOSED
++  state alone does not establish a first-pass result.
++- Leading — the recorded human acceptance time of the applicable plan revision → that slice's PR merge.
++  Read the document/SHA and decision record per GIT-WORKFLOW; stage acceptance need not be a document merge.
++  `gh pr list --state merged --json number,title,mergedAt --search "$CHAIN"` supplies merge times only.
+ - Lagging — does the merged diff still match plan.md's "Files that change":
+   `gh pr diff <n> --name-only` for the PR that carried the code, then read the list against the
+-  plan by eye. (Not `<plan commit>..HEAD` — that picks up every later chain's files; measured on 0008.)
++  applicable plan revision's current PR slice by eye; future slices are not missing from this PR.
++  (Not `<plan commit>..HEAD` — that picks up every later chain's files; measured on 0008.)
+ - Lagging — rework cycles per change: `gh pr view <n> --json reviews,commits --jq '{reviews: (.reviews|length), commits: (.commits|length)}'`
+ 
+ ## L5 CLAUDE.md (442)
+ - Leading — corrections/changes to CLAUDE.md: `git log --oneline -- CLAUDE.md`
+ - Lagging — outside this repo (new-joiner time-to-first-merged-PR is org PR history)
+ 
+ ## L6 skills (505)
+ - Leading — policy-owner sign-off → skill merge: `git log --diff-filter=AM --format='%aI %h' -- .claude/skills/<name>/SKILL.md`
+ - Lagging — outside this repo (review findings citing the policy are read by a person on the PR)
+ 
+ ## L7 hooks-as-build-time-guardrails (511)
+ No separate "How to measure it" section — it rides on L6's (505); nothing to add here.
+ 
+ ## L8 parallel sessions and subagents (588)
+ - Leading — outside this repo (concurrent sessions per engineer is the OTel export)
+ - Lagging — merges per week: `git log --since=1.week --oneline --merges | wc -l | tr -d ' '` (rework rate is outside this repo)
+ 
+ ## L9 feedback loop (659)
+ - Leading — first-pass CI success: `gh run list --workflow=check.yml --json conclusion,event`
+ - Lagging — review time: `gh pr view <n> --json createdAt,mergedAt`
+   (change failure rate is outside this repo, from an incident tracker)
+ 
+ ## L10 continuous evals (729)
+ - Leading — pass rate over time: each `agent evals` run uploads `evals/out` as the artifact
+   `evals-<run id>` (`gh run download <run id>`); a person reads the series of `*.json` (no script here)
+ - Leading — incident → permanent eval, for an incident born in this repo's monitoring (`ops/bands.yaml`):
+   `git log --diff-filter=A --format='%cI %h' -- intent/<NNNN>-*/intent.md evals/cases/<NN>-*.json`
+   (chain 0006: 3 min 39 s). Incidents tracked outside the repo start from the tracker's timestamp.
+ - Lagging — outside this repo (regressions caught in CI vs found in production is an incident tracker)
+ 
+ ## L11 AI in the PR review loop (795)
+ - Leading — time to first review: `gh pr view <n> --json createdAt,reviews,comments --jq '[.reviews[].submittedAt, .comments[].createdAt] | min'`
+   (this repo's findings arrived as comments, so `reviews` alone is null)
+ - Leading — review comments resolved without a human touching the branch: `gh pr view <n> --json comments,commits`
+   — count comments answered by a commit whose author is the agent's session, not a person; a person reads it
+ - Lagging — outside this repo (pre/post-merge defects need an incident tracker)
+ 
+ ## L12 hooks as approval gates (930)
+ - Leading — gate wait time and verdict: `.claude/hooks.log` (the decision log this repo writes), summed by a person
+ - Lagging — outside this repo (gate violations reaching production is an incident tracker)
+ 
+ ## L13 CI/CD integration and deployment (997)
+ - Leading — share of pipeline failures triaged without paging a human: failed `check` runs
+   (`gh run list --workflow=check.yml --json databaseId,conclusion`) that carry a `triage-<run id>`
+   artifact (`gh run view <id>`), over all failed runs. The triage step only runs with the key.
+ - Lagging — outside this repo (DORA measures come from CI/deploy tooling itself)
+ 
+ ## L14 closing the loop on metrics (1063)
+ - Leading — band breach → intent.md in the triage queue: the breach time is the `detected_at` the
+   detector wrote into the draft's `Author:` line; the queue time is that file's first commit —
+   `grep -h '^Author: detect_bands' intent/*/intent.md` against
+   `git log --diff-filter=A --format='%cI %h' -- intent/*/intent.md` (chain 0006: 16 s)
+ - Lagging — outside this repo (repeat-incident rate is an incident tracker)
+ 
+ Nothing here is computed by a script. The numbers are for a person to read once a quarter.
+diff --git a/intent/0022-plan-form/plan.md b/intent/0022-plan-form/plan.md
+index 3619127..84d329f 100644
+--- a/intent/0022-plan-form/plan.md
++++ b/intent/0022-plan-form/plan.md
+@@ -1,53 +1,55 @@
+ # Plan: 예시에서 도출한 실행 계획과 PR 통합 인계 검증
+ Upstream: spec.md@1ab184e. Status: draft.
+ 사용자의 작성·반영 위임으로 draft에서 진행한다. 제작 기준은 선행 0021 완료 064c785이며,
+ codex/plan-template-design은 그 판에 의존한다. 실제 PR을 열면 선행 작업을 base로 표시하고
+ 선행 merge 뒤 최신 main에 재설정한다. 이번 변경 자체는 한 목적의 PR이며 원격 작업은 하지 않는다.
+ 
+ ## Files that change
+ - intent/0022-plan-form/{intent,spec,plan}.md: 이번 변경의 단계별 근거와 실행 기록.
+ - templates/plan.md, .claude/skills/plan/SKILL.md: 네 절 양식·작성/인계/갱신 지침.
+ - .claude/skills/plan/{examples,references}/** (new): root의 기능·버그·여러 PR·이행 예시와 조건부 상세.
+ - .claude/agents/verifier.md: 현재 PR 범위를 확인하여 미래 PR 파일을 누락으로 판정하지 않도록 수정.
+ - REVIEW.md, docs/PLAYBOOK-MAP.md: 독립 리뷰에서 확인한 현재 소비자의 PR 범위·수락 설명을
+   기존 GIT-WORKFLOW와 맞춘다. 사용자 위임 범위의 연동 정정이며 spec 1ab184e에 범위를 기록했다.
++- docs/METRICS.md: 후속 리뷰에서 확인한 plan 관련 측정 안내도 PR 개수가 아닌 계획된 범위·
++  실제 수락 기록으로 읽도록 맞춘다. 새 측정 코드나 전체 지표 재평가는 추가하지 않는다.
+ - docs/research/sdlc-documentation/plan-design/** (new): 정독·예시 맥락·대안·갱신·리뷰·전달·실험 근거.
+ - docs/research/sdlc-documentation/README.md, README.md: 최종 결과와 실제 사용 후보 연결.
+ - docs/verification/north-star-playbook.html: 이번에 확인한 범위만 기존 주석에 추가. 원문·등급 보존.
+ 
+ 별도 사용판 codex/use-template-0022는 codex/use-template-0021@ca87cdb에서 파생한다.
+ templates/plan.md, examples/skills/plan/{SKILL.md,examples/**,references/**}, examples/README.md만
+ 전달하며 예시가 참조하는 기존 spec은 사용판 위치에 맞춘다. 선택 스킬·제작 자산 제외를 유지한다.
+ 여기서 F02 제품 baseline을 얹은 별도 실험 기준 브랜치와 파생 작업 브랜치/worktree를 보존한다.
+ 실험 코드·시험은 실험 브랜치에만 남기고 maker에는 재현 입력·결과·필터링한 대화 기록을 보존한다.
+ 
+ ## Order of work
+ 1. root가 종합 조사·설계 방향·원본 L4/L7/L8/L10 및 관련 자료·PR 정책을 재독한다. 독립 Astra
+    설계 도전과 Sol 소비자 감사는 읽기 전용으로 병렬 진행한다. root가 완성 예시부터 작성한다.
+ 2. 네 절과 작업별 묶음 두 배치를 실제로 대조해 공통 양식·선택 상세를 도출한다. 작성 스킬과
+    현재 verifier의 범위 해석을 맞춘다. 중요 설계 문제는 spec으로 돌리고 작은 변경은 plan에서 결정한다.
+ 3. 사용 후보를 전달하고 핵심 파일 해시를 고정한다. Astra/ultra와 실제 Fable/max에 서로의 결과
+    없이 같은 후보를 제공한다. root가 중요 지적을 수정하고 같은 최종 판의 두 PASS를 받는다.
+ 4. F02에서 Sonnet/medium과 HUMAN 역할 root가 실제 대화한다. 계획 생성 후 새 세션에 승인된
+    문서와 선언된 참조만 넘겨 첫 실행·통합을 확인한다. 후속 파일/검증 계획 변경은 대화로 결정하고
+    관련 구현 커밋의 plan 갱신을 확인한다. 종속 두 작업을 가짜 병렬 성공으로 집계하지 않는다.
+ 5. 독립 verifier가 make check와 아래 Proof, 선행 0021·훅 부정 입력·사용판 경계를 확인한다.
+    최종 자료와 주석, 로컬 커밋으로 닫는다. 공개 원문과 역사 기록은 수정하지 않는다.
+ 
+ ## Risks
+ 양식이 사실상 작업 엔진으로 커지는 위험은 작은 예시의 중복·필수 표를 대조해 발견하고 덜어낸다.
+ 첫 PR에서 제품이 깨지는 분할은 해당 main 상태의 시험으로 확인한다. 병렬 파일 경계만으로 공유
+ 계약·계획 갱신을 놓치는 위험은 이행 예시와 독립 리뷰로 다루되 실제 병렬 실행 관측으로 표시하지 않는다.
+ 모델의 실수는 기록·수정하며 규칙을 계속 늘리지 않는다. 승인된 판과 수정 중인 파일, 예정 Proof와
+ 실제 결과를 구별한다. 실험용 데이터는 각 시험에서 복사하고 사용자 파일·기존 이력을 덮어쓰지 않는다.
+ 
+ ## Proof
+ - AC1: 네 유형의 작성 예시, 두 배치 비교, 변경 전후 기록과 독립 독자의 인계 판단.
+ - AC2: Astra/ultra·Fable/max의 같은 후보 파일 해시 PASS와 원문 결과(비공개 추론 제외).
+ - AC3: F02 실제 Claude Code 대화·새 세션 ID·Git 분기/커밋/통합 기록, 기존 세 테스트 및
+   추가 기능 테스트, HUMAN oracle의 목록·요약·complete 후 요약·바이트 보존 결과.
+ - AC4: make check 전체 출력(기존 Python·hooks·eval fixtures·managed settings), make evals의
+   실제 가용 여부, skill quick_validate.py와 선택 스킬 frontmatter의 도구 차이 설명, 독립 verifier.
+   로컬 참조·후보 해시·전달 파일·북극성 원문/기존 주석 불변은 일회성 자료 대조로 확인한다.
+ 
+ 검사는 이 단계에서는 예정이다. 실제 결과·실패·수정·한계는 plan-design 기록에 연결한다.

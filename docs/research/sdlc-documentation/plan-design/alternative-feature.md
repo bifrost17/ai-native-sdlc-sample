@@ -16,7 +16,7 @@
 ## Work package 2: 사용과 통합
 - Files: README.md, tests/test_owner.py(new).
 - Action: 무옵션·오류 보존 시험과 사용 설명을 추가하고 최신 main과 합친 결과를 확인한다.
-- Check: test_owner_no_option_and_io_error(new)는 무옵션 네 행·없은 파일 rc=2·기존 오류 접두사.
+- Check: test_owner_no_option_and_io_error(new)는 무옵션 네 행·없는 파일 rc=2·기존 오류 접두사.
   python3 -m unittest discover -s tests -v로 기존/새 시험 모두 통과해야 한다.
 - Risk: show/complete의 정상 쓰기는 보존해야 한다. 별도 DB·캐시·UI는 필요 없다.
 

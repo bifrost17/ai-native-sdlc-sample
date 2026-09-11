@@ -1,0 +1,109 @@
+COMMIT 34f41eee836dc16bd648e60bd787490e754c7b05
+PARENTS 
+TREE d90f09185a52398da3773b04a7285f21ea67f2e1
+SUBJECT test: prepare F02 product baseline for plan handoff
+A	.gitignore
+A	CLAUDE.md
+A	EXPERIMENT.md
+A	LICENSE
+A	NOTICE
+A	PROJECT-POLICY.md
+A	README.md
+A	REVIEW.md
+A	USAGE.md
+A	docs/GIT-WORKFLOW.md
+A	docs/PR-SIZE.md
+A	docs/PROCESS.md
+A	examples/README.md
+A	examples/skills/capture-intent/SKILL.md
+A	examples/skills/design-spec/SKILL.md
+A	examples/skills/design-spec/examples/bug/context.md
+A	examples/skills/design-spec/examples/bug/intent.md
+A	examples/skills/design-spec/examples/bug/spec.md
+A	examples/skills/design-spec/examples/feature/context.md
+A	examples/skills/design-spec/examples/feature/intent.md
+A	examples/skills/design-spec/examples/feature/spec.md
+A	examples/skills/design-spec/examples/migration/context.md
+A	examples/skills/design-spec/examples/migration/intent.md
+A	examples/skills/design-spec/examples/migration/spec.md
+A	examples/skills/design-spec/references/design-depth.md
+A	examples/skills/plan/SKILL.md
+A	examples/skills/plan/examples/bug.md
+A	examples/skills/plan/examples/context.md
+A	examples/skills/plan/examples/feature.md
+A	examples/skills/plan/examples/migration.md
+A	examples/skills/plan/examples/two-pr-spec.md
+A	examples/skills/plan/examples/two-pr.md
+A	examples/skills/plan/references/execution-depth.md
+A	intent/README.md
+A	requests.json
+A	templates/intent.md
+A	templates/plan.md
+A	templates/spec.md
+A	tests/test_tracker.py
+A	tracker.py
+COMMIT d6660fb873c358f716a73dbbce507c0963ce3885
+PARENTS 34f41eee836dc16bd648e60bd787490e754c7b05 9cb9894af78f78ec06aefc544a818bba24a6e002
+TREE 5a8583a89b4980d0c23e0b79374a1be0adbff0fc
+SUBJECT experiment: HUMAN accepts plan 9cb9894 and integrates shared documents
+COMMIT 1033eea075899754891373f34715098ff27f9be5
+PARENTS d6660fb873c358f716a73dbbce507c0963ce3885
+TREE c30058d2c612a68c244c633c148a28d191911dd1
+SUBJECT feat: add list --owner exact-match filter (F02 PR1)
+M	USAGE.md
+A	tests/test_owner_list.py
+M	tracker.py
+COMMIT 10b08bcc897bcbe74a6ad1b1e9290b75abdb5420
+PARENTS d6660fb873c358f716a73dbbce507c0963ce3885
+TREE ffcb680b9209aa90f6dbd86561f56cd0a2bc0b03
+SUBJECT feat: add list --owner exact-match filter (F02 PR1)
+M	USAGE.md
+M	intent/0001-owner-list-summary/plan.md
+A	tests/test_owner_list.py
+M	tracker.py
+COMMIT 91ccf7f51007ad31b2565a288e13b286b331c83d
+PARENTS d6660fb873c358f716a73dbbce507c0963ce3885 10b08bcc897bcbe74a6ad1b1e9290b75abdb5420
+TREE ffcb680b9209aa90f6dbd86561f56cd0a2bc0b03
+SUBJECT experiment: HUMAN accepts PR1 10b08bc after plan recovery and six checks
+COMMIT ee972b00a4890d073bc7ea3e6487c2a349dcad02
+PARENTS 91ccf7f51007ad31b2565a288e13b286b331c83d
+TREE 86703254ff5a8bebed87f81c69f4b4f7d14c806c
+SUBJECT feat: add summary --owner status counts (F02 PR2)
+M	USAGE.md
+M	intent/0001-owner-list-summary/plan.md
+A	tests/test_summary.py
+M	tracker.py
+COMMIT 63328e1870d73d0e8312f08aee5a40ad30f7c1b2
+PARENTS 91ccf7f51007ad31b2565a288e13b286b331c83d
+TREE 6da93c0de2877fbc0987282881df433f18dc28a8
+SUBJECT feat: add summary --owner status counts (F02 PR2)
+M	USAGE.md
+M	intent/0001-owner-list-summary/plan.md
+A	tests/test_summary.py
+M	tracker.py
+COMMIT f20a165859be6f409e8284e457b1eef01ef5d21b
+PARENTS 91ccf7f51007ad31b2565a288e13b286b331c83d 63328e1870d73d0e8312f08aee5a40ad30f7c1b2
+TREE 6da93c0de2877fbc0987282881df433f18dc28a8
+SUBJECT experiment: HUMAN accepts PR2 63328e1 after 16 tests and 12 independent checks
+ANCESTRY
+fatal: Not a valid object name 34f41eee d6660fb
+34f41eee d6660fb ->  rc=128
+fatal: Not a valid object name d6660fb 1033eea
+d6660fb 1033eea ->  rc=128
+fatal: Not a valid object name d6660fb 10b08bc
+d6660fb 10b08bc ->  rc=128
+fatal: Not a valid object name 10b08bc 91ccf7f
+10b08bc 91ccf7f ->  rc=128
+fatal: Not a valid object name 91ccf7f ee972b0
+91ccf7f ee972b0 ->  rc=128
+fatal: Not a valid object name 91ccf7f 63328e1
+91ccf7f 63328e1 ->  rc=128
+fatal: Not a valid object name 63328e1 f20a165
+63328e1 f20a165 ->  rc=128
+BRANCH_FORK_POINTS
+9cb9894af78f78ec06aefc544a818bba24a6e002
+63328e1870d73d0e8312f08aee5a40ad30f7c1b2
+DIFF PR1 OMITTED VS RECOVERED
+M	intent/0001-owner-list-summary/plan.md
+DIFF PR2 ORIGINAL VS FINAL
+M	intent/0001-owner-list-summary/plan.md

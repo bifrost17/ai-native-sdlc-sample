@@ -13,6 +13,10 @@ Astra와 Claude Code Fable의 독립 리뷰 기록을 함께 볼 수 있다.
 이어서 [우리 spec 양식 설계](spec-design/README.md)는 조사·원문 재독, 기능·버그·이행 예시,
 독립 리뷰와 실제 Claude Code의 문서 인계·갱신 대화를 연결한다.
 
+마지막 [우리 plan 양식 설계](plan-design/README.md)는 네 절을 유지하면서 PR별 통합 상태·검증·
+병렬 인계를 필요한 만큼 확장했다. Astra/Fable 독립 리뷰와 실제 새 세션 구현·순차 통합·계획 갱신의
+통과 범위 및 에이전트 누락/복구를 함께 기록했다.
+
 ## 읽는 순서
 
 1. [설계 방법 비교와 추천](design-approaches.md): 우리 양식을 만드는 여덟 가지 접근과 권하는 조합.
@@ -46,6 +50,7 @@ Astra와 Claude Code Fable의 독립 리뷰 기록을 함께 볼 수 있다.
 
 - `intent-design/`: 조사 이후 root가 작성한 우리 intent 양식의 설계 판단과 리뷰 기록. 상류 원본 자료와 구별한다.
 - `spec-design/`: combined requirements/design 양식·선택 근거·독립 리뷰·부분 대화 실험·사용판 전달 기록.
+- `plan-design/`: 실행 계획·PR/병렬 상세·독립 리뷰·새 세션 구현/순차 통합·사용판 전달 기록.
 - `references/<name>/README.md`: 우리 분석. 원문 사실, 해석, 적용 권고와 한계를 구분한다.
 - `templates/`: 상류에서 배포한 빈 양식을 원본 바이트로 보관한다. 수정하거나 번역하지 않았다.
 - `evidence/`: 작성·검토 지침, 실제 예시, 그림, 프롬프트, 제한된 발췌와 출처 메타데이터.

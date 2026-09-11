@@ -53,3 +53,23 @@ templates/plan.md, examples/skills/plan/{SKILL.md,examples/**,references/**}, ex
   로컬 참조·후보 해시·전달 파일·북극성 원문/기존 주석 불변은 일회성 자료 대조로 확인한다.
 
 검사는 이 단계에서는 예정이다. 실제 결과·실패·수정·한계는 plan-design 기록에 연결한다.
+
+## Execution record
+
+root 정독·예시·두 배치 비교 후 R1을 cea1abf/95c0933에 보존했다. 두 독립 리뷰의 비차단 소비자
+지적을 필요한 범위로 고쳐 최종 maker b4ab132/adopter 82d7ad2의 같은 23파일 후보를 Astra/ultra와
+실제 Claude Code Fable/max가 PASS했다. [선택·수정·리뷰 기록](../../docs/research/sdlc-documentation/plan-design/review-record.md).
+
+F02는 사용판에서 별도 초기 제품 34f41ee를 만들고 파생 branch/worktree로 실행했다. Sonnet/medium
+세 세션·여섯 대화에서 새 문맥의 구현과 두 순차 로컬 통합을 확인했다. PR1의 plan 갱신 누락은
+1033eea에 보존했고 HUMAN 피드백 후 10b08bc에 계획·구현을 함께 담았다. 이를 자발적 통과로
+계산하지 않는다. PR2는 검증 방법 보강을 plan·구현 같은 커밋에 반영했고 잘못된 증거 참조를
+리뷰 후 고쳤다. 최종 실험 main f20a165는 16시험과 HUMAN의 12동작 확인을 통과했다.
+[실험 입력·단계·실패·회복·한계](../../docs/research/sdlc-documentation/plan-design/probe/README.md).
+
+독립 verifier가 기존 make check, 최종 제품 통합·첫 PR 상태, 원래 입력 보존, 문서·구현 커밋,
+23파일 해시와 전달 경계를 확인했다. make evals는 키 없음 rc=2 SKIP이며 통과로 세지 않았다.
+[검증 보고](../../docs/research/sdlc-documentation/plan-design/reviews/verifier-final.md).
+root가 최종 색인·기록·관련 주석을 추가하고 원문/179 주석 ID·등급 불변과 로컬 링크를 대조했다.
+새 프로덕션 검사기나 필수 설치는 추가하지 않았다. 이 계획은 로컬 반영까지 완료했으며 hosted
+PR/CI·운영 배포·실제 병렬 개발·M01 이행을 실행한 것으로 확대하지 않는다.

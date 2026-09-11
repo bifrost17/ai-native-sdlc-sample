@@ -1,0 +1,98 @@
+{
+  "refs": {
+    "main": "f20a165859be6f409e8284e457b1eef01ef5d21b",
+    "plan/owner-list-summary": "9cb9894af78f78ec06aefc544a818bba24a6e002",
+    "feat/owner-list": "10b08bcc897bcbe74a6ad1b1e9290b75abdb5420",
+    "feat/summary": "63328e1870d73d0e8312f08aee5a40ad30f7c1b2",
+    "evidence/pr1-before-plan-fix": "1033eea075899754891373f34715098ff27f9be5",
+    "evidence/pr2-before-reference-fix": "ee972b00a4890d073bc7ea3e6487c2a349dcad02"
+  },
+  "initial_baseline": "34f41ee",
+  "shared_docs_merge": "d6660fb",
+  "first_integration": "91ccf7f",
+  "file_sha256": {
+    "tracker.py": "20464f6cc785521e9cb90c4b5466d944a1e949785b051e697f8e8fd6a0350315",
+    "tests/test_tracker.py": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3",
+    "tests/test_owner_list.py": "9b673014a03826a03a32d5e4eb4a62db3f2aa7fc82ed63209b5484f3feddcb35",
+    "tests/test_summary.py": "7b29b4a9a407123424d915f69ca1f5f1a895a63eeccd4a2503fe1e70f305b976",
+    "requests.json": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+    "USAGE.md": "4250813f1dae6bdb7afe83980358d6864b9ca0458b318193b82123e385ca6587",
+    "intent/0001-owner-list-summary/intent.md": "c78a14bacf15fd57c716c61d45e4eb6605bb5dd335b26239e0105d3a3b6a2906",
+    "intent/0001-owner-list-summary/spec.md": "f66693d3a25b007da577e5413527e8b2037271dc53308b9ff2af94be4de71611",
+    "intent/0001-owner-list-summary/plan.md": "fe9e671e77622d134ed1e2fa3dcc19ebe822e5efa05d2300134e1698f6a15152"
+  },
+  "cli_runs": [
+    {
+      "run": "fable-r1",
+      "actual_models": [
+        "claude-fable-5-1"
+      ],
+      "list_cost_usd": 5.8569379999999995
+    },
+    {
+      "run": "fable-r2",
+      "actual_models": [
+        "claude-fable-5-1"
+      ],
+      "list_cost_usd": 2.27754975
+    },
+    {
+      "run": "fable-r3",
+      "actual_models": [
+        "claude-fable-5-1"
+      ],
+      "list_cost_usd": 0.47659650000000003
+    },
+    {
+      "run": "turn-01",
+      "actual_models": [
+        "claude-sonnet-5"
+      ],
+      "list_cost_usd": 0.273204
+    },
+    {
+      "run": "turn-02",
+      "actual_models": [
+        "claude-sonnet-5"
+      ],
+      "list_cost_usd": 0.1197254
+    },
+    {
+      "run": "turn-03",
+      "actual_models": [
+        "claude-sonnet-5"
+      ],
+      "list_cost_usd": 0.18458300000000002
+    },
+    {
+      "run": "turn-04",
+      "actual_models": [
+        "claude-sonnet-5"
+      ],
+      "list_cost_usd": 0.10717979999999999
+    },
+    {
+      "run": "turn-05",
+      "actual_models": [
+        "claude-sonnet-5"
+      ],
+      "list_cost_usd": 0.34852299999999997
+    },
+    {
+      "run": "turn-06",
+      "actual_models": [
+        "claude-sonnet-5"
+      ],
+      "list_cost_usd": 0.06845580000000001
+    }
+  ],
+  "claims": {
+    "actual_turns": 6,
+    "actual_sonnet_sessions": 3,
+    "fresh_first_implementation": true,
+    "pr1_plan_recovery_human_directed": true,
+    "pr2_verification_change_same_commit": true,
+    "hosted_pr_ci_deployment": false,
+    "parallel_development": false
+  }
+}
