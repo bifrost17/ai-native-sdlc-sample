@@ -11,6 +11,8 @@ codex/plan-template-design은 그 판에 의존한다. 실제 PR을 열면 선�
 - .claude/agents/verifier.md: 현재 PR 범위를 확인하여 미래 PR 파일을 누락으로 판정하지 않도록 수정.
 - REVIEW.md, docs/PLAYBOOK-MAP.md: 독립 리뷰에서 확인한 현재 소비자의 PR 범위·수락 설명을
   기존 GIT-WORKFLOW와 맞춘다. 사용자 위임 범위의 연동 정정이며 spec 1ab184e에 범위를 기록했다.
+- docs/METRICS.md: 후속 리뷰에서 확인한 plan 관련 측정 안내도 PR 개수가 아닌 계획된 범위·
+  실제 수락 기록으로 읽도록 맞춘다. 새 측정 코드나 전체 지표 재평가는 추가하지 않는다.
 - docs/research/sdlc-documentation/plan-design/** (new): 정독·예시 맥락·대안·갱신·리뷰·전달·실험 근거.
 - docs/research/sdlc-documentation/README.md, README.md: 최종 결과와 실제 사용 후보 연결.
 - docs/verification/north-star-playbook.html: 이번에 확인한 범위만 기존 주석에 추가. 원문·등급 보존.

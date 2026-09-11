@@ -157,7 +157,9 @@ external system of record — no Jira, no separate requirements tool — for the
 ## Commands
 `make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
 Plan mode headless: `claude -p --permission-mode plan` writes the plan outside the repo and has no
-ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).
+ExitPlanMode; chain 0008 used the engineer's next prompt to accept the plan (L4 327).
+For current work, record the document SHA and human decision per [GIT-WORKFLOW](docs/GIT-WORKFLOW.md);
+the mode or a next prompt by itself is not acceptance evidence.
 Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
 the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
 hook events in the implementation turn, `docs/RUNS.md` on the experiment branch).
