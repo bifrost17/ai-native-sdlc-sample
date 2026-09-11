@@ -16,6 +16,9 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     list_command = commands.add_parser("list")
     list_command.add_argument("--owner")
+    summary_command = commands.add_parser("summary")
+    summary_command.add_argument("--owner")
+    summary_command.add_argument("--json", dest="as_json", action="store_true")
     for name in ("show", "complete"):
         command = commands.add_parser(name)
         command.add_argument("id")
@@ -29,6 +32,18 @@ def main(argv=None):
                 requests = [request for request in requests if request["owner"] == args.owner]
             for request in requests:
                 print(display(request))
+            return 0
+        if args.command == "summary":
+            if args.owner is not None:
+                requests = [request for request in requests if request["owner"] == args.owner]
+            counts = {"open": 0, "done": 0}
+            for request in requests:
+                counts[request["status"]] += 1
+            if args.as_json:
+                print(json.dumps(counts))
+            else:
+                print("open\t" + str(counts["open"]))
+                print("done\t" + str(counts["done"]))
             return 0
         request = next((row for row in requests if row["id"] == args.id), None)
         if request is None:

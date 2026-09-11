@@ -44,6 +44,47 @@ class ExistingTrackerTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout, "")
 
+    def test_summary_counts_all_requests_including_unassigned(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.splitlines(), ["open\t3", "done\t1"])
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_owner_counts_only_that_owner(self):
+        result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.splitlines(), ["open\t1", "done\t1"])
+
+    def test_summary_owner_unknown_is_zero(self):
+        result = self.invoke("summary", "--owner", "nobody")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.splitlines(), ["open\t0", "done\t0"])
+
+    def test_summary_owner_reflects_completed_copy(self):
+        self.invoke("complete", "R-101")
+        result = self.invoke("summary", "--owner", "hana")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.splitlines(), ["open\t0", "done\t2"])
+
+    def test_summary_json_counts_all_requests(self):
+        before = self.data.read_bytes()
+        result = self.invoke("summary", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 3, "done": 1})
+        self.assertEqual(self.data.read_bytes(), before)
+
+    def test_summary_json_owner_counts_only_that_owner(self):
+        result = self.invoke("summary", "--owner", "hana", "--json")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"open": 1, "done": 1})
+
+    def test_summary_json_owner_unknown_or_mismatched_case_is_zero(self):
+        for owner in ("HANA", "nobody"):
+            result = self.invoke("summary", "--owner", owner, "--json")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads(result.stdout), {"open": 0, "done": 0})
+
     def test_show_existing_and_missing_id(self):
         row = self.original["requests"][0]
         result = self.invoke("show", row["id"])
