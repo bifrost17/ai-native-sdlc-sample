@@ -53,3 +53,8 @@ PR2는 같은 제어 아래 집계를 완성하고 일반 OFF를 유지한다. �
 운영 제어는 단기 릴리스 플래그와 구분한다. 고정 만료 일수나 별도 관리 시스템은 요구하지 않는다.
 
 관련 정책: [브랜치](GIT-WORKFLOW.md), [PR 크기](PR-SIZE.md).
+
+설계 참고: [Hodgson의 Feature Toggles](https://martinfowler.com/articles/feature-toggles.html),
+[GitHub의 2021년 적용 사례](https://github.blog/engineering/infrastructure/ship-code-faster-safer-feature-flags/),
+[OpenFeature의 호출자 기본값 규격](https://openfeature.dev/specification/sections/flag-evaluation/).
+적용 조건과 미완성 기능의 OFF 기본값은 이 템플릿의 팀 선택이다.

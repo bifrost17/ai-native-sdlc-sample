@@ -70,4 +70,4 @@ PR이 만들어졌다는 사실도 승인이 아니다. 기록을 남기는 위�
 
 근거: [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow),
 [플레이북의 계획 분할과 병렬 실행](https://academy.claude.com/courses/ai-native-sdlc-playbook/parallel-sessions-and-subagents).
-구체적인 PR 단위·merge commit·단계 수락 기록 방식은 이 템플릿이 선택한 팀 정책이다.
+구체적인 PR 단위·merge commit·단계 수락 기록·기능 공개 제어는 이 템플릿이 선택한 팀 정책이다.

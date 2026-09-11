@@ -47,12 +47,14 @@ baseline: each is drawn from an organization's actual standard, actual people or
 history, none of which a template can invent without lying about where the check came from.
 
 ## Order to fill them in
-운영·배포 결정자는 미완성 기능이 main에 들어갈 때 [공개 제어](RELEASE-CONTROL.md)의 적용 방법도
-정한다. 프로젝트의 기존 운영 정책/PROJECT-POLICY에 공개 결정자, 설정 위치와 수락·중단 기록 위치를
-남긴다. 특정 플래그 서비스나 모든 변경의 추가 승인 문서를 요구하지 않는다.
-
 `intent.md`'s home (L2 183, no prerequisites) and CLAUDE.md (L5 389, no prerequisites) first — every
 other lesson in the map builds on one or both. Policy skills go in before the first `spec.md` is
 written (L3 253 lists them as a `spec.md` prerequisite). Hook values go in before the first real
 `make check`/`make build` run, since an unfilled `PROTECTED` or credential pattern is a gate that
 does not gate anything yet.
+
+운영·배포 결정자는 미완성 기능이 main에 들어갈 때 [공개 제어](RELEASE-CONTROL.md)의 적용 방법도
+정한다. 별도 사용 템플릿의 PROJECT-POLICY.md에는 ‘배포·기능 공개 권한’ 운영 행이 있다. 그 행이나
+제품의 기존 운영 정책에 공개 결정자·설정 위치·수락/중단 기록을 남긴다. 제작 예제인
+policies/PROJECT-POLICY.template.md의 여섯 정책 슬롯은 이 운영 행과 별개다. 특정 플래그 서비스나
+모든 변경의 추가 승인 문서를 요구하지 않는다.
