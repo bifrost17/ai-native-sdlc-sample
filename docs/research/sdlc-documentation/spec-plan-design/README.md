@@ -1,7 +1,9 @@
 # spec·plan 상세화와 TDD 설계 패키지
 
-**설계 패키지 완료.** 최종 후보 `979771d`, 작업 branch `codex/spec-plan-design`.
-[최종 판정·리뷰·한계](review-record.md).
+**초기 설계 패키지 완료.** 초기 최종 후보 `979771d`, 작업 branch `codex/spec-plan-design`.
+[초기 판정·리뷰·한계](review-record.md)는 해당 판의 기록이다.
+이후 실제 모범 문서 조사로 전면 재검토해 후보를 `2d3f2dc`로 보완했다.
+현행 결과는 [후속 보완·리뷰·인계 기록](../spec-plan-reassessment/implementation/README.md)을 읽는다.
 
 spec은 중요한 구조·동작·계약을, plan은 실제 파일·선행 시험·작업/PR·통합·검증을 기록하도록 보강했다.
 spec.md는 진입점이며 여러 설계 정본을 연결할 수 있다. TDD 공통 절차는 자체 스킬, 의무는 짧은 팀 정책,
@@ -9,7 +11,7 @@ spec.md는 진입점이며 여러 설계 정본을 연결할 수 있다. TDD 공
 
 ## 바로 볼 결과
 - [spec 양식](candidate/templates/spec.md), [plan 양식](candidate/templates/plan.md)
-- [후보 전체와 네 완성 예시](candidate/README.md)
+- [후보 전체와 완성 예시](candidate/README.md)
 - [M01 여러 파일 설계의 진입점](candidate/examples/M01/spec.md)
 - [TDD 스킬 소스](candidate/skills/tdd/SKILL.md), [정책·설치/전달 초안](candidate/policy-and-delivery.md)
 - [렌더링한 다이어그램](validation/diagram-record.md)
@@ -19,7 +21,7 @@ spec.md는 진입점이며 여러 설계 정본을 연결할 수 있다. TDD 공
 |---|---|
 | [execution-plan](execution-plan.md), [brief](brief.md), inputs/ | 승인된 범위·공통 입력·북극성 원문 발췌·출처/판/고정 데이터 |
 | proposals/ | root·Astra·Fable 독립 제안, [선택 근거](proposals/selection.md), 실제 Fable 메타데이터/공개 trace |
-| candidate/ | 실제 양식·작성법·스킬·정책 전달안·네 spec→plan 예시·문서 갱신 예 |
+| candidate/ | 실제 양식·작성법·스킬·정책 전달안·spec→plan 예시·문서 갱신 예. 후속 개정에서 W01을 추가해 현재 다섯 예시 |
 | reviews/r1–r3/ | 판별 원 리뷰·프롬프트·발견 처리·Claude 메타데이터, 한도/중단 결과 |
 | [handoff](handoff/record.md) | 새 Claude Code 세션의 읽기 전용 인계 대화·최초 오류·피드백/복구 |
 | validation/ | 입력·후보 해시·상류 참조, 링크·스킬 형식·Mermaid·기존 make check 출력 |
