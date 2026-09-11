@@ -1,0 +1,37 @@
+{
+  "checked_on": "2026-09-11",
+  "plan": {
+    "path": "docs/superpowers/plans/2026-06-10-visual-companion-auth-hardening.md",
+    "sha": "83b5d3a963ed63d8231ecb3276c8368caf1857a3",
+    "date": "2026-06-10T21:14:15Z",
+    "author": "Drew Ritter"
+  },
+  "implementation": {
+    "sha": "b17d54f839831b2345aa389e2f65f435f3a82867",
+    "parents": [
+      "83b5d3a963ed63d8231ecb3276c8368caf1857a3"
+    ],
+    "date": "2026-06-10T21:58:16Z",
+    "files": [
+      ".gitignore",
+      "skills/brainstorming/scripts/helper.js",
+      "skills/brainstorming/scripts/server.cjs",
+      "skills/brainstorming/scripts/start-server.sh",
+      "skills/brainstorming/scripts/stop-server.sh",
+      "tests/brainstorm-server/auth.test.js",
+      "tests/brainstorm-server/helper.test.js",
+      "tests/brainstorm-server/lifecycle.test.js",
+      "tests/brainstorm-server/server.test.js"
+    ]
+  },
+  "release": {
+    "url": "https://github.com/obra/superpowers/pull/1769",
+    "merged_at": "2026-06-16T17:41:11Z"
+  },
+  "limitations": [
+    "Plan explicitly targets agentic workers; full autonomous execution transcript not verified.",
+    "Human review statement in release PR is author-reported.",
+    "Tests and browser probes not independently rerun.",
+    "Plan contains developer absolute checkout and scratch paths."
+  ]
+}

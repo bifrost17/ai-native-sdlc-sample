@@ -1,0 +1,52 @@
+{
+  "checked_on": "2026-09-11",
+  "spec": {
+    "url": "https://github.com/openai/symphony/blob/main/SPEC.md",
+    "pin": "8001b52e3062495a16e520e4ceaf8f9de868c4d0",
+    "first_commit": "fa75ec68c23fbf773c43197da618f88684d8d3f6",
+    "first_date": "2026-03-04T17:09:37Z",
+    "status": "Draft v1"
+  },
+  "implementation_pr": {
+    "url": "https://github.com/openai/symphony/pull/102",
+    "created_at": "2026-07-18T04:52:38Z",
+    "merged_at": "2026-07-18T05:01:46Z",
+    "sha": "7af5a7648c9fbffa08825fe0c0b18be00100aff3",
+    "review_count": 0,
+    "claimed_validation": "\n\n- [x] `make -C elixir all`\n- [x] `mise exec -- mix test test/symphony_elixir/dynamic_tool_test.exs test/symphony_elixir/extensions_test.exs test/symphony_elixir/workspace_and_config_test.exs test/symphony_elixir/app_server_test.exs`\n- [x] No-context SPEC probes: TypeScript 6/6, Python 6/6, and Go passed.\n- [x] Live Linear smoke: local daemon processed FST-5 to Done, wrote one comment, and cleaned its workspace.\n"
+  },
+  "files": [
+    "SPEC.md",
+    "elixir/README.md",
+    "elixir/WORKFLOW.md",
+    "elixir/lib/mix/tasks/workspace.before_remove.ex",
+    "elixir/lib/symphony_elixir/agent_runner.ex",
+    "elixir/lib/symphony_elixir/codex/app_server.ex",
+    "elixir/lib/symphony_elixir/codex/dynamic_tool.ex",
+    "elixir/lib/symphony_elixir/config.ex",
+    "elixir/lib/symphony_elixir/config/schema.ex",
+    "elixir/lib/symphony_elixir/linear/adapter.ex",
+    "elixir/lib/symphony_elixir/linear/agent_tool.ex",
+    "elixir/lib/symphony_elixir/linear/client.ex",
+    "elixir/lib/symphony_elixir/orchestrator.ex",
+    "elixir/lib/symphony_elixir/prompt_builder.ex",
+    "elixir/lib/symphony_elixir/status_dashboard.ex",
+    "elixir/lib/symphony_elixir/tracker.ex",
+    "elixir/lib/symphony_elixir/tracker/issue.ex",
+    "elixir/lib/symphony_elixir/tracker/memory.ex",
+    "elixir/lib/symphony_elixir/workspace.ex",
+    "elixir/lib/symphony_elixir_web/presenter.ex",
+    "elixir/test/support/test_support.exs",
+    "elixir/test/symphony_elixir/app_server_test.exs",
+    "elixir/test/symphony_elixir/core_test.exs",
+    "elixir/test/symphony_elixir/dynamic_tool_test.exs",
+    "elixir/test/symphony_elixir/extensions_test.exs",
+    "elixir/test/symphony_elixir/orchestrator_status_test.exs",
+    "elixir/test/symphony_elixir/workspace_and_config_test.exs"
+  ],
+  "limitations": [
+    "Validation in PR is author-reported; not independently rerun.",
+    "Prototype reference implementation.",
+    "Current spec contains later revisions; not proven to precede all implementation."
+  ]
+}
