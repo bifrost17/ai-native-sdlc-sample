@@ -61,8 +61,8 @@ guidance를 제3의 새 규칙 위치에 병설하지 않는다. 기존 referenc
 | 기존 대상·내용 | 새 본문/정본에서 처리 |
 |---|---|
 | design-spec L3 근거·사람 수락/초안 허가·Status/Upstream | 후보 첫 부분과 끝 Review/갱신 절에 의미 유지. 원문 출처 줄 번호 유지, 사용자의 기존 허가 재질문 금지 |
-| design-spec 팀 스킬 선택·spec-policy-pass 기본 예시·출처/판 | 후보 앞부분에 유지, 기존 skill-provenance.md 그대로 보존 |
-| design-spec Writing 여섯 역할/중요 미정·우려 | 후보 역할 목록과 spec 양식/조건부 reference로 교체, 연결 정본을 추가 |
+| design-spec 팀 스킬 선택·spec-policy-pass 기본 예시·출처/판·생성 prompt | 후보 앞부분에 유지, 원 요청 prompt와 적용 스킬 판·초안 허가를 versioned spec/PR에 보존(L3 279), 기존 skill-provenance.md 그대로 보존 |
+| design-spec Writing 여섯 역할/중요 미정·우려 | 후보 역할 목록과 spec 양식/조건부 reference로 교체, 작성자 언어·고정 영문 절 이름 유지, 연결 정본을 추가 |
 | plan L4 근거·단계 수락/문서 SHA·권한 | 후보 앞부분에 유지, docs/GIT-WORKFLOW.md를 정본으로 연결 |
 | plan 결함 재현 선행 커밋·INTENT_TASK=fix·mutation 원본 복구 | 후보 중간에 유지. 일반 기능에 fix 모드를 켜지 않음 |
 | plan 파일/순서/위험/Proof·갱신 | 후보와 plan 양식으로 교체·TDD 선행/문서 집합을 보강 |

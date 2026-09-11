@@ -10,6 +10,8 @@ Human acceptance starts planning (L3 276). These source principles remain separa
 Confirm the actual intent revision and recorded human acceptance, or the already-authorized draft scope.
 Keep Upstream with the actual input revision and Status draft. An old accepted version does not approve new edits.
 Do not ask twice when authorization already covers this work; do not invent acceptance.
+Preserve the originating prompt, applied skill versions, and any required draft authorization (who, scope, reason)
+with the versioned spec/PR record (L3 279); a final summary alone does not preserve the original request.
 
 Read the changed code, neighboring flows, interfaces and tests. Find applicable installed team skills, read their
 bodies, and apply their decisions to the artifact. A source folder is not proof of installation. Record actual
@@ -20,7 +22,8 @@ cached or directory-loaded versions. Do not invent policy values or require a pa
 
 Use the project's templates/spec.md. This candidate's review copy is [the form](../../templates/spec.md);
 [conditional design blocks](../../guidance/design-blocks.md) provide fillable contracts and diagrams.
-Preserve the six information roles. Small changes can fit one file; spec.md is the entrypoint, not a one-file limit.
+Write in the originator's language and retain the six English section names and their information roles.
+Small changes can fit one file; spec.md is the entrypoint, not a one-file limit.
 List each authoritative design document, what decision it owns and what must be read. Keep one source per decision.
 A split document is part of the same spec scope/revision/review; an external moving reference needs an identified
 revision or snapshot. Do not put architecture/classes/contracts in plan merely to shorten spec.md.

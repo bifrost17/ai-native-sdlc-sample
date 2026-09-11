@@ -1,6 +1,6 @@
 # Plan: 보고서 호환과 저장소를 병렬 준비한 뒤 통합
 Upstream: spec.md@23845b5. Status: draft.
-Current change: 이 커밋의 spec/설계 정본 개정과 함께 읽는다. DB 선택 검증·운영 문서 책임을 명료화한 연구 r2 개정이다.
+Current change: 이 커밋의 spec 개정과 함께 읽는다. DB 선택 검증을 AC8과 실행 증명에 연결한 연구 r3 개정이다.
 합성 작성 예시. 사용자 허가 범위는 설계 패키지이며 제품 계획 승인/구현 성공이 아니다.
 [spec](spec.md)와 [입력](context.md)을 함께 읽는다. 모든 시험은 예정이며 이름은 추가 계획이다.
 
@@ -81,7 +81,7 @@ Q4의 실제 호스트 명령은 여기서 발명하지 않는다.
 | P-B1 AC1/2/5 | 추가 test_sqlite_store.py | 서로 다른 연결의 완료 구간 겹침과 두 완료 보존, 반복/원순서/타입, 잠금 보유 연결과 timeout=5 설정·실패 관측, rollback |
 | P-B2 AC3 | 추가 test_migrate_store.py import 사례 | 모든 키/값/순서, 빈/정상 배열, 중복/누락/unknown/타입/버전/target 기존 거부, 중단·새 target 재시도, source 바이트 불변 |
 | P-B3 AC4 | 같은 파일 export 사례 | 새 완료 이후 최신 값/순서, user_version 오류/부분 실패·target 기존 거부, 복구 JSON 사본에서 구버전 호환 |
-| P-C AC1–7 | 추가 test_cutover.py + API/report 확장, A/B 전체 | 양 backend 기존200/401/403/404/503·거부 무쓰기, SQLite 동시성, 선택/DB 경로·스키마 실패 시 시작 거부·DB 비생성·fallback 없음, 완료 후 API와 보고서 일치 |
+| P-C AC1–8 | 추가 test_cutover.py + API/report 확장, A/B 전체 | 양 backend 기존200/401/403/404/503·거부 무쓰기, SQLite 동시성, 선택/DB 경로·스키마 실패 시 시작 거부·DB 비생성·fallback 없음, 완료 후 API와 보고서 일치 |
 | 운영 AC7 | 운영/통합 담당의 실제 환경 사본 리허설 기록 | Q4 명령·판·상태·값/순서·새 완료 보존·중지/재개 근거. 미실행/실패면 전환하지 않음 |
 
 PR마다 최신 main 결합과 통합 후 전체 시험을 확인한다. 코드 시험이 운영 상태/권한/중지를 증명하지 않는다.

@@ -39,6 +39,7 @@ Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합
 | AC5 → R5 | 잠금 경합·I/O 실패·저장 사용 불가 | 대기 상한 설정 5초 적용, 503 {error:temporarily_unavailable}; 부분 완료/내부 오류 노출 없음 |
 | AC6 → R6 | JSON 기본/SQLite 선택 모두에서 API→보고서, API 실패 | 같은 데이터의 보고서 결과 유지, 실패를 오류로 보고하고 옛 JSON을 사용하지 않음 |
 | AC7 → R3,R4 | 사본 전환/중단/복구 리허설 | 운영 정본의 단계별 중지 조건 준수, 최신 쓰기 대조 후에만 안전 경로 재개 |
+| AC8 → R2 | sqlite를 선택했는데 DB 경로가 없거나 버전/필수 스키마가 다름 | architecture의 시작 검증으로 시작 거부, 새 DB 비생성·JSON fallback 없음 |
 
 ## Design
 [architecture](design/architecture.md)·[storage](design/storage.md)·[operations](design/operations.md)의

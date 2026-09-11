@@ -14,8 +14,9 @@ Status draft and the authorization limitation where relevant. Follow the project
 Initial planning does not edit production code.
 
 Use the project's templates/plan.md; this candidate's copy is [the form](../../templates/plan.md).
-Keep four roles linked, not four disconnected lists: actual paths/new files and responsibilities; concrete order and
-dependencies; meaningful risks/detection/response; named existing/new checks with commands and expected results.
+Write in the originator's language while retaining the four English section names. Link the four roles:
+actual paths/new files and responsibilities; concrete order and dependencies; meaningful risks/detection/response;
+named existing/new checks with commands and expected results.
 Do not move undecided important interfaces/classes/schema from spec into a private implementation task.
 
 Start each new/changed behavior with its named first test/fixture and expected failure before the production change.
