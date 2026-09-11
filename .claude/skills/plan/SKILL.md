@@ -1,6 +1,6 @@
 ---
 name: plan
-description: In plan mode, turns an accepted spec.md into plan.md — the files that change, the order of work, the risks, and the proof — and iterates with the engineer until someone who never saw the conversation could implement from the plan alone. Does not write code, and does not accept the plan.
+description: Turns accepted requirements and design into an implementation plan before code changes, or revises that plan when execution changes. Reads real files, connects work and PR boundaries to proof, and iterates with the engineer for a handoff that stands without the conversation. Does not approve the plan.
 ---
 # Plan
 
@@ -10,38 +10,52 @@ description: In plan mode, turns an accepted spec.md into plan.md — the files 
 > change from the plan alone."
 > L4 329: "When implementation departs from the plan, update plan.md in the same commit."
 
-## Inputs
-`intent/<NNNN>-<slug>/intent.md` and `spec.md`, both accepted (merged — a commit on `origin/main`
-for each file; the `Status:` line stays `draft` by design and is not the test). For a defect chain
-(L9 625 failing test first) the engineer opens the session with `INTENT_TASK=fix`; nothing sets
-it for you, and without it the test-file hook (L9 631) is off. For a feature chain do **not** set
-it — with `INTENT_TASK=fix` on, the hook also blocks creating the new test file (chain 0008). Record
-`Upstream: spec.md@<sha>. Status: draft.` at the top of plan.md, and leave it `draft`: approval
-is the merge of the PR that carries the plan (L2 231), nothing flips this line by hand. (Chain 0009
-wrote `accepted` there for the upstream spec's PR, and the line stopped saying whose status it was.)
-One exception: an engineer may tell you to start on a draft (a single worker stacking PR B on
-the intent PR A). Immediately below the Upstream/Status line, write one line naming who told
-you and why, and repeat it in the PR body — approval is still the merge, not this note.
-Read the codebase without changing anything — that is what plan mode is for.
+## Read before writing
+Read the change's intent.md, spec.md and the actual code, checks and relevant project policies.
+Confirm the spec revision and the human decision that permits this next step; a previous accepted
+revision does not approve unreviewed edits. Follow docs/GIT-WORKFLOW.md: stage acceptance records
+the document/SHA, decision maker, decision and reason in the Draft PR or preserved decision record.
+It does not require a PR per document or replace final integration approval. Keep
+`Upstream: spec.md@<sha>. Status: draft.`. If the engineer has already authorized work from a draft,
+record that scope and reason without asking again. Plan mode is a reading mode, not approval evidence.
+While initially planning, inspect the product without editing it; write the plan only as authorized.
 
-## Write `plan.md` with four sections (`templates/plan.md`)
-- **Files that change** — real paths, `(new)` where new.
-- **Order of work** — the failing test comes before the change that makes it pass.
-- **Risks** — what the change could break, which step is riskiest, how you would notice.
-- **Proof** — tests by name, and the output or screenshot that shows the behaviour.
-  Mutation checks restore the original bytes you saved (compare sha256), never `git checkout --` —
-  that also discards your uncommitted fix (chain 0008).
+## Record enough to execute
+Use templates/plan.md in the change's intent folder. The four sections are information roles, not
+a demand for four independent lists. Connect files, steps and proof so the next reader can act.
 
-## Interrogate before accepting
-Ask, and write the answers into Risks and Proof: what could this break? which step is most
-risky? what did you choose not to do, and why? Iterate until the plan stands without the
-conversation. Then the engineer accepts the plan — plan mode itself records that; nothing else does.
+- **Files that change:** verified paths and each change's role; mark new files, including relevant tests/docs.
+- **Order of work:** concrete results and needed inputs, including wiring into the product. A small change
+  can be a few steps in one PR. For multiple PRs, name each reviewable purpose, included work,
+  dependency/merge order, working main state after merge, remaining scope and proof. Keep one behavior's
+  implementation/tests/docs together unless there is a substantive reason to split.
+- **Risks:** material neighboring regressions, the riskiest step, its detection/response and significant
+  rejected execution alternatives. Do not duplicate the spec's entire design discussion.
+- **Proof:** checks by name, command/observation and expected result tied to the relevant AC or behavior.
+  Distinguish checks that exist from ones to add. Put feedback at meaningful steps, not only at the end;
+  include combined-result verification. Planned evidence is not observed success.
 
-## While implementing
-If the work departs from the plan, edit plan.md in the same commit. The PR review (REVIEW.md,
-compliance pass) reads the diff against plan.md.
+For defects, add the regression test, observe failure for the expected reason and commit it before
+the fix; then make it pass without weakening it. Other changes use the appropriate baseline and
+feedback loop. In this maker repo the engineer declares fix mode with INTENT_TASK=fix; check the
+test-protection setup before the reproduction-writing phase so it does not block creating the test.
+Do not enable fix mode for ordinary features. When using mutation checks, restore saved original
+bytes rather than discarding unrelated uncommitted work.
 
-## What this skill does not do
-- Does not write code while the plan is being written.
-- Does not accept the plan — the engineer does, in plan mode.
-- Does not write spec.md or intent.md.
+For multi-PR, parallel or operational changes, read [conditional guidance](references/execution-depth.md).
+Choose only needed examples: [small feature](examples/feature.md), [defect](examples/bug.md),
+[two PRs](examples/two-pr.md), [migration/parallel work](examples/migration.md).
+
+## Review and revise with the engineer
+Probe what could break, the riskiest step, omitted alternatives and how success will be recognized.
+Resolve consequential missing information; do not invent paths, test results or decisions. The
+engineer should be able to hand the plan and its declared references to someone who saw no chat.
+Record the answers in the plan rather than relying on a final chat message. The engineer accepts it;
+this skill does not write product code as part of initial planning or approve its own work.
+
+During implementation, changes to files/order/PR boundaries/proof update the affected plan and reason
+in the same implementation commit. If behavior, design, scope or acceptance criteria change, update
+the spec through that authoring flow; revisit intent when purpose/constraints change. Record any
+required revised upstream decision and commit before repinning. Do not reapprove every allowed
+implementation detail or edit unaffected documents. Use the team's available review methods with
+model/effort appropriate to the decision; no particular external skill or tool is required.
