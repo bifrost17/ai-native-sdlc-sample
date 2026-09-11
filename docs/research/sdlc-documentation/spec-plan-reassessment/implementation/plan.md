@@ -12,7 +12,7 @@
 2. Astra/ultra: M01 한 사례의 설명·정본 읽기 경로·작업 배치를 독립 경로에서 수정한다. 기존 계약을 유지한다.
 3. root: 작은 사내 웹 기능 W01의 context/intent/spec/plan을 작성해 UI·API·권한·실패·TDD·공개 상태를 연결한다.
 4. 수정 판을 고정하고 새 Astra와 실제 Claude Code Opus/high가 독립 리뷰한다. 중요한 모순/누락을 고치고 영향 범위를 재검토한다.
-5. 새 Claude Code Sonnet/medium 세션이 W01을 읽고 실제 대화 없이 작업/시험/PR 상태를 재구성한다.
+5. 새 Claude Code Sonnet/medium 세션이 W01을 읽고 기존 작성 대화 없이 작업/시험/PR 상태를 재구성한다.
    root가 응답을 읽고 후속 변화나 피드백을 준다. 읽기 전용 설계 인계 점검으로 한정하며 구현 성공으로 표현하지 않는다.
 6. 로컬 링크·스킬 형식·변경 다이어그램 렌더·기존 make check·보존 파일을 확인하고 Git에 기록한다.
 

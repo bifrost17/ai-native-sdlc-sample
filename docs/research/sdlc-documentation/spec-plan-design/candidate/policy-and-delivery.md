@@ -108,7 +108,7 @@ claude plugin update intent-sdlc-skills@intent-sdlc-skills --scope user
 claude plugin list --json
 ```
 최초 설치는 기존 [org-skills/README.md](../../../../../org-skills/README.md)의 marketplace add/install 절차다.
-그 안내의 정본은 그대로 두고 TDD 항목만 추가한다. 갱신 후 새 세션에서 실제 로드 경로·판과 자연 요청
+그 안내를 설치 절차의 정본으로 유지하고 TDD 항목을 추가한다. 갱신 후 새 세션에서 실제 로드 경로·판과 자연 요청
 적용을 검증한다. README의 spec-policy-pass/명령 설명도 개정된 역할로 맞추며, design-spec과 함께 읽었을 때
 다문서 허용/우려 없는 결과와 충돌하지 않는지 확인한다. 이번에는 설치하지 않는다. 후속 사용판/파생 실험 branch에서 실제 대화·구현·TDD·
 문서 동기화·회귀를 평가하고 통과한 범위만 북극성 주석에 반영한다.

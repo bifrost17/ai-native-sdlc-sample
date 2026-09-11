@@ -1,6 +1,6 @@
 # Plan: 내 신청 API를 준비하고 화면을 연결해 한 번 공개
 Upstream: spec.md@394651e. Status: draft.
-Current change: 이 커밋에서 spec의 Q4와 운영 기록 위치를 명확히 한 개정도 함께 읽는다.
+Current change: 함께 개정한 spec의 Q4·운영 기록 위치와 공개 전 AC1–7/cleanup AC8의 구분을 함께 읽는다.
 
 [spec](spec.md)의 본인 조회·서버 공개 판단을 먼저 준비하고, 같은 API에 포털을 연결한다.
 [현재 계약·명령·입력 데이터](context.md)가 필수 입력이다. 합성 설계로, 아래 추가 시험과 제품 파일은 실제로 작성/실행되지 않았다.

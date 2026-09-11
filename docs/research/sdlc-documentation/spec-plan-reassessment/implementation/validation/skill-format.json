@@ -1,0 +1,28 @@
+{
+  "candidateCommit": "1500b16",
+  "method": "uv run --with pyyaml --no-project python /Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py <candidate/skills/name>",
+  "results": [
+    {
+      "name": "design-spec",
+      "exitCode": 0,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    },
+    {
+      "name": "plan",
+      "exitCode": 0,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    },
+    {
+      "name": "tdd",
+      "exitCode": 0,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    },
+    {
+      "name": "spec-policy-pass",
+      "exitCode": 0,
+      "output": "WARN `--no-project` was provided, but no project was found\nSkill is valid!\n"
+    }
+  ],
+  "scope": "format only; no installation, automatic loading, or product behavior proof"
+}
+
