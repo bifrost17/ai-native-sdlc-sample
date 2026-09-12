@@ -3,7 +3,9 @@
 이 폴더는 우리 팀의 선택 가능한 기본 스킬 예시를 배포한다. 아래 기본 설치 안내는 Claude Code용이다.
 사용 템플릿에 내장되는 필수 스킬이 아니다. 팀이 채택한 스킬과 프로젝트 정책을 함께 사용한다.
 
-이 패키지는 **tdd-optional 0.1.1**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+이 패키지는 **tdd-optional 0.1.2**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+0.1.2 검증자는 공개 실행 근거가 있을 때 문서 선행 갱신과 사후 복구를 구별한다. 최종 파일·같은 커밋만으로
+순서를 추정하지 않으며 이력이 없으면 미검증으로 남긴다. 새 승인 단계·기록 양식·검사기는 추가하지 않는다.
 OpenCode 전달은 [어댑터 안내](opencode/README.md)를 따른다.
 [0025](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0025-opencode.md), [0026](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0026-muse-spark.md),
 [0028](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0028-review-tdd.md)은 분리 전 판의 실행 기록이다.

@@ -39,7 +39,10 @@ test generation. A fresh context or another model does not guarantee an independ
 
 - Do spec.md and its complete declared design document set capture material agreed contracts and
   design changes, and does plan capture changed files, order, PR boundaries and verification?
-  Were affected documents recorded with the related implementation? Does the implementation fulfill
+  Were affected documents recorded with the related implementation? For material contract or plan changes,
+  use available public event evidence to distinguish updates before the next dependent verification/implementation
+  cycle from later repair. A shared commit or final document state alone does not prove that order; missing
+  history is unverified, while an observed late update is a sequencing finding. Does the implementation fulfill
   them, including relevant failure cases and neighboring behavior? Review the current scope; a plan
   may deliberately span several PRs, and future work is not a defect in the current slice. When the
   claim is that a release unit is complete, assess its cumulative behavior and applicable exposure,

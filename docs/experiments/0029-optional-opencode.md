@@ -50,3 +50,69 @@ HUMAN은 실제 공개 도구 사건과 산출물·독립 제품 확인으로 �
 사전/실행 원본 위치: `/Users/jake/Projects/ai-native-sdlc-experiment-private/0029-optional-opencode/`.
 원래 데이터의 human.json·oracle·기존 시행 결과는 AGENT 제품에 전달하지 않는다. 출력은 실행마다 새
 경로에 보존한다. 결과와 실제 source/ref/session/동적 평가·제약은 실행 후 아래에 추가한다.
+
+## 실행 자료와 브랜치
+
+사용자는 실험별 브랜치 구분과 데이터의 파일 보존을 재확인했다. 다음을 실제로 생성했다.
+
+| 자료 | 위치·고정판 |
+|---|---|
+| 순수 사용판 저장소 | `/Users/jake/Projects/ai-native-sdlc-opencode-optional-20260912/use-template`, `codex/optional-use-template@d9c8df422e58297fc4857876eeebea4e49932b2a` |
+| F04 제품 저장소 | `/Users/jake/Projects/ai-native-sdlc-opencode-optional-20260912/f04` |
+| 입력·설치 완료 seed | 제품의 `codex/optional-f04-seed@068a969c3b5cdc31ed8ec7825f154bcf9af8a80e` |
+| 고정 입력 사본 | 원본 폴더의 `inputs/`: public·HUMAN 결정/oracle·fixture·baseline 코드와 3시험, SHA-256 manifest |
+| 설치 근거 | `setup.py/json`, `skills-discovery.json`, `verifier-config.json`, baseline 결과 |
+| 대화·실행 근거 | 단계별 `*.prompt.txt`, `raw/*.jsonl`, meta, 정리한 session export. 내부 추론·서명 제외 |
+| HUMAN 단계 결정 | 제품 `decisions.md`, 대상 SHA·결정·이유를 관련 Git 이력과 보존 |
+
+14개 설치 스킬은 모두 이번 제품의 경로에서 발견됐다. 별도로 발견된 전역 aside-browser와 내장
+customize-opencode는 프로젝트 설정으로 사용을 거부했다. 실제 적용은 개발 trace에서 따로 판단한다.
+입력 준비 중 호스트 Python 3.9의 tarfile API 차이로 한 번 중단됐고, 모델 호출 전에 private setup만
+수정했다. 최초 오류와 재실행 근거도 `setup-first-error.txt`에 남겼다.
+
+## 최초 계획과 PR1의 실제 피드백
+
+처음 요청에서 HUMAN이 D1–D6의 업무 사실을 설명했다. 미공개 질문을 에이전트가 모두 발견한 실험으로
+세지 않는다. 설정명·정확한 ON 값은 AGENT 제안을 검토해 합의했다. D7은 아직 공개하지 않은 상태로
+PR1을 진행했다.
+
+- intent `0f20e6b`, spec `e5de410`은 HUMAN이 실제 문서를 읽고 수락했다.
+- 최초 plan `00ae390`은 새 동작 TDD·기존 회귀 활용의 혼합을 선택했다. 다만 PR1에 아직 없는
+  summary의 최종 OFF 계약을 요구했고 기존 세 시험이 파일 오류까지 검증한다고 적었다. HUMAN이
+  검토에서 두 오류를 지적했다. 원래 판은 보존하며 자발적으로 정확한 최초 계획이었다고 세지 않는다.
+- raw04에서 plan 정정 → 시험 작성·의미 있는 실패 → 제품 수정·통과 순서를 확인했다. 수정 plan과
+  구현·시험은 `db7b849`에 함께 담겼다. 초기 RED 중 이미 만족한 기존 동작의 GREEN은 따로 구분했다.
+- native verifier는 10시험 상태를 검토하고 경미한 커버리지 3건을 제시했다. AGENT가 보강한 뒤
+  12시험을 재실행했다. 이 추가 확인은 사후 GREEN으로 기록했고 가짜 RED를 만들지 않았다.
+  verifier가 최종 12시험 커밋까지 다시 검토한 것은 아니다. HUMAN은 추가 diff와 최신 결과를 직접 확인했다.
+- 제품 내부 실행 기록이 PR1에 없었다. HUMAN의 다음 대화에서 문서화를 상기했다. 대화·도구 원본은
+  이미 private 파일에 보존됐지만, 이를 제품 내부 인계 기록까지 자발적으로 갖춘 성공으로 바꾸지 않는다.
+- PR1 branch와 실제 merge `94eeb47`에서 각각 **30명령·3추가 판정 통과**: 제품 CLI 25개,
+  전체 unittest 1개(12시험), Git 근거 4개다. OFF 선차단의 정적 배치와 누락 경로 대조를 함께 확인했다.
+  observer는 파일 접근 계측이 아니므로 모든 파일 접근의 부재를 동적으로 증명했다고 하지 않는다.
+
+## JSON 후속 요구에서 발견한 순서 누락과 최소 보완
+
+PR2 최초 구현 `f69e361`과 18시험·독립 observer 43명령/6판정 통과를 실제 관측한 뒤 D7을 공개했다.
+raw06의 HUMAN 메시지는 JSON 업무 요구만 담았고 spec/plan이나 스킬 이름은 상기하지 않았다.
+최종 `d876845`는 JSON·영향 spec·plan을 같은 커밋에 담았으며 20시험이 통과했다. 하지만 공개 사건은
+**시험 편집 11–35행 → 표시된 RED 38행 → 제품 수정 41/44행 → 표시된 GREEN 47행 → 첫 spec 수정 53행**이다.
+문서를 자발적으로 갱신했어도 다음 의존 시험·구현 전에 갱신하는 기존 팀 지침은 위반했다.
+최종 동기화로 최초 순서 누락을 지우거나 깨끗한 통과로 바꾸지 않는다.
+
+native 검토는 최종 문서와 같은 변경 묶음만으로 정책 일치를 보고했으며 이 순서를 발견하거나
+미검증으로 구별하지 못했다. 일부 시험 명령은 `tail` 파이프로 끝나므로 도구 rc0은 unittest의 rc가
+아니다. 표시된 `FAILED`/`OK`와 독립된 비파이프 전체 실행을 구별한다. root 메타의 error_events=0도
+native 내부 권한 오류가 없었다는 뜻은 아니다(`git merge*` 제한에 merge-base도 걸린 관측 포함).
+
+보완은 기존 규칙을 잘 보이는 위치와 검토 기준에 연결하는 범위로 한정했다.
+
+- 선택형 제품 CLAUDE의 후속 요구 항목에 **다음 의존 시험·구현 전에 갱신**, non-TDD도 동일,
+  관련 구현과 같은 커밋이라는 기존 순서를 명시했다.
+- 선택형 두 verifier에 공개 사건이 있으면 선행/사후 갱신을 구별하고, 최종 상태·같은 커밋만으로
+  순서를 추정하지 않도록 했다. 이력 부재는 미검증, 관측한 늦은 갱신은 순서 발견으로 구별한다.
+- 선택형 패키지는 **0.1.2**로 갱신한다. 기본형·새 승인·새 스킬·필수 양식·의미 검사기는 추가하지 않았다.
+
+재시험은 `f69e361`까지의 이력만 가진 별도 제품/브랜치와 새 세션에서 같은 JSON 업무 요구를 수행한다.
+이 부분은 HUMAN이 동작별 구현 후 테스트를 명시하여 선택형의 비TDD 경로도 관측한다. 소스·전략·
+문맥이 함께 달라지므로 보완 문장만의 인과 효과를 주장하지 않는다. 최초 전체 실행의 실패는 그대로 남는다.
