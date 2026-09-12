@@ -1,0 +1,998 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>바이브 코딩(vibe coding)을 통한 개발 프로세스 개선 - Junhyunny’s Devlogs</title>
+<meta name="description" content="&lt;br /&gt;">
+
+
+  <meta name="author" content="강준현 (Junhyunny)">
+  
+  <meta property="article:author" content="강준현 (Junhyunny)">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Junhyunny's Devlogs">
+<meta property="og:title" content="바이브 코딩(vibe coding)을 통한 개발 프로세스 개선">
+<meta property="og:url" content="https://junhyunny.github.io/ai/ai-agent/copilot/prompt/improve-development-process-by-vibe-coding/">
+
+
+  <meta property="og:description" content="&lt;br /&gt;">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-09-13T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2026-03-23T23:03:14+00:00">
+
+
+
+
+<link rel="canonical" href="https://junhyunny.github.io/ai/ai-agent/copilot/prompt/improve-development-process-by-vibe-coding/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "강준현 (Junhyunny)",
+      "url": "https://junhyunny.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>바이브 코딩(vibe coding)을 통한 개발 프로세스 개선 | Junhyunny’s Devlogs</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="바이브 코딩(vibe coding)을 통한 개발 프로세스 개선" />
+<meta name="author" content="강준현 (Junhyunny)" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="description" content="소프트웨어 엔지니어 / 작가" />
+<meta name="twitter:description" property="og:description" content="소프트웨어 엔지니어 / 작가" />
+<link rel="canonical" href="https://junhyunny.github.io/ai/ai-agent/copilot/prompt/improve-development-process-by-vibe-coding/" />
+<meta property="og:url" content="https://junhyunny.github.io/ai/ai-agent/copilot/prompt/improve-development-process-by-vibe-coding/" />
+<meta property="og:site_name" content="Junhyunny’s Devlogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-09-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-03-23T23:03:14+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="바이브 코딩(vibe coding)을 통한 개발 프로세스 개선" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"강준현 (Junhyunny)"},"dateModified":"2026-03-23T23:03:14+00:00","datePublished":"2025-09-13T00:00:00+00:00","description":"소프트웨어 엔지니어 / 작가","headline":"바이브 코딩(vibe coding)을 통한 개발 프로세스 개선","mainEntityOfPage":{"@type":"WebPage","@id":"https://junhyunny.github.io/ai/ai-agent/copilot/prompt/improve-development-process-by-vibe-coding/"},"url":"https://junhyunny.github.io/ai/ai-agent/copilot/prompt/improve-development-process-by-vibe-coding/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Junhyunny's Devlogs Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3270204283865249",
+          enable_page_level_ads: true
+     });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193106915-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-193106915-2');
+</script>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Junhyunny's Devlogs
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://junhyunny.github.io/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://junhyunny.github.io/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://junhyunny.github.io/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://junhyunny.github.io/logs/">Logs</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://junhyunny.github.io/books/">Books</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div style="text-align: center;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3270204283865249"
+    crossorigin="anonymous"></script>
+  <!-- junhyunny.github.io -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3270204283865249" data-ad-slot="1592931158"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<div id="main" role="main">
+
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/images/profile/profile.jpg" alt="강준현 (Junhyunny)" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">강준현 (Junhyunny)</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>소프트웨어 엔지니어 / 작가</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">서울/대한민국(Seoul/South Korea)</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.linkedin.com/in/junhyun-kang-32b972201/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Junhyunny" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://stackoverflow.com/users/14859847/junhyunny" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">StackOverflow</span></a></li>
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kang3966@naver.com">
+            <meta itemprop="email" content="kang3966@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+
+  
+    <div class="author__book">
+      <div class="book-cards book-cards--profile">
+    <article class="book-card">
+        <a class="book-card__link" href="https://www.yes24.com/product/goods/180391041">
+            <div class="book-card__cover">
+                <img
+                    src="/images/profile/spring-security-book.png"
+                    alt="안쪽까지 들여다보는 스프링 시큐리티 표지"
+                    width="1138"
+                    height="338"
+                    loading="lazy"
+                >
+            </div>
+            <div class="book-card__content">
+                <span class="book-card__eyebrow">MY BOOK</span>
+                <span class="book-card__title">안쪽까지 들여다보는 스프링 시큐리티</span>
+                <span class="book-card__author">강준현 지음</span>
+                <span class="book-card__action">
+                    책 보러 가기
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </span>
+            </div>
+        </a>
+    </article>
+</div>
+
+    </div>
+  
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <meta itemprop="headline" content="바이브 코딩(vibe coding)을 통한 개발 프로세스 개선">
+    
+    <meta itemprop="description" content="">
+    
+    
+    <meta itemprop="datePublished" content="2025-09-13T00:00:00+00:00">
+    
+    <meta itemprop="dateModified" content="2026-03-23T23:03:14+00:00">
+
+    <div class="page__inner-wrap">
+      
+      <header>
+        <h1 id="page-title" class="page__title" itemprop="headline">바이브 코딩(vibe coding)을 통한 개발 프로세스 개선
+</h1>
+        
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 분 소요
+        
+      </span>
+    
+  </p>
+
+
+      </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><br /></p>
+
+<h2 id="0-들어가면서">0. 들어가면서</h2>
+
+<p>아무래도 AI 관련된 기술들이 많이 등장하면서 이를 통해 어떻게 개발 효율성을 높일 수 있을지 많은 조직에서 고민하고 있는 것 같다. 현재 우리 팀도 AI를 사용해 개발 효율성을 높이기 위한 여러가지 시도를 해보고 있다. 바이브 코딩이라는 개념이 등장했을 때 조만간 개발자의 자리가 없어지진 않을까 걱정도 되었지만, 직접 바이브 코딩을 해보니 아직은 AI가 섬세한 수준의 개발은 어렵다는 생각이 들었다. 매우 구체적인 프롬프트를 작성하고 작업 단위를 아주 작게 쪼개면 가능할 것 같지만, 프롬프트를 작성할 시간에 개발자가 직접 코드를 작성하는 것이 빠르고 효율적이라고 생각한다.</p>
+
+<p>서론이 길었다. 이번 글에선 코파일럿 에이전트(copliot agent)로 여러가지 시도를 해보면서 겪은 노하우나 프롬프트 작성법에 대한 내용을 일부 정리했다.</p>
+
+<h2 id="1-approach">1. Approach</h2>
+
+<p>여러가지 테스트들을 통해 다음과 같은 인사이트(insight)를 얻었다.</p>
+
+<ul>
+  <li>AI는 한번에 큰 작업을 하는 것에 능숙하지 못하다. 그럴싸한 결과를 내놓지만, 결과를 면밀히 살펴보면 결국 손 봐야하는 것이 많다.</li>
+  <li>프롬프트가 구체적이지 않다면 추론을 통해 의도하지 않은 구현을 한다.</li>
+</ul>
+
+<p>큰 작업에 대해 매우 구체적인 프롬프트를 작성하는 것은 상당히 어려운 일이고, AI가 무지막지하게 쏟아낸 작업 내용을 리뷰하면서 수정하는 것도 개발자에겐 고역이었다. 우리는 사람이 실제로 하는 일(process)를 작은 단위의 작업(task)로 구분하기로 결정했다.</p>
+
+<p>우리 팀의 웹 개발 프로세스를 크게 보면 다음과 같은 흐름을 갖는다.</p>
+
+<ul>
+  <li>사용자 스토리를 기반으로 프론트엔드 화면, 컴포넌트 등을 구현한다.</li>
+  <li>서버로 요청이 필요하다면 API 클라이언트를 구현한다.</li>
+  <li>API 요청을 처리하기 위한 컨트롤러, 서비스, 레포지토리 계층을 구현한다.</li>
+</ul>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Junhyunny/junhyunny-blog-2025/main/improve-development-process-by-vibe-coding-01.png" width="100%" class="image__border" />
+</div>
+
+<p><br /></p>
+
+<p>위 흐름에서 각 단계를 자세히 들여다보면 다음과 작업을 수행한다.</p>
+
+<ul>
+  <li>TDD 개발 방법론을 따라 각 기능들은 테스트, 구현, 리팩토링 순서를 따라 개발된다.</li>
+  <li>프론트엔드의 경우 피그마 작업물을 보고 화면, 컴포넌트에 디자인을 적용한다.</li>
+</ul>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Junhyunny/junhyunny-blog-2025/main/improve-development-process-by-vibe-coding-02.png" width="100%" class="image__border" />
+</div>
+
+<p><br /></p>
+
+<p>몇 차례 시행착오 끝에 <code class="language-plaintext highlighter-rouge">테스트 작성</code>, <code class="language-plaintext highlighter-rouge">구현 코드 작성</code>과 같은 크기 수준의 작업은 AI가 수행할 때 큰 결함 없다는 인사이트를 얻었다. AI가 이 수준의 작업을 수행했을 때 생성하는 결과의 크기는 개발자가 검토하기에 버겁지 않고, 결함이 적었기 때문에 코드 리뷰의 피로도가 낮았다.</p>
+
+<p>프론트엔드 디자인을 반영하는 작업은 속도를 높이기 위해 피그마 MCP 서버를 사용하기로 했다. 이 부분도 몇 차례 테스트를 통해 피그마 MCP 서버로부터 얻은 정보로 직접 대상 컴포넌트에 디자인을 적용하는 것보다 임시 컴포넌트를 만든 후 이를 기반으로 대상 컴포넌트의 디자인을 적용하는 편이 완성도가 높다는 인사이트를 얻었다. 최종적으로 프론트엔드 개발 작업은 다음과 같이 변경됐다.</p>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Junhyunny/junhyunny-blog-2025/main/improve-development-process-by-vibe-coding-03.png" width="80%" class="image__border" />
+</div>
+
+<h2 id="2-make-prompt-file">2. Make prompt file</h2>
+
+<p>사람의 일을 AI가 수행할 수 있는 수준의 작업으로 분할했다. 이 작업들은 매번 동일한 프롬프트를 사용할 것이다. 우리는 코파일럿을 사용하고 있다. 코파일럿은 동일한 프롬프트를 템플릿화해서 재사용할 수 있는 기능을 제공한다. 자주 사용되는 프롬프트는 프로젝트 루트 <code class="language-plaintext highlighter-rouge">.github/prompts</code> 디렉토리에 <code class="language-plaintext highlighter-rouge">*.prompt.md</code> 파일로 생성한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.github
+├── copilot-instructions.md
+└── prompts
+    ├── design.prompt.md
+    ├── figma.prompt.md
+    ├── frontend-impl.prompt.md
+    ├── frontend-refactoring.prompt.md
+    └── frontend-test.prompt.md
+    ...
+</code></pre></div></div>
+
+<p>작성된 프롬프트는 VSCode, 인텔리제이(intellij)에서 <code class="language-plaintext highlighter-rouge">/</code>를 통해 명령어처럼 사용할 수 있다.</p>
+
+<div align="left">
+  <img src="https://raw.githubusercontent.com/Junhyunny/junhyunny-blog-2025/main/improve-development-process-by-vibe-coding-04.png" width="50%" class="image__border" />
+</div>
+
+<p><br /></p>
+
+<p>이렇게 각 작업 단위를 위해 작성된 프롬프트들은 개발자가 현재 자신이 수행할 작업을 위해 사용한다. 개발자는 자신의 작업을 프롬프트를 통해 AI에게 대리 수행시킨다. 이후 AI 작업 결과를 리뷰한다. AI 작업 결과가 만족스럽다면 다음 프롬프트를 수행한다. 결과에 문제가 있다면 일부 수정 후 다음 작업을 수행한다. 개발자는 프롬프트를 선택적으로 수행한다. 예를 들어, 굳이 리팩토링이 필요 없는 상태라면 실행하지 않는다.</p>
+
+<h2 id="3-set-parameter-in-prompt">3. Set parameter in prompt</h2>
+
+<p><code class="language-plaintext highlighter-rouge">prompt</code> 파일은 자주 사용하는 프롬프트를 재사용하기 위해 만든 파일이다. 동일한 프롬프트라면 이를 여러 케이스에 유연하게 사용하기 어려울 수 있다. 함수처럼 파라미터라는 개념을 도입했다.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## 입력</span>
+<span class="p">
+-</span> (Required) <span class="sb">`USER_STORY`</span>: 사용자 스토리
+<span class="p">-</span> <span class="sb">`BUSINESS_RULE`</span>: 구현에 필요한 비즈니스 규칙
+
+...
+
+<span class="gu">## 주의사항</span>
+<span class="p">
+-</span> <span class="sb">`Required`</span> 항목은 반드시 입력되어야 합니다. 입력되지 않은 경우, 에이전트는 작업을 수행할 수 없습니다. 프롬프트 실행을 중단하고, 누락된 항목을 사용자에게 알립니다.
+</code></pre></div></div>
+
+<p>프롬프트에 함수처럼 파라미터를 설정한다. 필수 값은 항상 입력 받아야 하므로 없는 경우 프롬프트를 도중에 중단한다. 프롬프트를 실행할 때 <code class="language-plaintext highlighter-rouge">USER_STORY</code> 항목을 입력하지 않는 경우 다음과 같은 에러가 발생한다.</p>
+
+<div align="left">
+  <img src="https://raw.githubusercontent.com/Junhyunny/junhyunny-blog-2025/main/improve-development-process-by-vibe-coding-05.png" width="50%" class="image__border" />
+</div>
+
+<p><br /></p>
+
+<p>프롬프트를 실행할 때 코파일럿 채팅에 다음과 같이 작성한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/frontend-test 
+
+USER_STORY="""
+# Given
+사용자가 TODO 애플리케이션에 접속했다.
+# When
+사용자가 화면을 본다.
+# Then
+다음과 같은 항목들이 있는 것을 볼 수 있다.
+- TODO List 타이틀
+- 입력 가능한 폼
+  - 입력 창
+  - `추가` 버튼
+- 이전에 입력된 TODO 리스트 
+"""
+</code></pre></div></div>
+
+<h2 id="4-prompt-examples">4. Prompt examples</h2>
+
+<p>위에서 사용한 프롬프트 내용을 살펴보자. 아래 프롬프트는 테스트 코드를 작성하기 위한 지시 내용이다. 다음과 같은 내용이 포함된다.</p>
+
+<ul>
+  <li>AI 에이전트의 역할에 대한 설명</li>
+  <li>프롬프트를 실행하기 위해 필요한 입력</li>
+  <li>구체적인 지시와 지시를 수행하기 위해 필요한 컨텍스트</li>
+  <li>프롬프트를 실행할 때 주의사항</li>
+</ul>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>당신은 시니어 프론트엔드 엔지니어입니다. 프론트엔드 테스트 코드를 작성하는 데 도움을 줍니다.
+
+<span class="gu">## 입력</span>
+<span class="p">
+-</span> (Required) <span class="sb">`USER_STORY`</span>: 사용자 스토리
+
+<span class="gu">## 지시</span>
+<span class="p">
+-</span> 주어진 <span class="sb">`USER_STORY`</span>를 바탕으로, 프론트엔드 테스트 코드를 작성하는 데 도움을 줍니다.
+<span class="p">-</span> 테스트 코드만 작성하고, 실제 컴포넌트나 모듈의 구현 코드는 작성하지 않습니다. 단, 테스트 코드 작성에 필요한 실제 컴포넌트 혹은 모듈이 없는 경우, <span class="sb">`./src`</span> 디렉토리에 새로운 파일을 추가하되 구현은 하지 않습니다.
+<span class="p">-</span> 테스트 코드는 React Testing Library와 Jest를 사용하여 작성합니다.
+<span class="p">-</span> 테스트 커버리지는 최소 80% 이상이 되도록 합니다.
+<span class="p">-</span> 모든 테스트는 독립적이어야 하며, 다른 테스트에 의존해서는 안 됩니다.
+<span class="p">-</span> TDD 방식을 따르고, 구체적인 지침은 <span class="p">[</span><span class="nv">이 내용</span><span class="p">](</span><span class="sx">../../docs/tdd-guideline.md</span><span class="p">)</span>을 따릅니다.
+<span class="p">-</span> 정상 케이스에 대한 테스트를 작성하고, 필요에 따라 예외·경계값 케이스에 대한 테스트를 작성합니다.
+<span class="p">-</span> describe 와 it 을 사용하여 테스트를 논리적으로 정리합니다.
+<span class="p">-</span> 테스트를 지나치게 세분화하거나 과도하게 많이 만들지 않습니다.
+<span class="p">    -</span> 예: 일반적으로 발생하지 않는 예외 상황에 대한 고려
+<span class="p">-</span> 테스트 파일명은 <span class="sb">`&lt;ComponentName&gt;.test.tsx`</span> 또는 <span class="sb">`&lt;ModuleName&gt;.test.ts`</span>로 작성합니다.
+
+<span class="gu">## 주의사항</span>
+<span class="p">
+-</span> <span class="sb">`Required`</span> 항목은 반드시 입력되어야 합니다. 입력되지 않은 경우, 에이전트는 작업을 수행할 수 없습니다. 프롬프트 실행을 중단하고, 누락된 항목을 사용자에게 알립니다.
+<span class="p">-</span> <span class="sb">`./tests`</span> 디렉토리에 테스트 코드를 생성합니다.
+<span class="p">-</span> <span class="sb">`./src`</span> 디렉토리에 포함된 코드는 <span class="gs">**절대**</span> 수정하지 않습니다.
+<span class="p">-</span> 구현할 <span class="sb">`USER_STORY`</span>에 기재된 이상의 기능이나 디자인은 절대 구현하지 않습니다.
+<span class="p">-</span> 디자인, 스타일, 레이아웃, 접근성에 관한 테스트는 작성하지 않습니다.
+</code></pre></div></div>
+
+<p>이번엔 코드 구현을 위한 프롬프트를 살펴보자. 프롬프트 구조는 동일하지만, 상세 내용이 다르다.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>당신은 시니어 프론트엔드 엔지니어입니다. 프론트엔드 테스트 코드를 작성하는 데 도움을 줍니다.
+
+<span class="gu">## 입력</span>
+<span class="p">
+-</span> (Required) <span class="sb">`USER_STORY`</span>: 사용자 스토리
+
+<span class="gu">## 지시</span>
+<span class="p">
+-</span> 주어진 <span class="sb">`USER_STORY`</span>를 바탕으로, 테스트 코드를 통과시키기 위한 <span class="gs">**최소한의 기능 구현 코드**</span>를 생성합니다.
+<span class="p">-</span> TDD 'Green' 단계이므로, <span class="gs">**리팩터링이나 향후를 고려한 설계, 코드 정리는 아직 수행하지 않습니다.**</span> 우선 모든 테스트를 통과시키는 것만을 목표로 합니다.
+<span class="p">-</span> 구현 코드만 작성하고, 테스트 코드를 수정하지 않습니다.
+<span class="p">-</span> 타입 정의를 적절히 기재합니다.
+<span class="p">-</span> 구현 후 컴파일 에러 등이 없음을 확인하고 코드의 일관성을 유지합니다.
+<span class="p">-</span> 테스트가 잘못되었다고 판단되면 프롬프트 수행을 중단하고 그 사실을 보고합니다.
+
+<span class="gu">## 주의사항</span>
+<span class="p">
+-</span> <span class="sb">`Required`</span> 항목은 반드시 입력되어야 합니다. 입력되지 않은 경우, 에이전트는 작업을 수행할 수 없습니다. 프롬프트 실행을 중단하고, 누락된 항목을 사용자에게 알립니다.
+<span class="p">-</span> <span class="sb">`./src`</span> 디렉토리에 구현 코드를 생성합니다.
+<span class="p">-</span> <span class="sb">`./tests`</span> 디렉토리에 포함된 코드는 <span class="gs">**절대**</span> 수정하지 않습니다.
+<span class="p">-</span> 구현할 <span class="sb">`USER_STORY`</span>에 기재된 이상의 기능이나 디자인은 절대 구현하지 않습니다.
+<span class="p">-</span> 디자인, 스타일, 레이아웃에 관한 코드는 작성하지 않습니다.
+</code></pre></div></div>
+
+<h2 id="closing">CLOSING</h2>
+
+<p>테스트, 구현, 리팩토링에 관련된 프롬프트 지시 사항들은 각 구현 위치(프론트엔드 뷰 컴포넌트, 백엔드 컨트롤러 등)에 따라 달라질 것이다. 구체적인 프롬프트를 작성하고, 필요에 따라 프롬프트를 조율해 나간다.</p>
+
+<p>바이브 코딩을 수행하다보면 채팅 세션의 컨텍스트가 더러워지면서 AI가 만들어내는 결과가 좋지 않을 때가 있다. 이런 경우 새로운 채팅을 열어 새로운 세션에서 작업을 수행하면 결과가 개선된다. 다만 코파일럿은 새로운 채팅 세션을 열면 기존 대화의 컨테스트(context)를 잃어버린다. 이런 경우 이전 작업과의 컨텍스트가 끊어지면서 엉뚱한 결과를 만들 때도 있다. 현재는 각 프롬프트 사이에 컨텍스트를 유지하기 위한 몇 가지 아이디어를 시도해보고 있다.</p>
+
+<p>아직은 실제 개발 프로세스에 적용하지 않은 단계이므로 가시적인 결과를 얻진 못했다. 다음 주부터 실제 개발 프로세스에 적용해보면서 프롬프트 개선 등의 작업을 수행할 생각이다. 좋은 인사이트를 얻는다면 블로그에 정리할 예정이다.</p>
+
+<h4 id="test-code-repository">TEST CODE REPOSITORY</h4>
+
+<ul>
+  <li><a href="https://github.com/Junhyunny/blog-in-action/tree/master/2025-09-13-improve-development-process-by-vibe-coding">https://github.com/Junhyunny/blog-in-action/tree/master/2025-09-13-improve-development-process-by-vibe-coding</a></li>
+</ul>
+
+<h4 id="reference">REFERENCE</h4>
+
+<ul>
+  <li><a href="https://github.com/github/awesome-copilot/tree/main">https://github.com/github/awesome-copilot/tree/main</a></li>
+  <li><a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files">https://code.visualstudio.com/docs/copilot/customization/prompt-files</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ai-agent" class="page__taxonomy-item" rel="tag">ai-agent</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#ai" class="page__taxonomy-item" rel="tag">ai</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#copilot" class="page__taxonomy-item" rel="tag">copilot</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#prompt" class="page__taxonomy-item" rel="tag">prompt</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2026-03-24">March 24, 2026</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EB%B0%94%EC%9D%B4%EB%B8%8C+%EC%BD%94%EB%94%A9%28vibe+coding%29%EC%9D%84+%ED%86%B5%ED%95%9C+%EA%B0%9C%EB%B0%9C+%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4+%EA%B0%9C%EC%84%A0%20https%3A%2F%2Fjunhyunny.github.io%2Fai%2Fai-agent%2Fcopilot%2Fprompt%2Fimprove-development-process-by-vibe-coding%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunhyunny.github.io%2Fai%2Fai-agent%2Fcopilot%2Fprompt%2Fimprove-development-process-by-vibe-coding%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunhyunny.github.io%2Fai%2Fai-agent%2Fcopilot%2Fprompt%2Fimprove-development-process-by-vibe-coding%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/spring-boot/spring-security/waf/rewriting-domain/redirect-strategy/fix-waf-rewriting-host-problem-with-spring-security-oauth2/" class="pagination--pager" title="WAF 도메인 주소 재작성으로 인한 OAuth2 리다이렉트 문제 해결
+">이전</a>
+    
+    
+      <a href="/ai/ai-agent/model-context-protocol/mcp-server/mcp-client/mcp-and-mcp-server/" class="pagination--pager" title="MCP(Model Context Protocol)와 MCP 서버-클라이언트
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+  <div class="page__related">
+    <h4 class="page__related-title">참고
+    </h4>
+    <div class="grid__wrapper">
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/react/javascript/typescript/surrogate-pair/surrogate-pair/" rel="permalink">서로게이트 페어(Surrogate Pair)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"></p>
+  </article>
+</div>
+
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/spring-data-jpa/postgres/database/stream/how-to-work-stream-retrun-type-in-jpa/" rel="permalink">JPA Stream 리턴 타입은 어떻게 동작하는가?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"></p>
+  </article>
+</div>
+
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/spring-data-jpa/async-response/performance/csv-download-with-streaming/" rel="permalink">대용량 CSV 다운로드 스트리밍(streaming) 처리를 통해 개선하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"></p>
+  </article>
+</div>
+
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/information/jvm/spring-boot/out-of-memory-error/image-compression-and-jvm-oom-error/" rel="permalink">PNG 이미지 압축 방식과 JVM OOM(Out Of Memory) 에러
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"></p>
+  </article>
+</div>
+
+      
+    </div>
+  </div>
+  
+  
+
+</div>
+
+<div style="text-align: center;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3270204283865249"
+    crossorigin="anonymous"></script>
+  <!-- junhyunny.github.io -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3270204283865249" data-ad-slot="1592931158"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://www.linkedin.com/in/junhyun-kang-32b972201/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://github.com/Junhyunny" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://stackoverflow.com/users/14859847/junhyunny" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> StackOverflow</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 강준현 (Junhyunny). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-193106915-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-193106915-2', { 'anonymize_ip': false});
+  
+  gtag('config', 'G-L1KD8VFVBD');
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'Junhyunny/junhyunny.github.io');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,282 @@
+# note: interactive (clickable / focusable) elements only.
+- title: "Superpowers, is it really worth it ? : r/codex" [url=https://www.reddit.com/r/codex/comments/1to6329/superpowers_is_it_really_worth_it/]
+- main:
+  - button "Repost" [ref=e1]
+  - menu
+  - button "Back" [ref=e3]
+  - link "Go to codex" [ref=e5]
+  - group:
+    - link "r/codex" [ref=e7]
+    - text: "4mo ago"
+    - link "Author: Spirited-Car-3560" [ref=e8]: "Spirited-Car-3560"
+  - button "Open user actions" [ref=e9]
+  - menuitem "Follow post" [ref=e10]
+  - menuitem "Award this post" [ref=e11]
+  - menuitem "Save" [ref=e12]
+  - menuitem "Hide" [ref=e13]
+  - menuitem "Report" [ref=e14]
+  - menu
+  - heading "Post Title: Superpowers, is it really worth it ?" [level=1]: "Superpowers, is it really worth it ?"
+  - link "Complaint" [ref=e15]
+  - text: "Hello everyone!\n    \n      I’ve been using my own custom development harness for a while, covering not only implementation but also planning, reviews, and project governance.\n    \n      Out of curiosity, I tried integrating Superpowers into my workflow, since some parts — especially runtime planning, agentic development, and TDD — looked more structured and potentially safer than my current approach.\n    \n      However, after testing it, I’m honestly a bit disappointed and would like to hear other people’s experience.\n    \n      So far:\n    \n      Brainstorming  doesn’t feel very useful to me. The built-in /plan  often gives results that are just as good, if not better: more scoped and actionable.\n    \n      Plans and runtime tasks  feel quite verbose. They generate a lot of output, but I’m not sure that verbosity actually improves the final result (read next point about it).\n    \n      Agentic development + TDD + dual reviews  is the biggest issue for me. Even a single task can require many iterations between developer, spec reviewer, quality reviewer, and back again. This consumes a lot of tokens and time, often without a clear quality improvement compared to my previous simpler workflow: plan > implementation > external review.\n    \n      I’m not sure whether the problem is limited agent context, model choice, the workflow itself, or my configuration. But right now it feels slower and more expensive than what I had before, let alone quality and context drift which has to be fixed in review iterations.\n    \n      What’s your experience with it? Did you find specific tweaks or settings that make it efficient in practice?\n    \n      I’m close to uninstalling it, unless there’s a better way to use it that I’m missing. But at the moment my own harness, built without big expectations, works several times better in my use cases."
+  - button "Share" [ref=e16]
+  - generic [ref=e17]:
+    - button "Upvote" [ref=e18]
+    - text: "9"
+    - button "Downvote" [ref=e20]
+    - button "27 Go to comments" [ref=e22]
+  - link "Advertisement: Base Mesh to 8K in Minutes." [ref=e25]
+  - link "Meshyai" [ref=e26]: "u/Meshyai avatar\n  \n   Meshyai"
+  - text: "•"
+  - link "Ad" [ref=e27]
+  - link [ref=e29]
+  - button "Open user actions" [ref=e30]
+  - menuitem "Hide" [ref=e31]
+  - menuitem "Report" [ref=e32]
+  - menuitem "About this ad" [ref=e33]
+  - menuitem "Tired of ads?" [ref=e34]
+  - menu
+  - generic [ref=e35]:
+    - text: "Base Mesh to 8K in Minutes."
+    - link [ref=e36]
+  - link [ref=e38]
+  - generic [ref=e39]:
+    - text: "Base Mesh to 8K in Minutes."
+    - link [ref=e40]
+  - link [ref=e42]
+  - generic [ref=e43]:
+    - text: "Base Mesh to 8K in Minutes."
+    - link [ref=e44]
+  - link [ref=e46]
+  - generic [ref=e47]:
+    - text: "Base Mesh to 8K in Minutes."
+    - link [ref=e48]
+  - link [ref=e50]
+  - generic [ref=e51]:
+    - text: "meshy.ai"
+    - link [ref=e52]
+  - text: "Sign Up"
+  - link [ref=e53]
+  - textbox "Join the conversation" [ref=e54] [placeholder="Join the conversation"]
+  - button "Sort by Best" [ref=e55]: "Best"
+  - button "Search Comments Expand comment search" [ref=e56]
+  - region "Comments" [ref=e58]:
+    - article "Comment from Relative_Clerk7384 4 months ago" [ref=e59]:
+      - generic [ref=e60]:
+        - link "Relative_Clerk7384's profile --- avatar" [ref=e61]: "u/Relative_Clerk7384 avatar"
+        - link "Relative_Clerk7384's profile" [ref=e62]: "Relative_Clerk7384"
+        - link "4mo ago" [ref=e63]
+      - text: "too much garbage/bloat in it.  I extracted the useful bits into my own skills, trew the rest overboard."
+    - article "Comment from sarcasmguy1 4 months ago" [ref=e64]:
+      - generic [ref=e65]:
+        - link "sarcasmguy1's profile --- avatar" [ref=e66]
+        - link "sarcasmguy1's profile" [ref=e67]: "sarcasmguy1"
+        - link "4mo ago" [ref=e68]
+        - text: "Edited   4mo ago"
+      - text: "I switched to ADRs + specs, but I kept brainstorming. Like you said, the plans were extremely verbose and often read more like success theatre more than actual implementation work.\n    \n      Brainstorming is still great for rough ideation sessions imo. But I plan to remove it and replace it with something more lightweight.\n    \n      The TDD and agentic development skill is honestly not even needed anymore. TDD maybe, but you can use a much more lightweight version ("
+      - link "I use Matt Pococks" [ref=e69]
+      - text: "). Most harnesses seem to naturally use subagents, or simply saying \"use subagents for these tasks\" is enough.\n    \n      I wrote about it on my"
+      - link "blog" [ref=e70]
+      - text: "if you'd like to read up on it."
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e71]:
+        - generic [ref=e72]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e73]
+          - link "Spirited-Car-3560's profile" [ref=e74]: "Spirited-Car-3560"
+          - generic "OP" [ref=e75]
+          - link "4mo ago" [ref=e76]
+        - text: "Glad to hear it's not just me... and thanks for the heads up regarding Matt Pococks TDD, definitely going to uninstall superpower and try to integrate only tdd in my well rounded custom harness + tdd if needed"
+      - article "Comment thread level 1: Reply from buff_samurai 4 months ago" [ref=e77]:
+        - generic [ref=e78]:
+          - link "buff_samurai's profile --- avatar" [ref=e79]: "u/buff_samurai avatar"
+          - link "buff_samurai's profile" [ref=e80]: "buff_samurai"
+          - link "4mo ago" [ref=e81]
+        - text: "Quality reply, thanks for Matt."
+    - article "Comment from paagul 4 months ago" [ref=e82]:
+      - generic [ref=e83]:
+        - link "paagul's profile --- avatar" [ref=e84]: "u/paagul avatar"
+        - link "paagul's profile" [ref=e85]: "paagul"
+        - link "4mo ago" [ref=e86]
+      - text: "It’s all trash, keep it simple."
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e87]:
+        - generic [ref=e88]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e89]
+          - link "Spirited-Car-3560's profile" [ref=e90]: "Spirited-Car-3560"
+          - generic "OP" [ref=e91]
+          - link "4mo ago" [ref=e92]
+        - text: "Well, I agree about superpowers, it's over engineering trash. But I would say the same about a well built harness to create structure from chaos, to keep track of what has been done and has to be done and plan next development tasks.\n    \n      But I'm sure you didn't mean it"
+        - article "Comment thread level 2: Reply from paagul 4 months ago" [ref=e93]:
+          - generic [ref=e94]:
+            - link "paagul's profile --- avatar" [ref=e95]: "u/paagul avatar"
+            - link "paagul's profile" [ref=e96]: "paagul"
+            - link "4mo ago" [ref=e97]
+          - text: "Yea I meant superpowers."
+    - article "Comment from pjstanfield 4 months ago" [ref=e98]:
+      - generic [ref=e99]:
+        - link "pjstanfield's profile --- avatar" [ref=e100]: "u/pjstanfield avatar"
+        - link "pjstanfield's profile" [ref=e101]: "pjstanfield"
+        - link "4mo ago" [ref=e102]
+      - text: "I like it occasionally for brainstorming although just a chat with claude chat seems to produce equal or better results. I don't think codex is great for noodling up a design for certain poorly-defined ideas. The actual development for me has always been garbage and I'll never use superpowers again for that."
+    - article "Comment from nicky_factz 4 months ago" [ref=e103]:
+      - generic [ref=e104]:
+        - link "nicky_factz's profile --- avatar" [ref=e105]: "u/nicky_factz avatar"
+        - link "nicky_factz's profile" [ref=e106]: "nicky_factz"
+        - link "4mo ago" [ref=e107]
+      - text: "I like a lot of the principles but it is definitely heavy, I had Chatgpt rewrite it more to my preferences and I run a custom version. It definitely is heavy handed if you work smaller slices, I tend to not kick it off for smaller things because that much planning and review doesn't really add to a small slice of work. It helps I think when you have a large feature you want to implement from beginning to end in a large ordered development plan the base model would wander to much without a structured spec and implementation plan."
+    - article "Comment from Chupa-Skrull 4 months ago" [ref=e108]:
+      - generic [ref=e109]:
+        - link "Chupa-Skrull's profile --- avatar" [ref=e110]
+        - link "Chupa-Skrull's profile" [ref=e111]: "Chupa-Skrull"
+        - link "4mo ago" [ref=e112]
+      - text: "It doesn't work as a drop-in replacement for developer judgment and it uses a shitload of tokens.\n    \n        \n      \n      The writing-clearly-and-concisely skill is nice.\n    \n    \n      \n      Native planning mode is good enough in most harnesses now that you don't need its writing-plans or executing-plans.\n    \n    \n      \n      Brainstorming can still be nice for hashing out ideas (for anything, not just dev!).\n    \n    \n      \n      The systematic debugging skill doesn't seem to improve performance at all, in terms of helping the model intelligently locate and fix bugs—you still get tons of looping while uselessly \"narrowing seams.\"\n    \n    \n      \n      The subagent policy isn't really worth all the tokens used by the skills; better to define your own based on task complexity and your own experience and judgment, and better to leave it to the models if you don't have either of those to work with.\n    \n    \n      \n      Worth cherrypicking some things, in the end, but not installing the full package"
+    - article "Comment from SnooDoggos9325 4 months ago" [ref=e113]:
+      - generic [ref=e114]:
+        - link "SnooDoggos9325's profile --- avatar" [ref=e115]: "u/SnooDoggos9325 avatar"
+        - link "SnooDoggos9325's profile" [ref=e116]: "SnooDoggos9325"
+        - link "4mo ago" [ref=e117]
+      - text: "I'm experimenting with gpt generating the plan and deepseek flash implementing. It's better than standard plan because it explicitly states what has to be done. However I also tried to make a regular plan and convert it into a superpowers plan. It actually missed a lot from the initial plan and had to be refined. I'm also not sure how many tokens I really save since the plan is actually larger than the final diff. But at least gpt doesn't have to parse tests and make any on the fly decisions"
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e118]:
+        - generic [ref=e119]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e120]
+          - link "Spirited-Car-3560's profile" [ref=e121]: "Spirited-Car-3560"
+          - generic "OP" [ref=e122]
+          - link "4mo ago" [ref=e123]
+        - text: "I actually do the same thing, like plan with got 5.4 or 5.5, then implements most steps with 5.4 mini unless it is very complicated. It is working quite well so far! Except for complex UI, where I usually have to iterate with the model to fix something, but we know that's a weak point of most models 😁"
+    - article "Comment from Old-Bake-420 4 months ago" [ref=e124]:
+      - generic [ref=e125]:
+        - link "Old-Bake-420's profile --- avatar" [ref=e126]: "u/Old-Bake-420 avatar"
+        - link "Old-Bake-420's profile" [ref=e127]: "Old-Bake-420"
+        - link "4mo ago" [ref=e128]
+      - text: "I turned it off. It was over micromanaging codex. Really it was just firing constantly on every request and codex was over using the skills."
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e129]:
+        - generic [ref=e130]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e131]
+          - link "Spirited-Car-3560's profile" [ref=e132]: "Spirited-Car-3560"
+          - generic "OP" [ref=e133]
+          - link "4mo ago" [ref=e134]
+        - text: "Hell yeah, stressfull. Yes I just made my decision, similar to yours, but even more radicali: uninstalled"
+    - link "Advertisement: From chips to data centres" [ref=e136]
+    - link "u/AI_Infra_Summit" [ref=e137]: "u/AI_Infra_Summit avatar\n  \n   u/AI_Infra_Summit"
+    - text: "•"
+    - link "Ad" [ref=e138]
+    - link [ref=e140]
+    - button "Open user actions" [ref=e141]
+    - menuitem "Hide" [ref=e142]
+    - menuitem "Report" [ref=e143]
+    - menuitem "About this ad" [ref=e144]
+    - menuitem "Tired of ads?" [ref=e145]
+    - menu
+    - generic [ref=e146]:
+      - text: "From chips to data centres"
+      - link [ref=e147]
+    - link [ref=e149]
+    - text: "Learn More"
+    - link [ref=e150]
+    - generic [ref=e151]:
+      - text: "ai-infra-summit.com"
+      - link [ref=e152]
+    - generic [ref=e153]:
+      - text: "Thumbnail image: From chips to data centres"
+      - link [ref=e154]
+    - article "Comment from Haunting-Shirt6219 4 months ago" [ref=e155]:
+      - generic [ref=e156]:
+        - link "Haunting-Shirt6219's profile --- avatar" [ref=e157]: "u/Haunting-Shirt6219 avatar"
+        - link "Haunting-Shirt6219's profile" [ref=e158]: "Haunting-Shirt6219"
+        - link "4mo ago" [ref=e159]
+      - text: "I think it consumed too many tokens. Take it as reference, and u can create your own version."
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e160]:
+        - generic [ref=e161]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e162]
+          - link "Spirited-Car-3560's profile" [ref=e163]: "Spirited-Car-3560"
+          - generic "OP" [ref=e164]
+          - link "4mo ago" [ref=e165]
+        - text: "Definitely, going back to my version.\n    \n      Somehow I thought \"well, a release plugin and so much discussed... they surely did better than me\". At least it has been a huge ego boost 😃"
+    - article "Comment from buff_samurai 4 months ago" [ref=e166]:
+      - generic [ref=e167]:
+        - link "buff_samurai's profile --- avatar" [ref=e168]: "u/buff_samurai avatar"
+        - link "buff_samurai's profile" [ref=e169]: "buff_samurai"
+        - link "4mo ago" [ref=e170]
+      - text: "This skill works much much better with Claude Code and it’s worth using 100%. On codex it’s quite annoying."
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e171]:
+        - generic [ref=e172]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e173]
+          - link "Spirited-Car-3560's profile" [ref=e174]: "Spirited-Car-3560"
+          - generic "OP" [ref=e175]
+          - link "4mo ago" [ref=e176]
+        - text: "Ha, got  to give it a try ! Thanks for the heads up"
+    - article "Comment from Re-challenger 4 months ago" [ref=e177]:
+      - generic [ref=e178]:
+        - link "Re-challenger's profile --- avatar" [ref=e179]
+        - link "Re-challenger's profile" [ref=e180]: "Re-challenger"
+        - link "4mo ago" [ref=e181]
+      - text: "tdd worths a try which could prevent ur project to be a dump"
+    - article "Comment from MarzipanEven7336 4 months ago" [ref=e182]:
+      - generic [ref=e183]:
+        - link "MarzipanEven7336's profile --- avatar" [ref=e184]
+        - link "MarzipanEven7336's profile" [ref=e185]: "MarzipanEven7336"
+        - link "4mo ago" [ref=e186]
+      - text: "Custom harness is the only way to go."
+    - article "Comment from tonyboi76 4 months ago" [ref=e187]:
+      - generic [ref=e188]:
+        - link "tonyboi76's profile --- avatar" [ref=e189]: "u/tonyboi76 avatar"
+        - link "tonyboi76's profile" [ref=e190]: "tonyboi76"
+        - link "4mo ago" [ref=e191]
+      - text: "superpowers is opinionated software, like rails for agents. great if you dont have your own opinions yet, painful when you do. most comments here are basically saying the same thing in different words: extract 2-3 useful skills, throw the rest out.\n    \n      the value distribution i found in mine: writing-clearly-and-concisely is genuinely good, the spec template is decent, the test-first skill is fine but i had my own version anyway. everything else was either competing with my own conventions or just bloating context.\n    \n      honest take is its most useful for someone NEW to agentic dev who needs the scaffolding. once you have your own opinions on plan/spec/test rhythm, you graduate out of it. the heavy token use other commenters are flagging is the cost of those opinions loading every turn whether you need them or not."
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e192]:
+        - generic [ref=e193]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e194]
+          - link "Spirited-Car-3560's profile" [ref=e195]: "Spirited-Car-3560"
+          - generic "OP" [ref=e196]
+          - link "4mo ago" [ref=e197]
+        - text: "I see, probably for someone new or who can't code is still better than nothing. But subpar when it comes to what I've been used to.\n    \n      Honestly I just reverted back and deleted it, my take away is the TDD skill which I may implement later on in my harness"
+        - article "Comment thread level 2: Reply from tonyboi76 4 months ago" [ref=e198]:
+          - generic [ref=e199]:
+            - link "tonyboi76's profile --- avatar" [ref=e200]: "u/tonyboi76 avatar"
+            - link "tonyboi76's profile" [ref=e201]: "tonyboi76"
+            - link "4mo ago" [ref=e202]
+          - text: "makes sense. fwiw when you reimplement the TDD skill in your own harness, the bit that made it actually useful for me was forcing claude to run the failing test FIRST and show the red output, BEFORE writing any impl. without that step it tends to write impl + test in the same turn and call it green even if its not actually testing the right thing. costs an extra turn but the no-cheating signal is worth it."
+          - article "Comment thread level 3: Reply from Spirited-Car-3560 4 months ago" [ref=e203]:
+            - generic [ref=e204]:
+              - link "Spirited-Car-3560's profile --- avatar" [ref=e205]
+              - link "Spirited-Car-3560's profile" [ref=e206]: "Spirited-Car-3560"
+              - generic "OP" [ref=e207]
+              - link "4mo ago" [ref=e208]
+            - text: "That's definitely useful, thank you !"
+    - link "Advertisement: Grok Bot never stops. Close your laptop and wake up to finished work." [ref=e210]
+    - link "u/Grok-by-SpaceXAI" [ref=e211]: "u/Grok-by-SpaceXAI avatar\n  \n   u/Grok-by-SpaceXAI"
+    - text: "•"
+    - link "Ad" [ref=e212]
+    - link [ref=e214]
+    - button "Open user actions" [ref=e215]
+    - menuitem "Hide" [ref=e216]
+    - menuitem "Report" [ref=e217]
+    - menuitem "About this ad" [ref=e218]
+    - menuitem "Tired of ads?" [ref=e219]
+    - menu
+    - generic [ref=e220]:
+      - text: "Grok Bot never stops. Close your laptop and wake up to finished work."
+      - link [ref=e221]
+    - link [ref=e223]
+    - text: "Sign Up"
+    - link [ref=e224]
+    - generic [ref=e225]:
+      - text: "x.ai"
+      - link [ref=e226]
+    - generic [ref=e227]:
+      - text: "Clickable image which will reveal the video player: Grok Bot never stops. Close your laptop and wake"
+      - button "Play video" [ref=e228]
+    - article "Comment from Alternative-Wafer123 3 months ago" [ref=e229]:
+      - generic [ref=e230]:
+        - link "Alternative-Wafer123's profile" [ref=e231]: "Alternative-Wafer123"
+        - link "3mo ago" [ref=e232]
+    - article "Comment from [deleted] 4 months ago" [ref=e233]:
+      - generic "[deleted] 4mo ago" [ref=e234]
+      - text: "Comment deleted by user"
+      - article "Comment thread level 1: Reply from Spirited-Car-3560 4 months ago" [ref=e235]:
+        - generic [ref=e236]:
+          - link "Spirited-Car-3560's profile --- avatar" [ref=e237]
+          - link "Spirited-Car-3560's profile" [ref=e238]: "Spirited-Car-3560"
+          - generic "OP" [ref=e239]
+          - link "4mo ago" [ref=e240]
+        - text: "Yep, I've learnt that superpowers is not great the hard way. It just delivered an unusable feature of the app I'm working on. I never missed 1 single task using my own harness... just reverting back to it immediately. Thanks mate"
+- iframe:
+  - text: "reCAPTCHA 로 보호됨"

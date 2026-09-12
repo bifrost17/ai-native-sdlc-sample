@@ -1,0 +1,101 @@
+{
+  "sha": "d687d99264a5c206a6f1fdaef49b42dfb59e5855",
+  "node_id": "C_kwDOFJGwptoAKGQ2ODdkOTkyNjRhNWMyMDZhNmYxZmRhZWY0OWI0MmRmYjU5ZTU4NTU",
+  "commit": {
+    "author": {
+      "name": "Gyuwon Yi",
+      "email": "[redacted]",
+      "date": "2025-05-27T06:21:45Z"
+    },
+    "committer": {
+      "name": "Gyuwon Yi",
+      "email": "[redacted]",
+      "date": "2025-05-27T13:28:32Z"
+    },
+    "message": "Improve test guidelines",
+    "tree": {
+      "sha": "076404585c3f2210ca3a8d7688dfbde005a029fe",
+      "url": "https://api.github.com/repos/AutoParams/AutoParams/git/trees/076404585c3f2210ca3a8d7688dfbde005a029fe"
+    },
+    "url": "https://api.github.com/repos/AutoParams/AutoParams/git/commits/d687d99264a5c206a6f1fdaef49b42dfb59e5855",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/AutoParams/AutoParams/commits/d687d99264a5c206a6f1fdaef49b42dfb59e5855",
+  "html_url": "https://github.com/AutoParams/AutoParams/commit/d687d99264a5c206a6f1fdaef49b42dfb59e5855",
+  "comments_url": "https://api.github.com/repos/AutoParams/AutoParams/commits/d687d99264a5c206a6f1fdaef49b42dfb59e5855/comments",
+  "author": {
+    "login": "gyuwon",
+    "id": 973743,
+    "node_id": "MDQ6VXNlcjk3Mzc0Mw==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/973743?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gyuwon",
+    "html_url": "https://github.com/gyuwon",
+    "followers_url": "https://api.github.com/users/gyuwon/followers",
+    "following_url": "https://api.github.com/users/gyuwon/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gyuwon/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gyuwon/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gyuwon/subscriptions",
+    "organizations_url": "https://api.github.com/users/gyuwon/orgs",
+    "repos_url": "https://api.github.com/users/gyuwon/repos",
+    "events_url": "https://api.github.com/users/gyuwon/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gyuwon/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "gyuwon",
+    "id": 973743,
+    "node_id": "MDQ6VXNlcjk3Mzc0Mw==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/973743?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gyuwon",
+    "html_url": "https://github.com/gyuwon",
+    "followers_url": "https://api.github.com/users/gyuwon/followers",
+    "following_url": "https://api.github.com/users/gyuwon/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gyuwon/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gyuwon/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gyuwon/subscriptions",
+    "organizations_url": "https://api.github.com/users/gyuwon/orgs",
+    "repos_url": "https://api.github.com/users/gyuwon/repos",
+    "events_url": "https://api.github.com/users/gyuwon/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gyuwon/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "7459e529b7a534915fbbe4a677a8863e3e6ee5c6",
+      "url": "https://api.github.com/repos/AutoParams/AutoParams/commits/7459e529b7a534915fbbe4a677a8863e3e6ee5c6",
+      "html_url": "https://github.com/AutoParams/AutoParams/commit/7459e529b7a534915fbbe4a677a8863e3e6ee5c6"
+    }
+  ],
+  "stats": {
+    "total": 17,
+    "additions": 15,
+    "deletions": 2
+  },
+  "files": [
+    {
+      "sha": "a0fe122ab801b3e9b11fefa5b1f86941623613fc",
+      "filename": "context.md",
+      "status": "modified",
+      "additions": 15,
+      "deletions": 2,
+      "changes": 17,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/d687d99264a5c206a6f1fdaef49b42dfb59e5855/context.md",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/d687d99264a5c206a6f1fdaef49b42dfb59e5855/context.md",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/context.md?ref=d687d99264a5c206a6f1fdaef49b42dfb59e5855",
+      "patch": "@@ -1,6 +1,6 @@\n ## Coding Guidelines\n \n-- The Maximum line length is 80 characters except for names of tests.\n+- The maximum line length is 80 characters except for names of tests.\n - Do not write code not related to the task.\n - Do not write code and Javadoc at the same time.\n - For package names, use singular nouns in lowercase.\n@@ -11,10 +11,23 @@\n - Write a test scenario with a single sentence in English.\n - Manage test scenarios with task list items in GitHub Flavored Markdown format.\n - Use the text of the test scenario as the name of the test method in snake_case.\n-- Use the term 'sut' for the system under test.\n+- Always use the term 'sut' (not 'it') when referring to the system under test.\n+- Do not use uppercase letters in test scenarios except for type names.\n - Do not write production code and test code at the same time.\n - Do not write production code, test data types, and test code at the same time.\n \n+### Good examples:\n+- \"sut returns correct price when discount is applied\"\n+- \"sut creates multiple Product instances with different ids\"\n+- \"sut resolves primitive types with default values\"\n+- \"sut returns empty Optional when type is not supported\"\n+\n+### Bad examples:\n+- \"Test Product.getPrice() with discount\" (too vague, not a complete sentence)\n+- \"When Product has a discount, the Price should be correctly calculated and returned to the Client\" (too verbose)\n+- \"Product Returns Correct Price When Discount Is Applied\" (improper capitalization)\n+- \"test that it returns the right price for discounted products\" (uses 'it' instead of 'sut')\n+\n ## Commit Message Guidelines\n \n - Write in English."
+    }
+  ]
+}

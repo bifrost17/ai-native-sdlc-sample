@@ -1,0 +1,273 @@
+{
+  "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/who_has_actually_been_using_tdd_consistently_with/",
+  "title": "Who has actually been using TDD consistently with Claude Code?",
+  "author": "rm-rf-rm",
+  "created": "2025-11-10T00:51:05.765000+0000",
+  "reported_comment_count": "41",
+  "post_html": "\n       <div class=\"text-neutral-content\" slot=\"text-body\">\n    <div class=\"mb-xs px-md xs:px-0 overflow-hidden\" data-post-click-location=\"text-body\">\n      <div id=\"t3_1ot02iz-post-rtjson-content\" class=\"md max-h-[253px] overflow-hidden s:max-h-[318px] m:max-h-[337px] l:max-h-[352px] xl:max-h-[452px] text-14-scalable pb-2xs [--emote-size:20px]\" about=\"t3_1ot02iz\" property=\"schema:articleBody\" dir=\"auto\">\n      <p>\n      The blogosphere is full of recommendations for using TDD with Claude Code + there are tools, skills etc for TDD that have a lot of stars.\n    </p><p>\n      Looking to hear from people actually using it consistently for professional work - how has the experience been? does it do better?\n    </p>\n    </div>\n    <div id=\"t3_1ot02iz-overflow-cover\" class=\"h-[66px] mt-[-66px] md px-md from-[color:var(--color-neutral-background)] bg-gradient-to-t hidden isolate\n      pointer-events-none read-more-overflow-cover\"></div>\n    <button rpl=\"\" class=\"m-0 -ms-md md px-md py-0 not-italic font-normal text-sm h-[28px] bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent visited:bg-transparent hidden text-body-2 text-primary-plain no-underline hover:no-underline\nbutton-medium px-[calc(var(--rem12)-var(--button-border-width,0px))]\nbutton-plain\n\n\n\nitems-center justify-center\nbutton inline-flex \" id=\"t3_1ot02iz-read-more-button\" type=\"button\">\n      <span class=\"flex items-center justify-center\">\n      \n      <span class=\"flex items-center gap-xs\">더 읽기</span>\n    </span>\n    <span class=\"flex ms-2xs me-[-2px]\"><svg rpl=\"\" class=\"align-text-bottom\" fill=\"currentColor\" height=\"16\" icon-name=\"caret-down\" viewBox=\"0 0 20 20\" width=\"16\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M10 13.7a.897.897 0 01-.636-.264l-4.6-4.6a.9.9 0 111.272-1.273L10 11.526l3.964-3.963a.9.9 0 011.272 1.273l-4.6 4.6A.897.897 0 0110 13.7Z\"></path>\n    </svg></span>\n    </button>\n    </div>\n  </div> \n    ",
+  "post_text": "The blogosphere is full of recommendations for using TDD with Claude Code + there are tools, skills etc for TDD that have a lot of stars.\n\nLooking to hear from people actually using it consistently for professional work - how has the experience been? does it do better?",
+  "comments": [
+    {
+      "id": "t1_no1558i",
+      "parent": null,
+      "author": "Peerless-Paragon",
+      "created": "2025-11-10T01:11:38.200000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1558i/",
+      "body_html": "\n        <div id=\"t1_no1558i-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I have been using LLMs to develop both personally and professionally since Model Context Protocol was announced last November.\n    </p><p>\n      My first project I shipped to production was solely built on TDD as I was tunnel-visioned on near 100% coverage.\n    </p><p>\n      Last time I checked I had nearly 3000 unit tests, however, I haven’t released new functionality since July as any change breaks hundreds of tests.\n    </p><p>\n      What I didn’t specify to the LLM was to focus on testing pure functionality and that’s on me for poor prompt engineering in addition to trusting the LLM’s code without being in the loop throughout the SDLC.\n    </p><p>\n      I’ve since incorporated TDD + the Testing Trophy Model by Kent C. Dodd for my personal projects and this has been the sweet spot for me.\n    </p>\n    </div>\n      ",
+      "body_text": "I have been using LLMs to develop both personally and professionally since Model Context Protocol was announced last November.\n\nMy first project I shipped to production was solely built on TDD as I was tunnel-visioned on near 100% coverage.\n\nLast time I checked I had nearly 3000 unit tests, however, I haven’t released new functionality since July as any change breaks hundreds of tests.\n\nWhat I didn’t specify to the LLM was to focus on testing pure functionality and that’s on me for poor prompt engineering in addition to trusting the LLM’s code without being in the loop throughout the SDLC.\n\nI’ve since incorporated TDD + the Testing Trophy Model by Kent C. Dodd for my personal projects and this has been the sweet spot for me."
+    },
+    {
+      "id": "t1_no1b1bf",
+      "parent": "t1_no1558i",
+      "author": "rm-rf-rm",
+      "created": "2025-11-10T01:47:51.513000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1b1bf/",
+      "body_html": "\n        <div id=\"t1_no1b1bf-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      thanks for the insight!\n    </p><p>\n      are you still doing TDD rigorously then (red-green-refactor, no production code written until test code is red)\n    </p>\n    </div>\n      ",
+      "body_text": "thanks for the insight!\n\nare you still doing TDD rigorously then (red-green-refactor, no production code written until test code is red)"
+    },
+    {
+      "id": "t1_no1h6yp",
+      "parent": "t1_no1b1bf",
+      "author": "Peerless-Paragon",
+      "created": "2025-11-10T02:24:55.721000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1h6yp/",
+      "body_html": "\n        <div id=\"t1_no1h6yp-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Specifically for my team - since Claude writes code so quickly, we like to commit early and often. Additionally, our user stories might be considered way too small compared to industry standards, but none of us enjoy reviewing thousands of lines of code generated by Claude during code reviews.\n    </p><p>\n      For me, I’ll typically commit after “green”, then move to “refactor” and commit again as I like to be more involved in the code being created or modified in real-time. It helps me be able to speak to the functionality and logic during code reviews.\n    </p><p>\n      Other team members have taken more of a “slot machine” approach where they’ll let Claude implement all acceptance criteria, refactor all files created or modified in their branch, and then commit (Note: This is the approach I use for my personal projects).\n    </p><p>\n      Related to your question, our code is never committed directly to main even if the minimal code written to get to the “green” phase is successful on the first try. We’ll promote it from dev to non-prod to prod if it passes all of our security scans, quality gates, and CI checks.\n    </p>\n    </div>\n      ",
+      "body_text": "Specifically for my team - since Claude writes code so quickly, we like to commit early and often. Additionally, our user stories might be considered way too small compared to industry standards, but none of us enjoy reviewing thousands of lines of code generated by Claude during code reviews.\n\nFor me, I’ll typically commit after “green”, then move to “refactor” and commit again as I like to be more involved in the code being created or modified in real-time. It helps me be able to speak to the functionality and logic during code reviews.\n\nOther team members have taken more of a “slot machine” approach where they’ll let Claude implement all acceptance criteria, refactor all files created or modified in their branch, and then commit (Note: This is the approach I use for my personal projects).\n\nRelated to your question, our code is never committed directly to main even if the minimal code written to get to the “green” phase is successful on the first try. We’ll promote it from dev to non-prod to prod if it passes all of our security scans, quality gates, and CI checks."
+    },
+    {
+      "id": "t1_no7q7o8",
+      "parent": null,
+      "author": "rustyrazorblade",
+      "created": "2025-11-11T02:17:09.770000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no7q7o8/",
+      "body_html": "\n        <div id=\"t1_no7q7o8-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I am.   I find that TDD + SOLID works well.  I also use static analysis tools (Kover, Jacoco) to find gaps in my code coverage as well as potential bugs (Detekt, PMD)\n    </p>\n    </div>\n      ",
+      "body_text": "I am. I find that TDD + SOLID works well. I also use static analysis tools (Kover, Jacoco) to find gaps in my code coverage as well as potential bugs (Detekt, PMD)"
+    },
+    {
+      "id": "t1_no7s2ms",
+      "parent": "t1_no7q7o8",
+      "author": "rm-rf-rm",
+      "created": "2025-11-11T02:28:00.776000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no7s2ms/",
+      "body_html": "\n        <div id=\"t1_no7s2ms-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Are you using any SKILL or tool for TDD?\n    </p>\n    </div>\n      ",
+      "body_text": "Are you using any SKILL or tool for TDD?"
+    },
+    {
+      "id": "t1_no7torg",
+      "parent": "t1_no7s2ms",
+      "author": "rustyrazorblade",
+      "created": "2025-11-11T02:37:18.390000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no7torg/",
+      "body_html": "\n        <div id=\"t1_no7torg-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I've been using SuperClaude for a while, and I also created my own skill for Kotlin and Java.  I didn't spend much time on it and I'm sure there's better ones.\n    </p><p>\n      There's probably better Claude setups, but I'm fine with mine as it stands.  I've been doing TDD and leading teams 20 years ago.  I know exactly where I want stuff and I generally know how I want it built and organized, so I'm probably more specific than most people.\n    </p>\n    </div>\n      ",
+      "body_text": "I've been using SuperClaude for a while, and I also created my own skill for Kotlin and Java. I didn't spend much time on it and I'm sure there's better ones.\n\nThere's probably better Claude setups, but I'm fine with mine as it stands. I've been doing TDD and leading teams 20 years ago. I know exactly where I want stuff and I generally know how I want it built and organized, so I'm probably more specific than most people."
+    },
+    {
+      "id": "t1_no170nf",
+      "parent": null,
+      "author": "VibeCoderMcSwaggins",
+      "created": "2025-11-10T01:23:15.219000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no170nf/",
+      "body_html": "\n        <div id=\"t1_no170nf-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      PRs here have all been with CC and TDD Tested typed linted clean code\n    </p><p>\n      <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/The-Obstacle-Is-The-Way/DeepCritical\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://github.com/The-Obstacle-Is-The-Way/DeepCritical</a>\n    </p>\n    </div>\n      ",
+      "body_text": "PRs here have all been with CC and TDD Tested typed linted clean code\n\nhttps://github.com/The-Obstacle-Is-The-Way/DeepCritical"
+    },
+    {
+      "id": "t1_no1bbbu",
+      "parent": "t1_no170nf",
+      "author": "rm-rf-rm",
+      "created": "2025-11-10T01:49:29.922000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1bbbu/",
+      "body_html": "\n        <div id=\"t1_no1bbbu-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I dont see any PRs?\n    </p>\n    </div>\n      ",
+      "body_text": "I dont see any PRs?"
+    },
+    {
+      "id": "t1_no20207",
+      "parent": null,
+      "author": "Street_Smart_Phone",
+      "created": "2025-11-10T04:25:59.616000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no20207/",
+      "body_html": "\n        <div id=\"t1_no20207-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      With MCP and playwright, BDD might be better. Tests don’t mean anything if they don’t properly test your application. With BDD, you’re testing the behaviors and the tasks they are doing.\n    </p>\n    </div>\n      ",
+      "body_text": "With MCP and playwright, BDD might be better. Tests don’t mean anything if they don’t properly test your application. With BDD, you’re testing the behaviors and the tasks they are doing."
+    },
+    {
+      "id": "t1_no314d1",
+      "parent": null,
+      "author": "TheAuthorBTLG_",
+      "created": "2025-11-10T10:12:02.517000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no314d1/",
+      "body_html": "\n        <div id=\"t1_no314d1-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      i always write code first. don't see how switching the order would improve things\n    </p>\n    </div>\n      ",
+      "body_text": "i always write code first. don't see how switching the order would improve things"
+    },
+    {
+      "id": "t1_no47ykw",
+      "parent": "t1_no314d1",
+      "author": "rm-rf-rm",
+      "created": "2025-11-10T15:12:20.130000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no47ykw/",
+      "body_html": "\n        <div id=\"t1_no47ykw-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      .. that is the whole philosophy of Test Driven Development\n    </p><p>\n      <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://www.ibm.com/think/topics/test-driven-development\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://www.ibm.com/think/topics/test-driven-development</a>\n    </p>\n    </div>\n      ",
+      "body_text": ".. that is the whole philosophy of Test Driven Development\n\nhttps://www.ibm.com/think/topics/test-driven-development"
+    },
+    {
+      "id": "t1_no49l79",
+      "parent": null,
+      "author": "who_am_i_to_say_so",
+      "created": "2025-11-10T15:20:37.507000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no49l79/",
+      "body_html": "\n        <div id=\"t1_no49l79-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I do TDD, or at the very least tests right after the implementation.\n    </p><p>\n      It’s my belief that agentic coding is nearly impossible to do without it- at least the finishing things part of it.\n    </p><p>\n      I cannot count how many times a test caught an unasked for change. I even sometimes put text matching tests on important content- because LLM will change my SEO optimized copy without reason too!\n    </p>\n    </div>\n      ",
+      "body_text": "I do TDD, or at the very least tests right after the implementation.\n\nIt’s my belief that agentic coding is nearly impossible to do without it- at least the finishing things part of it.\n\nI cannot count how many times a test caught an unasked for change. I even sometimes put text matching tests on important content- because LLM will change my SEO optimized copy without reason too!"
+    },
+    {
+      "id": "t1_no1jkc9",
+      "parent": null,
+      "author": "psychometrixo",
+      "created": "2025-11-10T02:39:11.562000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1jkc9/",
+      "body_html": "\n        <div id=\"t1_no1jkc9-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I tried TDD early on and it was really time consuming to keep the LLM on track and actually doing red then green then refactor in that order and only in that order.\n    </p><p>\n      Somebody posted about successfully using hooks to enforce TDD.  I thought that was a good idea.\n    </p>\n    </div>\n      ",
+      "body_text": "I tried TDD early on and it was really time consuming to keep the LLM on track and actually doing red then green then refactor in that order and only in that order.\n\nSomebody posted about successfully using hooks to enforce TDD. I thought that was a good idea."
+    },
+    {
+      "id": "t1_no1s501",
+      "parent": null,
+      "author": "jecs321",
+      "created": "2025-11-10T03:32:40.336000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1s501/",
+      "body_html": "\n        <div id=\"t1_no1s501-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      When doing TDD with CC, are you writing the tests or is CC?\n    </p>\n    </div>\n      ",
+      "body_text": "When doing TDD with CC, are you writing the tests or is CC?"
+    },
+    {
+      "id": "t1_no44yc0",
+      "parent": "t1_no1s501",
+      "author": "johns10davenport",
+      "created": "2025-11-10T14:56:32.628000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no44yc0/",
+      "body_html": "\n        <div id=\"t1_no44yc0-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Personally I write a design document and include my test assertions in it and then Claude writes the tests.\n    </p>\n    </div>\n      ",
+      "body_text": "Personally I write a design document and include my test assertions in it and then Claude writes the tests."
+    },
+    {
+      "id": "t1_no1r6co",
+      "parent": null,
+      "author": "cogencyai",
+      "created": "2025-11-10T03:26:24.841000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1r6co/",
+      "body_html": "\n        <div id=\"t1_no1r6co-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      i don’t usually write tests first. TDD tends to focus tests first then updating implementations. a simpler prompt: “please write reference grade tests that focus on core contracts, boundaries and behaviours.”\n    </p>\n    </div>\n      ",
+      "body_text": "i don’t usually write tests first. TDD tends to focus tests first then updating implementations. a simpler prompt: “please write reference grade tests that focus on core contracts, boundaries and behaviours.”"
+    },
+    {
+      "id": "t1_no5p5yy",
+      "parent": null,
+      "author": "4against5",
+      "created": "2025-11-10T19:32:15.715000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no5p5yy/",
+      "body_html": "\n        <div id=\"t1_no5p5yy-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      My issue is that Claude always wants to run my full test suite.  It will listen to the instructions for a while but as context length grows, I think it forgets not to run them, and then it runs the whole damn suite over and over using all my tokens.\n    </p><p>\n      I had to disallow the bash command to run the test suite and just run it myself before committing the feature and prompt it to address issues.\n    </p>\n    </div>\n      ",
+      "body_text": "My issue is that Claude always wants to run my full test suite. It will listen to the instructions for a while but as context length grows, I think it forgets not to run them, and then it runs the whole damn suite over and over using all my tokens.\n\nI had to disallow the bash command to run the test suite and just run it myself before committing the feature and prompt it to address issues."
+    },
+    {
+      "id": "t1_no7fag5",
+      "parent": null,
+      "author": "el_duderino_50",
+      "created": "2025-11-11T01:12:06.228000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no7fag5/",
+      "body_html": "\n        <div id=\"t1_no7fag5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yeah LLMs love it. Always TDD, and things are not complete until all tests pass. You do have to pay attention to test code quality because it takes shortcuts there sometimes or doesn't really understand what's a good test.\n    </p>\n    </div>\n      ",
+      "body_text": "Yeah LLMs love it. Always TDD, and things are not complete until all tests pass. You do have to pay attention to test code quality because it takes shortcuts there sometimes or doesn't really understand what's a good test."
+    },
+    {
+      "id": "t1_no1fbc7",
+      "parent": null,
+      "author": "shivambdj",
+      "created": "2025-11-10T02:13:34.812000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no1fbc7/",
+      "body_html": "\n        <div id=\"t1_no1fbc7-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      i am. i’m not a software engineer though and have no idea what am I doing.\n    </p>\n    </div>\n      ",
+      "body_text": "i am. i’m not a software engineer though and have no idea what am I doing."
+    },
+    {
+      "id": "t1_no2wu8n",
+      "parent": null,
+      "author": "adamhall612",
+      "created": "2025-11-10T09:27:50.070000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no2wu8n/",
+      "body_html": "\n        <div id=\"t1_no2wu8n-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      bare in mind TTD is a methodology for humans to help them actually write tests. LLM’s ‘think’ in a totally different way\n    </p>\n    </div>\n      ",
+      "body_text": "bare in mind TTD is a methodology for humans to help them actually write tests. LLM’s ‘think’ in a totally different way"
+    },
+    {
+      "id": "t1_no11r5l",
+      "parent": null,
+      "author": "AutoModerator",
+      "created": "2025-11-10T00:51:06.519000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no11r5l/",
+      "body_html": "\n        <div id=\"t1_no11r5l-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Your post will be reviewed shortly.\n    </p><p>\n      <em>I am a bot, and this action was performed automatically. Please </em><a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"/message/compose/?to=/r/ClaudeAI\" rel=\"noopener nofollow ugc\" target=\"_blank\"><em>contact the moderators of this subreddit</em></a><em> if you have any questions or concerns.</em>\n    </p>\n    </div>\n      ",
+      "body_text": "Your post will be reviewed shortly.\n\nI am a bot, and this action was performed automatically. Please contact the moderators of this subreddit if you have any questions or concerns."
+    },
+    {
+      "id": "t1_no2spjf",
+      "parent": null,
+      "author": "Dry-Willingness-506",
+      "created": "2025-11-10T08:44:35.118000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no2spjf/",
+      "body_html": "\n        <div id=\"t1_no2spjf-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Me, I used TDD before the advent of LLMs. And now, I think LLM really shines with good unit tests because it gives you a deterministic set of constraints that can ensure that everything an LLM write is right. So, for the three phases:\n    </p><p>\n      - Red: By default (through CLAUDE.md), I asked him to not write tests (must be human written or asked specifically to do it). If LLM is permitted to write tests, I always asked for a summary of new tests for approval before starting. I will say test are 50/50% human/LLM written.<br>- Green:  If there is any red tests while coding, Claude will iterate until everything is okay. Works pretty well.<br>- Refactor: 100% human part. I review the tests, the new code, and find the improvements to do (myself or asked to the LLM) while keeping everything green.\n    </p><p>\n      For me, it is one of the best feedback loops to work with an LLM. You have a high-quality set of constraints to avoid slop, drifts, errors,... You can also include all your quality tools in your loop (formatter, linter,...).\n    </p>\n    </div>\n      ",
+      "body_text": "Me, I used TDD before the advent of LLMs. And now, I think LLM really shines with good unit tests because it gives you a deterministic set of constraints that can ensure that everything an LLM write is right. So, for the three phases:\n\n- Red: By default (through CLAUDE.md), I asked him to not write tests (must be human written or asked specifically to do it). If LLM is permitted to write tests, I always asked for a summary of new tests for approval before starting. I will say test are 50/50% human/LLM written.\n- Green: If there is any red tests while coding, Claude will iterate until everything is okay. Works pretty well.\n- Refactor: 100% human part. I review the tests, the new code, and find the improvements to do (myself or asked to the LLM) while keeping everything green.\n\nFor me, it is one of the best feedback loops to work with an LLM. You have a high-quality set of constraints to avoid slop, drifts, errors,... You can also include all your quality tools in your loop (formatter, linter,...)."
+    },
+    {
+      "id": "t1_no375y6",
+      "parent": null,
+      "author": "Schtick_",
+      "created": "2025-11-10T11:11:14.554000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no375y6/",
+      "body_html": "\n        <div id=\"t1_no375y6-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Dunno about tdd but strictly building unit and integration tests -&gt; yes\n    </p>\n    </div>\n      ",
+      "body_text": "Dunno about tdd but strictly building unit and integration tests -> yes"
+    },
+    {
+      "id": "t1_no56fi2",
+      "parent": null,
+      "author": "inventor_black",
+      "created": "2025-11-10T18:00:58.427000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no56fi2/",
+      "body_html": "\n        <div id=\"t1_no56fi2-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Your username is <code>prompt injection</code>.\n    </p>\n    </div>\n      ",
+      "body_text": "Your username is prompt injection."
+    },
+    {
+      "id": "t1_no79lxz",
+      "parent": null,
+      "author": "lev606",
+      "created": "2025-11-11T00:37:30.393000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1ot02iz/comment/no79lxz/",
+      "body_html": "\n        <div id=\"t1_no79lxz-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I'll use TDD on big features, or sensitive areas of the application, like permissions, just make sure it doesn't miss anything.  As I'm developing I also rely heavily on linters and static code analysis tools to keep CC in check.\n    </p>\n    </div>\n      ",
+      "body_text": "I'll use TDD on big features, or sensitive areas of the application, like permissions, just make sure it doesn't miss anything. As I'm developing I also rely heavily on linters and static code analysis tools to keep CC in check."
+    },
+    {
+      "id": "t1_no21xra",
+      "parent": null,
+      "author": "[삭제됨]",
+      "created": "2025-11-10T04:39:59.901000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/null",
+      "body_html": "",
+      "body_text": ""
+    }
+  ],
+  "retrieved_at": "2026-09-12T11:58:26.457Z",
+  "scope": "Aside rendered public post and currently loaded comment bodies; not complete server HTML, hidden or deleted comments. Login UI and ads excluded from body extraction."
+}

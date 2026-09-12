@@ -1,0 +1,353 @@
+{
+  "sha": "dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+  "node_id": "C_kwDOFJGwptoAKGRlYzlmYzI2YzkwYTJmZWEwZGM2NWUyODg4OTgxZGFhMmZkYTJlNjE",
+  "commit": {
+    "author": {
+      "name": "Gyuwon Yi",
+      "email": "[redacted]",
+      "date": "2025-05-27T13:19:47Z"
+    },
+    "committer": {
+      "name": "Gyuwon Yi",
+      "email": "[redacted]",
+      "date": "2025-05-28T03:27:24Z"
+    },
+    "message": "Add support for Java 17 sealed classes and interfaces\n\nEnables AutoParams to generate instances of sealed types by selecting\nrandomly from permitted concrete subclasses, supporting both simple\nand nested sealed hierarchies while excluding abstract types.",
+    "tree": {
+      "sha": "9dd7d105aceea381dffcee08abc318b2c5e6981c",
+      "url": "https://api.github.com/repos/AutoParams/AutoParams/git/trees/9dd7d105aceea381dffcee08abc318b2c5e6981c"
+    },
+    "url": "https://api.github.com/repos/AutoParams/AutoParams/git/commits/dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/AutoParams/AutoParams/commits/dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+  "html_url": "https://github.com/AutoParams/AutoParams/commit/dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+  "comments_url": "https://api.github.com/repos/AutoParams/AutoParams/commits/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/comments",
+  "author": {
+    "login": "gyuwon",
+    "id": 973743,
+    "node_id": "MDQ6VXNlcjk3Mzc0Mw==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/973743?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gyuwon",
+    "html_url": "https://github.com/gyuwon",
+    "followers_url": "https://api.github.com/users/gyuwon/followers",
+    "following_url": "https://api.github.com/users/gyuwon/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gyuwon/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gyuwon/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gyuwon/subscriptions",
+    "organizations_url": "https://api.github.com/users/gyuwon/orgs",
+    "repos_url": "https://api.github.com/users/gyuwon/repos",
+    "events_url": "https://api.github.com/users/gyuwon/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gyuwon/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "gyuwon",
+    "id": 973743,
+    "node_id": "MDQ6VXNlcjk3Mzc0Mw==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/973743?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gyuwon",
+    "html_url": "https://github.com/gyuwon",
+    "followers_url": "https://api.github.com/users/gyuwon/followers",
+    "following_url": "https://api.github.com/users/gyuwon/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gyuwon/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gyuwon/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gyuwon/subscriptions",
+    "organizations_url": "https://api.github.com/users/gyuwon/orgs",
+    "repos_url": "https://api.github.com/users/gyuwon/repos",
+    "events_url": "https://api.github.com/users/gyuwon/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gyuwon/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "bcc6d4206f8b1cd24f2ab1d3cf0bd3235b58252b",
+      "url": "https://api.github.com/repos/AutoParams/AutoParams/commits/bcc6d4206f8b1cd24f2ab1d3cf0bd3235b58252b",
+      "html_url": "https://github.com/AutoParams/AutoParams/commit/bcc6d4206f8b1cd24f2ab1d3cf0bd3235b58252b"
+    }
+  ],
+  "stats": {
+    "total": 255,
+    "additions": 254,
+    "deletions": 1
+  },
+  "files": [
+    {
+      "sha": "f1932eae477ef85ec65eb40fb495ac19c44b4ed2",
+      "filename": "autoparams/src/main/java/autoparams/generator/DefaultObjectGenerator.java",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 1,
+      "changes": 3,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/autoparams%2Fsrc%2Fmain%2Fjava%2Fautoparams%2Fgenerator%2FDefaultObjectGenerator.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/autoparams%2Fsrc%2Fmain%2Fjava%2Fautoparams%2Fgenerator%2FDefaultObjectGenerator.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/autoparams%2Fsrc%2Fmain%2Fjava%2Fautoparams%2Fgenerator%2FDefaultObjectGenerator.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -28,7 +28,8 @@ public DefaultObjectGenerator() {\n                     new OptionalGenerator(),\n                     new FactoryGenerator(),\n                     new ServiceGenerator(),\n-                    new ComplexObjectGenerator()\n+                    new ComplexObjectGenerator(),\n+                    new SealedTypeObjectGenerator()\n                 )\n             )\n         );"
+    },
+    {
+      "sha": "970aecb47d3a9ec8510b3ba9f4adef478b6cc362",
+      "filename": "autoparams/src/main/java/autoparams/generator/SealedTypeObjectGenerator.java",
+      "status": "added",
+      "additions": 87,
+      "deletions": 0,
+      "changes": 87,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/autoparams%2Fsrc%2Fmain%2Fjava%2Fautoparams%2Fgenerator%2FSealedTypeObjectGenerator.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/autoparams%2Fsrc%2Fmain%2Fjava%2Fautoparams%2Fgenerator%2FSealedTypeObjectGenerator.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/autoparams%2Fsrc%2Fmain%2Fjava%2Fautoparams%2Fgenerator%2FSealedTypeObjectGenerator.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,87 @@\n+package autoparams.generator;\n+\n+import java.lang.reflect.Method;\n+import java.lang.reflect.Modifier;\n+import java.lang.reflect.Type;\n+import java.util.ArrayList;\n+import java.util.List;\n+import java.util.Random;\n+\n+import autoparams.ObjectQuery;\n+import autoparams.ResolutionContext;\n+\n+final class SealedTypeObjectGenerator implements ObjectGenerator {\n+\n+    private final Random random = new Random();\n+\n+    @Override\n+    public ObjectContainer generate(\n+        ObjectQuery query,\n+        ResolutionContext context\n+    ) {\n+        Type type = query.getType();\n+        return type instanceof Class<?>\n+            ? generate((Class<?>) type, context)\n+            : ObjectContainer.EMPTY;\n+    }\n+\n+    private ObjectContainer generate(Class<?> type, ResolutionContext context) {\n+        if (isSealed(type) == false) {\n+            return ObjectContainer.EMPTY;\n+        }\n+\n+        List<Class<?>> concreteSubclasses = findConcreteSubclasses(type);\n+        if (concreteSubclasses.isEmpty()) {\n+            return ObjectContainer.EMPTY;\n+        }\n+\n+        Class<?> subclass = selectOne(concreteSubclasses);\n+        Object value = context.resolve(subclass);\n+        return new ObjectContainer(value);\n+    }\n+\n+    private List<Class<?>> findConcreteSubclasses(Class<?> type) {\n+        List<Class<?>> result = new ArrayList<>();\n+        collectConcreteSubclasses(type, result);\n+        return result;\n+    }\n+\n+    private void collectConcreteSubclasses(\n+        Class<?> type,\n+        List<Class<?>> result\n+    ) {\n+        for (Class<?> subclass : getPermittedSubclasses(type)) {\n+            if (isAbstract(subclass) == false) {\n+                result.add(subclass);\n+            } else if (isSealed(subclass)) {\n+                collectConcreteSubclasses(subclass, result);\n+            }\n+        }\n+    }\n+\n+    private static boolean isAbstract(Class<?> type) {\n+        return Modifier.isAbstract(type.getModifiers());\n+    }\n+\n+    private boolean isSealed(Class<?> type) {\n+        try {\n+            Method method = Class.class.getMethod(\"isSealed\");\n+            return (boolean) method.invoke(type);\n+        } catch (Exception exception) {\n+            return false;\n+        }\n+    }\n+\n+    private Class<?>[] getPermittedSubclasses(Class<?> type) {\n+        try {\n+            Method method = Class.class.getMethod(\"getPermittedSubclasses\");\n+            return (Class<?>[]) method.invoke(type);\n+        } catch (Exception exception) {\n+            return new Class<?>[0];\n+        }\n+    }\n+\n+    private Class<?> selectOne(List<Class<?>> classes) {\n+        return classes.get(random.nextInt(classes.size()));\n+    }\n+}"
+    },
+    {
+      "sha": "de4bc350b78f51d2d393ae22f89e654f8c0d5de6",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/SpecsForSealedTypes.java",
+      "status": "added",
+      "additions": 84,
+      "deletions": 0,
+      "changes": 84,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2FSpecsForSealedTypes.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2FSpecsForSealedTypes.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2FSpecsForSealedTypes.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,84 @@\n+package test.autoparams;\n+\n+import autoparams.AutoParams;\n+import autoparams.ResolutionContext;\n+import org.junit.jupiter.api.Test;\n+import test.autoparams.animal.Animal;\n+import test.autoparams.animal.Bird;\n+import test.autoparams.animal.Fish;\n+import test.autoparams.payment.CreditCardPayment;\n+import test.autoparams.payment.MobilePayment;\n+import test.autoparams.payment.PayPalPayment;\n+import test.autoparams.payment.Payment;\n+import test.autoparams.shape.Circle;\n+import test.autoparams.shape.Rectangle;\n+import test.autoparams.shape.Shape;\n+import test.autoparams.shape.Square;\n+import test.autoparams.vehicle.Car;\n+import test.autoparams.vehicle.Motorcycle;\n+import test.autoparams.vehicle.Ship;\n+import test.autoparams.vehicle.Submarine;\n+import test.autoparams.vehicle.Vehicle;\n+\n+import static org.assertj.core.api.Assertions.assertThat;\n+import static org.assertj.core.api.Assertions.assertThatCode;\n+\n+class SpecsForSealedTypes {\n+\n+    @Test\n+    @AutoParams\n+    void sut_creates_an_instance_of_a_permitted_subclass_of_sealed_class(\n+        ResolutionContext context\n+    ) {\n+        assertThatCode(() -> {\n+            Shape shape = context.resolve();\n+            assertThat(shape).isInstanceOfAny(\n+                Circle.class,\n+                Rectangle.class,\n+                Square.class\n+            );\n+        }).doesNotThrowAnyException();\n+    }\n+\n+    @Test\n+    @AutoParams\n+    void sut_creates_an_instance_of_a_permitted_subclass_of_a_nested_sealed_hierarchy(\n+        ResolutionContext context\n+    ) {\n+        assertThatCode(() -> {\n+            Vehicle vehicle = context.resolve();\n+            assertThat(vehicle).isInstanceOfAny(\n+                Car.class,\n+                Motorcycle.class,\n+                Ship.class,\n+                Submarine.class\n+            );\n+        }).doesNotThrowAnyException();\n+    }\n+\n+    @Test\n+    @AutoParams\n+    void sut_excludes_abstract_permitted_subclasses_when_creating_instances(\n+        ResolutionContext context\n+    ) {\n+        assertThatCode(() -> {\n+            Animal animal = context.resolve();\n+            assertThat(animal).isInstanceOfAny(Bird.class, Fish.class);\n+        }).doesNotThrowAnyException();\n+    }\n+\n+    @Test\n+    @AutoParams\n+    void sut_creates_an_instance_of_a_class_implementing_sealed_interface(\n+        ResolutionContext context\n+    ) {\n+        assertThatCode(() -> {\n+            Payment payment = context.resolve();\n+            assertThat(payment).isInstanceOfAny(\n+                CreditCardPayment.class,\n+                MobilePayment.class,\n+                PayPalPayment.class\n+            );\n+        }).doesNotThrowAnyException();\n+    }\n+}"
+    },
+    {
+      "sha": "96ee709133d64296aa6d5554aba373ca2223a91e",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/animal/Animal.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FAnimal.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FAnimal.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FAnimal.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.animal;\n+\n+public abstract sealed class Animal permits Mammal, Bird, Fish {\n+}"
+    },
+    {
+      "sha": "d4bec2d3e2eb39ab063635e094c99fd87ccd06f7",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/animal/Bird.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FBird.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FBird.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FBird.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.animal;\n+\n+public final class Bird extends Animal {\n+}"
+    },
+    {
+      "sha": "ccfbe701be519caf77bbbc115c3f4b0f931fa148",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/animal/Fish.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FFish.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FFish.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FFish.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.animal;\n+\n+public final class Fish extends Animal {\n+}"
+    },
+    {
+      "sha": "6848a6e224d94f65df3c0455cef3432bb50bab13",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/animal/Mammal.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FMammal.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FMammal.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fanimal%2FMammal.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.animal;\n+\n+public abstract non-sealed class Mammal extends Animal {\n+}"
+    },
+    {
+      "sha": "0ebaee875ca1c84b58ad4487059f754fbc8a09d6",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/payment/CreditCardPayment.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FCreditCardPayment.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FCreditCardPayment.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FCreditCardPayment.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.payment;\n+\n+public final class CreditCardPayment implements Payment {\n+}"
+    },
+    {
+      "sha": "2718b387938a2b3b04de20c44980916d6cd7846e",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/payment/MobilePayment.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FMobilePayment.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FMobilePayment.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FMobilePayment.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.payment;\n+\n+public final class MobilePayment implements Payment {\n+}"
+    },
+    {
+      "sha": "c35b2716909d394f2d9db5b0a110ec13b164d33c",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/payment/PayPalPayment.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FPayPalPayment.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FPayPalPayment.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FPayPalPayment.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.payment;\n+\n+public final class PayPalPayment implements Payment {\n+}"
+    },
+    {
+      "sha": "bbaff1f2ec02bf697a0c485e1778f67f3f03bce3",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/payment/Payment.java",
+      "status": "added",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FPayment.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FPayment.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fpayment%2FPayment.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,5 @@\n+package test.autoparams.payment;\n+\n+public sealed interface Payment\n+    permits CreditCardPayment, MobilePayment, PayPalPayment {\n+}"
+    },
+    {
+      "sha": "0ab2f771c7ddae9e66c05166fc5975e30cbe8c31",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/shape/Circle.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FCircle.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FCircle.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FCircle.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.shape;\n+\n+public final class Circle extends Shape {\n+}"
+    },
+    {
+      "sha": "bf4f72289610a9fb4760abbf165c7547b0408f42",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/shape/Rectangle.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FRectangle.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FRectangle.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FRectangle.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.shape;\n+\n+public final class Rectangle extends Shape {\n+}"
+    },
+    {
+      "sha": "2982554fe7beac8b8e6f84285bee67a40f227e8c",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/shape/Shape.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FShape.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FShape.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FShape.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.shape;\n+\n+public abstract sealed class Shape permits Circle, Rectangle, Square {\n+}"
+    },
+    {
+      "sha": "574e4ee0776fe843c91940044edac22202f0a7f7",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/shape/Square.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FSquare.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FSquare.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fshape%2FSquare.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.shape;\n+\n+public final class Square extends Shape {\n+}"
+    },
+    {
+      "sha": "fac98eaf4b1bb8c75071156b62926bdb285bedb2",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/Car.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FCar.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FCar.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FCar.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.vehicle;\n+\n+public final class Car extends LandVehicle {\n+}"
+    },
+    {
+      "sha": "405e32b8db460d3c1286bda1575a3857f57aa406",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/LandVehicle.java",
+      "status": "added",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FLandVehicle.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FLandVehicle.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FLandVehicle.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,6 @@\n+package test.autoparams.vehicle;\n+\n+public abstract sealed class LandVehicle\n+    extends Vehicle\n+    permits Car, Motorcycle {\n+}"
+    },
+    {
+      "sha": "a04f12b9c9f977ce3e9b55d651ad052b3003d064",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/Motorcycle.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FMotorcycle.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FMotorcycle.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FMotorcycle.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.vehicle;\n+\n+public final class Motorcycle extends LandVehicle {\n+}"
+    },
+    {
+      "sha": "90209ca3e9a84bb8bf2044b3782a73033955104a",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/Ship.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FShip.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FShip.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FShip.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.vehicle;\n+\n+public final class Ship extends WaterVehicle {\n+}"
+    },
+    {
+      "sha": "877d64050a4888c689e15f82dfef56acc9c82be8",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/Submarine.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FSubmarine.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FSubmarine.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FSubmarine.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.vehicle;\n+\n+public final class Submarine extends WaterVehicle {\n+}"
+    },
+    {
+      "sha": "092620b21398de052ecc188627600f89e92b634d",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/Vehicle.java",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FVehicle.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FVehicle.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FVehicle.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,4 @@\n+package test.autoparams.vehicle;\n+\n+public abstract sealed class Vehicle permits LandVehicle, WaterVehicle {\n+}"
+    },
+    {
+      "sha": "e6abbc9f7af7bb6b77965d7fd88cebd755528d97",
+      "filename": "test-autoparams-java-17/src/test/java/test/autoparams/vehicle/WaterVehicle.java",
+      "status": "added",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6,
+      "blob_url": "https://github.com/AutoParams/AutoParams/blob/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FWaterVehicle.java",
+      "raw_url": "https://github.com/AutoParams/AutoParams/raw/dec9fc26c90a2fea0dc65e2888981daa2fda2e61/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FWaterVehicle.java",
+      "contents_url": "https://api.github.com/repos/AutoParams/AutoParams/contents/test-autoparams-java-17%2Fsrc%2Ftest%2Fjava%2Ftest%2Fautoparams%2Fvehicle%2FWaterVehicle.java?ref=dec9fc26c90a2fea0dc65e2888981daa2fda2e61",
+      "patch": "@@ -0,0 +1,6 @@\n+package test.autoparams.vehicle;\n+\n+public abstract sealed class WaterVehicle\n+    extends Vehicle\n+    permits Ship, Submarine {\n+}"
+    }
+  ]
+}

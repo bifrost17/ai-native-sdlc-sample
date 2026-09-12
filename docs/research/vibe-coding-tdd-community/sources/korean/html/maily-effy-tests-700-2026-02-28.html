@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>테스트 700개로 바이브 코딩합니다</title>
+    <meta name="description" content="코드는 짜주는데 맞는지는 모릅니다">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="에피의 바이브 코딩">
+  <meta property="og:title" content="테스트 700개로 바이브 코딩합니다">
+    <meta property="og:description" content="코드는 짜주는데 맞는지는 모릅니다">
+  <meta property="og:url" content="https://maily.so/effy/posts/8do7kyqnrgq">
+
+    <meta property="og:image" content="https://cdn.maily.so/du/effy/202602/1772175140910757.png"/>
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="yeti" content="index, follow">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.maily.so/favicons/202603/1774339664139701.jpeg">
+  <link rel="apple-touch-icon" href="https://cdn.maily.so/favicons/202603/1774339664139701.jpeg">
+
+<meta name="msapplication-TileColor" content="#da532c">
+<meta content="width=device-width,minimum-scale=1,initial-scale=1" name="viewport">
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1917" media="(prefers-color-scheme: dark)">
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="rJkUgDHXfKDWS4hgVsa6VutMHjb-J7H1oXFWQeBOY69QVfSSVmyzZbBBf3msGS2tEWBxG-h08CfduN-dKC0iMQ" />
+
+
+<script type="text/javascript" charset="utf-8">
+  (function() {
+    function getInitialColorMode() {
+
+      const persistedColorPreference = window.localStorage.getItem('nightwind-mode');
+      const hasPersistedPreference = typeof persistedColorPreference === 'string';
+      if (hasPersistedPreference) {
+        return persistedColorPreference;
+      }
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+      if (hasMediaQueryPreference) {
+        return mql.matches ? 'dark' : 'light';
+      }
+      return 'light';
+    }
+    getInitialColorMode() === 'light' ? document.documentElement.classList.remove('dark') : document.documentElement.classList.add('dark');
+  })()
+</script>
+
+
+<script src="https://cdn.maily.so/public/vite/assets/application-4BHT_T4C.js" crossorigin="anonymous" type="module"></script><link rel="modulepreload" href="https://cdn.maily.so/public/vite/assets/application-4BHT_T4C.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://cdn.maily.so/public/vite/assets/stimulus_loader-DA4-bbbR.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://cdn.maily.so/public/vite/assets/zoom-DRlziGC9.js" as="script" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.maily.so/public/vite/assets/application-B1zuhWWA.css" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" defer></script>
+<script>
+  document.addEventListener("turbo:load", function() {
+    WebFont.load({
+      google: {
+        families: ['Noto Sans KR:100,300,400,500,700,900']
+      }
+    });
+  })
+</script>
+
+<link rel="preload" crossorigin="anonymous" href="https://fastly.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0Z3Q83EN3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      window.lastGoogleAnalyticsTimeStamp = -0;
+
+      document.addEventListener("turbo:load", function(event) {
+        if(typeof(gtag) == "function") {
+            if (window.lastGoogleAnalyticsTimeStamp < event.timeStamp) {
+                gtag("config", "G-D0Z3Q83EN3", {
+                    "page_title": document.title,
+                    "page_path": event.detail.url.replace(window.location.protocol + "//" + window.location.hostname + (location.port && ":" + location.port), ""),
+                });
+            }
+
+            window.lastGoogleAnalyticsTimeStamp = event.timeStamp;
+        }
+      });
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6146308520594364"
+            crossorigin="anonymous"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+</script>
+
+
+
+
+
+
+  <link rel="alternate" type="application/rss+xml"
+        title="에피의 바이브 코딩 RSS"
+        href="https://maily.so/effy/feed">
+    <link href="https://maily.so/effy/posts/8do7kyqnrgq" rel="canonical">
+</head>
+
+<body class="bg-white dark:bg-stone-900 space-branded"
+      style="--primary-background-color: #fff3e0;
+        --primary-text-color: #bf360c;
+        --brand-rgb: 255 243 224; --brand-button-text: #bf360c;">
+
+  <div id="loginModal"
+     data-controller="components--modal components--auth"
+     data-components--modal-initial-status="false">
+  <div data-target="components--modal.modal" style="display: none;"
+       class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center z-40">
+    <div data-action="click->components--modal#hideModal"
+         class="fixed inset-0 transition-opacity">
+      <div class="absolute inset-0 bg-stone-300 dark:bg-stone-700 opacity-75 z-40"></div>
+    </div>
+    <div class="bg-white dark:bg-stone-900 rounded-lg p-4 overflow-auto shadow-xl transform transition-all max-w-sm lg:max-w-lg w-full mx-auto sm:p-6"
+         style="max-height: 75vh;"
+         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <form class="relative" data-components--auth-target="form" action="/effy/users/pin_sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input type="hidden" name="authenticity_token" value="jiTM67A12rrZZXx7gMw5U9qzpqj6yPUOk_R8sseYR1hvT4uBtCJ6QIM-qi2zq039mJI6BjLxPP6naiB3kuZfhA" />
+        <div class="space-y-4">
+          <div class="space-y-1">
+            <p class="text-lg font-medium text-slate-900 dark:text-slate-200">
+              로그인이 필요해요
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">이메일 인증으로 간편하게 로그인/가입을 하실 수 있어요. (계정이 없으시면, 자동으로 메일리
+              회원가입이 되며 계정 설정에서 비밀번호를 지정하실 수 있어요.)</p>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm font-medium leading-5 text-slate-700 dark:text-slate-300" for="email">이메일</label>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <div class="relative flex-1 focus-within:z-40">
+                <input data-components--auth-target="email" placeholder="wonderful@gmail.com" required="required" class="bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-none rounded-l-md border-r-0" type="email" name="email" id="email" />
+              </div>
+              <button type="button"
+                      data-action="click->components--auth#startAuthentication"
+                      data-components--auth-target="authButton"
+                      class="-ml-px maily-secondary-button rounded-none rounded-r-md">
+                인증하기
+              </button>
+            </div>
+          </div>
+          <div class="hidden" data-target="components--auth.authenticationField">
+            <div class="flex justify-between">
+              <label for="email" class="text-sm font-medium leading-5 text-slate-700 dark:text-slate-300">이메일
+                인증하기</label>
+              <span data-action="click->components--auth#resendPin"
+                    class="text-xs font-bold leading-5 text-slate-700 dark:text-slate-300 underline underline-offset-2 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer">재발송</span>
+            </div>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <div class="relative flex-grow focus-within:z-40">
+                <input autocomplete="off" placeholder="12345678" pattern="[0-9]*" inputmode="numeric" data-components--auth-target="pin" class="bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-none rounded-l-md border-r-0" min="10000000" max="99999999" type="number" name="user_pin" id="user_pin" />
+              </div>
+              <input type="submit" name="commit" value="확인" class="-ml-px maily-secondary-button rounded-none rounded-r-md" data-disable-with="확인중..." />
+            </div>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300"
+               data-components--auth-target="pinNotification">이메일로 전송 된 8자리 숫자를 입력해주세요</p>
+          </div>
+          <div class="mt-3" id="privacyAgreement">
+            <div class="flex items-center">
+              <input name="privacy_agreement" type="hidden" value="0" /><input required="required" data-components--auth-target="privacyAgreement" class="focus:ring-gray-400 h-4 w-4 text-gray-600 dark:text-gray-500 border-gray-300 dark:border-gray-500 rounded" type="checkbox" value="1" checked="checked" name="privacy_agreement" id="privacy_agreement" />
+              <label class="w-full text-left ml-2 block text-xs leading-5 text-gray-700 dark:text-gray-300 cursor-pointer" for="privacy_agreement">
+                메일리 <a target="_blank" class="underline hover:text-slate-700 dark:text-slate-300" href="https://maily.so/app/service_policy">이용약관</a> <a target="_blank" class="underline hover:text-slate-700 dark:text-slate-300" href="https://maily.so/app/privacy_agreement">개인정보처리방침</a>
+                에 동의합니다.
+</label>            </div>
+          </div>
+        </div>
+</form>      <div class="border-t border-gray-100 dark:border-gray-700 my-3 md:my-5"></div>
+      <div class="my-6">
+        
+    <form class="button_to" method="post" action="/app/users/auth/google_oauth2?redirect_path=%2Feffy%2Fposts%2F8do7kyqnrgq&amp;space_url=effy"><button data-turbo="false" class="group relative w-full flex justify-center py-2 px-4 border text-sm leading-5 font-medium rounded-md primary-start border border-gray-300 dark:border-gray-500 text-slate-700 dark:text-slate-300 bg-white dark:bg-stone-900 hover:text-slate-600 dark:text-slate-300 focus:outline-none focus:border-blue-300 focus:ring-blue-300 active:text-gray-800 dark:text-gray-100 active:bg-slate-50 dark:bg-slate-800 astro-primary primary-end transition duration-150 ease-in-out" type="submit">
+      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="w-5 h-5 mr-2" width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M17.64,9.20454545 C17.64,8.56636364 17.5827273,7.95272727 17.4763636,7.36363636 L9,7.36363636 L9,10.845 L13.8436364,10.845 C13.635,11.97 13.0009091,12.9231818 12.0477273,13.5613636 L12.0477273,15.8195455 L14.9563636,15.8195455 C16.6581818,14.2527273 17.64,11.9454545 17.64,9.20454545 L17.64,9.20454545 Z" id="Shape" fill="#4285F4" sketch:type="MSShapeGroup"></path>
+              <path d="M9,18 C11.43,18 13.4672727,17.1940909 14.9563636,15.8195455 L12.0477273,13.5613636 C11.2418182,14.1013636 10.2109091,14.4204545 9,14.4204545 C6.65590909,14.4204545 4.67181818,12.8372727 3.96409091,10.71 L0.957272727,10.71 L0.957272727,13.0418182 C2.43818182,15.9831818 5.48181818,18 9,18 L9,18 Z" id="Shape" fill="#34A853" sketch:type="MSShapeGroup"></path>
+              <path d="M3.96409091,10.71 C3.78409091,10.17 3.68181818,9.59318182 3.68181818,9 C3.68181818,8.40681818 3.78409091,7.83 3.96409091,7.29 L3.96409091,4.95818182 L0.957272727,4.95818182 C0.347727273,6.17318182 0,7.54772727 0,9 C0,10.4522727 0.347727273,11.8268182 0.957272727,13.0418182 L3.96409091,10.71 L3.96409091,10.71 Z" id="Shape" fill="#FBBC05" sketch:type="MSShapeGroup"></path>
+              <path d="M9,3.57954545 C10.3213636,3.57954545 11.5077273,4.03363636 12.4404545,4.92545455 L15.0218182,2.34409091 C13.4631818,0.891818182 11.4259091,0 9,0 C5.48181818,0 2.43818182,2.01681818 0.957272727,4.95818182 L3.96409091,7.29 C4.67181818,5.16272727 6.65590909,3.57954545 9,3.57954545 L9,3.57954545 Z" id="Shape" fill="#EA4335" sketch:type="MSShapeGroup"></path>
+            </svg>
+          </span>
+
+      <span>구글로 시작하기</span>
+</button><input type="hidden" name="authenticity_token" value="IDTk0wL1hmv_Zv9GZe8zowemPlabdE2XugNfmO2RuocFox1b9nOkl-thB1l_TT9lLXwjMqMVkx6Yfkqw5FRc6w" /></form>
+      </div>
+      <div class="text-right">
+        <a class="text-sm lg:text-base leading-5 lg:leading-6 font-medium text-slate-700 dark:text-slate-300 underline underline-offset-2 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer" href="/effy/users/sign_in?redirect_path=%2Feffy%2Fposts%2F8do7kyqnrgq">
+          비밀번호로 로그인 하기
+</a>      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="subscribeModal"
+     data-controller="components--subscribe-modal"
+     data-components--subscribe-modal-initial-status="false"
+     data-components--subscribe-modal-initial-plan="">
+  <div data-target="components--subscribe-modal.modal" style="display: none;"
+       class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center z-30">
+    <div data-action="click->components--subscribe-modal#hideModal"
+         class="fixed inset-0 transition-opacity">
+      <div class="absolute inset-0 bg-stone-300 dark:bg-stone-700 opacity-75 z-30"></div>
+    </div>
+    <div class="relative bg-white dark:bg-stone-900 rounded-lg px-4 pt-5 pb-4 overflow-auto shadow-xl transform transition-all max-w-sm sm:max-w-xl w-full mx-auto sm:p-6"
+         style="max-height: 75vh;"
+         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <fieldset class="space-y-3 lg:space-y-4">
+        <legend class="text-lg font-medium text-slate-900 dark:text-slate-200 mb-2">
+          에피의 바이브 코딩 구독하기
+        </legend>
+
+        <p class="text-sm text-slate-900 dark:text-slate-200 text-left whitespace-pre-line" style="word-break: keep-all;">전 토스증권/카카오 개발자 | Claude Code로 진짜 바이브 코딩하기</p>
+      </fieldset>
+
+      
+
+
+      <form id="subscribeModal" class="" data-components--subscribe-modal-target="form" data-controller="google-analytics--form" data-action="submit-&gt;google-analytics--form#event" data-event-params="{&quot;name&quot;:&quot;subscribe&quot;,&quot;component&quot;:&quot;modal&quot;}" action="/effy/subscriptions" accept-charset="UTF-8" data-remote="true" method="post"><input type="hidden" name="authenticity_token" value="-zGBgvNJVqApTaUpI7ydkV8o6CRcMXNhucUXiA1BkePCi8XJ7B3SFV1pFuNdWhjKIClVKQlWTFetbU0LIsrrPg" />
+        <input value="https://maily.so/effy/posts/8do7kyqnrgq" type="hidden" name="subscription[referrer_url]" id="subscription_referrer_url" />
+        <div style="position: absolute; top: -500px;">
+          <input placeholder="가짜필드" class="" type="text" name="subscription[profile]" id="subscription_profile" />
+        </div>
+        <fieldset class="space-y-3 lg:space-y-4">
+            <input id="b2565907da5ed85ecb81bd098a9398d7_free" required="required" data-action="click-&gt;components--subscribe-modal#forFreePlan" class="hidden" type="radio" value="free" checked="checked" name="subscription[plan]" />
+
+          
+        </fieldset>
+
+          <div class="mt-6 space-y-2"
+               data-controller="components--email-validator">
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <label class="absolute -top-2 left-2 inline-block bg-white dark:bg-stone-900 px-1 text-xs font-medium text-slate-900 dark:text-slate-200" for="subscription_email">이메일</label>
+              <input data-components--subscribe-modal-target="email" data-components--email-validator-target="email" data-action="keyup-&gt;components--email-validator#validateEmail" placeholder="wonderful@gmail.com" required="required" class="bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md" type="email" name="subscription[email]" id="subscription_email" />
+            </div>
+
+            <p class="hidden mt-1 text-xs text-green-600"
+               data-components--email-validator-target="emailValidation"></p>
+          </div>
+
+            <div class="mt-4 relative rounded-md shadow-sm">
+              <label class="absolute -top-2 left-2 inline-block bg-white dark:bg-stone-900 px-1 text-xs font-medium text-slate-900 dark:text-slate-200" for="subscription_name">닉네임</label>
+              <input placeholder="라이언" data-components--subscribe-modal-target="name" class="bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md" type="text" name="subscription[name]" id="subscription_name" />
+            </div>
+
+
+          <div class="mt-3">
+            <script src="https://www.recaptcha.net/recaptcha/api.js" async defer ></script>
+<div data-sitekey="6LcBSkEaAAAAAP3s5SItSz41SJttHWghaybLELpz" class="g-recaptcha "></div>
+
+          </div>
+          <div class="mt-5 hidden"
+               data-target="components--subscribe-modal.authenticationField">
+            <div class="flex justify-between">
+              <label for="email" class="text-sm font-medium leading-5 text-slate-700 dark:text-slate-300">이메일
+                인증하기</label>
+              <span data-action="click->components--subscribe-modal#resendPin"
+                    class="text-xs font-bold leading-5 text-slate-700 dark:text-slate-300 underline underline-offset-2 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer">재발송</span>
+            </div>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <div class="relative flex-grow focus-within:z-30">
+                <input autocomplete="off" placeholder="12345678" pattern="[0-9]*" inputmode="numeric" data-target="components--subscribe-modal.pin" class="bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-none rounded-l-md" min="10000000" max="99999999" type="number" name="subscription[user_pin]" id="subscription_user_pin" />
+              </div>
+              <input type="submit" name="commit" value="확인" class="-ml-px maily-secondary-button rounded-none rounded-r-md" data-disable-with="확인중..." />
+            </div>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300"
+               data-target="components--subscribe-modal.pinNotification">이메일로 전송 된 8자리 숫자를 입력해주세요</p>
+          </div>
+          <div class="mt-3" id="privacyAgreement">
+            <div class="flex items-center">
+              <input name="subscription[privacy_agreement]" type="hidden" value="0" /><input required="required" data-target="components--subscribe-modal.privacyAgreement" class="focus:ring-gray-400 h-4 w-4 text-gray-600 dark:text-gray-500 border-gray-300 dark:border-gray-500 rounded" type="checkbox" value="1" checked="checked" name="subscription[privacy_agreement]" id="subscription_privacy_agreement" />
+              <label class="w-full text-left ml-2 block text-xs leading-5 text-gray-700 dark:text-gray-300 cursor-pointer" for="subscription_privacy_agreement">
+                [필수]
+                메일리 <a target="_blank" class="underline hover:text-slate-700 dark:text-slate-300" href="https://maily.so/app/service_policy">이용약관</a> <a target="_blank" class="underline hover:text-slate-700 dark:text-slate-300" href="https://maily.so/app/privacy_agreement">개인정보처리방침</a>
+                에 동의합니다.
+</label>            </div>
+          </div>
+
+        <input type="submit" name="commit" value="Create 구독" class="hidden" data-components--subscribe-modal-target="hiddenSubmit" data-disable-with="Create 구독" />
+</form>
+      <div class="sticky bottom-0 mt-5 sm:mt-6 grid grid-cols-2 gap-3 grid-flow-row-dense"
+           data-target="components--subscribe-modal.confirmButtons">
+          <span class="flex w-full rounded-md shadow-sm col-start-2"
+                data-target="components--subscribe-modal.confirmFreePlan">
+            <button type="button"
+                    data-action="click->components--subscribe-modal#submitForm"
+                    class="w-full maily-secondary-button">
+              구독하기
+            </button>
+          </span>
+
+        <span class="flex w-full rounded-md shadow-sm col-start-2 hidden"
+              data-target="components--subscribe-modal.confirmPaidPlan">
+            <button data-action="click->components--subscribe-modal#startAuthentication"
+                    type="button" class="w-full maily-secondary-button">
+              구독하기
+            </button>
+          </span>
+
+        <span class="flex w-full rounded-md shadow-sm mt-0 col-start-1">
+            <button data-action="click->components--subscribe-modal#hideModal"
+                    type="button" class="w-full maily-white-button">취소</button>
+          </span>
+      </div>
+
+        <div class="border-t border-gray-100 dark:border-gray-700 my-3 md:my-5"></div>
+
+        
+    <form class="button_to" method="post" action="/app/users/auth/google_oauth2?redirect_path=%2Feffy%2Fposts%2F8do7kyqnrgq%3Fpop%3Dup&amp;space_url=effy"><button data-turbo="false" class="group relative w-full flex justify-center py-2 px-4 border text-sm leading-5 font-medium rounded-md primary-start border border-gray-300 dark:border-gray-500 text-slate-700 dark:text-slate-300 bg-white dark:bg-stone-900 hover:text-slate-600 dark:text-slate-300 focus:outline-none focus:border-blue-300 focus:ring-blue-300 active:text-gray-800 dark:text-gray-100 active:bg-slate-50 dark:bg-slate-800 astro-primary primary-end transition duration-150 ease-in-out" type="submit">
+      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="w-5 h-5 mr-2" width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M17.64,9.20454545 C17.64,8.56636364 17.5827273,7.95272727 17.4763636,7.36363636 L9,7.36363636 L9,10.845 L13.8436364,10.845 C13.635,11.97 13.0009091,12.9231818 12.0477273,13.5613636 L12.0477273,15.8195455 L14.9563636,15.8195455 C16.6581818,14.2527273 17.64,11.9454545 17.64,9.20454545 L17.64,9.20454545 Z" id="Shape" fill="#4285F4" sketch:type="MSShapeGroup"></path>
+              <path d="M9,18 C11.43,18 13.4672727,17.1940909 14.9563636,15.8195455 L12.0477273,13.5613636 C11.2418182,14.1013636 10.2109091,14.4204545 9,14.4204545 C6.65590909,14.4204545 4.67181818,12.8372727 3.96409091,10.71 L0.957272727,10.71 L0.957272727,13.0418182 C2.43818182,15.9831818 5.48181818,18 9,18 L9,18 Z" id="Shape" fill="#34A853" sketch:type="MSShapeGroup"></path>
+              <path d="M3.96409091,10.71 C3.78409091,10.17 3.68181818,9.59318182 3.68181818,9 C3.68181818,8.40681818 3.78409091,7.83 3.96409091,7.29 L3.96409091,4.95818182 L0.957272727,4.95818182 C0.347727273,6.17318182 0,7.54772727 0,9 C0,10.4522727 0.347727273,11.8268182 0.957272727,13.0418182 L3.96409091,10.71 L3.96409091,10.71 Z" id="Shape" fill="#FBBC05" sketch:type="MSShapeGroup"></path>
+              <path d="M9,3.57954545 C10.3213636,3.57954545 11.5077273,4.03363636 12.4404545,4.92545455 L15.0218182,2.34409091 C13.4631818,0.891818182 11.4259091,0 9,0 C5.48181818,0 2.43818182,2.01681818 0.957272727,4.95818182 L3.96409091,7.29 C4.67181818,5.16272727 6.65590909,3.57954545 9,3.57954545 L9,3.57954545 Z" id="Shape" fill="#EA4335" sketch:type="MSShapeGroup"></path>
+            </svg>
+          </span>
+
+      <span>구글로 시작하기</span>
+</button><input type="hidden" name="authenticity_token" value="o2z1qEGZL-AZKD_VLbGoaIv7ZyuOovWG2Lg1tRPvtuaG-wwgtR8NHA0vx8o3E6SuoSF6T7bDKw_6xSCdGipQig" /></form>
+
+        <div class="top-1 lg:top-2 relative col-span-2 text-center text-gray-400 dark:text-gray-600">
+            <span class="text-xs mb-1 cursor-pointer hover:underline"
+                  data-controller="components--remote"
+                  data-action="click->components--remote#openLoginModal">이미 구독하셨나요?</span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<nav class="bg-white dark:bg-stone-900">
+  <div class="w-full max-w-6xl mx-auto px-5 py-3">
+    <div class="w-full flex justify-between h-10 lg:h-12 space-x-2 lg:space-x-3">
+        <div class="flex-1 flex md:flex items-center space-x-2 truncate">
+          <a class="block shrink-0" href="/">
+            <img alt="메일리 로고" class="w-7 lg:w-8 h-7 lg:h-8 border-2 border-transparent object-cover" src="https://cdn.maily.so/images/logo_icon.png" />
+</a>              <a class="truncate" href="/effy">
+                <b class="text-base text-black dark:text-white lg:text-xl p-0.5">에피의 바이브 코딩</b>
+</a>        </div>
+      <div class="flex items-center space-x-4 lg:space-x-5">
+        <button type="button"
+                data-controller="components--darkmode"
+                data-action="click->components--darkmode#toggleColorMode"
+                aria-label="다크/라이트 모드 전환"
+                class="flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-200 hover:text-yellow-300 fill-current stroke-current h-6 w-6 inline-block dark:hidden" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-200 hover:text-yellow-300 fill-current stroke-current h-6 w-6 hidden dark:block" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/>
+          </svg>
+        </button>
+          <div class="shrink-0">
+              <div x-data="{ open: false }"
+                   class="ml-2 lg:ml-3 shrink-0 flex items-center">
+                <div @click.outside="open = false" class="relative" x-data="{ open: false }">
+                  <div>
+                    <button
+                      @click="open = !open"
+                      style="touch-action: manipulation;"
+                      type="button" class="z-10 z-10 flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out" aria-haspopup="true" aria-expanded="true">
+                      <svg class="h-8 w-8 p-0.5 fill-current text-slate-600 dark:text-slate-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div x-show="open"
+                       style="display: none;"
+                       x-description="Profile dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-200" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95"
+                       class="z-[2000] origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" style="display: none;">
+                    <div class="rounded-md bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-600" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                      <div class="px-4 py-3">
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-5">
+                          로그인을 안해도 바로 구독할 수 있어요 :)
+                        </p>
+                      </div>
+                      <div class="border-t border-gray-100 dark:border-gray-700"></div>
+                      <div class="py-1">
+                        <a @click="open = false"
+                           data-controller="components--remote"
+                           data-action="click->components--remote#openSubscriptionModal"
+                           class="cursor-pointer block px-4 py-2 text-sm text-green-700 dark:text-green-700 leading-5 hover:bg-gray-100 dark:bg-stone-900 dark:text-slate-200 dark:hover:bg-stone-700 focus:outline-none focus:bg-gray-100 focus:text-slate-900 dark:text-slate-200" role="menuitem">
+                          구독하기
+                        </a>
+                        <a class="block px-4 py-2 text-sm leading-5 text-slate-600 bg-white hover:text-slate-900 hover:bg-stone-200 dark:bg-stone-900 dark:text-slate-200 dark:hover:bg-stone-700 focus:outline-none focus:bg-gray-100 focus:text-slate-900 dark:text-slate-200" href="/effy/users/sign_in?redirect_path=%2Feffy%2Fposts%2F8do7kyqnrgq">
+                          로그인
+</a>                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</nav>
+<div class="z-30 fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+  <div id="flashesContainer"
+       data-controller="components--flashes"
+       data-components--flashes-target="container"
+       class="flex flex-col max-w-sm w-full space-y-2">
+    
+  </div>
+</div>
+
+<div class="pb-14 lg:pb-20 bg-white dark:bg-stone-900"
+     id="appContainer"
+     style="min-height: 75vh;">
+  <div class="w-full relative bg-white dark:bg-stone-900"
+     data-controller="posts--show"
+     data-posts--show-enable-popup="false"
+     data-action="scroll@window->posts--show#onScroll">
+  <div class="max-w-2xl lg:max-w-6xl w-full mx-auto grid grid-cols-9 gap-4 lg:gap-8 py-4 lg:py-8">
+    <div class="hidden lg:block lg:col-span-2 lg:pt-[6rem]" data-posts--show-target="scrollSpy">
+      
+
+  <nav class="bg-white dark:bg-stone-900 lg:sticky flex flex-col truncate" style="top: 5rem;" x-data="{ lastOpened: null }">
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="uazJYpBViI">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">Cloudflare가 Next.js를 일주일 만에 복제한 방법</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="aCzoe-4P-r">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">해자가 뒤집혔어요</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="ifB0LCLqKH">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">SQLite는 이걸 10년 전에 알고 있었어요</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="gjTGV6q3k8">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">이건 제 이야기이기도 해요</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="9C3hPZUzFU">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">Cloudflare가 한 것과 제가 한 것은 같은 패턴이에요</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="8_zYihVxXC">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">이전 뉴스레터에서 한 이야기들이 여기로 수렴해요</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="tW5WrfFOoi">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">근데 테스트에도 함정이 있어요</p>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="VLHlN22A66">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">오픈소스의 인센티브 구조가 바뀌고 있어요</p>
+  </div>
+
+      
+  <div x-data="{ open: false }"
+       x-effect="if (lastOpened && lastOpened !== 'f6mftmQhbH') open = false">
+    <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700" :class="{ 'bg-stone-100 dark:bg-stone-800': open }">
+      <div class="flex-1 min-w-0 cursor-pointer"
+           data-action="click->posts--show#scrollTo"
+           data-scroll-id="f6mftmQhbH"
+           @click="open = true; lastOpened = 'f6mftmQhbH'">
+        <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate">이게 개발자 개인에게는 무슨 의미일까요</p>
+      </div>
+      <button type="button"
+              @click="open = !open; if (open) lastOpened = 'f6mftmQhbH'"
+              :aria-expanded="open"
+              aria-label="섹션 접기/펼치기"
+              class="shrink-0 w-8 self-stretch flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 stroke-current transition-transform duration-150" :class="{ 'rotate-90': open }" width="24" height="24" viewBox="0 0 24 24" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <polyline points="9 6 15 12 9 18"/>
+        </svg>
+      </button>
+    </div>
+    <div x-data="{ lastOpened: null }" x-show="open" style="display: none;">
+        
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="SR9COyykNS">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">&nbsp;&nbsp;테스트는 비용이 아니라 자산이에요</p>
+  </div>
+
+        
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="bP_0Q-MJ3L">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">&nbsp;&nbsp;테스트를 먼저 쓰면 AI에 대한 의존도를 줄일 수 있어요</p>
+  </div>
+
+        
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="M1o1UTTy03">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">&nbsp;&nbsp;테스트는 AI가 바뀌어도 살아남아요</p>
+  </div>
+
+    </div>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="B2B5Cz90la">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">솔직히 이렇게 느꼈습니다</p>
+  </div>
+
+      
+  <div x-data="{ open: false }"
+       x-effect="if (lastOpened && lastOpened !== 'yCTMy6zib4') open = false">
+    <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700" :class="{ 'bg-stone-100 dark:bg-stone-800': open }">
+      <div class="flex-1 min-w-0 cursor-pointer"
+           data-action="click->posts--show#scrollTo"
+           data-scroll-id="yCTMy6zib4"
+           @click="open = true; lastOpened = 'yCTMy6zib4'">
+        <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate">오늘 바로 해보세요</p>
+      </div>
+      <button type="button"
+              @click="open = !open; if (open) lastOpened = 'yCTMy6zib4'"
+              :aria-expanded="open"
+              aria-label="섹션 접기/펼치기"
+              class="shrink-0 w-8 self-stretch flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 stroke-current transition-transform duration-150" :class="{ 'rotate-90': open }" width="24" height="24" viewBox="0 0 24 24" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <polyline points="9 6 15 12 9 18"/>
+        </svg>
+      </button>
+    </div>
+    <div x-data="{ lastOpened: null }" x-show="open" style="display: none;">
+        
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="5OIu2T03op">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">&nbsp;&nbsp;1. 다음 기능을 테스트부터 작성해보세요 (15분)</p>
+  </div>
+
+        
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="tqiu29RuGD">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">&nbsp;&nbsp;2. CLAUDE.md에 테스트 규칙 추가하기 (1분)</p>
+  </div>
+
+        
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="1Q7n7lU1vf">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">&nbsp;&nbsp;3. 기존 프로젝트에 회귀 테스트 하나 추가하기 (10분)</p>
+  </div>
+
+    </div>
+  </div>
+
+      
+  <div class="flex items-center hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+       data-action="click->posts--show#scrollTo"
+       data-scroll-id="ilU7yvhieB">
+    <p class="pointer-events-none px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 focus:outline-none transition ease-in-out duration-150 truncate flex-1 min-w-0">마무리</p>
+  </div>
+
+  </nav>
+
+    </div>
+    <div class="col-span-9 lg:col-span-5 lg:col-start-3">
+      <div class="flex items-center justify-between space-x-2 lg:space-x-4 p-3 lg:px-0 bg-white dark:bg-stone-900 sticky top-0 z-10"
+     data-posts--show-target="writerTopBar"
+     id="postWriterBar">
+  <a class="flex-1 group block focus:outline-none mr-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-slate-200" href="/effy">
+    <div class="flex items-center">
+      <img loading="lazy" alt="에피의 바이브 코딩의 프로필 이미지" class="inline-block h-10 lg:h-12 w-10 lg:w-12 border-1 border-gray-100 dark:border-gray-700 bg-gray-100 rounded-full object-cover" src="https://cdn.maily.so/202602/1770556138804639.jpeg" />
+      <div class="flex-1 ml-3 space-y-1">
+        <p class="text-sm leading-5 font-medium">
+          에피의 바이브 코딩
+        </p>
+        <p class="text-xs leading-4 font-medium truncate-1-lines" style="word-break: break-all;">
+          클로드 코드, 코딩 에이전트
+        </p>
+      </div>
+    </div>
+</a>  <div class="shrink-0 flex items-center">
+      <span class="inline-flex rounded-md shadow-sm">
+    <button data-controller="components--remote"
+            data-action="click-&gt;components--remote#openSubscriptionModal"
+            class="maily-secondary-button">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-4 w-4 mr-1" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      구독하기
+    </button>
+  </span>
+
+  </div>
+</div>
+
+<div class="lg:mt-8 mb-2 lg:mb-4 space-y-4 p-3 lg:p-0">
+  <h1 class="text-[32px] text-slate-900 dark:text-slate-200 font-black leading-snug break-words">테스트 700개로 바이브 코딩합니다</h1>
+  <div class="space-y-2">
+    <h2 class="flex-1 text-base lg:text-xl text-slate-700 dark:text-slate-300 leading-snug break-words">코드는 짜주는데 맞는지는 모릅니다</h2>
+    <div class="text-xs lg:text-sm flex space-x-2">
+      <span class="text-slate-600 dark:text-slate-300">2026.02.28</span>
+        <span class="text-gray-300">|</span>
+        <span class="text-slate-600 dark:text-slate-300 flex items-center">
+                조회 675
+              </span>
+          <span class="text-gray-300">|</span>
+          <div data-action="click->posts--show#scrollTo"
+               data-scroll-id="comments"
+               class="group text-slate-600 dark:text-slate-300 flex items-center cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="pointer-events-none mr-1 h-4 w-4 stroke-current group-active:text-green-700 group-focus:text-green-700 group-hover:text-green-700" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 20l-3 -3h-2a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-2l-3 3"/>
+              <line x1="8" y1="9" x2="16" y2="9"/>
+              <line x1="8" y1="13" x2="14" y2="13"/>
+            </svg>
+            <span class="pointer-events-none group-active:text-green-700 group-focus:text-green-700 group-hover:text-green-700">0</span>
+          </div>
+        <span class="text-gray-300">|</span>
+        <div x-data="{ feedbackOpen: false }" class="flex items-center">
+    <div class="text-sm px-0.5 group text-slate-600 dark:text-slate-300 flex items-center cursor-pointer"
+         @click="feedbackOpen = !feedbackOpen;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 stroke-current group-active:text-green-700 group-focus:text-green-700 group-hover:text-green-700" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M5 6h10a1 1 0 0 1 1 1v8a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4v-8a1 1 0 0 1 1 -1"/>
+        <path d="M16 9h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2"/>
+      </svg>
+    </div>
+
+  <div x-show="feedbackOpen"
+       style="display: none;"
+       class="fixed z-20 inset-0 overflow-y-auto">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div x-show="feedbackOpen"
+           @click="feedbackOpen = !feedbackOpen"
+           style="display: none;"
+           x-description="Background overlay, show/hide based on modal state."
+           class="fixed inset-0 transition-opacity">
+        <div class="absolute inset-0 bg-stone-300 dark:bg-stone-700 opacity-75 z-30"></div>
+      </div>
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+
+      <div x-show="feedbackOpen"
+           style="display: none;"
+           data-controller="components--remote"
+           x-description="Modal panel, show/hide based on modal state."
+           class="inline-block align-bottom bg-white dark:bg-stone-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+
+        <div class="flex items-center space-x-5">
+          <span class="text-2xl lg:text-3xl">☕</span>
+        </div>
+        <div class="mt-3 text-left sm:mt-5">
+          <h3 class="text-base leading-6 font-medium text-slate-900 dark:text-slate-200">
+            에피의 바이브 코딩 님에게 커피와 쪽지 보내기
+          </h3>
+          <div class="mt-2">
+            <p class="text-sm leading-5 text-slate-600 dark:text-slate-300">
+              커피와 함께 하고싶은 말을 쪽지에 적어주시면 메일리가 전달해드려요.
+            </p>
+
+            <p class="mt-1 italic text-xs text-slate-600 dark:text-slate-300">보내시는 분의 이메일주소, 닉네임과 함께 전달됩니다.</p>
+          </div>
+        </div>
+
+
+        <form action="/effy/writers/buy_coffee" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="eDeaoOn905VFx21BO4lOcw1tyV92jQdWgYNX3k1zKmzV-3RIPGFVdkK51ZKuR7bjqDU6GSc8i_nTl8ZDNtsPmg" />
+          <div>
+            <div class="mt-6">
+              <label class="block text-base font-medium leading-7 text-slate-900 dark:text-slate-200" for="coffee">커피</label>
+              <select x-ref="coffeeSelect" required="required" class="cursor-pointer bg-gray-100 dark:bg-stone-700 text-slate-900 dark:text-slate-200 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-500 focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm rounded-md" name="coffee" id="coffee"><option value="">메뉴 선택하기</option>
+<option value="커피 우유 (1,500원)">커피 우유 (1,500원)</option>
+<option value="테이크아웃 아메리카노 (3,000원)">테이크아웃 아메리카노 (3,000원)</option>
+<option value="아메리카노 (5,000원)">아메리카노 (5,000원)</option>
+<option value="핸드드립 스페셜티 커피 (9,000원)">핸드드립 스페셜티 커피 (9,000원)</option>
+<option value="라떼와 초콜릿 케이크 (18,000원)">라떼와 초콜릿 케이크 (18,000원)</option>
+<option value="아메리카노 5잔 (25,000원)">아메리카노 5잔 (25,000원)</option>
+<option value="한 달치 커피 (50,000원)">한 달치 커피 (50,000원)</option></select>
+            </div>
+            <div class="mt-4">
+              <label class="block text-base font-medium leading-7 text-slate-900 dark:text-slate-200" for="feedback">쪽지</label>
+              <div class="rounded-md shadow-sm">
+                <textarea data-action="click->components--remote#openLoginModal"
+                          name="blocked"
+                          readonly
+                          rows="3"
+                          placeholder="로그인 하고 쪽지 보내기 &rarr;"
+                          class="cursor-pointer bg-gray-100 dark:bg-stone-700 text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 sm:mt-6 grid grid-cols-2 gap-3 grid-flow-row-dense">
+              <span class="flex w-full rounded-md shadow-sm col-start-2">
+                <button type="button"
+                        data-action="click->components--remote#openLoginModal"
+                        class="cursor-pointer w-full maily-dark-button opacity-50">보내기</button>
+              </span>
+            <span class="flex w-full rounded-md shadow-sm mt-0 col-start-1">
+              <button type="button"
+                      @click="
+                      feedbackOpen = false; setTimeout(() => {
+                        $refs.coffeeSelect.value = '';
+                        $refs.feedbackInput.value = '';
+                      }, 1000);
+                      "
+                      class="w-full text-center maily-white-button">
+                나중에 하기
+              </button>
+            </span>
+          </div>
+</form>      </div>
+    </div>
+  </div>
+</div>
+        <button type="button"
+                data-controller="components--share"
+                aria-label="공유하기"
+                data-target="components--share.copyText"
+                data-components--share-title="에피의 바이브 코딩"
+                data-components--share-text="테스트 700개로 바이브 코딩합니다"
+                data-components--share-url="https://maily.so/effy/posts/8do7kyqnrgq"
+                data-action="components--share#onClickShare"
+                class="hidden group text-slate-600 dark:text-slate-300 flex items-center cursor-pointer outline-none active:outline-none focus:outline-none">
+          <span class="text-gray-300 mr-2">|</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 stroke-current text-slate-600 dark:text-slate-300 group-active:text-slate-600 dark:text-slate-300 group-focus:text-slate-600 dark:text-slate-300 group-hover:text-slate-600 dark:text-slate-300" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5"/>
+            <line x1="10" y1="14" x2="20" y2="4"/>
+            <polyline points="15 4 20 4 20 9"/>
+          </svg>
+        </button>
+
+    </div>
+  </div>
+</div>
+
+<div class="lg:mt-10">
+      <article class="w-full bg-white dark:bg-stone-900 p-3 lg:p-0 mb-4 lg:mb-8 prose dark:prose-invert max-w-full post-body-narrow">
+      <p data-block-id='jOAQdZIqVK'>저는 지금 개인 프로젝트를 하나 만들고 있어요. 시작부터 TDD로 구현하고 있는데요. 테스트가 700개를 넘겼어요.</p><p data-block-id='dNxt5Mnnwb'>700개요. 사이드 프로젝트치고 좀 많죠.</p><p data-block-id='2lfmxSn9lv'>근데 이게 귀찮아서 그만둘까 싶은 적은 한 번도 없었어요. 오히려 테스트가 쌓일수록 <b>개발이 빨라져요.</b> 새 기능을 붙일 때 겁이 안 나요. 뭔가 깨지면 테스트가 바로 잡아주니까요. AI한테 "이거 구현해줘"라고 시키고, 테스트가 전부 통과하는지만 확인하면 돼요. 통과하면 커밋, 실패하면 수정. 이게 전부예요.</p><p data-block-id='fvnFuNoN7H'>그러다가 Daniel Saewitz라는 사람이 쓴 글을 읽었는데요. 제목이 <b>"Tests Are The New Moat"</b>예요. 테스트가 새로운 해자라는 거예요. 읽으면서 소름이 좀 돋았어요. 제가 개인 프로젝트에서 체감하고 있는 것을, 오픈소스 생태계 전체로 확장한 글이었거든요.</p><p data-block-id='BOyiKV4Hq_'>오늘은 이 글을 따라가면서, 테스트라는 걸 처음부터 끝까지 한번 깊이 파보려고 합니다. 개인 프로젝트 수준에서 시작해서, 오픈소스 전쟁, 그리고 AI 시대의 개발까지.</p><p data-block-id='IsUbQuPXWt'>&nbsp;</p><div data-block-id='oCc2rwzSuE' class="mx-auto my-5" style="width: 100%;">
+              <div style="width: 60%;margin: 0 auto;"><img data-action="zoom" loading="lazy" class="" style="margin: 0 auto;" src="https://cdn.maily.so/du/effy/202602/1772175140910757.png" alt="첨부 이미지"></div>
+            </div><hr data-block-id='D5IvQeokdn'><h2 data-block-id='uazJYpBViI' id="uazJYpBViI" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="uazJYpBViI">Cloudflare가 Next.js를 일주일 만에 복제한 방법<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='Tyzx6bvnlF'>먼저 이 이야기부터 해야 해요.</p><p data-block-id='wMvJfDyJPB'>Cloudflare가 Next.js의 대안을 <b>일주일 만에</b> 만들어냈어요. Vercel이 몇 년에 걸쳐 쌓은 프레임워크를요. 어떻게 가능했을까요?</p><p data-block-id='MwFLeS9drG'>Next.js는 엄청나게 잘 문서화된 프로젝트예요. 수없이 많은 시간을 투자해서 문서를 정성스럽게 작성하고, 소프트웨어 계약을 정의하고, 포괄적인 테스트 스위트를 만들었어요. 좋은 오픈소스의 교과서적인 모습이죠.</p><p data-block-id='Ai4l8H0oaw'>근데 이게 역으로 작용했어요.</p><p data-block-id='Q3GRX7Z020'>AI한테 그 문서를 전부 읽게 하고, 테스트를 가져오고, 기반만 바꾸면 되니까요. Cloudflare는 Turbopack 대신 Vite를 기반으로 삼았어요. 더 성숙하고 빠른 번들러를요. 최신 버전의 API만 지원하면 되니까 하위 호환성 부담도 없었고요. 기존 사용자가 없으니까 깨질 것도 없었어요.</p><p data-block-id='PUEKZQNjQ6'>결과요? <b>Next.js API의 94% 커버리지</b>를 달성했어요. 1,700개의 vitest 테스트, 380개의 playwright 테스트. 그리고 이건 장난감이 아니에요. 미국 정부 웹사이트(cio.gov)에 이미 배포됐어요.</p><p data-block-id='zrfU8UzHQb'>Daniel Saewitz가 이 사건을 보면서 한 말이 이거예요.</p><figure data-block-id='AjRVLP_lG-'><blockquote><p class="text-left"><b>"문서를 잘 쓸수록, 계약을 명확히 정의할수록, 경쟁자가 당신의 작업물을 더 쉽게 복제할 수 있다."</b></p></blockquote></figure><p data-block-id='mSIdKMVYwc'>이게 모순이잖아요. 오픈소스의 미덕이 문서화, 명확한 API, 탄탄한 테스트였는데. 그 미덕이 AI 시대에는 오히려 복제를 쉽게 만든다니요.</p><hr data-block-id='QQ69GC17QQ'><h2 data-block-id='aCzoe-4P-r' id="aCzoe-4P-r" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="aCzoe-4P-r">해자가 뒤집혔어요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='9oKzLFw-Kd'>전통적으로 오픈소스의 해자는 뭐였어요?</p><p data-block-id='_OmuyTsCjT'>코드 자체요. 수만 줄의 코드를 처음부터 작성하는 건 엄청난 비용이었어요. 그래서 잘 만들어진 오픈소스 프로젝트는 그 자체로 해자였어요. 누가 이걸 처음부터 다시 만들겠어?</p><p data-block-id='p5dTbrhbMS'>근데 AI가 코드를 짜는 비용을 거의 0으로 떨어뜨렸잖아요. 이전 뉴스레터에서 Simon Willison의 "코드가 싸졌다"를 다루면서 이 이야기를 했었죠. 코드를 짜는 비용이 0에 가까워지면, 코드는 더 이상 해자가 아니에요.</p><p data-block-id='4WXKXO8vv8'>그럼 뭐가 해자가 되느냐.</p><p data-block-id='IYd-r6RwmM'>Daniel Saewitz는 <b>테스트</b>라고 해요.</p><p data-block-id='WFirADi1S3'>왜냐면요. Cloudflare가 Next.js를 복제할 수 있었던 건, Next.js의 테스트가 공개돼 있었기 때문이에요. 테스트가 곧 <b>"이 소프트웨어가 뭘 해야 하는지"에 대한 실행 가능한 명세</b>거든요. 문서는 모호할 수 있어요. API 스펙도 해석의 여지가 있어요. 근데 테스트는 아니에요. <b>통과하면 맞는 거고, 실패하면 틀린 거예요.</b> 이보다 명확한 명세가 어디 있어요.</p><p data-block-id='1jCZirY5CG'>AI한테 "이 테스트를 전부 통과하는 코드를 짜줘"라고 하면요. AI가 정말 잘해요. 구현 세부사항은 달라도, 외부 동작이 동일한 코드를 만들어낼 수 있거든요. 그리고 테스트가 통과하면, 적어도 "이 소프트웨어가 해야 할 일을 한다"는 걸 보장할 수 있어요.</p><p data-block-id='fN-VtnyrAt'>그래서 Cloudflare는 Next.js의 테스트 스위트를 가져다가 자기들의 구현이 "진짜로 Next.js와 호환된다"는 걸 증명한 거예요. 테스트가 명세였고, 그 명세를 충족시키는 새 구현을 만든 거죠.</p><div data-block-id='e5jDuVNkQV' class="mx-auto my-5">
+                <div class="mx-auto" style="width: 100%;">
+                  <div style="width: 60%;margin: 0 auto;"><img data-action="zoom" loading="lazy" class="" style="margin: 0 auto;" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800" alt="보안과 방어의 개념"></div>
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-300 text-center py-2">보안과 방어의 개념</div>
+             </div><hr data-block-id='tbC7VK5bkY'><h2 data-block-id='ifB0LCLqKH' id="ifB0LCLqKH" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="ifB0LCLqKH">SQLite는 이걸 10년 전에 알고 있었어요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='I1EDvgBlH8'>여기서 Daniel Saewitz가 아주 흥미로운 사례를 가져와요. <b>SQLite</b>.</p><p data-block-id='gOw1VPuxqF'>SQLite는 코어 소스 코드 전체가 오픈소스예요. 누구나 볼 수 있어요. 근데 테스트 스위트는요? <b>비공개예요.</b></p><p data-block-id='mHNeuVa5KW'>그 규모가 장난이 아니에요. SQLite의 공식 문서에 따르면, 테스트가 <b>9,200만 줄</b>이래요. 코어 소스 코드의 <b>592배</b>예요. 소스 코드보다 테스트가 592배 많은 프로젝트. 상상이 돼요?</p><p data-block-id='cVSOYqjpLC'>왜 이렇게 했을까요. SQLite 팀은 이걸 <b>"프로젝트를 지속 가능하게 유지하는 해자"</b>라고 설명해요. 코드는 누구나 가져갈 수 있어요. 포크하면 되니까요. 근데 그 코드가 "진짜로 모든 엣지 케이스에서 정확하게 동작한다"는 걸 검증하려면? 9,200만 줄의 테스트가 필요한 거예요. 그리고 그 테스트는 비공개니까, 경쟁자가 복제할 수 없어요.</p><p data-block-id='tbIXZYvaLB'>솔직히 오픈소스 관점에서 보면 이게 좀 불편할 수 있어요. "테스트도 공개해야 진짜 오픈소스 아니냐"는 시각이 있을 수 있거든요. Daniel Saewitz도 이걸 인정해요. 사용자 입장에서는 테스트가 공개된 게 당연히 더 좋다고요. 근데 동시에 이렇게도 말해요.</p><figure data-block-id='Ev6OmauM8Z'><blockquote><p class="text-left"><b>"그들은 그것을 빚진 게 아닙니다. 해자를 지키는 가장 좋은 방법이 이거라고 판단했다면, 그건 그들의 선택입니다."</b></p></blockquote></figure><p data-block-id='4MtSiKrEKW'>그리고 이제 이 흐름이 확산되고 있어요. Daniel Saewitz가 글을 올린 지 이틀 후에 추가한 내용이 있어요. <b>tldraw</b> — 유명한 오픈소스 드로잉 라이브러리인데요. 테스트 스위트 전체를 공개 레포에서 비공개 레포로 옮기고 있다고요.</p><p data-block-id='bKEQ0SAQlx'>tldraw의 GitHub 이슈(#8082)를 보면 이유가 나와요. AI가 테스트를 포함한 코드를 학습하고 복제하는 게 너무 쉬워졌다는 거예요. 자기들이 수년간 쌓은 테스트 자산이 경쟁자의 무기가 되는 걸 방지하려는 거죠.</p><hr data-block-id='jqNMXGX12n'><h2 data-block-id='gjTGV6q3k8' id="gjTGV6q3k8" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="gjTGV6q3k8">이건 제 이야기이기도 해요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='0pC1k04M9g'>여기서 좀 개인적인 이야기를 해볼게요.</p><p data-block-id='2ZY_uOtFD7'>제 개인 프로젝트 이야기를 좀 더 해드릴게요. TDD로 개발하고 있고, 테스트가 700개를 넘겼다고 했잖아요. 근데 이 테스트들이 왜 이렇게 많아졌냐면요.</p><p data-block-id='sQq4eOnL7n'>처음에는 솔직히 귀찮았어요. 기능 하나 만들 때마다 테스트부터 쓰는 게요. "일단 만들고 나중에 테스트 쓰지 뭐"라는 유혹이 계속 들었어요. 근데 참고 버텼어요. 그리고 어느 순간 <b>테스트가 쌓이니까 개발 속도가 역전됐어요.</b></p><p data-block-id='ImxcJk4mS5'>무슨 말이냐면요. 테스트 없이 개발하면 처음엔 빨라요. 근데 기능이 10개, 20개 붙으면서 "이거 고쳤는데 저거 안 깨졌겠지?"를 매번 수동으로 확인해야 해요. 확인을 안 하면 나중에 버그가 터지고, 터진 버그를 찾으려면 또 시간이 들고. 점점 느려져요.</p><p data-block-id='7xyu5ufNYW'>TDD는 처음엔 느려요. 근데 테스트가 쌓이면 <b>속도가 떨어지지 않아요.</b> 기능이 50개든 100개든, 새 기능을 붙이는 속도가 비슷해요. 이전에 만든 것들이 깨지지 않는다는 걸 테스트가 보장해주니까요.</p><p data-block-id='ugdHHpKLXp'>그리고 이게 AI 코딩과 만나니까 효과가 극적이에요.</p><p data-block-id='4rXpM24V-h'>제가 하는 방식이 이래요. 테스트를 먼저 작성해요. 그리고 Claude Code한테 이렇게 말해요.</p><pre data-block-id='AaDH1Cd6Gk' class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code><span class="line"><span>이 테스트들을 전부 통과시키는 구현을 만들어줘.</span></span>
+<span class="line"><span>기존 테스트는 절대 수정하지 마.</span></span></code></pre><p data-block-id='s7LGR9KLaL'>이러면 뭐가 좋으냐면요. <b>AI한테 명세를 코드로 전달한 거예요.</b> "이렇게 동작해야 해"를 말로 설명하는 대신, 테스트로 보여주는 거죠. 이전 뉴스레터에서 "프롬프트를 잘 쓰려고 하지 말고 컨텍스트를 설계하라"고 했잖아요. <b>테스트가 가장 정확한 컨텍스트예요.</b> 모호함이 없거든요.</p><p data-block-id='f1hOle3RnO'>그리고 AI가 치팅을 못 해요. 이전 뉴스레터에서 "AI는 치팅합니다 — 진짜로"라고 했던 거 기억하시죠. AI가 테스트를 수정하거나, 하드코딩으로 통과시키거나, 실패하는 테스트를 삭제하는 문제요. 근데 제가 테스트를 먼저 써놓고 "수정하지 마"라고 잠가놓으면, AI가 할 수 있는 건 <b>진짜로 구현을 제대로 하는 것밖에 없어요.</b></p><p data-block-id='Dfnl2wdd7K'>700개의 테스트는 700개의 제약조건이에요. AI는 700개의 제약조건을 전부 만족시키는 코드를 짜야 해요. 이건 "잘 만들어줘"라는 프롬프트보다 <b>비교할 수 없이 정밀한 지시</b>예요.</p><hr data-block-id='OUsOe3NIzw'><h2 data-block-id='9C3hPZUzFU' id="9C3hPZUzFU" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="9C3hPZUzFU">Cloudflare가 한 것과 제가 한 것은 같은 패턴이에요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='OzLT15uq2n'>잠깐 한 발 물러서서 보면요. Cloudflare가 Next.js를 복제한 것과, 제가 개인 프로젝트에서 AI한테 구현을 시키는 건 <b>정확히 같은 패턴</b>이에요.</p><div data-block-id='u_qqDBx32U' class="overflow-scroll">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 table-fixed" style="white-space: pre-wrap;">
+          <thead><tr class="divide-x divide-gray-200 dark:divide-gray-600"><th class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold sm:pl-0"></th><th class="px-4 py-3.5 text-left text-sm font-semibold">Cloudflare</th><th class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold sm:pr-0">에피의 프로젝트</th></tr></thead>
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-600"><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>명세</b></td><td class="p-4 text-sm">Next.js 테스트 스위트</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">700개의 테스트</td></tr><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>AI의 역할</b></td><td class="p-4 text-sm">테스트를 통과하는 새 구현</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">테스트를 통과하는 새 기능</td></tr><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>기반 교체</b></td><td class="p-4 text-sm">Turbopack → Vite</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">자유롭게 리팩터링 가능</td></tr><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>검증</b></td><td class="p-4 text-sm">1,700 vitest + 380 playwright</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">700+ 테스트 전부 통과</td></tr></tbody>
+      </table>
+       </div><p data-block-id='RdJEtXrW6f'>차이가 뭐냐면요. <b>규모</b>만 다를 뿐이에요. Cloudflare는 프레임워크 레벨에서 이걸 했고, 저는 개인 프로젝트 레벨에서 이걸 하고 있는 거예요. 근데 원리는 같아요.</p><p data-block-id='-JpmH51o8y'><b>테스트가 명세이고, AI가 그 명세를 충족시키는 구현을 만든다.</b></p><p data-block-id='n_UphcdsBC'>그리고 이게 왜 강력하냐면요. 구현을 갈아엎을 수 있기 때문이에요. 테스트만 견고하면, 내부 구현은 언제든 바꿀 수 있어요. "이 부분을 더 효율적으로 리팩터링해줘" 하고 시키면, AI가 리팩터링하고, 테스트가 전부 통과하면 성공인 거예요. 구현이 완전히 달라져도요.</p><p data-block-id='eZ3U6hjlpQ'>이전 뉴스레터에서 Simon Willison이 "코드를 짜는 비용이 사라졌다"고 했잖아요. 맞아요. 근데 더 정확하게 말하면요. <b>코드를 짜는 비용이 사라졌기 때문에, 코드는 일회용이 될 수 있어요.</b> 테스트만 남기면 구현은 언제든 다시 만들 수 있으니까요.</p><p data-block-id='PlNW9XWl9A'>반대로 테스트 없이 만든 코드는요? 버릴 수도 없고 고칠 수도 없어요. 뭘 건드리면 뭐가 깨질지 모르니까요. "작동하니까 건드리지 마"가 되는 거예요. AI 시대에 가장 위험한 코드가 이거예요. <b>테스트 없이 "작동하는" 코드.</b></p><div data-block-id='4DHsegrRWO' class="mx-auto my-5" style="width: 100%;">
+              <div style="width: 60%;margin: 0 auto;"><img data-action="zoom" loading="lazy" class="" style="margin: 0 auto;" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800" alt="첨부 이미지"></div>
+            </div><hr data-block-id='r3Ic8lGKeM'><h2 data-block-id='8_zYihVxXC' id="8_zYihVxXC" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="8_zYihVxXC">이전 뉴스레터에서 한 이야기들이 여기로 수렴해요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='YnoCfd8Qfe'>이 뉴스레터를 쓰면서 재미있는 걸 발견했어요. 제가 지금까지 다뤘던 주제들이 "테스트"라는 키워드로 다시 묶이더라고요.</p><p data-block-id='JIgQnj7Tz7'><b>"AI가 짠 코드를 믿지 마라"</b> — 이 뉴스레터에서 속성 기반 테스트, Writer/Reviewer 패턴을 다뤘어요. 핵심이 뭐였어요? <b>테스트로 AI를 검증하라</b>는 거였잖아요. AI의 치팅을 막는 가장 강력한 방법이 테스트였어요.</p><p data-block-id='Ff-S2-M0y1'><b>"계획 문서가 코드를 이깁니다"</b> — Boris Tane의 plan.md를 다루면서, "계획이 좋으면 구현이 좋다"는 전제를 소개했어요. 근데 제가 한 가지 비판했던 게 있어요. <b>"테스트 이야기가 없다"</b>는 거요. 계획이 아무리 좋아도 엣지 케이스는 구현하면서 발견되는 경우가 많다고요. 그 구멍을 메우는 게 테스트예요.</p><p data-block-id='9tj1YqRHvT'><b>"코드가 싸졌는데 왜 더 어려워졌을까"</b> — Simon Willison의 "좋은 코드의 조건" 9가지를 다루면서, "테스트로 보호돼야 한다"가 핵심 조건 중 하나라고 했어요. 코드를 짜는 비용이 사라졌기 때문에, <b>좋은 코드와 나쁜 코드를 구분하는 기준이 더 중요해졌다</b>고요. 그리고 그 기준을 강제하는 가장 확실한 수단이 테스트예요.</p><p data-block-id='-IP1LRTuky'><b>"코드를 짜면 지는 겁니다"</b> — Every 팀의 Compound Engineering에서 "코드를 생산하는 시스템이 코드보다 가치 있다"고 했잖아요. 테스트 스위트가 바로 그 시스템의 핵심 부품이에요. 테스트가 쌓일수록 AI가 만드는 코드의 품질이 올라가는 복리 효과가 발생하거든요.</p><p data-block-id='nPkiSM_Usy'>결국 제가 몇 달째 다뤘던 것들의 교차점이 <b>테스트</b>였어요. 개별적으로 보면 Plan Mode도 중요하고, CLAUDE.md도 중요하고, 린팅도 중요해요. 근데 이것들이 전부 <b>"AI가 만든 코드가 올바르다는 걸 어떻게 보장할 것인가"</b>라는 하나의 질문으로 수렴하고요. 그 질문에 대한 가장 직접적인 답이 테스트예요.</p><hr data-block-id='jj-OXoEBd3'><h2 data-block-id='tW5WrfFOoi' id="tW5WrfFOoi" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="tW5WrfFOoi">근데 테스트에도 함정이 있어요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='V4nlDbEG8o'>여기서 현실적인 이야기를 좀 해야 해요. "테스트가 중요하다"는 건 다 알아요. 문제는 <b>"AI가 짜는 테스트"를 그대로 믿어도 되느냐</b>는 거예요.</p><p data-block-id='odaMPJv6zt'>안 돼요.</p><p data-block-id='L8jKAg3E8o'>이전 뉴스레터에서 자세히 다뤘지만 다시 짚을게요. AI한테 "테스트 작성해줘"라고 하면 AI가 만드는 테스트에는 문제가 있어요.</p><p data-block-id='M4fhmqlP5P'>첫째, <b>구현에 맞춘 테스트를 만들어요.</b> AI가 구현을 먼저 보고 테스트를 쓰면, 그 테스트는 "이 구현이 맞다"를 확인하는 테스트가 돼요. "이 동작이 맞다"를 확인하는 테스트가 아니라요. 구현에 버그가 있어도 테스트가 통과해요.</p><p data-block-id='wUNWstj5vm'>둘째, <b>해피 패스만 테스트해요.</b> 정상적인 입력, 정상적인 경로만 확인해요. "네트워크가 끊기면?", "입력이 null이면?", "동시에 두 번 호출하면?" 같은 엣지 케이스는 빠져있는 경우가 대부분이에요.</p><p data-block-id='qMiGePF4Ot'>셋째, <b>의미 없는 테스트를 양산해요.</b> 위에서 예시를 들었던 것처럼, 입력값을 그대로 출력값에서 확인하는 식의 테스트요. 겉보기에는 테스트가 50개인데, 실질적으로 검증하는 건 5개 수준인 거예요.</p><p data-block-id='390en9GPet'>그래서 핵심은 이거예요.</p><p data-block-id='7gz6oiif0D'><b>테스트를 "누가" 쓰느냐가 중요해요.</b></p><div data-block-id='dSgns7dYck'><ul><li><b>사람이 테스트를 쓰고, AI가 구현을 한다</b> → 강력한 패턴</li><li><b>AI가 구현하고 AI가 테스트를 쓴다</b> → 위험한 패턴</li><li><b>AI가 테스트를 쓰고 사람이 리뷰한다</b> → 괜찮지만 리뷰 품질에 의존</li></ul></div><p data-block-id='WmPjzPG2zn'>제가 개인 프로젝트에서 하는 방식은 첫 번째예요. <b>테스트를 먼저 직접 쓰고, 구현을 AI한테 시켜요.</b> 이러면 테스트가 "사람의 의도"를 담고 있으니까, AI가 그 의도대로 구현했는지를 정확하게 검증할 수 있어요.</p><p data-block-id='cGALw51u6N'>700개 테스트를 전부 직접 썼냐고요? 네. 물론 보일러플레이트는 AI한테 도움받았어요. 근데 <b>"이 함수가 뭘 해야 하는지"를 정의하는 건 제가 했어요.</b> 이 부분은 양보할 수 없어요.</p><div data-block-id='Wd8LGlZy6F' class="mx-auto my-5" style="width: 100%;">
+              <div style="width: 60%;margin: 0 auto;"><img data-action="zoom" loading="lazy" class="" style="margin: 0 auto;" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800" alt="첨부 이미지"></div>
+            </div><hr data-block-id='UzdbLAHuPo'><h2 data-block-id='VLHlN22A66' id="VLHlN22A66" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="VLHlN22A66">오픈소스의 인센티브 구조가 바뀌고 있어요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='om4nSowNF6'>Daniel Saewitz가 깊이 파고드는 또 다른 층위가 있어요. <b>오픈소스의 인센티브 구조</b> 자체가 변하고 있다는 거예요.</p><p data-block-id='ZbTh50Yp3W'>상업적 오픈소스(commercial OSS)라는 게 있잖아요. 코드는 공개하되, 거기서 사업을 만드는 모델이요. 예전에는 이 모델이 잘 작동했어요. 코드를 공개하면 커뮤니티가 기여하고, 그 커뮤니티의 신뢰가 사업의 기반이 됐으니까요.</p><p data-block-id='6Hh-yZB2g6'>근데 지금은 코드를 공개하면 AI가 학습해요. 문서를 공개하면 AI가 읽어요. 테스트를 공개하면 AI가 명세로 활용해요. 그래서 이 인센티브 구조에 균열이 생기는 거예요.</p><div data-block-id='Q8kiQcjMUn' class="overflow-scroll">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 table-fixed" style="white-space: pre-wrap;">
+          <thead><tr class="divide-x divide-gray-200 dark:divide-gray-600"><th class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold sm:pl-0"></th><th class="px-4 py-3.5 text-left text-sm font-semibold">예전</th><th class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold sm:pr-0">지금</th></tr></thead>
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-600"><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>코드 공개</b></td><td class="p-4 text-sm">커뮤니티 기여 → 프로젝트 성장</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">AI 학습 데이터 → 경쟁자의 무기</td></tr><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>문서 공개</b></td><td class="p-4 text-sm">사용자 신뢰 → 채택률 증가</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">AI 프롬프트 소스 → 클론 용이</td></tr><tr class="divide-x divide-gray-200 dark:divide-gray-600"><td class="py-4 pl-4 pr-4 text-sm sm:pl-0"><b>테스트 공개</b></td><td class="p-4 text-sm">품질 증명 → 신뢰 구축</td><td class="py-4 pl-4 pr-4 text-sm sm:pr-0">실행 가능한 명세 → 완전한 복제 가능</td></tr></tbody>
+      </table>
+       </div><p data-block-id='3TdQpr2kSl'>Daniel Saewitz가 이런 말을 해요.</p><figure data-block-id='zAyTmRoRA5'><blockquote><p class="text-left"><b>"AI 세계에서, 당신의 작업물을 더 잘 문서화할수록, 더 강한 계약을 정의할수록, 누군가가 당신의 작업물을 복제하기가 더 쉬워집니다."</b></p></blockquote></figure><p data-block-id='rhZAT9JYvm'>이건 딜레마예요. 좋은 오픈소스를 만들려면 문서화하고, 테스트하고, API를 명확히 정의해야 해요. 근데 그렇게 할수록 복제당하기 쉬워지는 거예요. "잘 만들수록 잘 복제된다"는 모순이요.</p><p data-block-id='FoSHIrt0H9'>그래서 SQLite처럼 테스트를 비공개로 유지하거나, tldraw처럼 테스트를 비공개로 옮기는 프로젝트가 나오기 시작한 거예요. 이게 오픈소스 정신에 부합하느냐는 논쟁이 있을 수 있지만, 비즈니스 관점에서는 합리적인 선택이에요.</p><p data-block-id='EvM0snsKBM'>Daniel Saewitz는 이걸 좀 냉정하게 정리해요.</p><figure data-block-id='AYsLMELPOl'><blockquote><p class="text-left"><b>"오랫동안 오픈소스는 순수하게 이타적인 척했지만, 규모가 커지면서 그게 깨지는 걸 여러 차례 봤습니다. 기업들이 오픈소스에 엄청나게 기여한 것도 사실이지만, 아무런 되돌림 없이 가치만 추출한 것도 사실입니다."</b></p></blockquote></figure><hr data-block-id='wPUAtuaIV9'><h2 data-block-id='f6mftmQhbH' id="f6mftmQhbH" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="f6mftmQhbH">이게 개발자 개인에게는 무슨 의미일까요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='UkCIhD35q4'>오픈소스 생태계 이야기를 했으니, 이걸 개인 레벨로 가져와볼게요. 이 글에서 개발자가 가져가야 할 실전 교훈이 뭘까요.</p><h3 data-block-id='SR9COyykNS' id="SR9COyykNS" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="SR9COyykNS">테스트는 비용이 아니라 자산이에요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h3><p data-block-id='791BgOxhdP'>제가 700개 테스트를 쓰면서 가장 크게 느낀 거예요. 테스트를 쓰는 시간이 아까운 게 아니라, <b>테스트가 쌓일수록 개발이 빨라진다</b>는 거요. 특히 AI 코딩을 할 때 이 효과가 극대화돼요.</p><p data-block-id='5Xld0uv_ue'>테스트가 없으면 AI한테 뭘 시킬 때마다 결과를 수동으로 확인해야 해요. "이거 맞아? 저거 안 깨졌어? 엣지 케이스는?" 전부 눈으로 봐야 해요.</p><p data-block-id='goFaPces5u'>테스트가 있으면요? npm test를 치면 끝이에요. 전부 통과하면 OK. 실패한 게 있으면 뭐가 깨졌는지 바로 알 수 있어요. 이게 AI 시대의 <b>진짜 생산성</b>이에요.</p><h3 data-block-id='bP_0Q-MJ3L' id="bP_0Q-MJ3L" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="bP_0Q-MJ3L">테스트를 먼저 쓰면 AI에 대한 의존도를 줄일 수 있어요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h3><p data-block-id='e8JAk3Runs'>모순처럼 들리죠. AI를 더 잘 쓰는 방법이 AI에 대한 의존도를 줄이는 거라니요.</p><p data-block-id='3a9BSAf4yN'>근데 생각해보면 논리가 맞아요. 테스트를 먼저 쓰면, <b>"이 코드가 뭘 해야 하는지"를 제가 정의하는 거예요.</b> AI는 그 정의를 충족시키는 구현을 만드는 거고요. 주도권이 저한테 있어요. AI가 이상한 구현을 해도, 테스트가 실패하면 바로 알 수 있어요.</p><p data-block-id='L4ihtn4Jmc'>반대로 테스트 없이 AI한테 "만들어줘"라고 하면요? AI가 뭘 만든 건지, 그게 맞는 건지, 제가 판단하기 어려워요. AI의 결과물을 "대충 맞겠지" 하고 수용하게 되는 거예요. 이게 진짜 의존이에요.</p><h3 data-block-id='M1o1UTTy03' id="M1o1UTTy03" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="M1o1UTTy03">테스트는 AI가 바뀌어도 살아남아요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h3><p data-block-id='kskK6G02_q'>이것도 중요해요. 오늘은 Claude Code를 쓰지만, 내일은 다른 도구가 나올 수 있잖아요. 더 좋은 모델, 더 좋은 에이전트가 나올 때마다 도구를 바꿀 수 있어요.</p><p data-block-id='OwQlIZfpmY'>근데 그때마다 처음부터 다시 시작하는 건 아니에요. <b>테스트가 있으면 새 도구에서도 "이 테스트를 통과시켜"라고 하면 되니까요.</b> 테스트가 도구에 종속적이지 않은 자산이에요. Claude Code에서 짠 코드는 Claude Code에 최적화돼 있을 수 있지만, 테스트는 그냥 "이 소프트웨어가 뭘 해야 하는지"를 정의하는 거니까 도구와 무관해요.</p><p data-block-id='wy9PVa0SCM'>이건 오픈소스에서도 마찬가지예요. Cloudflare가 Next.js의 테스트를 Vite 위에서 돌린 거잖아요. 기반이 바뀌어도 테스트는 유효해요. <b>기반이 바뀌어도 유효한 건 테스트뿐이에요.</b></p><hr data-block-id='ku2aXSIpV3'><h2 data-block-id='B2B5Cz90la' id="B2B5Cz90la" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="B2B5Cz90la">솔직히 이렇게 느꼈습니다<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='0uuaEACw3d'>Daniel Saewitz의 글을 읽으면서 제일 먼저 든 생각은 "오픈소스 세계가 참 아이러니하다"는 거였어요. 잘 만들수록, 잘 문서화할수록, 잘 테스트할수록 — 복제당하기 쉬워진다니요. 개발자의 정성이 역으로 무기가 되는 거잖아요.</p><p data-block-id='U9pEwp9twc'>근데 동시에 이것도 생각했어요. <b>"그래서 뭐?"</b></p><p data-block-id='BIbzg9WGAk'>Vercel이 Next.js를 잘 만들어서 Cloudflare가 복제할 수 있었다고요? 맞아요. 근데 Vercel은 여전히 Next.js 생태계의 중심이에요. 문서와 테스트를 비공개로 돌려서 방어하는 것도 방법이지만, <b>계속 혁신해서 앞서나가는 것도 방법</b>이잖아요. SQLite 방식만이 정답은 아닌 거예요.</p><p data-block-id='BrAy3FjkD1'>그리고 개인 개발자 입장에서는 이 "해자" 논쟁이 사실 좀 먼 이야기이기도 해요. 저한테 중요한 건 오픈소스 프로젝트의 해자가 아니라, <b>제 코드의 품질</b>이거든요. 그리고 그 관점에서 보면, 이 글의 메시지는 명확해요.</p><p data-block-id='KszRg051Sb'><b>테스트를 쓰세요. 테스트가 자산이에요.</b></p><p data-block-id='J_tbuMEjFV'>오픈소스 해자 논쟁과 상관없이, AI 시대에 테스트가 더 중요해진 건 확실해요. 코드를 짜는 건 AI가 해요. 근데 "이 코드가 맞는지" 확인하는 건 테스트가 해요. 그리고 테스트를 정의하는 건 사람이 해요. 이 구조에서 <b>테스트를 쓰는 능력이 개발자의 핵심 역량</b>이 되는 거예요.</p><p data-block-id='dN5qurRVrK'>제가 700개 테스트를 쓰면서 느끼는 건요. TDD가 "옳기 때문에" 하는 게 아니에요. <b>TDD가 AI 시대에 가장 합리적인 개발 방식이라서</b> 하는 거예요. 코드를 짜는 비용이 0이 됐으니까, "무엇을 검증할 것인가"를 정의하는 게 개발자의 본업이 된 거예요. 그리고 그 정의가 테스트예요.</p><hr data-block-id='htK6lPThxw'><h2 data-block-id='yCTMy6zib4' id="yCTMy6zib4" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="yCTMy6zib4">오늘 바로 해보세요<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><h3 data-block-id='5OIu2T03op' id="5OIu2T03op" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="5OIu2T03op">1. 다음 기능을 테스트부터 작성해보세요 (15분)<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h3><p data-block-id='Z4At3N60hT'>다음에 기능을 하나 만들 때, 코드부터 짜지 마세요. 테스트부터 쓰세요.</p><pre data-block-id='JBUlgIOSCc' class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code><span class="line"><span style="color:#6A737D">// 예시: 유저를 생성하는 기능을 만든다면</span></span>
+<span class="line"><span style="color:#6F42C1">test</span><span style="color:#24292E">(</span><span style="color:#032F62">"유효한 이메일로 유저를 생성하면 성공한다"</span><span style="color:#24292E">, () </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> result</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> createUser</span><span style="color:#24292E">({ email: </span><span style="color:#032F62">"test@example.com"</span><span style="color:#24292E">, name: </span><span style="color:#032F62">"테스트"</span><span style="color:#24292E"> });</span></span>
+<span class="line"><span style="color:#6F42C1">  expect</span><span style="color:#24292E">(result.success).</span><span style="color:#6F42C1">toBe</span><span style="color:#24292E">(</span><span style="color:#005CC5">true</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  expect</span><span style="color:#24292E">(result.user.email).</span><span style="color:#6F42C1">toBe</span><span style="color:#24292E">(</span><span style="color:#032F62">"test@example.com"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">test</span><span style="color:#24292E">(</span><span style="color:#032F62">"이메일 없이 유저를 생성하면 실패한다"</span><span style="color:#24292E">, () </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> result</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> createUser</span><span style="color:#24292E">({ email: </span><span style="color:#032F62">""</span><span style="color:#24292E">, name: </span><span style="color:#032F62">"테스트"</span><span style="color:#24292E"> });</span></span>
+<span class="line"><span style="color:#6F42C1">  expect</span><span style="color:#24292E">(result.success).</span><span style="color:#6F42C1">toBe</span><span style="color:#24292E">(</span><span style="color:#005CC5">false</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  expect</span><span style="color:#24292E">(result.error).</span><span style="color:#6F42C1">toContain</span><span style="color:#24292E">(</span><span style="color:#032F62">"이메일"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">test</span><span style="color:#24292E">(</span><span style="color:#032F62">"중복 이메일로 유저를 생성하면 실패한다"</span><span style="color:#24292E">, () </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#6F42C1">  createUser</span><span style="color:#24292E">({ email: </span><span style="color:#032F62">"test@example.com"</span><span style="color:#24292E">, name: </span><span style="color:#032F62">"첫번째"</span><span style="color:#24292E"> });</span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> result</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> createUser</span><span style="color:#24292E">({ email: </span><span style="color:#032F62">"test@example.com"</span><span style="color:#24292E">, name: </span><span style="color:#032F62">"두번째"</span><span style="color:#24292E"> });</span></span>
+<span class="line"><span style="color:#6F42C1">  expect</span><span style="color:#24292E">(result.success).</span><span style="color:#6F42C1">toBe</span><span style="color:#24292E">(</span><span style="color:#005CC5">false</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">});</span></span></code></pre><p data-block-id='eDcoW3iJOa'>이 3개의 테스트를 쓰는 데 5분이면 돼요. 그리고 Claude Code한테 이렇게 하세요:</p><pre data-block-id='Lp-1T1tRaD' class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code><span class="line"><span>이 테스트들을 전부 통과시키는 createUser 함수를 구현해줘.</span></span>
+<span class="line"><span>테스트 파일은 수정하지 마.</span></span></code></pre><p data-block-id='CTOBGUQ2TH'>한 번만 해봐도 체감할 거예요. "만들어줘"라고 시키는 것과, "이 테스트를 통과시켜"라고 시키는 것의 차이를요.</p><h3 data-block-id='tqiu29RuGD' id="tqiu29RuGD" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="tqiu29RuGD">2. CLAUDE.md에 테스트 규칙 추가하기 (1분)<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h3><pre data-block-id='15TPWN6nxr' class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code><span class="line"><span style="color:#E36209">-</span><span style="color:#24292E"> 테스트 파일은 절대 수정하지 마라</span></span>
+<span class="line"><span style="color:#E36209">-</span><span style="color:#24292E"> 새 기능을 구현할 때 기존 테스트가 깨지면 안 된다</span></span>
+<span class="line"><span style="color:#E36209">-</span><span style="color:#24292E"> 구현을 고쳐서 테스트를 통과시켜라. 테스트를 고치지 마라.</span></span></code></pre><p data-block-id='NQZGpWdJ54'>이 세 줄이면 돼요. AI가 테스트를 치팅하는 걸 원천적으로 막아줘요.</p><h3 data-block-id='1Q7n7lU1vf' id="1Q7n7lU1vf" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="1Q7n7lU1vf">3. 기존 프로젝트에 회귀 테스트 하나 추가하기 (10분)<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h3><p data-block-id='MzMphxaFIB'>지금 진행 중인 프로젝트에서 가장 중요한 기능 하나를 골라서, 그 기능이 "지금 이 순간 정상 동작한다"는 걸 확인하는 테스트를 하나만 추가하세요.</p><p data-block-id='8gJgGoWjpy'>이건 TDD가 아니어도 돼요. 이미 있는 기능에 테스트를 붙이는 거예요. 이 테스트 하나가 나중에 AI한테 리팩터링을 시킬 때, "이전이랑 똑같이 동작하는지" 확인하는 안전망이 돼요.</p><p data-block-id='mdtgUX_-qz'>700개까지 갈 필요 없어요. <b>1개부터 시작하세요.</b> 1개가 2개가 되고, 2개가 10개가 되면 그때부터는 알아서 늘어나요. 테스트가 쌓이면 개발이 빨라지는 걸 체감하면 멈출 수가 없거든요.</p><hr data-block-id='1rIDWRCnKN'><h2 data-block-id='ilU7yvhieB' id="ilU7yvhieB" class="group/anchor relative" data-controller="components--anchor-copy" data-components--anchor-copy-id-value="ilU7yvhieB">마무리<button type="button" data-action="components--anchor-copy#copy" aria-label="이 섹션 링크 복사" contenteditable="false" class="not-prose absolute top-1/2 right-0 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-stone-900 opacity-0 group-hover/anchor:opacity-100 focus:opacity-100 transition-opacity duration-150 cursor-pointer no-underline"> <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M9 15l6 -6"/> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"/> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"/> </svg> </button></h2><p data-block-id='_8E-biyA17'>Daniel Saewitz는 오픈소스의 해자가 테스트로 이동하고 있다고 말했어요. 거시적인 이야기예요. 근데 이걸 개인 레벨로 가져오면 훨씬 실감나요.</p><p data-block-id='-xyXxBZOBH'>제가 700개 테스트를 쓰면서 깨달은 건요. <b>코드는 다시 짜면 돼요.</b> AI한테 시키면 돼요. 근데 테스트는 다시 못 짜요. 정확히는, <b>"이 소프트웨어가 뭘 해야 하는지"를 다시 정의하는 건 사람이 해야 해요.</b> 그게 가장 비싼 작업이에요.</p><p data-block-id='IVT7kbg_he'>AI가 코드를 짜는 비용을 0으로 만들었어요. 문서를 읽고 복제하는 비용도 0에 가까워졌고요. 근데 "뭐가 맞고 뭐가 틀린지"를 판단하는 비용은 줄지 않았어요. 그 판단을 실행 가능한 코드로 표현한 게 테스트예요.</p><p data-block-id='BXBVm3WD5V'>제 <a target='_blank' href="https://effycoding.pages.dev">강의</a>에서 "테스트를 먼저 쓰고 구현을 시켜라"를 강조하는 이유가 여기 있어요. AI 시대에 개발자의 핵심 역량은 코드를 짜는 게 아니에요. <b>"이 코드가 맞는지"를 정의하는 거예요.</b> 그리고 그 정의가 테스트예요.</p><p data-block-id='GBfChgK3Jz'>테스트를 쓰세요. 그게 당신의 해자예요.</p><div data-block-id='9nHdPIspXb' class="mx-auto my-5" style="width: 100%;">
+              <div style="width: 60%;margin: 0 auto;"><img data-action="zoom" loading="lazy" class="" style="margin: 0 auto;" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" alt="첨부 이미지"></div>
+            </div><hr data-block-id='q3WmtLRIBI'><p data-block-id='0UFb0oeKWG'><b>레퍼런스</b></p><div data-block-id='WUSJxs10VA'><ul><li><a target='_blank' href="https://saewitz.com/tests-are-the-new-moat">Tests Are The New Moat</a> — Daniel Saewitz. AI 시대에 오픈소스의 해자가 코드에서 테스트로 이동하고 있다는 분석. Cloudflare의 Next.js 복제, SQLite의 비공개 테스트 전략, tldraw의 테스트 비공개 전환 사례 포함</li></ul></div>
+    </article>
+      <article class="w-full bg-white dark:bg-stone-900 p-3 lg:p-0 mb-4 lg:mb-8 prose dark:prose-invert max-w-full post-body-narrow">
+        <p data-block-id='3EzaritfQQ'>매주 바이브 코딩 실전 인사이트를 보내드립니다.</p><p data-block-id='8nPtADPIUb'>Claude Code로 진짜 제품을 만드는 법이 궁금하시면,</p><p data-block-id='9r5C156EE8'>👉 에피코딩 강의 보러 가기 (<a target='_blank' href="https://effycoding.pages.dev" target="_blank">https://effycoding.pages.dev</a>)</p><p data-block-id='lPL2q_MTHl'>이 뉴스레터가 도움이 됐다면, 동료 개발자에게 공유해주세요.</p>
+      </article>
+
+
+    <div class="sm:rounded-md my-5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-600"
+     id="actionArea">
+  <div class="px-8 py-12">
+
+
+    <h3 class="text-lg lg:text-xl font-medium text-slate-900 dark:text-slate-200 text-center">다가올 뉴스레터가 궁금하신가요?</h3>
+    <div class="mt-2 text-sm leading-5 text-slate-500 dark:text-slate-400 text-center">
+      <p class="text-center">지금 구독해서 새로운 레터를 받아보세요</p>
+    </div>
+
+    <div class="mt-5 flex justify-center items-center space-x-2">
+            <div class="max-w-md w-full mx-auto lg:p-5 space-y-3 text-center">
+              <form class="w-full" data-components--subscribe-modal-target="form" data-controller="google-analytics--form" data-action="submit-&gt;google-analytics--form#event" data-event-params="{&quot;name&quot;:&quot;subscribe&quot;,&quot;component&quot;:&quot;post_bottom&quot;}" action="/effy/subscriptions" accept-charset="UTF-8" data-remote="true" method="post"><input type="hidden" name="authenticity_token" value="7CKXpEydkvX5x0AoCrZDlv0QZ5j_YeL43VUvhq9xJtPVmNPvU8kWQI3j8-J0UMbNghHalaoG3c7J_XUFgPpcDg" />
+  <input value="https://maily.so/effy/posts/8do7kyqnrgq" type="hidden" name="subscription[referrer_url]" id="subscription_referrer_url" />
+  <input value="free" type="hidden" name="subscription[plan]" id="subscription_plan" />
+  <div class="space-y-3 mt-2 text-left"
+       data-controller="components--email-validator">
+      <div class="relative rounded-md shadow-sm">
+        <label class="absolute -top-2 left-2 inline-block bg-white dark:bg-stone-900 px-1 text-xs font-medium text-slate-900 dark:text-slate-200" for="subscription_name">닉네임</label>
+        <input id="embedSubscriptionName" placeholder="닉네임" class="bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md" type="text" name="subscription[name]" />
+      </div>
+
+    
+
+
+    <div class="flex rounded-md shadow-sm">
+      <div class="relative flex-grow focus-within:z-10">
+        <label class="absolute -top-2 left-2 inline-block bg-white dark:bg-stone-900 px-1 text-xs font-medium text-slate-900 dark:text-slate-200" for="subscription_email">이메일</label>
+
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          ✉️
+        </div>
+        <input id="embedSubscriptionEmail" placeholder="wonderful@gmail.com" required="required" data-components--email-validator-target="email" data-action="keyup-&gt;components--email-validator#validateEmail" class="pl-10 bg-white dark:bg-stone-900 bg-dark-maily text-slate-900 dark:text-slate-200 shadow-sm border-r-0 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-none rounded-l-md" type="email" name="subscription[email]" />
+      </div>
+      <input type="submit" name="commit" value="구독" id="embedSubmitButton" class="-ml-px maily-secondary-button rounded-none rounded-r-md" data-disable-with="구독" />
+    </div>
+    <p class="hidden mt-1 text-xs text-green-600"
+       data-components--email-validator-target="emailValidation"></p>
+  </div>
+
+  <div class="mt-2" id="embedPrivacyAgreement">
+    <div class="flex items-center">
+      <input name="subscription[privacy_agreement]" type="hidden" value="0" /><input required="required" class="focus:ring-gray-400 h-4 w-4 text-gray-600 dark:text-gray-500 border-gray-300 dark:border-gray-500 rounded" type="checkbox" value="1" checked="checked" name="subscription[privacy_agreement]" id="subscription_privacy_agreement" />
+      <label class="w-full text-left ml-2 block text-xs leading-5 text-gray-700 dark:text-gray-300 cursor-pointer" for="subscription_privacy_agreement">
+        [필수]
+        메일리 <a target="_blank" class="underline hover:text-slate-700 dark:text-slate-300" href="https://maily.so/app/service_policy">이용약관</a> <a target="_blank" class="underline hover:text-slate-700 dark:text-slate-300" href="https://maily.so/app/privacy_agreement">개인정보처리방침</a>
+        에 동의합니다.
+</label>    </div>
+  </div>
+  <div id="embedErrorMessage" class="hidden text-red-700 text-xs mt-1"></div>
+  <div id="embedSuccessMessage" class="hidden text-green-700 dark:text-green-700 text-xs mt-1"></div>
+</form>
+            </div>
+    </div>
+  </div>
+</div>
+
+      <div class="w-full flex items-start">
+      <div x-data="{ feedbackOpen: false }" class="w-full">
+    <div class="w-full" id="long_tail">
+      <div class="px-4 py-10 lg:px-0 sm:p-6">
+        <div class="text-center sm:text-left sm:flex sm:items-start sm:justify-between">
+          <div>
+            <h3 class="text-lg leading-6 text-slate-900 dark:text-slate-200">
+              이번 뉴스레터 어떠셨나요?
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-slate-600 dark:text-slate-300">
+              <p>
+                에피의 바이브 코딩 님에게 ☕️ 커피와 ✉️ 쪽지를 보내보세요!
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 sm:mt-0 sm:ml-6 sm:shrink-0 sm:flex sm:items-center">
+              <span class="inline-flex rounded-md shadow-sm">
+                <button type="button"
+                        @click="feedbackOpen = !feedbackOpen;"
+                        class="maily-white-button-sm">
+                    지금 보내기 &rarr;
+                  </button>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div x-show="feedbackOpen"
+       style="display: none;"
+       class="fixed z-20 inset-0 overflow-y-auto">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div x-show="feedbackOpen"
+           @click="feedbackOpen = !feedbackOpen"
+           style="display: none;"
+           x-description="Background overlay, show/hide based on modal state."
+           class="fixed inset-0 transition-opacity">
+        <div class="absolute inset-0 bg-stone-300 dark:bg-stone-700 opacity-75 z-30"></div>
+      </div>
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+
+      <div x-show="feedbackOpen"
+           style="display: none;"
+           data-controller="components--remote"
+           x-description="Modal panel, show/hide based on modal state."
+           class="inline-block align-bottom bg-white dark:bg-stone-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+
+        <div class="flex items-center space-x-5">
+          <span class="text-2xl lg:text-3xl">☕</span>
+        </div>
+        <div class="mt-3 text-left sm:mt-5">
+          <h3 class="text-base leading-6 font-medium text-slate-900 dark:text-slate-200">
+            에피의 바이브 코딩 님에게 커피와 쪽지 보내기
+          </h3>
+          <div class="mt-2">
+            <p class="text-sm leading-5 text-slate-600 dark:text-slate-300">
+              커피와 함께 하고싶은 말을 쪽지에 적어주시면 메일리가 전달해드려요.
+            </p>
+
+            <p class="mt-1 italic text-xs text-slate-600 dark:text-slate-300">보내시는 분의 이메일주소, 닉네임과 함께 전달됩니다.</p>
+          </div>
+        </div>
+
+
+        <form action="/effy/writers/buy_coffee" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="19dBdN9H77p2q9Xq_4xx8J0qg3zUCcXmxSdwFWgJW2F6G6-cCttpWXHVbTlqQolgOHJwOoW4SUmXM-GIE6F-lw" />
+          <div>
+            <div class="mt-6">
+              <label class="block text-base font-medium leading-7 text-slate-900 dark:text-slate-200" for="coffee">커피</label>
+              <select x-ref="coffeeSelect" required="required" class="cursor-pointer bg-gray-100 dark:bg-stone-700 text-slate-900 dark:text-slate-200 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-500 focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm rounded-md" name="coffee" id="coffee"><option value="">메뉴 선택하기</option>
+<option value="커피 우유 (1,500원)">커피 우유 (1,500원)</option>
+<option value="테이크아웃 아메리카노 (3,000원)">테이크아웃 아메리카노 (3,000원)</option>
+<option value="아메리카노 (5,000원)">아메리카노 (5,000원)</option>
+<option value="핸드드립 스페셜티 커피 (9,000원)">핸드드립 스페셜티 커피 (9,000원)</option>
+<option value="라떼와 초콜릿 케이크 (18,000원)">라떼와 초콜릿 케이크 (18,000원)</option>
+<option value="아메리카노 5잔 (25,000원)">아메리카노 5잔 (25,000원)</option>
+<option value="한 달치 커피 (50,000원)">한 달치 커피 (50,000원)</option></select>
+            </div>
+            <div class="mt-4">
+              <label class="block text-base font-medium leading-7 text-slate-900 dark:text-slate-200" for="feedback">쪽지</label>
+              <div class="rounded-md shadow-sm">
+                <textarea data-action="click->components--remote#openLoginModal"
+                          name="blocked"
+                          readonly
+                          rows="3"
+                          placeholder="로그인 하고 쪽지 보내기 &rarr;"
+                          class="cursor-pointer bg-gray-100 dark:bg-stone-700 text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 sm:mt-6 grid grid-cols-2 gap-3 grid-flow-row-dense">
+              <span class="flex w-full rounded-md shadow-sm col-start-2">
+                <button type="button"
+                        data-action="click->components--remote#openLoginModal"
+                        class="cursor-pointer w-full maily-dark-button opacity-50">보내기</button>
+              </span>
+            <span class="flex w-full rounded-md shadow-sm mt-0 col-start-1">
+              <button type="button"
+                      @click="
+                      feedbackOpen = false; setTimeout(() => {
+                        $refs.coffeeSelect.value = '';
+                        $refs.feedbackInput.value = '';
+                      }, 1000);
+                      "
+                      class="w-full text-center maily-white-button">
+                나중에 하기
+              </button>
+            </span>
+          </div>
+</form>      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <div class="flex flex-col items-end justify-center space-x-2 lg:space-x-4 p-3">
+      <div class="shrink-0 flex items-center justify-end space-x-1 lg:space-x-2">
+        <button type="button"
+                data-controller="components--share"
+                aria-label="공유하기"
+                data-target="components--share.copyText"
+                data-components--share-title="에피의 바이브 코딩"
+                data-components--share-text="테스트 700개로 바이브 코딩합니다"
+                data-components--share-url="https://maily.so/effy/posts/8do7kyqnrgq"
+                data-action="components--share#onClickShare"
+                class="-ml-px hidden group relative inline-flex items-center px-3 py-2 text-sm leading-5 font-medium text-slate-600 dark:text-slate-300 hover:text-slate-600 dark:text-slate-300 focus:outline-none active:text-slate-700 dark:text-slate-300 transition ease-in-out duration-150">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-current text-slate-600 dark:text-slate-300 group-active:text-slate-600 dark:text-slate-300 group-focus:text-slate-600 dark:text-slate-300 group-hover:text-slate-600 dark:text-slate-300" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5"/>
+            <line x1="10" y1="14" x2="20" y2="4"/>
+            <polyline points="15 4 20 4 20 9"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="w-full p-3 lg:px-0 text-right">
+  
+</div>
+
+<div class="py-2 px-3 lg:p-0 ">
+  <div id="comments"
+     data-controller="components--remote"
+     data-components--remote-user-signed-in-value="false">
+  <div>
+    <span class="font-bold leading-6 text-slate-900 dark:text-slate-200 text-sm sm:text-base sm:leading-8 sm:truncate">댓글</span>
+  </div>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+    <p class="text-sm text-slate-600 dark:text-slate-300">의견을 남겨주세요</p>
+      <div class="flex rounded-md shadow-sm mt-1">
+        <textarea data-action="click->components--remote#openLoginModal"
+                  name="blocked"
+                  readonly
+                  rows="2"
+                  placeholder="로그인 하고 댓글 남기기"
+                  class="cursor-pointer bg-gray-100 dark:bg-stone-700 text-slate-900 dark:text-slate-200 shadow-sm focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md"></textarea>
+      </div>
+      <div class="mt-2" id="privacyAgreement">
+        <div class="flex items-center justify-end">
+          <input type="checkbox" name="private" id="3977344b45902f6fbdea2be5987cf86e" value="0" disabled="disabled" data-action="click-&gt;components--remote#openLoginModal" class="focus:ring-green-333 h-4 w-4 text-green-700 dark:text-green-700 border-gray-300 dark:border-gray-500 rounded" />
+          <label for="3977344b45902f6fbdea2be5987cf86e" data-action="click-&gt;components--remote#openLoginModal" class="ml-2 block text-xs leading-5 text-gray-700 dark:text-gray-300 cursor-pointer">
+            비공개로 댓글 남기기
+</label>        </div>
+      </div>
+      <div class="mt-2 flex justify-end">
+        <span class="text-sm lg:text-base leading-5 lg:leading-6 font-medium text-green-700 dark:text-green-700 cursor-pointer opacity-75 focus:outline-none"
+              data-action="click->components--remote#openLoginModal">확인</span>
+      </div>
+  </div>
+
+  <div class="comments-input-container pt-3">
+      <div class="flex flex-col justify-end">
+        <span class="flex items-end text-right text-xs lg:text-sm text-slate-600 dark:text-slate-300">의견이 있으신가요? 제일 먼저 댓글을 달아보세요 !</span>
+      </div>
+    <ul class="divide-y divide-gray-100 dark:divide-gray-700">
+    </ul>
+  </div>
+</div>
+</div>
+
+  <div class="px-3 py-4 lg:px-0 lg:py-6 space-y-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-2 lg:gap-x-4">
+          <div class="flex flex-col">
+            <h2 class="text-slate-600 dark:text-slate-300 text-xs font-medium uppercase tracking-wide mt-2 pt-4 mb-1">이전
+              뉴스레터</h2>
+            <div class="sm:hidden">
+              
+<a href="https://maily.so/effy/posts/l1zqgxm4r5x" data-turbo-frame="_top" class="post-card-list-item not-prose flex flex-col sm:flex-row sm:items-stretch sm:min-h-[100px] lg:min-h-[180px] sm:border border-slate-200 dark:border-slate-700 sm:rounded-md overflow-hidden py-3 sm:py-0 no-underline transition sm:hover:shadow-md" style="text-decoration: none;">
+  <div class="flex sm:contents">
+  <div class="flex-1 min-w-0 flex flex-col sm:p-5">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-xl whitespace-normal truncate-2-lines truncate mb-2">코드가 싸졌는데 왜 더 어려워졌을까</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm truncate-2-lines mb-2">진짜 비싼 건 코드가 아니었습니다. 어제 저녁에 사이드 프로젝트를 하나 만들고 있었어요. 간단한 대시보드 페이지인데요. 예전 같으면 하루는 잡았을 작업이에요. 레이아웃 잡고, 컴포넌트 만들고, API 연결하고, 반응</p>
+    <div class="hidden sm:flex flex-1 items-end">
+      <div class="block text-xs text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.27</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 653</span></div></div>
+    </div>
+  </div>
+    <div class="shrink-0 self-start relative bg-cover bg-center w-[140px] h-[80px] lg:w-[315px] lg:h-[180px] pb-0 ml-3 sm:ml-0 rounded-none" style="background-image: url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800');"></div>
+  </div>
+  <div class="sm:hidden mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center gap-0.5"><span>2026.02.27</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 653</span></div>
+  </div>
+</a>
+
+            </div>
+            <div class="hidden sm:block h-full">
+              
+<a href="https://maily.so/effy/posts/l1zqgxm4r5x" data-turbo-frame="_top" class="not-prose flex flex-col h-full border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden no-underline transition hover:shadow-md" style="text-decoration: none;">
+    <div class="w-full" style="aspect-ratio: 7 / 4; background: url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800') center/cover no-repeat;"></div>
+  <div class="p-3 lg:p-4 flex flex-col flex-1">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-lg leading-snug mb-2 truncate-2-lines">코드가 싸졌는데 왜 더 어려워졌을까</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm leading-snug mb-1 truncate-2-lines">진짜 비싼 건 코드가 아니었습니다. 어제 저녁에 사이드 프로젝트를 하나 만들고 있었어요. 간단한 대시보드 페이지인데요. 예전 같으면 하루는 잡았을 작업이에요. 레이아웃 잡고, 컴포넌트 만들고, API 연결하고, 반응</p>
+    <div class="mt-auto pt-2">
+      <div class="text-[11px] text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.27</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 653</span></div></div>
+    </div>
+  </div>
+</a>
+
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="text-slate-600 dark:text-slate-300 text-xs font-medium uppercase tracking-wide mt-2 pt-4 mb-1">다음
+              뉴스레터</h2>
+            <div class="sm:hidden">
+              
+<a href="https://maily.so/effy/posts/3jrk3596z51" data-turbo-frame="_top" class="post-card-list-item not-prose flex flex-col sm:flex-row sm:items-stretch sm:min-h-[100px] lg:min-h-[180px] sm:border border-slate-200 dark:border-slate-700 sm:rounded-md overflow-hidden py-3 sm:py-0 no-underline transition sm:hover:shadow-md" style="text-decoration: none;">
+  <div class="flex sm:contents">
+  <div class="flex-1 min-w-0 flex flex-col sm:p-5">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-xl whitespace-normal truncate-2-lines truncate mb-2">코드를 안 짜는 팀이 100만 줄을 만들었습니다</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm truncate-2-lines mb-2">3명이서요. 5개월 만에요.. OpenAI 내부에서 좀 말이 안 되는 실험을 했어요. 빈 git 리포지터리를 하나 만들었어요. 거기서부터 시작해서, 사람이 코드를 한 줄도 직접 쓰지 않고 소프트웨어 제품을 만들</p>
+    <div class="hidden sm:flex flex-1 items-end">
+      <div class="block text-xs text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.03.15</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 898</span></div></div>
+    </div>
+  </div>
+    <div class="shrink-0 self-start relative bg-cover bg-center w-[140px] h-[80px] lg:w-[315px] lg:h-[180px] pb-0 ml-3 sm:ml-0 rounded-none" style="background-image: url('https://cdn.maily.so/202603/1773576340203157.png');"></div>
+  </div>
+  <div class="sm:hidden mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center gap-0.5"><span>2026.03.15</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 898</span></div>
+  </div>
+</a>
+
+            </div>
+            <div class="hidden sm:block h-full">
+              
+<a href="https://maily.so/effy/posts/3jrk3596z51" data-turbo-frame="_top" class="not-prose flex flex-col h-full border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden no-underline transition hover:shadow-md" style="text-decoration: none;">
+    <div class="w-full" style="aspect-ratio: 7 / 4; background: url('https://cdn.maily.so/202603/1773576340203157.png') center/cover no-repeat;"></div>
+  <div class="p-3 lg:p-4 flex flex-col flex-1">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-lg leading-snug mb-2 truncate-2-lines">코드를 안 짜는 팀이 100만 줄을 만들었습니다</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm leading-snug mb-1 truncate-2-lines">3명이서요. 5개월 만에요.. OpenAI 내부에서 좀 말이 안 되는 실험을 했어요. 빈 git 리포지터리를 하나 만들었어요. 거기서부터 시작해서, 사람이 코드를 한 줄도 직접 쓰지 않고 소프트웨어 제품을 만들</p>
+    <div class="mt-auto pt-2">
+      <div class="text-[11px] text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.03.15</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 898</span></div></div>
+    </div>
+  </div>
+</a>
+
+            </div>
+          </div>
+      </div>
+
+      <h2 class="text-slate-600 dark:text-slate-300 text-xs font-medium uppercase tracking-wide mt-4 pt-4 mb-1 flex items-baseline justify-between gap-2 flex-wrap">
+        <span>다른 뉴스레터</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4">
+            <div class="sm:hidden">
+              
+<a href="https://maily.so/effy/posts/knrjpjj7rld" data-turbo-frame="_top" class="post-card-list-item not-prose flex flex-col sm:flex-row sm:items-stretch sm:min-h-[100px] lg:min-h-[180px] sm:border border-slate-200 dark:border-slate-700 sm:rounded-md overflow-hidden py-3 sm:py-0 no-underline transition sm:hover:shadow-md" style="text-decoration: none;">
+  <div class="flex sm:contents">
+  <div class="flex-1 min-w-0 flex flex-col sm:p-5">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-xl whitespace-normal truncate-2-lines truncate mb-2">AI 코드를 믿지 마라</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm truncate-2-lines mb-2">검증 없는 바이브 코딩은 도박이다.. 토스증권에서 저는 업무 코드의 99%를 AI로 짰습니다. 처음 보는 코드베이스를 AI로 파악하고, AI로 구현하고, AI로 커밋했습니다. 그 과정에서 하나 확실히 깨달은 게 있어요</p>
+    <div class="hidden sm:flex flex-1 items-end">
+      <div class="block text-xs text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.08</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 592</span></div></div>
+    </div>
+  </div>
+    <div class="shrink-0 self-start relative bg-cover bg-center w-[140px] h-[80px] lg:w-[315px] lg:h-[180px] pb-0 ml-3 sm:ml-0 rounded-none" style="background-image: url('https://cdn.maily.so/202602/1770557622959044.png');"></div>
+  </div>
+  <div class="sm:hidden mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center gap-0.5"><span>2026.02.08</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 592</span></div>
+  </div>
+</a>
+
+            </div>
+            <div class="hidden sm:block h-full">
+              
+<a href="https://maily.so/effy/posts/knrjpjj7rld" data-turbo-frame="_top" class="not-prose flex flex-col h-full border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden no-underline transition hover:shadow-md" style="text-decoration: none;">
+    <div class="w-full" style="aspect-ratio: 7 / 4; background: url('https://cdn.maily.so/202602/1770557622959044.png') center/cover no-repeat;"></div>
+  <div class="p-3 lg:p-4 flex flex-col flex-1">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-lg leading-snug mb-2 truncate-2-lines">AI 코드를 믿지 마라</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm leading-snug mb-1 truncate-2-lines">검증 없는 바이브 코딩은 도박이다.. 토스증권에서 저는 업무 코드의 99%를 AI로 짰습니다. 처음 보는 코드베이스를 AI로 파악하고, AI로 구현하고, AI로 커밋했습니다. 그 과정에서 하나 확실히 깨달은 게 있어요</p>
+    <div class="mt-auto pt-2">
+      <div class="text-[11px] text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.08</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 592</span></div></div>
+    </div>
+  </div>
+</a>
+
+            </div>
+            <div class="sm:hidden">
+              
+<a href="https://maily.so/effy/posts/w6ov24ymrk5" data-turbo-frame="_top" class="post-card-list-item not-prose flex flex-col sm:flex-row sm:items-stretch sm:min-h-[100px] lg:min-h-[180px] sm:border border-slate-200 dark:border-slate-700 sm:rounded-md overflow-hidden py-3 sm:py-0 no-underline transition sm:hover:shadow-md" style="text-decoration: none;">
+  <div class="flex sm:contents">
+  <div class="flex-1 min-w-0 flex flex-col sm:p-5">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-xl whitespace-normal truncate-2-lines truncate mb-2">코드를 짜면 지는 겁니다</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm truncate-2-lines mb-2">1명이 5개 제품을 만드는 비밀. 저는 코드를 잘 짜는 게 좋은 개발자의 조건이라고 생각했어요. 근데 요즘 이 생각이 흔들립니다. Every라는 회사가 &quot;Compound Engineering&quot;이라는 AI 네이티브 </p>
+    <div class="hidden sm:flex flex-1 items-end">
+      <div class="block text-xs text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.12</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 656</span></div></div>
+    </div>
+  </div>
+    <div class="shrink-0 self-start relative bg-cover bg-center w-[140px] h-[80px] lg:w-[315px] lg:h-[180px] pb-0 ml-3 sm:ml-0 rounded-none" style="background-image: url('https://cdn.maily.so/202602/1770796614035377.jpeg');"></div>
+  </div>
+  <div class="sm:hidden mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center gap-0.5"><span>2026.02.12</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 656</span></div>
+  </div>
+</a>
+
+            </div>
+            <div class="hidden sm:block h-full">
+              
+<a href="https://maily.so/effy/posts/w6ov24ymrk5" data-turbo-frame="_top" class="not-prose flex flex-col h-full border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden no-underline transition hover:shadow-md" style="text-decoration: none;">
+    <div class="w-full" style="aspect-ratio: 7 / 4; background: url('https://cdn.maily.so/202602/1770796614035377.jpeg') center/cover no-repeat;"></div>
+  <div class="p-3 lg:p-4 flex flex-col flex-1">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-lg leading-snug mb-2 truncate-2-lines">코드를 짜면 지는 겁니다</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm leading-snug mb-1 truncate-2-lines">1명이 5개 제품을 만드는 비밀. 저는 코드를 잘 짜는 게 좋은 개발자의 조건이라고 생각했어요. 근데 요즘 이 생각이 흔들립니다. Every라는 회사가 &quot;Compound Engineering&quot;이라는 AI 네이티브 </p>
+    <div class="mt-auto pt-2">
+      <div class="text-[11px] text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.12</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 656</span></div></div>
+    </div>
+  </div>
+</a>
+
+            </div>
+            <div class="sm:hidden">
+              
+<a href="https://maily.so/effy/posts/xyowxj19r28" data-turbo-frame="_top" class="post-card-list-item not-prose flex flex-col sm:flex-row sm:items-stretch sm:min-h-[100px] lg:min-h-[180px] sm:border border-slate-200 dark:border-slate-700 sm:rounded-md overflow-hidden py-3 sm:py-0 no-underline transition sm:hover:shadow-md" style="text-decoration: none;">
+  <div class="flex sm:contents">
+  <div class="flex-1 min-w-0 flex flex-col sm:p-5">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-xl whitespace-normal truncate-2-lines truncate mb-2">코드 안 보고 소프트웨어를 만든다고요</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm truncate-2-lines mb-2">사람이 코드를 보면 진 겁니다. &quot;코드는 사람이 작성해서는 안 된다. 코드는 사람이 검토해서는 안 된다.&quot; 이게 무슨 컬트 선언문이 아니에요. StrongDM이라는 보안 회사의 AI 팀이 실제로 지키고 있는 규칙</p>
+    <div class="hidden sm:flex flex-1 items-end">
+      <div class="block text-xs text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.11</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 433</span></div></div>
+    </div>
+  </div>
+    <div class="shrink-0 self-start relative bg-cover bg-center w-[140px] h-[80px] lg:w-[315px] lg:h-[180px] pb-0 ml-3 sm:ml-0 rounded-none" style="background-image: url('https://cdn.maily.so/202602/1770954366398855.jpeg');"></div>
+  </div>
+  <div class="sm:hidden mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center gap-0.5"><span>2026.02.11</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 433</span></div>
+  </div>
+</a>
+
+            </div>
+            <div class="hidden sm:block h-full">
+              
+<a href="https://maily.so/effy/posts/xyowxj19r28" data-turbo-frame="_top" class="not-prose flex flex-col h-full border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden no-underline transition hover:shadow-md" style="text-decoration: none;">
+    <div class="w-full" style="aspect-ratio: 7 / 4; background: url('https://cdn.maily.so/202602/1770954366398855.jpeg') center/cover no-repeat;"></div>
+  <div class="p-3 lg:p-4 flex flex-col flex-1">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-lg leading-snug mb-2 truncate-2-lines">코드 안 보고 소프트웨어를 만든다고요</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm leading-snug mb-1 truncate-2-lines">사람이 코드를 보면 진 겁니다. &quot;코드는 사람이 작성해서는 안 된다. 코드는 사람이 검토해서는 안 된다.&quot; 이게 무슨 컬트 선언문이 아니에요. StrongDM이라는 보안 회사의 AI 팀이 실제로 지키고 있는 규칙</p>
+    <div class="mt-auto pt-2">
+      <div class="text-[11px] text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.11</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 433</span></div></div>
+    </div>
+  </div>
+</a>
+
+            </div>
+            <div class="sm:hidden">
+              
+<a href="https://maily.so/effy/posts/x1zgw22voqg" data-turbo-frame="_top" class="post-card-list-item not-prose flex flex-col sm:flex-row sm:items-stretch sm:min-h-[100px] lg:min-h-[180px] sm:border border-slate-200 dark:border-slate-700 sm:rounded-md overflow-hidden py-3 sm:py-0 no-underline transition sm:hover:shadow-md" style="text-decoration: none;">
+  <div class="flex sm:contents">
+  <div class="flex-1 min-w-0 flex flex-col sm:p-5">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-xl whitespace-normal truncate-2-lines truncate mb-2">AI 잘 쓰는 사람은 처음에 느립니다</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm truncate-2-lines mb-2">삽질이 싫으면 AI도 못 씁니다. HashiCorp 만든 사람 아시죠? Mitchell Hashimoto. Terraform, Vagrant, Vault — 인프라 쪽에서 모르면 간첩인 도구들 만든 사람이에요. 지</p>
+    <div class="hidden sm:flex flex-1 items-end">
+      <div class="block text-xs text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.08</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 538</span></div></div>
+    </div>
+  </div>
+    <div class="shrink-0 self-start relative bg-cover bg-center w-[140px] h-[80px] lg:w-[315px] lg:h-[180px] pb-0 ml-3 sm:ml-0 rounded-none" style="background-image: url('https://cdn.maily.so/202602/1770792845523937.jpeg');"></div>
+  </div>
+  <div class="sm:hidden mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <div class="flex flex-wrap items-center gap-0.5"><span>2026.02.08</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 538</span></div>
+  </div>
+</a>
+
+            </div>
+            <div class="hidden sm:block h-full">
+              
+<a href="https://maily.so/effy/posts/x1zgw22voqg" data-turbo-frame="_top" class="not-prose flex flex-col h-full border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden no-underline transition hover:shadow-md" style="text-decoration: none;">
+    <div class="w-full" style="aspect-ratio: 7 / 4; background: url('https://cdn.maily.so/202602/1770792845523937.jpeg') center/cover no-repeat;"></div>
+  <div class="p-3 lg:p-4 flex flex-col flex-1">
+    <p class="text-slate-900 dark:text-slate-200 font-bold text-base lg:text-lg leading-snug mb-2 truncate-2-lines">AI 잘 쓰는 사람은 처음에 느립니다</p>
+      <p class="text-slate-700 dark:text-slate-300 text-sm leading-snug mb-1 truncate-2-lines">삽질이 싫으면 AI도 못 씁니다. HashiCorp 만든 사람 아시죠? Mitchell Hashimoto. Terraform, Vagrant, Vault — 인프라 쪽에서 모르면 간첩인 도구들 만든 사람이에요. 지</p>
+    <div class="mt-auto pt-2">
+      <div class="text-[11px] text-slate-600 dark:text-slate-300"><div class="flex flex-wrap items-center gap-0.5"><span>2026.02.08</span><span class="text-gray-300 dark:text-gray-600 mx-1">·</span><span>조회 538</span></div></div>
+    </div>
+  </div>
+</a>
+
+            </div>
+      </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+  <div x-data="{ platformChatOpen: false }"
+     x-init="$watch('platformChatOpen', v => {
+       if (v) $nextTick(() => {
+         const input = document.querySelector('#platform-floating-ai-chat textarea');
+         if (input) input.focus();
+       });
+     })"
+     @open-platform-chat.window="platformChatOpen = true">
+
+
+  <!-- Floating 채팅 패널 -->
+  <div x-show="platformChatOpen"
+       x-transition:enter="ease-out duration-300"
+       x-transition:enter-start="opacity-0 translate-y-4"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="ease-in duration-200"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 translate-y-4"
+       class="fixed right-0 sm:right-4 bottom-0 sm:bottom-4 z-20 w-full sm:w-[400px] h-[min(700px,80vh)] sm:rounded-2xl shadow-2xl bg-white dark:bg-gray-800 flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700"
+       style="display: none;">
+
+    <!-- 헤더 -->
+    <div class="flex-shrink-0 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 flex items-center justify-center">
+            <img class="w-5 h-5" style="width: 20px; height: 20px;" src="https://cdn.maily.so/public/assets/logo_icon-4b302b58cb10470170e942bfd93bff9d153e43184714b1ce6307432b27cc108e.png" />
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900 dark:text-white">메일리 도우미</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400">메일리 사용법에 대해 답변합니다</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/app/guides" target="_blank" class="text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">가이드 보기</a>
+          <button @click="platformChatOpen = false"
+                  class="p-1.5 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 채팅 콘텐츠 (turbo_frame으로 로드) -->
+    <turbo-frame class="flex-1 flex flex-col overflow-hidden" loading="lazy" id="platform-floating-ai-chat" src="/app/platform_ai_chat/embed">
+      <div class="flex-1 flex items-center justify-center">
+        <div class="flex gap-1">
+          <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+          <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+          <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
+        </div>
+      </div>
+</turbo-frame>  </div>
+</div>
+
+<script>
+  // Turbo Frame 로드 에러 처리
+  (function() {
+    const frameId = 'platform-floating-ai-chat';
+
+    document.addEventListener('turbo:before-fetch-response', (event) => {
+      const frame = event.target;
+      if (frame.id !== frameId) return;
+
+      const response = event.detail.fetchResponse.response;
+      if (!response.ok) {
+        event.preventDefault();
+
+        let errorMessage = '채팅을 불러오는 중 오류가 발생했습니다.';
+        if (response.status === 403) {
+          errorMessage = 'AI 채팅 서비스가 현재 이용 불가능합니다.';
+        }
+
+        frame.innerHTML = `
+          <div class="flex-1 flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-16 h-16 mb-4 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-500 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">${errorMessage}</p>
+          </div>
+        `;
+      }
+    });
+  })();
+</script>
+
+</div>
+
+
+<div class="w-full mx-auto bg-white dark:bg-stone-900 border-t border-gray-100 dark:border-gray-700">
+  <div class="max-w-6xl w-full mx-auto grid grid-cols-4 gap-4 lg:gap-8 p-5 py-8 lg:py-16">
+    <div class="col-span-4 md:col-span-2">
+        <div class="mb-8 lg:mb-16 space-y-2">
+          <b class="text-base text-black dark:text-white lg:text-xl">© 2026 에피의 바이브 코딩</b>
+            <p class="text-gray-600 dark:text-gray-300">클로드 코드, 코딩 에이전트</p>
+          <div class="flex space-x-3 pt-2">
+              <a href="https://effycoding.pages.dev/" target="_blank" rel="noopener noreferrer"
+                 class="text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                 title="effycoding.pages.dev">
+                <svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="stroke-current flex-shrink-0 w-[18px] h-[18px]"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#000000"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M9 15l6 -6" />
+  <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+  <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+</svg>
+
+              </a>
+            <a href="https://maily.so/effy/feed"
+               target="_blank" rel="noopener noreferrer"
+               class="text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+               title="RSS">
+              <svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="stroke-current flex-shrink-0 w-[18px] h-[18px]"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#000000"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 11a9 9 0 0 1 9 9" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <circle cx="5" cy="19" r="1" />
+</svg>
+
+            </a>
+          </div>
+        </div>
+      <p class="text-gray-400 text-xs flex">
+        <a href="https://maily.so">
+          <img alt="메일리 로고" class="inline-block dark:hidden h-7 w-auto" src="https://cdn.maily.so/images/green_logo.png" />
+          <img alt="메일리 로고" class="hidden dark:inline-block h-7 w-auto" src="https://cdn.maily.so/images/white_logo.png" />
+</a>      </p>
+      <p class="mt-4 text-gray-600 dark:text-gray-400 text-sm space-x-2">
+        <a class="hover:text-green-700 underline cursor-pointer" href="/app/guides">도움말</a>
+        <a class="hover:text-green-700 underline cursor-pointer" href="/app/bug_reports/new">오류 및 기능 관련 제보</a>
+      </p>
+      <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm space-x-2">
+        <span class="">서비스 이용 문의</span><a class="text-gray-600 dark:text-gray-400" href="mailto:admin@team.maily.so">admin@team.maily.so</a>
+        <a href="#" x-data @click.prevent="window.dispatchEvent(new CustomEvent('open-platform-chat'))" class="hover:text-green-700 underline cursor-pointer">채팅으로 문의하기</a>
+      </p>
+      <div class="mt-6 text-gray-600 dark:text-gray-400 text-xs leading-5">
+        <div x-data="{ open: false }" class="mb-1">
+          <p @click="open = !open"
+             class="flex items-center cursor-pointer group">메일리 사업자 정보
+            <svg x-show="!open" style="" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M6 9l6 6l6 -6" />
+            </svg>
+            <svg x-show="open" style="display: none;" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M6 15l6 -6l6 6" />
+            </svg>
+          </p>
+          <p x-show="open" style="display: none;">메일리 (대표자: 이한결) | 대표번호: <a href="tel:07080271409" class="text-gray-600 dark:text-gray-400">070-8027-1409</a> | 사업자번호: 717-47-00705 | 서울특별시 송파구 위례광장로 199, 5층 501-2-31호</p>
+        </div>
+        <p>
+          <a class="hover:text-green-700 underline cursor-pointer" href="/app/service_policy">이용약관</a>
+          | <a class="hover:text-green-700 underline cursor-pointer" href="/app/privacy_agreement">개인정보처리방침</a>
+          | <a class="hover:text-green-700 underline cursor-pointer" href="/app/auto_pay_agreement">정기결제 이용약관</a>
+          | <a class="hover:text-green-700 underline cursor-pointer" href="/app/license">라이선스</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

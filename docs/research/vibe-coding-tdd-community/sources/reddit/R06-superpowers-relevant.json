@@ -1,0 +1,663 @@
+{
+  "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/is_superpowers_still_relevant/",
+  "title": "Is Superpowers still relevant?",
+  "author": "YUL438",
+  "created": "2026-08-22T16:25:13.018000+0000",
+  "reported_comment_count": "70",
+  "post_html": "\n       <div class=\"text-neutral-content\" slot=\"text-body\">\n    <div class=\"mb-xs px-md xs:px-0 overflow-hidden\" data-post-click-location=\"text-body\">\n      <div id=\"t3_1vvgsia-post-rtjson-content\" class=\"md text-14-scalable pb-2xs [--emote-size:20px]\" about=\"t3_1vvgsia\" property=\"schema:articleBody\" dir=\"auto\">\n      <p>\n      I’ve been using Superpowers skill set for the past year with CC. Mostly i like the brainstorming mode and a few of the TDD and subagent related skills.\n    </p><p>\n      Are others still using Superpowers or do all the improvements in CC negate the need for this set of skills? I’m curious if I can save more tokens this way?\n    </p><p>\n      I’m mostly using Fable and Opus with high thinking.\n    </p>\n    </div>\n    </div>\n  </div> \n    ",
+  "post_text": "I’ve been using Superpowers skill set for the past year with CC. Mostly i like the brainstorming mode and a few of the TDD and subagent related skills.\n\nAre others still using Superpowers or do all the improvements in CC negate the need for this set of skills? I’m curious if I can save more tokens this way?\n\nI’m mostly using Fable and Opus with high thinking.",
+  "comments": [
+    {
+      "id": "t1_p58v6se",
+      "parent": null,
+      "author": "Remarkable_Mud9885",
+      "created": "2026-08-22T16:29:02.866000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p58v6se/",
+      "body_html": "\n        <div id=\"t1_p58v6se-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I'm starting to delete a bunch of skills because I feel like sometimes they interfere with my work and also mess with the model's judgment. That's just my take. We can keep a few that you think are useful.\n    </p>\n    </div>\n      ",
+      "body_text": "I'm starting to delete a bunch of skills because I feel like sometimes they interfere with my work and also mess with the model's judgment. That's just my take. We can keep a few that you think are useful."
+    },
+    {
+      "id": "t1_p5dsq4d",
+      "parent": "t1_p58v6se",
+      "author": "Winter_Seaweed_4836",
+      "created": "2026-08-23T10:30:16.176000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5dsq4d/",
+      "body_html": "\n        <div id=\"t1_p5dsq4d-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Make the skills as a sessiondiscipline hook that uses all the \"skills\" for you and they travel with session and gets used dynamically. You can delete the old and obsolete skills.\n    </p>\n    </div>\n      ",
+      "body_text": "Make the skills as a sessiondiscipline hook that uses all the \"skills\" for you and they travel with session and gets used dynamically. You can delete the old and obsolete skills."
+    },
+    {
+      "id": "t1_p5g7xy3",
+      "parent": "t1_p58v6se",
+      "author": "Time_Cat_5212",
+      "created": "2026-08-23T18:01:59.951000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5g7xy3/",
+      "body_html": "\n        <div id=\"t1_p5g7xy3-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Knew this would happen\n    </p>\n    </div>\n      ",
+      "body_text": "Knew this would happen"
+    },
+    {
+      "id": "t1_p595oje",
+      "parent": "t1_p58v6se",
+      "author": "[deleted]",
+      "created": "2026-08-22T17:16:56.160000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/null",
+      "body_html": "\n        <div id=\"t1_p5dx5lh-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yeah, giving too strict guardrails and using absolutes \"NEVER,DONT,EXACTLY\" as prose has diminishing returns, it takes the \"freedom of thought\" away from the model. I created a guardhook that blocks recursive deletes and my session discipline hook enforces routing around the guardhook and controls the work ethics. Laziness, hallucinations, jargon outputs can all be fixed quite easily. Causal testing to the guardhook is also recommended since it can simulate the possible route arounds the hooks and you can patch them before them ever happening. I have actually tried to force my harness to delete something in multiple different ways and it just wont do it without my authorization password. Sorry for the braindump, i could write all day on my methods on how to make model outputs precise, safe and \"trustworthy\". Trust but verify.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5dx5lh",
+      "parent": "t1_p595oje",
+      "author": "Winter_Seaweed_4836",
+      "created": "2026-08-23T11:04:52.007000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5dx5lh/",
+      "body_html": "\n        <div id=\"t1_p5dx5lh-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yeah, giving too strict guardrails and using absolutes \"NEVER,DONT,EXACTLY\" as prose has diminishing returns, it takes the \"freedom of thought\" away from the model. I created a guardhook that blocks recursive deletes and my session discipline hook enforces routing around the guardhook and controls the work ethics. Laziness, hallucinations, jargon outputs can all be fixed quite easily. Causal testing to the guardhook is also recommended since it can simulate the possible route arounds the hooks and you can patch them before them ever happening. I have actually tried to force my harness to delete something in multiple different ways and it just wont do it without my authorization password. Sorry for the braindump, i could write all day on my methods on how to make model outputs precise, safe and \"trustworthy\". Trust but verify.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p598wc4",
+      "parent": "t1_p595oje",
+      "author": "Remarkable_Mud9885",
+      "created": "2026-08-22T17:31:16.600000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p598wc4/",
+      "body_html": "\n        <div id=\"t1_p598wc4-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yeah, I think you really need to enjoy the process of discovering your own skills. It gives you such a strong sense of achievement because you realize that as AI gets more and more powerful, you end up participating in fewer and fewer things.\n    </p><p>\n      Slowly, your communication with the AI dwindles until you have no idea what it's doing, and it has no idea what you're doing.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5a45v5",
+      "parent": null,
+      "author": "seatlessunicycle",
+      "created": "2026-08-22T19:57:07.446000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5a45v5/",
+      "body_html": "\n        <div id=\"t1_p5a45v5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I haven't used superpowers in months. I'm on the matt pocock bandwagon!\n    </p>\n    </div>\n      ",
+      "body_text": "I haven't used superpowers in months. I'm on the matt pocock bandwagon!"
+    },
+    {
+      "id": "t1_p5ad8xn",
+      "parent": "t1_p5a45v5",
+      "author": "knot_why",
+      "created": "2026-08-22T20:41:17.055000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5ad8xn/",
+      "body_html": "\n        <div id=\"t1_p5ad8xn-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Please do tell more. Haven't heard of him. Googled now, I see he has some AI dev workflow, but would like to hear from the community before I go and and listen to hours of videos.\n    </p>\n    </div>\n      ",
+      "body_text": "Please do tell more. Haven't heard of him. Googled now, I see he has some AI dev workflow, but would like to hear from the community before I go and and listen to hours of videos."
+    },
+    {
+      "id": "t1_p5asyuz",
+      "parent": "t1_p5ad8xn",
+      "author": "seatlessunicycle",
+      "created": "2026-08-22T22:01:42.576000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5asyuz/",
+      "body_html": "\n        <div id=\"t1_p5asyuz-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      His hour long talk is GOLD. It changed my whole personal  workspace setup\n    </p>\n    </div>\n      ",
+      "body_text": "His hour long talk is GOLD. It changed my whole personal workspace setup"
+    },
+    {
+      "id": "t1_p5azh6a",
+      "parent": "t1_p5asyuz",
+      "author": "Gryphx",
+      "created": "2026-08-22T22:36:53.524000+0000",
+      "depth": "3",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5azh6a/",
+      "body_html": "\n        <div id=\"t1_p5azh6a-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Can you share a link to it?\n    </p>\n    </div>\n      ",
+      "body_text": "Can you share a link to it?"
+    },
+    {
+      "id": "t1_p5b65u4",
+      "parent": "t1_p5azh6a",
+      "author": "seatlessunicycle",
+      "created": "2026-08-22T23:14:41.432000+0000",
+      "depth": "4",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5b65u4/",
+      "body_html": "\n        <div id=\"t1_p5b65u4-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Bro just type in Matt Pocock workflow.\n    </p>\n    </div>\n      ",
+      "body_text": "Bro just type in Matt Pocock workflow."
+    },
+    {
+      "id": "t1_p5b69mq",
+      "parent": "t1_p5b65u4",
+      "author": "Gryphx",
+      "created": "2026-08-22T23:15:15.883000+0000",
+      "depth": "5",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5b69mq/",
+      "body_html": "\n        <div id=\"t1_p5b69mq-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Because he only has one video….\n    </p>\n    </div>\n      ",
+      "body_text": "Because he only has one video…."
+    },
+    {
+      "id": "t1_p5b82vc",
+      "parent": "t1_p5b69mq",
+      "author": "seatlessunicycle",
+      "created": "2026-08-22T23:25:26.132000+0000",
+      "depth": "6",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5b82vc/",
+      "body_html": "\n        <div id=\"t1_p5b82vc-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://youtu.be/-QFHIoCo-Ko?is=rGBQ4VdZWZcduJTl\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://youtu.be/-QFHIoCo-Ko?is=rGBQ4VdZWZcduJTl</a>\n    </p>\n    </div>\n      ",
+      "body_text": "https://youtu.be/-QFHIoCo-Ko?is=rGBQ4VdZWZcduJTl"
+    },
+    {
+      "id": "t1_p5fcoeb",
+      "parent": "t1_p5b82vc",
+      "author": "Gryphx",
+      "created": "2026-08-23T15:44:05.742000+0000",
+      "depth": "7",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5fcoeb/",
+      "body_html": "\n        <div id=\"t1_p5fcoeb-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Thank you!\n    </p>\n    </div>\n      ",
+      "body_text": "Thank you!"
+    },
+    {
+      "id": "t1_p5f460m",
+      "parent": "t1_p5a45v5",
+      "author": "Seerix",
+      "created": "2026-08-23T15:05:15.307000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5f460m/",
+      "body_html": "\n        <div id=\"t1_p5f460m-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I use a tweaked version of his grill me skill. Only global skill i use. Works well!\n    </p>\n    </div>\n      ",
+      "body_text": "I use a tweaked version of his grill me skill. Only global skill i use. Works well!"
+    },
+    {
+      "id": "t1_p58zer3",
+      "parent": null,
+      "author": "HgnX",
+      "created": "2026-08-22T16:48:26.490000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p58zer3/",
+      "body_html": "\n        <div id=\"t1_p58zer3-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Too token intensive, Fable is smart enough without it\n    </p>\n    </div>\n      ",
+      "body_text": "Too token intensive, Fable is smart enough without it"
+    },
+    {
+      "id": "t1_p58w9p9",
+      "parent": null,
+      "author": "itsforsocial",
+      "created": "2026-08-22T16:34:02.234000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p58w9p9/",
+      "body_html": "\n        <div id=\"t1_p58w9p9-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Currently it eats lot of usage when sub agent driven development kicks in. Not using that as entire session gone in 5 mins. Spec then agent-skills for plan and build part. This works fine for me now\n    </p>\n    </div>\n      ",
+      "body_text": "Currently it eats lot of usage when sub agent driven development kicks in. Not using that as entire session gone in 5 mins. Spec then agent-skills for plan and build part. This works fine for me now"
+    },
+    {
+      "id": "t1_p5920qe",
+      "parent": "t1_p58w9p9",
+      "author": "Obvious_Equivalent_1",
+      "created": "2026-08-22T17:00:24.983000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5920qe/",
+      "body_html": "\n        <div id=\"t1_p5920qe-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      That was something I ran into with the latest 5 version of Obra/Superpowers. I can only speak for my own experience but I believe a lot of that has been addressed in a fork Superpowers extended for Claude Code, already maintained since last year with native optimizations <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/pcvelz/superpowers\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://github.com/pcvelz/superpowers</a> (see release notes and readme MD’s)\n    </p><p>\n      Happened to wrote extensive reply about it, major benefits are the hooks it allows you to use separate Claude code sessions to keep plan mode part in a higher expensive tier like Fable en run execution on a cheaper like Opus 4.* or Opus 5 on medium. <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://www.reddit.com/r/ClaudeCode/comments/1vub8nl/comment/p4zzl21/?context=3\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://www.reddit.com/r/ClaudeCode/comments/1vub8nl/comment/p4zzl21/?context=3</a>\n    </p>\n    </div>\n      ",
+      "body_text": "That was something I ran into with the latest 5 version of Obra/Superpowers. I can only speak for my own experience but I believe a lot of that has been addressed in a fork Superpowers extended for Claude Code, already maintained since last year with native optimizations https://github.com/pcvelz/superpowers (see release notes and readme MD’s)\n\nHappened to wrote extensive reply about it, major benefits are the hooks it allows you to use separate Claude code sessions to keep plan mode part in a higher expensive tier like Fable en run execution on a cheaper like Opus 4.* or Opus 5 on medium. https://www.reddit.com/r/ClaudeCode/comments/1vub8nl/comment/p4zzl21/?context=3"
+    },
+    {
+      "id": "t1_p59jex2",
+      "parent": "t1_p5920qe",
+      "author": "throwawayfapugh",
+      "created": "2026-08-22T18:18:50.263000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59jex2/",
+      "body_html": "\n        <div id=\"t1_p59jex2-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I use the pcvelz fork too and it’s great\n    </p>\n    </div>\n      ",
+      "body_text": "I use the pcvelz fork too and it’s great"
+    },
+    {
+      "id": "t1_p5cz28d",
+      "parent": "t1_p59jex2",
+      "author": "Obvious_Equivalent_1",
+      "created": "2026-08-23T06:18:41.907000+0000",
+      "depth": "3",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5cz28d/",
+      "body_html": "\n        <div id=\"t1_p5cz28d-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Delighted to hear that. Make sure if it’s been a while that there are some updated features you might like (all optional)!\n    </p><p>\n      (because I’m writing this reply anyway, I’ve recently written extensive <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://www.reddit.com/r/ClaudeCode/comments/1vub8nl/comment/p4zzl21/?context=3\" rel=\"noopener nofollow ugc\" target=\"_blank\">post</a>. With recent Claude Code native features released, these new hooks allow to benefit from this. You can run write plan on token heavy Fable med/high and execution of plan on like Opus 5 low/medium. The hooks both help enforce subagent model+thinking level (low/medium/high/..), it includes that if you ask in plan to verify certain steps, that with hooks enabled it actually to <em>force</em> Claude to stop and verify with you. And if you execute plan in a separate session the execute plan can actually talk to the write plan session - if you enable it in onboarding)\n    </p><pre>/plugin marketplace update superpowers-extended-cc-marketplace\n/superpowers-extended-cc:onboard</pre>\n    </div>\n      ",
+      "body_text": "Delighted to hear that. Make sure if it’s been a while that there are some updated features you might like (all optional)!\n\n(because I’m writing this reply anyway, I’ve recently written extensive post. With recent Claude Code native features released, these new hooks allow to benefit from this. You can run write plan on token heavy Fable med/high and execution of plan on like Opus 5 low/medium. The hooks both help enforce subagent model+thinking level (low/medium/high/..), it includes that if you ask in plan to verify certain steps, that with hooks enabled it actually to force Claude to stop and verify with you. And if you execute plan in a separate session the execute plan can actually talk to the write plan session - if you enable it in onboarding)\n\n/plugin marketplace update superpowers-extended-cc-marketplace\n/superpowers-extended-cc:onboard"
+    },
+    {
+      "id": "t1_p59lfpo",
+      "parent": "t1_p58w9p9",
+      "author": "jagibers",
+      "created": "2026-08-22T18:28:04.957000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59lfpo/",
+      "body_html": "\n        <div id=\"t1_p59lfpo-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      FWIW, when opus 4.7/8 went to 1M context and cc defaulted to that model/context size —I started hitting the session limits right away because I was doing multiple sessions/tickets at once. I did some research and found that you can set a an env variable to disable the 1M context for it and proceeded to run with that. When opus 5 came out I tried it for a bit without quotation issues but it was just doing terrible. So I’m still using 4.6 w/ 200k context to date with great results in a large brownfield repository with lots of concurrent sessions and never hit my session limits I do typically hit a compaction break in sessions that do a lot of research or systematic debugging—but it is not usually an inconvenience as I usually have another session I can jump to and provide direction to.\n    </p><p>\n      So I’m still firmly in the superpowers camp.\n    </p>\n    </div>\n      ",
+      "body_text": "FWIW, when opus 4.7/8 went to 1M context and cc defaulted to that model/context size —I started hitting the session limits right away because I was doing multiple sessions/tickets at once. I did some research and found that you can set a an env variable to disable the 1M context for it and proceeded to run with that. When opus 5 came out I tried it for a bit without quotation issues but it was just doing terrible. So I’m still using 4.6 w/ 200k context to date with great results in a large brownfield repository with lots of concurrent sessions and never hit my session limits I do typically hit a compaction break in sessions that do a lot of research or systematic debugging—but it is not usually an inconvenience as I usually have another session I can jump to and provide direction to.\n\nSo I’m still firmly in the superpowers camp."
+    },
+    {
+      "id": "t1_p5dvn4g",
+      "parent": "t1_p59lfpo",
+      "author": "Winter_Seaweed_4836",
+      "created": "2026-08-23T10:53:21.532000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5dvn4g/",
+      "body_html": "\n        <div id=\"t1_p5dvn4g-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Make opus use explanatory output and verbrose off and xhigh for implementation and only escalate to max when planning.\n    </p> <figure class=\"rte-media\">\n       <a href=\"https://preview.redd.it/is-superpowers-still-relevant-v0-lg0ard8wu3lh1.png?width=2536&amp;format=png&amp;auto=webp&amp;s=6774c33639a1abae9d8fbc0b6b33a83e2ea30307\" rel=\"noopener ugc\" target=\"_blank\" class=\"w-fit\">\n              <img src=\"https://preview.redd.it/is-superpowers-still-relevant-v0-lg0ard8wu3lh1.png?width=2536&amp;format=png&amp;auto=webp&amp;s=6774c33639a1abae9d8fbc0b6b33a83e2ea30307\" alt=\"Comment Image\" class=\"mb-0 max-w-[240px] min-w-[20px] rounded-1 non-lightboxed-content\" width=\"240\" height=\"auto\" srcset=\"https://preview.redd.it/is-superpowers-still-relevant-v0-lg0ard8wu3lh1.png?width=320&amp;crop=smart&amp;auto=webp&amp;s=f184287b93178ffc01e12e94c63d9392e0c2e88c 1x, https://preview.redd.it/is-superpowers-still-relevant-v0-lg0ard8wu3lh1.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=7e1207d2d818562239c00d940816f3ce6596bf26 2x\" sizes=\"(min-width: 1415px) 750px, (min-width: 768px) 50vw, 100vw\" style=\"object-fit: cover;aspect-ratio:240/94.16403785488959\" loading=\"lazy\">\n            </a>\n      \n    </figure>\n    </div>\n      ",
+      "body_text": "Make opus use explanatory output and verbrose off and xhigh for implementation and only escalate to max when planning."
+    },
+    {
+      "id": "t1_p58xjq6",
+      "parent": null,
+      "author": "helm71",
+      "created": "2026-08-22T16:39:56.388000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p58xjq6/",
+      "body_html": "\n        <div id=\"t1_p58xjq6-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I use if every time.. fable on high or xhigh with superpowers to create the plan, opus5 to execute and orchestrate, sonnet5 for the actual coding.\n    </p>\n    </div>\n      ",
+      "body_text": "I use if every time.. fable on high or xhigh with superpowers to create the plan, opus5 to execute and orchestrate, sonnet5 for the actual coding."
+    },
+    {
+      "id": "t1_p598qgb",
+      "parent": "t1_p58xjq6",
+      "author": "EnthusiasmMountain10",
+      "created": "2026-08-22T17:30:33.630000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p598qgb/",
+      "body_html": "\n        <div id=\"t1_p598qgb-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      whats your token spend like on a feature getting delivered in a day for eg?\n    </p>\n    </div>\n      ",
+      "body_text": "whats your token spend like on a feature getting delivered in a day for eg?"
+    },
+    {
+      "id": "t1_p5avs4c",
+      "parent": "t1_p598qgb",
+      "author": "helm71",
+      "created": "2026-08-22T22:16:56.566000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5avs4c/",
+      "body_html": "\n        <div id=\"t1_p5avs4c-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Honoustly I have no idea… I am on max20 and that basically lets me code almost 7x24.. tokens run out on the last day…\n    </p>\n    </div>\n      ",
+      "body_text": "Honoustly I have no idea… I am on max20 and that basically lets me code almost 7x24.. tokens run out on the last day…"
+    },
+    {
+      "id": "t1_p5ccu3y",
+      "parent": "t1_p5avs4c",
+      "author": "tribat",
+      "created": "2026-08-23T03:32:41.907000+0000",
+      "depth": "3",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5ccu3y/",
+      "body_html": "\n        <div id=\"t1_p5ccu3y-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      The ideal\n    </p>\n    </div>\n      ",
+      "body_text": "The ideal"
+    },
+    {
+      "id": "t1_p59cy3u",
+      "parent": null,
+      "author": "kardu",
+      "created": "2026-08-22T17:49:22.903000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59cy3u/",
+      "body_html": "\n        <div id=\"t1_p59cy3u-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      brainstorming is definitely good.\n    </p><p>\n      I'm not sure if the other ones are worth keeping. It might depend on your project\n    </p>\n    </div>\n      ",
+      "body_text": "brainstorming is definitely good.\n\nI'm not sure if the other ones are worth keeping. It might depend on your project"
+    },
+    {
+      "id": "t1_p59z5r5",
+      "parent": "t1_p59cy3u",
+      "author": "beardedslav",
+      "created": "2026-08-22T19:32:44.298000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59z5r5/",
+      "body_html": "\n        <div id=\"t1_p59z5r5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I found brainstorming really good, but I think <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs</a> is much better\n    </p>\n    </div>\n      ",
+      "body_text": "I found brainstorming really good, but I think https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs is much better"
+    },
+    {
+      "id": "t1_p59y5de",
+      "parent": null,
+      "author": "WaltzEmbarrassed6501",
+      "created": "2026-08-22T19:27:49.857000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59y5de/",
+      "body_html": "\n        <div id=\"t1_p59y5de-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      No longer using it, I switched to Wayfinder from Matt’s skill plugin instead. I like the flow better.\n    </p>\n    </div>\n      ",
+      "body_text": "No longer using it, I switched to Wayfinder from Matt’s skill plugin instead. I like the flow better."
+    },
+    {
+      "id": "t1_p5ar6i9",
+      "parent": null,
+      "author": "JupiterWalk",
+      "created": "2026-08-22T21:52:08.547000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5ar6i9/",
+      "body_html": "\n        <div id=\"t1_p5ar6i9-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      The question isn’t if superpowers is relevant or not, but rather do you have other sources of similar context that overlaps, whether that be Claude.md, other skills, etc. it’s not black and white. There’s a layered approach to LLMs. Superpower is one element. By itself, excelente. However I’ve instilled a process through tangibles such as project documentation and diagrams, memories, and so on that I no longer need to pay tokens (which very token hungry imho) for superpowers. It’s a great jumpstart skill no matter your experience level. It can lay proper foundation as you continue to use Claude. Ok bye\n    </p>\n    </div>\n      ",
+      "body_text": "The question isn’t if superpowers is relevant or not, but rather do you have other sources of similar context that overlaps, whether that be Claude.md, other skills, etc. it’s not black and white. There’s a layered approach to LLMs. Superpower is one element. By itself, excelente. However I’ve instilled a process through tangibles such as project documentation and diagrams, memories, and so on that I no longer need to pay tokens (which very token hungry imho) for superpowers. It’s a great jumpstart skill no matter your experience level. It can lay proper foundation as you continue to use Claude. Ok bye"
+    },
+    {
+      "id": "t1_p59gg2p",
+      "parent": null,
+      "author": "artofbullshit",
+      "created": "2026-08-22T18:05:15.390000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59gg2p/",
+      "body_html": "\n        <div id=\"t1_p59gg2p-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I still use it since removing it would mean that I wouldn't be able to trust that Claude actually followed a true TDD on every build.\n    </p>\n    </div>\n      ",
+      "body_text": "I still use it since removing it would mean that I wouldn't be able to trust that Claude actually followed a true TDD on every build."
+    },
+    {
+      "id": "t1_p5c2f0a",
+      "parent": "t1_p59gg2p",
+      "author": "james__jam",
+      "created": "2026-08-23T02:24:47.668000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5c2f0a/",
+      "body_html": "\n        <div id=\"t1_p5c2f0a-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Wdym? Tdd is one of the most basic skill and you dont need superpowers for it\n    </p>\n    </div>\n      ",
+      "body_text": "Wdym? Tdd is one of the most basic skill and you dont need superpowers for it"
+    },
+    {
+      "id": "t1_p5c7kss",
+      "parent": "t1_p5c2f0a",
+      "author": "artofbullshit",
+      "created": "2026-08-23T02:57:35.798000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5c7kss/",
+      "body_html": "\n        <div id=\"t1_p5c7kss-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Okay, so any skill. Guess I should have said I'm not comfortable removing all skills from Claude and letting it do whatever it remembers to do on its own, because it won't.\n    </p>\n    </div>\n      ",
+      "body_text": "Okay, so any skill. Guess I should have said I'm not comfortable removing all skills from Claude and letting it do whatever it remembers to do on its own, because it won't."
+    },
+    {
+      "id": "t1_p5ahgqx",
+      "parent": null,
+      "author": "mandark69",
+      "created": "2026-08-22T21:01:59.598000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5ahgqx/",
+      "body_html": "\n        <div id=\"t1_p5ahgqx-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I am using it all the time. But let it outsource all coding tasks to codex (gpt5.6). My workflow for superpower is:<br>Brainstorm (fable) -&gt; specs -&gt; spec review codex -&gt; plan -&gt; plan review codex -&gt; codex implements -&gt; holistic review by fable &amp; codex. When both agree on ‘safe to deploy’ and I agree too, it is finished. Fable or Opus orchestrates all of this.\n    </p>\n    </div>\n      ",
+      "body_text": "I am using it all the time. But let it outsource all coding tasks to codex (gpt5.6). My workflow for superpower is:\nBrainstorm (fable) -> specs -> spec review codex -> plan -> plan review codex -> codex implements -> holistic review by fable & codex. When both agree on ‘safe to deploy’ and I agree too, it is finished. Fable or Opus orchestrates all of this."
+    },
+    {
+      "id": "t1_p5b28t8",
+      "parent": null,
+      "author": "Professional-Money49",
+      "created": "2026-08-22T22:52:35.485000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5b28t8/",
+      "body_html": "\n        <div id=\"t1_p5b28t8-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I really like superpowers but it brings out the worst in opus 5. Matt copocks skills work much beter with it.\n    </p>\n    </div>\n      ",
+      "body_text": "I really like superpowers but it brings out the worst in opus 5. Matt copocks skills work much beter with it."
+    },
+    {
+      "id": "t1_p5d8r0n",
+      "parent": null,
+      "author": "rubanbhatia",
+      "created": "2026-08-23T07:39:20.887000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5d8r0n/",
+      "body_html": "\n        <div id=\"t1_p5d8r0n-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      It’s good if it didn’t create huge markdown files again and again and doesnt do TDD for every minor change.\n    </p><p>\n      What superpowers needs is something like a persistent project spec that can track phases and updates instead of scattering them in random named markdown files.\n    </p><p>\n      The brainstorm workflow needs to be tighter and should help create an initial PRD rather than just refine your idea.\n    </p><p>\n      Still relevant but needs some edits now\n    </p>\n    </div>\n      ",
+      "body_text": "It’s good if it didn’t create huge markdown files again and again and doesnt do TDD for every minor change.\n\nWhat superpowers needs is something like a persistent project spec that can track phases and updates instead of scattering them in random named markdown files.\n\nThe brainstorm workflow needs to be tighter and should help create an initial PRD rather than just refine your idea.\n\nStill relevant but needs some edits now"
+    },
+    {
+      "id": "t1_p5brtdt",
+      "parent": null,
+      "author": "DLuke2",
+      "created": "2026-08-23T01:20:20.616000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5brtdt/",
+      "body_html": "\n        <div id=\"t1_p5brtdt-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Dropped it. Mostly goal style prompts now and loops when needed.\n    </p><p>\n      Goal prompts are the most effective now it seems. Give references, examples, and/or spec/design doc and let it cook. Having rules, model invocable skills, knowledge docs, etc keeps everything on the rails.\n    </p>\n    </div>\n      ",
+      "body_text": "Dropped it. Mostly goal style prompts now and loops when needed.\n\nGoal prompts are the most effective now it seems. Give references, examples, and/or spec/design doc and let it cook. Having rules, model invocable skills, knowledge docs, etc keeps everything on the rails."
+    },
+    {
+      "id": "t1_p593gas",
+      "parent": null,
+      "author": "Ill-Village7647",
+      "created": "2026-08-22T17:06:54.016000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p593gas/",
+      "body_html": "\n        <div id=\"t1_p593gas-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      The only skill that I've used the most is the /requesting-code-review superpower. It's terrific\n    </p>\n    </div>\n      ",
+      "body_text": "The only skill that I've used the most is the /requesting-code-review superpower. It's terrific"
+    },
+    {
+      "id": "t1_p5d2b4v",
+      "parent": "t1_p593gas",
+      "author": "jpvaldezjr",
+      "created": "2026-08-23T06:45:30.445000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5d2b4v/",
+      "body_html": "\n        <div id=\"t1_p5d2b4v-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      difference than the built in code review?\n    </p>\n    </div>\n      ",
+      "body_text": "difference than the built in code review?"
+    },
+    {
+      "id": "t1_p5diukz",
+      "parent": "t1_p5d2b4v",
+      "author": "Ill-Village7647",
+      "created": "2026-08-23T09:06:13.997000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5diukz/",
+      "body_html": "\n        <div id=\"t1_p5diukz-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      The built in code review takes way too much time. Spins up multiple sub agents.\n    </p><p>\n      This one only spins up one agent. And I've gotten better results from this plugin compared to that one. The built-in one is also token hungry and expensive.\n    </p>\n    </div>\n      ",
+      "body_text": "The built in code review takes way too much time. Spins up multiple sub agents.\n\nThis one only spins up one agent. And I've gotten better results from this plugin compared to that one. The built-in one is also token hungry and expensive."
+    },
+    {
+      "id": "t1_p5a41vf",
+      "parent": null,
+      "author": "pmward",
+      "created": "2026-08-22T19:56:35.252000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5a41vf/",
+      "body_html": "\n        <div id=\"t1_p5a41vf-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I built my own versions long ago, that work better for me and my companies specific workflows, and are a lot more token efficient. It's so quick and easy to build your own tools to fit like a glove, that it honestly feels silly to shoehorn yourself into someone else's tools.\n    </p>\n    </div>\n      ",
+      "body_text": "I built my own versions long ago, that work better for me and my companies specific workflows, and are a lot more token efficient. It's so quick and easy to build your own tools to fit like a glove, that it honestly feels silly to shoehorn yourself into someone else's tools."
+    },
+    {
+      "id": "t1_p5ajs23",
+      "parent": null,
+      "author": "Potat4o",
+      "created": "2026-08-22T21:13:35.057000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5ajs23/",
+      "body_html": "\n        <div id=\"t1_p5ajs23-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Superpower has been doing a pretty good job of keeping up. Like this release: <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/obra/superpowers/releases/tag/v6.1.0\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://github.com/obra/superpowers/releases/tag/v6.1.0</a>\n    </p>\n    </div>\n      ",
+      "body_text": "Superpower has been doing a pretty good job of keeping up. Like this release: https://github.com/obra/superpowers/releases/tag/v6.1.0"
+    },
+    {
+      "id": "t1_p5bcqdj",
+      "parent": null,
+      "author": "No_Holiday_5717",
+      "created": "2026-08-22T23:51:53.247000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5bcqdj/",
+      "body_html": "\n        <div id=\"t1_p5bcqdj-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      If only it didn’t 3x the time and tokens required for a task…\n    </p>\n    </div>\n      ",
+      "body_text": "If only it didn’t 3x the time and tokens required for a task…"
+    },
+    {
+      "id": "t1_p5c2732",
+      "parent": null,
+      "author": "brycematheson",
+      "created": "2026-08-23T02:23:26.177000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5c2732/",
+      "body_html": "\n        <div id=\"t1_p5c2732-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I removed it. Fable + Codex adversarial review does a great job, in my opinion.\n    </p>\n    </div>\n      ",
+      "body_text": "I removed it. Fable + Codex adversarial review does a great job, in my opinion."
+    },
+    {
+      "id": "t1_p5dorvc",
+      "parent": null,
+      "author": "Bright-Celery-4058",
+      "created": "2026-08-23T09:57:28.852000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5dorvc/",
+      "body_html": "\n        <div id=\"t1_p5dorvc-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      try this <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/PiLastDigit/TRIP-workflow\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://github.com/PiLastDigit/TRIP-workflow</a><br>IMO better and easier to use\n    </p>\n    </div>\n      ",
+      "body_text": "try this https://github.com/PiLastDigit/TRIP-workflow\nIMO better and easier to use"
+    },
+    {
+      "id": "t1_p5g0ltf",
+      "parent": null,
+      "author": "codyswann",
+      "created": "2026-08-23T17:30:11.089000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5g0ltf/",
+      "body_html": "\n        <div id=\"t1_p5g0ltf-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Skills are going through the same phases MySpace went through.\n    </p>\n    </div>\n      ",
+      "body_text": "Skills are going through the same phases MySpace went through."
+    },
+    {
+      "id": "t1_p5g81ac",
+      "parent": null,
+      "author": "Time_Cat_5212",
+      "created": "2026-08-23T18:02:24.020000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5g81ac/",
+      "body_html": "\n        <div id=\"t1_p5g81ac-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Skills are the new domain of cargo culting\n    </p>\n    </div>\n      ",
+      "body_text": "Skills are the new domain of cargo culting"
+    },
+    {
+      "id": "t1_p594e08",
+      "parent": null,
+      "author": "Icy-Excitement-467",
+      "created": "2026-08-22T17:11:08.495000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p594e08/",
+      "body_html": "\n        <div id=\"t1_p594e08-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Code review is the onlything consistently useful\n    </p>\n    </div>\n      ",
+      "body_text": "Code review is the onlything consistently useful"
+    },
+    {
+      "id": "t1_p59ddh8",
+      "parent": null,
+      "author": "cartoonist498",
+      "created": "2026-08-22T17:51:17.420000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59ddh8/",
+      "body_html": "\n        <div id=\"t1_p59ddh8-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Nope, I stopped using it because the token cost and extra time to go through its flow was so high, at what seemed like little to no gain in the end result.&nbsp;\n    </p><p>\n      I use Fable as the orchestrator and have it spin up Opus 5 subagents to do the work. Superpowers didn't seem useful anymore.\n    </p>\n    </div>\n      ",
+      "body_text": "Nope, I stopped using it because the token cost and extra time to go through its flow was so high, at what seemed like little to no gain in the end result. \n\nI use Fable as the orchestrator and have it spin up Opus 5 subagents to do the work. Superpowers didn't seem useful anymore."
+    },
+    {
+      "id": "t1_p5acqll",
+      "parent": null,
+      "author": "Icy_Preparation_25",
+      "created": "2026-08-22T20:38:46.779000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5acqll/",
+      "body_html": "\n        <div id=\"t1_p5acqll-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Try not to use it with newer and powerful models,\n    </p><p>\n      i use kimi k3 for some important tasks and 99% of the time task is always done correctly and its ready to deploy but with older models or cheaper models its always use superpowers and still it 70-80% success rate.\n    </p>\n    </div>\n      ",
+      "body_text": "Try not to use it with newer and powerful models,\n\ni use kimi k3 for some important tasks and 99% of the time task is always done correctly and its ready to deploy but with older models or cheaper models its always use superpowers and still it 70-80% success rate."
+    },
+    {
+      "id": "t1_p5b05j6",
+      "parent": null,
+      "author": "novakane",
+      "created": "2026-08-22T22:40:42.915000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5b05j6/",
+      "body_html": "\n        <div id=\"t1_p5b05j6-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      What do we do with skills that are tied to existing automations/recurrent tasks?\n    </p>\n    </div>\n      ",
+      "body_text": "What do we do with skills that are tied to existing automations/recurrent tasks?"
+    },
+    {
+      "id": "t1_p5carpr",
+      "parent": null,
+      "author": "tribat",
+      "created": "2026-08-23T03:18:40.532000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5carpr/",
+      "body_html": "\n        <div id=\"t1_p5carpr-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I’ve been stripping down some skills but superpowers changed the way I use Claude code. I’ve built around it, but it’s muscle memory now.\n    </p>\n    </div>\n      ",
+      "body_text": "I’ve been stripping down some skills but superpowers changed the way I use Claude code. I’ve built around it, but it’s muscle memory now."
+    },
+    {
+      "id": "t1_p5lwgis",
+      "parent": null,
+      "author": "yes_no_very_good",
+      "created": "2026-08-24T14:35:21.797000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5lwgis/",
+      "body_html": "\n        <div id=\"t1_p5lwgis-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      For me is the most useful plugin out there, it does reviews automatically without asking.\n    </p>\n    </div>\n      ",
+      "body_text": "For me is the most useful plugin out there, it does reviews automatically without asking."
+    },
+    {
+      "id": "t1_p5a1wuo",
+      "parent": null,
+      "author": "Anooyoo2",
+      "created": "2026-08-22T19:46:09.009000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5a1wuo/",
+      "body_html": "\n        <div id=\"t1_p5a1wuo-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Build don't buy. You need to know your system.\n    </p>\n    </div>\n      ",
+      "body_text": "Build don't buy. You need to know your system."
+    },
+    {
+      "id": "t1_p5aehmx",
+      "parent": null,
+      "author": "allemaar",
+      "created": "2026-08-22T20:47:23.151000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5aehmx/",
+      "body_html": "\n        <div id=\"t1_p5aehmx-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I usually have an idea of what I wanna build.\n    </p><p>\n      Thus using a set of smaller skills in various combinations does help a bit more and I can both learn (new angles). This helps me steer to the intended goal , or hop to a new shape that might be better.\n    </p><p>\n      I use a combination of exploration, investigation, angles, multi-pov assessments and cold-reviews (via subagents). This so far gave best results, lowest cost. Adding a second agent (different vendor) increases the brainstorming output quality even more.\n    </p>\n    </div>\n      ",
+      "body_text": "I usually have an idea of what I wanna build.\n\nThus using a set of smaller skills in various combinations does help a bit more and I can both learn (new angles). This helps me steer to the intended goal , or hop to a new shape that might be better.\n\nI use a combination of exploration, investigation, angles, multi-pov assessments and cold-reviews (via subagents). This so far gave best results, lowest cost. Adding a second agent (different vendor) increases the brainstorming output quality even more."
+    },
+    {
+      "id": "t1_p58z42x",
+      "parent": null,
+      "author": "[deleted]",
+      "created": "2026-08-22T16:47:03.317000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p58z42x/",
+      "body_html": "\n        <div id=\"t1_p591f8d-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      i use it for everything everytime as well and it hasn’t steered me wrong. just curious if the newest models are smart enough to achieve these same things on their own.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p591f8d",
+      "parent": "t1_p58z42x",
+      "author": "YUL438",
+      "created": "2026-08-22T16:57:38.677000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p591f8d/",
+      "body_html": "\n        <div id=\"t1_p591f8d-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      i use it for everything everytime as well and it hasn’t steered me wrong. just curious if the newest models are smart enough to achieve these same things on their own.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p599go3",
+      "parent": "t1_p591f8d",
+      "author": "fschwiet",
+      "created": "2026-08-22T17:33:50.186000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p599go3/",
+      "body_html": "\n        <div id=\"t1_p599go3-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      You definitely get more careful planning from it, I found planning mode jumps to a solution to quick- brainstorming will explore some alternatives. That said grill-me does a better job of that.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p59m2em",
+      "parent": "t1_p599go3",
+      "author": "[deleted]",
+      "created": "2026-08-22T18:30:59.918000+0000",
+      "depth": "3",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p59m2em/",
+      "body_html": "\n        <div id=\"t1_p5caz10-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Haha I was a little anxious about looking dumb for still using both, but when it’s a critical feature I use both.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5caz10",
+      "parent": "t1_p59m2em",
+      "author": "tribat",
+      "created": "2026-08-23T03:20:03.597000+0000",
+      "depth": "4",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5caz10/",
+      "body_html": "\n        <div id=\"t1_p5caz10-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Haha I was a little anxious about looking dumb for still using both, but when it’s a critical feature I use both.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5a2bxh",
+      "parent": "t1_p59m2em",
+      "author": "OkayVeryCool",
+      "created": "2026-08-22T19:48:11.086000+0000",
+      "depth": "4",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5a2bxh/",
+      "body_html": "\n        <div id=\"t1_p5a2bxh-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      How do you do the grill me with docs? Do you do grill me once you have a design spec from superpowers?\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5gc4q8",
+      "parent": "t1_p59m2em",
+      "author": "Fun_Union3580",
+      "created": "2026-08-23T18:20:38.294000+0000",
+      "depth": "4",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5gc4q8/",
+      "body_html": "\n        <div id=\"t1_p5gc4q8-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      So, do you use the to-spec and implement commands?\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5cjuf2",
+      "parent": "t1_p58z42x",
+      "author": "SurfGsus",
+      "created": "2026-08-23T04:21:13.318000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5cjuf2/",
+      "body_html": "\n        <div id=\"t1_p5cjuf2-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yeah but do you get frustrated with the heavy workflow? I feel like the brainstorm, spec, plan “ceremony” just takes way too long. I switched from superpowers to ADRs + Matt pocock’s grill me with docs. Seems to work well and a lot less time intensive. Still not 100% happy with the flow though.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5dvet8",
+      "parent": "t1_p5cjuf2",
+      "author": "Winter_Seaweed_4836",
+      "created": "2026-08-23T10:51:36.029000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5dvet8/",
+      "body_html": "\n        <div id=\"t1_p5dvet8-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Specdriven development is good overall and ADR is oldschool and decent solution. You can try to turn the ADR's and \"Specs\" into AskuserQuestions that emit decision logs that carry the both. After doing that you can create tasklist of those ADR's in managable atomic tasks. Run advesarial and silentfailurehunter subagents after each task. You need to create a session discipline hook to have a workflow fitting your working style and testing methods that create dynamically rated severity findings log.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p5c2qzj",
+      "parent": "t1_p58z42x",
+      "author": "james__jam",
+      "created": "2026-08-23T02:26:51.482000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1vvgsia/comment/p5c2qzj/",
+      "body_html": "\n        <div id=\"t1_p5c2qzj-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Not using it also gets the job done.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    }
+  ],
+  "retrieved_at": "2026-09-12T12:06:07.863Z",
+  "scope": "Aside rendered public post and currently loaded comment bodies; not complete server HTML, hidden or deleted comments. Login UI and ads excluded from body extraction."
+}

@@ -1,0 +1,212 @@
+# note: interactive (clickable / focusable) elements only.
+- title: "How is TDD for Vibe Coding? : r/vibecoding" [url=https://www.reddit.com/r/vibecoding/comments/1r58l0p/how_is_tdd_for_vibe_coding/]
+- main:
+  - button "뒤로" [ref=e1]
+  - link "vibecoding 커뮤니티로 이동" [ref=e3]
+  - group:
+    - link "r/vibecoding" [ref=e5]
+    - text: "7개월 전"
+    - link "작성자는 NullzeroJP입니다" [ref=e6]: "NullzeroJP"
+  - button "사용자 작업 열기" [ref=e7]
+  - menuitem "이 게시물에 어워드 주기" [ref=e8]
+  - menuitem "신고" [ref=e9]
+  - menu
+  - heading "게시물 제목: How is TDD for Vibe Coding?" [level=1]: "How is TDD for Vibe Coding?"
+  - text: "Been experimenting with TDD for the first time, with the help of GLM + ClaudeCode. Mostly come from a game dev coding background, so vibe coding a mix of TDD + WebDev has been a steep steep learning curve for me.\n    \n      I have had some successes and some failures… and so I am wondering if I should even bother with the TDD approach at all, and just let AI Jesus take the wheel.\n    \n      Seen so many failure modes… AI writing its own tests to pass… writing stubs and mocks that pass even without existing implementation code. When I made tests read only, I saw an agent spin into hallucinations that caused it to delete and corrupt its Linux install… luckily in a sandbox + source control, so nothing was lost!  But so many little details I could not have anticipated.\n    \n      What have been your guys’ experience with TDD and vibe coding?"
+  - button "공유" [ref=e10]
+  - generic [ref=e11]:
+    - button "좋아요" [ref=e12]
+    - text: "7"
+    - button "싫어요" [ref=e14]
+    - button "22 댓글로 이동" [ref=e16]
+  - link "Advertisement: CodeRabbit, AI for superior code quality. Try it now." [ref=e19]
+  - link "CodeRabbitAI" [ref=e20]: "u/CodeRabbitAI 님의 아바타입니다\n  \n   CodeRabbitAI"
+  - text: "•"
+  - link "광고" [ref=e21]
+  - link [ref=e23]
+  - button "사용자 작업 열기" [ref=e24]
+  - menuitem "신고" [ref=e25]
+  - menuitem "이 광고 정보" [ref=e26]
+  - menuitem "광고가 지겨우신가요?" [ref=e27]
+  - menu
+  - generic [ref=e28]:
+    - text: "CodeRabbit, AI for superior code quality. Try it now."
+    - link [ref=e29]
+  - link [ref=e31]
+  - text: "더 보기"
+  - link [ref=e32]
+  - generic [ref=e33]:
+    - text: "coderabbit.ai"
+    - link [ref=e34]
+  - generic [ref=e35]:
+    - text: "Thumbnail image: CodeRabbit, AI for superior code quality. Try it now."
+    - link [ref=e36]
+  - button "댓글 추가 버튼" [ref=e37] [disabled] [placeholder="대화에 참여해보세요"]:
+    - textbox "대화에 참여해보세요" [ref=e38] [disabled] [placeholder="대화에 참여해보세요"]
+  - button "정렬 기준 좋아요 비율 높은 순" [ref=e39]: "좋아요 비율 높은 순"
+  - button "댓글 검색 댓글 검색 펼치기" [ref=e40]
+  - region "댓글" [ref=e42]:
+    - article "Great_Department3335 7개월 전 댓글" [ref=e43]:
+      - generic [ref=e44]:
+        - link "Great_Department3335 님의 프로필 --- 아바타" [ref=e45]
+        - link "Great_Department3335 님의 프로필" [ref=e46]: "Great_Department3335"
+        - link "7개월 전" [ref=e47]
+      - text: "You can have two sub agents in Claude code, acting as pair programmers with driver and navigator roles. It allows you to offload TDD completely to the Claude code."
+      - link "Link to full approach" [ref=e48]
+      - generic [ref=e49]:
+        - button "답글 달기" [ref=e50]
+        - button "어워드 수여" [ref=e51]
+        - button "공유" [ref=e52]
+        - button "사용자 작업 열기" [ref=e53]
+        - button "좋아요" [ref=e54]
+        - text: "2"
+        - button "싫어요" [ref=e56]
+      - article "댓글 스레드 수준 1: NullzeroJP 7개월 전 답글" [ref=e58]:
+        - generic [ref=e59]:
+          - link "NullzeroJP 님의 프로필 --- 아바타" [ref=e60]: "u/NullzeroJP 님의 아바타입니다"
+          - link "NullzeroJP 님의 프로필" [ref=e61]: "NullzeroJP"
+          - generic "원글 작성자" [ref=e62]
+          - link "7개월 전" [ref=e63]
+        - text: "Thank you for this. I will check it out. At first glance it sounds token intensive… but I mean… fixing buggy code is also token intensive, so maybe it works out."
+    - article "Ok-Hotel-8551 7개월 전 댓글" [ref=e64]:
+      - generic [ref=e65]:
+        - link "Ok-Hotel-8551 님의 프로필 --- 아바타" [ref=e66]
+        - link "Ok-Hotel-8551 님의 프로필" [ref=e67]: "Ok-Hotel-8551"
+        - link "7개월 전" [ref=e68]
+      - text: "When I'm asking models to follow TDD it's doing the code first, then tests which are green. I think it should be the other way around, but cannot force the models to make it right."
+      - article "댓글 스레드 수준 1: Michaeli_Starky 7개월 전 답글" [ref=e69]:
+        - generic [ref=e70]:
+          - link "Michaeli_Starky 님의 프로필 --- 아바타" [ref=e71]
+          - link "Michaeli_Starky 님의 프로필" [ref=e72]: "Michaeli_Starky"
+          - link "7개월 전" [ref=e73]
+        - text: "Yes you can force"
+        - article "댓글 스레드 수준 2: Ok-Hotel-8551 7개월 전 답글" [ref=e74]:
+          - generic [ref=e75]:
+            - link "Ok-Hotel-8551 님의 프로필 --- 아바타" [ref=e76]
+            - link "Ok-Hotel-8551 님의 프로필" [ref=e77]: "Ok-Hotel-8551"
+            - link "7개월 전" [ref=e78]
+          - text: "How?"
+          - button "답글 2 개 더 보기" [ref=e80]
+      - article "댓글 스레드 수준 1: Illustrious-Many-782 7개월 전 답글" [ref=e82]:
+        - generic [ref=e83]:
+          - link "Illustrious-Many-782 님의 프로필 --- 아바타" [ref=e84]
+          - link "Illustrious-Many-782 님의 프로필" [ref=e85]: "Illustrious-Many-782"
+          - link "7개월 전" [ref=e86]
+        - text: "Look at Google's Conductor framework -- it does a very good job at enforcing red-green TDD."
+    - article "Michaeli_Starky 7개월 전 댓글" [ref=e87]:
+      - generic [ref=e88]:
+        - link "Michaeli_Starky 님의 프로필 --- 아바타" [ref=e89]
+        - link "Michaeli_Starky 님의 프로필" [ref=e90]: "Michaeli_Starky"
+        - link "7개월 전" [ref=e91]
+      - text: "TDD is a must."
+    - link "Advertisement: Not just figurines. I've been using Meshy for functional print prototypes too. Descri" [ref=e93]
+    - link "u/Meshyai" [ref=e94]: "u/Meshyai 님의 아바타입니다\n  \n   u/Meshyai"
+    - text: "•"
+    - link "광고" [ref=e95]
+    - link [ref=e97]
+    - button "사용자 작업 열기" [ref=e98]
+    - menuitem "신고" [ref=e99]
+    - menuitem "이 광고 정보" [ref=e100]
+    - menuitem "광고가 지겨우신가요?" [ref=e101]
+    - menu
+    - generic [ref=e102]:
+      - text: "Not just figurines. I've been using Meshy for functional print prototypes too. Describe the part, generate, iterate. Faster than Fusion 360."
+      - link [ref=e103]
+    - link [ref=e105]
+    - text: "더 보기"
+    - link [ref=e106]
+    - generic [ref=e107]:
+      - text: "meshy.ai"
+      - link [ref=e108]
+    - generic [ref=e109]:
+      - text: "Thumbnail image: Not just figurines. I've been using Meshy for functional print prototypes too. Desc"
+      - link [ref=e110]
+    - article "guywithknife 7개월 전 댓글" [ref=e111]:
+      - generic [ref=e112]:
+        - link "guywithknife 님의 프로필 --- 아바타" [ref=e113]
+        - link "guywithknife 님의 프로필" [ref=e114]: "guywithknife"
+        - link "7개월 전" [ref=e115]
+      - text: "In my opinion strict test first TDD is the only way to reliably have AI test itself. If the tests aren’t written first, it will cheat. I follow a strict Red, Green, Refactor TDD workflow and it works pretty well.\n    \n      The important part is that it must not have the code it’s writing tests for otherwise it will just test whatever the code is doing, instead of testing what it should be doing. The other important thing is that if during Green it is determined that the tests are wrong, it must not just go and fix the tests — it has to abort and go back to redoing the Red phase."
+      - article "댓글 스레드 수준 1: 1970blueshifter 3개월 전 답글" [ref=e116]:
+        - generic [ref=e117]:
+          - link "1970blueshifter 님의 프로필 --- 아바타" [ref=e118]
+          - link "1970blueshifter 님의 프로필" [ref=e119]: "1970blueshifter"
+          - link "3개월 전" [ref=e120]
+        - text: "Explain that last \"redoing the red phase\" bit - do you mean: tell it to delete the bogus Green test, and write a brand new Red test?  Won't it just end up doing an edit anyways?"
+        - article "댓글 스레드 수준 2: guywithknife 3개월 전 답글" [ref=e121]:
+          - generic [ref=e122]:
+            - link "guywithknife 님의 프로필 --- 아바타" [ref=e123]
+            - link "guywithknife 님의 프로필" [ref=e124]: "guywithknife"
+            - link "3개월 전" [ref=e125]
+          - text: "If you detect that the tests are wrong, it means they were written based on invalid assumptions. That means that you need to roll back and try again, with assumptions corrected.\n    \n      So you need to discard both the green and red phases, and replan. This time, you include what was learned in the replanning to make sure you don’t end up making the same mistake again. The mistaken assumptions need to be recorded and taken into account, to ensure that the same mistake isn’t made again."
+    - article "thee_gummbini 7개월 전 댓글" [ref=e126]:
+      - generic [ref=e127]:
+        - link "thee_gummbini 님의 프로필 --- 아바타" [ref=e128]
+        - link "thee_gummbini 님의 프로필" [ref=e129]: "thee_gummbini"
+        - text: "Cake icon"
+        - link "7개월 전" [ref=e130]
+      - text: "If there is one thing to actually read it is the tests"
+    - article "wewerecreaturres 7개월 전 댓글" [ref=e131]:
+      - generic [ref=e132]:
+        - link "wewerecreaturres 님의 프로필 --- 아바타" [ref=e133]
+        - link "wewerecreaturres 님의 프로필" [ref=e134]: "wewerecreaturres"
+        - link "7개월 전" [ref=e135]
+      - text: "the key do developing with AI is to give it structure. you cant just vibe it out in chat and pray for the best."
+      - link "claude.md" [ref=e136]
+      - text: ", sub-agents, rules, and slash commands are your new best friends."
+    - article "Ok-Reception7565 7개월 전 댓글" [ref=e137]:
+      - generic [ref=e138]:
+        - link "Ok-Reception7565 님의 프로필 --- 아바타" [ref=e139]
+        - link "Ok-Reception7565 님의 프로필" [ref=e140]: "Ok-Reception7565"
+        - link "7개월 전" [ref=e141]
+      - text: "AI starts to hallucinate once task becoms somewhat complex. You try to lock test cases or you can use tools like Traycer they also works fine for this."
+    - article "larowin 7개월 전 댓글" [ref=e142]:
+      - generic [ref=e143]:
+        - link "larowin 님의 프로필 --- 아바타" [ref=e144]
+        - link "larowin 님의 프로필" [ref=e145]: "larowin"
+        - link "7개월 전" [ref=e146]
+      - text: "In my opinion, TDD was designed because humans are stupid and miss things, so it’s best to scope and write unit tests for every little thing so that we don’t forget to do something. LLMs don’t really have this problem, and I think it’s just not a pattern that fits well in agentic coding. Better to just have a handful of function/integration/e2e tests that make sure the thing works."
+      - article "댓글 스레드 수준 1: thee_gummbini 7개월 전 답글" [ref=e147]:
+        - generic [ref=e148]:
+          - link "thee_gummbini 님의 프로필 --- 아바타" [ref=e149]
+          - link "thee_gummbini 님의 프로필" [ref=e150]: "thee_gummbini"
+          - text: "Cake icon"
+          - link "7개월 전" [ref=e151]
+        - text: "TDD is a pattern based on clear specification of how the program should behave. If there's one trad development pattern that translates well to vibe coding it's TDD"
+      - article "댓글 스레드 수준 1: DarkXanthos 7개월 전 답글" [ref=e152]:
+        - generic [ref=e153]:
+          - link "DarkXanthos 님의 프로필 --- 아바타" [ref=e154]
+          - link "DarkXanthos 님의 프로필" [ref=e155]: "DarkXanthos"
+          - link "7개월 전" [ref=e156]
+        - text: "Agents are stupid and miss things too. We do tdd to ensure the code works the way we assume it will. It gives an LLM one less degree of freedom to have to do both."
+    - link "Advertisement: Dedicated 24/7 support for difficult scraping targets." [ref=e158]
+    - link "u/official_decodo" [ref=e159]: "u/official_decodo 님의 아바타입니다\n  \n   u/official_decodo"
+    - text: "•"
+    - link "광고" [ref=e160]
+    - link [ref=e162]
+    - button "사용자 작업 열기" [ref=e163]
+    - menuitem "신고" [ref=e164]
+    - menuitem "이 광고 정보" [ref=e165]
+    - menuitem "광고가 지겨우신가요?" [ref=e166]
+    - menu
+    - generic [ref=e167]:
+      - text: "Dedicated 24/7 support for difficult scraping targets."
+      - link [ref=e168]
+    - link [ref=e170]
+    - text: "더 보기"
+    - link [ref=e171]
+    - generic [ref=e172]:
+      - text: "decodo.com"
+      - link [ref=e173]
+    - generic [ref=e174]:
+      - text: "Thumbnail image: Dedicated 24/7 support for difficult scraping targets."
+      - link [ref=e175]
+    - article "[삭제됨] 7개월 전 댓글" [ref=e176]:
+      - generic [ref=e177]:
+        - text: "[삭제됨]"
+        - link "7개월 전" [ref=e178]
+        - text: "7개월 전 \n           에 수정됨"
+- iframe:
+[account UI omitted]
+- iframe:
+  - text: "reCAPTCHA 로 보호됨"

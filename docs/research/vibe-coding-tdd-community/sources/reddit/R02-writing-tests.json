@@ -1,0 +1,123 @@
+{
+  "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/writing_tests/",
+  "title": "Writing tests",
+  "author": "Lowkey_Hi",
+  "created": "2026-01-12T05:02:36.598000+0000",
+  "reported_comment_count": "13",
+  "post_html": "\n       <div class=\"text-neutral-content\" slot=\"text-body\">\n    <div class=\"mb-xs px-md xs:px-0 overflow-hidden\" data-post-click-location=\"text-body\">\n      <div id=\"t3_1qam0a6-post-rtjson-content\" class=\"md max-h-[253px] overflow-hidden s:max-h-[318px] m:max-h-[337px] l:max-h-[352px] xl:max-h-[452px] text-14-scalable pb-2xs [--emote-size:20px]\" about=\"t3_1qam0a6\" property=\"schema:articleBody\" dir=\"auto\">\n      <p>\n      As a developer who uses ai to code i feel like i neglect writing tests for my code. Usually i just send a code file to the ai, and let it write a sloppy test suite for it.\n    </p><p>\n      Do vibe coders write any tests or just let it rip?\n    </p>\n    </div>\n    <div id=\"t3_1qam0a6-overflow-cover\" class=\"h-[66px] mt-[-66px] md px-md from-[color:var(--color-neutral-background)] bg-gradient-to-t hidden isolate\n      pointer-events-none read-more-overflow-cover\"></div>\n    <button rpl=\"\" class=\"m-0 -ms-md md px-md py-0 not-italic font-normal text-sm h-[28px] bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent visited:bg-transparent hidden text-body-2 text-primary-plain no-underline hover:no-underline\nbutton-medium px-[calc(var(--rem12)-var(--button-border-width,0px))]\nbutton-plain\n\n\n\nitems-center justify-center\nbutton inline-flex \" id=\"t3_1qam0a6-read-more-button\" type=\"button\">\n      <span class=\"flex items-center justify-center\">\n      \n      <span class=\"flex items-center gap-xs\">더 읽기</span>\n    </span>\n    <span class=\"flex ms-2xs me-[-2px]\"><svg rpl=\"\" class=\"align-text-bottom\" fill=\"currentColor\" height=\"16\" icon-name=\"caret-down\" viewBox=\"0 0 20 20\" width=\"16\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M10 13.7a.897.897 0 01-.636-.264l-4.6-4.6a.9.9 0 111.272-1.273L10 11.526l3.964-3.963a.9.9 0 011.272 1.273l-4.6 4.6A.897.897 0 0110 13.7Z\"></path>\n    </svg></span>\n    </button>\n    </div>\n  </div> \n    ",
+  "post_text": "As a developer who uses ai to code i feel like i neglect writing tests for my code. Usually i just send a code file to the ai, and let it write a sloppy test suite for it.\n\nDo vibe coders write any tests or just let it rip?",
+  "comments": [
+    {
+      "id": "t1_nz425az",
+      "parent": null,
+      "author": "stuckyfeet",
+      "created": "2026-01-12T05:13:08.264000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz425az/",
+      "body_html": "\n        <div id=\"t1_nz425az-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Once the foundation is set it's pretty fun to drive the code forward with test.\n    </p>\n    </div>\n      ",
+      "body_text": "Once the foundation is set it's pretty fun to drive the code forward with test."
+    },
+    {
+      "id": "t1_nz45tm5",
+      "parent": null,
+      "author": "AriyaSavaka",
+      "created": "2026-01-12T05:40:26.331000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz45tm5/",
+      "body_html": "\n        <div id=\"t1_nz45tm5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Force them to do TDD, write test first, one function at a time, test-as-documentation, table-driven, go through full red green refactor cycle.\n    </p>\n    </div>\n      ",
+      "body_text": "Force them to do TDD, write test first, one function at a time, test-as-documentation, table-driven, go through full red green refactor cycle."
+    },
+    {
+      "id": "t1_nz47ufz",
+      "parent": null,
+      "author": "vuongagiflow",
+      "created": "2026-01-12T05:56:16.615000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz47ufz/",
+      "body_html": "\n        <div id=\"t1_nz47ufz-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I would enforce integration tests as part of planning phase. AI tends to overly mock dependencies which make the unit tests ineffective.\n    </p>\n    </div>\n      ",
+      "body_text": "I would enforce integration tests as part of planning phase. AI tends to overly mock dependencies which make the unit tests ineffective."
+    },
+    {
+      "id": "t1_nz49cpn",
+      "parent": "t1_nz47ufz",
+      "author": "DutchSEOnerd",
+      "created": "2026-01-12T06:08:21.833000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz49cpn/",
+      "body_html": "\n        <div id=\"t1_nz49cpn-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      What do you mean by that? Do you have examples of AI overly nock dependencies?\n    </p>\n    </div>\n      ",
+      "body_text": "What do you mean by that? Do you have examples of AI overly nock dependencies?"
+    },
+    {
+      "id": "t1_nz4aly8",
+      "parent": "t1_nz49cpn",
+      "author": "vuongagiflow",
+      "created": "2026-01-12T06:18:37.190000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz4aly8/",
+      "body_html": "\n        <div id=\"t1_nz4aly8-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      An example that it would mock an instance method that is not exist to make the test pass. If you had integration tests, this can be checked easily.\n    </p>\n    </div>\n      ",
+      "body_text": "An example that it would mock an instance method that is not exist to make the test pass. If you had integration tests, this can be checked easily."
+    },
+    {
+      "id": "t1_nz42dqd",
+      "parent": null,
+      "author": "fr4iser",
+      "created": "2026-01-12T05:14:49.202000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz42dqd/",
+      "body_html": "\n        <div id=\"t1_nz42dqd-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      For bigger projects, each implementation is based on tests, is in my prompt included. Like everything else vibed\n    </p>\n    </div>\n      ",
+      "body_text": "For bigger projects, each implementation is based on tests, is in my prompt included. Like everything else vibed"
+    },
+    {
+      "id": "t1_nz44cm1",
+      "parent": null,
+      "author": "cactrwar",
+      "created": "2026-01-12T05:29:17.276000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz44cm1/",
+      "body_html": "\n        <div id=\"t1_nz44cm1-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      i center my entire workflow around building testable abstractions. if i can't write tests, then i can't trust the AI.\n    </p><p>\n      of course i validate everything by hand once i'm done building it, and then i'll know if my tests were really testing the right things. but having strong testing is really really important, as it acts as proof for my manual verification.\n    </p><p>\n      i think the value isn't as much the tests, as it is using tests to break down my problems. once i do that, i've solved the ambiguity and my agent has the context to build a lot more without guidance.\n    </p>\n    </div>\n      ",
+      "body_text": "i center my entire workflow around building testable abstractions. if i can't write tests, then i can't trust the AI.\n\nof course i validate everything by hand once i'm done building it, and then i'll know if my tests were really testing the right things. but having strong testing is really really important, as it acts as proof for my manual verification.\n\ni think the value isn't as much the tests, as it is using tests to break down my problems. once i do that, i've solved the ambiguity and my agent has the context to build a lot more without guidance."
+    },
+    {
+      "id": "t1_nz47o9b",
+      "parent": null,
+      "author": "Taserface_ow",
+      "created": "2026-01-12T05:54:54.336000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz47o9b/",
+      "body_html": "\n        <div id=\"t1_nz47o9b-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Tests are the most important part of the process. It allows the AI to go on a loop and fix issues itself without human intervention. Your doing yourself a disservice if you have to test things yourself, or god forbid, let your customers do the testing.\n    </p>\n    </div>\n      ",
+      "body_text": "Tests are the most important part of the process. It allows the AI to go on a loop and fix issues itself without human intervention. Your doing yourself a disservice if you have to test things yourself, or god forbid, let your customers do the testing."
+    },
+    {
+      "id": "t1_nz4b5f3",
+      "parent": null,
+      "author": "Plenty-Dog-167",
+      "created": "2026-01-12T06:23:00.944000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz4b5f3/",
+      "body_html": "\n        <div id=\"t1_nz4b5f3-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      High level integration testing is probably prioritized more on most projects, but depends on how complex or at what scale you're building at. I'll still write my own testing suites for some critical backend stuff\n    </p>\n    </div>\n      ",
+      "body_text": "High level integration testing is probably prioritized more on most projects, but depends on how complex or at what scale you're building at. I'll still write my own testing suites for some critical backend stuff"
+    },
+    {
+      "id": "t1_nz4clza",
+      "parent": null,
+      "author": "Lazy_Firefighter5353",
+      "created": "2026-01-12T06:35:13.376000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/nz4clza/",
+      "body_html": "\n        <div id=\"t1_nz4clza-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Vibe coding usually replaces discipline with momentum, not correctness. Tests tend to show up only after something breaks badly enough to justify them.\n    </p>\n    </div>\n      ",
+      "body_text": "Vibe coding usually replaces discipline with momentum, not correctness. Tests tend to show up only after something breaks badly enough to justify them."
+    },
+    {
+      "id": "t1_omwlug0",
+      "parent": null,
+      "author": "MightConscious",
+      "created": "2026-05-20T17:46:22.255000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1qam0a6/comment/omwlug0/",
+      "body_html": "\n        <div id=\"t1_omwlug0-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      you need to prompt with good vocabulary for agents to really do a good job in writing useful tests. I wrote a skill for it it puts together all the right concepts in software testing and then helps pick the best strategy for a candidate. let me know if it is useful -&nbsp;<a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/workersio/skills\" rel=\"noopener nofollow ugc\" target=\"_blank\">https://github.com/workersio/skills</a>\n    </p>\n    </div>\n      ",
+      "body_text": "you need to prompt with good vocabulary for agents to really do a good job in writing useful tests. I wrote a skill for it it puts together all the right concepts in software testing and then helps pick the best strategy for a candidate. let me know if it is useful - https://github.com/workersio/skills"
+    }
+  ],
+  "retrieved_at": "2026-09-12T11:57:32.492Z",
+  "scope": "Aside rendered public post and currently loaded comment bodies; not complete server HTML, hidden or deleted comments. Login UI and ads excluded from body extraction."
+}

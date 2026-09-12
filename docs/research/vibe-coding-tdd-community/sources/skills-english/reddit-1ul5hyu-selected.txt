@@ -1,0 +1,51 @@
+Capture type: selected public-API reading copy (not a byte-for-byte server response)
+Retrieved: 2026-09-12
+Thread URL: https://www.reddit.com/r/codex/comments/1ul5hyu/superpowersplanningfocused_skills_worth_using_in/
+Public API URL: https://www.reddit.com/r/codex/comments/1ul5hyu/superpowersplanningfocused_skills_worth_using_in/.json?raw_json=1
+Access note: the public JSON was readable through the web research tool. Direct unauthenticated curl returned HTTP 403, so the relevant records below were transcribed from that public response. Fields not relevant to the research question were omitted.
+
+THREAD
+id: 1ul5hyu
+subreddit: codex
+title: Superpowers/Planning-focused skills worth using in Codex?
+author: angry_cactus
+created_utc: 1782959026
+created_iso_utc: 2026-07-02T02:23:46Z
+selftext:
+Feels like Codex is best with the methodical stuff, and needs assistance and specs planning.
+Or just using browser ChatGPT to make spec before importing.
+
+COMMENT
+id: ov1yeqj
+author: elwutang
+created_utc: 1782965403
+created_iso_utc: 2026-07-02T04:10:03Z
+permalink: https://www.reddit.com/r/codex/comments/1ul5hyu/superpowersplanningfocused_skills_worth_using_in/ov1yeqj/
+body:
+I’m using it at work with Claude and privately with Codex.
+To be honest, IDK how Codex works without it cause I’ve started using it with Claude and just migrated here.
+
+What I like about it is that there are clearly defined stops where I can review it’s work - this gives me visibility in what it’s doing and allows to stop it before it would go the wrong direction.
+
+The planning step in particular is great, cause unlike brainstorming this one is almost like actual implementation.
+What I mean by that is that plan it creates is super detailed with code snippets inside. This is useful, cause instead of reviewing what it writes in many code files I can almost “code review” it at the planning step.
+
+Also, I’ve never been able to enforce proper TDD on any LLM - they just jump straight to coding features (inpatient beasts), but somehow superpowers keeps them in line and TDD is actual red - implement - green.
+
+I also had no issues in extending that process to use Trello (for me to better and more efficiently pass requirements to it) and to generate and execute E2E tests after the work is done.
+
+I guess it burns more tokens overall, but this is the cost of more mature process, so until my $200 codex is enough I’m good with that.
+
+COMMENT
+id: ov1xxug
+author: soggy_mattress
+created_utc: 1782965217
+created_iso_utc: 2026-07-02T04:06:57Z
+permalink: https://www.reddit.com/r/codex/comments/1ul5hyu/superpowersplanningfocused_skills_worth_using_in/ov1xxug/
+body:
+I genuinely think they're a net negative.
+I was *really* enjoying 5.5 with Codex leading up to the inclusion of Superpowers as a curated skill and noticed a whole bunch of silly (new) problems in the weeks after starting to use them. That just so happened to be the same time that people started saying "5.5 nerfed", so I feel like there's a correlation there.
+
+The TDD skill is way too broad and makes Codex unit test its way through everything and determine "it's working!" all because unit tests pass.
+The brainstorming skill is really opinionated about where it puts its documents and specs, which can work against you if you already had docs and specs in a different directory format.
+I think systematic debugging is probably the best of the bunch, but I'm currently testing without any of them to see if it feels like "the old Codex" for a few days.

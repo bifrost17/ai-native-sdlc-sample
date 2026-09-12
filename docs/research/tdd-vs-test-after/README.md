@@ -132,5 +132,6 @@ Aside Browser로 HN 두 스레드와 Reddit 한 스레드의 본문·댓글을 �
 - [조사 방법과 표본 한계](methodology.md), [별도 비판 검토와 수정 내역](review.md).
 - [사람 연구](human-studies.md), [에이전트 논문 11건](working/agent-studies.md), [공개 실험·실무 경험](practitioner-evidence.md).
 - [웹 프로젝트 정책·PR](working/web-projects.md), [에이전트 프로젝트 정책·PR](working/agent-projects.md).
+- [바이브 코딩의 TDD 스킬 사용 커뮤니티 조사](../vibe-coding-tdd-community/README.md): 지속 사용·선택·대체·중단 경험과 원문 보관. 스킬 설치, 사용 자기보고, 실제 테스트 선행 실행을 구분한다.
 
 판단할 수 없는 로컬 작업 순서, 보관되지 않은 실행 로그, 장기 유지보수 효과는 미확인으로 남겼다. 이 불확실성을 해소한 것처럼 순위나 수치를 만들지 않았다.

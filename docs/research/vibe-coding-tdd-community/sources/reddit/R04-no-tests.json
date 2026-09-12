@@ -1,0 +1,163 @@
+{
+  "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/ive_made_about_20_apps_some_in_production_for/",
+  "title": "I've made about 20 apps, some in production for actual real businesses and I never wrote a test in my life...how do you even begin testing as a vibe coder?",
+  "author": "10c70377",
+  "created": "2026-08-10T13:58:19.710000+0000",
+  "reported_comment_count": "17",
+  "post_html": "\n       <div class=\"text-neutral-content\" slot=\"text-body\">\n    <div class=\"mb-xs px-md xs:px-0 overflow-hidden\" data-post-click-location=\"text-body\">\n      <div id=\"t3_1vklmm8-post-rtjson-content\" class=\"md max-h-[253px] overflow-hidden s:max-h-[318px] m:max-h-[337px] l:max-h-[352px] xl:max-h-[452px] text-14-scalable pb-2xs [--emote-size:20px]\" about=\"t3_1vklmm8\" property=\"schema:articleBody\" dir=\"auto\">\n      <p>\n      Title says it all. I have this nagging anxiety everytime I build something. I use expensive models to go through the architecture, to spec correctly, consider the dataflow, and I spend all my time in the planning stages making sure I understand the app being built myself - even though I could just trust claude and probably be fine.\n    </p><p>\n      But I don't even know where to begin writing 'tests'? It just seems so futile. Like I made a hammer, and now I have to use it on a bunch of nails everytime in case I wanted to paint the hammer blue, even tho I know its gonna work just completely fine, and not a chance it breaks unless I've completely missed something during planning.\n    </p><p>\n      I know I should be writing tests, but I just can't seem to find the reason to -  I've missed the experience that old software heads had where they built that instinct.\n    </p><p>\n      Closest thing I've done to testing, that didnt really feel like it, was creating a prompt testset, and a grader but once I got a prompt I was happy with, I discarded of it and never used it again.\n    </p><p>\n      Maybe I haven't built anything big enough to test but I have a few businesses that I feel I have cheated, passing them untested webapps - other than trying it on a few pcs and phones before deploying it for them.\n    </p><p>\n      Anyway rant over - does anyone relate? What have you done to solve this? or learnt that instinct? or have you found ways to make AI include and write tests for you during your building?\n    </p><p>\n      All the best vibers\n    </p>\n    </div>\n    <div id=\"t3_1vklmm8-overflow-cover\" class=\"h-[66px] mt-[-66px] md px-md from-[color:var(--color-neutral-background)] bg-gradient-to-t isolate pointer-events-none read-more-overflow-cover\"></div>\n    <button rpl=\"\" class=\"m-0 -ms-md md px-md py-0 not-italic font-normal text-sm h-[28px] bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent visited:bg-transparent text-body-2 text-primary-plain no-underline hover:no-underline button-medium px-[calc(var(--rem12)-var(--button-border-width,0px))] button-plain items-center justify-center button inline-flex flex\" id=\"t3_1vklmm8-read-more-button\" type=\"button\">\n      <span class=\"flex items-center justify-center\">\n      \n      <span class=\"flex items-center gap-xs\">더 읽기</span>\n    </span>\n    <span class=\"flex ms-2xs me-[-2px]\"><svg rpl=\"\" class=\"align-text-bottom\" fill=\"currentColor\" height=\"16\" icon-name=\"caret-down\" viewBox=\"0 0 20 20\" width=\"16\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M10 13.7a.897.897 0 01-.636-.264l-4.6-4.6a.9.9 0 111.272-1.273L10 11.526l3.964-3.963a.9.9 0 011.272 1.273l-4.6 4.6A.897.897 0 0110 13.7Z\"></path>\n    </svg></span>\n    </button>\n    </div>\n  </div> \n    ",
+  "post_text": "Title says it all. I have this nagging anxiety everytime I build something. I use expensive models to go through the architecture, to spec correctly, consider the dataflow, and I spend all my time in the planning stages making sure I understand the app being built myself - even though I could just trust claude and probably be fine.\n\nBut I don't even know where to begin writing 'tests'? It just seems so futile. Like I made a hammer, and now I have to use it on a bunch of nails everytime in case I wanted to paint the hammer blue, even tho I know its gonna work just completely fine, and not a chance it breaks unless I've completely missed something during planning.\n\nI know I should be writing tests, but I just can't seem to find the reason to - I've missed the experience that old software heads had where they built that instinct.\n\nClosest thing I've done to testing, that didnt really feel like it, was creating a prompt testset, and a grader but once I got a prompt I was happy with, I discarded of it and never used it again.\n\nMaybe I haven't built anything big enough to test but I have a few businesses that I feel I have cheated, passing them untested webapps - other than trying it on a few pcs and phones before deploying it for them.\n\nAnyway rant over - does anyone relate? What have you done to solve this? or learnt that instinct? or have you found ways to make AI include and write tests for you during your building?\n\nAll the best vibers\n\n더 읽기",
+  "comments": [
+    {
+      "id": "t1_p2u6iln",
+      "parent": null,
+      "author": "3tt07kjt",
+      "created": "2026-08-10T14:04:52.030000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2u6iln/",
+      "body_html": "\n        <div id=\"t1_p2u6iln-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      My experience is that everybody misses something during planning. It always happens.\n    </p><p>\n      My vibe coded projects have lots of tests because the models write the tests unprompted. I review the tests to make sure the right properties are being tested, and I go in and delete tests if I think they’re not valuable.\n    </p><p>\n      It’s fast to make changes this way because the LLM can detect test failures and automatically fix them. In any long running project, you will likely make changes that break something. The AI is no different, and the test helps the AI automatically fix problems.\n    </p>\n    </div>\n      ",
+      "body_text": "My experience is that everybody misses something during planning. It always happens.\n\nMy vibe coded projects have lots of tests because the models write the tests unprompted. I review the tests to make sure the right properties are being tested, and I go in and delete tests if I think they’re not valuable.\n\nIt’s fast to make changes this way because the LLM can detect test failures and automatically fix them. In any long running project, you will likely make changes that break something. The AI is no different, and the test helps the AI automatically fix problems."
+    },
+    {
+      "id": "t1_p2u6v4j",
+      "parent": null,
+      "author": "LibertyCap10",
+      "created": "2026-08-10T14:06:30.172000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2u6v4j/",
+      "body_html": "\n        <div id=\"t1_p2u6v4j-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      You can ask your agent to write tests (which is already does whether you realize it or not). The only real answer is for you to learn principles of programming and the syntax behind the language/tools you're building with, so that you can read and understand the structure/operations in your project. There is no other way.\n    </p>\n    </div>\n      ",
+      "body_text": "You can ask your agent to write tests (which is already does whether you realize it or not). The only real answer is for you to learn principles of programming and the syntax behind the language/tools you're building with, so that you can read and understand the structure/operations in your project. There is no other way."
+    },
+    {
+      "id": "t1_p2u6vy9",
+      "parent": null,
+      "author": "notwim",
+      "created": "2026-08-10T14:06:36.368000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2u6vy9/",
+      "body_html": "\n        <div id=\"t1_p2u6vy9-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Tests are there to make sure that old code does not break when making changes. Just add it into your agents.md that when creating a feature it should be covered by tests.\n    </p>\n    </div>\n      ",
+      "body_text": "Tests are there to make sure that old code does not break when making changes. Just add it into your agents.md that when creating a feature it should be covered by tests."
+    },
+    {
+      "id": "t1_p2u8o5e",
+      "parent": null,
+      "author": "fyn_world",
+      "created": "2026-08-10T14:14:56.163000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2u8o5e/",
+      "body_html": "\n        <div id=\"t1_p2u8o5e-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Don't worry, Sol will make 200 tests without you asking for it\n    </p>\n    </div>\n      ",
+      "body_text": "Don't worry, Sol will make 200 tests without you asking for it"
+    },
+    {
+      "id": "t1_p2ueo1p",
+      "parent": null,
+      "author": "Altruistic-Sorbet702",
+      "created": "2026-08-10T14:42:27.497000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2ueo1p/",
+      "body_html": "\n        <div id=\"t1_p2ueo1p-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      AI is pretty cracked for unit tests. Then you only have to add some integration tests for your most common use cases and you'll have plenty of coverage for most scenarios.\n    </p>\n    </div>\n      ",
+      "body_text": "AI is pretty cracked for unit tests. Then you only have to add some integration tests for your most common use cases and you'll have plenty of coverage for most scenarios."
+    },
+    {
+      "id": "t1_p2ufw6e",
+      "parent": null,
+      "author": "Spare-Hold4005",
+      "created": "2026-08-10T14:48:00.040000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2ufw6e/",
+      "body_html": "\n        <div id=\"t1_p2ufw6e-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      imo the real question is how often are you going back and changing these apps after launch? if theyre mostly build-and-hand-off, tests add way less value than if youre maintaining them long term. tests are mostly insurance against future-you breaking things\n    </p>\n    </div>\n      ",
+      "body_text": "imo the real question is how often are you going back and changing these apps after launch? if theyre mostly build-and-hand-off, tests add way less value than if youre maintaining them long term. tests are mostly insurance against future-you breaking things"
+    },
+    {
+      "id": "t1_p2ugav7",
+      "parent": null,
+      "author": "CryptBay",
+      "created": "2026-08-10T14:49:50.205000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2ugav7/",
+      "body_html": "\n        <div id=\"t1_p2ugav7-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I'll give you some advice, but you're not going to like it. You have three options:\n    </p><ol>\n        <li>\n      <p>\n      Get a third-party security code auditing agency to review your code.\n    </p>\n    </li><li>\n      <p>\n      If you're rich and you can afford a good lawyer and not worrying getting sued by users due  to un-patched security holes. Then go for it.\n    </p>\n    </li><li>\n      <p>\n      If you are serious about commercialising your product, either set some cash aside and get your code properly vetted and audited by an external third-party agency, or if you can't afford it, learn how to code.\n    </p>\n    </li>\n      </ol>\n    </div>\n      ",
+      "body_text": "I'll give you some advice, but you're not going to like it. You have three options:\n\nGet a third-party security code auditing agency to review your code.\n\nIf you're rich and you can afford a good lawyer and not worrying getting sued by users due to un-patched security holes. Then go for it.\n\nIf you are serious about commercialising your product, either set some cash aside and get your code properly vetted and audited by an external third-party agency, or if you can't afford it, learn how to code."
+    },
+    {
+      "id": "t1_p2ugwn0",
+      "parent": null,
+      "author": "Aretebeliever",
+      "created": "2026-08-10T14:52:33.353000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2ugwn0/",
+      "body_html": "\n        <div id=\"t1_p2ugwn0-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Just tell Claude to make no mistakes. Boom.\n    </p>\n    </div>\n      ",
+      "body_text": "Just tell Claude to make no mistakes. Boom."
+    },
+    {
+      "id": "t1_p2uj1lv",
+      "parent": null,
+      "author": "JT-1963",
+      "created": "2026-08-10T15:02:08.336000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2uj1lv/",
+      "body_html": "\n        <div id=\"t1_p2uj1lv-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I use the superpowers skill that does test driven development. My apps all have hundreds, or even thousands of tests\n    </p>\n    </div>\n      ",
+      "body_text": "I use the superpowers skill that does test driven development. My apps all have hundreds, or even thousands of tests"
+    },
+    {
+      "id": "t1_p2ul0j1",
+      "parent": null,
+      "author": "ItsFlybye",
+      "created": "2026-08-10T15:10:57.134000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2ul0j1/",
+      "body_html": "\n        <div id=\"t1_p2ul0j1-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Who is using the product? Humans<br>Who needs to test the product? Humans\n    </p><p>\n      \"Like I made a hammer, and now I have to use it on a bunch of nails...\"<br>You are assuming people will use the hammer only as a hammer. People will use it to:<br>-Punch holes<br>-As a wedge to pry something<br>-Pound something other than a nail to change its shape<br>-Use the handle to temporarily hang something from it<br>-A mini anvil<br>-Using the claw side to wedge something large into position\n    </p><p>\n      And god knows what else. My point is you or someone else needs to test it as intended with your own specific test planned out and by having them do their own actions without your guidance. This is where you need to put your User Experience hat on and see how the software reacts to different uses on different devices. You need to try to break it.\n    </p>\n    </div>\n      ",
+      "body_text": "Who is using the product? Humans\nWho needs to test the product? Humans\n\n\"Like I made a hammer, and now I have to use it on a bunch of nails...\"\nYou are assuming people will use the hammer only as a hammer. People will use it to:\n-Punch holes\n-As a wedge to pry something\n-Pound something other than a nail to change its shape\n-Use the handle to temporarily hang something from it\n-A mini anvil\n-Using the claw side to wedge something large into position\n\nAnd god knows what else. My point is you or someone else needs to test it as intended with your own specific test planned out and by having them do their own actions without your guidance. This is where you need to put your User Experience hat on and see how the software reacts to different uses on different devices. You need to try to break it."
+    },
+    {
+      "id": "t1_p2uxnca",
+      "parent": null,
+      "author": "jayseattle",
+      "created": "2026-08-10T16:05:33.659000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2uxnca/",
+      "body_html": "\n        <div id=\"t1_p2uxnca-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <table class=\"overflow-x-auto\">\n      <thead>\n        <tr>\n          <th class=\"align-left\">\n              <code>SECURITY.md</code>\n            </th><th class=\"align-left\">\n              Security expectations\n            </th>\n        </tr>\n        <tr></tr>\n      </thead>\n\n      <tbody>\n        \n      </tbody>\n    </table><table class=\"overflow-x-auto\">\n      <thead>\n        <tr>\n          <th class=\"align-left\">\n              <code>TESTING.md</code>\n            </th><th class=\"align-left\">\n              How to prove changes work\n            </th>\n        </tr>\n        <tr></tr>\n      </thead>\n\n      <tbody>\n        \n      </tbody>\n    </table><p>\n      I think at the least you could have your LLM create these files.\n    </p>\n    </div>\n      ",
+      "body_text": "SECURITY.md\tSecurity expectations\n\nTESTING.md\tHow to prove changes work\n\n\nI think at the least you could have your LLM create these files."
+    },
+    {
+      "id": "t1_p2va6dg",
+      "parent": null,
+      "author": "Arcanite_Cartel",
+      "created": "2026-08-10T16:58:45.013000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2va6dg/",
+      "body_html": "\n        <div id=\"t1_p2va6dg-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I have a regression suite of about 500 tests that Claude runs for me after every \"big\" change. It uses playwright extensively.\n    </p>\n    </div>\n      ",
+      "body_text": "I have a regression suite of about 500 tests that Claude runs for me after every \"big\" change. It uses playwright extensively."
+    },
+    {
+      "id": "t1_p2vwgdb",
+      "parent": null,
+      "author": "TheKiddIncident",
+      "created": "2026-08-10T18:31:45.674000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2vwgdb/",
+      "body_html": "\n        <div id=\"t1_p2vwgdb-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Testing is a whole thing.  There are people who literally spend their entire career building and designing test suites.\n    </p><p>\n      So, don't worry if you're not an expert here, most of us aren't.\n    </p><p>\n      The AI can help you.  Start by asking for a comprehensive test plan.  \"Based on our current code base and our planned architecture, design a detailed testing plan that will automate testing including unit test, end to end testing and security scanning.\"\n    </p><p>\n      You'll get a whole plan back.  Take the parts of that plan and then implement them one by one.\n    </p><p>\n      One important check is to ensure that your end to end testing is actually testing the outcomes you want.  If you have a PRD or other detailed requirements document, that's a good source of test cases.  If not, then you can also just write down critical use cases in your app and ask the AI to ensure that each of these use cases have a good E2E test.\n    </p><p>\n      You can also do threshold checks.  So, I have my projects set that I can't commit new code unless unit testing meets a certain threshold.  This check ensures that unit tests are getting written as the code is getting checked in.\n    </p>\n    </div>\n      ",
+      "body_text": "Testing is a whole thing. There are people who literally spend their entire career building and designing test suites.\n\nSo, don't worry if you're not an expert here, most of us aren't.\n\nThe AI can help you. Start by asking for a comprehensive test plan. \"Based on our current code base and our planned architecture, design a detailed testing plan that will automate testing including unit test, end to end testing and security scanning.\"\n\nYou'll get a whole plan back. Take the parts of that plan and then implement them one by one.\n\nOne important check is to ensure that your end to end testing is actually testing the outcomes you want. If you have a PRD or other detailed requirements document, that's a good source of test cases. If not, then you can also just write down critical use cases in your app and ask the AI to ensure that each of these use cases have a good E2E test.\n\nYou can also do threshold checks. So, I have my projects set that I can't commit new code unless unit testing meets a certain threshold. This check ensures that unit tests are getting written as the code is getting checked in."
+    },
+    {
+      "id": "t1_p2ub5hw",
+      "parent": null,
+      "author": "[삭제됨]",
+      "created": "2026-08-10T14:26:21.023000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2ub5hw/",
+      "body_html": "\n        <div id=\"t1_p2uc2lo-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I write a spec and then get a long-running team of agents to build out the webapp and then I hand test the main functionalities and fix it like that if not working how I specced it.\n    </p><p>\n      How do you put this into practice? When do you use TDD? Do you do it across every single feature? I feel like that's massive context bloat. I am just trying to picture how you have this dialed down?\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_p2uc2lo",
+      "parent": "t1_p2ub5hw",
+      "author": "10c70377",
+      "created": "2026-08-10T14:30:33.820000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1vklmm8/comment/p2uc2lo/",
+      "body_html": "\n        <div id=\"t1_p2uc2lo-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I write a spec and then get a long-running team of agents to build out the webapp and then I hand test the main functionalities and fix it like that if not working how I specced it.\n    </p><p>\n      How do you put this into practice? When do you use TDD? Do you do it across every single feature? I feel like that's massive context bloat. I am just trying to picture how you have this dialed down?\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    }
+  ],
+  "retrieved_at": "2026-09-12T11:59:44.458Z",
+  "scope": "Aside rendered public post and currently loaded comment bodies; not complete server HTML, hidden or deleted comments. Login UI and ads excluded from body extraction."
+}
