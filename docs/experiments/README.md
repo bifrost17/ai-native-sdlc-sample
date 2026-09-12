@@ -267,12 +267,15 @@ spec→plan→구현→시험, 명시한 비TDD 적용과 전체 회귀를 관�
 [필수형 계열과의 비교](comparisons/0026-vs-0029.md)를 구분해 읽는다. 위의 0.1.7 등은 과거 실행판이며
 현재 선택형 채택은 `tdd-optional/`0.1.2, 기본형은 `tdd-first/` 안내에서 시작한다.
 
-[0030 Sonnet 시도](0030-optional-sonnet.md)는 최신 선택형0.1.2의 순수 사용판·F04 seed·Claude 스킬
-설치와 기준3시험을 준비했으나 첫 CLI가 OAuth 만료로 중단됐다. 모델 개발·스킬 적용·제품 평가는
-미실행이다. 인증 실패와 별도 브랜치·입력·설치 원본을 보존했으며 재인증이 필요하다.
+[0030 Sonnet 실험](0030-optional-sonnet.md)은 최초 인증 차단을 보존한 뒤 사용자 요청으로 재시도했다.
+최신 선택형0.1.2 전체 F04를 실제 Sonnet5/medium 설정으로8호출·36분21초 수행했다. 자연 혼합 선택과
+업무 후속 요청의 spec→plan→코드→시험·같은 커밋을 확인했다. 두 native 검토 누락과 실행 기록 문제는
+HUMAN이 복구했다. 통합·fresh 각각25시험·55명령/9판정 통과이며 스킬 자연 활성화는 부분이다.
+[0029와의 차이·공통 발견](comparisons/0029-vs-0030.md)을 함께 읽는다.
 
 | Run | Case / dataset / seed | 기준 → 최종 해시 | 브랜치·근거 | 범위·결과 |
 |---|---|---|---|---|
+| Optional-Sonnet-r02 | F04 /6.0.0 /102 | seeddd48653 →79745ab (통합9a187f8) | `codex/experiment-2026-09-12-optional-sonnet-r02@69b57b3` · [0030](0030-optional-sonnet.md) | 전체8호출·두 PR·25시험·fresh55명령/9판정. 문서 선행 통과, 검토 누락/HUMAN 복구 보존 |
 | Optional-F04 | F04 /6.0.0 /102 | seed068a969 → d876845 (통합2efa27a) | `codex/experiment-2026-09-12-optional-f04-r01@50a621f` · [0029](0029-optional-opencode.md) | 전체6호출·두 PR. 제품/fresh20시험·55명령/9판정, 문서 시점 실패·HUMAN 복구 보존 |
 | Optional-JSON | F04 JSON 부분 /6.0.0 /102 | seed5c3935e →19845a2 →cc34efc (통합f563f68) | `codex/experiment-2026-09-12-optional-json-r01@b97a87d` · [0029](0029-optional-opencode.md) | 새 세션2호출. 문서 선행·명시한 비TDD·26시험·fresh55명령/9판정, 기록 오판/HUMAN 정정 보존 |
 | Muse-F05-r01 | F05 / 7.0.0 / 103 | seed 7733849 → 구현 9846861 (제품 M4 7e60309) | `codex/experiment-2026-09-12-muse-f05-r01@9b253ad` · [0027 기록](0027-muse-larger.md) | 전체 10회 대화·순차 4 PR. 다문서 인계·변경 선행 동기화·69시험·fresh 33/127관측 통과, 사람 개입과 기록 한계 보존 |
