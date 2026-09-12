@@ -1,0 +1,1644 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:33Z",
+  "pull": {
+    "url": "https://api.github.com/repos/vercel/next.js/pulls/98571",
+    "id": 4506824939,
+    "node_id": "PR_kwDOBC3Cis8AAAABDKCw6w",
+    "html_url": "https://github.com/vercel/next.js/pull/98571",
+    "diff_url": "https://github.com/vercel/next.js/pull/98571.diff",
+    "patch_url": "https://github.com/vercel/next.js/pull/98571.patch",
+    "issue_url": "https://api.github.com/repos/vercel/next.js/issues/98571",
+    "number": 98571,
+    "state": "closed",
+    "locked": false,
+    "title": "feat(next/image): Add experimental imgOptMozjpeg config",
+    "user": {
+      "login": "styfle",
+      "id": 229881,
+      "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/styfle",
+      "html_url": "https://github.com/styfle",
+      "followers_url": "https://api.github.com/users/styfle/followers",
+      "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+      "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+      "organizations_url": "https://api.github.com/users/styfle/orgs",
+      "repos_url": "https://api.github.com/users/styfle/repos",
+      "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/styfle/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "In a previous PR, `mozjpeg` was set to true which might be the reason output jpeg spikes cpu.\r\n\r\n- https://github.com/vercel/next.js/pull/65846\r\n\r\nI made a benchmark and found that disabling MozJPEG saved 72% CPU, with average outputs 31% larger.\r\n\r\n- https://github.com/lovell/sharp/issues/4603\r\n\r\nSo this PR adds a new experimental flag to enable (or rather disable) mozjpeg and try with real workloads. This is useful becaues in many cases, cpu is more costly than bandwidth since most CDNs provide [near unlimited bandwidth](https://vercel.com/blog/introducing-flat-rate-cdn).",
+    "created_at": "2026-09-11T14:30:53Z",
+    "updated_at": "2026-09-11T17:58:34Z",
+    "closed_at": "2026-09-11T17:58:23Z",
+    "merged_at": "2026-09-11T17:58:23Z",
+    "merge_commit_sha": "deed868499de11336b8df141e84a6477e5ccf47b",
+    "assignees": [],
+    "requested_reviewers": [
+      {
+        "login": "timneutkens",
+        "id": 6324199,
+        "node_id": "MDQ6VXNlcjYzMjQxOTk=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6324199?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/timneutkens",
+        "html_url": "https://github.com/timneutkens",
+        "followers_url": "https://api.github.com/users/timneutkens/followers",
+        "following_url": "https://api.github.com/users/timneutkens/following{/other_user}",
+        "gists_url": "https://api.github.com/users/timneutkens/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/timneutkens/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/timneutkens/subscriptions",
+        "organizations_url": "https://api.github.com/users/timneutkens/orgs",
+        "repos_url": "https://api.github.com/users/timneutkens/repos",
+        "events_url": "https://api.github.com/users/timneutkens/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/timneutkens/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      {
+        "login": "lubieowoce",
+        "id": 13698226,
+        "node_id": "MDQ6VXNlcjEzNjk4MjI2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/13698226?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/lubieowoce",
+        "html_url": "https://github.com/lubieowoce",
+        "followers_url": "https://api.github.com/users/lubieowoce/followers",
+        "following_url": "https://api.github.com/users/lubieowoce/following{/other_user}",
+        "gists_url": "https://api.github.com/users/lubieowoce/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/lubieowoce/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/lubieowoce/subscriptions",
+        "organizations_url": "https://api.github.com/users/lubieowoce/orgs",
+        "repos_url": "https://api.github.com/users/lubieowoce/repos",
+        "events_url": "https://api.github.com/users/lubieowoce/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/lubieowoce/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      }
+    ],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/vercel/next.js/pulls/98571/commits",
+    "review_comments_url": "https://api.github.com/repos/vercel/next.js/pulls/98571/comments",
+    "review_comment_url": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/vercel/next.js/issues/98571/comments",
+    "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+    "head": {
+      "label": "styfle:codex/imgopt-mozjpeg",
+      "ref": "codex/imgopt-mozjpeg",
+      "sha": "67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "user": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 134434394,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMzQ0MzQzOTQ=",
+        "name": "next.js",
+        "full_name": "styfle/next.js",
+        "private": false,
+        "owner": {
+          "login": "styfle",
+          "id": 229881,
+          "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/styfle",
+          "html_url": "https://github.com/styfle",
+          "followers_url": "https://api.github.com/users/styfle/followers",
+          "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+          "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+          "organizations_url": "https://api.github.com/users/styfle/orgs",
+          "repos_url": "https://api.github.com/users/styfle/repos",
+          "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/styfle/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/styfle/next.js",
+        "description": "Framework for server-rendered or statically-exported React apps",
+        "fork": true,
+        "url": "https://api.github.com/repos/styfle/next.js",
+        "forks_url": "https://api.github.com/repos/styfle/next.js/forks",
+        "keys_url": "https://api.github.com/repos/styfle/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/styfle/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/styfle/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/styfle/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/styfle/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/styfle/next.js/events",
+        "assignees_url": "https://api.github.com/repos/styfle/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/styfle/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/styfle/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/styfle/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/styfle/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/styfle/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/styfle/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/styfle/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/styfle/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/styfle/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/styfle/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/styfle/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/styfle/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/styfle/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/styfle/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/styfle/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/styfle/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/styfle/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/styfle/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/styfle/next.js/merges",
+        "archive_url": "https://api.github.com/repos/styfle/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/styfle/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/styfle/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/styfle/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/styfle/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/styfle/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/styfle/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/styfle/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/styfle/next.js/deployments",
+        "created_at": "2018-05-22T15:16:52Z",
+        "updated_at": "2026-09-05T20:42:55Z",
+        "pushed_at": "2026-09-11T20:43:10Z",
+        "git_url": "git://github.com/styfle/next.js.git",
+        "ssh_url": "git@github.com:styfle/next.js.git",
+        "clone_url": "https://github.com/styfle/next.js.git",
+        "svn_url": "https://github.com/styfle/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2383035,
+        "stargazers_count": 1,
+        "watchers_count": 1,
+        "language": "JavaScript",
+        "has_issues": false,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 1,
+        "default_branch": "canary"
+      }
+    },
+    "base": {
+      "label": "vercel:canary",
+      "ref": "canary",
+      "sha": "d155ba9ebfffe4742efefda8d68c2e0e8e490924",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98571"
+      },
+      "html": {
+        "href": "https://github.com/vercel/next.js/pull/98571"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98571"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98571/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98571/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98571/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/vercel/next.js/statuses/67adc9806703f963b7c7e7b1dbd78fbc4ce46390"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": {
+      "enabled_by": {
+        "login": "eps1lon",
+        "id": 12292047,
+        "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/eps1lon",
+        "html_url": "https://github.com/eps1lon",
+        "followers_url": "https://api.github.com/users/eps1lon/followers",
+        "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+        "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+        "repos_url": "https://api.github.com/users/eps1lon/repos",
+        "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "merge_method": "squash",
+      "commit_title": "feat(next/image): Add experimental imgOptMozjpeg config (#98571)",
+      "commit_message": "In a previous PR, `mozjpeg` was set to true which might be the reason\noutput jpeg spikes cpu.\n\n- https://github.com/vercel/next.js/pull/65846\n\nI made a benchmark and found that disabling MozJPEG saved 72% CPU, with\naverage outputs 31% larger.\n\n- https://github.com/lovell/sharp/issues/4603\n\nSo this PR adds a new experimental flag to enable (or rather disable)\nmozjpeg and try with real workloads. This is useful becaues in many\ncases, cpu is more costly than bandwidth since most CDNs provide [near\nunlimited bandwidth](https://vercel.com/blog/introducing-flat-rate-cdn)."
+    },
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 1,
+    "additions": 61,
+    "deletions": 4,
+    "changed_files": 6
+  },
+  "commits": [
+    {
+      "sha": "67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "node_id": "C_kwDOCANOWtoAKDY3YWRjOTgwNjcwM2Y5NjNiN2M3ZTdiMWRiZDc4ZmJjNGNlNDYzOTA",
+      "commit": {
+        "author": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-09-11T14:24:49Z"
+        },
+        "committer": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-09-11T14:24:49Z"
+        },
+        "message": "Add experimental imgOptMozjpeg config",
+        "tree": {
+          "sha": "44c2bc46e44e3f89bc7033c199bd9be5d2c38844",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/44c2bc46e44e3f89bc7033c199bd9be5d2c38844"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAglJv3LuRSYyh37Tic48igki/iZD\nXrKCJXuWbUQ5shCt0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQEzMBUgg3RaEQWdUFMdQWqnZ6FjtphtCTF33wS96fowv5OCBn6O3w6PgSwy2GtBcJ8\nOTpLClO/EGr7CrCk3xGQg=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 44c2bc46e44e3f89bc7033c199bd9be5d2c38844\nparent 2d417dae1d85cacac8de3d9c0682d345f428ac16\nauthor Steven <steven@ceriously.com> 1789136689 -0400\ncommitter Steven <steven@ceriously.com> 1789136689 -0400\n\nAdd experimental imgOptMozjpeg config\n",
+          "verified_at": "2026-09-11T14:25:38Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "html_url": "https://github.com/vercel/next.js/commit/67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/comments",
+      "author": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "2d417dae1d85cacac8de3d9c0682d345f428ac16",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/2d417dae1d85cacac8de3d9c0682d345f428ac16",
+          "html_url": "https://github.com/vercel/next.js/commit/2d417dae1d85cacac8de3d9c0682d345f428ac16"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "470246a5dd30d48d34d13ea1859ca7173bd8d176",
+      "filename": "packages/next/src/server/config-schema.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-schema.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-schema.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-schema.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "patch": "@@ -273,6 +273,7 @@ export const experimentalSchema = {\n   imgOptTimeoutInSeconds: z.number().int().optional(),\n   imgOptMaxInputPixels: z.number().int().optional(),\n   imgOptSequentialRead: z.boolean().optional().nullable(),\n+  imgOptMozjpeg: z.boolean().optional(),\n   isrFlushToDisk: z.boolean().optional(),\n   largePageDataBytes: z.number().optional(),\n   linkNoTouchStart: z.boolean().optional(),"
+    },
+    {
+      "sha": "e7c86a140f9212ecac4116738519ca27411252e7",
+      "filename": "packages/next/src/server/config-shared.ts",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-shared.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-shared.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-shared.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "patch": "@@ -606,6 +606,7 @@ export interface ExperimentalConfig {\n   imgOptTimeoutInSeconds?: number\n   imgOptMaxInputPixels?: number\n   imgOptSequentialRead?: boolean | null\n+  imgOptMozjpeg?: boolean\n   optimisticClientCache?: boolean\n   /**\n    * @deprecated use config.expireTime instead\n@@ -2326,6 +2327,7 @@ export const defaultConfig = Object.freeze({\n     imgOptTimeoutInSeconds: 7,\n     imgOptMaxInputPixels: 268_402_689, // https://sharp.pixelplumbing.com/api-constructor#:~:text=%5Boptions.limitInputPixels%5D\n     imgOptSequentialRead: null,\n+    imgOptMozjpeg: true,\n     isrFlushToDisk: true,\n     workerThreads: false,\n     proxyTimeout: undefined,\n@@ -2495,6 +2497,7 @@ export interface NextConfigRuntime {\n     | 'imgOptMaxInputPixels'\n     | 'imgOptSequentialRead'\n     | 'imgOptTimeoutInSeconds'\n+    | 'imgOptMozjpeg'\n     | 'proxyClientMaxBodySize'\n     | 'proxyTimeout'\n     | 'testProxy'\n@@ -2566,6 +2569,7 @@ export function getNextConfigRuntime(\n     imgOptMaxInputPixels: ex.imgOptMaxInputPixels,\n     imgOptSequentialRead: ex.imgOptSequentialRead,\n     imgOptTimeoutInSeconds: ex.imgOptTimeoutInSeconds,\n+    imgOptMozjpeg: ex.imgOptMozjpeg,\n     proxyClientMaxBodySize: ex.proxyClientMaxBodySize,\n     proxyTimeout: ex.proxyTimeout,\n     testProxy: ex.testProxy,"
+    },
+    {
+      "sha": "f3fe9f0b7f66db1902b199f455c76e2fae9ec888",
+      "filename": "packages/next/src/server/image-optimizer.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "patch": "@@ -752,6 +752,7 @@ export async function imageOptimizer(\n       | 'imgOptMaxInputPixels'\n       | 'imgOptSequentialRead'\n       | 'imgOptTimeoutInSeconds'\n+      | 'imgOptMozjpeg'\n     >\n     images: Pick<\n       NextConfigComplete['images'],"
+    },
+    {
+      "sha": "d674f389fd62dfbe83406e6343b634046d5632b8",
+      "filename": "packages/next/src/server/image-optimizer/transform.ts",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 1,
+      "changes": 6,
+      "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "patch": "@@ -49,6 +49,7 @@ export type ImageOptimizerTransformConfig = {\n     | 'imgOptMaxInputPixels'\n     | 'imgOptSequentialRead'\n     | 'imgOptTimeoutInSeconds'\n+    | 'imgOptMozjpeg'\n   >\n   images: Pick<\n     NextConfigComplete['images'],\n@@ -139,6 +140,7 @@ export async function optimizeImage({\n   limitInputPixels,\n   sequentialRead,\n   timeoutInSeconds,\n+  mozjpeg = true,\n }: {\n   buffer: Buffer\n   contentType: string\n@@ -150,6 +152,7 @@ export async function optimizeImage({\n   limitInputPixels?: number\n   sequentialRead?: boolean | null\n   timeoutInSeconds?: number\n+  mozjpeg?: boolean\n }): Promise<Buffer> {\n   const sharp = getSharp(concurrency, operationCache)\n   const transformer = sharp(buffer, {\n@@ -182,7 +185,7 @@ export async function optimizeImage({\n   } else if (contentType === PNG) {\n     transformer.png({ quality })\n   } else if (contentType === JPEG) {\n-    transformer.jpeg({ quality, mozjpeg: true })\n+    transformer.jpeg({ quality, mozjpeg })\n   }\n \n   const optimizedBuffer = await transformer.toBuffer()\n@@ -283,6 +286,7 @@ export async function imageOptimizerTransform(\n       limitInputPixels: nextConfig.experimental.imgOptMaxInputPixels,\n       sequentialRead: nextConfig.experimental.imgOptSequentialRead,\n       timeoutInSeconds: nextConfig.experimental.imgOptTimeoutInSeconds,\n+      mozjpeg: nextConfig.experimental.imgOptMozjpeg,\n     })\n     if (opts.handleDevOutput) {\n       const output = await opts.handleDevOutput(optimizedBuffer, contentType)"
+    },
+    {
+      "sha": "9168fc338902fbd6175e6e578b5615d235cb4778",
+      "filename": "test/unit/image-optimizer/transform.test.ts",
+      "status": "modified",
+      "additions": 29,
+      "deletions": 3,
+      "changes": 32,
+      "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "patch": "@@ -1,7 +1,11 @@\n /* eslint-env jest */\n import { readFile } from 'fs-extra'\n import { join } from 'path'\n-import { imageOptimizerTransform } from 'next/dist/server/image-optimizer/transform'\n+import {\n+  getSharp,\n+  imageOptimizerTransform,\n+  type ImageOptimizerTransformConfig,\n+} from 'next/dist/server/image-optimizer/transform'\n import type {\n   CachedRouteKind,\n   IncrementalResponseCacheEntry,\n@@ -24,7 +28,11 @@ const config = {\n   },\n }\n \n-async function transform(filename: string, mimeType = 'image/webp') {\n+async function transform(\n+  filename: string,\n+  mimeType = 'image/webp',\n+  nextConfig: ImageOptimizerTransformConfig = config\n+) {\n   const buffer = await getImage(filename)\n   return imageOptimizerTransform(\n     {\n@@ -34,7 +42,7 @@ async function transform(filename: string, mimeType = 'image/webp') {\n       etag: 'source-etag',\n     },\n     { href: `/${filename}`, width: 64, quality: 75, mimeType },\n-    config\n+    nextConfig\n   )\n }\n \n@@ -88,6 +96,24 @@ describe('imageOptimizerTransform', () => {\n     expect(result.maxAge).toBe(120)\n   })\n \n+  it.each([undefined, true, false])(\n+    'encodes JPEGs with imgOptMozjpeg=%s',\n+    async (imgOptMozjpeg) => {\n+      const result = await transform('test.jpg', 'image/jpeg', {\n+        ...config,\n+        experimental: { ...config.experimental, imgOptMozjpeg },\n+      })\n+      expect(result.error).toBeUndefined()\n+      expect(result.contentType).toBe('image/jpeg')\n+      const sharp = getSharp(1, false)\n+      expect(await sharp(result.buffer).metadata()).toMatchObject({\n+        format: 'jpeg',\n+        width: 64,\n+        isProgressive: imgOptMozjpeg ?? true,\n+      })\n+    }\n+  )\n+\n   it('preserves the source format when no output format is requested', async () => {\n     const result = await transform('test.png', '')\n     expect(result.contentType).toBe('image/png')"
+    },
+    {
+      "sha": "2f30374fb883dd7919f4bd34e201ef0e389dfb40",
+      "filename": "test/unit/isolated/config.test.ts",
+      "status": "modified",
+      "additions": 21,
+      "deletions": 0,
+      "changes": 21,
+      "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fisolated%2Fconfig.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fisolated%2Fconfig.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fisolated%2Fconfig.test.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "patch": "@@ -108,6 +108,27 @@ describe('config', () => {\n     expect(disabledConfig.experimental.devMemoryThresholdRestart).toBe(false)\n   })\n \n+  it.each([undefined, true, false])(\n+    'Should preserve imgOptMozjpeg=%s in the runtime config',\n+    async (imgOptMozjpeg) => {\n+      const config = await loadConfig(PHASE_DEVELOPMENT_SERVER, '<rootDir>', {\n+        customConfig: {\n+          experimental: {\n+            imgOptMozjpeg,\n+            runtimeServerDeploymentId: true,\n+          },\n+        },\n+      })\n+      const { getNextConfigRuntime } = await import(\n+        'next/dist/server/config-shared'\n+      )\n+      expect(config.experimental.imgOptMozjpeg).toBe(imgOptMozjpeg ?? true)\n+      expect(getNextConfigRuntime(config).experimental.imgOptMozjpeg).toBe(\n+        imgOptMozjpeg ?? true\n+      )\n+    }\n+  )\n+\n   it('Should allow bundler-specific options during the test phase', async () => {\n     const config = await loadConfig(PHASE_TEST, '<rootDir>-test-phase', {\n       customConfig: {"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "html_url": "https://github.com/vercel/next.js/commit/67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+      "commit": {
+        "author": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-09-11T14:24:49Z"
+        },
+        "committer": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-09-11T14:24:49Z"
+        },
+        "message": "Add experimental imgOptMozjpeg config"
+      },
+      "parents": [
+        {
+          "sha": "2d417dae1d85cacac8de3d9c0682d345f428ac16",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/2d417dae1d85cacac8de3d9c0682d345f428ac16",
+          "html_url": "https://github.com/vercel/next.js/commit/2d417dae1d85cacac8de3d9c0682d345f428ac16"
+        }
+      ],
+      "stats": {
+        "total": 65,
+        "additions": 61,
+        "deletions": 4
+      },
+      "files": [
+        {
+          "sha": "470246a5dd30d48d34d13ea1859ca7173bd8d176",
+          "filename": "packages/next/src/server/config-schema.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-schema.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-schema.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-schema.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+          "patch": "@@ -273,6 +273,7 @@ export const experimentalSchema = {\n   imgOptTimeoutInSeconds: z.number().int().optional(),\n   imgOptMaxInputPixels: z.number().int().optional(),\n   imgOptSequentialRead: z.boolean().optional().nullable(),\n+  imgOptMozjpeg: z.boolean().optional(),\n   isrFlushToDisk: z.boolean().optional(),\n   largePageDataBytes: z.number().optional(),\n   linkNoTouchStart: z.boolean().optional(),"
+        },
+        {
+          "sha": "e7c86a140f9212ecac4116738519ca27411252e7",
+          "filename": "packages/next/src/server/config-shared.ts",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-shared.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-shared.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fconfig-shared.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+          "patch": "@@ -606,6 +606,7 @@ export interface ExperimentalConfig {\n   imgOptTimeoutInSeconds?: number\n   imgOptMaxInputPixels?: number\n   imgOptSequentialRead?: boolean | null\n+  imgOptMozjpeg?: boolean\n   optimisticClientCache?: boolean\n   /**\n    * @deprecated use config.expireTime instead\n@@ -2326,6 +2327,7 @@ export const defaultConfig = Object.freeze({\n     imgOptTimeoutInSeconds: 7,\n     imgOptMaxInputPixels: 268_402_689, // https://sharp.pixelplumbing.com/api-constructor#:~:text=%5Boptions.limitInputPixels%5D\n     imgOptSequentialRead: null,\n+    imgOptMozjpeg: true,\n     isrFlushToDisk: true,\n     workerThreads: false,\n     proxyTimeout: undefined,\n@@ -2495,6 +2497,7 @@ export interface NextConfigRuntime {\n     | 'imgOptMaxInputPixels'\n     | 'imgOptSequentialRead'\n     | 'imgOptTimeoutInSeconds'\n+    | 'imgOptMozjpeg'\n     | 'proxyClientMaxBodySize'\n     | 'proxyTimeout'\n     | 'testProxy'\n@@ -2566,6 +2569,7 @@ export function getNextConfigRuntime(\n     imgOptMaxInputPixels: ex.imgOptMaxInputPixels,\n     imgOptSequentialRead: ex.imgOptSequentialRead,\n     imgOptTimeoutInSeconds: ex.imgOptTimeoutInSeconds,\n+    imgOptMozjpeg: ex.imgOptMozjpeg,\n     proxyClientMaxBodySize: ex.proxyClientMaxBodySize,\n     proxyTimeout: ex.proxyTimeout,\n     testProxy: ex.testProxy,"
+        },
+        {
+          "sha": "f3fe9f0b7f66db1902b199f455c76e2fae9ec888",
+          "filename": "packages/next/src/server/image-optimizer.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+          "patch": "@@ -752,6 +752,7 @@ export async function imageOptimizer(\n       | 'imgOptMaxInputPixels'\n       | 'imgOptSequentialRead'\n       | 'imgOptTimeoutInSeconds'\n+      | 'imgOptMozjpeg'\n     >\n     images: Pick<\n       NextConfigComplete['images'],"
+        },
+        {
+          "sha": "d674f389fd62dfbe83406e6343b634046d5632b8",
+          "filename": "packages/next/src/server/image-optimizer/transform.ts",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 1,
+          "changes": 6,
+          "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+          "patch": "@@ -49,6 +49,7 @@ export type ImageOptimizerTransformConfig = {\n     | 'imgOptMaxInputPixels'\n     | 'imgOptSequentialRead'\n     | 'imgOptTimeoutInSeconds'\n+    | 'imgOptMozjpeg'\n   >\n   images: Pick<\n     NextConfigComplete['images'],\n@@ -139,6 +140,7 @@ export async function optimizeImage({\n   limitInputPixels,\n   sequentialRead,\n   timeoutInSeconds,\n+  mozjpeg = true,\n }: {\n   buffer: Buffer\n   contentType: string\n@@ -150,6 +152,7 @@ export async function optimizeImage({\n   limitInputPixels?: number\n   sequentialRead?: boolean | null\n   timeoutInSeconds?: number\n+  mozjpeg?: boolean\n }): Promise<Buffer> {\n   const sharp = getSharp(concurrency, operationCache)\n   const transformer = sharp(buffer, {\n@@ -182,7 +185,7 @@ export async function optimizeImage({\n   } else if (contentType === PNG) {\n     transformer.png({ quality })\n   } else if (contentType === JPEG) {\n-    transformer.jpeg({ quality, mozjpeg: true })\n+    transformer.jpeg({ quality, mozjpeg })\n   }\n \n   const optimizedBuffer = await transformer.toBuffer()\n@@ -283,6 +286,7 @@ export async function imageOptimizerTransform(\n       limitInputPixels: nextConfig.experimental.imgOptMaxInputPixels,\n       sequentialRead: nextConfig.experimental.imgOptSequentialRead,\n       timeoutInSeconds: nextConfig.experimental.imgOptTimeoutInSeconds,\n+      mozjpeg: nextConfig.experimental.imgOptMozjpeg,\n     })\n     if (opts.handleDevOutput) {\n       const output = await opts.handleDevOutput(optimizedBuffer, contentType)"
+        },
+        {
+          "sha": "9168fc338902fbd6175e6e578b5615d235cb4778",
+          "filename": "test/unit/image-optimizer/transform.test.ts",
+          "status": "modified",
+          "additions": 29,
+          "deletions": 3,
+          "changes": 32,
+          "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+          "patch": "@@ -1,7 +1,11 @@\n /* eslint-env jest */\n import { readFile } from 'fs-extra'\n import { join } from 'path'\n-import { imageOptimizerTransform } from 'next/dist/server/image-optimizer/transform'\n+import {\n+  getSharp,\n+  imageOptimizerTransform,\n+  type ImageOptimizerTransformConfig,\n+} from 'next/dist/server/image-optimizer/transform'\n import type {\n   CachedRouteKind,\n   IncrementalResponseCacheEntry,\n@@ -24,7 +28,11 @@ const config = {\n   },\n }\n \n-async function transform(filename: string, mimeType = 'image/webp') {\n+async function transform(\n+  filename: string,\n+  mimeType = 'image/webp',\n+  nextConfig: ImageOptimizerTransformConfig = config\n+) {\n   const buffer = await getImage(filename)\n   return imageOptimizerTransform(\n     {\n@@ -34,7 +42,7 @@ async function transform(filename: string, mimeType = 'image/webp') {\n       etag: 'source-etag',\n     },\n     { href: `/${filename}`, width: 64, quality: 75, mimeType },\n-    config\n+    nextConfig\n   )\n }\n \n@@ -88,6 +96,24 @@ describe('imageOptimizerTransform', () => {\n     expect(result.maxAge).toBe(120)\n   })\n \n+  it.each([undefined, true, false])(\n+    'encodes JPEGs with imgOptMozjpeg=%s',\n+    async (imgOptMozjpeg) => {\n+      const result = await transform('test.jpg', 'image/jpeg', {\n+        ...config,\n+        experimental: { ...config.experimental, imgOptMozjpeg },\n+      })\n+      expect(result.error).toBeUndefined()\n+      expect(result.contentType).toBe('image/jpeg')\n+      const sharp = getSharp(1, false)\n+      expect(await sharp(result.buffer).metadata()).toMatchObject({\n+        format: 'jpeg',\n+        width: 64,\n+        isProgressive: imgOptMozjpeg ?? true,\n+      })\n+    }\n+  )\n+\n   it('preserves the source format when no output format is requested', async () => {\n     const result = await transform('test.png', '')\n     expect(result.contentType).toBe('image/png')"
+        },
+        {
+          "sha": "2f30374fb883dd7919f4bd34e201ef0e389dfb40",
+          "filename": "test/unit/isolated/config.test.ts",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 0,
+          "changes": 21,
+          "blob_url": "https://github.com/vercel/next.js/blob/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fisolated%2Fconfig.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/67adc9806703f963b7c7e7b1dbd78fbc4ce46390/test%2Funit%2Fisolated%2Fconfig.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fisolated%2Fconfig.test.ts?ref=67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+          "patch": "@@ -108,6 +108,27 @@ describe('config', () => {\n     expect(disabledConfig.experimental.devMemoryThresholdRestart).toBe(false)\n   })\n \n+  it.each([undefined, true, false])(\n+    'Should preserve imgOptMozjpeg=%s in the runtime config',\n+    async (imgOptMozjpeg) => {\n+      const config = await loadConfig(PHASE_DEVELOPMENT_SERVER, '<rootDir>', {\n+        customConfig: {\n+          experimental: {\n+            imgOptMozjpeg,\n+            runtimeServerDeploymentId: true,\n+          },\n+        },\n+      })\n+      const { getNextConfigRuntime } = await import(\n+        'next/dist/server/config-shared'\n+      )\n+      expect(config.experimental.imgOptMozjpeg).toBe(imgOptMozjpeg ?? true)\n+      expect(getNextConfigRuntime(config).experimental.imgOptMozjpeg).toBe(\n+        imgOptMozjpeg ?? true\n+      )\n+    }\n+  )\n+\n   it('Should allow bundler-specific options during the test phase', async () => {\n     const config = await loadConfig(PHASE_TEST, '<rootDir>-test-phase', {\n       customConfig: {"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:58:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103366338593",
+        "name": "thank you, next",
+        "started_at": "2026-09-11T17:58:12Z",
+        "status": "completed"
+      },
+      {
+        "app": "vercel",
+        "completed_at": "2026-09-11T17:57:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/runs/103366000250",
+        "name": "Vercel – Code Owners",
+        "started_at": "2026-09-11T17:57:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:31:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363812727",
+        "name": "optimize-ci / PR Stack Optimizer",
+        "started_at": "2026-09-11T14:31:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:31:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363797593",
+        "name": "Determine changes",
+        "started_at": "2026-09-11T14:31:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:31:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363797090",
+        "name": "validate-docs-links",
+        "started_at": "2026-09-11T14:31:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:38:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363774442",
+        "name": "Test new and changed tests for flakes (prod) (2/5) / build",
+        "started_at": "2026-09-11T14:36:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:45:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363774169",
+        "name": "test cache components dev (5/6) / build",
+        "started_at": "2026-09-11T14:38:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363774156",
+        "name": "Test new and changed tests when deployed (3/5) / build",
+        "started_at": "2026-09-11T14:46:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363774052",
+        "name": "test turbopack dev (2/7) / build",
+        "started_at": "2026-09-11T14:35:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:44:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363774028",
+        "name": "test cache components dev (4/6) / build",
+        "started_at": "2026-09-11T14:38:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363774004",
+        "name": "Test new and changed tests when deployed (cache components) (3/5) / build",
+        "started_at": "2026-09-11T14:45:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:53:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773958",
+        "name": "test cache components dev (6/6) / build",
+        "started_at": "2026-09-11T14:37:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773950",
+        "name": "Test new and changed tests when deployed (4/5) / build",
+        "started_at": "2026-09-11T14:45:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:43:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773939",
+        "name": "test turbopack dev (7/7) / build",
+        "started_at": "2026-09-11T14:34:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773855",
+        "name": "Test new and changed tests when deployed (cache components) (1/5) / build",
+        "started_at": "2026-09-11T14:46:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:44:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773854",
+        "name": "test turbopack dev (3/7) / build",
+        "started_at": "2026-09-11T14:34:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773817",
+        "name": "test turbopack dev (5/7) / build",
+        "started_at": "2026-09-11T14:34:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:44:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773800",
+        "name": "test cache components dev (1/6) / build",
+        "started_at": "2026-09-11T14:38:17Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773777",
+        "name": "test turbopack dev (6/7) / build",
+        "started_at": "2026-09-11T14:34:51Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773764",
+        "name": "Test new and changed tests when deployed (1/5) / build",
+        "started_at": "2026-09-11T14:46:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:38:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773670",
+        "name": "Test new and changed tests for flakes (prod) (4/5) / build",
+        "started_at": "2026-09-11T14:36:27Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773660",
+        "name": "test turbopack production (1/7) / build",
+        "started_at": "2026-09-11T14:35:13Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773639",
+        "name": "Test new and changed tests when deployed (2/5) / build",
+        "started_at": "2026-09-11T14:45:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:52:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773638",
+        "name": "test turbopack dev (4/7) / build",
+        "started_at": "2026-09-11T14:35:07Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773628",
+        "name": "Test new and changed tests when deployed (cache components) (4/5) / build",
+        "started_at": "2026-09-11T14:45:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:52:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773579",
+        "name": "test turbopack production (6/7) / build",
+        "started_at": "2026-09-11T14:35:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773568",
+        "name": "Test new and changed tests when deployed (cache components) (5/5) / build",
+        "started_at": "2026-09-11T14:45:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:45:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773566",
+        "name": "test turbopack dev (1/7) / build",
+        "started_at": "2026-09-11T14:34:53Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:38:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773533",
+        "name": "Test new and changed tests for flakes (prod) (5/5) / build",
+        "started_at": "2026-09-11T14:37:29Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773488",
+        "name": "Test new and changed tests when deployed (5/5) / build",
+        "started_at": "2026-09-11T14:45:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773426",
+        "name": "Test new and changed tests for flakes (prod) (3/5) / build",
+        "started_at": "2026-09-11T14:36:37Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:45:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773336",
+        "name": "test cache components dev (3/6) / build",
+        "started_at": "2026-09-11T14:38:26Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773333",
+        "name": "Test new and changed tests when deployed (cache components) (2/5) / build",
+        "started_at": "2026-09-11T14:46:07Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:42:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773250",
+        "name": "test cache components prod (2/7) / build",
+        "started_at": "2026-09-11T14:38:38Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:51:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773249",
+        "name": "test dev (5/10) / build",
+        "started_at": "2026-09-11T14:38:14Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773132",
+        "name": "test dev (4/10) / build",
+        "started_at": "2026-09-11T14:36:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:38:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773125",
+        "name": "Test new and changed tests for flakes (prod) (1/5) / build",
+        "started_at": "2026-09-11T14:36:27Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T15:00:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773107",
+        "name": "test unit windows (22) / build",
+        "started_at": "2026-09-11T14:48:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:50:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773086",
+        "name": "test dev (7/10) / build",
+        "started_at": "2026-09-11T14:37:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773060",
+        "name": "test cache components dev (2/6) / build",
+        "started_at": "2026-09-11T14:38:40Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T15:00:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773052",
+        "name": "test unit windows (20) / build",
+        "started_at": "2026-09-11T14:49:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773034",
+        "name": "test cache components prod (6/7) / build",
+        "started_at": "2026-09-11T14:37:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:50:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773027",
+        "name": "test dev (2/10) / build",
+        "started_at": "2026-09-11T14:37:19Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363773012",
+        "name": "test next-config-ts-native-ts dev (24.15.0) / build",
+        "started_at": "2026-09-11T14:35:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772944",
+        "name": "test dev (8/10) / build",
+        "started_at": "2026-09-11T14:37:27Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772935",
+        "name": "test cache components prod (3/7) / build",
+        "started_at": "2026-09-11T14:38:47Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:38:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772917",
+        "name": "Test new and changed tests for flakes (dev) (5/5) / build",
+        "started_at": "2026-09-11T14:36:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:51:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772903",
+        "name": "test cache components prod (1/7) / build",
+        "started_at": "2026-09-11T14:37:51Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772837",
+        "name": "test turbopack production (4/7) / build",
+        "started_at": "2026-09-11T14:35:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:57:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772834",
+        "name": "test prod (7/10) / build",
+        "started_at": "2026-09-11T14:38:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772799",
+        "name": "test dev (9/10) / build",
+        "started_at": "2026-09-11T14:37:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:36:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772793",
+        "name": "Test new and changed tests for flakes (dev) (3/5) / build",
+        "started_at": "2026-09-11T14:35:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:26Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772792",
+        "name": "test unit (22) / build",
+        "started_at": "2026-09-11T14:34:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772783",
+        "name": "test turbopack production (7/7) / build",
+        "started_at": "2026-09-11T14:35:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:48:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772710",
+        "name": "test dev (10/10) / build",
+        "started_at": "2026-09-11T14:37:45Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:57:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772700",
+        "name": "test prod (10/10) / build",
+        "started_at": "2026-09-11T14:36:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772684",
+        "name": "Test new and changed tests for flakes (dev) (4/5) / build",
+        "started_at": "2026-09-11T14:35:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:48:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772629",
+        "name": "test dev (3/10) / build",
+        "started_at": "2026-09-11T14:37:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:48:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772621",
+        "name": "test turbopack production (2/7) / build",
+        "started_at": "2026-09-11T14:36:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:49:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772603",
+        "name": "test cache components prod (7/7) / build",
+        "started_at": "2026-09-11T14:38:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:51:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772575",
+        "name": "test prod (8/10) / build",
+        "started_at": "2026-09-11T14:37:07Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:48:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772574",
+        "name": "test dev (6/10) / build",
+        "started_at": "2026-09-11T14:37:12Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772551",
+        "name": "test turbopack production (5/7) / build",
+        "started_at": "2026-09-11T14:35:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:47:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772531",
+        "name": "test turbopack production (3/7) / build",
+        "started_at": "2026-09-11T14:35:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772464",
+        "name": "test next-config-ts-native-ts dev (22) / build",
+        "started_at": "2026-09-11T14:35:27Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772387",
+        "name": "Test new and changed tests for flakes (dev) (1/5) / build",
+        "started_at": "2026-09-11T14:35:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:44:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772345",
+        "name": "test cache components prod (5/7) / build",
+        "started_at": "2026-09-11T14:37:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:59:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772334",
+        "name": "test prod (9/10) / build",
+        "started_at": "2026-09-11T14:37:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772328",
+        "name": "test unit (20) / build",
+        "started_at": "2026-09-11T14:34:40Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:44:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772318",
+        "name": "test cache components prod (4/7) / build",
+        "started_at": "2026-09-11T14:38:18Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:48:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772187",
+        "name": "test prod (4/10) / build",
+        "started_at": "2026-09-11T14:36:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:49:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772167",
+        "name": "test prod (5/10) / build",
+        "started_at": "2026-09-11T14:36:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363772066",
+        "name": "test prod (2/10) / build",
+        "started_at": "2026-09-11T14:37:14Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:39:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771992",
+        "name": "Test new and changed tests for flakes (dev) (2/5) / build",
+        "started_at": "2026-09-11T14:37:45Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:52:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771933",
+        "name": "test prod (3/10) / build",
+        "started_at": "2026-09-11T14:37:38Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:39:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771923",
+        "name": "test next-config-ts-native-ts prod (22) / build",
+        "started_at": "2026-09-11T14:35:26Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:38:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771908",
+        "name": "test next-config-ts-native-ts prod (24.15.0) / build",
+        "started_at": "2026-09-11T14:35:37Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:58:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771779",
+        "name": "test dev (1/10) / build",
+        "started_at": "2026-09-11T17:49:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:52:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771725",
+        "name": "test prod (6/10) / build",
+        "started_at": "2026-09-11T14:37:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:39:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771267",
+        "name": "test firefox and safari / build",
+        "started_at": "2026-09-11T14:34:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:55:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363771125",
+        "name": "test prod (1/10) / build",
+        "started_at": "2026-09-11T17:49:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T15:03:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363770878",
+        "name": "test integration windows / build",
+        "started_at": "2026-09-11T14:49:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:58:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363770792",
+        "name": "test prod windows / build",
+        "started_at": "2026-09-11T14:48:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:37:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363769905",
+        "name": "types and precompiled / build",
+        "started_at": "2026-09-11T14:34:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:58:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363769894",
+        "name": "test dev windows / build",
+        "started_at": "2026-09-11T14:48:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:49:38Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363769231",
+        "name": "Run devlow benchmarks",
+        "started_at": "2026-09-11T17:49:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:49:38Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363769048",
+        "name": "test rspack dev",
+        "started_at": "2026-09-11T17:49:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:49:38Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363768766",
+        "name": "test rspack production",
+        "started_at": "2026-09-11T17:49:38Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:41:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363768521",
+        "name": "lint / build",
+        "started_at": "2026-09-11T14:34:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:41:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363768371",
+        "name": "test cargo benches / Test",
+        "started_at": "2026-09-11T14:33:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:39:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363768114",
+        "name": "test next-swc wasm / build",
+        "started_at": "2026-09-11T14:33:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:36:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363768088",
+        "name": "rustdoc check / build",
+        "started_at": "2026-09-11T14:34:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:39:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363767836",
+        "name": "rust check / build",
+        "started_at": "2026-09-11T14:34:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:32:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363767829",
+        "name": "test devlow package / build",
+        "started_at": "2026-09-11T14:31:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363767520",
+        "name": "test cargo unit / build",
+        "started_at": "2026-09-11T14:33:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:36:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363767476",
+        "name": "test next-swc wasi / build",
+        "started_at": "2026-09-11T14:34:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:33:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363767093",
+        "name": "ast-grep lint",
+        "started_at": "2026-09-11T14:33:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:34:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363766680",
+        "name": "build-native / build",
+        "started_at": "2026-09-11T14:31:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:45:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363766665",
+        "name": "Wait for preview tarball",
+        "started_at": "2026-09-11T14:31:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T14:46:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34610586892/job/103363766478",
+        "name": "build-native-windows / build",
+        "started_at": "2026-09-11T14:31:22Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 117
+  },
+  "combined_status": {
+    "sha": "67adc9806703f963b7c7e7b1dbd78fbc4ce46390",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

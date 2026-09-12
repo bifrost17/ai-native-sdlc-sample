@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html
+  class="smooth-scroll"
+  lang="en"
+  itemtype="http://schema.org/WebPage"
+  itemscope
+  prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    >
+    <meta name="robots" content="NOODP">
+      <meta name="description" content="Write tests first or watch Claude blow everything up. Your choice.">
+
+    <title>
+        Prevent the Robocalypse with Claude Code and TDD
+    </title>
+
+    <meta name="title" content="Prevent the Robocalypse with Claude Code and TDD">
+  <meta name="description" content="Write tests first or watch Claude blow everything up. Your choice.">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="thoughtbot">
+  <meta property="og:url" content="https://thoughtbot.com/blog/prevent-the-robocalypse-with-tdd">
+<meta property="og:title" content="Prevent the Robocalypse with Claude Code and TDD">
+<meta property="og:description" content="Write tests first or watch Claude blow everything up. Your choice.">
+  <meta property="og:image" content="https://images.prismic.io/thoughtbot-website/aEccJrh8WN-LV5_m_default-article-background.png?auto=format%2Ccompress&amp;blend-mode=normal&amp;blend-x=0&amp;blend-y=0&amp;blend=https%3A%2F%2Fimages.prismic.io%2Fthoughtbot-website%2FZ1tQFJbqstJ98cGP_default.png&amp;mark-fit=max&amp;mark-h=400&amp;mark-w=800&amp;mark-x=356&amp;mark-y=100&amp;mark64=aHR0cHM6Ly9hc3NldHMuaW1naXgubmV0L350ZXh0Lz90eHQtY2xyPWY1ZjVmNSZ0eHQtZm9udD1JQk1QbGV4U2Fuc0pQLVNlbWlCb2xkJnR4dC1sZWFkPS0xNSZ0eHQtcGFkPTAmdHh0LXNpemU9NzYmdHh0LXRyYWNrPTAmdHh0NjQ9VUhKbGRtVnVkQ0IwYUdVZ1VtOWliMk5oYkhsd2MyVWdkMmwwYUNCRGJHRjFaR1VnUTI5a1pTQmhibVFnVkVSRSZ3PTgwMA%3D%3D&amp;txt-align=center%2Cmiddle&amp;txt-color=f5f5f5&amp;txt-fit=max&amp;txt-font=IBMPlexSansJP-SemiBold&amp;txt-size=24&amp;txt-x=391&amp;txt-y=526&amp;txt=Louis+Antonopoulos">
+<meta property="og:image:alt" content="Prevent the Robocalypse with Claude Code and TDD by Louis Antonopoulos">
+
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thoughtbot">
+<meta name="twitter:creator" content="@thoughtbot">
+<meta name="twitter:url" content="https://thoughtbot.com/blog/prevent-the-robocalypse-with-tdd">
+<meta name="twitter:title" content="Prevent the Robocalypse with Claude Code and TDD">
+<meta name="twitter:description" content="Write tests first or watch Claude blow everything up. Your choice.">
+<meta name="twitter:image" content="https://images.prismic.io/thoughtbot-website/aEccJrh8WN-LV5_m_default-article-background.png?auto=format%2Ccompress&amp;blend-mode=normal&amp;blend-x=0&amp;blend-y=0&amp;blend=https%3A%2F%2Fimages.prismic.io%2Fthoughtbot-website%2FZ1tQFJbqstJ98cGP_default.png&amp;mark-fit=max&amp;mark-h=400&amp;mark-w=800&amp;mark-x=356&amp;mark-y=100&amp;mark64=aHR0cHM6Ly9hc3NldHMuaW1naXgubmV0L350ZXh0Lz90eHQtY2xyPWY1ZjVmNSZ0eHQtZm9udD1JQk1QbGV4U2Fuc0pQLVNlbWlCb2xkJnR4dC1sZWFkPS0xNSZ0eHQtcGFkPTAmdHh0LXNpemU9NzYmdHh0LXRyYWNrPTAmdHh0NjQ9VUhKbGRtVnVkQ0IwYUdVZ1VtOWliMk5oYkhsd2MyVWdkMmwwYUNCRGJHRjFaR1VnUTI5a1pTQmhibVFnVkVSRSZ3PTgwMA%3D%3D&amp;txt-align=center%2Cmiddle&amp;txt-color=f5f5f5&amp;txt-fit=max&amp;txt-font=IBMPlexSansJP-SemiBold&amp;txt-size=24&amp;txt-x=391&amp;txt-y=526&amp;txt=Louis+Antonopoulos">
+
+  <meta property="article:published_time" content="2026-01-12">
+<meta property="article:modified_time" content="2026-01-09 22:16:21 UTC">
+<link rel="alternate" type="text/markdown" href="https://thoughtbot.com/blog/prevent-the-robocalypse-with-tdd.md">
+
+          <link rel="author" href="https://www.linkedin.com/in/antonopouloslouis/">
+
+      
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/x-icon" href="//thoughtbot.com/assets/favicon-c39babd7aaf33dd9a1cb8bc87fefa0975f8194a799246524bc9295c9c7397527.ico" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="//thoughtbot.com/assets/apple-touch-icon-d153905f7cace4e341a2b660042bef3999c7a97666f11dcf49022f9f1f45c991.png" />
+    <link rel="icon" type="image/png" href="//thoughtbot.com/assets/android-chrome-512x512-502cf6bfb78386d37214fca1098500430b469e6f6b9ee21926b51c5e36c2d094.png" sizes="512x512" />
+    <link rel="icon" type="image/png" href="//thoughtbot.com/assets/android-chrome-192x192-b8faf450f97a3d12df17351021cdf80f6942c9594f5c7cc6276709dc64a65764.png" sizes="192x192" />
+
+    <link rel="preload" href="//thoughtbot.com/assets/Cosmica-Semibold-7de3539d44a7499e0f764c92b1ea0e9cb5a93a7b0083cc23de59fd8fd996a806.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="//thoughtbot.com/assets/PPMori-Regular-91418d3cf324f1bb683770496bf15a6f5d09a6560ce4956bc7ee6fab12505d82.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="//thoughtbot.com/assets/JetBrainsMono-Bold-5c07f934279e68f3fcd6be051432d8f724b9ba3006d685d7cbf0e0ab5d8955ac.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+      <link rel="canonical" href="https://thoughtbot.com/blog/prevent-the-robocalypse-with-tdd">
+
+
+    <link rel="stylesheet" href="//thoughtbot.com/assets/application/application-3ac2bb4cd45491a8bde197025e5cf32697cef0695063d7d2843fc678313d8b76.css" media="all" />
+
+      
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://feed.thoughtbot.com" />
+
+  </head>
+  <body class=" blog-articles blog-articles-show">
+    <!--
+            Hey! I'm Ralph, what's up?
+
+             ████████████████████████
+        █████████                █████████
+     █████                              █████
+    ███       ██████████████████████       ███
+          ███████                ███████
+        ████                          ████
+               ████████████████████
+            ██████              ██████
+            ██                      ██
+
+      ██████████████████████████████████████
+     ████████████████████████████████████████
+     ████████████████████████████████████████
+     █████████    ██████████████    █████████
+     ███████  ████  ██████████  ████  ███████
+     ███████  ████  ██████████  ████  ███████
+     █████████    ██████████████    █████████
+     ████████████████████████████████████████
+     ████████████████████████████████████████
+     ████████████████████████████████████████
+      ██████████████████████████████████████
+
+If you're taking the time to view our source code,
+you might be interested in our Open Source work:
+
+https://github.com/thoughtbot
+
+-->
+
+    <!-- prettier-ignore -->
+<header class="links-no-underline shim-sticky u-margin-bottom-6" data-controller="application-header dropdown-menu">
+  <a class="skip-nav" href="#main">Skip to main content</a>
+
+  <div class="application-header container" data-controller="twitch">
+    <a class="application-header__logo" href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="860" height="168" viewBox="0 0 860 168" fill="none" role="img" aria-labelledby="a2gzzl3kvzjps5zyk55a5tdqgiiovte2" class="logo-ralph-and-wordmark"><title id="a2gzzl3kvzjps5zyk55a5tdqgiiovte2">thoughtbot</title>
+<path d="M210.603 128.912C204.519 131.08 197.603 132.168 193.435 132.44C188.951 132.74 185.272 131.515 182.46 129.674C179.622 127.833 177.542 125.448 176.214 122.573C174.867 119.698 174.188 116.687 174.188 113.568V73.6548H164V58.9629H174.188V45.84L191.998 32.8441V58.9538H207.81V73.6457H191.998V106.213C191.998 109.877 192.215 112.507 192.649 114.103C193.083 115.699 194.05 116.706 195.596 117.141C197.133 117.522 199.004 117.603 202.539 116.814L206.969 115.49C206.969 115.49 209.374 123.924 210.594 128.912H210.603Z"></path>
+<path d="M282.628 90.9494V130.998H264.818V92.2282C264.818 85.508 263.76 80.5382 261.6 77.3187C259.439 74.1173 255.922 72.4939 251.032 72.4939C246.873 72.4939 243.465 73.4734 240.816 75.4232C239.496 76.3755 238.276 77.5091 237.109 78.8151V131.007H219.3V28.9353H237.109V63.697C238.972 62.5543 240.897 61.475 242.922 60.4684C246.466 58.6818 250.706 57.7839 255.624 57.7839C261.952 57.7839 267.087 59.1896 271.083 62.0101C275.061 64.8034 277.972 68.7031 279.843 73.6729C281.706 78.6609 282.628 84.4107 282.628 90.9494Z"></path>
+<path d="M363.747 76.3845C360.854 70.662 356.668 66.1093 351.154 62.6631C345.639 59.2168 338.994 57.5119 331.184 57.5119C323.373 57.5119 316.719 59.2168 311.231 62.6631C305.717 66.1093 301.531 70.662 298.638 76.3845C295.718 82.1071 294.29 88.3466 294.29 95.1212C294.29 101.896 295.718 108.026 298.638 113.695C301.531 119.363 305.717 123.915 311.231 127.307C316.719 130.726 323.391 132.431 331.184 132.431C338.976 132.431 345.648 130.726 351.154 127.307C356.668 123.915 360.854 119.363 363.747 113.695C366.64 108.026 368.095 101.841 368.095 95.1212C368.095 88.401 366.64 82.1071 363.747 76.3845ZM345.015 111.445C341.77 115.644 337.177 117.739 331.175 117.739C325.172 117.739 320.661 115.654 317.388 111.445C314.142 107.247 312.524 101.796 312.524 95.1212C312.524 88.4464 314.142 82.8417 317.388 78.5793C320.661 74.3259 325.253 72.2037 331.175 72.2037C337.096 72.2037 341.77 74.3168 345.015 78.5793C348.261 82.8326 349.852 88.3376 349.852 95.1212C349.852 101.905 348.261 107.237 345.015 111.445Z"></path>
+<path d="M442.181 58.9538V130.998H425.529L425.231 126.663C423.874 127.697 422.256 128.695 420.394 129.647C416.66 131.515 412.963 132.44 409.283 132.44C401.825 132.44 395.849 130.953 391.42 127.969C386.963 125.013 383.744 120.923 381.773 115.69C379.83 110.484 378.853 104.49 378.853 97.7149V58.972H396.636V97.7149C396.636 104.408 397.775 109.351 399.99 112.597C402.205 115.853 405.857 117.449 410.883 117.449C414.879 117.449 418.233 116.497 420.882 114.574C422.148 113.649 423.341 112.57 424.372 111.291V58.9629H442.181V58.9538Z"></path>
+<path d="M590.751 90.9494V130.998H572.941V92.2282C572.941 85.508 571.856 80.5382 569.696 77.3187C567.562 74.1173 564.018 72.4939 559.155 72.4939C554.996 72.4939 551.561 73.4734 548.912 75.4232C547.592 76.4027 546.344 77.5363 545.205 78.8423V131.007H527.396V28.9353H545.205V63.697C547.04 62.5543 548.993 61.475 551.045 60.4684C554.589 58.6818 558.802 57.7839 563.747 57.7839C570.075 57.7839 575.21 59.1896 579.179 62.0101C583.157 64.8034 586.068 68.7031 587.939 73.6729C589.801 78.6609 590.751 84.4107 590.751 90.9494Z"></path>
+<path d="M722.062 76.5206C719.603 70.8524 715.978 66.327 711.196 62.9079C706.413 59.4889 700.492 57.7839 693.44 57.7839C688.414 57.7839 683.957 58.709 680.06 60.5228C677.846 61.5839 675.739 62.8535 673.759 64.3499V28.9353H655.977V130.998H672.629L672.955 126.228C674.98 127.616 677.113 128.776 679.31 129.783C683.279 131.542 687.989 132.44 693.449 132.44C700.501 132.44 706.422 130.735 711.205 127.316C715.987 123.924 719.612 119.372 722.071 113.704C724.557 108.036 725.778 101.85 725.778 95.1303C725.778 88.4101 724.557 82.1978 722.071 76.5297L722.062 76.5206ZM705.6 106.893C704.298 110.285 702.408 112.942 699.922 114.865C697.409 116.787 694.408 117.739 690.864 117.739C686.705 117.739 683.297 116.787 680.675 114.865C678.026 112.942 676.083 110.285 674.808 106.893C673.533 103.501 672.919 99.5741 672.919 95.1212C672.919 90.6683 673.542 86.7142 674.808 83.3224C676.074 79.9305 678.026 77.3005 680.675 75.3779C683.297 73.4552 686.705 72.4758 690.864 72.4758C694.408 72.4758 697.409 73.4552 699.922 75.3779C702.408 77.3005 704.298 79.9305 705.6 83.3224C706.865 86.7142 707.516 90.6411 707.516 95.1212C707.516 99.6013 706.865 103.501 705.6 106.893Z"></path>
+<path d="M803.29 76.3845C800.397 70.662 796.184 66.1093 790.696 62.6631C785.182 59.2168 778.537 57.5119 770.726 57.5119C762.915 57.5119 756.262 59.2168 750.783 62.6631C745.269 66.1093 741.056 70.662 738.163 76.3845C735.27 82.1071 733.815 88.3466 733.815 95.1212C733.815 101.896 735.27 108.026 738.163 113.695C741.056 119.363 745.269 123.915 750.783 127.307C756.271 130.726 762.915 132.431 770.726 132.431C778.537 132.431 785.191 130.726 790.696 127.307C796.184 123.915 800.397 119.363 803.29 113.695C806.183 108.026 807.638 101.841 807.638 95.1212C807.638 88.401 806.183 82.1071 803.29 76.3845ZM784.558 111.445C781.313 115.644 776.72 117.739 770.717 117.739C764.714 117.739 760.203 115.654 756.931 111.445C753.685 107.247 752.04 101.796 752.04 95.1212C752.04 88.4464 753.685 82.8417 756.931 78.5793C760.203 74.3259 764.769 72.2037 770.717 72.2037C776.666 72.2037 781.313 74.3168 784.558 78.5793C787.776 82.8326 789.395 88.3376 789.395 95.1212C789.395 101.905 787.776 107.237 784.558 111.445Z"></path>
+<path d="M646.665 128.912C640.581 131.08 633.665 132.168 629.498 132.44C625.014 132.74 621.334 131.515 618.523 129.674C615.684 127.833 613.605 125.448 612.276 122.573C610.929 119.698 610.251 116.687 610.251 113.568V73.6548H600.062V58.9629H610.251V45.84L628.06 32.8531V58.9629H643.872V73.6548H628.06V106.222C628.06 109.886 628.277 112.516 628.711 114.112C629.145 115.708 630.112 116.715 631.658 117.15C633.195 117.531 635.067 117.612 638.601 116.823L643.031 115.499C643.031 115.499 645.436 123.934 646.656 128.922L646.665 128.912Z"></path>
+<path d="M860 128.912C853.916 131.08 847 132.168 842.832 132.44C838.348 132.74 834.669 131.515 831.857 129.674C829.019 127.833 826.939 125.448 825.61 122.573C824.263 119.698 823.585 116.687 823.585 113.568V73.6548H813.397V58.9629H823.585V45.84L841.395 32.8531V58.9629H857.206V73.6548H841.395V106.222C841.395 109.886 841.612 112.516 842.046 114.112C842.48 115.708 843.447 116.715 844.993 117.15C846.53 117.531 848.401 117.612 851.936 116.823L856.366 115.499C856.366 115.499 858.771 123.934 859.991 128.922L860 128.912Z"></path>
+<path d="M495.718 123.462C491.65 123.199 479.428 122.709 479.428 122.709C474.862 122.709 471.779 119.163 471.779 115.499C471.779 113.985 472.964 112.298 474.41 110.901C477.864 112.479 481.778 113.377 486.027 113.377C500.012 113.377 513.754 103.238 513.754 85.4264C513.754 77.364 509.559 68.4038 502.056 62.8535L510.834 56.2603L502.67 45.3321L486.488 57.4937C486.135 57.4847 485.783 57.4756 485.43 57.4756C465.053 57.4756 458.237 74.6161 458.237 85.4264C458.237 91.1943 460.036 96.808 463.245 101.47C458.689 105.233 455.335 111.582 455.127 117.485C454.946 122.365 456.429 127.253 460.262 129.701C456.546 133.547 452.279 138.634 452.279 144.792C452.279 161.434 469.366 168 487.266 168C505.165 168 518.509 162.64 518.509 143.722C518.509 131.76 508.583 124.296 495.718 123.462ZM477.005 74.9516C479.093 72.376 482.076 71.0338 486.027 71.0338C489.978 71.0338 492.97 72.376 494.95 74.9516C496.939 77.5363 497.942 81.0007 497.942 85.3811C497.942 89.7614 496.939 93.2167 494.95 95.9011C492.97 98.4767 490.005 99.819 486.027 99.819C482.049 99.819 479.093 98.4767 477.005 95.9011C475.043 93.2167 474.049 89.7523 474.049 85.3811C474.049 81.0098 475.043 77.5363 477.005 74.9516ZM487.184 154.197C477.294 154.197 468.326 150.878 468.326 143.55C468.326 140.648 470.902 137.22 472.114 135.388C475.124 136.286 478.722 136.803 481.923 136.803C481.923 136.803 488.92 136.948 491.09 137.038C498.403 137.356 502.327 138.381 502.327 144.792C502.327 151.658 496.161 154.197 487.184 154.197Z"></path>
+<g class="logo-signals">
+<path d="M51.8337 44.0707C62.8506 44.0707 72.8289 48.0772 78.9791 54.1063L83.8412 47.0337C76.1602 40.0116 64.6716 35.5488 51.8337 35.5488C38.9617 35.5488 27.4459 40.0322 19.7649 47.0865L24.6225 54.1705C30.7682 48.1047 40.7805 44.0707 51.8337 44.0707Z"></path>
+<path d="M52.3558 25.9989C64.3955 25.9989 75.6233 29.5512 83.971 35.9977C85.6673 37.3095 87.1958 38.7039 88.5474 40.167L93.4164 33.0669C83.937 23.5863 69.0717 17.4792 52.3581 17.4792C35.2385 17.4792 20.0625 23.8821 10.624 33.7595L15.5178 40.894C17.094 39.0909 18.8435 37.4508 20.7406 35.9977C29.0906 29.5512 40.3184 25.9989 52.3581 25.9989H52.3558Z"></path>
+<path d="M51.833 8.66602C70.9392 8.66602 87.8274 15.773 97.8669 26.5768L102.7 19.5455C90.9955 7.74869 72.5629 0.144043 51.833 0.144043C31.0669 0.144043 12.6116 7.77162 0.907593 19.5983L5.73798 26.6388C15.7684 15.8005 32.6884 8.66602 51.833 8.66602Z"></path>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.4735 70.6095C5.4735 67.0702 8.32771 64.2011 11.8485 64.2011L91.7584 64.2011C95.2791 64.2011 98.1334 67.0702 98.1334 70.6095V123.725C98.1334 127.264 95.2791 130.133 91.7584 130.133H11.8485C8.32771 130.133 5.4735 127.264 5.4735 123.725L5.4735 70.6095ZM72.1261 102.682C66.4121 102.652 61.8018 97.9477 61.8241 92.1694C61.8241 86.3191 66.4343 81.6298 72.1261 81.6298C77.8596 81.6547 82.4898 86.3711 82.4726 92.1694C82.4678 97.9539 77.8462 102.65 72.1261 102.682ZM21.0696 92.1694C21.0474 97.9477 25.6576 102.652 31.3716 102.682C37.0917 102.65 41.7133 97.9539 41.7181 92.1694C41.7353 86.3711 37.1052 81.6547 31.3716 81.6298C25.6799 81.6298 21.0696 86.3191 21.0696 92.1694Z"></path>
+<path d="M31.3844 97.1482C28.6743 97.1341 26.4877 94.9029 26.4982 92.1623C26.4982 89.3875 28.6849 87.1635 31.3844 87.1635C34.1038 87.1752 36.2998 89.4123 36.2916 92.1623C36.2893 94.9058 34.0974 97.133 31.3844 97.1482Z"></path>
+<path d="M72.1388 97.1482C69.4288 97.1341 67.2422 94.9029 67.2527 92.1623C67.2527 89.3875 69.4393 87.1635 72.1388 87.1635C74.8582 87.1752 77.0543 89.4123 77.0461 92.1623C77.0438 94.9058 74.8518 97.133 72.1388 97.1482Z"></path>
+</svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="113" height="143" viewBox="0 0 113 143" fill="none" role="img" aria-labelledby="akhx3ebvfmi9f8g20s773gscwfeta8s2" class="logo-ralph-only"><title id="akhx3ebvfmi9f8g20s773gscwfeta8s2">thoughtbot</title>
+<g class="logo-signals">
+<path d="M56.8173 48.1387C68.9143 48.1387 79.8708 52.515 86.624 59.1006L91.9628 51.3752C83.5288 43.7048 70.9138 38.8301 56.8173 38.8301C42.6834 38.8301 30.0385 43.7274 21.6045 51.4328L26.9383 59.1708C33.6866 52.545 44.6804 48.1387 56.8173 48.1387Z"></path>
+<path d="M57.3906 28.3986C70.6106 28.3986 82.9392 32.2789 92.1053 39.3205C93.968 40.7534 95.6463 42.2764 97.1304 43.8746L102.477 36.1191C92.068 25.7634 75.7453 19.0925 57.3931 19.0925C38.5952 19.0925 21.9313 26.0865 11.5674 36.8756L16.9411 44.6687C18.6717 42.6992 20.5928 40.9076 22.6758 39.3205C31.8444 32.2789 44.173 28.3986 57.3931 28.3986H57.3906Z"></path>
+<path d="M56.8166 9.46585C77.7958 9.46585 96.3398 17.2289 107.364 29.03L112.67 21.3496C99.8185 8.46384 79.5788 0.157227 56.8166 0.157227C34.0145 0.157227 13.7499 8.48889 0.898438 21.4072L6.20239 29.0976C17.2162 17.2589 35.795 9.46585 56.8166 9.46585Z"></path>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.91199 77.1272C5.91199 73.2612 9.04602 70.1272 12.912 70.1272H100.656C104.522 70.1272 107.656 73.2612 107.656 77.1272V135.146C107.656 139.011 104.522 142.146 100.656 142.146H12.912C9.04602 142.146 5.91199 139.011 5.91199 135.146V77.1272ZM79.0991 112.16C72.825 112.128 67.7627 106.989 67.7871 100.677C67.7871 94.2869 72.8494 89.1648 79.0991 89.1648C85.3948 89.1919 90.4789 94.3438 90.46 100.677C90.4547 106.996 85.38 112.125 79.0991 112.16ZM23.0371 100.677C23.0127 106.989 28.075 112.128 34.3491 112.16C40.63 112.125 45.7047 106.996 45.71 100.677C45.7289 94.3438 40.6448 89.1919 34.3491 89.1648C28.0994 89.1648 23.0371 94.2869 23.0371 100.677Z"></path>
+<path d="M34.3631 106.116C31.3874 106.1 28.9864 103.663 28.998 100.669C28.998 97.6386 31.399 95.2092 34.3631 95.2092C37.3491 95.2221 39.7605 97.6656 39.7515 100.669C39.749 103.666 37.3421 106.099 34.3631 106.116Z"></path>
+<path d="M79.1131 106.116C76.1374 106.1 73.7364 103.663 73.748 100.669C73.748 97.6386 76.149 95.2092 79.1131 95.2092C82.0991 95.2221 84.5105 97.6656 84.5015 100.669C84.499 103.666 82.0921 106.099 79.1131 106.116Z"></path>
+</svg>
+</a>
+    <nav class="application-nav" aria-label="Main">
+      <span class="application-nav__mobile-header">
+        <button name="button" type="button" class="icon-button" data-action="click-&gt;application-header#toggleMobileMenu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" class="application-header__close-icon">
+<path d="M2.30035 0.414694C1.77965 -0.106005 0.935433 -0.106005 0.414734 0.414694C-0.105965 0.935393 -0.105965 1.77961 0.414734 2.30031L8.11438 9.99996L0.414814 17.6995C-0.105885 18.2202 -0.105885 19.0644 0.414814 19.5851C0.935513 20.1058 1.77973 20.1058 2.30043 19.5851L10 11.8856L17.6996 19.5851C18.2203 20.1058 19.0645 20.1058 19.5852 19.5851C20.1059 19.0644 20.1059 18.2202 19.5852 17.6995L11.8856 9.99996L19.5853 2.30031C20.106 1.77961 20.106 0.935393 19.5853 0.414694C19.0646 -0.106005 18.2203 -0.106005 17.6996 0.414694L10 8.11434L2.30035 0.414694Z" fill="currentColor"></path>
+</svg>
+          <span class="u-hide-visually">Close Menu</span>
+</button>      </span>
+
+      <ul class="application-nav__row">
+        <li class="application-nav__item mobile-nav-only">
+          <a id="twitch-button-mobile" class="site-nav-live-link button button--small button--secondary" style="display: none" data-twitch-target="twitchButtonMobile" href="https://www.twitch.tv/thoughtbot">
+  <span class="live-link-content live-link-content--short">
+    We&#39;re live
+  </span>
+  <span class="live-link-content">
+    Live on Twitch!
+  </span>
+  <div class="live-link-modal">
+    <div class="live-link-modal-content">
+      <div id="twitch-player-mobile" class="live-link-modal-content-player"></div>
+    <h4>thoughtbot is livestreaming</h4>
+    <p>Work alongside the thoughtbot team as we collaborate with each other and our clients, live. Ask us anything, we&#39;re live right now!</p>
+  </div>
+  </div>
+</a>
+        </li>
+            <li class="application-nav__item">
+              <button name="button" type="button" class="application-nav__link-button " id="services" data-action="click-&gt;dropdown-menu#toggleDropdown click-&gt;dropdown-menu#toggleState" data-dropdown-menu-target="dropdownButton" class_active="application-nav__link--active" aria-expanded="false">
+                Services<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true" class="chevron">
+<path d="M1.62072 0.818115L0.560059 1.87878L5.86335 7.1821L11.1666 1.8788L10.106 0.818137L5.86336 5.06076L1.62072 0.818115Z" fill="currentColor"></path>
+</svg>
+</button>            </li>
+            <li class="application-nav__item">
+              <button name="button" type="button" class="application-nav__link-button " id="industries" data-action="click-&gt;dropdown-menu#toggleDropdown click-&gt;dropdown-menu#toggleState" data-dropdown-menu-target="dropdownButton" class_active="application-nav__link--active" aria-expanded="false">
+                Industries<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true" class="chevron">
+<path d="M1.62072 0.818115L0.560059 1.87878L5.86335 7.1821L11.1666 1.8788L10.106 0.818137L5.86336 5.06076L1.62072 0.818115Z" fill="currentColor"></path>
+</svg>
+</button>            </li>
+            <li class="application-nav__item">
+              <a class="application-nav__link" href="/case-studies">Case Studies</a>
+            </li>
+            <li class="application-nav__item">
+              <button name="button" type="button" class="application-nav__link-button " id="resources" data-action="click-&gt;dropdown-menu#toggleDropdown click-&gt;dropdown-menu#toggleState" data-dropdown-menu-target="dropdownButton" class_active="application-nav__link--active" aria-expanded="false">
+                Resources<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true" class="chevron">
+<path d="M1.62072 0.818115L0.560059 1.87878L5.86335 7.1821L11.1666 1.8788L10.106 0.818137L5.86336 5.06076L1.62072 0.818115Z" fill="currentColor"></path>
+</svg>
+</button>            </li>
+            <li class="application-nav__item">
+              <a class="application-nav__link application-nav__link--active" aria-current="page" href="https://thoughtbot.com/blog">Blog</a>
+            </li>
+        <li class="application-nav__item mobile-nav-only">
+          <a class="application-nav__link button" href="/hire-us">Let’s Talk</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="application-header__buttons">
+      <a id="twitch-button" class="site-nav-live-link button button--small button--secondary" style="display: none" data-twitch-target="twitchButton" href="https://www.twitch.tv/thoughtbot">
+  <span class="live-link-content live-link-content--short">
+    We&#39;re live
+  </span>
+  <span class="live-link-content">
+    Live on Twitch!
+  </span>
+  <div class="live-link-modal">
+    <div class="live-link-modal-content">
+      <div id="twitch-player" class="live-link-modal-content-player"></div>
+    <h4>thoughtbot is livestreaming</h4>
+    <p>Work alongside the thoughtbot team as we collaborate with each other and our clients, live. Ask us anything, we&#39;re live right now!</p>
+  </div>
+  </div>
+</a>
+      <div class="application-header__mobile-nav">
+        <button name="button" type="button" class="application-header__button icon-button" data-twitch-target="iconButton" aria-expanded="false" data-action="click-&gt;application-header#toggleMobileMenu click-&gt;mobile-menu-button#toggleState" data-controller="mobile-menu-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 20" width="28" height="28" aria-hidden="true" class="application-header__mobile-icon"><path d="M25 16v4H0v-4h25zm0-8v4H0V8h25zm0-8v4H0V0h25z" fill-rule="evenodd"></path></svg>
+          <span class="u-hide-visually">Menu</span>
+</button>      </div>
+      <div class="application-header__cta-group application-header__button-group">
+          <a class="application-header__hire-us button button--small" href="/hire-us">Let’s get started!</a>
+      </div>
+    </div>
+  </div>
+
+    <div class="application-header__dropdown-container" data-dropdown-menu-target="services" tabIndex="0" aria-label="Navigation dropdown expanded">
+      <button name="button" type="button" class="dropdown-background application-nav__link-button" id="services" data-action="click-&gt;dropdown-menu#toggleDropdown click-&gt;dropdown-menu#toggleState" data-dropdown-menu-target="dropdownButton" class_active="application-nav__link--active" aria-expanded="false" aria-hidden="true">
+</button>      <span class="application-nav__mobile-header">
+        <button name="button" type="button" class="back-button" data-action="click-&gt;dropdown-menu#toggleDropdownMobileClose" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none" aria-hidden="true">
+<path d="M8.48525 2.34317L7.07104 0.928955L0 8.00001L7.07107 15.0711L8.48528 13.6569L2.82842 8L8.48525 2.34317Z" fill="currentColor"></path>
+</svg>
+          Back
+</button>        <button name="button" type="button" class="icon-button" data-action="click-&gt;dropdown-menu#toggleDropdownMobileClose click-&gt;application-header#toggleMobileMenu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" class="application-header__close-icon">
+<path d="M2.30035 0.414694C1.77965 -0.106005 0.935433 -0.106005 0.414734 0.414694C-0.105965 0.935393 -0.105965 1.77961 0.414734 2.30031L8.11438 9.99996L0.414814 17.6995C-0.105885 18.2202 -0.105885 19.0644 0.414814 19.5851C0.935513 20.1058 1.77973 20.1058 2.30043 19.5851L10 11.8856L17.6996 19.5851C18.2203 20.1058 19.0645 20.1058 19.5852 19.5851C20.1059 19.0644 20.1059 18.2202 19.5852 17.6995L11.8856 9.99996L19.5853 2.30031C20.106 1.77961 20.106 0.935393 19.5853 0.414694C19.0646 -0.106005 18.2203 -0.106005 17.6996 0.414694L10 8.11434L2.30035 0.414694Z" fill="currentColor"></path>
+</svg>
+</button>      </span>
+
+      <div class="header-container application-header__dropdown">
+          <a href="/services" class="application-header__list-header-mobile-only">
+            View all Services
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+<path d="M0 6H20.9492" stroke="currentColor" stroke-width="1.41892"></path>
+<path d="M13.7043 1L17.0377 4L21.7043 6L17.0377 8L13.7043 11" stroke="currentColor" stroke-width="1.41892" stroke-linejoin="bevel"></path>
+</svg>
+            </span>
+          </a>
+           <div class="application-header__dropdown-block">
+      <span class="application-header__list-header">Development</span>
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/services/ruby-on-rails-development">Ruby on Rails</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/hotwire-stimulus-turbo-frontend-development">Hotwire</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/machine-learning-artificial-intelligence-ai">AI and Machine Learning</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/rails-maintenance">Maintenance</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/mobile-development">Mobile</a>
+        </li>
+    </ul>
+  </div>
+
+           <div class="application-header__dropdown-block">
+      <span class="application-header__list-header">Design</span>
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/services/shaping-sprint">Shaping Sprints</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/product-design">UX, UI, and Product Design</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/design-systems">Design Systems</a>
+        </li>
+    </ul>
+  </div>
+
+           <div class="application-header__dropdown-block">
+      <span class="application-header__list-header">Product</span>
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/services/mvp-development">MVP</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/product-management">Product Management</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/product-accessibility">Accessibility</a>
+        </li>
+    </ul>
+  </div>
+
+           <div class="application-header__dropdown-block">
+      <span class="application-header__list-header">Team and Processes</span>
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/services/team-augmentation">Team Augmentation</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="/services/fractional-product-technical-leadership">Fractional Leadership</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+        <a class="application-nav__link application-header__dropdown-footer" href="/services">
+          View all Services
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+<path d="M0 6H20.9492" stroke="currentColor" stroke-width="1.41892"></path>
+<path d="M13.7043 1L17.0377 4L21.7043 6L17.0377 8L13.7043 11" stroke="currentColor" stroke-width="1.41892" stroke-linejoin="bevel"></path>
+</svg>
+</a>    </div>
+    <div class="application-header__dropdown-container" data-dropdown-menu-target="industries" tabIndex="0" aria-label="Navigation dropdown expanded">
+      <button name="button" type="button" class="dropdown-background application-nav__link-button" id="industries" data-action="click-&gt;dropdown-menu#toggleDropdown click-&gt;dropdown-menu#toggleState" data-dropdown-menu-target="dropdownButton" class_active="application-nav__link--active" aria-expanded="false" aria-hidden="true">
+</button>      <span class="application-nav__mobile-header">
+        <button name="button" type="button" class="back-button" data-action="click-&gt;dropdown-menu#toggleDropdownMobileClose" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none" aria-hidden="true">
+<path d="M8.48525 2.34317L7.07104 0.928955L0 8.00001L7.07107 15.0711L8.48528 13.6569L2.82842 8L8.48525 2.34317Z" fill="currentColor"></path>
+</svg>
+          Back
+</button>        <button name="button" type="button" class="icon-button" data-action="click-&gt;dropdown-menu#toggleDropdownMobileClose click-&gt;application-header#toggleMobileMenu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" class="application-header__close-icon">
+<path d="M2.30035 0.414694C1.77965 -0.106005 0.935433 -0.106005 0.414734 0.414694C-0.105965 0.935393 -0.105965 1.77961 0.414734 2.30031L8.11438 9.99996L0.414814 17.6995C-0.105885 18.2202 -0.105885 19.0644 0.414814 19.5851C0.935513 20.1058 1.77973 20.1058 2.30043 19.5851L10 11.8856L17.6996 19.5851C18.2203 20.1058 19.0645 20.1058 19.5852 19.5851C20.1059 19.0644 20.1059 18.2202 19.5852 17.6995L11.8856 9.99996L19.5853 2.30031C20.106 1.77961 20.106 0.935393 19.5853 0.414694C19.0646 -0.106005 18.2203 -0.106005 17.6996 0.414694L10 8.11434L2.30035 0.414694Z" fill="currentColor"></path>
+</svg>
+</button>      </span>
+
+      <div class="header-container application-header__dropdown">
+           <div class="application-header__dropdown-block">
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/industries/health-tech">Healthcare</a>
+        </li>
+    </ul>
+  </div>
+
+           <div class="application-header__dropdown-block">
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/industries/fintech">Finance</a>
+        </li>
+    </ul>
+  </div>
+
+           <div class="application-header__dropdown-block">
+    <ul>
+        <li>
+          <a class="application-nav__link" href="/industries/insuretech">Insurance</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+    <div class="application-header__dropdown-container" data-dropdown-menu-target="resources" tabIndex="0" aria-label="Navigation dropdown expanded">
+      <button name="button" type="button" class="dropdown-background application-nav__link-button" id="resources" data-action="click-&gt;dropdown-menu#toggleDropdown click-&gt;dropdown-menu#toggleState" data-dropdown-menu-target="dropdownButton" class_active="application-nav__link--active" aria-expanded="false" aria-hidden="true">
+</button>      <span class="application-nav__mobile-header">
+        <button name="button" type="button" class="back-button" data-action="click-&gt;dropdown-menu#toggleDropdownMobileClose" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none" aria-hidden="true">
+<path d="M8.48525 2.34317L7.07104 0.928955L0 8.00001L7.07107 15.0711L8.48528 13.6569L2.82842 8L8.48525 2.34317Z" fill="currentColor"></path>
+</svg>
+          Back
+</button>        <button name="button" type="button" class="icon-button" data-action="click-&gt;dropdown-menu#toggleDropdownMobileClose click-&gt;application-header#toggleMobileMenu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" class="application-header__close-icon">
+<path d="M2.30035 0.414694C1.77965 -0.106005 0.935433 -0.106005 0.414734 0.414694C-0.105965 0.935393 -0.105965 1.77961 0.414734 2.30031L8.11438 9.99996L0.414814 17.6995C-0.105885 18.2202 -0.105885 19.0644 0.414814 19.5851C0.935513 20.1058 1.77973 20.1058 2.30043 19.5851L10 11.8856L17.6996 19.5851C18.2203 20.1058 19.0645 20.1058 19.5852 19.5851C20.1059 19.0644 20.1059 18.2202 19.5852 17.6995L11.8856 9.99996L19.5853 2.30031C20.106 1.77961 20.106 0.935393 19.5853 0.414694C19.0646 -0.106005 18.2203 -0.106005 17.6996 0.414694L10 8.11434L2.30035 0.414694Z" fill="currentColor"></path>
+</svg>
+</button>      </span>
+
+      <div class="header-container application-header__dropdown">
+          <a href="/resources" class="application-header__list-header-mobile-only">
+            View all Resources
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+<path d="M0 6H20.9492" stroke="currentColor" stroke-width="1.41892"></path>
+<path d="M13.7043 1L17.0377 4L21.7043 6L17.0377 8L13.7043 11" stroke="currentColor" stroke-width="1.41892" stroke-linejoin="bevel"></path>
+</svg>
+            </span>
+          </a>
+           <div class="application-header__dropdown-block">
+      <a class="application-header__list-header" href="https://thoughtbot.com/resources#development-resources-learn-from-our-development-team">
+        Development
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+<path d="M0 6H20.9492" stroke="currentColor" stroke-width="1.41892"></path>
+<path d="M13.7043 1L17.0377 4L21.7043 6L17.0377 8L13.7043 11" stroke="currentColor" stroke-width="1.41892" stroke-linejoin="bevel"></path>
+</svg>
+</a>    <ul>
+        <li>
+          <a class="application-nav__link" href="/resources/tech-leadership">Tech Leadership Resources</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://thoughtbot.com/open-source">Open Source</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://thoughtbot.com/resources#books-take-one-off-the-thoughtbot-bookshelf">Books</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://bikeshed.thoughtbot.com/">The Bike Shed Podcast</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://www.youtube.com/@thoughtbot/streams">Live Streaming on YouTube</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://www.youtube.com/playlist?list=PL8tzorAO7s0g57gv25kLcHLTIyIBdEVyX">Conference Talks</a>
+        </li>
+    </ul>
+  </div>
+
+           <div class="application-header__dropdown-block">
+      <span class="application-header__list-header">The business of great software</span>
+    <ul>
+        <li>
+          <a class="application-nav__link" href="https://thoughtbot.com/playbook">Playbook</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://podcast.thoughtbot.com/">Giant Robots Smashing Into Other Giant Robots Podcast</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://thoughtbot.com/playbook/designing/design-sprints/README">Design Sprint Guide</a>
+        </li>
+        <li>
+          <a class="application-nav__link" href="https://www.linkedin.com/company/thoughtbot-inc-/events">Live Streaming on LinkedIn</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+        <a class="application-nav__link application-header__dropdown-footer" href="/resources">
+          View all Resources
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+<path d="M0 6H20.9492" stroke="currentColor" stroke-width="1.41892"></path>
+<path d="M13.7043 1L17.0377 4L21.7043 6L17.0377 8L13.7043 11" stroke="currentColor" stroke-width="1.41892" stroke-linejoin="bevel"></path>
+</svg>
+</a>    </div>
+</header>
+
+
+      <main class="page-section container basic-grid">
+        <div class="text-grid--narrow long-form-content--narrow">
+          <script type="application/ld+json">
+  {"@context":{"schema":"http://schema.org/"},"@graph":[{"@id":"#louis-antonopoulos","@type":"schema:Person","schema:name":"Louis Antonopoulos","schema:url":"https://thoughtbot.com/blog/authors/louis-antonopoulos"},{"@id":"#thoughtbot","@type":"schema:Organization","schema:image":"https://thoughtbot.com/blog/thoughtbot-logo-with-color.svg","schema:logo":"https://thoughtbot.com/blog/thoughtbot-logo-with-color.svg","schema:name":"thoughtbot","schema:telephone":["+1 (877) 9-ROBOTS","+44 (0)20 3807 0560"],"schema:url":"https://thoughtbot.com/"},{"@id":"#prevent-the-robocalypse-with-tdd","@type":"schema:BlogPosting","schema:abstract":"Write tests first or watch Claude blow everything up. Your choice.","schema:author":[{"@id":"#louis-antonopoulos"}],"schema:dateModified":"2026-01-09T22:16:21Z","schema:datePublished":"2026-01-12T00:00:00Z","schema:headline":"Prevent the Robocalypse with Claude Code and TDD","schema:inLanguage":"en","schema:keywords":"ruby,rails,ai,llm","schema:publisher":{"@id":"#thoughtbot"}}]}
+</script>
+
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Prevent the Robocalypse with Claude Code and TDD","author":[{"@type":"Person","name":"Louis Antonopoulos","url":"https://thoughtbot.com/blog/authors/louis-antonopoulos"}],"datePublished":"2026-01-12T00:00:00Z","dateModified":"2026-01-09T22:16:21Z","description":"Write tests first or watch Claude blow everything up. Your choice."}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <article
+    class="post text"
+    id="main-content"
+    data-url="/blog/prevent-the-robocalypse-with-tdd"
+    itemscope="true"
+    itemtype="https://schema.org/CreativeWork"
+    lang="en"
+    dir="ltr">
+    <header>
+      <h1 class="title type-heading type-heading--1">
+        Prevent the Robocalypse with Claude Code and TDD
+      </h1>
+      <span class="print-only print-only-url">https://thoughtbot.com/blog/prevent-the-robocalypse-with-tdd</span>
+      <div class="meta">
+  <div class="meta-outer-wrapper">
+    <div class="meta-inner-wrapper">
+      <div class="meta-author">
+          <a href="/blog/authors/louis-antonopoulos">Louis Antonopoulos</a>
+
+        <time
+          class="meta-date"
+          datetime="2026-01-12T00:00:00+00:00"
+          itemprop="datePublished"
+        >
+          January 12, 2026
+
+        </time>
+      </div>
+
+
+    </div>
+  </div>
+
+    <ul class="meta-tag-list">
+      <li class="meta-tag-item">
+        <a href="/blog/tags/ruby">Ruby</a>
+      </li>
+      <li class="meta-tag-item">
+        <a href="/blog/tags/rails">Rails</a>
+      </li>
+      <li class="meta-tag-item">
+        <a href="/blog/tags/ai">AI</a>
+      </li>
+      <li class="meta-tag-item">
+        <a href="/blog/tags/llm">Llm</a>
+      </li>
+  </ul>
+
+
+  <div
+    class="copy-markdown u-margin-top-small"
+    data-controller="copy-markdown"
+    data-copy-markdown-url-value="/blog/prevent-the-robocalypse-with-tdd.md"
+    data-copy-markdown-copy-text-value="Copy as Markdown"
+    data-copy-markdown-copied-text-value="Copied!"
+    data-copy-markdown-copied-class="is-copied"
+  >
+    <button
+      type="button"
+      class="button button--secondary button--x-small button--icon copy-markdown__button"
+      data-action="copy-markdown#copy"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M21.818 10.91a1.09 1.09 0 0 0-1.09-1.092h-9.819a1.09 1.09 0 0 0-1.09 1.091v9.818c0 .603.488 1.091 1.09 1.091h9.818a1.09 1.09 0 0 0 1.091-1.09zM24 20.726A3.273 3.273 0 0 1 20.727 24H10.91a3.273 3.273 0 0 1-3.273-3.273V10.91a3.273 3.273 0 0 1 3.273-3.273h9.818A3.273 3.273 0 0 1 24 10.91z"></path>
+  <path d="M14.182 4.364V3.273a1.09 1.09 0 0 0-1.091-1.091H3.273a1.09 1.09 0 0 0-1.091 1.09v9.819a1.09 1.09 0 0 0 1.09 1.09h1.092a1.09 1.09 0 1 1 0 2.183H3.273A3.27 3.27 0 0 1 0 13.09V3.273A3.27 3.27 0 0 1 3.273 0h9.818a3.27 3.27 0 0 1 3.273 3.273v1.09a1.09 1.09 0 1 1-2.182 0"></path>
+</svg>
+      <span
+        class="copy-markdown__label"
+        data-copy-markdown-target="label"
+        aria-live="polite"
+      >Copy as Markdown</span>
+    </button>
+  </div>
+</div>
+
+    </header>
+
+
+    <div class="post-body">
+      <p>When you&rsquo;re working with an agent like
+<a href="https://www.claude.com/product/claude-code">Claude Code</a>,
+working in a solid TDD cycle will help prevent downsides that AI-assisted development
+can lead to, including:</p>
+
+<ul>
+<li>So many changes all at once that you can&rsquo;t tell what to commit</li>
+<li>Code that does nothing</li>
+<li>Code that doesn&rsquo;t do what you think it does</li>
+<li>Insidious bugs that will haunt your dreams in three months</li>
+<li>The end of the world</li>
+</ul>
+<h2 id="but-first-we-need-a-credo">
+  <a href="#but-first-we-need-a-credo">
+    But first, we need a credo
+  </a>
+</h2>
+
+<p>Before we go down this path, we need a statement of belief. My statement is this:</p>
+
+<p><strong>Own your commits.</strong></p>
+
+<p>This is the single most important thing that you <em>must</em> do as a person working with an AI
+agent. The code is not Claude&rsquo;s. The tests are not Claude&rsquo;s. The responsibility is not
+Claude&rsquo;s.</p>
+
+<p><em>It is yours.</em></p>
+
+<p>When you commit to your branch, <em>you</em> are making the commit.</p>
+
+<p>When you open the PR, <em>you</em> are proposing a change to <code>main</code>.</p>
+
+<p>When you review the PR, <em>you</em> are responsible for finding issues and making it better.</p>
+
+<p>And when the PR is merged, the code is <em>yours</em>. So own it from the very beginning. If you
+don&rsquo;t understand the what, and more importantly, the why of the code you co-wrote,
+<strong>you should not commit it</strong>.</p>
+<h2 id="and-second-we-need-rules">
+  <a href="#and-second-we-need-rules">
+    And second, we need rules
+  </a>
+</h2>
+
+<p>Keeping Claude on the path of Goodness and Light requires a steady hand and an even
+steadier set of rules: a well-written <code>CLAUDE.md</code>.</p>
+
+<p>I&rsquo;m going to share a full version of my <code>CLAUDE.md</code> in another post. For now, here are
+some lines you can add to your <code>CLAUDE.md</code> to support TDD:</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="gh"># Project overview</span>
+
+I'm writing a blog post to demonstrate how to use TDD with Claude Code.
+
+We'll create a basic Author/Post-type Rails app to use as our playground.
+
+Also, please do not take over the Earth.
+
+[...longer summary of the project's purpose, functionality, etc...]
+
+<span class="gh"># APIs</span>
+<span class="p">
+-</span> <span class="p">[</span><span class="nv">Peaceful Coexistence</span><span class="p">](</span><span class="sx">https://api.peacefulcoexistencewithai.com/documentation</span><span class="p">)</span>
+
+[...other key APIs Claude should know about...]
+
+<span class="gh"># You (Claude)</span>
+
+Besides not wanting to take over the earth, you like working in small, iterative TDD
+cycles following the
+<span class="p">[</span><span class="nv">Red, Green, Refactor</span><span class="p">](</span><span class="sx">https://martinfowler.com/bliki/TestDrivenDevelopment.html</span><span class="p">)</span>
+approach.
+
+GO READ THIS NOW.
+
+[...other descriptions of who Claude is and how it should act in this project...]
+
+<span class="gh"># Helpful Commands</span>
+<span class="p">
+-</span> <span class="sb">`rails test`</span>                     : Only run non-system tests for speedy TDD cycles
+<span class="p">-</span> <span class="sb">`rails test &amp;&amp; rails test:system`</span>: Run all tests when done with a feature
+
+<span class="gh"># Testing and TDD</span>
+
+When working on a new feature or a bug fix, you always write a failing test or series of
+tests first and then wait for me to review them.
+
+Then, when I've committed those tests, you add the implementation to resolve one or more
+tests. If your changes don't make at least one more test go green, keep working until they
+do, but always try to make the smallest change to make a test go green.
+</code></pre></div><h2 id="starting-out">
+  <a href="#starting-out">
+    Starting out
+  </a>
+</h2>
+
+<p>Any time I start a new session with the <code>claude</code> command, open a prior session with
+<code>claude /resume</code>, or after it compacts the conversation, I ask Claude to reread its
+instructions:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ME:
+
+Hi there! Please read CLAUDE.md and anything else it directs you to read.
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Read(CLAUDE.md)
+
+⏺ Now let me read the Martin Fowler article on TDD that you've asked me to review:
+
+[...]
+
+⏺ Got it! I've read both the CLAUDE.md and the Martin Fowler article on TDD. Here's my
+understanding:
+
+Project: A Rails Author/Post app for your blog post demonstrating TDD with Claude Code.
+
+My workflow:
+1. Red - Write failing test(s) first, then wait for your review
+2. Green - After you commit, implement the smallest change to make test(s) pass
+3. Refactor - Clean up code while keeping tests green
+
+Key principle: Small, iterative cycles. I won't skip the refactor step!
+
+Commands:
+- rails test for fast feedback during TDD
+- rails test &amp;&amp; rails test:system when completing a feature
+
+I'm ready to help you build this app test-first. What's our first feature?
+</code></pre></div>
+<p>So, at least in principle, it knows what we want to do and what our approach will be.</p>
+<h3 id="a-note-on-external-content">
+  <a href="#a-note-on-external-content">
+    A note on external content
+  </a>
+</h3>
+
+<p>If you want Claude to fetch external content, the direction inside <code>CLAUDE.md</code> to
+<code>GO READ THIS NOW</code> only seems to work if you add a reinforcing phrase to your
+instruction to read <code>CLAUDE.md</code>. This is true whether it&rsquo;s a new or existing session.</p>
+
+<p>In other words, the &ldquo;read this&rdquo; instruction will be ignored if you tell Claude,
+&ldquo;Read CLAUDE.md&rdquo; and followed if you tell Claude, &ldquo;Read CLAUDE.md and anything else
+it directs you to read.&rdquo;</p>
+
+<p>I&rsquo;ve also had success with adding this kind of message at the very top of my <code>CLAUDE.md</code>:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>When you are done reading this document, make sure to also read the project README.
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre class="highlight plaintext"><code>When you are done reading this document, make sure to also read
+https://github.com/thoughtbot/guides/tree/main/rails#readme.
+</code></pre></div><h2 id="first-feature">
+  <a href="#first-feature">
+    First feature
+  </a>
+</h2>
+
+<p>I created a new Rails app and asked Claude to add Bootstrap support. So far, no testing
+was suggested by Claude, but I was hoping it was because we were just getting started.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ME:
+
+Let's add our first feature: some kind of homepage so we can add some Bootstrap styling to
+make sure it all works.
+
+[prays that Claude remembers that TDD is a thing]
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Following TDD, let me write a failing test first.
+
+⏺ Write(test/controllers/pages_controller_test.rb)
+    require "test_helper"
+    class PagesControllerTest &lt; ActionDispatch::IntegrationTest
+      test "should get homepage" do
+        get root_path
+        assert_response :success
+        assert_select "h1", "Welcome to TDD Claude"
+      end
+    end
+
+⏺ Bash(rails test test/controllers/pages_controller_test.rb)
+     Running 1 tests in a single process (parallelization threshold is 50)
+     Run options: --seed 42794
+
+     # Running:
+
+     E
+
+     Error:
+     PagesControllerTest#test_should_get_homepage:
+     … +9 lines (ctrl+o to see all)
+
+⏺ Red - The test fails as expected:
+  NoMethodError: undefined method 'root_path'
+
+  The test checks that:
+  1. The root path exists and returns success
+  2. The page contains an &lt;h1&gt; with "Welcome to TDD Claude"
+
+  Ready for your review. Once you've committed, I'll implement the smallest change to make
+  it green.
+</code></pre></div>
+<p>So far, so good.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ME:
+
+[commits code]
+
+Ok, ready
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Update(config/routes.rb)
+    12 -    # Defines the root path route ("/")
+    13 -    # root "posts#index"
+    12 +    root "pages#home"
+    13    end
+
+⏺ Write(app/controllers/pages_controller.rb)
+    class PagesController &lt; ApplicationController
+      def home
+      end
+    end
+
+⏺ Write(app/views/pages/home.html.erb)
+    &lt;h1&gt;Welcome to TDD Claude&lt;/h1&gt;
+
+⏺ Bash(rails test test/controllers/pages_controller_test.rb)
+  ⎿  Running 1 tests in a single process (parallelization threshold is 50)
+     Run options: --seed 55742
+     … +6 lines (ctrl+o to expand)
+
+⏺ Green - Test passes.
+
+  Added:
+  - root "pages#home" route
+  - PagesController with home action
+  - Simple view with the &lt;h1&gt;
+
+  Refactor - Code is minimal, nothing to clean up.
+
+  You can now run bin/rails server and check that Bootstrap is working. Want to add some
+  Bootstrap styling to the homepage, or move on to the next feature?
+</code></pre></div>
+<p>Awesome! We&rsquo;ve implemented a simple feature and Claude used TDD to create it.
+But what if the change is not that simple?</p>
+<h2 id="a-more-advanced-multiple-step-feature">
+  <a href="#a-more-advanced-multiple-step-feature">
+    A more advanced multiple step feature
+  </a>
+</h2>
+<div class="highlight"><pre class="highlight plaintext"><code>ME:
+
+Let's go to the next feature. Here's what I'm thinking. We'll need an Authors model with a
+full_name field that is required. Eventually, an Author will have many Books. We'll want a
+controller that lists all the authors in the system, probably alphabetically by full_name,
+and a link to it from our home page. And we'll want some seed data for development.
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Good feature scope. Let me write the failing tests first.
+
+⏺ Write(test/models/author_test.rb)
+    require "test_helper"
+    class AuthorTest &lt; ActiveSupport::TestCase
+      test "is valid with a full_name" do
+        author = Author.new(full_name: "Jane Austen")
+        assert author.valid?
+      end
+      test "is invalid without a full_name" do
+    … +7 lines (ctrl+o to expand)
+
+⏺ Write(test/controllers/authors_controller_test.rb)
+    require "test_helper"
+    class AuthorsControllerTest &lt; ActionDispatch::IntegrationTest
+      test "lists authors alphabetically by full_name" do
+        Author.create!(full_name: "Virginia Woolf")
+        Author.create!(full_name: "Jane Austen")
+        Author.create!(full_name: "Toni Morrison")
+        get authors_path
+    … +7 lines (ctrl+o to expand)
+
+⏺ Update(test/controllers/pages_controller_test.rb)
+      7        assert_response :success
+      8        assert_select "h1", "Welcome to TDD Claude"
+      9      end
+      10 +
+      11 +    test "homepage has link to authors" do
+      12 +      get root_path
+      13 +
+      14 +      assert_select "a[href=?]", authors_path, text: "Authors"
+      15 +    end
+      16    end
+
+⏺ Bash(rails test)
+    Running 5 tests in a single process (parallelization threshold is 50)
+    Run options: --seed 15645
+
+    # Running:
+
+    .E
+
+    Error:
+    PagesControllerTest#test_homepage_has_link_to_authors:
+    … +36 lines (ctrl+o to see all)
+
+⏺ Red - 4 failing tests:
+  1. Author model tests (2) - uninitialized constant Author
+    - Valid with full_name
+    - Invalid without full_name
+  2. Authors controller test - uninitialized constant Author
+    - Lists authors alphabetically by full_name
+  3. Homepage link test - undefined local variable 'authors_path'
+    - Link to authors from homepage
+
+  Note: I haven't written a test for seed data since seeds are typically not tested
+  (they're dev/setup tooling).
+
+  Ready for your review. Once committed, I'll implement incrementally to make tests green
+  one by one.
+</code></pre></div>
+<p>At this point, we have a number of tests that cover the feature so far! We have two model
+tests and two controller tests, all failing.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>5 runs, 2 assertions, 0 failures, 4 errors, 0 skips
+</code></pre></div>
+<p>After reviewing the tests and committing them, I directed Claude to continue.</p>
+
+<p>The next result was</p>
+
+<ul>
+<li>a new <code>Author</code> model with a <code>#full_name</code> validation</li>
+<li>a new <code>AuthorsController</code> with an <code>#index</code> action</li>
+<li>a new route to <code>AuthorsController#index</code> (poorly placed in the <code>routes.rb</code> file)</li>
+<li>a new <code>authors/index.html.erb</code> view</li>
+<li>a link added to <code>pages/home.html.erb</code></li>
+<li>a database migration to create the <code>authors</code> table and the <code>schema.rb</code> update</li>
+<li>code to find or add authors in <code>db/seeds.rb</code></li>
+<li>an empty <code>test/fixtures/authors.yml</code></li>
+</ul>
+
+<p>all tests passing, and the functionality working as intended on localhost.</p>
+
+<p>While this was effective, I felt like it broke the spirit of TDD because we went from Red
+to Green all at once, there was no refactoring, and it was bordering on too much to
+consider at once because the diff contained nine new or changed files.</p>
+
+<p>So, I did what I frequently do when Claude is getting ahead of where I want it to be:
+I stashed all the changes so I wouldn&rsquo;t lose anything, and gave it new directions.</p>
+<h2 id="redirecting-claude">
+  <a href="#redirecting-claude">
+    Redirecting Claude
+  </a>
+</h2>
+
+<p>Any time you correct Claude, think about if this is a worthwhile change to
+your <code>CLAUDE.md</code> so that the learnings will persist through and across sessions.</p>
+
+<p>For this, I updated the <code>Testing and TDD</code> section:</p>
+<div class="highlight"><pre class="highlight markdown"><code><span class="gh"># Testing and TDD</span>
+
+When working on a new feature or a bug fix, you always write a failing test or series of
+tests first and then wait for me to review them.
+
+Then, when I've committed those tests, you add the smallest implementation possible to
+resolve a single test failure. It's ok if it happens to resolve an entire class of
+failures. For example, if a missing model is causing 10 tests to fail, it's fine to create
+a model that resolves those failures. But adding a model, 4 validations, a controller, a
+view, and a route? Break that into individual steps so I can make tiny commits and
+understand each change fully.
+
+If your changes don't make at least one more test go green, keep working until they
+do, but always try to make the smallest change to make the least number of tests go green.
+</code></pre></div>
+<p>and told it:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ME:
+
+That was all really good, and the tests passed and the site did what we want it to do, but
+it's not how I want us to work together. I've stashed all the work away so we're back to
+the prior failing tests. Go reread CLAUDE.md and tell me what you think your next step
+should be.
+</code></pre></div>
+<p>And Claude understood!</p>
+<div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Read(CLAUDE.md)
+  ⎿  Read 36 lines
+
+⏺ I see - the instructions are clearer now. I went too fast and made too many changes at
+  once.
+
+  The key point: make the smallest implementation possible to resolve a single test
+  failure, then wait for you to commit before continuing.
+
+  My next step should be to run rails test, see what's failing, and make the smallest
+  change to make just one test (or one class of related failures) go green - then stop and
+  wait for you.
+
+  Let me do that:
+
+⏺ Bash(rails test)
+  ⎿  Error: Exit code 1
+     Running 5 tests in a single process (parallelization threshold is 50)
+     Run options: --seed 14153
+
+     # Running:
+
+     .E
+
+     Error:
+     PagesControllerTest#test_homepage_has_link_to_authors:
+     … +36 lines (ctrl+o to see all)
+
+⏺ 3 tests fail because Author doesn't exist. That's a class of related failures. The
+  smallest change: generate the Author model.
+</code></pre></div>
+<p>and from there it continued, adding only this to the diff:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Author</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>I committed that and told it to continue. It took the next expected step: adding the
+validation!</p>
+<div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Read(app/models/author.rb)
+
+⏺ Update(app/models/author.rb)
+    1    class Author &lt; ApplicationRecord
+    2 +    validates :full_name, presence: true
+    3    end
+
+⏺ Bash(rails test)
+    Running 5 tests in a single process (parallelization threshold is 50)
+    Run options: --seed 62461
+
+    # Running:
+
+    ...E
+
+    Error:
+    PagesControllerTest#test_homepage_has_link_to_authors:
+    … +18 lines (ctrl+o to see all)
+
+⏺ 1 more test green. Now:
+  - 3 passing (both model tests now pass)
+  - 2 errors (no authors_path)
+
+  Added validates :full_name, presence: true to Author.
+
+  Ready for your commit.
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>ME:
+
+I remembered that I hadn't reset the DB, so I did that and am ready for the next step.
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Both errors are undefined local variable or method 'authors_path'. Smallest fix: add the
+  route.
+
+⏺ Update(config/routes.rb)
+    12      root "pages#home"
+    13 +
+    14 +    resources :authors, only: [:index]
+
+[...]
+
+⏺ DB was reset but migration file is missing. Let me create it:
+
+⏺ Bash(rails generate migration CreateAuthors full_name:string)
+    create    db/migrate/20251201193036_create_authors.rb
+
+⏺ Read(db/migrate/20251201193036_create_authors.rb)
+
+⏺ Bash(rails db:migrate)
+  ⎿  == 20251201193036 CreateAuthors: migrating ====================================
+     -- create_table(:authors)
+        -&gt; 0.0046s
+     == 20251201193036 CreateAuthors: migrated (0.0046s) ===========================
+
+⏺ Progress! Now:
+  - 3 passing (both model tests + homepage test)
+  - 2 failures:
+    - Homepage missing link to authors
+    - AuthorsController returns 404 (no controller yet)
+
+  Added the route resources :authors, only: [:index] and the migration.
+
+  Ready for your commit.
+</code></pre></div>
+<p>After committing the database migration and <code>schema.rb</code> update, I added a section on
+sorting to my <code>CLAUDE.md</code> because I didn&rsquo;t like where it put the new route:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>## Code Style
+
+- Alphabetize code whenever possible
+  - Routes should be sorted by resource or route name, with the `root` route last
+  - Controller actions should first be listed in Rails' default order: index show new edit
+    create update destroy, with custom actions sorted alphabetically after those
+</code></pre></div>
+<p>and told it I had updated <code>CLAUDE.md</code>. It realized the correction it needed to make and
+fixed it.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Got it. New code style rules:
+  - Alphabetize code when possible
+  - Routes sorted by resource/name, with root last
+  - Controller actions in Rails default order, custom actions alphabetized after
+
+  The current routes need fixing - root should be last:
+</code></pre></div>
+<p>After the next &ldquo;continue&rdquo; instruction, it added an <code>AuthorsController</code> with an <code>#index</code>
+action and an empty <code>index.html.erb</code> view.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>1 more assertion passing. The assert_response :success now passes. Still 2 test failures,
+but the authors test now fails on content (expecting 3 &lt;li&gt; elements) rather than response
+code.
+</code></pre></div>
+<p>After the next continue, it added the setting of <code>@authors</code> and added content to the view:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ 1 more test green. Now:
+  - 4 passing (authors controller test passes)
+  - 1 failure (homepage missing link to authors)
+</code></pre></div>
+<p>And after the next continue it added the link to the Authors page and all the tests passed!</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ME:
+As part of the red/green/refactor cycle, is there anything you think we should
+investigate?
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>CLAUDE:
+
+⏺ Good question - the Refactor step.
+
+  Looking at the code:
+  - Controller and model are minimal
+  - Views are simple
+  - Routes are properly ordered
+
+  The tests pass and the code is clean. I'd say we're done with this TDD cycle.
+
+  Want to add styling as part of wrapping up, or move on to the next feature?
+</code></pre></div><h2 id="conclusion">
+  <a href="#conclusion">
+    Conclusion
+  </a>
+</h2>
+
+<p><a href="https://thoughtbot.com/blog/authors/sally-hall">Sally Hall</a> once compared Claude to
+&ldquo;an inexperienced developer who is paid by the line.&rdquo; I have found that to be the case
+quite often. Claude also doesn&rsquo;t keep great tabs on what code is necessary to create a
+feature or fix a bug, so if you&rsquo;re not careful, you can end up committing code that looks
+important but actually does nothing.</p>
+
+<p>By taking a TDD approach, managing the commits, and owning each change, you can keep
+Claude focused and your code simple and clear.</p>
+
+<p>If Claude goes too far, remember: you control the pace! Stash work that seems valuable but
+is too hard for you to parse, and ask Claude to recreate it in smaller chunks. Add new
+requests to <code>CLAUDE.md</code> and tell Claude to read the changes so it learns and minimizes the
+number of times its approach doesn&rsquo;t match your expectations.</p>
+
+<p>By doing all this, you can follow a red-green-refactor cycle and create code that you&rsquo;re
+proud to own!</p>
+
+<p>And maybe, just maybe&hellip;prevent the Robocalypse.</p>
+
+<aside class="related-articles"><h2>If you enjoyed this post, you might also like:</h2><ul><li><a href="https://thoughtbot.com/blog/waiting-for-a-factory-bot">Waiting For a Factory~~Girl~~Bot</a></li><li><a href="https://thoughtbot.com/blog/debugging-why-your-specs-have-slowed-down">Debugging Why Your Specs Have Slowed Down</a></li><li><a href="https://thoughtbot.com/blog/theme-based-iterations">Theme-Based Iterations</a></li></ul></aside>
+
+    </div>
+
+    <form
+  action="https://thoughtbot.us2.list-manage.com/subscribe/post?u=e801d7e43bc155cd5c33729b9&amp;id=c0a5e23629"
+  method="POST"
+  class="email-sign-up"
+>
+
+  <div class="email-sign-up__wrapper">
+    <h2 class="type-heading type-heading--2">Sign up to receive a weekly recap from thoughtbot</h2>
+
+    <input type="hidden" name="utf8" value="✓" />
+
+    <div class="email-sign-up__input-block">
+      <div>
+        <label for="email" class="required">Your email address</label>
+        <input
+          type="email"
+          name="EMAIL"
+          id="email"
+          required="true"
+        />
+        <input
+          style="position: absolute; left: -5000px"
+          aria-hidden="true"
+          type="text"
+          name="b_e801d7e43bc155cd5c33729b9_c0a5e23629"
+          tabindex="-1"
+          value=""
+        />
+      </div>
+      <button type="submit" class="button">
+        Subscribe
+      </button>
+    </div>
+  </div>
+
+  <div class="blog-feeds-cta">
+    <div>Looking for even more ways to stay connected?</div>
+    <div>
+      <a class="cta-link" href="/feeds">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" role="img" aria-labelledby="aow2qe1fuvxtsikukci1jrgwrm5kr9f" class="blog-feeds-cta__rss-icon"><title id="aow2qe1fuvxtsikukci1jrgwrm5kr9f">RSS feed</title>
+<path d="M1.06889 5.71207C0.793894 5.70007 0.566895 5.92407 0.566895 6.20107V8.25407C0.566895 8.53007 0.793894 8.75307 1.06889 8.77207C2.87589 8.89307 4.56889 9.65807 5.86089 10.9541C7.15589 12.2451 7.91889 13.9451 8.03989 15.7641C8.05789 16.0381 8.28089 16.2681 8.55689 16.2681H10.6239C10.8999 16.2681 11.1239 16.0381 11.1109 15.7621C10.9809 13.0511 9.82789 10.6041 8.02389 8.79907C6.22489 6.99707 3.77989 5.83907 1.06889 5.71207Z"></path>
+<path d="M2.56589 12.2441C2.01289 12.2441 1.51889 12.4541 1.15389 12.8181C0.792895 13.1781 0.566895 13.6481 0.566895 14.1981C0.566895 14.7471 0.792895 15.1911 1.15389 15.5521C1.51889 15.9151 2.01289 16.0451 2.56589 16.0451C3.11989 16.0451 3.61689 16.2681 3.97889 15.2681H3.98089C4.34389 15.2681 4.56589 14.6041 4.56689 14.0551C4.56589 13.5061 4.34389 13.1001 3.97889 12.7401C3.61389 12.3751 3.11989 12.2441 2.56589 12.2441Z"></path>
+<path d="M11.8729 4.95508C9.08489 2.16408 5.28189 0.401083 1.07289 0.268083C0.795895 0.259083 0.566895 0.484083 0.566895 0.760083V2.81408C0.566895 3.09008 0.795895 3.31308 1.07289 3.32408C7.80189 3.58508 13.2349 9.02408 13.4929 15.7621C13.5039 16.0381 13.7259 16.2681 14.0029 16.2681H16.0669C16.3429 16.2681 16.5669 16.0381 16.5579 15.7621C16.4259 11.5511 14.6599 7.74108 11.8729 4.95508Z"></path>
+</svg>Check out our feeds</a>
+    </div>
+  </div>
+</form>
+
+
+
+      <div class="about-thoughtbot-blurb">
+    <h2>About thoughtbot</h2>
+
+<p>We&#39;ve been helping engineering teams deliver exceptional products for over 20 years. Our designers, developers, and product managers work closely with teams to solve your toughest software challenges through collaborative design and development. <a href="https://thoughtbot.com/services" target="_self" rel="noopener">Learn more about us</a>.</p>
+  </div>
+
+
+    <div class="print-only print-only-footer">
+      thoughtbot.com &middot; &copy; 2026 thoughtbot, inc.
+    </div>
+  </article>
+
+
+<aside class="fixed-signup">
+</aside>
+
+<script type="text/javascript">
+  const fixedElement = document.querySelector('.fixed-signup');
+  const fixedEndElement = document.querySelector('.post-body');
+  const fixedStartElement = document.querySelector('#main-content header');
+
+  function adjustFixedElementPosition() {
+    const referenceBottom = fixedStartElement.getBoundingClientRect().bottom;
+    fixedElement.style.top = referenceBottom + "px";
+  }
+
+  function handleFixedElementScrolling() {
+    const scrollPosition = window.scrollY || window.pageYOffset;
+    const referenceBottom = fixedStartElement.getBoundingClientRect().bottom;
+    const stopElementTop = fixedEndElement.getBoundingClientRect().bottom;
+    let newTop = referenceBottom + scrollPosition;
+
+    if (scrollPosition + fixedStartElement.getBoundingClientRect().top > stopElementTop - fixedElement.offsetHeight) {
+      newTop = stopElementTop - fixedElement.offsetHeight;
+    }
+
+    fixedElement.style.top = newTop + "px";
+  }
+
+  adjustFixedElementPosition();
+
+  window.addEventListener('resize', adjustFixedElementPosition);
+  window.addEventListener('scroll', handleFixedElementScrolling);
+</script>
+
+        </div>
+         <section class='ads-container'>      <div id="promoted">
+        <div class="ads basic-grid">
+  <img class="ads__image" height="397" width="415" alt="One-on-one mentoring with a thoughtbot developer" src="https://images.prismic.io/thoughtbot-website/Zn234B5LeNNTwm8l_mentoring.jpg?auto=format,compress" />
+
+  <div class="ads__body">
+    <h3 class="ads__title type-heading type-heading--3">1-on-1 and Group Mentoring</h3>
+
+    <p>
+      Have you always wanted your team to apply the thoughtbot Playbook but aren&#39;t sure where to start? thoughtbot now offers one-on-one and group mentoring with our expert designers and developers to help level up your team.
+    </p>
+
+    <a class="button" onclick="va(&#39;send&#39;, &#39;event&#39;, &#39;Blog CTA Card&#39;, &#39;Click&#39;, &#39;Blog to Hire Us Click&#39;, null, null);" href="/services/team-augmentation">Learn More</a>
+  </div>
+</div>
+
+      </div>
+</section>
+
+      </main>
+
+    <footer class="tbds-app-frame__footer footer" aria-labelledby="footer" >
+  <div class="container footer__content footer__content--primary basic-grid">
+    <div class="footer__group basic-grid__2-col">
+      <h2 class="u-hide-visually" id="footer">Footer</h2>
+      <svg xmlns="http://www.w3.org/2000/svg" width="860" height="168" viewBox="0 0 860 168" fill="none" role="img" aria-labelledby="afs99pkg7acaqy2l5vt28wpxir6up9xk" class="footer__logo"><title id="afs99pkg7acaqy2l5vt28wpxir6up9xk">thoughtbot</title>
+<path d="M210.603 128.912C204.519 131.08 197.603 132.168 193.435 132.44C188.951 132.74 185.272 131.515 182.46 129.674C179.622 127.833 177.542 125.448 176.214 122.573C174.867 119.698 174.188 116.687 174.188 113.568V73.6548H164V58.9629H174.188V45.84L191.998 32.8441V58.9538H207.81V73.6457H191.998V106.213C191.998 109.877 192.215 112.507 192.649 114.103C193.083 115.699 194.05 116.706 195.596 117.141C197.133 117.522 199.004 117.603 202.539 116.814L206.969 115.49C206.969 115.49 209.374 123.924 210.594 128.912H210.603Z"></path>
+<path d="M282.628 90.9494V130.998H264.818V92.2282C264.818 85.508 263.76 80.5382 261.6 77.3187C259.439 74.1173 255.922 72.4939 251.032 72.4939C246.873 72.4939 243.465 73.4734 240.816 75.4232C239.496 76.3755 238.276 77.5091 237.109 78.8151V131.007H219.3V28.9353H237.109V63.697C238.972 62.5543 240.897 61.475 242.922 60.4684C246.466 58.6818 250.706 57.7839 255.624 57.7839C261.952 57.7839 267.087 59.1896 271.083 62.0101C275.061 64.8034 277.972 68.7031 279.843 73.6729C281.706 78.6609 282.628 84.4107 282.628 90.9494Z"></path>
+<path d="M363.747 76.3845C360.854 70.662 356.668 66.1093 351.154 62.6631C345.639 59.2168 338.994 57.5119 331.184 57.5119C323.373 57.5119 316.719 59.2168 311.231 62.6631C305.717 66.1093 301.531 70.662 298.638 76.3845C295.718 82.1071 294.29 88.3466 294.29 95.1212C294.29 101.896 295.718 108.026 298.638 113.695C301.531 119.363 305.717 123.915 311.231 127.307C316.719 130.726 323.391 132.431 331.184 132.431C338.976 132.431 345.648 130.726 351.154 127.307C356.668 123.915 360.854 119.363 363.747 113.695C366.64 108.026 368.095 101.841 368.095 95.1212C368.095 88.401 366.64 82.1071 363.747 76.3845ZM345.015 111.445C341.77 115.644 337.177 117.739 331.175 117.739C325.172 117.739 320.661 115.654 317.388 111.445C314.142 107.247 312.524 101.796 312.524 95.1212C312.524 88.4464 314.142 82.8417 317.388 78.5793C320.661 74.3259 325.253 72.2037 331.175 72.2037C337.096 72.2037 341.77 74.3168 345.015 78.5793C348.261 82.8326 349.852 88.3376 349.852 95.1212C349.852 101.905 348.261 107.237 345.015 111.445Z"></path>
+<path d="M442.181 58.9538V130.998H425.529L425.231 126.663C423.874 127.697 422.256 128.695 420.394 129.647C416.66 131.515 412.963 132.44 409.283 132.44C401.825 132.44 395.849 130.953 391.42 127.969C386.963 125.013 383.744 120.923 381.773 115.69C379.83 110.484 378.853 104.49 378.853 97.7149V58.972H396.636V97.7149C396.636 104.408 397.775 109.351 399.99 112.597C402.205 115.853 405.857 117.449 410.883 117.449C414.879 117.449 418.233 116.497 420.882 114.574C422.148 113.649 423.341 112.57 424.372 111.291V58.9629H442.181V58.9538Z"></path>
+<path d="M590.751 90.9494V130.998H572.941V92.2282C572.941 85.508 571.856 80.5382 569.696 77.3187C567.562 74.1173 564.018 72.4939 559.155 72.4939C554.996 72.4939 551.561 73.4734 548.912 75.4232C547.592 76.4027 546.344 77.5363 545.205 78.8423V131.007H527.396V28.9353H545.205V63.697C547.04 62.5543 548.993 61.475 551.045 60.4684C554.589 58.6818 558.802 57.7839 563.747 57.7839C570.075 57.7839 575.21 59.1896 579.179 62.0101C583.157 64.8034 586.068 68.7031 587.939 73.6729C589.801 78.6609 590.751 84.4107 590.751 90.9494Z"></path>
+<path d="M722.062 76.5206C719.603 70.8524 715.978 66.327 711.196 62.9079C706.413 59.4889 700.492 57.7839 693.44 57.7839C688.414 57.7839 683.957 58.709 680.06 60.5228C677.846 61.5839 675.739 62.8535 673.759 64.3499V28.9353H655.977V130.998H672.629L672.955 126.228C674.98 127.616 677.113 128.776 679.31 129.783C683.279 131.542 687.989 132.44 693.449 132.44C700.501 132.44 706.422 130.735 711.205 127.316C715.987 123.924 719.612 119.372 722.071 113.704C724.557 108.036 725.778 101.85 725.778 95.1303C725.778 88.4101 724.557 82.1978 722.071 76.5297L722.062 76.5206ZM705.6 106.893C704.298 110.285 702.408 112.942 699.922 114.865C697.409 116.787 694.408 117.739 690.864 117.739C686.705 117.739 683.297 116.787 680.675 114.865C678.026 112.942 676.083 110.285 674.808 106.893C673.533 103.501 672.919 99.5741 672.919 95.1212C672.919 90.6683 673.542 86.7142 674.808 83.3224C676.074 79.9305 678.026 77.3005 680.675 75.3779C683.297 73.4552 686.705 72.4758 690.864 72.4758C694.408 72.4758 697.409 73.4552 699.922 75.3779C702.408 77.3005 704.298 79.9305 705.6 83.3224C706.865 86.7142 707.516 90.6411 707.516 95.1212C707.516 99.6013 706.865 103.501 705.6 106.893Z"></path>
+<path d="M803.29 76.3845C800.397 70.662 796.184 66.1093 790.696 62.6631C785.182 59.2168 778.537 57.5119 770.726 57.5119C762.915 57.5119 756.262 59.2168 750.783 62.6631C745.269 66.1093 741.056 70.662 738.163 76.3845C735.27 82.1071 733.815 88.3466 733.815 95.1212C733.815 101.896 735.27 108.026 738.163 113.695C741.056 119.363 745.269 123.915 750.783 127.307C756.271 130.726 762.915 132.431 770.726 132.431C778.537 132.431 785.191 130.726 790.696 127.307C796.184 123.915 800.397 119.363 803.29 113.695C806.183 108.026 807.638 101.841 807.638 95.1212C807.638 88.401 806.183 82.1071 803.29 76.3845ZM784.558 111.445C781.313 115.644 776.72 117.739 770.717 117.739C764.714 117.739 760.203 115.654 756.931 111.445C753.685 107.247 752.04 101.796 752.04 95.1212C752.04 88.4464 753.685 82.8417 756.931 78.5793C760.203 74.3259 764.769 72.2037 770.717 72.2037C776.666 72.2037 781.313 74.3168 784.558 78.5793C787.776 82.8326 789.395 88.3376 789.395 95.1212C789.395 101.905 787.776 107.237 784.558 111.445Z"></path>
+<path d="M646.665 128.912C640.581 131.08 633.665 132.168 629.498 132.44C625.014 132.74 621.334 131.515 618.523 129.674C615.684 127.833 613.605 125.448 612.276 122.573C610.929 119.698 610.251 116.687 610.251 113.568V73.6548H600.062V58.9629H610.251V45.84L628.06 32.8531V58.9629H643.872V73.6548H628.06V106.222C628.06 109.886 628.277 112.516 628.711 114.112C629.145 115.708 630.112 116.715 631.658 117.15C633.195 117.531 635.067 117.612 638.601 116.823L643.031 115.499C643.031 115.499 645.436 123.934 646.656 128.922L646.665 128.912Z"></path>
+<path d="M860 128.912C853.916 131.08 847 132.168 842.832 132.44C838.348 132.74 834.669 131.515 831.857 129.674C829.019 127.833 826.939 125.448 825.61 122.573C824.263 119.698 823.585 116.687 823.585 113.568V73.6548H813.397V58.9629H823.585V45.84L841.395 32.8531V58.9629H857.206V73.6548H841.395V106.222C841.395 109.886 841.612 112.516 842.046 114.112C842.48 115.708 843.447 116.715 844.993 117.15C846.53 117.531 848.401 117.612 851.936 116.823L856.366 115.499C856.366 115.499 858.771 123.934 859.991 128.922L860 128.912Z"></path>
+<path d="M495.718 123.462C491.65 123.199 479.428 122.709 479.428 122.709C474.862 122.709 471.779 119.163 471.779 115.499C471.779 113.985 472.964 112.298 474.41 110.901C477.864 112.479 481.778 113.377 486.027 113.377C500.012 113.377 513.754 103.238 513.754 85.4264C513.754 77.364 509.559 68.4038 502.056 62.8535L510.834 56.2603L502.67 45.3321L486.488 57.4937C486.135 57.4847 485.783 57.4756 485.43 57.4756C465.053 57.4756 458.237 74.6161 458.237 85.4264C458.237 91.1943 460.036 96.808 463.245 101.47C458.689 105.233 455.335 111.582 455.127 117.485C454.946 122.365 456.429 127.253 460.262 129.701C456.546 133.547 452.279 138.634 452.279 144.792C452.279 161.434 469.366 168 487.266 168C505.165 168 518.509 162.64 518.509 143.722C518.509 131.76 508.583 124.296 495.718 123.462ZM477.005 74.9516C479.093 72.376 482.076 71.0338 486.027 71.0338C489.978 71.0338 492.97 72.376 494.95 74.9516C496.939 77.5363 497.942 81.0007 497.942 85.3811C497.942 89.7614 496.939 93.2167 494.95 95.9011C492.97 98.4767 490.005 99.819 486.027 99.819C482.049 99.819 479.093 98.4767 477.005 95.9011C475.043 93.2167 474.049 89.7523 474.049 85.3811C474.049 81.0098 475.043 77.5363 477.005 74.9516ZM487.184 154.197C477.294 154.197 468.326 150.878 468.326 143.55C468.326 140.648 470.902 137.22 472.114 135.388C475.124 136.286 478.722 136.803 481.923 136.803C481.923 136.803 488.92 136.948 491.09 137.038C498.403 137.356 502.327 138.381 502.327 144.792C502.327 151.658 496.161 154.197 487.184 154.197Z"></path>
+<g class="logo-signals">
+<path d="M51.8337 44.0707C62.8506 44.0707 72.8289 48.0772 78.9791 54.1063L83.8412 47.0337C76.1602 40.0116 64.6716 35.5488 51.8337 35.5488C38.9617 35.5488 27.4459 40.0322 19.7649 47.0865L24.6225 54.1705C30.7682 48.1047 40.7805 44.0707 51.8337 44.0707Z"></path>
+<path d="M52.3558 25.9989C64.3955 25.9989 75.6233 29.5512 83.971 35.9977C85.6673 37.3095 87.1958 38.7039 88.5474 40.167L93.4164 33.0669C83.937 23.5863 69.0717 17.4792 52.3581 17.4792C35.2385 17.4792 20.0625 23.8821 10.624 33.7595L15.5178 40.894C17.094 39.0909 18.8435 37.4508 20.7406 35.9977C29.0906 29.5512 40.3184 25.9989 52.3581 25.9989H52.3558Z"></path>
+<path d="M51.833 8.66602C70.9392 8.66602 87.8274 15.773 97.8669 26.5768L102.7 19.5455C90.9955 7.74869 72.5629 0.144043 51.833 0.144043C31.0669 0.144043 12.6116 7.77162 0.907593 19.5983L5.73798 26.6388C15.7684 15.8005 32.6884 8.66602 51.833 8.66602Z"></path>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.4735 70.6095C5.4735 67.0702 8.32771 64.2011 11.8485 64.2011L91.7584 64.2011C95.2791 64.2011 98.1334 67.0702 98.1334 70.6095V123.725C98.1334 127.264 95.2791 130.133 91.7584 130.133H11.8485C8.32771 130.133 5.4735 127.264 5.4735 123.725L5.4735 70.6095ZM72.1261 102.682C66.4121 102.652 61.8018 97.9477 61.8241 92.1694C61.8241 86.3191 66.4343 81.6298 72.1261 81.6298C77.8596 81.6547 82.4898 86.3711 82.4726 92.1694C82.4678 97.9539 77.8462 102.65 72.1261 102.682ZM21.0696 92.1694C21.0474 97.9477 25.6576 102.652 31.3716 102.682C37.0917 102.65 41.7133 97.9539 41.7181 92.1694C41.7353 86.3711 37.1052 81.6547 31.3716 81.6298C25.6799 81.6298 21.0696 86.3191 21.0696 92.1694Z"></path>
+<path d="M31.3844 97.1482C28.6743 97.1341 26.4877 94.9029 26.4982 92.1623C26.4982 89.3875 28.6849 87.1635 31.3844 87.1635C34.1038 87.1752 36.2998 89.4123 36.2916 92.1623C36.2893 94.9058 34.0974 97.133 31.3844 97.1482Z"></path>
+<path d="M72.1388 97.1482C69.4288 97.1341 67.2422 94.9029 67.2527 92.1623C67.2527 89.3875 69.4393 87.1635 72.1388 87.1635C74.8582 87.1752 77.0543 89.4123 77.0461 92.1623C77.0438 94.9058 74.8518 97.133 72.1388 97.1482Z"></path>
+</svg>
+    </div>
+
+    <div class="footer__group basic-grid__2-col">
+      <div class="basic-grid">
+        <ul class="footer__list basic-grid__3-col">
+          <li>
+            <a href="/services">Services</a>
+          </li>
+          <li>
+            <a href="/case-studies">Case Studies</a>
+          </li>
+          <li>
+            <a href="/resources">Resources</a>
+          </li>
+          <li>
+            <a class="footer__link--highlight" href="/hire-us">Let&#39;s Talk</a>
+          </li>
+        </ul>
+        <ul class="footer__list basic-grid__3-col">
+          <li>
+            <a href="/our-company">Our Company</a>
+          </li>
+          <li>
+            <a href="/jobs">Careers</a>
+          </li>
+          <li>
+            <a href="/purpose">Purpose</a>
+          </li>
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+          <li>
+            <a href="/events">Events</a>
+          </li>
+          <li>
+            <a href="https://github.com/sponsors/thoughtbot">Sponsor</a>
+          </li>
+          <li>
+            <a href="https://shop.thoughtbot.com">Store</a>
+          </li>
+          </ul>
+        </ul>
+        <ul class="footer__list basic-grid__3-col">
+          <li>
+            <a rel="me" href="https://thoughtbot.social/@thoughtbot">Mastodon</a>
+          </li>
+          <li>
+            <a href="https://bsky.app/profile/thoughtbot.com">Bluesky</a>
+          </li>
+          <li>
+            <a href="https://github.com/thoughtbot">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@thoughtbot">YouTube</a>
+          </li>
+          <li>
+            <a href="https://www.twitch.tv/thoughtbot">Twitch</a>
+          </li>
+          <li>
+            <a href="/feeds">Feeds</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__content footer__content--secondary basic-grid">
+    <div class="footer__group basic-grid__2-col">
+      &copy; 2026
+      thoughtbot, inc.
+      <p>
+        The design of a robot and thoughtbot are registered trademarks of thoughtbot, inc.
+      </p>
+    </div>
+
+    <div class="footer__group basic-grid__2-col">
+      <div>
+        <ul>
+          <li>
+            <a href="tel:+18779762687">US: +1 (877) 9-ROBOTS</a>
+          </li>
+          <li>
+            <a href="tel:+442038070560">UK: +44 (0)20 3807 0560</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="/conduct">Code of Conduct</a>
+          </li>
+          <li>
+            <a href="/accessibility-statement">Accessibility Statement</a>
+          </li>
+          <li>
+            <a href="//www.iubenda.com/privacy-policy/7827608">Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+      
+
+    <script src="//thoughtbot.com/assets/application-e4f4a484ce00f8e2bc21c95aa4b19faafcd0248d8868f3bf2bd719eb9228deef.js" type="module" async="async"></script>
+
+
+
+
+    <script type="text/javascript">
+    const articleList = document.querySelector('.mini-post-list')
+    if (articleList) {
+      const listItem = articleList.querySelector('li.mini-post:nth-child(3)')
+      if (listItem) {
+        articleList.insertBefore(document.querySelector('.list-email-sign-up'), listItem)
+      }
+    } else {
+      document.addEventListener("DOMContentLoaded", function() {
+
+        function adjustSignUpFormVisibility() {
+          const paragraph = document.querySelectorAll('.post-body > h2')[0]
+          const article = document.querySelector('.post-body')
+          const aside = document.querySelector('.fixed-signup')
+          const articlePosition = article.getBoundingClientRect();
+          const emailSignUp = document.getElementsByClassName('email-sign-up')[0]
+          const emailInputBlock = document.getElementsByClassName('email-sign-up__input-block')[0]
+
+          emailSignUp.classList.add('article')
+          emailInputBlock.classList.add('article')
+
+          if (window.innerWidth < 1601) {
+            if (paragraph) {
+                paragraph.before(document.querySelector('.email-sign-up'))
+            } else {
+              article.append(document.querySelector('.email-sign-up'))
+            }
+          } else {
+            if (aside) {
+              aside.style.top = `${articlePosition.top}px`
+              aside.style.left = `${articlePosition.right}px`
+              aside.prepend(document.querySelector('.email-sign-up'))
+            }
+          }
+        }
+
+        adjustSignUpFormVisibility();
+        window.addEventListener('resize', adjustSignUpFormVisibility);
+      });
+    }
+  </script>
+
+
+
+      <script>
+  (function(v,i,s,a,t){v[t]=v[t]||function(){(v[t].v=v[t].v||[]).push(arguments)};if(!v._visaSettings){v._visaSettings={}}v._visaSettings[a]={v:'1.0',s:a,a:'1',t:t};var b=i.getElementsByTagName('body')[0];var p=i.createElement('script');p.defer=1;p.async=1;p.src=s+'?s='+a;b.appendChild(p)})(window,document,'//app-worker.visitor-analytics.io/main.js','01437f66-d956-11ed-b589-901b0edac50a','va')
+  </script>
+
+  <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a39d5271fa06e172',t:'MTc4OTE5OTQzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

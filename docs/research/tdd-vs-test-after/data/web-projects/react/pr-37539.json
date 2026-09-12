@@ -1,0 +1,1057 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:03Z",
+  "pull": {
+    "url": "https://api.github.com/repos/react/react/pulls/37539",
+    "id": 4466098860,
+    "node_id": "PR_kwDOAJy2Ks8AAAABCjNCrA",
+    "html_url": "https://github.com/react/react/pull/37539",
+    "diff_url": "https://github.com/react/react/pull/37539.diff",
+    "patch_url": "https://github.com/react/react/pull/37539.patch",
+    "issue_url": "https://api.github.com/repos/react/react/issues/37539",
+    "number": 37539,
+    "state": "closed",
+    "locked": false,
+    "title": "[rust-compiler] Fix non-ASCII panic in ValidateNoSetStateInEffects",
+    "user": {
+      "login": "hori-design",
+      "id": 36941805,
+      "node_id": "MDQ6VXNlcjM2OTQxODA1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hori-design",
+      "html_url": "https://github.com/hori-design",
+      "followers_url": "https://api.github.com/users/hori-design/followers",
+      "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+      "organizations_url": "https://api.github.com/users/hori-design/orgs",
+      "repos_url": "https://api.github.com/users/hori-design/repos",
+      "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hori-design/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "## Summary\r\n\r\n`get_identifier_name_with_loc` reads an identifier's name out of the source when SSA has dropped it. `SourceLocation.index` is a Babel position and counts UTF-16 code units, but the fallback used it to slice a Rust `&str`, which indexes UTF-8 bytes:\r\n\r\n```rust\r\nlet slice = &code[start_idx..end_idx];\r\n```\r\n\r\nThese agree only while the source is ASCII. After any non-ASCII character, later offsets are short by the extra bytes, so the slice reads the wrong span, or panics when it lands inside a character:\r\n\r\n```\r\npanicked at crates/react_compiler_validation/src/validate_no_set_state_in_effects.rs:168:30:\r\nstart byte index 637 is not a char boundary; it is inside 'う' (bytes 636..639 of string)\r\n```\r\n\r\nThe panic aborts validation for the whole file, so every diagnostic in it is lost.\r\n\r\n`validate_no_derived_computations_in_effects.rs` already converts correctly in its own copy of this function. Both were added in #36173 and only one got the UTF-16 handling, so this ports that logic over.\r\n\r\nFound through Biome, which embeds these crates for its `useReactCompiler` rule.\r\n\r\n## How did you test this change?\r\n\r\nAdded `repro-setState-in-effect-non-ascii-source.ts`, which panics before this change and compiles cleanly after:\r\n\r\n```\r\nbash scripts/test-rust-port.sh ValidateNoSetStateInEffects \\\r\n  packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.ts\r\n```\r\n\r\nThe non-ASCII comments in it are test input, not documentation; removing them realigns the offsets and the crash disappears.\r\n\r\nEverything `compiler_rust.yml` runs is green on macOS arm64, including `scripts/test-rust-port.sh` (1811 passed) and `yarn snap --rust` (1812 passed).\r\n",
+    "created_at": "2026-09-07T16:16:29Z",
+    "updated_at": "2026-09-09T12:06:01Z",
+    "closed_at": "2026-09-09T12:06:01Z",
+    "merged_at": "2026-09-09T12:06:01Z",
+    "merge_commit_sha": "78c2d377d79a7284339fc24b560dd503daf314cc",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 196858374,
+        "node_id": "MDU6TGFiZWwxOTY4NTgzNzQ=",
+        "url": "https://api.github.com/repos/react/react/labels/CLA%20Signed",
+        "name": "CLA Signed",
+        "color": "e7e7e7",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/react/react/pulls/37539/commits",
+    "review_comments_url": "https://api.github.com/repos/react/react/pulls/37539/comments",
+    "review_comment_url": "https://api.github.com/repos/react/react/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/react/react/issues/37539/comments",
+    "statuses_url": "https://api.github.com/repos/react/react/statuses/2895afe2ac1229d87e93095244f227d557cc4cbe",
+    "head": {
+      "label": "hori-design:fix-char-boundary-set-state-in-effects",
+      "ref": "fix-char-boundary-set-state-in-effects",
+      "sha": "2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "user": {
+        "login": "hori-design",
+        "id": 36941805,
+        "node_id": "MDQ6VXNlcjM2OTQxODA1",
+        "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hori-design",
+        "html_url": "https://github.com/hori-design",
+        "followers_url": "https://api.github.com/users/hori-design/followers",
+        "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+        "organizations_url": "https://api.github.com/users/hori-design/orgs",
+        "repos_url": "https://api.github.com/users/hori-design/repos",
+        "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hori-design/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 1360376851,
+        "node_id": "R_kgDOURW0Ew",
+        "name": "react",
+        "full_name": "hori-design/react",
+        "private": false,
+        "owner": {
+          "login": "hori-design",
+          "id": 36941805,
+          "node_id": "MDQ6VXNlcjM2OTQxODA1",
+          "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/hori-design",
+          "html_url": "https://github.com/hori-design",
+          "followers_url": "https://api.github.com/users/hori-design/followers",
+          "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+          "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+          "organizations_url": "https://api.github.com/users/hori-design/orgs",
+          "repos_url": "https://api.github.com/users/hori-design/repos",
+          "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/hori-design/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/hori-design/react",
+        "description": "The library for web and native user interfaces.",
+        "fork": true,
+        "url": "https://api.github.com/repos/hori-design/react",
+        "forks_url": "https://api.github.com/repos/hori-design/react/forks",
+        "keys_url": "https://api.github.com/repos/hori-design/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/hori-design/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/hori-design/react/teams",
+        "hooks_url": "https://api.github.com/repos/hori-design/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/hori-design/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/hori-design/react/events",
+        "assignees_url": "https://api.github.com/repos/hori-design/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/hori-design/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/hori-design/react/tags",
+        "blobs_url": "https://api.github.com/repos/hori-design/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/hori-design/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/hori-design/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/hori-design/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/hori-design/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/hori-design/react/languages",
+        "stargazers_url": "https://api.github.com/repos/hori-design/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/hori-design/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/hori-design/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/hori-design/react/subscription",
+        "commits_url": "https://api.github.com/repos/hori-design/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/hori-design/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/hori-design/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/hori-design/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/hori-design/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/hori-design/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/hori-design/react/merges",
+        "archive_url": "https://api.github.com/repos/hori-design/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/hori-design/react/downloads",
+        "issues_url": "https://api.github.com/repos/hori-design/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/hori-design/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/hori-design/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/hori-design/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/hori-design/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/hori-design/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/hori-design/react/deployments",
+        "created_at": "2026-09-07T15:17:33Z",
+        "updated_at": "2026-09-07T15:17:34Z",
+        "pushed_at": "2026-09-09T02:07:07Z",
+        "git_url": "git://github.com/hori-design/react.git",
+        "ssh_url": "git@github.com:hori-design/react.git",
+        "clone_url": "https://github.com/hori-design/react.git",
+        "svn_url": "https://github.com/hori-design/react",
+        "homepage": "https://react.dev",
+        "size": 133567,
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "language": null,
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 0,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "react:main",
+      "ref": "main",
+      "sha": "e92bda78750136493cb324e98df1726f62ba8e92",
+      "user": {
+        "login": "react",
+        "id": 102812,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/react",
+        "html_url": "https://github.com/react",
+        "followers_url": "https://api.github.com/users/react/followers",
+        "following_url": "https://api.github.com/users/react/following{/other_user}",
+        "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+        "organizations_url": "https://api.github.com/users/react/orgs",
+        "repos_url": "https://api.github.com/users/react/repos",
+        "events_url": "https://api.github.com/users/react/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/react/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 10270250,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMDI3MDI1MA==",
+        "name": "react",
+        "full_name": "react/react",
+        "private": false,
+        "owner": {
+          "login": "react",
+          "id": 102812,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/react",
+          "html_url": "https://github.com/react",
+          "followers_url": "https://api.github.com/users/react/followers",
+          "following_url": "https://api.github.com/users/react/following{/other_user}",
+          "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+          "organizations_url": "https://api.github.com/users/react/orgs",
+          "repos_url": "https://api.github.com/users/react/repos",
+          "events_url": "https://api.github.com/users/react/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/react/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/react/react",
+        "description": "The library for web and native user interfaces.",
+        "fork": false,
+        "url": "https://api.github.com/repos/react/react",
+        "forks_url": "https://api.github.com/repos/react/react/forks",
+        "keys_url": "https://api.github.com/repos/react/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/react/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/react/react/teams",
+        "hooks_url": "https://api.github.com/repos/react/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/react/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/react/react/events",
+        "assignees_url": "https://api.github.com/repos/react/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/react/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/react/react/tags",
+        "blobs_url": "https://api.github.com/repos/react/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/react/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/react/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/react/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/react/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/react/react/languages",
+        "stargazers_url": "https://api.github.com/repos/react/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/react/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/react/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/react/react/subscription",
+        "commits_url": "https://api.github.com/repos/react/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/react/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/react/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/react/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/react/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/react/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/react/react/merges",
+        "archive_url": "https://api.github.com/repos/react/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/react/react/downloads",
+        "issues_url": "https://api.github.com/repos/react/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/react/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/react/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/react/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/react/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/react/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/react/react/deployments",
+        "created_at": "2013-05-24T16:15:54Z",
+        "updated_at": "2026-09-12T07:00:06Z",
+        "pushed_at": "2026-09-11T23:35:47Z",
+        "git_url": "git://github.com/react/react.git",
+        "ssh_url": "org-102812@github.com:react/react.git",
+        "clone_url": "https://github.com/react/react.git",
+        "svn_url": "https://github.com/react/react",
+        "homepage": "https://react.dev",
+        "size": 1084697,
+        "stargazers_count": 250049,
+        "watchers_count": 250049,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": true,
+        "has_discussions": false,
+        "forks_count": 51330,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1369,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "declarative",
+          "frontend",
+          "javascript",
+          "library",
+          "react",
+          "ui"
+        ],
+        "visibility": "public",
+        "forks": 51330,
+        "open_issues": 1369,
+        "watchers": 250049,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/react/react/pulls/37539"
+      },
+      "html": {
+        "href": "https://github.com/react/react/pull/37539"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/react/react/issues/37539"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/react/react/issues/37539/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/react/react/pulls/37539/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/react/react/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/react/react/pulls/37539/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/react/react/statuses/2895afe2ac1229d87e93095244f227d557cc4cbe"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "javache",
+      "id": 5676,
+      "node_id": "MDQ6VXNlcjU2NzY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/javache",
+      "html_url": "https://github.com/javache",
+      "followers_url": "https://api.github.com/users/javache/followers",
+      "following_url": "https://api.github.com/users/javache/following{/other_user}",
+      "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+      "organizations_url": "https://api.github.com/users/javache/orgs",
+      "repos_url": "https://api.github.com/users/javache/repos",
+      "events_url": "https://api.github.com/users/javache/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/javache/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 2,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 2,
+    "additions": 232,
+    "deletions": 36,
+    "changed_files": 8
+  },
+  "commits": [
+    {
+      "sha": "9455e92f31fda827b9fb16e1853593b40c8735f3",
+      "node_id": "C_kwDOURW0E9oAKDk0NTVlOTJmMzFmZGE4MjdiOWZiMTZlMTg1MzU5M2I0MGM4NzM1ZjM",
+      "commit": {
+        "author": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-07T15:58:44Z"
+        },
+        "committer": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-09T01:59:15Z"
+        },
+        "message": "[rust-compiler] Fix UTF-16 offset handling when recovering setState names from source",
+        "tree": {
+          "sha": "de050f1a6f279d0cceda655edfe6cbf7ae1e7ee5",
+          "url": "https://api.github.com/repos/react/react/git/trees/de050f1a6f279d0cceda655edfe6cbf7ae1e7ee5"
+        },
+        "url": "https://api.github.com/repos/react/react/git/commits/9455e92f31fda827b9fb16e1853593b40c8735f3",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/react/react/commits/9455e92f31fda827b9fb16e1853593b40c8735f3",
+      "html_url": "https://github.com/react/react/commit/9455e92f31fda827b9fb16e1853593b40c8735f3",
+      "comments_url": "https://api.github.com/repos/react/react/commits/9455e92f31fda827b9fb16e1853593b40c8735f3/comments",
+      "author": {
+        "login": "hori-design",
+        "id": 36941805,
+        "node_id": "MDQ6VXNlcjM2OTQxODA1",
+        "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hori-design",
+        "html_url": "https://github.com/hori-design",
+        "followers_url": "https://api.github.com/users/hori-design/followers",
+        "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+        "organizations_url": "https://api.github.com/users/hori-design/orgs",
+        "repos_url": "https://api.github.com/users/hori-design/repos",
+        "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hori-design/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "hori-design",
+        "id": 36941805,
+        "node_id": "MDQ6VXNlcjM2OTQxODA1",
+        "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hori-design",
+        "html_url": "https://github.com/hori-design",
+        "followers_url": "https://api.github.com/users/hori-design/followers",
+        "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+        "organizations_url": "https://api.github.com/users/hori-design/orgs",
+        "repos_url": "https://api.github.com/users/hori-design/repos",
+        "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hori-design/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "e92bda78750136493cb324e98df1726f62ba8e92",
+          "url": "https://api.github.com/repos/react/react/commits/e92bda78750136493cb324e98df1726f62ba8e92",
+          "html_url": "https://github.com/react/react/commit/e92bda78750136493cb324e98df1726f62ba8e92"
+        }
+      ]
+    },
+    {
+      "sha": "2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "node_id": "C_kwDOURW0E9oAKDI4OTVhZmUyYWMxMjI5ZDg3ZTkzMDk1MjQ0ZjIyN2Q1NTdjYzRjYmU",
+      "commit": {
+        "author": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-08T22:27:53Z"
+        },
+        "committer": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-09T01:59:15Z"
+        },
+        "message": "[rust-compiler] Extract the UTF-16 offset conversion into a shared helper",
+        "tree": {
+          "sha": "4750f8a2d06fccb31c9a8fcf516dd774a399d0a0",
+          "url": "https://api.github.com/repos/react/react/git/trees/4750f8a2d06fccb31c9a8fcf516dd774a399d0a0"
+        },
+        "url": "https://api.github.com/repos/react/react/git/commits/2895afe2ac1229d87e93095244f227d557cc4cbe",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/react/react/commits/2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "html_url": "https://github.com/react/react/commit/2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "comments_url": "https://api.github.com/repos/react/react/commits/2895afe2ac1229d87e93095244f227d557cc4cbe/comments",
+      "author": {
+        "login": "hori-design",
+        "id": 36941805,
+        "node_id": "MDQ6VXNlcjM2OTQxODA1",
+        "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hori-design",
+        "html_url": "https://github.com/hori-design",
+        "followers_url": "https://api.github.com/users/hori-design/followers",
+        "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+        "organizations_url": "https://api.github.com/users/hori-design/orgs",
+        "repos_url": "https://api.github.com/users/hori-design/repos",
+        "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hori-design/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "hori-design",
+        "id": 36941805,
+        "node_id": "MDQ6VXNlcjM2OTQxODA1",
+        "avatar_url": "https://avatars.githubusercontent.com/u/36941805?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hori-design",
+        "html_url": "https://github.com/hori-design",
+        "followers_url": "https://api.github.com/users/hori-design/followers",
+        "following_url": "https://api.github.com/users/hori-design/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hori-design/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hori-design/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hori-design/subscriptions",
+        "organizations_url": "https://api.github.com/users/hori-design/orgs",
+        "repos_url": "https://api.github.com/users/hori-design/repos",
+        "events_url": "https://api.github.com/users/hori-design/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hori-design/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "url": "https://api.github.com/repos/react/react/commits/9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "html_url": "https://github.com/react/react/commit/9455e92f31fda827b9fb16e1853593b40c8735f3"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "44d78950d4b27a0684f5f73f855a33b236f4938f",
+      "filename": "compiler/crates/react_compiler_validation/src/lib.rs",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Flib.rs",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Flib.rs",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Flib.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -1,3 +1,5 @@\n+mod source_offsets;\n+\n pub mod validate_context_variable_lvalues;\n pub mod validate_exhaustive_dependencies;\n pub mod validate_hooks_usage;"
+    },
+    {
+      "sha": "3f87e0453e97bba8d5c9ca39dbf4bf947946c6e5",
+      "filename": "compiler/crates/react_compiler_validation/src/source_offsets.rs",
+      "status": "added",
+      "additions": 101,
+      "deletions": 0,
+      "changes": 101,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fsource_offsets.rs",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fsource_offsets.rs",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fsource_offsets.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -0,0 +1,101 @@\n+// Copyright (c) Meta Platforms, Inc. and affiliates.\n+//\n+// This source code is licensed under the MIT license found in the\n+// LICENSE file in the root directory of this source tree.\n+\n+//! Conversion between the UTF-16 code unit offsets carried by Babel/JS\n+//! `SourceLocation` and the UTF-8 byte offsets that Rust string slicing uses.\n+\n+/// Babel/JS `loc` indices are UTF-16 code unit offsets, but Rust strings are\n+/// UTF-8. Converts a UTF-16 offset to a byte offset, returning None if the\n+/// offset is out of range or splits a surrogate pair.\n+pub(crate) fn utf16_offset_to_byte(code: &str, target: usize) -> Option<usize> {\n+    let mut utf16 = 0usize;\n+    for (byte_idx, ch) in code.char_indices() {\n+        if utf16 == target {\n+            return Some(byte_idx);\n+        }\n+        if utf16 > target {\n+            return None; // target fell inside a surrogate pair\n+        }\n+        utf16 += ch.len_utf16();\n+    }\n+    (utf16 == target).then_some(code.len())\n+}\n+\n+/// Slices `code` by a UTF-16 code unit range, returning None if either offset\n+/// is out of range or splits a surrogate pair.\n+pub(crate) fn slice_by_utf16_range(\n+    code: &str,\n+    start_utf16: usize,\n+    end_utf16: usize,\n+) -> Option<&str> {\n+    if start_utf16 >= end_utf16 {\n+        return None;\n+    }\n+    let start = utf16_offset_to_byte(code, start_utf16)?;\n+    // The prefix contributes exactly start_utf16 units, so the delta is valid\n+    // relative to the remainder — avoids rescanning from byte 0.\n+    let end = start + utf16_offset_to_byte(&code[start..], end_utf16 - start_utf16)?;\n+    Some(&code[start..end])\n+}\n+\n+#[cfg(test)]\n+mod tests {\n+    use super::*;\n+\n+    #[test]\n+    fn ascii_offsets_are_byte_offsets() {\n+        let code = \"const setState = 0;\";\n+        assert_eq!(utf16_offset_to_byte(code, 0), Some(0));\n+        assert_eq!(utf16_offset_to_byte(code, 6), Some(6));\n+        assert_eq!(slice_by_utf16_range(code, 6, 14), Some(\"setState\"));\n+    }\n+\n+    #[test]\n+    fn bmp_characters_take_three_bytes_and_one_unit() {\n+        // Each BMP character here is 3 bytes in UTF-8 but 1 UTF-16 code unit.\n+        let code = \"// 日本語\\nsetState\";\n+        assert_eq!(utf16_offset_to_byte(code, 3), Some(3));\n+        assert_eq!(utf16_offset_to_byte(code, 6), Some(12));\n+        assert_eq!(slice_by_utf16_range(code, 7, 15), Some(\"setState\"));\n+    }\n+\n+    #[test]\n+    fn astral_characters_take_two_units() {\n+        // A surrogate pair is 4 bytes in UTF-8 and 2 UTF-16 code units, so an\n+        // implementation counting characters instead of code units diverges here.\n+        let code = \"🎉🎉setState\";\n+        assert_eq!(utf16_offset_to_byte(code, 2), Some(4));\n+        assert_eq!(utf16_offset_to_byte(code, 4), Some(8));\n+        assert_eq!(slice_by_utf16_range(code, 4, 12), Some(\"setState\"));\n+    }\n+\n+    #[test]\n+    fn offset_inside_a_surrogate_pair_is_rejected() {\n+        let code = \"🎉setState\";\n+        assert_eq!(utf16_offset_to_byte(code, 1), None);\n+        assert_eq!(slice_by_utf16_range(code, 1, 10), None);\n+    }\n+\n+    #[test]\n+    fn offset_at_end_of_string_resolves() {\n+        let code = \"🎉ab\";\n+        assert_eq!(utf16_offset_to_byte(code, 4), Some(code.len()));\n+        assert_eq!(slice_by_utf16_range(code, 2, 4), Some(\"ab\"));\n+    }\n+\n+    #[test]\n+    fn out_of_range_offset_is_rejected() {\n+        let code = \"ab\";\n+        assert_eq!(utf16_offset_to_byte(code, 3), None);\n+        assert_eq!(slice_by_utf16_range(code, 0, 5), None);\n+    }\n+\n+    #[test]\n+    fn empty_and_inverted_ranges_are_rejected() {\n+        let code = \"setState\";\n+        assert_eq!(slice_by_utf16_range(code, 3, 3), None);\n+        assert_eq!(slice_by_utf16_range(code, 5, 2), None);\n+    }\n+}"
+    },
+    {
+      "sha": "33cc91f86ddce2cef0e4c91260c6da114502b4df",
+      "filename": "compiler/crates/react_compiler_validation/src/validate_no_derived_computations_in_effects.rs",
+      "status": "modified",
+      "additions": 12,
+      "deletions": 31,
+      "changes": 43,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_derived_computations_in_effects.rs",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_derived_computations_in_effects.rs",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_derived_computations_in_effects.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -13,6 +13,8 @@\n use indexmap::{IndexMap, IndexSet};\n use rustc_hash::{FxBuildHasher, FxHashMap, FxHashSet};\n \n+use crate::source_offsets::slice_by_utf16_range;\n+\n use react_compiler_diagnostics::{\n     CompilerDiagnostic, CompilerDiagnosticDetail, CompilerError, CompilerErrorDetail, ErrorCategory,\n };\n@@ -57,40 +59,19 @@ fn get_identifier_name_with_loc(\n             }\n         }\n     }\n-    // Fall back to extracting from source code using UTF-16 code unit indices.\n-    // Babel/JS positions use UTF-16 code unit offsets, but Rust strings are UTF-8,\n-    // so we need to convert between the two.\n+    // Fall back to extracting from source code. Babel/JS positions are UTF-16\n+    // code unit offsets, but Rust strings are UTF-8, so they must be converted\n+    // before slicing.\n     if let (Some(loc), Some(code)) = (loc, source_code) {\n         let start_utf16 = loc.start.index? as usize;\n         let end_utf16 = loc.end.index? as usize;\n-        if start_utf16 < end_utf16 {\n-            // Convert UTF-16 code unit offsets to UTF-8 byte offsets\n-            let mut utf16_pos = 0usize;\n-            let mut byte_start = None;\n-            let mut byte_end = None;\n-            for (byte_idx, ch) in code.char_indices() {\n-                if utf16_pos == start_utf16 {\n-                    byte_start = Some(byte_idx);\n-                }\n-                if utf16_pos == end_utf16 {\n-                    byte_end = Some(byte_idx);\n-                    break;\n-                }\n-                utf16_pos += ch.len_utf16();\n-            }\n-            // Handle end at the very end of string\n-            if utf16_pos == end_utf16 && byte_end.is_none() {\n-                byte_end = Some(code.len());\n-            }\n-            if let (Some(start), Some(end)) = (byte_start, byte_end) {\n-                let slice = &code[start..end];\n-                if !slice.is_empty()\n-                    && slice\n-                        .chars()\n-                        .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n-                {\n-                    return Some(slice.to_string());\n-                }\n+        if let Some(slice) = slice_by_utf16_range(code, start_utf16, end_utf16) {\n+            if !slice.is_empty()\n+                && slice\n+                    .chars()\n+                    .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n+            {\n+                return Some(slice.to_string());\n             }\n         }\n     }"
+    },
+    {
+      "sha": "dea5b9c5b236caf0d9a48cb6e349847d145ddbb0",
+      "filename": "compiler/crates/react_compiler_validation/src/validate_no_set_state_in_effects.rs",
+      "status": "modified",
+      "additions": 7,
+      "deletions": 5,
+      "changes": 12,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -14,6 +14,7 @@\n \n use rustc_hash::{FxHashMap, FxHashSet};\n \n+use crate::source_offsets::slice_by_utf16_range;\n use react_compiler_diagnostics::{\n     CompilerDiagnostic, CompilerDiagnosticDetail, CompilerError, ErrorCategory,\n };\n@@ -160,12 +161,13 @@ fn get_identifier_name_with_loc(\n     if let Some(IdentifierName::Named(name)) = &ident.name {\n         return Some(name.clone());\n     }\n-    // Fall back to extracting from source code\n+    // Fall back to extracting from source code. Babel/JS positions are UTF-16\n+    // code unit offsets, but Rust strings are UTF-8, so they must be converted\n+    // before slicing.\n     if let (Some(loc), Some(code)) = (loc, source_code) {\n-        let start_idx = loc.start.index? as usize;\n-        let end_idx = loc.end.index? as usize;\n-        if start_idx < code.len() && end_idx <= code.len() && start_idx < end_idx {\n-            let slice = &code[start_idx..end_idx];\n+        let start_utf16 = loc.start.index? as usize;\n+        let end_utf16 = loc.end.index? as usize;\n+        if let Some(slice) = slice_by_utf16_range(code, start_utf16, end_utf16) {\n             if !slice.is_empty()\n                 && slice\n                     .chars()"
+    },
+    {
+      "sha": "a3b4b6806132849757031aced184ce59b5e39236",
+      "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-astral-source.expect.md",
+      "status": "added",
+      "additions": 44,
+      "deletions": 0,
+      "changes": 44,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.expect.md",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.expect.md",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.expect.md?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -0,0 +1,44 @@\n+\n+## Input\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useEffect, useState} from 'react';\n+\n+export function useThing({paused}) {\n+  const [count, setCount] = useState(0);\n+  // 🎉🎉 surrogate pairs: len_utf16() == 2 but len_utf8() == 4 per character\n+  useEffect(() => {\n+    setCount(1);\n+  }, [paused]);\n+  return count;\n+}\n+\n+```\n+\n+## Code\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import { useEffect, useState } from \"react\";\n+\n+export function useThing({ paused }) {\n+  const [count, setCount] = useState(0);\n+  // 🎉🎉 surrogate pairs: len_utf16() == 2 but len_utf8() == 4 per character\n+  useEffect(() => {\n+    setCount(1);\n+  }, [paused]);\n+  return count;\n+}\n+\n+```\n+\n+## Logs\n+\n+```\n+{\"kind\":\"CompileError\",\"detail\":{\"category\":\"EffectSetState\",\"reason\":\"Calling setState synchronously within an effect can trigger cascading renders\",\"description\":\"Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\\n* Update external systems with the latest state from React.\\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\\n\\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect)\",\"severity\":\"Error\",\"suggestions\":null,\"details\":[{\"kind\":\"error\",\"loc\":{\"start\":{\"line\":8,\"column\":4,\"index\":291},\"end\":{\"line\":8,\"column\":12,\"index\":299},\"filename\":\"repro-setState-in-effect-astral-source.ts\",\"identifierName\":\"setCount\"},\"message\":\"Avoid calling setState() directly within an effect\"}]},\"fnLoc\":null}\n+{\"kind\":\"CompileSuccess\",\"fnLoc\":{\"start\":{\"line\":4,\"column\":7,\"index\":118},\"end\":{\"line\":11,\"column\":1,\"index\":337},\"filename\":\"repro-setState-in-effect-astral-source.ts\"},\"fnName\":\"useThing\",\"memoSlots\":3,\"memoBlocks\":2,\"memoValues\":2,\"prunedMemoBlocks\":0,\"prunedMemoValues\":0}\n+```\n+      \n+### Eval output\n+(kind: exception) Fixture not implemented\n\\ No newline at end of file"
+    },
+    {
+      "sha": "6326dc0c02ce08aae15059f5a016a39d8e592523",
+      "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-astral-source.ts",
+      "status": "added",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.ts",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.ts",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.ts?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -0,0 +1,11 @@\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useEffect, useState} from 'react';\n+\n+export function useThing({paused}) {\n+  const [count, setCount] = useState(0);\n+  // 🎉🎉 surrogate pairs: len_utf16() == 2 but len_utf8() == 4 per character\n+  useEffect(() => {\n+    setCount(1);\n+  }, [paused]);\n+  return count;\n+}"
+    },
+    {
+      "sha": "5f8d62edac6f16a16169d831d879e3eea4021eeb",
+      "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.expect.md",
+      "status": "added",
+      "additions": 44,
+      "deletions": 0,
+      "changes": 44,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -0,0 +1,44 @@\n+\n+## Input\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useEffect, useState} from 'react';\n+\n+export function useThing({paused}) {\n+  const [isOnline, setIsOnline] = useState(true);\n+  // 非ASCII文字を含むコメント。これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  useEffect(() => {\n+    setIsOnline(true);\n+  }, [paused]);\n+  return isOnline;\n+}\n+\n+```\n+\n+## Code\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import { useEffect, useState } from \"react\";\n+\n+export function useThing({ paused }) {\n+  const [isOnline, setIsOnline] = useState(true);\n+  // 非ASCII文字を含むコメント。これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  useEffect(() => {\n+    setIsOnline(true);\n+  }, [paused]);\n+  return isOnline;\n+}\n+\n+```\n+\n+## Logs\n+\n+```\n+{\"kind\":\"CompileError\",\"detail\":{\"category\":\"EffectSetState\",\"reason\":\"Calling setState synchronously within an effect can trigger cascading renders\",\"description\":\"Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\\n* Update external systems with the latest state from React.\\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\\n\\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect)\",\"severity\":\"Error\",\"suggestions\":null,\"details\":[{\"kind\":\"error\",\"loc\":{\"start\":{\"line\":8,\"column\":4,\"index\":277},\"end\":{\"line\":8,\"column\":15,\"index\":288},\"filename\":\"repro-setState-in-effect-non-ascii-source.ts\",\"identifierName\":\"setIsOnline\"},\"message\":\"Avoid calling setState() directly within an effect\"}]},\"fnLoc\":null}\n+{\"kind\":\"CompileSuccess\",\"fnLoc\":{\"start\":{\"line\":4,\"column\":7,\"index\":118},\"end\":{\"line\":11,\"column\":1,\"index\":332},\"filename\":\"repro-setState-in-effect-non-ascii-source.ts\"},\"fnName\":\"useThing\",\"memoSlots\":3,\"memoBlocks\":2,\"memoValues\":2,\"prunedMemoBlocks\":0,\"prunedMemoValues\":0}\n+```\n+      \n+### Eval output\n+(kind: exception) Fixture not implemented\n\\ No newline at end of file"
+    },
+    {
+      "sha": "beb82cdf5af4bafd3708c5e50418314bf7439b33",
+      "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.ts",
+      "status": "added",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts",
+      "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts",
+      "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "patch": "@@ -0,0 +1,11 @@\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useEffect, useState} from 'react';\n+\n+export function useThing({paused}) {\n+  const [isOnline, setIsOnline] = useState(true);\n+  // 非ASCII文字を含むコメント。これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  useEffect(() => {\n+    setIsOnline(true);\n+  }, [paused]);\n+  return isOnline;\n+}"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "9455e92f31fda827b9fb16e1853593b40c8735f3",
+      "html_url": "https://github.com/react/react/commit/9455e92f31fda827b9fb16e1853593b40c8735f3",
+      "commit": {
+        "author": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-07T15:58:44Z"
+        },
+        "committer": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-09T01:59:15Z"
+        },
+        "message": "[rust-compiler] Fix UTF-16 offset handling when recovering setState names from source"
+      },
+      "parents": [
+        {
+          "sha": "e92bda78750136493cb324e98df1726f62ba8e92",
+          "url": "https://api.github.com/repos/react/react/commits/e92bda78750136493cb324e98df1726f62ba8e92",
+          "html_url": "https://github.com/react/react/commit/e92bda78750136493cb324e98df1726f62ba8e92"
+        }
+      ],
+      "stats": {
+        "total": 131,
+        "additions": 120,
+        "deletions": 11
+      },
+      "files": [
+        {
+          "sha": "45b2449f78145bbbe25427c987ed69158d8e9173",
+          "filename": "compiler/crates/react_compiler_validation/src/validate_no_set_state_in_effects.rs",
+          "status": "modified",
+          "additions": 33,
+          "deletions": 11,
+          "changes": 44,
+          "blob_url": "https://github.com/react/react/blob/9455e92f31fda827b9fb16e1853593b40c8735f3/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs",
+          "raw_url": "https://github.com/react/react/raw/9455e92f31fda827b9fb16e1853593b40c8735f3/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs?ref=9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "patch": "@@ -160,18 +160,40 @@ fn get_identifier_name_with_loc(\n     if let Some(IdentifierName::Named(name)) = &ident.name {\n         return Some(name.clone());\n     }\n-    // Fall back to extracting from source code\n+    // Fall back to extracting from source code using UTF-16 code unit indices.\n+    // Babel/JS positions use UTF-16 code unit offsets, but Rust strings are UTF-8,\n+    // so we need to convert between the two.\n     if let (Some(loc), Some(code)) = (loc, source_code) {\n-        let start_idx = loc.start.index? as usize;\n-        let end_idx = loc.end.index? as usize;\n-        if start_idx < code.len() && end_idx <= code.len() && start_idx < end_idx {\n-            let slice = &code[start_idx..end_idx];\n-            if !slice.is_empty()\n-                && slice\n-                    .chars()\n-                    .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n-            {\n-                return Some(slice.to_string());\n+        let start_utf16 = loc.start.index? as usize;\n+        let end_utf16 = loc.end.index? as usize;\n+        if start_utf16 < end_utf16 {\n+            // Convert UTF-16 code unit offsets to UTF-8 byte offsets\n+            let mut utf16_pos = 0usize;\n+            let mut byte_start = None;\n+            let mut byte_end = None;\n+            for (byte_idx, ch) in code.char_indices() {\n+                if utf16_pos == start_utf16 {\n+                    byte_start = Some(byte_idx);\n+                }\n+                if utf16_pos == end_utf16 {\n+                    byte_end = Some(byte_idx);\n+                    break;\n+                }\n+                utf16_pos += ch.len_utf16();\n+            }\n+            // Handle end at the very end of string\n+            if utf16_pos == end_utf16 && byte_end.is_none() {\n+                byte_end = Some(code.len());\n+            }\n+            if let (Some(start), Some(end)) = (byte_start, byte_end) {\n+                let slice = &code[start..end];\n+                if !slice.is_empty()\n+                    && slice\n+                        .chars()\n+                        .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n+                {\n+                    return Some(slice.to_string());\n+                }\n             }\n         }\n     }"
+        },
+        {
+          "sha": "c6702e2d499087a303692f13c788034cdfbd2343",
+          "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.expect.md",
+          "status": "added",
+          "additions": 65,
+          "deletions": 0,
+          "changes": 65,
+          "blob_url": "https://github.com/react/react/blob/9455e92f31fda827b9fb16e1853593b40c8735f3/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md",
+          "raw_url": "https://github.com/react/react/raw/9455e92f31fda827b9fb16e1853593b40c8735f3/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md?ref=9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "patch": "@@ -0,0 +1,65 @@\n+\n+## Input\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useCallback, useEffect, useState} from 'react';\n+\n+export function useOnlineStatus({paused = false}) {\n+  const [isOnline, setIsOnline] = useState(true);\n+\n+  // 非ASCII文字を含むコメントなので、これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  useEffect(() => {\n+    if (paused) return;\n+    const handleOffline = () => setIsOnline(false);\n+    window.addEventListener('offline', handleOffline);\n+    return () => window.removeEventListener('offline', handleOffline);\n+  }, [paused]);\n+\n+  // このsetStateはSSAで名前を失うため、ソースコードから名前を復元する経路に入る\n+  const reset = useCallback(() => {\n+    if (paused) return;\n+    setIsOnline(true);\n+  }, [paused]);\n+\n+  return {isOnline, reset};\n+}\n+\n+```\n+\n+## Code\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import { useCallback, useEffect, useState } from \"react\";\n+\n+export function useOnlineStatus({ paused = false }) {\n+  const [isOnline, setIsOnline] = useState(true);\n+\n+  // 非ASCII文字を含むコメントなので、これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  useEffect(() => {\n+    if (paused) return;\n+    const handleOffline = () => setIsOnline(false);\n+    window.addEventListener(\"offline\", handleOffline);\n+    return () => window.removeEventListener(\"offline\", handleOffline);\n+  }, [paused]);\n+\n+  // このsetStateはSSAで名前を失うため、ソースコードから名前を復元する経路に入る\n+  const reset = useCallback(() => {\n+    if (paused) return;\n+    setIsOnline(true);\n+  }, [paused]);\n+\n+  return { isOnline, reset };\n+}\n+\n+```\n+\n+## Logs\n+\n+```\n+{\"kind\":\"CompileSuccess\",\"fnLoc\":{\"start\":{\"line\":4,\"column\":7,\"index\":131},\"end\":{\"line\":22,\"column\":1,\"index\":702},\"filename\":\"repro-setState-in-effect-non-ascii-source.ts\"},\"fnName\":\"useOnlineStatus\",\"memoSlots\":8,\"memoBlocks\":3,\"memoValues\":4,\"prunedMemoBlocks\":0,\"prunedMemoValues\":0}\n+```\n+      \n+### Eval output\n+(kind: exception) Fixture not implemented\n\\ No newline at end of file"
+        },
+        {
+          "sha": "95fee9ad7191029d8809142e4ca4f2731729c046",
+          "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.ts",
+          "status": "added",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "blob_url": "https://github.com/react/react/blob/9455e92f31fda827b9fb16e1853593b40c8735f3/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts",
+          "raw_url": "https://github.com/react/react/raw/9455e92f31fda827b9fb16e1853593b40c8735f3/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts?ref=9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "patch": "@@ -0,0 +1,22 @@\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useCallback, useEffect, useState} from 'react';\n+\n+export function useOnlineStatus({paused = false}) {\n+  const [isOnline, setIsOnline] = useState(true);\n+\n+  // 非ASCII文字を含むコメントなので、これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  useEffect(() => {\n+    if (paused) return;\n+    const handleOffline = () => setIsOnline(false);\n+    window.addEventListener('offline', handleOffline);\n+    return () => window.removeEventListener('offline', handleOffline);\n+  }, [paused]);\n+\n+  // このsetStateはSSAで名前を失うため、ソースコードから名前を復元する経路に入る\n+  const reset = useCallback(() => {\n+    if (paused) return;\n+    setIsOnline(true);\n+  }, [paused]);\n+\n+  return {isOnline, reset};\n+}"
+        }
+      ]
+    },
+    {
+      "sha": "2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "html_url": "https://github.com/react/react/commit/2895afe2ac1229d87e93095244f227d557cc4cbe",
+      "commit": {
+        "author": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-08T22:27:53Z"
+        },
+        "committer": {
+          "name": "hori-design",
+          "email": "36941805+hori-design@users.noreply.github.com",
+          "date": "2026-09-09T01:59:15Z"
+        },
+        "message": "[rust-compiler] Extract the UTF-16 offset conversion into a shared helper"
+      },
+      "parents": [
+        {
+          "sha": "9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "url": "https://api.github.com/repos/react/react/commits/9455e92f31fda827b9fb16e1853593b40c8735f3",
+          "html_url": "https://github.com/react/react/commit/9455e92f31fda827b9fb16e1853593b40c8735f3"
+        }
+      ],
+      "stats": {
+        "total": 303,
+        "additions": 195,
+        "deletions": 108
+      },
+      "files": [
+        {
+          "sha": "44d78950d4b27a0684f5f73f855a33b236f4938f",
+          "filename": "compiler/crates/react_compiler_validation/src/lib.rs",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Flib.rs",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Flib.rs",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Flib.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -1,3 +1,5 @@\n+mod source_offsets;\n+\n pub mod validate_context_variable_lvalues;\n pub mod validate_exhaustive_dependencies;\n pub mod validate_hooks_usage;"
+        },
+        {
+          "sha": "3f87e0453e97bba8d5c9ca39dbf4bf947946c6e5",
+          "filename": "compiler/crates/react_compiler_validation/src/source_offsets.rs",
+          "status": "added",
+          "additions": 101,
+          "deletions": 0,
+          "changes": 101,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fsource_offsets.rs",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fsource_offsets.rs",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fsource_offsets.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -0,0 +1,101 @@\n+// Copyright (c) Meta Platforms, Inc. and affiliates.\n+//\n+// This source code is licensed under the MIT license found in the\n+// LICENSE file in the root directory of this source tree.\n+\n+//! Conversion between the UTF-16 code unit offsets carried by Babel/JS\n+//! `SourceLocation` and the UTF-8 byte offsets that Rust string slicing uses.\n+\n+/// Babel/JS `loc` indices are UTF-16 code unit offsets, but Rust strings are\n+/// UTF-8. Converts a UTF-16 offset to a byte offset, returning None if the\n+/// offset is out of range or splits a surrogate pair.\n+pub(crate) fn utf16_offset_to_byte(code: &str, target: usize) -> Option<usize> {\n+    let mut utf16 = 0usize;\n+    for (byte_idx, ch) in code.char_indices() {\n+        if utf16 == target {\n+            return Some(byte_idx);\n+        }\n+        if utf16 > target {\n+            return None; // target fell inside a surrogate pair\n+        }\n+        utf16 += ch.len_utf16();\n+    }\n+    (utf16 == target).then_some(code.len())\n+}\n+\n+/// Slices `code` by a UTF-16 code unit range, returning None if either offset\n+/// is out of range or splits a surrogate pair.\n+pub(crate) fn slice_by_utf16_range(\n+    code: &str,\n+    start_utf16: usize,\n+    end_utf16: usize,\n+) -> Option<&str> {\n+    if start_utf16 >= end_utf16 {\n+        return None;\n+    }\n+    let start = utf16_offset_to_byte(code, start_utf16)?;\n+    // The prefix contributes exactly start_utf16 units, so the delta is valid\n+    // relative to the remainder — avoids rescanning from byte 0.\n+    let end = start + utf16_offset_to_byte(&code[start..], end_utf16 - start_utf16)?;\n+    Some(&code[start..end])\n+}\n+\n+#[cfg(test)]\n+mod tests {\n+    use super::*;\n+\n+    #[test]\n+    fn ascii_offsets_are_byte_offsets() {\n+        let code = \"const setState = 0;\";\n+        assert_eq!(utf16_offset_to_byte(code, 0), Some(0));\n+        assert_eq!(utf16_offset_to_byte(code, 6), Some(6));\n+        assert_eq!(slice_by_utf16_range(code, 6, 14), Some(\"setState\"));\n+    }\n+\n+    #[test]\n+    fn bmp_characters_take_three_bytes_and_one_unit() {\n+        // Each BMP character here is 3 bytes in UTF-8 but 1 UTF-16 code unit.\n+        let code = \"// 日本語\\nsetState\";\n+        assert_eq!(utf16_offset_to_byte(code, 3), Some(3));\n+        assert_eq!(utf16_offset_to_byte(code, 6), Some(12));\n+        assert_eq!(slice_by_utf16_range(code, 7, 15), Some(\"setState\"));\n+    }\n+\n+    #[test]\n+    fn astral_characters_take_two_units() {\n+        // A surrogate pair is 4 bytes in UTF-8 and 2 UTF-16 code units, so an\n+        // implementation counting characters instead of code units diverges here.\n+        let code = \"🎉🎉setState\";\n+        assert_eq!(utf16_offset_to_byte(code, 2), Some(4));\n+        assert_eq!(utf16_offset_to_byte(code, 4), Some(8));\n+        assert_eq!(slice_by_utf16_range(code, 4, 12), Some(\"setState\"));\n+    }\n+\n+    #[test]\n+    fn offset_inside_a_surrogate_pair_is_rejected() {\n+        let code = \"🎉setState\";\n+        assert_eq!(utf16_offset_to_byte(code, 1), None);\n+        assert_eq!(slice_by_utf16_range(code, 1, 10), None);\n+    }\n+\n+    #[test]\n+    fn offset_at_end_of_string_resolves() {\n+        let code = \"🎉ab\";\n+        assert_eq!(utf16_offset_to_byte(code, 4), Some(code.len()));\n+        assert_eq!(slice_by_utf16_range(code, 2, 4), Some(\"ab\"));\n+    }\n+\n+    #[test]\n+    fn out_of_range_offset_is_rejected() {\n+        let code = \"ab\";\n+        assert_eq!(utf16_offset_to_byte(code, 3), None);\n+        assert_eq!(slice_by_utf16_range(code, 0, 5), None);\n+    }\n+\n+    #[test]\n+    fn empty_and_inverted_ranges_are_rejected() {\n+        let code = \"setState\";\n+        assert_eq!(slice_by_utf16_range(code, 3, 3), None);\n+        assert_eq!(slice_by_utf16_range(code, 5, 2), None);\n+    }\n+}"
+        },
+        {
+          "sha": "33cc91f86ddce2cef0e4c91260c6da114502b4df",
+          "filename": "compiler/crates/react_compiler_validation/src/validate_no_derived_computations_in_effects.rs",
+          "status": "modified",
+          "additions": 12,
+          "deletions": 31,
+          "changes": 43,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_derived_computations_in_effects.rs",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_derived_computations_in_effects.rs",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_derived_computations_in_effects.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -13,6 +13,8 @@\n use indexmap::{IndexMap, IndexSet};\n use rustc_hash::{FxBuildHasher, FxHashMap, FxHashSet};\n \n+use crate::source_offsets::slice_by_utf16_range;\n+\n use react_compiler_diagnostics::{\n     CompilerDiagnostic, CompilerDiagnosticDetail, CompilerError, CompilerErrorDetail, ErrorCategory,\n };\n@@ -57,40 +59,19 @@ fn get_identifier_name_with_loc(\n             }\n         }\n     }\n-    // Fall back to extracting from source code using UTF-16 code unit indices.\n-    // Babel/JS positions use UTF-16 code unit offsets, but Rust strings are UTF-8,\n-    // so we need to convert between the two.\n+    // Fall back to extracting from source code. Babel/JS positions are UTF-16\n+    // code unit offsets, but Rust strings are UTF-8, so they must be converted\n+    // before slicing.\n     if let (Some(loc), Some(code)) = (loc, source_code) {\n         let start_utf16 = loc.start.index? as usize;\n         let end_utf16 = loc.end.index? as usize;\n-        if start_utf16 < end_utf16 {\n-            // Convert UTF-16 code unit offsets to UTF-8 byte offsets\n-            let mut utf16_pos = 0usize;\n-            let mut byte_start = None;\n-            let mut byte_end = None;\n-            for (byte_idx, ch) in code.char_indices() {\n-                if utf16_pos == start_utf16 {\n-                    byte_start = Some(byte_idx);\n-                }\n-                if utf16_pos == end_utf16 {\n-                    byte_end = Some(byte_idx);\n-                    break;\n-                }\n-                utf16_pos += ch.len_utf16();\n-            }\n-            // Handle end at the very end of string\n-            if utf16_pos == end_utf16 && byte_end.is_none() {\n-                byte_end = Some(code.len());\n-            }\n-            if let (Some(start), Some(end)) = (byte_start, byte_end) {\n-                let slice = &code[start..end];\n-                if !slice.is_empty()\n-                    && slice\n-                        .chars()\n-                        .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n-                {\n-                    return Some(slice.to_string());\n-                }\n+        if let Some(slice) = slice_by_utf16_range(code, start_utf16, end_utf16) {\n+            if !slice.is_empty()\n+                && slice\n+                    .chars()\n+                    .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n+            {\n+                return Some(slice.to_string());\n             }\n         }\n     }"
+        },
+        {
+          "sha": "dea5b9c5b236caf0d9a48cb6e349847d145ddbb0",
+          "filename": "compiler/crates/react_compiler_validation/src/validate_no_set_state_in_effects.rs",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 31,
+          "changes": 42,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fcrates%2Freact_compiler_validation%2Fsrc%2Fvalidate_no_set_state_in_effects.rs?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -14,6 +14,7 @@\n \n use rustc_hash::{FxHashMap, FxHashSet};\n \n+use crate::source_offsets::slice_by_utf16_range;\n use react_compiler_diagnostics::{\n     CompilerDiagnostic, CompilerDiagnosticDetail, CompilerError, ErrorCategory,\n };\n@@ -160,40 +161,19 @@ fn get_identifier_name_with_loc(\n     if let Some(IdentifierName::Named(name)) = &ident.name {\n         return Some(name.clone());\n     }\n-    // Fall back to extracting from source code using UTF-16 code unit indices.\n-    // Babel/JS positions use UTF-16 code unit offsets, but Rust strings are UTF-8,\n-    // so we need to convert between the two.\n+    // Fall back to extracting from source code. Babel/JS positions are UTF-16\n+    // code unit offsets, but Rust strings are UTF-8, so they must be converted\n+    // before slicing.\n     if let (Some(loc), Some(code)) = (loc, source_code) {\n         let start_utf16 = loc.start.index? as usize;\n         let end_utf16 = loc.end.index? as usize;\n-        if start_utf16 < end_utf16 {\n-            // Convert UTF-16 code unit offsets to UTF-8 byte offsets\n-            let mut utf16_pos = 0usize;\n-            let mut byte_start = None;\n-            let mut byte_end = None;\n-            for (byte_idx, ch) in code.char_indices() {\n-                if utf16_pos == start_utf16 {\n-                    byte_start = Some(byte_idx);\n-                }\n-                if utf16_pos == end_utf16 {\n-                    byte_end = Some(byte_idx);\n-                    break;\n-                }\n-                utf16_pos += ch.len_utf16();\n-            }\n-            // Handle end at the very end of string\n-            if utf16_pos == end_utf16 && byte_end.is_none() {\n-                byte_end = Some(code.len());\n-            }\n-            if let (Some(start), Some(end)) = (byte_start, byte_end) {\n-                let slice = &code[start..end];\n-                if !slice.is_empty()\n-                    && slice\n-                        .chars()\n-                        .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n-                {\n-                    return Some(slice.to_string());\n-                }\n+        if let Some(slice) = slice_by_utf16_range(code, start_utf16, end_utf16) {\n+            if !slice.is_empty()\n+                && slice\n+                    .chars()\n+                    .all(|c| c.is_alphanumeric() || c == '_' || c == '$')\n+            {\n+                return Some(slice.to_string());\n             }\n         }\n     }"
+        },
+        {
+          "sha": "a3b4b6806132849757031aced184ce59b5e39236",
+          "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-astral-source.expect.md",
+          "status": "added",
+          "additions": 44,
+          "deletions": 0,
+          "changes": 44,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.expect.md",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.expect.md",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.expect.md?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -0,0 +1,44 @@\n+\n+## Input\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useEffect, useState} from 'react';\n+\n+export function useThing({paused}) {\n+  const [count, setCount] = useState(0);\n+  // 🎉🎉 surrogate pairs: len_utf16() == 2 but len_utf8() == 4 per character\n+  useEffect(() => {\n+    setCount(1);\n+  }, [paused]);\n+  return count;\n+}\n+\n+```\n+\n+## Code\n+\n+```javascript\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import { useEffect, useState } from \"react\";\n+\n+export function useThing({ paused }) {\n+  const [count, setCount] = useState(0);\n+  // 🎉🎉 surrogate pairs: len_utf16() == 2 but len_utf8() == 4 per character\n+  useEffect(() => {\n+    setCount(1);\n+  }, [paused]);\n+  return count;\n+}\n+\n+```\n+\n+## Logs\n+\n+```\n+{\"kind\":\"CompileError\",\"detail\":{\"category\":\"EffectSetState\",\"reason\":\"Calling setState synchronously within an effect can trigger cascading renders\",\"description\":\"Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\\n* Update external systems with the latest state from React.\\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\\n\\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect)\",\"severity\":\"Error\",\"suggestions\":null,\"details\":[{\"kind\":\"error\",\"loc\":{\"start\":{\"line\":8,\"column\":4,\"index\":291},\"end\":{\"line\":8,\"column\":12,\"index\":299},\"filename\":\"repro-setState-in-effect-astral-source.ts\",\"identifierName\":\"setCount\"},\"message\":\"Avoid calling setState() directly within an effect\"}]},\"fnLoc\":null}\n+{\"kind\":\"CompileSuccess\",\"fnLoc\":{\"start\":{\"line\":4,\"column\":7,\"index\":118},\"end\":{\"line\":11,\"column\":1,\"index\":337},\"filename\":\"repro-setState-in-effect-astral-source.ts\"},\"fnName\":\"useThing\",\"memoSlots\":3,\"memoBlocks\":2,\"memoValues\":2,\"prunedMemoBlocks\":0,\"prunedMemoValues\":0}\n+```\n+      \n+### Eval output\n+(kind: exception) Fixture not implemented\n\\ No newline at end of file"
+        },
+        {
+          "sha": "6326dc0c02ce08aae15059f5a016a39d8e592523",
+          "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-astral-source.ts",
+          "status": "added",
+          "additions": 11,
+          "deletions": 0,
+          "changes": 11,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.ts",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.ts",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-astral-source.ts?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -0,0 +1,11 @@\n+// @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n+import {useEffect, useState} from 'react';\n+\n+export function useThing({paused}) {\n+  const [count, setCount] = useState(0);\n+  // 🎉🎉 surrogate pairs: len_utf16() == 2 but len_utf8() == 4 per character\n+  useEffect(() => {\n+    setCount(1);\n+  }, [paused]);\n+  return count;\n+}"
+        },
+        {
+          "sha": "5f8d62edac6f16a16169d831d879e3eea4021eeb",
+          "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.expect.md",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 31,
+          "changes": 41,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.expect.md?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -3,26 +3,15 @@\n \n ```javascript\n // @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n-import {useCallback, useEffect, useState} from 'react';\n+import {useEffect, useState} from 'react';\n \n-export function useOnlineStatus({paused = false}) {\n+export function useThing({paused}) {\n   const [isOnline, setIsOnline] = useState(true);\n-\n-  // 非ASCII文字を含むコメントなので、これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  // 非ASCII文字を含むコメント。これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n   useEffect(() => {\n-    if (paused) return;\n-    const handleOffline = () => setIsOnline(false);\n-    window.addEventListener('offline', handleOffline);\n-    return () => window.removeEventListener('offline', handleOffline);\n-  }, [paused]);\n-\n-  // このsetStateはSSAで名前を失うため、ソースコードから名前を復元する経路に入る\n-  const reset = useCallback(() => {\n-    if (paused) return;\n     setIsOnline(true);\n   }, [paused]);\n-\n-  return {isOnline, reset};\n+  return isOnline;\n }\n \n ```\n@@ -31,34 +20,24 @@ export function useOnlineStatus({paused = false}) {\n \n ```javascript\n // @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n-import { useCallback, useEffect, useState } from \"react\";\n+import { useEffect, useState } from \"react\";\n \n-export function useOnlineStatus({ paused = false }) {\n+export function useThing({ paused }) {\n   const [isOnline, setIsOnline] = useState(true);\n-\n-  // 非ASCII文字を含むコメントなので、これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  // 非ASCII文字を含むコメント。これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n   useEffect(() => {\n-    if (paused) return;\n-    const handleOffline = () => setIsOnline(false);\n-    window.addEventListener(\"offline\", handleOffline);\n-    return () => window.removeEventListener(\"offline\", handleOffline);\n-  }, [paused]);\n-\n-  // このsetStateはSSAで名前を失うため、ソースコードから名前を復元する経路に入る\n-  const reset = useCallback(() => {\n-    if (paused) return;\n     setIsOnline(true);\n   }, [paused]);\n-\n-  return { isOnline, reset };\n+  return isOnline;\n }\n \n ```\n \n ## Logs\n \n ```\n-{\"kind\":\"CompileSuccess\",\"fnLoc\":{\"start\":{\"line\":4,\"column\":7,\"index\":131},\"end\":{\"line\":22,\"column\":1,\"index\":702},\"filename\":\"repro-setState-in-effect-non-ascii-source.ts\"},\"fnName\":\"useOnlineStatus\",\"memoSlots\":8,\"memoBlocks\":3,\"memoValues\":4,\"prunedMemoBlocks\":0,\"prunedMemoValues\":0}\n+{\"kind\":\"CompileError\",\"detail\":{\"category\":\"EffectSetState\",\"reason\":\"Calling setState synchronously within an effect can trigger cascading renders\",\"description\":\"Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\\n* Update external systems with the latest state from React.\\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\\n\\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect)\",\"severity\":\"Error\",\"suggestions\":null,\"details\":[{\"kind\":\"error\",\"loc\":{\"start\":{\"line\":8,\"column\":4,\"index\":277},\"end\":{\"line\":8,\"column\":15,\"index\":288},\"filename\":\"repro-setState-in-effect-non-ascii-source.ts\",\"identifierName\":\"setIsOnline\"},\"message\":\"Avoid calling setState() directly within an effect\"}]},\"fnLoc\":null}\n+{\"kind\":\"CompileSuccess\",\"fnLoc\":{\"start\":{\"line\":4,\"column\":7,\"index\":118},\"end\":{\"line\":11,\"column\":1,\"index\":332},\"filename\":\"repro-setState-in-effect-non-ascii-source.ts\"},\"fnName\":\"useThing\",\"memoSlots\":3,\"memoBlocks\":2,\"memoValues\":2,\"prunedMemoBlocks\":0,\"prunedMemoValues\":0}\n ```\n       \n ### Eval output"
+        },
+        {
+          "sha": "beb82cdf5af4bafd3708c5e50418314bf7439b33",
+          "filename": "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/repro-setState-in-effect-non-ascii-source.ts",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 15,
+          "changes": 19,
+          "blob_url": "https://github.com/react/react/blob/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts",
+          "raw_url": "https://github.com/react/react/raw/2895afe2ac1229d87e93095244f227d557cc4cbe/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts",
+          "contents_url": "https://api.github.com/repos/react/react/contents/compiler%2Fpackages%2Fbabel-plugin-react-compiler%2Fsrc%2F__tests__%2Ffixtures%2Fcompiler%2Frepro-setState-in-effect-non-ascii-source.ts?ref=2895afe2ac1229d87e93095244f227d557cc4cbe",
+          "patch": "@@ -1,22 +1,11 @@\n // @loggerTestOnly @validateNoSetStateInEffects @outputMode:\"lint\"\n-import {useCallback, useEffect, useState} from 'react';\n+import {useEffect, useState} from 'react';\n \n-export function useOnlineStatus({paused = false}) {\n+export function useThing({paused}) {\n   const [isOnline, setIsOnline] = useState(true);\n-\n-  // 非ASCII文字を含むコメントなので、これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n+  // 非ASCII文字を含むコメント。これ以降はUTF-16のオフセットとUTF-8のバイト位置がずれる\n   useEffect(() => {\n-    if (paused) return;\n-    const handleOffline = () => setIsOnline(false);\n-    window.addEventListener('offline', handleOffline);\n-    return () => window.removeEventListener('offline', handleOffline);\n-  }, [paused]);\n-\n-  // このsetStateはSSAで名前を失うため、ソースコードから名前を復元する経路に入る\n-  const reset = useCallback(() => {\n-    if (paused) return;\n     setIsOnline(true);\n   }, [paused]);\n-\n-  return {isOnline, reset};\n+  return isOnline;\n }"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:06:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34349098802/job/102457671012",
+        "name": "cleanup",
+        "started_at": "2026-09-09T12:06:08Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382641",
+        "name": "Test react-forgive",
+        "started_at": "2026-09-09T11:58:47Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382593",
+        "name": "Test react-compiler-healthcheck",
+        "started_at": "2026-09-09T11:58:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382525",
+        "name": "Test snap",
+        "started_at": "2026-09-09T11:58:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382512",
+        "name": "Test make-read-only-util",
+        "started_at": "2026-09-09T11:58:47Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382500",
+        "name": "Test react-compiler-runtime",
+        "started_at": "2026-09-09T11:58:47Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:01:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382479",
+        "name": "Test babel-plugin-react-compiler-rust",
+        "started_at": "2026-09-09T11:58:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382467",
+        "name": "Test eslint-plugin-react-compiler",
+        "started_at": "2026-09-09T11:58:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382459",
+        "name": "Test react-mcp-server",
+        "started_at": "2026-09-09T11:58:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455382432",
+        "name": "Test babel-plugin-react-compiler",
+        "started_at": "2026-09-09T11:58:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936134/job/102455343091",
+        "name": "Run prettier",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936134/job/102455343062",
+        "name": "Check license",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936134/job/102455342982",
+        "name": "Test print warnings",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:26Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936134/job/102455342768",
+        "name": "Run eslint",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455339020",
+        "name": "Lint babel-plugin-react-compiler",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:59:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455338885",
+        "name": "Jest babel-plugin-react-compiler",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T11:58:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936063/job/102455338716",
+        "name": "Discover yarn workspaces",
+        "started_at": "2026-09-09T11:58:38Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936145/job/102455338687",
+        "name": "Tests",
+        "started_at": "2026-09-09T11:58:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34301936057/job/102455336313",
+        "name": "Test playground",
+        "started_at": "2026-09-09T11:58:38Z",
+        "status": "completed"
+      },
+      {
+        "app": "meta-cla",
+        "completed_at": "2026-09-09T02:07:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/runs/102310464289",
+        "name": "Meta CLA Check",
+        "started_at": "2026-09-09T02:07:11Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 20
+  },
+  "combined_status": {
+    "sha": "2895afe2ac1229d87e93095244f227d557cc4cbe",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

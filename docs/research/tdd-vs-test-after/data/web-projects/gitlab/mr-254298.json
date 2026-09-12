@@ -1,0 +1,999 @@
+{
+  "source": "GitLab REST API",
+  "fetched_at": "2026-09-12T07:46:39Z",
+  "merge_request": {
+    "id": 529651783,
+    "iid": 254298,
+    "project_id": 278964,
+    "title": "Unlist the create_issue MCP tool superseded by save_work_item",
+    "description": "## What does this MR do and why?\n\nThe GitLab MCP server advertises its tool catalog via `tools/list`. At GA, that advertised catalog becomes a compatibility contract, so tools that have been superseded need to stop being advertised before GA. This MR marks the REST-backed `create_issue` MCP tool as unlisted, since it is superseded by the `save_work_item` MCP tool (work item creation already covers issue creation).\n\nUnlisting hides the tool from `tools/list` and from the AI Catalog tool picker, but it stays fully callable through `tools/call`, so existing callers keep working while they migrate to `save_work_item`.\n\nChanges:\n\n- `route_setting :mcp, ..., unlisted: true` added to `create_issue` in `lib/api/issues.rb`.\n- Docs updated in `doc/user/model_context_protocol/mcp_server_tools.md` with an \"Unlisted in GitLab 19.4\" history entry and a supersession note pointing to `save_work_item`.\n- CE and EE `list_tools` specs updated to remove `create_issue` from expected annotations, with header-filter fixtures swapped to `get_pipeline`.\n- Added a context asserting retired tools are not advertised but remain resolvable through `Mcp::Tools::Manager#get_tool`.\n\n## References\n\n- Retirement umbrella: [Retire superseded MCP tools before GA](https://gitlab.com/gitlab-org/gitlab/-/work_items/622712)\n- Closes [Unlist create_issue MCP tool](https://gitlab.com/gitlab-org/gitlab/-/work_items/625129)\n\n## How to verify locally\n\n- `bundle exec rubocop` clean.\n- CE `list_tools` spec: 23 examples green. EE `list_tools` spec: 4 examples green. `call_tool` create_issue spec: green.\n- GDK e2e over real HTTP JSON-RPC (`POST /api/v4/mcp`): `tools/list` no longer contains `create_issue`; `tools/call create_issue` still created a real issue.",
+    "state": "merged",
+    "created_at": "2026-09-08T21:52:17.572Z",
+    "updated_at": "2026-09-12T02:35:52.134Z",
+    "merged_by": {
+      "id": 20261950,
+      "username": "tgao3701908",
+      "public_email": "tgao@gitlab.com",
+      "name": "Tian Gao",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20261950/avatar.png?v=1789184172",
+      "web_url": "https://gitlab.com/tgao3701908"
+    },
+    "merge_user": {
+      "id": 20261950,
+      "username": "tgao3701908",
+      "public_email": "tgao@gitlab.com",
+      "name": "Tian Gao",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20261950/avatar.png?v=1789184172",
+      "web_url": "https://gitlab.com/tgao3701908"
+    },
+    "merged_at": "2026-09-12T02:35:52.182Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "625129-unlist-create-issue",
+    "user_notes_count": 25,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 20261950,
+      "username": "tgao3701908",
+      "public_email": "tgao@gitlab.com",
+      "name": "Tian Gao",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20261950/avatar.png?v=1789184172",
+      "web_url": "https://gitlab.com/tgao3701908"
+    },
+    "assignees": [
+      {
+        "id": 20261950,
+        "username": "tgao3701908",
+        "public_email": "tgao@gitlab.com",
+        "name": "Tian Gao",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20261950/avatar.png?v=1789184172",
+        "web_url": "https://gitlab.com/tgao3701908"
+      }
+    ],
+    "assignee": {
+      "id": 20261950,
+      "username": "tgao3701908",
+      "public_email": "tgao@gitlab.com",
+      "name": "Tian Gao",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20261950/avatar.png?v=1789184172",
+      "web_url": "https://gitlab.com/tgao3701908"
+    },
+    "reviewers": [
+      {
+        "id": 11001664,
+        "username": "fdegier",
+        "public_email": "fdegier@gitlab.com",
+        "name": "Fred de Gier",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/11001664/avatar.png?v=1789171927",
+        "web_url": "https://gitlab.com/fdegier"
+      },
+      {
+        "id": 21826781,
+        "username": "GitLabDuo",
+        "public_email": null,
+        "name": "GitLab Duo",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21826781/duo-bot.png?v=1781708173",
+        "web_url": "https://gitlab.com/GitLabDuo"
+      },
+      {
+        "id": 25345642,
+        "username": "mdangelo6",
+        "public_email": "",
+        "name": "Matt D'Angelo",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/25345642/avatar.png?v=1789198228",
+        "web_url": "https://gitlab.com/mdangelo6"
+      }
+    ],
+    "source_project_id": 278964,
+    "target_project_id": 278964,
+    "labels": [
+      "backend",
+      "category:agent tools",
+      "devops::agent foundations",
+      "documentation",
+      "group::agent execution",
+      "maintenance::refactor",
+      "pipeline::tier-3",
+      "pipeline:as-if-foss-run-predictive",
+      "pipeline:mr-approved",
+      "roulette-experiment::reviewer-column-shown",
+      "section::ai",
+      "type::maintenance"
+    ],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": {
+      "id": 6239395,
+      "iid": 138,
+      "group_id": 9970,
+      "title": "19.4",
+      "description": "",
+      "state": "active",
+      "created_at": "2025-12-12T14:55:29.025Z",
+      "updated_at": "2025-12-12T14:55:29.025Z",
+      "due_date": "2026-09-11",
+      "start_date": "2026-08-15",
+      "expired": true,
+      "web_url": "https://gitlab.com/groups/gitlab-org/-/milestones/138"
+    },
+    "merge_when_pipeline_succeeds": true,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "83b1fdbe702b7cc4ecccfe5d80ed054fb1c0bf2c",
+    "merge_commit_sha": "8ad537466fa3364af3673f90d9ed7b9bdd92395e",
+    "squash_commit_sha": "cca3584ab51f95a6f1f58e34682b5421ac183c3c",
+    "discussion_locked": null,
+    "should_remove_source_branch": null,
+    "force_remove_source_branch": true,
+    "prepared_at": "2026-09-08T21:52:26.674Z",
+    "reference": "!254298",
+    "references": {
+      "short": "!254298",
+      "relative": "!254298",
+      "full": "gitlab-org/gitlab!254298"
+    },
+    "web_url": "https://gitlab.com/gitlab-org/gitlab/-/merge_requests/254298",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null,
+    "subscribed": false,
+    "changes_count": "7",
+    "latest_build_started_at": "2026-09-12T02:34:07.932Z",
+    "latest_build_finished_at": "2026-09-12T02:35:49.772Z",
+    "first_deployed_to_production_at": null,
+    "pipeline": {
+      "id": 2842498374,
+      "iid": 6343334,
+      "project_id": 278964,
+      "sha": "2da8380e19a3deeeebff792b705f62f18493e7e3",
+      "ref": "refs/merge-requests/254298/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-12T02:34:05.050Z",
+      "updated_at": "2026-09-12T02:35:49.784Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2842498374"
+    },
+    "head_pipeline": {
+      "id": 2842498374,
+      "iid": 6343334,
+      "project_id": 278964,
+      "sha": "2da8380e19a3deeeebff792b705f62f18493e7e3",
+      "ref": "refs/merge-requests/254298/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-12T02:34:05.050Z",
+      "updated_at": "2026-09-12T02:35:49.784Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2842498374",
+      "before_sha": "2da8380e19a3deeeebff792b705f62f18493e7e3",
+      "tag": false,
+      "yaml_errors": null,
+      "user": {
+        "id": 20261950,
+        "username": "tgao3701908",
+        "public_email": "tgao@gitlab.com",
+        "name": "Tian Gao",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20261950/avatar.png?v=1789184172",
+        "web_url": "https://gitlab.com/tgao3701908"
+      },
+      "started_at": "2026-09-12T02:34:07.932Z",
+      "finished_at": "2026-09-12T02:35:49.772Z",
+      "committed_at": null,
+      "duration": 100,
+      "queued_duration": 2,
+      "coverage": null,
+      "detailed_status": {
+        "icon": "status_success",
+        "text": "Passed",
+        "label": "passed",
+        "group": "success",
+        "tooltip": "passed",
+        "has_details": true,
+        "details_path": "/gitlab-org/gitlab/-/pipelines/2842498374",
+        "illustration": null,
+        "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+      },
+      "archived": false
+    },
+    "diff_refs": {
+      "base_sha": "eb5ca159edad99e7e7ce2d96490acf947179ce5b",
+      "head_sha": "83b1fdbe702b7cc4ecccfe5d80ed054fb1c0bf2c",
+      "start_sha": "e04403dc685db1f93db04eceabf9ed864b4d57dd"
+    },
+    "merge_error": null,
+    "first_contribution": false,
+    "user": {
+      "can_merge": false
+    }
+  },
+  "commits": [
+    {
+      "id": "83b1fdbe702b7cc4ecccfe5d80ed054fb1c0bf2c",
+      "short_id": "83b1fdbe",
+      "created_at": "2026-09-11T11:27:13.000-04:00",
+      "parent_ids": [
+        "80b3bf2d339f022ff3a1dc433c07c59b435472e1",
+        "eb5ca159edad99e7e7ce2d96490acf947179ce5b"
+      ],
+      "title": "Merge master into 625129-unlist-create-issue",
+      "message": "Merge master into 625129-unlist-create-issue\n\nMaster added toolset tagging to every MCP route_setting; the\ncreate_issue line now carries both toolset and unlisted.\n",
+      "author_name": "tgao3701908",
+      "author_email": "tgao@gitlab.com",
+      "authored_date": "2026-09-11T11:16:42.000-04:00",
+      "committer_name": "tgao3701908",
+      "committer_email": "tgao@gitlab.com",
+      "committed_date": "2026-09-11T11:27:13.000-04:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/83b1fdbe702b7cc4ecccfe5d80ed054fb1c0bf2c"
+    },
+    {
+      "id": "80b3bf2d339f022ff3a1dc433c07c59b435472e1",
+      "short_id": "80b3bf2d",
+      "created_at": "2026-09-11T09:10:04.000-04:00",
+      "parent_ids": [
+        "dd52b2e4e717d9ba4b962d9ac0ff46506a9eff51"
+      ],
+      "title": "State the milestone strictness difference in the create_issue note",
+      "message": "State the milestone strictness difference in the create_issue note\n\nAn unknown milestone title is silently dropped by create_issue\n(resolve_milestone_title! assigns only if resolved) but rejected by\nsave_work_item, so the supersession note now describes the shared\nlookup scope and the strictness difference instead of claiming\nequivalent semantics.\n",
+      "author_name": "tgao3701908",
+      "author_email": "tgao@gitlab.com",
+      "authored_date": "2026-09-11T09:10:04.000-04:00",
+      "committer_name": "tgao3701908",
+      "committer_email": "tgao@gitlab.com",
+      "committed_date": "2026-09-11T09:10:04.000-04:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/80b3bf2d339f022ff3a1dc433c07c59b435472e1"
+    },
+    {
+      "id": "dd52b2e4e717d9ba4b962d9ac0ff46506a9eff51",
+      "short_id": "dd52b2e4",
+      "created_at": "2026-09-10T21:20:26.000-04:00",
+      "parent_ids": [
+        "ce3c9f7c8debdbe285eb9263d4f6f549c608c4b2"
+      ],
+      "title": "Correct label semantics in the create_issue supersession note",
+      "message": "Correct label semantics in the create_issue supersession note\n\ncreate_issue creates missing labels (create_when_missing: true);\nsave_work_item resolves with find_only: true and errors on missing\nnames, so the two are equivalent for milestones only.\n",
+      "author_name": "tgao3701908",
+      "author_email": "tgao@gitlab.com",
+      "authored_date": "2026-09-10T21:20:26.000-04:00",
+      "committer_name": "tgao3701908",
+      "committer_email": "tgao@gitlab.com",
+      "committed_date": "2026-09-10T21:20:26.000-04:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/dd52b2e4e717d9ba4b962d9ac0ff46506a9eff51"
+    },
+    {
+      "id": "ce3c9f7c8debdbe285eb9263d4f6f549c608c4b2",
+      "short_id": "ce3c9f7c",
+      "created_at": "2026-09-10T20:32:55.000-04:00",
+      "parent_ids": [
+        "bf1956dc81b25ab65df524f4d1aecc1bf49b63d8"
+      ],
+      "title": "Keep unlisted MCP tools governed by tool rules",
+      "message": "Keep unlisted MCP tools governed by tool rules\n\nGovernedMcpTools skipped unlisted tools, so retiring a tool from\ndiscovery silently dropped it from rule resolution: a deny rule\nstopped expanding to the tool's MCP spelling while the tool stayed\nfully callable. Unlisted controls discovery only; governance has to\nfollow callability.\n",
+      "author_name": "tgao3701908",
+      "author_email": "tgao@gitlab.com",
+      "authored_date": "2026-09-10T20:32:55.000-04:00",
+      "committer_name": "tgao3701908",
+      "committer_email": "tgao@gitlab.com",
+      "committed_date": "2026-09-10T20:32:55.000-04:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/ce3c9f7c8debdbe285eb9263d4f6f549c608c4b2"
+    },
+    {
+      "id": "bf1956dc81b25ab65df524f4d1aecc1bf49b63d8",
+      "short_id": "bf1956dc",
+      "created_at": "2026-09-10T18:37:48.000-04:00",
+      "parent_ids": [
+        "dc3d179988e6c1076ff40bda23154c5652427166"
+      ],
+      "title": "Expect retired tools in the catalog unlisted sweep",
+      "message": "Expect retired tools in the catalog unlisted sweep\n\nThe sweep asserted every discovered tool is listed, which fails the\nmoment any tool is intentionally retired from discovery. Assert the\nunlisted set exactly instead, so accidental unlisting still fails while\neach retirement adds its tool name.\n",
+      "author_name": "tgao3701908",
+      "author_email": "tgao@gitlab.com",
+      "authored_date": "2026-09-10T18:37:48.000-04:00",
+      "committer_name": "tgao3701908",
+      "committer_email": "tgao@gitlab.com",
+      "committed_date": "2026-09-10T18:37:48.000-04:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/bf1956dc81b25ab65df524f4d1aecc1bf49b63d8"
+    },
+    {
+      "id": "dc3d179988e6c1076ff40bda23154c5652427166",
+      "short_id": "dc3d1799",
+      "created_at": "2026-09-08T19:37:38.000-04:00",
+      "parent_ids": [
+        "7df943fac6985e686b1e7568028bc33cbe1422af"
+      ],
+      "title": "Unlist the create_issue MCP tool superseded by save_work_item",
+      "message": "Unlist the create_issue MCP tool superseded by save_work_item\n",
+      "author_name": "tgao3701908",
+      "author_email": "tgao@gitlab.com",
+      "authored_date": "2026-09-08T17:14:14.000-04:00",
+      "committer_name": "tgao3701908",
+      "committer_email": "tgao@gitlab.com",
+      "committed_date": "2026-09-08T19:37:38.000-04:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/dc3d179988e6c1076ff40bda23154c5652427166"
+    }
+  ],
+  "diffs": [
+    {
+      "diff": "@@ -114,9 +114,17 @@ with the content \"# New title\" and commit message \"Add README\"\n {{< history >}}\n \n - [Introduced](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/203055) in GitLab 18.4.\n+- [Unlisted](https://gitlab.com/gitlab-org/gitlab/-/work_items/625129) in GitLab 19.4. Superseded by [`save_work_item`](#save_work_item).\n \n {{< /history >}}\n \n+Superseded by [`save_work_item`](#save_work_item), which resolves milestone titles and\n+label names in the same places (the project and its ancestor groups) but is stricter\n+about names it cannot find: `create_issue` creates label names that don't exist yet and\n+silently drops an unknown milestone title, while `save_work_item` returns an error naming\n+anything it cannot find. This tool no longer appears in `tools/list` but remains callable\n+while callers migrate.\n+\n Creates a new issue in a GitLab project.\n \n | Parameter      | Type              | Required | Description |\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+      "old_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -35,7 +35,8 @@ def build_entries\n           manager.list_tools.each_with_object({}) do |(name, tool), entries|\n             tool_name = name.to_s\n \n-            next if tool.unlisted?\n+            # Unlisted tools stay governed: they are hidden from tools/list but remain\n+            # callable, so a deny rule must keep reaching them.\n             next if Registry::UNGOVERNED_TOOLS.include?(tool_name)\n \n             entries[tool_name] = {\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/lib/ai/tool_rules/governed_mcp_tools.rb",
+      "old_path": "ee/lib/ai/tool_rules/governed_mcp_tools.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -84,16 +84,16 @@ def tool_double(annotations = {}, unlisted: false)\n         expect(catalog.action_type_for('confused_tool')).to eq(:destroy)\n       end\n \n-      it 'omits unlisted tools, which never reach tools/list' do\n-        expect(catalog.action_type_for('hidden_tool')).to be_nil\n-        expect(catalog.rulable_names).not_to include('hidden_tool')\n+      it 'keeps unlisted tools governed, because they are hidden from tools/list but stay callable' do\n+        expect(catalog.action_type_for('hidden_tool')).to eq(:read)\n+        expect(catalog.rulable_names).to include('hidden_tool')\n       end\n \n       describe '#rulable_names' do\n         it 'covers only capabilities with no catalog twin' do\n           expect(catalog.rulable_names).to contain_exactly(\n             'search', 'manage_pipeline', 'mystery_tool', 'confused_tool',\n-            'run_asc_scan', 'set_form_permissions'\n+            'run_asc_scan', 'set_form_permissions', 'hidden_tool'\n           )\n         end\n \n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/spec/lib/ai/tool_rules/governed_mcp_tools_spec.rb",
+      "old_path": "ee/spec/lib/ai/tool_rules/governed_mcp_tools_spec.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -99,11 +99,15 @@ def description\n   end\n \n   describe 'unlisted tools' do\n-    it 'defaults unlisted to false for discovered tools' do\n+    it 'marks only intentionally retired tools as unlisted' do\n       orbit_names = ::API::Orbit::McpHandlers::ToolCatalog::COMMAND_TOOL_NAMES\n       discovered = described_class.fixed_items.reject { |item| orbit_names.include?(item[:name]) }\n \n-      expect(discovered).to all(include(unlisted: false))\n+      unlisted_names = discovered.select { |item| item[:unlisted] }.map { |item| item[:name] }\n+\n+      # Tools hidden from discovery because a replacement supersedes them. A tool\n+      # showing up here unexpectedly means something unlisted itself by accident.\n+      expect(unlisted_names).to contain_exactly('create_issue')\n     end\n \n     context 'when a tool marks itself unlisted' do\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/spec/models/ai/catalog/mcp_tool_spec.rb",
+      "old_path": "ee/spec/models/ai/catalog/mcp_tool_spec.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -67,7 +67,6 @@ def post_list_tools\n       expected_annotations = {\n         # write, non-destructive\n         'add_branch' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n-        'create_issue' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'save_merge_request' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'fork_repository' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'link_work_items' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/spec/requests/api/mcp/handlers/list_tools_spec.rb",
+      "old_path": "ee/spec/requests/api/mcp/handlers/list_tools_spec.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -334,9 +334,10 @@ class Issues < ::API::Base\n \n         use :issue_params\n       end\n+      # Unlisted pending removal: superseded by save_work_item (https://gitlab.com/gitlab-org/gitlab/-/work_items/625129).\n       route_setting :mcp, tool_name: :create_issue, toolset: :work_items,\n         params: Helpers::IssuesHelpers.create_issue_mcp_params,\n-        annotations: { readOnlyHint: false, destructiveHint: false }, resource_name: \"project\"\n+        annotations: { readOnlyHint: false, destructiveHint: false }, resource_name: \"project\", unlisted: true\n       route_setting :authorization, permissions: :create_issue, boundary_type: :project\n       post ':id/issues' do\n         Gitlab::QueryLimiting.disable!('https://gitlab.com/gitlab-org/gitlab/-/issues/21140')\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "lib/api/issues.rb",
+      "old_path": "lib/api/issues.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -59,7 +59,6 @@ def post_list_tools\n       expected_annotations = {\n         # write, non-destructive\n         'add_branch' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n-        'create_issue' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'save_merge_request' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'fork_repository' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'link_work_items' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n@@ -118,7 +117,7 @@ def post_list_tools\n \n       api_tool_names = ::API::API.routes.filter_map do |route|\n         settings = route.app.route_setting(:mcp)\n-        next if settings.blank? || settings[:aggregators].present?\n+        next if settings.blank? || settings[:aggregators].present? || settings[:unlisted].present?\n \n         settings[:tool_name].to_s\n       end.uniq\n@@ -287,6 +286,16 @@ def post_list_tools\n       end\n     end\n \n+    context 'with tools retired from the catalog' do\n+      it 'does not advertise create_issue but keeps it callable' do\n+        post_list_tools\n+\n+        tool_names = json_response['result']['tools'].pluck('name')\n+        expect(tool_names).not_to include('create_issue')\n+        expect(::Mcp::Tools::Manager.new.get_tool(name: 'create_issue')).to be_present\n+      end\n+    end\n+\n     context 'when a tool is unlisted' do\n       let(:manager) do\n         ::Mcp::Tools::Manager.new.tap do |m|\n@@ -315,17 +324,17 @@ def post_list_tools_with_allowed(allowed_tools)\n       end\n \n       it 'returns only the tools listed in the header' do\n-        post_list_tools_with_allowed('get_issue,create_issue')\n+        post_list_tools_with_allowed('get_issue,get_pipeline')\n \n         tool_names = json_response['result']['tools'].pluck('name')\n-        expect(tool_names).to contain_exactly('get_issue', 'create_issue')\n+        expect(tool_names).to contain_exactly('get_issue', 'get_pipeline')\n       end\n \n       it 'excludes tools not in the allowed list' do\n         post_list_tools_with_allowed('get_issue')\n \n         tool_names = json_response['result']['tools'].pluck('name')\n-        expect(tool_names).not_to include('create_issue', 'search', 'get_merge_request')\n+        expect(tool_names).not_to include('get_pipeline', 'search', 'get_merge_request')\n       end\n \n       it 'handles a single tool correctly' do\n@@ -347,7 +356,7 @@ def post_list_tools_with_allowed(allowed_tools)\n           post_list_tools_with_allowed('')\n \n           tool_names = json_response['result']['tools'].pluck('name')\n-          expect(tool_names).to include('get_issue', 'create_issue', 'search', 'get_merge_request')\n+          expect(tool_names).to include('get_issue', 'get_pipeline', 'search', 'get_merge_request')\n         end\n       end\n     end\n@@ -357,7 +366,7 @@ def post_list_tools_with_allowed(allowed_tools)\n         post_list_tools\n \n         tool_names = json_response['result']['tools'].pluck('name')\n-        expect(tool_names).to include('get_issue', 'create_issue', 'search', 'get_merge_request')\n+        expect(tool_names).to include('get_issue', 'get_pipeline', 'search', 'get_merge_request')\n       end\n     end\n \n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "spec/requests/api/mcp/handlers/list_tools_spec.rb",
+      "old_path": "spec/requests/api/mcp/handlers/list_tools_spec.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "83b1fdbe702b7cc4ecccfe5d80ed054fb1c0bf2c",
+      "diffs": [
+        {
+          "diff": "@@ -1,6 +1,6 @@\n ---\n-source_checksum: 4179db268419765e\n-distilled_at_sha: 73023e3b34aa63d1692e8a3066e870c10875ef55\n+source_checksum: e72383a0b25128dc\n+distilled_at_sha: 586530a94f045df52e8ae3e37a72e449e7dd1e43\n ---\n <!-- Auto-generated from docs.gitlab.com by gitlab-ai-principles-distiller — do not edit manually -->\n \n@@ -11,7 +11,7 @@ distilled_at_sha: 73023e3b34aa63d1692e8a3066e870c10875ef55\n ### Compute Scope\n \n - Design for Cells as a GitLab.com-only deployment; GitLab Self-Managed and GitLab Dedicated run as a single cell.\n-- Scope all Web/API requests and Sidekiq workers to a single organization; convert cross-organization compute to be organization-scoped.\n+- Scope all Web/API requests and Sidekiq workers to a single organization; allow cross-organization Sidekiq work only for recurring, idempotent cron jobs.\n - DO NOT introduce cross-cell access to organization data — all data and compute for an organization must live on a single cell.\n \n ### Request Routing\n@@ -24,6 +24,8 @@ distilled_at_sha: 73023e3b34aa63d1692e8a3066e870c10875ef55\n - Ensure organization data is migratable to another cell for all stateful cell-local services.\n - Ensure every customer-data table in the GitLab Rails monolith has a traceable path to an organization through its sharding key.\n - Define a sharding key on every new model that stores customer data so each row is attributable to a single organization.\n+- Require every newly created table in an organization-level schema (`gitlab_main_org`, `gitlab_ci`, `gitlab_sec`, `gitlab_main_user`, `gitlab_shared_org`) to define a `sharding_key` in its corresponding `db/docs/` file.\n+- DO NOT add a sharding key to cell-local tables — their data is never migrated between cells.\n - Mark non-customer data (data that does not belong to a customer organization) as cell-local in the schema classification.\n - Confirm that the ownership of each row is unambiguous when designing a new table or extending an existing one — ambiguous ownership blocks future cell migrations.\n \n@@ -70,9 +72,29 @@ distilled_at_sha: 73023e3b34aa63d1692e8a3066e870c10875ef55\n - Hard-code static data in application code using `ActiveRecord::FixedItemsModel::Model` instead of a database table; use `belongs_to_fixed_items` for associations with fixed-item models.\n - Use globally unique references (not database sequences) when a cross-cell reference is unavoidable.\n \n+### Sharding Key Rules\n+\n+- Give every row exactly one sharding key and choose the most specific key possible (prefer a key referencing `projects`, then `namespaces`, over `organization_id`); use a key referencing `users` only for `gitlab_main_user` tables.\n+- Ensure each row resolves to exactly one non-null, immutable sharding key so it remains attributable to one organization during isolation and migration.\n+- DO NOT use `namespace_id` as a sharding key when it refers to a `UserNamespace` — such rows can be `NULL`, violating the non-nullable requirement.\n+- Use `organization_id` as a sharding key only for root-level models (for example, `namespaces`) that do not belong to a project or namespace, and only after seeking approval from the Tenant Scale group.\n+- Allow multiple sharding key columns only when a check constraint ensures exactly one is non-null; DO NOT design new tables with multiple-column sharding keys unless absolutely necessary, as they may need to be split into separate tables in the future.\n+- When the sharding key value comes from a parent table that the table already references through a foreign key or loose foreign key to the same target, populate it via `desired_sharding_key.backfill_via.parent` in the `db/docs/` YAML and rely on the parent's reference; add a direct foreign key when no such parent chain exists or the direct reference intentionally identifies a different entity.\n+- Use `populate_sharding_key` in the model to ensure the sharding key is filled at the application level before save.\n+- Omit a direct foreign key on a sharding key when a foreign-key-backed parent chain carries the same key to the same target, or when the table automatically drops data via time-based partition retention (`retain_for`) or `sliding_list` partitioning; only retention-based omissions belong in `allowed_to_be_missing_foreign_key` in `spec/lib/gitlab/organizations/sharding_key_spec.rb`, with a comment explaining the retention behavior.\n+- When sharding a table by `organization_id`, register `supported`, `no_work_needed`, or a tracking issue in `config/organizations/transfer_support.yml`; require `supported` for new tables and implement applicable transfer logic with `update_organization_id_for`.\n+- Use `association(:common_organization)` in RSpec factories for models sharded by `organization_id` to ensure tests work without explicit organization setup.\n+\n+### Cross-Schema References\n+\n+- DO NOT make organization data depend on cell-local data without self-healing logic — the referenced cell-local data may not exist or may have different IDs after migration.\n+- When organization data must reference cell-local data, use a Loose Foreign Key (not a hard FK) and implement application logic to regenerate or gracefully handle missing references after migration.\n+- When cell-local data references organization data, use a regular foreign key.\n+- DO NOT persist identifiers in organization tables that may be inconsistent across cells (for example, IDs generated from auto-incrementing sequences in cell-local tables); use globally stable identifiers or avoid persisting computed references.\n+\n ## Authoritative sources\n \n For the full picture, see:\n \n - doc/development/cells/_index.md\n-\n+- doc/development/organization/sharding/_index.md\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".ai/principles/distilled/cells-fundamentals.md",
+          "old_path": ".ai/principles/distilled/cells-fundamentals.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -1,6 +1,6 @@\n ---\n-source_checksum: e67321bd862e9a3b\n-distilled_at_sha: da75f7373628b035becb13fb3f0d21b4b3d3690f\n+source_checksum: 89f2341efcf303e1\n+distilled_at_sha: 586530a94f045df52e8ae3e37a72e449e7dd1e43\n ---\n <!-- Auto-generated from docs.gitlab.com by gitlab-ai-principles-distiller — do not edit manually -->\n \n@@ -119,6 +119,14 @@ distilled_at_sha: da75f7373628b035becb13fb3f0d21b4b3d3690f\n - Ensure reviewers have access to any projects, snippets, or assets needed to validate the solution.\n - When assigning multiple reviewers, comment to specify which domain each reviewer should focus on.\n \n+### Code Comments\n+\n+- Focus comments on the \"why\" (rationale, constraints, edge cases, business logic) rather than the \"what\" or \"how\"; the code itself should express what it does.\n+- Keep comments as close as possible to the code they reference; maintain and update them as the code evolves.\n+- When adding a comment for a follow-up action, create a technical debt issue and include a link to it in the comment.\n+- Document every new or updated method with a YARD comment: include `@param` for each argument and `@return` for methods with an explicit return value; separate the description from YARD tags with a blank line; use linkable references (e.g. `{ClassName#method}`) when referring to other methods or classes, and consider adding `@see`.\n+- Annotate void methods with `@return [void]` and explicitly return `nil` to prevent accidental use of the return value in chains or assignments.\n+\n ### Troubleshooting Failing Pipelines\n \n - For an unrelated test failure that also fails on the default branch, wait for the broken-master fix before re-running the pipeline.\n@@ -129,4 +137,5 @@ distilled_at_sha: da75f7373628b035becb13fb3f0d21b4b3d3690f\n For the full picture, see:\n \n - doc/development/code_review.md\n+- doc/development/code_comments.md\n \n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".ai/principles/distilled/code-review.md",
+          "old_path": ".ai/principles/distilled/code-review.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -1,7 +1,7 @@\n ---\n name: gitlab-mcp-tool-builder\n description: \"Build a new GraphQL-backed MCP server tool in gitlab-org/gitlab. Use when adding or scaffolding a GitLab Duo Agent Platform MCP tool that follows the app/services/mcp/tools/ *Tool + Graphql*Service pattern — covers GraphQL API discovery, the two-class-plus-registration build recipe, and gotchas. Keywords: MCP tool, MCP server, GraphQL tool, GitLab Duo Agent Platform.\"\n-version: 1.8.0\n+version: 1.10.0\n license: MIT\n compatibility: opencode\n metadata:\n@@ -121,7 +121,9 @@ never folded into a single `id`. `url` is the single-value convenience path; `pr\n - GraphQL-backed tools → native cursor pagination (`first`, `after`); return `pageInfo`\n   with `endCursor` and `hasNextPage`. Never hardcode the page size numbers: splat\n   `Mcp::Tools::Concerns::CursorPagination.input_schema_params(items:)` into the service's\n-  `input_schema`, and use its `paginated_first` in the tool.\n+  `input_schema`, include the concern in the tool, and splat `**resolve_pagination_direction`\n+  into `build_variables` instead of reading `params[:first]`/`params[:after]` directly. This\n+  resolves conflicts when GPT clients send both `first` and `last` simultaneously.\n - REST-backed tools → offset pagination (`page`, `per_page`); return `metadata` with\n   `page`, `per_page`, `has_more`.\n \n@@ -164,29 +166,41 @@ a convention (non-standard verb, second write tool on one resource).\n 5. **Service class** (`< Base::GraphqlService`): write `input_schema` (agent-facing args\n    + `required`; do **not** add `additionalProperties`), `description`, `annotations`\n    (`readOnlyHint` correct — it drives pre-approval); point `graphql_tool_class` at the Tool.\n-6. **Agent-as-consumer review** — review name/description/schema/output as the LLM sees\n+6. **Declare the governance namespace.** Every tool inherits\n+   `{ project: :project_id, group: :group_id }` from `GovernanceNamespaceResolver`. If your\n+   `input_schema` already names its project/group arguments `project_id`/`group_id`, skip this\n+   step. Otherwise override `self.namespace_arguments` on the service class to point at the\n+   argument(s) that actually carry it, keyed `:project`, `:group`, or `:project_or_group` (one\n+   argument that may be either) — see `ListVulnerabilitiesService`\n+   (`{ project: :project_full_path }`) and `Labels::SearchService`\n+   (`{ project_or_group: :full_path }`). If no argument names a container at all, mark the class\n+   `ungovernable!` instead (see `GetServerVersionService`). `ee/spec/lib/ai/tool_rules/governable_tools_namespace_spec.rb`\n+   fails the build if a governable tool declares nothing usable, declares an argument the tool\n+   doesn't accept, or keys on an unrecognized kind. Full contract:\n+   [`_index.md#declare-the-namespace-that-governs-the-tool`](../../../doc/development/duo_agent_platform/mcp/_index.md#declare-the-namespace-that-governs-the-tool).\n+7. **Agent-as-consumer review** — review name/description/schema/output as the LLM sees\n    them, *before* specs. See **[references/agent-consumer-review.md](references/agent-consumer-review.md)**.\n-7. **Register** in `manager.rb` `GRAPHQL_TOOLS`.\n-8. **Update the `list_tools` specs — required, both files.** Each holds its own copy of the\n+8. **Register** in `manager.rb` `GRAPHQL_TOOLS`.\n+9. **Update the `list_tools` specs — required, both files.** Each holds its own copy of the\n    same `expected_annotations` hash, so both need the identical\n    `'<tool_name>' => { 'readOnlyHint' => … }` entry under the matching comment bucket (write\n    non-destructive / write destructive / read-only) — annotations only, neither file asserts\n    `description` or `inputSchema`. Both also assert every service under the MCP tools tree is\n-   registered in `Mcp::Tools::Manager`, so they catch a skipped step 7.\n+   registered in `Mcp::Tools::Manager`, so they catch a skipped step 8.\n    - `spec/requests/api/mcp/handlers/list_tools_spec.rb` — its annotations example is guarded\n      `unless: Gitlab.ee?`.\n    - `ee/spec/requests/api/mcp/handlers/list_tools_spec.rb` — unguarded, and its hash also\n      lists EE-only tools.\n    Only one of the two annotations examples runs in a given pipeline, so green specs never\n    prove you updated both files.\n-9. **Unit specs** for the Tool and the Service. Lock the service `input_schema` as a\n+10. **Unit specs** for the Tool and the Service. Lock the service `input_schema` as a\n    whole with a single `expect(...).to eq({ … })` (a full version-lock, like\n    `list_merge_requests_service_spec`), not property-by-property — it catches accidental\n    schema drift across versions. Don't re-assert `readOnlyHint` here: the `list_tools`\n-   specs (step 8) already cover annotations, so a per-tool \"is marked read-only\" example\n+   specs (step 9) already cover annotations, so a per-tool \"is marked read-only\" example\n    is redundant. Match the sibling MCP specs' `feature_category: :mcp_server` on both files.\n-10. **Update user docs:** `doc/user/model_context_protocol/mcp_server_tools.md`.\n-11. **`bundle exec rubocop` + `bundle exec rspec`** the changed files; fix failures. Also\n+11. **Update user docs:** `doc/user/model_context_protocol/mcp_server_tools.md`.\n+12. **`bundle exec rubocop` + `bundle exec rspec`** the changed files; fix failures. Also\n     run `bundle exec rspec spec/graphql/all_queries_spec.rb` — it validates your new\n     `.graphql` file against `GitlabSchema`, so a bad field/arg fails here. **It does not check\n     `id` selections** — a missing `id` passes rspec and only fails the `graphql-verify` eslint CI\n@@ -195,6 +209,10 @@ a convention (non-standard verb, second write tool on one resource).\n \n ## Gotchas (learned the hard way)\n \n+- **A project argument not named `project_id`/`group_id` is silently ungoverned.** The default\n+  `namespace_arguments` only reads `project_id`/`group_id`; a tool that names its argument\n+  anything else (e.g. `project_full_path`) resolves no namespace and skips tool-rule\n+  enforcement until it declares `self.namespace_arguments` itself (step 6 above).\n - **Inline operation → RuboCop failure.** `Mcp/UseGraphqlQueryFile` rejects a\n   string/HEREDOC as `graphql_operation:`; use a `.graphql` file via `load_graphql`.\n - **Missing `# @feature_category:` → lint failure.** Every `.graphql` file needs it as\n@@ -222,6 +240,15 @@ a convention (non-standard verb, second write tool on one resource).\n   missing `id` is the `graphql-verify` CI job, which needs the schema dump and does not run\n   locally. Never remove an `id` to \"slim\" a payload; a reviewer (human or agent) suggesting that\n   is wrong.\n+- **Unwrap GIDs to numeric IDs in `process_result` — but only for global-ID-addressed\n+  resources (groups, projects, pipelines).** A raw `gid://gitlab/Group/123` in the output cannot\n+  be fed back into `group_id`/`project_id` inputs, so agents chaining calls hit not-found errors.\n+  Unwrap with `GlobalID.parse(node['id']).model_id.to_i` (pattern: `get_project_tool`,\n+  `list_groups_tool`, `list_projects_tool`). Do **NOT** unwrap ids of iid-addressed resources\n+  (work items, merge requests, issues): `model_id` is the global database key, not the iid, and\n+  an agent feeding it back as `*_iid` silently operates on the wrong record — expose `iid`\n+  alongside the GID instead. (Convention decided in\n+  https://gitlab.com/gitlab-org/gitlab/-/work_items/628289.)\n - **A root `oneOf`/`anyOf` silently disables `additionalProperties: false`.** `SchemaDefaults`\n   skips composition schemas (tool-anatomy.md), so expressing \"exactly one of `url`/`project_id`\"\n   as a schema `oneOf` quietly stops unknown args being rejected. Enforce mutual exclusivity in\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".claude/skills/gitlab-mcp-tool-builder/SKILL.md",
+          "old_path": ".claude/skills/gitlab-mcp-tool-builder/SKILL.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -307,6 +307,7 @@ variables:\n   GLCI_PREDICTIVE_RSPEC_PIPELINE_TEMPLATE_YML: .gitlab/ci/rails/rspec-predictive.gitlab-ci.yml.erb\n   GLCI_PREDICTIVE_DUO_SYSTEM_TESTS_PATH: rspec/duo_system_test_files.txt\n   GLCI_PREDICTIVE_RSPEC_SYSTEM_FULL_PIPELINE_YML: .gitlab/ci/rails/rspec-predictive-system-full-generated.yml\n+  GLCI_FLAKY_TEST_LIST_URL: \"https://gitlab-org.gitlab.io/quality/analytics/ci-alerts/flaky-tests.json\"\n \n   # Test execution result export to ClickHouse\n   GLCI_EXPORT_TEST_METRICS: \"true\"\n@@ -403,3 +404,6 @@ include:\n     rules:\n       - *if-merge-request-labels-run-with-rails-next\n       - *if-rails-next-schedule\n+  - local: .gitlab/ci/overrides/assets-tmp-cache.yml\n+    rules:\n+      - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == \"push\"'\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab-ci.yml",
+          "old_path": ".gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -81,6 +81,10 @@ config.ru @gitlab-org/maintainers/rails-backend\n /spec/views/ @gitlab-org/maintainers/rails-backend @gitlab-org/maintainers/frontend\n /ee/spec/views/ @gitlab-org/maintainers/rails-backend @gitlab-org/maintainers/frontend\n \n+# Analytics dashboard definitions are data, not Ruby: they override the\n+# `/ee/` backend default so either maintainer group can approve them.\n+/ee/lib/gitlab/analytics/**/*.yaml @gitlab-org/maintainers/rails-backend @gitlab-org/maintainers/frontend\n+\n # Frontend\n *.scss @gitlab-org/maintainers/frontend\n *.js @gitlab-org/maintainers/frontend\n@@ -715,6 +719,9 @@ Dangerfile\n /app/assets/javascripts/vue_shared/components/customizable_dashboard/\n /ee/app/assets/javascripts/analytics/analytics_dashboards/\n \n+[Analytics Dashboards definitions] @gitlab-org/plan-stage/optimize-group/engineers/backend @gitlab-org/plan-stage/optimize-group/engineers/frontend @gitlab-org/analytics-section/platform-insights/engineers/backend @gitlab-org/analytics-section/platform-insights/engineers/frontend\n+/ee/lib/gitlab/analytics/**/*.yaml\n+\n ^[Product Analytics backend] @gitlab-org/analytics-section/platform-insights/engineers/backend\n /ee/lib/analytics/product_analytics/\n /ee/lib/product_analytics/\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/CODEOWNERS",
+          "old_path": ".gitlab/CODEOWNERS",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -19,7 +19,8 @@\n         \"^/srv/gitlab/(?<file>lib/gitlab/cluster/lifecycle_events)\": \"./$file\",\n         \"^/srv/gitlab/(?<file>lib/gitlab/puma_logging/json_formatter)\": \"./$file\",\n         \"^/srv/gitlab/(?<file>lib/gitlab/puma/error_handler)\": \"./$file\",\n-        \"^/srv/gitlab/(?<file>config/environment)\": \"./$file\"\n+        \"^/srv/gitlab/(?<file>config/environment)\": \"./$file\",\n+        \"^/srv/gitlab/(?<file>config/puma_ipv6)\": \"./$file\"\n       }\n     },\n     \"env\": false\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/caproni/.mirrord/rspec.json",
+          "old_path": ".gitlab/caproni/.mirrord/rspec.json",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -8,14 +8,14 @@\n #\n # Activation is opt-in: without CAPRONI_ACTIVATE_LICENSE=1 the script does\n # nothing at all. Once opted in, a missing `op` CLI is skipped with a warning,\n-# but every other failure -- a locked vault, an unavailable toolbox pod, a\n-# Rails error -- is fatal and blocks `caproni run`. Set\n+# but every other failure -- a failed 1Password sign-in, an unavailable toolbox\n+# pod, a Rails error -- is fatal and blocks `caproni run`. Set\n # CAPRONI_ACTIVATE_LICENSE=0 to skip activation instead.\n #\n # Prerequisites:\n # - Cluster is up and toolbox pod is healthy\n # - `.gitlab/caproni/setup.sh` was performed (config files in place)\n-# - 1Password CLI (`op`) installed and app integration enabled\n+# - 1Password CLI (`op`) installed, able to sign in to `gitlab.1password.com`\n \n set -euo pipefail\n \n@@ -28,6 +28,7 @@ TARGET=\"$TARGET_DEPLOYMENT/container/toolbox\"\n NAMESPACE=\"${GITLAB_NAMESPACE:-gitlab}\"\n RAILS_ENV=\"${RAILS_ENV:-development}\"\n \n+ONEPASSWORD_ACCOUNT=\"gitlab.1password.com\"\n ONEPASSWORD_ITEM=\"GitLab_self_managed_ultimate_Duo_enterprise\"\n ONEPASSWORD_VAULT=\"Engineering\"\n ONEPASSWORD_FIELD=\"activation_code\"\n@@ -45,7 +46,7 @@ if [[ \"${CAPRONI_ACTIVATE_LICENSE:-0}\" != \"1\" ]]; then\n fi\n \n # ------------------------------------------------------------------\n-# 1. Check op CLI availability and authentication\n+# 1. Check op CLI availability and sign in to 1Password\n # ------------------------------------------------------------------\n # No `op` at all means no 1Password to fetch a code from, and nobody in that\n # position wants a license -- warn and continue. Every later failure is fatal,\n@@ -56,12 +57,19 @@ if ! command -v op &>/dev/null; then\n   exit 0\n fi\n \n-if ! op whoami </dev/null &>/dev/null; then\n-  err \"1Password CLI is not authenticated — cannot fetch the license activation code.\"\n-  err \"Run 'op signin' (or unlock the 1Password app), then re-run 'caproni run'.\"\n-  err \"To start unlicensed instead, set CAPRONI_ACTIVATE_LICENSE=0, or activate manually at:\"\n-  err \"  http://gitlab.caproni.test/admin/subscription\"\n-  exit 1\n+if ! op whoami --account \"${ONEPASSWORD_ACCOUNT}\" </dev/null &>/dev/null; then\n+  info \"Signing in to 1Password (${ONEPASSWORD_ACCOUNT})...\"\n+  session=\"\"\n+  # Without 1Password app integration, signin prints an OP_SESSION_* export\n+  # to stdout that later `op` calls need; with it enabled, eval is a no-op.\n+  if ! session=$(op signin --account \"${ONEPASSWORD_ACCOUNT}\"); then\n+    err \"1Password sign-in failed — cannot fetch the license activation code.\"\n+    err \"Run 'op signin --account ${ONEPASSWORD_ACCOUNT}' to see why, then re-run 'caproni run'.\"\n+    err \"To start unlicensed instead, set CAPRONI_ACTIVATE_LICENSE=0, or activate manually at:\"\n+    err \"  http://gitlab.caproni.test/admin/subscription\"\n+    exit 1\n+  fi\n+  eval \"${session}\"\n fi\n \n # ------------------------------------------------------------------\n@@ -71,6 +79,7 @@ info \"Fetching license activation code from 1Password...\"\n activation_code=\"\"\n \n if ! activation_code=$(op item get \"${ONEPASSWORD_ITEM}\" \\\n+    --account \"${ONEPASSWORD_ACCOUNT}\" \\\n     --vault \"${ONEPASSWORD_VAULT}\" \\\n     --fields \"${ONEPASSWORD_FIELD}\" 2>&1); then\n   err \"Failed to fetch activation code from 1Password: ${activation_code}\"\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/caproni/activate-license.sh",
+          "old_path": ".gitlab/caproni/activate-license.sh",
+          "a_mode": "100755",
+          "b_mode": "100755",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -4,6 +4,7 @@\n   extends:\n     - .default-retry\n     - .caching:rules:update-cache-on-code-changes\n+  needs: []\n   variables:\n     GIT_DEPTH: 1\n     GIT_STRATEGY: fetch\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/caching.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/caching.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -18,3 +18,16 @@ cells-routes:up-to-date:\n     paths:\n       - config/routing/gitlab_routes.json\n     when: on_failure\n+\n+cells-routes:router-in-sync:\n+  # No bundle: gitlab-cells-http_router has no runtime dependencies, so the script\n+  # loads it from gems/ with plain Ruby and the job needs nothing installed.\n+  extends:\n+    - .default-retry\n+    - .with-alpine-ruby-image\n+    - .cells:rules:routes-router-in-sync\n+  stage: lint\n+  needs: []\n+  allow_failure: true\n+  script:\n+    - scripts/cells/check_router_routes_sync.rb\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/cells.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/cells.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -124,7 +124,7 @@ test-coverage:export-per-test-jest:\n     - job: per-test-coverage:trigger\n       artifacts: false\n   variables:\n-    JOB_PATTERN: '^jest per-test-coverage( [0-9]+/[0-9]+)?$'\n+    JOB_PATTERN: '^jest(-with-fixtures)? per-test-coverage( [0-9]+/[0-9]+)?$'\n   script:\n     # Stream (see export-per-test-rspec): batch download, insert, delete, repeat.\n     - |\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/coverage.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/coverage.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -35,7 +35,7 @@ review-docs-cleanup:\n \n .docs-markdown-lint-image:\n   # When updating the image version here, update it in /scripts/lint-doc.sh too.\n-  image: ${REGISTRY_HOST}/${REGISTRY_GROUP}/technical-writing/docs-gitlab-com/lint-markdown:alpine-3.23-vale-3.14.1-markdownlint2-0.22.1-lychee-0.24.2\n+  image: ${REGISTRY_HOST}/${REGISTRY_GROUP}/technical-writing/docs-gitlab-com/lint-markdown:alpine-3.24-vale-3.21.0-markdownlint2-0.23.2-lychee-0.24.2-rumdl-0.2.69\n \n docs-lint markdown:\n   extends:\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/docs.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/docs.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -105,6 +105,21 @@ compile-production-assets istanbul:\n     reports:\n       dotenv: $GLCI_ASSETS_TAG_ENV_FILE_PATH\n \n+compile-production-assets vue3:\n+  extends:\n+    - .compile-assets-base\n+    - .production\n+    - .vue3\n+    - .frontend:rules:compile-production-assets\n+  tags:\n+    - $GLCI_PRODUCTION_ASSETS_RUNNER_OPTIONAL\n+  artifacts:\n+    name: webpack-report-vue3\n+    expire_in: 7d\n+    when: always\n+    paths:\n+      - ${WEBPACK_COMPILE_LOG_PATH}\n+\n compile-test-assets:\n   extends:\n     - .compile-assets-base\n@@ -124,31 +139,6 @@ compile-test-assets vue3:\n     - compile-test-assets\n     - .vue3\n \n-build-vite-prod:\n-  extends:\n-    - .production\n-    - .default-retry\n-    - .with-ci-node-image\n-    - .yarn-cache\n-    - .frontend:rules:compile-production-assets\n-  stage: prepare\n-  needs:\n-    - job: cache:node-modules\n-      optional: true\n-  script:\n-    - source scripts/utils.sh\n-    - yarn_install_script\n-    - yarn vite-prod\n-  artifacts:\n-    expire_in: 1d\n-    paths:\n-      - public/assets/vite/\n-\n-build-vite-prod-vue3:\n-  extends:\n-    - build-vite-prod\n-    - .vue3\n-\n compile-fe-islands:\n   extends:\n     - .default-retry\n@@ -204,6 +194,8 @@ rspec-all frontend_fixture:\n   script:\n     - !reference [.frontend-fixtures-base, script]\n     - rspec_parallelized_job \"--tag ~click_house\"\n+  # Mirrored as FIXTURE_SHARD_COUNT in scripts/generate_jest_pipeline.rb,\n+  # which renders one cross-pipeline need per shard; a spec enforces the match.\n   parallel: 8\n \n rspec-all frontend_fixture clickhouse:\n@@ -217,12 +209,10 @@ rspec-all frontend_fixture clickhouse:\n     - !reference [.clickhouse-setup, script]\n     - rspec_parallelized_job \"--tag click_house\"\n \n-# Uploads fixtures to package registry if running in canonical project\n-upload-frontend-fixtures:\n+.upload-frontend-fixtures-base:\n   extends:\n     - .default-retry\n     - .with-ruby-slim-image\n-    - .frontend:rules:update-frontend-fixtures\n   stage: fixtures\n   needs:\n     - !reference [.with-fixtures-needs, needs]\n@@ -233,6 +223,27 @@ upload-frontend-fixtures:\n       create_fixtures_package\n       upload_fixtures_package\n \n+# Uploads fixtures to package registry if running in canonical project\n+upload-frontend-fixtures:\n+  extends:\n+    - .upload-frontend-fixtures-base\n+    - .frontend:rules:update-frontend-fixtures\n+\n+# Same as upload-frontend-fixtures, but triggered manually so fixtures from an\n+# unmerged branch/pipeline can be published on demand (e.g. to develop an MFE\n+# against a monolith change before it merges).\n+upload-frontend-fixtures-on-demand:\n+  extends:\n+    - .upload-frontend-fixtures-base\n+    - .frontend:rules:update-frontend-fixtures-on-demand\n+  # This job can run on pipelines where the fixture jobs are absent (e.g. MRs\n+  # targeting a stable branch), so its needs must be optional.\n+  needs:\n+    - job: \"rspec-all frontend_fixture\"\n+      optional: true\n+    - job: \"rspec-all frontend_fixture clickhouse\"\n+      optional: true\n+\n # Cleans up older fixtures packages\n cleanup-frontend-fixtures:\n   extends:\n@@ -307,8 +318,6 @@ jest-build-cache:\n .vue3:\n   variables:\n     VUE_VERSION: 3\n-    NODE_OPTIONS: --max-old-space-size=7680\n-  allow_failure: true\n \n test-fe-islands:\n   stage: test-frontend\n@@ -342,8 +351,6 @@ test-fe-islands:\n jest-build-cache-vue3-ensure-compilable-sfcs:\n   extends:\n     - .vue3\n-    # Make sure allow_failure is set by jest-build-cache rather than .vue3.\n-    # Failures should not be allowed in merge requests.\n     - jest-build-cache\n     - .frontend:rules:jest\n \n@@ -405,7 +412,6 @@ jest vue3:\n   parallel: !reference [jest, parallel]\n   script:\n     - scripts/frontend/jest_ci.js --vue3\n-  allow_failure: false\n \n jest-with-fixtures vue3:\n   extends:\n@@ -483,7 +489,6 @@ jest-with-fixtures vue3 predictive:\n         scripts/frontend/jest_ci.js --vue3 --predictive --fixtures;\n       fi\n   parallel: !reference [jest-with-fixtures predictive, parallel]\n-  allow_failure: false\n \n jest vue3 check quarantined predictive:\n   extends:\n@@ -584,8 +589,6 @@ jest-msw-integration vue3:\n   extends:\n     - jest-msw-integration\n     - .vue3\n-  # We do not allow new specs that aren't Vue3 compatible to avoid increased debt.\n-  allow_failure: false\n \n jest-integration:\n   extends:\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/frontend.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/frontend.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -10,6 +10,7 @@\n       - unknown_failure\n     # See https://docs.gitlab.com/development/pipelines/internals/#custom-exit-codes\n     exit_codes:\n+      - 112  # known flaky test detected, retry the whole job\n       - 201  # low free disk space\n \n .default-utils-before_script:\n@@ -175,7 +176,7 @@\n \n .es8-services:\n   services:\n-    - name: elasticsearch:8.19.17\n+    - name: elasticsearch:8.19.20\n \n .es8-variables:\n   variables:\n@@ -483,10 +484,11 @@\n     files:\n       - config/webpack.config.js\n       - yarn.lock\n-    prefix: \"partial-assets-cache-${NODE_ENV}-${OS_VERSION}-node-${NODE_VERSION}-vue-${VUE_VERSION}-${CI_COMMIT_REF_SLUG}\"\n+    prefix: \"partial-assets-cache-${NODE_ENV}-${OS_VERSION}-node-${NODE_VERSION}-vue-${VUE_VERSION}\"\n   paths:\n     - tmp/cache\n-  policy: pull-push\n+  policy: pull\n+  unprotect: true # push this cache from master pipelines to reuse as partial cache in mr pipelines\n \n .storybook-node-modules-cache: &storybook-node-modules-cache\n   key:\n@@ -502,16 +504,17 @@\n   policy: pull-push\n \n .rubocop-cache: &rubocop-cache\n-  key: \"rubocop-${BUILD_OS}-${OS_VERSION}-ruby-${RUBY_VERSION}-gemfile-${BUNDLE_GEMFILE}-${CI_COMMIT_REF_SLUG}\"\n+  key: \"rubocop-${BUILD_OS}-${OS_VERSION}-ruby-${RUBY_VERSION}-gemfile-${BUNDLE_GEMFILE}\"\n   paths:\n     - tmp/rubocop_cache/\n   policy: pull\n+  unprotect: true # push this cache from master pipelines to reuse as partial cache in mr pipelines\n \n .rubocop-cache-push: &rubocop-cache-push\n   <<: *rubocop-cache\n   # We want to rebuild the cache from scratch to ensure stale dependencies are cleaned up but RuboCop has a mechanism\n-  # for keeping only the N latest cache files, so we take advantage of it with `pull-push`.\n-  policy: pull-push\n+  # for keeping only the N latest cache files, so we take advantage of it with `push`.\n+  policy: push\n \n .workhorse-cache: &workhorse-cache\n   key: \"workhorse-${BUILD_OS}-${OS_VERSION}-${GLCI_WORKHORSE_HASH}\"\n@@ -590,9 +593,9 @@\n .assets-compile-cache:\n   cache:\n     - !reference [.ruby-gems-cache]\n+    - !reference [.assets-tmp-cache] # use reference to be able to override via overrides/assets-tmp-cache.yml\n     - *node-modules-cache\n     - *assets-cache\n-    - *assets-tmp-cache\n \n .assets-compile-cache-pull:\n   cache:\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/global.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/global.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -1,73 +0,0 @@\n-# Triggers downstream e2e tests in gitlab-org/opstrace/opstrace\n-# These e2e tests live in gitlab-org/opstrace/opstrace as a result\n-# of opstrace being brought in through an acquisition.\n-.e2e-observability-backend-base:\n-  stage: test\n-  image: ${GITLAB_DEPENDENCY_PROXY_ADDRESS}alpine:latest\n-  needs: []\n-  before_script:\n-    - apk add jq curl\n-  script:\n-    - |\n-      OPSTRACE_PROJECT_ID=\"32149347\"\n-      echo \"Triggering pipeline on opstrace/opstrace project with: ref=${OPSTRACE_REF} TEST_GITLAB_COMMIT=${CI_COMMIT_SHA}\"\n-      response=$(curl -s -X POST --fail \\\n-        -F \"token=${GITLAB_OBSERVABILITY_BACKEND_PIPELINE_TRIGGER_TOKEN}\" \\\n-        -F \"ref=${OPSTRACE_REF}\" \\\n-        -F \"variables[TEST_GITLAB_COMMIT]=${CI_COMMIT_SHA}\" \\\n-        \"https://gitlab.com/api/v4/projects/${OPSTRACE_PROJECT_ID}/trigger/pipeline\")\n-      # Extract the pipeline ID from the response\n-      pipeline_id=$(echo \"$response\" | jq -r '.id')\n-      if [ -z \"$pipeline_id\" ] || [ \"$pipeline_id\" == \"null\" ]; then\n-        echo \"Failed to trigger pipeline.\"\n-        exit 1\n-      else\n-        web_url=$(echo \"$response\" | jq -r '.web_url')\n-        echo \"Pipeline $pipeline_id created: $web_url\"\n-      fi\n-      # Poll the pipeline status until it succeeds or fails\n-      status=\"\"\n-      while true; do\n-        status=$(curl -s --header \"PRIVATE-TOKEN: ${GITLAB_OBSERVABILITY_BACKEND_TOKEN_FOR_CI_SCRIPTS}\" \\\n-          \"https://gitlab.com/api/v4/projects/${OPSTRACE_PROJECT_ID}/pipelines/$pipeline_id\" | jq -r '.status')\n-        if [ -z \"$status\" ] || [ \"$status\" == \"null\" ]; then\n-          echo \"Failed to get pipeline status\"\n-          exit 1\n-        fi\n-        echo \"Pipeline status: $status\"\n-        if [ \"$status\" == \"success\" ]; then\n-          echo \"Triggered pipeline succeeded.\"\n-          exit 0\n-        elif [ \"$status\" == \"failed\" ]; then\n-          echo \"Triggered pipeline failed.\"\n-          exit 1\n-        elif [ \"$status\" == \"canceled\" ] || [ \"$status\" == \"canceling\" ]; then\n-          echo \"Triggered pipeline was canceled.\"\n-          exit 1\n-        fi\n-        sleep 60\n-      done\n-\n-# e2e:observability-backend uses $CI_COMMIT_REF_NAME to\n-# checkout a branch in gitlab-org/opstrace/opstrace with\n-# the same name as the branch in this repo. Because opstrace\n-# is a different codebase, we match branch names without\n-# commit SHA.\n-e2e:observability-backend:\n-  extends:\n-    - .e2e-observability-backend-base\n-    - .observability-backend-current-branch:rules\n-  variables:\n-    OPSTRACE_REF: $CI_COMMIT_REF_NAME\n-\n-\n-# e2e:observability-backend-main-branch will trigger\n-# an e2e test pipeline that checks out GitLab to\n-# $CI_COMMIT_SHA and Opstrace to the latest commit\n-# on main branch.\n-e2e:observability-backend-main-branch:\n-  extends:\n-    - .e2e-observability-backend-base\n-    - .observability-backend-main-branch:rules\n-  variables:\n-    OPSTRACE_REF: main\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/observability-backend.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/observability-backend.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "0",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": true,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -0,0 +1,3 @@\n+# allows to override partial assets cache definition to push only, currently used to push this cache from master pipeline only\n+.assets-tmp-cache:\n+  policy: push\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/overrides/assets-tmp-cache.yml",
+          "old_path": ".gitlab/ci/overrides/assets-tmp-cache.yml",
+          "a_mode": "0",
+          "b_mode": "100644",
+          "new_file": true,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -103,13 +103,17 @@ per-test-coverage:trigger:\n       artifacts: false\n     - job: \"compile-test-assets\"\n       artifacts: false\n-    # The jest child jobs pull compile-fe-islands\n+    # The jest child jobs pull compile-fe-islands and frontend-fixtures\n     # artifacts through cross-pipeline needs, which do not wait for the parent\n     # jobs to finish. Gate the trigger on them so the child is created only\n     # after their artifacts exist; otherwise the jest shards race ahead and\n     # fail with missing_dependency_failure.\n     - job: \"compile-fe-islands\"\n       artifacts: false\n+    - job: \"rspec-all frontend_fixture\"\n+      artifacts: false\n+    - job: \"rspec-all frontend_fixture clickhouse\"\n+      artifacts: false\n     - job: \"per-test-coverage:pipeline-generate\"\n       artifacts: true\n   # Per-test coverage capture is data collection, not a release gate. A failing\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/per_test_coverage.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/per_test_coverage.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -7,8 +7,8 @@\n # Jest's --coverage flag (the reporter needs testResult.coverage populated).\n # jest_ci.js runs jest with --shard so each parallel instance runs its slice\n # of the queue. Each shard writes tmp/per-test-coverage-jest-{slug}-{hex}.json\n-# as a regular job artifact, pulled by the parent pipeline's export job via\n-# cross-pipeline `needs:` (see related team#663 work).\n+# as a regular job artifact, downloaded by the parent pipeline's export job\n+# by job-name pattern (scripts/coverage/download_per_test_coverage_artifacts.rb).\n \n include:\n   - local: .gitlab/ci/per_test_coverage/jest_test_base.gitlab-ci.yml\n@@ -36,9 +36,22 @@ workflow:\n         on_new_commit: none\n     - when: always\n \n-jest per-test-coverage:\n+.jest-per-test-coverage-base:\n   extends:\n     - .frontend-test-base\n+  rules:\n+    - when: always\n+  variables:\n+    GLCI_PER_TEST_COVERAGE: \"true\"\n+  artifacts:\n+    expire_in: 7d\n+    paths:\n+      - tmp/per-test-coverage-jest-*.json\n+    when: always\n+\n+jest per-test-coverage:\n+  extends:\n+    - .jest-per-test-coverage-base\n   needs:\n   <% if repo_from_artifacts %>\n     - pipeline: $PARENT_PIPELINE_ID\n@@ -51,15 +64,36 @@ jest per-test-coverage:\n       job: compile-fe-islands\n     - pipeline: $PARENT_PIPELINE_ID\n       job: per-test-coverage:pipeline-generate\n-  rules:\n-    - when: always\n-  variables:\n-    GLCI_PER_TEST_COVERAGE: \"true\"\n   parallel: <%= parallelism %>\n   script:\n     - scripts/frontend/jest_ci.js --coverage --filter-file \"${GLCI_PER_TEST_COVERAGE_QUEUE_JEST_PATH}\"\n-  artifacts:\n-    expire_in: 7d\n-    paths:\n-      - tmp/per-test-coverage-jest-*.json\n-    when: always\n+\n+# fixture_ci_sequencer.js partitions the suite on JEST_FIXTURE_JOBS_ONLY.\n+# Without this job, every fixture-using spec in the queue would be\n+# filtered out of the capture and its coverage data would go stale.\n+jest-with-fixtures per-test-coverage:\n+  extends:\n+    - .jest-per-test-coverage-base\n+  needs:\n+  <% if repo_from_artifacts %>\n+    - pipeline: $PARENT_PIPELINE_ID\n+      job: clone-gitlab-repo\n+  <% end %>\n+    - pipeline: $PARENT_PIPELINE_ID\n+      job: compile-fe-islands\n+    - pipeline: $PARENT_PIPELINE_ID\n+      job: per-test-coverage:pipeline-generate\n+    # The fixture files (tmp/tests/frontend) are built by the parent\n+    # pipeline's rspec-all frontend_fixture shards, and each shard writes a\n+    # different slice, so this job needs all of them. A cross-pipeline need\n+    # matches exactly one build name and cannot expand a parallel job the\n+    # way a same-pipeline need can, so each shard is listed individually.\n+  <%- fixture_shard_count.times do |i| -%>\n+    - pipeline: $PARENT_PIPELINE_ID\n+      job: rspec-all frontend_fixture <%= i + 1 %>/<%= fixture_shard_count %>\n+  <%- end -%>\n+    - pipeline: $PARENT_PIPELINE_ID\n+      job: rspec-all frontend_fixture clickhouse\n+  parallel: <%= fixture_parallelism %>\n+  script:\n+    - scripts/frontend/jest_ci.js --coverage --fixtures --filter-file \"${GLCI_PER_TEST_COVERAGE_QUEUE_JEST_PATH}\"\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/per_test_coverage/jest_child_pipeline_template.erb",
+          "old_path": ".gitlab/ci/per_test_coverage/jest_child_pipeline_template.erb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -15,9 +15,9 @@ variables:\n   # Retry failed specs in separate process\n   QA_RETRY_FAILED_SPECS: \"true\"\n   # Helm chart ref used by test-on-cng pipeline\n-  GITLAB_HELM_CHART_REF: \"5a54bb1cceb5d7a483d77a1accc79b5149373199\"\n+  GITLAB_HELM_CHART_REF: \"de3e7b9df7ef43c3df8a747d1f05f2b4da05130e\"\n   # Specific ref for cng-mirror project to trigger builds for\n-  GITLAB_CNG_MIRROR_REF: \"5a4e0972ffb3389f2df11fd6a15067fd27202df6\"\n+  GITLAB_CNG_MIRROR_REF: \"5d777776c1d919878a19b2d21b6eca718a9b6433\"\n   CAPRONI_VERSION: \"4.2.5\"\n   K3D_VERSION: \"v5.9.0\"\n   # Makes sure some of the common scripts from pipeline-common use bundler to execute commands\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/qa-common/variables.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/qa-common/variables.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -131,15 +131,6 @@\n .if-merge-request-labels-run-search-tests: &if-merge-request-labels-run-search-tests\n   if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:run-search-tests/'\n \n-.if-merge-request-labels-run-observability-e2e-tests-main-branch: &if-merge-request-labels-run-observability-e2e-tests-main-branch\n-  if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:run-observability-e2e-tests-main-branch/'\n-\n-.if-merge-request-labels-run-observability-e2e-tests-current-branch: &if-merge-request-labels-run-observability-e2e-tests-current-branch\n-  if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:run-observability-e2e-tests-current-branch/'\n-\n-.if-merge-request-labels-skip-observability-e2e-tests: &if-merge-request-labels-skip-observability-e2e-tests\n-  if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:skip-observability-e2e-tests/'\n-\n .if-merge-request-labels-run-single-db: &if-merge-request-labels-run-single-db\n   if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:run-single-db/'\n \n@@ -158,6 +149,9 @@\n .if-merge-request-labels-skip-check-ci-partition-pruning: &if-merge-request-labels-skip-check-ci-partition-pruning\n   if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:skip-check-ci-partition-pruning/'\n \n+.if-merge-request-labels-skip-router-sync: &if-merge-request-labels-skip-router-sync\n+  if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /pipeline:skip-router-sync/'\n+\n .if-merge-request-labels-jh-contribution: &if-merge-request-labels-jh-contribution\n   if: '($CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\") && $CI_MERGE_REQUEST_LABELS =~ /JiHu contribution/'\n \n@@ -301,9 +295,6 @@\n .if-rails-next-branch: &if-rails-next-branch\n   if: '$CI_COMMIT_BRANCH == \"rails-next\"'\n \n-.if-observability-skip-e2e-jobs: &if-observability-skip-e2e-jobs\n-  if: '$SKIP_GITLAB_OBSERVABILITY_BACKEND_TRIGGER || $GITLAB_OBSERVABILITY_BACKEND_PIPELINE_TRIGGER_TOKEN == null || $GITLAB_OBSERVABILITY_BACKEND_TOKEN_FOR_CI_SCRIPTS == null'\n-\n .if-group-code-review-label-or-maintenance-label-on-mr: &if-group-code-review-label-or-maintenance-label-on-mr\n   if: '$CI_PIPELINE_SOURCE == \"merge_request_event\" && $CI_MERGE_REQUEST_EVENT_TYPE != \"merge_train\" && ($CI_MERGE_REQUEST_LABELS =~ /group::code review/ || $CI_MERGE_REQUEST_LABELS =~ /maintenance::dependency/)'\n \n@@ -1217,11 +1208,6 @@\n   - \"qa/gems/gitlab-orchestrator/**/*.rb\"\n   - \"qa/gems/gitlab-orchestrator/{Gemfile,Gemfile.lock}\"\n \n-.observability-code-patterns: &observability-code-patterns\n-  - \"lib/gitlab/observability.rb\"\n-  - \"ee/lib/ee/gitlab/observability.rb\"\n-  - \"ee/lib/api/internal/observability.rb\"\n-\n .gem-change-patterns: &gem-change-patterns\n   - Gemfile\n   - Gemfile.lock\n@@ -1551,6 +1537,25 @@\n #################\n # Caching rules #\n #################\n+# rules for updating unprotected caches via maintenance schedule pipelines\n+.caching:rules:update-master-based-caches:\n+  rules:\n+    - <<: *if-schedule-maintenance\n+    - <<: *if-security-schedule\n+    - <<: *if-foss-schedule\n+    - <<: *if-merge-request-labels-update-caches\n+\n+.caching:rules:rubocop-cache-update:\n+  rules:\n+    - !reference [.caching:rules:update-master-based-caches, rules]\n+    - *if-rails-next-branch\n+    - <<: *if-default-branch-push\n+      changes:\n+        - '**/*.rb'\n+        - '**/*.rake'\n+        - '.rubocop_todo/**/*.yml'\n+        - '.rubocop.yml'\n+\n # This rule is used by pull-push cache jobs to ensure pipeline always has cache populated\n # All caches are generally related to app code, so limit cache jobs to code-backstage-patterns\n .caching:rules:update-cache-on-code-changes:\n@@ -1736,6 +1741,22 @@\n     - <<: *if-default-refs\n       changes: *code-backstage-qa-patterns\n \n+# Deliberately narrower than routes-up-to-date. The paired HTTP Router merge request merges\n+# first, so the router is ahead of master until the GitLab side lands. Outside that scope the\n+# job would fail on merge requests that never touched a route.\n+.cells:rules:routes-router-in-sync:\n+  rules:\n+    - <<: *if-not-ee\n+      when: never\n+    - <<: *if-jh\n+      when: never\n+    - <<: *if-merge-request-targeting-stable-branch\n+      when: never\n+    - <<: *if-merge-request-labels-skip-router-sync\n+      when: never\n+    - <<: *if-merge-request\n+      changes: [\"config/routing/gitlab_routes.json\"]\n+\n #########################\n # DAST Variables rules  #\n #########################\n@@ -2193,6 +2214,12 @@\n     - if: $CI_SERVER_HOST == \"gitlab.com\" && $CI_PROJECT_PATH == \"gitlab-org/gitlab\" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == \"push\"\n       changes: *code-backstage-spec-patterns\n \n+.frontend:rules:update-frontend-fixtures-on-demand:\n+  rules:\n+    - <<: *if-dot-com-gitlab-org-merge-request\n+      when: manual\n+      allow_failure: true\n+\n .frontend:rules:update-fe-islands:\n   rules:\n     - <<: *if-not-ee\n@@ -4048,31 +4075,6 @@\n     - <<: *if-merge-request-labels-run-all-rspec\n       when: manual\n \n-###############################\n-# Observability Backend rules #\n-###############################\n-.observability-backend-main-branch:rules:\n-  rules:\n-    - <<: *if-observability-skip-e2e-jobs\n-      when: never\n-    - <<: *if-merge-request-labels-skip-observability-e2e-tests\n-      when: never\n-    - <<: *if-merge-request-labels-run-observability-e2e-tests-current-branch\n-      when: never\n-    - <<: *if-merge-request-labels-run-observability-e2e-tests-main-branch\n-    - <<: *if-merge-request\n-      changes: *observability-code-patterns\n-\n-.observability-backend-current-branch:rules:\n-  rules:\n-    - <<: *if-observability-skip-e2e-jobs\n-      when: never\n-    - <<: *if-merge-request-labels-skip-observability-e2e-tests\n-      when: never\n-    - <<: *if-merge-request-labels-run-observability-e2e-tests-main-branch\n-      when: never\n-    - <<: *if-merge-request-labels-run-observability-e2e-tests-current-branch\n-\n ##########################\n # Pre-merge checks rules #\n ##########################\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/rules.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/rules.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -194,6 +194,17 @@ detect-tests:\n       - ${GLCI_PREDICTIVE_RSPEC_MATCHING_TESTS_EE_PATH}\n       - ${GLCI_PREDICTIVE_RSPEC_MATCHING_TESTS_FOSS_PATH}\n \n+# Reads the Duo CLI constants of the start workflow service so CI jobs install and verify\n+# the exact binary the flow executor downloads. Reuse with `!reference [.duo-cli-constants, script]`.\n+.duo-cli-constants:\n+  script:\n+    - |\n+      SERVICE_FILE=\"ee/app/services/ai/duo_workflows/start_workflow_service.rb\"\n+      DUO_CLI_VERSION=$(grep -oP 'DUO_CLI_VERSION\\s*=\\s*\"\\K[^\"]+' \"${SERVICE_FILE}\")\n+      DUO_CLI_PROJECT_ID=$(grep -oP 'DUO_CLI_PROJECT_ID\\s*=\\s*\"\\K[^\"]+' \"${SERVICE_FILE}\")\n+      DUO_CLI_REGISTRY_BASE_URL=$(grep -oP 'DUO_CLI_REGISTRY_BASE_URL\\s*=\\s*\"\\K[^\"]+' \"${SERVICE_FILE}\")\n+      DUO_CLI_PACKAGE_URL=\"${DUO_CLI_REGISTRY_BASE_URL}/${DUO_CLI_PROJECT_ID}/packages/generic/duo-cli/${DUO_CLI_VERSION}\"\n+\n detect-system-tests-duo:\n   extends:\n     - .with-ci-node-image\n@@ -211,7 +222,13 @@ detect-system-tests-duo:\n     - !reference [\".prevent-spec-only\", rules]  # spec files already directly identified by detect-tests; Duo adds nothing\n     - !reference [.rails:rules:detect-tests, rules]\n   before_script:\n-    - npm install -g @gitlab/duo-cli\n+    # Install the binary and version the flow executor uses; verify-start-workflow-service-assets checks it exists.\n+    - !reference [.duo-cli-constants, script]\n+    - |\n+      mkdir -p \"${HOME}/.local/bin\"\n+      curl --fail --silent --show-error --location \"${DUO_CLI_PACKAGE_URL}/duo-linux-x64\" --output \"${HOME}/.local/bin/duo\"\n+      chmod +x \"${HOME}/.local/bin/duo\"\n+      export PATH=\"${HOME}/.local/bin:${PATH}\"\n   script:\n     - |\n       if [ -n \"$CI_MERGE_REQUEST_IID\" ] || [ -n \"$FIND_CHANGES_MERGE_REQUEST_IID\" ]; then\n@@ -248,15 +265,16 @@ verify-start-workflow-service-assets:\n   variables:\n     GIT_STRATEGY: fetch\n   script:\n+    - !reference [.duo-cli-constants, script]\n     - |\n-      SERVICE_FILE=\"ee/app/services/ai/duo_workflows/start_workflow_service.rb\"\n-      REGISTRY=\"registry.gitlab.com\"\n-\n-      DUO_CLI_VERSION=$(grep -oP 'DUO_CLI_VERSION\\s*=\\s*\"\\K[^\"]+' \"${SERVICE_FILE}\")\n-      echo \"Checking npm availability of @gitlab/duo-cli@${DUO_CLI_VERSION}...\"\n-      npm view \"@gitlab/duo-cli@${DUO_CLI_VERSION}\" version || \\\n-        { echo \"ERROR: @gitlab/duo-cli@${DUO_CLI_VERSION} is not available on the npm registry. Update DUO_CLI_VERSION or publish the package.\" && exit 1; }\n+      # The executor runs on Linux and picks the binary by architecture; check every binary it can select.\n+      for BINARY in duo-linux-x64 duo-linux-arm64; do\n+        echo \"Checking availability of ${DUO_CLI_PACKAGE_URL}/${BINARY}...\"\n+        curl --fail -sfIL -o /dev/null \"${DUO_CLI_PACKAGE_URL}/${BINARY}\" || \\\n+          { echo \"ERROR: ${DUO_CLI_PACKAGE_URL}/${BINARY} not found in the package registry. Update DUO_CLI_VERSION or publish the binary.\"; exit 1; }\n+      done\n \n+      REGISTRY=\"registry.gitlab.com\"\n       IMAGE_PATH=$(grep -oP 'IMAGE_PATH\\s*=\\s*\"\\K[^\"]+' \"${SERVICE_FILE}\")\n       IMAGE_REPO=\"${IMAGE_PATH%:*}\"\n       IMAGE_TAG=\"${IMAGE_PATH##*:}\"\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": ".gitlab/ci/setup.gitlab-ci.yml",
+          "old_path": ".gitlab/ci/setup.gitlab-ci.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "80b3bf2d339f022ff3a1dc433c07c59b435472e1",
+      "diffs": [
+        {
+          "diff": "@@ -115,11 +115,12 @@ with the content \"# New title\" and commit message \"Add README\"\n \n {{< /history >}}\n \n-Superseded by [`save_work_item`](#save_work_item), which creates issues with the same\n-milestone resolution semantics. Label names resolve differently: `create_issue` creates\n-labels that don't exist yet, while `save_work_item` accepts only existing labels and\n-returns an error naming any that are missing. This tool no longer appears in `tools/list`\n-but remains callable while callers migrate.\n+Superseded by [`save_work_item`](#save_work_item), which resolves milestone titles and\n+label names in the same places (the project and its ancestor groups) but is stricter\n+about names it cannot find: `create_issue` creates label names that don't exist yet and\n+silently drops an unknown milestone title, while `save_work_item` returns an error naming\n+anything it cannot find. This tool no longer appears in `tools/list` but remains callable\n+while callers migrate.\n \n Creates a new issue in a GitLab project.\n \n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+          "old_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "dd52b2e4e717d9ba4b962d9ac0ff46506a9eff51",
+      "diffs": [
+        {
+          "diff": "@@ -116,7 +116,9 @@ with the content \"# New title\" and commit message \"Add README\"\n {{< /history >}}\n \n Superseded by [`save_work_item`](#save_work_item), which creates issues with the same\n-milestone and label-name resolution semantics. This tool no longer appears in `tools/list`\n+milestone resolution semantics. Label names resolve differently: `create_issue` creates\n+labels that don't exist yet, while `save_work_item` accepts only existing labels and\n+returns an error naming any that are missing. This tool no longer appears in `tools/list`\n but remains callable while callers migrate.\n \n Creates a new issue in a GitLab project.\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+          "old_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "ce3c9f7c8debdbe285eb9263d4f6f549c608c4b2",
+      "diffs": [
+        {
+          "diff": "@@ -35,7 +35,8 @@ def build_entries\n           manager.list_tools.each_with_object({}) do |(name, tool), entries|\n             tool_name = name.to_s\n \n-            next if tool.unlisted?\n+            # Unlisted tools stay governed: they are hidden from tools/list but remain\n+            # callable, so a deny rule must keep reaching them.\n             next if Registry::UNGOVERNED_TOOLS.include?(tool_name)\n \n             entries[tool_name] = {\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/lib/ai/tool_rules/governed_mcp_tools.rb",
+          "old_path": "ee/lib/ai/tool_rules/governed_mcp_tools.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -84,16 +84,16 @@ def tool_double(annotations = {}, unlisted: false)\n         expect(catalog.action_type_for('confused_tool')).to eq(:destroy)\n       end\n \n-      it 'omits unlisted tools, which never reach tools/list' do\n-        expect(catalog.action_type_for('hidden_tool')).to be_nil\n-        expect(catalog.rulable_names).not_to include('hidden_tool')\n+      it 'keeps unlisted tools governed, because they are hidden from tools/list but stay callable' do\n+        expect(catalog.action_type_for('hidden_tool')).to eq(:read)\n+        expect(catalog.rulable_names).to include('hidden_tool')\n       end\n \n       describe '#rulable_names' do\n         it 'covers only capabilities with no catalog twin' do\n           expect(catalog.rulable_names).to contain_exactly(\n             'search', 'manage_pipeline', 'mystery_tool', 'confused_tool',\n-            'run_asc_scan', 'set_form_permissions'\n+            'run_asc_scan', 'set_form_permissions', 'hidden_tool'\n           )\n         end\n \n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/lib/ai/tool_rules/governed_mcp_tools_spec.rb",
+          "old_path": "ee/spec/lib/ai/tool_rules/governed_mcp_tools_spec.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "bf1956dc81b25ab65df524f4d1aecc1bf49b63d8",
+      "diffs": [
+        {
+          "diff": "@@ -99,11 +99,15 @@ def description\n   end\n \n   describe 'unlisted tools' do\n-    it 'defaults unlisted to false for discovered tools' do\n+    it 'marks only intentionally retired tools as unlisted' do\n       orbit_names = ::API::Orbit::McpHandlers::ToolCatalog::COMMAND_TOOL_NAMES\n       discovered = described_class.fixed_items.reject { |item| orbit_names.include?(item[:name]) }\n \n-      expect(discovered).to all(include(unlisted: false))\n+      unlisted_names = discovered.select { |item| item[:unlisted] }.map { |item| item[:name] }\n+\n+      # Tools hidden from discovery because a replacement supersedes them. A tool\n+      # showing up here unexpectedly means something unlisted itself by accident.\n+      expect(unlisted_names).to contain_exactly('create_issue')\n     end\n \n     context 'when a tool marks itself unlisted' do\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/models/ai/catalog/mcp_tool_spec.rb",
+          "old_path": "ee/spec/models/ai/catalog/mcp_tool_spec.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "dc3d179988e6c1076ff40bda23154c5652427166",
+      "diffs": [
+        {
+          "diff": "@@ -111,9 +111,14 @@ with the content \"# New title\" and commit message \"Add README\"\n {{< history >}}\n \n - [Introduced](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/203055) in GitLab 18.4.\n+- [Unlisted](https://gitlab.com/gitlab-org/gitlab/-/work_items/625129) in GitLab 19.4. Superseded by [`save_work_item`](#save_work_item).\n \n {{< /history >}}\n \n+Superseded by [`save_work_item`](#save_work_item), which creates issues with the same\n+milestone and label-name resolution semantics. This tool no longer appears in `tools/list`\n+but remains callable while callers migrate.\n+\n Creates a new issue in a GitLab project.\n \n | Parameter      | Type              | Required | Description |\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+          "old_path": "doc/user/model_context_protocol/mcp_server_tools.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -67,7 +67,6 @@ def post_list_tools\n       expected_annotations = {\n         # write, non-destructive\n         'add_branch' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n-        'create_issue' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'save_merge_request' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'fork_repository' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'link_work_items' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/requests/api/mcp/handlers/list_tools_spec.rb",
+          "old_path": "ee/spec/requests/api/mcp/handlers/list_tools_spec.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -335,8 +335,9 @@ class Issues < ::API::Base\n \n         use :issue_params\n       end\n+      # Unlisted pending removal: superseded by save_work_item (https://gitlab.com/gitlab-org/gitlab/-/work_items/625129).\n       route_setting :mcp, tool_name: :create_issue, params: Helpers::IssuesHelpers.create_issue_mcp_params,\n-        annotations: { readOnlyHint: false, destructiveHint: false }, resource_name: \"project\"\n+        annotations: { readOnlyHint: false, destructiveHint: false }, resource_name: \"project\", unlisted: true\n       route_setting :authorization, permissions: :create_issue, boundary_type: :project\n       post ':id/issues' do\n         Gitlab::QueryLimiting.disable!('https://gitlab.com/gitlab-org/gitlab/-/issues/21140')\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "lib/api/issues.rb",
+          "old_path": "lib/api/issues.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -59,7 +59,6 @@ def post_list_tools\n       expected_annotations = {\n         # write, non-destructive\n         'add_branch' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n-        'create_issue' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'save_merge_request' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'fork_repository' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n         'link_work_items' => { 'readOnlyHint' => false, 'destructiveHint' => false },\n@@ -116,7 +115,7 @@ def post_list_tools\n \n       api_tool_names = ::API::API.routes.filter_map do |route|\n         settings = route.app.route_setting(:mcp)\n-        next if settings.blank? || settings[:aggregators].present?\n+        next if settings.blank? || settings[:aggregators].present? || settings[:unlisted].present?\n \n         settings[:tool_name].to_s\n       end.uniq\n@@ -285,6 +284,16 @@ def post_list_tools\n       end\n     end\n \n+    context 'with tools retired from the catalog' do\n+      it 'does not advertise create_issue but keeps it callable' do\n+        post_list_tools\n+\n+        tool_names = json_response['result']['tools'].pluck('name')\n+        expect(tool_names).not_to include('create_issue')\n+        expect(::Mcp::Tools::Manager.new.get_tool(name: 'create_issue')).to be_present\n+      end\n+    end\n+\n     context 'when a tool is unlisted' do\n       let(:manager) do\n         ::Mcp::Tools::Manager.new.tap do |m|\n@@ -313,17 +322,17 @@ def post_list_tools_with_allowed(allowed_tools)\n       end\n \n       it 'returns only the tools listed in the header' do\n-        post_list_tools_with_allowed('get_issue,create_issue')\n+        post_list_tools_with_allowed('get_issue,get_pipeline')\n \n         tool_names = json_response['result']['tools'].pluck('name')\n-        expect(tool_names).to contain_exactly('get_issue', 'create_issue')\n+        expect(tool_names).to contain_exactly('get_issue', 'get_pipeline')\n       end\n \n       it 'excludes tools not in the allowed list' do\n         post_list_tools_with_allowed('get_issue')\n \n         tool_names = json_response['result']['tools'].pluck('name')\n-        expect(tool_names).not_to include('create_issue', 'search', 'get_merge_request')\n+        expect(tool_names).not_to include('get_pipeline', 'search', 'get_merge_request')\n       end\n \n       it 'handles a single tool correctly' do\n@@ -345,7 +354,7 @@ def post_list_tools_with_allowed(allowed_tools)\n           post_list_tools_with_allowed('')\n \n           tool_names = json_response['result']['tools'].pluck('name')\n-          expect(tool_names).to include('get_issue', 'create_issue', 'search', 'get_merge_request')\n+          expect(tool_names).to include('get_issue', 'get_pipeline', 'search', 'get_merge_request')\n         end\n       end\n     end\n@@ -355,7 +364,7 @@ def post_list_tools_with_allowed(allowed_tools)\n         post_list_tools\n \n         tool_names = json_response['result']['tools'].pluck('name')\n-        expect(tool_names).to include('get_issue', 'create_issue', 'search', 'get_merge_request')\n+        expect(tool_names).to include('get_issue', 'get_pipeline', 'search', 'get_merge_request')\n       end\n     end\n \n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "spec/requests/api/mcp/handlers/list_tools_spec.rb",
+          "old_path": "spec/requests/api/mcp/handlers/list_tools_spec.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 2842498374,
+      "iid": 6343334,
+      "project_id": 278964,
+      "sha": "2da8380e19a3deeeebff792b705f62f18493e7e3",
+      "ref": "refs/merge-requests/254298/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-12T02:34:05.050Z",
+      "updated_at": "2026-09-12T02:35:49.784Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2842498374"
+    },
+    {
+      "id": 2841337674,
+      "iid": 6339796,
+      "project_id": 278964,
+      "sha": "f211ef5b27e7c9747eb44d070b785b21872e2b76",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T15:30:25.615Z",
+      "updated_at": "2026-09-12T02:36:33.892Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841337674"
+    },
+    {
+      "id": 2840918872,
+      "iid": 6338436,
+      "project_id": 278964,
+      "sha": "80b3bf2d339f022ff3a1dc433c07c59b435472e1",
+      "ref": "refs/merge-requests/254298/head",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T13:12:05.479Z",
+      "updated_at": "2026-09-11T15:30:10.511Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2840918872"
+    },
+    {
+      "id": 2839347383,
+      "iid": 6333929,
+      "project_id": 278964,
+      "sha": "9c6dc9f064b7c2acb29900972cd6cfa97d8fda1e",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T01:22:24.304Z",
+      "updated_at": "2026-09-11T02:50:43.764Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2839347383"
+    },
+    {
+      "id": 2839278900,
+      "iid": 6333698,
+      "project_id": 278964,
+      "sha": "f93809fc1c39f81762c789ebcdacda533dd3560e",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T00:34:36.094Z",
+      "updated_at": "2026-09-12T02:36:45.605Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2839278900"
+    },
+    {
+      "id": 2839257345,
+      "iid": 6333650,
+      "project_id": 278964,
+      "sha": "e1a2f88632724bfdef6ba43cabd17757fa59e572",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "canceled",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T00:19:46.182Z",
+      "updated_at": "2026-09-11T00:36:20.736Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2839257345"
+    },
+    {
+      "id": 2839098991,
+      "iid": 6333167,
+      "project_id": 278964,
+      "sha": "fb0983701dc76a08f0bc4d60115a69acedc0d322",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T22:39:43.692Z",
+      "updated_at": "2026-09-10T23:57:14.778Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2839098991"
+    },
+    {
+      "id": 2838768536,
+      "iid": 6332403,
+      "project_id": 278964,
+      "sha": "531e2bd11d5c6df391165a4c41db90a5983664b0",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T20:31:34.468Z",
+      "updated_at": "2026-09-10T21:54:04.451Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2838768536"
+    },
+    {
+      "id": 2836178113,
+      "iid": 6326460,
+      "project_id": 278964,
+      "sha": "ef38256e9ca6b913295b8c0c780540828f1aa15f",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T07:52:09.391Z",
+      "updated_at": "2026-09-10T09:11:40.420Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2836178113"
+    },
+    {
+      "id": 2831302412,
+      "iid": 6315504,
+      "project_id": 278964,
+      "sha": "6651f324f192afe1328259131bd90791036e21be",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-08T23:42:26.779Z",
+      "updated_at": "2026-09-09T00:05:23.440Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2831302412"
+    },
+    {
+      "id": 2831109192,
+      "iid": 6315091,
+      "project_id": 278964,
+      "sha": "c5e9f6b899967760d261d02efcf84bdd21255239",
+      "ref": "refs/merge-requests/254298/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-08T21:52:37.249Z",
+      "updated_at": "2026-09-08T22:22:51.629Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2831109192"
+    }
+  ],
+  "notes": {
+    "message": "401 Unauthorized"
+  }
+}

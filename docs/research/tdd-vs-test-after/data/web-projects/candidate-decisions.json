@@ -1,0 +1,67 @@
+{
+  "observed_through": "2026-09-12T07:48:59Z",
+  "target_merged_date_range": "2024-09-12..2026-09-12",
+  "selection_scope": "Latest qualifying within the saved candidate results, not a complete population census.",
+  "searches": [
+    {
+      "projects": ["django/django", "rails/rails", "vercel/next.js"],
+      "endpoint": "GitHub Search issues API",
+      "query_template": "repo:{repo} is:pr is:merged merged:2026-08-01..2026-09-12",
+      "saved": "{project}/candidates-page1.json",
+      "page_size": 100,
+      "reason": "Capture the recent frontier for feature and bugfix selection."
+    },
+    {
+      "projects": ["django/django", "rails/rails", "vercel/next.js"],
+      "endpoint": "GitHub Search issues API",
+      "query_template": "repo:{repo} is:pr is:merged merged:2024-09-12..2026-09-12 (refactor OR simplify OR cleanup OR move OR rename) in:title",
+      "saved": "{project}/candidates-refactor-title-page1.json",
+      "page_size": 100,
+      "reason": "Refactors were less frequent and needed the full target period."
+    },
+    {
+      "project": "facebook/react",
+      "endpoint": "GitHub Pulls API",
+      "query": "state=closed&sort=updated&direction=desc&per_page=100",
+      "saved": "react/candidates-recent.json",
+      "error_record": "react/search-error.txt",
+      "reason": "GitHub Search returned HTTP 422 for repo:facebook/react date queries; merged_at was filtered and sorted locally."
+    },
+    {
+      "project": "gitlab-org/gitlab",
+      "endpoint": "GitLab merge_requests API",
+      "query": "state=merged&updated_after=2026-08-01T00:00:00Z&updated_before=2026-09-13T00:00:00Z&order_by=updated_at&sort=desc&per_page=100",
+      "saved": "gitlab/candidates-page1.json",
+      "reason": "GitLab type and maintenance labels support frontier classification; final ordering uses merged_at."
+    }
+  ],
+  "classification_rules": {
+    "feature": "Adds a user, API, framework, or platform capability.",
+    "bugfix": "Corrects an observed wrong behavior or failure.",
+    "refactor": "Changes internal structure while intending to preserve externally visible behavior.",
+    "excluded": ["bot-authored", "docs-only", "generated-only", "backport", "test-only", "CI-only", "dependency-only", "performance-only"]
+  },
+  "frontier_exclusions": [
+    {"project":"Django","id":21900,"reason":"test-only flakiness change"},
+    {"project":"Django","id":21897,"reason":"documentation-only support confirmation; PR checklist says no tests changed"},
+    {"project":"Django","id":21929,"reason":"dependency support removal maintenance, outside feature/bugfix/refactor classes"},
+    {"project":"Django","id":21597,"reason":"CI integration change"},
+    {"project":"Django","id":21566,"reason":"test-support file rename only"},
+    {"project":"Rails","id":58722,"reason":"documentation-only"},
+    {"project":"Rails","id":58718,"reason":"dead task removal maintenance"},
+    {"project":"Rails","id":58719,"reason":"performance optimization is the primary intent, excluded from structural refactor class"},
+    {"project":"Rails","id":58690,"reason":"dependency-only update"},
+    {"project":"React","id":37213,"reason":"test-only"},
+    {"project":"React","id":37554,"reason":"changelog-only"},
+    {"project":"React","id":37498,"reason":"publish workflow only"},
+    {"project":"React","id":37546,"reason":"release aggregation/version update, not a single feature/bugfix/refactor"},
+    {"project":"Next.js","id":98576,"reason":"bot-authored React sync"},
+    {"project":"Next.js","id":98553,"reason":"test-only"},
+    {"project":"Next.js","id":98501,"reason":"CI-only"},
+    {"project":"Next.js","id":98504,"reason":"performance optimization is the primary intent, excluded from structural refactor class"},
+    {"project":"GitLab","id":255183,"reason":"bot-authored runtime-data update"},
+    {"project":"GitLab","id":255118,"reason":"stable-branch backport"},
+    {"project":"GitLab","id":255060,"reason":"spec-only refactor"},
+    {"project":"GitLab","id":255021,"reason":"docs-only release note"}
+  ]
+}

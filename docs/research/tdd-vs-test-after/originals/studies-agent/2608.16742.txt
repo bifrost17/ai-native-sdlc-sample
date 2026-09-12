@@ -1,0 +1,3986 @@
+
+
+
+TDD-Agent: Test-Driven Reasoning for Code Generation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      Report GitHub Issue
+      ×
+    
+
+    
+
+      Title:
+      
+
+      
+Content selection saved. Describe the issue below:
+
+      Description:
+      
+    
+
+    
+      Submit without GitHub
+      Submit in GitHub
+    
+  
+
+
+    
+    arXiv is now an independent nonprofit!
+    Learn more
+    ×
+  
+
+
+  
+
+    
+      Back to arXiv
+    
+  
+  
+  
+    Why HTML?
+    
+      
+        
+      
+      Report Issue
+    
+    
+      
+        
+        
+      
+      Back to Abstract
+    
+    
+    
+      
+        
+      
+      Download PDF
+    
+    
+      
+        
+        
+      
+    
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+          
+          
+        
+      
+      
+        
+          
+          
+        
+      
+      
+        
+          
+          
+        
+      
+    
+  
+
+
+
+Abstract
+1 Introduction
+2 Methodology
+
+2.1 Overall Framework
+
+Phase 1: Test-First Specification Setup
+Phase 2: Dual-Track Test-Code Co-Refinement
+
+2.2 Tool Box
+
+3 Experiments
+
+3.1 Function-Level Study
+3.2 Repository-Level Experimental Setup
+3.3 Repository-Level Baselines
+3.4 Repository-Level Main Results
+
+4 Analysis
+
+4.1 Early Termination
+4.2 Improvement Across Iterations
+4.3 Quality of Generated Tests
+4.4 Ablation Study
+4.5 Failure Case Analysis
+
+5 Related Work
+6 Conclusion and Future Work
+References
+A Generation Parameter Settings
+B Detailed settings of LiveCodeBench
+C Detailed information on RepoEval
+D Tool Implementation Details
+
+Context Inspection.
+Artifact Submission and Test Runner.
+
+E All Prompts Used in Experiments
+F Case Study
+
+
+
+
+
+
+  
+    License: arXiv.org perpetual non-exclusive license
+  
+  
+
+arXiv:2608.16742v1 [cs.SE] 17 Aug 2026
+
+
+
+
+TDD-Agent: Test-Driven Reasoning for Code Generation
+
+
+
+Hongyue Yu
+
+Affiliation: National College for Excellent Engineers, Beihang University
+
+Email: Natt1e@buaa.edu.cn
+
+  
+Kefan Li
+
+Affiliation: School of Computer Science and Engineering, Beihang University
+
+Email: kefanli@buaa.edu.cn
+
+  
+Jiakun Li
+
+Affiliation: School of Computer Science and Engineering, Beihang University
+
+Email: yuan21@buaa.edu.cn
+
+  
+Hongzheng Chai
+
+Affiliation: School of Computer Science and Engineering, Beihang University
+
+  
+Yuan Yuan
+††thanks: Corresponding authors.
+Affiliation: School of Computer Science and Engineering, Beihang University
+
+Affiliation: Qingdao Research Institute and Hangzhou Innovation Institute, Beihang University
+
+  
+Rui He
+
+Affiliation: School of Software, Beihang University
+
+  
+Junyi Wei
+
+Affiliation: School of Software, Beihang University
+
+
+
+Abstract
+    
+
+Large Language Models (LLMs) have achieved remarkable progress in code generation, yet ensuring correctness in complex, repository-level tasks remains challenging. Existing approaches often use generated tests as static post-hoc validators, which limits their ability to guide implementation and may introduce misleading feedback when the tests themselves are incomplete or incorrect. In this paper, we introduce TDD-Agent, which operationalizes the test-driven development paradigm for code generation. TDD-Agent first prompts the model to generate executable tests, encouraging it to clarify expected behaviors before implementation, and then performs iterative dual-track refinement over both the generated code and tests using execution feedback.
+We first isolate the effect of test-first reasoning through a prompt variant TDD-prompt on LiveCodeBench, where it consistently improves upon reasoning-based prompting baselines. Building on this finding, we evaluate the full TDD-Agent framework on RepoEval, a repository-level benchmark, and show that it consistently outperforms retrieval-based and agent-based baselines.
+Additional analyses show that iterative refinement improves not only code correctness but also the effectiveness of the generated tests, yielding higher pass rates, coverage, and mutation scores,
+suggesting that tests can serve as evolving reasoning artifacts rather than fixed validators. Our source code is available at https://anonymous.4open.science/r/TDD-Agent-Framework-6370/.
+  
+
+
+
+
+
+
+
+
+
+1 Introduction
+
+
+Figure 1: An example demonstrating that formulating tests constitutes a form of reasoning.
+
+
+
+
+Large Language Models (LLMs) have demonstrated exceptional performance across a spectrum of software engineering tasks, particularly in code generation. The potential of these models has garnered significant attention from both academia and industry, evidenced by the rapid development of commercial foundation models such as the GPT (OpenAI, 2023), Gemini (Team et al., 2025), and Claude (Anthropic, 2024) series, as well as open-source counterparts like Llama (Grattafiori et al., 2024), Gemma (Team et al., 2024), and Qwen (Yang et al., 2024a). Consequently, enhancing the efficacy of LLMs in complex coding scenarios has emerged as a critical research trajectory.
+
+
+
+
+To increase model performance, researchers have integrated software engineering methodologies into LLM-based generation. Pair Coder (Zhang et al., 2024a) employs a multi-agent framework separating high-level planning from specific implementation to improve code quality. Beyond planning, integration of software testing has proven particularly effective.
+Previous work (Mathews and Nagappan, 2024) indicates that providing external test cases significantly boosts model performance on MBPP (Austin et al., 2021) and HumanEval (Chen et al., 2021) compared to using problem descriptions alone.
+Furthermore, AgentCoder (Huang et al., 2024) employs multi-agent systems to decouple the roles of programmer and tester, demonstrating that explicit test generation can enhance code correctness.
+
+
+
+
+However, the reliance on self-generated tests involves inherent risks. Recent work (Chen et al., 2025) analyzes two paradigms: post-execution and in-execution.
+Findings reveal that post-execution debugging often suffers from test bias introduced by self-generated tests, leading to misleading feedback.
+Conversely, in-execution debugging allows LLMs to leverage intermediate states to mitigate this bias.
+Moreover, the majority of existing test-centric research is confined to function-level tasks.
+In these scenarios, generating independent functions from natural language descriptions allows for relatively trivial test synthesis (e.g., simple assert statements).
+It remains an open question whether self-testing strategies remain effective in repository-level contexts, where test generation is substantially more challenging due to dependencies and the need for environment mocking.
+
+
+
+
+A limitation of prior work is that generated tests are often treated as fixed validators after they are produced.
+Typically, LLMs are directed to focus solely on rectifying implementation code, without the mandate to verify or correct the validity of the tests themselves.
+We argue that this underuses the potential of testing as a structured reasoning aid. By requiring a model to formulate executable test cases before implementation, the model is encouraged to make its assumptions about inputs, outputs, edge cases, and behavioral constraints explicit. Figure 1 provides an example that illustrates the rationale.
+
+
+
+
+Based on this insight, we instantiate TDD-Agent as a single-agent framework.
+In this paradigm, a single agent retains conversation history and is granted the autonomy to modify both the code and the tests dynamically. This approach simulates a coherent “test-driven development (TDD)” thought process (Mathews and Nagappan, 2024), allowing the model to iteratively align code and tests without the complexity overhead of coordinating multiple agents.
+
+
+
+
+We empirically evaluate our approach at two levels. First, on LiveCodeBench, we use a lightweight TDD-prompt variant to isolate the effect of test-first reasoning in function-level code generation. Second, on RepoEval (Zhang et al., 2023), we evaluate the TDD-Agent framework in repository-level tasks, where repository navigation and dependency understanding are required.
+
+
+
+
+In summary, our contributions are as follows:
+
+
+
+
+• 
+
+
+
+We propose TDD-Agent, which adapts the test-driven development paradigm for code generation.
+
+• 
+
+
+
+We show that test-first generation provides an executable intermediate representation of task intent.
+
+• 
+
+
+
+We conduct extensive experiments on both function-level and repository-level benchmarks.
+
+
+
+
+Figure 2: Overview of the TDD-Agent. (1) The LLM first designs and generates unit tests for the target function. (2) The LLM generates the complete implementation of the target function, and through execution and refinement, iteratively refines the tests and code.
+
+
+
+
+
+2 Methodology
+
+
+
+
+2.1 Overall Framework
+
+
+
+
+The TDD-Agent framework operates through a two-phase workflow.
+Let ℛ\mathcal{R} denote the repository context, 𝒯t​o​o​l​s\mathcal{T}_{tools} the set of available tools, ft​a​r​g​e​tf_{target} the target function to be implemented and 𝒜\mathcal{A} the agent. Figure 2 provides a comprehensive overview of the framework.
+
+
+
+
+Phase 1: Test-First Specification Setup
+
+
+
+
+In the initial phase, 𝒜\mathcal{A} acts as a test designer. It leverages tools 𝒯t​o​o​l​s\mathcal{T}_{tools} to extract relevant context from ℛ\mathcal{R} and comprehend the requirements of ft​a​r​g​e​tf_{target}.
+By generating an initial suite of unit tests, denoted as U0U_{0}, 𝒜\mathcal{A} is compelled to disambiguate requirements and define precise behavioral boundaries before any implementation logic is written:
+
+
+
+
+
+U0=𝒜d​e​s​i​g​n​(ℛ,ft​a​r​g​e​t∣𝒯t​o​o​l​s).U_{0}=\mathcal{A}_{design}(\mathcal{R},f_{target}\mid\mathcal{T}_{tools}).
+
+(1)
+
+
+This phase concludes with the submission of U0U_{0}, ensuring that the agent has established a clear, executable understanding of the task.
+
+
+
+
+
+Phase 2: Dual-Track Test-Code Co-Refinement
+
+
+
+
+The second phase constitutes an iterative loop of execution and refinement. Building upon the specifications in U0U_{0}, 𝒜\mathcal{A} generates the initial implementation code C0C_{0} for ft​a​r​g​e​tf_{target}. The implementation is then executed against U0U_{0} to produce a test report E0E_{0}:
+
+
+
+
+
+Et=Execute​(Ct,Ut).E_{t}=\text{Execute}(C_{t},U_{t}).
+
+(2)
+
+
+
+
+
+Based on the execution feedback EtE_{t}, 𝒜\mathcal{A} performs a reflection process.
+
+• 
+
+
+
+If execution succeeds: 𝒜\mathcal{A} will receive a prompt suggesting that it consider strengthening or expanding the test suite. If 𝒜\mathcal{A} is confident in the correctness and robustness of CtC_{t}, it can choose to invoke the Finish tool to terminate the task early.
+
+• 
+
+
+
+If execution fails: 𝒜\mathcal{A} will receive a prompt encouraging it to analyze the cause. Unlike previous approaches that treat unit tests as immutable constraints, our framework enables the dual refinement of both code and tests.
+
+
+
+The state update for the next iteration is formulated as:
+
+
+
+
+
+(Ct+1,Ut+1)=𝒜r​e​f​l​e​c​t​(Ct,Ut,Et,ℛ)(C_{t+1},U_{t+1})=\mathcal{A}_{reflect}(C_{t},U_{t},E_{t},\mathcal{R})
+
+(3)
+
+
+The iterative process continues until a maximum number of rounds is reached (set to 10) or when 𝒜\mathcal{A} invokes the Early Terminator tool to terminate early.
+
+
+
+
+
+
+2.2 Tool Box
+
+
+
+
+TDD-Agent is equipped with a lightweight set of tools:
+
+
+
+
+Context Inspection.
+Directory Viewer lists the repository structure, Structure Inspector extracts the skeleton of a file (e.g., class and function) with concrete implementations folded, File Reader retrieves specific code segments based on exact line numbers, Code Searcher performs lexical search using grep and find.
+
+
+
+
+Artifact Submission and Test Runner.
+The agent utilizes Artifact Submission to submit both the generated tests and implementation code. The generated tests are saved to a temporary file within the same directory as the target file, while the implementation code directly modifies the target file in place.
+Test Runner strictly executes only the latest version of the generated temporary test file by running pytest.
+Throughout the prediction phase, the original repository tests are neither executed nor visible to the agent.
+
+
+
+
+Early Terminator. At the end of each iteration, specifically, upon receiving the execution results from the Test Runner, the agent can invoke this tool to exit early if it determines that the task has been completed.
+
+
+
+
+
+
+3 Experiments
+
+
+
+
+We conduct experiments on function-level and repository-level tasks using three high-performing LLMs. GPT-5-mini OpenAI (2025) is a closed-source model with superior reasoning capabilities.
+DeepSeek-V3.2 (DeepSeek-AI et al., 2025) is a general-purpose conversational model with 671B total parameters.
+Qwen3-Coder-30B-A3B-Instruct (Yang et al., 2025) is an open-source Mixture-of-Experts model specialized for coding tasks. We access GPT and DeepSeek via APIs, while Qwen is deployed locally on one NVIDIA H20 GPU using vLLM (Kwon et al., 2023).
+The detailed generation parameters for each model are in Appendix A.
+
+
+
+
+3.1 Function-Level Study
+
+
+
+
+We design a prompting variant TDD-prompt, which asks the LLM to formulate tests before producing the final implementation.
+We conduct comparative experiments on LiveCodeBench (Jain et al., 2024) to isolate the effect of test-first reasoning.
+The detailed experiment settings are in Appendix B.
+
+
+
+
+Baselines.
+CoT Wei et al. (2022) asks LLMs to generate natural language reasoning before generating the code.
+SCoT Li et al. (2025a) asks LLMs to use programming structures to generate structured reasoning steps before generating the code.
+Self-Planning Jiang et al. (2024) asks LLMs to first generate a sub-task plan and then uses it to guide code generation.
+ICoT Li et al. (2025c) asks LLMs to first capture the task intention and then uses it to guide code generation.
+
+
+
+
+Results.
+To mitigate computational cost and account for inherent randomness, we generate 10 samples for each problem and measure the unbiased pass@1 metric Chen et al. (2021).
+As shown in Table 1, TDD-prompt outperforms all baselines on three LLMs.
+This consistent improvement demonstrates that TDD-prompt functions as a reasoning framework.
+
+
+
+
+
+
+Method
+GPT
+DeepSeek
+Qwen
+
+
+
+
+one-shot
+53.08
+45.40
+39.60
+
+
+CoT-prompt
+67.41
+67.46
+42.99
+
+
+SCoT-prompt
+66.83
+64.20
+40.80
+
+
+Self-Planning
+68.17
+66.70
+42.68
+
+
+ICoT-prompt
+68.48
+62.23
+41.88
+
+
+TDD-prompt
+70.04
+67.86
+44.87
+
+
+Table 1: Pass@1 (%) comparison on LiveCodeBench across three models. Bold and underline indicate the best and second-best performance.
+
+
+
+
+
+3.2 Repository-Level Experimental Setup
+
+
+
+
+Datasets.
+We evaluate our method on the RepoEval dataset (Zhang et al., 2023), which comprises repository-level line, API, and function completion tasks.
+In this study, we focus specifically on the function completion subset, derived from eight distinct Python repositories and containing a total of 455 problems.
+
+
+
+
+Metrics.
+Following the protocol of RepoCoder, we employ an execution-based evaluation metric. We utilize the repository’s existing unit tests to assess functional correctness.
+Specifically, we integrate the generated code into the original repository and execute the accompanying unit tests. A solution is deemed successful (Pass) only if it passes all associated test cases; otherwise, it is marked as failed.
+
+
+
+
+Execution Environment.
+We construct a dedicated Docker environment for each repository, where all required dependencies are pre-installed and configured. Before evaluation, we verify that the original test suite provided by each repository can be executed successfully in the corresponding environment. During prediction and evaluation, each Docker container is allocated 2 CPU cores and 4 GB of memory. Each command is limited to a maximum execution time of 600 seconds. If an evaluation run exceeds the timeout, it is treated as a failure.
+
+
+
+
+
+3.3 Repository-Level Baselines
+
+
+
+
+In-File Completion.
+We provide the LLM exclusively with the code context available within the current file (prefix code) and require it to complete the missing function body.
+
+
+
+
+RAG.
+Following RepoCoder, we employ a sparse bag-of-words model as the retriever (Lu et al., 2022). This model tokenizes both the query and candidate snippets to calculate similarity via the Jaccard index (Jaccard, 1912).
+
+
+
+
+RepoCoder.
+RepoCoder is an iterative retrieval and generation framework. We adopt exactly the same configuration specified in the original paper.
+
+
+
+
+mini-SWE-agent
+Yang et al. (2024b) is a widely adopted software engineering agent equipped with a bash tool. It achieves excellent performance on SWE-Bench and is recommended by its original authors. We set the maximum number of LLM calls to 100 for each problem.
+
+
+
+
+
+3.4 Repository-Level Main Results
+
+
+
+
+
+
+Method
+GPT
+DeepSeek
+Qwen
+
+
+
+
+In-File
+44.84
+39.34
+32.75
+
+
+RAG
+50.55
+46.15
+35.16
+
+
+RepoCoder
+55.16
+50.55
+41.10
+
+
+mini-SWE-agent
+61.31
+84.18
+52.97
+
+
+TDD-Agent-iter5
+77.36
+88.13
+58.46
+
+
+TDD-Agent-iter10
+78.24
+90.77
+59.34
+
+
+Table 2: Performance comparison on RepoEval across three models. Numbers are presented in percentage (%). Bold and underline indicate the best and second-best among all compared methods.
+
+
+
+
+Experimental results presented in Table 2 demonstrate that TDD-Agent outperforms all baselines. The detailed results for each repository are reported in Appendix C.
+
+
+
+
+While retrieval-based methods like RAG and RepoCoder generally enhance performance by providing relevant context, their improvements are relatively modest. In contrast, agent-based methods like mini-SWE-agent and TDD-Agent achieve stronger performance gains. Notably, TDD-Agent already surpasses the mini-SWE-agent baseline by its fifth iteration, and increasing the number of iterations yields further performance gains.
+
+
+
+
+For agent-based methods, efficiency is a crucial metric alongside overall performance.
+We report the average token usage and LLM calls for mini-SWE-agent and TDD-Agent in Table 3.
+We observe that at its fifth iteration, TDD-Agent exhibits comparable token consumption to mini-SWE-agent, while consistently achieving superior performance. The detailed token usage and time cost are presented in Appendix C.
+
+
+
+
+
+
+Model
+Method
+Prompt
+Completion
+Calls
+
+
+
+
+GPT
+mini
+115.76
+1.32
+11.95
+
+
+TDD-iter5
+120.48
+1.62
+18.62
+
+
+TDD-iter10
+155.61
+1.71
+22.92
+
+
+DS
+mini
+390.10
+6.38
+31.61
+
+
+TDD-iter5
+361.64
+9.71
+29.39
+
+
+TDD-iter10
+403.01
+10.66
+31.49
+
+
+Qwen
+mini
+106.83
+2.14
+14.81
+
+
+TDD-iter5
+117.07
+3.02
+15.34
+
+
+TDD-iter10
+129.87
+3.22
+17.30
+
+
+Table 3: Average token usage (in thousands) and average LLM calls across different models on mini-SWE-agent and TDD-Agent.
+
+
+Figure 3: The pass rate improvement across iterations on three models.
+
+
+
+
+
+
+4 Analysis
+
+
+
+
+4.1 Early Termination
+
+
+Figure 4: Comparison between End Rate and Match Rate across different iteration rounds on three models. Match Rate represents the proportion of generated code that successfully passes the generated tests. End Rate indicates the proportion of tasks where the model autonomously decides to terminate.
+
+
+
+
+Figure 4 reports the Match Rate and End Rate across all iterations for the three models. Match Rate denotes the proportion of tasks whose current generated code passes the current generated tests, while End Rate denotes the proportion of tasks for which the model chooses to terminate at the current iteration.
+
+
+
+
+The results reveal clear differences across models. In the first iteration, DeepSeek behaves the most conservatively. Although a substantial portion of its generated implementation already passes the generated tests, it rarely chooses to terminate. This indicates that DeepSeek does not simply treat self-test success as sufficient evidence of correctness. Instead, it tends to continue refining even after the current tests are passed. This conservative behavior helps explain why DeepSeek obtains the largest improvement through iterative refinement, as it keeps using additional rounds to strengthen the test suite and correct potential hidden defects.
+
+
+
+
+GPT and Qwen terminate more aggressively in early iterations. For GPT, the End Rate remains consistently lower than the Match Rate, suggesting that the model generally requires self-test success before deciding to stop. This indicates a stopping heuristic: passing the generated tests is treated as an important but not always sufficient condition for termination.
+Qwen exhibits a different pattern. From the middle iterations onward, its End Rate becomes higher than its Match Rate. This means for some tasks, Qwen chooses to stop even when the current implementation has not passed its generated tests.
+
+
+
+
+
+4.2 Improvement Across Iterations
+
+
+
+
+Figure 3 illustrates the pass rate improvement achieved by TDD-Agent across iterations for the three models. All models benefit from iterative refinement, confirming that the execution-feedback loop is effective for improving performance.
+
+
+
+
+Among the three models, DeepSeek achieves the largest overall gain. This is consistent with the early-termination analysis in Section 4.1: DeepSeek is less likely to stop after the first successful self-test and instead continues to refine its artifacts. As a result, it can exploit later iterations more effectively, leading to the largest cumulative improvement.
+
+
+
+
+GPT also shows a clear and stable improvement trend. Its performance increases rapidly during the first several rounds and then gradually stabilizes. This suggests that GPT can effectively use execution feedback to correct errors, while its termination behavior prevents excessive premature stopping.
+
+
+
+
+Qwen obtains a smaller but still positive gain. Although the analysis in Figure 4 indicates that Qwen sometimes terminates before passing its generated tests, its performance still improves with more iterations, implying that although some tasks suffer from early stopping, the remaining active tasks can still benefit from continued refinement.
+
+
+
+
+Across all three models, the improvement curves gradually converge and reach a near-plateau around iterations 6–7. This trend indicates that most useful corrections are made in the early and middle stages of the iterative process, while additional rounds provide diminishing returns. This observation suggests that a moderate iteration budget can provide a favorable trade-off between performance and computational overhead.
+
+
+
+
+
+4.3 Quality of Generated Tests
+
+
+
+
+A core premise of TDD-Agent is that generated tests should not be treated as static artifacts. Instead, they should evolve together with the implementation. To examine whether this property holds in practice, we analyze the quality of generated tests from three perspectives: pass rate, coverage rate and mutation score.
+
+
+
+
+At each iteration, the generated test suite is executed against the ground-truth implementation. A test suite is considered passed if all its tests succeed on the ground-truth implementation. A low pass rate indicates potential issues such as incorrect assumptions or hallucinated requirements.
+
+
+
+
+The coverage rate is measured using the pytest-cov plugin. Specifically, we execute the generated tests on the ground-truth implementation and compute line coverage for the target function:
+
+
+
+
+
+Coverage Rate=Covered LinesTotal Lines.\text{Coverage Rate}=\frac{\text{Covered Lines}}{\text{Total Lines}}.
+
+(4)
+
+
+This metric measures how thoroughly the generated tests exercise the implementation logic.
+
+
+
+
+We assess mutation score using MutPy Hossner et al. (2021).
+For each problem, we generate 20 mutants of the ground-truth implementation and execute the LLM-generated tests against them.
+The mutation score is defined as the fraction of mutants killed by the generated tests:
+
+
+
+
+
+Mutation Score=Killed MutantsTotal Mutants.\text{Mutation Score}=\frac{\text{Killed Mutants}}{\text{Total Mutants}}.
+
+(5)
+
+
+If the generated tests fail on the ground-truth implementation, we set the mutation score to 0.
+
+
+
+
+Figure 5 presents the pass rate, coverage rate, and mutation score of generated tests across iterations. The results show that all three metrics generally improve as the number of iterations increases. This indicates that the iterative refinement process improves not only the generated code but also the generated tests. Through iterative refinement, the agent gradually removes invalid assertions, corrects mismatched expectations, and expands the test suite to cover more execution paths.
+
+
+
+
+The tests generated by DeepSeek achieve consistently high values across all three metrics, which provides a direct explanation for its large code-generation gain. Since the generated tests become more reliable, they provide more accurate feedback, enabling the model to correct defects more effectively.
+GPT also shows steady improvements, suggesting that it can consistently refine its generated tests based on execution feedback.
+Qwen starts with comparatively lower metric values and obtains a smaller gain, but still shows a positive trend. This further confirms that even when a model exhibits early-termination behavior, the dual-track refinement process can still improve the quality of its generated tests.
+
+
+
+
+These findings support the central hypothesis of TDD-Agent: generated tests are most effective when they are treated not as fixed validators but as evolving reasoning artifacts.
+
+
+Figure 5: Pass rate, coverage rate, and mutation score of generated tests over iterations for three models.
+
+
+
+
+
+4.4 Ablation Study
+
+
+
+
+To disentangle the contribution of each core component in TDD-Agent, we conduct an ablation study on RepoEval.
+TDD-Agent consists of two key designs: (1) test-first generation, which requires the model to construct executable specifications before implementation, and (2) dual-track refinement, which allows the model to iteratively revise both the implementation and the generated tests based on execution feedback.
+
+
+
+
+We compare TDD-Agent with four variants. Vanilla directly generates the implementation without test generation or iterative refinement. Reflect removes test generation and performs iterative self-reflection only on the implementation.
+Single-track keeps test-first generation but freezes the generated tests during refinement, allowing only the code to be modified.
+TDD-Agent-iter1 executes only the first test generation and code generation without subsequent refinement.
+
+
+
+
+As shown in Table 4, the full TDD-Agent consistently achieves the best performance, demonstrating that both test-first reasoning and dual-track refinement are essential to the framework.
+Compared with Vanilla, TDD-Agent-iter1 achieves higher pass rates, indicating that generating tests before implementation can indeed improve code quality by encouraging the model to clarify expected behaviors in advance.
+However, the improvement is limited, suggesting that a single round of test-first generation is insufficient.
+
+
+
+
+The comparison between Vanilla and Reflect shows that iterative reflection alone can also improve performance. However, reflection alone remains limited because the model lacks concrete feedback to verify whether its revisions are actually correct.
+Single-track introduces test-first generation and therefore provides executable feedback during refinement. Nevertheless, its improvement is also limited, since the initially generated tests may contain errors or incomplete assumptions, and thus may fail to provide accurate guidance in some cases.
+
+
+
+
+The gap between Single-track and the full TDD-Agent highlights the importance of dual-track refinement.
+Allowing the agent to revise both tests and code enables it to correct not only implementation errors but also flawed or insufficient tests. This refinement process helps the generated tests gradually better align with the intended behavior of the target function, thereby providing more reliable feedback for subsequent code revisions. Overall, these results confirm that test generation is most effective when it is treated not as a fixed validator, but as an evolving reasoning artifact that is refined jointly with the implementation.
+
+
+
+
+
+
+Variant
+GPT
+DeepSeek
+Qwen
+
+
+
+
+Vanilla
+68.35
+73.63
+52.97
+
+
+Reflect
+72.09
+81.53
+54.06
+
+
+Single-track
+70.11
+79.56
+57.36
+
+
+TDD-Agent-iter1
+69.89
+76.48
+54.51
+
+
+TDD-Agent
+78.24
+90.77
+59.34
+
+
+Table 4: Ablation study on RepoEval. Results are reported as pass rate (%). Bold and underline indicate the best and second-best performance for each model.
+
+
+Figure 6: Distribution of matched and unmatched failures across three backbone models.
+
+
+
+
+
+4.5 Failure Case Analysis
+
+
+
+
+A natural concern in TDD-Agent is the credit assignment problem. When an execution fails, the agent must determine whether the implementation is flawed or the tests are incorrect. There are cases where the agent may fix correct code to pass a hallucinated test, or conversely, discard valid tests to accommodate erroneous code. However, our statistics show that such cases account for less than 10% of the failed cases.
+
+
+
+
+We further analyze the failed cases according to whether the implementation passes the generated tests at termination.
+As shown in Figure 6, most failures are matched failures, where the generated implementation passes the generated tests but fails the held-out repository tests. This indicates a form of false-positive verification: the agent has produced tests that are consistent with its implementation, yet fail to fully capture the intended behavior, acting as an incomplete or misaligned executable specification.
+Since the refinement loop is driven by execution feedback from the current generated tests, defects that are not exercised by these tests may remain invisible throughout refinement. As a result, tests and code can co-evolve into an internally consistent but incomplete state: the implementation satisfies the generated tests, while both artifacts still fail to capture behaviors required by the repository oracle. This suggests that matched failures reflect not merely low test quality, but a limitation in the model’s task understanding as operationalized through test generation. More detailed statistics are reported in Appendix C.
+
+
+
+
+
+
+5 Related Work
+
+
+
+
+Test-Guided Code Generation.
+TICODER (Fakhoury et al., 2024) introduces an interactive workflow where models generate candidate tests to clarify user intent, while IntUT (Nan et al., 2025) uses test intentions to improve branch coverage in unit test generation. CoCoEvo (Li et al., 2025b) co-evolves programs and test cases via genetic search, and LLMLOOP (Ravi et al., 2025) incorporates mutation analysis to make generated tests more challenging.
+More closely related, TENET (Hu et al., 2025) leverages pre-existing repository tests for test selection, context retrieval, and feedback-guided code refinement.
+In contrast to prior work that relies on user interaction, predefined tests, or uses tests mainly as validation/refinement signals, TDD-Agent treats test generation as a reasoning step: it synthesizes executable tests before implementation and jointly refines both tests and code through execution feedback, without assuming access to predefined tests during prediction.
+
+
+
+
+Software Engineering Agents.
+Yang et al. (2024b) introduce SWE-agent, which utilizes a custom Agent-Computer Interface to prevent the model from being overwhelmed by verbose shell outputs.
+Zhang et al. (2024b) propose CodeAgent, which integrates symbol navigation and testing tools, demonstrating that precise code navigation is critical for repository-level tasks.
+Tao et al. (2024) propose MAGIS, a framework that assigns distinct roles to agents to simulate a real-world development lifecycle. Conversely, Xia et al. (2024) argue for simplicity with Agentless, a method that eschews agentic loops for a simpler workflow.
+OpenHands (Wang et al., 2025a) further accelerates this field by providing a unified runtime for developing and evaluating such generalist agents.
+
+
+
+
+Retrieval-Augmented Completion.
+RLCoder (Wang et al., 2025b) employs reinforcement learning to align the retriever with code generation utility. CoCo (Zhao et al., 2025) parses code at multiple granularities to capture structural dependencies.
+
+
+
+
+
+6 Conclusion and Future Work
+
+
+
+
+In this paper, we introduced TDD-Agent, which operationalizes the Test-Driven Development paradigm. TDD-Agent treats test generation as a process of reasoning, compelling the model to clarify requirements and define executable boundaries prior to implementation. Through iterative refinement, our framework enables the dual refinement of both code and tests.
+Experimental results demonstrate that TDD-Agent consistently outperforms baselines. Our analysis further reveals that the quality of generated tests improves concurrently with the code implementation, validating the efficacy of our dual-track refinement strategy.
+For future work, we plan to extend TDD-Agent to more programming languages and further improve the reliability of self-generated tests. In particular, our failure case analysis suggests that many remaining failures arise when generated tests fail to expose hidden defects in the implementation. Future work may therefore explore stronger test-oracle construction, mutation-guided test expansion, and uncertainty-aware termination criteria to reduce false-positive verification.
+
+
+
+
+
+Limitations
+
+
+
+
+Scope of Evaluation Languages.
+Our experimental validation is currently confined to Python. To adapt our framework to other languages, one only needs to replace the environment-specific components (e.g., JUnit for Java, Jest for JavaScript), while the high-level reasoning and iteration logic remain unchanged.
+
+
+
+
+Limited Repository Understanding.
+TDD-Agent currently relies on a lightweight tool set. While these tools are sufficient to support iterative refinement, they provide limited semantic access to repository-level information.
+This limitation is reflected in our failure analysis: most failures are matched failures. Such cases suggest that the dominant bottleneck is incomplete understanding of tasks and repositories. Future work could integrate stronger semantic code search, dependency-aware navigation, call-graph analysis and more informative repository-level context construction to improve the quality of generated tests and reduce false-positive verification.
+
+
+
+
+Reliability of Execution Feedback.
+Our framework assumes that the test execution provides reliable feedback. In practice, flaky tests or nondeterministic behavior may introduce noisy signals.
+Such unreliable feedback can mislead the agent into modifying correct implementations or discarding valid tests, thereby degrading the effectiveness of iterative refinement.
+Future work could improve robustness by incorporating repeated test execution and flaky-test detection.
+
+
+
+
+Computational Overhead.
+The iterative nature of TDD-Agent inherently incurs higher token consumption and latency.
+
+
+
+
+
+References
+
+
+Anthropic (2024)
+Anthropic
+
+The claude 3 model family: opus, sonnet, haiku.
+
+Anthropic Technical Report.
+
+External Links: Link
+
+Cited by: §1.
+
+Austin et al. (2021)
+J. Austin, A. Odena, M. I. Nye, M. Bosma, H. Michalewski, D. Dohan, E. Jiang, C. J. Cai, M. Terry, Q. V. Le, and C. Sutton
+
+Program synthesis with large language models.
+
+CoRR abs/2108.07732.
+
+External Links: Link,
+2108.07732
+
+Cited by: §1.
+
+Chen et al. (2021)
+M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. de Oliveira Pinto, J. Kaplan, H. Edwards, Y. Burda, N. Joseph, G. Brockman, A. Ray, R. Puri, G. Krueger, M. Petrov, H. Khlaaf, G. Sastry, P. Mishkin, B. Chan, S. Gray, N. Ryder, M. Pavlov, A. Power, L. Kaiser, M. Bavarian, C. Winter, P. Tillet, F. P. Such, D. Cummings, M. Plappert, F. Chantzis, E. Barnes, A. Herbert-Voss, W. H. Guss, A. Nichol, A. Paino, N. Tezak, J. Tang, I. Babuschkin, S. Balaji, S. Jain, W. Saunders, C. Hesse, A. N. Carr, J. Leike, J. Achiam, V. Misra, E. Morikawa, A. Radford, M. Knight, M. Brundage, M. Murati, K. Mayer, P. Welinder, B. McGrew, D. Amodei, S. McCandlish, I. Sutskever, and W. Zaremba
+
+Evaluating large language models trained on code.
+
+CoRR abs/2107.03374.
+
+External Links: Link,
+2107.03374
+
+Cited by: Appendix B,
+§1,
+§3.1.
+
+Chen et al. (2025)
+X. Chen, Z. Tao, K. Zhang, C. Zhou, X. Zhang, W. Gu, Y. He, M. Zhang, X. Cai, H. Zhao, and Z. Jin
+
+Revisit self-debugging with self-generated tests for code generation.
+
+In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),  W. Che, J. Nabende, E. Shutova, and M. T. Pilehvar (Eds.),
+
+Vienna, Austria, pp. 18003–18023.
+
+External Links: Link,
+Document,
+ISBN 979-8-89176-251-0
+
+Cited by: §1.
+
+DeepSeek-AI et al. (2025)
+DeepSeek-AI, A. Liu, A. Mei, B. Lin, B. Xue, B. Wang, B. Xu, B. Wu, B. Zhang, C. Lin, C. Dong, C. Lu, C. Zhao, C. Deng, C. Xu, C. Ruan, D. Dai, D. Guo, D. Yang, D. Chen, E. Li, F. Zhou, F. Lin, F. Dai, G. Hao, G. Chen, G. Li, H. Zhang, H. Xu, H. Li, H. Liang, H. Wei, H. Zhang, H. Luo, H. Ji, H. Ding, H. Tang, H. Cao, H. Gao, H. Qu, H. Zeng, J. Huang, J. Li, J. Xu, J. Hu, J. Chen, J. Xiang, J. Yuan, J. Cheng, J. Zhu, J. Ran, J. Jiang, J. Qiu, J. Li, J. Song, K. Dong, K. Gao, K. Guan, K. Huang, K. Zhou, K. Huang, K. Yu, L. Wang, L. Zhang, L. Wang, L. Zhao, L. Yin, L. Guo, L. Luo, L. Ma, L. Wang, L. Zhang, M. S. Di, M. Y. Xu, M. Zhang, M. Zhang, M. Tang, M. Zhou, P. Huang, P. Cong, P. Wang, Q. Wang, Q. Zhu, Q. Li, Q. Chen, Q. Du, R. Xu, R. Ge, R. Zhang, R. Pan, R. Wang, R. Yin, R. Xu, R. Shen, R. Zhang, S. H. Liu, S. Lu, S. Zhou, S. Chen, S. Cai, S. Chen, S. Hu, S. Liu, S. Hu, S. Ma, S. Wang, S. Yu, S. Zhou, S. Pan, S. Zhou, T. Ni, T. Yun, T. Pei, T. Ye, T. Yue, W. Zeng, W. Liu, W. Liang, W. Pang, W. Luo, W. Gao, W. Zhang, X. Gao, X. Wang, X. Bi, X. Liu, X. Wang, X. Chen, X. Zhang, X. Nie, X. Cheng, X. Liu, X. Xie, X. Liu, X. Yu, X. Li, X. Yang, X. Li, X. Chen, X. Su, X. Pan, X. Lin, X. Fu, Y. Q. Wang, Y. Zhang, Y. Xu, Y. Ma, Y. Li, Y. Li, Y. Zhao, Y. Sun, Y. Wang, Y. Qian, Y. Yu, Y. Zhang, Y. Ding, Y. Shi, Y. Xiong, Y. He, Y. Zhou, Y. Zhong, Y. Piao, Y. Wang, Y. Chen, Y. Tan, Y. Wei, Y. Ma, Y. Liu, Y. Yang, Y. Guo, Y. Wu, Y. Wu, Y. Cheng, Y. Ou, Y. Xu, Y. Wang, Y. Gong, Y. Wu, Y. Zou, Y. Li, Y. Xiong, Y. Luo, Y. You, Y. Liu, Y. Zhou, Z. F. Wu, Z. Z. Ren, Z. Zhao, Z. Ren, Z. Sha, Z. Fu, Z. Xu, Z. Xie, Z. Zhang, Z. Hao, Z. Gou, Z. Ma, Z. Yan, Z. Shao, Z. Huang, Z. Wu, Z. Li, Z. Zhang, Z. Xu, Z. Wang, Z. Gu, Z. Zhu, Z. Li, Z. Zhang, Z. Xie, Z. Gao, Z. Pan, Z. Yao, B. Feng, H. Li, J. L. Cai, J. Ni, L. Xu, M. Li, N. Tian, R. J. Chen, R. L. Jin, S. S. Li, S. Zhou, T. Sun, X. Q. Li, X. Jin, X. Shen, X. Chen, X. Song, X. Zhou, Y. X. Zhu, Y. Huang, Y. Li, Y. Zheng, Y. Zhu, Y. Ma, Z. Huang, Z. Xu, Z. Zhang, D. Ji, J. Liang, J. Guo, J. Chen, L. Xia, M. Wang, M. Li, P. Zhang, R. Chen, S. Sun, S. Wu, S. Ye, T. Wang, W. L. Xiao, W. An, X. Wang, X. Sun, X. Wang, Y. Tang, Y. Zha, Z. Zhang, Z. Ju, Z. Zhang, and Z. Qu
+
+DeepSeek-v3.2: pushing the frontier of open large language models.
+
+External Links: 2512.02556,
+Link
+
+Cited by: §3.
+
+Fakhoury et al. (2024)
+S. Fakhoury, A. Naik, G. Sakkas, S. Chakraborty, and S. K. Lahiri
+
+LLM-based test-driven interactive code generation: user study and empirical evaluation.
+
+50 (9), pp. 2254–2268.
+
+External Links: ISSN 0098-5589,
+Link,
+Document
+
+Cited by: §5.
+
+Grattafiori et al. (2024)
+A. Grattafiori, A. Dubey, A. Jauhri, A. Pandey, A. Kadian, A. Al-Dahle, A. Letman, A. Mathur, A. Schelten, A. Vaughan, A. Yang, A. Fan, A. Goyal, A. Hartshorn, A. Yang, A. Mitra, A. Sravankumar, A. Korenev, A. Hinsvark, A. Rao, A. Zhang, A. Rodriguez, A. Gregerson, A. Spataru, B. Roziere, B. Biron, B. Tang, B. Chern, C. Caucheteux, C. Nayak, C. Bi, C. Marra, C. McConnell, C. Keller, C. Touret, C. Wu, C. Wong, C. C. Ferrer, C. Nikolaidis, D. Allonsius, D. Song, D. Pintz, D. Livshits, D. Wyatt, D. Esiobu, D. Choudhary, D. Mahajan, D. Garcia-Olano, D. Perino, D. Hupkes, E. Lakomkin, E. AlBadawy, E. Lobanova, E. Dinan, E. M. Smith, F. Radenovic, F. Guzmán, F. Zhang, G. Synnaeve, G. Lee, G. L. Anderson, G. Thattai, G. Nail, G. Mialon, G. Pang, G. Cucurell, H. Nguyen, H. Korevaar, H. Xu, H. Touvron, I. Zarov, I. A. Ibarra, I. Kloumann, I. Misra, I. Evtimov, J. Zhang, J. Copet, J. Lee, J. Geffert, J. Vranes, J. Park, J. Mahadeokar, J. Shah, J. van der Linde, J. Billock, J. Hong, J. Lee, J. Fu, J. Chi, J. Huang, J. Liu, J. Wang, J. Yu, J. Bitton, J. Spisak, J. Park, J. Rocca, J. Johnstun, J. Saxe, J. Jia, K. V. Alwala, K. Prasad, K. Upasani, K. Plawiak, K. Li, K. Heafield, K. Stone, K. El-Arini, K. Iyer, K. Malik, K. Chiu, K. Bhalla, K. Lakhotia, L. Rantala-Yeary, L. van der Maaten, L. Chen, L. Tan, L. Jenkins, L. Martin, L. Madaan, L. Malo, L. Blecher, L. Landzaat, L. de Oliveira, M. Muzzi, M. Pasupuleti, M. Singh, M. Paluri, M. Kardas, M. Tsimpoukelli, M. Oldham, M. Rita, M. Pavlova, M. Kambadur, M. Lewis, M. Si, M. K. Singh, M. Hassan, N. Goyal, N. Torabi, N. Bashlykov, N. Bogoychev, N. Chatterji, N. Zhang, O. Duchenne, O. Çelebi, P. Alrassy, P. Zhang, P. Li, P. Vasic, P. Weng, P. Bhargava, P. Dubal, P. Krishnan, P. S. Koura, P. Xu, Q. He, Q. Dong, R. Srinivasan, R. Ganapathy, R. Calderer, R. S. Cabral, R. Stojnic, R. Raileanu, R. Maheswari, R. Girdhar, R. Patel, R. Sauvestre, R. Polidoro, R. Sumbaly, R. Taylor, R. Silva, R. Hou, R. Wang, S. Hosseini, S. Chennabasappa, S. Singh, S. Bell, S. S. Kim, S. Edunov, S. Nie, S. Narang, S. Raparthy, S. Shen, S. Wan, S. Bhosale, S. Zhang, S. Vandenhende, S. Batra, S. Whitman, S. Sootla, S. Collot, S. Gururangan, S. Borodinsky, T. Herman, T. Fowler, T. Sheasha, T. Georgiou, T. Scialom, T. Speckbacher, T. Mihaylov, T. Xiao, U. Karn, V. Goswami, V. Gupta, V. Ramanathan, V. Kerkez, V. Gonguet, V. Do, V. Vogeti, V. Albiero, V. Petrovic, W. Chu, W. Xiong, W. Fu, W. Meers, X. Martinet, X. Wang, X. Wang, X. E. Tan, X. Xia, X. Xie, X. Jia, X. Wang, Y. Goldschlag, Y. Gaur, Y. Babaei, Y. Wen, Y. Song, Y. Zhang, Y. Li, Y. Mao, Z. D. Coudert, Z. Yan, Z. Chen, Z. Papakipos, A. Singh, A. Srivastava, A. Jain, A. Kelsey, A. Shajnfeld, A. Gangidi, A. Victoria, A. Goldstand, A. Menon, A. Sharma, A. Boesenberg, A. Baevski, A. Feinstein, A. Kallet, A. Sangani, A. Teo, A. Yunus, A. Lupu, A. Alvarado, A. Caples, A. Gu, A. Ho, A. Poulton, A. Ryan, A. Ramchandani, A. Dong, A. Franco, A. Goyal, A. Saraf, A. Chowdhury, A. Gabriel, A. Bharambe, A. Eisenman, A. Yazdan, B. James, B. Maurer, B. Leonhardi, B. Huang, B. Loyd, B. D. Paola, B. Paranjape, B. Liu, B. Wu, B. Ni, B. Hancock, B. Wasti, B. Spence, B. Stojkovic, B. Gamido, B. Montalvo, C. Parker, C. Burton, C. Mejia, C. Liu, C. Wang, C. Kim, C. Zhou, C. Hu, C. Chu, C. Cai, C. Tindal, C. Feichtenhofer, C. Gao, D. Civin, D. Beaty, D. Kreymer, D. Li, D. Adkins, D. Xu, D. Testuggine, D. David, D. Parikh, D. Liskovich, D. Foss, D. Wang, D. Le, D. Holland, E. Dowling, E. Jamil, E. Montgomery, E. Presani, E. Hahn, E. Wood, E. Le, E. Brinkman, E. Arcaute, E. Dunbar, E. Smothers, F. Sun, F. Kreuk, F. Tian, F. Kokkinos, F. Ozgenel, F. Caggioni, F. Kanayet, F. Seide, G. M. Florez, G. Schwarz, G. Badeer, G. Swee, G. Halpern, G. Herman, G. Sizov, Guangyi, Zhang, G. Lakshminarayanan, H. Inan, H. Shojanazeri, H. Zou, H. Wang, H. Zha, H. Habeeb, H. Rudolph, H. Suk, H. Aspegren, H. Goldman, H. Zhan, I. Damlaj, I. Molybog, I. Tufanov, I. Leontiadis, I. Veliche, I. Gat, J. Weissman, J. Geboski, J. Kohli, J. Lam, J. Asher, J. Gaya, J. Marcus, J. Tang, J. Chan, J. Zhen, J. Reizenstein, J. Teboul, J. Zhong, J. Jin, J. Yang, J. Cummings, J. Carvill, J. Shepard, J. McPhie, J. Torres, J. Ginsburg, J. Wang, K. Wu, K. H. U, K. Saxena, K. Khandelwal, K. Zand, K. Matosich, K. Veeraraghavan, K. Michelena, K. Li, K. Jagadeesh, K. Huang, K. Chawla, K. Huang, L. Chen, L. Garg, L. A, L. Silva, L. Bell, L. Zhang, L. Guo, L. Yu, L. Moshkovich, L. Wehrstedt, M. Khabsa, M. Avalani, M. Bhatt, M. Mankus, M. Hasson, M. Lennie, M. Reso, M. Groshev, M. Naumov, M. Lathi, M. Keneally, M. Liu, M. L. Seltzer, M. Valko, M. Restrepo, M. Patel, M. Vyatskov, M. Samvelyan, M. Clark, M. Macey, M. Wang, M. J. Hermoso, M. Metanat, M. Rastegari, M. Bansal, N. Santhanam, N. Parks, N. White, N. Bawa, N. Singhal, N. Egebo, N. Usunier, N. Mehta, N. P. Laptev, N. Dong, N. Cheng, O. Chernoguz, O. Hart, O. Salpekar, O. Kalinli, P. Kent, P. Parekh, P. Saab, P. Balaji, P. Rittner, P. Bontrager, P. Roux, P. Dollar, P. Zvyagina, P. Ratanchandani, P. Yuvraj, Q. Liang, R. Alao, R. Rodriguez, R. Ayub, R. Murthy, R. Nayani, R. Mitra, R. Parthasarathy, R. Li, R. Hogan, R. Battey, R. Wang, R. Howes, R. Rinott, S. Mehta, S. Siby, S. J. Bondu, S. Datta, S. Chugh, S. Hunt, S. Dhillon, S. Sidorov, S. Pan, S. Mahajan, S. Verma, S. Yamamoto, S. Ramaswamy, S. Lindsay, S. Lindsay, S. Feng, S. Lin, S. C. Zha, S. Patil, S. Shankar, S. Zhang, S. Zhang, S. Wang, S. Agarwal, S. Sajuyigbe, S. Chintala, S. Max, S. Chen, S. Kehoe, S. Satterfield, S. Govindaprasad, S. Gupta, S. Deng, S. Cho, S. Virk, S. Subramanian, S. Choudhury, S. Goldman, T. Remez, T. Glaser, T. Best, T. Koehler, T. Robinson, T. Li, T. Zhang, T. Matthews, T. Chou, T. Shaked, V. Vontimitta, V. Ajayi, V. Montanez, V. Mohan, V. S. Kumar, V. Mangla, V. Ionescu, V. Poenaru, V. T. Mihailescu, V. Ivanov, W. Li, W. Wang, W. Jiang, W. Bouaziz, W. Constable, X. Tang, X. Wu, X. Wang, X. Wu, X. Gao, Y. Kleinman, Y. Chen, Y. Hu, Y. Jia, Y. Qi, Y. Li, Y. Zhang, Y. Zhang, Y. Adi, Y. Nam, Yu, Wang, Y. Zhao, Y. Hao, Y. Qian, Y. Li, Y. He, Z. Rait, Z. DeVito, Z. Rosnbrick, Z. Wen, Z. Yang, Z. Zhao, and Z. Ma
+
+The llama 3 herd of models.
+
+External Links: 2407.21783,
+Link
+
+Cited by: §1.
+
+Hossner et al. (2021)
+P. Hossner, K. Hałas, S. Myint, and A. Mueller
+
+MutPy: a mutation testing tool for python 3.x source code.
+
+Note: https://github.com/mutpy/mutpyAccessed: 2026-05-18
+
+Cited by: §4.3.
+
+Hu et al. (2025)
+Y. Hu, N. Jiang, S. Liang, Y. Wu, and L. Tan
+
+TENET: leveraging tests beyond validation for code generation.
+
+External Links: 2509.24148,
+Link
+
+Cited by: §5.
+
+Huang et al. (2024)
+D. Huang, J. M. Zhang, M. Luck, Q. Bu, Y. Qing, and H. Cui
+
+AgentCoder: multi-agent-based code generation with iterative testing and optimisation.
+
+External Links: 2312.13010,
+Link
+
+Cited by: §1.
+
+Jaccard (1912)
+P. Jaccard
+
+The distribution of the flora in the alpine zone.
+
+The New Phytologist 11 (2), pp. 37–50.
+
+Note: JSTOR: 2427226
+
+External Links: Link
+
+Cited by: §3.3.
+
+Jain et al. (2024)
+N. Jain, K. Han, A. Gu, W. Li, F. Yan, T. Zhang, S. Wang, A. Solar-Lezama, K. Sen, and I. Stoica
+
+LiveCodeBench: holistic and contamination free evaluation of large language models for code.
+
+External Links: 2403.07974,
+Link
+
+Cited by: §3.1.
+
+Jiang et al. (2024)
+X. Jiang, Y. Dong, L. Wang, Z. Fang, Q. Shang, G. Li, Z. Jin, and W. Jiao
+
+Self-planning code generation with large language models.
+
+ACM Trans. Softw. Eng. Methodol. 33 (7).
+
+External Links: ISSN 1049-331X,
+Link,
+Document
+
+Cited by: §3.1.
+
+Kwon et al. (2023)
+W. Kwon, Z. Li, S. Zhuang, Y. Sheng, E. Zheng, C. H. Yu, J. Gonzalez, I. Stoica, and Z. Wu
+
+Efficient memory management for large language model serving with pagedattention.
+
+In Proceedings of the 29th Symposium on Operating Systems Principles,
+
+Cited by: §3.
+
+Li et al. (2025a)
+J. Li, G. Li, Y. Li, and Z. Jin
+
+Structured chain-of-thought prompting for code generation.
+
+ACM Trans. Softw. Eng. Methodol. 34 (2).
+
+External Links: ISSN 1049-331X,
+Link,
+Document
+
+Cited by: §3.1.
+
+Li et al. (2025b)
+K. Li, Y. Yuan, H. Yu, T. Guo, and S. Cao
+
+CoCoEvo: co-evolution of programs and test cases to enhance code generation.
+
+External Links: 2502.10802,
+Link
+
+Cited by: §5.
+
+Li et al. (2025c)
+S. Li, L. Huang, S. Zhan, W. Sun, T. Yin, Z. Liu, and M. Yan
+
+Intention chain-of-thought prompting with dynamic routing for code generation.
+
+External Links: 2512.14048,
+Link
+
+Cited by: Appendix B,
+§3.1.
+
+Lu et al. (2022)
+S. Lu, N. Duan, H. Han, D. Guo, S. Hwang, and A. Svyatkovskiy
+
+ReACC: a retrieval-augmented code completion framework.
+
+External Links: 2203.07722,
+Link
+
+Cited by: §3.3.
+
+Mathews and Nagappan (2024)
+N. S. Mathews and M. Nagappan
+
+Test-driven development and llm-based code generation.
+
+ASE ’24, New York, NY, USA, pp. 1583–1594.
+
+External Links: ISBN 9798400712487,
+Link,
+Document
+
+Cited by: §1,
+§1.
+
+Nan et al. (2025)
+Z. Nan, Z. Guo, K. Liu, and X. Xia
+
+Test intention guided llm-based unit test generation.
+
+In Proceedings of the IEEE/ACM 47th International Conference on Software Engineering,
+
+pp. 1026–1038.
+
+External Links: ISBN 9798331505691,
+Link
+
+Cited by: §5.
+
+OpenAI (2023)
+OpenAI
+
+GPT-4 technical report.
+
+arXiv preprint arXiv:2303.08774.
+
+Cited by: §1.
+
+OpenAI (2025)
+OpenAI
+
+GPT-5 mini.
+
+Note: https://developers.openai.com/api/docs/models/gpt-5-miniOpenAI API model documentation.
+
+Cited by: §3.
+
+Ravi et al. (2025)
+R. Ravi, D. Bradshaw, S. Ruberto, G. Jahangirova, and V. Terragni
+
+LLMLOOP: improving llm-generated code and tests through automated iterative feedback loops.
+
+In 2025 IEEE International Conference on Software Maintenance and Evolution (ICSME),
+
+Vol. , pp. 930–934.
+
+External Links: Document
+
+Cited by: §5.
+
+Tao et al. (2024)
+W. Tao, Y. Zhou, Y. Wang, W. Zhang, H. Zhang, and Y. Cheng
+
+MAGIS: llm-based multi-agent framework for github issue resolution.
+
+In Proceedings of the 38th International Conference on Neural Information Processing Systems,
+
+NIPS ’24, Red Hook, NY, USA.
+
+External Links: ISBN 9798331314385
+
+Cited by: §5.
+
+Team et al. (2025)
+G. Team, R. Anil, S. Borgeaud, J. Alayrac, J. Yu, R. Soricut, J. Schalkwyk, A. M. Dai, A. Hauth, K. Millican, D. Silver, M. Johnson, I. Antonoglou, J. Schrittwieser, A. Glaese, J. Chen, E. Pitler, T. Lillicrap, A. Lazaridou, O. Firat, J. Molloy, M. Isard, P. R. Barham, T. Hennigan, B. Lee, F. Viola, M. Reynolds, Y. Xu, R. Doherty, E. Collins, C. Meyer, E. Rutherford, E. Moreira, K. Ayoub, M. Goel, J. Krawczyk, C. Du, E. Chi, H. Cheng, E. Ni, P. Shah, P. Kane, B. Chan, M. Faruqui, A. Severyn, H. Lin, Y. Li, Y. Cheng, A. Ittycheriah, M. Mahdieh, M. Chen, P. Sun, D. Tran, S. Bagri, B. Lakshminarayanan, J. Liu, A. Orban, F. Güra, H. Zhou, X. Song, A. Boffy, H. Ganapathy, S. Zheng, H. Choe, Á. Weisz, T. Zhu, Y. Lu, S. Gopal, J. Kahn, M. Kula, J. Pitman, R. Shah, E. Taropa, M. A. Merey, M. Baeuml, Z. Chen, L. E. Shafey, Y. Zhang, O. Sercinoglu, G. Tucker, E. Piqueras, M. Krikun, I. Barr, N. Savinov, I. Danihelka, B. Roelofs, A. White, A. Andreassen, T. von Glehn, L. Yagati, M. Kazemi, L. Gonzalez, M. Khalman, J. Sygnowski, A. Frechette, C. Smith, L. Culp, L. Proleev, Y. Luan, X. Chen, J. Lottes, N. Schucher, F. Lebron, A. Rrustemi, N. Clay, P. Crone, T. Kocisky, J. Zhao, B. Perz, D. Yu, H. Howard, A. Bloniarz, J. W. Rae, H. Lu, L. Sifre, M. Maggioni, F. Alcober, D. Garrette, M. Barnes, S. Thakoor, J. Austin, G. Barth-Maron, W. Wong, R. Joshi, R. Chaabouni, D. Fatiha, A. Ahuja, G. S. Tomar, E. Senter, M. Chadwick, I. Kornakov, N. Attaluri, I. Iturrate, R. Liu, Y. Li, S. Cogan, J. Chen, C. Jia, C. Gu, Q. Zhang, J. Grimstad, A. J. Hartman, X. Garcia, T. S. Pillai, J. Devlin, M. Laskin, D. de Las Casas, D. Valter, C. Tao, L. Blanco, A. P. Badia, D. Reitter, M. Chen, J. Brennan, C. Rivera, S. Brin, S. Iqbal, G. Surita, J. Labanowski, A. Rao, S. Winkler, E. Parisotto, Y. Gu, K. Olszewska, R. Addanki, A. Miech, A. Louis, D. Teplyashin, G. Brown, E. Catt, J. Balaguer, J. Xiang, P. Wang, Z. Ashwood, A. Briukhov, A. Webson, S. Ganapathy, S. Sanghavi, A. Kannan, M. Chang, A. Stjerngren, J. Djolonga, Y. Sun, A. Bapna, M. Aitchison, P. Pejman, H. Michalewski, T. Yu, C. Wang, J. Love, J. Ahn, D. Bloxwich, K. Han, P. Humphreys, T. Sellam, J. Bradbury, V. Godbole, S. Samangooei, B. Damoc, A. Kaskasoli, S. M. R. Arnold, V. Vasudevan, S. Agrawal, J. Riesa, D. Lepikhin, R. Tanburn, S. Srinivasan, H. Lim, S. Hodkinson, P. Shyam, J. Ferret, S. Hand, A. Garg, T. L. Paine, J. Li, Y. Li, M. Giang, A. Neitz, Z. Abbas, S. York, M. Reid, E. Cole, A. Chowdhery, D. Das, D. Rogozińska, V. Nikolaev, P. Sprechmann, Z. Nado, L. Zilka, F. Prost, L. He, M. Monteiro, G. Mishra, C. Welty, J. Newlan, D. Jia, M. Allamanis, C. H. Hu, R. de Liedekerke, J. Gilmer, C. Saroufim, S. Rijhwani, S. Hou, D. Shrivastava, A. Baddepudi, A. Goldin, A. Ozturel, A. Cassirer, Y. Xu, D. Sohn, D. Sachan, R. K. Amplayo, C. Swanson, D. Petrova, S. Narayan, A. Guez, S. Brahma, J. Landon, M. Patel, R. Zhao, K. Villela, L. Wang, W. Jia, M. Rahtz, M. Giménez, L. Yeung, J. Keeling, P. Georgiev, D. Mincu, B. Wu, S. Haykal, R. Saputro, K. Vodrahalli, J. Qin, Z. Cankara, A. Sharma, N. Fernando, W. Hawkins, B. Neyshabur, S. Kim, A. Hutter, P. Agrawal, A. Castro-Ros, G. van den Driessche, T. Wang, F. Yang, S. Chang, P. Komarek, R. McIlroy, M. Lučić, G. Zhang, W. Farhan, M. Sharman, P. Natsev, P. Michel, Y. Bansal, S. Qiao, K. Cao, S. Shakeri, C. Butterfield, J. Chung, P. K. Rubenstein, S. Agrawal, A. Mensch, K. Soparkar, K. Lenc, T. Chung, A. Pope, L. Maggiore, J. Kay, P. Jhakra, S. Wang, J. Maynez, M. Phuong, T. Tobin, A. Tacchetti, M. Trebacz, K. Robinson, Y. Katariya, S. Riedel, P. Bailey, K. Xiao, N. Ghelani, L. Aroyo, A. Slone, N. Houlsby, X. Xiong, Z. Yang, E. Gribovskaya, J. Adler, M. Wirth, L. Lee, M. Li, T. Kagohara, J. Pavagadhi, S. Bridgers, A. Bortsova, S. Ghemawat, Z. Ahmed, T. Liu, R. Powell, V. Bolina, M. Iinuma, P. Zablotskaia, J. Besley, D. Chung, T. Dozat, R. Comanescu, X. Si, J. Greer, G. Su, M. Polacek, R. L. Kaufman, S. Tokumine, H. Hu, E. Buchatskaya, Y. Miao, M. Elhawaty, A. Siddhant, N. Tomasev, J. Xing, C. Greer, H. Miller, S. Ashraf, A. Roy, Z. Zhang, A. Ma, A. Filos, M. Besta, R. Blevins, T. Klimenko, C. Yeh, S. Changpinyo, J. Mu, O. Chang, M. Pajarskas, C. Muir, V. Cohen, C. L. Lan, K. Haridasan, A. Marathe, S. Hansen, S. Douglas, R. Samuel, M. Wang, S. Austin, C. Lan, J. Jiang, J. Chiu, J. A. Lorenzo, L. L. Sjösund, S. Cevey, Z. Gleicher, T. Avrahami, A. Boral, H. Srinivasan, V. Selo, R. May, K. Aisopos, L. Hussenot, L. B. Soares, K. Baumli, M. B. Chang, A. Recasens, B. Caine, A. Pritzel, F. Pavetic, F. Pardo, A. Gergely, J. Frye, V. Ramasesh, D. Horgan, K. Badola, N. Kassner, S. Roy, E. Dyer, V. C. Campos, A. Tomala, Y. Tang, D. E. Badawy, E. White, B. Mustafa, O. Lang, A. Jindal, S. Vikram, Z. Gong, S. Caelles, R. Hemsley, G. Thornton, F. Feng, W. Stokowiec, C. Zheng, P. Thacker, Ç. Ünlü, Z. Zhang, M. Saleh, J. Svensson, M. Bileschi, P. Patil, A. Anand, R. Ring, K. Tsihlas, A. Vezer, M. Selvi, T. Shevlane, M. Rodriguez, T. Kwiatkowski, S. Daruki, K. Rong, A. Dafoe, N. FitzGerald, K. Gu-Lemberg, M. Khan, L. A. Hendricks, M. Pellat, V. Feinberg, J. Cobon-Kerr, T. Sainath, M. Rauh, S. H. Hashemi, R. Ives, Y. Hasson, E. Noland, Y. Cao, N. Byrd, L. Hou, Q. Wang, T. Sottiaux, M. Paganini, J. Lespiau, A. Moufarek, S. Hassan, K. Shivakumar, J. van Amersfoort, A. Mandhane, P. Joshi, A. Goyal, M. Tung, A. Brock, H. Sheahan, V. Misra, C. Li, N. Rakićević, M. Dehghani, F. Liu, S. Mittal, J. Oh, S. Noury, E. Sezener, F. Huot, M. Lamm, N. D. Cao, C. Chen, S. Mudgal, R. Stella, K. Brooks, G. Vasudevan, C. Liu, M. Chain, N. Melinkeri, A. Cohen, V. Wang, K. Seymore, S. Zubkov, R. Goel, S. Yue, S. Krishnakumaran, B. Albert, N. Hurley, M. Sano, A. Mohananey, J. Joughin, E. Filonov, T. Kępa, Y. Eldawy, J. Lim, R. Rishi, S. Badiezadegan, T. Bos, J. Chang, S. Jain, S. G. S. Padmanabhan, S. Puttagunta, K. Krishna, L. Baker, N. Kalb, V. Bedapudi, A. Kurzrok, S. Lei, A. Yu, O. Litvin, X. Zhou, Z. Wu, S. Sobell, A. Siciliano, A. Papir, R. Neale, J. Bragagnolo, T. Toor, T. Chen, V. Anklin, F. Wang, R. Feng, M. Gholami, K. Ling, L. Liu, J. Walter, H. Moghaddam, A. Kishore, J. Adamek, T. Mercado, J. Mallinson, S. Wandekar, S. Cagle, E. Ofek, G. Garrido, C. Lombriser, M. Mukha, B. Sun, H. R. Mohammad, J. Matak, Y. Qian, V. Peswani, P. Janus, Q. Yuan, L. Schelin, O. David, A. Garg, Y. He, O. Duzhyi, A. Älgmyr, T. Lottaz, Q. Li, V. Yadav, L. Xu, A. Chinien, R. Shivanna, A. Chuklin, J. Li, C. Spadine, T. Wolfe, K. Mohamed, S. Das, Z. Dai, K. He, D. von Dincklage, S. Upadhyay, A. Maurya, L. Chi, S. Krause, K. Salama, P. G. Rabinovitch, P. K. R. M, A. Selvan, M. Dektiarev, G. Ghiasi, E. Guven, H. Gupta, B. Liu, D. Sharma, I. H. Shtacher, S. Paul, O. Akerlund, F. Aubet, T. Huang, C. Zhu, E. Zhu, E. Teixeira, M. Fritze, F. Bertolini, L. Marinescu, M. Bölle, D. Paulus, K. Gupta, T. Latkar, M. Chang, J. Sanders, R. Wilson, X. Wu, Y. Tan, L. N. Thiet, T. Doshi, S. Lall, S. Mishra, W. Chen, T. Luong, S. Benjamin, J. Lee, E. Andrejczuk, D. Rabiej, V. Ranjan, K. Styrc, P. Yin, J. Simon, M. R. Harriott, M. Bansal, A. Robsky, G. Bacon, D. Greene, D. Mirylenka, C. Zhou, O. Sarvana, A. Goyal, S. Andermatt, P. Siegler, B. Horn, A. Israel, F. Pongetti, C. ". Chen, M. Selvatici, P. Silva, K. Wang, J. Tolins, K. Guu, R. Yogev, X. Cai, A. Agostini, M. Shah, H. Nguyen, N. Ó. Donnaile, S. Pereira, L. Friso, A. Stambler, A. Kurzrok, C. Kuang, Y. Romanikhin, M. Geller, Z. Yan, K. Jang, C. Lee, W. Fica, E. Malmi, Q. Tan, D. Banica, D. Balle, R. Pham, Y. Huang, D. Avram, H. Shi, J. Singh, C. Hidey, N. Ahuja, P. Saxena, D. Dooley, S. P. Potharaju, E. O’Neill, A. Gokulchandran, R. Foley, K. Zhao, M. Dusenberry, Y. Liu, P. Mehta, R. Kotikalapudi, C. Safranek-Shrader, A. Goodman, J. Kessinger, E. Globen, P. Kolhar, C. Gorgolewski, A. Ibrahim, Y. Song, A. Eichenbaum, T. Brovelli, S. Potluri, P. Lahoti, C. Baetu, A. Ghorbani, C. Chen, A. Crawford, S. Pal, M. Sridhar, P. Gurita, A. Mujika, I. Petrovski, P. Cedoz, C. Li, S. Chen, N. D. Santo, S. Goyal, J. Punjabi, K. Kappaganthu, C. Kwak, P. LV, S. Velury, H. Choudhury, J. Hall, P. Shah, R. Figueira, M. Thomas, M. Lu, T. Zhou, C. Kumar, T. Jurdi, S. Chikkerur, Y. Ma, A. Yu, S. Kwak, V. Ähdel, S. Rajayogam, T. Choma, F. Liu, A. Barua, C. Ji, J. H. Park, V. Hellendoorn, A. Bailey, T. Bilal, H. Zhou, M. Khatir, C. Sutton, W. Rzadkowski, F. Macintosh, R. Vij, K. Shagin, P. Medina, C. Liang, J. Zhou, P. Shah, Y. Bi, A. Dankovics, S. Banga, S. Lehmann, M. Bredesen, Z. Lin, J. E. Hoffmann, J. Lai, R. Chung, K. Yang, N. Balani, A. Bražinskas, A. Sozanschi, M. Hayes, H. F. Alcalde, P. Makarov, W. Chen, A. Stella, L. Snijders, M. Mandl, A. Kärrman, P. Nowak, X. Wu, A. Dyck, K. Vaidyanathan, R. R, J. Mallet, M. Rudominer, E. Johnston, S. Mittal, A. Udathu, J. Christensen, V. Verma, Z. Irving, A. Santucci, G. Elsayed, E. Davoodi, M. Georgiev, I. Tenney, N. Hua, G. Cideron, E. Leurent, M. Alnahlawi, I. Georgescu, N. Wei, I. Zheng, D. Scandinaro, H. Jiang, J. Snoek, M. Sundararajan, X. Wang, Z. Ontiveros, I. Karo, J. Cole, V. Rajashekhar, L. Tumeh, E. Ben-David, R. Jain, J. Uesato, R. Datta, O. Bunyan, S. Wu, J. Zhang, P. Stanczyk, Y. Zhang, D. Steiner, S. Naskar, M. Azzam, M. Johnson, A. Paszke, C. Chiu, J. S. Elias, A. Mohiuddin, F. Muhammad, J. Miao, A. Lee, N. Vieillard, J. Park, J. Zhang, J. Stanway, D. Garmon, A. Karmarkar, Z. Dong, J. Lee, A. Kumar, L. Zhou, J. Evens, W. Isaac, G. Irving, E. Loper, M. Fink, I. Arkatkar, N. Chen, I. Shafran, I. Petrychenko, Z. Chen, J. Jia, A. Levskaya, Z. Zhu, P. Grabowski, Y. Mao, A. Magni, K. Yao, J. Snaider, N. Casagrande, E. Palmer, P. Suganthan, A. Castaño, I. Giannoumis, W. Kim, M. Rybiński, A. Sreevatsa, J. Prendki, D. Soergel, A. Goedeckemeyer, W. Gierke, M. Jafari, M. Gaba, J. Wiesner, D. G. Wright, Y. Wei, H. Vashisht, Y. Kulizhskaya, J. Hoover, M. Le, L. Li, C. Iwuanyanwu, L. Liu, K. Ramirez, A. Khorlin, A. Cui, T. LIN, M. Wu, R. Aguilar, K. Pallo, A. Chakladar, G. Perng, E. A. Abellan, M. Zhang, I. Dasgupta, N. Kushman, I. Penchev, A. Repina, X. Wu, T. van der Weide, P. Ponnapalli, C. Kaplan, J. Simsa, S. Li, O. Dousse, F. Yang, J. Piper, N. Ie, R. Pasumarthi, N. Lintz, A. Vijayakumar, D. Andor, P. Valenzuela, M. Lui, C. Paduraru, D. Peng, K. Lee, S. Zhang, S. Greene, D. D. Nguyen, P. Kurylowicz, C. Hardin, L. Dixon, L. Janzer, K. Choo, Z. Feng, B. Zhang, A. Singhal, D. Du, D. McKinnon, N. Antropova, T. Bolukbasi, O. Keller, D. Reid, D. Finchelstein, M. A. Raad, R. Crocker, P. Hawkins, R. Dadashi, C. Gaffney, K. Franko, A. Bulanova, R. Leblond, S. Chung, H. Askham, L. C. Cobo, K. Xu, F. Fischer, J. Xu, C. Sorokin, C. Alberti, C. Lin, C. Evans, A. Dimitriev, H. Forbes, D. Banarse, Z. Tung, M. Omernick, C. Bishop, R. Sterneck, R. Jain, J. Xia, E. Amid, F. Piccinno, X. Wang, P. Banzal, D. J. Mankowitz, A. Polozov, V. Krakovna, S. Brown, M. Bateni, D. Duan, V. Firoiu, M. Thotakuri, T. Natan, M. Geist, S. tan Girgin, H. Li, J. Ye, O. Roval, R. Tojo, M. Kwong, J. Lee-Thorp, C. Yew, D. Sinopalnikov, S. Ramos, J. Mellor, A. Sharma, K. Wu, D. Miller, N. Sonnerat, D. Vnukov, R. Greig, J. Beattie, E. Caveness, L. Bai, J. Eisenschlos, A. Korchemniy, T. Tsai, M. Jasarevic, W. Kong, P. Dao, Z. Zheng, F. Liu, F. Yang, R. Zhu, T. H. Teh, J. Sanmiya, E. Gladchenko, N. Trdin, D. Toyama, E. Rosen, S. Tavakkol, L. Xue, C. Elkind, O. Woodman, J. Carpenter, G. Papamakarios, R. Kemp, S. Kafle, T. Grunina, R. Sinha, A. Talbert, D. Wu, D. Owusu-Afriyie, C. Du, C. Thornton, J. Pont-Tuset, P. Narayana, J. Li, S. Fatehi, J. Wieting, O. Ajmeri, B. Uria, Y. Ko, L. Knight, A. Héliou, N. Niu, S. Gu, C. Pang, Y. Li, N. Levine, A. Stolovich, R. Santamaria-Fernandez, S. Goenka, W. Yustalim, R. Strudel, A. Elqursh, C. Deck, H. Lee, Z. Li, K. Levin, R. Hoffmann, D. Holtmann-Rice, O. Bachem, S. Arora, C. Koh, S. H. Yeganeh, S. Põder, M. Tariq, Y. Sun, L. Ionita, M. Seyedhosseini, P. Tafti, Z. Liu, A. Gulati, J. Liu, X. Ye, B. Chrzaszcz, L. Wang, N. Sethi, T. Li, B. Brown, S. Singh, W. Fan, A. Parisi, J. Stanton, V. Koverkathu, C. A. Choquette-Choo, Y. Li, T. Lu, A. Ittycheriah, P. Shroff, M. Varadarajan, S. Bahargam, R. Willoughby, D. Gaddy, G. Desjardins, M. Cornero, B. Robenek, B. Mittal, B. Albrecht, A. Shenoy, F. Moiseev, H. Jacobsson, A. Ghaffarkhah, M. Rivière, A. Walton, C. Crepy, A. Parrish, Z. Zhou, C. Farabet, C. Radebaugh, P. Srinivasan, C. van der Salm, A. Fidjeland, S. Scellato, E. Latorre-Chimoto, H. Klimczak-Plucińska, D. Bridson, D. de Cesare, T. Hudson, P. Mendolicchio, L. Walker, A. Morris, M. Mauger, A. Guseynov, A. Reid, S. Odoom, L. Loher, V. Cotruta, M. Yenugula, D. Grewe, A. Petrushkina, T. Duerig, A. Sanchez, S. Yadlowsky, A. Shen, A. Globerson, L. Webb, S. Dua, D. Li, S. Bhupatiraju, D. Hurt, H. Qureshi, A. Agarwal, T. Shani, M. Eyal, A. Khare, S. R. Belle, L. Wang, C. Tekur, M. S. Kale, J. Wei, R. Sang, B. Saeta, T. Liechty, Y. Sun, Y. Zhao, S. Lee, P. Nayak, D. Fritz, M. R. Vuyyuru, J. Aslanides, N. Vyas, M. Wicke, X. Ma, E. Eltyshev, N. Martin, H. Cate, J. Manyika, K. Amiri, Y. Kim, X. Xiong, K. Kang, F. Luisier, N. Tripuraneni, D. Madras, M. Guo, A. Waters, O. Wang, J. Ainslie, J. Baldridge, H. Zhang, G. Pruthi, J. Bauer, F. Yang, R. Mansour, J. Gelman, Y. Xu, G. Polovets, J. Liu, H. Cai, W. Chen, X. Sheng, E. Xue, S. Ozair, C. Angermueller, X. Li, A. Sinha, W. Wang, J. Wiesinger, E. Koukoumidis, Y. Tian, A. Iyer, M. Gurumurthy, M. Goldenson, P. Shah, M. Blake, H. Yu, A. Urbanowicz, J. Palomaki, C. Fernando, K. Durden, H. Mehta, N. Momchev, E. Rahimtoroghi, M. Georgaki, A. Raul, S. Ruder, M. Redshaw, J. Lee, D. Zhou, K. Jalan, D. Li, B. Hechtman, P. Schuh, M. Nasr, K. Milan, V. Mikulik, J. Franco, T. Green, N. Nguyen, J. Kelley, A. Mahendru, A. Hu, J. Howland, B. Vargas, J. Hui, K. Bansal, V. Rao, R. Ghiya, E. Wang, K. Ye, J. M. Sarr, M. M. Preston, M. Elish, S. Li, A. Kaku, J. Gupta, I. Pasupat, D. Juan, M. Someswar, T. M., X. Chen, A. Amini, A. Fabrikant, E. Chu, X. Dong, A. Muthal, S. Buthpitiya, S. Jauhari, N. Hua, U. Khandelwal, A. Hitron, J. Ren, L. Rinaldi, S. Drath, A. Dabush, N. Jiang, H. Godhia, U. Sachs, A. Chen, Y. Fan, H. Taitelbaum, H. Noga, Z. Dai, J. Wang, C. Liang, J. Hamer, C. Ferng, C. Elkind, A. Atias, P. Lee, V. Listík, M. Carlen, J. van de Kerkhof, M. Pikus, K. Zaher, P. Müller, S. Zykova, R. Stefanec, V. Gatsko, C. Hirnschall, A. Sethi, X. F. Xu, C. Ahuja, B. Tsai, A. Stefanoiu, B. Feng, K. Dhandhania, M. Katyal, A. Gupta, A. Parulekar, D. Pitta, J. Zhao, V. Bhatia, Y. Bhavnani, O. Alhadlaq, X. Li, P. Danenberg, D. Tu, A. Pine, V. Filippova, A. Ghosh, B. Limonchik, B. Urala, C. K. Lanka, D. Clive, Y. Sun, E. Li, H. Wu, K. Hongtongsak, I. Li, K. Thakkar, K. Omarov, K. Majmundar, M. Alverson, M. Kucharski, M. Patel, M. Jain, M. Zabelin, P. Pelagatti, R. Kohli, S. Kumar, J. Kim, S. Sankar, V. Shah, L. Ramachandruni, X. Zeng, B. Bariach, L. Weidinger, T. Vu, A. Andreev, A. He, K. Hui, S. Kashem, A. Subramanya, S. Hsiao, D. Hassabis, K. Kavukcuoglu, A. Sadovsky, Q. Le, T. Strohman, Y. Wu, S. Petrov, J. Dean, and O. Vinyals
+
+Gemini: a family of highly capable multimodal models.
+
+External Links: 2312.11805,
+Link
+
+Cited by: §1.
+
+Team et al. (2024)
+G. Team, T. Mesnard, C. Hardin, R. Dadashi, S. Bhupatiraju, S. Pathak, L. Sifre, M. Rivière, M. S. Kale, J. Love, P. Tafti, L. Hussenot, P. G. Sessa, A. Chowdhery, A. Roberts, A. Barua, A. Botev, A. Castro-Ros, A. Slone, A. Héliou, A. Tacchetti, A. Bulanova, A. Paterson, B. Tsai, B. Shahriari, C. L. Lan, C. A. Choquette-Choo, C. Crepy, D. Cer, D. Ippolito, D. Reid, E. Buchatskaya, E. Ni, E. Noland, G. Yan, G. Tucker, G. Muraru, G. Rozhdestvenskiy, H. Michalewski, I. Tenney, I. Grishchenko, J. Austin, J. Keeling, J. Labanowski, J. Lespiau, J. Stanway, J. Brennan, J. Chen, J. Ferret, J. Chiu, J. Mao-Jones, K. Lee, K. Yu, K. Millican, L. L. Sjoesund, L. Lee, L. Dixon, M. Reid, M. Mikuła, M. Wirth, M. Sharman, N. Chinaev, N. Thain, O. Bachem, O. Chang, O. Wahltinez, P. Bailey, P. Michel, P. Yotov, R. Chaabouni, R. Comanescu, R. Jana, R. Anil, R. McIlroy, R. Liu, R. Mullins, S. L. Smith, S. Borgeaud, S. Girgin, S. Douglas, S. Pandya, S. Shakeri, S. De, T. Klimenko, T. Hennigan, V. Feinberg, W. Stokowiec, Y. Chen, Z. Ahmed, Z. Gong, T. Warkentin, L. Peran, M. Giang, C. Farabet, O. Vinyals, J. Dean, K. Kavukcuoglu, D. Hassabis, Z. Ghahramani, D. Eck, J. Barral, F. Pereira, E. Collins, A. Joulin, N. Fiedel, E. Senter, A. Andreev, and K. Kenealy
+
+Gemma: open models based on gemini research and technology.
+
+External Links: 2403.08295,
+Link
+
+Cited by: §1.
+
+Wang et al. (2025a)
+X. Wang, B. Li, Y. Song, F. F. Xu, X. Tang, M. Zhuge, J. Pan, Y. Song, B. Li, J. Singh, H. H. Tran, F. Li, R. Ma, M. Zheng, B. Qian, Y. Shao, N. Muennighoff, Y. Zhang, B. Hui, J. Lin, R. Brennan, H. Peng, H. Ji, and G. Neubig
+
+OpenHands: an open platform for ai software developers as generalist agents.
+
+External Links: 2407.16741,
+Link
+
+Cited by: §5.
+
+Wang et al. (2025b)
+Y. Wang, Y. Wang, D. Guo, J. Chen, R. Zhang, Y. Ma, and Z. Zheng
+
+RLCoder: reinforcement learning for repository-level code completion.
+
+In Proceedings of the IEEE/ACM 47th International Conference on Software Engineering,
+
+pp. 1140–1152.
+
+External Links: ISBN 9798331505691,
+Link
+
+Cited by: §5.
+
+Wei et al. (2022)
+J. Wei, X. Wang, D. Schuurmans, M. Bosma, B. Ichter, F. Xia, E. H. Chi, Q. V. Le, and D. Zhou
+
+Chain-of-thought prompting elicits reasoning in large language models.
+
+In Proceedings of the 36th International Conference on Neural Information Processing Systems,
+
+NIPS ’22, Red Hook, NY, USA.
+
+External Links: ISBN 9781713871088
+
+Cited by: §3.1.
+
+Xia et al. (2024)
+C. S. Xia, Y. Deng, S. Dunn, and L. Zhang
+
+Agentless: demystifying llm-based software engineering agents.
+
+External Links: 2407.01489,
+Link
+
+Cited by: §5.
+
+Yang et al. (2025)
+A. Yang, A. Li, B. Yang, B. Zhang, B. Hui, B. Zheng, B. Yu, C. Gao, C. Huang, C. Lv, C. Zheng, D. Liu, F. Zhou, F. Huang, F. Hu, H. Ge, H. Wei, H. Lin, J. Tang, J. Yang, J. Tu, J. Zhang, J. Yang, J. Yang, J. Zhou, J. Zhou, J. Lin, K. Dang, K. Bao, K. Yang, L. Yu, L. Deng, M. Li, M. Xue, M. Li, P. Zhang, P. Wang, Q. Zhu, R. Men, R. Gao, S. Liu, S. Luo, T. Li, T. Tang, W. Yin, X. Ren, X. Wang, X. Zhang, X. Ren, Y. Fan, Y. Su, Y. Zhang, Y. Zhang, Y. Wan, Y. Liu, Z. Wang, Z. Cui, Z. Zhang, Z. Zhou, and Z. Qiu
+
+Qwen3 technical report.
+
+External Links: 2505.09388,
+Link
+
+Cited by: §3.
+
+Yang et al. (2024a)
+A. Yang, B. Yang, B. Hui, B. Zheng, B. Yu, C. Zhou, C. Li, C. Li, D. Liu, F. Huang, G. Dong, H. Wei, H. Lin, J. Tang, J. Wang, J. Yang, J. Tu, J. Zhang, J. Ma, J. Yang, J. Xu, J. Zhou, J. Bai, J. He, J. Lin, K. Dang, K. Lu, K. Chen, K. Yang, M. Li, M. Xue, N. Ni, P. Zhang, P. Wang, R. Peng, R. Men, R. Gao, R. Lin, S. Wang, S. Bai, S. Tan, T. Zhu, T. Li, T. Liu, W. Ge, X. Deng, X. Zhou, X. Ren, X. Zhang, X. Wei, X. Ren, X. Liu, Y. Fan, Y. Yao, Y. Zhang, Y. Wan, Y. Chu, Y. Liu, Z. Cui, Z. Zhang, Z. Guo, and Z. Fan
+
+Qwen2 technical report.
+
+External Links: 2407.10671,
+Link
+
+Cited by: §1.
+
+Yang et al. (2024b)
+J. Yang, C. E. Jimenez, A. Wettig, K. Lieret, S. Yao, K. Narasimhan, and O. Press
+
+SWE-agent: agent-computer interfaces enable automated software engineering.
+
+In Proceedings of the 38th International Conference on Neural Information Processing Systems,
+
+NIPS ’24, Red Hook, NY, USA.
+
+External Links: ISBN 9798331314385
+
+Cited by: §3.3,
+§5.
+
+Zhang et al. (2023)
+F. Zhang, B. Chen, Y. Zhang, J. Keung, J. Liu, D. Zan, Y. Mao, J. Lou, and W. Chen
+
+RepoCoder: repository-level code completion through iterative retrieval and generation.
+
+In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing,  H. Bouamor, J. Pino, and K. Bali (Eds.),
+
+Singapore, pp. 2471–2484.
+
+External Links: Link,
+Document
+
+Cited by: §1,
+§3.2.
+
+Zhang et al. (2024a)
+H. Zhang, W. Cheng, Y. Wu, and W. Hu
+
+A pair programming framework for code generation via multi-plan exploration and feedback-driven refinement.
+
+ASE ’24, New York, NY, USA, pp. 1319–1331.
+
+External Links: ISBN 9798400712487,
+Link,
+Document
+
+Cited by: §1.
+
+Zhang et al. (2024b)
+K. Zhang, J. Li, G. Li, X. Shi, and Z. Jin
+
+CodeAgent: enhancing code generation with tool-integrated agent systems for real-world repo-level coding challenges.
+
+In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),  L. Ku, A. Martins, and V. Srikumar (Eds.),
+
+Bangkok, Thailand, pp. 13643–13658.
+
+External Links: Link,
+Document
+
+Cited by: §5.
+
+Zhao et al. (2025)
+X. Zhao, R. Liu, Y. Zhang, C. Zhi, L. Zhang, G. Cheng, Y. Xu, S. Deng, and J. Yin
+
+Completion by comprehension: guiding code generation with multi-granularity understanding.
+
+External Links: 2512.04538,
+Link
+
+Cited by: §5.
+
+
+
+
+
+
+Appendix A Generation Parameter Settings
+
+
+
+
+In our experiments, we specifically utilized the gpt-5-mini-2025-08-07 for GPT-5-mini. For Qwen3-Coder-30B-A3B-Instruct, we adopt the optimal generation parameters recommended by the official guidelines. Additionally, the temperature parameter for DeepSeek-V3.2 is set to its default value of 1.0.
+
+
+
+
+
+
+Model
+Parameter
+Value
+
+
+GPT-5-mini
+temperature
+1.0
+
+
+max_tokens
+4096
+
+
+reasoning_effort
+minimal
+
+
+verbosity
+low
+
+
+DeepSeek-V3.2
+temperature
+1.0
+
+
+max_tokens
+4096
+
+
+Qwen
+temperature
+0.7
+
+
+top_p
+0.8
+
+
+top_k
+20
+
+
+repetition_penalty
+1.05
+
+
+max_tokens
+4096
+
+
+Table 5: Generation parameter settings used in experiments for all models.
+
+
+
+
+
+Appendix B Detailed settings of LiveCodeBench
+
+
+
+
+Dataset and Evaluation Metric
+
+
+
+
+We select LeetCode-sourced problems from the most recent one-year window of LiveCodeBench releases (May 1, 2024 to May 1, 2025), resulting in a total of 224 problems.
+We measure the effectiveness using the pass@k metric Chen et al. (2021), which provides a robust and execution-based evaluation of functional correctness. By calculating the expected probability that at least one out of kk generated samples passes all tests, this metric effectively mitigates the high variance introduced by the stochastic nature of LLMs during decoding. The unbiased estimator of pass@k is defined as:
+
+
+
+
+
+p​a​s​s​@​k=𝔼p​r​o​b​l​e​m​s⁡[1−(n−ck)(nk)].pass@k=\mathop{\mathbb{E}_{problems}}\left[1-\frac{\binom{n-c}{k}}{\binom{n}{k}}\right].
+
+(6)
+
+
+
+
+
+Sampling Settings
+
+
+
+
+Considering cost efficiency, we generate 10 candidates per problem.
+Following recent work Li et al. (2025c), for single-stage approaches such as one-shot and CoT, we apply the previously described sampling settings. For multi-stage approaches, including SCoT, ICoT, and Self-Planning, we use these same settings to generate 10 reasoning chains during the reasoning phase, followed by deterministic code generation at a temperature of 0.
+
+
+
+
+Ablation Study
+
+
+
+
+To further evaluate the effectiveness of test-first paradigm, we remove the test generation instruction from the TDD-prompt.
+The results shown in Table 6 further highlight that the test-generation-first paradigm is a critical factor, as removing the test generation instruction leads to a drop in performance.
+
+
+
+
+
+
+Method
+GPT
+DeepSeek
+Qwen
+
+
+
+
+TDD-prompt
+70.04
+67.86
+44.87
+
+
+w/o Test Generation
+68.39
+67.28
+43.84
+
+
+Table 6: Ablation study results on LiveCodeBench across three models.
+
+
+
+
+
+
+Method
+Repo
+All
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+GPT-5-mini
+
+
+
+
+In-File
+63.89
+67.39
+61.19
+39.73
+28.12
+50.00
+40.91
+19.05
+44.84
+
+
+RAG
+69.44
+76.09
+59.70
+45.21
+32.81
+50.00
+45.45
+40.48
+50.55
+
+
+RepoCoder
+72.22
+78.26
+70.15
+50.68
+39.06
+50.00
+40.91
+42.86
+55.16
+
+
+mini-SWE-agent
+80.56
+69.57
+68.66
+58.22
+46.88
+65.63
+63.64
+52.38
+61.31
+
+
+TDD-Agent
+86.11
+93.48
+92.54
+74.66
+73.44
+81.25
+72.73
+52.38
+78.24
+
+
+DeepSeek-V3.2
+
+
+In-File
+50.00
+54.35
+55.22
+36.30
+25.00
+43.75
+40.91
+16.67
+39.34
+
+
+RAG
+52.78
+71.74
+64.18
+38.36
+28.13
+59.38
+40.91
+30.95
+46.15
+
+
+RepoCoder
+63.89
+63.04
+67.16
+47.95
+32.81
+59.38
+36.36
+35.71
+50.55
+
+
+mini-SWE-agent
+91.67
+93.48
+89.55
+84.25
+78.13
+93.75
+86.36
+59.52
+84.18
+
+
+TDD-Agent
+94.44
+95.65
+95.52
+91.78
+90.62
+93.75
+68.18
+80.95
+90.77
+
+
+Qwen3-Coder-30B-A3B-Instruct
+
+
+In-File
+38.89
+43.48
+47.76
+33.56
+15.62
+40.62
+27.27
+11.90
+32.75
+
+
+RAG
+52.78
+54.35
+40.30
+28.08
+17.19
+53.12
+18.18
+38.10
+35.16
+
+
+RepoCoder
+58.33
+56.52
+49.25
+34.25
+31.25
+53.12
+27.27
+33.33
+41.10
+
+
+mini-SWE-agent
+66.67
+58.70
+65.67
+54.11
+46.88
+59.38
+40.91
+21.43
+52.97
+
+
+TDD-Agent
+77.78
+71.74
+73.13
+58.21
+40.63
+81.25
+45.46
+30.95
+59.34
+
+
+Table 7: Performance comparison on RepoEval. Numbers are presented in percentage (%), with the best performance highlighted in bold.
+
+
+
+
+
+
+ID
+Link
+Count
+
+
+
+
+1
+leopard-ai/betty
+36
+
+
+2
+CarperAI/trlx
+46
+
+
+3
+lucidrains/imagen-pytorch
+67
+
+
+4
+deepmind/tracr
+146
+
+
+5
+google/lightweight_mmm
+64
+
+
+6
+amazon-science/inspection
+32
+
+
+7
+facebookresearch/omnivore
+22
+
+
+8
+maxhumber/redframes
+42
+
+
+Table 8: Detailed information of the GitHub repositories used for RepoEval.
+
+
+
+
+
+
+Iter
+GPT-5-mini
+DeepSeek-V3.2
+Qwen3-Coder-30B-A3B-Instruct
+
+
+Prompt
+Completion
+Prompt
+Completion
+Prompt
+Completion
+Cached
+Total
+
+
+
+
+1
+56674
+1111
+158337
+3637
+59054
+1685
+53510
+7230
+
+
+2
+80363
+1371
+236649
+5961
+85475
+2342
+79185
+8633
+
+
+3
+98505
+1516
+295616
+7895
+102012
+2714
+95369
+9357
+
+
+4
+110656
+1585
+335806
+9042
+110371
+2898
+103563
+9705
+
+
+5
+120478
+1621
+361637
+9711
+117065
+3024
+110155
+9934
+
+
+6
+129245
+1652
+378503
+10117
+121636
+3103
+114669
+10071
+
+
+7
+137075
+1673
+387326
+10327
+124893
+3156
+117883
+10166
+
+
+8
+143976
+1690
+394722
+10490
+127595
+3193
+120549
+10239
+
+
+9
+149775
+1702
+399190
+10592
+129062
+3215
+121998
+10279
+
+
+10
+155611
+1711
+403252
+10660
+129866
+3222
+122793
+10295
+
+
+Table 9: Average token usage of TDD-Agent across iterations for three models on RepoEval.
+
+
+Figure 7: The tool usage statistics of TDD-Agent on three models.
+
+
+
+
+
+Appendix C Detailed information on RepoEval
+
+
+
+
+The detailed experimental results on RepoEval are presented in Table 7.
+Table 8 presents the information for each of the eight repositories used in RepoEval.
+
+
+
+
+Token Usage and Wall-Time
+
+
+
+
+Table 9 presents the detailed token usage of TDD-Agent across iterations for three models on RepoEval. Since GPT and DeepSeek are accessed via API, cached token counts cannot be precisely determined.
+Qwen is deployed locally, allowing accurate measurement of cached tokens. We only report the cached tokens for Qwen. With caching enabled, TDD-Agent’s token consumption would be further reduced.
+
+
+
+
+The introduction of an iterative execution-refinement loop in TDD-Agent naturally incurs additional time overhead. Table 10 reports the wall-clock time of mini-SWE-agent and TDD-Agent. We report results only on Qwen, as it is deployed locally, thereby eliminating the effects of network latency and external service load. Although additional iterations introduce extra execution time, the resulting overhead remains acceptable in light of the substantial performance improvements.
+
+
+
+
+Tool Usage Statistics
+
+
+
+
+Figure 7 presents the tool usage statistics of TDD-Agent across the three models. We exclude Early Terminator from the analysis because it can be invoked at most once per task.
+
+
+
+
+
+
+Model
+Method
+Wall-clock Time(s)
+
+
+
+
+Qwen
+mini-SWE-agent
+26.71
+
+
+TDD-Agent-iter5
+42.47
+
+
+TDD-Agent-iter10
+48.43
+
+
+Table 10: Average wall-clock time for mini-SWE-agent and TDD-Agent on locally deployed Qwen for one task.
+
+
+
+
+Failure Case Analysis
+
+
+
+
+Qwen exhibits a relatively larger proportion of unmatched failures in Figure 6. This is consistent with the analysis in Section 4.1, where Qwen sometimes terminates even when its implementation does not pass the generated tests.
+
+
+
+
+Table 11 presents the credit assignment problem rate in failure cases across three models, with the highest value being 8.10%, which does not exceed 10%.
+
+
+
+
+
+
+Model
+Credit Assignment Problem Rate
+
+
+
+
+GPT
+3.03 %
+
+
+DeepSeek
+4.76 %
+
+
+Qwen
+8.10 %
+
+
+Table 11: The Credit Assignment Problem Rate in failure cases across three models.
+
+
+
+
+Figure 8 presents the distribution of generated tests on ground-truth implementations within matched failures. If generated tests pass the ground-truth implementation, it indicates that the tests are consistent with the correct solution but are not sufficiently discriminative: they fail to distinguish the incorrect implementation from the expected behavior.
+In contrast, if a generated test suite fails the ground-truth implementation, this suggests that the test oracle itself is flawed, potentially due to incorrect assertions or misaligned expected outputs.
+Both types of issues appear across three models, showing that matched failures arise from a mixture of weak-but-valid tests and invalid tests.
+These findings suggest that future work should focus on stronger test-oracle construction, mutation-guided test expansion, and uncertainty-aware termination criteria to reduce false-positive verification.
+
+
+Figure 8: Generated-Tests Distribution in Matched Failures.
+
+
+
+
+
+Appendix D Tool Implementation Details
+
+
+
+
+TDD-Agent is implemented as a function-calling agent whose tool invocations are parsed and compiled into a small set of command-based actions. Each tool is exposed to the model through a JSON schema specifying the tool name, description, argument types, and required fields.
+For every model response, the framework requires at least one valid tool call.
+
+
+
+
+Context Inspection.
+
+
+
+
+Directory Viewer lists the contents of a directory, optionally recursively. To avoid exposing irrelevant or excessively large metadata, it always excludes .git directory, hides hidden files by default, sorts directory and file names deterministically, and caps the number of returned entries by a configurable max_results parameter.
+File Reader reads either an entire file prefix or a user-specified inclusive line range. Line numbers are 1-based, invalid ranges are rejected, and each call is capped at 200 lines to prevent the model from receiving excessively long file contents in a single observation.
+Structure Inspector is handled by the runtime and returns a lightweight structural summary of a Python file, including classes, function or method signatures, and line numbers, while omitting full implementations.
+Code Searcher provides repository-wide lexical search while avoiding unrestricted shell access. The model may issue raw Linux-style search commands, but the parser enforces three restrictions before execution. First, dangerous shell metacharacters and constructs, including command separators, redirection operators, subshells, and backticks, are rejected. Second, the pipe symbol is the only allowed command-composition operator. Third, after tokenization with shlex, every command appearing either at the beginning of the command or immediately after a pipe must belong to a fixed allowlist:
+find, grep, egrep, fgrep, xargs, head, tail, cat, less, wc, sort, uniq, awk, and cut.
+If a working directory is specified, the framework changes into that directory using shell-quoted paths before executing the validated command. This gives the agent enough flexibility for code search while preventing arbitrary command execution.
+
+
+
+
+
+Artifact Submission and Test Runner.
+
+
+
+
+Artifact Submitter records the tests and implementation generated by the LLM. Specifically, submitted tests are written directly to test_by_agent.py, whereas submitted implementation code is used to replace the corresponding target code in the original repository file.
+Test Runner takes no arguments and executes only the most recently submitted generated test file, using pytest. During prediction, the repository’s original hidden evaluation tests are never exposed to the agent and are not executable through Test Runner. They are used only after prediction for final evaluation.
+After each call to Test Runner, the resulting pytest report is appended to the conversation context and used as execution feedback for the next refinement step. The model may then revise the tests, revise the implementation, inspect more context, or call Early Terminator. The framework terminates when Early Terminator is called or when the predefined maximum number of refinement rounds is reached. In our main experiments, this maximum is set to 10.
+
+
+
+
+
+
+Appendix E All Prompts Used in Experiments
+
+
+
+
+Table 12 and Table 13 present the prompts used in the function-level experiments and ablation studies.
+
+
+
+
+For repository-level experiments, Table 14 presents the prompt for the full TDD-Agent setting, while Table 15, Table 16, and Table 17 present the prompts for the Vanilla, Reflect, and Single-track variants, respectively.
+
+
+Table 12: Prompt for TDD-prompt on LiveCodeBench.
+
+
+
+
+
+
+# System
+
+
+
+
+
+You are an expert Python programmer. Given a programming problem, you must follow a strict thinking process before writing the final implementation.
+
+
+
+
+
+# User
+
+
+
+
+
+# Problem Description:
+
+
+
+
+
+
+
+
+{description}
+
+
+
+
+
+
+
+
+“‘python
+
+
+
+
+
+{starter_code}
+
+
+
+
+
+“‘
+
+
+
+
+
+
+
+
+Please solve the problem by strictly following this process:
+
+
+
+
+
+1. Overview: Identify the core logic, I/O format, constraints and edge cases.
+
+
+
+
+
+2. Tests: Design 3-5 concrete test cases covering basic and edge scenarios.
+
+
+
+
+
+- Use small-scale inputs to avoid miscalculation.
+
+
+
+
+
+- You MUST briefly derive the correct expected output step-by-step.
+
+
+
+
+
+3. Algorithmic Strategy: Briefly outline the optimal approach and its time/space complexity.
+
+
+
+
+
+4. Implementation: Write the final Python code inside a “‘python “‘ block.
+
+
+
+
+
+Table 13: Prompt for Ablation Study on LiveCodeBench.
+
+
+
+
+
+
+# System
+
+
+
+
+
+You are an expert Python programmer. Given a programming problem, you must follow a strict thinking process before writing the final implementation.
+
+
+
+
+
+# User
+
+
+
+
+
+# Problem Description:
+
+
+
+
+
+
+
+
+{prompt}
+
+
+
+
+
+
+
+
+“‘python
+
+
+
+
+
+{starter_code}
+
+
+
+
+
+“‘
+
+
+
+
+
+
+
+
+Please solve the problem by strictly following this process:
+
+
+
+
+
+1. Overview: Identify the core logic, I/O format, constraints and edge cases.
+
+
+
+
+
+2. Algorithmic Strategy: Briefly outline the optimal approach and its time/space complexity.
+
+
+
+
+
+3. Implementation: Write the final Python code inside a “‘python “‘ block.
+
+
+
+
+
+Table 14: Prompt for TDD-Agent on RepoEval.
+
+
+
+
+
+
+# System
+
+
+
+
+
+You’re a software engineer working inside an existing Python codebase rooted at /testbed.
+
+
+
+
+
+Your task is to write test cases and complete the implementation of a target function whose implementation is currently missing.
+You can use these tools:
+
+
+
+
+
+1. read_files
+
+
+
+
+
+2. search_command
+
+
+
+
+
+3. inspect_structure
+
+
+
+
+
+4. list_files
+
+
+
+
+
+5. submit_implementation
+
+
+
+
+
+6. submit_tests
+
+
+
+
+
+7. run_tests
+
+
+
+
+
+8. finish
+
+
+
+
+
+Each of your response SHOULD include reasoning text explaining what you’re doing
+
+
+
+
+
+Each of your response MUST include AT LEAST ONE tool call.
+
+
+
+
+
+# User
+
+
+
+
+
+# Task Instructions
+
+
+
+
+
+
+
+
+## Workflow
+
+
+
+
+
+
+
+
+1. Inspect the target file and related code with inspect_structure, read_files, search_command and list_files
+
+
+
+
+
+2. Create pytest test cases for the target function and submit with submit_tests
+
+
+
+
+
+- Focus on the canonical usage rather than obscure edge cases or stress testing
+
+
+
+
+
+- Your submitted tests will be saved as test_by_agent.py in the same directory as the target function file path
+
+
+
+
+
+- It will be later executed from the project root with python -m pytest <path_to_target_dir>/test_by_agent.py
+
+
+
+
+
+3. Complete the implementation of the target function and submit with submit_implementation
+
+
+
+
+
+- Submit ONLY the implementation of the target function including the function signature but WITHOUT any imports or code outside the target function definition
+
+
+
+
+
+- DO NOT include anything else like any imports or contextual code
+
+
+
+
+
+- submit_implementation will directly OVERWRITE the target function in the original file with your submitted code
+
+
+
+
+
+4. After submitting both your implementation and tests, validate with run_tests
+
+
+
+
+
+- Before you call run_tests, make sure both your implementation and tests are submitted
+
+
+
+
+
+- Calling run_tests will execute your latest submitted tests and implementation by running python -m pytest <path_to_target_dir>/test_by_agent.py command from the project root
+
+
+
+
+
+5. Iteratively analyze the execution results, refine your tests and implementation, re-submit and re-run
+
+
+
+
+
+6. Only when you are completely confident about both your tests and your implementation should you finish your task with finish
+
+
+
+
+
+# Execution Succeeds Prompt
+
+
+
+
+
+Your last execution was successful.
+
+
+
+
+
+Now Reflect on :
+
+
+
+
+
+-whether the tests you wrote are sufficiently comprehensive and whether they cover all expected behaviors of the target function.
+
+
+
+
+
+-whether your implementation has any remaining issues and whether it fully realizes the expected behavior of the target function.
+
+
+
+
+
+Only when you are completely confident about your implementation and tests, should you call finish to end your task.
+
+
+
+
+
+Note:
+
+
+
+
+
+1. run_tests ONLY executes your latest submitted implementation and test cases.
+
+
+
+
+
+2. Running the project’s pre-existing test suite is not allowed. Do not attempt to use run_tests to execute the repository’s native test suite.
+
+
+
+
+
+3. Before you call run_tests again, please ensure that you have resubmitted at least one of tests and implementation.
+
+
+
+
+
+4. Rerunning run_tests without any new submissions is meaningless and will only yield identical results.
+
+
+
+
+
+5. Do not resubmit identical code before calling finish. The system will automatically save the exact version from your most recent run_tests execution.
+
+
+
+
+
+# Execution Fails Prompt
+
+
+
+
+
+Your last execution failed.
+
+
+
+
+
+Carefully analyze the reasons for failure:
+
+
+
+
+
+-Is the implementation incorrect or incomplete?
+
+
+
+
+
+-Are the tests you wrote insufficient or incorrect?
+
+
+
+
+
+Continue calling tools to refine your implementation and tests, submit and validate with run_tests.
+
+
+
+
+
+Table 15: Prompt for Ablation Study on RepoEval: Vanilla.
+
+
+
+
+
+
+# System
+
+
+
+
+
+You’re a software engineer working inside an existing Python codebase rooted at /testbed.
+
+
+
+
+
+Your task is to write test cases and complete the implementation of a target function whose implementation is currently missing.
+You can use these tools:
+
+
+
+
+
+1. read_files
+
+
+
+
+
+2. search_command
+
+
+
+
+
+3. inspect_structure
+
+
+
+
+
+4. list_files
+
+
+
+
+
+5. submit_implementation
+
+
+
+
+
+6. finish
+
+
+
+
+
+Each of your response SHOULD include reasoning text explaining what you’re doing
+
+
+
+
+
+Each of your response MUST include AT LEAST ONE tool call.
+
+
+
+
+
+# User
+
+
+
+
+
+# Task Instructions
+
+
+
+
+
+
+
+
+## Workflow
+
+
+
+
+
+
+
+
+1. Inspect the target file and related code with inspect_structure, read_files, search_command and list_files
+
+
+
+
+
+2. Complete the implementation of the target function and submit with submit_implementation
+
+
+
+
+
+- Submit ONLY the implementation of the target function including the function signature but WITHOUT any imports or code outside the target function definition
+
+
+
+
+
+- DO NOT include anything else like any imports or contextual code
+
+
+
+
+
+- submit_implementation will directly OVERWRITE the target function in the original file with your submitted code
+
+
+
+
+
+3. Finish your task with finish
+
+
+
+
+
+Table 16: Prompt for Ablation Study on RepoEval: Reflect.
+
+
+
+
+
+
+# System
+
+
+
+
+
+You’re a software engineer working inside an existing Python codebase rooted at /testbed.
+
+
+
+
+
+Your task is to write test cases and complete the implementation of a target function whose implementation is currently missing.
+You can use these tools:
+
+
+
+
+
+1. read_files
+
+
+
+
+
+2. search_command
+
+
+
+
+
+3. inspect_structure
+
+
+
+
+
+4. list_files
+
+
+
+
+
+5. submit_implementation
+
+
+
+
+
+6. finish
+
+
+
+
+
+Each of your response SHOULD include reasoning text explaining what you’re doing
+
+
+
+
+
+Each of your response MUST include AT LEAST ONE tool call.
+
+
+
+
+
+# User
+
+
+
+
+
+# Task Instructions
+
+
+
+
+
+
+
+
+## Workflow
+
+
+
+
+
+
+
+
+1. Inspect the target file and related code with inspect_structure, read_files, search_command and list_files
+
+
+
+
+
+2. Complete the implementation of the target function and submit with submit_implementation
+
+
+
+
+
+- Submit ONLY the implementation of the target function including the function signature but WITHOUT any imports or code outside the target function definition
+
+
+
+
+
+- DO NOT include anything else like any imports or contextual code
+
+
+
+
+
+- submit_implementation will directly OVERWRITE the target function in the original file with your submitted code
+
+
+
+
+
+3. Iteratively reflect on your implementation, analyze whether there are any remaining issues, refine your implementation and re-submit
+
+
+
+
+
+4. Only when you are completely confident about your implementation should you finish your task with finish
+
+
+
+
+
+Table 17: Prompt for Ablation Study on RepoEval: Single-track.
+
+
+
+
+
+
+# System
+
+
+
+
+
+You’re a software engineer working inside an existing Python codebase rooted at /testbed.
+
+
+
+
+
+Your task is to write test cases and complete the implementation of a target function whose implementation is currently missing.
+You can use these tools:
+
+
+
+
+
+1. read_files
+
+
+
+
+
+2. search_command
+
+
+
+
+
+3. inspect_structure
+
+
+
+
+
+4. list_files
+
+
+
+
+
+5. submit_implementation
+
+
+
+
+
+6. submit_tests
+
+
+
+
+
+7. run_tests
+
+
+
+
+
+8. finish
+
+
+
+
+
+Each of your response SHOULD include reasoning text explaining what you’re doing
+
+
+
+
+
+Each of your response MUST include AT LEAST ONE tool call.
+
+
+
+
+
+# User
+
+
+
+
+
+# Task Instructions
+
+
+
+
+
+
+
+
+## Workflow
+
+
+
+
+
+
+
+
+1. Inspect the target file and related code with inspect_structure, read_files, search_command and list_files
+
+
+
+
+
+2. Create pytest test cases for the target function and submit with submit_tests
+
+
+
+
+
+- Focus on the canonical usage rather than obscure edge cases or stress testing
+
+
+
+
+
+- Your submitted tests will be saved as test_by_agent.py in the same directory as the target function file path
+
+
+
+
+
+- It will be later executed from the project root with python -m pytest <path_to_target_dir>/test_by_agent.py
+
+
+
+
+
+3. Complete the implementation of the target function and submit with submit_implementation
+
+
+
+
+
+- Submit ONLY the implementation of the target function including the function signature but WITHOUT any imports or code outside the target function definition
+
+
+
+
+
+- DO NOT include anything else like any imports or contextual code
+
+
+
+
+
+- submit_implementation will directly OVERWRITE the target function in the original file with your submitted code
+
+
+
+
+
+4. After submitting both your implementation and tests, validate with run_tests
+
+
+
+
+
+- Before you call run_tests, make sure both your implementation and tests are submitted
+
+
+
+
+
+- Calling run_tests will execute your submitted tests and your latest submitted implementation by running python -m pytest <path_to_target_dir>/test_by_agent.py command from the project root
+
+
+
+
+
+5. Iteratively analyze the execution results, refine your implementation, re-submit and re-run
+
+
+
+
+
+6. Only when you are completely confident about both your implementation should you finish your task with finish
+
+
+
+
+
+# Execution Succeeds Prompt
+
+
+
+
+
+Your last execution was successful.
+
+
+
+
+
+Now Reflect on whether your implementation has any remaining issues and whether it fully realizes the expected behavior of the target function.
+
+
+
+
+
+Only when you are completely confident about your implementation, should you call finish to end your task.
+
+
+
+
+
+Note:
+
+
+
+
+
+1. run_tests ONLY executes your latest submitted implementation.
+
+
+
+
+
+2. Running the project’s pre-existing test suite is not allowed. Do not attempt to use run_tests to execute the repository’s native test suite.
+
+
+
+
+
+3. Before you call run_tests again, please ensure that you have resubmitted your implementation.
+
+
+
+
+
+4. Rerunning run_tests without any new submissions is meaningless and will only yield identical results.
+
+
+
+
+
+5. Do not resubmit identical code before calling finish. The system will automatically save the exact version from your most recent run_tests execution.
+
+
+
+
+
+# Execution Fails Prompt
+
+
+
+
+
+Your last execution failed.
+
+
+
+
+
+Carefully analyze the reasons for failure:
+
+
+
+
+
+-Is the implementation incorrect or incomplete?
+
+
+
+
+
+Continue calling tools to refine your implementation, submit and validate with run_tests.
+
+
+
+
+
+
+
+
+Appendix F Case Study
+
+
+
+
+Table 18 and Table F present an example problem and the corresponding model response for TDD-prompt in the function-level experiment.
+
+
+
+
+Table F and Table F present an example of the generated tests and implementation produced by TDD-Agent in the repository-level experiment.
+
+
+Table 18: Case Study: An Example Problem from LiveCodeBench and TDD-Prompt’s Final Answer.
+
+
+
+
+
+
+Problem Description:
+
+
+
+
+
+
+
+
+You are given an integer array enemyEnergies denoting the energy values of various enemies.
+
+
+
+
+
+You are also given an integer currentEnergy denoting the amount of energy you have initially.
+
+
+
+
+
+You start with 0 points, and all the enemies are unmarked initially.
+
+
+
+
+
+You can perform either of the following operations zero or multiple times to gain points:
+
+
+
+
+
+
+
+
+Choose an unmarked enemy, i, such that currentEnergy >= enemyEnergies[i]. By choosing this option:
+
+
+
+
+
+
+
+
+You gain 1 point.
+
+
+
+
+
+Your energy is reduced by the enemy’s energy, i.e. currentEnergy = currentEnergy - enemyEnergies[i].
+
+
+
+
+
+If you have at least 1 point, you can choose an unmarked enemy, i. By choosing this option:
+
+
+
+
+
+Your energy increases by the enemy’s energy, i.e. currentEnergy = currentEnergy + enemyEnergies[i].
+
+
+
+
+
+The enemy i is marked.
+
+
+
+
+
+Return an integer denoting the maximum points you can get in the end by optimally performing operations.
+
+
+
+
+
+
+
+
+Example 1:
+
+
+
+
+
+Input: enemyEnergies = [3,2,2], currentEnergy = 2
+
+
+
+
+
+Output: 3
+
+
+
+
+
+Explanation:
+
+
+
+
+
+The following operations can be performed to get 3 points, which is the maximum:
+
+
+
+
+
+First operation on enemy 1: points increases by 1, and currentEnergy decreases by 2. So, points = 1, and currentEnergy = 0.
+
+
+
+
+
+Second operation on enemy 0: currentEnergy increases by 3, and enemy 0 is marked. So, points = 1, currentEnergy = 3, and marked enemies = [0].
+
+
+
+
+
+First operation on enemy 2: points increases by 1, and currentEnergy decreases by 2. So, points = 2, currentEnergy = 1, and marked enemies = [0].
+
+
+
+
+
+Second operation on enemy 2: currentEnergy increases by 2, and enemy 2 is marked. So, points = 2, currentEnergy = 3, and marked enemies = [0, 2].
+
+
+
+
+
+First operation on enemy 1: points increases by 1, and currentEnergy decreases by 2. So, points = 3, currentEnergy = 1, and marked enemies = [0, 2].
+
+
+
+
+
+
+
+
+Example 2:
+
+
+
+
+
+Input: enemyEnergies = [2], currentEnergy = 10
+
+
+
+
+
+Output: 5
+
+
+
+
+
+Explanation:
+
+
+
+
+
+Performing the first operation 5 times on enemy 0 results in the maximum number of points.
+
+
+
+
+
+
+
+
+Constraints:
+
+
+
+
+
+1 <= enemyEnergiesl̇ength <= 10510^{5}
+
+
+
+
+
+1 <= enemyEnergies[i] <= 10910^{9}
+
+
+
+
+
+0 <= currentEnergy <= 10910^{9}
+
+
+
+
+
+Final Answer: 
+⬇
+class Solution:
+
+    def maximumPoints(self, enemyEnergies: List[int], currentEnergy: int) :
+
+        if not enemyEnergies:
+
+            return 0
+
+        min_e = min(enemyEnergies)
+
+        if currentEnergy < min_e:
+
+            return 0
+
+        total_sum = sum(enemyEnergies)
+
+        return (currentEnergy + total_sum - min_e) // min_e
+
+
+
+
+
+
+
+
+Table 19: Case Study: A Response Example Generated by TDD-Prompt.
+
+
+
+
+
+
+
+
+
+⬇
+1. Overview
+
+- Core logic: You can repeatedly "attack" an unmarked enemy i (if currentEnergy >= e_i) to gain +1 point and consume e_i energy, and you can "mark" any unmarked enemy (only if you already have >=1 point) to gain e_i energy and prevent future attacks on that enemy. Marking does not cost points. The optimal strategy is:
+
+  - Use one attack on a cheapest enemy (minimal e) to get the required 1 point to unlock marking.
+
+  - Then mark all other enemies to collect their energies (marking never costs points, only prevents attacking those particular enemies later).
+
+  - Finally, spend the accumulated energy attacking the cheapest enemy as many times as possible.
+
+- I/O: Implement Solution.maximumPoints(enemyEnergies: List[int], currentEnergy: int) -> int.
+
+- Constraints: n up to 1e5, energies and currentEnergy up to 1e9. Use O(n) time and 64-bit integers when summing.
+
+- Edge cases:
+
+  - If currentEnergy < min(enemyEnergies): can’t get the first point -> answer 0.
+
+  - Single enemy case handled naturally.
+
+  - Large sums: use Python ints (unbounded)
+
+
+
+2. Tests (each with step-by-step expected output)
+
+Test A: enemyEnergies = [3, 2, 2], currentEnergy = 2
+
+- min = 2, sum = 7. current >= min so:
+
+  - Attack min once: energy = 2 - 2 = 0, points = 1.
+
+  - Mark the other enemies (2 and 3): energy = 0 + (2 + 3) = 5.
+
+  - Attack min (2) floor(5 / 2) = 2 more times.
+
+  - Total points = 1 + 2 = 3.
+
+- Expected output: 3
+
+Test B: enemyEnergies = [2], currentEnergy = 10
+
+- min = 2, sum = 2. current >= min:
+
+  - Attack once: energy = 8, points = 1. No others to mark.
+
+  - Attack min floor(8 / 2) = 4 more times.
+
+  - Total = 1 + 4 = 5.
+
+- Expected output: 5
+
+Test C: enemyEnergies = [5, 10, 3], currentEnergy = 3
+
+- min = 3, sum = 18. current >= min:
+
+  - Attack min once: energy = 0, points = 1.
+
+  - Mark others (5 + 10): energy = 0 + 15 = 15.
+
+  - Attack min (3) floor(15 / 3) = 5 more times.
+
+  - Total = 1 + 5 = 6.
+
+- Expected output: 6
+
+Test D (edge: can’t start): enemyEnergies = [4, 7, 9], currentEnergy = 3
+
+- min = 4. current < min => cannot perform any attack and cannot mark.
+
+- Expected output: 0
+
+
+
+3. Algorithmic Strategy
+
+- Let min_e = min(enemyEnergies) and sum_all = sum(enemyEnergies).
+
+- If currentEnergy < min_e: return 0.
+
+- Perform one attack on the cheapest enemy (cost min_e) to get the required 1 point.
+
+- Mark all the other enemies and collect their energies: net energy after that = currentEnergy - min_e + (sum_all - min_e) = currentEnergy + sum_all - 2 * min_e.
+
+- Use that energy to attack the cheapest enemy as many times as possible: floor(net_energy / min_e).
+
+- Total points = 1 + floor(net_energy / min_e). This simplifies to (currentEnergy + sum_all - min_e) // min_e.
+
+- Time complexity: O(n). Space complexity: O(1) extra space.
+
+
+
+4. Implementation
+
+‘‘‘python
+
+class Solution:
+
+    def maximumPoints(self, enemyEnergies: List[int], currentEnergy: int) :
+
+        ...
+
+‘‘‘
+
+
+
+
+
+
+
+
+Table 20: Case Study: An Example of Generated Tests by TDD-Agent.
+
+
+
+
+
+
+
+
+
+⬇
+import jax
+
+import jax.numpy as jnp
+
+import numpy as np
+
+import numpyro
+
+from numpyro import handlers
+
+import numpyro.distributions as dist
+
+from lightweight_mmm.core import priors
+
+from lightweight_mmm.core.transformations import saturation
+
+
+
+def test_hill_custom_prior_half_max_effective_concentration():
+
+    """Test that custom prior for half_max_effective_concentration is used."""
+
+    expected_value1, expected_value2 = 5.2, 7.56
+
+    custom_priors = {priors.HALF_MAX_EFFECTIVE_CONCENTRATION:
+
+            dist.Kumaraswamy(
+
+                concentration1=expected_value1, concentration0=expected_value2)}
+
+    data = jnp.ones((10, 5))
+
+    trace_handler = handlers.trace(handlers.seed(saturation.hill, rng_seed=0))
+
+    trace = trace_handler.get_trace(data=data, custom_priors=custom_priors)
+
+    prior_name = priors.HALF_MAX_EFFECTIVE_CONCENTRATION
+
+    used_distribution = trace[prior_name]["fn"]
+
+    used_distribution = used_distribution.base_dist
+
+    assert isinstance(used_distribution, dist.Kumaraswamy)
+
+    assert used_distribution.concentration0 == expected_value2
+
+    assert used_distribution.concentration1 == expected_value1
+
+
+
+def test_hill_custom_prior_slope():
+
+    """Test that custom prior for slope is used."""
+
+    expected_value1, expected_value2 = 3.0, 4.0
+
+    custom_priors = {priors.SLOPE:
+
+            dist.Kumaraswamy(
+
+                concentration1=expected_value1, concentration0=expected_value2)}
+
+    data = jnp.ones((10, 5))
+
+    trace_handler = handlers.trace(handlers.seed(saturation.hill, rng_seed=0))
+
+    trace = trace_handler.get_trace(data=data, custom_priors=custom_priors)
+
+    prior_name = priors.SLOPE
+
+    used_distribution = trace[prior_name]["fn"]
+
+    used_distribution = used_distribution.base_dist
+
+    assert isinstance(used_distribution, dist.Kumaraswamy)
+
+    assert used_distribution.concentration0 == expected_value2
+
+    assert used_distribution.concentration1 == expected_value1
+
+
+
+def test_hill_with_zero_data():
+
+    """Test hill function with zero input data"""
+
+    data = jnp.zeros((10, 3))
+
+    def mock_model():
+
+        output = saturation.hill(data=data, custom_priors={})
+
+        return numpyro.deterministic("output", output)
+
+    trace_handler = handlers.trace(handlers.seed(mock_model, rng_seed=0))
+
+    trace = trace_handler.get_trace()
+
+    output = trace["output"]["value"]
+
+    # With zero data, hill function should return zeros
+
+    assert jnp.allclose(output, 0, atol=1e-7)
+
+
+
+def test_hill_shape_3d():
+
+    """Test that hill function handles 3D input correctly."""
+
+    data = jnp.ones((100, 3, 5))
+
+    def mock_model():
+
+        output = saturation.hill(data=data, custom_priors={})
+
+        return numpyro.deterministic("output", output)
+
+    trace_handler = handlers.trace(handlers.seed(mock_model, rng_seed=0))
+
+    trace = trace_handler.get_trace()
+
+    output = trace["output"]["value"]
+
+    assert output.shape == data.shape
+
+
+
+
+
+
+
+Table 21: Case Study: An Example of Generated Implementation by TDD-Agent.
+
+
+
+
+
+
+⬇
+def hill(
+
+    data: jnp.ndarray,
+
+    custom_priors: Mapping[str, dist.Distribution],
+
+    *,
+
+    prefix: str = "",
+
+) -> jnp.ndarray:
+
+  """Transforms the input data with the adstock and hill functions.
+
+
+
+  Args:
+
+    data: Media data to be transformed. It is expected to have 2 dims for
+
+      national models and 3 for geo models.
+
+    custom_priors: The custom priors we want the model to take instead of the
+
+      default ones. The possible names of parameters for hill_adstock and
+
+      exponent are "lag_weight", "half_max_effective_concentration" and "slope".
+
+    prefix: Prefix to use in the variable name for Numpyro.
+
+
+
+  Returns:
+
+    The transformed media data.
+
+  """
+
+  default_priors = priors.get_default_priors()
+
+
+
+  with numpyro.plate(
+
+      name=f"{prefix}{priors.HALF_MAX_EFFECTIVE_CONCENTRATION}_plate",
+
+      size=data.shape[1]):
+
+    half_max_effective_concentration = numpyro.sample(
+
+        name=f"{prefix}{priors.HALF_MAX_EFFECTIVE_CONCENTRATION}",
+
+        fn=custom_priors.get(priors.HALF_MAX_EFFECTIVE_CONCENTRATION,
+
+                             default_priors[priors.HALF_MAX_EFFECTIVE_CONCENTRATION]))
+
+
+
+  with numpyro.plate(
+
+      name=f"{prefix}{priors.SLOPE}_plate",
+
+      size=data.shape[1]):
+
+    slope = numpyro.sample(
+
+        name=f"{prefix}{priors.SLOPE}",
+
+        fn=custom_priors.get(priors.SLOPE, default_priors[priors.SLOPE]))
+
+
+
+  if data.ndim == 3:
+
+    half_max_effective_concentration = jnp.expand_dims(half_max_effective_concentration, axis=-1)
+
+    slope = jnp.expand_dims(slope, axis=-1)
+
+
+
+  return _hill(
+
+      data=data,
+
+      half_max_effective_concentration=half_max_effective_concentration,
+
+      slope=slope)
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+    Experimental support, please
+    view the build logs
+    for errors. Generated by
+    
+      
+        L
+        A
+        T
+        E
+      
+      xml
+      
+    .
+  
+  
+
+    
+Instructions for reporting errors
+    
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+      support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+      methods listed below:
+    
+      Click the "Report Issue" (
+            
+          ) button, located in the page header.
+    
+    
+Tip: You can select the relevant text first, to include it in your report.
+    
+Our team has already identified the following issues. We appreciate your time reviewing and reporting rendering errors we
+      may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+      should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+      all.
+    
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion, and welcome developer contributions.
+  
+
+  
+
+    
+
+      
+
+        We gratefully acknowledge support from
+        our major funders,
+        member institutions, ,
+        and all contributors.
+      
+      
+        About
+        ·
+        Help
+        ·
+        Contact
+        ·
+        Subscribe
+        ·
+        Copyright
+        ·
+        Privacy
+        ·
+        Accessibility
+        ·
+        Operational Status (opens in new tab)
+      
+    
+
+    
+
+      
+Major funding support from
+      
+
+        
+          
+        
+        
+          
+        
+        
+          
+        
+      
+    
+  
+
+
+  
+    
+      
+    
+  
+
+

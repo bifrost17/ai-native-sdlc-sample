@@ -1,0 +1,1502 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:44:50Z",
+  "pull": {
+    "url": "https://api.github.com/repos/react/react/pulls/37491",
+    "id": 4422957472,
+    "node_id": "PR_kwDOAJy2Ks8AAAABB6D5oA",
+    "html_url": "https://github.com/react/react/pull/37491",
+    "diff_url": "https://github.com/react/react/pull/37491.diff",
+    "patch_url": "https://github.com/react/react/pull/37491.patch",
+    "issue_url": "https://api.github.com/repos/react/react/issues/37491",
+    "number": 37491,
+    "state": "closed",
+    "locked": false,
+    "title": "[flags] Enable conditional `use()` warning in React's Canary builds",
+    "user": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "The warning was previously only enabled for experimental builds (`react@experimental`). This enables the warning for `react@canary` as well.\r\n\r\nKeep in mind that conditional `use()` is generally supported. This warning only triggers if the condition is based on `promise.status` (or `promise.value`). Let `use()` handle that status. React will not suspend if the `promise.status` is already `'fulfilled'`.\r\n\r\nMore information can be found in the [`use()` docs under \"Don’t skip calling use based on whether a Promise is already settled.\"](https://react.dev/reference/react/use#conditional-use).\r\n\r\nWe've tested this at Vercel on the latest version of SWR (which previously had conditional `use()` calls) and found no false-positive warnings or excessive warnings. ",
+    "created_at": "2026-09-02T13:53:26Z",
+    "updated_at": "2026-09-02T15:47:22Z",
+    "closed_at": "2026-09-02T15:47:17Z",
+    "merged_at": "2026-09-02T15:47:17Z",
+    "merge_commit_sha": "0d69e20fc03a7b2c750c3245d0ad19fb8e6f3b30",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 196858374,
+        "node_id": "MDU6TGFiZWwxOTY4NTgzNzQ=",
+        "url": "https://api.github.com/repos/react/react/labels/CLA%20Signed",
+        "name": "CLA Signed",
+        "color": "e7e7e7",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      },
+      {
+        "id": 1775958285,
+        "node_id": "MDU6TGFiZWwxNzc1OTU4Mjg1",
+        "url": "https://api.github.com/repos/react/react/labels/React%20Core%20Team",
+        "name": "React Core Team",
+        "color": "9149d1",
+        "default": false,
+        "description": "Opened by a member of the React Core Team",
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/react/react/pulls/37491/commits",
+    "review_comments_url": "https://api.github.com/repos/react/react/pulls/37491/comments",
+    "review_comment_url": "https://api.github.com/repos/react/react/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/react/react/issues/37491/comments",
+    "statuses_url": "https://api.github.com/repos/react/react/statuses/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+    "head": {
+      "label": "react:sebbie/conditional-use-canary",
+      "ref": "sebbie/conditional-use-canary",
+      "sha": "afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "user": {
+        "login": "react",
+        "id": 102812,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/react",
+        "html_url": "https://github.com/react",
+        "followers_url": "https://api.github.com/users/react/followers",
+        "following_url": "https://api.github.com/users/react/following{/other_user}",
+        "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+        "organizations_url": "https://api.github.com/users/react/orgs",
+        "repos_url": "https://api.github.com/users/react/repos",
+        "events_url": "https://api.github.com/users/react/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/react/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 10270250,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMDI3MDI1MA==",
+        "name": "react",
+        "full_name": "react/react",
+        "private": false,
+        "owner": {
+          "login": "react",
+          "id": 102812,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/react",
+          "html_url": "https://github.com/react",
+          "followers_url": "https://api.github.com/users/react/followers",
+          "following_url": "https://api.github.com/users/react/following{/other_user}",
+          "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+          "organizations_url": "https://api.github.com/users/react/orgs",
+          "repos_url": "https://api.github.com/users/react/repos",
+          "events_url": "https://api.github.com/users/react/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/react/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/react/react",
+        "description": "The library for web and native user interfaces.",
+        "fork": false,
+        "url": "https://api.github.com/repos/react/react",
+        "forks_url": "https://api.github.com/repos/react/react/forks",
+        "keys_url": "https://api.github.com/repos/react/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/react/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/react/react/teams",
+        "hooks_url": "https://api.github.com/repos/react/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/react/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/react/react/events",
+        "assignees_url": "https://api.github.com/repos/react/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/react/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/react/react/tags",
+        "blobs_url": "https://api.github.com/repos/react/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/react/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/react/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/react/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/react/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/react/react/languages",
+        "stargazers_url": "https://api.github.com/repos/react/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/react/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/react/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/react/react/subscription",
+        "commits_url": "https://api.github.com/repos/react/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/react/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/react/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/react/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/react/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/react/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/react/react/merges",
+        "archive_url": "https://api.github.com/repos/react/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/react/react/downloads",
+        "issues_url": "https://api.github.com/repos/react/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/react/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/react/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/react/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/react/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/react/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/react/react/deployments",
+        "created_at": "2013-05-24T16:15:54Z",
+        "updated_at": "2026-09-12T07:00:06Z",
+        "pushed_at": "2026-09-11T23:35:47Z",
+        "git_url": "git://github.com/react/react.git",
+        "ssh_url": "org-102812@github.com:react/react.git",
+        "clone_url": "https://github.com/react/react.git",
+        "svn_url": "https://github.com/react/react",
+        "homepage": "https://react.dev",
+        "size": 1084697,
+        "stargazers_count": 250049,
+        "watchers_count": 250049,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": true,
+        "has_discussions": false,
+        "forks_count": 51330,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1369,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "declarative",
+          "frontend",
+          "javascript",
+          "library",
+          "react",
+          "ui"
+        ],
+        "visibility": "public",
+        "forks": 51330,
+        "open_issues": 1369,
+        "watchers": 250049,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "react:main",
+      "ref": "main",
+      "sha": "33b4555488b580c286dccde4ed52395241f1a1f5",
+      "user": {
+        "login": "react",
+        "id": 102812,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/react",
+        "html_url": "https://github.com/react",
+        "followers_url": "https://api.github.com/users/react/followers",
+        "following_url": "https://api.github.com/users/react/following{/other_user}",
+        "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+        "organizations_url": "https://api.github.com/users/react/orgs",
+        "repos_url": "https://api.github.com/users/react/repos",
+        "events_url": "https://api.github.com/users/react/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/react/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 10270250,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMDI3MDI1MA==",
+        "name": "react",
+        "full_name": "react/react",
+        "private": false,
+        "owner": {
+          "login": "react",
+          "id": 102812,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/react",
+          "html_url": "https://github.com/react",
+          "followers_url": "https://api.github.com/users/react/followers",
+          "following_url": "https://api.github.com/users/react/following{/other_user}",
+          "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+          "organizations_url": "https://api.github.com/users/react/orgs",
+          "repos_url": "https://api.github.com/users/react/repos",
+          "events_url": "https://api.github.com/users/react/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/react/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/react/react",
+        "description": "The library for web and native user interfaces.",
+        "fork": false,
+        "url": "https://api.github.com/repos/react/react",
+        "forks_url": "https://api.github.com/repos/react/react/forks",
+        "keys_url": "https://api.github.com/repos/react/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/react/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/react/react/teams",
+        "hooks_url": "https://api.github.com/repos/react/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/react/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/react/react/events",
+        "assignees_url": "https://api.github.com/repos/react/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/react/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/react/react/tags",
+        "blobs_url": "https://api.github.com/repos/react/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/react/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/react/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/react/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/react/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/react/react/languages",
+        "stargazers_url": "https://api.github.com/repos/react/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/react/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/react/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/react/react/subscription",
+        "commits_url": "https://api.github.com/repos/react/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/react/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/react/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/react/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/react/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/react/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/react/react/merges",
+        "archive_url": "https://api.github.com/repos/react/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/react/react/downloads",
+        "issues_url": "https://api.github.com/repos/react/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/react/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/react/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/react/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/react/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/react/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/react/react/deployments",
+        "created_at": "2013-05-24T16:15:54Z",
+        "updated_at": "2026-09-12T07:00:06Z",
+        "pushed_at": "2026-09-11T23:35:47Z",
+        "git_url": "git://github.com/react/react.git",
+        "ssh_url": "org-102812@github.com:react/react.git",
+        "clone_url": "https://github.com/react/react.git",
+        "svn_url": "https://github.com/react/react",
+        "homepage": "https://react.dev",
+        "size": 1084697,
+        "stargazers_count": 250049,
+        "watchers_count": 250049,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": true,
+        "has_discussions": false,
+        "forks_count": 51330,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1369,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "declarative",
+          "frontend",
+          "javascript",
+          "library",
+          "react",
+          "ui"
+        ],
+        "visibility": "public",
+        "forks": 51330,
+        "open_issues": 1369,
+        "watchers": 250049,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/react/react/pulls/37491"
+      },
+      "html": {
+        "href": "https://github.com/react/react/pull/37491"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/react/react/issues/37491"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/react/react/issues/37491/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/react/react/pulls/37491/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/react/react/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/react/react/pulls/37491/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/react/react/statuses/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71"
+      }
+    },
+    "author_association": "COLLABORATOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 1,
+    "additions": 2,
+    "deletions": 2,
+    "changed_files": 2
+  },
+  "commits": [
+    {
+      "sha": "afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "node_id": "C_kwDOAJy2KtoAKGFmZTM0OTZjY2M3NGJiNWY5NDQ0ZjdjNzVhNmJkMGJiMjUwNDhlNzE",
+      "commit": {
+        "author": {
+          "name": "Sebastian Sebbie Silbermann",
+          "email": "sebastian.silbermann@vercel.com",
+          "date": "2026-09-02T13:48:07Z"
+        },
+        "committer": {
+          "name": "Sebastian Sebbie Silbermann",
+          "email": "sebastian.silbermann@vercel.com",
+          "date": "2026-09-02T13:48:07Z"
+        },
+        "message": "[flags] Enable conditional `use()` warning in React's Canary builds",
+        "tree": {
+          "sha": "df96ac06f6b20292cee65a32adf4c3402d8c9d10",
+          "url": "https://api.github.com/repos/react/react/git/trees/df96ac06f6b20292cee65a32adf4c3402d8c9d10"
+        },
+        "url": "https://api.github.com/repos/react/react/git/commits/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgX0lKcA5mDnE6MTcwX47K7U2bf+\n961RO1tddYFjAmL+IAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQH1RvwvFnBMih8mxhnmieWsW42ID3hWdY2W1l62A+bfqG43w318gYb3OS5gpQv/Rv1\nOEatTUVV8yNkWCTBAtNgw=\n-----END SSH SIGNATURE-----",
+          "payload": "tree df96ac06f6b20292cee65a32adf4c3402d8c9d10\nparent 33b4555488b580c286dccde4ed52395241f1a1f5\nauthor Sebastian Sebbie Silbermann <sebastian.silbermann@vercel.com> 1788356887 +0200\ncommitter Sebastian Sebbie Silbermann <sebastian.silbermann@vercel.com> 1788356887 +0200\n\n[flags] Enable conditional `use()` warning in React's Canary builds\n",
+          "verified_at": "2026-09-02T13:48:29Z"
+        }
+      },
+      "url": "https://api.github.com/repos/react/react/commits/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "html_url": "https://github.com/react/react/commit/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "comments_url": "https://api.github.com/repos/react/react/commits/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/comments",
+      "author": {
+        "login": "eps1lon",
+        "id": 12292047,
+        "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/eps1lon",
+        "html_url": "https://github.com/eps1lon",
+        "followers_url": "https://api.github.com/users/eps1lon/followers",
+        "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+        "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+        "repos_url": "https://api.github.com/users/eps1lon/repos",
+        "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "eps1lon",
+        "id": 12292047,
+        "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/eps1lon",
+        "html_url": "https://github.com/eps1lon",
+        "followers_url": "https://api.github.com/users/eps1lon/followers",
+        "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+        "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+        "repos_url": "https://api.github.com/users/eps1lon/repos",
+        "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "33b4555488b580c286dccde4ed52395241f1a1f5",
+          "url": "https://api.github.com/repos/react/react/commits/33b4555488b580c286dccde4ed52395241f1a1f5",
+          "html_url": "https://github.com/react/react/commit/33b4555488b580c286dccde4ed52395241f1a1f5"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "7e566f23d52e7b04b6d3b2eaeb6db65ae0ccf6d3",
+      "filename": "packages/shared/ReactFeatureFlags.js",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/react/react/blob/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2FReactFeatureFlags.js",
+      "raw_url": "https://github.com/react/react/raw/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2FReactFeatureFlags.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2FReactFeatureFlags.js?ref=afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "patch": "@@ -160,7 +160,7 @@ export const enableInfiniteRenderLoopDetection: boolean = false;\n  */\n export const enableInfiniteRenderLoopDetectionForceThrow: boolean = false;\n \n-export const enableConditionalUseWarning: boolean = __EXPERIMENTAL__;\n+export const enableConditionalUseWarning: boolean = true;\n \n export const enableFragmentRefs: boolean = true;\n export const enableFragmentRefsScrollIntoView: boolean = true;"
+    },
+    {
+      "sha": "d32bb6f95c8defd938635c609140f7683edfaa8a",
+      "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.js",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/react/react/blob/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+      "raw_url": "https://github.com/react/react/raw/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js?ref=afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "patch": "@@ -55,7 +55,7 @@ export const disableClientCache: boolean = true;\n \n export const enableInfiniteRenderLoopDetection: boolean = false;\n export const enableInfiniteRenderLoopDetectionForceThrow: boolean = false;\n-export const enableConditionalUseWarning: boolean = __EXPERIMENTAL__;\n+export const enableConditionalUseWarning: boolean = true;\n \n export const enableEffectEventMutationPhase: boolean = true;\n "
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "html_url": "https://github.com/react/react/commit/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+      "commit": {
+        "author": {
+          "name": "Sebastian Sebbie Silbermann",
+          "email": "sebastian.silbermann@vercel.com",
+          "date": "2026-09-02T13:48:07Z"
+        },
+        "committer": {
+          "name": "Sebastian Sebbie Silbermann",
+          "email": "sebastian.silbermann@vercel.com",
+          "date": "2026-09-02T13:48:07Z"
+        },
+        "message": "[flags] Enable conditional `use()` warning in React's Canary builds"
+      },
+      "parents": [
+        {
+          "sha": "33b4555488b580c286dccde4ed52395241f1a1f5",
+          "url": "https://api.github.com/repos/react/react/commits/33b4555488b580c286dccde4ed52395241f1a1f5",
+          "html_url": "https://github.com/react/react/commit/33b4555488b580c286dccde4ed52395241f1a1f5"
+        }
+      ],
+      "stats": {
+        "total": 4,
+        "additions": 2,
+        "deletions": 2
+      },
+      "files": [
+        {
+          "sha": "7e566f23d52e7b04b6d3b2eaeb6db65ae0ccf6d3",
+          "filename": "packages/shared/ReactFeatureFlags.js",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/react/react/blob/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2FReactFeatureFlags.js",
+          "raw_url": "https://github.com/react/react/raw/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2FReactFeatureFlags.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2FReactFeatureFlags.js?ref=afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+          "patch": "@@ -160,7 +160,7 @@ export const enableInfiniteRenderLoopDetection: boolean = false;\n  */\n export const enableInfiniteRenderLoopDetectionForceThrow: boolean = false;\n \n-export const enableConditionalUseWarning: boolean = __EXPERIMENTAL__;\n+export const enableConditionalUseWarning: boolean = true;\n \n export const enableFragmentRefs: boolean = true;\n export const enableFragmentRefsScrollIntoView: boolean = true;"
+        },
+        {
+          "sha": "d32bb6f95c8defd938635c609140f7683edfaa8a",
+          "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.js",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/react/react/blob/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+          "raw_url": "https://github.com/react/react/raw/afe3496ccc74bb5f9444f7c75a6bd0bb25048e71/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js?ref=afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+          "patch": "@@ -55,7 +55,7 @@ export const disableClientCache: boolean = true;\n \n export const enableInfiniteRenderLoopDetection: boolean = false;\n export const enableInfiniteRenderLoopDetectionForceThrow: boolean = false;\n-export const enableConditionalUseWarning: boolean = __EXPERIMENTAL__;\n+export const enableConditionalUseWarning: boolean = true;\n \n export const enableEffectEventMutationPhase: boolean = true;\n "
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T15:47:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33650816242/job/100317050722",
+        "name": "cleanup",
+        "started_at": "2026-09-02T15:47:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T14:38:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33643286479/job/100291628125",
+        "name": "notify",
+        "started_at": "2026-09-02T14:38:12Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T14:38:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33643286479/job/100291566728",
+        "name": "check_maintainer / check_maintainer",
+        "started_at": "2026-09-02T14:38:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T14:37:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33643286479/job/100291511786",
+        "name": "check_access",
+        "started_at": "2026-09-02T14:37:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276581605",
+        "name": "Merge DevTools artifacts",
+        "started_at": "2026-09-02T13:57:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276226049",
+        "name": "yarn test-build (-r=experimental --env=production, 2/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276226020",
+        "name": "yarn test-build (-r=experimental --env=production, 9/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225986",
+        "name": "yarn test-build (-r=experimental --env=production, 10/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225981",
+        "name": "yarn test-build (-r=experimental --env=development, 10/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225940",
+        "name": "yarn test-build (-r=experimental --env=production, 8/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225861",
+        "name": "yarn test-build (-r=experimental --env=production, 4/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225820",
+        "name": "yarn test-build (-r=experimental --env=production, 7/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225812",
+        "name": "yarn test-build (-r=experimental --env=production, 6/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225797",
+        "name": "yarn test-build (-r=experimental --env=development, 3/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225787",
+        "name": "yarn test-build (-r=experimental --env=production, 3/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225781",
+        "name": "yarn test-build (-r=experimental --env=production, 5/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225746",
+        "name": "yarn test-build (-r=experimental --env=development, 6/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225734",
+        "name": "yarn test-build (-r=experimental --env=development, 5/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225724",
+        "name": "yarn test-build (-r=experimental --env=production, 1/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225690",
+        "name": "yarn test-build (-r=experimental --env=development, 2/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225677",
+        "name": "yarn test-build (-r=stable --env=production, 4/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225667",
+        "name": "yarn test-build (-r=stable --env=production, 8/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225655",
+        "name": "yarn test-build (-r=experimental --env=development, 4/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225648",
+        "name": "yarn test-build (-r=experimental --env=development, 7/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225600",
+        "name": "yarn test-build (-r=experimental --env=development, 9/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T14:02:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225569",
+        "name": "yarn test-build (-r=experimental --env=development, 8/10)",
+        "started_at": "2026-09-02T14:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225565",
+        "name": "yarn test-build (-r=stable --env=production, 10/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225505",
+        "name": "yarn test-build (-r=stable --env=production, 2/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225491",
+        "name": "yarn test-build (-r=stable --env=production, 9/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225484",
+        "name": "yarn test-build (-r=stable --env=production, 3/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225470",
+        "name": "yarn test-build (-r=stable --env=production, 6/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225469",
+        "name": "yarn test-build (-r=stable --env=production, 7/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225459",
+        "name": "yarn test-build (-r=stable --env=production, 5/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225446",
+        "name": "yarn test-build (-r=experimental --env=development, 1/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225439",
+        "name": "yarn test-build (-r=stable --env=development, 7/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225375",
+        "name": "yarn test-build (-r=stable --env=development, 9/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225342",
+        "name": "yarn test-build (-r=stable --env=development, 4/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225329",
+        "name": "yarn test-build (-r=stable --env=production, 1/10)",
+        "started_at": "2026-09-02T13:56:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225314",
+        "name": "yarn test-build (-r=stable --env=development, 8/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225249",
+        "name": "yarn test-build (-r=stable --env=development, 1/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225248",
+        "name": "yarn test-build (-r=stable --env=development, 3/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225230",
+        "name": "yarn test-build (-r=stable --env=development, 6/10)",
+        "started_at": "2026-09-02T13:55:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225226",
+        "name": "yarn test-build (-r=stable --env=development, 5/10)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225221",
+        "name": "yarn test-build (-r=stable --env=development, 10/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276225214",
+        "name": "yarn test-build (-r=stable --env=development, 2/10)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276224116",
+        "name": "Run fixtures Flight tests",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276224083",
+        "name": "Build DevTools and process artifacts (chrome)",
+        "started_at": "2026-09-02T13:55:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276224074",
+        "name": "Check release dependencies",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276224050",
+        "name": "Run React DevTools browser extension e2e tests",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276224041",
+        "name": "Build DevTools and process artifacts (edge)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276224024",
+        "name": "Build DevTools and process artifacts (firefox)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223982",
+        "name": "yarn test-build (devtools) (3/5)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223981",
+        "name": "Search build artifacts for unminified errors",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223967",
+        "name": "yarn test-build (devtools) (5/5)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223966",
+        "name": "Run react-devtools-cdt-mcp e2e tests",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223965",
+        "name": "yarn test-build (devtools) (4/5)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223959",
+        "name": "yarn test-build (devtools) (2/5)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223929",
+        "name": "Process artifacts combined",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223920",
+        "name": "Run sizebot",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223918",
+        "name": "yarn test-build (devtools) (1/5)",
+        "started_at": "2026-09-02T13:55:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100276223884",
+        "name": "Check fixtures DOM (stable)",
+        "started_at": "2026-09-02T13:55:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618131",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618076",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618069",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 1/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618061",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618031",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618030",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618026",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275618012",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617988",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617950",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617941",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617913",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 1/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617874",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:17Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617871",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617856",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617842",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617836",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617831",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617813",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617795",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 1/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617793",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 1/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617778",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617763",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617757",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617750",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275617746",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 1/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612833",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 1/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612804",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612797",
+        "name": "yarn test -r=www-modern --env=production --variant=false (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612782",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612753",
+        "name": "yarn test -r=www-modern --env=development --variant=false (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612745",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612698",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:55:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612695",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 2/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612667",
+        "name": "yarn test -r=www-classic --env=development --variant=true (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612657",
+        "name": "yarn test -r=www-modern --env=development --variant=true (Shard 4/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:57:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612654",
+        "name": "yarn test -r=www-modern --env=development --variant=false (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612649",
+        "name": "yarn test -r=www-modern --env=development --variant=true (Shard 5/5)",
+        "started_at": "2026-09-02T13:54:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-02T13:56:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/33638524782/job/100275612623",
+        "name": "yarn test -r=www-modern --env=development --variant=true (Shard 3/5)",
+        "started_at": "2026-09-02T13:54:16Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 249
+  },
+  "combined_status": {
+    "sha": "afe3496ccc74bb5f9444f7c75a6bd0bb25048e71",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

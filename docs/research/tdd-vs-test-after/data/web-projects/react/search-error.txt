@@ -1,0 +1,8 @@
+Command intent: GitHub Search issues API query for `repo:facebook/react is:pr is:merged merged:2024-09-12..2026-09-12`.
+
+Observed response on 2026-09-12:
+
+HTTP 422 Validation Failed
+The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.
+
+The repository itself and its Pulls API remained publicly readable. The candidate source was therefore changed to `candidates-recent.json`, obtained from `repos/facebook/react/pulls?state=closed&sort=updated&direction=desc&per_page=100`, then filtered to non-null `merged_at` and sorted locally.

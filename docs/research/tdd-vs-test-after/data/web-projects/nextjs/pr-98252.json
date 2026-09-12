@@ -1,0 +1,1761 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:52Z",
+  "pull": {
+    "url": "https://api.github.com/repos/vercel/next.js/pulls/98252",
+    "id": 4438797270,
+    "node_id": "PR_kwDOBC3Cis8AAAABCJKr1g",
+    "html_url": "https://github.com/vercel/next.js/pull/98252",
+    "diff_url": "https://github.com/vercel/next.js/pull/98252.diff",
+    "patch_url": "https://github.com/vercel/next.js/pull/98252.patch",
+    "issue_url": "https://api.github.com/repos/vercel/next.js/issues/98252",
+    "number": 98252,
+    "state": "closed",
+    "locked": false,
+    "title": "fix(typegen): merge cacheLife types into next/cache instead of shadowing it",
+    "user": {
+      "login": "itsybitsci",
+      "id": 61088479,
+      "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/itsybitsci",
+      "html_url": "https://github.com/itsybitsci",
+      "followers_url": "https://api.github.com/users/itsybitsci/followers",
+      "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+      "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+      "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+      "repos_url": "https://api.github.com/users/itsybitsci/repos",
+      "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "### What?\r\n\r\nAfter `next build`, `next dev`, or `next typegen`, every `next/cache` export is offered twice in editor autocomplete. Both entries are labelled identically as `Add import from \"next/cache\"`, so there is no way to tell them apart. It affects any file in the project, since these are auto-import suggestions.\r\n### Why?\r\n`.next/types/cache-life.d.ts` has no top-level import or export. That makes it a script rather than a module, which in\r\nturn makes its `declare module 'next/cache'` a standalone ambient module declaration instead of a moduleaugmentation. So it shadows the package's own types rather than merging with them, and that is why the generated file\r\nhas to redeclare every unrelated `next/cache` export just to keep them resolvable.\r\nAmbient declarations win module resolution, so after a build imports resolve to the generated file. But TypeScript'sauto-import index still indexes `node_modules/next/cache.d.ts` as a module exporting those same names. Both are then\r\noffered under the `next/cache` specifier, producing two identical completions per export.\r\n### How?\r\nEmit a top-level `export {}` in the generated file. That makes it a module, so the `declare module 'next/cache'` blockbelow becomes an augmentation and merges into the package's types. The redeclarations of `revalidatePath`,\r\n`revalidateTag`, `unstable_cache`, `cacheTag` and the rest were only needed while the file was shadowing, so they areremoved.\r\n\r\nMerging also brings back the package's catch-all `cacheLife(profile: string)` overload from `next/cache.d.ts`, which the shadowing file used to hide. On its own that would make `cacheLife('bogus')` compile, where today it is a type error (thanks to @m-elagamy for measuring this).\r\n\r\nTo keep that check, `next/cache` now declares an empty `CacheLifeProfiles` interface, and the generated file augments it with one key per configured profile alongside the per-profile overloads. The catch-all's parameter is `keyof CacheLifeProfiles extends never ? string : never`, so it accepts any string until the types have been generated and nothing once they have. Configured names, the built-in profiles and the object form still resolve to their own overloads, with their documentation. This is the same shape as the draft in vercel-labs/next.js#199.\r\n\r\nTests: `test/e2e/cache-life-typecheck` builds an app with a custom `blog` profile, waits for `cache-life.d.ts` to be written, and runs `tsc --noEmit` against it. The validation file calls `cacheLife` with the custom profile, a built-in profile, the object form and the `unstable_` alias, and has `@ts-expect-error` on two unknown names, so it fails if either the generated overloads or the unknown-name check stop working. A shadowing file would also fail it, since the catch-all and the object form would no longer be visible. The existing inline snapshots in `cache-life-type-utils.test.ts` cover the generated file's shape. The LanguageService unit test from the first revision is removed per review.\r\n\r\nFixes #98251",
+    "created_at": "2026-09-04T03:03:38Z",
+    "updated_at": "2026-09-11T11:44:25Z",
+    "closed_at": "2026-09-11T11:44:24Z",
+    "merged_at": "2026-09-11T11:44:24Z",
+    "merge_commit_sha": "f464e32ec092c5a00c967e64cba40121a2992224",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/vercel/next.js/pulls/98252/commits",
+    "review_comments_url": "https://api.github.com/repos/vercel/next.js/pulls/98252/comments",
+    "review_comment_url": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/vercel/next.js/issues/98252/comments",
+    "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+    "head": {
+      "label": "itsybitsci:fix/cache-life-types-augmentation",
+      "ref": "fix/cache-life-types-augmentation",
+      "sha": "538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "user": {
+        "login": "itsybitsci",
+        "id": 61088479,
+        "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+        "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/itsybitsci",
+        "html_url": "https://github.com/itsybitsci",
+        "followers_url": "https://api.github.com/users/itsybitsci/followers",
+        "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+        "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+        "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+        "repos_url": "https://api.github.com/users/itsybitsci/repos",
+        "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 1354911620,
+        "node_id": "R_kgDOUMJPhA",
+        "name": "next.js",
+        "full_name": "itsybitsci/next.js",
+        "private": false,
+        "owner": {
+          "login": "itsybitsci",
+          "id": 61088479,
+          "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/itsybitsci",
+          "html_url": "https://github.com/itsybitsci",
+          "followers_url": "https://api.github.com/users/itsybitsci/followers",
+          "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+          "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+          "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+          "repos_url": "https://api.github.com/users/itsybitsci/repos",
+          "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/itsybitsci/next.js",
+        "description": "The React Framework",
+        "fork": true,
+        "url": "https://api.github.com/repos/itsybitsci/next.js",
+        "forks_url": "https://api.github.com/repos/itsybitsci/next.js/forks",
+        "keys_url": "https://api.github.com/repos/itsybitsci/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/itsybitsci/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/itsybitsci/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/itsybitsci/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/itsybitsci/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/itsybitsci/next.js/events",
+        "assignees_url": "https://api.github.com/repos/itsybitsci/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/itsybitsci/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/itsybitsci/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/itsybitsci/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/itsybitsci/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/itsybitsci/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/itsybitsci/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/itsybitsci/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/itsybitsci/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/itsybitsci/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/itsybitsci/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/itsybitsci/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/itsybitsci/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/itsybitsci/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/itsybitsci/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/itsybitsci/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/itsybitsci/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/itsybitsci/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/itsybitsci/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/itsybitsci/next.js/merges",
+        "archive_url": "https://api.github.com/repos/itsybitsci/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/itsybitsci/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/itsybitsci/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/itsybitsci/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/itsybitsci/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/itsybitsci/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/itsybitsci/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/itsybitsci/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/itsybitsci/next.js/deployments",
+        "created_at": "2026-09-02T15:12:07Z",
+        "updated_at": "2026-09-04T20:39:42Z",
+        "pushed_at": "2026-09-10T17:29:40Z",
+        "git_url": "git://github.com/itsybitsci/next.js.git",
+        "ssh_url": "git@github.com:itsybitsci/next.js.git",
+        "clone_url": "https://github.com/itsybitsci/next.js.git",
+        "svn_url": "https://github.com/itsybitsci/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2549445,
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "language": "JavaScript",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 0,
+        "default_branch": "canary"
+      }
+    },
+    "base": {
+      "label": "vercel:canary",
+      "ref": "canary",
+      "sha": "da6e8b65fa1444c4df0b1b0efb6cc8e0ac4a0fbc",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98252"
+      },
+      "html": {
+        "href": "https://github.com/vercel/next.js/pull/98252"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98252"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98252/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98252/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98252/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/vercel/next.js/statuses/538b149dbfc61f8d6bfa00aa2f60d72698f650a2"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 6,
+    "review_comments": 5,
+    "maintainer_can_modify": false,
+    "commits": 2,
+    "additions": 148,
+    "deletions": 325,
+    "changed_files": 9
+  },
+  "commits": [
+    {
+      "sha": "2196b65125173cea40a1d514cda3e01f38e75a8b",
+      "node_id": "C_kwDOUMJPhNoAKDIxOTZiNjUxMjUxNzNjZWE0MGExZDUxNGNkYTNlMDFmMzhlNzVhOGI",
+      "commit": {
+        "author": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-04T02:50:45Z"
+        },
+        "committer": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-04T19:53:18Z"
+        },
+        "message": "fix(typegen): merge cacheLife types into next/cache instead of shadowing it\n\n`.next/types/cache-life.d.ts` has no top-level import or export, so it is a\nscript rather than a module. That makes its `declare module 'next/cache'` a\nstandalone ambient module declaration, which shadows the package's own types\ninstead of merging with them, and is why the file has to redeclare every\nunrelated `next/cache` export.\n\nAmbient declarations win module resolution, but TypeScript's auto-import index\nstill indexes the package's `cache.d.ts`, so both modules are offered under the\n`next/cache` specifier. Every export then shows up twice in autocomplete, with\nboth entries labelled identically, once the file has been written by\n`next build`, `next dev` or `next typegen`.\n\nEmit a top-level `export {}` so the block is a module augmentation and merges,\nand drop the redeclarations it needed while it was shadowing. The generated\nper-profile `cacheLife` overloads still resolve, with their documentation.\n\nMerging also brings back the package's catch-all `cacheLife(profile: string)`\noverload, which the shadowing file used to hide, so an unknown profile name\nwould no longer be a type error. Declare an empty `CacheLifeProfiles`\ninterface in `next/cache` that the generated file augments with the configured\nprofile names, and narrow the catch-all's parameter to `never` once that\ninterface has keys. Unknown names stay an error after typegen, and projects\nthat have not run it keep accepting any string.\n\nFixes #98251",
+        "tree": {
+          "sha": "f298b095f457cd0128fc5c0e7c69b35147004405",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/f298b095f457cd0128fc5c0e7c69b35147004405"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/2196b65125173cea40a1d514cda3e01f38e75a8b",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgsINAxfDOL+U0WgXeupPe21qpe3\nuViBk0dlExfGMJKu4AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQDv7CQ69zH/HMcjbkOGJ20gtx2Yug817fnEYYHqfZkXTiZjwC+e/ChGYjJ63DL39ub\nojSb/lTbHB8Y87KWAt/gM=\n-----END SSH SIGNATURE-----",
+          "payload": "tree f298b095f457cd0128fc5c0e7c69b35147004405\nparent 090f1b72753b2d0094235d27d46ffa0da5fc7d35\nauthor James Argarin <jnargarin@gmail.com> 1788490245 +0800\ncommitter James Argarin <jnargarin@gmail.com> 1788551598 +0800\n\nfix(typegen): merge cacheLife types into next/cache instead of shadowing it\n\n`.next/types/cache-life.d.ts` has no top-level import or export, so it is a\nscript rather than a module. That makes its `declare module 'next/cache'` a\nstandalone ambient module declaration, which shadows the package's own types\ninstead of merging with them, and is why the file has to redeclare every\nunrelated `next/cache` export.\n\nAmbient declarations win module resolution, but TypeScript's auto-import index\nstill indexes the package's `cache.d.ts`, so both modules are offered under the\n`next/cache` specifier. Every export then shows up twice in autocomplete, with\nboth entries labelled identically, once the file has been written by\n`next build`, `next dev` or `next typegen`.\n\nEmit a top-level `export {}` so the block is a module augmentation and merges,\nand drop the redeclarations it needed while it was shadowing. The generated\nper-profile `cacheLife` overloads still resolve, with their documentation.\n\nMerging also brings back the package's catch-all `cacheLife(profile: string)`\noverload, which the shadowing file used to hide, so an unknown profile name\nwould no longer be a type error. Declare an empty `CacheLifeProfiles`\ninterface in `next/cache` that the generated file augments with the configured\nprofile names, and narrow the catch-all's parameter to `never` once that\ninterface has keys. Unknown names stay an error after typegen, and projects\nthat have not run it keep accepting any string.\n\nFixes #98251\n",
+          "verified_at": "2026-09-04T19:53:55Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/2196b65125173cea40a1d514cda3e01f38e75a8b",
+      "html_url": "https://github.com/vercel/next.js/commit/2196b65125173cea40a1d514cda3e01f38e75a8b",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/2196b65125173cea40a1d514cda3e01f38e75a8b/comments",
+      "author": {
+        "login": "itsybitsci",
+        "id": 61088479,
+        "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+        "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/itsybitsci",
+        "html_url": "https://github.com/itsybitsci",
+        "followers_url": "https://api.github.com/users/itsybitsci/followers",
+        "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+        "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+        "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+        "repos_url": "https://api.github.com/users/itsybitsci/repos",
+        "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "itsybitsci",
+        "id": 61088479,
+        "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+        "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/itsybitsci",
+        "html_url": "https://github.com/itsybitsci",
+        "followers_url": "https://api.github.com/users/itsybitsci/followers",
+        "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+        "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+        "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+        "repos_url": "https://api.github.com/users/itsybitsci/repos",
+        "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "090f1b72753b2d0094235d27d46ffa0da5fc7d35",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/090f1b72753b2d0094235d27d46ffa0da5fc7d35",
+          "html_url": "https://github.com/vercel/next.js/commit/090f1b72753b2d0094235d27d46ffa0da5fc7d35"
+        }
+      ]
+    },
+    {
+      "sha": "538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "node_id": "C_kwDOUMJPhNoAKDUzOGIxNDlkYmZjNjFmOGQ2YmZhMDBhYTJmNjBkNzI2OThmNjUwYTI",
+      "commit": {
+        "author": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-10T17:26:35Z"
+        },
+        "committer": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-10T17:29:32Z"
+        },
+        "message": "test: track tsconfig for cache-life-typecheck so tsc skips the spec",
+        "tree": {
+          "sha": "94ebbc5c7e819aff37863bbb3d7b7261dca6b34b",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/94ebbc5c7e819aff37863bbb3d7b7261dca6b34b"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgsINAxfDOL+U0WgXeupPe21qpe3\nuViBk0dlExfGMJKu4AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQP/gUVGKu53jLstlJKgdlq8RChHILOEc0/lHdSlS8zLYCnKhO9t29Ttfxh48A1eLMZ\n5FCwHuKyszNunx9sk/VQ8=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 94ebbc5c7e819aff37863bbb3d7b7261dca6b34b\nparent 2196b65125173cea40a1d514cda3e01f38e75a8b\nauthor James Argarin <jnargarin@gmail.com> 1789061195 +0800\ncommitter James Argarin <jnargarin@gmail.com> 1789061372 +0800\n\ntest: track tsconfig for cache-life-typecheck so tsc skips the spec\n",
+          "verified_at": "2026-09-10T17:29:41Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "html_url": "https://github.com/vercel/next.js/commit/538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/comments",
+      "author": {
+        "login": "itsybitsci",
+        "id": 61088479,
+        "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+        "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/itsybitsci",
+        "html_url": "https://github.com/itsybitsci",
+        "followers_url": "https://api.github.com/users/itsybitsci/followers",
+        "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+        "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+        "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+        "repos_url": "https://api.github.com/users/itsybitsci/repos",
+        "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "itsybitsci",
+        "id": 61088479,
+        "node_id": "MDQ6VXNlcjYxMDg4NDc5",
+        "avatar_url": "https://avatars.githubusercontent.com/u/61088479?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/itsybitsci",
+        "html_url": "https://github.com/itsybitsci",
+        "followers_url": "https://api.github.com/users/itsybitsci/followers",
+        "following_url": "https://api.github.com/users/itsybitsci/following{/other_user}",
+        "gists_url": "https://api.github.com/users/itsybitsci/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/itsybitsci/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/itsybitsci/subscriptions",
+        "organizations_url": "https://api.github.com/users/itsybitsci/orgs",
+        "repos_url": "https://api.github.com/users/itsybitsci/repos",
+        "events_url": "https://api.github.com/users/itsybitsci/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/itsybitsci/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "html_url": "https://github.com/vercel/next.js/commit/2196b65125173cea40a1d514cda3e01f38e75a8b"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "468b910328214ee23795d08ff699265f7658b05c",
+      "filename": "packages/next/cache.d.ts",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 1,
+      "changes": 6,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/packages%2Fnext%2Fcache.d.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/packages%2Fnext%2Fcache.d.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fcache.d.ts?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -20,6 +20,8 @@ import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n \n export { cacheTag }\n \n+export interface CacheLifeProfiles {}\n+\n /**\n  * Cache this `\"use cache\"` for a timespan defined by the `\"default\"` profile.\n  * ```\n@@ -128,7 +130,9 @@ export function cacheLife(profile: 'max'): void\n  *\n  * You can define custom profiles in `next.config.ts`.\n  */\n-export function cacheLife(profile: string): void\n+export function cacheLife(\n+  profile: keyof CacheLifeProfiles extends never ? string : never\n+): void\n \n /**\n  * Cache this `\"use cache\"` using a custom timespan."
+    },
+    {
+      "sha": "02c110a4d314c9479775bc8720c25dc9f162d9f9",
+      "filename": "packages/next/src/server/lib/router-utils/cache-life-type-utils.test.ts",
+      "status": "modified",
+      "additions": 34,
+      "deletions": 276,
+      "changes": 310,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.test.ts?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -20,19 +20,13 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"default\": true\n+         \"hours\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"default\"\\` profile.\n@@ -62,39 +56,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"hours\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n@@ -159,10 +120,7 @@ describe('cache-life-type-utils', () => {\n           *   expire:     1814400 seconds (3 weeks)\n           *   stale:      2592000 seconds (1 month)\n           *   revalidate: 5184000 seconds (2 months)\n-          *   expire:     10368000 seconds (4 months)\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\"\n+          *   expire:     10368000 seconds (4 months)\"\n     `)\n   })\n \n@@ -180,19 +138,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"partial\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"partial\"\\` profile.\n@@ -208,39 +159,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"partial\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n@@ -260,19 +178,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"infinite\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"infinite\"\\` profile.\n@@ -287,45 +198,12 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"infinite\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n   })\n \n-  it('should include base cacheLife function signature', () => {\n+  it('should only declare the generated profile overloads', () => {\n     const cacheLifeConfig = {\n       custom: {\n         stale: 100,\n@@ -339,19 +217,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"custom\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"custom\"\\` profile.\n@@ -367,45 +238,12 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"custom\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n   })\n \n-  it('should include module exports', () => {\n+  it('should augment next/cache instead of redeclaring its exports', () => {\n     const cacheLifeConfig = {\n       test: {\n         stale: 100,\n@@ -419,19 +257,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"test\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"test\"\\` profile.\n@@ -447,39 +278,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"test\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n@@ -503,19 +301,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"valid\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"valid\"\\` profile.\n@@ -531,39 +322,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"valid\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)"
+    },
+    {
+      "sha": "43a4e72915e01c09e884b9cb60bdfaf9d3ae31b2",
+      "filename": "packages/next/src/server/lib/router-utils/cache-life-type-utils.ts",
+      "status": "modified",
+      "additions": 15,
+      "deletions": 48,
+      "changes": 63,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.ts?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -71,6 +71,7 @@ function formatTimespanWithSeconds(seconds: undefined | number): string {\n export function generateCacheLifeTypes(cacheLife: {\n   [profile: string]: CacheLife\n }): string {\n+  let profileKeys = ''\n   let overloads = ''\n \n   const profileNames = Object.keys(cacheLife)\n@@ -81,6 +82,9 @@ export function generateCacheLifeTypes(cacheLife: {\n       continue\n     }\n \n+    profileKeys += `\n+    ${JSON.stringify(profileName)}: true`\n+\n     let description = ''\n \n     if (profile.stale === undefined) {\n@@ -136,58 +140,21 @@ export function generateCacheLifeTypes(cacheLife: {\n     `\n   }\n \n-  overloads += `\n-    /**\n-     * Cache this \\`\"use cache\"\\` using a custom timespan.\n-     * \\`\\`\\`\n-     *   stale: ... // seconds\n-     *   revalidate: ... // seconds\n-     *   expire: ... // seconds\n-     * \\`\\`\\`\n-     *\n-     * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-     *\n-     * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-     */\n-    export function cacheLife(profile: {\n-      /**\n-       * This cache may be stale on clients for ... seconds before checking with the server.\n-       */\n-      stale?: number,\n-      /**\n-       * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-       */\n-      revalidate?: number,\n-      /**\n-       * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-       */\n-      expire?: number\n-    }): void\n-  `\n-\n-  // Redefine the cacheLife() accepted arguments.\n+  // The top-level `export {}` makes this file a module, which in turn makes\n+  // the block below a module augmentation that merges into the `next/cache`\n+  // types. Without it the file is a script, the block is a standalone ambient\n+  // module declaration, and it shadows `next/cache` instead of merging: every\n+  // other export then has to be redeclared here, and TypeScript offers two\n+  // identical auto-import completions for each of them, one from this file and\n+  // one from the package's own types.\n   return `// Type definitions for Next.js cacheLife configs\n \n-declare module 'next/cache' {\n-  export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-  export {\n-    updateTag,\n-    revalidateTag,\n-    revalidatePath,\n-    refresh,\n-  } from 'next/dist/server/web/spec-extension/revalidate'\n-  export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-  export { io } from 'next/dist/server/request/io'\n-  export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-  export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+export {}\n \n+declare module 'next/cache' {\n+  export interface CacheLifeProfiles {${profileKeys}\n+  }\n   ${overloads}\n-\n-  import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-  export { cacheTag }\n-\n-  export const unstable_cacheTag: typeof cacheTag\n-  export const unstable_cacheLife: typeof cacheLife\n }\n `\n }"
+    },
+    {
+      "sha": "716a8db36f52c5b3b068de4e1d3c3bd64290a8be",
+      "filename": "test/e2e/cache-life-typecheck/app/layout.tsx",
+      "status": "added",
+      "additions": 9,
+      "deletions": 0,
+      "changes": 9,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Flayout.tsx",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Flayout.tsx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Flayout.tsx?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -0,0 +1,9 @@\n+import { ReactNode } from 'react'\n+\n+export default function Root({ children }: { children: ReactNode }) {\n+  return (\n+    <html>\n+      <body>{children}</body>\n+    </html>\n+  )\n+}"
+    },
+    {
+      "sha": "ff7159d9149feeb1eb8f4b7bbeadb2e26c20b053",
+      "filename": "test/e2e/cache-life-typecheck/app/page.tsx",
+      "status": "added",
+      "additions": 3,
+      "deletions": 0,
+      "changes": 3,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Fpage.tsx",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Fpage.tsx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Fpage.tsx?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -0,0 +1,3 @@\n+export default function Page() {\n+  return <p>hello world</p>\n+}"
+    },
+    {
+      "sha": "06ee5e300704b3f7f25ed817561ea49a5818d438",
+      "filename": "test/e2e/cache-life-typecheck/cache-life-typecheck.test.ts",
+      "status": "added",
+      "additions": 35,
+      "deletions": 0,
+      "changes": 35,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fcache-life-typecheck.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fcache-life-typecheck.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fcache-life-typecheck.test.ts?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -0,0 +1,35 @@\n+import { nextTestSetup } from 'e2e-utils'\n+import { retry } from 'next-test-utils'\n+import execa from 'execa'\n+\n+describe('cache-life-typecheck', () => {\n+  const { next, skipped } = nextTestSetup({\n+    files: __dirname,\n+    skipDeployment: true,\n+  })\n+\n+  if (skipped) {\n+    return\n+  }\n+\n+  it('accepts configured cacheLife profiles and rejects unknown ones', async () => {\n+    const $ = await next.render$('/')\n+    expect($('p').text()).toBe('hello world')\n+\n+    await retry(async () => {\n+      await next.readFile(`${next.distDir}/types/cache-life.d.ts`)\n+    }, 10_000)\n+\n+    await next.stop()\n+    try {\n+      const { stdout, stderr } = await execa('pnpm', ['tsc', '--noEmit'], {\n+        cwd: next.testDir,\n+        reject: false,\n+      })\n+\n+      expect({ stdout, stderr }).toEqual({ stdout: '', stderr: '' })\n+    } finally {\n+      await next.start()\n+    }\n+  })\n+})"
+    },
+    {
+      "sha": "a495045fef5f4357c85f838d6a92f9bf20ce93eb",
+      "filename": "test/e2e/cache-life-typecheck/next.config.js",
+      "status": "added",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fnext.config.js",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Fnext.config.js",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fnext.config.js?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -0,0 +1,14 @@\n+/**\n+ * @type {import('next').NextConfig}\n+ */\n+const nextConfig = {\n+  cacheLife: {\n+    blog: {\n+      stale: 300,\n+      revalidate: 900,\n+      expire: 3600,\n+    },\n+  },\n+}\n+\n+module.exports = nextConfig"
+    },
+    {
+      "sha": "4e7d72e5e76ebf3f7b04e20bd6d7c46e31185832",
+      "filename": "test/e2e/cache-life-typecheck/tsconfig.json",
+      "status": "added",
+      "additions": 20,
+      "deletions": 0,
+      "changes": 20,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Ftsconfig.json",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Ftsconfig.json",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Ftsconfig.json?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -0,0 +1,20 @@\n+{\n+  \"compilerOptions\": {\n+    \"target\": \"ES2017\",\n+    \"lib\": [\"dom\", \"dom.iterable\", \"esnext\"],\n+    \"allowJs\": true,\n+    \"skipLibCheck\": true,\n+    \"strict\": true,\n+    \"noEmit\": true,\n+    \"incremental\": true,\n+    \"module\": \"esnext\",\n+    \"esModuleInterop\": true,\n+    \"moduleResolution\": \"bundler\",\n+    \"resolveJsonModule\": true,\n+    \"isolatedModules\": true,\n+    \"jsx\": \"react-jsx\",\n+    \"plugins\": [{ \"name\": \"next\" }]\n+  },\n+  \"include\": [\"next-env.d.ts\", \"**/*.mts\", \"**/*.ts\", \"**/*.tsx\"],\n+  \"exclude\": [\"node_modules\", \"**/*.test.ts\", \"**/*.test.tsx\"]\n+}"
+    },
+    {
+      "sha": "e72132de5fbc924700cb2107e390c8002d10f923",
+      "filename": "test/e2e/cache-life-typecheck/typecheck-validation.ts",
+      "status": "added",
+      "additions": 13,
+      "deletions": 0,
+      "changes": 13,
+      "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Ftypecheck-validation.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Ftypecheck-validation.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Ftypecheck-validation.ts?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "patch": "@@ -0,0 +1,13 @@\n+import { cacheLife, unstable_cacheLife } from 'next/cache'\n+\n+export function validate() {\n+  cacheLife('blog')\n+  cacheLife('minutes')\n+  cacheLife({ stale: 30, revalidate: 60, expire: 120 })\n+  unstable_cacheLife('blog')\n+\n+  // @ts-expect-error unknown profile\n+  cacheLife('bogus')\n+  // @ts-expect-error unknown profile\n+  unstable_cacheLife('bogus')\n+}"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "2196b65125173cea40a1d514cda3e01f38e75a8b",
+      "html_url": "https://github.com/vercel/next.js/commit/2196b65125173cea40a1d514cda3e01f38e75a8b",
+      "commit": {
+        "author": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-04T02:50:45Z"
+        },
+        "committer": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-04T19:53:18Z"
+        },
+        "message": "fix(typegen): merge cacheLife types into next/cache instead of shadowing it\n\n`.next/types/cache-life.d.ts` has no top-level import or export, so it is a\nscript rather than a module. That makes its `declare module 'next/cache'` a\nstandalone ambient module declaration, which shadows the package's own types\ninstead of merging with them, and is why the file has to redeclare every\nunrelated `next/cache` export.\n\nAmbient declarations win module resolution, but TypeScript's auto-import index\nstill indexes the package's `cache.d.ts`, so both modules are offered under the\n`next/cache` specifier. Every export then shows up twice in autocomplete, with\nboth entries labelled identically, once the file has been written by\n`next build`, `next dev` or `next typegen`.\n\nEmit a top-level `export {}` so the block is a module augmentation and merges,\nand drop the redeclarations it needed while it was shadowing. The generated\nper-profile `cacheLife` overloads still resolve, with their documentation.\n\nMerging also brings back the package's catch-all `cacheLife(profile: string)`\noverload, which the shadowing file used to hide, so an unknown profile name\nwould no longer be a type error. Declare an empty `CacheLifeProfiles`\ninterface in `next/cache` that the generated file augments with the configured\nprofile names, and narrow the catch-all's parameter to `never` once that\ninterface has keys. Unknown names stay an error after typegen, and projects\nthat have not run it keep accepting any string.\n\nFixes #98251"
+      },
+      "parents": [
+        {
+          "sha": "090f1b72753b2d0094235d27d46ffa0da5fc7d35",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/090f1b72753b2d0094235d27d46ffa0da5fc7d35",
+          "html_url": "https://github.com/vercel/next.js/commit/090f1b72753b2d0094235d27d46ffa0da5fc7d35"
+        }
+      ],
+      "stats": {
+        "total": 453,
+        "additions": 128,
+        "deletions": 325
+      },
+      "files": [
+        {
+          "sha": "468b910328214ee23795d08ff699265f7658b05c",
+          "filename": "packages/next/cache.d.ts",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 1,
+          "changes": 6,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/packages%2Fnext%2Fcache.d.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/packages%2Fnext%2Fcache.d.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fcache.d.ts?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -20,6 +20,8 @@ import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n \n export { cacheTag }\n \n+export interface CacheLifeProfiles {}\n+\n /**\n  * Cache this `\"use cache\"` for a timespan defined by the `\"default\"` profile.\n  * ```\n@@ -128,7 +130,9 @@ export function cacheLife(profile: 'max'): void\n  *\n  * You can define custom profiles in `next.config.ts`.\n  */\n-export function cacheLife(profile: string): void\n+export function cacheLife(\n+  profile: keyof CacheLifeProfiles extends never ? string : never\n+): void\n \n /**\n  * Cache this `\"use cache\"` using a custom timespan."
+        },
+        {
+          "sha": "02c110a4d314c9479775bc8720c25dc9f162d9f9",
+          "filename": "packages/next/src/server/lib/router-utils/cache-life-type-utils.test.ts",
+          "status": "modified",
+          "additions": 34,
+          "deletions": 276,
+          "changes": 310,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.test.ts?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -20,19 +20,13 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"default\": true\n+         \"hours\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"default\"\\` profile.\n@@ -62,39 +56,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"hours\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n@@ -159,10 +120,7 @@ describe('cache-life-type-utils', () => {\n           *   expire:     1814400 seconds (3 weeks)\n           *   stale:      2592000 seconds (1 month)\n           *   revalidate: 5184000 seconds (2 months)\n-          *   expire:     10368000 seconds (4 months)\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\"\n+          *   expire:     10368000 seconds (4 months)\"\n     `)\n   })\n \n@@ -180,19 +138,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"partial\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"partial\"\\` profile.\n@@ -208,39 +159,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"partial\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n@@ -260,19 +178,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"infinite\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"infinite\"\\` profile.\n@@ -287,45 +198,12 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"infinite\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n   })\n \n-  it('should include base cacheLife function signature', () => {\n+  it('should only declare the generated profile overloads', () => {\n     const cacheLifeConfig = {\n       custom: {\n         stale: 100,\n@@ -339,19 +217,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"custom\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"custom\"\\` profile.\n@@ -367,45 +238,12 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"custom\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n   })\n \n-  it('should include module exports', () => {\n+  it('should augment next/cache instead of redeclaring its exports', () => {\n     const cacheLifeConfig = {\n       test: {\n         stale: 100,\n@@ -419,19 +257,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"test\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"test\"\\` profile.\n@@ -447,39 +278,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"test\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)\n@@ -503,19 +301,12 @@ describe('cache-life-type-utils', () => {\n     expect(output).toMatchInlineSnapshot(`\n      \"// Type definitions for Next.js cacheLife configs\n \n-     declare module 'next/cache' {\n-       export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-       export {\n-         updateTag,\n-         revalidateTag,\n-         revalidatePath,\n-         refresh,\n-       } from 'next/dist/server/web/spec-extension/revalidate'\n-       export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-       export { io } from 'next/dist/server/request/io'\n-       export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-       export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+     export {}\n \n+     declare module 'next/cache' {\n+       export interface CacheLifeProfiles {\n+         \"valid\": true\n+       }\n        \n          /**\n           * Cache this \\`\"use cache\"\\` for a timespan defined by the \\`\"valid\"\\` profile.\n@@ -531,39 +322,6 @@ describe('cache-life-type-utils', () => {\n           */\n          export function cacheLife(profile: \"valid\"): void\n          \n-         /**\n-          * Cache this \\`\"use cache\"\\` using a custom timespan.\n-          * \\`\\`\\`\n-          *   stale: ... // seconds\n-          *   revalidate: ... // seconds\n-          *   expire: ... // seconds\n-          * \\`\\`\\`\n-          *\n-          * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-          *\n-          * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-          */\n-         export function cacheLife(profile: {\n-           /**\n-            * This cache may be stale on clients for ... seconds before checking with the server.\n-            */\n-           stale?: number,\n-           /**\n-            * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-            */\n-           revalidate?: number,\n-           /**\n-            * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-            */\n-           expire?: number\n-         }): void\n-       \n-\n-       import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-       export { cacheTag }\n-\n-       export const unstable_cacheTag: typeof cacheTag\n-       export const unstable_cacheLife: typeof cacheLife\n      }\n      \"\n     `)"
+        },
+        {
+          "sha": "43a4e72915e01c09e884b9cb60bdfaf9d3ae31b2",
+          "filename": "packages/next/src/server/lib/router-utils/cache-life-type-utils.ts",
+          "status": "modified",
+          "additions": 15,
+          "deletions": 48,
+          "changes": 63,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Flib%2Frouter-utils%2Fcache-life-type-utils.ts?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -71,6 +71,7 @@ function formatTimespanWithSeconds(seconds: undefined | number): string {\n export function generateCacheLifeTypes(cacheLife: {\n   [profile: string]: CacheLife\n }): string {\n+  let profileKeys = ''\n   let overloads = ''\n \n   const profileNames = Object.keys(cacheLife)\n@@ -81,6 +82,9 @@ export function generateCacheLifeTypes(cacheLife: {\n       continue\n     }\n \n+    profileKeys += `\n+    ${JSON.stringify(profileName)}: true`\n+\n     let description = ''\n \n     if (profile.stale === undefined) {\n@@ -136,58 +140,21 @@ export function generateCacheLifeTypes(cacheLife: {\n     `\n   }\n \n-  overloads += `\n-    /**\n-     * Cache this \\`\"use cache\"\\` using a custom timespan.\n-     * \\`\\`\\`\n-     *   stale: ... // seconds\n-     *   revalidate: ... // seconds\n-     *   expire: ... // seconds\n-     * \\`\\`\\`\n-     *\n-     * This is similar to Cache-Control: max-age=\\`stale\\`,s-max-age=\\`revalidate\\`,stale-while-revalidate=\\`expire-revalidate\\`\n-     *\n-     * If a value is left out, the lowest of other cacheLife() calls or the default, is used instead.\n-     */\n-    export function cacheLife(profile: {\n-      /**\n-       * This cache may be stale on clients for ... seconds before checking with the server.\n-       */\n-      stale?: number,\n-      /**\n-       * If the server receives a new request after ... seconds, start revalidating new values in the background.\n-       */\n-      revalidate?: number,\n-      /**\n-       * If this entry has no traffic for ... seconds it will expire. The next request will recompute it.\n-       */\n-      expire?: number\n-    }): void\n-  `\n-\n-  // Redefine the cacheLife() accepted arguments.\n+  // The top-level `export {}` makes this file a module, which in turn makes\n+  // the block below a module augmentation that merges into the `next/cache`\n+  // types. Without it the file is a script, the block is a standalone ambient\n+  // module declaration, and it shadows `next/cache` instead of merging: every\n+  // other export then has to be redeclared here, and TypeScript offers two\n+  // identical auto-import completions for each of them, one from this file and\n+  // one from the package's own types.\n   return `// Type definitions for Next.js cacheLife configs\n \n-declare module 'next/cache' {\n-  export { unstable_cache } from 'next/dist/server/web/spec-extension/unstable-cache'\n-  export {\n-    updateTag,\n-    revalidateTag,\n-    revalidatePath,\n-    refresh,\n-  } from 'next/dist/server/web/spec-extension/revalidate'\n-  export { unstable_noStore } from 'next/dist/server/web/spec-extension/unstable-no-store'\n-  export { io } from 'next/dist/server/request/io'\n-  export { unstable_navigation } from 'next/dist/server/request/cache-stages'\n-  export { unstable_prefetch } from 'next/dist/server/request/cache-stages'\n+export {}\n \n+declare module 'next/cache' {\n+  export interface CacheLifeProfiles {${profileKeys}\n+  }\n   ${overloads}\n-\n-  import { cacheTag } from 'next/dist/server/use-cache/cache-tag'\n-  export { cacheTag }\n-\n-  export const unstable_cacheTag: typeof cacheTag\n-  export const unstable_cacheLife: typeof cacheLife\n }\n `\n }"
+        },
+        {
+          "sha": "716a8db36f52c5b3b068de4e1d3c3bd64290a8be",
+          "filename": "test/e2e/cache-life-typecheck/app/layout.tsx",
+          "status": "added",
+          "additions": 9,
+          "deletions": 0,
+          "changes": 9,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Flayout.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Flayout.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Flayout.tsx?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -0,0 +1,9 @@\n+import { ReactNode } from 'react'\n+\n+export default function Root({ children }: { children: ReactNode }) {\n+  return (\n+    <html>\n+      <body>{children}</body>\n+    </html>\n+  )\n+}"
+        },
+        {
+          "sha": "ff7159d9149feeb1eb8f4b7bbeadb2e26c20b053",
+          "filename": "test/e2e/cache-life-typecheck/app/page.tsx",
+          "status": "added",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Fpage.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Fpage.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fapp%2Fpage.tsx?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -0,0 +1,3 @@\n+export default function Page() {\n+  return <p>hello world</p>\n+}"
+        },
+        {
+          "sha": "06ee5e300704b3f7f25ed817561ea49a5818d438",
+          "filename": "test/e2e/cache-life-typecheck/cache-life-typecheck.test.ts",
+          "status": "added",
+          "additions": 35,
+          "deletions": 0,
+          "changes": 35,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fcache-life-typecheck.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fcache-life-typecheck.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fcache-life-typecheck.test.ts?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -0,0 +1,35 @@\n+import { nextTestSetup } from 'e2e-utils'\n+import { retry } from 'next-test-utils'\n+import execa from 'execa'\n+\n+describe('cache-life-typecheck', () => {\n+  const { next, skipped } = nextTestSetup({\n+    files: __dirname,\n+    skipDeployment: true,\n+  })\n+\n+  if (skipped) {\n+    return\n+  }\n+\n+  it('accepts configured cacheLife profiles and rejects unknown ones', async () => {\n+    const $ = await next.render$('/')\n+    expect($('p').text()).toBe('hello world')\n+\n+    await retry(async () => {\n+      await next.readFile(`${next.distDir}/types/cache-life.d.ts`)\n+    }, 10_000)\n+\n+    await next.stop()\n+    try {\n+      const { stdout, stderr } = await execa('pnpm', ['tsc', '--noEmit'], {\n+        cwd: next.testDir,\n+        reject: false,\n+      })\n+\n+      expect({ stdout, stderr }).toEqual({ stdout: '', stderr: '' })\n+    } finally {\n+      await next.start()\n+    }\n+  })\n+})"
+        },
+        {
+          "sha": "a495045fef5f4357c85f838d6a92f9bf20ce93eb",
+          "filename": "test/e2e/cache-life-typecheck/next.config.js",
+          "status": "added",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fnext.config.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Fnext.config.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Fnext.config.js?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -0,0 +1,14 @@\n+/**\n+ * @type {import('next').NextConfig}\n+ */\n+const nextConfig = {\n+  cacheLife: {\n+    blog: {\n+      stale: 300,\n+      revalidate: 900,\n+      expire: 3600,\n+    },\n+  },\n+}\n+\n+module.exports = nextConfig"
+        },
+        {
+          "sha": "e72132de5fbc924700cb2107e390c8002d10f923",
+          "filename": "test/e2e/cache-life-typecheck/typecheck-validation.ts",
+          "status": "added",
+          "additions": 13,
+          "deletions": 0,
+          "changes": 13,
+          "blob_url": "https://github.com/vercel/next.js/blob/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Ftypecheck-validation.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/2196b65125173cea40a1d514cda3e01f38e75a8b/test%2Fe2e%2Fcache-life-typecheck%2Ftypecheck-validation.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Ftypecheck-validation.ts?ref=2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "patch": "@@ -0,0 +1,13 @@\n+import { cacheLife, unstable_cacheLife } from 'next/cache'\n+\n+export function validate() {\n+  cacheLife('blog')\n+  cacheLife('minutes')\n+  cacheLife({ stale: 30, revalidate: 60, expire: 120 })\n+  unstable_cacheLife('blog')\n+\n+  // @ts-expect-error unknown profile\n+  cacheLife('bogus')\n+  // @ts-expect-error unknown profile\n+  unstable_cacheLife('bogus')\n+}"
+        }
+      ]
+    },
+    {
+      "sha": "538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "html_url": "https://github.com/vercel/next.js/commit/538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+      "commit": {
+        "author": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-10T17:26:35Z"
+        },
+        "committer": {
+          "name": "James Argarin",
+          "email": "jnargarin@gmail.com",
+          "date": "2026-09-10T17:29:32Z"
+        },
+        "message": "test: track tsconfig for cache-life-typecheck so tsc skips the spec"
+      },
+      "parents": [
+        {
+          "sha": "2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/2196b65125173cea40a1d514cda3e01f38e75a8b",
+          "html_url": "https://github.com/vercel/next.js/commit/2196b65125173cea40a1d514cda3e01f38e75a8b"
+        }
+      ],
+      "stats": {
+        "total": 20,
+        "additions": 20,
+        "deletions": 0
+      },
+      "files": [
+        {
+          "sha": "4e7d72e5e76ebf3f7b04e20bd6d7c46e31185832",
+          "filename": "test/e2e/cache-life-typecheck/tsconfig.json",
+          "status": "added",
+          "additions": 20,
+          "deletions": 0,
+          "changes": 20,
+          "blob_url": "https://github.com/vercel/next.js/blob/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Ftsconfig.json",
+          "raw_url": "https://github.com/vercel/next.js/raw/538b149dbfc61f8d6bfa00aa2f60d72698f650a2/test%2Fe2e%2Fcache-life-typecheck%2Ftsconfig.json",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fcache-life-typecheck%2Ftsconfig.json?ref=538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+          "patch": "@@ -0,0 +1,20 @@\n+{\n+  \"compilerOptions\": {\n+    \"target\": \"ES2017\",\n+    \"lib\": [\"dom\", \"dom.iterable\", \"esnext\"],\n+    \"allowJs\": true,\n+    \"skipLibCheck\": true,\n+    \"strict\": true,\n+    \"noEmit\": true,\n+    \"incremental\": true,\n+    \"module\": \"esnext\",\n+    \"esModuleInterop\": true,\n+    \"moduleResolution\": \"bundler\",\n+    \"resolveJsonModule\": true,\n+    \"isolatedModules\": true,\n+    \"jsx\": \"react-jsx\",\n+    \"plugins\": [{ \"name\": \"next\" }]\n+  },\n+  \"include\": [\"next-env.d.ts\", \"**/*.mts\", \"**/*.ts\", \"**/*.tsx\"],\n+  \"exclude\": [\"node_modules\", \"**/*.test.ts\", \"**/*.test.tsx\"]\n+}"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "vercel",
+        "completed_at": "2026-09-11T11:44:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/runs/103250036494",
+        "name": "Vercel – Code Owners",
+        "started_at": "2026-09-11T11:44:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:37:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103248245743",
+        "name": "thank you, next",
+        "started_at": "2026-09-11T11:37:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:01:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247416740",
+        "name": "optimize-ci / PR Stack Optimizer",
+        "started_at": "2026-09-11T11:01:24Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:01:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247402849",
+        "name": "Upload PR CI metadata",
+        "started_at": "2026-09-11T11:01:24Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247380011",
+        "name": "Test new and changed tests when deployed (4/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379876",
+        "name": "Test new and changed tests when deployed (cache components) (5/5) / build",
+        "started_at": "2026-09-11T11:12:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379858",
+        "name": "Test new and changed tests when deployed (cache components) (1/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379849",
+        "name": "Test new and changed tests when deployed (3/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379815",
+        "name": "Test new and changed tests when deployed (cache components) (2/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:19:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379527",
+        "name": "test prod (3/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379470",
+        "name": "Test new and changed tests when deployed (1/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379459",
+        "name": "Test new and changed tests when deployed (cache components) (3/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379393",
+        "name": "Test new and changed tests when deployed (5/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:21:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379382",
+        "name": "test prod (2/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379340",
+        "name": "Test new and changed tests when deployed (cache components) (4/5) / build",
+        "started_at": "2026-09-11T11:12:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:21:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379260",
+        "name": "test prod (4/10) / build",
+        "started_at": "2026-09-11T11:07:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379199",
+        "name": "test cache components dev (5/6) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:17:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379183",
+        "name": "test dev (8/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:27:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379182",
+        "name": "test prod (1/10) / build",
+        "started_at": "2026-09-11T11:07:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:17:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379160",
+        "name": "test dev (7/10) / build",
+        "started_at": "2026-09-11T11:07:38Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379146",
+        "name": "Test new and changed tests when deployed (2/5) / build",
+        "started_at": "2026-09-11T11:12:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:24:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379089",
+        "name": "test prod (10/10) / build",
+        "started_at": "2026-09-11T11:07:37Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:22:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379042",
+        "name": "test prod (5/10) / build",
+        "started_at": "2026-09-11T11:07:40Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:14:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379041",
+        "name": "test cache components dev (3/6) / build",
+        "started_at": "2026-09-11T11:07:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:20:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379026",
+        "name": "test dev (3/10) / build",
+        "started_at": "2026-09-11T11:07:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:28:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247379005",
+        "name": "test unit windows (22) / build",
+        "started_at": "2026-09-11T11:16:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:21:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378971",
+        "name": "test prod (7/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:20:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378955",
+        "name": "test dev (5/10) / build",
+        "started_at": "2026-09-11T11:07:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:19:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378950",
+        "name": "test dev (4/10) / build",
+        "started_at": "2026-09-11T11:07:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:28:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378948",
+        "name": "test unit windows (20) / build",
+        "started_at": "2026-09-11T11:15:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:18:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378938",
+        "name": "test dev (6/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:22:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378922",
+        "name": "test cache components dev (4/6) / build",
+        "started_at": "2026-09-11T11:07:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:15:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378905",
+        "name": "test cache components dev (2/6) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:20:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378841",
+        "name": "test dev (10/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:16:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378832",
+        "name": "test dev (2/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:28:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378821",
+        "name": "test prod (6/10) / build",
+        "started_at": "2026-09-11T11:07:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:14:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378792",
+        "name": "test cache components dev (1/6) / build",
+        "started_at": "2026-09-11T11:07:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:22:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378664",
+        "name": "test prod (9/10) / build",
+        "started_at": "2026-09-11T11:07:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:15:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378656",
+        "name": "test cache components prod (6/7) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:20:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378548",
+        "name": "test cache components prod (7/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378534",
+        "name": "test cache components prod (1/7) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378507",
+        "name": "Test new and changed tests for flakes (dev) (5/5) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:24:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378488",
+        "name": "test dev (1/10) / build",
+        "started_at": "2026-09-11T11:07:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:10:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378474",
+        "name": "test next-config-ts-native-ts prod (22) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:24:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378472",
+        "name": "test dev (9/10) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:19:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378442",
+        "name": "test turbopack production (2/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:15:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378417",
+        "name": "test cache components dev (6/6) / build",
+        "started_at": "2026-09-11T11:07:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:10:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378389",
+        "name": "test next-config-ts-native-ts prod (24.15.0) / build",
+        "started_at": "2026-09-11T11:07:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:14:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378349",
+        "name": "test cache components prod (3/7) / build",
+        "started_at": "2026-09-11T11:07:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:15:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378316",
+        "name": "test cache components prod (2/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378313",
+        "name": "Test new and changed tests for flakes (dev) (2/5) / build",
+        "started_at": "2026-09-11T11:07:12Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378298",
+        "name": "Test new and changed tests for flakes (dev) (3/5) / build",
+        "started_at": "2026-09-11T11:07:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378287",
+        "name": "Test new and changed tests for flakes (dev) (4/5) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378265",
+        "name": "Test new and changed tests for flakes (dev) (1/5) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378250",
+        "name": "Test new and changed tests for flakes (prod) (3/5) / build",
+        "started_at": "2026-09-11T11:07:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378216",
+        "name": "test next-config-ts-native-ts dev (22) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:37:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378199",
+        "name": "test prod (8/10) / build",
+        "started_at": "2026-09-11T11:33:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:19:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378189",
+        "name": "test turbopack production (6/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:14:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378150",
+        "name": "test cache components prod (4/7) / build",
+        "started_at": "2026-09-11T11:07:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:18:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378121",
+        "name": "test turbopack dev (4/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:14:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378103",
+        "name": "test cache components prod (5/7) / build",
+        "started_at": "2026-09-11T11:07:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:19:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378068",
+        "name": "test turbopack production (3/7) / build",
+        "started_at": "2026-09-11T11:07:37Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378031",
+        "name": "Test new and changed tests for flakes (prod) (4/5) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247378002",
+        "name": "test next-config-ts-native-ts dev (24.15.0) / build",
+        "started_at": "2026-09-11T11:07:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:10:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377994",
+        "name": "Test new and changed tests for flakes (prod) (1/5) / build",
+        "started_at": "2026-09-11T11:07:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:18:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377966",
+        "name": "test turbopack production (7/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:19:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377935",
+        "name": "test turbopack production (4/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:18:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377851",
+        "name": "test turbopack production (1/7) / build",
+        "started_at": "2026-09-11T11:07:14Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377736",
+        "name": "Test new and changed tests for flakes (prod) (2/5) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:23:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377710",
+        "name": "test turbopack production (5/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:25:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377639",
+        "name": "test turbopack dev (2/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377610",
+        "name": "Test new and changed tests for flakes (prod) (5/5) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:18:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377557",
+        "name": "test turbopack dev (6/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:26:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377532",
+        "name": "test integration windows / build",
+        "started_at": "2026-09-11T11:16:08Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:12:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377459",
+        "name": "test firefox and safari / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:16:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377445",
+        "name": "test turbopack dev (5/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:24:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377430",
+        "name": "test prod windows / build",
+        "started_at": "2026-09-11T11:15:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:17:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377382",
+        "name": "test turbopack dev (1/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:23:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377320",
+        "name": "test dev windows / build",
+        "started_at": "2026-09-11T11:16:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:18:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377284",
+        "name": "test turbopack dev (3/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:10:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377161",
+        "name": "test unit (20) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:17:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377108",
+        "name": "test turbopack dev (7/7) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247377026",
+        "name": "test unit (22) / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:10:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247376432",
+        "name": "types and precompiled / build",
+        "started_at": "2026-09-11T11:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:33:36Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375859",
+        "name": "Run devlow benchmarks",
+        "started_at": "2026-09-11T11:33:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:33:36Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375772",
+        "name": "test rspack dev",
+        "started_at": "2026-09-11T11:33:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:33:36Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375641",
+        "name": "test rspack production",
+        "started_at": "2026-09-11T11:33:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:09:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375595",
+        "name": "test cargo benches / Test",
+        "started_at": "2026-09-11T11:03:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:12:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375556",
+        "name": "Wait for preview tarball",
+        "started_at": "2026-09-11T11:01:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:05:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375273",
+        "name": "test next-swc wasi / build",
+        "started_at": "2026-09-11T11:03:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:26Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375157",
+        "name": "test next-swc wasm / build",
+        "started_at": "2026-09-11T11:03:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:04:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375137",
+        "name": "test devlow package / build",
+        "started_at": "2026-09-11T11:03:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:07:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247375035",
+        "name": "rust check / build",
+        "started_at": "2026-09-11T11:03:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:13:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374989",
+        "name": "build-native-windows / build",
+        "started_at": "2026-09-11T11:01:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:02:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374965",
+        "name": "fetch test timings",
+        "started_at": "2026-09-11T11:01:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:07:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374952",
+        "name": "build-native / build",
+        "started_at": "2026-09-11T11:03:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:08:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374933",
+        "name": "lint / build",
+        "started_at": "2026-09-11T11:03:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:03:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374876",
+        "name": "ast-grep lint",
+        "started_at": "2026-09-11T11:03:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:14:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374845",
+        "name": "test cargo unit / build",
+        "started_at": "2026-09-11T11:03:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T11:01:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34508558372/job/103247374745",
+        "name": "Determine changes",
+        "started_at": "2026-09-11T11:01:23Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 117
+  },
+  "combined_status": {
+    "sha": "538b149dbfc61f8d6bfa00aa2f60d72698f650a2",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

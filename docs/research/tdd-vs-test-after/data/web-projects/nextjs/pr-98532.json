@@ -1,0 +1,2265 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:30Z",
+  "pull": {
+    "url": "https://api.github.com/repos/vercel/next.js/pulls/98532",
+    "id": 4499887105,
+    "node_id": "PR_kwDOBC3Cis8AAAABDDbUAQ",
+    "html_url": "https://github.com/vercel/next.js/pull/98532",
+    "diff_url": "https://github.com/vercel/next.js/pull/98532.diff",
+    "patch_url": "https://github.com/vercel/next.js/pull/98532.patch",
+    "issue_url": "https://api.github.com/repos/vercel/next.js/issues/98532",
+    "number": 98532,
+    "state": "closed",
+    "locked": false,
+    "title": "Adds this.mode for webpack loaders",
+    "user": {
+      "login": "jimmyhmiller",
+      "id": 6071338,
+      "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jimmyhmiller",
+      "html_url": "https://github.com/jimmyhmiller",
+      "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+      "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+      "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+      "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+      "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "Pretty straightforward. But a number of loaders depend on it including\r\n\r\n- postcss-loader\r\n- sass-loader\r\n- stylus-loader\r\n- vue-loader\r\n- nunjucks-loader\r\n- thread-loader",
+    "created_at": "2026-09-10T20:49:00Z",
+    "updated_at": "2026-09-11T19:05:07Z",
+    "closed_at": "2026-09-11T19:05:04Z",
+    "merged_at": "2026-09-11T19:05:04Z",
+    "merge_commit_sha": "30d6d8f4975839faa01edc4677f6cb300052ff75",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/vercel/next.js/pulls/98532/commits",
+    "review_comments_url": "https://api.github.com/repos/vercel/next.js/pulls/98532/comments",
+    "review_comment_url": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/vercel/next.js/issues/98532/comments",
+    "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/38045f5b414c798f68d0d3f3924abe45c448f3db",
+    "head": {
+      "label": "vercel:jimmym/turbopack-webpack-loader-mode",
+      "ref": "jimmym/turbopack-webpack-loader-mode",
+      "sha": "38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "base": {
+      "label": "vercel:canary",
+      "ref": "canary",
+      "sha": "637b8cfa5ece38cc817db0ea04682647dbcbaad5",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98532"
+      },
+      "html": {
+        "href": "https://github.com/vercel/next.js/pull/98532"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98532"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98532/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98532/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98532/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/vercel/next.js/statuses/38045f5b414c798f68d0d3f3924abe45c448f3db"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "jimmyhmiller",
+      "id": 6071338,
+      "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jimmyhmiller",
+      "html_url": "https://github.com/jimmyhmiller",
+      "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+      "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+      "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+      "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+      "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 4,
+    "maintainer_can_modify": false,
+    "commits": 3,
+    "additions": 51,
+    "deletions": 31,
+    "changed_files": 18
+  },
+  "commits": [
+    {
+      "sha": "639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+      "node_id": "C_kwDOBC3CitoAKDYzOWUyMmFhMGYxZDYwMDcyZWJjM2IwZGMzYThmMzM1ODI2YTJhMzY",
+      "commit": {
+        "author": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-08T21:54:07Z"
+        },
+        "committer": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-10T20:39:54Z"
+        },
+        "message": "Adds this.mode for webpack loaders\n\nPretty straightforward. But a number of loaders depend on it including\n\n- postcss-loader\n- sass-loader\n- stylus-loader\n- vue-loader\n- nunjucks-loader\n- thread-loader",
+        "tree": {
+          "sha": "bb2188d0949837549f86e550ee3df23f14f3273a",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/bb2188d0949837549f86e550ee3df23f14f3273a"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgqiwK1re37otpNJipQM2IY1Cehw\nyUREFK+s3WdR2c0F0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQLwxk3iLZmHN+HEtR8d/qSHrZg9iWzeyGn1fZLy+a1wdg4DKHWi/FCyIcnwJkq0zHl\nvVLQ34p9z9uIqybUH97wM=\n-----END SSH SIGNATURE-----",
+          "payload": "tree bb2188d0949837549f86e550ee3df23f14f3273a\nparent 393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077\nauthor Jimmy Miller <james.miller@vercel.com> 1788904447 -0400\ncommitter Jimmy Miller <james.miller@vercel.com> 1789072794 -0400\n\nAdds this.mode for webpack loaders\n\nPretty straightforward. But a number of loaders depend on it including\n\n- postcss-loader\n- sass-loader\n- stylus-loader\n- vue-loader\n- nunjucks-loader\n- thread-loader\n",
+          "verified_at": "2026-09-10T20:48:12Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+      "html_url": "https://github.com/vercel/next.js/commit/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/comments",
+      "author": {
+        "login": "jimmyhmiller",
+        "id": 6071338,
+        "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jimmyhmiller",
+        "html_url": "https://github.com/jimmyhmiller",
+        "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+        "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+        "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+        "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+        "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "jimmyhmiller",
+        "id": 6071338,
+        "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jimmyhmiller",
+        "html_url": "https://github.com/jimmyhmiller",
+        "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+        "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+        "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+        "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+        "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+          "html_url": "https://github.com/vercel/next.js/commit/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077"
+        }
+      ]
+    },
+    {
+      "sha": "895938200c2cf64ba49cc46d19fec374c4c36fc3",
+      "node_id": "C_kwDOBC3CitoAKDg5NTkzODIwMGMyY2Y2NGJhNDljYzQ2ZDE5ZmVjMzc0YzRjMzZmYzM",
+      "commit": {
+        "author": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T14:50:25Z"
+        },
+        "committer": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T14:50:25Z"
+        },
+        "message": "combine target and mode test to misc for later random small features. Remove the version doc line since that is already fixed",
+        "tree": {
+          "sha": "af5b6e9a4b383929a4043b449c1744ed5af0926c",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/af5b6e9a4b383929a4043b449c1744ed5af0926c"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/895938200c2cf64ba49cc46d19fec374c4c36fc3",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgqiwK1re37otpNJipQM2IY1Cehw\nyUREFK+s3WdR2c0F0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQINV1cPeLKgVDijlbfaPeGhz2NgBHWEOiEHen3KD4UgXeQyL1l5sGav0/c09Kyx+4x\na8OlpNhxmTdeM91ALKggY=\n-----END SSH SIGNATURE-----",
+          "payload": "tree af5b6e9a4b383929a4043b449c1744ed5af0926c\nparent 639e22aa0f1d60072ebc3b0dc3a8f335826a2a36\nauthor Jimmy Miller <james.miller@vercel.com> 1789138225 -0400\ncommitter Jimmy Miller <james.miller@vercel.com> 1789138225 -0400\n\ncombine target and mode test to misc for later random small features. Remove the version doc line since that is already fixed\n",
+          "verified_at": "2026-09-11T14:50:42Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/895938200c2cf64ba49cc46d19fec374c4c36fc3",
+      "html_url": "https://github.com/vercel/next.js/commit/895938200c2cf64ba49cc46d19fec374c4c36fc3",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/895938200c2cf64ba49cc46d19fec374c4c36fc3/comments",
+      "author": {
+        "login": "jimmyhmiller",
+        "id": 6071338,
+        "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jimmyhmiller",
+        "html_url": "https://github.com/jimmyhmiller",
+        "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+        "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+        "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+        "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+        "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "jimmyhmiller",
+        "id": 6071338,
+        "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jimmyhmiller",
+        "html_url": "https://github.com/jimmyhmiller",
+        "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+        "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+        "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+        "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+        "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "html_url": "https://github.com/vercel/next.js/commit/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36"
+        }
+      ]
+    },
+    {
+      "sha": "38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "node_id": "C_kwDOBC3CitoAKDM4MDQ1ZjViNDE0Yzc5OGY2OGQwZDNmMzkyNGFiZTQ1YzQ0OGYzZGI",
+      "commit": {
+        "author": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T16:22:42Z"
+        },
+        "committer": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T16:22:42Z"
+        },
+        "message": "test: update Sass error snapshot\n\nReflect expanded CSS output when webpack loaders run in development mode.",
+        "tree": {
+          "sha": "8be7065018b83bd29391f9215450efe6b50f19cd",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/8be7065018b83bd29391f9215450efe6b50f19cd"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/38045f5b414c798f68d0d3f3924abe45c448f3db",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgqiwK1re37otpNJipQM2IY1Cehw\nyUREFK+s3WdR2c0F0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQMvRTPJurBGlbrlfVC9l5M/pOzv6Ofwrgc9Y58kxuZBY9shkfJst+GOFwSBFCQ0Aoy\nfXUJh6/U3birpR0LhgEwg=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 8be7065018b83bd29391f9215450efe6b50f19cd\nparent 895938200c2cf64ba49cc46d19fec374c4c36fc3\nauthor Jimmy Miller <james.miller@vercel.com> 1789143762 -0400\ncommitter Jimmy Miller <james.miller@vercel.com> 1789143762 -0400\n\ntest: update Sass error snapshot\n\nReflect expanded CSS output when webpack loaders run in development mode.\n",
+          "verified_at": "2026-09-11T16:22:57Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "html_url": "https://github.com/vercel/next.js/commit/38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/38045f5b414c798f68d0d3f3924abe45c448f3db/comments",
+      "author": {
+        "login": "jimmyhmiller",
+        "id": 6071338,
+        "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jimmyhmiller",
+        "html_url": "https://github.com/jimmyhmiller",
+        "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+        "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+        "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+        "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+        "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "jimmyhmiller",
+        "id": 6071338,
+        "node_id": "MDQ6VXNlcjYwNzEzMzg=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/6071338?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jimmyhmiller",
+        "html_url": "https://github.com/jimmyhmiller",
+        "followers_url": "https://api.github.com/users/jimmyhmiller/followers",
+        "following_url": "https://api.github.com/users/jimmyhmiller/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jimmyhmiller/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jimmyhmiller/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jimmyhmiller/subscriptions",
+        "organizations_url": "https://api.github.com/users/jimmyhmiller/orgs",
+        "repos_url": "https://api.github.com/users/jimmyhmiller/repos",
+        "events_url": "https://api.github.com/users/jimmyhmiller/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jimmyhmiller/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "html_url": "https://github.com/vercel/next.js/commit/895938200c2cf64ba49cc46d19fec374c4c36fc3"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "94a59d1628ec52c44d7b28bbd0e1981444ed5aa5",
+      "filename": "crates/next-core/src/next_shared/webpack_rules/mod.rs",
+      "status": "modified",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/crates%2Fnext-core%2Fsrc%2Fnext_shared%2Fwebpack_rules%2Fmod.rs",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/crates%2Fnext-core%2Fsrc%2Fnext_shared%2Fwebpack_rules%2Fmod.rs",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/crates%2Fnext-core%2Fsrc%2Fnext_shared%2Fwebpack_rules%2Fmod.rs?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -157,6 +157,11 @@ pub async fn webpack_loader_options(\n             rcstr!(\"web\")\n         },\n     );\n+    let mode = if builtin_conditions.contains(&WebpackLoaderBuiltinCondition::Development) {\n+        rcstr!(\"development\")\n+    } else {\n+        rcstr!(\"production\")\n+    };\n \n     Ok(Vc::cell(Some(\n         WebpackLoadersOptions {\n@@ -166,6 +171,7 @@ pub async fn webpack_loader_options(\n                 .to_resolved()\n                 .await?,\n             target,\n+            mode,\n         }\n         .resolved_cell(),\n     )))"
+    },
+    {
+      "sha": "89cba5c919d0a58d436d6c71c9b1b24ab6eb4611",
+      "filename": "docs/01-app/03-api-reference/05-config/01-next-config-js/turbopack.mdx",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 5,
+      "changes": 5,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -79,11 +79,6 @@ Turbopack uses the [`loader-runner`](https://github.com/webpack/loader-runner) l\n - [`fs`](https://webpack.js.org/api/loaders/#thisfs) - Partial support: only `fs.readFile` is currently implemented.\n - [`emitFile`](https://webpack.js.org/api/loaders/#thisemitfile) - No support\n \n-**Context properties:**\n-\n-- [`version`](https://webpack.js.org/api/loaders/#thisversion) - No support\n-- [`mode`](https://webpack.js.org/api/loaders/#thismode) - No support\n-\n **Utilities:**\n \n - [`utils`](https://webpack.js.org/api/loaders/#thisutils) - No support"
+    },
+    {
+      "sha": "1031a7bf562736bd3a8346c794c71e072dc23b51",
+      "filename": "test/development/sass-error/index.test.ts",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 3,
+      "changes": 11,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fdevelopment%2Fsass-error%2Findex.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fdevelopment%2Fsass-error%2Findex.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fdevelopment%2Fsass-error%2Findex.test.ts?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -38,9 +38,14 @@ describe('app dir - css', () => {\n            Pseudo-elements like '::before' or '::after' can't be followed by selectors like 'Ident(\"path\")'\n \n            Generated code of PostCSS transform of loaders [next/dist/build/webpack/loaders/resolve-url-loader/index, next/dist/compiled/sass-loader] transform of file content of app/global.scss:\n-           ./app/global.scss.css:1:884\n-           > 1 | ...ate(-50%, 0px)}input.defaultCheckbox::before path{fill:currentColor}input:checked.defaul...\n-               |                                                ^\n+           ./app/global.scss.css:46:30\n+             44 | }\n+             45 |\n+           > 46 | input.defaultCheckbox::before path {\n+                |                              ^\n+             47 |   fill: currentColor;\n+             48 | }\n+             49 |\n \n            Import trace:\n              Client Component Browser:"
+    },
+    {
+      "sha": "926013e6ac51c9434d5771954e78d266bea72b27",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/app/client.misc-test.js",
+      "status": "renamed",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fclient.misc-test.js",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fclient.misc-test.js",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fclient.misc-test.js?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "previous_filename": "test/e2e/app-dir/webpack-loader-target/app/client.target-test.js"
+    },
+    {
+      "sha": "7c3f422f0039c8c30aafb3fc046ed9ececf9c21f",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/app/layout.tsx",
+      "status": "renamed",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Flayout.tsx",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Flayout.tsx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Flayout.tsx?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "previous_filename": "test/e2e/app-dir/webpack-loader-target/app/layout.tsx"
+    },
+    {
+      "sha": "4b8364b89a8e1a258cbfb044c26495708d85c80e",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/app/page.tsx",
+      "status": "added",
+      "additions": 12,
+      "deletions": 0,
+      "changes": 12,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fpage.tsx",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fpage.tsx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fpage.tsx?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -0,0 +1,12 @@\n+import ClientTarget from './client.misc-test'\n+import { mode, target } from './server.misc-test'\n+\n+export default function Page() {\n+  return (\n+    <main>\n+      <p id=\"server-target\">{JSON.stringify(target)}</p>\n+      <p id=\"mode\">{mode}</p>\n+      <ClientTarget />\n+    </main>\n+  )\n+}"
+    },
+    {
+      "sha": "ebe3cc3f2523b9fbb292917a42d98fa58ef9f970",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/app/server.misc-test.js",
+      "status": "added",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fserver.misc-test.js",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fserver.misc-test.js",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fserver.misc-test.js?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -0,0 +1,4 @@\n+export const target = '__TARGET__'\n+export const mode = '__MODE__'\n+\n+export default target"
+    },
+    {
+      "sha": "e0e932d8b06a094188c3c7ba83a015d6debd32c4",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/misc-loader.js",
+      "status": "added",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fmisc-loader.js",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fmisc-loader.js",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fmisc-loader.js?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -0,0 +1,5 @@\n+module.exports = function (source) {\n+  return source\n+    .replaceAll(\"'__TARGET__'\", JSON.stringify(this.target))\n+    .replaceAll(\"'__MODE__'\", JSON.stringify(this.mode))\n+}"
+    },
+    {
+      "sha": "1bb19df9144545ac99a17d5dbc533eea86dab61f",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/next.config.ts",
+      "status": "renamed",
+      "additions": 3,
+      "deletions": 3,
+      "changes": 6,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fnext.config.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fnext.config.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fnext.config.ts?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -1,18 +1,18 @@\n import type { NextConfig } from 'next'\n \n-const loader = require.resolve('./target-loader.js')\n+const loader = require.resolve('./misc-loader.js')\n \n const nextConfig: NextConfig = {\n   turbopack: {\n     rules: {\n-      '*.target-test.js': {\n+      '*.misc-test.js': {\n         loaders: [loader],\n       },\n     },\n   },\n   webpack(config) {\n     config.module.rules.push({\n-      test: /\\.target-test\\.js$/,\n+      test: /\\.misc-test\\.js$/,\n       use: loader,\n     })\n     return config",
+      "previous_filename": "test/e2e/app-dir/webpack-loader-target/next.config.ts"
+    },
+    {
+      "sha": "455dde3a0ae9293f7eac22b1eac1c5ac4107f7c1",
+      "filename": "test/e2e/app-dir/webpack-loader-misc/webpack-loader-misc.test.ts",
+      "status": "renamed",
+      "additions": 4,
+      "deletions": 3,
+      "changes": 7,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fwebpack-loader-misc.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fwebpack-loader-misc.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fwebpack-loader-misc.test.ts?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -1,13 +1,14 @@\n import { nextTestSetup } from 'e2e-utils'\n \n-describe('webpack-loader-target', () => {\n-  const { next } = nextTestSetup({\n+describe('webpack-loader-misc', () => {\n+  const { next, isNextDev } = nextTestSetup({\n     files: __dirname,\n   })\n \n-  it('exposes the server compilation target to loaders', async () => {\n+  it('exposes the server compilation target and mode to loaders', async () => {\n     const $ = await next.render$('/')\n     expect($('#server-target').text()).toBe('\"node\"')\n+    expect($('#mode').text()).toBe(isNextDev ? 'development' : 'production')\n   })\n \n   it('exposes the browser compilation target to loaders', async () => {",
+      "previous_filename": "test/e2e/app-dir/webpack-loader-target/webpack-loader-target.test.ts"
+    },
+    {
+      "sha": "46735793e1b0efc1778002efbf0c2ee7050a74cf",
+      "filename": "test/e2e/app-dir/webpack-loader-target/app/page.tsx",
+      "status": "removed",
+      "additions": 0,
+      "deletions": 11,
+      "changes": 11,
+      "blob_url": "https://github.com/vercel/next.js/blob/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fpage.tsx",
+      "raw_url": "https://github.com/vercel/next.js/raw/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fpage.tsx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fpage.tsx?ref=393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+      "patch": "@@ -1,11 +0,0 @@\n-import ClientTarget from './client.target-test'\n-import serverTarget from './server.target-test'\n-\n-export default function Page() {\n-  return (\n-    <main>\n-      <p id=\"server-target\">{JSON.stringify(serverTarget)}</p>\n-      <ClientTarget />\n-    </main>\n-  )\n-}"
+    },
+    {
+      "sha": "446e56eb5dcb149b7e5042d26ad95096272df768",
+      "filename": "test/e2e/app-dir/webpack-loader-target/app/server.target-test.js",
+      "status": "removed",
+      "additions": 0,
+      "deletions": 3,
+      "changes": 3,
+      "blob_url": "https://github.com/vercel/next.js/blob/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fserver.target-test.js",
+      "raw_url": "https://github.com/vercel/next.js/raw/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fserver.target-test.js",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fserver.target-test.js?ref=393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+      "patch": "@@ -1,3 +0,0 @@\n-const target = '__TARGET__'\n-\n-export default target"
+    },
+    {
+      "sha": "99c39bbd538921ecf4f62836cb5d88997f8d8d04",
+      "filename": "test/e2e/app-dir/webpack-loader-target/target-loader.js",
+      "status": "removed",
+      "additions": 0,
+      "deletions": 3,
+      "changes": 3,
+      "blob_url": "https://github.com/vercel/next.js/blob/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Ftarget-loader.js",
+      "raw_url": "https://github.com/vercel/next.js/raw/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Ftarget-loader.js",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Ftarget-loader.js?ref=393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+      "patch": "@@ -1,3 +0,0 @@\n-module.exports = function (source) {\n-  return source.replaceAll(\"'__TARGET__'\", JSON.stringify(this.target))\n-}"
+    },
+    {
+      "sha": "dd507558b1be82f91adb184d54c4a35065eb2216",
+      "filename": "turbopack/crates/turbopack-node/js/src/transforms/webpack-loaders.ts",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack-node%2Fjs%2Fsrc%2Ftransforms%2Fwebpack-loaders.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack-node%2Fjs%2Fsrc%2Ftransforms%2Fwebpack-loaders.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack-node%2Fjs%2Fsrc%2Ftransforms%2Fwebpack-loaders.ts?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -163,6 +163,7 @@ const transform = (\n   query: string,\n   loaders: LoaderConfig[],\n   target: string,\n+  mode: 'development' | 'production',\n   sourceMap: boolean\n ) => {\n   return new Promise((resolve, reject) => {\n@@ -193,6 +194,7 @@ const transform = (\n           currentTraceSpan: new DummySpan(),\n           rootContext: contextDir,\n           target,\n+          mode,\n           sourceMap,\n           getOptions() {\n             const entry = this.loaders[this.loaderIndex]"
+    },
+    {
+      "sha": "c30d07ed0536543a69cb194c2a71db4d2cca1ccf",
+      "filename": "turbopack/crates/turbopack-node/src/transforms/webpack.rs",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack-node%2Fsrc%2Ftransforms%2Fwebpack.rs",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack-node%2Fsrc%2Ftransforms%2Fwebpack.rs",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack-node%2Fsrc%2Ftransforms%2Fwebpack.rs?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -98,6 +98,7 @@ pub struct WebpackLoaders {\n     execution_context: ResolvedVc<ExecutionContext>,\n     loaders: ResolvedVc<WebpackLoaderItems>,\n     target: ResolvedVc<RcStr>,\n+    mode: RcStr,\n     rename_as: Option<RcStr>,\n     resolve_options_context: ResolvedVc<ResolveOptionsContext>,\n     source_maps: bool,\n@@ -111,6 +112,7 @@ impl WebpackLoaders {\n         execution_context: ResolvedVc<ExecutionContext>,\n         loaders: ResolvedVc<WebpackLoaderItems>,\n         target: ResolvedVc<RcStr>,\n+        mode: RcStr,\n         rename_as: Option<RcStr>,\n         resolve_options_context: ResolvedVc<ResolveOptionsContext>,\n         source_maps: bool,\n@@ -120,6 +122,7 @@ impl WebpackLoaders {\n             execution_context,\n             loaders,\n             target,\n+            mode,\n             rename_as,\n             resolve_options_context,\n             source_maps,\n@@ -323,6 +326,7 @@ impl WebpackLoadersProcessedAsset {\n                     ResolvedVc::cell(self.source.ident().await?.query.to_string().into()),\n                     ResolvedVc::cell(json!(*loaders)),\n                     ResolvedVc::cell(transform.target.await?.to_string().into()),\n+                    ResolvedVc::cell(transform.mode.to_string().into()),\n                     ResolvedVc::cell(transform.source_maps.into()),\n                 ],\n                 additional_invalidation: Completion::immutable().to_resolved().await?,"
+    },
+    {
+      "sha": "cd897bd4228dfaf0a87d308c2a61a1e42bf6a7e0",
+      "filename": "turbopack/crates/turbopack/src/lib.rs",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Flib.rs",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Flib.rs",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Flib.rs?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -733,6 +733,7 @@ async fn process_default_internal(\n             *execution_context,\n             loaders_vc,\n             *webpack_loaders_options.target,\n+            webpack_loaders_options.mode.clone(),\n             rename_as.clone(),\n             *resolve_options_context,\n             source_maps,"
+    },
+    {
+      "sha": "52b798d4d83412f3b05ed019671770308db7c13d",
+      "filename": "turbopack/crates/turbopack/src/module_options/mod.rs",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmod.rs",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmod.rs",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmod.rs?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -501,6 +501,7 @@ impl ModuleOptions {\n                                     *execution_context,\n                                     *rule.loaders,\n                                     *webpack_loaders_options.target,\n+                                    webpack_loaders_options.mode.clone(),\n                                     rule.rename_as.clone(),\n                                     resolve_options_context,\n                                     matches!(ecmascript_source_maps, SourceMapsType::Full),"
+    },
+    {
+      "sha": "cb7e6eae93865967c8b2491929379a0f5cfde355",
+      "filename": "turbopack/crates/turbopack/src/module_options/module_options_context.rs",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmodule_options_context.rs",
+      "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmodule_options_context.rs",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmodule_options_context.rs?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "patch": "@@ -84,6 +84,7 @@ pub struct WebpackLoadersOptions {\n     pub builtin_conditions: ResolvedVc<Box<dyn WebpackLoaderBuiltinConditionSet>>,\n     pub loader_runner_package: Option<ResolvedVc<ImportMapping>>,\n     pub target: ResolvedVc<RcStr>,\n+    pub mode: RcStr,\n }\n \n pub enum WebpackLoaderBuiltinConditionSetMatch {"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+      "html_url": "https://github.com/vercel/next.js/commit/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+      "commit": {
+        "author": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-08T21:54:07Z"
+        },
+        "committer": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-10T20:39:54Z"
+        },
+        "message": "Adds this.mode for webpack loaders\n\nPretty straightforward. But a number of loaders depend on it including\n\n- postcss-loader\n- sass-loader\n- stylus-loader\n- vue-loader\n- nunjucks-loader\n- thread-loader"
+      },
+      "parents": [
+        {
+          "sha": "393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077",
+          "html_url": "https://github.com/vercel/next.js/commit/393de1ebe0993c57e1ddd4d3f4d66a03c7fb1077"
+        }
+      ],
+      "stats": {
+        "total": 69,
+        "additions": 68,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "94a59d1628ec52c44d7b28bbd0e1981444ed5aa5",
+          "filename": "crates/next-core/src/next_shared/webpack_rules/mod.rs",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/crates%2Fnext-core%2Fsrc%2Fnext_shared%2Fwebpack_rules%2Fmod.rs",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/crates%2Fnext-core%2Fsrc%2Fnext_shared%2Fwebpack_rules%2Fmod.rs",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/crates%2Fnext-core%2Fsrc%2Fnext_shared%2Fwebpack_rules%2Fmod.rs?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -157,6 +157,11 @@ pub async fn webpack_loader_options(\n             rcstr!(\"web\")\n         },\n     );\n+    let mode = if builtin_conditions.contains(&WebpackLoaderBuiltinCondition::Development) {\n+        rcstr!(\"development\")\n+    } else {\n+        rcstr!(\"production\")\n+    };\n \n     Ok(Vc::cell(Some(\n         WebpackLoadersOptions {\n@@ -166,6 +171,7 @@ pub async fn webpack_loader_options(\n                 .to_resolved()\n                 .await?,\n             target,\n+            mode,\n         }\n         .resolved_cell(),\n     )))"
+        },
+        {
+          "sha": "0a6d9f7f7b2d8a21f8cec8081e389bac180d0527",
+          "filename": "docs/01-app/03-api-reference/05-config/01-next-config-js/turbopack.mdx",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -82,7 +82,6 @@ Turbopack uses the [`loader-runner`](https://github.com/webpack/loader-runner) l\n **Context properties:**\n \n - [`version`](https://webpack.js.org/api/loaders/#thisversion) - No support\n-- [`mode`](https://webpack.js.org/api/loaders/#thismode) - No support\n \n **Utilities:**\n "
+        },
+        {
+          "sha": "7c3f422f0039c8c30aafb3fc046ed9ececf9c21f",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/app/layout.tsx",
+          "status": "added",
+          "additions": 9,
+          "deletions": 0,
+          "changes": 9,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Flayout.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Flayout.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Flayout.tsx?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -0,0 +1,9 @@\n+import type { ReactNode } from 'react'\n+\n+export default function Root({ children }: { children: ReactNode }) {\n+  return (\n+    <html>\n+      <body>{children}</body>\n+    </html>\n+  )\n+}"
+        },
+        {
+          "sha": "59d7c1f2d5d50bd9816c55f28e5291a45f211d17",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/app/page.tsx",
+          "status": "added",
+          "additions": 5,
+          "deletions": 0,
+          "changes": 5,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fpage.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fpage.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fpage.tsx?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -0,0 +1,5 @@\n+import mode from './value.mode-test'\n+\n+export default function Page() {\n+  return <p id=\"mode\">{mode}</p>\n+}"
+        },
+        {
+          "sha": "a64470727da267d1a760d19b70778c98d059d173",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/app/value.mode-test.js",
+          "status": "added",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fvalue.mode-test.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fvalue.mode-test.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fvalue.mode-test.js?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -0,0 +1 @@\n+export default 'loader did not run'"
+        },
+        {
+          "sha": "ff4b693e379b96667809e0002a00758eb943dbcc",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/mode-loader.js",
+          "status": "added",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fmode-loader.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fmode-loader.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fmode-loader.js?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -0,0 +1,3 @@\n+module.exports = function () {\n+  return `export default ${JSON.stringify(this.mode)}`\n+}"
+        },
+        {
+          "sha": "ae3d53130a795da48e42b242486e37dcd5b10132",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/next.config.ts",
+          "status": "added",
+          "additions": 23,
+          "deletions": 0,
+          "changes": 23,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fnext.config.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fnext.config.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fnext.config.ts?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -0,0 +1,23 @@\n+import type { NextConfig } from 'next'\n+\n+const loader = require.resolve('./mode-loader.js')\n+\n+const nextConfig: NextConfig = {\n+  turbopack: {\n+    rules: {\n+      '*.mode-test.js': {\n+        loaders: [loader],\n+        as: '*.js',\n+      },\n+    },\n+  },\n+  webpack(config) {\n+    config.module.rules.push({\n+      test: /\\.mode-test\\.js$/,\n+      use: loader,\n+    })\n+    return config\n+  },\n+}\n+\n+export default nextConfig"
+        },
+        {
+          "sha": "198d626047e79df822d745cfc82b3486bebe2308",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/webpack-loader-mode.test.ts",
+          "status": "added",
+          "additions": 12,
+          "deletions": 0,
+          "changes": 12,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fwebpack-loader-mode.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fwebpack-loader-mode.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fwebpack-loader-mode.test.ts?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -0,0 +1,12 @@\n+import { nextTestSetup } from 'e2e-utils'\n+\n+describe('webpack-loader-mode', () => {\n+  const { next, isNextDev } = nextTestSetup({\n+    files: __dirname,\n+  })\n+\n+  it('exposes the compilation mode to loaders', async () => {\n+    const $ = await next.render$('/')\n+    expect($('#mode').text()).toBe(isNextDev ? 'development' : 'production')\n+  })\n+})"
+        },
+        {
+          "sha": "dd507558b1be82f91adb184d54c4a35065eb2216",
+          "filename": "turbopack/crates/turbopack-node/js/src/transforms/webpack-loaders.ts",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack-node%2Fjs%2Fsrc%2Ftransforms%2Fwebpack-loaders.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack-node%2Fjs%2Fsrc%2Ftransforms%2Fwebpack-loaders.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack-node%2Fjs%2Fsrc%2Ftransforms%2Fwebpack-loaders.ts?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -163,6 +163,7 @@ const transform = (\n   query: string,\n   loaders: LoaderConfig[],\n   target: string,\n+  mode: 'development' | 'production',\n   sourceMap: boolean\n ) => {\n   return new Promise((resolve, reject) => {\n@@ -193,6 +194,7 @@ const transform = (\n           currentTraceSpan: new DummySpan(),\n           rootContext: contextDir,\n           target,\n+          mode,\n           sourceMap,\n           getOptions() {\n             const entry = this.loaders[this.loaderIndex]"
+        },
+        {
+          "sha": "c30d07ed0536543a69cb194c2a71db4d2cca1ccf",
+          "filename": "turbopack/crates/turbopack-node/src/transforms/webpack.rs",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack-node%2Fsrc%2Ftransforms%2Fwebpack.rs",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack-node%2Fsrc%2Ftransforms%2Fwebpack.rs",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack-node%2Fsrc%2Ftransforms%2Fwebpack.rs?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -98,6 +98,7 @@ pub struct WebpackLoaders {\n     execution_context: ResolvedVc<ExecutionContext>,\n     loaders: ResolvedVc<WebpackLoaderItems>,\n     target: ResolvedVc<RcStr>,\n+    mode: RcStr,\n     rename_as: Option<RcStr>,\n     resolve_options_context: ResolvedVc<ResolveOptionsContext>,\n     source_maps: bool,\n@@ -111,6 +112,7 @@ impl WebpackLoaders {\n         execution_context: ResolvedVc<ExecutionContext>,\n         loaders: ResolvedVc<WebpackLoaderItems>,\n         target: ResolvedVc<RcStr>,\n+        mode: RcStr,\n         rename_as: Option<RcStr>,\n         resolve_options_context: ResolvedVc<ResolveOptionsContext>,\n         source_maps: bool,\n@@ -120,6 +122,7 @@ impl WebpackLoaders {\n             execution_context,\n             loaders,\n             target,\n+            mode,\n             rename_as,\n             resolve_options_context,\n             source_maps,\n@@ -323,6 +326,7 @@ impl WebpackLoadersProcessedAsset {\n                     ResolvedVc::cell(self.source.ident().await?.query.to_string().into()),\n                     ResolvedVc::cell(json!(*loaders)),\n                     ResolvedVc::cell(transform.target.await?.to_string().into()),\n+                    ResolvedVc::cell(transform.mode.to_string().into()),\n                     ResolvedVc::cell(transform.source_maps.into()),\n                 ],\n                 additional_invalidation: Completion::immutable().to_resolved().await?,"
+        },
+        {
+          "sha": "cd897bd4228dfaf0a87d308c2a61a1e42bf6a7e0",
+          "filename": "turbopack/crates/turbopack/src/lib.rs",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Flib.rs",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Flib.rs",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Flib.rs?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -733,6 +733,7 @@ async fn process_default_internal(\n             *execution_context,\n             loaders_vc,\n             *webpack_loaders_options.target,\n+            webpack_loaders_options.mode.clone(),\n             rename_as.clone(),\n             *resolve_options_context,\n             source_maps,"
+        },
+        {
+          "sha": "52b798d4d83412f3b05ed019671770308db7c13d",
+          "filename": "turbopack/crates/turbopack/src/module_options/mod.rs",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmod.rs",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmod.rs",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmod.rs?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -501,6 +501,7 @@ impl ModuleOptions {\n                                     *execution_context,\n                                     *rule.loaders,\n                                     *webpack_loaders_options.target,\n+                                    webpack_loaders_options.mode.clone(),\n                                     rule.rename_as.clone(),\n                                     resolve_options_context,\n                                     matches!(ecmascript_source_maps, SourceMapsType::Full),"
+        },
+        {
+          "sha": "cb7e6eae93865967c8b2491929379a0f5cfde355",
+          "filename": "turbopack/crates/turbopack/src/module_options/module_options_context.rs",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmodule_options_context.rs",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmodule_options_context.rs",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/turbopack%2Fcrates%2Fturbopack%2Fsrc%2Fmodule_options%2Fmodule_options_context.rs?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -84,6 +84,7 @@ pub struct WebpackLoadersOptions {\n     pub builtin_conditions: ResolvedVc<Box<dyn WebpackLoaderBuiltinConditionSet>>,\n     pub loader_runner_package: Option<ResolvedVc<ImportMapping>>,\n     pub target: ResolvedVc<RcStr>,\n+    pub mode: RcStr,\n }\n \n pub enum WebpackLoaderBuiltinConditionSetMatch {"
+        }
+      ]
+    },
+    {
+      "sha": "895938200c2cf64ba49cc46d19fec374c4c36fc3",
+      "html_url": "https://github.com/vercel/next.js/commit/895938200c2cf64ba49cc46d19fec374c4c36fc3",
+      "commit": {
+        "author": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T14:50:25Z"
+        },
+        "committer": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T14:50:25Z"
+        },
+        "message": "combine target and mode test to misc for later random small features. Remove the version doc line since that is already fixed"
+      },
+      "parents": [
+        {
+          "sha": "639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "html_url": "https://github.com/vercel/next.js/commit/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36"
+        }
+      ],
+      "stats": {
+        "total": 108,
+        "additions": 28,
+        "deletions": 80
+      },
+      "files": [
+        {
+          "sha": "89cba5c919d0a58d436d6c71c9b1b24ab6eb4611",
+          "filename": "docs/01-app/03-api-reference/05-config/01-next-config-js/turbopack.mdx",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 4,
+          "changes": 4,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/docs%2F01-app%2F03-api-reference%2F05-config%2F01-next-config-js%2Fturbopack.mdx?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "patch": "@@ -79,10 +79,6 @@ Turbopack uses the [`loader-runner`](https://github.com/webpack/loader-runner) l\n - [`fs`](https://webpack.js.org/api/loaders/#thisfs) - Partial support: only `fs.readFile` is currently implemented.\n - [`emitFile`](https://webpack.js.org/api/loaders/#thisemitfile) - No support\n \n-**Context properties:**\n-\n-- [`version`](https://webpack.js.org/api/loaders/#thisversion) - No support\n-\n **Utilities:**\n \n - [`utils`](https://webpack.js.org/api/loaders/#thisutils) - No support"
+        },
+        {
+          "sha": "926013e6ac51c9434d5771954e78d266bea72b27",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/app/client.misc-test.js",
+          "status": "renamed",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fclient.misc-test.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fclient.misc-test.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fclient.misc-test.js?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "previous_filename": "test/e2e/app-dir/webpack-loader-target/app/client.target-test.js"
+        },
+        {
+          "sha": "7c3f422f0039c8c30aafb3fc046ed9ececf9c21f",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/app/layout.tsx",
+          "status": "renamed",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Flayout.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Flayout.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Flayout.tsx?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "previous_filename": "test/e2e/app-dir/webpack-loader-mode/app/layout.tsx"
+        },
+        {
+          "sha": "4b8364b89a8e1a258cbfb044c26495708d85c80e",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/app/page.tsx",
+          "status": "added",
+          "additions": 12,
+          "deletions": 0,
+          "changes": 12,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fpage.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fpage.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fpage.tsx?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "patch": "@@ -0,0 +1,12 @@\n+import ClientTarget from './client.misc-test'\n+import { mode, target } from './server.misc-test'\n+\n+export default function Page() {\n+  return (\n+    <main>\n+      <p id=\"server-target\">{JSON.stringify(target)}</p>\n+      <p id=\"mode\">{mode}</p>\n+      <ClientTarget />\n+    </main>\n+  )\n+}"
+        },
+        {
+          "sha": "ebe3cc3f2523b9fbb292917a42d98fa58ef9f970",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/app/server.misc-test.js",
+          "status": "added",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fserver.misc-test.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fserver.misc-test.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fapp%2Fserver.misc-test.js?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "patch": "@@ -0,0 +1,4 @@\n+export const target = '__TARGET__'\n+export const mode = '__MODE__'\n+\n+export default target"
+        },
+        {
+          "sha": "e0e932d8b06a094188c3c7ba83a015d6debd32c4",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/misc-loader.js",
+          "status": "added",
+          "additions": 5,
+          "deletions": 0,
+          "changes": 5,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fmisc-loader.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fmisc-loader.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fmisc-loader.js?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "patch": "@@ -0,0 +1,5 @@\n+module.exports = function (source) {\n+  return source\n+    .replaceAll(\"'__TARGET__'\", JSON.stringify(this.target))\n+    .replaceAll(\"'__MODE__'\", JSON.stringify(this.mode))\n+}"
+        },
+        {
+          "sha": "1bb19df9144545ac99a17d5dbc533eea86dab61f",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/next.config.ts",
+          "status": "renamed",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fnext.config.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fnext.config.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fnext.config.ts?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "patch": "@@ -1,18 +1,18 @@\n import type { NextConfig } from 'next'\n \n-const loader = require.resolve('./target-loader.js')\n+const loader = require.resolve('./misc-loader.js')\n \n const nextConfig: NextConfig = {\n   turbopack: {\n     rules: {\n-      '*.target-test.js': {\n+      '*.misc-test.js': {\n         loaders: [loader],\n       },\n     },\n   },\n   webpack(config) {\n     config.module.rules.push({\n-      test: /\\.target-test\\.js$/,\n+      test: /\\.misc-test\\.js$/,\n       use: loader,\n     })\n     return config",
+          "previous_filename": "test/e2e/app-dir/webpack-loader-target/next.config.ts"
+        },
+        {
+          "sha": "455dde3a0ae9293f7eac22b1eac1c5ac4107f7c1",
+          "filename": "test/e2e/app-dir/webpack-loader-misc/webpack-loader-misc.test.ts",
+          "status": "renamed",
+          "additions": 4,
+          "deletions": 3,
+          "changes": 7,
+          "blob_url": "https://github.com/vercel/next.js/blob/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fwebpack-loader-misc.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/895938200c2cf64ba49cc46d19fec374c4c36fc3/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fwebpack-loader-misc.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-misc%2Fwebpack-loader-misc.test.ts?ref=895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "patch": "@@ -1,13 +1,14 @@\n import { nextTestSetup } from 'e2e-utils'\n \n-describe('webpack-loader-target', () => {\n-  const { next } = nextTestSetup({\n+describe('webpack-loader-misc', () => {\n+  const { next, isNextDev } = nextTestSetup({\n     files: __dirname,\n   })\n \n-  it('exposes the server compilation target to loaders', async () => {\n+  it('exposes the server compilation target and mode to loaders', async () => {\n     const $ = await next.render$('/')\n     expect($('#server-target').text()).toBe('\"node\"')\n+    expect($('#mode').text()).toBe(isNextDev ? 'development' : 'production')\n   })\n \n   it('exposes the browser compilation target to loaders', async () => {",
+          "previous_filename": "test/e2e/app-dir/webpack-loader-target/webpack-loader-target.test.ts"
+        },
+        {
+          "sha": "59d7c1f2d5d50bd9816c55f28e5291a45f211d17",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/app/page.tsx",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 5,
+          "changes": 5,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fpage.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fpage.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fpage.tsx?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,5 +0,0 @@\n-import mode from './value.mode-test'\n-\n-export default function Page() {\n-  return <p id=\"mode\">{mode}</p>\n-}"
+        },
+        {
+          "sha": "a64470727da267d1a760d19b70778c98d059d173",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/app/value.mode-test.js",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fvalue.mode-test.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fvalue.mode-test.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fapp%2Fvalue.mode-test.js?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1 +0,0 @@\n-export default 'loader did not run'"
+        },
+        {
+          "sha": "ff4b693e379b96667809e0002a00758eb943dbcc",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/mode-loader.js",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 3,
+          "changes": 3,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fmode-loader.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fmode-loader.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fmode-loader.js?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,3 +0,0 @@\n-module.exports = function () {\n-  return `export default ${JSON.stringify(this.mode)}`\n-}"
+        },
+        {
+          "sha": "ae3d53130a795da48e42b242486e37dcd5b10132",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/next.config.ts",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 23,
+          "changes": 23,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fnext.config.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fnext.config.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fnext.config.ts?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,23 +0,0 @@\n-import type { NextConfig } from 'next'\n-\n-const loader = require.resolve('./mode-loader.js')\n-\n-const nextConfig: NextConfig = {\n-  turbopack: {\n-    rules: {\n-      '*.mode-test.js': {\n-        loaders: [loader],\n-        as: '*.js',\n-      },\n-    },\n-  },\n-  webpack(config) {\n-    config.module.rules.push({\n-      test: /\\.mode-test\\.js$/,\n-      use: loader,\n-    })\n-    return config\n-  },\n-}\n-\n-export default nextConfig"
+        },
+        {
+          "sha": "198d626047e79df822d745cfc82b3486bebe2308",
+          "filename": "test/e2e/app-dir/webpack-loader-mode/webpack-loader-mode.test.ts",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 12,
+          "changes": 12,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fwebpack-loader-mode.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fwebpack-loader-mode.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-mode%2Fwebpack-loader-mode.test.ts?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,12 +0,0 @@\n-import { nextTestSetup } from 'e2e-utils'\n-\n-describe('webpack-loader-mode', () => {\n-  const { next, isNextDev } = nextTestSetup({\n-    files: __dirname,\n-  })\n-\n-  it('exposes the compilation mode to loaders', async () => {\n-    const $ = await next.render$('/')\n-    expect($('#mode').text()).toBe(isNextDev ? 'development' : 'production')\n-  })\n-})"
+        },
+        {
+          "sha": "7c3f422f0039c8c30aafb3fc046ed9ececf9c21f",
+          "filename": "test/e2e/app-dir/webpack-loader-target/app/layout.tsx",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 9,
+          "changes": 9,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Flayout.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Flayout.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Flayout.tsx?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,9 +0,0 @@\n-import type { ReactNode } from 'react'\n-\n-export default function Root({ children }: { children: ReactNode }) {\n-  return (\n-    <html>\n-      <body>{children}</body>\n-    </html>\n-  )\n-}"
+        },
+        {
+          "sha": "46735793e1b0efc1778002efbf0c2ee7050a74cf",
+          "filename": "test/e2e/app-dir/webpack-loader-target/app/page.tsx",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 11,
+          "changes": 11,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fpage.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fpage.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fpage.tsx?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,11 +0,0 @@\n-import ClientTarget from './client.target-test'\n-import serverTarget from './server.target-test'\n-\n-export default function Page() {\n-  return (\n-    <main>\n-      <p id=\"server-target\">{JSON.stringify(serverTarget)}</p>\n-      <ClientTarget />\n-    </main>\n-  )\n-}"
+        },
+        {
+          "sha": "446e56eb5dcb149b7e5042d26ad95096272df768",
+          "filename": "test/e2e/app-dir/webpack-loader-target/app/server.target-test.js",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 3,
+          "changes": 3,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fserver.target-test.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fserver.target-test.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Fapp%2Fserver.target-test.js?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,3 +0,0 @@\n-const target = '__TARGET__'\n-\n-export default target"
+        },
+        {
+          "sha": "99c39bbd538921ecf4f62836cb5d88997f8d8d04",
+          "filename": "test/e2e/app-dir/webpack-loader-target/target-loader.js",
+          "status": "removed",
+          "additions": 0,
+          "deletions": 3,
+          "changes": 3,
+          "blob_url": "https://github.com/vercel/next.js/blob/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Ftarget-loader.js",
+          "raw_url": "https://github.com/vercel/next.js/raw/639e22aa0f1d60072ebc3b0dc3a8f335826a2a36/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Ftarget-loader.js",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fe2e%2Fapp-dir%2Fwebpack-loader-target%2Ftarget-loader.js?ref=639e22aa0f1d60072ebc3b0dc3a8f335826a2a36",
+          "patch": "@@ -1,3 +0,0 @@\n-module.exports = function (source) {\n-  return source.replaceAll(\"'__TARGET__'\", JSON.stringify(this.target))\n-}"
+        }
+      ]
+    },
+    {
+      "sha": "38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "html_url": "https://github.com/vercel/next.js/commit/38045f5b414c798f68d0d3f3924abe45c448f3db",
+      "commit": {
+        "author": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T16:22:42Z"
+        },
+        "committer": {
+          "name": "Jimmy Miller",
+          "email": "james.miller@vercel.com",
+          "date": "2026-09-11T16:22:42Z"
+        },
+        "message": "test: update Sass error snapshot\n\nReflect expanded CSS output when webpack loaders run in development mode."
+      },
+      "parents": [
+        {
+          "sha": "895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/895938200c2cf64ba49cc46d19fec374c4c36fc3",
+          "html_url": "https://github.com/vercel/next.js/commit/895938200c2cf64ba49cc46d19fec374c4c36fc3"
+        }
+      ],
+      "stats": {
+        "total": 11,
+        "additions": 8,
+        "deletions": 3
+      },
+      "files": [
+        {
+          "sha": "1031a7bf562736bd3a8346c794c71e072dc23b51",
+          "filename": "test/development/sass-error/index.test.ts",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 3,
+          "changes": 11,
+          "blob_url": "https://github.com/vercel/next.js/blob/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fdevelopment%2Fsass-error%2Findex.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/38045f5b414c798f68d0d3f3924abe45c448f3db/test%2Fdevelopment%2Fsass-error%2Findex.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fdevelopment%2Fsass-error%2Findex.test.ts?ref=38045f5b414c798f68d0d3f3924abe45c448f3db",
+          "patch": "@@ -38,9 +38,14 @@ describe('app dir - css', () => {\n            Pseudo-elements like '::before' or '::after' can't be followed by selectors like 'Ident(\"path\")'\n \n            Generated code of PostCSS transform of loaders [next/dist/build/webpack/loaders/resolve-url-loader/index, next/dist/compiled/sass-loader] transform of file content of app/global.scss:\n-           ./app/global.scss.css:1:884\n-           > 1 | ...ate(-50%, 0px)}input.defaultCheckbox::before path{fill:currentColor}input:checked.defaul...\n-               |                                                ^\n+           ./app/global.scss.css:46:30\n+             44 | }\n+             45 |\n+           > 46 | input.defaultCheckbox::before path {\n+                |                              ^\n+             47 |   fill: currentColor;\n+             48 | }\n+             49 |\n \n            Import trace:\n              Client Component Browser:"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T17:08:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103351227237",
+        "name": "thank you, next",
+        "started_at": "2026-09-11T17:08:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:23:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347192819",
+        "name": "Upload PR CI metadata",
+        "started_at": "2026-09-11T16:23:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347189767",
+        "name": "fetch test timings",
+        "started_at": "2026-09-11T16:23:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347179931",
+        "name": "build-native / build",
+        "started_at": "2026-09-11T16:23:24Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:30:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347179431",
+        "name": "lint / build",
+        "started_at": "2026-09-11T16:23:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:23:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347175044",
+        "name": "validate-docs-links",
+        "started_at": "2026-09-11T16:23:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:23:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347174968",
+        "name": "optimize-ci / PR Stack Optimizer",
+        "started_at": "2026-09-11T16:23:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:23:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347173722",
+        "name": "Determine changes",
+        "started_at": "2026-09-11T16:23:07Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347172751",
+        "name": "rustdoc check / build",
+        "started_at": "2026-09-11T16:23:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347171204",
+        "name": "test cargo benches / Test",
+        "started_at": "2026-09-11T16:24:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347147316",
+        "name": "test dev (2/10) / build",
+        "started_at": "2026-09-11T16:25:53Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347147128",
+        "name": "test cache components prod (3/7) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347147115",
+        "name": "test dev (9/10) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146996",
+        "name": "test cache components prod (1/7) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146982",
+        "name": "test dev (5/10) / build",
+        "started_at": "2026-09-11T16:25:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:34:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146899",
+        "name": "test dev (8/10) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146877",
+        "name": "test cache components prod (5/7) / build",
+        "started_at": "2026-09-11T16:25:53Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:37:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146860",
+        "name": "test dev (6/10) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146825",
+        "name": "test dev (3/10) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146809",
+        "name": "test dev (4/10) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146787",
+        "name": "test dev (1/10) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146716",
+        "name": "test unit (22) / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:33:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146670",
+        "name": "test cache components prod (7/7) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146563",
+        "name": "test next-config-ts-native-ts prod (22) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:34:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146407",
+        "name": "test dev (10/10) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146393",
+        "name": "test unit (20) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146325",
+        "name": "test prod (4/10) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146322",
+        "name": "test prod (10/10) / build",
+        "started_at": "2026-09-11T16:25:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146260",
+        "name": "test next-config-ts-native-ts prod (24.15.0) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:35:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146182",
+        "name": "test dev (7/10) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146145",
+        "name": "test cache components prod (2/7) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:39:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146123",
+        "name": "test prod (3/10) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:34:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347146045",
+        "name": "test cache components prod (4/7) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145972",
+        "name": "test prod (1/10) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:41:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145897",
+        "name": "test prod (9/10) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145894",
+        "name": "test cache components prod (6/7) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145864",
+        "name": "test cache components dev (5/6) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:34:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145814",
+        "name": "test cache components dev (6/6) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:25:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145703",
+        "name": "test next-config-ts-native-ts dev (22) / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:39:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145633",
+        "name": "test prod (6/10) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:25:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145621",
+        "name": "test next-config-ts-native-ts dev (24.15.0) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145607",
+        "name": "test cache components dev (2/6) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:30:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145584",
+        "name": "test cache components dev (1/6) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145578",
+        "name": "test turbopack production (3/7) / build",
+        "started_at": "2026-09-11T16:25:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145576",
+        "name": "test prod (2/10) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145521",
+        "name": "Test new and changed tests for flakes (prod) (2/5) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:25:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145520",
+        "name": "Test new and changed tests for flakes (dev) (2/5) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:37:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145471",
+        "name": "test turbopack production (4/7) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:25:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145469",
+        "name": "Test new and changed tests for flakes (prod) (3/5) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145433",
+        "name": "test prod (8/10) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:25:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145425",
+        "name": "Test new and changed tests for flakes (dev) (1/5) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:25:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145388",
+        "name": "Test new and changed tests for flakes (prod) (4/5) / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:41:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145365",
+        "name": "test prod (7/10) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145290",
+        "name": "Test new and changed tests for flakes (dev) (5/5) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145269",
+        "name": "test turbopack dev (5/7) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:42:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145241",
+        "name": "test prod (5/10) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145166",
+        "name": "Test new and changed tests for flakes (dev) (4/5) / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:38:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145163",
+        "name": "test turbopack production (2/7) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145154",
+        "name": "Test new and changed tests for flakes (prod) (5/5) / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:40:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145135",
+        "name": "test cache components dev (3/6) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145134",
+        "name": "test turbopack dev (7/7) / build",
+        "started_at": "2026-09-11T16:25:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:35:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145071",
+        "name": "test turbopack dev (1/7) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:33:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145044",
+        "name": "test cache components dev (4/6) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:37:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347145006",
+        "name": "test turbopack production (6/7) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:43:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144979",
+        "name": "test turbopack dev (4/7) / build",
+        "started_at": "2026-09-11T16:26:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144929",
+        "name": "test turbopack dev (2/7) / build",
+        "started_at": "2026-09-11T16:25:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144896",
+        "name": "Test new and changed tests for flakes (dev) (3/5) / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:40:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144863",
+        "name": "test turbopack production (1/7) / build",
+        "started_at": "2026-09-11T16:25:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144835",
+        "name": "Test new and changed tests when deployed (5/5) / build",
+        "started_at": "2026-09-11T16:30:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144790",
+        "name": "test turbopack production (7/7) / build",
+        "started_at": "2026-09-11T16:25:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144694",
+        "name": "test turbopack production (5/7) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:35:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144645",
+        "name": "test turbopack dev (6/7) / build",
+        "started_at": "2026-09-11T16:25:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:35:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144621",
+        "name": "test turbopack dev (3/7) / build",
+        "started_at": "2026-09-11T16:25:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144606",
+        "name": "Test new and changed tests when deployed (1/5) / build",
+        "started_at": "2026-09-11T16:30:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144589",
+        "name": "Test new and changed tests when deployed (4/5) / build",
+        "started_at": "2026-09-11T16:30:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144301",
+        "name": "Test new and changed tests for flakes (prod) (1/5) / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:37:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144296",
+        "name": "test unit windows (22) / build",
+        "started_at": "2026-09-11T16:27:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144232",
+        "name": "types and precompiled / build",
+        "started_at": "2026-09-11T16:24:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:29:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144195",
+        "name": "test firefox and safari / build",
+        "started_at": "2026-09-11T16:24:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144175",
+        "name": "Test new and changed tests when deployed (3/5) / build",
+        "started_at": "2026-09-11T16:30:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144088",
+        "name": "Test new and changed tests when deployed (cache components) (2/5) / build",
+        "started_at": "2026-09-11T16:30:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144073",
+        "name": "Test new and changed tests when deployed (2/5) / build",
+        "started_at": "2026-09-11T16:30:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144062",
+        "name": "Test new and changed tests when deployed (cache components) (5/5) / build",
+        "started_at": "2026-09-11T16:30:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:33:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144014",
+        "name": "test unit windows (20) / build",
+        "started_at": "2026-09-11T16:24:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:32:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347144005",
+        "name": "Test new and changed tests when deployed (cache components) (1/5) / build",
+        "started_at": "2026-09-11T16:30:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143843",
+        "name": "Test new and changed tests when deployed (cache components) (3/5) / build",
+        "started_at": "2026-09-11T16:30:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:31:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143840",
+        "name": "Test new and changed tests when deployed (cache components) (4/5) / build",
+        "started_at": "2026-09-11T16:30:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:36:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143574",
+        "name": "test prod windows / build",
+        "started_at": "2026-09-11T16:24:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:37:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143292",
+        "name": "test integration windows / build",
+        "started_at": "2026-09-11T16:24:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:55:44Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143163",
+        "name": "test rspack dev",
+        "started_at": "2026-09-11T16:55:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:34:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143159",
+        "name": "test dev windows / build",
+        "started_at": "2026-09-11T16:26:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:55:44Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347143126",
+        "name": "test rspack production",
+        "started_at": "2026-09-11T16:55:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347142930",
+        "name": "test next-swc wasi / build",
+        "started_at": "2026-09-11T16:23:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347142549",
+        "name": "build-native-windows / build",
+        "started_at": "2026-09-11T16:23:24Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347142416",
+        "name": "ast-grep lint",
+        "started_at": "2026-09-11T16:23:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:55:44Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347142275",
+        "name": "Run devlow benchmarks",
+        "started_at": "2026-09-11T16:55:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:26:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347142070",
+        "name": "test next-swc wasm / build",
+        "started_at": "2026-09-11T16:23:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347142037",
+        "name": "rust check / build",
+        "started_at": "2026-09-11T16:23:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:30:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347141866",
+        "name": "Wait for preview tarball",
+        "started_at": "2026-09-11T16:23:24Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T16:24:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34621662299/job/103347141830",
+        "name": "test devlow package / build",
+        "started_at": "2026-09-11T16:23:24Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 118
+  },
+  "combined_status": {
+    "sha": "38045f5b414c798f68d0d3f3924abe45c448f3db",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

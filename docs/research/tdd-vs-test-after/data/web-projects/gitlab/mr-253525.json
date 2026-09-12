@@ -1,0 +1,357 @@
+{
+  "source": "GitLab REST API",
+  "fetched_at": "2026-09-12T07:46:45Z",
+  "merge_request": {
+    "id": 527755066,
+    "iid": 253525,
+    "project_id": 278964,
+    "title": "Move org_pages and your_work_sidebar_org_menu_item to LA 100%",
+    "description": "<!--\n**Not ready yet?** Add `[ci skip]` to your MR title to skip the pipeline and save CI resources. \nIt's a small habit that makes a big difference for our shared compute budget and overall system load. \nEvery pipeline counts! 🙌\n-->\n\n## What does this MR do and why?\n\nMove `org_pages` and `your_work_sidebar_org_menu_item` to LA 100%\n\nThey need to be available for all users since they gate pages that do\nnot work with the organization actor.\n\nBased on documented release process in https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/20986\n\n## References\n\n<!--\nInclude [links](https://handbook.gitlab.com/handbook/communication/#start-with-a-merge-request:~:text=Cross%20link%20issues,alternate%20if%20duplicate.) to any resources that are relevant to this MR.\nThis will give reviewers and future readers helpful context.\n-->\n\n## Screenshots or screen recordings\n\n![ar-demo__1_](/uploads/31307b63576ad688e9670ff7ec16f8da/ar-demo__1_.mp4){width=900 height=582}\n\n## How to set up and validate locally\n\n<!--\nNumbered steps to set up and validate the change are strongly suggested.\n\nExample:\n\n1. In rails console enable the feature flag\n   ```ruby\n   Feature.enable(:member_areas_of_focus)\n   ```\n1. Visit any group or project member pages such as `http://127.0.0.1:3000/groups/flightjs/-/group_members`\n1. Click the `invite members` button.\n-->\n\n## MR acceptance checklist\n\nEvaluate this MR against the [MR acceptance checklist](https://docs.gitlab.com/development/code_review/#acceptance-checklist).\nIt helps you analyze changes to reduce risks in quality, performance, reliability, security, and maintainability.",
+    "state": "merged",
+    "created_at": "2026-09-03T19:10:05.695Z",
+    "updated_at": "2026-09-11T21:15:13.982Z",
+    "merged_by": {
+      "id": 13356,
+      "username": "dblessing",
+      "public_email": "",
+      "name": "Drew Blessing",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://secure.gravatar.com/avatar/f7a7e6e32e9c5482907025642135eb9546fae343ec42347aba492ba32575e603?s=80&d=identicon",
+      "web_url": "https://gitlab.com/dblessing"
+    },
+    "merge_user": {
+      "id": 13356,
+      "username": "dblessing",
+      "public_email": "",
+      "name": "Drew Blessing",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://secure.gravatar.com/avatar/f7a7e6e32e9c5482907025642135eb9546fae343ec42347aba492ba32575e603?s=80&d=identicon",
+      "web_url": "https://gitlab.com/dblessing"
+    },
+    "merged_at": "2026-09-11T16:00:48.040Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "move-org_pages-and-your_work_sidebar_org_menu_item-to-la-100",
+    "user_notes_count": 7,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 5413811,
+      "username": "peterhegman",
+      "public_email": "",
+      "name": "Peter Hegman",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://secure.gravatar.com/avatar/580a48768ed5147b418e0fc1a2ae5105592a18199cb771d5686cf523f0fc3fc0?s=80&d=identicon",
+      "web_url": "https://gitlab.com/peterhegman"
+    },
+    "assignees": [
+      {
+        "id": 5413811,
+        "username": "peterhegman",
+        "public_email": "",
+        "name": "Peter Hegman",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://secure.gravatar.com/avatar/580a48768ed5147b418e0fc1a2ae5105592a18199cb771d5686cf523f0fc3fc0?s=80&d=identicon",
+        "web_url": "https://gitlab.com/peterhegman"
+      }
+    ],
+    "assignee": {
+      "id": 5413811,
+      "username": "peterhegman",
+      "public_email": "",
+      "name": "Peter Hegman",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://secure.gravatar.com/avatar/580a48768ed5147b418e0fc1a2ae5105592a18199cb771d5686cf523f0fc3fc0?s=80&d=identicon",
+      "web_url": "https://gitlab.com/peterhegman"
+    },
+    "reviewers": [
+      {
+        "id": 13356,
+        "username": "dblessing",
+        "public_email": "",
+        "name": "Drew Blessing",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://secure.gravatar.com/avatar/f7a7e6e32e9c5482907025642135eb9546fae343ec42347aba492ba32575e603?s=80&d=identicon",
+        "web_url": "https://gitlab.com/dblessing"
+      },
+      {
+        "id": 21826781,
+        "username": "GitLabDuo",
+        "public_email": null,
+        "name": "GitLab Duo",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21826781/duo-bot.png?v=1781708173",
+        "web_url": "https://gitlab.com/GitLabDuo"
+      }
+    ],
+    "source_project_id": 278964,
+    "target_project_id": 278964,
+    "labels": [
+      "backend",
+      "development guidelines",
+      "devops::tenant scale",
+      "documentation",
+      "group::organizations",
+      "maintenance::refactor",
+      "pipeline::tier-3",
+      "pipeline:as-if-foss-run-predictive",
+      "pipeline:mr-approved",
+      "roulette-experiment::reviewer-column-hidden",
+      "section::tenant scale",
+      "type::maintenance",
+      "workflow::canary"
+    ],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": {
+      "id": 6239395,
+      "iid": 138,
+      "group_id": 9970,
+      "title": "19.4",
+      "description": "",
+      "state": "active",
+      "created_at": "2025-12-12T14:55:29.025Z",
+      "updated_at": "2025-12-12T14:55:29.025Z",
+      "due_date": "2026-09-11",
+      "start_date": "2026-08-15",
+      "expired": true,
+      "web_url": "https://gitlab.com/groups/gitlab-org/-/milestones/138"
+    },
+    "merge_when_pipeline_succeeds": true,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "9eff17e216df21ea3228c302f39a9cc3e91e8a30",
+    "merge_commit_sha": "c1b9bf0733020ecd52b5a433cb9ccacc0e08ee7f",
+    "squash_commit_sha": "9eff17e216df21ea3228c302f39a9cc3e91e8a30",
+    "discussion_locked": null,
+    "should_remove_source_branch": true,
+    "force_remove_source_branch": true,
+    "prepared_at": "2026-09-03T19:10:13.786Z",
+    "reference": "!253525",
+    "references": {
+      "short": "!253525",
+      "relative": "!253525",
+      "full": "gitlab-org/gitlab!253525"
+    },
+    "web_url": "https://gitlab.com/gitlab-org/gitlab/-/merge_requests/253525",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null,
+    "subscribed": false,
+    "changes_count": "2",
+    "latest_build_started_at": "2026-09-11T15:56:31.358Z",
+    "latest_build_finished_at": "2026-09-11T15:58:43.606Z",
+    "first_deployed_to_production_at": "2026-09-11T16:26:11.343Z",
+    "pipeline": {
+      "id": 2841409114,
+      "iid": 6340015,
+      "project_id": 278964,
+      "sha": "b5865cf19a1ea70237ff98ae7d6b1fc43da7d7a6",
+      "ref": "refs/merge-requests/253525/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T15:56:29.590Z",
+      "updated_at": "2026-09-11T15:58:43.627Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841409114"
+    },
+    "head_pipeline": {
+      "id": 2841409114,
+      "iid": 6340015,
+      "project_id": 278964,
+      "sha": "b5865cf19a1ea70237ff98ae7d6b1fc43da7d7a6",
+      "ref": "refs/merge-requests/253525/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T15:56:29.590Z",
+      "updated_at": "2026-09-11T15:58:43.627Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841409114",
+      "before_sha": "b5865cf19a1ea70237ff98ae7d6b1fc43da7d7a6",
+      "tag": false,
+      "yaml_errors": null,
+      "user": {
+        "id": 13356,
+        "username": "dblessing",
+        "public_email": "",
+        "name": "Drew Blessing",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://secure.gravatar.com/avatar/f7a7e6e32e9c5482907025642135eb9546fae343ec42347aba492ba32575e603?s=80&d=identicon",
+        "web_url": "https://gitlab.com/dblessing"
+      },
+      "started_at": "2026-09-11T15:56:31.358Z",
+      "finished_at": "2026-09-11T15:58:43.606Z",
+      "committed_at": null,
+      "duration": 131,
+      "queued_duration": 1,
+      "coverage": null,
+      "detailed_status": {
+        "icon": "status_success",
+        "text": "Passed",
+        "label": "passed",
+        "group": "success",
+        "tooltip": "passed",
+        "has_details": true,
+        "details_path": "/gitlab-org/gitlab/-/pipelines/2841409114",
+        "illustration": null,
+        "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+      },
+      "archived": false
+    },
+    "diff_refs": {
+      "base_sha": "ce760f14247cef816377cc98dfb907e4416a194b",
+      "head_sha": "9eff17e216df21ea3228c302f39a9cc3e91e8a30",
+      "start_sha": "b6b3dee76d6fa887bf07212e0d390091496b2950"
+    },
+    "merge_error": null,
+    "first_contribution": false,
+    "user": {
+      "can_merge": false
+    }
+  },
+  "commits": [
+    {
+      "id": "9eff17e216df21ea3228c302f39a9cc3e91e8a30",
+      "short_id": "9eff17e2",
+      "created_at": "2026-09-03T12:01:05.000-07:00",
+      "parent_ids": [
+        "ce760f14247cef816377cc98dfb907e4416a194b"
+      ],
+      "title": "Move org_pages and your_work_sidebar_org_menu_item to LA 100%",
+      "message": "Move org_pages and your_work_sidebar_org_menu_item to LA 100%\n\nThey need to be available for all users since they gate pages that do\nnot work with the organization actor.\n",
+      "author_name": "Peter Hegman",
+      "author_email": "phegman@gitlab.com",
+      "authored_date": "2026-09-03T12:01:05.000-07:00",
+      "committer_name": "Peter Hegman",
+      "committer_email": "phegman@gitlab.com",
+      "committed_date": "2026-09-03T12:01:05.000-07:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/9eff17e216df21ea3228c302f39a9cc3e91e8a30"
+    }
+  ],
+  "diffs": [
+    {
+      "diff": "@@ -49,7 +49,7 @@ flags:\n     stage: experimental\n   - name: your_work_sidebar_org_menu_item\n     description: Shows `Organizations` menu item in the `Your work` sidebar.\n-    stage: beta\n+    stage: la_100\n   - name: org_pages\n     description: Organization pages that extend `Organizations::ApplicationController`.\n-    stage: beta\n+    stage: la_100\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "config/organizations_release.yml",
+      "old_path": "config/organizations_release.yml",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -28,5 +28,5 @@ The stage determines who can use a flag and whether it can be disabled.\n | `org_admin_area` | Experimental | Organization admin area for organization owners. |\n | `org_creation` | Experimental | Create an organization from global pages or public APIs. |\n | `org_switcher` | Experimental | The organization switcher dropdown component. |\n-| `org_pages` | Beta | Organization pages that extend `Organizations::ApplicationController`. |\n-| `your_work_sidebar_org_menu_item` | Beta | Shows `Organizations` menu item in the `Your work` sidebar. |\n+| `org_pages` | LA (100%) | Organization pages that extend `Organizations::ApplicationController`. |\n+| `your_work_sidebar_org_menu_item` | LA (100%) | Shows `Organizations` menu item in the `Your work` sidebar. |\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "doc/development/organizations/release_status.md",
+      "old_path": "doc/development/organizations/release_status.md",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "9eff17e216df21ea3228c302f39a9cc3e91e8a30",
+      "diffs": [
+        {
+          "diff": "@@ -49,7 +49,7 @@ flags:\n     stage: experimental\n   - name: your_work_sidebar_org_menu_item\n     description: Shows `Organizations` menu item in the `Your work` sidebar.\n-    stage: beta\n+    stage: la_100\n   - name: org_pages\n     description: Organization pages that extend `Organizations::ApplicationController`.\n-    stage: beta\n+    stage: la_100\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "config/organizations_release.yml",
+          "old_path": "config/organizations_release.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -28,5 +28,5 @@ The stage determines who can use a flag and whether it can be disabled.\n | `org_admin_area` | Experimental | Organization admin area for organization owners. |\n | `org_creation` | Experimental | Create an organization from global pages or public APIs. |\n | `org_switcher` | Experimental | The organization switcher dropdown component. |\n-| `org_pages` | Beta | Organization pages that extend `Organizations::ApplicationController`. |\n-| `your_work_sidebar_org_menu_item` | Beta | Shows `Organizations` menu item in the `Your work` sidebar. |\n+| `org_pages` | LA (100%) | Organization pages that extend `Organizations::ApplicationController`. |\n+| `your_work_sidebar_org_menu_item` | LA (100%) | Shows `Organizations` menu item in the `Your work` sidebar. |\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "doc/development/organizations/release_status.md",
+          "old_path": "doc/development/organizations/release_status.md",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 2841409114,
+      "iid": 6340015,
+      "project_id": 278964,
+      "sha": "b5865cf19a1ea70237ff98ae7d6b1fc43da7d7a6",
+      "ref": "refs/merge-requests/253525/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T15:56:29.590Z",
+      "updated_at": "2026-09-11T15:58:43.627Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841409114"
+    },
+    {
+      "id": 2841110245,
+      "iid": 6338967,
+      "project_id": 278964,
+      "sha": "39006cd00e41465126fe07a58ca39a21d25d64ef",
+      "ref": "refs/merge-requests/253525/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T14:13:57.628Z",
+      "updated_at": "2026-09-11T16:01:29.392Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841110245"
+    },
+    {
+      "id": 2817963530,
+      "iid": 6289121,
+      "project_id": 278964,
+      "sha": "a3bbb0926c9d44dd04580bd5797c1e2edb3213a2",
+      "ref": "refs/merge-requests/253525/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-03T19:10:28.462Z",
+      "updated_at": "2026-09-03T19:36:10.539Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2817963530"
+    }
+  ],
+  "notes": {
+    "message": "401 Unauthorized"
+  }
+}

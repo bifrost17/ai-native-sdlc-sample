@@ -1,0 +1,459 @@
+{
+  "source": "GitLab REST API",
+  "fetched_at": "2026-09-12T07:46:26Z",
+  "merge_request": {
+    "id": 530301452,
+    "iid": 254677,
+    "project_id": 278964,
+    "title": "Gate CVS advisory scanner findings on the scanning license",
+    "description": "## What\n\nGate the public continuous-vulnerability-scanning (CVS) advisory scanner, `Gitlab::VulnerabilityScanning::AdvisoryScanner`, on the per-project scanning licensed feature. CVS findings are now only created for Ultimate-eligible projects.\n\n## Why\n\n`AdvisoryScanner#cvs_enabled_for_project?` previously checked only the per-project CVS setting (`cvs_for_dependency_scanning_enabled` / `cvs_for_container_scanning_enabled`), which defaults on. This allowed any project with the setting enabled to receive CVS findings regardless of license tier. CVS findings are Ultimate-only, so the license check was missing.\n\n## Behaviour\n\n- **Ultimate projects**: no change. The licensed feature is available, so the gate passes.\n- **Non-Ultimate projects**: will no longer receive CVS findings from this path. Per the Ultimate-only intent of CVS, they should not have been receiving them; this is a correctness fix.\n- This path is not behind a feature flag and is live default-on, so the behaviour change ships immediately. A feature flag could be added if the CVS owners prefer a gradual rollout. A changelog entry (type: fixed) is included.\n\n## Related\n\n- Companion to https://gitlab.com/gitlab-org/gitlab/-/merge_requests/249075 (malware CVS gate)\n- Gap surfaced in review of that MR by @hbakergitlab\n\n## Tests\n\n`ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb` now stubs `dependency_scanning` and `container_scanning` availability. A \"not licensed\" context has been added under both the Dependency Scanning and Container Scanning blocks, asserting no vulnerabilities are created when the licensed features are unavailable.",
+    "state": "merged",
+    "created_at": "2026-09-10T07:39:52.760Z",
+    "updated_at": "2026-09-11T22:48:10.811Z",
+    "merged_by": {
+      "id": 23087401,
+      "username": "charlieeekroon",
+      "public_email": "",
+      "name": "Charlie Kroon",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/23087401/avatar.png?v=1789171470",
+      "web_url": "https://gitlab.com/charlieeekroon"
+    },
+    "merge_user": {
+      "id": 23087401,
+      "username": "charlieeekroon",
+      "public_email": "",
+      "name": "Charlie Kroon",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/23087401/avatar.png?v=1789171470",
+      "web_url": "https://gitlab.com/charlieeekroon"
+    },
+    "merged_at": "2026-09-11T18:39:48.670Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "fix-cvs-advisory-scanner-tier-gate",
+    "user_notes_count": 17,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 9253328,
+      "username": "bala.kumar",
+      "public_email": "",
+      "name": "Bala Kumar",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/9253328/avatar.png?v=1789189626",
+      "web_url": "https://gitlab.com/bala.kumar"
+    },
+    "assignees": [
+      {
+        "id": 9253328,
+        "username": "bala.kumar",
+        "public_email": "",
+        "name": "Bala Kumar",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/9253328/avatar.png?v=1789189626",
+        "web_url": "https://gitlab.com/bala.kumar"
+      }
+    ],
+    "assignee": {
+      "id": 9253328,
+      "username": "bala.kumar",
+      "public_email": "",
+      "name": "Bala Kumar",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/9253328/avatar.png?v=1789189626",
+      "web_url": "https://gitlab.com/bala.kumar"
+    },
+    "reviewers": [
+      {
+        "id": 12912498,
+        "username": "nilieskou",
+        "public_email": "nilieskou@gitlab.com",
+        "name": "Nick Ilieskou",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12912498/avatar.png?v=1789196814",
+        "web_url": "https://gitlab.com/nilieskou"
+      },
+      {
+        "id": 21826781,
+        "username": "GitLabDuo",
+        "public_email": null,
+        "name": "GitLab Duo",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21826781/duo-bot.png?v=1781708173",
+        "web_url": "https://gitlab.com/GitLabDuo"
+      },
+      {
+        "id": 23087401,
+        "username": "charlieeekroon",
+        "public_email": "",
+        "name": "Charlie Kroon",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/23087401/avatar.png?v=1789171470",
+        "web_url": "https://gitlab.com/charlieeekroon"
+      },
+      {
+        "id": 24917650,
+        "username": "hbakergitlab",
+        "public_email": "",
+        "name": "Hannah Baker",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/24917650/avatar.png?v=1789195767",
+        "web_url": "https://gitlab.com/hbakergitlab"
+      }
+    ],
+    "source_project_id": 278964,
+    "target_project_id": 278964,
+    "labels": [
+      "backend",
+      "devops::security factory",
+      "group::security foundations",
+      "pipeline::tier-3",
+      "pipeline:as-if-foss-run-predictive",
+      "pipeline:mr-approved",
+      "roulette-experiment::reviewer-column-shown",
+      "section::sec",
+      "type::bug",
+      "workflow::staging-canary"
+    ],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": {
+      "id": 6239395,
+      "iid": 138,
+      "group_id": 9970,
+      "title": "19.4",
+      "description": "",
+      "state": "active",
+      "created_at": "2025-12-12T14:55:29.025Z",
+      "updated_at": "2025-12-12T14:55:29.025Z",
+      "due_date": "2026-09-11",
+      "start_date": "2026-08-15",
+      "expired": true,
+      "web_url": "https://gitlab.com/groups/gitlab-org/-/milestones/138"
+    },
+    "merge_when_pipeline_succeeds": true,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "3d05eca83b07cf0de1f718b7168edb99a7a1a07a",
+    "merge_commit_sha": "812e001be132f1575577e03feb67b77c5eca24ed",
+    "squash_commit_sha": "45993e08981f41a46a6bca614105932d74135621",
+    "discussion_locked": null,
+    "should_remove_source_branch": true,
+    "force_remove_source_branch": true,
+    "prepared_at": "2026-09-10T07:40:01.469Z",
+    "reference": "!254677",
+    "references": {
+      "short": "!254677",
+      "relative": "!254677",
+      "full": "gitlab-org/gitlab!254677"
+    },
+    "web_url": "https://gitlab.com/gitlab-org/gitlab/-/merge_requests/254677",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null,
+    "subscribed": false,
+    "changes_count": "2",
+    "latest_build_started_at": "2026-09-11T18:37:19.732Z",
+    "latest_build_finished_at": "2026-09-11T18:39:30.740Z",
+    "first_deployed_to_production_at": "2026-09-11T18:54:48.426Z",
+    "pipeline": {
+      "id": 2841770966,
+      "iid": 6341254,
+      "project_id": 278964,
+      "sha": "39d799be4b161a0a6a20438d6a77f28ab6f9620f",
+      "ref": "refs/merge-requests/254677/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T18:37:17.255Z",
+      "updated_at": "2026-09-11T18:39:30.755Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841770966"
+    },
+    "head_pipeline": {
+      "id": 2841770966,
+      "iid": 6341254,
+      "project_id": 278964,
+      "sha": "39d799be4b161a0a6a20438d6a77f28ab6f9620f",
+      "ref": "refs/merge-requests/254677/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T18:37:17.255Z",
+      "updated_at": "2026-09-11T18:39:30.755Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841770966",
+      "before_sha": "39d799be4b161a0a6a20438d6a77f28ab6f9620f",
+      "tag": false,
+      "yaml_errors": null,
+      "user": {
+        "id": 23087401,
+        "username": "charlieeekroon",
+        "public_email": "",
+        "name": "Charlie Kroon",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/23087401/avatar.png?v=1789171470",
+        "web_url": "https://gitlab.com/charlieeekroon"
+      },
+      "started_at": "2026-09-11T18:37:19.732Z",
+      "finished_at": "2026-09-11T18:39:30.740Z",
+      "committed_at": null,
+      "duration": 130,
+      "queued_duration": 2,
+      "coverage": null,
+      "detailed_status": {
+        "icon": "status_success",
+        "text": "Passed",
+        "label": "passed",
+        "group": "success",
+        "tooltip": "passed",
+        "has_details": true,
+        "details_path": "/gitlab-org/gitlab/-/pipelines/2841770966",
+        "illustration": null,
+        "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+      },
+      "archived": false
+    },
+    "diff_refs": {
+      "base_sha": "fdc260410bc445f28b49674b024f229876d07cd2",
+      "head_sha": "3d05eca83b07cf0de1f718b7168edb99a7a1a07a",
+      "start_sha": "3abd17a35f87b00fdb47979fcfb10254f7480ead"
+    },
+    "merge_error": null,
+    "first_contribution": false,
+    "user": {
+      "can_merge": false
+    }
+  },
+  "commits": [
+    {
+      "id": "3d05eca83b07cf0de1f718b7168edb99a7a1a07a",
+      "short_id": "3d05eca8",
+      "created_at": "2026-09-11T22:15:04.000+05:30",
+      "parent_ids": [
+        "f522b0b1e79590b7ee2c3110e15bdf2c03d48cfb"
+      ],
+      "title": "Stub licensed features in the cvs_enabled_for_project? spec",
+      "message": "Stub licensed features in the cvs_enabled_for_project? spec\n\nThe new licensed_feature_available? gate in cvs_enabled_for_project?\nreturns false unless the project is licensed, but the unit describe\nonly set the CVS settings and never granted the licence, so its\nexpected: true rows failed in CI. Stub dependency_scanning and\ncontainer_scanning there too, matching the #execute describe, so the\nrows exercise the setting logic with the licence present.\n",
+      "author_name": "Bala Kumar",
+      "author_email": "sbalakumar@gitlab.com",
+      "authored_date": "2026-09-11T22:15:04.000+05:30",
+      "committer_name": "Bala Kumar",
+      "committer_email": "sbalakumar@gitlab.com",
+      "committed_date": "2026-09-11T22:15:04.000+05:30",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/3d05eca83b07cf0de1f718b7168edb99a7a1a07a"
+    },
+    {
+      "id": "f522b0b1e79590b7ee2c3110e15bdf2c03d48cfb",
+      "short_id": "f522b0b1",
+      "created_at": "2026-09-10T13:03:48.000+05:30",
+      "parent_ids": [
+        "fdc260410bc445f28b49674b024f229876d07cd2"
+      ],
+      "title": "Gate CVS advisory scanner findings on the scanning license",
+      "message": "Gate CVS advisory scanner findings on the scanning license\n\nContinuous vulnerability scanning (CVS) findings are Ultimate-only, but\nAdvisoryScanner#cvs_enabled_for_project? only checked the per-project\nCVS setting, not the license -- so any project with the setting on could\nget findings regardless of tier. Gate per purl type on\nlicensed_feature_available?(:container_scanning / :dependency_scanning),\nmirroring cvs_for_container_scanning_available and\ncvs_for_dependency_scanning_available.\n\nCompanion to the malware CVS gate in\nhttps://gitlab.com/gitlab-org/gitlab/-/merge_requests/249075; raised in\nreview by `@hbakergitlab`.\n\nChangelog: fixed\nEE: true\n",
+      "author_name": "Bala Kumar",
+      "author_email": "sbalakumar@gitlab.com",
+      "authored_date": "2026-09-10T13:03:48.000+05:30",
+      "committer_name": "Bala Kumar",
+      "committer_email": "sbalakumar@gitlab.com",
+      "committed_date": "2026-09-10T13:03:48.000+05:30",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/f522b0b1e79590b7ee2c3110e15bdf2c03d48cfb"
+    }
+  ],
+  "diffs": [
+    {
+      "diff": "@@ -66,7 +66,12 @@ def execute\n       attr_reader :advisory, :possibly_affected_sbom_occurrences_count, :known_affected_sbom_occurrences_count,\n         :sbom_occurrences_semver_dialects_errors_count\n \n+      # CVS findings are Ultimate-only; gate on the per-type licensed feature,\n+      # mirroring cvs_for_dependency_scanning_available / cvs_for_container_scanning_available.\n       def cvs_enabled_for_project?(project, is_cs_purl_type)\n+        feature = is_cs_purl_type ? :container_scanning : :dependency_scanning\n+        return false unless project.licensed_feature_available?(feature)\n+\n         setting = project.security_setting\n         return true if setting.nil?\n \n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/lib/gitlab/vulnerability_scanning/advisory_scanner.rb",
+      "old_path": "ee/lib/gitlab/vulnerability_scanning/advisory_scanner.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -52,6 +52,7 @@\n \n   describe '#execute' do\n     before do\n+      stub_licensed_features(dependency_scanning: true, container_scanning: true)\n       # Assume that Time.current might use a time zone that's not UTC.\n       # See https://gitlab.com/gitlab-data/analytics/-/issues/23964#note_2528947112\n       allow(Time).to receive(:current).and_return(Time.new(2023, 11, 14, 0, 0, 0, '-04:00'))\n@@ -95,6 +96,17 @@\n         orphan_occurrence.update_column(:project_id, 0)\n       end\n \n+      context 'when the project is not licensed for dependency scanning' do\n+        before do\n+          stub_licensed_features(dependency_scanning: false)\n+        end\n+\n+        it 'creates no vulnerabilities, since CVS is Ultimate-only' do\n+          expect { described_class.scan_projects_for(affected_package.advisory) }\n+            .not_to change { affected_project.vulnerabilities.count }\n+        end\n+      end\n+\n       shared_examples 'dependency scanning ff-independent contexts' do\n         context 'when component matches but version is not in the affected range' do\n           let(:affected_range) { '<0.1.0' }\n@@ -475,6 +487,17 @@\n           component_version: affected_version, pipeline: affected_pipeline, source: wolfi_sbom_source)\n       end\n \n+      context 'when the project is not licensed for container scanning' do\n+        before do\n+          stub_licensed_features(container_scanning: false)\n+        end\n+\n+        it 'creates no vulnerabilities, since CVS is Ultimate-only' do\n+          expect { described_class.scan_projects_for(affected_package.advisory) }\n+            .not_to change { affected_project.vulnerabilities.count }\n+        end\n+      end\n+\n       shared_examples 'container scanning ff-independent contexts' do\n         context 'when component matches but version is not in the affected range' do\n           let(:affected_range) { '<1:7.4.052-1ubuntu3.1' }\n@@ -804,6 +827,7 @@\n \n     with_them do\n       before do\n+        stub_licensed_features(dependency_scanning: true, container_scanning: true)\n         affected_project.security_setting.update!(\n           cvs_for_container_scanning_enabled: cs_enabled,\n           cvs_for_dependency_scanning_enabled: ds_enabled\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb",
+      "old_path": "ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "3d05eca83b07cf0de1f718b7168edb99a7a1a07a",
+      "diffs": [
+        {
+          "diff": "@@ -827,6 +827,7 @@\n \n     with_them do\n       before do\n+        stub_licensed_features(dependency_scanning: true, container_scanning: true)\n         affected_project.security_setting.update!(\n           cvs_for_container_scanning_enabled: cs_enabled,\n           cvs_for_dependency_scanning_enabled: ds_enabled\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb",
+          "old_path": "ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "f522b0b1e79590b7ee2c3110e15bdf2c03d48cfb",
+      "diffs": [
+        {
+          "diff": "@@ -66,7 +66,12 @@ def execute\n       attr_reader :advisory, :possibly_affected_sbom_occurrences_count, :known_affected_sbom_occurrences_count,\n         :sbom_occurrences_semver_dialects_errors_count\n \n+      # CVS findings are Ultimate-only; gate on the per-type licensed feature,\n+      # mirroring cvs_for_dependency_scanning_available / cvs_for_container_scanning_available.\n       def cvs_enabled_for_project?(project, is_cs_purl_type)\n+        feature = is_cs_purl_type ? :container_scanning : :dependency_scanning\n+        return false unless project.licensed_feature_available?(feature)\n+\n         setting = project.security_setting\n         return true if setting.nil?\n \n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/lib/gitlab/vulnerability_scanning/advisory_scanner.rb",
+          "old_path": "ee/lib/gitlab/vulnerability_scanning/advisory_scanner.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -52,6 +52,7 @@\n \n   describe '#execute' do\n     before do\n+      stub_licensed_features(dependency_scanning: true, container_scanning: true)\n       # Assume that Time.current might use a time zone that's not UTC.\n       # See https://gitlab.com/gitlab-data/analytics/-/issues/23964#note_2528947112\n       allow(Time).to receive(:current).and_return(Time.new(2023, 11, 14, 0, 0, 0, '-04:00'))\n@@ -95,6 +96,17 @@\n         orphan_occurrence.update_column(:project_id, 0)\n       end\n \n+      context 'when the project is not licensed for dependency scanning' do\n+        before do\n+          stub_licensed_features(dependency_scanning: false)\n+        end\n+\n+        it 'creates no vulnerabilities, since CVS is Ultimate-only' do\n+          expect { described_class.scan_projects_for(affected_package.advisory) }\n+            .not_to change { affected_project.vulnerabilities.count }\n+        end\n+      end\n+\n       shared_examples 'dependency scanning ff-independent contexts' do\n         context 'when component matches but version is not in the affected range' do\n           let(:affected_range) { '<0.1.0' }\n@@ -475,6 +487,17 @@\n           component_version: affected_version, pipeline: affected_pipeline, source: wolfi_sbom_source)\n       end\n \n+      context 'when the project is not licensed for container scanning' do\n+        before do\n+          stub_licensed_features(container_scanning: false)\n+        end\n+\n+        it 'creates no vulnerabilities, since CVS is Ultimate-only' do\n+          expect { described_class.scan_projects_for(affected_package.advisory) }\n+            .not_to change { affected_project.vulnerabilities.count }\n+        end\n+      end\n+\n       shared_examples 'container scanning ff-independent contexts' do\n         context 'when component matches but version is not in the affected range' do\n           let(:affected_range) { '<1:7.4.052-1ubuntu3.1' }\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb",
+          "old_path": "ee/spec/lib/gitlab/vulnerability_scanning/advisory_scanner_spec.rb",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 2841770966,
+      "iid": 6341254,
+      "project_id": 278964,
+      "sha": "39d799be4b161a0a6a20438d6a77f28ab6f9620f",
+      "ref": "refs/merge-requests/254677/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T18:37:17.255Z",
+      "updated_at": "2026-09-11T18:39:30.755Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841770966"
+    },
+    {
+      "id": 2841761593,
+      "iid": 6341238,
+      "project_id": 278964,
+      "sha": "6ca5191426a97cf81e7656234fa19fb48f9bc754",
+      "ref": "refs/merge-requests/254677/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T18:33:16.101Z",
+      "updated_at": "2026-09-11T18:37:02.009Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841761593"
+    },
+    {
+      "id": 2841543887,
+      "iid": 6340472,
+      "project_id": 278964,
+      "sha": "951bc31bae77defc5b32e97c3dffa613f553617c",
+      "ref": "refs/merge-requests/254677/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T16:52:02.891Z",
+      "updated_at": "2026-09-11T18:40:44.452Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841543887"
+    },
+    {
+      "id": 2840985361,
+      "iid": 6338599,
+      "project_id": 278964,
+      "sha": "710b3499a89fde6c904a063a79483b3dbe91fef4",
+      "ref": "refs/merge-requests/254677/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T13:33:07.231Z",
+      "updated_at": "2026-09-11T17:45:07.134Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2840985361"
+    },
+    {
+      "id": 2836372014,
+      "iid": 6326812,
+      "project_id": 278964,
+      "sha": "bc50596bf8016094b14f0b53c2768e609c4ea9ec",
+      "ref": "refs/merge-requests/254677/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T08:56:34.084Z",
+      "updated_at": "2026-09-10T09:24:58.363Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2836372014"
+    },
+    {
+      "id": 2836294489,
+      "iid": 6326696,
+      "project_id": 278964,
+      "sha": "cf9299550b2738b0864bce559d5e3f1b3a2a6ecf",
+      "ref": "refs/merge-requests/254677/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T08:30:55.386Z",
+      "updated_at": "2026-09-10T08:58:11.179Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2836294489"
+    },
+    {
+      "id": 2836147371,
+      "iid": 6326375,
+      "project_id": 278964,
+      "sha": "a7c713720b32cb8dd78017c265402f4c844b0ebc",
+      "ref": "refs/merge-requests/254677/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T07:40:22.834Z",
+      "updated_at": "2026-09-10T08:04:40.240Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2836147371"
+    }
+  ],
+  "notes": {
+    "message": "401 Unauthorized"
+  }
+}

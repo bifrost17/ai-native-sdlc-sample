@@ -1,0 +1,2620 @@
+✔︎ Opened a new tab and set it active: tabs[0], page → How well do agents use test/verification techniques? | Hacker News (https://news.ycombinator.com/item?id=49605246)
+{
+  tree: '# note: interactive (clickable / focusable) elements only.\n' +
+    '- title: "How well do agents use test/verification techniques? | Hacker News" [url=https://news.ycombinator.com/item?id=49605246]\n' +
+    '- link [ref=e1]\n' +
+    '- link "Hacker News" [ref=e2]\n' +
+    '- link "new" [ref=e3]\n' +
+    '- text: "|"\n' +
+    '- link "past" [ref=e4]\n' +
+    '- text: "|"\n' +
+    '- link "comments" [ref=e5]\n' +
+    '- text: "|"\n' +
+    '- link "ask" [ref=e6]\n' +
+    '- text: "|"\n' +
+    '- link "show" [ref=e7]\n' +
+    '- text: "|"\n' +
+    '- link "jobs" [ref=e8]\n' +
+    '- text: "|"\n' +
+    '- link "submit" [ref=e9]\n' +
+    '- link "login" [ref=e10]\n' +
+    '- link "upvote" [ref=e11]\n' +
+    '- link "How well do agents use test/verification techniques?" [ref=e12]\n' +
+    '- text: "("\n' +
+    '- link "danluu.com" [ref=e13]\n' +
+    '- text: ")189 points  by"\n' +
+    '- link "vinhnx" [ref=e14]\n' +
+    '- link "4 days ago" [ref=e15]\n' +
+    '- text: "|"\n' +
+    '- link "hide" [ref=e16]\n' +
+    '- text: "|"\n' +
+    '- link "past" [ref=e17]\n' +
+    '- text: "|"\n' +
+    '- link "favorite" [ref=e18]\n' +
+    '- text: "|"\n' +
+    '- link "72 comments" [ref=e19]\n' +
+    '- textbox [ref=e20]\n' +
+    '- link "help" [ref=e21]\n' +
+    '- button "add comment" [ref=e22]\n' +
+    '- link "upvote" [ref=e23]\n' +
+    '- link "nseskin" [ref=e24]\n' +
+    '- link "3 days ago" [ref=e25]\n' +
+    '- text: "|"\n' +
+    '- link "[–]" [ref=e26]\n' +
+    '- text: "I think this article demonstrates a broader problem with constraint following in LLMs. Agents often satisfy the most obvious and easily verifiable part of a task, but lose track of the constraint that actually determines success.Testing makes this especially clear: “use fuzzing” turns into generating random bytes, and “use formal verification” into proving a property that isn’t particularly useful. Formally, the technique is applied, but its actual purpose is lost.This may also explain why different testing techniques produce similar results: the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint."\n' +
+    '- link "reply" [ref=e27]\n' +
+    '- link "upvote" [ref=e28]\n' +
+    '- link "getnormality" [ref=e29]\n' +
+    '- link "3 days ago" [ref=e30]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e31]\n' +
+    `- text: "> the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint.I think the limiting factor is often the human's ability to articulate the goal and hold the agent accountable.The working memory of technical people and the way they communicate often seems to prioritize how they're doing a task and not why they're doing it. So when they talk to you about their problem, they give you the human equivalent of modem noises and stack traces. This is such a common problem on tech support and Q&A forums like StackOverflow that it spawned its own terminology and website:"\n` +
+    '- link "https://xyproblem.info/" [ref=e32]\n' +
+    `- text: "The agents don't respond to XY problems any better than a colleague does, and usually much worse.An effective colleague asks why, and we need a similar relationship between the agent and its human supervisor."\n` +
+    '- link "reply" [ref=e33]\n' +
+    '- link "upvote" [ref=e34]\n' +
+    '- link "orbital-decay" [ref=e35]\n' +
+    '- link "3 days ago" [ref=e36]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e37]\n' +
+    `- text: "It's well known that CoT needs a narrow problem or several independent narrow problems to perform well. With too broad of a task it often turns into a burden and hurts performance, making it hyperfocus on one thing where a non-reasoning model would just handle everything. I wonder if disabling it would make anything better, but likely not if the model is already trained to do it."\n` +
+    '- link "reply" [ref=e38]\n' +
+    '- link "upvote" [ref=e39]\n' +
+    '- link "cyanydeez" [ref=e40]\n' +
+    '- link "3 days ago" [ref=e41]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e42]\n' +
+    '- text: "CoT works really well in qwen3.8-flash-next. I think a lot of the problems obversed are literal skill issue: dumping huge system prompts/skills that prime it over some broad scope, when the request is narrow.The system prompt should be considered a starting point only if you want reusable intelligence and focus. It should not be a grab bag of tools and PR style guides, etc...Grab your agent and inspect its prompt."\n' +
+    '- link "reply" [ref=e43]\n' +
+    '- link "upvote" [ref=e44]\n' +
+    '- link "grohan" [ref=e45]\n' +
+    '- link "3 days ago" [ref=e46]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e47]\n' +
+    '- text: "Pretty good point - I would actually argue that the imperative nature of prompting takes some of the blame here too. Your initial goal gets \\"steered\\" by the agent system and follow-up messages take precedence."\n' +
+    '- link "reply" [ref=e48]\n' +
+    '- link "upvote" [ref=e49]\n' +
+    '- link "ivanzhaowy123" [ref=e50]\n' +
+    '- link "3 days ago" [ref=e51]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e52]\n' +
+    '- text: "In my experience, agents often think of more edge cases than humans when writing unit tests. But under the guidance of certain skills, they can become mechanical and lose sight of the business logic.For example, when I use the Superpowers skill set, the agent proactively adopts TDD for every new feature. But its understanding of testing often stays superficial: if the user asks for a screen with a “Send” button, it first writes a test checking whether the button exists. The test fails, so it adds the button to make it pass.As a result, the test suite fills up with low-value cases that check whether a property exists or a string matches exactly. The agent follows the “write a failing test, then implement the feature” workflow, but never really tests the business behavior: When should sending be allowed? What should happen after success or failure? How should duplicate submissions be handled?The problem isn’t that agents can’t write tests. It’s that they seem prone to reducing TDD to a rigid sequence of steps, struggling to independently derive meaningful test cases from business requirements and use them to drive development."\n' +
+    '- link "reply" [ref=e53]\n' +
+    '- link "upvote" [ref=e54]\n' +
+    '- link "andai" [ref=e55]\n' +
+    '- link "3 days ago" [ref=e56]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e57]\n' +
+    `- text: "I asked Sonnet to port a prolog interpreter from Python to JS. I was surprised and delighted that it ended up writing a test suite for it. All tests passed.Until... I inspected the code: it was just a bunch of print statements that said \\"test passed!\\" and didn't actually test anything.That was last year, so hopefully it doesn't do that anymore."\n` +
+    '- link "reply" [ref=e58]\n' +
+    '- link "upvote" [ref=e59]\n' +
+    '- link "vetronauta" [ref=e60]\n' +
+    '- link "2 days ago" [ref=e61]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e62]\n' +
+    '- text: "Few months ago I was debugging an integration with a no-code library that ships code in a custom binary format. I still smile thinking at the following test I read assertThrows(RuntimeException.class, () -> callFoo(notABinaryFile)); //well, foo library is very complex, obviously this test throws!"\n' +
+    '- link "reply" [ref=e63]\n' +
+    '- link "upvote" [ref=e64]\n' +
+    '- link "throwatdem12311" [ref=e65]\n' +
+    '- link "3 days ago" [ref=e66]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e67]\n' +
+    '- text: "This is not really my experience using TDD with Claude at all.  When I tell it “a button should appear under x condition” it writes the test, and will often even verify the test by changing the code to fail the condition correctly before coming back and tell me it’s done.Every once in a while one of those useless tests you mention will sneak in…but I still read the code and either just remove it or tell the agent to get rid of it.  It happens so rarely it’s barely an inconvenience.But I don’t use any skills or anything like that to drive it.  I just have a line in my CLAUDE.md to follow TDD best practices.Personally I find most skills like these “superpowers” are just bullshit and don’t really help at all."\n' +
+    '- link "reply" [ref=e68]\n' +
+    '- link "upvote" [ref=e69]\n' +
+    '- link "jiaosdjf" [ref=e70]\n' +
+    '- link "3 days ago" [ref=e71]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e72]\n' +
+    `- text: "Probably because thats how most companies do it because most corporate workers are lazy box-tickers who are long fed up with the processes. It really feels like we're forcing human processes onto AI.What actually is the point of TDD?\\n- If its to force you to think about edge cases early before you've started building the feature then that sounds like a human trait\\n- If its to be living documentation then that sounds like a human trait We're going into weird rabbit holes where we've mismatched the tool that is AI which produces extremely cheap code very quickly - with the processes that we've built for slow and expensive to write human-generated code."\n` +
+    '- link "reply" [ref=e73]\n' +
+    '- link "upvote" [ref=e74]\n' +
+    '- link "pydry" [ref=e75]\n' +
+    '- link "3 days ago" [ref=e76]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e77]\n' +
+    `- text: "I think most people miss the point of TDD. It is not just about edge cases. It  ought  to be:* A way of matching requirement use cases to tests.* to modulate the number of tests written not only to make sure you have  enough  coverage but also to make sure you don't pointlessly cover the same edge cases multiple times.* a way to cheaply provide feedback and validation on code  as  you are writing it.With AI the ability to churn out useless tests has exploded (both with TDD done badly and with no TDD at all) and that has actually incurred a new type of cost we didnt have to face before."\n` +
+    '- link "reply" [ref=e78]\n' +
+    '- link "upvote" [ref=e79]\n' +
+    '- link "siscia" [ref=e80]\n' +
+    '- link "4 days ago" [ref=e81]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e82]\n' +
+    `- text: "It is still early, but I find that this experiment makes little to no sense and it is barely useful.The way you test code cannot (and should not) be decoupled by the way in which you architect the code itself.80%+ of effective testing is not in the testing framework but in the code architecture.The author doesn't mention how the code is being architected and managed.For what it is worth, I found that forcing agents on DI/hexagonal architecture and forcing a trivial coverage check is quite useful and produce overall good enough code with relative little effort"\n` +
+    '- link "reply" [ref=e83]\n' +
+    '- link "upvote" [ref=e84]\n' +
+    '- link "kqr" [ref=e85]\n' +
+    '- link "3 days ago" [ref=e86]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e87]\n' +
+    '- text: "I thought it pretty clear that the code was generated by th'... 43633 more characters,
+  refs: {
+    e1: { role: 'link', name: '', tagName: 'A', nthAmongSameSignature: 0 },
+    e2: {
+      role: 'link',
+      name: 'Hacker News',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e3: {
+      role: 'link',
+      name: 'new',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e4: {
+      role: 'link',
+      name: 'past',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e5: {
+      role: 'link',
+      name: 'comments',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e6: {
+      role: 'link',
+      name: 'ask',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e7: {
+      role: 'link',
+      name: 'show',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e8: {
+      role: 'link',
+      name: 'jobs',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e9: {
+      role: 'link',
+      name: 'submit',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e10: {
+      role: 'link',
+      name: 'login',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e11: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e12: {
+      role: 'link',
+      name: 'How well do agents use test/verification techniques?',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e13: { role: 'link', name: '', tagName: 'A', nthAmongSameSignature: 1 },
+    e14: {
+      role: 'link',
+      name: 'vinhnx',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e15: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e16: {
+      role: 'link',
+      name: 'hide',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e17: {
+      role: 'link',
+      name: 'past',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e18: {
+      role: 'link',
+      name: 'favorite',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e19: {
+      role: 'link',
+      name: '72 comments',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e20: {
+      role: 'textbox',
+      name: '',
+      tagName: 'TEXTAREA',
+      inputType: 'textarea',
+      nthAmongSameSignature: 0
+    },
+    e21: { role: 'link', name: '', tagName: 'A', nthAmongSameSignature: 2 },
+    e22: {
+      role: 'button',
+      name: 'add comment',
+      tagName: 'INPUT',
+      inputType: 'submit',
+      nthAmongSameSignature: 0
+    },
+    e23: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e24: {
+      role: 'link',
+      name: 'nseskin',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e25: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e26: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e27: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e28: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e29: {
+      role: 'link',
+      name: 'getnormality',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e30: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e31: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e32: {
+      role: 'link',
+      name: 'https://xyproblem.info/',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e33: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e34: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e35: {
+      role: 'link',
+      name: 'orbital-decay',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e36: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e37: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e38: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e39: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e40: {
+      role: 'link',
+      name: 'cyanydeez',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e41: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e42: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e43: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e44: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 5
+    },
+    e45: {
+      role: 'link',
+      name: 'grohan',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e46: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e47: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e48: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e49: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 6
+    },
+    e50: {
+      role: 'link',
+      name: 'ivanzhaowy123',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e51: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 5
+    },
+    e52: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 5
+    },
+    e53: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 5
+    },
+    e54: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 7
+    },
+    e55: {
+      role: 'link',
+      name: 'andai',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e56: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 6
+    },
+    e57: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 6
+    },
+    e58: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 6
+    },
+    e59: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 8
+    },
+    e60: {
+      role: 'link',
+      name: 'vetronauta',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e61: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e62: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 7
+    },
+    e63: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 7
+    },
+    e64: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 9
+    },
+    e65: {
+      role: 'link',
+      name: 'throwatdem12311',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e66: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 7
+    },
+    e67: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 8
+    },
+    e68: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 8
+    },
+    e69: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 10
+    },
+    e70: {
+      role: 'link',
+      name: 'jiaosdjf',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e71: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 8
+    },
+    e72: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 9
+    },
+    e73: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 9
+    },
+    e74: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 11
+    },
+    e75: {
+      role: 'link',
+      name: 'pydry',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e76: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 9
+    },
+    e77: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 10
+    },
+    e78: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 10
+    },
+    e79: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 12
+    },
+    e80: {
+      role: 'link',
+      name: 'siscia',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e81: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e82: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 11
+    },
+    e83: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 11
+    },
+    e84: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 13
+    },
+    e85: {
+      role: 'link',
+      name: 'kqr',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e86: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 10
+    },
+    e87: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 12
+    },
+    e88: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 12
+    },
+    e89: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 14
+    },
+    e90: {
+      role: 'link',
+      name: 'sceptic123',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e91: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 11
+    },
+    e92: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 13
+    },
+    e93: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 13
+    },
+    e94: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 15
+    },
+    e95: {
+      role: 'link',
+      name: 'MrJohz',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e96: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 12
+    },
+    e97: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 14
+    },
+    e98: {
+      role: 'link',
+      name: 'https://danluu.com/pl-tokens/#zstd',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e99: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 14
+    },
+    e100: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 16
+    },
+    e101: {
+      role: 'link',
+      name: 'themgt',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e102: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 13
+    },
+    e103: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 15
+    },
+    e104: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 15
+    },
+    e105: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 17
+    },
+    e106: {
+      role: 'link',
+      name: 'yorwba',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e107: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 14
+    },
+    e108: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 16
+    },
+    e109: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 16
+    },
+    e110: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 18
+    },
+    e111: {
+      role: 'link',
+      name: 'sceptic123',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e112: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 15
+    },
+    e113: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 17
+    },
+    e114: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 17
+    },
+    e115: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 19
+    },
+    e116: {
+      role: 'link',
+      name: 'yorwba',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e117: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 16
+    },
+    e118: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 18
+    },
+    e119: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 18
+    },
+    e120: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 20
+    },
+    e121: {
+      role: 'link',
+      name: 'sceptic123',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e122: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e123: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 19
+    },
+    e124: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 19
+    },
+    e125: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 21
+    },
+    e126: {
+      role: 'link',
+      name: 'wesselbindt',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e127: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 17
+    },
+    e128: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 20
+    },
+    e129: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 20
+    },
+    e130: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 22
+    },
+    e131: {
+      role: 'link',
+      name: 'crabbone',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e132: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 18
+    },
+    e133: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 21
+    },
+    e134: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 21
+    },
+    e135: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 23
+    },
+    e136: {
+      role: 'link',
+      name: 'siscia',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e137: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 19
+    },
+    e138: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 22
+    },
+    e139: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 22
+    },
+    e140: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 24
+    },
+    e141: {
+      role: 'link',
+      name: 'MrJohz',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e142: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 20
+    },
+    e143: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 23
+    },
+    e144: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 23
+    },
+    e145: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 25
+    },
+    e146: {
+      role: 'link',
+      name: 'gregwebs',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e147: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 21
+    },
+    e148: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 24
+    },
+    e149: {
+      role: 'link',
+      name: 'https://github.com/gregwebs/skills-sdlc/',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e150: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 24
+    },
+    e151: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 26
+    },
+    e152: {
+      role: 'link',
+      name: 'jakevoytko',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e153: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 22
+    },
+    e154: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 25
+    },
+    e155: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 25
+    },
+    e156: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 27
+    },
+    e157: {
+      role: 'link',
+      name: 'gregwebs',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e158: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 23
+    },
+    e159: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 26
+    },
+    e160: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 26
+    },
+    e161: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 28
+    },
+    e162: {
+      role: 'link',
+      name: 'genxy',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e163: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e164: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 27
+    },
+    e165: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 27
+    },
+    e166: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 29
+    },
+    e167: {
+      role: 'link',
+      name: 'movpasd',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e168: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 24
+    },
+    e169: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 28
+    },
+    e170: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 28
+    },
+    e171: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 30
+    },
+    e172: {
+      role: 'link',
+      name: 'crabbone',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e173: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 25
+    },
+    e174: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 29
+    },
+    e175: {
+      role: 'link',
+      name: 'https://danluu.com/testing/',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e176: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 29
+    },
+    e177: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 31
+    },
+    e178: {
+      role: 'link',
+      name: 'vetronauta',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e179: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e180: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 30
+    },
+    e181: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 30
+    },
+    e182: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 32
+    },
+    e183: {
+      role: 'link',
+      name: 'lolpython',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e184: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 26
+    },
+    e185: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 31
+    },
+    e186: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 31
+    },
+    e187: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 33
+    },
+    e188: {
+      role: 'link',
+      name: 'kqr',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e189: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 27
+    },
+    e190: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 32
+    },
+    e191: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 32
+    },
+    e192: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 34
+    },
+    e193: {
+      role: 'link',
+      name: 'yorwba',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e194: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 28
+    },
+    e195: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 33
+    },
+    e196: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 33
+    },
+    e197: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 35
+    },
+    e198: {
+      role: 'link',
+      name: 'coder-pm',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e199: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 29
+    },
+    e200: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 34
+    },
+    e201: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 34
+    },
+    e202: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 36
+    },
+    e203: {
+      role: 'link',
+      name: 'vetronauta',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e204: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e205: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 35
+    },
+    e206: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 35
+    },
+    e207: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 37
+    },
+    e208: {
+      role: 'link',
+      name: 'coder-pm',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e209: {
+      role: 'link',
+      name: '1 day ago',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e210: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 36
+    },
+    e211: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 36
+    },
+    e212: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 38
+    },
+    e213: {
+      role: 'link',
+      name: 'devhunt-org',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e214: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e215: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 37
+    },
+    e216: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 37
+    },
+    e217: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 39
+    },
+    e218: {
+      role: 'link',
+      name: 'kqr',
+      tagName: 'A',
+      nthAmongSameSignature: 2
+    },
+    e219: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 30
+    },
+    e220: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 38
+    },
+    e221: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 38
+    },
+    e222: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 40
+    },
+    e223: {
+      role: 'link',
+      name: 'anitil',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e224: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e225: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 39
+    },
+    e226: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 39
+    },
+    e227: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 41
+    },
+    e228: {
+      role: 'link',
+      name: 'ngruhn',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e229: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 5
+    },
+    e230: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 40
+    },
+    e231: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 40
+    },
+    e232: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 42
+    },
+    e233: {
+      role: 'link',
+      name: 'genxy',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e234: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e235: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 41
+    },
+    e236: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 41
+    },
+    e237: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 43
+    },
+    e238: {
+      role: 'link',
+      name: 'ponector',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e239: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 31
+    },
+    e240: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 42
+    },
+    e241: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 42
+    },
+    e242: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 44
+    },
+    e243: {
+      role: 'link',
+      name: 'zaphirplane',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e244: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 32
+    },
+    e245: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 43
+    },
+    e246: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 43
+    },
+    e247: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 45
+    },
+    e248: {
+      role: 'link',
+      name: 'ponector',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e249: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 33
+    },
+    e250: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 44
+    },
+    e251: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 44
+    },
+    e252: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 46
+    },
+    e253: {
+      role: 'link',
+      name: '__alexs',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e254: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 6
+    },
+    e255: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 45
+    },
+    e256: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 45
+    },
+    e257: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 47
+    },
+    e258: {
+      role: 'link',
+      name: 'gmueckl',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e259: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 34
+    },
+    e260: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 46
+    },
+    e261: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 46
+    },
+    e262: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 48
+    },
+    e263: {
+      role: 'link',
+      name: 'ngruhn',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e264: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 7
+    },
+    e265: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 47
+    },
+    e266: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 47
+    },
+    e267: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 49
+    },
+    e268: {
+      role: 'link',
+      name: 'ckvibubueu',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e269: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 35
+    },
+    e270: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 48
+    },
+    e271: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 48
+    },
+    e272: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 50
+    },
+    e273: {
+      role: 'link',
+      name: 'salmonellaeater',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e274: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 36
+    },
+    e275: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 49
+    },
+    e276: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 49
+    },
+    e277: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 51
+    },
+    e278: {
+      role: 'link',
+      name: 'ckvibubueu',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e279: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 5
+    },
+    e280: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 50
+    },
+    e281: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 50
+    },
+    e282: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 52
+    },
+    e283: {
+      role: 'link',
+      name: 'williamdclt',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e284: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 37
+    },
+    e285: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 51
+    },
+    e286: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 51
+    },
+    e287: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 53
+    },
+    e288: {
+      role: 'link',
+      name: 'andai',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e289: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 38
+    },
+    e290: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 52
+    },
+    e291: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 52
+    },
+    e292: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 54
+    },
+    e293: {
+      role: 'link',
+      name: 'Schlagbohrer',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e294: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 39
+    },
+    e295: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 53
+    },
+    e296: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 53
+    },
+    e297: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 55
+    },
+    e298: {
+      role: 'link',
+      name: 'Havoc',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e299: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 40
+    },
+    e300: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 54
+    },
+    e301: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 54
+    },
+    e302: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 56
+    },
+    e303: {
+      role: 'link',
+      name: 'gz09',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e304: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 8
+    },
+    e305: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 55
+    },
+    e306: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 55
+    },
+    e307: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 57
+    },
+    e308: {
+      role: 'link',
+      name: 'gr_norm',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e309: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 9
+    },
+    e310: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 56
+    },
+    e311: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 56
+    },
+    e312: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 58
+    },
+    e313: {
+      role: 'link',
+      name: 'lmeyerov',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e314: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 41
+    },
+    e315: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 57
+    },
+    e316: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 57
+    },
+    e317: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 59
+    },
+    e318: {
+      role: 'link',
+      name: 'emtel',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e319: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 42
+    },
+    e320: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 58
+    },
+    e321: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 58
+    },
+    e322: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 60
+    },
+    e323: {
+      role: 'link',
+      name: 'tomrod',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e324: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 10
+    },
+    e325: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 59
+    },
+    e326: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 59
+    },
+    e327: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 61
+    },
+    e328: {
+      role: 'link',
+      name: 'CharlieDigital',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e329: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 43
+    },
+    e330: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 60
+    },
+    e331: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 60
+    },
+    e332: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 62
+    },
+    e333: {
+      role: 'link',
+      name: 'penguin_booze',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e334: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 44
+    },
+    e335: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 61
+    },
+    e336: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 61
+    },
+    e337: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 63
+    },
+    e338: {
+      role: 'link',
+      name: 'kqr',
+      tagName: 'A',
+      nthAmongSameSignature: 3
+    },
+    e339: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 45
+    },
+    e340: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 62
+    },
+    e341: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 62
+    },
+    e342: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 64
+    },
+    e343: {
+      role: 'link',
+      name: 'ianjbutler',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e344: {
+      role: 'link',
+      name: '4 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 11
+    },
+    e345: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 63
+    },
+    e346: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 63
+    },
+    e347: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 65
+    },
+    e348: {
+      role: 'link',
+      name: 'moritzwarhier',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e349: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 46
+    },
+    e350: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 64
+    },
+    e351: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 64
+    },
+    e352: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 66
+    },
+    e353: {
+      role: 'link',
+      name: 'epsteingpt',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e354: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 47
+    },
+    e355: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 65
+    },
+    e356: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 65
+    },
+    e357: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 67
+    },
+    e358: {
+      role: 'link',
+      name: 'luckydata',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e359: {
+      role: 'link',
+      name: '2 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 6
+    },
+    e360: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 66
+    },
+    e361: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 66
+    },
+    e362: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 68
+    },
+    e363: {
+      role: 'link',
+      name: 'filmdilemma',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e364: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 48
+    },
+    e365: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 67
+    },
+    e366: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 67
+    },
+    e367: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 69
+    },
+    e368: {
+      role: 'link',
+      name: 'quietraster',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e369: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 49
+    },
+    e370: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 68
+    },
+    e371: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 68
+    },
+    e372: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 70
+    },
+    e373: {
+      role: 'link',
+      name: 'kqr',
+      tagName: 'A',
+      nthAmongSameSignature: 4
+    },
+    e374: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 50
+    },
+    e375: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 69
+    },
+    e376: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 69
+    },
+    e377: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 71
+    },
+    e378: {
+      role: 'link',
+      name: 'a2ff6eeb0',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e379: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 51
+    },
+    e380: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 70
+    },
+    e381: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 70
+    },
+    e382: {
+      role: 'link',
+      name: 'upvote',
+      tagName: 'A',
+      nthAmongSameSignature: 72
+    },
+    e383: {
+      role: 'link',
+      name: 'lmeyerov',
+      tagName: 'A',
+      nthAmongSameSignature: 1
+    },
+    e384: {
+      role: 'link',
+      name: '3 days ago',
+      tagName: 'A',
+      nthAmongSameSignature: 52
+    },
+    e385: {
+      role: 'link',
+      name: '[–]',
+      tagName: 'A',
+      nthAmongSameSignature: 71
+    },
+    e386: {
+      role: 'link',
+      name: 'reply',
+      tagName: 'A',
+      nthAmongSameSignature: 71
+    },
+    e387: {
+      role: 'link',
+      name: 'Guidelines',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e388: {
+      role: 'link',
+      name: 'FAQ',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e389: {
+      role: 'link',
+      name: 'Lists',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e390: {
+      role: 'link',
+      name: 'API',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e391: {
+      role: 'link',
+      name: 'Security',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e392: {
+      role: 'link',
+      name: 'Legal',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e393: {
+      role: 'link',
+      name: 'Apply to YC',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e394: {
+      role: 'link',
+      name: 'Contact',
+      tagName: 'A',
+      nthAmongSameSignature: 0
+    },
+    e395: {
+      role: 'textbox',
+      name: '',
+      tagName: 'INPUT',
+      inputType: 'text',
+      nthAmongSameSignature: 1
+    }
+  },
+  diff: '# note: interactive (clickable / focusable) elements only.\n' +
+    '- title: "How well do agents use test/verification techniques? | Hacker News" [url=https://news.ycombinator.com/item?id=49605246]\n' +
+    '- link [ref=e1]\n' +
+    '- link "Hacker News" [ref=e2]\n' +
+    '- link "new" [ref=e3]\n' +
+    '- text: "|"\n' +
+    '- link "past" [ref=e4]\n' +
+    '- text: "|"\n' +
+    '- link "comments" [ref=e5]\n' +
+    '- text: "|"\n' +
+    '- link "ask" [ref=e6]\n' +
+    '- text: "|"\n' +
+    '- link "show" [ref=e7]\n' +
+    '- text: "|"\n' +
+    '- link "jobs" [ref=e8]\n' +
+    '- text: "|"\n' +
+    '- link "submit" [ref=e9]\n' +
+    '- link "login" [ref=e10]\n' +
+    '- link "upvote" [ref=e11]\n' +
+    '- link "How well do agents use test/verification techniques?" [ref=e12]\n' +
+    '- text: "("\n' +
+    '- link "danluu.com" [ref=e13]\n' +
+    '- text: ")189 points  by"\n' +
+    '- link "vinhnx" [ref=e14]\n' +
+    '- link "4 days ago" [ref=e15]\n' +
+    '- text: "|"\n' +
+    '- link "hide" [ref=e16]\n' +
+    '- text: "|"\n' +
+    '- link "past" [ref=e17]\n' +
+    '- text: "|"\n' +
+    '- link "favorite" [ref=e18]\n' +
+    '- text: "|"\n' +
+    '- link "72 comments" [ref=e19]\n' +
+    '- textbox [ref=e20]\n' +
+    '- link "help" [ref=e21]\n' +
+    '- button "add comment" [ref=e22]\n' +
+    '- link "upvote" [ref=e23]\n' +
+    '- link "nseskin" [ref=e24]\n' +
+    '- link "3 days ago" [ref=e25]\n' +
+    '- text: "|"\n' +
+    '- link "[–]" [ref=e26]\n' +
+    '- text: "I think this article demonstrates a broader problem with constraint following in LLMs. Agents often satisfy the most obvious and easily verifiable part of a task, but lose track of the constraint that actually determines success.Testing makes this especially clear: “use fuzzing” turns into generating random bytes, and “use formal verification” into proving a property that isn’t particularly useful. Formally, the technique is applied, but its actual purpose is lost.This may also explain why different testing techniques produce similar results: the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint."\n' +
+    '- link "reply" [ref=e27]\n' +
+    '- link "upvote" [ref=e28]\n' +
+    '- link "getnormality" [ref=e29]\n' +
+    '- link "3 days ago" [ref=e30]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e31]\n' +
+    `- text: "> the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint.I think the limiting factor is often the human's ability to articulate the goal and hold the agent accountable.The working memory of technical people and the way they communicate often seems to prioritize how they're doing a task and not why they're doing it. So when they talk to you about their problem, they give you the human equivalent of modem noises and stack traces. This is such a common problem on tech support and Q&A forums like StackOverflow that it spawned its own terminology and website:"\n` +
+    '- link "https://xyproblem.info/" [ref=e32]\n' +
+    `- text: "The agents don't respond to XY problems any better than a colleague does, and usually much worse.An effective colleague asks why, and we need a similar relationship between the agent and its human supervisor."\n` +
+    '- link "reply" [ref=e33]\n' +
+    '- link "upvote" [ref=e34]\n' +
+    '- link "orbital-decay" [ref=e35]\n' +
+    '- link "3 days ago" [ref=e36]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e37]\n' +
+    `- text: "It's well known that CoT needs a narrow problem or several independent narrow problems to perform well. With too broad of a task it often turns into a burden and hurts performance, making it hyperfocus on one thing where a non-reasoning model would just handle everything. I wonder if disabling it would make anything better, but likely not if the model is already trained to do it."\n` +
+    '- link "reply" [ref=e38]\n' +
+    '- link "upvote" [ref=e39]\n' +
+    '- link "cyanydeez" [ref=e40]\n' +
+    '- link "3 days ago" [ref=e41]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e42]\n' +
+    '- text: "CoT works really well in qwen3.8-flash-next. I think a lot of the problems obversed are literal skill issue: dumping huge system prompts/skills that prime it over some broad scope, when the request is narrow.The system prompt should be considered a starting point only if you want reusable intelligence and focus. It should not be a grab bag of tools and PR style guides, etc...Grab your agent and inspect its prompt."\n' +
+    '- link "reply" [ref=e43]\n' +
+    '- link "upvote" [ref=e44]\n' +
+    '- link "grohan" [ref=e45]\n' +
+    '- link "3 days ago" [ref=e46]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e47]\n' +
+    '- text: "Pretty good point - I would actually argue that the imperative nature of prompting takes some of the blame here too. Your initial goal gets \\"steered\\" by the agent system and follow-up messages take precedence."\n' +
+    '- link "reply" [ref=e48]\n' +
+    '- link "upvote" [ref=e49]\n' +
+    '- link "ivanzhaowy123" [ref=e50]\n' +
+    '- link "3 days ago" [ref=e51]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e52]\n' +
+    '- text: "In my experience, agents often think of more edge cases than humans when writing unit tests. But under the guidance of certain skills, they can become mechanical and lose sight of the business logic.For example, when I use the Superpowers skill set, the agent proactively adopts TDD for every new feature. But its understanding of testing often stays superficial: if the user asks for a screen with a “Send” button, it first writes a test checking whether the button exists. The test fails, so it adds the button to make it pass.As a result, the test suite fills up with low-value cases that check whether a property exists or a string matches exactly. The agent follows the “write a failing test, then implement the feature” workflow, but never really tests the business behavior: When should sending be allowed? What should happen after success or failure? How should duplicate submissions be handled?The problem isn’t that agents can’t write tests. It’s that they seem prone to reducing TDD to a rigid sequence of steps, struggling to independently derive meaningful test cases from business requirements and use them to drive development."\n' +
+    '- link "reply" [ref=e53]\n' +
+    '- link "upvote" [ref=e54]\n' +
+    '- link "andai" [ref=e55]\n' +
+    '- link "3 days ago" [ref=e56]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e57]\n' +
+    `- text: "I asked Sonnet to port a prolog interpreter from Python to JS. I was surprised and delighted that it ended up writing a test suite for it. All tests passed.Until... I inspected the code: it was just a bunch of print statements that said \\"test passed!\\" and didn't actually test anything.That was last year, so hopefully it doesn't do that anymore."\n` +
+    '- link "reply" [ref=e58]\n' +
+    '- link "upvote" [ref=e59]\n' +
+    '- link "vetronauta" [ref=e60]\n' +
+    '- link "2 days ago" [ref=e61]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e62]\n' +
+    '- text: "Few months ago I was debugging an integration with a no-code library that ships code in a custom binary format. I still smile thinking at the following test I read assertThrows(RuntimeException.class, () -> callFoo(notABinaryFile)); //well, foo library is very complex, obviously this test throws!"\n' +
+    '- link "reply" [ref=e63]\n' +
+    '- link "upvote" [ref=e64]\n' +
+    '- link "throwatdem12311" [ref=e65]\n' +
+    '- link "3 days ago" [ref=e66]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e67]\n' +
+    '- text: "This is not really my experience using TDD with Claude at all.  When I tell it “a button should appear under x condition” it writes the test, and will often even verify the test by changing the code to fail the condition correctly before coming back and tell me it’s done.Every once in a while one of those useless tests you mention will sneak in…but I still read the code and either just remove it or tell the agent to get rid of it.  It happens so rarely it’s barely an inconvenience.But I don’t use any skills or anything like that to drive it.  I just have a line in my CLAUDE.md to follow TDD best practices.Personally I find most skills like these “superpowers” are just bullshit and don’t really help at all."\n' +
+    '- link "reply" [ref=e68]\n' +
+    '- link "upvote" [ref=e69]\n' +
+    '- link "jiaosdjf" [ref=e70]\n' +
+    '- link "3 days ago" [ref=e71]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e72]\n' +
+    `- text: "Probably because thats how most companies do it because most corporate workers are lazy box-tickers who are long fed up with the processes. It really feels like we're forcing human processes onto AI.What actually is the point of TDD?\\n- If its to force you to think about edge cases early before you've started building the feature then that sounds like a human trait\\n- If its to be living documentation then that sounds like a human trait We're going into weird rabbit holes where we've mismatched the tool that is AI which produces extremely cheap code very quickly - with the processes that we've built for slow and expensive to write human-generated code."\n` +
+    '- link "reply" [ref=e73]\n' +
+    '- link "upvote" [ref=e74]\n' +
+    '- link "pydry" [ref=e75]\n' +
+    '- link "3 days ago" [ref=e76]\n' +
+    '- text: "|  |  |"\n' +
+    '- link "[–]" [ref=e77]\n' +
+    `- text: "I think most people miss the point of TDD. It is not just about edge cases. It  ought  to be:* A way of matching requirement use cases to tests.* to modulate the number of tests written not only to make sure you have  enough  coverage but also to make sure you don't pointlessly cover the same edge cases multiple times.* a way to cheaply provide feedback and validation on code  as  you are writing it.With AI the ability to churn out useless tests has exploded (both with TDD done badly and with no TDD at all) and that has actually incurred a new type of cost we didnt have to face before."\n` +
+    '- link "reply" [ref=e78]\n' +
+    '- link "upvote" [ref=e79]\n' +
+    '- link "siscia" [ref=e80]\n' +
+    '- link "4 days ago" [ref=e81]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e82]\n' +
+    `- text: "It is still early, but I find that this experiment makes little to no sense and it is barely useful.The way you test code cannot (and should not) be decoupled by the way in which you architect the code itself.80%+ of effective testing is not in the testing framework but in the code architecture.The author doesn't mention how the code is being architected and managed.For what it is worth, I found that forcing agents on DI/hexagonal architecture and forcing a trivial coverage check is quite useful and produce overall good enough code with relative little effort"\n` +
+    '- link "reply" [ref=e83]\n' +
+    '- link "upvote" [ref=e84]\n' +
+    '- link "kqr" [ref=e85]\n' +
+    '- link "3 days ago" [ref=e86]\n' +
+    '- text: "|  |"\n' +
+    '- link "[–]" [ref=e87]\n' +
+    '- text: "I thought it pretty clear that the code was generated by th'... 43633 more characters
+}
+[2m[ok | 1196ms][0m

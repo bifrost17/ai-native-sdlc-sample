@@ -1,0 +1,995 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:43:32Z",
+  "pull": {
+    "url": "https://api.github.com/repos/django/django/pulls/21886",
+    "id": 4438245727,
+    "node_id": "PR_kwDOAD-Lgs8AAAABCIpBXw",
+    "html_url": "https://github.com/django/django/pull/21886",
+    "diff_url": "https://github.com/django/django/pull/21886.diff",
+    "patch_url": "https://github.com/django/django/pull/21886.patch",
+    "issue_url": "https://api.github.com/repos/django/django/issues/21886",
+    "number": 21886,
+    "state": "closed",
+    "locked": false,
+    "title": "Fixed #37271 -- Added calendar version support to django.utils.version.",
+    "user": {
+      "login": "nessita",
+      "id": 124304,
+      "node_id": "MDQ6VXNlcjEyNDMwNA==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nessita",
+      "html_url": "https://github.com/nessita",
+      "followers_url": "https://api.github.com/users/nessita/followers",
+      "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+      "organizations_url": "https://api.github.com/users/nessita/orgs",
+      "repos_url": "https://api.github.com/users/nessita/repos",
+      "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nessita/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "#### Trac ticket number\r\n<!-- Replace XXXXX with the corresponding Trac ticket number. -->\r\n<!-- Or delete the line and write \"N/A - typo\" for typo fixes. -->\r\n\r\nticket-37271\r\n\r\n#### Branch description\r\nFrom Django 2028, feature releases are calendar versioned as YYYY[.N],\r\nwhere N is the patch number, as per DEP 20. A version is now read as the\r\nnumbers of the printed version followed by the status and its iteration,\r\nso calendar versions have four components, (year, patch, status,\r\niteration), while the earlier scheme keeps its five.\r\n\r\ndjango.VERSION is now a VersionTuple, providing feature, patch, status,\r\nand iteration attributes which give the same answers under both schemes.\r\nReading it positionally from its third component on, reading it in a way\r\nwhich depends on its length, and comparing it against three or more\r\ncomponents are deprecated, as each breaks or silently changes meaning\r\nwhen the tuple loses a component.\r\n\r\n#### AI Assistance Disclosure (REQUIRED)\r\n<!-- Select exactly ONE of the following: -->\r\n- [ ] **No AI tools were used** in preparing this PR.\r\n- [X] **If AI tools were used**, I have disclosed which ones, and fully reviewed and verified their output.\r\n<!-- If AI tools were used, provide which tools were used here. -->\r\n\r\nClaude code was used to do the exhaustive analysis of the code base to design a deprecation plan.\r\n\r\n#### Checklist\r\n- [X] This PR follows the [contribution guidelines](https://docs.djangoproject.com/en/stable/internals/contributing/writing-code/submitting-patches/).\r\n- [X] This PR **does not** disclose a security vulnerability (see [vulnerability reporting](https://docs.djangoproject.com/en/stable/internals/security/)).\r\n- [X] This PR targets the `main` branch. <!-- Backports will be evaluated and done by mergers, when necessary. -->\r\n- [X] The commit message is written in past tense, mentions the ticket number (if applicable), and ends with a period (see [guidelines](https://docs.djangoproject.com/en/dev/internals/contributing/committing-code/#committing-guidelines)).\r\n- [X] I have not requested, and will not request, an automated AI review for this PR. <!-- You are welcome to do so in your own fork. -->\r\n\r\n<!-- Leave the following items unchecked if not applicable. -->\r\n- [X] I have checked the \"Has patch\" ticket flag in the Trac system.\r\n- [X] I have added or updated relevant tests.\r\n- [X] I have added or updated relevant docs, including release notes if applicable.\r\n- [ ] I have attached screenshots in both light and dark modes for any UI changes.\r\n",
+    "created_at": "2026-09-04T01:07:16Z",
+    "updated_at": "2026-09-04T18:19:19Z",
+    "closed_at": "2026-09-04T18:19:15Z",
+    "merged_at": "2026-09-04T18:19:15Z",
+    "merge_commit_sha": "cc933385e75172cabacb49cfb9fe3571845cb216",
+    "assignees": [],
+    "requested_reviewers": [
+      {
+        "login": "sarahboyce",
+        "id": 42296566,
+        "node_id": "MDQ6VXNlcjQyMjk2NTY2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/42296566?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sarahboyce",
+        "html_url": "https://github.com/sarahboyce",
+        "followers_url": "https://api.github.com/users/sarahboyce/followers",
+        "following_url": "https://api.github.com/users/sarahboyce/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sarahboyce/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sarahboyce/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sarahboyce/subscriptions",
+        "organizations_url": "https://api.github.com/users/sarahboyce/orgs",
+        "repos_url": "https://api.github.com/users/sarahboyce/repos",
+        "events_url": "https://api.github.com/users/sarahboyce/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sarahboyce/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      }
+    ],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/django/django/pulls/21886/commits",
+    "review_comments_url": "https://api.github.com/repos/django/django/pulls/21886/comments",
+    "review_comment_url": "https://api.github.com/repos/django/django/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/django/django/issues/21886/comments",
+    "statuses_url": "https://api.github.com/repos/django/django/statuses/566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+    "head": {
+      "label": "nessita:get_version-XXXX.N",
+      "ref": "get_version-XXXX.N",
+      "sha": "566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "user": {
+        "login": "nessita",
+        "id": 124304,
+        "node_id": "MDQ6VXNlcjEyNDMwNA==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/nessita",
+        "html_url": "https://github.com/nessita",
+        "followers_url": "https://api.github.com/users/nessita/followers",
+        "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+        "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+        "organizations_url": "https://api.github.com/users/nessita/orgs",
+        "repos_url": "https://api.github.com/users/nessita/repos",
+        "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/nessita/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 19577316,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxOTU3NzMxNg==",
+        "name": "django",
+        "full_name": "nessita/django",
+        "private": false,
+        "owner": {
+          "login": "nessita",
+          "id": 124304,
+          "node_id": "MDQ6VXNlcjEyNDMwNA==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/nessita",
+          "html_url": "https://github.com/nessita",
+          "followers_url": "https://api.github.com/users/nessita/followers",
+          "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+          "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+          "organizations_url": "https://api.github.com/users/nessita/orgs",
+          "repos_url": "https://api.github.com/users/nessita/repos",
+          "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/nessita/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/nessita/django",
+        "description": "The Web framework for perfectionists with deadlines.",
+        "fork": true,
+        "url": "https://api.github.com/repos/nessita/django",
+        "forks_url": "https://api.github.com/repos/nessita/django/forks",
+        "keys_url": "https://api.github.com/repos/nessita/django/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/nessita/django/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/nessita/django/teams",
+        "hooks_url": "https://api.github.com/repos/nessita/django/hooks",
+        "issue_events_url": "https://api.github.com/repos/nessita/django/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/nessita/django/events",
+        "assignees_url": "https://api.github.com/repos/nessita/django/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/nessita/django/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/nessita/django/tags",
+        "blobs_url": "https://api.github.com/repos/nessita/django/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/nessita/django/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/nessita/django/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/nessita/django/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/nessita/django/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/nessita/django/languages",
+        "stargazers_url": "https://api.github.com/repos/nessita/django/stargazers",
+        "contributors_url": "https://api.github.com/repos/nessita/django/contributors",
+        "subscribers_url": "https://api.github.com/repos/nessita/django/subscribers",
+        "subscription_url": "https://api.github.com/repos/nessita/django/subscription",
+        "commits_url": "https://api.github.com/repos/nessita/django/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/nessita/django/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/nessita/django/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/nessita/django/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/nessita/django/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/nessita/django/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/nessita/django/merges",
+        "archive_url": "https://api.github.com/repos/nessita/django/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/nessita/django/downloads",
+        "issues_url": "https://api.github.com/repos/nessita/django/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/nessita/django/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/nessita/django/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/nessita/django/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/nessita/django/labels{/name}",
+        "releases_url": "https://api.github.com/repos/nessita/django/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/nessita/django/deployments",
+        "created_at": "2014-05-08T14:53:43Z",
+        "updated_at": "2026-09-03T20:10:18Z",
+        "pushed_at": "2026-09-11T18:56:20Z",
+        "git_url": "git://github.com/nessita/django.git",
+        "ssh_url": "git@github.com:nessita/django.git",
+        "clone_url": "https://github.com/nessita/django.git",
+        "svn_url": "https://github.com/nessita/django",
+        "homepage": "http://www.djangoproject.com/",
+        "size": 246712,
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "language": "Python",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "bsd-3-clause",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://api.github.com/licenses/bsd-3-clause",
+          "node_id": "MDc6TGljZW5zZTU="
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 0,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "django:main",
+      "ref": "main",
+      "sha": "026b005f3dc43a98557ce5a546b5e4938d06fed1",
+      "user": {
+        "login": "django",
+        "id": 27804,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3ODA0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/27804?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/django",
+        "html_url": "https://github.com/django",
+        "followers_url": "https://api.github.com/users/django/followers",
+        "following_url": "https://api.github.com/users/django/following{/other_user}",
+        "gists_url": "https://api.github.com/users/django/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/django/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/django/subscriptions",
+        "organizations_url": "https://api.github.com/users/django/orgs",
+        "repos_url": "https://api.github.com/users/django/repos",
+        "events_url": "https://api.github.com/users/django/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/django/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 4164482,
+        "node_id": "MDEwOlJlcG9zaXRvcnk0MTY0NDgy",
+        "name": "django",
+        "full_name": "django/django",
+        "private": false,
+        "owner": {
+          "login": "django",
+          "id": 27804,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3ODA0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/27804?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/django",
+          "html_url": "https://github.com/django",
+          "followers_url": "https://api.github.com/users/django/followers",
+          "following_url": "https://api.github.com/users/django/following{/other_user}",
+          "gists_url": "https://api.github.com/users/django/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/django/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/django/subscriptions",
+          "organizations_url": "https://api.github.com/users/django/orgs",
+          "repos_url": "https://api.github.com/users/django/repos",
+          "events_url": "https://api.github.com/users/django/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/django/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/django/django",
+        "description": "The Web framework for perfectionists with deadlines.",
+        "fork": false,
+        "url": "https://api.github.com/repos/django/django",
+        "forks_url": "https://api.github.com/repos/django/django/forks",
+        "keys_url": "https://api.github.com/repos/django/django/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/django/django/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/django/django/teams",
+        "hooks_url": "https://api.github.com/repos/django/django/hooks",
+        "issue_events_url": "https://api.github.com/repos/django/django/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/django/django/events",
+        "assignees_url": "https://api.github.com/repos/django/django/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/django/django/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/django/django/tags",
+        "blobs_url": "https://api.github.com/repos/django/django/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/django/django/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/django/django/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/django/django/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/django/django/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/django/django/languages",
+        "stargazers_url": "https://api.github.com/repos/django/django/stargazers",
+        "contributors_url": "https://api.github.com/repos/django/django/contributors",
+        "subscribers_url": "https://api.github.com/repos/django/django/subscribers",
+        "subscription_url": "https://api.github.com/repos/django/django/subscription",
+        "commits_url": "https://api.github.com/repos/django/django/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/django/django/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/django/django/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/django/django/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/django/django/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/django/django/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/django/django/merges",
+        "archive_url": "https://api.github.com/repos/django/django/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/django/django/downloads",
+        "issues_url": "https://api.github.com/repos/django/django/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/django/django/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/django/django/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/django/django/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/django/django/labels{/name}",
+        "releases_url": "https://api.github.com/repos/django/django/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/django/django/deployments",
+        "created_at": "2012-04-28T02:47:18Z",
+        "updated_at": "2026-09-12T05:05:16Z",
+        "pushed_at": "2026-09-08T19:01:03Z",
+        "git_url": "git://github.com/django/django.git",
+        "ssh_url": "git@github.com:django/django.git",
+        "clone_url": "https://github.com/django/django.git",
+        "svn_url": "https://github.com/django/django",
+        "homepage": "https://www.djangoproject.com/",
+        "size": 282843,
+        "stargazers_count": 90763,
+        "watchers_count": 90763,
+        "language": "Python",
+        "has_issues": false,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 34251,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 501,
+        "license": {
+          "key": "bsd-3-clause",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://api.github.com/licenses/bsd-3-clause",
+          "node_id": "MDc6TGljZW5zZTU="
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "apps",
+          "django",
+          "framework",
+          "models",
+          "orm",
+          "python",
+          "templates",
+          "views",
+          "web"
+        ],
+        "visibility": "public",
+        "forks": 34251,
+        "open_issues": 501,
+        "watchers": 90763,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/django/django/pulls/21886"
+      },
+      "html": {
+        "href": "https://github.com/django/django/pull/21886"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/django/django/issues/21886"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/django/django/issues/21886/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/django/django/pulls/21886/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/django/django/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/django/django/pulls/21886/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/django/django/statuses/566a88c8bb9f90cc24aabd721db8dff95aa0dc37"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "nessita",
+      "id": 124304,
+      "node_id": "MDQ6VXNlcjEyNDMwNA==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nessita",
+      "html_url": "https://github.com/nessita",
+      "followers_url": "https://api.github.com/users/nessita/followers",
+      "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+      "organizations_url": "https://api.github.com/users/nessita/orgs",
+      "repos_url": "https://api.github.com/users/nessita/repos",
+      "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nessita/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 0,
+    "review_comments": 18,
+    "maintainer_can_modify": false,
+    "commits": 2,
+    "additions": 460,
+    "deletions": 17,
+    "changed_files": 6
+  },
+  "commits": [
+    {
+      "sha": "2bf1007300716c668df0c9c2b8599233b90a046b",
+      "node_id": "C_kwDOASq55NoAKDJiZjEwMDczMDA3MTZjNjY4ZGYwYzljMmI4NTk5MjMzYjkwYTA0NmI",
+      "commit": {
+        "author": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-09-03T20:42:53Z"
+        },
+        "committer": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-09-04T14:28:49Z"
+        },
+        "message": "Refs #37178 -- Deferred django.middleware import in django.utils.deprecation.\n\ndjango.utils.deprecation imported django.middleware.MiddlewareMixin at\nmodule level, solely to serve its deprecated __getattr__ import path.\nThat gave the module a hard dependency on asgiref (via django.middleware)\nmerely to be imported, which breaks in contexts where Django's own\nruntime dependencies aren't installed yet, such as a PEP 517 build\nbackend resolving django.__version__ before installing install_requires.",
+        "tree": {
+          "sha": "6c15a25ea183791dfa86b7c6b0bedfe711f6aaf7",
+          "url": "https://api.github.com/repos/django/django/git/trees/6c15a25ea183791dfa86b7c6b0bedfe711f6aaf7"
+        },
+        "url": "https://api.github.com/repos/django/django/git/commits/2bf1007300716c668df0c9c2b8599233b90a046b",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/django/django/commits/2bf1007300716c668df0c9c2b8599233b90a046b",
+      "html_url": "https://github.com/django/django/commit/2bf1007300716c668df0c9c2b8599233b90a046b",
+      "comments_url": "https://api.github.com/repos/django/django/commits/2bf1007300716c668df0c9c2b8599233b90a046b/comments",
+      "author": {
+        "login": "nessita",
+        "id": 124304,
+        "node_id": "MDQ6VXNlcjEyNDMwNA==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/nessita",
+        "html_url": "https://github.com/nessita",
+        "followers_url": "https://api.github.com/users/nessita/followers",
+        "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+        "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+        "organizations_url": "https://api.github.com/users/nessita/orgs",
+        "repos_url": "https://api.github.com/users/nessita/repos",
+        "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/nessita/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "nessita",
+        "id": 124304,
+        "node_id": "MDQ6VXNlcjEyNDMwNA==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/nessita",
+        "html_url": "https://github.com/nessita",
+        "followers_url": "https://api.github.com/users/nessita/followers",
+        "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+        "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+        "organizations_url": "https://api.github.com/users/nessita/orgs",
+        "repos_url": "https://api.github.com/users/nessita/repos",
+        "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/nessita/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "026b005f3dc43a98557ce5a546b5e4938d06fed1",
+          "url": "https://api.github.com/repos/django/django/commits/026b005f3dc43a98557ce5a546b5e4938d06fed1",
+          "html_url": "https://github.com/django/django/commit/026b005f3dc43a98557ce5a546b5e4938d06fed1"
+        }
+      ]
+    },
+    {
+      "sha": "566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "node_id": "C_kwDOASq55NoAKDU2NmE4OGM4YmI5ZjkwY2MyNGFhYmQ3MjFkYjhkZmY5NWFhMGRjMzc",
+      "commit": {
+        "author": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-08-10T21:47:00Z"
+        },
+        "committer": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-09-04T18:02:15Z"
+        },
+        "message": "Fixed #37271 -- Added calendar version support to django.utils.version.\n\nFrom Django 2028, feature releases are calendar versioned as YYYY[.N],\nwhere N is the patch number, as per DEP 20. A version is now read as the\nnumbers of the printed version followed by the status and its iteration,\nso calendar versions have four components, (year, patch, status,\niteration), while the earlier scheme keeps its five.\n\ndjango.VERSION is now a VersionTuple, providing `.feature`, `.patch`,\n`.status`, and `.iteration` attributes which give the same answers under\nboth schemes. Indexing it from its third component on, reading it in a\nway which depends on its length, and comparing it against three or more\ncomponents are deprecated, as each breaks or silently changes meaning\nwhen the tuple loses a component.\n\nThanks Carlton Gibson for reviews.",
+        "tree": {
+          "sha": "92d8244311f3c3a6617796c4bded42bd32b5151d",
+          "url": "https://api.github.com/repos/django/django/git/trees/92d8244311f3c3a6617796c4bded42bd32b5151d"
+        },
+        "url": "https://api.github.com/repos/django/django/git/commits/566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/django/django/commits/566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "html_url": "https://github.com/django/django/commit/566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "comments_url": "https://api.github.com/repos/django/django/commits/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/comments",
+      "author": {
+        "login": "nessita",
+        "id": 124304,
+        "node_id": "MDQ6VXNlcjEyNDMwNA==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/nessita",
+        "html_url": "https://github.com/nessita",
+        "followers_url": "https://api.github.com/users/nessita/followers",
+        "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+        "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+        "organizations_url": "https://api.github.com/users/nessita/orgs",
+        "repos_url": "https://api.github.com/users/nessita/repos",
+        "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/nessita/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "nessita",
+        "id": 124304,
+        "node_id": "MDQ6VXNlcjEyNDMwNA==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/124304?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/nessita",
+        "html_url": "https://github.com/nessita",
+        "followers_url": "https://api.github.com/users/nessita/followers",
+        "following_url": "https://api.github.com/users/nessita/following{/other_user}",
+        "gists_url": "https://api.github.com/users/nessita/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/nessita/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/nessita/subscriptions",
+        "organizations_url": "https://api.github.com/users/nessita/orgs",
+        "repos_url": "https://api.github.com/users/nessita/repos",
+        "events_url": "https://api.github.com/users/nessita/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/nessita/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "2bf1007300716c668df0c9c2b8599233b90a046b",
+          "url": "https://api.github.com/repos/django/django/commits/2bf1007300716c668df0c9c2b8599233b90a046b",
+          "html_url": "https://github.com/django/django/commit/2bf1007300716c668df0c9c2b8599233b90a046b"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "662920f5e91f29a47074b58b8acb27003361df9c",
+      "filename": "django/__init__.py",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2,
+      "changes": 4,
+      "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2F__init__.py",
+      "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2F__init__.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/django%2F__init__.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "patch": "@@ -1,6 +1,6 @@\n-from django.utils.version import get_version\n+from django.utils.version import VersionTuple, get_version\n \n-VERSION = (6, 2, 0, \"alpha\", 0)\n+VERSION = VersionTuple(6, 2, 0, \"alpha\", 0)\n \n __version__ = get_version(VERSION)\n "
+    },
+    {
+      "sha": "a61fc943c15cf8c13a5ad5fff5c4ce7f150d0fbf",
+      "filename": "django/utils/deprecation.py",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 2,
+      "changes": 10,
+      "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2Futils%2Fdeprecation.py",
+      "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2Futils%2Fdeprecation.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/django%2Futils%2Fdeprecation.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "patch": "@@ -5,7 +5,6 @@\n from collections import Counter\n from inspect import iscoroutinefunction\n \n-from django.middleware import MiddlewareMixin as _MiddlewareMixin\n from django.utils.inspect import signature\n from django.utils.warnings import django_file_prefixes\n \n@@ -23,14 +22,21 @@ class RemovedInDjango2029Warning(PendingDeprecationWarning):\n \n \n def __getattr__(name):\n+    # RemovedInDjango2029Warning: remove the whole if-block.\n     if name == \"MiddlewareMixin\":\n         warnings.warn(\n             \"Importing MiddlewareMixin from django.utils.deprecation is deprecated. \"\n             \"Import from django.middleware.MiddlewareMixin instead.\",\n             RemovedInDjango2029Warning,\n             stacklevel=2,\n         )\n-        return _MiddlewareMixin\n+        # Imported here, not at module level, so that merely importing this\n+        # module doesn't require django.middleware's own dependencies. That\n+        # matters this early, e.g. while a build backend is reading\n+        # django.__version__ before Django's own dependencies are installed.\n+        from django.middleware import MiddlewareMixin\n+\n+        return MiddlewareMixin\n     if name == \"RemovedInDjango70Warning\":\n         warnings.warn(\n             \"RemovedInDjango2028Warning should be used instead of \""
+    },
+    {
+      "sha": "127dc2c35f0ef27c3d9cf7e3ee7a6faeec3dd060",
+      "filename": "django/utils/version.py",
+      "status": "modified",
+      "additions": 157,
+      "deletions": 13,
+      "changes": 170,
+      "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2Futils%2Fversion.py",
+      "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2Futils%2Fversion.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/django%2Futils%2Fversion.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "patch": "@@ -21,35 +21,179 @@\n PY315 = sys.version_info >= (3, 15)\n \n \n+def _validate_version(version):\n+    # A version is the numbers of the printed version, followed by the status\n+    # and its iteration, so its last three components are always the patch\n+    # number, the status, and the iteration. Keeping the numbers as printed is\n+    # what makes django.VERSION >= (2028, 3) mean what it looks like.\n+    assert len(version) in (4, 5)\n+    assert version[-2] in (\"alpha\", \"beta\", \"rc\", \"final\")\n+\n+\n+class VersionTuple(tuple):\n+    \"\"\"django.VERSION, with named access to its components.\n+\n+    A version is (major, minor, micro, status, iteration) for X.Y[.Z]\n+    releases, and (year, patch, status, iteration) for the calendar versions\n+    used from Django 2028, which have no minor component. See DEP 20. The\n+    `.feature`, `.patch`, `.status`, and `.iteration` attributes answer the\n+    same under both schemes:\n+\n+        VERSION.feature   (6, 2) for 6.2.1, and (2028,) for 2028.1\n+        VERSION.patch     1 for both 6.2.1 and 2028.1\n+    \"\"\"\n+\n+    __slots__ = ()\n+\n+    def __new__(cls, *version):\n+        _validate_version(version)\n+        return super().__new__(cls, version)\n+\n+    def __getnewargs__(self):\n+        # The components are passed to __new__() individually, so copying and\n+        # pickling must unpack them.\n+        return self._components\n+\n+    @property\n+    def _components(self):\n+        # The components as a plain tuple, without deprecation warnings.\n+        return tuple.__getitem__(self, slice(None))\n+\n+    # Indexed from the end, where the two schemes agree.\n+    @property\n+    def feature(self):\n+        return self._components[:-3]\n+\n+    @property\n+    def patch(self):\n+        return tuple.__getitem__(self, -3)\n+\n+    @property\n+    def status(self):\n+        return tuple.__getitem__(self, -2)\n+\n+    @property\n+    def iteration(self):\n+        return tuple.__getitem__(self, -1)\n+\n+    # RemovedInDjango2028Warning: everything from here to the end of the class\n+    # only warns about the coming shape change. Remove it all when the\n+    # deprecation ends. The attributes above stay.\n+    def _warn(self, message):\n+        if len(self._components) == 4:\n+            # Calendar versions already have their final shape.\n+            return\n+        # Imported here to avoid a circular import: django.utils.deprecation\n+        # imports django.utils.inspect, which imports this module.\n+        from django.utils.deprecation import (\n+            RemovedInDjango2028Warning,\n+            warn_about_external_use,\n+        )\n+\n+        warn_about_external_use(\n+            f\"{message} django.VERSION has four components from Django 2028, \"\n+            \"(year, patch, status, iteration), as calendar versions have no \"\n+            \"minor component. Use `.feature`, `.patch`, `.status`, and \"\n+            \"`.iteration` attributes instead.\",\n+            RemovedInDjango2028Warning,\n+            # Report the caller of the tuple operation, not the operation, and\n+            # stay quiet when Django reads its own version.\n+            skip_name_prefixes=\"django.utils.version.VersionTuple\",\n+        )\n+\n+    def _warn_comparison(self, other):\n+        # A comparison against three or more components can reach the ones\n+        # which move down an index, so its result can change from Django 2028.\n+        if isinstance(other, tuple) and tuple.__len__(other) > 2:\n+            self._warn(\n+                \"Comparing django.VERSION with three or more components is \"\n+                \"deprecated.\"\n+            )\n+\n+    def __getitem__(self, index):\n+        # Losing the minor component moves every later component down one\n+        # index: VERSION[2] is the micro version now, but the status from\n+        # Django 2028. Indexing any of them is therefore deprecated.\n+        length = tuple.__len__(self)\n+        if isinstance(index, slice):\n+            deprecated = any(i >= 2 for i in range(*index.indices(length)))\n+        else:\n+            position = index + length if index < 0 else index\n+            deprecated = 2 <= position < length\n+        if deprecated:\n+            self._warn(\n+                \"Indexing django.VERSION from its third component on is deprecated.\"\n+            )\n+        return tuple.__getitem__(self, index)\n+\n+    def __iter__(self):\n+        self._warn(\"Iterating or unpacking django.VERSION is deprecated.\")\n+        return tuple.__iter__(self)\n+\n+    def __len__(self):\n+        self._warn(\"Relying on the length of django.VERSION is deprecated.\")\n+        return tuple.__len__(self)\n+\n+    def __eq__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__eq__(self, other)\n+\n+    def __ne__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__ne__(self, other)\n+\n+    def __lt__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__lt__(self, other)\n+\n+    def __le__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__le__(self, other)\n+\n+    def __gt__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__gt__(self, other)\n+\n+    def __ge__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__ge__(self, other)\n+\n+    __hash__ = tuple.__hash__\n+\n+\n def get_version(version=None):\n     \"\"\"Return a PEP 440-compliant version number from VERSION.\"\"\"\n     version = get_complete_version(version)\n \n     # Now build the two parts of the version number:\n-    # main = X.Y[.Z]\n+    # main = X.Y[.Z] or YYYY[.N]\n     # sub = .devN - for pre-alpha releases\n     #     | {a|b|rc}N - for alpha, beta, and rc releases\n \n     main = get_main_version(version)\n+    *_, status, iteration = version\n \n     sub = \"\"\n-    if version[3] == \"alpha\" and version[4] == 0:\n+    if status == \"alpha\" and iteration == 0:\n         git_changeset = get_git_changeset()\n         if git_changeset:\n             sub = \".dev%s\" % git_changeset\n \n-    elif version[3] != \"final\":\n+    elif status != \"final\":\n         mapping = {\"alpha\": \"a\", \"beta\": \"b\", \"rc\": \"rc\"}\n-        sub = mapping[version[3]] + str(version[4])\n+        sub = mapping[status] + str(iteration)\n \n     return main + sub\n \n \n def get_main_version(version=None):\n-    \"\"\"Return main version (X.Y[.Z]) from VERSION.\"\"\"\n+    \"\"\"Return main version (X.Y[.Z] or YYYY[.N]) from VERSION.\"\"\"\n     version = get_complete_version(version)\n-    parts = 2 if version[2] == 0 else 3\n-    return \".\".join(str(x) for x in version[:parts])\n+    # The numbers of the printed version, without a zero patch number.\n+    numbers = version[:-2]\n+    if numbers[-1] == 0:\n+        numbers = numbers[:-1]\n+    return \".\".join(str(number) for number in numbers)\n \n \n def get_complete_version(version=None):\n@@ -59,19 +203,19 @@ def get_complete_version(version=None):\n     \"\"\"\n     if version is None:\n         from django import VERSION as version\n-    else:\n-        assert len(version) == 5\n-        assert version[3] in (\"alpha\", \"beta\", \"rc\", \"final\")\n+    elif not isinstance(version, VersionTuple):\n+        # VersionTuple validates itself when constructed.\n+        _validate_version(version)\n \n     return version\n \n \n def get_docs_version(version=None):\n     version = get_complete_version(version)\n-    if version[3] != \"final\":\n+    if version[-2] != \"final\":\n         return \"dev\"\n-    else:\n-        return \"%d.%d\" % version[:2]\n+    # Documentation is published per feature release.\n+    return \".\".join(str(number) for number in version[:-3])\n \n \n @functools.lru_cache"
+    },
+    {
+      "sha": "bb9ac6e997e94f8f48634a4bfc82c4c4854841f8",
+      "filename": "docs/internals/deprecation.txt",
+      "status": "modified",
+      "additions": 10,
+      "deletions": 0,
+      "changes": 10,
+      "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Finternals%2Fdeprecation.txt",
+      "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Finternals%2Fdeprecation.txt",
+      "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Finternals%2Fdeprecation.txt?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "patch": "@@ -154,6 +154,16 @@ details on these changes.\n * Support for ``Model.from_db()`` methods that do not accept the\n   ``fetch_mode`` keyword argument will be removed.\n \n+See the :ref:`Django 6.2 release notes <deprecated-features-6.2>` for more\n+details on these changes.\n+\n+* ``django.VERSION`` will have four components, ``(year, patch, status,\n+  iteration)``, as calendar versions have no minor component. Indexing it\n+  from its third component on, reading it in a way which depends on its\n+  length, and comparing it against three or more components are all\n+  deprecated. Use the ``.feature``, ``.patch``, ``.status``, and\n+  ``.iteration`` attributes instead.\n+\n .. _deprecation-removed-in-6.1:\n \n 6.1"
+    },
+    {
+      "sha": "4631c9dd2ce86d007fde652e994510960b61bb4d",
+      "filename": "docs/releases/6.2.txt",
+      "status": "modified",
+      "additions": 15,
+      "deletions": 0,
+      "changes": 15,
+      "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Freleases%2F6.2.txt",
+      "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Freleases%2F6.2.txt",
+      "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Freleases%2F6.2.txt?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "patch": "@@ -343,6 +343,21 @@ Features deprecated in 6.2\n Miscellaneous\n -------------\n \n+* Indexing ``django.VERSION`` from its third component on, reading it in a way\n+  which depends on its length, such as unpacking it or calling ``len()`` on it,\n+  and comparing it against three or more components are all deprecated. Under\n+  the calendar versioning adopted in `DEP 20`_, versions are ``YYYY[.N]`` and\n+  have no minor component, so from Django 2028 ``django.VERSION`` has four\n+  components, ``(year, patch, status, iteration)``. Use the ``.feature``,\n+  ``.patch``, ``.status``, and ``.iteration`` attributes, which give the same\n+  answers under both versioning schemes::\n+\n+      django.VERSION.feature  # (6, 2) for 6.2.1, and (2028,) for 2028.1\n+      django.VERSION.patch  # 1 for both 6.2.1 and 2028.1\n+\n+  Comparisons against one or two components, such as\n+  ``django.VERSION >= (6, 2)``, are unaffected.\n+\n * The :class:`~django.middleware.MiddlewareMixin` class moved from\n   ``django.utils.deprecation`` to ``django.middleware``. The old import path\n   is deprecated."
+    },
+    {
+      "sha": "2ffe0f0097f0d415041c4567df97ec7fdc2fdb24",
+      "filename": "tests/version/tests.py",
+      "status": "modified",
+      "additions": 268,
+      "deletions": 0,
+      "changes": 268,
+      "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/tests%2Fversion%2Ftests.py",
+      "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/tests%2Fversion%2Ftests.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/tests%2Fversion%2Ftests.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "patch": "@@ -1,11 +1,19 @@\n+import copy\n+import operator\n+import pickle\n from unittest import skipUnless\n \n+import django\n import django.utils.version\n from django import get_version\n from django.test import SimpleTestCase\n+from django.utils.deprecation import RemovedInDjango2028Warning\n from django.utils.version import (\n+    VersionTuple,\n     get_complete_version,\n+    get_docs_version,\n     get_git_changeset,\n+    get_main_version,\n     get_version_tuple,\n )\n \n@@ -45,10 +53,63 @@ def test_releases(self):\n         for ver_tuple, ver_string in tuples_to_strings:\n             self.assertEqual(get_version(ver_tuple), ver_string)\n \n+    def test_calendar_development(self):\n+        get_git_changeset.cache_clear()\n+        ver_tuple = (2029, 0, \"alpha\", 0)\n+        # This will return a different result when it's run within or outside\n+        # of a git clone: 2029.devYYYYMMDDHHMMSS or 2029.\n+        ver_string = get_version(ver_tuple)\n+        self.assertRegex(ver_string, r\"2029(\\.dev[0-9]+)?\")\n+\n+    def test_calendar_releases(self):\n+        tuples_to_strings = (\n+            ((2028, 0, \"alpha\", 1), \"2028a1\"),\n+            ((2028, 0, \"beta\", 1), \"2028b1\"),\n+            ((2028, 0, \"rc\", 1), \"2028rc1\"),\n+            ((2028, 0, \"final\", 0), \"2028\"),\n+            ((2028, 1, \"final\", 0), \"2028.1\"),\n+            ((2028, 15, \"final\", 0), \"2028.15\"),\n+            ((2030, 2, \"final\", 0), \"2030.2\"),\n+        )\n+        for ver_tuple, ver_string in tuples_to_strings:\n+            with self.subTest(version=ver_tuple):\n+                self.assertEqual(get_version(ver_tuple), ver_string)\n+\n+    def test_get_main_version(self):\n+        cases = [\n+            ((1, 4, 0, \"alpha\", 1), \"1.4\"),\n+            ((1, 4, 0, \"final\", 0), \"1.4\"),\n+            ((1, 4, 1, \"final\", 0), \"1.4.1\"),\n+            ((2028, 0, \"alpha\", 1), \"2028\"),\n+            ((2028, 0, \"final\", 0), \"2028\"),\n+            ((2028, 1, \"final\", 0), \"2028.1\"),\n+            ((2028, 15, \"final\", 0), \"2028.15\"),\n+        ]\n+        for ver_tuple, expected in cases:\n+            with self.subTest(version=ver_tuple):\n+                self.assertEqual(get_main_version(ver_tuple), expected)\n+\n+    def test_get_docs_version(self):\n+        cases = [\n+            ((1, 4, 0, \"alpha\", 1), \"dev\"),\n+            ((1, 4, 0, \"final\", 0), \"1.4\"),\n+            ((1, 4, 1, \"final\", 0), \"1.4\"),\n+            ((2028, 0, \"alpha\", 1), \"dev\"),\n+            ((2028, 0, \"final\", 0), \"2028\"),\n+            ((2028, 1, \"final\", 0), \"2028\"),\n+            ((2028, 15, \"final\", 0), \"2028\"),\n+        ]\n+        for ver_tuple, expected in cases:\n+            with self.subTest(version=ver_tuple):\n+                self.assertEqual(get_docs_version(ver_tuple), expected)\n+\n     def test_get_version_tuple(self):\n         self.assertEqual(get_version_tuple(\"1.2.3\"), (1, 2, 3))\n         self.assertEqual(get_version_tuple(\"1.2.3b2\"), (1, 2, 3))\n         self.assertEqual(get_version_tuple(\"1.2.3b2.dev0\"), (1, 2, 3))\n+        self.assertEqual(get_version_tuple(\"2028\"), (2028,))\n+        self.assertEqual(get_version_tuple(\"2028.1\"), (2028, 1))\n+        self.assertEqual(get_version_tuple(\"2028b2\"), (2028,))\n \n     def test_get_version_invalid_version(self):\n         tests = [\n@@ -60,3 +121,210 @@ def test_get_version_invalid_version(self):\n         for version in tests:\n             with self.subTest(version=version), self.assertRaises(AssertionError):\n                 get_complete_version(version)\n+\n+\n+class VersionTupleTests(SimpleTestCase):\n+\n+    # The deprecation only applies to versions in the X.Y[.Z] scheme, whose\n+    # tuple loses a component when calendar versions arrive.\n+    version = VersionTuple(6, 2, 1, \"final\", 0)\n+    calendar_version = VersionTuple(2028, 5, \"final\", 0)\n+    # RemovedInDjango2028Warning.\n+    hint = \"django.VERSION has four components from Django 2028\"\n+\n+    def test_attributes(self):\n+        cases = [\n+            ((6, 2, 0, \"alpha\", 1), (6, 2), 0, \"alpha\", 1),\n+            ((6, 2, 0, \"final\", 0), (6, 2), 0, \"final\", 0),\n+            ((6, 2, 1, \"final\", 0), (6, 2), 1, \"final\", 0),\n+            ((1, 11, 29, \"final\", 0), (1, 11), 29, \"final\", 0),\n+            ((2028, 0, \"alpha\", 1), (2028,), 0, \"alpha\", 1),\n+            ((2028, 0, \"final\", 0), (2028,), 0, \"final\", 0),\n+            ((2028, 5, \"final\", 0), (2028,), 5, \"final\", 0),\n+        ]\n+        for version, feature, patch, status, iteration in cases:\n+            version = VersionTuple(*version)\n+            with self.subTest(version=version):\n+                self.assertEqual(version.feature, feature)\n+                self.assertEqual(version.patch, patch)\n+                self.assertEqual(version.status, status)\n+                self.assertEqual(version.iteration, iteration)\n+\n+    def test_feature_comparisons_span_both_schemes(self):\n+        self.assertIs(self.version.feature >= (5, 2), True)\n+        self.assertIs(self.version.feature == (6, 2), True)\n+        self.assertIs(self.calendar_version.feature >= (5, 2), True)\n+        self.assertIs(self.calendar_version.feature == (2028,), True)\n+        self.assertIs(self.calendar_version.feature < (2029,), True)\n+\n+    def test_django_version_is_a_version_tuple(self):\n+        self.assertIsInstance(django.VERSION, VersionTuple)\n+        # RemovedInDjango2028Warning: remove the rest of this test.\n+        msg = \"Indexing django.VERSION from its third component\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            django.VERSION[2]\n+\n+    def test_invalid_version(self):\n+        cases = [\n+            # Too few or too many components.\n+            (6, 2, \"final\"),\n+            (6, 2, 0, \"final\", 0, 0),\n+            (2028, 5, \"final\"),\n+            (2028, 5, 0, \"final\", 0, 0),\n+            # The status is not where it belongs, second to last.\n+            (6, 2, 0, \"final\"),\n+            # Invalid development status.\n+            (6, 2, 0, \"gamma\", 0),\n+            (2028, 5, \"gamma\", 0),\n+        ]\n+        for version in cases:\n+            with self.subTest(version=version), self.assertRaises(AssertionError):\n+                VersionTuple(*version)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_indexing_from_third_component_deprecated(self):\n+        msg = \"Indexing django.VERSION from its third component on\"\n+        indexes = [\n+            2,\n+            3,\n+            4,\n+            -1,\n+            -2,\n+            -3,\n+            slice(3),\n+            slice(None),\n+            slice(1, None),\n+            slice(None, None, 2),\n+        ]\n+        for index in indexes:\n+            with self.subTest(index=index):\n+                with self.assertWarnsMessage(RemovedInDjango2028Warning, msg) as ctx:\n+                    self.version[index]\n+                self.assertIn(self.hint, str(ctx.warning))\n+\n+    # RemovedInDjango2028Warning.\n+    def test_indexing_first_two_components_not_deprecated(self):\n+        cases = [\n+            (0, 6),\n+            (1, 2),\n+            (-4, 2),\n+            (-5, 6),\n+            (slice(2), (6, 2)),\n+            (slice(1), (6,)),\n+            (slice(0, 2), (6, 2)),\n+        ]\n+        for index, expected in cases:\n+            with self.subTest(index=index):\n+                self.assertEqual(self.version[index], expected)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_iterating_deprecated(self):\n+        msg = \"Iterating or unpacking django.VERSION is deprecated.\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            major, minor, micro, status, iteration = self.version\n+        self.assertEqual(\n+            (major, minor, micro, status, iteration), (6, 2, 1, \"final\", 0)\n+        )\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertEqual(tuple(self.version), (6, 2, 1, \"final\", 0))\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertEqual(list(self.version), [6, 2, 1, \"final\", 0])\n+\n+    # RemovedInDjango2028Warning.\n+    def test_length_deprecated(self):\n+        msg = \"Relying on the length of django.VERSION is deprecated.\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertEqual(len(self.version), 5)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_comparison_with_three_or_more_components_deprecated(self):\n+        msg = \"Comparing django.VERSION with three or more components is deprecated.\"\n+        operators = [\n+            operator.eq,\n+            operator.ne,\n+            operator.lt,\n+            operator.le,\n+            operator.gt,\n+            operator.ge,\n+        ]\n+        for other in [(6, 2, 1), (6, 2, 1, \"final\", 0)]:\n+            for op in operators:\n+                with self.subTest(other=other, operator=op.__name__):\n+                    with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+                        op(self.version, other)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_reflected_comparison_deprecated(self):\n+        msg = \"Comparing django.VERSION with three or more components is deprecated.\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertIs((6, 2, 1, \"final\", 0) == self.version, True)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_comparison_with_fewer_components_not_deprecated(self):\n+        cases = [\n+            (operator.ge, (6,), True),\n+            (operator.ge, (6, 2), True),\n+            (operator.ge, (6, 3), False),\n+            (operator.lt, (2028,), True),\n+            (operator.eq, (6, 2), False),\n+            (operator.ne, (6, 2), True),\n+        ]\n+        for op, other, expected in cases:\n+            with self.subTest(operator=op.__name__, other=other):\n+                self.assertIs(op(self.version, other), expected)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_comparison_with_non_tuple_not_deprecated(self):\n+        self.assertIs(self.version == \"6.2.1\", False)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_calendar_versions_not_deprecated(self):\n+        # Calendar versions already have their final shape, so nothing about\n+        # reading them is deprecated.\n+        self.assertEqual(self.calendar_version[1], 5)\n+        self.assertEqual(self.calendar_version[2], \"final\")\n+        self.assertEqual(self.calendar_version[:], (2028, 5, \"final\", 0))\n+        self.assertEqual(len(self.calendar_version), 4)\n+        self.assertEqual(tuple(self.calendar_version), (2028, 5, \"final\", 0))\n+        self.assertIs(self.calendar_version == (2028, 5, \"final\", 0), True)\n+\n+    def test_hashing(self):\n+        self.assertEqual(hash(self.version), hash((6, 2, 1, \"final\", 0)))\n+\n+    def test_repr(self):\n+        self.assertEqual(repr(self.version), \"(6, 2, 1, 'final', 0)\")\n+        self.assertEqual(repr(self.calendar_version), \"(2028, 5, 'final', 0)\")\n+\n+    def test_copying_and_pickling(self):\n+        # These go through __getnewargs__(), which must unpack the components\n+        # for the __new__() signature.\n+        for label, restore in [\n+            (\"pickle\", lambda v: pickle.loads(pickle.dumps(v))),\n+            (\"copy\", copy.copy),\n+            (\"deepcopy\", copy.deepcopy),\n+        ]:\n+            for version in [self.version, self.calendar_version]:\n+                with self.subTest(label, version=version):\n+                    restored = restore(version)\n+                    self.assertIsInstance(restored, VersionTuple)\n+                    self.assertEqual(restored.feature, version.feature)\n+                    self.assertEqual(restored.patch, version.patch)\n+                    self.assertEqual(restored.status, version.status)\n+                    self.assertEqual(restored.iteration, version.iteration)\n+\n+    def test_version_helpers(self):\n+        cases = [\n+            ((6, 2, 1, \"final\", 0), \"6.2.1\", \"6.2.1\", \"6.2\"),\n+            ((2028, 0, \"alpha\", 1), \"2028a1\", \"2028\", \"dev\"),\n+            ((2028, 0, \"rc\", 2), \"2028rc2\", \"2028\", \"dev\"),\n+            ((2028, 0, \"final\", 0), \"2028\", \"2028\", \"2028\"),\n+            ((2028, 5, \"final\", 0), \"2028.5\", \"2028.5\", \"2028\"),\n+            ((2030, 12, \"final\", 0), \"2030.12\", \"2030.12\", \"2030\"),\n+        ]\n+        for version, expected, main, docs in cases:\n+            version = VersionTuple(*version)\n+            with self.subTest(version=version):\n+                self.assertIs(get_complete_version(version), version)\n+                self.assertEqual(get_version(version), expected)\n+                self.assertEqual(get_main_version(version), main)\n+                self.assertEqual(get_docs_version(version), docs)"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "2bf1007300716c668df0c9c2b8599233b90a046b",
+      "html_url": "https://github.com/django/django/commit/2bf1007300716c668df0c9c2b8599233b90a046b",
+      "commit": {
+        "author": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-09-03T20:42:53Z"
+        },
+        "committer": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-09-04T14:28:49Z"
+        },
+        "message": "Refs #37178 -- Deferred django.middleware import in django.utils.deprecation.\n\ndjango.utils.deprecation imported django.middleware.MiddlewareMixin at\nmodule level, solely to serve its deprecated __getattr__ import path.\nThat gave the module a hard dependency on asgiref (via django.middleware)\nmerely to be imported, which breaks in contexts where Django's own\nruntime dependencies aren't installed yet, such as a PEP 517 build\nbackend resolving django.__version__ before installing install_requires."
+      },
+      "parents": [
+        {
+          "sha": "026b005f3dc43a98557ce5a546b5e4938d06fed1",
+          "url": "https://api.github.com/repos/django/django/commits/026b005f3dc43a98557ce5a546b5e4938d06fed1",
+          "html_url": "https://github.com/django/django/commit/026b005f3dc43a98557ce5a546b5e4938d06fed1"
+        }
+      ],
+      "stats": {
+        "total": 10,
+        "additions": 8,
+        "deletions": 2
+      },
+      "files": [
+        {
+          "sha": "a61fc943c15cf8c13a5ad5fff5c4ce7f150d0fbf",
+          "filename": "django/utils/deprecation.py",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 2,
+          "changes": 10,
+          "blob_url": "https://github.com/django/django/blob/2bf1007300716c668df0c9c2b8599233b90a046b/django%2Futils%2Fdeprecation.py",
+          "raw_url": "https://github.com/django/django/raw/2bf1007300716c668df0c9c2b8599233b90a046b/django%2Futils%2Fdeprecation.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/django%2Futils%2Fdeprecation.py?ref=2bf1007300716c668df0c9c2b8599233b90a046b",
+          "patch": "@@ -5,7 +5,6 @@\n from collections import Counter\n from inspect import iscoroutinefunction\n \n-from django.middleware import MiddlewareMixin as _MiddlewareMixin\n from django.utils.inspect import signature\n from django.utils.warnings import django_file_prefixes\n \n@@ -23,14 +22,21 @@ class RemovedInDjango2029Warning(PendingDeprecationWarning):\n \n \n def __getattr__(name):\n+    # RemovedInDjango2029Warning: remove the whole if-block.\n     if name == \"MiddlewareMixin\":\n         warnings.warn(\n             \"Importing MiddlewareMixin from django.utils.deprecation is deprecated. \"\n             \"Import from django.middleware.MiddlewareMixin instead.\",\n             RemovedInDjango2029Warning,\n             stacklevel=2,\n         )\n-        return _MiddlewareMixin\n+        # Imported here, not at module level, so that merely importing this\n+        # module doesn't require django.middleware's own dependencies. That\n+        # matters this early, e.g. while a build backend is reading\n+        # django.__version__ before Django's own dependencies are installed.\n+        from django.middleware import MiddlewareMixin\n+\n+        return MiddlewareMixin\n     if name == \"RemovedInDjango70Warning\":\n         warnings.warn(\n             \"RemovedInDjango2028Warning should be used instead of \""
+        }
+      ]
+    },
+    {
+      "sha": "566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "html_url": "https://github.com/django/django/commit/566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+      "commit": {
+        "author": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-08-10T21:47:00Z"
+        },
+        "committer": {
+          "name": "Natalia",
+          "email": "124304+nessita@users.noreply.github.com",
+          "date": "2026-09-04T18:02:15Z"
+        },
+        "message": "Fixed #37271 -- Added calendar version support to django.utils.version.\n\nFrom Django 2028, feature releases are calendar versioned as YYYY[.N],\nwhere N is the patch number, as per DEP 20. A version is now read as the\nnumbers of the printed version followed by the status and its iteration,\nso calendar versions have four components, (year, patch, status,\niteration), while the earlier scheme keeps its five.\n\ndjango.VERSION is now a VersionTuple, providing `.feature`, `.patch`,\n`.status`, and `.iteration` attributes which give the same answers under\nboth schemes. Indexing it from its third component on, reading it in a\nway which depends on its length, and comparing it against three or more\ncomponents are deprecated, as each breaks or silently changes meaning\nwhen the tuple loses a component.\n\nThanks Carlton Gibson for reviews."
+      },
+      "parents": [
+        {
+          "sha": "2bf1007300716c668df0c9c2b8599233b90a046b",
+          "url": "https://api.github.com/repos/django/django/commits/2bf1007300716c668df0c9c2b8599233b90a046b",
+          "html_url": "https://github.com/django/django/commit/2bf1007300716c668df0c9c2b8599233b90a046b"
+        }
+      ],
+      "stats": {
+        "total": 467,
+        "additions": 452,
+        "deletions": 15
+      },
+      "files": [
+        {
+          "sha": "662920f5e91f29a47074b58b8acb27003361df9c",
+          "filename": "django/__init__.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2F__init__.py",
+          "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2F__init__.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/django%2F__init__.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+          "patch": "@@ -1,6 +1,6 @@\n-from django.utils.version import get_version\n+from django.utils.version import VersionTuple, get_version\n \n-VERSION = (6, 2, 0, \"alpha\", 0)\n+VERSION = VersionTuple(6, 2, 0, \"alpha\", 0)\n \n __version__ = get_version(VERSION)\n "
+        },
+        {
+          "sha": "127dc2c35f0ef27c3d9cf7e3ee7a6faeec3dd060",
+          "filename": "django/utils/version.py",
+          "status": "modified",
+          "additions": 157,
+          "deletions": 13,
+          "changes": 170,
+          "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2Futils%2Fversion.py",
+          "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/django%2Futils%2Fversion.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/django%2Futils%2Fversion.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+          "patch": "@@ -21,35 +21,179 @@\n PY315 = sys.version_info >= (3, 15)\n \n \n+def _validate_version(version):\n+    # A version is the numbers of the printed version, followed by the status\n+    # and its iteration, so its last three components are always the patch\n+    # number, the status, and the iteration. Keeping the numbers as printed is\n+    # what makes django.VERSION >= (2028, 3) mean what it looks like.\n+    assert len(version) in (4, 5)\n+    assert version[-2] in (\"alpha\", \"beta\", \"rc\", \"final\")\n+\n+\n+class VersionTuple(tuple):\n+    \"\"\"django.VERSION, with named access to its components.\n+\n+    A version is (major, minor, micro, status, iteration) for X.Y[.Z]\n+    releases, and (year, patch, status, iteration) for the calendar versions\n+    used from Django 2028, which have no minor component. See DEP 20. The\n+    `.feature`, `.patch`, `.status`, and `.iteration` attributes answer the\n+    same under both schemes:\n+\n+        VERSION.feature   (6, 2) for 6.2.1, and (2028,) for 2028.1\n+        VERSION.patch     1 for both 6.2.1 and 2028.1\n+    \"\"\"\n+\n+    __slots__ = ()\n+\n+    def __new__(cls, *version):\n+        _validate_version(version)\n+        return super().__new__(cls, version)\n+\n+    def __getnewargs__(self):\n+        # The components are passed to __new__() individually, so copying and\n+        # pickling must unpack them.\n+        return self._components\n+\n+    @property\n+    def _components(self):\n+        # The components as a plain tuple, without deprecation warnings.\n+        return tuple.__getitem__(self, slice(None))\n+\n+    # Indexed from the end, where the two schemes agree.\n+    @property\n+    def feature(self):\n+        return self._components[:-3]\n+\n+    @property\n+    def patch(self):\n+        return tuple.__getitem__(self, -3)\n+\n+    @property\n+    def status(self):\n+        return tuple.__getitem__(self, -2)\n+\n+    @property\n+    def iteration(self):\n+        return tuple.__getitem__(self, -1)\n+\n+    # RemovedInDjango2028Warning: everything from here to the end of the class\n+    # only warns about the coming shape change. Remove it all when the\n+    # deprecation ends. The attributes above stay.\n+    def _warn(self, message):\n+        if len(self._components) == 4:\n+            # Calendar versions already have their final shape.\n+            return\n+        # Imported here to avoid a circular import: django.utils.deprecation\n+        # imports django.utils.inspect, which imports this module.\n+        from django.utils.deprecation import (\n+            RemovedInDjango2028Warning,\n+            warn_about_external_use,\n+        )\n+\n+        warn_about_external_use(\n+            f\"{message} django.VERSION has four components from Django 2028, \"\n+            \"(year, patch, status, iteration), as calendar versions have no \"\n+            \"minor component. Use `.feature`, `.patch`, `.status`, and \"\n+            \"`.iteration` attributes instead.\",\n+            RemovedInDjango2028Warning,\n+            # Report the caller of the tuple operation, not the operation, and\n+            # stay quiet when Django reads its own version.\n+            skip_name_prefixes=\"django.utils.version.VersionTuple\",\n+        )\n+\n+    def _warn_comparison(self, other):\n+        # A comparison against three or more components can reach the ones\n+        # which move down an index, so its result can change from Django 2028.\n+        if isinstance(other, tuple) and tuple.__len__(other) > 2:\n+            self._warn(\n+                \"Comparing django.VERSION with three or more components is \"\n+                \"deprecated.\"\n+            )\n+\n+    def __getitem__(self, index):\n+        # Losing the minor component moves every later component down one\n+        # index: VERSION[2] is the micro version now, but the status from\n+        # Django 2028. Indexing any of them is therefore deprecated.\n+        length = tuple.__len__(self)\n+        if isinstance(index, slice):\n+            deprecated = any(i >= 2 for i in range(*index.indices(length)))\n+        else:\n+            position = index + length if index < 0 else index\n+            deprecated = 2 <= position < length\n+        if deprecated:\n+            self._warn(\n+                \"Indexing django.VERSION from its third component on is deprecated.\"\n+            )\n+        return tuple.__getitem__(self, index)\n+\n+    def __iter__(self):\n+        self._warn(\"Iterating or unpacking django.VERSION is deprecated.\")\n+        return tuple.__iter__(self)\n+\n+    def __len__(self):\n+        self._warn(\"Relying on the length of django.VERSION is deprecated.\")\n+        return tuple.__len__(self)\n+\n+    def __eq__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__eq__(self, other)\n+\n+    def __ne__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__ne__(self, other)\n+\n+    def __lt__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__lt__(self, other)\n+\n+    def __le__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__le__(self, other)\n+\n+    def __gt__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__gt__(self, other)\n+\n+    def __ge__(self, other):\n+        self._warn_comparison(other)\n+        return tuple.__ge__(self, other)\n+\n+    __hash__ = tuple.__hash__\n+\n+\n def get_version(version=None):\n     \"\"\"Return a PEP 440-compliant version number from VERSION.\"\"\"\n     version = get_complete_version(version)\n \n     # Now build the two parts of the version number:\n-    # main = X.Y[.Z]\n+    # main = X.Y[.Z] or YYYY[.N]\n     # sub = .devN - for pre-alpha releases\n     #     | {a|b|rc}N - for alpha, beta, and rc releases\n \n     main = get_main_version(version)\n+    *_, status, iteration = version\n \n     sub = \"\"\n-    if version[3] == \"alpha\" and version[4] == 0:\n+    if status == \"alpha\" and iteration == 0:\n         git_changeset = get_git_changeset()\n         if git_changeset:\n             sub = \".dev%s\" % git_changeset\n \n-    elif version[3] != \"final\":\n+    elif status != \"final\":\n         mapping = {\"alpha\": \"a\", \"beta\": \"b\", \"rc\": \"rc\"}\n-        sub = mapping[version[3]] + str(version[4])\n+        sub = mapping[status] + str(iteration)\n \n     return main + sub\n \n \n def get_main_version(version=None):\n-    \"\"\"Return main version (X.Y[.Z]) from VERSION.\"\"\"\n+    \"\"\"Return main version (X.Y[.Z] or YYYY[.N]) from VERSION.\"\"\"\n     version = get_complete_version(version)\n-    parts = 2 if version[2] == 0 else 3\n-    return \".\".join(str(x) for x in version[:parts])\n+    # The numbers of the printed version, without a zero patch number.\n+    numbers = version[:-2]\n+    if numbers[-1] == 0:\n+        numbers = numbers[:-1]\n+    return \".\".join(str(number) for number in numbers)\n \n \n def get_complete_version(version=None):\n@@ -59,19 +203,19 @@ def get_complete_version(version=None):\n     \"\"\"\n     if version is None:\n         from django import VERSION as version\n-    else:\n-        assert len(version) == 5\n-        assert version[3] in (\"alpha\", \"beta\", \"rc\", \"final\")\n+    elif not isinstance(version, VersionTuple):\n+        # VersionTuple validates itself when constructed.\n+        _validate_version(version)\n \n     return version\n \n \n def get_docs_version(version=None):\n     version = get_complete_version(version)\n-    if version[3] != \"final\":\n+    if version[-2] != \"final\":\n         return \"dev\"\n-    else:\n-        return \"%d.%d\" % version[:2]\n+    # Documentation is published per feature release.\n+    return \".\".join(str(number) for number in version[:-3])\n \n \n @functools.lru_cache"
+        },
+        {
+          "sha": "bb9ac6e997e94f8f48634a4bfc82c4c4854841f8",
+          "filename": "docs/internals/deprecation.txt",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 0,
+          "changes": 10,
+          "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Finternals%2Fdeprecation.txt",
+          "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Finternals%2Fdeprecation.txt",
+          "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Finternals%2Fdeprecation.txt?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+          "patch": "@@ -154,6 +154,16 @@ details on these changes.\n * Support for ``Model.from_db()`` methods that do not accept the\n   ``fetch_mode`` keyword argument will be removed.\n \n+See the :ref:`Django 6.2 release notes <deprecated-features-6.2>` for more\n+details on these changes.\n+\n+* ``django.VERSION`` will have four components, ``(year, patch, status,\n+  iteration)``, as calendar versions have no minor component. Indexing it\n+  from its third component on, reading it in a way which depends on its\n+  length, and comparing it against three or more components are all\n+  deprecated. Use the ``.feature``, ``.patch``, ``.status``, and\n+  ``.iteration`` attributes instead.\n+\n .. _deprecation-removed-in-6.1:\n \n 6.1"
+        },
+        {
+          "sha": "4631c9dd2ce86d007fde652e994510960b61bb4d",
+          "filename": "docs/releases/6.2.txt",
+          "status": "modified",
+          "additions": 15,
+          "deletions": 0,
+          "changes": 15,
+          "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Freleases%2F6.2.txt",
+          "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/docs%2Freleases%2F6.2.txt",
+          "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Freleases%2F6.2.txt?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+          "patch": "@@ -343,6 +343,21 @@ Features deprecated in 6.2\n Miscellaneous\n -------------\n \n+* Indexing ``django.VERSION`` from its third component on, reading it in a way\n+  which depends on its length, such as unpacking it or calling ``len()`` on it,\n+  and comparing it against three or more components are all deprecated. Under\n+  the calendar versioning adopted in `DEP 20`_, versions are ``YYYY[.N]`` and\n+  have no minor component, so from Django 2028 ``django.VERSION`` has four\n+  components, ``(year, patch, status, iteration)``. Use the ``.feature``,\n+  ``.patch``, ``.status``, and ``.iteration`` attributes, which give the same\n+  answers under both versioning schemes::\n+\n+      django.VERSION.feature  # (6, 2) for 6.2.1, and (2028,) for 2028.1\n+      django.VERSION.patch  # 1 for both 6.2.1 and 2028.1\n+\n+  Comparisons against one or two components, such as\n+  ``django.VERSION >= (6, 2)``, are unaffected.\n+\n * The :class:`~django.middleware.MiddlewareMixin` class moved from\n   ``django.utils.deprecation`` to ``django.middleware``. The old import path\n   is deprecated."
+        },
+        {
+          "sha": "2ffe0f0097f0d415041c4567df97ec7fdc2fdb24",
+          "filename": "tests/version/tests.py",
+          "status": "modified",
+          "additions": 268,
+          "deletions": 0,
+          "changes": 268,
+          "blob_url": "https://github.com/django/django/blob/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/tests%2Fversion%2Ftests.py",
+          "raw_url": "https://github.com/django/django/raw/566a88c8bb9f90cc24aabd721db8dff95aa0dc37/tests%2Fversion%2Ftests.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/tests%2Fversion%2Ftests.py?ref=566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+          "patch": "@@ -1,11 +1,19 @@\n+import copy\n+import operator\n+import pickle\n from unittest import skipUnless\n \n+import django\n import django.utils.version\n from django import get_version\n from django.test import SimpleTestCase\n+from django.utils.deprecation import RemovedInDjango2028Warning\n from django.utils.version import (\n+    VersionTuple,\n     get_complete_version,\n+    get_docs_version,\n     get_git_changeset,\n+    get_main_version,\n     get_version_tuple,\n )\n \n@@ -45,10 +53,63 @@ def test_releases(self):\n         for ver_tuple, ver_string in tuples_to_strings:\n             self.assertEqual(get_version(ver_tuple), ver_string)\n \n+    def test_calendar_development(self):\n+        get_git_changeset.cache_clear()\n+        ver_tuple = (2029, 0, \"alpha\", 0)\n+        # This will return a different result when it's run within or outside\n+        # of a git clone: 2029.devYYYYMMDDHHMMSS or 2029.\n+        ver_string = get_version(ver_tuple)\n+        self.assertRegex(ver_string, r\"2029(\\.dev[0-9]+)?\")\n+\n+    def test_calendar_releases(self):\n+        tuples_to_strings = (\n+            ((2028, 0, \"alpha\", 1), \"2028a1\"),\n+            ((2028, 0, \"beta\", 1), \"2028b1\"),\n+            ((2028, 0, \"rc\", 1), \"2028rc1\"),\n+            ((2028, 0, \"final\", 0), \"2028\"),\n+            ((2028, 1, \"final\", 0), \"2028.1\"),\n+            ((2028, 15, \"final\", 0), \"2028.15\"),\n+            ((2030, 2, \"final\", 0), \"2030.2\"),\n+        )\n+        for ver_tuple, ver_string in tuples_to_strings:\n+            with self.subTest(version=ver_tuple):\n+                self.assertEqual(get_version(ver_tuple), ver_string)\n+\n+    def test_get_main_version(self):\n+        cases = [\n+            ((1, 4, 0, \"alpha\", 1), \"1.4\"),\n+            ((1, 4, 0, \"final\", 0), \"1.4\"),\n+            ((1, 4, 1, \"final\", 0), \"1.4.1\"),\n+            ((2028, 0, \"alpha\", 1), \"2028\"),\n+            ((2028, 0, \"final\", 0), \"2028\"),\n+            ((2028, 1, \"final\", 0), \"2028.1\"),\n+            ((2028, 15, \"final\", 0), \"2028.15\"),\n+        ]\n+        for ver_tuple, expected in cases:\n+            with self.subTest(version=ver_tuple):\n+                self.assertEqual(get_main_version(ver_tuple), expected)\n+\n+    def test_get_docs_version(self):\n+        cases = [\n+            ((1, 4, 0, \"alpha\", 1), \"dev\"),\n+            ((1, 4, 0, \"final\", 0), \"1.4\"),\n+            ((1, 4, 1, \"final\", 0), \"1.4\"),\n+            ((2028, 0, \"alpha\", 1), \"dev\"),\n+            ((2028, 0, \"final\", 0), \"2028\"),\n+            ((2028, 1, \"final\", 0), \"2028\"),\n+            ((2028, 15, \"final\", 0), \"2028\"),\n+        ]\n+        for ver_tuple, expected in cases:\n+            with self.subTest(version=ver_tuple):\n+                self.assertEqual(get_docs_version(ver_tuple), expected)\n+\n     def test_get_version_tuple(self):\n         self.assertEqual(get_version_tuple(\"1.2.3\"), (1, 2, 3))\n         self.assertEqual(get_version_tuple(\"1.2.3b2\"), (1, 2, 3))\n         self.assertEqual(get_version_tuple(\"1.2.3b2.dev0\"), (1, 2, 3))\n+        self.assertEqual(get_version_tuple(\"2028\"), (2028,))\n+        self.assertEqual(get_version_tuple(\"2028.1\"), (2028, 1))\n+        self.assertEqual(get_version_tuple(\"2028b2\"), (2028,))\n \n     def test_get_version_invalid_version(self):\n         tests = [\n@@ -60,3 +121,210 @@ def test_get_version_invalid_version(self):\n         for version in tests:\n             with self.subTest(version=version), self.assertRaises(AssertionError):\n                 get_complete_version(version)\n+\n+\n+class VersionTupleTests(SimpleTestCase):\n+\n+    # The deprecation only applies to versions in the X.Y[.Z] scheme, whose\n+    # tuple loses a component when calendar versions arrive.\n+    version = VersionTuple(6, 2, 1, \"final\", 0)\n+    calendar_version = VersionTuple(2028, 5, \"final\", 0)\n+    # RemovedInDjango2028Warning.\n+    hint = \"django.VERSION has four components from Django 2028\"\n+\n+    def test_attributes(self):\n+        cases = [\n+            ((6, 2, 0, \"alpha\", 1), (6, 2), 0, \"alpha\", 1),\n+            ((6, 2, 0, \"final\", 0), (6, 2), 0, \"final\", 0),\n+            ((6, 2, 1, \"final\", 0), (6, 2), 1, \"final\", 0),\n+            ((1, 11, 29, \"final\", 0), (1, 11), 29, \"final\", 0),\n+            ((2028, 0, \"alpha\", 1), (2028,), 0, \"alpha\", 1),\n+            ((2028, 0, \"final\", 0), (2028,), 0, \"final\", 0),\n+            ((2028, 5, \"final\", 0), (2028,), 5, \"final\", 0),\n+        ]\n+        for version, feature, patch, status, iteration in cases:\n+            version = VersionTuple(*version)\n+            with self.subTest(version=version):\n+                self.assertEqual(version.feature, feature)\n+                self.assertEqual(version.patch, patch)\n+                self.assertEqual(version.status, status)\n+                self.assertEqual(version.iteration, iteration)\n+\n+    def test_feature_comparisons_span_both_schemes(self):\n+        self.assertIs(self.version.feature >= (5, 2), True)\n+        self.assertIs(self.version.feature == (6, 2), True)\n+        self.assertIs(self.calendar_version.feature >= (5, 2), True)\n+        self.assertIs(self.calendar_version.feature == (2028,), True)\n+        self.assertIs(self.calendar_version.feature < (2029,), True)\n+\n+    def test_django_version_is_a_version_tuple(self):\n+        self.assertIsInstance(django.VERSION, VersionTuple)\n+        # RemovedInDjango2028Warning: remove the rest of this test.\n+        msg = \"Indexing django.VERSION from its third component\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            django.VERSION[2]\n+\n+    def test_invalid_version(self):\n+        cases = [\n+            # Too few or too many components.\n+            (6, 2, \"final\"),\n+            (6, 2, 0, \"final\", 0, 0),\n+            (2028, 5, \"final\"),\n+            (2028, 5, 0, \"final\", 0, 0),\n+            # The status is not where it belongs, second to last.\n+            (6, 2, 0, \"final\"),\n+            # Invalid development status.\n+            (6, 2, 0, \"gamma\", 0),\n+            (2028, 5, \"gamma\", 0),\n+        ]\n+        for version in cases:\n+            with self.subTest(version=version), self.assertRaises(AssertionError):\n+                VersionTuple(*version)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_indexing_from_third_component_deprecated(self):\n+        msg = \"Indexing django.VERSION from its third component on\"\n+        indexes = [\n+            2,\n+            3,\n+            4,\n+            -1,\n+            -2,\n+            -3,\n+            slice(3),\n+            slice(None),\n+            slice(1, None),\n+            slice(None, None, 2),\n+        ]\n+        for index in indexes:\n+            with self.subTest(index=index):\n+                with self.assertWarnsMessage(RemovedInDjango2028Warning, msg) as ctx:\n+                    self.version[index]\n+                self.assertIn(self.hint, str(ctx.warning))\n+\n+    # RemovedInDjango2028Warning.\n+    def test_indexing_first_two_components_not_deprecated(self):\n+        cases = [\n+            (0, 6),\n+            (1, 2),\n+            (-4, 2),\n+            (-5, 6),\n+            (slice(2), (6, 2)),\n+            (slice(1), (6,)),\n+            (slice(0, 2), (6, 2)),\n+        ]\n+        for index, expected in cases:\n+            with self.subTest(index=index):\n+                self.assertEqual(self.version[index], expected)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_iterating_deprecated(self):\n+        msg = \"Iterating or unpacking django.VERSION is deprecated.\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            major, minor, micro, status, iteration = self.version\n+        self.assertEqual(\n+            (major, minor, micro, status, iteration), (6, 2, 1, \"final\", 0)\n+        )\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertEqual(tuple(self.version), (6, 2, 1, \"final\", 0))\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertEqual(list(self.version), [6, 2, 1, \"final\", 0])\n+\n+    # RemovedInDjango2028Warning.\n+    def test_length_deprecated(self):\n+        msg = \"Relying on the length of django.VERSION is deprecated.\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertEqual(len(self.version), 5)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_comparison_with_three_or_more_components_deprecated(self):\n+        msg = \"Comparing django.VERSION with three or more components is deprecated.\"\n+        operators = [\n+            operator.eq,\n+            operator.ne,\n+            operator.lt,\n+            operator.le,\n+            operator.gt,\n+            operator.ge,\n+        ]\n+        for other in [(6, 2, 1), (6, 2, 1, \"final\", 0)]:\n+            for op in operators:\n+                with self.subTest(other=other, operator=op.__name__):\n+                    with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+                        op(self.version, other)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_reflected_comparison_deprecated(self):\n+        msg = \"Comparing django.VERSION with three or more components is deprecated.\"\n+        with self.assertWarnsMessage(RemovedInDjango2028Warning, msg):\n+            self.assertIs((6, 2, 1, \"final\", 0) == self.version, True)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_comparison_with_fewer_components_not_deprecated(self):\n+        cases = [\n+            (operator.ge, (6,), True),\n+            (operator.ge, (6, 2), True),\n+            (operator.ge, (6, 3), False),\n+            (operator.lt, (2028,), True),\n+            (operator.eq, (6, 2), False),\n+            (operator.ne, (6, 2), True),\n+        ]\n+        for op, other, expected in cases:\n+            with self.subTest(operator=op.__name__, other=other):\n+                self.assertIs(op(self.version, other), expected)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_comparison_with_non_tuple_not_deprecated(self):\n+        self.assertIs(self.version == \"6.2.1\", False)\n+\n+    # RemovedInDjango2028Warning.\n+    def test_calendar_versions_not_deprecated(self):\n+        # Calendar versions already have their final shape, so nothing about\n+        # reading them is deprecated.\n+        self.assertEqual(self.calendar_version[1], 5)\n+        self.assertEqual(self.calendar_version[2], \"final\")\n+        self.assertEqual(self.calendar_version[:], (2028, 5, \"final\", 0))\n+        self.assertEqual(len(self.calendar_version), 4)\n+        self.assertEqual(tuple(self.calendar_version), (2028, 5, \"final\", 0))\n+        self.assertIs(self.calendar_version == (2028, 5, \"final\", 0), True)\n+\n+    def test_hashing(self):\n+        self.assertEqual(hash(self.version), hash((6, 2, 1, \"final\", 0)))\n+\n+    def test_repr(self):\n+        self.assertEqual(repr(self.version), \"(6, 2, 1, 'final', 0)\")\n+        self.assertEqual(repr(self.calendar_version), \"(2028, 5, 'final', 0)\")\n+\n+    def test_copying_and_pickling(self):\n+        # These go through __getnewargs__(), which must unpack the components\n+        # for the __new__() signature.\n+        for label, restore in [\n+            (\"pickle\", lambda v: pickle.loads(pickle.dumps(v))),\n+            (\"copy\", copy.copy),\n+            (\"deepcopy\", copy.deepcopy),\n+        ]:\n+            for version in [self.version, self.calendar_version]:\n+                with self.subTest(label, version=version):\n+                    restored = restore(version)\n+                    self.assertIsInstance(restored, VersionTuple)\n+                    self.assertEqual(restored.feature, version.feature)\n+                    self.assertEqual(restored.patch, version.patch)\n+                    self.assertEqual(restored.status, version.status)\n+                    self.assertEqual(restored.iteration, version.iteration)\n+\n+    def test_version_helpers(self):\n+        cases = [\n+            ((6, 2, 1, \"final\", 0), \"6.2.1\", \"6.2.1\", \"6.2\"),\n+            ((2028, 0, \"alpha\", 1), \"2028a1\", \"2028\", \"dev\"),\n+            ((2028, 0, \"rc\", 2), \"2028rc2\", \"2028\", \"dev\"),\n+            ((2028, 0, \"final\", 0), \"2028\", \"2028\", \"2028\"),\n+            ((2028, 5, \"final\", 0), \"2028.5\", \"2028.5\", \"2028\"),\n+            ((2030, 12, \"final\", 0), \"2030.12\", \"2030.12\", \"2030\"),\n+        ]\n+        for version, expected, main, docs in cases:\n+            version = VersionTuple(*version)\n+            with self.subTest(version=version):\n+                self.assertIs(get_complete_version(version), version)\n+                self.assertEqual(get_version(version), expected)\n+                self.assertEqual(get_main_version(version), main)\n+                self.assertEqual(get_docs_version(version), docs)"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:40Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768090/job/101123779817",
+        "name": "Run_benchmarks",
+        "started_at": "2026-09-04T18:02:51Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768527/job/101123734664",
+        "name": "Coverage Tests (PostgreSQL)",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768047/job/101123733825",
+        "name": "python",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768403/job/101123733165",
+        "name": "check-commit-prefix",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768047/job/101123733086",
+        "name": "define-matrix",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768336/job/101123732775",
+        "name": "SQLite",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768207/job/101123732465",
+        "name": "Screenshots",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768336/job/101123732204",
+        "name": "PostgreSQL",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:40Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/33903768161/job/101123732191",
+        "name": "PostgreSQL ${{ matrix.pg_major }}, Python ${{ matrix.python }}",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:03:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768346/job/101123731796",
+        "name": "JavaScript tests",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:09:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768346/job/101123731747",
+        "name": "Windows, SQLite, Python 3.14",
+        "started_at": "2026-09-04T18:02:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:08:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768346/job/101123731699",
+        "name": "Ubuntu, SQLite, Python 3.14t",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768403/job/101123731633",
+        "name": "check-commit-suffix",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768346/job/101123731530",
+        "name": "Scripts tests",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:04:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768481/job/101123731498",
+        "name": "docs",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:03:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768040/job/101123730827",
+        "name": "biome",
+        "started_at": "2026-09-04T18:02:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:03:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768040/job/101123730772",
+        "name": "flake8",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768040/job/101123730754",
+        "name": "isort",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:03:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768040/job/101123730723",
+        "name": "black",
+        "started_at": "2026-09-04T18:02:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:03:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903768040/job/101123730382",
+        "name": "zizmor",
+        "started_at": "2026-09-04T18:02:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-04T18:02:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/33903765637/job/101123722585",
+        "name": "Run Quality Checks on a PR",
+        "started_at": "2026-09-04T18:02:41Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 21
+  },
+  "combined_status": {
+    "sha": "566a88c8bb9f90cc24aabd721db8dff95aa0dc37",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

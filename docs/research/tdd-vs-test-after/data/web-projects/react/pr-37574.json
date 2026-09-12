@@ -1,0 +1,1700 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:14Z",
+  "pull": {
+    "url": "https://api.github.com/repos/react/react/pulls/37574",
+    "id": 4497758956,
+    "node_id": "PR_kwDOAJy2Ks8AAAABDBZa7A",
+    "html_url": "https://github.com/react/react/pull/37574",
+    "diff_url": "https://github.com/react/react/pull/37574.diff",
+    "patch_url": "https://github.com/react/react/pull/37574.patch",
+    "issue_url": "https://api.github.com/repos/react/react/issues/37574",
+    "number": 37574,
+    "state": "closed",
+    "locked": false,
+    "title": "[flags] Cleanup enableFragmentRefsScrollIntoView feature flag",
+    "user": {
+      "login": "javache",
+      "id": 5676,
+      "node_id": "MDQ6VXNlcjU2NzY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/javache",
+      "html_url": "https://github.com/javache",
+      "followers_url": "https://api.github.com/users/javache/followers",
+      "following_url": "https://api.github.com/users/javache/following{/other_user}",
+      "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+      "organizations_url": "https://api.github.com/users/javache/orgs",
+      "repos_url": "https://api.github.com/users/javache/repos",
+      "events_url": "https://api.github.com/users/javache/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/javache/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "> [!NOTE]\n> Stacked on #37573. That PR's commit shows up in the diff here until it lands; only the second commit is part of this change.\n\n## Summary\n\nInlines the enabled branch of `enableFragmentRefsScrollIntoView` and removes the flag from `ReactFeatureFlags` and all of its forks.\n\nThis is a DOM-only change. The flag's only consumer was `ReactFiberConfigDOM`, where it guarded the definition of `FragmentInstance.prototype.scrollIntoView`, so the code change is a plain unwrap and dedent of that one block with no logic edits.\n\nThe flag was declared `false` in the native forks, but those declarations were inert: Fabric never defined `scrollIntoView` on `FragmentInstance` at all, so removing the flag does not change any native behavior.\n\nThe one combined gate, `@gate enableFragmentRefsTextNodes && enableFragmentRefsScrollIntoView`, was reduced to `@gate enableFragmentRefsTextNodes` rather than dropped.\n\n## How did you test this change?\n\n`yarn lint`, `yarn prettier-check`, and `yarn flow` for `dom-node`, `dom-browser`, and `fabric` all pass.\n\nFull test suite run across `experimental`, `stable`, `www-modern`, `www-classic`, and `xplat`, with both `--variant` settings, plus `--persistent`. The remaining failures (Fizz / Flight / FrameScheduling / ClassEquivalence) are pre-existing: I diffed the individual failing test names against the parent commit and they are identical.",
+    "created_at": "2026-09-10T16:15:19Z",
+    "updated_at": "2026-09-11T10:07:20Z",
+    "closed_at": "2026-09-11T10:07:17Z",
+    "merged_at": "2026-09-11T10:07:17Z",
+    "merge_commit_sha": "9a78595327baffc7d8008c701daee0080efb5c9e",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 196858374,
+        "node_id": "MDU6TGFiZWwxOTY4NTgzNzQ=",
+        "url": "https://api.github.com/repos/react/react/labels/CLA%20Signed",
+        "name": "CLA Signed",
+        "color": "e7e7e7",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/react/react/pulls/37574/commits",
+    "review_comments_url": "https://api.github.com/repos/react/react/pulls/37574/comments",
+    "review_comment_url": "https://api.github.com/repos/react/react/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/react/react/issues/37574/comments",
+    "statuses_url": "https://api.github.com/repos/react/react/statuses/470697d6d559826700b9980fd05c04405d20fe66",
+    "head": {
+      "label": "javache:cleanup/enable-fragment-refs-scroll-into-view",
+      "ref": "cleanup/enable-fragment-refs-scroll-into-view",
+      "sha": "470697d6d559826700b9980fd05c04405d20fe66",
+      "user": {
+        "login": "javache",
+        "id": 5676,
+        "node_id": "MDQ6VXNlcjU2NzY=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/javache",
+        "html_url": "https://github.com/javache",
+        "followers_url": "https://api.github.com/users/javache/followers",
+        "following_url": "https://api.github.com/users/javache/following{/other_user}",
+        "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+        "organizations_url": "https://api.github.com/users/javache/orgs",
+        "repos_url": "https://api.github.com/users/javache/repos",
+        "events_url": "https://api.github.com/users/javache/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/javache/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 57295671,
+        "node_id": "MDEwOlJlcG9zaXRvcnk1NzI5NTY3MQ==",
+        "name": "react",
+        "full_name": "javache/react",
+        "private": false,
+        "owner": {
+          "login": "javache",
+          "id": 5676,
+          "node_id": "MDQ6VXNlcjU2NzY=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/javache",
+          "html_url": "https://github.com/javache",
+          "followers_url": "https://api.github.com/users/javache/followers",
+          "following_url": "https://api.github.com/users/javache/following{/other_user}",
+          "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+          "organizations_url": "https://api.github.com/users/javache/orgs",
+          "repos_url": "https://api.github.com/users/javache/repos",
+          "events_url": "https://api.github.com/users/javache/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/javache/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/javache/react",
+        "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+        "fork": true,
+        "url": "https://api.github.com/repos/javache/react",
+        "forks_url": "https://api.github.com/repos/javache/react/forks",
+        "keys_url": "https://api.github.com/repos/javache/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/javache/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/javache/react/teams",
+        "hooks_url": "https://api.github.com/repos/javache/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/javache/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/javache/react/events",
+        "assignees_url": "https://api.github.com/repos/javache/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/javache/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/javache/react/tags",
+        "blobs_url": "https://api.github.com/repos/javache/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/javache/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/javache/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/javache/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/javache/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/javache/react/languages",
+        "stargazers_url": "https://api.github.com/repos/javache/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/javache/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/javache/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/javache/react/subscription",
+        "commits_url": "https://api.github.com/repos/javache/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/javache/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/javache/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/javache/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/javache/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/javache/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/javache/react/merges",
+        "archive_url": "https://api.github.com/repos/javache/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/javache/react/downloads",
+        "issues_url": "https://api.github.com/repos/javache/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/javache/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/javache/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/javache/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/javache/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/javache/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/javache/react/deployments",
+        "created_at": "2016-04-28T11:07:17Z",
+        "updated_at": "2026-09-11T10:33:41Z",
+        "pushed_at": "2026-09-11T10:33:28Z",
+        "git_url": "git://github.com/javache/react.git",
+        "ssh_url": "git@github.com:javache/react.git",
+        "clone_url": "https://github.com/javache/react.git",
+        "svn_url": "https://github.com/javache/react",
+        "homepage": "https://facebook.github.io/react/",
+        "size": 145315,
+        "stargazers_count": 1,
+        "watchers_count": 1,
+        "language": "JavaScript",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": true,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 1,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "react:main",
+      "ref": "main",
+      "sha": "d0a776cde3fcc8218b424ee20be8659a59b927fe",
+      "user": {
+        "login": "react",
+        "id": 102812,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/react",
+        "html_url": "https://github.com/react",
+        "followers_url": "https://api.github.com/users/react/followers",
+        "following_url": "https://api.github.com/users/react/following{/other_user}",
+        "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+        "organizations_url": "https://api.github.com/users/react/orgs",
+        "repos_url": "https://api.github.com/users/react/repos",
+        "events_url": "https://api.github.com/users/react/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/react/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 10270250,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMDI3MDI1MA==",
+        "name": "react",
+        "full_name": "react/react",
+        "private": false,
+        "owner": {
+          "login": "react",
+          "id": 102812,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/react",
+          "html_url": "https://github.com/react",
+          "followers_url": "https://api.github.com/users/react/followers",
+          "following_url": "https://api.github.com/users/react/following{/other_user}",
+          "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+          "organizations_url": "https://api.github.com/users/react/orgs",
+          "repos_url": "https://api.github.com/users/react/repos",
+          "events_url": "https://api.github.com/users/react/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/react/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/react/react",
+        "description": "The library for web and native user interfaces.",
+        "fork": false,
+        "url": "https://api.github.com/repos/react/react",
+        "forks_url": "https://api.github.com/repos/react/react/forks",
+        "keys_url": "https://api.github.com/repos/react/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/react/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/react/react/teams",
+        "hooks_url": "https://api.github.com/repos/react/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/react/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/react/react/events",
+        "assignees_url": "https://api.github.com/repos/react/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/react/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/react/react/tags",
+        "blobs_url": "https://api.github.com/repos/react/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/react/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/react/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/react/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/react/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/react/react/languages",
+        "stargazers_url": "https://api.github.com/repos/react/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/react/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/react/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/react/react/subscription",
+        "commits_url": "https://api.github.com/repos/react/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/react/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/react/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/react/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/react/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/react/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/react/react/merges",
+        "archive_url": "https://api.github.com/repos/react/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/react/react/downloads",
+        "issues_url": "https://api.github.com/repos/react/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/react/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/react/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/react/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/react/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/react/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/react/react/deployments",
+        "created_at": "2013-05-24T16:15:54Z",
+        "updated_at": "2026-09-12T07:00:06Z",
+        "pushed_at": "2026-09-11T23:35:47Z",
+        "git_url": "git://github.com/react/react.git",
+        "ssh_url": "org-102812@github.com:react/react.git",
+        "clone_url": "https://github.com/react/react.git",
+        "svn_url": "https://github.com/react/react",
+        "homepage": "https://react.dev",
+        "size": 1084697,
+        "stargazers_count": 250049,
+        "watchers_count": 250049,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": true,
+        "has_discussions": false,
+        "forks_count": 51330,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1369,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "declarative",
+          "frontend",
+          "javascript",
+          "library",
+          "react",
+          "ui"
+        ],
+        "visibility": "public",
+        "forks": 51330,
+        "open_issues": 1369,
+        "watchers": 250049,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/react/react/pulls/37574"
+      },
+      "html": {
+        "href": "https://github.com/react/react/pull/37574"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/react/react/issues/37574"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/react/react/issues/37574/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/react/react/pulls/37574/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/react/react/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/react/react/pulls/37574/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/react/react/statuses/470697d6d559826700b9980fd05c04405d20fe66"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "javache",
+      "id": 5676,
+      "node_id": "MDQ6VXNlcjU2NzY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/javache",
+      "html_url": "https://github.com/javache",
+      "followers_url": "https://api.github.com/users/javache/followers",
+      "following_url": "https://api.github.com/users/javache/following{/other_user}",
+      "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+      "organizations_url": "https://api.github.com/users/javache/orgs",
+      "repos_url": "https://api.github.com/users/javache/repos",
+      "events_url": "https://api.github.com/users/javache/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/javache/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 1,
+    "additions": 80,
+    "deletions": 105,
+    "changed_files": 11
+  },
+  "commits": [
+    {
+      "sha": "470697d6d559826700b9980fd05c04405d20fe66",
+      "node_id": "C_kwDOA2pDN9oAKDQ3MDY5N2Q2ZDU1OTgyNjcwMGI5OTgwZmQwNWMwNDQwNWQyMGZlNjY",
+      "commit": {
+        "author": {
+          "name": "Pieter De Baets",
+          "email": "pieter.debaets@gmail.com",
+          "date": "2026-09-10T16:04:40Z"
+        },
+        "committer": {
+          "name": "Pieter De Baets",
+          "email": "pieterdb@meta.com",
+          "date": "2026-09-11T09:51:10Z"
+        },
+        "message": "[flags] Cleanup enableFragmentRefsScrollIntoView feature flag\n\nInline the enabled branch of the flag and remove it from\nReactFeatureFlags and all of its forks.\n\nThe only consumer was ReactFiberConfigDOM, where the flag guarded the\ndefinition of FragmentInstance.prototype.scrollIntoView, so this is a\nDOM-only change. Fabric never defined scrollIntoView on FragmentInstance\nat all, which is why the flag was declared `false` in the native forks.",
+        "tree": {
+          "sha": "bae58ecb570941ff87caa570f5c539c97da65829",
+          "url": "https://api.github.com/repos/react/react/git/trees/bae58ecb570941ff87caa570f5c539c97da65829"
+        },
+        "url": "https://api.github.com/repos/react/react/git/commits/470697d6d559826700b9980fd05c04405d20fe66",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/react/react/commits/470697d6d559826700b9980fd05c04405d20fe66",
+      "html_url": "https://github.com/react/react/commit/470697d6d559826700b9980fd05c04405d20fe66",
+      "comments_url": "https://api.github.com/repos/react/react/commits/470697d6d559826700b9980fd05c04405d20fe66/comments",
+      "author": {
+        "login": "javache",
+        "id": 5676,
+        "node_id": "MDQ6VXNlcjU2NzY=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/javache",
+        "html_url": "https://github.com/javache",
+        "followers_url": "https://api.github.com/users/javache/followers",
+        "following_url": "https://api.github.com/users/javache/following{/other_user}",
+        "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+        "organizations_url": "https://api.github.com/users/javache/orgs",
+        "repos_url": "https://api.github.com/users/javache/repos",
+        "events_url": "https://api.github.com/users/javache/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/javache/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "javache",
+        "id": 5676,
+        "node_id": "MDQ6VXNlcjU2NzY=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5676?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/javache",
+        "html_url": "https://github.com/javache",
+        "followers_url": "https://api.github.com/users/javache/followers",
+        "following_url": "https://api.github.com/users/javache/following{/other_user}",
+        "gists_url": "https://api.github.com/users/javache/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/javache/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/javache/subscriptions",
+        "organizations_url": "https://api.github.com/users/javache/orgs",
+        "repos_url": "https://api.github.com/users/javache/repos",
+        "events_url": "https://api.github.com/users/javache/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/javache/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "d0a776cde3fcc8218b424ee20be8659a59b927fe",
+          "url": "https://api.github.com/repos/react/react/commits/d0a776cde3fcc8218b424ee20be8659a59b927fe",
+          "html_url": "https://github.com/react/react/commit/d0a776cde3fcc8218b424ee20be8659a59b927fe"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "0871ed01758709887dd62263274b9096d5593c09",
+      "filename": "packages/react-dom-bindings/src/client/ReactFiberConfigDOM.js",
+      "status": "modified",
+      "additions": 78,
+      "deletions": 83,
+      "changes": 161,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom-bindings%2Fsrc%2Fclient%2FReactFiberConfigDOM.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom-bindings%2Fsrc%2Fclient%2FReactFiberConfigDOM.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-dom-bindings%2Fsrc%2Fclient%2FReactFiberConfigDOM.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -131,7 +131,6 @@ import {\n   enableSrcObject,\n   enableViewTransition,\n   enableHydrationChangeEvent,\n-  enableFragmentRefsScrollIntoView,\n   enableProfilerTimer,\n   enableFragmentRefsInstanceHandles,\n   enableFragmentRefsTextNodes,\n@@ -3757,97 +3756,93 @@ function scrollTextNodeIntoView(\n   window.scrollTo(window.scrollX + rect.left, scrollY);\n }\n \n-if (enableFragmentRefsScrollIntoView) {\n-  // $FlowFixMe[prop-missing]\n-  FragmentInstance.prototype.scrollIntoView = function (\n-    this: FragmentInstanceType,\n-    alignToTop?: boolean,\n-  ): void {\n-    if (typeof alignToTop === 'object') {\n-      throw new Error(\n-        'FragmentInstance.scrollIntoView() does not support ' +\n-          'scrollIntoViewOptions. Use the alignToTop boolean instead.',\n-      );\n-    }\n-    // First, get the children nodes\n-    const children: Array<Fiber> = [];\n-    traverseFragmentInstancesAndTextInstances(\n-      this._fragmentFiber,\n-      collectChildren,\n-      children,\n+// $FlowFixMe[prop-missing]\n+FragmentInstance.prototype.scrollIntoView = function (\n+  this: FragmentInstanceType,\n+  alignToTop?: boolean,\n+): void {\n+  if (typeof alignToTop === 'object') {\n+    throw new Error(\n+      'FragmentInstance.scrollIntoView() does not support ' +\n+        'scrollIntoViewOptions. Use the alignToTop boolean instead.',\n     );\n+  }\n+  // First, get the children nodes\n+  const children: Array<Fiber> = [];\n+  traverseFragmentInstancesAndTextInstances(\n+    this._fragmentFiber,\n+    collectChildren,\n+    children,\n+  );\n \n-    const resolvedAlignToTop = alignToTop !== false;\n+  const resolvedAlignToTop = alignToTop !== false;\n \n-    // If there are no children, we can use the parent and siblings to determine a position\n-    if (children.length === 0) {\n-      const hostSiblings = getFragmentInstanceOrTextInstanceSiblings(\n-        this._fragmentFiber,\n-      );\n-      const targetFiber = resolvedAlignToTop\n-        ? hostSiblings[1] ||\n-          hostSiblings[0] ||\n-          getFragmentParentInstanceOrContainerFiber(this._fragmentFiber)\n-        : hostSiblings[0] || hostSiblings[1];\n+  // If there are no children, we can use the parent and siblings to determine a position\n+  if (children.length === 0) {\n+    const hostSiblings = getFragmentInstanceOrTextInstanceSiblings(\n+      this._fragmentFiber,\n+    );\n+    const targetFiber = resolvedAlignToTop\n+      ? hostSiblings[1] ||\n+        hostSiblings[0] ||\n+        getFragmentParentInstanceOrContainerFiber(this._fragmentFiber)\n+      : hostSiblings[0] || hostSiblings[1];\n \n-      if (targetFiber === null) {\n-        return;\n-      }\n-      // For text node siblings, use Range API to scroll to their position\n-      if (enableFragmentRefsTextNodes && targetFiber.tag === HostText) {\n-        const textNode = getInstanceFromHostFiber<TextInstance>(targetFiber);\n-        scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n-        return;\n-      }\n-      const target = getInstanceFromHostFiber<Instance | Container>(\n-        targetFiber,\n-      );\n-      // If the parent host fiber is a HostRoot, the target is a Container\n-      // which is not necessarily an Element with a scrollIntoView method.\n-      if (target.nodeType === DOCUMENT_NODE) {\n-        // A Document is always in view.\n-      } else if (target.nodeType === DOCUMENT_FRAGMENT_NODE) {\n-        const fragment = target as any as DocumentFragment;\n-        // ShadowRoot always has a host: https://dom.spec.whatwg.org/#ref-for-concept-documentfragment-host%E2%91%A5\n-        // A generic DocumentFragment doesn't implement this property but conceptually\n-        // host is a nullable Element: https://dom.spec.whatwg.org/#concept-documentfragment-host\n-        const host =\n-          'host' in fragment ? (fragment as any as ShadowRoot).host : null;\n-        if (host !== null) {\n-          // The ShadowRoot's host element marks the position where the\n-          // fragment's content would appear.\n-          host.scrollIntoView(alignToTop);\n-        } else if (__DEV__) {\n-          console.warn(\n-            'You are attempting to scroll a FragmentInstance that is only ' +\n-              'mounted inside a detached DocumentFragment. No scroll was ' +\n-              'performed.',\n-          );\n-        }\n-        return;\n-      } else {\n-        // Narrowed down to Element by nodeType check above, but Flow doesn't know that.\n-        const element = target as any as Element;\n-        element.scrollIntoView(alignToTop);\n+    if (targetFiber === null) {\n+      return;\n+    }\n+    // For text node siblings, use Range API to scroll to their position\n+    if (enableFragmentRefsTextNodes && targetFiber.tag === HostText) {\n+      const textNode = getInstanceFromHostFiber<TextInstance>(targetFiber);\n+      scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n+      return;\n+    }\n+    const target = getInstanceFromHostFiber<Instance | Container>(targetFiber);\n+    // If the parent host fiber is a HostRoot, the target is a Container\n+    // which is not necessarily an Element with a scrollIntoView method.\n+    if (target.nodeType === DOCUMENT_NODE) {\n+      // A Document is always in view.\n+    } else if (target.nodeType === DOCUMENT_FRAGMENT_NODE) {\n+      const fragment = target as any as DocumentFragment;\n+      // ShadowRoot always has a host: https://dom.spec.whatwg.org/#ref-for-concept-documentfragment-host%E2%91%A5\n+      // A generic DocumentFragment doesn't implement this property but conceptually\n+      // host is a nullable Element: https://dom.spec.whatwg.org/#concept-documentfragment-host\n+      const host =\n+        'host' in fragment ? (fragment as any as ShadowRoot).host : null;\n+      if (host !== null) {\n+        // The ShadowRoot's host element marks the position where the\n+        // fragment's content would appear.\n+        host.scrollIntoView(alignToTop);\n+      } else if (__DEV__) {\n+        console.warn(\n+          'You are attempting to scroll a FragmentInstance that is only ' +\n+            'mounted inside a detached DocumentFragment. No scroll was ' +\n+            'performed.',\n+        );\n       }\n+      return;\n+    } else {\n+      // Narrowed down to Element by nodeType check above, but Flow doesn't know that.\n+      const element = target as any as Element;\n+      element.scrollIntoView(alignToTop);\n     }\n+  }\n \n-    let i = resolvedAlignToTop ? children.length - 1 : 0;\n-    while (i !== (resolvedAlignToTop ? -1 : children.length)) {\n-      const child = children[i];\n-      // For text nodes, use Range API to scroll to their position\n-      if (enableFragmentRefsTextNodes && child.tag === HostText) {\n-        const textNode = getInstanceFromHostFiber<TextInstance>(child);\n-        scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n-        i += resolvedAlignToTop ? -1 : 1;\n-        continue;\n-      }\n-      const instance = getInstanceFromHostFiber<Instance>(child);\n-      instance.scrollIntoView(alignToTop);\n+  let i = resolvedAlignToTop ? children.length - 1 : 0;\n+  while (i !== (resolvedAlignToTop ? -1 : children.length)) {\n+    const child = children[i];\n+    // For text nodes, use Range API to scroll to their position\n+    if (enableFragmentRefsTextNodes && child.tag === HostText) {\n+      const textNode = getInstanceFromHostFiber<TextInstance>(child);\n+      scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n       i += resolvedAlignToTop ? -1 : 1;\n+      continue;\n     }\n-  };\n-}\n+    const instance = getInstanceFromHostFiber<Instance>(child);\n+    instance.scrollIntoView(alignToTop);\n+    i += resolvedAlignToTop ? -1 : 1;\n+  }\n+};\n \n function addFragmentHandleToFiber(\n   child: Fiber,"
+    },
+    {
+      "sha": "e312bd3af0da55e2b7817cfa227426bafb4318d6",
+      "filename": "packages/react-dom/src/__tests__/ReactDOMFragmentRefs-test.js",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 13,
+      "changes": 15,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom%2Fsrc%2F__tests__%2FReactDOMFragmentRefs-test.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom%2Fsrc%2F__tests__%2FReactDOMFragmentRefs-test.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-dom%2Fsrc%2F__tests__%2FReactDOMFragmentRefs-test.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -3239,7 +3239,6 @@ describe('FragmentRefs', () => {\n     function expectLast(arr, test) {\n       expect(arr[arr.length - 1]).toBe(test);\n     }\n-    // @gate enableFragmentRefsScrollIntoView\n     it('does not yet support options', async () => {\n       const fragmentRef = React.createRef();\n       const root = ReactDOMClient.createRoot(container);\n@@ -3256,7 +3255,6 @@ describe('FragmentRefs', () => {\n     });\n \n     describe('with children', () => {\n-      // @gate enableFragmentRefsScrollIntoView\n       it('settles scroll on the first child by default, or if alignToTop=true', async () => {\n         const fragmentRef = React.createRef();\n         const childARef = React.createRef();\n@@ -3292,7 +3290,6 @@ describe('FragmentRefs', () => {\n         expectLast(logs, 'childA');\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the last child if alignToTop is false', async () => {\n         const fragmentRef = React.createRef();\n         const childARef = React.createRef();\n@@ -3319,7 +3316,6 @@ describe('FragmentRefs', () => {\n         expectLast(logs, 'childB');\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('handles portaled elements -- same scroll container', async () => {\n         const fragmentRef = React.createRef();\n         const childARef = React.createRef();\n@@ -3360,7 +3356,6 @@ describe('FragmentRefs', () => {\n         expectLast(logs, 'childA');\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('handles portaled elements -- different scroll container', async () => {\n         const fragmentRef = React.createRef();\n         const headerChildRef = React.createRef();\n@@ -3461,7 +3456,6 @@ describe('FragmentRefs', () => {\n     });\n \n     describe('without children', () => {\n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the next sibling by default, or if alignToTop=true', async () => {\n         const fragmentRef = React.createRef();\n         const siblingARef = React.createRef();\n@@ -3495,7 +3489,6 @@ describe('FragmentRefs', () => {\n         expect(siblingBRef.current.scrollIntoView).toHaveBeenCalledTimes(1);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('finds host siblings when the empty fragment is nested in a non-host wrapper', async () => {\n         const fragmentRef = React.createRef();\n         const beforeRef = React.createRef();\n@@ -3529,7 +3522,6 @@ describe('FragmentRefs', () => {\n         expect(afterRef.current.scrollIntoView).toHaveBeenCalledTimes(0);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the prev sibling if alignToTop is false', async () => {\n         const fragmentRef = React.createRef();\n         const siblingARef = React.createRef();\n@@ -3566,7 +3558,6 @@ describe('FragmentRefs', () => {\n         expect(siblingBRef.current.scrollIntoView).toHaveBeenCalledTimes(0);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the parent if there are no siblings', async () => {\n         const fragmentRef = React.createRef();\n         const parentRef = React.createRef();\n@@ -3586,7 +3577,6 @@ describe('FragmentRefs', () => {\n         expect(parentRef.current.scrollIntoView).toHaveBeenCalledTimes(1);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('scrolls the host element when the fallback target is a ShadowRoot container', async () => {\n         const fragmentRef = React.createRef();\n         const host = document.createElement('div');\n@@ -3604,7 +3594,6 @@ describe('FragmentRefs', () => {\n         expect(host.scrollIntoView).toHaveBeenCalledTimes(1);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('warns without scrolling when the fallback target is a detached DocumentFragment container', async () => {\n         const fragmentRef = React.createRef();\n         const root = ReactDOMClient.createRoot(\n@@ -3758,7 +3747,7 @@ describe('FragmentRefs', () => {\n       );\n     });\n \n-    // @gate enableFragmentRefsScrollIntoView\n+    // @gate enableFragmentRefsTextNodes\n     it('scrollIntoView works on text-only fragment using Range API', async () => {\n       const restoreRange = mockRangeClientRects([\n         {x: 100, y: 200, width: 80, height: 16},\n@@ -3788,7 +3777,7 @@ describe('FragmentRefs', () => {\n       restoreRange();\n     });\n \n-    // @gate enableFragmentRefsTextNodes && enableFragmentRefsScrollIntoView\n+    // @gate enableFragmentRefsTextNodes\n     it('scrollIntoView scrolls to text siblings of an empty fragment using the Range API', async () => {\n       const restoreRange = mockRangeClientRects([\n         {x: 100, y: 200, width: 80, height: 16},"
+    },
+    {
+      "sha": "33076ed502f73401bfa46d926f5da46c8378690a",
+      "filename": "packages/shared/ReactFeatureFlags.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2FReactFeatureFlags.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2FReactFeatureFlags.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2FReactFeatureFlags.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -162,7 +162,6 @@ export const enableInfiniteRenderLoopDetectionForceThrow: boolean = false;\n \n export const enableConditionalUseWarning: boolean = true;\n \n-export const enableFragmentRefsScrollIntoView: boolean = true;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n "
+    },
+    {
+      "sha": "c686487d694c1aaeda88e66f893135e886ecd792",
+      "filename": "packages/shared/forks/ReactFeatureFlags.native-fb-dynamic.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb-dynamic.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb-dynamic.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb-dynamic.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -20,7 +20,6 @@\n export const alwaysThrottleRetries = __VARIANT__;\n export const enableObjectFiber = __VARIANT__;\n export const passChildrenWhenCloningPersistedNodes = __VARIANT__;\n-export const enableFragmentRefsScrollIntoView = __VARIANT__;\n export const enableFragmentRefsInstanceHandles = __VARIANT__;\n export const enableFragmentRefsTextNodes = __VARIANT__;\n export const enableViewTransitionForPersistenceMode = __VARIANT__;"
+    },
+    {
+      "sha": "2c7e8655c5784ce491277acceac4b1aa08de5c5f",
+      "filename": "packages/shared/forks/ReactFeatureFlags.native-fb.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -22,7 +22,6 @@ export const {\n   alwaysThrottleRetries,\n   enableObjectFiber,\n   passChildrenWhenCloningPersistedNodes,\n-  enableFragmentRefsScrollIntoView,\n   enableFragmentRefsInstanceHandles,\n   enableFragmentRefsTextNodes,\n   enableViewTransitionForPersistenceMode,"
+    },
+    {
+      "sha": "e9ca0bec7f0a6bcf1bce1d44e6d829977be55b67",
+      "filename": "packages/shared/forks/ReactFeatureFlags.native-oss.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-oss.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-oss.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-oss.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -73,7 +73,6 @@ export const enableHydrationChangeEvent: boolean = false;\n export const enableDefaultTransitionIndicator: boolean = false;\n export const ownerStackLimit = 1e4;\n \n-export const enableFragmentRefsScrollIntoView: boolean = false;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n "
+    },
+    {
+      "sha": "0a6a4b098dd06ae1da1a2b470946810a3c46c4eb",
+      "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -74,7 +74,6 @@ export const enableHydrationChangeEvent: boolean = false;\n export const enableDefaultTransitionIndicator: boolean = false;\n export const ownerStackLimit = 1e4;\n \n-export const enableFragmentRefsScrollIntoView: boolean = true;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n "
+    },
+    {
+      "sha": "df401fdc2a1093e9aedacc311a918e388e919067",
+      "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.native-fb.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.native-fb.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.native-fb.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.native-fb.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -67,7 +67,6 @@ export const enableFizzBlockingRender = true;\n export const enableSrcObject = false;\n export const enableHydrationChangeEvent = false;\n export const enableDefaultTransitionIndicator = true;\n-export const enableFragmentRefsScrollIntoView = false;\n export const enableFragmentRefsInstanceHandles = false;\n export const enableFragmentRefsTextNodes = false;\n export const ownerStackLimit = 1e4;"
+    },
+    {
+      "sha": "0854641c613347a1e42613f01a6489eff4f100a4",
+      "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.www.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.www.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.www.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.www.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -79,7 +79,6 @@ export const enableSrcObject: boolean = false;\n export const enableHydrationChangeEvent: boolean = false;\n export const enableDefaultTransitionIndicator: boolean = true;\n \n-export const enableFragmentRefsScrollIntoView: boolean = true;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n export const ownerStackLimit = 1e4;"
+    },
+    {
+      "sha": "ddd048bf31325bb81f215a0ebba47c7fd9a94309",
+      "filename": "packages/shared/forks/ReactFeatureFlags.www-dynamic.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www-dynamic.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www-dynamic.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.www-dynamic.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -35,7 +35,6 @@ export const enableSuspenseyImages: boolean = __VARIANT__;\n export const enableViewTransition: boolean = __VARIANT__;\n export const enableViewTransitionParentEnterExit: boolean = __VARIANT__;\n export const enableScrollEndPolyfill: boolean = __VARIANT__;\n-export const enableFragmentRefsScrollIntoView: boolean = __VARIANT__;\n export const enableFragmentRefsTextNodes: boolean = __VARIANT__;\n export const enableInternalInstanceMap: boolean = __VARIANT__;\n export const enableParallelTransitions: boolean = __VARIANT__;"
+    },
+    {
+      "sha": "3d83feb32885ab92c7bdc9933c20848292987708",
+      "filename": "packages/shared/forks/ReactFeatureFlags.www.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1,
+      "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www.js",
+      "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.www.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+      "patch": "@@ -31,7 +31,6 @@ export const {\n   enableSuspenseyImages,\n   enableViewTransition,\n   enableScrollEndPolyfill,\n-  enableFragmentRefsScrollIntoView,\n   enableFragmentRefsTextNodes,\n   enableInternalInstanceMap,\n   enableParallelTransitions,"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "470697d6d559826700b9980fd05c04405d20fe66",
+      "html_url": "https://github.com/react/react/commit/470697d6d559826700b9980fd05c04405d20fe66",
+      "commit": {
+        "author": {
+          "name": "Pieter De Baets",
+          "email": "pieter.debaets@gmail.com",
+          "date": "2026-09-10T16:04:40Z"
+        },
+        "committer": {
+          "name": "Pieter De Baets",
+          "email": "pieterdb@meta.com",
+          "date": "2026-09-11T09:51:10Z"
+        },
+        "message": "[flags] Cleanup enableFragmentRefsScrollIntoView feature flag\n\nInline the enabled branch of the flag and remove it from\nReactFeatureFlags and all of its forks.\n\nThe only consumer was ReactFiberConfigDOM, where the flag guarded the\ndefinition of FragmentInstance.prototype.scrollIntoView, so this is a\nDOM-only change. Fabric never defined scrollIntoView on FragmentInstance\nat all, which is why the flag was declared `false` in the native forks."
+      },
+      "parents": [
+        {
+          "sha": "d0a776cde3fcc8218b424ee20be8659a59b927fe",
+          "url": "https://api.github.com/repos/react/react/commits/d0a776cde3fcc8218b424ee20be8659a59b927fe",
+          "html_url": "https://github.com/react/react/commit/d0a776cde3fcc8218b424ee20be8659a59b927fe"
+        }
+      ],
+      "stats": {
+        "total": 185,
+        "additions": 80,
+        "deletions": 105
+      },
+      "files": [
+        {
+          "sha": "0871ed01758709887dd62263274b9096d5593c09",
+          "filename": "packages/react-dom-bindings/src/client/ReactFiberConfigDOM.js",
+          "status": "modified",
+          "additions": 78,
+          "deletions": 83,
+          "changes": 161,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom-bindings%2Fsrc%2Fclient%2FReactFiberConfigDOM.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom-bindings%2Fsrc%2Fclient%2FReactFiberConfigDOM.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-dom-bindings%2Fsrc%2Fclient%2FReactFiberConfigDOM.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -131,7 +131,6 @@ import {\n   enableSrcObject,\n   enableViewTransition,\n   enableHydrationChangeEvent,\n-  enableFragmentRefsScrollIntoView,\n   enableProfilerTimer,\n   enableFragmentRefsInstanceHandles,\n   enableFragmentRefsTextNodes,\n@@ -3757,97 +3756,93 @@ function scrollTextNodeIntoView(\n   window.scrollTo(window.scrollX + rect.left, scrollY);\n }\n \n-if (enableFragmentRefsScrollIntoView) {\n-  // $FlowFixMe[prop-missing]\n-  FragmentInstance.prototype.scrollIntoView = function (\n-    this: FragmentInstanceType,\n-    alignToTop?: boolean,\n-  ): void {\n-    if (typeof alignToTop === 'object') {\n-      throw new Error(\n-        'FragmentInstance.scrollIntoView() does not support ' +\n-          'scrollIntoViewOptions. Use the alignToTop boolean instead.',\n-      );\n-    }\n-    // First, get the children nodes\n-    const children: Array<Fiber> = [];\n-    traverseFragmentInstancesAndTextInstances(\n-      this._fragmentFiber,\n-      collectChildren,\n-      children,\n+// $FlowFixMe[prop-missing]\n+FragmentInstance.prototype.scrollIntoView = function (\n+  this: FragmentInstanceType,\n+  alignToTop?: boolean,\n+): void {\n+  if (typeof alignToTop === 'object') {\n+    throw new Error(\n+      'FragmentInstance.scrollIntoView() does not support ' +\n+        'scrollIntoViewOptions. Use the alignToTop boolean instead.',\n     );\n+  }\n+  // First, get the children nodes\n+  const children: Array<Fiber> = [];\n+  traverseFragmentInstancesAndTextInstances(\n+    this._fragmentFiber,\n+    collectChildren,\n+    children,\n+  );\n \n-    const resolvedAlignToTop = alignToTop !== false;\n+  const resolvedAlignToTop = alignToTop !== false;\n \n-    // If there are no children, we can use the parent and siblings to determine a position\n-    if (children.length === 0) {\n-      const hostSiblings = getFragmentInstanceOrTextInstanceSiblings(\n-        this._fragmentFiber,\n-      );\n-      const targetFiber = resolvedAlignToTop\n-        ? hostSiblings[1] ||\n-          hostSiblings[0] ||\n-          getFragmentParentInstanceOrContainerFiber(this._fragmentFiber)\n-        : hostSiblings[0] || hostSiblings[1];\n+  // If there are no children, we can use the parent and siblings to determine a position\n+  if (children.length === 0) {\n+    const hostSiblings = getFragmentInstanceOrTextInstanceSiblings(\n+      this._fragmentFiber,\n+    );\n+    const targetFiber = resolvedAlignToTop\n+      ? hostSiblings[1] ||\n+        hostSiblings[0] ||\n+        getFragmentParentInstanceOrContainerFiber(this._fragmentFiber)\n+      : hostSiblings[0] || hostSiblings[1];\n \n-      if (targetFiber === null) {\n-        return;\n-      }\n-      // For text node siblings, use Range API to scroll to their position\n-      if (enableFragmentRefsTextNodes && targetFiber.tag === HostText) {\n-        const textNode = getInstanceFromHostFiber<TextInstance>(targetFiber);\n-        scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n-        return;\n-      }\n-      const target = getInstanceFromHostFiber<Instance | Container>(\n-        targetFiber,\n-      );\n-      // If the parent host fiber is a HostRoot, the target is a Container\n-      // which is not necessarily an Element with a scrollIntoView method.\n-      if (target.nodeType === DOCUMENT_NODE) {\n-        // A Document is always in view.\n-      } else if (target.nodeType === DOCUMENT_FRAGMENT_NODE) {\n-        const fragment = target as any as DocumentFragment;\n-        // ShadowRoot always has a host: https://dom.spec.whatwg.org/#ref-for-concept-documentfragment-host%E2%91%A5\n-        // A generic DocumentFragment doesn't implement this property but conceptually\n-        // host is a nullable Element: https://dom.spec.whatwg.org/#concept-documentfragment-host\n-        const host =\n-          'host' in fragment ? (fragment as any as ShadowRoot).host : null;\n-        if (host !== null) {\n-          // The ShadowRoot's host element marks the position where the\n-          // fragment's content would appear.\n-          host.scrollIntoView(alignToTop);\n-        } else if (__DEV__) {\n-          console.warn(\n-            'You are attempting to scroll a FragmentInstance that is only ' +\n-              'mounted inside a detached DocumentFragment. No scroll was ' +\n-              'performed.',\n-          );\n-        }\n-        return;\n-      } else {\n-        // Narrowed down to Element by nodeType check above, but Flow doesn't know that.\n-        const element = target as any as Element;\n-        element.scrollIntoView(alignToTop);\n+    if (targetFiber === null) {\n+      return;\n+    }\n+    // For text node siblings, use Range API to scroll to their position\n+    if (enableFragmentRefsTextNodes && targetFiber.tag === HostText) {\n+      const textNode = getInstanceFromHostFiber<TextInstance>(targetFiber);\n+      scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n+      return;\n+    }\n+    const target = getInstanceFromHostFiber<Instance | Container>(targetFiber);\n+    // If the parent host fiber is a HostRoot, the target is a Container\n+    // which is not necessarily an Element with a scrollIntoView method.\n+    if (target.nodeType === DOCUMENT_NODE) {\n+      // A Document is always in view.\n+    } else if (target.nodeType === DOCUMENT_FRAGMENT_NODE) {\n+      const fragment = target as any as DocumentFragment;\n+      // ShadowRoot always has a host: https://dom.spec.whatwg.org/#ref-for-concept-documentfragment-host%E2%91%A5\n+      // A generic DocumentFragment doesn't implement this property but conceptually\n+      // host is a nullable Element: https://dom.spec.whatwg.org/#concept-documentfragment-host\n+      const host =\n+        'host' in fragment ? (fragment as any as ShadowRoot).host : null;\n+      if (host !== null) {\n+        // The ShadowRoot's host element marks the position where the\n+        // fragment's content would appear.\n+        host.scrollIntoView(alignToTop);\n+      } else if (__DEV__) {\n+        console.warn(\n+          'You are attempting to scroll a FragmentInstance that is only ' +\n+            'mounted inside a detached DocumentFragment. No scroll was ' +\n+            'performed.',\n+        );\n       }\n+      return;\n+    } else {\n+      // Narrowed down to Element by nodeType check above, but Flow doesn't know that.\n+      const element = target as any as Element;\n+      element.scrollIntoView(alignToTop);\n     }\n+  }\n \n-    let i = resolvedAlignToTop ? children.length - 1 : 0;\n-    while (i !== (resolvedAlignToTop ? -1 : children.length)) {\n-      const child = children[i];\n-      // For text nodes, use Range API to scroll to their position\n-      if (enableFragmentRefsTextNodes && child.tag === HostText) {\n-        const textNode = getInstanceFromHostFiber<TextInstance>(child);\n-        scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n-        i += resolvedAlignToTop ? -1 : 1;\n-        continue;\n-      }\n-      const instance = getInstanceFromHostFiber<Instance>(child);\n-      instance.scrollIntoView(alignToTop);\n+  let i = resolvedAlignToTop ? children.length - 1 : 0;\n+  while (i !== (resolvedAlignToTop ? -1 : children.length)) {\n+    const child = children[i];\n+    // For text nodes, use Range API to scroll to their position\n+    if (enableFragmentRefsTextNodes && child.tag === HostText) {\n+      const textNode = getInstanceFromHostFiber<TextInstance>(child);\n+      scrollTextNodeIntoView(textNode, resolvedAlignToTop);\n       i += resolvedAlignToTop ? -1 : 1;\n+      continue;\n     }\n-  };\n-}\n+    const instance = getInstanceFromHostFiber<Instance>(child);\n+    instance.scrollIntoView(alignToTop);\n+    i += resolvedAlignToTop ? -1 : 1;\n+  }\n+};\n \n function addFragmentHandleToFiber(\n   child: Fiber,"
+        },
+        {
+          "sha": "e312bd3af0da55e2b7817cfa227426bafb4318d6",
+          "filename": "packages/react-dom/src/__tests__/ReactDOMFragmentRefs-test.js",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 13,
+          "changes": 15,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom%2Fsrc%2F__tests__%2FReactDOMFragmentRefs-test.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Freact-dom%2Fsrc%2F__tests__%2FReactDOMFragmentRefs-test.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-dom%2Fsrc%2F__tests__%2FReactDOMFragmentRefs-test.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -3239,7 +3239,6 @@ describe('FragmentRefs', () => {\n     function expectLast(arr, test) {\n       expect(arr[arr.length - 1]).toBe(test);\n     }\n-    // @gate enableFragmentRefsScrollIntoView\n     it('does not yet support options', async () => {\n       const fragmentRef = React.createRef();\n       const root = ReactDOMClient.createRoot(container);\n@@ -3256,7 +3255,6 @@ describe('FragmentRefs', () => {\n     });\n \n     describe('with children', () => {\n-      // @gate enableFragmentRefsScrollIntoView\n       it('settles scroll on the first child by default, or if alignToTop=true', async () => {\n         const fragmentRef = React.createRef();\n         const childARef = React.createRef();\n@@ -3292,7 +3290,6 @@ describe('FragmentRefs', () => {\n         expectLast(logs, 'childA');\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the last child if alignToTop is false', async () => {\n         const fragmentRef = React.createRef();\n         const childARef = React.createRef();\n@@ -3319,7 +3316,6 @@ describe('FragmentRefs', () => {\n         expectLast(logs, 'childB');\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('handles portaled elements -- same scroll container', async () => {\n         const fragmentRef = React.createRef();\n         const childARef = React.createRef();\n@@ -3360,7 +3356,6 @@ describe('FragmentRefs', () => {\n         expectLast(logs, 'childA');\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('handles portaled elements -- different scroll container', async () => {\n         const fragmentRef = React.createRef();\n         const headerChildRef = React.createRef();\n@@ -3461,7 +3456,6 @@ describe('FragmentRefs', () => {\n     });\n \n     describe('without children', () => {\n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the next sibling by default, or if alignToTop=true', async () => {\n         const fragmentRef = React.createRef();\n         const siblingARef = React.createRef();\n@@ -3495,7 +3489,6 @@ describe('FragmentRefs', () => {\n         expect(siblingBRef.current.scrollIntoView).toHaveBeenCalledTimes(1);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('finds host siblings when the empty fragment is nested in a non-host wrapper', async () => {\n         const fragmentRef = React.createRef();\n         const beforeRef = React.createRef();\n@@ -3529,7 +3522,6 @@ describe('FragmentRefs', () => {\n         expect(afterRef.current.scrollIntoView).toHaveBeenCalledTimes(0);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the prev sibling if alignToTop is false', async () => {\n         const fragmentRef = React.createRef();\n         const siblingARef = React.createRef();\n@@ -3566,7 +3558,6 @@ describe('FragmentRefs', () => {\n         expect(siblingBRef.current.scrollIntoView).toHaveBeenCalledTimes(0);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('calls scrollIntoView on the parent if there are no siblings', async () => {\n         const fragmentRef = React.createRef();\n         const parentRef = React.createRef();\n@@ -3586,7 +3577,6 @@ describe('FragmentRefs', () => {\n         expect(parentRef.current.scrollIntoView).toHaveBeenCalledTimes(1);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('scrolls the host element when the fallback target is a ShadowRoot container', async () => {\n         const fragmentRef = React.createRef();\n         const host = document.createElement('div');\n@@ -3604,7 +3594,6 @@ describe('FragmentRefs', () => {\n         expect(host.scrollIntoView).toHaveBeenCalledTimes(1);\n       });\n \n-      // @gate enableFragmentRefsScrollIntoView\n       it('warns without scrolling when the fallback target is a detached DocumentFragment container', async () => {\n         const fragmentRef = React.createRef();\n         const root = ReactDOMClient.createRoot(\n@@ -3758,7 +3747,7 @@ describe('FragmentRefs', () => {\n       );\n     });\n \n-    // @gate enableFragmentRefsScrollIntoView\n+    // @gate enableFragmentRefsTextNodes\n     it('scrollIntoView works on text-only fragment using Range API', async () => {\n       const restoreRange = mockRangeClientRects([\n         {x: 100, y: 200, width: 80, height: 16},\n@@ -3788,7 +3777,7 @@ describe('FragmentRefs', () => {\n       restoreRange();\n     });\n \n-    // @gate enableFragmentRefsTextNodes && enableFragmentRefsScrollIntoView\n+    // @gate enableFragmentRefsTextNodes\n     it('scrollIntoView scrolls to text siblings of an empty fragment using the Range API', async () => {\n       const restoreRange = mockRangeClientRects([\n         {x: 100, y: 200, width: 80, height: 16},"
+        },
+        {
+          "sha": "33076ed502f73401bfa46d926f5da46c8378690a",
+          "filename": "packages/shared/ReactFeatureFlags.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2FReactFeatureFlags.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2FReactFeatureFlags.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2FReactFeatureFlags.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -162,7 +162,6 @@ export const enableInfiniteRenderLoopDetectionForceThrow: boolean = false;\n \n export const enableConditionalUseWarning: boolean = true;\n \n-export const enableFragmentRefsScrollIntoView: boolean = true;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n "
+        },
+        {
+          "sha": "c686487d694c1aaeda88e66f893135e886ecd792",
+          "filename": "packages/shared/forks/ReactFeatureFlags.native-fb-dynamic.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb-dynamic.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb-dynamic.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb-dynamic.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -20,7 +20,6 @@\n export const alwaysThrottleRetries = __VARIANT__;\n export const enableObjectFiber = __VARIANT__;\n export const passChildrenWhenCloningPersistedNodes = __VARIANT__;\n-export const enableFragmentRefsScrollIntoView = __VARIANT__;\n export const enableFragmentRefsInstanceHandles = __VARIANT__;\n export const enableFragmentRefsTextNodes = __VARIANT__;\n export const enableViewTransitionForPersistenceMode = __VARIANT__;"
+        },
+        {
+          "sha": "2c7e8655c5784ce491277acceac4b1aa08de5c5f",
+          "filename": "packages/shared/forks/ReactFeatureFlags.native-fb.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-fb.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -22,7 +22,6 @@ export const {\n   alwaysThrottleRetries,\n   enableObjectFiber,\n   passChildrenWhenCloningPersistedNodes,\n-  enableFragmentRefsScrollIntoView,\n   enableFragmentRefsInstanceHandles,\n   enableFragmentRefsTextNodes,\n   enableViewTransitionForPersistenceMode,"
+        },
+        {
+          "sha": "e9ca0bec7f0a6bcf1bce1d44e6d829977be55b67",
+          "filename": "packages/shared/forks/ReactFeatureFlags.native-oss.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-oss.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-oss.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.native-oss.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -73,7 +73,6 @@ export const enableHydrationChangeEvent: boolean = false;\n export const enableDefaultTransitionIndicator: boolean = false;\n export const ownerStackLimit = 1e4;\n \n-export const enableFragmentRefsScrollIntoView: boolean = false;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n "
+        },
+        {
+          "sha": "0a6a4b098dd06ae1da1a2b470946810a3c46c4eb",
+          "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -74,7 +74,6 @@ export const enableHydrationChangeEvent: boolean = false;\n export const enableDefaultTransitionIndicator: boolean = false;\n export const ownerStackLimit = 1e4;\n \n-export const enableFragmentRefsScrollIntoView: boolean = true;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n "
+        },
+        {
+          "sha": "df401fdc2a1093e9aedacc311a918e388e919067",
+          "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.native-fb.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.native-fb.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.native-fb.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.native-fb.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -67,7 +67,6 @@ export const enableFizzBlockingRender = true;\n export const enableSrcObject = false;\n export const enableHydrationChangeEvent = false;\n export const enableDefaultTransitionIndicator = true;\n-export const enableFragmentRefsScrollIntoView = false;\n export const enableFragmentRefsInstanceHandles = false;\n export const enableFragmentRefsTextNodes = false;\n export const ownerStackLimit = 1e4;"
+        },
+        {
+          "sha": "0854641c613347a1e42613f01a6489eff4f100a4",
+          "filename": "packages/shared/forks/ReactFeatureFlags.test-renderer.www.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.www.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.www.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.test-renderer.www.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -79,7 +79,6 @@ export const enableSrcObject: boolean = false;\n export const enableHydrationChangeEvent: boolean = false;\n export const enableDefaultTransitionIndicator: boolean = true;\n \n-export const enableFragmentRefsScrollIntoView: boolean = true;\n export const enableFragmentRefsInstanceHandles: boolean = true;\n export const enableFragmentRefsTextNodes: boolean = true;\n export const ownerStackLimit = 1e4;"
+        },
+        {
+          "sha": "ddd048bf31325bb81f215a0ebba47c7fd9a94309",
+          "filename": "packages/shared/forks/ReactFeatureFlags.www-dynamic.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www-dynamic.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www-dynamic.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.www-dynamic.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -35,7 +35,6 @@ export const enableSuspenseyImages: boolean = __VARIANT__;\n export const enableViewTransition: boolean = __VARIANT__;\n export const enableViewTransitionParentEnterExit: boolean = __VARIANT__;\n export const enableScrollEndPolyfill: boolean = __VARIANT__;\n-export const enableFragmentRefsScrollIntoView: boolean = __VARIANT__;\n export const enableFragmentRefsTextNodes: boolean = __VARIANT__;\n export const enableInternalInstanceMap: boolean = __VARIANT__;\n export const enableParallelTransitions: boolean = __VARIANT__;"
+        },
+        {
+          "sha": "3d83feb32885ab92c7bdc9933c20848292987708",
+          "filename": "packages/shared/forks/ReactFeatureFlags.www.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 1,
+          "changes": 1,
+          "blob_url": "https://github.com/react/react/blob/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www.js",
+          "raw_url": "https://github.com/react/react/raw/470697d6d559826700b9980fd05c04405d20fe66/packages%2Fshared%2Fforks%2FReactFeatureFlags.www.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Fshared%2Fforks%2FReactFeatureFlags.www.js?ref=470697d6d559826700b9980fd05c04405d20fe66",
+          "patch": "@@ -31,7 +31,6 @@ export const {\n   enableSuspenseyImages,\n   enableViewTransition,\n   enableScrollEndPolyfill,\n-  enableFragmentRefsScrollIntoView,\n   enableFragmentRefsTextNodes,\n   enableInternalInstanceMap,\n   enableParallelTransitions,"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T10:07:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34587639503/job/103225410429",
+        "name": "cleanup",
+        "started_at": "2026-09-11T10:07:24Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103222059325",
+        "name": "Merge DevTools artifacts",
+        "started_at": "2026-09-11T09:54:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839338",
+        "name": "yarn test-build (-r=experimental --env=development, 10/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839337",
+        "name": "yarn test-build (-r=stable --env=production, 8/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839314",
+        "name": "yarn test-build (-r=experimental --env=production, 8/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839297",
+        "name": "yarn test-build (-r=experimental --env=production, 3/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839279",
+        "name": "yarn test-build (-r=experimental --env=production, 7/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839277",
+        "name": "yarn test-build (-r=experimental --env=production, 2/10)",
+        "started_at": "2026-09-11T09:53:51Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839225",
+        "name": "yarn test-build (-r=experimental --env=production, 6/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839202",
+        "name": "yarn test-build (-r=experimental --env=development, 8/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839195",
+        "name": "yarn test-build (-r=experimental --env=production, 5/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839190",
+        "name": "yarn test-build (-r=experimental --env=production, 10/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839184",
+        "name": "yarn test-build (-r=experimental --env=development, 9/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839181",
+        "name": "yarn test-build (-r=experimental --env=development, 5/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839170",
+        "name": "yarn test-build (-r=experimental --env=production, 9/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839122",
+        "name": "yarn test-build (-r=experimental --env=development, 7/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839118",
+        "name": "yarn test-build (-r=experimental --env=development, 3/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839116",
+        "name": "yarn test-build (-r=experimental --env=production, 1/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839084",
+        "name": "yarn test-build (-r=experimental --env=production, 4/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839083",
+        "name": "yarn test-build (-r=experimental --env=development, 6/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839048",
+        "name": "yarn test-build (-r=experimental --env=development, 2/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839023",
+        "name": "yarn test-build (-r=experimental --env=development, 1/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839021",
+        "name": "yarn test-build (-r=stable --env=production, 9/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221839017",
+        "name": "yarn test-build (-r=stable --env=production, 10/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838976",
+        "name": "yarn test-build (-r=experimental --env=development, 4/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838975",
+        "name": "yarn test-build (-r=stable --env=development, 10/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838965",
+        "name": "yarn test-build (-r=stable --env=production, 4/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838960",
+        "name": "yarn test-build (-r=stable --env=production, 1/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838939",
+        "name": "yarn test-build (-r=stable --env=production, 3/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838938",
+        "name": "yarn test-build (-r=stable --env=development, 9/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838918",
+        "name": "yarn test-build (-r=stable --env=production, 7/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838917",
+        "name": "yarn test-build (-r=stable --env=production, 6/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838915",
+        "name": "yarn test-build (-r=stable --env=development, 4/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838909",
+        "name": "yarn test-build (-r=stable --env=production, 2/10)",
+        "started_at": "2026-09-11T09:54:09Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838903",
+        "name": "yarn test-build (-r=stable --env=production, 5/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838887",
+        "name": "yarn test-build (-r=stable --env=development, 6/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838884",
+        "name": "yarn test-build (-r=stable --env=development, 2/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838879",
+        "name": "yarn test-build (-r=stable --env=development, 5/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838875",
+        "name": "yarn test-build (-r=stable --env=development, 8/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838849",
+        "name": "yarn test-build (-r=stable --env=development, 7/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838809",
+        "name": "yarn test-build (-r=stable --env=development, 1/10)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838782",
+        "name": "yarn test-build (-r=stable --env=development, 3/10)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221838044",
+        "name": "yarn test-build (devtools) (4/5)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837997",
+        "name": "Run sizebot",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837962",
+        "name": "Build DevTools and process artifacts (chrome)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837948",
+        "name": "Search build artifacts for unminified errors",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837944",
+        "name": "yarn test-build (devtools) (2/5)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837919",
+        "name": "Build DevTools and process artifacts (firefox)",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837918",
+        "name": "yarn test-build (devtools) (3/5)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837912",
+        "name": "yarn test-build (devtools) (5/5)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837899",
+        "name": "yarn test-build (devtools) (1/5)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837894",
+        "name": "Build DevTools and process artifacts (edge)",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:55:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837877",
+        "name": "Run React DevTools browser extension e2e tests",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837876",
+        "name": "Run react-devtools-cdt-mcp e2e tests",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837825",
+        "name": "Check release dependencies",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837807",
+        "name": "Process artifacts combined",
+        "started_at": "2026-09-11T09:53:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837800",
+        "name": "Check fixtures DOM (stable)",
+        "started_at": "2026-09-11T09:54:25Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221837799",
+        "name": "Run fixtures Flight tests",
+        "started_at": "2026-09-11T09:53:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347490",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347482",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 2/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347462",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347447",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347439",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347438",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347434",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:56:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347426",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 2/5)",
+        "started_at": "2026-09-11T09:54:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347422",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347420",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347415",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347410",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347409",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347406",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347396",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 2/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347395",
+        "name": "yarn test -r=stable --env=development --persistent (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347393",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347390",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347387",
+        "name": "yarn test -r=xplat --env=production --variant=true (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347383",
+        "name": "yarn test -r=experimental --env=development --persistent (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347382",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347380",
+        "name": "yarn test -r=xplat --env=production --variant=false (Shard 2/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347357",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347341",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347340",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 2/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221347324",
+        "name": "yarn test -r=xplat --env=development --variant=true (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343153",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343126",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343111",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 2/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343098",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343080",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 2/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:34Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343077",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343057",
+        "name": "yarn test -r=www-classic --env=production --variant=true (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343036",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 3/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343035",
+        "name": "yarn test -r=www-modern --env=production --variant=false (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343034",
+        "name": "yarn test -r=www-modern --env=development --variant=true (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:53:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343026",
+        "name": "yarn test -r=www-modern --env=production --variant=true (Shard 1/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343024",
+        "name": "yarn test -r=www-modern --env=development --variant=false (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343021",
+        "name": "yarn test -r=www-modern --env=development --variant=true (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:52:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221343014",
+        "name": "yarn test -r=xplat --env=development --variant=false (Shard 4/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221342993",
+        "name": "yarn test -r=www-modern --env=production --variant=false (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-11T09:54:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34586298634/job/103221342992",
+        "name": "yarn test -r=www-classic --env=production --variant=false (Shard 5/5)",
+        "started_at": "2026-09-11T09:51:56Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 240
+  },
+  "combined_status": {
+    "sha": "470697d6d559826700b9980fd05c04405d20fe66",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

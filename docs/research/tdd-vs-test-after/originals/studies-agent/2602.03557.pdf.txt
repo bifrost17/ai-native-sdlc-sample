@@ -1,0 +1,1356 @@
+
+===== PDF PAGE 1 =====
+Scaling Test-Driven Code Generation from Functions to
+Classes: An Empirical Study
+YUNHAO LIANG,Chengdu Institute of Computer Applications, Chinese Academy of Sciences and
+University of Chinese Academy of Sciences, China
+RUIXUAN YING,Institute of Multidisciplinary Research for Advanced Materials (IMRAM), Tohoku
+University, Japan and Institute of Multidisciplinary Research for Advanced Materials (IMRAM), Tohoku
+University, Japan
+ZHE CUI,Chengdu Institute of Computer Applications, Chinese Academy of Sciences and University of
+Chinese Academy of Sciences, China
+SHIWEN NI,Shenzhen Key Laboratory for High Performance Data Mining, Shenzhen Institutes of Advanced
+Technology, Chinese Academy of Sciencesand Artificial Intelligence Research Institute, Shenzhen University
+of Advanced Technology, China
+Test-driven development (TDD) has been adopted to improve Large Language Model (LLM)-based code
+generation by using tests as executable specifications. However, existing TDD-style code generation studies
+are largely limited to function-level tasks, leaving class-level synthesis—where multiple methods interact
+through shared state and call dependencies—underexplored. In this paper, we scale test-driven code generation
+from functions to classes via an iterative TDD framework. Our approach first analyzes intra-class method
+dependencies to derive a feasible generation schedule, and then incrementally implements each method
+under method-level public tests with reflection style execution feedback and bounded repair iterations. To
+support test-driven generation and rigorous class-level evaluation, we construct ClassEval-TDD, a cleaned and
+standardized variant of ClassEval with consistent specifications, deterministic test environments, and complete
+method-level public tests. We conduct an empirical study across eight LLMs and compare against the strongest
+direct-generation baseline (the best of holistic, incremental, and compositional strategies). Our class-level TDD
+framework consistently improves class-level correctness by +12 to +26 absolute points and achieves up to 71%
+fully correct classes, while requiring only a small number of repairs on average. These results demonstrate that
+test-driven generation can effectively scale beyond isolated functions and substantially improve class-level
+code generation reliability. All code and data are available at https://anonymous.4open.science/r/ClassEval-
+TDD-C4C9/
+CCS Concepts:•Software and its engineering → Software development techniques;•Computing
+methodologies→Artificial intelligence.
+Authors’ Contact Information: Yunhao Liang, liangyunhao22@mails.ucas.ac.cn, Chengdu Institute of Computer Applications,
+Chinese Academy of Sciences and University of Chinese Academy of Sciences, China; Ruixuan Ying, ying.ruixuan.s5@dc.
+tohoku.ac.jp, Institute of Multidisciplinary Research for Advanced Materials (IMRAM), Tohoku University, Japan and Institute
+of Multidisciplinary Research for Advanced Materials (IMRAM), Tohoku University, Japan; Zhe Cui, cuizhe@casit.com.cn,
+Chengdu Institute of Computer Applications, Chinese Academy of Sciences and University of Chinese Academy of Sciences,
+China; Shiwen Ni, sw.ni@siat.ac.cn, Shenzhen Key Laboratory for High Performance Data Mining, Shenzhen Institutes of
+Advanced Technology, Chinese Academy of Sciences and and Artificial Intelligence Research Institute, Shenzhen University
+of Advanced Technology, China.
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the
+full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored.
+Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires
+prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+Conference acronym ’XX, Woodstock, NY
+©2018 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 978-1-4503-XXXX-X/2018/06
+https://doi.org/XXXXXXX.XXXXXXX
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+arXiv:2602.03557v1  [cs.SE]  3 Feb 2026
+
+===== PDF PAGE 2 =====
+2 Trovato et al.
+Additional Key Words and Phrases: Code Generation, TDD, Software Engineering
+ACM Reference Format:
+Yunhao Liang, Ruixuan Ying, Zhe Cui, and Shiwen Ni. 2018. Scaling Test-Driven Code Generation from
+Functions to Classes: An Empirical Study. InProceedings of Make sure to enter the correct conference title
+from your rights confirmation email (Conference acronym ’XX).ACM, New York, NY, USA, 29 pages. https:
+//doi.org/XXXXXXX.XXXXXXX
+1 Introduction
+Large Language Models (LLMs) have demonstrated strong capability in generating executable
+code from natural language. This progress has stimulated growing interest in applying LLMs to
+practical software engineering workflows, including automated implementation, bug fixing, and
+test generation [12, 25, 26, 28]. However, despite their impressive fluency, LLM-generated code
+still frequently fails to satisfy functional requirements, especially when tasks involve non-trivial
+program structure, edge cases, or implicit constraints [ 15]. In software testing and analysis, a
+natural way to address this reliability gap is to treat tests as executable specifications and use them
+to guide and validate code generation [20, 24].
+Test-Driven Development (TDD) [2] provides a principled paradigm for incrementally building
+correct software: developers write tests first, implement a small unit of functionality, and iteratively
+repair the implementation until all tests pass. Recent research has explored execution-guided and
+test-driven code generation with LLMs, showing that provding public tests during generation,
+running tests and feeding back failures can significantly improve correctness compared to one-shot
+generation [9, 13, 17]. However, existing studies and benchmarks largely focus on function-level
+generation, where each task is isolated and the generated code is evaluated independently [1, 4]. In
+contrast, real-world software is often organized around classes and object-oriented abstractions,
+where multiple methods interact through shared state, call dependencies, and class-level invariants
+[8]. Scaling test-driven generation from methods to classes therefore introduces new challenges:
+class methods are interdependent, a method may call other methods to complete its functionality.
+In this setting, method implementation must follow a dependency order to avoid unresolved
+references or incomplete state. Moreover, failures may propagate across methods due to shared
+state or incorrect interactions, making repair more complex than simply fixing isolated functions.
+In this paper we scale test-driven code generation from functions to classes and propose a
+dependency-aware class-level TDD framework that decomposes class generation into a sequence
+of method-scoped TDD loops. Our approach first analyzes intra-class method dependencies and
+predicts a feasible generation schedule order. It then implements each method incrementally
+following the schedule with a TDD loop: for each method, it generates an implementation with
+method-level public tests as guidance and executable specifications. If tests fail, we use a reflection-
+style repair mechanism inspired by Reflexion [ 21]: it first reflects on the failure to identify the
+root cause, then generates a targeted patch to fix the issue rather than directly patching code from
+raw error messages [6, 16, 21]. This loop continues until all method tests pass or a bounded repair
+budget is exhausted.
+A major obstacle to studying class-level TDD is the lack of a suitable benchmark with consistent
+specifications and reliable tests. We find that the widely used ClassEval [8] benchmark contains
+multiple issues that confound evaluation, including incomplete or inconsistent docstrings, incorrect
+type annotations, mismatched class skeletons and implementations, non-unit private tests, redun-
+dant or duplicated tests, and tests with external environment dependencies (e.g., files, randomness,
+or time). Such issues can cause failures unrelated to model capability, thereby distorting conclusions
+about generation strategies and test-driven methods. To address this, we construct ClassEval-TDD,
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 3 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 3
+a repaired and standardized benchmark derived from ClassEval. ClassEval-TDD provides: (i) cor-
+rected class and method docstrings with unified reStructuredText style, (ii) aligned skeletons and
+method signatures consistent with intended behavior, (iii) deterministic and environment-safe
+private tests with automatic setup/teardown, and (iv) method-level public tests enabling TDD-style
+incremental synthesis.
+We evaluate our approach on ClassEval-TDD using eight LLMs spanning multiple families
+and scales, comparing against strong direct-generation baselines including Holistic, Incremental,
+and Compositional strategies. Results show that dependency-aware class-level TDD consistently
+outperforms the best baseline across all models, improving class_success by 12–26 absolute
+points and achieving up to 71% fully correct classes. These gains are achieved with low repair
+overhead: under a bounded budget of at most three repair rounds per method, the average repair cost
+remains small (0.06–0.62 repairs per method), and most failures converge within a single additional
+correction step. Our dependency analysis further reveals that, despite high overall dependency F1,
+scheduling errors persist on a small set of systematically challenging tasks, where models favor
+plausible semantic workflows that conflict with true call dependencies.
+In summary, this work makes three contributions: (1) ClassEval-TDD, a cleaned and reliable
+benchmark for studying class-level test-driven code generation; (2) a dependency-aware class-level
+TDD framework with reflection-based repair and (3) an empirical study across eight LLMs that
+quantifies correctness gains, repair cost, and systematic scheduling failure modes. Together, these
+results show that TDD is an effective and practical mechanism for improving reliability of LLM-
+based class generation, while also exposing the remaining composition and dependency challenges
+that must be addressed to scale test-driven generation to real-world software.
+2 Background and Motivation
+LLMs have made rapid progress in code generation, but reliability remains a key bottleneck for
+adoption in practical software engineering. While most existing evaluations focus on standalone
+function, real-world software is often organized around classes, where correctness depends on
+interactions among multiple methods.
+Why class-level generation is harder?Unlike isolated functions, class methods frequently
+share mutable state, call each other, and collectively maintain class invariants. As a result, class-level
+synthesis exhibits a composition gap: even if most methods are individually correct, the class may
+still fail due to cross-method inconsistencies, incorrect state transitions, or missing prerequisites.
+Why dependency-aware scheduling matters?Incremental generation is a natural approach
+for class synthesis, but it introduces an ordering problem: methods must be implemented in an
+order that respects intra-class call dependencies. If a prerequisite method is missing or incorrect,
+subsequent methods may fail to compile or behave incorrectly, leading to cascading errors and
+inefficient repair. Therefore, a key requirement for scalable class-level synthesis is to infer method
+dependencies and derive a feasible generation schedule.
+Why test-driven generation is promising?TDD treats tests as executable specifications and
+supports iterative refinement via execution feedback. Prior work has shown that test-driven and
+execution-guided generation can significantly improve function-level correctness. By extending
+this paradigm to the class level, we study dependency-aware class-level TDD: generating a complete
+class by implementing methods incrementally under tests, with bounded repair to control cost and
+avoid excessive trial-and-error.
+3 Benchmark Construction: ClassEval-TDD
+A major obstacle to studying class-level test-driven generation is the lack of a reliable benchmark.
+We find that the widely used ClassEval contains multiple issues that confound evaluation, causing
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 4 =====
+4 Trovato et al.
+Fig. 1. An Example of Issue in ClassEval Benchmark
+models to fail for reasons unrelated to code generation capability. To address this, we construct
+ClassEval-TDD, a cleaned and standardized benchmark derived from ClassEval.
+3.0.1 Limitations of ClassEval.We observed three categories of issues in ClassEval that make
+rigorous evaluation difficult:
+Specification issues.Many tasks contain incomplete or inconsistent docstrings, incorrect type
+annotations, mismatched signatures, and skeleton/implementation inconsistencies. These issues
+make it impossible for models to infer critical constraints and write correct implementations.
+Test issues.Some tests are non-unit, redundant or duplicated, or inconsistent with tested
+methods. Such tests can lead to misleading failure signals and unreliable evaluation.
+Reliability issues.Some tasks rely on external environments such as files, randomness, or time,
+without proper isolation. This can lead to non-deterministic behavior and persistent side effects
+that affect subsequent executions.
+3.1 Construction Goals
+ClassEval-TDD is designed to support reliable class-level TDD research with three goals: (1)
+Correctness: specifications and tests must be consistent and aligned with intended behavior; (2)
+Reliability: tests must be deterministic and environment-safe to ensure reproducible execution;
+(3)TDD support: each method must have method-level public tests for generation guidance.
+3.2 Repair and Standardization Pipeline
+Starting from the original ClassEval tasks, we apply a systematic repair pipeline.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 5 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 5
+Code and skeleton alignment:We remove unused imports, eliminate redundant or dead code,
+fix inconsistent skeletons and signatures, and ensure that the class skeleton aligns with the solution
+code and corresponding tests.
+Docstring normalization:We correct spelling and formatting issues, unify docstrings into
+a consistent reStructuredText style, and complete missing specifications (parameters, return val-
+ues, and doctest examples). For container-typed inputs (e.g., dict/list/set), we add structured
+descriptions of expected element types and key-value schemas.
+Deterministic and isolated private tests:We refactor private tests to follow unit-testing
+principles and ensure determinism. For tasks involving files, randomness, or time, we introduce
+isolation mechanisms (e.g., temporary files and fixed seeds) and enforce automatic cleanup via
+setUp/tearDown.
+Method-level public tests:To support TDD, we additionally annotate method-level public
+tests. Each method is paired with a dedicated test class containing multiple test cases (typically
+four, 1-2 for trivial methods), providing executable guidance during generation and repair.
+3.3 Benchmark Summary
+ClassEval-TDD contains 100 class tasks and 412 methods in total. Among them, 55 classes contain at
+least one method dependency, and 84 methods have non-empty dependency sets. The method-level
+public tests achieve high coverage of the repaired implementations (median 99.0%, mean 98.7%),
+enabling systematic evaluation of class-level TDD under strong test supervision. And private tests
+acheive 100% line coverage for all tasks, ensuring reliable assessment. And we list all issues and
+their fixes in the appendix 11.
+4 Method
+In this section, we introduce our class-level test-driven code generation framework, which consists of
+three main components: (i) dependency analysis and scheduling, (ii) method-level TDD generation,
+and (iii) reflective repair mechanism.
+4.1 Problem Definition
+We study class code generation under a test-driven setting. Given a class skeleton with serval method
+docstrings and method-level public tests, our goal is to generate a complete class implementation
+that passes all public tests during generation and all private tests during evaluation.
+4.2 Overview
+Figure 2 summarizes our framework. It consists of three main components:
+• Dependency analysis and scheduling.We first analyze inter-method dependencies and
+predict a feasible schedule (generation order) that respects prerequisite relationships among
+methods.
+• Method-level TDD generationFollowing the schedule order, we implement one method at
+a time using public tests as specifications and validation oracles. Each method is generated in
+a TDD loop: we generate the method, execute its public tests, and if any test fails, we enter a
+repair loop to fix the implementation until all tests pass or reach a repair budget.
+• Reflective Repair Mechanism:Instead of directly rewriting code from raw error messages,
+we first prompt the LLM to reflect on the likely cause of the failure, identify the relevant code
+region, and then generate a minimal patch consistent with the intended specification.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 6 =====
+6 Trovato et al.
+Fig. 2. Overview of our class-level TDD framework.
+4.3 Dependency Analysis and Scheduling
+To enable class-level incremental test-driven generation, we first infer an implementation schedule
+that respects intra-class method dependencies. The key idea is to implement prerequisite (callee)
+methods before dependent (caller) methods, so that method-level tests can execute meaningful call
+chains without failing due to missing implementations. In ClassEval-TDD, more than half of the
+classes contain at least one inter-method dependency, motivating the need for dependency-aware
+scheduling in class-level generation.
+4.3.1 Analysis Goal and Assumptions.In class-level TDD, tests for a target method may exercise
+intra-class call chains (e.g., a public method invoking helper utilities). If a method under test calls
+another target method that has not yet been implemented, the execution may fail for structural
+reasons (e.g., missing attribute or undefined method) rather than incorrect functional logic. Such
+avoidable failures can mislead the repair loop and waste the limited repair budget. Therefore, we
+introduce a dependency-aware scheduling stage that aims to reduce missing-callee failures by
+implementing callees before callers whenever possible.
+We adopt two assumptions consistent with our benchmark setting:
+• Pre-implemented constructor.The constructor __init__ (if present) is already provided
+in the class skeleton. It is excluded from dependency analysis and does not appear in the
+generated method schedule.
+• Field availability.Class fields initialized in __init__ (e.g., self.items) are assumed to be
+available to all methods. Therefore, scheduling focuses on method-to-method dependencies
+rather than field initialization order.
+4.3.2 Dependency Analyze.We prompt the LLM to act as a senior software architect and analyze
+the class skeleton together with the set of target methods 𝑀. It will analyzes each meethod’s
+dependencies on other methods in 𝑀 and predict a feasible generation schedule. The LLM inspects
+each method 𝑚 𝑗 ∈𝑀 and determines whether it depends on any other method 𝑚𝑖 ∈𝑀 based on
+two criteria:
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 7 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 7
+• Direct call dependency.The docstring of 𝑚 𝑗 explicitly indicates that it calls 𝑚𝑖 (e.g., “calls
+m_ito ... ” orself.m_i(...)).
+• Documented logical dependency.The description of 𝑚 𝑗 implies that its execution requires
+the behavior of 𝑚𝑖 as a prerequisite step (e.g., “first format the input, then extract... ”). We
+only treat such relations as dependencies when they are clearly stated in the specification,
+rather than inferred from undocumented assumptions.
+Methods that do not depend on any other target methods are treated asstandaloneand prioritized
+early in the schedule. This includes protected or helper methods (e.g., names starting with “_ ”),
+which are often reusable utilities and can support later methods once implemented. Finally, the
+LLM outputs a generation schedule over𝑀that satisfies the predicted dependency constraints to
+guide subsequent TDD generation.
+4.4 Test-Driven Code Generation
+With the predicted method generation schedule, we proceed to implement each method in schedule
+using a TDD loop. For each target method 𝑚, we use its public method-level tests 𝑇 𝑚
+𝑝𝑢𝑏𝑙𝑖𝑐 as
+executable specifications to guide generation and validate correctness.
+4.4.1 Context Construction.For each target method 𝑚, we construct a prompt context that in-
+cludes: the current partial class implementation (including all previously generated methods);
+the singnature and docstring of method 𝑚; the public tests 𝑇 𝑚
+𝑝𝑢𝑏𝑙𝑖𝑐 for method 𝑚; and an explicit
+instruction to implement method 𝑚 according to its specification and pass all public tests. The LLM
+is instructed to generate only the implementation of 𝑚. This design follows the TDD principle of
+implementing a small unit of functionality at a time, using tests as executable specifications.
+4.4.2 TDD Generation Loop.We generate method 𝑚 using the constructed context and execute its
+public tests 𝑇 𝑚
+𝑝𝑢𝑏𝑙𝑖𝑐 . If all tests pass, we proceed to the next method in the schedule. If any test fails,
+we enter a repair loop to fix the implementation until all tests pass or a repair budget is exhausted.
+After all methods in the schedule are generated, we obtain the final class implementation.
+4.5 Reflective Repair Mechanism
+Rather than directly patching code from raw failure output, ClassTDD adopts a structured Reflexion-
+style repair procedure that separates diagnosis from patch synthesis. For a failing method 𝑚, the
+model is asked to perform the following steps:
+(1) Failure analysis.Identify the likely cause of the failure, such as syntax error, logical error,
+or dependency issue.
+(2) Code region identification.Find out which part of the code is responsible for the failure
+(e.g., specific lines or blocks).
+(3) Repair suggestion.Propose a plan about how the code should be modified to fix the issue.
+(4) Patch generation.Generate a minimal code patch that implements the proposed fix while
+adhering to the method specification.
+5 Experimental Setup
+5.1 Research Questions
+We structure our evaluation around the following research questions:
+• RQ1 (Benchmark Impact).How does repairing and standardizing ClassEval into ClassEval-
+TDD affect baseline generation performance?
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 8 =====
+8 Trovato et al.
+• RQ2 (Dependency Analysis).How accurately can LLMs infer intra-class method depen-
+dencies and produce a feasible implementation schedule?
+•RQ3 (Effectiveness).How effective is our class-level TDD framework?
+5.2 Evaluated Models
+We evaluate a diverse set of LLMs spanning multiple families and model sizes, including deepseek-
+v3, gpt-oss-120B, qwen2.5-coder-7B/32B„ qwen3-coder-30B/480B, qwen3-235B and gemini3-flash.
+All models are evaluated with greedy decoding (temperature=0) to ensure deterministic outputs.
+5.3 Baselines Generation Strategies
+As baselines, we include three generation strategies from ClassEval:Holistic (H), which generates
+the entire class in one pass;Incremental (I), which generates methods one at a time in and
+accumulates prior methods as context; andCompositional (C), which generates each method
+independently using only the class skeleton and target method docstring as context.
+5.4 Class-level TDD Configuration
+We set a maximum of 3 repair attempts per method.
+5.5 Evaluation Metrics
+5.5.1 Code Generation.All evaluations use the private test suites in ClassEval-TDD. Each method
+is associated with a private test class containing multiple unit test cases. Besides method-level tests,
+each class task also includes a class-level test that evaluates inter-method interactions and overall
+class behavior. We use the metrics defined in ClassEval for consistency and comparability.
+•fun_success:the percentage of methods that pass all corresponding private test cases.
+• fun_partial_success:the percentage of methods that at least pass one private test case but
+not fully correct.
+•class_success:the percentage of classes for which all methods are correct.
+• class_partial_success:the percentage of classes that are not fully correct at the class level,
+but still exhibit partial correctness, meaning that at least one method has some passing tests.
+5.5.2 Dependency Analysis.We also evaluate how well LLMs predict inter-method dependencies
+and valid schedules.
+Method-level metrics:
+• Exact Match:the percentage of methods whose predicted dependency list exactly matches
+the ground-truth list.
+• Missing/Extra Dep:the percentage of methods with at least one missing or extra (redundant)
+dependency.
+•Wrong Dep:the percentage of methods with both missing and extra dependencies.
+•Precision, Recall, and F1:macro-averaged over all dependency edges.
+•Class-level Accuracy:the macro-average accuracy across all 100 class tasks.
+• Topological Order Violations:the number of class tasks where the predicted method
+generation schedule is not a valid topological sort of the ground-truth dependency graph.
+6 Results and Analysis
+6.1 RQ1: Strategy Comparison on ClassEval-TDD
+ClassEval provides three representative class-level generation strategies:Holistic(H),Incremental
+(I), andCompositional(C). In this RQ, we investigate how repairing and standardizing ClassEval
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 9 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 9
+Table 1. Comparison of Generation Strategies on ClassEval vs. ClassEval-TDD.
+Model Metric ClassEval ClassEval-TDD
+H I C H I C
+deepseek-v3
+Class Success 0.45 0.23 0.29 0.47 +0.02 0.46 +0.23 0.31 +0.02
+Class Partial 0.73 0.40 0.49 0.73 0.66 +0.26 0.51 +0.02
+Function Success 0.7430 0.5837 0.6015 0.7695 +0.0265 0.7401 +0.1564 0.6602 +0.0587
+Function Partial 0.8685 0.7450 0.7808 0.9004 +0.0319 0.8611 +0.1161 0.7910 +0.0102
+gpt-oss-120B
+Class Success 0.36 0.19 0.14 0.45 +0.09 0.29 +0.10 0.20 +0.06
+Class Partial 0.71 0.42 0.35 0.72 +0.01 0.48 +0.06 0.35
+Function Success 0.6912 0.4621 0.4402 0.7344 +0.0432 0.5039 +0.0418 0.4570 +0.0168
+Function Partial 0.8685 0.6015 0.5617 0.8672 -0.0013 0.5996 -0.0019 0.5430 -0.0187
+qwen2.5-coder-7B
+Class Success 0.32 0.15 0.20 0.33 +0.01 0.16 +0.01 0.28 +0.08
+Class Partial 0.54 0.30 0.43 0.54 0.29 -0.01 0.49 +0.06
+Function Success 0.6434 0.4602 0.5857 0.6523 +0.0089 0.5242 +0.0640 0.6172 +0.0315
+Function Partial 0.8167 0.6195 0.7729 0.7988 -0.0179 0.6819 +0.0624 0.7743 +0.0014
+qwen2.5-coder-32B
+Class Success 0.37 0.28 0.22 0.43 +0.06 0.33 +0.05 0.31 +0.09
+Class Partial 0.60 0.43 0.42 0.63 +0.03 0.50 +0.07 0.48 +0.06
+Function Success 0.6833 0.5558 0.5936 0.7129 +0.0296 0.6328 +0.0770 0.6191 +0.0255
+Function Partial 0.8526 0.7171 0.7530 0.8438 -0.0088 0.7812 +0.0641 0.7656 +0.0126
+qwen3-coder-30B
+Class Success 0.44 0.37 0.27 0.44 0.50 +0.13 0.33 +0.06
+Class Partial 0.72 0.61 0.50 0.69 -0.03 0.68 +0.07 0.52 +0.02
+Function Success 0.7291 0.6434 0.6096 0.7637 +0.0346 0.7422 +0.0988 0.6289 +0.0193
+Function Partial 0.8904 0.8028 0.7849 0.8906 +0.0002 0.8496 +0.0468 0.7656 -0.0193
+qwen3-coder-480B
+Class Success 0.47 0.41 0.31 0.55 +0.08 0.53 +0.12 0.46 +0.15
+Class Partial 0.80 0.63 0.62 0.80 0.79 +0.16 0.71 +0.09
+Function Success 0.7968 0.7092 0.7092 0.8164 +0.0196 0.8047 +0.0955 0.7754 +0.0662
+Function Partial 0.9303 0.8606 0.8466 0.9297 -0.0006 0.9297 +0.0691 0.9062 +0.0596
+qwen3-235B
+Class Success 0.42 0.40 0.30 0.49 +0.07 0.48 +0.08 0.42 +0.12
+Class Partial 0.74 0.69 0.64 0.74 0.72 +0.03 0.71 +0.07
+Function Success 0.7371 0.7331 0.6952 0.7773 +0.0402 0.7637 +0.0306 0.7598 +0.0646
+Function Partial 0.8745 0.8745 0.8566 0.9121 +0.0376 0.8926 +0.0181 0.9043 +0.0477
+gemini3-flash
+Class Success 0.25 0.27 0.22 0.57 +0.32 0.59 +0.32 0.46 +0.24
+Class Partial 0.30 0.37 0.35 0.82 +0.52 0.81 +0.44 0.63 +0.28
+Function Success 0.3088 0.5616 0.5319 0.8145 +0.5057 0.8242 +0.2626 0.7109 +0.1790
+Function Partial 0.3406 0.6545 0.6335 0.9062 +0.5656 0.9160 +0.2615 0.8242 +0.1907
+into ClassEval-TDD affects baseline generation performance across different models and strategies.
+Table 1 reports class-level and method-level performance under the three strategies on both datasets.
+We summarize three key observations.
+Observation 1: Cleaning the benchmark consistently improves strategy performance,
+especially for unstable settings.Across models, ClassEval-TDD yields higher class_success and
+function_success under all three strategies, indicating that many failures on the original ClassEval
+are caused by benchmark noise rather than fundamental generation limitations. The improvements
+can be substantial for certain models. For example,gemini3-flash improves dramatically from 0.25
+to 0.57 in class_success under Holistic generation (+0.32), and from 0.27 to 0.59 under Incremental
+generation (+0.32). Similarly, gpt-oss-120B improves from 0.36 to 0.45 under Holistic (+0.09) and
+from 0.19 to 0.29 under Incremental (+0.10). These gains suggest that a reproducible benchmark
+with corrected specifications and deterministic tests is crucial for obtaining meaningful compar-
+isons across generation strategies. Across the eight evaluated models, ClassEval-TDD improves
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 10 =====
+10 Trovato et al.
+class_success by an average of +0.08 under Holistic, +0.13 under Incremental, and +0.10 under
+Compositional generation, indicating that benchmark repair consistently strengthens class-level
+synthesis across strategies. Moreover, the average performance gap between Holistic and Incremen-
+tal shrinks from 0.098 on ClassEval to 0.049 on ClassEval-TDD, showing that cleaning substantially
+reduces the disadvantage of iterative generation.
+Finding 1: Benchmark repair substantially improves class-level and method-level success across
+standard generation strategies, confirming that noisy specifications and non-reproducible tests
+can confound evaluation results.
+Observation 2: Incremental generation becomes significantly more competitive on
+ClassEval-TDD.Incremental generation is particularly sensitive to benchmark noise because it
+accumulates previously generated methods as context. On the original ClassEval, this accumulation
+can amplify inconsistencies (e.g., mismatched method signatures or ambiguous specifications),
+causing later methods to be generated under misleading context and resulting in compounding
+failures. After cleaning, Incremental generation closes the gap with Holistic across most models,
+and even surpasses Holistic in some cases. For instance, qwen3-coder-30B improves from 0.37
+to 0.50 in class_success under Incremental (+0.13), exceeding its Holistic performance (0.44). For
+deepseek-v3, Incremental class_success increases from 0.23 to 0.46 (+0.23), nearly matching Holistic
+(0.47). Overall, these results show that once specifications and tests are standardized, Incremental
+generation becomes a strong baseline for class-level synthesis.
+Finding 2: On ClassEval-TDD, Incremental generation becomes consistently more competitive
+and often approaches (or even surpasses) Holistic performance, indicating that strategy rankings
+on the original benchmark can be distorted by accumulated inconsistencies.
+Observation 3: Compositional generation also benefits from benchmark repair, but
+remains limited by cross-method composition.Compositional generation constructs a class
+by generating methods independently and then assembling them, which reduces error propaga-
+tion from earlier methods but sacrifices cross-method context. On ClassEval-TDD, Compositional
+class_success improves consistently (e.g., +0.09 forqwen2.5-coder-32B, +0.15 forqwen3-coder-480B,
+and +0.12 for qwen3-235B), suggesting that repaired docstrings and aligned skeletons substantially
+reduce spurious failures even for independent method synthesis. Nevertheless, Compositional gen-
+eration generally remains behind Holistic and Incremental, highlighting a class-level “composition
+gap”: even when individual methods are plausible in isolation, they may not agree on shared state,
+naming conventions, or implicit invariants required for the class to function correctly as a whole.
+Finding 3: Compositional generation also benefits from the cleaned benchmark, but typically
+lags behind due to cross-method composition challenges, motivating techniques that explicitly
+enforce class-level consistency.
+Implications for class-level TDD:These findings highlight two practical implications. First,
+reliable class-level evaluation requires benchmark standardization; otherwise, strategy comparisons
+may reflect dataset artifacts rather than true generation capability. Second, the strong performance
+of Incremental generation on ClassEval-TDD suggests that iterative, context-aware synthesis
+is a promising foundation for class-level TDD, which further introduces test-guided repair and
+dependency-aware scheduling to improve correctness beyond direct generation.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 11 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 11
+Table 2. Class-level Method Dependency Analysis Results on ClassEval-TDD
+Model Method-level Metrics Class-level Metrics
+ExactMatch (%)MissingDeps (%)ExtraDeps (%)WrongDeps (%)Precision (%) Recall (%) F1 (%)Class-levelAccuracy (%)
+FullyCorrect Tasks(#/100)
+TopologicalOrder Violations(#/100)
+deepseek-v3 75.00 4.61 19.42 0.97 80.38 95.37 87.24 76.65 46 6gpt-oss-120B 88.59 3.40 8.01 0.00 92.55 96.60 94.53 89.27 69 6Qwen2.5-coder-7B 71.84 6.07 19.17 2.91 78.84 92.37 85.07 72.74 37 11qwen2.5-coder-32B 84.47 3.88 10.92 0.73 88.96 95.89 92.29 84.43 60 7qwen3-coder-30B 81.07 4.85 13.11 0.97 87.26 94.96 90.95 82.54 53 9qwen3-coder-480B 82.77 4.85 11.65 0.73 88.35 95.37 91.72 84.12 60 4qwen3-235B 87.86 5.34 6.55 0.24 93.75 94.90 94.32 88.70 66 6Gemini3-flash 84.71 2.18 12.86 0.24 87.42 98.14 92.47 85.50 63 3
+6.2 RQ2: Dependency Analysis and Method Scheduling
+Class-level synthesis is challenging because methods are not independent and a key component of
+our framework is to generate methods in a dependency-aware generation order. In this RQ, we
+evaluate the quality of dependency inference and the correctness of the resulting method schedules.
+6.2.1 Overall dependency prediction quality.Table 2 shows that LLMs can infer class-level method
+dependencies with consistently strong performance. At the method level,perfect_matchranges
+from 71.84% to 88.59%, and the average F1 score remains high (85.07%–94.53%). A consistent pattern
+is that recall is typically higher than precision, suggesting that models tend to over-approximate
+dependencies rather than omit them. At the class level, Task-level Accuracy reaches up to 89.27%,
+and 37–69 tasks (out of 100) are fully correct depending on the model.
+Finding 4: LLMs achieve consistently high recall (92.37%–98.14%) and strong F1 (85.07%–94.53%)
+for dependency inference, providing a viable signal for dependency-aware scheduling.
+Scheduling validity: Beyond dependency analysis, we also examine whether the predicted method
+generation order is a valid topological sort of the ground-truth dependency graph. As shown in
+Table 2, topological order violations are relatively rare (3–11 tasks depending on the model), but
+non-negligible. Notably, violations persist even for strong models (e.g., 6 tasks for gpt-oss-120B),
+suggesting that scheduling errors are not solely due to weak dependency prediction accuracy but
+may also stem from systematic semantic priors when ordering methods.
+Finding 5: While dependency inference achieves high overall F1, LLMs still occasionally propose
+invalid method schedules (3–11 tasks), indicating that schedule construction remains a distinct
+failure mode beyond dependency-set prediction quality.
+6.2.2 Where Dependency Inference Fails: Missing vs. Extra Dependencies.To better understand
+failure modes, we examine the distribution of dependency errors. Across models, the dominant
+error type is extra_deps, where the predicted dependency set contains redundant methods not
+present in the ground truth. This aligns with the high recall observed in Table 2 and suggests that
+models often adopt conservative guesses about call relations. In contrast,missing_deps occurs less
+frequently overall but is more harmful: missing a true prerequisite can invalidate the generation
+order and lead to downstream compilation or runtime failures when later methods assume missing
+functionality.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 12 =====
+12 Trovato et al.
+Finding 6: The primary dependency inference limitation is over-approximation (extra_deps),
+while under-approximation (missing_deps) is less frequent but more disruptive because it can
+invalidate schedules.
+6.2.3 Dependency regimes: dependent vs. dependency-free methods.While Table 2 reports aggregate
+statistics, dependency inference difficulty is not uniform across methods. We therefore stratify
+methods into two regimes: With-deps methods whose ground-truth dependency set is non-empty,
+and No-deps methods with empty dependency set. Table 3 reports error distributions for both
+groups.
+Dependency-free methods:For No-deps methods, missing_deps and wrong_deps are con-
+sistently 0% across all models. This indicates that for stand alone methods, models almost never
+under-approximate. However, extra_deps remains non-trivial (6.71%–22.87%), suggesting that
+models frequently hallucinate unnecessary prerequisites even when no dependency exists. Such
+redundant dependencies lower precision and may introduce avoidable ordering constraints.
+Dependency-bearing methods:In contrast, With-deps methods remain the main bottleneck.
+Missing dependencies become common (10.71%–29.76% missing_deps), and wrong_deps also
+increases (up to 14.29%). These errors directly reduce recall and exact_match, showing that the
+core challenge lies in identifying non-trivial call prerequisites rather than recognizing independence.
+Finding 7: Dependency-free methods never miss dependencies (0% missing_deps) but fre-
+quently hallucinate redundant dependencies (extra_deps up to 22.87%), whereas dependent
+methods remain the main bottleneck with 10.71%–29.76%missing_deps.
+Table 3. Stratified Dependency Analysis by Dependency Regime on ClassEval-TDD.
+Model With-deps Methods No-deps Methods
+Exact
+Match (%)
+Missing
+Deps (%)
+Extra
+Deps (%)
+Wrong
+Deps (%)
+Exact
+Match (%)
+Missing
+Deps (%)
+Extra
+Deps (%)
+Wrong
+Deps (%)
+deepseek-v3 66.67 22.62 5.95 4.76 77.13 0.00 22.87 0.00
+gpt-oss-120B 78.57 16.67 4.76 0.00 91.16 0.00 8.84 0.00
+qwen2.5-coder-7B 47.62 29.76 8.33 14.29 78.05 0.00 21.95 0.00
+qwen2.5-coder-32B 71.43 19.05 5.95 3.57 87.80 0.00 12.20 0.00
+qwen3-coder-30B 59.52 23.81 11.90 4.76 86.59 0.00 13.41 0.00
+qwen3-coder-480B 65.48 23.81 7.14 3.57 87.20 0.00 12.80 0.00
+qwen3-235B 66.67 26.19 5.95 1.19 93.29 0.00 6.71 0.00
+gemini3-flash 83.33 10.71 4.76 1.19 85.06 0.00 14.94 0.00
+Notes: With-depsmethods have at least one ground-truth dependency, whileNo-depsmethods have none.
+6.2.4 Error Analysis.We further analyze three systematic topological-order failure cases (ClassE-
+val_44/61/94) that are consistently violated across models. Surprisingly, the ground-truth depen-
+dency graphs are extremely sparse, each containing only one or two dependency edges. However,
+models still output invalid orders due to strong semantic priors induced by method names (e.g.,
+“extract-before-format”, “add/remove CRUD precedence”, “add-before-restock”), which conflict with
+the actual call dependencies. This indicates that LLMs tend to infer method generation orders based
+on natural language workflow rather than strict dependency constraints. We list all toploogical
+violations in the Appendix B.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 13 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 13
+Finding 8: Topological violations are highly concentrated on a small set of tasks whose depen-
+dency graphs contain counter-intuitive edges or semantic-precondition dependencies. Models
+tend to follow semantic/workflow ordering, which systematically conflicts with such dependency
+constraints.
+6.3 RQ3: Effectiveness of Dependency-Aware Class-Level TDD
+In this RQ, we evaluate the effectiveness of our class-level TDD framework in improving correctness
+over the best baseline generation strategies on ClassEval-TDD.
+6.3.1 Correctness Improvements.Table 4 reports the performance of our TDD framework on
+ClassEval-TDD, compared to the best baseline strategy (max over Holistic/Incremental/Composi-
+tional) for each model. Overall, class-level TDD yields strong and consistent improvements across
+all evaluated LLMs.
+At the class level, the best-performing models achieve up to 71% class_success (gpt-oss-120B
+and gemini3-flash). Several other strong models reach 68–70% class_success (deepseek-v3: 68%,
+qwen3-coder-480B: 68%, qwen3-235B: 70%). Mid-sized models also achieve substantial performance
+(qwen2.5-coder-32B: 63%, qwen3-coder-30B: 65%). Even a 7B model reaches 46% class_success,
+indicating that test-driven code generation can significantly improve the usability of smaller models.
+At the method level, correctness under TDD is consistently high for strong models:fun_success
+exceeds 90% for all large models, and fun_partial further approaches 98–99%. This indicates that
+the TDD loop is highly effective at driving individual methods to satisfy unit-level requirements.
+However, class-level success remains notably lower than method-level success, revealing a persistent
+composition gap: even when most methods are correct in isolation, integrating them into a fully
+correct class remains challenging due to shared state interactions and cross-method consistency
+constraints.
+Finding 9: Dependency-aware class-level TDD consistently outperforms the strongest direct-
+generation baseline for every evaluated model, improvingclass_success by +12 to +26 absolute
+points on ClassEval-TDD. Method-level correctness under TDD approaches saturation (90–92%
+fun_success for large models), yet class-level success remains substantially lower, highlighting
+a remaining composition gap driven by cross-method state and consistency constraints.
+Table 4. TDD vs. Best Baseline (max over H/I/C) on ClassEval-TDD (%).
+Model Class Success Class Partial Function Success Function Partial
+Best Baseline TDD (Δ) Best Baseline TDD (Δ) Best Baseline TDD (Δ) Best Baseline TDD (Δ)
+deepseek-v3 47.00 (H) 68.00 (+21.00) 73.00 (H) 93.00 (+20.00) 76.95 (H) 90.82 (+13.87) 90.04 (H) 98.44 (+8.40)
+gpt-oss-120B 45.00 (H) 71.00 (+26.00) 72.00 (H) 93.00 (+21.00) 73.44 (H) 91.02 (+17.58) 86.72 (H) 98.63 (+11.91)
+qwen2.5-coder-7B 33.00 (H) 46.00 (+13.00) 54.00 (H) 64.00 (+10.00) 65.23 (C) 74.22 (+8.99) 79.88 (H) 89.06 (+9.18)
+qwen2.5-coder-32B 43.00 (H) 63.00 (+20.00) 63.00 (H) 82.00 (+19.00) 71.29 (H) 85.94 (+14.65) 84.38 (H) 95.31 (+10.93)
+qwen3-coder-30B 50.00 (I) 65.00 (+15.00) 69.00 (H) 87.00 (+18.00) 76.37 (H) 87.89 (+11.52) 89.06 (H) 96.29 (+7.23)
+qwen3-coder-480B 55.00 (H) 68.00 (+13.00) 80.00 (H) 97.00 (+17.00) 81.64 (H) 91.60 (+9.96) 92.97 (I) 99.22 (+6.25)
+qwen3-235B 49.00 (H) 70.00 (+21.00) 74.00 (H) 92.00 (+18.00) 77.73 (H) 90.82 (+13.09) 91.21 (H) 98.24 (+7.03)
+gemini3-flash 59.00 (I) 71.00 (+12.00) 82.00 (H) 92.00 (+10.00) 82.42 (I) 91.80 (+9.38) 91.60 (I) 98.05 (+6.45)
+6.3.2 Impact of intra-class dependencies.To better understand the remaining gap in class-level
+correctness, we further stratify tasks by whether methods/classes contain intra-class dependencies.
+Specifically, we separate (i) methods that depend on at least one other method and (ii) classes that
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 14 =====
+14 Trovato et al.
+contain at least one dependent method. Across all models, dependent methods are consistently
+harder: method-level fun_success drops by 2–10 points compared to dependency-free methods.
+The effect is amplified at the class level, where classes with dependencies exhibit a substantially
+lower class_success (8–16 points lower for strong models). Meanwhile, fun_partial remains
+near-saturated for large models even on dependent methods, suggesting that failures are rarely
+catastrophic; instead, dependency-heavy classes tend to fail due to a small number of remaining
+inconsistencies in cross-method state, call ordering, or shared invariants. These results provide
+direct evidence that intra-class dependencies are a primary driver of the composition gap in
+class-level code generation.
+Finding 10: Intra-class dependencies are a primary driver of class-level failures: across models,
+dependency-containing classes achieve 8–16 points lowerclass_success than dependency-free
+classes under TDD.
+Table 5. Impact of Intra-class Dependencies on TDD Performance (%).
+Model
+Method
+Success
+(with deps)
+Method
+Success
+(no deps)
+Class
+Success
+(with deps)
+Class
+Success
+(no deps)
+deepseek-v3 88.1 90.6 63.6 73.3
+gpt-oss-120B 85.7 91.8 67.3 75.6
+qwen2.5-coder-7B 66.7 79.0 41.8 51.1
+qwen2.5-coder-32B 82.1 87.5 58.2 68.9
+qwen3-coder-30B 79.8 89.9 58.2 73.3
+qwen3-coder-480B 86.9 90.9 63.6 71.1
+qwen3-235B 86.9 91.2 65.5 75.6
+gemini3-flash 86.9 92.7 63.6 80.0
+6.3.3 Repair Cost.We further analyze the repair budget required by the TDD loop. The results
+are summarized in Table 6. Across strong models, the repair process is highly efficient, indicating
+that performance gains are not achieved via excessive trial-and-error but rather through targeted
+corrections on a small fraction of difficult methods.
+At the method level, the average number of repair rounds per method is consistently low for large
+models: 0.06 for gpt-oss-120B, 0.12 for qwen3-coder-480B, 0.13 for qwen3-235B, 0.13 for gemini3-
+flash, and 0.15 for deepseek-v3. In terms of how often repairs are needed, only 15/412 methods
+require repair for gpt-oss-120B, while qwen3-480B, qwen3-235B, gemini3-flash, and deepseek-v3
+require repairs for 30/412, 34/412, 32/412, and 34/412 methods, respectively. When considering only
+initially failing methods, the repair loop converges quickly, typically within 1.53–1.79 rounds for
+these strong models.
+At the class level, repair costs remain similarly small. The average number of repair rounds per
+class is 0.07 for gpt-oss-120B, 0.12 for qwen3-480B, 0.14 for qwen3-235B and gemini3-flash, and
+0.16 for deepseek-v3. Even among classes that require repair, convergence is fast: failed classes
+are fixed within 0.52–0.70 rounds on average for strong models, suggesting that many class-level
+failures can be resolved with at most one additional correction pass.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 15 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 15
+For smaller models, the repair cost increases but remains bounded. For qwen2.5-coder-7B, the
+average repair cost is 0.62 repairs/method, with 98/412 methods requiring repair, and failing
+methods converging in 2.60 rounds on average. These results demonstrate that class-level TDD
+remains practical under limited repair budgets, while providing substantial gains for both strong
+and compact models.
+Finding 11: The correctness gains of class-level TDD come with modest overhead: under a
+strict budget of at most three repair rounds per method, strong models require fewer than 0.15
+repairs per method on average, and most initially failing cases converge within fewer than two
+rounds.
+Table 6. Repair Cost of Class-level TDD
+Model Method-level Class-level
+Avg Need Repair Fail Avg Avg Need Repair Fail Avg
+deepseek-v3 0.15 34/412 1.79 0.16 22/100 0.70
+gpt-oss-120B 0.06 15/412 1.67 0.07 12/100 0.60
+qwen2.5-coder-7B 0.62 98/412 2.60 0.67 56/100 1.20
+qwen2.5-coder-32B 0.26 46/412 2.33 0.28 33/100 0.85
+qwen3-coder-30B 0.25 50/412 2.06 0.27 33/100 0.83
+qwen3-coder-480B 0.12 30/412 1.60 0.12 21/100 0.58
+qwen3-235B 0.13 34/412 1.53 0.14 28/100 0.52
+gemini3-flash 0.13 32/412 1.62 0.14 23/100 0.62
+Avg = average repair rounds; Need Repair = number of methods or classes needing repair; Fail Avg = average rounds for
+initially failing methods or classes.
+6.3.4 Effect of Reflection-based Repair.To isolate the contribution of the reflection-based repair
+mechanism, we conduct an ablation study in which reflection is removed and failed methods are
+repaired by directly generating patches from raw error messages. Table 7 reports the resulting
+performance.
+Overall, removing reflection leads to only a modest reduction in final correctness for strong
+models. For large models such as gpt-oss-120B, qwen3-235B, qwen3-coder-480B, and gemini3-flash,
+class-level success remains within 1–3 absolute points of the full TDD framework. This indicates
+that the main correctness gains primarily stem from test-driven incremental synthesis itself, rather
+than from reflection alone.
+The impact of removing reflection becomes more noticeable for smaller and mid-sized models.
+For example, qwen2.5-coder-7B drops from 46% to 42% in class-level success, and qwen2.5-coder-
+32B drops from 63% to 62%. These results suggest that reflection-based repair provides additional
+guidance when model capacity is limited, helping stabilize repair behavior under bounded budgets.
+The limited impact of reflection on final correctness can be explained by the overall repair
+statistics. As shown in Table 6, for strong models only a small fraction of methods and classes
+require any repair at all (e.g., 15–34 out of 412 methods, and 12–28 out of 100 classes). Consequently,
+most methods pass their tests upon first generation, and only a minority of cases ever enter the
+repair loop. In this regime, replacing reflection-based repair with direct error-driven patching
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 16 =====
+16 Trovato et al.
+affects only a small subset of difficult cases, which explains why the difference in final class-level
+correctness remains modest.
+Taken together, these results show that reflection-based repair is not the primary driver of
+correctness gains. Instead, its main contribution lies in improving robustness and efficiency on the
+relatively few hard cases that require repair, especially for smaller models. This interpretation is
+further supported by the low average repair cost reported in Table 6, which demonstrates that the
+TDD loop converges quickly without relying on excessive trial-and-error.
+Finding 12: The correctness gains of class-level TDD largely arise from test-driven incremental
+synthesis itself, while reflection-based repair mainly improves robustness and efficiency on the
+small fraction of methods and classes that require repair, especially for weaker models under
+bounded repair budgets.
+Table 7. TDD without Reflection-based Repair(%).
+Model Class Success Class Partial Fun Success Fun Partial
+deepseek-v3 67.0 (-1.0) 93.0 (+0.0) 90.43 (-0.39) 98.44 (+0.0)
+gpt-oss-120B 70.0 (-1.0) 93.0 (+0.0) 91.02 (+0.0) 98.63 (+0.0)
+qwen2.5-coder-7B 42.0 (-4.0) 63.0 (-1.0) 73.63 (-0.59) 88.87 (-0.19)
+qwen2.5-coder-32B 62.0 (-1.0) 81.0 (-1.0) 84.96 (-0.98) 95.12 (-0.19)
+qwen3-coder-30B 67.0 (+2.0) 88.0 (+1.0) 89.45 (+1.56) 97.07 (+0.78)
+qwen3-coder-480B 65.0 (-3.0) 94.0 (-3.0) 89.84 (-1.76) 98.44 (-0.78)
+qwen3-235B 69.0 (-1.0) 91.0 (-1.0) 90.43 (-0.39) 97.85 (-0.39)
+gemini3-flash 71.0 (+0.0) 89.0 (-3.0) 90.23 (-1.57) 96.29 (-1.76)
+7 Discussion
+Our results demonstrate that class-level TDD can substantially improve correctness over strong
+non-TDD baselines on ClassEval-TDD. In this section, we discuss why the approach is effective,
+where it still fails, and what the results suggest for future class-level code generation and evaluation.
+7.1 Why Class-level TDD Works
+A key reason for the effectiveness of class-level TDD is that it provides executable constraints.
+Compared to one-shot class generation, our incremental TDD workflow provides two advantages.
+First, method-level public tests provide direct behavioral feedback at a smaller granularity,
+allowing the model to correct mistakes before they propagate to the rest of the class. This is
+especially important for classes that mix simple standalone methods with more complex methods
+involving state transitions or edge cases. The consistently high method-level success rates under
+TDD indicate that many failures in baseline generation are not due to a lack of modeling capacity,
+but due to the absence of a feedback loop.
+Second, the bounded repair loop enables the model to recover from imperfect initial generations
+with low overhead. Our repair-cost results show that most methods require no repair, and even
+failing methods typically converge within a small number of iterations. This suggests that test-
+driven refinement is not only effective but also cost-efficient for class-level synthesis.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 17 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 17
+7.2 Dependency Scheduling: Useful but Imperfect
+More than half of the benchmark classes contain inter-method dependencies, which motivates
+dependency-aware scheduling. Our dependency analysis results show that LLMs can infer call-based
+dependencies with high accuracy, yet topological order violations still occur in a non-negligible
+number of tasks.
+Interestingly, the most common error pattern is predictingextradependencies rather than
+missing true dependencies. This suggests that models often adopt conservative reasoning and
+over-approximate prerequisite relations. While over-approximation can still yield a feasible order, it
+may delay implementing some methods unnecessarily and reduce the effectiveness of incremental
+testing, especially when time or repair budgets are limited.
+The observed order violations further indicate that, even when dependency edges are predicted
+correctly, models may fail to produce an order that satisfies all constraints. This gap highlights
+an opportunity for lightweight verification or post-processing (e.g., checking the predicted order
+against the predicted dependency graph and repairing the order if needed). In this paper, we
+intentionally keep the predicted order unchanged to isolate the behavior of prompt-based scheduling
+and avoid introducing additional algorithmic components that may confound the evaluation.
+7.3 Benchmark Quality as a First-class Concern
+Our benchmark comparison shows that repairing and standardizing ClassEval into ClassEval-TDD
+improves baseline performance for most models. This supports the view that benchmark noise can
+substantially distort conclusions in execution-guided generation settings.
+In particular, class-level TDD is more sensitive to inconsistencies than one-shot generation:
+faulty tests, incomplete specifications, or non-deterministic behaviors can cause the repair loop
+to chase spurious failures and prevent convergence even when the implementation is reasonable.
+The improvements observed on ClassEval-TDD suggest that reliable evaluation of class-level
+generation requires not only stronger techniques but also cleaner benchmarks with deterministic
+and well-scoped unit tests.
+7.4 Implications for Class-level Code Generation
+Taken together, our findings suggest that scaling from method-level to class-level code generation
+benefits from combining three ingredients: (1) dependency-aware scheduling to reduce structural
+failures, (2) method-level executable specifications to guide incremental synthesis, and (3) localized
+repair to prevent non-local regressions. While stronger models achieve higher absolute success
+rates, the consistent improvements across model families indicate that the approach is broadly
+applicable and can serve as a practical technique for class-level generation.
+Finally, we emphasize that partial success metrics remain important at the class level: even when
+a class is not fully correct, many methods can be synthesized correctly or partially correctly. This
+observation motivates future evaluation protocols that measure progress at multiple granularities
+and support realistic incremental development workflows.
+8 Related Work
+8.1 Code Generation Benchmarks and Evaluation
+Most prior work on LLM-based code generation evaluates models on function-level benchmarks
+such as HumanEval and MBPP, where each task requires synthesizing a standalone function that
+satisfies a small test suite [1, 4, 15]. These benchmarks have driven rapid progress, but their function-
+centric design under-represents challenges common in real-world software, including shared state,
+cross-method interactions, and class-level invariants.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 18 =====
+18 Trovato et al.
+To better capture object-oriented programming patterns, ClassEval [8] proposes a class-level
+benchmark that evaluates complete class implementations under multiple generation strategies,
+including holistic, incremental, and compositional synthesis. Results on ClassEval show that class-
+level generation is substantially harder than function-level synthesis, as correctness depends on
+both individual methods and their integration. Our work builds on this motivation by studying
+test-driven generation at the class level and by providing a cleaned, reproducible benchmark to
+enable reliable evaluation of iterative synthesis techniques.
+8.2 Class-Level and Dependency-Aware Code Generation
+Many research improves code generation by introducing additional structure, such as decomposition,
+planning, or execution-based validation [5, 6, 16, 27, 30]. Decomposition-based approaches are a
+natural fit for class-level synthesis, but they require respecting inter-method dependencies arising
+from method calls, shared state, and initialization order.
+Several works explore dependency-aware or planning-based generation [7, 11, 31], but existing
+approaches typically focus on function-level tasks, rely on informal ordering heuristics, or do
+not evaluate dependency inference quality explicitly. In contrast, our work introduces an explicit
+dependency analysis and scheduling stage for class-level synthesis and evaluates it quantitatively
+using precision/recall-style metrics and topological-order validity. This analysis characterizes when
+dependency-aware incremental generation is effective and where dependency inference remains a
+bottleneck.
+8.3 Test-Driven Code Generation
+Test-driven development (TDD) treats tests as executable specifications and guides iterative imple-
+mentation through execution feedback [2, 14, 17, 19, 22, 29]. In research, test-driven ideas are most
+prominently explored in automated program repair (APR), where candidate patches are generated
+and validated against a test suite [13, 18]. More recently, execution feedback has been incorporated
+into LLM-based code generation, showing that iterative refinement can improve correctness over
+one-shot generation [3, 9, 10, 23, 25].
+However, Existing studies are largely limited to function-level tasks, where each target is syn-
+thesized in isolation. Our work studies test-driven synthesis at the class level, where correctness
+depends on interactions among multiple methods and shared state. Moreover, we separate public
+tests used during synthesis from hidden tests used for evaluation, reducing the risk of test overfit-
+ting. This combination of class-level scope, dependency-aware scheduling, and bounded test-driven
+repair distinguishes our approach from prior TDD-style code generation and APR research.
+9 Threats to Validity
+Internal validity.Our evaluation may be influenced by implementation details of the test-driven
+synthesis framework, such as the prompt design, repair budget, or runtime environment. To
+mitigate these risks, we use a fixed maximum of three repair rounds per method, apply consistent
+execution timeouts across models, and use greedy decoding to reduce variability. We also ensure
+determinism in the test environment by controlling randomness, file I/O, and time dependencies
+during execution.
+Construct validity.We assess correctness using private private tests provided by ClassEval-TDD.
+While these tests offer high coverage and unit-level granularity, they may not fully capture all
+semantic behaviors or corner cases. Moreover, our dependency analysis focuses on method-level call
+relations and documented logical dependencies; it does not model implicit shared-state interactions
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 19 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 19
+or latent invariants, which may affect integration correctness. Nevertheless, the high alignment
+between method-level success and class-level behavior supports the relevance of our chosen metrics.
+External validity.Our study is conducted on Python classes from ClassEval-TDD, which focuses
+on single-class tasks. The findings may not generalize to multi-class programs, complex object
+hierarchies, or languages with different object-oriented semantics (e.g., Java, C++). In addition, we
+assume the availability of method-level public tests, which may not be present in all real-world
+development settings. Future work should investigate class-level TDD in broader and less controlled
+environments, including multi-file systems and co-evolution of tests and code.
+10 Conclusion
+This paper investigated class-level code generation under a test-driven setting, motivated by the
+observation that generating correct classes is substantially harder than function-level synthesis due
+to stateful interactions and inter-method dependencies. We proposed a class-level TDD framework
+that synthesizes classes incrementally, generating one method at a time following a dependency-
+aware schedule and validating each method using public unit tests. When tests fail, our framework
+applies a reflection-before-patch repair loop under a bounded budget, enabling efficient convergence
+while preserving method-level locality during integration.
+We conducted a comprehensive empirical study on ClassEval-TDD, a cleaned and reproducible
+benchmark derived from ClassEval with standardized specifications, deterministic tests, and hid-
+den/private evaluation suites. Across a diverse set of LLMs, our results demonstrate that class-level
+TDD can substantially improve correctness under hidden tests, achieving 63–71% class-level success
+for strong models while requiring only a small number of repairs on average (typically below
+0.15 repair rounds per method). Our dependency analysis further indicates that LLMs can infer
+method dependencies with high recall but tend to over-approximate dependencies, suggesting that
+scheduling remains a meaningful lever for improving efficiency and stability. Overall, our findings
+provide the first systematic evidence that test-driven development is an effective and practical
+paradigm for class-level LLM-based code generation.
+11 Data Availability
+To support reproducibility and facilitate future research, we have released all artifacts associ-
+ated with this paper, including the ClassEval-TDD benchmark, the evaluation scripts, and the
+implementation of our class-level TDD synthesis framework, in an anonymous public repository
+https://anonymous.4open.science/r/ClassEval-TDD-C4C9/. During the review period, we noly pro-
+vide the anonymous repository link in the submission to enable artifact inspection while preserving
+author anonymity. After acceptance, we will update the repository to include author information
+and make it publicly accessible.
+References
+[1] Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski, David Dohan, Ellen Jiang, Carrie
+Cai, Michael Terry, Quoc Le, et al. 2021. Program synthesis with large language models.arXiv preprint arXiv:2108.07732
+(2021).
+[2] Kent Beck. 2003.Test-driven development: by example. Addison-Wesley Professional.
+[3] Islem Bouzenia, Premkumar Devanbu, and Michael Pradel. 2024. Repairagent: An autonomous, llm-based agent for
+program repair.arXiv preprint arXiv:2403.17134(2024).
+[4] Mark Chen. 2021. Evaluating large language models trained on code.arXiv preprint arXiv:2107.03374(2021).
+[5] Xinyun Chen, Maxwell Lin, Nathanael Schärli, and Denny Zhou. 2023. Teaching large language models to self-debug.
+arXiv preprint arXiv:2304.05128(2023).
+[6] Xiancai Chen, Zhengwei Tao, Kechi Zhang, Changzhi Zhou, Xinyu Zhang, Wanli Gu, Yuanpeng He, Mengdi Zhang,
+Xunliang Cai, Haiyan Zhao, et al . 2025. Revisit self-debugging with self-generated tests for code generation. In
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 20 =====
+20 Trovato et al.
+Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers).
+18003–18023.
+[7] Yujia Chen, Mingyu Chen, Cuiyun Gao, Zhihan Jiang, Zhongqi Li, and Yuchi Ma. 2025. Towards Mitigating API
+Hallucination in Code Generated by LLMs with Hierarchical Dependency Aware. InProceedings of the 33rd ACM
+International Conference on the Foundations of Software Engineering. 468–479.
+[8] Xueying Du, Mingwei Liu, Kaixin Wang, Hanlin Wang, Junwei Liu, Yixuan Chen, Jiayi Feng, Chaofeng Sha, Xin Peng,
+and Yiling Lou. 2024. Evaluating large language models in class-level code generation. InProceedings of the IEEE/ACM
+46th International Conference on Software Engineering. 1–13.
+[9] Jonas Gehring, Kunhao Zheng, Jade Copet, Vegard Mella, Quentin Carbonneaux, Taco Cohen, and Gabriel Synnaeve.
+2024. Rlef: Grounding code llms in execution feedback with reinforcement learning.arXiv preprint arXiv:2410.02089
+(2024).
+[10] Dong Huang, Jie M Zhang, Michael Luck, Qingwen Bu, Yuhao Qing, and Heming Cui. 2023. Agentcoder: Multi-agent-
+based code generation with iterative testing and optimisation.arXiv preprint arXiv:2312.13010(2023).
+[11] Xue Jiang, Yihong Dong, Lecheng Wang, Zheng Fang, Qiwei Shang, Ge Li, Zhi Jin, and Wenpin Jiao. 2024. Self-planning
+code generation with large language models.ACM Transactions on Software Engineering and Methodology33, 7 (2024),
+1–30.
+[12] Cheryl Lee, Chunqiu Steven Xia, Longji Yang, Jen-tse Huang, Zhouruixing Zhu, Lingming Zhang, and Michael R Lyu.
+2025. Unidebugger: Hierarchical multi-agent framework for unified software debugging. InProceedings of the 2025
+Conference on Empirical Methods in Natural Language Processing. 18248–18277.
+[13] Yunhao Liang, Ruixuan Ying, Takuya Taniguchi, Chengguang Gan, and Zhe Cui. 2025. RECODE: Leveraging Reliable
+Self-generated Tests and Fine-Grained Execution Feedback to Enhance LLM-Based Code Generation. InAdvanced
+Intelligent Computing Technology and Applications, De-Shuang Huang, Bo Li, Haiming Chen, and Chuanlei Zhang
+(Eds.). Springer Nature Singapore, Singapore, 510–521.
+[14] Jingqiang Liu, Ruigang Liang, Xiaoxi Zhu, Yue Zhang, Yuling Liu, and Qixu Liu. 2025. LLM4TDG: test-driven generation
+of large language models based on enhanced constraint reasoning.Cybersecurity8, 1 (2025), 32.
+[15] Jiawei Liu, Chunqiu Steven Xia, Yuyao Wang, and Lingming Zhang. 2023. Is your code generated by chatgpt really
+correct? rigorous evaluation of large language models for code generation.Advances in Neural Information Processing
+Systems36 (2023), 21558–21572.
+[16] Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan, Luyu Gao, Sarah Wiegreffe, Uri Alon, Nouha Dziri,
+Shrimai Prabhumoye, Yiming Yang, et al. 2023. Self-refine: Iterative refinement with self-feedback.Advances in Neural
+Information Processing Systems36 (2023), 46534–46594.
+[17] Noble Saji Mathews and Meiyappan Nagappan. 2024. Test-driven development for code generation.arXiv preprint
+arXiv:2402.13521(2024).
+[18] Ansong Ni, Srini Iyer, Dragomir Radev, Veselin Stoyanov, Wen-tau Yih, Sida Wang, and Xi Victoria Lin. 2023. Lever:
+Learning to verify language-to-code generation with execution. InInternational Conference on Machine Learning.
+PMLR, 26106–26128.
+[19] Sanyogita Piya and Allison Sullivan. 2024. LLM4TDD: best practices for test driven development using large language
+models. InProceedings of the 1st International Workshop on Large Language Models for Code. 14–21.
+[20] Zichao Qi, Fan Long, Sara Achour, and Martin Rinard. 2015. An analysis of patch plausibility and correctness for
+generate-and-validate patch generation systems. InProceedings of the 2015 international symposium on software testing
+and analysis. 24–36.
+[21] Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao. 2023. Reflexion: Language
+agents with verbal reinforcement learning.Advances in Neural Information Processing Systems36 (2023), 8634–8652.
+[22] Zhao Tian, Junjie Chen, and Xiangyu Zhang. 2023. Test-case-driven programming understanding in large language
+models for better code generation.arXiv preprint arXiv:2309.16120(2023).
+[23] Hanbin Wang, Zhenghao Liu, Shuo Wang, Ganqu Cui, Ning Ding, Zhiyuan Liu, and Ge Yu. 2023. Intervenor: Prompting
+the coding ability of large language models with the interactive chain of repair.arXiv preprint arXiv:2311.09868(2023).
+[24] Westley Weimer, ThanhVu Nguyen, Claire Le Goues, and Stephanie Forrest. 2009. Automatically finding patches using
+genetic programming. In2009 IEEE 31st International Conference on Software Engineering. IEEE, 364–374.
+[25] Chunqiu Steven Xia, Yuxiang Wei, and Lingming Zhang. 2023. Automated program repair in the era of large pre-trained
+language models. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 1482–1494.
+[26] Lin Yang, Chen Yang, Shutao Gao, Weijing Wang, Bo Wang, Qihao Zhu, Xiao Chu, Jianyi Zhou, Guangtai Liang,
+Qianxiang Wang, et al. 2024. On the evaluation of large language models in unit test generation. InProceedings of the
+39th IEEE/ACM International Conference on Automated Software Engineering. 1607–1619.
+[27] Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik R Narasimhan, and Yuan Cao. 2022. React: Syner-
+gizing reasoning and acting in language models. InThe eleventh international conference on learning representations.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 21 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 21
+[28] Zhiqiang Yuan, Mingwei Liu, Shiji Ding, Kaixin Wang, Yixuan Chen, Xin Peng, and Yiling Lou. 2024. Evaluating and
+improving chatgpt for unit test generation.Proceedings of the ACM on Software Engineering1, FSE (2024), 1703–1726.
+[29] Lei Zhang, Jiaxi Yang, Min Yang, Jian Yang, Mouxiang Chen, Jiajun Zhang, Zeyu Cui, Binyuan Hui, and Junyang Lin.
+[n. d.]. Synthesizing Software Engineering Data in a Test-Driven Manner. InForty-second International Conference on
+Machine Learning.
+[30] Li Zhong, Zilong Wang, and Jingbo Shang. 2024. Debug like a human: A large language model debugger via verifying
+runtime execution step-by-step.arXiv preprint arXiv:2402.16906(2024).
+[31] Denny Zhou, Nathanael Schärli, Le Hou, Jason Wei, Nathan Scales, Xuezhi Wang, Dale Schuurmans, Claire Cui, Olivier
+Bousquet, Quoc Le, et al. 2022. Least-to-most prompting enables complex reasoning in large language models.arXiv
+preprint arXiv:2205.10625(2022).
+A Appendix: Dataset Issues in ClassEval and Our Repairs for ClassEval-TDD
+This appendix documents (i) the issues we identified in the original ClassEval benchmark and
+(ii) the repairs and standardization steps we applied to construct ClassEval-TDD. We list issues
+exhaustively to improve transparency and reproducibility.
+A.1 Identified Issues in the Original ClassEval
+We found the following issues across class implementations, skeletons, docstrings, and private
+tests:
+A.1.1 Implementation-Level Issues.
+I1. Unused imports: invalidimportstatements where imported modules are never used.
+I2. Broken code or tests: either the original implementation or the provided tests contain errors
+and fail when executed directly.
+I3. Defective implementations: original code has functional defects and poor code quality.
+I4. Redundant code: original implementation contains redundant logic that should be removed.
+I5. Commented-out statements: implementation contains commented-out code fragments af-
+fecting clarity and correctness.
+I6. Empty __init__: classes have no attributes, and the constructor is empty (pass); such con-
+structors should be removed for consistency.
+A.1.2 Skeleton/Metadata Mismatch and Missing Methods.
+S1. Missing methods referenced in doctests: doctests call methods that are absent in the
+skeleton or implementation (e.g., ClassEval-92).
+S2. Static method mismatch: methods are called via the class name in doctests but are not
+declared as@staticmethod(e.g., ClassEval-62).
+S3. Doctest invocation without instantiation: doctests call instance methods without creating
+an instance.
+S4. Implementation contains undocumented methods: methods exist in implementation but
+are missing in the class skeleton or dataset metadata (e.g., ClassEval-25, ClassEval-49).
+A.1.3 Docstring Specification Issues.
+D1. Insufficient type specification for complex attributes: for dict/list attributes not ini-
+tialized via parameters, types are unclear or described informally (e.g., ClassEval-67 uses
+comments rather than a consistent convention).
+D2. Missing constructor docstrings: constructors lack docstrings and do not distinguish con-
+structor parameters from instance variables.
+D3. Non-standard naming: method names are inconsistent or non-idiomatic (e.g., ClassEval-44).
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 22 =====
+22 Trovato et al.
+D4. Misspelled parameter names: parameter name typos appear in signatures or docstrings.
+D5. Docstring name mismatches: class/method names in docstrings do not match actual defini-
+tions.
+D6. Spelling/grammar errors: docstrings contain spelling errors and English grammar issues.
+D7. Missing docstrings: classes or methods have no docstrings at all.
+D8. Incomplete docstrings: important conditions are missing, making correct generation impos-
+sible.
+D9. Doctest overlap: docstring doctests overlap with private tests.
+D10. Missing return specification: docstrings omit return value description, especially for meth-
+ods operating on class state but returning values.
+D11. Inconsistent parameter/return fields: some docstrings provide only types without descrip-
+tions, others only descriptions without types.
+D12. Incorrect type annotations: type hints and/or docstring types are incorrect.
+D13. Invalid type names: use of non-Python types such asstringorinteger.
+D14. Missing:param/:return: docstrings omit parameters, returns, or doctests entirely.
+D15. Missing :return for None: inconsistent treatment of no-return methods (sometimes:return:
+None, often omitted).
+D16. Inconsistent docstring style: mixture of styles across methods/classes (ordering, punctuation,
+tense, capitalization).
+D17. Inconsistent verb tense: docstrings begin with mixed verb forms (base vs third-person),
+inconsistent punctuation endings.
+D18. Missing static method annotation in docs: static methods are not documented as static.
+D19. Under-specified complex inputs: for complex input types (e.g., dict with required keys, or
+object parameters), docstrings omit critical structure while doctests imply the format (e.g.,
+ClassEval-17, ClassEval-33).
+A.1.4 Test Suite Issues.
+T1. Duplicate private tests: repeated test cases exist across the suite.
+T2. Redundant private tests: multiple tests differ only superficially (e.g.,user1vsuser2) with
+little coverage gain.
+T3. Exact duplicates within a class: fully identical test methods appear (e.g., ClassEval-75
+test_remove_item).
+T4. External environment dependencies: tests rely on external files, databases, randomness, or
+current time without proper isolation.
+T5. Missing environment cleanup: failing tests do not clean up files/resources, affecting subse-
+quent tests.
+T6. Missing setup/teardown: tests do not use setUp/tearDown to prepare and clean environ-
+ments.
+T7. Non-idiomatic naming: private test class/method naming is inconsistent or mismatched
+with the tested method.
+T8. Tests call the wrong method: a test labeled for method A calls method B (e.g., ClassEval-1
+test_calculate_sphere_areacallscalculate_circle_area).
+T9. Non-unit tests: tests for one method call other methods, violating unit-testing principles.
+T10. Test naming typos: e.g.,deletemisspelled asdetele.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 23 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 23
+T11. Randomness/time not controlled: tests involving randomness or time do not fix seeds or
+time.
+T12. Missing class-level tests: some classes lack class-level test suites; naming conventions are
+inconsistent.
+T13. Inconsistent test class naming: same class has multiple test-class naming patterns (abbrevi-
+ations, casing differences).
+T14. Coverage gaps: some methods lack dedicated method-level tests; number of test classes is
+smaller than number of methods.
+A.2 Our Repairs and Standardization for ClassEval-TDD
+We applied the following repairs to construct ClassEval-TDD:
+A.2.1 Code and Skeleton Repairs.
+R1. Diagnosed and fixed execution failures: for samples where class code and tests fail to run,
+we determined whether failures stem from implementation or tests, and applied corresponding
+fixes.
+R2. Removed redundancy and fixed defects: deleted redundant code and repaired incom-
+plete/incorrect implementations.
+R3. Removed unused imports: eliminated invalid or unusedimportstatements.
+R4. Removed empty constructors: deleted __init__ methods that only contain pass when no
+initialization is required.
+R5. Added missing methods and aligned skeletons: reconciled class skeletons, metadata, and
+implementations; added missing method stubs when doctests or implementations imply them.
+A.2.2 Docstring and Type Standardization.
+R6. Added constructor docstrings: for non-empty constructors, added docstrings and explicitly
+distinguished constructor parameters (:param) from instance variables (:ivar).
+R7. Fixed spelling and name inconsistencies: corrected typos and mismatches across docstrings,
+parameter names, test class names, and test method names.
+R8. Completed and enriched specifications: expanded incomplete docstrings using the intended
+behavior implied by implementations and tests, ensuring all constraints needed for correct
+generation are documented.
+R9. Enforced complete docstring structure: ensured each method docstring includes (i) de-
+scription, (ii) parameters, (iii) returns, and (iv) doctests where applicable.
+R10. Normalized type names: replaced invalidstring/integerwith Pythonstr/int.
+R11. Corrected type annotations: fixed incorrect type hints and docstring types for parameters
+and return values.
+R12. Unified docstring style: standardized to a consistent reStructuredText/Sphinx-like style with
+type-before-description ordering.
+R13. Unified verb tense: normalized docstring opening verbs to base form for consistency.
+R14. Standardized None returns: explicitly added :return: None for methods without return
+values, including short descriptions for state-mutating methods.
+R15. Detailed multi-case returns: for methods with multiple return cases, documented each case
+under:return:with clear conditions.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 24 =====
+24 Trovato et al.
+R16. Specified complex container types: for list/set/dict parameters or attributes, docu-
+mented element types and required key/value schemas (e.g., required keys and meanings).
+R17. Clarified static usage: when doctests call methods via class name and methods do not
+depend on instance state, updated definitions and documentation to @staticmethod where
+appropriate.
+A.2.3 Private Test Repairs and Determinization.
+R18. Environment-safe tests: rewrote file/database-dependent tests to use temporary files and
+isolated environments.
+R19. Automated setup/cleanup: added setUp/tearDown to prepare and clean environments to
+prevent cross-test interference.
+R20. Unified test naming: standardized test class names and ensured they correspond to the tested
+methods/classes.
+R21. Added missing class-level tests: created class-level test suites for classes lacking them.
+R22. Achieved full private-test coverage: treated the repaired tests as private tests and ensured
+100% coverage for each sample.
+R23. Added method-level public tests: for each method, manually created a corresponding public
+test class, typically containing four test methods (1–2 for simple methods), to enable TDD-style
+incremental generation.
+R24. Enforced unit-test principles: refactored tests that depended on other class methods into
+unit tests that only invoke the target method, while preserving coverage.
+R25. Controlled randomness and time: fixed random seeds for stochastic behaviors; normalized
+time formats and used fixed timestamps for time-dependent logic.
+R26. Removed duplication and redundancy: eliminated duplicated test cases and reduced re-
+dundant variants that do not increase coverage.
+A.3 Optional: Mapping Issues to Repairs
+For convenience, Table 8 summarizes how our repairs address the identified issue categories.
+Table 8. High-level mapping from issue categories to repairs.
+Issue Category Representative Repairs
+Implementation failures / re-
+dundancy
+R1–R3 (execution fixes, remove redundancy, remove unused
+imports)
+Skeleton/metadata mismatch R5 (align skeletons, add missing methods)
+Docstring incompleteness / in-
+consistency
+R6–R15 (complete, standardize, fix names/types, enrich con-
+straints)
+Complex type underspecifica-
+tion
+R16 (container schemas and element types)
+Environment-dependent tests R17–R18 (temporary files, setup/teardown)
+Non-unit, redundant, dupli-
+cated tests
+R20–R23 (unit-test refactoring, deduplication, determiniza-
+tion)
+Coverage gaps / missing tests R19–R21 (add class-level tests, add method-level public tests,
+ensure coverage)
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 25 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 25
+B Appendix: Topological Order Violations
+This appendix reports all tasks where the predicted method generation order isnota valid topological
+ordering of the ground-truth dependency graph (i.e., it violates at least one dependency edge). We
+denote a dependency edge as 𝐴→𝐵 , meaning method 𝐴 depends onmethod 𝐵 and thus 𝐵 should
+be generatedbefore𝐴.
+B.1 Ground-truth Dependencies for Violated Tasks
+Table 9 summarizes the ground-truth method dependencies for all tasks that appear in topological
+order violations across our evaluated models.
+Table 9. Ground-truth method dependencies for tasks involved in topological order violations.
+Task Ground-truth Dependencies (method→prerequisite methods)
+ClassEval_44_format_line_feed: []; format_line_html_text: [_format_line_feed];
+extract_code_from_html_text: [format_line_html_text]
+ClassEval_61add_song: []; remove_song: [stop]; play: []; stop: []; switch_song: [];
+previous_song: []; set_volume: []; shuffle: []
+ClassEval_65format: [format_string]; format_string: [parse_more, trans_three,
+trans_two]; trans_two: []; trans_three: [trans_two]; parse_more: []
+ClassEval_94add_item: [restock_item]; insert_coin: []; purchase_item: [];
+restock_item: []; display_items: []
+ClassEval_43add_employee: []; remove_employee: []; update_employee: [get_employee];
+get_employee: []; list_employees: []
+ClassEval_84read_file_as_json: [read_file]; read_file: []; write_file: [];
+process_file: [read_file, write_file]
+ClassEval_91add: [fix_path]; parse: [fix_path]; fix_path: []
+ClassEval_18__getitem__: [_convert_key]; __setitem__: [_convert_key]; __delitem__:
+[_convert_key]; __iter__: []; __len__: []; _convert_key:
+[_to_camel_case]; _to_camel_case: []
+ClassEval_34read_text: []; write_text: [_get_alignment_value]; add_heading: [];
+add_table: []; _get_alignment_value: []
+ClassEval_36send_to: []; fetch: []; is_full_with_one_more_email:
+[get_occupied_size]; get_occupied_size: []; clear_inbox: []
+ClassEval_38read_excel: []; write_excel: []; process_excel_data: [read_excel,
+write_excel]
+ClassEval_23count: []; count_all: []; select: [_select_helper]; select_all: [select];
+_select_helper: []
+ClassEval_58generate_mine_sweeper_map: []; generate_playerMap: []; check_won: [];
+sweep: [check_won]
+ClassEval_77move: [eat_food, reset]; random_food_position: []; reset:
+[random_food_position]; eat_food: [random_food_position]
+ClassEval_5interpret: [display]; display: []
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 26 =====
+26 Trovato et al.
+B.2 Per-model Topological Order Violations
+For each model, we list all tasks where the predicted generation order violates the ground-truth
+dependency constraints. For each violated task, we report: (i) the predicted order, and (ii) at least
+one violated dependency edge.
+Deepseek-V3 (4 tasks).
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, set_volume, shuffle, play, stop, switch_song, previous_song] .
+Violates:remove_song→stop.
+•ClassEval_65:
+[trans_two, parse_more, trans_three, format, format_string].
+Violates:format→format_string.
+•ClassEval_94:
+[add_item, insert_coin, purchase_item, restock_item, display_items].
+Violates:add_item→restock_item.
+GPT-OSS-120B (6 tasks).
+•ClassEval_43:
+[add_employee, remove_employee, update_employee, get_employee, list_employees] .
+Violates:update_employee→get_employee.
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, play, stop, switch_song, previous_song, set_volume,
+shuffle].
+Violates:remove_song→stop.
+•ClassEval_84:
+[read_file_as_json, read_file, write_file, process_file].
+Violates:read_file_as_json→read_file.
+•ClassEval_91:
+[add, fix_path, parse].
+Violates:add→fix_path.
+•ClassEval_94:
+[add_item, insert_coin, purchase_item, restock_item, display_items].
+Violates:add_item→restock_item.
+Qwen2.5-Coder-7B (11 tasks).
+•ClassEval_18:
+[_convert_key, _to_camel_case, __getitem__, __setitem__, __delitem__, __iter__,
+__len__].
+Violates:_convert_key→_to_camel_case.
+•ClassEval_34:
+[read_text, write_text, add_heading, add_table, _get_alignment_value].
+Violates:write_text→_get_alignment_value.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 27 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 27
+•ClassEval_36:
+[fetch, is_full_with_one_more_email, get_occupied_size, send_to, clear_inbox] .
+Violates:is_full_with_one_more_email→get_occupied_size.
+•ClassEval_38:
+[read_excel, process_excel_data, write_excel].
+Violates:process_excel_data→write_excel.
+•ClassEval_43:
+[add_employee, remove_employee, update_employee, get_employee, list_employees] .
+Violates:update_employee→get_employee.
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, play, stop, switch_song, previous_song, set_volume,
+shuffle].
+Violates:remove_song→stop.
+•ClassEval_65:
+[trans_two, trans_three, parse_more, format, format_string].
+Violates:format→format_string.
+•ClassEval_84:
+[read_file_as_json, read_file, write_file, process_file].
+Violates:read_file_as_json→read_file.
+•ClassEval_91:
+[add, parse, fix_path].
+Violates:add→fix_path.
+•ClassEval_94:
+[add_item, insert_coin, restock_item, display_items, purchase_item].
+Violates:add_item→restock_item.
+Qwen2.5-Coder-32B (7 tasks).
+•ClassEval_5:
+[interpret, display].
+Violates:interpret→display.
+•ClassEval_43:
+[add_employee, remove_employee, update_employee, get_employee, list_employees] .
+Violates:update_employee→get_employee.
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, play, stop, switch_song, previous_song, set_volume,
+shuffle].
+Violates:remove_song→stop.
+•ClassEval_84:
+[read_file_as_json, read_file, write_file, process_file].
+Violates:read_file_as_json→read_file.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 28 =====
+28 Trovato et al.
+•ClassEval_91:
+[add, parse, fix_path].
+Violates:add→fix_path.
+•ClassEval_94:
+[add_item, insert_coin, restock_item, display_items, purchase_item].
+Violates:add_item→restock_item.
+Qwen3-Coder-30B (9 tasks).
+•ClassEval_23:
+[count, count_all, select, select_all, _select_helper].
+Violates:select→_select_helper.
+•ClassEval_36:
+[fetch, is_full_with_one_more_email, get_occupied_size, clear_inbox, send_to] .
+Violates:is_full_with_one_more_email→get_occupied_size.
+•ClassEval_43:
+[add_employee, remove_employee, update_employee, get_employee, list_employees] .
+Violates:update_employee→get_employee.
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, play, stop, switch_song, previous_song, set_volume,
+shuffle].
+Violates:remove_song→stop.
+•ClassEval_77:
+[random_food_position, eat_food, move, reset].
+Violates:move→reset.
+•ClassEval_84:
+[read_file_as_json, read_file, write_file, process_file].
+Violates:read_file_as_json→read_file.
+•ClassEval_91:
+[add, parse, fix_path].
+Violates:add→fix_path.
+•ClassEval_94:
+[add_item, insert_coin, restock_item, display_items, purchase_item].
+Violates:add_item→restock_item.
+Qwen3-Coder-480B (4 tasks).
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, set_volume, shuffle, play, stop, switch_song, previous_song] .
+Violates:remove_song→stop.
+•ClassEval_65:
+[trans_two, parse_more, trans_three, format, format_string].
+Violates:format→format_string.
+, Vol. 1, No. 1, Article . Publication date: February 2018.
+
+===== PDF PAGE 29 =====
+Scaling Test-Driven Code Generation from Functions to Classes: An Empirical Study 29
+•ClassEval_94:
+[add_item, insert_coin, restock_item, display_items, purchase_item].
+Violates:add_item→restock_item.
+Qwen3-235B (6 tasks).
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_58:
+[generate_mine_sweeper_map, generate_playerMap, sweep, check_won].
+Violates:sweep→check_won.
+•ClassEval_61:
+[add_song, remove_song, set_volume, play, stop, switch_song, previous_song,
+shuffle].
+Violates:remove_song→stop.
+•ClassEval_65:
+[trans_two, parse_more, trans_three, format, format_string].
+Violates:format→format_string.
+•ClassEval_91:
+[add, fix_path, parse].
+Violates:parse→fix_path.
+•ClassEval_94:
+[add_item, insert_coin, restock_item, purchase_item, display_items].
+Violates:add_item→restock_item.
+Gemini3-Flash (3 tasks).
+•ClassEval_44:
+[_format_line_feed, extract_code_from_html_text, format_line_html_text].
+Violates:extract_code_from_html_text→format_line_html_text.
+•ClassEval_61:
+[add_song, remove_song, set_volume, shuffle, play, stop, switch_song, previous_song] .
+Violates:remove_song→stop.
+•ClassEval_94:
+[add_item, insert_coin, restock_item, display_items, purchase_item].
+Violates:add_item→restock_item.
+Received 20 February 2007; revised 12 March 2009; accepted 5 June 2009
+, Vol. 1, No. 1, Article . Publication date: February 2018.

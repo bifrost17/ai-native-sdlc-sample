@@ -1,0 +1,1767 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:25Z",
+  "pull": {
+    "url": "https://api.github.com/repos/react/react/pulls/37550",
+    "id": 4484623579,
+    "node_id": "PR_kwDOAJy2Ks8AAAABC03s2w",
+    "html_url": "https://github.com/react/react/pull/37550",
+    "diff_url": "https://github.com/react/react/pull/37550.diff",
+    "patch_url": "https://github.com/react/react/pull/37550.patch",
+    "issue_url": "https://api.github.com/repos/react/react/issues/37550",
+    "number": 37550,
+    "state": "closed",
+    "locked": false,
+    "title": "[RN] Move RN globals to RN private interface module",
+    "user": {
+      "login": "rubennorte",
+      "id": 117921,
+      "node_id": "MDQ6VXNlcjExNzkyMQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/117921?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rubennorte",
+      "html_url": "https://github.com/rubennorte",
+      "followers_url": "https://api.github.com/users/rubennorte/followers",
+      "following_url": "https://api.github.com/users/rubennorte/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rubennorte/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rubennorte/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rubennorte/subscriptions",
+      "organizations_url": "https://api.github.com/users/rubennorte/orgs",
+      "repos_url": "https://api.github.com/users/rubennorte/repos",
+      "events_url": "https://api.github.com/users/rubennorte/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rubennorte/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "## Summary\r\n\r\nReactNativeFeatureFlags and fabricUIManager were introduced in `react-native/react-private-interface` in https://github.com/react/react-native/pull/57940 and https://github.com/react/react-native/pull/58398:\r\n\r\nhttps://github.com/react/react-native/blob/73a76ddced2088d925809432fd6b0503f239dbfe/packages/react-native/src/react-private-interface.js#L74\r\n\r\nhttps://github.com/react/react-native/blob/73a76ddced2088d925809432fd6b0503f239dbfe/packages/react-native/src/react-private-interface.js#L87\r\n\r\nThis migrates the use of globals for those bindings to use the exported values instead.\r\n\r\n## How did you test this change?\r\n\r\nExisting tests and Flow.",
+    "created_at": "2026-09-09T12:00:06Z",
+    "updated_at": "2026-09-09T13:21:54Z",
+    "closed_at": "2026-09-09T13:21:54Z",
+    "merged_at": "2026-09-09T13:21:54Z",
+    "merge_commit_sha": "1d34f91dfde6bba84d08b683aaba164c7194dacb",
+    "assignees": [],
+    "requested_reviewers": [
+      {
+        "login": "huntie",
+        "id": 2547783,
+        "node_id": "MDQ6VXNlcjI1NDc3ODM=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2547783?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/huntie",
+        "html_url": "https://github.com/huntie",
+        "followers_url": "https://api.github.com/users/huntie/followers",
+        "following_url": "https://api.github.com/users/huntie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/huntie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/huntie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/huntie/subscriptions",
+        "organizations_url": "https://api.github.com/users/huntie/orgs",
+        "repos_url": "https://api.github.com/users/huntie/repos",
+        "events_url": "https://api.github.com/users/huntie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/huntie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      {
+        "login": "hoxyq",
+        "id": 28902667,
+        "node_id": "MDQ6VXNlcjI4OTAyNjY3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/28902667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hoxyq",
+        "html_url": "https://github.com/hoxyq",
+        "followers_url": "https://api.github.com/users/hoxyq/followers",
+        "following_url": "https://api.github.com/users/hoxyq/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hoxyq/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hoxyq/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hoxyq/subscriptions",
+        "organizations_url": "https://api.github.com/users/hoxyq/orgs",
+        "repos_url": "https://api.github.com/users/hoxyq/repos",
+        "events_url": "https://api.github.com/users/hoxyq/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hoxyq/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      }
+    ],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 196858374,
+        "node_id": "MDU6TGFiZWwxOTY4NTgzNzQ=",
+        "url": "https://api.github.com/repos/react/react/labels/CLA%20Signed",
+        "name": "CLA Signed",
+        "color": "e7e7e7",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/react/react/pulls/37550/commits",
+    "review_comments_url": "https://api.github.com/repos/react/react/pulls/37550/comments",
+    "review_comment_url": "https://api.github.com/repos/react/react/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/react/react/issues/37550/comments",
+    "statuses_url": "https://api.github.com/repos/react/react/statuses/ed5b897d215339663a28b27a6a250bd9ca0bc439",
+    "head": {
+      "label": "rubennorte:rn-globals-to-private-interface",
+      "ref": "rn-globals-to-private-interface",
+      "sha": "ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "user": {
+        "login": "rubennorte",
+        "id": 117921,
+        "node_id": "MDQ6VXNlcjExNzkyMQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/117921?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/rubennorte",
+        "html_url": "https://github.com/rubennorte",
+        "followers_url": "https://api.github.com/users/rubennorte/followers",
+        "following_url": "https://api.github.com/users/rubennorte/following{/other_user}",
+        "gists_url": "https://api.github.com/users/rubennorte/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/rubennorte/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/rubennorte/subscriptions",
+        "organizations_url": "https://api.github.com/users/rubennorte/orgs",
+        "repos_url": "https://api.github.com/users/rubennorte/repos",
+        "events_url": "https://api.github.com/users/rubennorte/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/rubennorte/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 326428927,
+        "node_id": "MDEwOlJlcG9zaXRvcnkzMjY0Mjg5Mjc=",
+        "name": "react",
+        "full_name": "rubennorte/react",
+        "private": false,
+        "owner": {
+          "login": "rubennorte",
+          "id": 117921,
+          "node_id": "MDQ6VXNlcjExNzkyMQ==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/117921?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/rubennorte",
+          "html_url": "https://github.com/rubennorte",
+          "followers_url": "https://api.github.com/users/rubennorte/followers",
+          "following_url": "https://api.github.com/users/rubennorte/following{/other_user}",
+          "gists_url": "https://api.github.com/users/rubennorte/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/rubennorte/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/rubennorte/subscriptions",
+          "organizations_url": "https://api.github.com/users/rubennorte/orgs",
+          "repos_url": "https://api.github.com/users/rubennorte/repos",
+          "events_url": "https://api.github.com/users/rubennorte/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/rubennorte/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/rubennorte/react",
+        "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+        "fork": true,
+        "url": "https://api.github.com/repos/rubennorte/react",
+        "forks_url": "https://api.github.com/repos/rubennorte/react/forks",
+        "keys_url": "https://api.github.com/repos/rubennorte/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/rubennorte/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/rubennorte/react/teams",
+        "hooks_url": "https://api.github.com/repos/rubennorte/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/rubennorte/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/rubennorte/react/events",
+        "assignees_url": "https://api.github.com/repos/rubennorte/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/rubennorte/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/rubennorte/react/tags",
+        "blobs_url": "https://api.github.com/repos/rubennorte/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/rubennorte/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/rubennorte/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/rubennorte/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/rubennorte/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/rubennorte/react/languages",
+        "stargazers_url": "https://api.github.com/repos/rubennorte/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/rubennorte/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/rubennorte/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/rubennorte/react/subscription",
+        "commits_url": "https://api.github.com/repos/rubennorte/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/rubennorte/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/rubennorte/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/rubennorte/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/rubennorte/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/rubennorte/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/rubennorte/react/merges",
+        "archive_url": "https://api.github.com/repos/rubennorte/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/rubennorte/react/downloads",
+        "issues_url": "https://api.github.com/repos/rubennorte/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/rubennorte/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/rubennorte/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/rubennorte/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/rubennorte/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/rubennorte/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/rubennorte/react/deployments",
+        "created_at": "2021-01-03T14:42:23Z",
+        "updated_at": "2026-09-07T13:26:38Z",
+        "pushed_at": "2026-09-10T15:56:57Z",
+        "git_url": "git://github.com/rubennorte/react.git",
+        "ssh_url": "git@github.com:rubennorte/react.git",
+        "clone_url": "https://github.com/rubennorte/react.git",
+        "svn_url": "https://github.com/rubennorte/react",
+        "homepage": "https://reactjs.org",
+        "size": 177290,
+        "stargazers_count": 2,
+        "watchers_count": 2,
+        "language": "JavaScript",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": true,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 2,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "react:main",
+      "ref": "main",
+      "sha": "4558a1691bf8eeac8c429d5efbbb7b51507b8b7c",
+      "user": {
+        "login": "react",
+        "id": 102812,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/react",
+        "html_url": "https://github.com/react",
+        "followers_url": "https://api.github.com/users/react/followers",
+        "following_url": "https://api.github.com/users/react/following{/other_user}",
+        "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+        "organizations_url": "https://api.github.com/users/react/orgs",
+        "repos_url": "https://api.github.com/users/react/repos",
+        "events_url": "https://api.github.com/users/react/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/react/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 10270250,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMDI3MDI1MA==",
+        "name": "react",
+        "full_name": "react/react",
+        "private": false,
+        "owner": {
+          "login": "react",
+          "id": 102812,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjEwMjgxMg==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/102812?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/react",
+          "html_url": "https://github.com/react",
+          "followers_url": "https://api.github.com/users/react/followers",
+          "following_url": "https://api.github.com/users/react/following{/other_user}",
+          "gists_url": "https://api.github.com/users/react/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/react/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/react/subscriptions",
+          "organizations_url": "https://api.github.com/users/react/orgs",
+          "repos_url": "https://api.github.com/users/react/repos",
+          "events_url": "https://api.github.com/users/react/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/react/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/react/react",
+        "description": "The library for web and native user interfaces.",
+        "fork": false,
+        "url": "https://api.github.com/repos/react/react",
+        "forks_url": "https://api.github.com/repos/react/react/forks",
+        "keys_url": "https://api.github.com/repos/react/react/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/react/react/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/react/react/teams",
+        "hooks_url": "https://api.github.com/repos/react/react/hooks",
+        "issue_events_url": "https://api.github.com/repos/react/react/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/react/react/events",
+        "assignees_url": "https://api.github.com/repos/react/react/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/react/react/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/react/react/tags",
+        "blobs_url": "https://api.github.com/repos/react/react/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/react/react/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/react/react/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/react/react/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/react/react/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/react/react/languages",
+        "stargazers_url": "https://api.github.com/repos/react/react/stargazers",
+        "contributors_url": "https://api.github.com/repos/react/react/contributors",
+        "subscribers_url": "https://api.github.com/repos/react/react/subscribers",
+        "subscription_url": "https://api.github.com/repos/react/react/subscription",
+        "commits_url": "https://api.github.com/repos/react/react/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/react/react/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/react/react/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/react/react/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/react/react/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/react/react/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/react/react/merges",
+        "archive_url": "https://api.github.com/repos/react/react/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/react/react/downloads",
+        "issues_url": "https://api.github.com/repos/react/react/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/react/react/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/react/react/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/react/react/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/react/react/labels{/name}",
+        "releases_url": "https://api.github.com/repos/react/react/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/react/react/deployments",
+        "created_at": "2013-05-24T16:15:54Z",
+        "updated_at": "2026-09-12T07:00:06Z",
+        "pushed_at": "2026-09-11T23:35:47Z",
+        "git_url": "git://github.com/react/react.git",
+        "ssh_url": "org-102812@github.com:react/react.git",
+        "clone_url": "https://github.com/react/react.git",
+        "svn_url": "https://github.com/react/react",
+        "homepage": "https://react.dev",
+        "size": 1084697,
+        "stargazers_count": 250049,
+        "watchers_count": 250049,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": true,
+        "has_discussions": false,
+        "forks_count": 51330,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1369,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "declarative",
+          "frontend",
+          "javascript",
+          "library",
+          "react",
+          "ui"
+        ],
+        "visibility": "public",
+        "forks": 51330,
+        "open_issues": 1369,
+        "watchers": 250049,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/react/react/pulls/37550"
+      },
+      "html": {
+        "href": "https://github.com/react/react/pull/37550"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/react/react/issues/37550"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/react/react/issues/37550/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/react/react/pulls/37550/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/react/react/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/react/react/pulls/37550/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/react/react/statuses/ed5b897d215339663a28b27a6a250bd9ca0bc439"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "rubennorte",
+      "id": 117921,
+      "node_id": "MDQ6VXNlcjExNzkyMQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/117921?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rubennorte",
+      "html_url": "https://github.com/rubennorte",
+      "followers_url": "https://api.github.com/users/rubennorte/followers",
+      "following_url": "https://api.github.com/users/rubennorte/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rubennorte/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rubennorte/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rubennorte/subscriptions",
+      "organizations_url": "https://api.github.com/users/rubennorte/orgs",
+      "repos_url": "https://api.github.com/users/rubennorte/repos",
+      "events_url": "https://api.github.com/users/rubennorte/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rubennorte/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 1,
+    "additions": 182,
+    "deletions": 209,
+    "changed_files": 12
+  },
+  "commits": [
+    {
+      "sha": "ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "node_id": "C_kwDOE3To_9oAKGVkNWI4OTdkMjE1MzM5NjYzYTI4YjI3YTZhMjUwYmQ5Y2EwYmM0Mzk",
+      "commit": {
+        "author": {
+          "name": "Rubén Norte",
+          "email": "rubennorte@meta.com",
+          "date": "2026-09-08T15:28:25Z"
+        },
+        "committer": {
+          "name": "Rubén Norte",
+          "email": "rubennorte@meta.com",
+          "date": "2026-09-08T15:35:05Z"
+        },
+        "message": "[RN] Move RN globals to RN private interface module",
+        "tree": {
+          "sha": "1cb782c7d80f09d1ab4ad246305ac0b964c8a542",
+          "url": "https://api.github.com/repos/react/react/git/trees/1cb782c7d80f09d1ab4ad246305ac0b964c8a542"
+        },
+        "url": "https://api.github.com/repos/react/react/git/commits/ed5b897d215339663a28b27a6a250bd9ca0bc439",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/react/react/commits/ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "html_url": "https://github.com/react/react/commit/ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "comments_url": "https://api.github.com/repos/react/react/commits/ed5b897d215339663a28b27a6a250bd9ca0bc439/comments",
+      "author": {
+        "login": "rubennorte",
+        "id": 117921,
+        "node_id": "MDQ6VXNlcjExNzkyMQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/117921?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/rubennorte",
+        "html_url": "https://github.com/rubennorte",
+        "followers_url": "https://api.github.com/users/rubennorte/followers",
+        "following_url": "https://api.github.com/users/rubennorte/following{/other_user}",
+        "gists_url": "https://api.github.com/users/rubennorte/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/rubennorte/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/rubennorte/subscriptions",
+        "organizations_url": "https://api.github.com/users/rubennorte/orgs",
+        "repos_url": "https://api.github.com/users/rubennorte/repos",
+        "events_url": "https://api.github.com/users/rubennorte/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/rubennorte/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "rubennorte",
+        "id": 117921,
+        "node_id": "MDQ6VXNlcjExNzkyMQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/117921?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/rubennorte",
+        "html_url": "https://github.com/rubennorte",
+        "followers_url": "https://api.github.com/users/rubennorte/followers",
+        "following_url": "https://api.github.com/users/rubennorte/following{/other_user}",
+        "gists_url": "https://api.github.com/users/rubennorte/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/rubennorte/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/rubennorte/subscriptions",
+        "organizations_url": "https://api.github.com/users/rubennorte/orgs",
+        "repos_url": "https://api.github.com/users/rubennorte/repos",
+        "events_url": "https://api.github.com/users/rubennorte/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/rubennorte/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "6c0e1047e392da04bccb36e84c04e1d1412901d6",
+          "url": "https://api.github.com/repos/react/react/commits/6c0e1047e392da04bccb36e84c04e1d1412901d6",
+          "html_url": "https://github.com/react/react/commit/6c0e1047e392da04bccb36e84c04e1d1412901d6"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "4c3843fde24c7fad53233094a1bed6daafcb7ab3",
+      "filename": ".eslintrc.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 7,
+      "changes": 7,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/.eslintrc.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/.eslintrc.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/.eslintrc.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -458,13 +458,6 @@ module.exports = {\n         'eslint-plugin/require-meta-has-suggestions': ERROR,\n       },\n     },\n-    {\n-      files: ['packages/react-native-renderer/**/*.js'],\n-      globals: {\n-        nativeFabricUIManager: 'readonly',\n-        RN$isNativeEventTargetEventDispatchingEnabled: 'readonly',\n-      },\n-    },\n     {\n       files: ['packages/react-server-dom-webpack/**/*.js'],\n       globals: {"
+    },
+    {
+      "sha": "50c52c4d207550c8bc733d1d67e53c845175ac10",
+      "filename": "packages/react-native-renderer/src/ReactFabricGlobalResponderHandler.js",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 2,
+      "changes": 7,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFabricGlobalResponderHandler.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFabricGlobalResponderHandler.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactFabricGlobalResponderHandler.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -7,11 +7,14 @@\n  * @flow\n  */\n \n+// Modules provided by RN:\n+import {fabricUIManager} from 'react-native/react-private-interface';\n+\n const ReactFabricGlobalResponderHandler = {\n   onChange: function (from: any, to: any, blockNativeResponder: boolean) {\n     if (from && from.stateNode) {\n       // equivalent to clearJSResponder\n-      nativeFabricUIManager.setIsJSResponder(\n+      fabricUIManager.setIsJSResponder(\n         from.stateNode.node,\n         false,\n         blockNativeResponder || false,\n@@ -20,7 +23,7 @@ const ReactFabricGlobalResponderHandler = {\n \n     if (to && to.stateNode) {\n       // equivalent to setJSResponder\n-      nativeFabricUIManager.setIsJSResponder(\n+      fabricUIManager.setIsJSResponder(\n         to.stateNode.node,\n         true,\n         blockNativeResponder || false,"
+    },
+    {
+      "sha": "7d6d0d65cf0092c27f4023babb1d624abd5c5ab1",
+      "filename": "packages/react-native-renderer/src/ReactFiberConfigFabric.js",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 1,
+      "changes": 3,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabric.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabric.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabric.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -36,6 +36,7 @@ import {\n   createPublicTextInstance,\n   createAttributePayload,\n   diffAttributePayloads,\n+  fabricUIManager,\n   type PublicInstance as ReactNativePublicInstance,\n   type PublicTextInstance,\n   type PublicRootInstance,\n@@ -61,7 +62,7 @@ const {\n   unstable_IdleEventPriority: FabricIdlePriority,\n   unstable_getCurrentEventPriority: fabricGetCurrentEventPriority,\n   suspendOnActiveViewTransition: fabricSuspendOnActiveViewTransition,\n-} = nativeFabricUIManager;\n+} = fabricUIManager;\n \n import {getClosestInstanceFromNode} from './ReactFabricComponentTree';\n import {compareDocumentPositionForEmptyFragment} from 'shared/ReactDOMFragmentRefShared';"
+    },
+    {
+      "sha": "611f91bef48033a5489a8c95ea6574e6ad44113c",
+      "filename": "packages/react-native-renderer/src/ReactFiberConfigFabricWithViewTransition.js",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 1,
+      "changes": 5,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabricWithViewTransition.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabricWithViewTransition.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabricWithViewTransition.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -18,12 +18,15 @@ import type {\n \n import {allocateTag} from './ReactFiberConfigFabric';\n \n+// Modules provided by RN:\n+import {fabricUIManager} from 'react-native/react-private-interface';\n+\n const {\n   applyViewTransitionName: fabricApplyViewTransitionName,\n   createViewTransitionInstance: fabricCreateViewTransitionInstance,\n   startViewTransition: fabricStartViewTransition,\n   startViewTransitionReadyFinished: fabricStartViewTransitionReadyFinished,\n-} = nativeFabricUIManager;\n+} = fabricUIManager;\n \n export type InstanceMeasurement = {\n   rect: {x: number, y: number, width: number, height: number},"
+    },
+    {
+      "sha": "05e55a47815d6d809ee68dbeefcd4af6ab805bd2",
+      "filename": "packages/react-native-renderer/src/ReactNativeFeatureFlags.js",
+      "status": "modified",
+      "additions": 11,
+      "deletions": 5,
+      "changes": 16,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFeatureFlags.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFeatureFlags.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFeatureFlags.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -7,17 +7,23 @@\n  * @flow\n  */\n \n-// These globals are set by React Native (e.g. in setUpDOM.js, setUpTimers.js)\n-// and provide access to RN's feature flags. We use global functions because we\n-// don't have another mechanism to pass feature flags from RN to React in OSS.\n+// Modules provided by RN:\n+import {ReactNativeFeatureFlags} from 'react-native/react-private-interface';\n+\n+// These accessors are provided by React Native and give us access to RN's\n+// feature flags. Both the object and each accessor on it are treated as\n+// optional so that removing a flag on the React Native side doesn't throw here.\n // Values are lazily evaluated and cached on first access.\n \n let _enableNativeEventTargetEventDispatching: boolean | null = null;\n export function enableNativeEventTargetEventDispatching(): boolean {\n   if (_enableNativeEventTargetEventDispatching == null) {\n+    const isEnabled =\n+      ReactNativeFeatureFlags != null\n+        ? ReactNativeFeatureFlags.enableNativeEventTargetEventDispatching\n+        : null;\n     _enableNativeEventTargetEventDispatching =\n-      typeof RN$isNativeEventTargetEventDispatchingEnabled === 'function' &&\n-      RN$isNativeEventTargetEventDispatchingEnabled();\n+      typeof isEnabled === 'function' && isEnabled();\n   }\n   return _enableNativeEventTargetEventDispatching;\n }"
+    },
+    {
+      "sha": "777d27099221a9830aca955096b73baa676db90d",
+      "filename": "packages/react-native-renderer/src/ReactNativeFiberInspector.js",
+      "status": "modified",
+      "additions": 17,
+      "deletions": 18,
+      "changes": 35,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFiberInspector.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFiberInspector.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFiberInspector.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -16,8 +16,11 @@ import {\n } from 'react-reconciler/src/ReactFiberTreeReflection';\n import getComponentNameFromType from 'shared/getComponentNameFromType';\n import {HostComponent} from 'react-reconciler/src/ReactWorkTags';\n-// Module provided by RN:\n-import {getNodeFromPublicInstance} from 'react-native/react-private-interface';\n+// Modules provided by RN:\n+import {\n+  getNodeFromPublicInstance,\n+  fabricUIManager,\n+} from 'react-native/react-private-interface';\n import {getNodeFromInternalInstanceHandle} from './ReactNativePublicCompat';\n import {getStackByFiberInDevAndProd} from 'react-reconciler/src/ReactFiberComponentStack';\n \n@@ -43,7 +46,7 @@ if (__DEV__) {\n               hostFiber.stateNode.node;\n \n             if (node) {\n-              nativeFabricUIManager.measure(node, callback);\n+              fabricUIManager.measure(node, callback);\n             }\n           },\n         };\n@@ -142,7 +145,7 @@ function getInspectorDataForViewAtPoint(\n     const fabricNode = getNodeFromPublicInstance(inspectedView);\n     if (fabricNode) {\n       // For Fabric we can look up the instance handle directly and measure it.\n-      nativeFabricUIManager.findNodeAtPoint(\n+      fabricUIManager.findNodeAtPoint(\n         fabricNode,\n         locationX,\n         locationY,\n@@ -169,20 +172,16 @@ function getInspectorDataForViewAtPoint(\n           const nativeViewTag =\n             internalInstanceHandle.stateNode.canonical.nativeTag;\n \n-          nativeFabricUIManager.measure(\n-            node,\n-            (x, y, width, height, pageX, pageY) => {\n-              const inspectorData =\n-                getInspectorDataForInstance(closestInstance);\n-              callback({\n-                ...inspectorData,\n-                pointerY: locationY,\n-                frame: {left: pageX, top: pageY, width, height},\n-                touchedViewTag: nativeViewTag,\n-                closestPublicInstance,\n-              });\n-            },\n-          );\n+          fabricUIManager.measure(node, (x, y, width, height, pageX, pageY) => {\n+            const inspectorData = getInspectorDataForInstance(closestInstance);\n+            callback({\n+              ...inspectorData,\n+              pointerY: locationY,\n+              frame: {left: pageX, top: pageY, width, height},\n+              touchedViewTag: nativeViewTag,\n+              closestPublicInstance,\n+            });\n+          });\n         },\n       );\n     } else {"
+    },
+    {
+      "sha": "b8b774935d2bd7971550084c598b4ef32832f775",
+      "filename": "packages/react-native-renderer/src/ReactNativePublicCompat.js",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 2,
+      "changes": 5,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativePublicCompat.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativePublicCompat.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactNativePublicCompat.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -16,6 +16,7 @@ import {\n   getNodeFromPublicInstance,\n   getNativeTagFromPublicInstance,\n   getInternalInstanceHandleFromPublicInstance,\n+  fabricUIManager,\n } from 'react-native/react-private-interface';\n \n import {\n@@ -148,7 +149,7 @@ export function dispatchCommand(\n   const node = getNodeFromPublicInstance(handle);\n \n   if (node != null) {\n-    nativeFabricUIManager.dispatchCommand(node, command, args);\n+    fabricUIManager.dispatchCommand(node, command, args);\n   } else {\n     if (__DEV__) {\n       console.error(\n@@ -163,7 +164,7 @@ export function sendAccessibilityEvent(handle: any, eventType: string) {\n   const node = getNodeFromPublicInstance(handle);\n \n   if (node != null) {\n-    nativeFabricUIManager.sendAccessibilityEvent(node, eventType);\n+    fabricUIManager.sendAccessibilityEvent(node, eventType);\n   } else {\n     if (__DEV__) {\n       console.error("
+    },
+    {
+      "sha": "97056c34d6ec5c0f6255e2be68c5a05814028db3",
+      "filename": "packages/react-native-renderer/src/__mocks__/react-native/Libraries/ReactPrivate/ReactNativeFeatureFlags.js",
+      "status": "added",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativeFeatureFlags.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativeFeatureFlags.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativeFeatureFlags.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -0,0 +1,14 @@\n+/**\n+ * Copyright (c) Meta Platforms, Inc. and affiliates.\n+ *\n+ * This source code is licensed under the MIT license found in the\n+ * LICENSE file in the root directory of this source tree.\n+ *\n+ * @flow strict-local\n+ */\n+\n+module.exports = {\n+  enableNativeEventTargetEventDispatching(): boolean {\n+    return false;\n+  },\n+};"
+    },
+    {
+      "sha": "5d5f5d48992e9e0b1b7bafd850cf23803e393aba",
+      "filename": "packages/react-native-renderer/src/__mocks__/react-native/Libraries/ReactPrivate/ReactNativePrivateInterface.js",
+      "status": "modified",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativePrivateInterface.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativePrivateInterface.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativePrivateInterface.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -8,9 +8,15 @@\n  */\n \n module.exports = {\n+  get fabricUIManager() {\n+    return global.nativeFabricUIManager;\n+  },\n   get ReactFiberErrorDialog() {\n     return require('./ReactFiberErrorDialog');\n   },\n+  get ReactNativeFeatureFlags() {\n+    return require('./ReactNativeFeatureFlags');\n+  },\n   get ReactNativeViewConfigRegistry() {\n     return require('./ReactNativeViewConfigRegistry');\n   },"
+    },
+    {
+      "sha": "4025a4eeb4c5f43fb21d0fc11640a4a1c87cae3e",
+      "filename": "packages/react-native-renderer/src/__tests__/ReactFabric-test.internal.js",
+      "status": "modified",
+      "additions": 111,
+      "deletions": 161,
+      "changes": 272,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__tests__%2FReactFabric-test.internal.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__tests__%2FReactFabric-test.internal.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2F__tests__%2FReactFabric-test.internal.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -13,6 +13,7 @@\n let React;\n let ReactFabric;\n let ReactNativePrivateInterface;\n+let fabricUIManager;\n let createReactNativeComponentClass;\n let StrictMode;\n let act;\n@@ -36,6 +37,7 @@ describe('ReactFabric', () => {\n     StrictMode = React.StrictMode;\n     ReactFabric = require('react-native-renderer/fabric');\n     ReactNativePrivateInterface = require('react-native/react-private-interface');\n+    fabricUIManager = ReactNativePrivateInterface.fabricUIManager;\n     createReactNativeComponentClass =\n       require('react-native/react-private-interface')\n         .ReactNativeViewConfigRegistry.register;\n@@ -51,9 +53,9 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<View foo=\"test\" />, 1, null, true);\n     });\n-    expect(nativeFabricUIManager.createNode).toHaveBeenCalled();\n-    expect(nativeFabricUIManager.appendChild).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.createNode).toHaveBeenCalled();\n+    expect(fabricUIManager.appendChild).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n   });\n \n   it('should be able to create and update a native component', async () => {\n@@ -64,28 +66,24 @@ describe('ReactFabric', () => {\n \n     const firstNode = {};\n \n-    nativeFabricUIManager.createNode.mockReturnValue(firstNode);\n+    fabricUIManager.createNode.mockReturnValue(firstNode);\n \n     await act(() => {\n       ReactFabric.render(<View foo=\"foo\" />, 11, null, true);\n     });\n \n-    expect(nativeFabricUIManager.createNode).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.createNode).toHaveBeenCalledTimes(1);\n \n     await act(() => {\n       ReactFabric.render(<View foo=\"bar\" />, 11, null, true);\n     });\n \n-    expect(nativeFabricUIManager.createNode).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps.mock.calls[0][0]).toBe(\n+    expect(fabricUIManager.createNode).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps.mock.calls[0][0]).toBe(\n       firstNode,\n     );\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewProps.mock.calls[0][1],\n-    ).toEqual({\n+    expect(fabricUIManager.cloneNodeWithNewProps.mock.calls[0][1]).toEqual({\n       foo: 'bar',\n     });\n   });\n@@ -99,71 +97,55 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<Text foo=\"a\">1</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // If no properties have changed, we shouldn't call cloneNode.\n     await act(() => {\n       ReactFabric.render(<Text foo=\"a\">1</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // Only call cloneNode for the changed property (and not for text).\n     await act(() => {\n       ReactFabric.render(<Text foo=\"b\">1</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // Only call cloneNode for the changed text (and no other properties).\n     await act(() => {\n       ReactFabric.render(<Text foo=\"b\">2</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // Call cloneNode for both changed text and properties.\n     await act(() => {\n       ReactFabric.render(<Text foo=\"c\">3</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).toHaveBeenCalledTimes(1);\n   });\n \n@@ -183,13 +165,11 @@ describe('ReactFabric', () => {\n         true,\n       );\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     jest\n@@ -206,12 +186,10 @@ describe('ReactFabric', () => {\n         true,\n       );\n     });\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewProps.mock.calls[0][1],\n-    ).toEqual({\n+    expect(fabricUIManager.cloneNodeWithNewProps.mock.calls[0][1]).toEqual({\n       bar: 'b',\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTText {\"foo\":\"a\",\"bar\":\"b\"}\n    RCTRawText {\"text\":\"1\"}`);\n \n@@ -232,13 +210,11 @@ describe('ReactFabric', () => {\n       ? 2\n       : 1;\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps.mock.calls[0][\n-        argIndex\n-      ],\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps.mock.calls[0][argIndex],\n     ).toEqual({\n       foo: 'b',\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTText {\"foo\":\"b\",\"bar\":\"b\"}\n    RCTRawText {\"text\":\"2\"}`);\n   });\n@@ -258,41 +234,36 @@ describe('ReactFabric', () => {\n     await act(() =>\n       ReactFabric.render(<Component foo={true} />, 11, null, true),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     jest.clearAllMocks();\n \n     await act(() =>\n       ReactFabric.render(<Component foo={false} />, 11, null, true),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledWith(\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledWith(\n       expect.anything(),\n       {foo: false},\n     );\n \n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledTimes(1);\n     if (gate(flags => flags.passChildrenWhenCloningPersistedNodes)) {\n-      expect(\n-        nativeFabricUIManager.cloneNodeWithNewChildren,\n-      ).toHaveBeenCalledWith(expect.anything(), [\n-        expect.objectContaining({props: {foo: false}}),\n-      ]);\n-      expect(nativeFabricUIManager.appendChild).not.toHaveBeenCalled();\n+      expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledWith(\n+        expect.anything(),\n+        [expect.objectContaining({props: {foo: false}})],\n+      );\n+      expect(fabricUIManager.appendChild).not.toHaveBeenCalled();\n     } else {\n-      expect(\n-        nativeFabricUIManager.cloneNodeWithNewChildren,\n-      ).toHaveBeenCalledWith(expect.anything());\n-      expect(nativeFabricUIManager.appendChild).toHaveBeenCalledTimes(1);\n+      expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledWith(\n+        expect.anything(),\n+      );\n+      expect(fabricUIManager.appendChild).toHaveBeenCalledTimes(1);\n     }\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n   });\n \n   it('should not clone nodes when layout effects are used', async () => {\n@@ -316,7 +287,7 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     jest.clearAllMocks();\n \n     await act(() =>\n@@ -329,15 +300,13 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).not.toHaveBeenCalled();\n   });\n \n   it('should not clone nodes when insertion effects are used', async () => {\n@@ -361,7 +330,7 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     jest.clearAllMocks();\n \n     await act(() =>\n@@ -374,15 +343,13 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).not.toHaveBeenCalled();\n   });\n \n   it('should not clone nodes when useImperativeHandle is used', async () => {\n@@ -408,7 +375,7 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     expect(ref.current.greet()).toBe('hello');\n     jest.clearAllMocks();\n \n@@ -422,15 +389,13 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).not.toHaveBeenCalled();\n     expect(ref.current.greet()).toBe('hello');\n   });\n \n@@ -440,7 +405,7 @@ describe('ReactFabric', () => {\n       uiViewClassName: 'RCTView',\n     }));\n \n-    nativeFabricUIManager.dispatchCommand.mockClear();\n+    fabricUIManager.dispatchCommand.mockClear();\n \n     let viewRef;\n     await act(() => {\n@@ -456,10 +421,10 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n+    expect(fabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n     ReactFabric.dispatchCommand(viewRef, 'updateCommand', [10, 20]);\n-    expect(nativeFabricUIManager.dispatchCommand).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.dispatchCommand).toHaveBeenCalledWith(\n+    expect(fabricUIManager.dispatchCommand).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.dispatchCommand).toHaveBeenCalledWith(\n       expect.any(Object),\n       'updateCommand',\n       [10, 20],\n@@ -473,7 +438,7 @@ describe('ReactFabric', () => {\n       }\n     }\n \n-    nativeFabricUIManager.dispatchCommand.mockReset();\n+    fabricUIManager.dispatchCommand.mockReset();\n \n     let viewRef;\n     await act(() => {\n@@ -489,11 +454,11 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n+    expect(fabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n     ReactFabric.dispatchCommand(viewRef, 'updateCommand', [10, 20]);\n     assertConsoleErrorDev([DISPATCH_COMMAND_REQUIRES_HOST_COMPONENT]);\n \n-    expect(nativeFabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n+    expect(fabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n   });\n \n   it('should call sendAccessibilityEvent for native refs', async () => {\n@@ -502,7 +467,7 @@ describe('ReactFabric', () => {\n       uiViewClassName: 'RCTView',\n     }));\n \n-    nativeFabricUIManager.sendAccessibilityEvent.mockClear();\n+    fabricUIManager.sendAccessibilityEvent.mockClear();\n \n     let viewRef;\n     await act(() => {\n@@ -518,12 +483,10 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n     ReactFabric.sendAccessibilityEvent(viewRef, 'focus');\n-    expect(nativeFabricUIManager.sendAccessibilityEvent).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(nativeFabricUIManager.sendAccessibilityEvent).toHaveBeenCalledWith(\n+    expect(fabricUIManager.sendAccessibilityEvent).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.sendAccessibilityEvent).toHaveBeenCalledWith(\n       expect.any(Object),\n       'focus',\n     );\n@@ -536,7 +499,7 @@ describe('ReactFabric', () => {\n       }\n     }\n \n-    nativeFabricUIManager.sendAccessibilityEvent.mockReset();\n+    fabricUIManager.sendAccessibilityEvent.mockReset();\n \n     let viewRef;\n     await act(() => {\n@@ -552,11 +515,11 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n     ReactFabric.sendAccessibilityEvent(viewRef, 'eventTypeName');\n     assertConsoleErrorDev([SEND_ACCESSIBILITY_EVENT_REQUIRES_HOST_COMPONENT]);\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n   });\n \n   it('calls the callback with the correct instance and returns null', async () => {\n@@ -637,7 +600,7 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<Component chars={before} />, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTView {}\n    RCTView {\"title\":\"a\"}\n    RCTView {\"title\":\"b\"}\n@@ -663,7 +626,7 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<Component chars={after} />, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTView {}\n    RCTView {\"title\":\"m\"}\n    RCTView {\"title\":\"x\"}\n@@ -724,7 +687,7 @@ describe('ReactFabric', () => {\n         true,\n       );\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(\n       `11\n  RCTView {}\n    RCTView {}\n@@ -757,7 +720,7 @@ describe('ReactFabric', () => {\n         chars: after,\n       });\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTView {}\n    RCTView {}\n      RCTView {\"title\":\"m\"}\n@@ -806,10 +769,10 @@ describe('ReactFabric', () => {\n     }));\n \n     const snapshots = [];\n-    nativeFabricUIManager.completeRoot.mockImplementation(\n+    fabricUIManager.completeRoot.mockImplementation(\n       function (rootTag, newChildSet) {\n         snapshots.push(\n-          nativeFabricUIManager.__dumpChildSetForJestTestsOnly(newChildSet),\n+          fabricUIManager.__dumpChildSetForJestTestsOnly(newChildSet),\n         );\n       },\n     );\n@@ -943,15 +906,11 @@ describe('ReactFabric', () => {\n       ReactFabric.render(<View onTouchStart={touchStart} />, 11, null, true);\n     });\n \n-    expect(nativeFabricUIManager.createNode.mock.calls.length).toBe(1);\n-    expect(nativeFabricUIManager.registerEventHandler.mock.calls.length).toBe(\n-      1,\n-    );\n+    expect(fabricUIManager.createNode.mock.calls.length).toBe(1);\n+    expect(fabricUIManager.registerEventHandler.mock.calls.length).toBe(1);\n \n-    const [, , , , instanceHandle] =\n-      nativeFabricUIManager.createNode.mock.calls[0];\n-    const [dispatchEvent] =\n-      nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+    const [, , , , instanceHandle] = fabricUIManager.createNode.mock.calls[0];\n+    const [dispatchEvent] = fabricUIManager.registerEventHandler.mock.calls[0];\n \n     const touchEvent = {\n       touches: [],\n@@ -1037,14 +996,11 @@ describe('ReactFabric', () => {\n         );\n       });\n \n-      expect(nativeFabricUIManager.createNode.mock.calls.length).toBe(2);\n-      expect(nativeFabricUIManager.registerEventHandler.mock.calls.length).toBe(\n-        1,\n-      );\n-      const [, , , , childInstance] =\n-        nativeFabricUIManager.createNode.mock.calls[0];\n+      expect(fabricUIManager.createNode.mock.calls.length).toBe(2);\n+      expect(fabricUIManager.registerEventHandler.mock.calls.length).toBe(1);\n+      const [, , , , childInstance] = fabricUIManager.createNode.mock.calls[0];\n       const [dispatchEvent] =\n-        nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+        fabricUIManager.registerEventHandler.mock.calls[0];\n \n       dispatchEvent(childInstance, 'topDefaultBubblingEvent', event);\n       expect(targetBubble).toHaveBeenCalledTimes(1);\n@@ -1092,7 +1048,7 @@ describe('ReactFabric', () => {\n \n     function getViewById(id) {\n       const [reactTag, , , , instanceHandle] =\n-        nativeFabricUIManager.createNode.mock.calls.find(\n+        fabricUIManager.createNode.mock.calls.find(\n           args => args[3] && args[3].id === id,\n         );\n \n@@ -1138,8 +1094,7 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    const [dispatchEvent] =\n-      nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+    const [dispatchEvent] = fabricUIManager.registerEventHandler.mock.calls[0];\n \n     const preexistingEvent = {};\n     global.event = preexistingEvent;\n@@ -1194,7 +1149,7 @@ describe('ReactFabric', () => {\n \n     function getViewById(id) {\n       const [reactTag, , , , instanceHandle] =\n-        nativeFabricUIManager.createNode.mock.calls.find(\n+        fabricUIManager.createNode.mock.calls.find(\n           args => args[3] && args[3].id === id,\n         );\n \n@@ -1241,8 +1196,7 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    const [dispatchEvent] =\n-      nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+    const [dispatchEvent] = fabricUIManager.registerEventHandler.mock.calls[0];\n \n     dispatchEvent(getViewById('default').instanceHandle, 'topTouchStart', {\n       target: getViewById('default').reactTag,\n@@ -1511,7 +1465,7 @@ describe('ReactFabric', () => {\n       uiViewClassName: 'RCTView',\n     }));\n \n-    nativeFabricUIManager.sendAccessibilityEvent.mockReset();\n+    fabricUIManager.sendAccessibilityEvent.mockReset();\n \n     let viewRef;\n     await act(() => {\n@@ -1540,7 +1494,7 @@ describe('ReactFabric', () => {\n         'native component. Use React.forwardRef to get access to the underlying native component',\n     ]);\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n   });\n \n   it('getNodeFromInternalInstanceHandle should return the correct shadow node', async () => {\n@@ -1553,12 +1507,10 @@ describe('ReactFabric', () => {\n       ReactFabric.render(<View foo=\"test\" />, 1, null, true);\n     });\n \n-    const internalInstanceHandle =\n-      nativeFabricUIManager.createNode.mock.calls[0][4];\n+    const internalInstanceHandle = fabricUIManager.createNode.mock.calls[0][4];\n     expect(internalInstanceHandle).toEqual(expect.any(Object));\n \n-    const expectedShadowNode =\n-      nativeFabricUIManager.createNode.mock.results[0].value;\n+    const expectedShadowNode = fabricUIManager.createNode.mock.results[0].value;\n     expect(expectedShadowNode).toEqual(expect.any(Object));\n \n     const node = ReactFabric.getNodeFromInternalInstanceHandle(\n@@ -1588,8 +1540,7 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    const internalInstanceHandle =\n-      nativeFabricUIManager.createNode.mock.calls[0][4];\n+    const internalInstanceHandle = fabricUIManager.createNode.mock.calls[0][4];\n     expect(internalInstanceHandle).toEqual(expect.any(Object));\n \n     const publicInstance =\n@@ -1622,8 +1573,7 @@ describe('ReactFabric', () => {\n     });\n \n     // Access the internal instance handle used to create the text node.\n-    const internalInstanceHandle =\n-      nativeFabricUIManager.createNode.mock.calls[0][4];\n+    const internalInstanceHandle = fabricUIManager.createNode.mock.calls[0][4];\n     expect(internalInstanceHandle).toEqual(expect.any(Object));\n \n     // Text public instances should be created lazily."
+    },
+    {
+      "sha": "68d003e4138b76d361cebf14a256a2376a8a0581",
+      "filename": "scripts/flow/react-native-host-hooks.js",
+      "status": "modified",
+      "additions": 9,
+      "deletions": 8,
+      "changes": 17,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Fflow%2Freact-native-host-hooks.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Fflow%2Freact-native-host-hooks.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/scripts%2Fflow%2Freact-native-host-hooks.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -55,6 +55,14 @@ declare opaque type __PublicTextInstance;\n declare opaque type __PublicRootInstance;\n \n declare module 'react-native/react-private-interface' {\n+  declare export type FabricUIManager = __FabricUIManager;\n+  declare export const fabricUIManager: __FabricUIManager;\n+  // Feature flags owned by React Native. Each accessor is optional so that\n+  // removing a flag on the React Native side doesn't throw here.\n+  declare export interface ReactNativeFeatureFlags {\n+    +enableNativeEventTargetEventDispatching?: () => boolean;\n+  }\n+  declare export const ReactNativeFeatureFlags: ReactNativeFeatureFlags;\n   declare export function deepFreezeAndThrowOnMutationInDev<T>(obj: T): T;\n   declare export const ReactFiberErrorDialog: {\n     showErrorDialog: (error: __CapturedError) => boolean,\n@@ -127,15 +135,8 @@ declare module 'react-native' {\n   declare export type MeasureOnSuccessCallback = __MeasureOnSuccessCallback;\n }\n \n-// eslint-disable-next-line no-unused-vars\n-declare const RN$isNativeEventTargetEventDispatchingEnabled:\n-  | (() => boolean)\n-  | void;\n-\n-// This is needed for a short term solution.\n // See https://github.com/facebook/react/pull/15490 for more info\n-// eslint-disable-next-line no-unused-vars\n-declare const nativeFabricUIManager: {\n+type __FabricUIManager = {\n   createNode: (\n     reactTag: number,\n     viewName: string,"
+    },
+    {
+      "sha": "1c3821a52198aabfbc2cfc3c97f951052d3267a4",
+      "filename": "scripts/rollup/validate/eslintrc.rn.js",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 4,
+      "changes": 4,
+      "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Frollup%2Fvalidate%2Feslintrc.rn.js",
+      "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Frollup%2Fvalidate%2Feslintrc.rn.js",
+      "contents_url": "https://api.github.com/repos/react/react/contents/scripts%2Frollup%2Fvalidate%2Feslintrc.rn.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "patch": "@@ -43,10 +43,6 @@ module.exports = {\n     __REACT_DEVTOOLS_GLOBAL_HOOK__: 'readonly',\n     // FB\n     __DEV__: 'readonly',\n-    // Fabric. See https://github.com/facebook/react/pull/15490\n-    // for more information\n-    nativeFabricUIManager: 'readonly',\n-    RN$isNativeEventTargetEventDispatchingEnabled: 'readonly',\n     // Trusted Types\n     trustedTypes: 'readonly',\n     // RN supports this"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "html_url": "https://github.com/react/react/commit/ed5b897d215339663a28b27a6a250bd9ca0bc439",
+      "commit": {
+        "author": {
+          "name": "Rubén Norte",
+          "email": "rubennorte@meta.com",
+          "date": "2026-09-08T15:28:25Z"
+        },
+        "committer": {
+          "name": "Rubén Norte",
+          "email": "rubennorte@meta.com",
+          "date": "2026-09-08T15:35:05Z"
+        },
+        "message": "[RN] Move RN globals to RN private interface module"
+      },
+      "parents": [
+        {
+          "sha": "6c0e1047e392da04bccb36e84c04e1d1412901d6",
+          "url": "https://api.github.com/repos/react/react/commits/6c0e1047e392da04bccb36e84c04e1d1412901d6",
+          "html_url": "https://github.com/react/react/commit/6c0e1047e392da04bccb36e84c04e1d1412901d6"
+        }
+      ],
+      "stats": {
+        "total": 391,
+        "additions": 182,
+        "deletions": 209
+      },
+      "files": [
+        {
+          "sha": "4c3843fde24c7fad53233094a1bed6daafcb7ab3",
+          "filename": ".eslintrc.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 7,
+          "changes": 7,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/.eslintrc.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/.eslintrc.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/.eslintrc.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -458,13 +458,6 @@ module.exports = {\n         'eslint-plugin/require-meta-has-suggestions': ERROR,\n       },\n     },\n-    {\n-      files: ['packages/react-native-renderer/**/*.js'],\n-      globals: {\n-        nativeFabricUIManager: 'readonly',\n-        RN$isNativeEventTargetEventDispatchingEnabled: 'readonly',\n-      },\n-    },\n     {\n       files: ['packages/react-server-dom-webpack/**/*.js'],\n       globals: {"
+        },
+        {
+          "sha": "50c52c4d207550c8bc733d1d67e53c845175ac10",
+          "filename": "packages/react-native-renderer/src/ReactFabricGlobalResponderHandler.js",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 2,
+          "changes": 7,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFabricGlobalResponderHandler.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFabricGlobalResponderHandler.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactFabricGlobalResponderHandler.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -7,11 +7,14 @@\n  * @flow\n  */\n \n+// Modules provided by RN:\n+import {fabricUIManager} from 'react-native/react-private-interface';\n+\n const ReactFabricGlobalResponderHandler = {\n   onChange: function (from: any, to: any, blockNativeResponder: boolean) {\n     if (from && from.stateNode) {\n       // equivalent to clearJSResponder\n-      nativeFabricUIManager.setIsJSResponder(\n+      fabricUIManager.setIsJSResponder(\n         from.stateNode.node,\n         false,\n         blockNativeResponder || false,\n@@ -20,7 +23,7 @@ const ReactFabricGlobalResponderHandler = {\n \n     if (to && to.stateNode) {\n       // equivalent to setJSResponder\n-      nativeFabricUIManager.setIsJSResponder(\n+      fabricUIManager.setIsJSResponder(\n         to.stateNode.node,\n         true,\n         blockNativeResponder || false,"
+        },
+        {
+          "sha": "7d6d0d65cf0092c27f4023babb1d624abd5c5ab1",
+          "filename": "packages/react-native-renderer/src/ReactFiberConfigFabric.js",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 1,
+          "changes": 3,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabric.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabric.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabric.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -36,6 +36,7 @@ import {\n   createPublicTextInstance,\n   createAttributePayload,\n   diffAttributePayloads,\n+  fabricUIManager,\n   type PublicInstance as ReactNativePublicInstance,\n   type PublicTextInstance,\n   type PublicRootInstance,\n@@ -61,7 +62,7 @@ const {\n   unstable_IdleEventPriority: FabricIdlePriority,\n   unstable_getCurrentEventPriority: fabricGetCurrentEventPriority,\n   suspendOnActiveViewTransition: fabricSuspendOnActiveViewTransition,\n-} = nativeFabricUIManager;\n+} = fabricUIManager;\n \n import {getClosestInstanceFromNode} from './ReactFabricComponentTree';\n import {compareDocumentPositionForEmptyFragment} from 'shared/ReactDOMFragmentRefShared';"
+        },
+        {
+          "sha": "611f91bef48033a5489a8c95ea6574e6ad44113c",
+          "filename": "packages/react-native-renderer/src/ReactFiberConfigFabricWithViewTransition.js",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabricWithViewTransition.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabricWithViewTransition.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactFiberConfigFabricWithViewTransition.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -18,12 +18,15 @@ import type {\n \n import {allocateTag} from './ReactFiberConfigFabric';\n \n+// Modules provided by RN:\n+import {fabricUIManager} from 'react-native/react-private-interface';\n+\n const {\n   applyViewTransitionName: fabricApplyViewTransitionName,\n   createViewTransitionInstance: fabricCreateViewTransitionInstance,\n   startViewTransition: fabricStartViewTransition,\n   startViewTransitionReadyFinished: fabricStartViewTransitionReadyFinished,\n-} = nativeFabricUIManager;\n+} = fabricUIManager;\n \n export type InstanceMeasurement = {\n   rect: {x: number, y: number, width: number, height: number},"
+        },
+        {
+          "sha": "05e55a47815d6d809ee68dbeefcd4af6ab805bd2",
+          "filename": "packages/react-native-renderer/src/ReactNativeFeatureFlags.js",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 5,
+          "changes": 16,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFeatureFlags.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFeatureFlags.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFeatureFlags.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -7,17 +7,23 @@\n  * @flow\n  */\n \n-// These globals are set by React Native (e.g. in setUpDOM.js, setUpTimers.js)\n-// and provide access to RN's feature flags. We use global functions because we\n-// don't have another mechanism to pass feature flags from RN to React in OSS.\n+// Modules provided by RN:\n+import {ReactNativeFeatureFlags} from 'react-native/react-private-interface';\n+\n+// These accessors are provided by React Native and give us access to RN's\n+// feature flags. Both the object and each accessor on it are treated as\n+// optional so that removing a flag on the React Native side doesn't throw here.\n // Values are lazily evaluated and cached on first access.\n \n let _enableNativeEventTargetEventDispatching: boolean | null = null;\n export function enableNativeEventTargetEventDispatching(): boolean {\n   if (_enableNativeEventTargetEventDispatching == null) {\n+    const isEnabled =\n+      ReactNativeFeatureFlags != null\n+        ? ReactNativeFeatureFlags.enableNativeEventTargetEventDispatching\n+        : null;\n     _enableNativeEventTargetEventDispatching =\n-      typeof RN$isNativeEventTargetEventDispatchingEnabled === 'function' &&\n-      RN$isNativeEventTargetEventDispatchingEnabled();\n+      typeof isEnabled === 'function' && isEnabled();\n   }\n   return _enableNativeEventTargetEventDispatching;\n }"
+        },
+        {
+          "sha": "777d27099221a9830aca955096b73baa676db90d",
+          "filename": "packages/react-native-renderer/src/ReactNativeFiberInspector.js",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 18,
+          "changes": 35,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFiberInspector.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFiberInspector.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactNativeFiberInspector.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -16,8 +16,11 @@ import {\n } from 'react-reconciler/src/ReactFiberTreeReflection';\n import getComponentNameFromType from 'shared/getComponentNameFromType';\n import {HostComponent} from 'react-reconciler/src/ReactWorkTags';\n-// Module provided by RN:\n-import {getNodeFromPublicInstance} from 'react-native/react-private-interface';\n+// Modules provided by RN:\n+import {\n+  getNodeFromPublicInstance,\n+  fabricUIManager,\n+} from 'react-native/react-private-interface';\n import {getNodeFromInternalInstanceHandle} from './ReactNativePublicCompat';\n import {getStackByFiberInDevAndProd} from 'react-reconciler/src/ReactFiberComponentStack';\n \n@@ -43,7 +46,7 @@ if (__DEV__) {\n               hostFiber.stateNode.node;\n \n             if (node) {\n-              nativeFabricUIManager.measure(node, callback);\n+              fabricUIManager.measure(node, callback);\n             }\n           },\n         };\n@@ -142,7 +145,7 @@ function getInspectorDataForViewAtPoint(\n     const fabricNode = getNodeFromPublicInstance(inspectedView);\n     if (fabricNode) {\n       // For Fabric we can look up the instance handle directly and measure it.\n-      nativeFabricUIManager.findNodeAtPoint(\n+      fabricUIManager.findNodeAtPoint(\n         fabricNode,\n         locationX,\n         locationY,\n@@ -169,20 +172,16 @@ function getInspectorDataForViewAtPoint(\n           const nativeViewTag =\n             internalInstanceHandle.stateNode.canonical.nativeTag;\n \n-          nativeFabricUIManager.measure(\n-            node,\n-            (x, y, width, height, pageX, pageY) => {\n-              const inspectorData =\n-                getInspectorDataForInstance(closestInstance);\n-              callback({\n-                ...inspectorData,\n-                pointerY: locationY,\n-                frame: {left: pageX, top: pageY, width, height},\n-                touchedViewTag: nativeViewTag,\n-                closestPublicInstance,\n-              });\n-            },\n-          );\n+          fabricUIManager.measure(node, (x, y, width, height, pageX, pageY) => {\n+            const inspectorData = getInspectorDataForInstance(closestInstance);\n+            callback({\n+              ...inspectorData,\n+              pointerY: locationY,\n+              frame: {left: pageX, top: pageY, width, height},\n+              touchedViewTag: nativeViewTag,\n+              closestPublicInstance,\n+            });\n+          });\n         },\n       );\n     } else {"
+        },
+        {
+          "sha": "b8b774935d2bd7971550084c598b4ef32832f775",
+          "filename": "packages/react-native-renderer/src/ReactNativePublicCompat.js",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 2,
+          "changes": 5,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativePublicCompat.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2FReactNativePublicCompat.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2FReactNativePublicCompat.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -16,6 +16,7 @@ import {\n   getNodeFromPublicInstance,\n   getNativeTagFromPublicInstance,\n   getInternalInstanceHandleFromPublicInstance,\n+  fabricUIManager,\n } from 'react-native/react-private-interface';\n \n import {\n@@ -148,7 +149,7 @@ export function dispatchCommand(\n   const node = getNodeFromPublicInstance(handle);\n \n   if (node != null) {\n-    nativeFabricUIManager.dispatchCommand(node, command, args);\n+    fabricUIManager.dispatchCommand(node, command, args);\n   } else {\n     if (__DEV__) {\n       console.error(\n@@ -163,7 +164,7 @@ export function sendAccessibilityEvent(handle: any, eventType: string) {\n   const node = getNodeFromPublicInstance(handle);\n \n   if (node != null) {\n-    nativeFabricUIManager.sendAccessibilityEvent(node, eventType);\n+    fabricUIManager.sendAccessibilityEvent(node, eventType);\n   } else {\n     if (__DEV__) {\n       console.error("
+        },
+        {
+          "sha": "97056c34d6ec5c0f6255e2be68c5a05814028db3",
+          "filename": "packages/react-native-renderer/src/__mocks__/react-native/Libraries/ReactPrivate/ReactNativeFeatureFlags.js",
+          "status": "added",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativeFeatureFlags.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativeFeatureFlags.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativeFeatureFlags.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -0,0 +1,14 @@\n+/**\n+ * Copyright (c) Meta Platforms, Inc. and affiliates.\n+ *\n+ * This source code is licensed under the MIT license found in the\n+ * LICENSE file in the root directory of this source tree.\n+ *\n+ * @flow strict-local\n+ */\n+\n+module.exports = {\n+  enableNativeEventTargetEventDispatching(): boolean {\n+    return false;\n+  },\n+};"
+        },
+        {
+          "sha": "5d5f5d48992e9e0b1b7bafd850cf23803e393aba",
+          "filename": "packages/react-native-renderer/src/__mocks__/react-native/Libraries/ReactPrivate/ReactNativePrivateInterface.js",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativePrivateInterface.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativePrivateInterface.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2F__mocks__%2Freact-native%2FLibraries%2FReactPrivate%2FReactNativePrivateInterface.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -8,9 +8,15 @@\n  */\n \n module.exports = {\n+  get fabricUIManager() {\n+    return global.nativeFabricUIManager;\n+  },\n   get ReactFiberErrorDialog() {\n     return require('./ReactFiberErrorDialog');\n   },\n+  get ReactNativeFeatureFlags() {\n+    return require('./ReactNativeFeatureFlags');\n+  },\n   get ReactNativeViewConfigRegistry() {\n     return require('./ReactNativeViewConfigRegistry');\n   },"
+        },
+        {
+          "sha": "4025a4eeb4c5f43fb21d0fc11640a4a1c87cae3e",
+          "filename": "packages/react-native-renderer/src/__tests__/ReactFabric-test.internal.js",
+          "status": "modified",
+          "additions": 111,
+          "deletions": 161,
+          "changes": 272,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__tests__%2FReactFabric-test.internal.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/packages%2Freact-native-renderer%2Fsrc%2F__tests__%2FReactFabric-test.internal.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/packages%2Freact-native-renderer%2Fsrc%2F__tests__%2FReactFabric-test.internal.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -13,6 +13,7 @@\n let React;\n let ReactFabric;\n let ReactNativePrivateInterface;\n+let fabricUIManager;\n let createReactNativeComponentClass;\n let StrictMode;\n let act;\n@@ -36,6 +37,7 @@ describe('ReactFabric', () => {\n     StrictMode = React.StrictMode;\n     ReactFabric = require('react-native-renderer/fabric');\n     ReactNativePrivateInterface = require('react-native/react-private-interface');\n+    fabricUIManager = ReactNativePrivateInterface.fabricUIManager;\n     createReactNativeComponentClass =\n       require('react-native/react-private-interface')\n         .ReactNativeViewConfigRegistry.register;\n@@ -51,9 +53,9 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<View foo=\"test\" />, 1, null, true);\n     });\n-    expect(nativeFabricUIManager.createNode).toHaveBeenCalled();\n-    expect(nativeFabricUIManager.appendChild).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.createNode).toHaveBeenCalled();\n+    expect(fabricUIManager.appendChild).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n   });\n \n   it('should be able to create and update a native component', async () => {\n@@ -64,28 +66,24 @@ describe('ReactFabric', () => {\n \n     const firstNode = {};\n \n-    nativeFabricUIManager.createNode.mockReturnValue(firstNode);\n+    fabricUIManager.createNode.mockReturnValue(firstNode);\n \n     await act(() => {\n       ReactFabric.render(<View foo=\"foo\" />, 11, null, true);\n     });\n \n-    expect(nativeFabricUIManager.createNode).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.createNode).toHaveBeenCalledTimes(1);\n \n     await act(() => {\n       ReactFabric.render(<View foo=\"bar\" />, 11, null, true);\n     });\n \n-    expect(nativeFabricUIManager.createNode).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps.mock.calls[0][0]).toBe(\n+    expect(fabricUIManager.createNode).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps.mock.calls[0][0]).toBe(\n       firstNode,\n     );\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewProps.mock.calls[0][1],\n-    ).toEqual({\n+    expect(fabricUIManager.cloneNodeWithNewProps.mock.calls[0][1]).toEqual({\n       foo: 'bar',\n     });\n   });\n@@ -99,71 +97,55 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<Text foo=\"a\">1</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // If no properties have changed, we shouldn't call cloneNode.\n     await act(() => {\n       ReactFabric.render(<Text foo=\"a\">1</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // Only call cloneNode for the changed property (and not for text).\n     await act(() => {\n       ReactFabric.render(<Text foo=\"b\">1</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // Only call cloneNode for the changed text (and no other properties).\n     await act(() => {\n       ReactFabric.render(<Text foo=\"b\">2</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     // Call cloneNode for both changed text and properties.\n     await act(() => {\n       ReactFabric.render(<Text foo=\"c\">3</Text>, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).toHaveBeenCalledTimes(1);\n   });\n \n@@ -183,13 +165,11 @@ describe('ReactFabric', () => {\n         true,\n       );\n     });\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n \n     jest\n@@ -206,12 +186,10 @@ describe('ReactFabric', () => {\n         true,\n       );\n     });\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewProps.mock.calls[0][1],\n-    ).toEqual({\n+    expect(fabricUIManager.cloneNodeWithNewProps.mock.calls[0][1]).toEqual({\n       bar: 'b',\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTText {\"foo\":\"a\",\"bar\":\"b\"}\n    RCTRawText {\"text\":\"1\"}`);\n \n@@ -232,13 +210,11 @@ describe('ReactFabric', () => {\n       ? 2\n       : 1;\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps.mock.calls[0][\n-        argIndex\n-      ],\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps.mock.calls[0][argIndex],\n     ).toEqual({\n       foo: 'b',\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTText {\"foo\":\"b\",\"bar\":\"b\"}\n    RCTRawText {\"text\":\"2\"}`);\n   });\n@@ -258,41 +234,36 @@ describe('ReactFabric', () => {\n     await act(() =>\n       ReactFabric.render(<Component foo={true} />, 11, null, true),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     jest.clearAllMocks();\n \n     await act(() =>\n       ReactFabric.render(<Component foo={false} />, 11, null, true),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledWith(\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewProps).toHaveBeenCalledWith(\n       expect.anything(),\n       {foo: false},\n     );\n \n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledTimes(1);\n     if (gate(flags => flags.passChildrenWhenCloningPersistedNodes)) {\n-      expect(\n-        nativeFabricUIManager.cloneNodeWithNewChildren,\n-      ).toHaveBeenCalledWith(expect.anything(), [\n-        expect.objectContaining({props: {foo: false}}),\n-      ]);\n-      expect(nativeFabricUIManager.appendChild).not.toHaveBeenCalled();\n+      expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledWith(\n+        expect.anything(),\n+        [expect.objectContaining({props: {foo: false}})],\n+      );\n+      expect(fabricUIManager.appendChild).not.toHaveBeenCalled();\n     } else {\n-      expect(\n-        nativeFabricUIManager.cloneNodeWithNewChildren,\n-      ).toHaveBeenCalledWith(expect.anything());\n-      expect(nativeFabricUIManager.appendChild).toHaveBeenCalledTimes(1);\n+      expect(fabricUIManager.cloneNodeWithNewChildren).toHaveBeenCalledWith(\n+        expect.anything(),\n+      );\n+      expect(fabricUIManager.appendChild).toHaveBeenCalledTimes(1);\n     }\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n   });\n \n   it('should not clone nodes when layout effects are used', async () => {\n@@ -316,7 +287,7 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     jest.clearAllMocks();\n \n     await act(() =>\n@@ -329,15 +300,13 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).not.toHaveBeenCalled();\n   });\n \n   it('should not clone nodes when insertion effects are used', async () => {\n@@ -361,7 +330,7 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     jest.clearAllMocks();\n \n     await act(() =>\n@@ -374,15 +343,13 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).not.toHaveBeenCalled();\n   });\n \n   it('should not clone nodes when useImperativeHandle is used', async () => {\n@@ -408,7 +375,7 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.completeRoot).toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).toHaveBeenCalled();\n     expect(ref.current.greet()).toBe('hello');\n     jest.clearAllMocks();\n \n@@ -422,15 +389,13 @@ describe('ReactFabric', () => {\n         true,\n       ),\n     );\n-    expect(nativeFabricUIManager.cloneNode).not.toHaveBeenCalled();\n-    expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildren,\n-    ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNode).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewChildren).not.toHaveBeenCalled();\n+    expect(fabricUIManager.cloneNodeWithNewProps).not.toHaveBeenCalled();\n     expect(\n-      nativeFabricUIManager.cloneNodeWithNewChildrenAndProps,\n+      fabricUIManager.cloneNodeWithNewChildrenAndProps,\n     ).not.toHaveBeenCalled();\n-    expect(nativeFabricUIManager.completeRoot).not.toHaveBeenCalled();\n+    expect(fabricUIManager.completeRoot).not.toHaveBeenCalled();\n     expect(ref.current.greet()).toBe('hello');\n   });\n \n@@ -440,7 +405,7 @@ describe('ReactFabric', () => {\n       uiViewClassName: 'RCTView',\n     }));\n \n-    nativeFabricUIManager.dispatchCommand.mockClear();\n+    fabricUIManager.dispatchCommand.mockClear();\n \n     let viewRef;\n     await act(() => {\n@@ -456,10 +421,10 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n+    expect(fabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n     ReactFabric.dispatchCommand(viewRef, 'updateCommand', [10, 20]);\n-    expect(nativeFabricUIManager.dispatchCommand).toHaveBeenCalledTimes(1);\n-    expect(nativeFabricUIManager.dispatchCommand).toHaveBeenCalledWith(\n+    expect(fabricUIManager.dispatchCommand).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.dispatchCommand).toHaveBeenCalledWith(\n       expect.any(Object),\n       'updateCommand',\n       [10, 20],\n@@ -473,7 +438,7 @@ describe('ReactFabric', () => {\n       }\n     }\n \n-    nativeFabricUIManager.dispatchCommand.mockReset();\n+    fabricUIManager.dispatchCommand.mockReset();\n \n     let viewRef;\n     await act(() => {\n@@ -489,11 +454,11 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n+    expect(fabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n     ReactFabric.dispatchCommand(viewRef, 'updateCommand', [10, 20]);\n     assertConsoleErrorDev([DISPATCH_COMMAND_REQUIRES_HOST_COMPONENT]);\n \n-    expect(nativeFabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n+    expect(fabricUIManager.dispatchCommand).not.toHaveBeenCalled();\n   });\n \n   it('should call sendAccessibilityEvent for native refs', async () => {\n@@ -502,7 +467,7 @@ describe('ReactFabric', () => {\n       uiViewClassName: 'RCTView',\n     }));\n \n-    nativeFabricUIManager.sendAccessibilityEvent.mockClear();\n+    fabricUIManager.sendAccessibilityEvent.mockClear();\n \n     let viewRef;\n     await act(() => {\n@@ -518,12 +483,10 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n     ReactFabric.sendAccessibilityEvent(viewRef, 'focus');\n-    expect(nativeFabricUIManager.sendAccessibilityEvent).toHaveBeenCalledTimes(\n-      1,\n-    );\n-    expect(nativeFabricUIManager.sendAccessibilityEvent).toHaveBeenCalledWith(\n+    expect(fabricUIManager.sendAccessibilityEvent).toHaveBeenCalledTimes(1);\n+    expect(fabricUIManager.sendAccessibilityEvent).toHaveBeenCalledWith(\n       expect.any(Object),\n       'focus',\n     );\n@@ -536,7 +499,7 @@ describe('ReactFabric', () => {\n       }\n     }\n \n-    nativeFabricUIManager.sendAccessibilityEvent.mockReset();\n+    fabricUIManager.sendAccessibilityEvent.mockReset();\n \n     let viewRef;\n     await act(() => {\n@@ -552,11 +515,11 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n     ReactFabric.sendAccessibilityEvent(viewRef, 'eventTypeName');\n     assertConsoleErrorDev([SEND_ACCESSIBILITY_EVENT_REQUIRES_HOST_COMPONENT]);\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n   });\n \n   it('calls the callback with the correct instance and returns null', async () => {\n@@ -637,7 +600,7 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<Component chars={before} />, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTView {}\n    RCTView {\"title\":\"a\"}\n    RCTView {\"title\":\"b\"}\n@@ -663,7 +626,7 @@ describe('ReactFabric', () => {\n     await act(() => {\n       ReactFabric.render(<Component chars={after} />, 11, null, true);\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTView {}\n    RCTView {\"title\":\"m\"}\n    RCTView {\"title\":\"x\"}\n@@ -724,7 +687,7 @@ describe('ReactFabric', () => {\n         true,\n       );\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(\n       `11\n  RCTView {}\n    RCTView {}\n@@ -757,7 +720,7 @@ describe('ReactFabric', () => {\n         chars: after,\n       });\n     });\n-    expect(nativeFabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n+    expect(fabricUIManager.__dumpHierarchyForJestTestsOnly()).toBe(`11\n  RCTView {}\n    RCTView {}\n      RCTView {\"title\":\"m\"}\n@@ -806,10 +769,10 @@ describe('ReactFabric', () => {\n     }));\n \n     const snapshots = [];\n-    nativeFabricUIManager.completeRoot.mockImplementation(\n+    fabricUIManager.completeRoot.mockImplementation(\n       function (rootTag, newChildSet) {\n         snapshots.push(\n-          nativeFabricUIManager.__dumpChildSetForJestTestsOnly(newChildSet),\n+          fabricUIManager.__dumpChildSetForJestTestsOnly(newChildSet),\n         );\n       },\n     );\n@@ -943,15 +906,11 @@ describe('ReactFabric', () => {\n       ReactFabric.render(<View onTouchStart={touchStart} />, 11, null, true);\n     });\n \n-    expect(nativeFabricUIManager.createNode.mock.calls.length).toBe(1);\n-    expect(nativeFabricUIManager.registerEventHandler.mock.calls.length).toBe(\n-      1,\n-    );\n+    expect(fabricUIManager.createNode.mock.calls.length).toBe(1);\n+    expect(fabricUIManager.registerEventHandler.mock.calls.length).toBe(1);\n \n-    const [, , , , instanceHandle] =\n-      nativeFabricUIManager.createNode.mock.calls[0];\n-    const [dispatchEvent] =\n-      nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+    const [, , , , instanceHandle] = fabricUIManager.createNode.mock.calls[0];\n+    const [dispatchEvent] = fabricUIManager.registerEventHandler.mock.calls[0];\n \n     const touchEvent = {\n       touches: [],\n@@ -1037,14 +996,11 @@ describe('ReactFabric', () => {\n         );\n       });\n \n-      expect(nativeFabricUIManager.createNode.mock.calls.length).toBe(2);\n-      expect(nativeFabricUIManager.registerEventHandler.mock.calls.length).toBe(\n-        1,\n-      );\n-      const [, , , , childInstance] =\n-        nativeFabricUIManager.createNode.mock.calls[0];\n+      expect(fabricUIManager.createNode.mock.calls.length).toBe(2);\n+      expect(fabricUIManager.registerEventHandler.mock.calls.length).toBe(1);\n+      const [, , , , childInstance] = fabricUIManager.createNode.mock.calls[0];\n       const [dispatchEvent] =\n-        nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+        fabricUIManager.registerEventHandler.mock.calls[0];\n \n       dispatchEvent(childInstance, 'topDefaultBubblingEvent', event);\n       expect(targetBubble).toHaveBeenCalledTimes(1);\n@@ -1092,7 +1048,7 @@ describe('ReactFabric', () => {\n \n     function getViewById(id) {\n       const [reactTag, , , , instanceHandle] =\n-        nativeFabricUIManager.createNode.mock.calls.find(\n+        fabricUIManager.createNode.mock.calls.find(\n           args => args[3] && args[3].id === id,\n         );\n \n@@ -1138,8 +1094,7 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    const [dispatchEvent] =\n-      nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+    const [dispatchEvent] = fabricUIManager.registerEventHandler.mock.calls[0];\n \n     const preexistingEvent = {};\n     global.event = preexistingEvent;\n@@ -1194,7 +1149,7 @@ describe('ReactFabric', () => {\n \n     function getViewById(id) {\n       const [reactTag, , , , instanceHandle] =\n-        nativeFabricUIManager.createNode.mock.calls.find(\n+        fabricUIManager.createNode.mock.calls.find(\n           args => args[3] && args[3].id === id,\n         );\n \n@@ -1241,8 +1196,7 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    const [dispatchEvent] =\n-      nativeFabricUIManager.registerEventHandler.mock.calls[0];\n+    const [dispatchEvent] = fabricUIManager.registerEventHandler.mock.calls[0];\n \n     dispatchEvent(getViewById('default').instanceHandle, 'topTouchStart', {\n       target: getViewById('default').reactTag,\n@@ -1511,7 +1465,7 @@ describe('ReactFabric', () => {\n       uiViewClassName: 'RCTView',\n     }));\n \n-    nativeFabricUIManager.sendAccessibilityEvent.mockReset();\n+    fabricUIManager.sendAccessibilityEvent.mockReset();\n \n     let viewRef;\n     await act(() => {\n@@ -1540,7 +1494,7 @@ describe('ReactFabric', () => {\n         'native component. Use React.forwardRef to get access to the underlying native component',\n     ]);\n \n-    expect(nativeFabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n+    expect(fabricUIManager.sendAccessibilityEvent).not.toHaveBeenCalled();\n   });\n \n   it('getNodeFromInternalInstanceHandle should return the correct shadow node', async () => {\n@@ -1553,12 +1507,10 @@ describe('ReactFabric', () => {\n       ReactFabric.render(<View foo=\"test\" />, 1, null, true);\n     });\n \n-    const internalInstanceHandle =\n-      nativeFabricUIManager.createNode.mock.calls[0][4];\n+    const internalInstanceHandle = fabricUIManager.createNode.mock.calls[0][4];\n     expect(internalInstanceHandle).toEqual(expect.any(Object));\n \n-    const expectedShadowNode =\n-      nativeFabricUIManager.createNode.mock.results[0].value;\n+    const expectedShadowNode = fabricUIManager.createNode.mock.results[0].value;\n     expect(expectedShadowNode).toEqual(expect.any(Object));\n \n     const node = ReactFabric.getNodeFromInternalInstanceHandle(\n@@ -1588,8 +1540,7 @@ describe('ReactFabric', () => {\n       );\n     });\n \n-    const internalInstanceHandle =\n-      nativeFabricUIManager.createNode.mock.calls[0][4];\n+    const internalInstanceHandle = fabricUIManager.createNode.mock.calls[0][4];\n     expect(internalInstanceHandle).toEqual(expect.any(Object));\n \n     const publicInstance =\n@@ -1622,8 +1573,7 @@ describe('ReactFabric', () => {\n     });\n \n     // Access the internal instance handle used to create the text node.\n-    const internalInstanceHandle =\n-      nativeFabricUIManager.createNode.mock.calls[0][4];\n+    const internalInstanceHandle = fabricUIManager.createNode.mock.calls[0][4];\n     expect(internalInstanceHandle).toEqual(expect.any(Object));\n \n     // Text public instances should be created lazily."
+        },
+        {
+          "sha": "68d003e4138b76d361cebf14a256a2376a8a0581",
+          "filename": "scripts/flow/react-native-host-hooks.js",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 8,
+          "changes": 17,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Fflow%2Freact-native-host-hooks.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Fflow%2Freact-native-host-hooks.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/scripts%2Fflow%2Freact-native-host-hooks.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -55,6 +55,14 @@ declare opaque type __PublicTextInstance;\n declare opaque type __PublicRootInstance;\n \n declare module 'react-native/react-private-interface' {\n+  declare export type FabricUIManager = __FabricUIManager;\n+  declare export const fabricUIManager: __FabricUIManager;\n+  // Feature flags owned by React Native. Each accessor is optional so that\n+  // removing a flag on the React Native side doesn't throw here.\n+  declare export interface ReactNativeFeatureFlags {\n+    +enableNativeEventTargetEventDispatching?: () => boolean;\n+  }\n+  declare export const ReactNativeFeatureFlags: ReactNativeFeatureFlags;\n   declare export function deepFreezeAndThrowOnMutationInDev<T>(obj: T): T;\n   declare export const ReactFiberErrorDialog: {\n     showErrorDialog: (error: __CapturedError) => boolean,\n@@ -127,15 +135,8 @@ declare module 'react-native' {\n   declare export type MeasureOnSuccessCallback = __MeasureOnSuccessCallback;\n }\n \n-// eslint-disable-next-line no-unused-vars\n-declare const RN$isNativeEventTargetEventDispatchingEnabled:\n-  | (() => boolean)\n-  | void;\n-\n-// This is needed for a short term solution.\n // See https://github.com/facebook/react/pull/15490 for more info\n-// eslint-disable-next-line no-unused-vars\n-declare const nativeFabricUIManager: {\n+type __FabricUIManager = {\n   createNode: (\n     reactTag: number,\n     viewName: string,"
+        },
+        {
+          "sha": "1c3821a52198aabfbc2cfc3c97f951052d3267a4",
+          "filename": "scripts/rollup/validate/eslintrc.rn.js",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 4,
+          "changes": 4,
+          "blob_url": "https://github.com/react/react/blob/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Frollup%2Fvalidate%2Feslintrc.rn.js",
+          "raw_url": "https://github.com/react/react/raw/ed5b897d215339663a28b27a6a250bd9ca0bc439/scripts%2Frollup%2Fvalidate%2Feslintrc.rn.js",
+          "contents_url": "https://api.github.com/repos/react/react/contents/scripts%2Frollup%2Fvalidate%2Feslintrc.rn.js?ref=ed5b897d215339663a28b27a6a250bd9ca0bc439",
+          "patch": "@@ -43,10 +43,6 @@ module.exports = {\n     __REACT_DEVTOOLS_GLOBAL_HOOK__: 'readonly',\n     // FB\n     __DEV__: 'readonly',\n-    // Fabric. See https://github.com/facebook/react/pull/15490\n-    // for more information\n-    nativeFabricUIManager: 'readonly',\n-    RN$isNativeEventTargetEventDispatchingEnabled: 'readonly',\n     // Trusted Types\n     trustedTypes: 'readonly',\n     // RN supports this"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T13:22:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34356609628/job/102482784856",
+        "name": "cleanup",
+        "started_at": "2026-09-09T13:22:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456848414",
+        "name": "Merge DevTools artifacts",
+        "started_at": "2026-09-09T12:03:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553230",
+        "name": "yarn test-build (-r=experimental --env=production, 5/10)",
+        "started_at": "2026-09-09T12:02:35Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553202",
+        "name": "yarn test-build (-r=experimental --env=development, 3/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553150",
+        "name": "yarn test-build (-r=experimental --env=production, 10/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553136",
+        "name": "yarn test-build (-r=experimental --env=production, 2/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553084",
+        "name": "yarn test-build (-r=stable --env=production, 4/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553043",
+        "name": "yarn test-build (-r=stable --env=development, 10/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553041",
+        "name": "yarn test-build (-r=experimental --env=production, 9/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553033",
+        "name": "yarn test-build (-r=experimental --env=production, 8/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553026",
+        "name": "yarn test-build (-r=stable --env=production, 1/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553021",
+        "name": "yarn test-build (-r=experimental --env=production, 6/10)",
+        "started_at": "2026-09-09T12:02:45Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553020",
+        "name": "yarn test-build (-r=experimental --env=development, 9/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456553015",
+        "name": "yarn test-build (-r=experimental --env=production, 7/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552984",
+        "name": "yarn test-build (-r=experimental --env=production, 1/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552965",
+        "name": "yarn test-build (-r=stable --env=production, 6/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552948",
+        "name": "yarn test-build (-r=experimental --env=development, 4/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552946",
+        "name": "yarn test-build (-r=experimental --env=development, 8/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552941",
+        "name": "yarn test-build (-r=experimental --env=production, 3/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552939",
+        "name": "yarn test-build (-r=experimental --env=development, 6/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552937",
+        "name": "yarn test-build (-r=stable --env=development, 3/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552934",
+        "name": "yarn test-build (-r=stable --env=production, 5/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552932",
+        "name": "yarn test-build (-r=experimental --env=development, 5/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552930",
+        "name": "yarn test-build (-r=experimental --env=development, 10/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552921",
+        "name": "yarn test-build (-r=experimental --env=production, 4/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552919",
+        "name": "yarn test-build (-r=stable --env=development, 4/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552918",
+        "name": "yarn test-build (-r=stable --env=production, 9/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552909",
+        "name": "yarn test-build (-r=stable --env=development, 9/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552901",
+        "name": "yarn test-build (-r=experimental --env=development, 7/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552893",
+        "name": "yarn test-build (-r=stable --env=production, 2/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552890",
+        "name": "yarn test-build (-r=stable --env=production, 7/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552885",
+        "name": "yarn test-build (-r=experimental --env=development, 1/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552877",
+        "name": "yarn test-build (-r=experimental --env=development, 2/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552870",
+        "name": "yarn test-build (-r=stable --env=development, 7/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552862",
+        "name": "yarn test-build (-r=stable --env=production, 10/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552851",
+        "name": "yarn test-build (-r=stable --env=production, 8/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552841",
+        "name": "yarn test-build (-r=stable --env=development, 5/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552831",
+        "name": "yarn test-build (-r=stable --env=production, 3/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552823",
+        "name": "yarn test-build (-r=stable --env=development, 1/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552822",
+        "name": "yarn test-build (-r=stable --env=development, 6/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552784",
+        "name": "yarn test-build (-r=stable --env=development, 8/10)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:04:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456552778",
+        "name": "yarn test-build (-r=stable --env=development, 2/10)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551564",
+        "name": "Run sizebot",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551535",
+        "name": "Run React DevTools browser extension e2e tests",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551532",
+        "name": "Build DevTools and process artifacts (chrome)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551516",
+        "name": "yarn test-build (devtools) (2/5)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551502",
+        "name": "yarn test-build (devtools) (4/5)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551496",
+        "name": "yarn test-build (devtools) (5/5)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:26Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551472",
+        "name": "Build DevTools and process artifacts (edge)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551468",
+        "name": "Build DevTools and process artifacts (firefox)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551459",
+        "name": "yarn test-build (devtools) (1/5)",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551450",
+        "name": "Run fixtures Flight tests",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551408",
+        "name": "yarn test-build (devtools) (3/5)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551353",
+        "name": "Check release dependencies",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551294",
+        "name": "Check fixtures DOM (stable)",
+        "started_at": "2026-09-09T12:02:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551260",
+        "name": "Process artifacts combined",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551252",
+        "name": "Search build artifacts for unminified errors",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:03:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456551240",
+        "name": "Run react-devtools-cdt-mcp e2e tests",
+        "started_at": "2026-09-09T12:02:33Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067563",
+        "name": "yarn build and lint (17, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067465",
+        "name": "yarn build and lint (23, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067412",
+        "name": "yarn build and lint (24, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067409",
+        "name": "yarn build and lint (21, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067371",
+        "name": "yarn build and lint (22, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067365",
+        "name": "yarn build and lint (22, experimental)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067358",
+        "name": "yarn build and lint (20, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067355",
+        "name": "yarn build and lint (23, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067347",
+        "name": "yarn build and lint (14, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067343",
+        "name": "yarn build and lint (4, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067335",
+        "name": "yarn build and lint (24, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:29Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067323",
+        "name": "yarn build and lint (19, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067318",
+        "name": "yarn build and lint (19, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067315",
+        "name": "yarn build and lint (18, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067314",
+        "name": "yarn build and lint (21, experimental)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067306",
+        "name": "yarn build and lint (15, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067301",
+        "name": "yarn build and lint (20, experimental)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067298",
+        "name": "yarn build and lint (16, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067280",
+        "name": "yarn build and lint (18, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067240",
+        "name": "yarn build and lint (16, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067234",
+        "name": "yarn build and lint (17, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067227",
+        "name": "yarn build and lint (15, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067195",
+        "name": "yarn build and lint (10, experimental)",
+        "started_at": "2026-09-09T12:01:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067191",
+        "name": "yarn build and lint (14, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067181",
+        "name": "yarn build and lint (4, stable)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067172",
+        "name": "yarn build and lint (13, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067160",
+        "name": "yarn build and lint (11, stable)",
+        "started_at": "2026-09-09T12:01:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067150",
+        "name": "yarn build and lint (12, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067143",
+        "name": "yarn build and lint (0, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067135",
+        "name": "yarn build and lint (13, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067121",
+        "name": "yarn build and lint (12, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067116",
+        "name": "yarn build and lint (3, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067074",
+        "name": "yarn build and lint (11, experimental)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067054",
+        "name": "yarn build and lint (10, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067047",
+        "name": "yarn build and lint (8, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067039",
+        "name": "yarn build and lint (3, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067036",
+        "name": "yarn build and lint (6, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067030",
+        "name": "yarn build and lint (1, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067024",
+        "name": "yarn build and lint (9, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067021",
+        "name": "yarn build and lint (6, experimental)",
+        "started_at": "2026-09-09T12:01:01Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456067006",
+        "name": "yarn build and lint (9, stable)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-09T12:02:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/react/react/actions/runs/34348531803/job/102456066999",
+        "name": "yarn build and lint (8, experimental)",
+        "started_at": "2026-09-09T12:01:02Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 246
+  },
+  "combined_status": {
+    "sha": "ed5b897d215339663a28b27a6a250bd9ca0bc439",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}
