@@ -5,7 +5,10 @@
 
 OpenCode의 프로젝트별 설치·native 검증자·참고 파일 전환은
 [OpenCode 어댑터 안내](opencode/README.md)를 따른다. 실제 실행 범위와 최초 실패·보완은
-[0025 실험](../docs/experiments/0025-opencode.md)에 기록했다.
+[0025 실험](../docs/experiments/0025-opencode.md)과
+[0026 Muse 반복](../docs/experiments/0026-muse-spark.md)에 기록했다.
+현재 배포 0.1.6은 기존 feedback·TDD 진입에 영향 설계·계획을 먼저 현재화하는 연결만 보완했다.
+설치 원본의 판과 실제 실행·로드 결과는 구분한다.
 
 ## 설치·갱신
 
