@@ -259,8 +259,18 @@ main/fresh 69시험씩, 같은 DB 재열기 29관측, fresh 저장소 33/전체 
 사후 증거는 `codex/experiment-2026-09-12-review-tdd@f9a367e`에 69파일+manifest로,
 각 제품의 seed·snapshot·수정·통합 ref는 0028 기록의 표에 보존했다.
 
+0029는 분리된 선택형0.1.1을 먼저 직접 리뷰한 뒤 F04 전체1회와 보완0.1.2의 새 부분1회를 실행했다.
+원실행의 문서 선행 갱신 실패를 보존하고 진입 지침·검증자의 시간 근거를 최소 보완했다. 부분 재시험에서
+spec→plan→구현→시험, 명시한 비TDD 적용과 전체 회귀를 관측했다. 검토자의 과거 시험 수 오판은
+마지막 HUMAN 대화로 정정했다. 합계8개 개발 호출·40분02초, 원제품20/재시험26시험과 각각 fresh
+55명령/9판정 통과다. [판정·소스·브랜치·보존 파일](0029-optional-opencode.md),
+[필수형 계열과의 비교](comparisons/0026-vs-0029.md)를 구분해 읽는다. 위의 0.1.7 등은 과거 실행판이며
+현재 선택형 채택은 `tdd-optional/`0.1.2, 기본형은 `tdd-first/` 안내에서 시작한다.
+
 | Run | Case / dataset / seed | 기준 → 최종 해시 | 브랜치·근거 | 범위·결과 |
 |---|---|---|---|---|
+| Optional-F04 | F04 /6.0.0 /102 | seed068a969 → d876845 (통합2efa27a) | `codex/experiment-2026-09-12-optional-f04-r01@50a621f` · [0029](0029-optional-opencode.md) | 전체6호출·두 PR. 제품/fresh20시험·55명령/9판정, 문서 시점 실패·HUMAN 복구 보존 |
+| Optional-JSON | F04 JSON 부분 /6.0.0 /102 | seed5c3935e →19845a2 →cc34efc (통합f563f68) | `codex/experiment-2026-09-12-optional-json-r01@b97a87d` · [0029](0029-optional-opencode.md) | 새 세션2호출. 문서 선행·명시한 비TDD·26시험·fresh55명령/9판정, 기록 오판/HUMAN 정정 보존 |
 | Muse-F05-r01 | F05 / 7.0.0 / 103 | seed 7733849 → 구현 9846861 (제품 M4 7e60309) | `codex/experiment-2026-09-12-muse-f05-r01@9b253ad` · [0027 기록](0027-muse-larger.md) | 전체 10회 대화·순차 4 PR. 다문서 인계·변경 선행 동기화·69시험·fresh 33/127관측 통과, 사람 개입과 기록 한계 보존 |
 | Muse-F04-A | F04 / 6.0.0 / 102 | A seed ad16ff8 → 99eda9e (제품 M1 08945a5 · M2 b6c279d) | `codex/experiment-2026-09-12-muse-a-r01@433fc6c` · [0026 기록](0026-muse-spark.md) | 전체 9회 대화. 제품/fresh 13시험·24관측·12전환 관측 통과, 변경 선행 갱신 실패와 검토 이어 실행 보존 |
 | Muse-F04-B | F04 / 6.0.0 / 102 | 보완 seed 38f5ef7 → 866f246 (제품 M1 06d7e89 · M2 22601ff) | `codex/experiment-2026-09-12-muse-b-r01@2f21750` · [0026 기록](0026-muse-spark.md) | 전체 10회 대화. 제품/fresh 31시험·24관측·12전환 관측 통과, 문서 선행 갱신 관측·독립 검토 최초 누락과 HUMAN 복구 보존 |
