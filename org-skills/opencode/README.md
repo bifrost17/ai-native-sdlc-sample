@@ -8,7 +8,7 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 
 | 구분 | 고정 판 | 사용 내용 |
 |---|---|---|
-| 팀 스킬 | `4bac3823c4271612263b90d5959bb8bc0ad8d46b`, Claude plugin `0.1.6` | `org-skills/skills/`의 13개 폴더와 원본 verifier |
+| 팀 스킬 | `ece15c449452f6a425d049172e0e71aa94ebc180`, Claude plugin `0.1.7` | `org-skills/skills/`의 13개 폴더와 원본 verifier |
 | 사용 템플릿 | `84a77b3890cfdc97f3c6603f433e1382453ca261` (`codex/use-template-0026`) | `examples/skills/`의 작성 예시 3개; spec 양식의 저장소 기준 경로 보완 |
 | OpenCode 어댑터 | `fbe019c6282d6bab056e885632891e8ff6266c9d` | verifier 전체 변환본, patch 3개, 자료 색인 |
 
@@ -33,7 +33,7 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 | 파일 | 원본 | 변환 |
 |---|---|---|
 | `agents/sdlc-verifier.md` | 팀 verifier, SHA-256 `dc01c7a33f89da0863e1f1441430975dc9247039f9725cbc94d1b075ba6c91e3` | Review criteria 본문 보존. `mode: subagent`, `steps: 20`; `edit/write/task/skill` 비활성화와 `edit/task` 거부; 검사 Bash 허용 |
-| `patches/sdlc-feedback.patch` | 팀 `sdlc-feedback/SKILL.md`, SHA-256 `14f4d732c4f758ddd4d190536230880de30f8f97fc6f221d33341449f78d0b86` | Claude plugin 한정 agent 이름을 `sdlc-verifier`로 바꾸고 OpenCode 모델 선택 책임을 프로젝트로 돌림 |
+| `patches/sdlc-feedback.patch` | 팀 `sdlc-feedback/SKILL.md`, SHA-256 `160014ce9584b39d5b88d11eddeeec5e020b924457f69eabc56c4c9522439ee6` | Claude plugin 한정 agent 이름을 `sdlc-verifier`로 바꾸고 OpenCode 모델 선택 책임을 프로젝트로 돌림 |
 | `patches/ux-copy.patch` | Anthropic 채택 원문, SHA-256 `d46a00a62ec637e9ca9d5f7823ea3e0a4ec26dffc53bb5035f59b48ebfcdcde7` | `$ARGUMENTS` 대신 현재 요청을 읽고, 동반 `CONNECTORS.md` 링크와 실제 연결 여부를 사용하도록 조정; 원본 provenance에 변환 사실 추가 |
 | `patches/authoring-native.patch` | 사용판 `examples/skills/` 3개 | `disable-model-invocation: true` 세 줄 제거 |
 
@@ -69,7 +69,7 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 ```bash
 export OC_SOURCE=/absolute/path/to/ai-native-sdlc-sample
 export OC_TARGET=/absolute/path/to/experiment-product
-export OC_TEAM_REV=4bac3823c4271612263b90d5959bb8bc0ad8d46b
+export OC_TEAM_REV=ece15c449452f6a425d049172e0e71aa94ebc180
 export OC_TEMPLATE_REV=84a77b3890cfdc97f3c6603f433e1382453ca261
 export OC_ADAPTER_REV=fbe019c6282d6bab056e885632891e8ff6266c9d
 

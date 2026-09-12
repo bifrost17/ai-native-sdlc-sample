@@ -60,6 +60,11 @@
 
 ## Product checks
 
+시험 출력과 **시험 명령 자체의 종료코드**를 함께 보존한다. `tail` 등 파이프의 성공을 시험 성공으로
+세지 않으며, 실제 rc가 가려졌다면 그 한계와 출력의 FAILED/OK를 구분하고 인도 전 직접 재확인한다.
+최초 실패와 관측기 오류도 실행별 새 경로에 보존한다. 재시험으로 원본을 덮어쓰거나 수정된 관측기의
+통과를 최초 실행 결과로 바꾸지 않는다.
+
 | Oracle ID / agreed requirement | Input or action | Expected behavior | Observed output / rc | File before/after | Result / evidence |
 |---|---|---|---|---|---|
 

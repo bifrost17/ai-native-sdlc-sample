@@ -124,6 +124,9 @@ spec 안내 경로 두 곳만 보완했다. 사용판에는 활성 스킬을 넣
 0024에서 팀 플러그인 0.1.5 영구 설치와 실제 CLI의 두 PR 개발·통합 및 후속 JSON 변경을 실험했다.
 [완료 범위·실패와 재시험](docs/experiments/0024-spec-plan-activation.md)에서 근거와 한계를 확인한다.
 팀 원본 0.1.6에는 변경된 설계·계획을 해당 test-first cycle 전에 현재화하는 연결 문장을 보완했다.
+현재 0.1.7은 리뷰의 동작 결함을 기존 자동 재현 시험·RED·수정으로 연결한다.
+[리뷰→TDD 부분 반복](docs/experiments/0028-review-tdd.md)에서 두 새 세션과 실제 후속 피드백을
+시험했고, 검증자 판단 누락의 HUMAN 복구와 실행 증거 한계를 함께 보존했다.
 [OpenCode 전달 안내](org-skills/opencode/README.md)와 [Muse 반복 실험](docs/experiments/0026-muse-spark.md)에
 실제 설치 판·관측·HUMAN 개입을 구분해 남긴다. 목표는 사람이 함께 주요 흐름을 대체로 잘 따르는 수준이다.
 [더 큰 F05 실험](docs/experiments/0027-muse-larger.md)은 SQLite·HTTP API·CSV를 4 PR로 개발해
