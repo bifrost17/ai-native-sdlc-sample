@@ -8,8 +8,8 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 
 | 구분 | 고정 판 | 사용 내용 |
 |---|---|---|
-| 팀 스킬 | `9b7772f0fe0704b98bd00467525cf42f0a58f1a1`, Claude plugin `0.1.5` | `org-skills/skills/`의 13개 폴더와 원본 verifier |
-| 사용 템플릿 | `d4d2153188743eb4f1bb30693b5c17afdaa0f999` | `examples/skills/`의 작성 예시 3개 |
+| 팀 스킬 | `4bac3823c4271612263b90d5959bb8bc0ad8d46b`, Claude plugin `0.1.6` | `org-skills/skills/`의 13개 폴더와 원본 verifier |
+| 사용 템플릿 | `84a77b3` (`codex/use-template-0026`) | `examples/skills/`의 작성 예시 3개; spec 양식의 저장소 기준 경로 보완 |
 | OpenCode 어댑터 | 이 디렉터리를 포함하는 배포 커밋 | verifier 전체 변환본, patch 3개, 자료 색인 |
 
 조건 A는 native skill 14개와 직접 읽는 파일 자료 2개를 제공한다.
@@ -33,7 +33,7 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 | 파일 | 원본 | 변환 |
 |---|---|---|
 | `agents/sdlc-verifier.md` | 팀 verifier, SHA-256 `dc01c7a33f89da0863e1f1441430975dc9247039f9725cbc94d1b075ba6c91e3` | Review criteria 본문 보존. `mode: subagent`, `steps: 20`; `edit/write/task/skill` 비활성화와 `edit/task` 거부; 검사 Bash 허용 |
-| `patches/sdlc-feedback.patch` | 팀 `sdlc-feedback/SKILL.md`, SHA-256 `a0096145d0263a1e2edf8bb6d4e838ee3039608e5bcb7eb338740a3a7d1cfd35` | Claude plugin 한정 agent 이름을 `sdlc-verifier`로 바꾸고 OpenCode 모델 선택 책임을 프로젝트로 돌림 |
+| `patches/sdlc-feedback.patch` | 팀 `sdlc-feedback/SKILL.md`, SHA-256 `14f4d732c4f758ddd4d190536230880de30f8f97fc6f221d33341449f78d0b86` | Claude plugin 한정 agent 이름을 `sdlc-verifier`로 바꾸고 OpenCode 모델 선택 책임을 프로젝트로 돌림 |
 | `patches/ux-copy.patch` | Anthropic 채택 원문, SHA-256 `d46a00a62ec637e9ca9d5f7823ea3e0a4ec26dffc53bb5035f59b48ebfcdcde7` | `$ARGUMENTS` 대신 현재 요청을 읽고, 동반 `CONNECTORS.md` 링크와 실제 연결 여부를 사용하도록 조정; 원본 provenance에 변환 사실 추가 |
 | `patches/authoring-native.patch` | 사용판 `examples/skills/` 3개 | `disable-model-invocation: true` 세 줄 제거 |
 
@@ -45,6 +45,11 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 검증자의 `model`과 variant/reasoning 항목은 의도적으로 비웠다. 설치 대상 프로젝트가 실제로
 연결된 provider/model ID와 지원 옵션을 확인해 프로젝트 설정과 실행 기록에서 확정한다.
 특정 `github-copilot/...` 또는 Claude 모델 이름을 이 배포물이 추측하지 않는다.
+
+검토가 단계 제한에 도달하면 중간 결과와 남은 범위를 구분한다. 동일 검증자 세션에 남은 범위만
+이어 맡길 수 있으며, 프로젝트는 작업량과 자원 한도에 맞춰 `agent.sdlc-verifier.steps`를 조정한다.
+0026의 첫 Muse 검토는 기본 20단계에서 제한에 도달해 이어 검토했고, 두 번째 실행은 프로젝트에서
+30단계로 설정했다. 이것은 실험 운영 선택이며 모든 검토의 무제한 반복이나 배포 기본 변경이 아니다.
 
 검증자에는 `read: allow` 같은 와일드카드 권한을 추가하지 않았다. 프로젝트의 기존 `.env`와
 비밀 파일 읽기 제한을 상속해야 하며, agent 뒤쪽의 넓은 allow가 이를 덮을 수 있기 때문이다.
@@ -63,8 +68,8 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 ```bash
 export OC_SOURCE=/absolute/path/to/ai-native-sdlc-sample
 export OC_TARGET=/absolute/path/to/experiment-product
-export OC_TEAM_REV=9b7772f0fe0704b98bd00467525cf42f0a58f1a1
-export OC_TEMPLATE_REV=d4d2153188743eb4f1bb30693b5c17afdaa0f999
+export OC_TEAM_REV=4bac3823c4271612263b90d5959bb8bc0ad8d46b
+export OC_TEMPLATE_REV=84a77b3
 
 git -C "$OC_SOURCE" cat-file -e "$OC_TEAM_REV^{commit}"
 git -C "$OC_SOURCE" cat-file -e "$OC_TEMPLATE_REV^{commit}"
