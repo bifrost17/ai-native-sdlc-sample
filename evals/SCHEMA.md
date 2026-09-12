@@ -15,7 +15,10 @@ followed)."
 | `files` | ✓ | 입력 픽스처 경로. `run.sh` 가 워크스페이스로 복사한다 |
 | `assertions` | ✓ | 비어 있지 않은 산문 배열. 전체 평가에서 별도 LLM 세션이 항목별로 채점한다. `check.sh` 단독은 채점하지 않는다 |
 | `checks` | ✓ | 결정론 판정 목록(0건이면 판정 불가) |
-| `grading_context` | | 의미적 채점에 필요한 정책·지침 원문 경로 배열. 저장소 상대 경로이며 기본값은 빈 배열 |
+| `grading_context` | | 의미적 채점에 필요한 정책·지침 원문 경로 배열. 저장소 상대 경로이며 기본값은 빈 배열. `SDLC_PROJECT`와 `SDLC_ORG_SKILLS`는 실행기가 선택한 에디션 경로로 치환한다 |
+
+공유 prompt의 `SDLC_PLUGIN_NAME`은 선택한 `org-skills/.claude-plugin/plugin.json`의 `name`이다.
+생성과 의미 채점에 같은 이름을 사용하므로 특정 배포판의 스킬 namespace를 케이스에 고정하지 않는다.
 
 ## 판정 종류 — 닫힌 집합 5종 (정본: `evals/check.sh --kinds`)
 
@@ -33,13 +36,13 @@ followed)."
 
 ## 전체 평가 결과
 
-`run.sh --semantic`은 실행마다 `evals/out/semantic-*/`를 새로 만들고 다음을 남긴다.
+`run.sh --semantic`은 실행마다 `evals/out/<edition>/semantic-*/`를 새로 만들고 다음을 남긴다. `<edition>`은 `SDLC_EDITION`의 엄격한 허용 목록(`tdd-first`, `tdd-optional`)에서 고르고 기본값은 `tdd-first`다.
 
 - `<id>.claude.jsonl`·`.claude.stderr`: 생성기의 실행 기록. 성공한 최종 result가 있어야 채점한다.
 - `<id>.json`: 생성 결과 wrapper. `record.py normalize`가 trace에서 만든다.
 - `<id>.checks.log`: 결정론 검사 출력.
 - `<id>.assertions.json`: 항목별 `index`, `assertion`, `result`(pass/fail/undecidable), `reason`, `evidence`(source/excerpt), 집계와 rc.
-- `<id>.assertions.packet.json`·`.assertions.raw.json`: 채점에 제공한 근거와 채점 프로세스 결과.
+- `<id>.assertions.packet.json`·`.assertions.raw.json`: 선택한 에디션, 근거 원문 전체와 source별 SHA-256을 포함한 채점 입력과 채점 프로세스 결과.
 - `<id>.status.json`: 생성·결정론·의미적 단계의 종료 코드와 최종 상태.
 - `summary.json`: 모든 케이스의 결과, pass/fail/undecidable 수, 전체 케이스를 분모로 한 pass_rate.
 

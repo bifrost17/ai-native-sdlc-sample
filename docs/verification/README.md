@@ -16,6 +16,9 @@
 `codex/use-template`에 같은 판정을 자동 승계하지 않는다. 사용 템플릿 실험의 기준·관측·한계는
 별도로 기록하고 해당 주석에 그 범위만 덧붙인다.
 
+2026-09-12에 분리한 두 배포판의 보존 범위·의도한 차이·새 실행 증거는
+[배포판 검증 기록](variants/README.md)에 있다. 과거 결과를 선택형의 통과 근거로 승계하지 않는다.
+
 이 폴더는 Anthropic 저작물(플레이북 한국어판)의 사본을 담는다. 원문은 Claude Academy,
 `courses/ai-native-sdlc-playbook`, Copyright Anthropic.
 

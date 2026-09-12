@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-09-12T08:59:55Z",
+  "scope": "Independent final check of archived mini-scenario files only",
+  "archive": {
+    "source_root": "/tmp/sdlc-edition-smoke-WSrdDi",
+    "destination_root": "docs/verification/variants/evidence",
+    "scenarios": ["first", "optional-after", "optional-tdd"],
+    "files_per_scenario": ["SPEC.md", "PLAN.md", "pricing.py", "tests/test_pricing.py", "evidence.md"],
+    "copied_file_count": 15,
+    "copy_integrity": "all 15 source/destination SHA-1 pairs matched",
+    "excluded": ["copied product documentation", "selected-skills", ".git metadata"]
+  },
+  "commands": {
+    "unittest": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v",
+    "oracle": "PYTHONDONTWRITEBYTECODE=1 python3 -c 'import pricing; amount_lists=[[],[0],[1],[1001],[100,250],[2,3,5],[999999,1]]; valid=0\nfor amounts in amount_lists:\n for percent in range(101):\n  before=list(amounts); total=sum(amounts); expected=(total*(100-percent)+99)//100; actual=pricing.payable(amounts,percent); assert actual==expected,(amounts,percent,actual,expected); assert amounts==before,(amounts,percent); valid+=1\ninvalid=0\nfor percent in (-1,101):\n try: pricing.payable([100],percent)\n except ValueError: invalid+=1\n else: raise AssertionError((\"ValueError not raised\",percent))\nsubtotal_cases=[([],0),([100,250],350)]\nfor amounts,expected in subtotal_cases: assert pricing.subtotal(amounts)==expected\nitems=[100,250]; pricing.subtotal(items); assert items==[100,250]\nprint(f\"oracle_valid_cases={valid} invalid_cases={invalid} subtotal_checks=3 mutation_checks={valid+1}\")'"
+  },
+  "results": {
+    "first": {
+      "unittest": {"exit_code": 0, "tests_run": 7, "status": "OK"},
+      "oracle": {"exit_code": 0, "valid_cases": 707, "invalid_value_error_cases": 2, "subtotal_checks": 3, "mutation_checks": 708}
+    },
+    "optional-after": {
+      "unittest": {"exit_code": 0, "tests_run": 7, "status": "OK"},
+      "oracle": {"exit_code": 0, "valid_cases": 707, "invalid_value_error_cases": 2, "subtotal_checks": 3, "mutation_checks": 708}
+    },
+    "optional-tdd": {
+      "unittest": {"exit_code": 0, "tests_run": 7, "status": "OK"},
+      "oracle": {"exit_code": 0, "valid_cases": 707, "invalid_value_error_cases": 2, "subtotal_checks": 3, "mutation_checks": 708}
+    }
+  },
+  "independent_oracle": {
+    "formula": "(total * (100 - percent) + 99) // 100",
+    "derivation": "ceiling of the retained percentage, independently expressed from discount-floor subtraction",
+    "amount_lists": [[], [0], [1], [1001], [100, 250], [2, 3, 5], [999999, 1]],
+    "percentages": "every integer from 0 through 100 inclusive",
+    "invalid_percentages": [-1, 101]
+  },
+  "baseline_preservation": {
+    "final_source_subtotal_behavior": "confirmed independently",
+    "three_original_test_methods_present_in_each_archive": ["test_empty", "test_multiple", "test_no_mutation"],
+    "three_original_tests_passed_in_each_final_run": true,
+    "historical_baseline_runs": "reported by workers in evidence.md; timing and edit order were not independently observed or recreated"
+  },
+  "findings": [
+    {
+      "severity": "documentation_precision",
+      "scenario": "optional-after",
+      "detail": "PLAN.md P3 describes a git diff --no-index initial/current comparison, while evidence.md says no Git baseline existed and records only /dev/null versus the current untracked file plus an initially observed state. This does not affect final correctness."
+    }
+  ],
+  "limitations": [
+    "Forward agents manually read bundled skills in independent project copies; this does not prove installed or native Claude/OpenCode skill discovery, routing, or model invocation.",
+    "This is not a controlled TDD productivity comparison.",
+    "Write order and historical RED/GREEN timing are worker self-recorded and were not independently observed.",
+    "The independent work here is a final correctness recheck only.",
+    "No initial execution evidence was recreated; original baseline claims remain attributed to each worker evidence.md."
+  ],
+  "overall": "pass_with_documentation_precision_finding"
+}

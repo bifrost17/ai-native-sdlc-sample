@@ -1,190 +1,93 @@
 # ai-native-sdlc-sample
 
-## Project goal
+Anthropic의 AI-Native SDLC Playbook을 바탕으로 우리 팀이 사용할 **템플릿·스킬·정책**을 만든다.
+사람이 참여하는 실제 개발에서 중요한 요구·설계·계획과 검증이 연결되는 것이 목표다. 모든 실수를
+제거하기 위해 절차나 검사기를 계속 늘리지는 않는다. 우리 팀은 사내 동료에게 소프트웨어를 제공하며,
+정책은 실제 영향과 대응 가능성에 맞게 얇게 유지한다. Unofficial; not an Anthropic project.
 
-우리의 목표는 **Anthropic의 AI-Native SDLC Playbook을 충실히 따라, 우리 팀이 실제 소프트웨어
-개발에 사용할 템플릿·스킬·정책을 구축하는 것**이다. 공개된 가이드의 이론과 방법론을 우리 팀이
-사용할 수 있는 개발 체계로 구체화한다.
+## 사용할 템플릿 선택
 
-목표 수준은 **사람이 개입하는 실제 개발에서 플레이북의 주요 흐름이 대체로 잘 작동하는 것**이다.
-템플릿만으로 모든 가이드를 완벽하게 재현하려 하지 않는다. 누락을 없애려고 템플릿을 프로그램처럼
-키우거나 검증 스크립트와 절차를 계속 추가하지 않는다. 사람의 판단과 에이전트의 창의적 재량을
-유지하고, 실제 개발 흐름이나 결과에 중요한 차이를 만드는 보완을 우선한다.
-
-하네스를 사용하는 에이전트와 독립 검토자도 실수할 수 있다. **모든 실수를 없애는 것을 하네스의
-목표로 삼지 않는다.** 작업의 난도·영향·불확실성에 맞는 모델과 추론 수준을 선택하고, 중요한 판단이나
-실수가 반복되는 작업에는 더 역량 높은 모델과 높은 추론 수준을 사용한다. 중요한 실수는 발견·수정하고
-근거를 남기되, 개별 실수마다 템플릿 규칙이나 검사기를 추가하지 않는다.
-
-우리 팀은 사내 동료에게 프로그램을 제공하며 소프트웨어 판매나 유료 라이브 서비스를 운영하지 않는다.
-문제가 생겨도 비교적 직접 대응할 수 있는 환경이므로 정책은 의도적으로 얇게 유지한다. 외부 고객용
-서비스의 절차를 기본값으로 가져오지 않고 실제 영향과 대응 가능성에 맞는 최소 기준을 적용한다.
-
-- **템플릿** — 의도, 요구사항과 설계, 구현 계획을 기록하고 다음 단계로 이어받을 문서와 작업 구조.
-- **스킬** — 플레이북의 작업 방식과 우리 팀의 지식을 AI가 개발 과정에서 적용할 수 있는 지침.
-- **정책** — 브랜드·보안·컴플라이언스·UX 등에 관한 우리 팀의 실제 기준과 책임자, 이를 적용하는 스킬.
-- **브랜치·PR 전략** — GitHub Flow를 템플릿에 포함하고 목적·의존성·검증을 기준으로 PR을 나눈다.
-  사람의 읽기 속도나 고정 줄 수만으로 크기를 강제하지 않는다.
-- **통제와 검증** — 플레이북이 제시한 사람의 판단·승인, 훅, 테스트, 리뷰, CI를 구현하고 실제 개발 과제로 작동을 확인.
-
-문서 갱신의 목표는 **중요한 요구·설계·계획 누락을 사람의 별도 상기 없이 발견하고 보완하는 것**이다.
-기본 팀 경로는 별도 설치하는 [sdlc-feedback 스킬과 네이티브 검증자](org-skills/README.md)다.
-변경 시에는 영향받는 문서를 갱신하고, 관련 커밋에서 계획과 구현을 함께 기록하며, 구현 완료 전에는
-새 문맥에서 실제 근거를 검토한다. 질문·수락 대기와 영향 없는 문서에 불필요한 수정을 요구하지 않는다.
-스킬은 사용을 판단하는 지침이며 무오류나 호출 강제를 보장하지 않는다. 조직의 사람 승인과 병합 권한은
-별개다. 기존 [팀 CLI](team-harness/README.md)는 0018의 선택적인 실행·기록 실험 도구로 보존한다.
-
-Unofficial; not an Anthropic project.
-
-## North star
-
-프로젝트의 북극성은 **[AI-Native SDLC Playbook](docs/verification/north-star-playbook.html)**이다.
-**플레이북 원문은 설계와 판단의 기준이고, 각 문단에 붙인 주석은 그 기준을 얼마나 충실히 따랐는지
-점검한 기록**이다. 주석은 우리 프로젝트의 구현, 실제 실행 증거, 판정과 보완 내용을 담는다.
-
-템플릿·스킬·정책을 만들거나 개선할 때는 해당 플레이북 문단과 기존 주석을 먼저 확인한다.
-플레이북이 정한 원칙과 역할을 충실히 따르고, 조직이 채워야 하는 부분은 우리 팀의 실제 기준과
-상황으로 채운다. 완성 여부는 각 문단이 요구하는 구현과 실행 근거로 판단하며, 주석에 그 결과를 남긴다.
-
-## Read in this order
-1. [프로젝트 북극성 — 플레이북과 충실도 평가](docs/verification/north-star-playbook.html) — 가이드 원문과 문단별 평가 근거.
-2. `docs/PLAYBOOK-MAP.md` — each lesson, the device this repo uses for it, and which layer it lives
-   in (person, tool, skill, or code).
-3. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
-   why a checker inside the tree is not an approval authority.
-4. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
-   [구체적 spec·plan 작성 예시](docs/sdlc-authoring/README.md)는 작은 기능·버그·한 공개 단위의 두 PR·
-   다문서 저장소 이행·웹 UI/API 사례를 입력과 함께 제공한다. 구조·동작·계약은 spec 집합에,
-   실제 파일·선행 시험·작업·PR 통합과 검증은 plan에 기록한다. 모든 문서를 한 파일로 강제하지 않는다.
-5. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
-   chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history in the pre-slim
-   convention (frontmatter, status fields); the current template is what 0004 uses.
-6. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
-7. `docs/METRICS.md` — the lessons' indicators as git commands.
-8. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
-   this repo's sample ones, and who (in the playbook's terms) fills each one in.
-9. `docs/RUNS.md` (on the experiment branch, see Experiments below) — actual runs against these devices, judged by each play's own governance and
-   measurement sections, not a separate scorecard.
-
-## What this repo does
-- Keeps the intent, spec and plan forms in `templates/`; the authoring skills explain how to fill
-  and revise them, with concrete examples under `docs/sdlc-authoring/`.
-- 새·변경 동작의 TDD 의무는 얇은 프로젝트 정책에, 공통 실행법은 선택 설치하는
-  [팀 TDD 스킬](org-skills/skills/tdd/SKILL.md)에, 작업별 첫 시험과 실행 순서는 plan에 둔다.
-- Keeps the hooks the lessons name as deterministic (protected paths, test protection, secrets,
-  format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
-  does not have one.
-- Runs `make check` (= `make test`) in CI; a red check is a red PR. Evals need an API key and run
-  in their own workflow on config changes and on a schedule (L10 689). Without the
-  `ANTHROPIC_API_KEY` secret that job exits 2 and shows red: it did not run, and "did not
-  run" is not "passed". Add the secret to make it real.
-- Records each change to what the template *is* as a chain under `intent/`. Upkeep of the repo
-  (factual corrections, citation refreshes, chores) is a PR, not a chain — `CLAUDE.md` scopes this.
-
-## Chains
-| Chain | Kind | Entry path | PR(s) |
-|---|---|---|---|
-| 0001 bootstrap-repo | record · pre-slim convention | this repo, self-recorded | #12 |
-| 0004 lesson-only | slim | this repo, self-recorded | #16 |
-| 0010 experiments-on-branches | structure | this repo, self-recorded | #55 |
-
-## Organization skill set (`org-skills/`)
-This repository is also one team's answer to the team's part of the playbook, in two layers:
-
-- **팀 조항** — `policies/*.md`, thin on purpose (the team builds internal-only software; about a
-  dozen clauses). Owner sign-off is the merge (`.github/CODEOWNERS`).
-- **프로젝트 슬롯** — each project copies `policies/PROJECT-POLICY.template.md` into its own
-  repository and fills six slots; skills cite the slot IDs rather than inventing values.
-
-The skill set is one plugin under `org-skills/skills/` (root `.claude-plugin/marketplace.json`
-serves it); `org-skills/examples/` holds one project's filled-in example and does **not** load.
-설치·갱신 명령과 이벤트별 사용법은 [팀 스킬 안내](org-skills/README.md)에 있다.
-The research behind every adopted or designed skill is under `docs/research/<skill>/`, decisions in
-`docs/decisions/`. The template's own skills stay in `.claude/skills/`. Chains `intent/0011` and
-`intent/0012` record the move and the split.
-
-## Verification (`docs/verification/`)
-[북극성 문서](docs/verification/north-star-playbook.html)의 주석은 플레이북을 얼마나 충실히 따랐는지
-평가한 기록이다. 가이드 문단마다 구현 파일의 경로와 축자 인용문, 실제 실험 증거, 판정
-(충실 · 부분 · 팀 몫 · 보완 필요)을 연결한다. 179개 블록(`V2-01`~`V13-16`)이며,
-평가에서 발견한 보완점은 PR #44~#54로 반영했다. 항목별 판정은
-[INDEX.md](docs/verification/INDEX.md), 챕터별 집계와 라운드 이력은
-[CHAPTERS.md](docs/verification/CHAPTERS.md)에 있다.
-
-## Experiments
-실험 방법·HUMAN 역할·초기 사례 데이터는 [실험 가이드](docs/experiments/README.md)에 있다.
-`main`에는 제작 자산과 방법·데이터·실행 색인을 두고, 실제 개발 사슬의 대화·제품 코드·시험 결과는
-실험 브랜치에 보존한다. 새 전체 프로세스 실험은 제작 자료를 제외한 사용 템플릿의 고정 커밋에서
-시작한다. Codex가 HUMAN, 선택한 개발 CLI(Claude Code 또는 OpenCode)가 AGENT를 맡아 실제 응답에 따라 대화한다.
-계획에서 정한 PR 단위로 실험 통합 브랜치에 합치며 그 브랜치를 제작 `main`으로 머지하지 않는다.
-현재 사용 후보는 `codex/use-template-0026@84a77b3`다. `0023@787af77`에서 파생한
-`0024@fbc23c0`의 상세 spec·plan 양식, 다섯 작성 예시와 얇은 TDD 정책을 유지하고,
-최초 문서 작성과 구현 중 계획 개정의 커밋 범위를 명확히 한 `0024-r2@d4d2153`에서
-spec 안내 경로 두 곳만 보완했다. 사용판에는 활성 스킬을 넣지 않았다.
-0024에서 팀 플러그인 0.1.5 영구 설치와 실제 CLI의 두 PR 개발·통합 및 후속 JSON 변경을 실험했다.
-[완료 범위·실패와 재시험](docs/experiments/0024-spec-plan-activation.md)에서 근거와 한계를 확인한다.
-팀 원본 0.1.6에는 변경된 설계·계획을 해당 test-first cycle 전에 현재화하는 연결 문장을 보완했다.
-현재 0.1.7은 리뷰의 동작 결함을 기존 자동 재현 시험·RED·수정으로 연결한다.
-[리뷰→TDD 부분 반복](docs/experiments/0028-review-tdd.md)에서 두 새 세션과 실제 후속 피드백을
-시험했고, 검증자 판단 누락의 HUMAN 복구와 실행 증거 한계를 함께 보존했다.
-[OpenCode 전달 안내](org-skills/opencode/README.md)와 [Muse 반복 실험](docs/experiments/0026-muse-spark.md)에
-실제 설치 판·관측·HUMAN 개입을 구분해 남긴다. 목표는 사람이 함께 주요 흐름을 대체로 잘 따르는 수준이다.
-[더 큰 F05 실험](docs/experiments/0027-muse-larger.md)은 SQLite·HTTP API·CSV를 4 PR로 개발해
-다문서 인계·요구 변경의 선행 동기화·main/fresh 69시험과 실제 연동을 확인했다. 사람 협업 목표는 통과이며 오류와 개입도 보존한다.
-기존 양식의 [기능 공개 제어](docs/RELEASE-CONTROL.md)를 이어 유지한다.
-미완성 기능은 일반 OFF·테스트 ON으로 통합하며 공개는 별도 결정한다.
-[조사·설계 판단](docs/research/release-controls/README.md)과 [두 PR 공개 실험](docs/research/release-controls/probe/README.md)에
-근거와 적용 범위를 남긴다. [plan 양식 설계·독립 리뷰·실제 부분 실험](docs/research/sdlc-documentation/plan-design/README.md)에
-PR별 main 상태·검증·계획 갱신과 실제 반영 범위/한계를 남겼다. 별도 스킬·플러그인 설치는 필수가 아니다.
-[직전 spec 설계 기록](docs/research/sdlc-documentation/spec-design/README.md)과 그 사용판도 보존했다.
-[PR 크기 가이드](docs/PR-SIZE.md)와
-[GitHub Flow 정책](docs/GIT-WORKFLOW.md)은 채택 제품용 배포 원문이며 사용 후보의 docs/에도 동일하게 둔다.
-[조사 보고서](docs/research/pr-size/README.md)는 근거·사례·반례와 한계를 담는다.
-[F02 최종 실험](docs/experiments/0016-flow-pilot.md)은 원래 후보 210bcfa에서 8회 대화와 실제 제품 PR 2건의
-순차 통합을 수행했다. 계획에 PR 묶음·의존성·머지 순서를 반영하고, 전체 시험 8개·독립 동작 7개·
-새 복제본 인도·두 번째 PR 코드 되돌리기가 통과했다. 호스티드 CI·실제 조직 승인·운영 배포는 미관측이다.
-후속 부분 실험의 spec/plan 누락은 **중요한 실패**다. HUMAN이 지적한 뒤 복구된 것을 자발적 갱신
-통과로 계산하지 않는다. 현재 후보는 후속 요구를 받을 때와 완료를 보고할 때 문서 갱신을 연결한다.
-[두 새 사례의 재검증](docs/experiments/0017-artifact-sync.md)은 문서 갱신을 상기하지 않은 업무 대화,
-spec 수락·plan 참조·구현과 같은 커밋, 제품 결함 발견과 복구를 각각 기록한다.
-[설치한 팀 실행 경로](docs/experiments/0018-team-harness.md)는 독립 검토와 같은 개발 세션의 자동
-보완을 실제 실행했다. 현재 문서 누락·옛 수락 참조를 각각 자동 피드백으로 복구했고 정상 대기와
-문서 영향 없는 작업도 확인했다. 초기 오판과 검토 오류를 보존하며 개발 Sonnet/low·검토 Sonnet/medium을
-사용한다. 일반 Claude 호출은 그 CLI 실험의 적용 범위 밖이다.
-[이벤트 기반 스킬 실험](docs/experiments/0019-event-review-skill.md)은 영구 설치한 팀 플러그인을
-일반 Claude Code 세션에서 사용한다. 주 개발 대화의 문서 개정과 새 문맥의 완료·브랜치 검토를
-분리하고 실제 Skill/Agent 호출, 미호출·인계 실패, 관련 커밋과 회귀를 기록한다.
-[F01 첫 대화형 실험](docs/experiments/0015-f01-pilot.md)은
-Sonnet·low와 같은 세션에서 9회 주고받고 로컬 인도까지 통과했다. 실제 실행 핀은 de1b1b7이며,
-후속 후보의 정책 표 제목 두 곳은 정적 리뷰로 확인했다. 전체 플레이북이나 운영 배포의 성공률을 뜻하지 않는다.
-아래 기존 실험은 당시 `main`에서 시작한 역사적 실행이다. 실험에서 얻은 템플릿 개선만 별도 변경으로 가져온다.
-
-| Branch | Started from | What it holds |
+| 배포판 | 개발 방식 | 채택·설치 안내 |
 |---|---|---|
-| `experiment/2026-09-09-claims-status` | `main@0daf6550` (PR #54) | chains 0002 (feature) · 0005 (defect, issue #20) · 0006 (incident, band) · 0007 (defect, issue #24, unbriefed agent) · 0008 · 0009 (human–agent runs); example app `src/claims_status/`; `docs/RUNS.md`; 172 raw files. Template feedback from it: PRs #19 #27 #29 #33 #34 #35 #40 #44–#54 |
+| **TDD 기본형** | 새·변경 동작은 test-first 기본. 의미 있는 RED→GREEN과 기존 예외를 유지한다. | [tdd-first](tdd-first/README.md) |
+| **TDD 선택형** | 작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택한다. | [tdd-optional](tdd-optional/README.md) |
 
-Issues #24, #25, #26, #32 belong to that experiment's claims-status app.
+두 판은 intent→spec→plan, 영향 문서 갱신, 회귀 보호, 독립 검토와 사람의 의사결정 구조를 공유한다.
+선택형에서 TDD를 고르지 않았다는 이유만으로 예외 승인을 요구하지 않는다. 테스트를 약화하거나
+실행하지 않은 검증을 통과로 보고해도 된다는 뜻은 아니다.
 
-## Source of truth
-This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
-external system of record — no Jira, no separate requirements tool — for the artifacts under
-`intent/`; the commit is the timestamp authority.
+선택한 판의 **`project/` 내용만 새 제품 저장소의 루트에 복사**한다. 팀 스킬은 그 판의 `org-skills/`에서
+별도 선택 설치한다. 기존 사용 후보 `84a77b3`를 기본형의 출발점으로 삼았으며, 제품에는 제작용 훅이나
+활성 작성 스킬을 자동 설치하지 않는다. 채택한 제품의 루트에서 작업하고, 제작 저장소의 하위 폴더를
+독립 제품 세션과 같다고 가정하지 않는다. 두 판의 팀 패키지를 같은 제품에 중복 적용하지 않는다.
 
-## What this repo does not do
-- It does not check artifact form, status or transitions in code. Approval is a merged PR;
-  a missing section is caught by the skill and by the product owner reading the file.
-- It does not enforce policy skills with code unless the lesson names the hook.
-- It does not replace the playbook. Quotes are short and cite the line; the original is
-  Claude Academy, `courses/ai-native-sdlc-playbook`, Copyright Anthropic.
+```text
+tdd-first/       project/ + org-skills/    기존 TDD 기본형
+tdd-optional/    project/ + org-skills/    TDD 선택형
+docs/           연구·결정·실험·플레이북 평가
+intent/         템플릿 자체의 제작 이력
+tests/, evals/  배포판과 제작 도구 검증
+```
 
-## Commands
-`make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
-Plan mode headless: `claude -p --permission-mode plan` writes the plan outside the repo and has no
-ExitPlanMode; chain 0008 used the engineer's next prompt to accept the plan (L4 327).
-For current work, record the document SHA and human decision per [GIT-WORKFLOW](docs/GIT-WORKFLOW.md);
-the mode or a next prompt by itself is not acceptance evidence.
-Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
-the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
-hook events in the implementation turn, `docs/RUNS.md` on the experiment branch).
-`.claude/settings.json` allows this repo's own safe commands without a prompt (`permissions.allow`,
-L8 545); the team replaces the list with what its organization considers safe (`docs/ADOPTING.md`).
+문서 양식과 작성 예시는 각 `project/`가 정본이다. 루트 `.claude/skills/`의 작성 도구는 대상 판으로
+연결하는 제작용 안내이며 별도의 제품 양식을 갖지 않는다. 공통 내용의 작은 중복은 허용하되 두 판을
+공통 폴더·symlink·생성기에 실행 의존시키지 않는다. [구조 결정과 이행 범위](docs/decisions/template-variants.md)
+
+## 북극성과 근거
+
+북극성은 **[AI-Native SDLC Playbook과 문단별 주석](docs/verification/north-star-playbook.html)**이다.
+원문은 설계·판단의 기준이며 주석은 당시 템플릿·스킬·실행이 얼마나 충실히 따랐는지 기록한다.
+기존 주석의 경로·판정은 역사적 근거로 보존하며 새 선택형의 통과 증거로 승계하지 않는다.
+
+- [기본형의 보존 범위](docs/verification/variants/tdd-first.md)
+- [선택형의 의도한 차이와 검증](docs/verification/variants/tdd-optional.md)
+- [TDD와 구현 후 테스트 조사](docs/research/tdd-vs-test-after/README.md): 연구 16건, 프로젝트 8개·PR/MR 72건,
+  원문 다운로드와 반대 근거를 포함한다. 실제 TDD 사용률이나 보편적 생산성 우열을 추정한 자료는 아니다.
+- [사람·스킬·훅·CI의 책임 경계](docs/BOUNDARY.md), [레슨별 연결](docs/PLAYBOOK-MAP.md)
+
+모델과 추론 수준은 작업의 난도·영향·불확실성에 맞춘다. 중요한 판단과 반복되는 실수에는 더 역량 높은
+모델·추론을 사용하되, 개별 실수마다 새 절차나 검사기를 만들지 않는다. 일반 테스트 통과, 스킬 발견,
+설정 파싱과 실제 에이전트 행동은 각각 다른 근거다.
+
+## 팀 정책과 선택 설치 스킬
+
+`policies/`는 팀 정책의 제작 기준·예제다. 제품은 자기 `PROJECT-POLICY.md`에 실제 값과 결정자를 기록한다.
+기본형 패키지는 기존 `intent-sdlc-skills` 식별자를 유지하고, 선택형은 `intent-sdlc-skills-optional`을 쓴다.
+설치 명령과 현재 버전은 [기본형 패키지](tdd-first/org-skills/README.md),
+[선택형 패키지](tdd-optional/org-skills/README.md)에서 확인한다. 기존 사용자 설치를 이 구조 변경만으로
+갱신하거나 비활성화하지 않는다. 채택한 판·설치한 판·실제 로드한 경로를 함께 확인한다.
+
+Claude 및 OpenCode용 검증자·설치 어댑터를 각각 포함한다. [팀 CLI](team-harness/README.md)는 기존의
+선택적 실행·기록 실험 도구로 보존한다. 회사의 사람 승인과 GitHub 병합 권한은 별도의 통제다.
+
+## 이 저장소의 개발과 검증
+
+루트 [CLAUDE.md](CLAUDE.md)는 템플릿 제작 지침이다. 제품의 개발 명령과 정책은 복사한 `project/`에서 정한다.
+
+```bash
+make check
+SDLC_EDITION=tdd-first make evals
+SDLC_EDITION=tdd-optional make evals
+```
+
+`make check`는 패키지 경로·격리, 기존 훅과 제작 도구의 결정적 검사를 실행한다. 모델 평가에는
+`ANTHROPIC_API_KEY`가 필요하며 없으면 종료 코드 2로 미실행을 알린다. 평가 범위와 판별 결과 위치는
+[evals 안내](evals/README.md)에 있다. 이 검사만으로 모든 에이전트의 TDD 선택·실행을 증명하지 않는다.
+
+공통 변경은 두 판의 영향을 함께 검토하고, 선택형만의 정책 변경은 기본형으로 자동 전파하지 않는다.
+승인·상태·문서 의미를 판정하는 별도 자동 검사기는 두지 않는다. 결과와 미확인 범위를
+[배포판 검증 기록](docs/verification/variants/README.md)에 남긴다.
+
+## 기존 실험과 이력
+
+[실험 안내](docs/experiments/README.md)에 HUMAN 역할·실행 방법·초기 데이터가 있다. 실제 제품 대화·코드·시험은
+당시 실험 브랜치와 고정 커밋에 남긴다. 제작 자산만 개선하고 실험 제품 전체를 제작 main에 합치지 않는다.
+
+기본형의 출발 사용판은 `codex/use-template-0026@84a77b3`, 팀 스킬 기준은 `ece15c4`의 0.1.7이다.
+[0024](docs/experiments/0024-spec-plan-activation.md), [0026](docs/experiments/0026-muse-spark.md),
+[0027](docs/experiments/0027-muse-larger.md), [0028](docs/experiments/0028-review-tdd.md)의 실행 성공·실패·HUMAN 복구를
+보존한다. 당시 자료의 옛 경로는 해당 커밋을 기준으로 읽는다. 현재 소스는 두 최상위 폴더이며,
+옛 사용 브랜치와 새 폴더를 동시에 최신 정본으로 유지하지 않는다.
+
+별도 제품 채택의 책임 항목은 [채택 안내](docs/ADOPTING.md), 보안·규정·브랜드·UX 예제는
+[정책 안내](policies/README.md), 변경 검토는 [REVIEW.md](REVIEW.md)에 있다.

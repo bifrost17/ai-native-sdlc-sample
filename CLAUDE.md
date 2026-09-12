@@ -31,17 +31,20 @@
   Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
   detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
-- Develop new or changed behavior test-first: observe the intended failure, make the smallest adequate
-  implementation, then recheck and refactor as needed. Preserve already-satisfied behavior and pure
-  refactors without manufacturing RED. Relevant team development skills are recommended. Agree meaningful
-  exceptions/deviations with the engineer and record the reason in the existing execution/PR evidence.
+- This root is the maker repository for two editions. Product forms and policies live in
+  `tdd-first/project` and `tdd-optional/project`; optional team packages live beside them in `org-skills`.
+  Read the requested edition before changing its artifacts. Preserve test-first defaults in tdd-first;
+  preserve task-specific strategy choice in tdd-optional. Do not apply one edition's policy to the other.
+  For maker tools, choose focused verification appropriate to the change and retain actual evidence.
+  Existing hooks and protected defect-test boundaries keep their scope; this split does not install
+  them into product templates or add an approval gate for choosing a testing strategy.
 - Choose models and reasoning effort for the task's difficulty, impact and uncertainty, including
   subagents. Use more capable models and higher reasoning upfront for important or error-prone
   judgments (complex design, cross-artifact consistency, consequential changes). For repeated
   mistakes, check the evidence/context and adjust the model or effort; hand off when the needed
   capability is unavailable. Respect the user's resource limits. Agent and reviewer fallibility is
   expected: retain relevant tests and human review, but do not add a new rule or checker for every
-  model error. See [team skill guidance](org-skills/README.md).
+  model error. See the selected edition's `org-skills/README.md`.
 
 ## Architecture
 - The project's north star is [AI-Native SDLC Playbook](docs/verification/north-star-playbook.html).
@@ -49,7 +52,10 @@
   passage and annotation before proposing or making changes; fill the team's choices from its actual standards.
 - `.claude/skills/` — what the agent is told (advisory). `.claude/hooks/` + `settings.json` —
   what the machine blocks. `tests/`, `evals/`, `.github/` — what CI proves. See docs/BOUNDARY.md.
-- `intent/` — the artifact chains; `templates/` — the forms used by the authoring skills.
+- `intent/` — maker artifact history. `tdd-*/project/templates/` — product forms; the maker authoring
+  skills route to the selected edition's examples and forms instead of keeping a third source copy.
+- Historical research, experiments and playbook annotations retain their original paths and Git
+  revisions. Current adoption starts at `tdd-first/README.md` or `tdd-optional/README.md`.
 - `docs/PLAYBOOK-MAP.md` maps the 14 lessons to files; `docs/METRICS.md` is git commands.
 
 ## Verifying your work

@@ -11,9 +11,9 @@ on:
     paths:
       - 'CLAUDE.md'
       - '.claude/**'
-      - 'org-skills/**'
+      - 'tdd-first/**'
+      - 'tdd-optional/**'
       - 'policies/**'
-      - 'templates/**'
       - 'evals/**'
       - '.claude-plugin/**'
       - '.github/workflows/agent-evals.yml'
@@ -27,6 +27,10 @@ permissions:
 jobs:
   evals:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        edition: [tdd-first, tdd-optional]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,12 +41,13 @@ jobs:
       - run: npm install -g @anthropic-ai/claude-code
       - env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SDLC_EDITION: ${{ matrix.edition }}
         run: make evals
-      # L10 727행: "runs are logged so results can be compared over time" — evals/out is
-      # gitignored, so the run's result files are kept as a workflow artifact (also on failure).
+      # L10 727행: "runs are logged so results can be compared over time" — each edition's
+      # gitignored output stays isolated and is kept as a workflow artifact (also on failure).
       - if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: evals-${{ github.run_id }}
-          path: evals/out
+          name: evals-${{ matrix.edition }}-${{ github.run_id }}
+          path: evals/out/${{ matrix.edition }}
           if-no-files-found: ignore

@@ -5,6 +5,14 @@
 # rc: 0=selected checks passed; 1=failed; 2=undecidable. Default is deterministic-only.
 set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$ROOT" || exit 2
+EDITION="${SDLC_EDITION:-tdd-first}"
+case "$EDITION" in
+  tdd-first|tdd-optional) ;;
+  *) echo "UNDECIDABLE: invalid SDLC_EDITION: $EDITION (expected tdd-first or tdd-optional)" >&2; exit 2 ;;
+esac
+EDITION_ROOT="$ROOT/$EDITION"
+PROJECT_DIR="$EDITION_ROOT/project"
+PLUGIN_DIR="$EDITION_ROOT/org-skills"
 semantic=0
 case "${1:-}" in
   "") ;;
@@ -20,19 +28,26 @@ fi
 command -v claude >/dev/null 2>&1 || { echo "UNDECIDABLE: claude 없음" >&2; exit 2; }
 command -v jq >/dev/null 2>&1 || { echo "UNDECIDABLE: jq 없음" >&2; exit 2; }
 command -v python3 >/dev/null 2>&1 || { echo "UNDECIDABLE: python3 없음" >&2; exit 2; }
-PLUGIN_DIR="$ROOT/org-skills"
+[ -f "$PROJECT_DIR/CLAUDE.md" ] || {
+  echo "UNDECIDABLE: 선택한 제품 템플릿 없음: $PROJECT_DIR" >&2; exit 2;
+}
 [ -f "$PLUGIN_DIR/.claude-plugin/plugin.json" ] || {
-  echo "UNDECIDABLE: 현재 체크아웃의 조직 플러그인 없음: $PLUGIN_DIR" >&2; exit 2;
+  echo "UNDECIDABLE: 선택한 에디션의 조직 플러그인 없음: $PLUGIN_DIR" >&2; exit 2;
+}
+PLUGIN_NAME="$(jq -er '.name | select(type == "string" and length > 0)' \
+  "$PLUGIN_DIR/.claude-plugin/plugin.json")" || {
+  echo "UNDECIDABLE: 선택한 플러그인 이름을 확인할 수 없음" >&2; exit 2;
 }
 case_files=(evals/cases/*.json)
 [ -f "${case_files[0]}" ] || { echo "UNDECIDABLE: no eval cases" >&2; exit 2; }
-mkdir -p evals/out || exit 2
+EDITION_OUT="evals/out/$EDITION"
+mkdir -p "$EDITION_OUT" || exit 2
 if [ "$semantic" -eq 1 ]; then
-  OUT="$(mktemp -d evals/out/semantic-XXXXXXXX)" || exit 2
-  echo "FULL EVAL: deterministic checks + semantic assertions; output=$OUT"
+  OUT="$(mktemp -d "$EDITION_OUT/semantic-XXXXXXXX")" || exit 2
+  echo "FULL EVAL: edition=$EDITION; deterministic checks + semantic assertions; output=$OUT"
 else
-  OUT="evals/out"
-  echo "DETERMINISTIC ONLY: assertions 미채점 — 전체 평가는 make evals"
+  OUT="$EDITION_OUT"
+  echo "DETERMINISTIC ONLY: edition=$EDITION; assertions 미채점 — 전체 평가는 make evals"
 fi
 worst=0
 bump() {
@@ -45,7 +60,8 @@ bump() {
 record_case() {
   if [ "$semantic" -eq 1 ]; then
     python3 evals/record.py case --case-id "$cid" --out "$OUT/$cid.status.json" \
-      --generation-rc "$crc" --deterministic-rc "$drc" --semantic-rc "$src" || worst=2
+      --edition "$EDITION" --generation-rc "$crc" --deterministic-rc "$drc" \
+      --semantic-rc "$src" || worst=2
   fi
 }
 
@@ -53,7 +69,10 @@ for case_file in "${case_files[@]}"; do
   cid="$(basename "$case_file" .json)"
   crc=2; drc=2; src=2
   echo "=== $cid"
-  prompt="$(jq -r --arg out "$OUT/" '.prompt | gsub("evals/out/"; $out)' "$case_file")"
+  prompt="$(jq -r --arg out "$OUT/" --arg project "$EDITION/project" \
+    --arg skills "$EDITION/org-skills" --arg plugin "$PLUGIN_NAME" \
+    '.prompt | gsub("evals/out/"; $out) | gsub("SDLC_PROJECT"; $project) | gsub("SDLC_ORG_SKILLS"; $skills) | gsub("SDLC_PLUGIN_NAME"; $plugin)' \
+    "$case_file")"
   tools="$(jq -r '.allowed_tools // "Read,Write,Glob,Grep"' "$case_file")"
   [ -n "$prompt" ] && [ "$prompt" != null ] || {
     echo "UNDECIDABLE: $cid prompt 읽기 실패" >&2; bump 2; record_case; continue;
@@ -75,13 +94,14 @@ needed; use this workspace's PROJECT-POLICY.md for this case's project policy wh
   result="$OUT/$cid.json"
   if [ "$semantic" -eq 1 ]; then
     raw="$OUT/$cid.claude.jsonl"
-    claude -p "$prompt" --plugin-dir "$PLUGIN_DIR" --model sonnet --effort low \
+    claude --bare -p "$prompt" --plugin-dir "$PLUGIN_DIR" --model sonnet --effort low \
       --tools "$tools" --allowedTools "$tools" --output-format stream-json --verbose \
-      --no-session-persistence > "$raw" 2> "$OUT/$cid.claude.stderr"
+      --setting-sources "" --no-session-persistence > "$raw" 2> "$OUT/$cid.claude.stderr"
   else
     raw="$OUT/$cid.claude.json"
-    claude -p "$prompt" --plugin-dir "$PLUGIN_DIR" --model sonnet --effort low \
-      --allowedTools "$tools" --output-format json > "$raw" 2> "$OUT/$cid.claude.stderr"
+    claude --bare -p "$prompt" --plugin-dir "$PLUGIN_DIR" --model sonnet --effort low \
+      --allowedTools "$tools" --setting-sources "" --output-format json \
+      > "$raw" 2> "$OUT/$cid.claude.stderr"
   fi
   crc=$?
   if [ "$crc" -ne 0 ]; then
@@ -104,7 +124,7 @@ needed; use this workspace's PROJECT-POLICY.md for this case's project policy wh
   drc=$?; cat "$OUT/$cid.checks.log"
   bump "$drc"
   if [ "$semantic" -eq 1 ]; then
-    python3 evals/grade_assertions.py --case "$case_file" --result "$result" \
+    python3 evals/grade_assertions.py --case "$case_file" --edition "$EDITION" --result "$result" \
       --trace "$raw" --out "$OUT/$cid.assertions.json"
     src=$?; bump "$src"
     record_case
@@ -112,7 +132,7 @@ needed; use this workspace's PROJECT-POLICY.md for this case's project policy wh
 done
 
 if [ "$semantic" -eq 1 ]; then
-  python3 evals/record.py summary --out-dir "$OUT" --cases "${case_files[@]}"
+  python3 evals/record.py summary --edition "$EDITION" --out-dir "$OUT" --cases "${case_files[@]}"
   bump "$?"
 else
   case "$worst" in

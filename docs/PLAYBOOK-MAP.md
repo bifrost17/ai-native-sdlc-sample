@@ -5,12 +5,17 @@ Layer vocabulary (docs/BOUNDARY.md): **person** · **tool** (git, GitHub, plan m
 playbook's. Files owned by other lanes are named as found on `origin/main`
 (3de08318) or as the three-lane contract names them (`evals/`, `tests/test_hooks.sh`); the parent confirms them at integration.
 
+2026-09-12: product forms and authoring examples now live under each of `tdd-first/project/`
+and `tdd-optional/project/`. Root authoring skills route to those sources; root hooks remain maker
+tools. Historical execution entries below retain their original commits. Edition-specific fidelity
+and deliberate differences are recorded in [the edition evidence](verification/variants/README.md).
+
 | # | Lesson (lines) | Device in this repo | File | Layer |
 |---|---|---|---|---|
 | 1 | Introduction | The chain itself: each stage writes a file the next reads | `intent/<NNNN>-<slug>/` | tool (git) |
-| 2 | Capture as intent.md (167–239) | Template embedded in a skill; approval = merge | `.claude/skills/capture-intent/`, `templates/intent.md` | skill · person |
-| 3 | Requirements and design (241–294) | Skill that refuses an unaccepted intent, restates constraints, answers or carries questions, flags concerns; `/spec` command with the lesson's prompt | `.claude/skills/design-spec/`, `.claude/commands/spec.md`, `templates/spec.md` | skill · person |
-| 4 | Plan mode (296–388) | Skill for the four-section plan; stage acceptance records the document SHA and human decision per GIT-WORKFLOW, separately from final merge. A plan-sync hook is optional (329 "Consider using a hook") — this repo does not have one | `.claude/skills/plan/`, `templates/plan.md`, `docs/GIT-WORKFLOW.md` | skill · person · tool |
+| 2 | Capture as intent.md (167–239) | Product form and selected authoring example; acceptance remains a human decision | `<edition>/project/examples/skills/capture-intent/`, `<edition>/project/templates/intent.md` | skill · person |
+| 3 | Requirements and design (241–294) | Accepted intent or authorized scope, explicit contracts, questions and policy concerns | `<edition>/project/examples/skills/design-spec/`, `<edition>/project/templates/spec.md` | skill · person |
+| 4 | Plan mode (296–388) | Four-section plan and actual evidence; test-first or selected strategy according to edition. Human stage decisions and same-change updates remain. No new plan-sync hook. | `<edition>/project/examples/skills/plan/`, `<edition>/project/templates/plan.md` | skill · person · tool |
 | 5 | CLAUDE.md (390–448) | Four sections + verification block, under a page | `CLAUDE.md` | skill |
 | 6 | Skills as institutional knowledge (450–509) | The playbook's `secure-api-review` example, verbatim; advisory, no backstop | `.claude/skills/secure-api-review/` | skill |
 | 7 | Hooks as guardrails (511–529) | Hooks the lesson names, wired in settings.json | `.claude/hooks/`, `.claude/settings.json` | code |

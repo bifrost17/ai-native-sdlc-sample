@@ -49,7 +49,8 @@ def record_case(args):
     rc = max(code if code in (0, 1, 2) else 2 for code in codes)
     if args.generation_rc != 0:
         rc = 2
-    write_json(args.out, {"schema_version": 1, "case_id": args.case_id,
+    write_json(args.out, {"schema_version": 1, "edition": args.edition,
+                          "case_id": args.case_id,
                           "generation_rc": args.generation_rc,
                           "deterministic_rc": args.deterministic_rc,
                           "semantic_rc": args.semantic_rc,
@@ -64,7 +65,8 @@ def summarize(args):
         cid = read_json(path)["id"]
         try:
             result = read_json(Path(args.out_dir) / (cid + ".status.json"))
-            if result.get("case_id") != cid or result.get("rc") not in (0, 1, 2):
+            if result.get("case_id") != cid or result.get("edition") != args.edition or \
+                    result.get("rc") not in (0, 1, 2):
                 raise ValueError("invalid case status")
         except (OSError, ValueError, AttributeError):
             result = {"case_id": cid, "rc": 2, "status": "undecidable",
@@ -75,7 +77,8 @@ def summarize(args):
     counts = {name: sum(case["rc"] == rc for case in cases)
               for rc, name in enumerate(("pass", "fail", "undecidable"))}
     rc = max(case["rc"] for case in cases)
-    summary = {"schema_version": 1, "mode": "semantic", "cases": cases,
+    summary = {"schema_version": 1, "mode": "semantic", "edition": args.edition,
+               "cases": cases,
                "total": len(cases), "counts": counts,
                "pass_rate": counts["pass"] / len(cases),
                "status": status(rc), "rc": rc}
@@ -96,10 +99,14 @@ def main():
     p = sub.add_parser("case")
     p.add_argument("--case-id", required=True)
     p.add_argument("--out", required=True)
+    p.add_argument("--edition", choices=("tdd-first", "tdd-optional"),
+                   default="tdd-first")
     for key in ("generation-rc", "deterministic-rc", "semantic-rc"):
         p.add_argument("--" + key, required=True, type=int)
     p.set_defaults(fn=record_case)
     p = sub.add_parser("summary")
+    p.add_argument("--edition", choices=("tdd-first", "tdd-optional"),
+                   default="tdd-first")
     p.add_argument("--out-dir", required=True)
     p.add_argument("--cases", required=True, nargs="+")
     p.set_defaults(fn=summarize)

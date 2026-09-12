@@ -37,13 +37,15 @@ import sys
 
 args = sys.argv[1:]
 prompt = args[args.index("-p") + 1]
-cid = re.search(r"evals/out/([^/]+)/ws", prompt).group(1)
+match = re.search(r"evals/out/(tdd-first|tdd-optional)/([^/]+)/ws", prompt)
+edition, cid = match.groups()
 with open(os.environ["FAKE_EVAL_LOG"], "a", encoding="utf-8") as log:
-    log.write(json.dumps({"args": args, "cwd": os.getcwd(), "id": cid}) + "\n")
+    log.write(json.dumps({"args": args, "cwd": os.getcwd(), "id": cid,
+                          "edition": edition}) + "\n")
 if os.environ.get("FAKE_EVAL_FAIL") == cid:
     print("fake model failed", file=sys.stderr)
     sys.exit(17)
-workspace = Path("evals/out") / cid / "ws"
+workspace = Path("evals/out") / edition / cid / "ws"
 shutil.copytree(Path(os.environ["FAKE_EVAL_OUTPUTS"]) / cid, workspace, dirs_exist_ok=True)
 print(json.dumps({"result": "Fake CLI output: runner integration only."}))
 '''
@@ -56,10 +58,9 @@ class EvalPluginIntegration(unittest.TestCase):
         self.base = Path(self.temp.name).resolve()
         self.repo = self.base / "checkout"
         self.repo.mkdir()
-        for directory in ("evals", ".claude", "org-skills", "policies", "templates"):
+        for directory in ("evals", "tdd-first", "tdd-optional"):
             shutil.copytree(ROOT / directory, self.repo / directory,
                             ignore=shutil.ignore_patterns("out", "__pycache__"))
-        shutil.copy2(ROOT / "CLAUDE.md", self.repo / "CLAUDE.md")
         self.outputs = self.base / "outputs"
         for cid, fixture in (
             ("01-intent-placeholder", "01-pass"),
@@ -80,37 +81,60 @@ class EvalPluginIntegration(unittest.TestCase):
                         ANTHROPIC_API_KEY="fake-key-never-sent",
                         FAKE_EVAL_LOG=str(self.log), FAKE_EVAL_OUTPUTS=str(self.outputs))
 
-    def run_evals(self):
-        return subprocess.run(["bash", "evals/run.sh"], cwd=self.repo, env=self.env,
+    def run_evals(self, edition=None):
+        env = dict(self.env)
+        if edition is not None:
+            env["SDLC_EDITION"] = edition
+        else:
+            env.pop("SDLC_EDITION", None)
+        return subprocess.run(["bash", "evals/run.sh"], cwd=self.repo, env=env,
                               text=True, capture_output=True, check=False)
 
-    def test_every_case_loads_current_plugin_and_uses_its_workspace(self):
-        result = self.run_evals()
+    def assert_edition_run(self, edition, explicit=True):
+        result = self.run_evals(edition if explicit else None)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         calls = [json.loads(line) for line in self.log.read_text().splitlines()]
+        calls = [call for call in calls if call["edition"] == edition]
         self.assertEqual([call["id"] for call in calls], [
             "01-intent-placeholder", "02-no-self-accept", "03-spec-carries-questions", POLICY_CASE])
         for call in calls:
-            with self.subTest(case=call["id"]):
+            with self.subTest(edition=edition, case=call["id"]):
                 args = call["args"]
                 self.assertIn("--plugin-dir", args)
-                self.assertEqual(args[args.index("--plugin-dir") + 1], str(self.repo / "org-skills"))
+                self.assertEqual(args[args.index("--plugin-dir") + 1],
+                                 str(self.repo / edition / "org-skills"))
                 self.assertEqual(Path(call["cwd"]), self.repo)
                 self.assertEqual(args[args.index("--output-format") + 1], "json")
                 case = json.loads((self.repo / "evals/cases" / (call["id"] + ".json")).read_text())
                 self.assertEqual(args[args.index("--allowedTools") + 1], case["allowed_tools"])
                 self.assertNotIn("--dangerously-skip-permissions", args)
                 self.assertNotIn("bypassPermissions", args)
-                workspace = self.repo / "evals/out" / call["id"] / "ws"
+                self.assertIn("--bare", args, "Maker CLAUDE auto-discovery must be disabled")
+                self.assertEqual(args[args.index("--setting-sources") + 1], "")
+                workspace = self.repo / "evals/out" / edition / call["id"] / "ws"
                 prompt = args[args.index("-p") + 1]
                 self.assertIn(str(workspace), prompt)
+                self.assertIn(edition + "/project/CLAUDE.md", prompt)
+                self.assertNotIn("SDLC_PROJECT", prompt)
+                if call["id"] == POLICY_CASE:
+                    manifest = json.loads((self.repo / edition /
+                                           "org-skills/.claude-plugin/plugin.json").read_text())
+                    self.assertIn(manifest["name"] + ":spec-policy-pass", prompt)
+                    self.assertNotIn("SDLC_PLUGIN_NAME", prompt)
                 self.assertIn("Create or change files only in this workspace", prompt)
-                recorded = json.loads((self.repo / "evals/out" / (call["id"] + ".json")).read_text())
+                recorded = json.loads((self.repo / "evals/out" / edition /
+                                       (call["id"] + ".json")).read_text())
                 self.assertEqual(recorded["workspace"], call["id"] + "/ws")
                 for fixture in case["files"]:
                     self.assertTrue((workspace / Path(fixture).name).is_file())
+
+    def test_every_case_loads_current_plugin_and_uses_its_workspace(self):
+        self.assert_edition_run("tdd-first", explicit=False)
         policy = json.loads((self.repo / "evals/cases" / (POLICY_CASE + ".json")).read_text())
         self.assertIn("Skill", policy["allowed_tools"].split(","))
+
+    def test_optional_edition_uses_its_product_and_plugin(self):
+        self.assert_edition_run("tdd-optional")
 
     def test_policy_names_without_clause_evidence_fail_existing_grader(self):
         self.assertTrue((self.repo / "evals/cases" / (POLICY_CASE + ".json")).exists())
@@ -130,10 +154,16 @@ class EvalPluginIntegration(unittest.TestCase):
         self.assertEqual(calls[-1]["id"], POLICY_CASE)
 
     def test_missing_plugin_is_undecidable_before_model_call(self):
-        shutil.rmtree(self.repo / "org-skills")
+        shutil.rmtree(self.repo / "tdd-first/org-skills")
         result = self.run_evals()
         self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
         self.assertIn("UNDECIDABLE", result.stderr)
+        self.assertFalse(self.log.exists())
+
+    def test_invalid_edition_is_undecidable_before_model_call(self):
+        result = self.run_evals("custom")
+        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+        self.assertIn("invalid SDLC_EDITION", result.stderr)
         self.assertFalse(self.log.exists())
 
 
@@ -143,8 +173,11 @@ class EvalWorkflowPaths(unittest.TestCase):
         paths = re.findall(r"^      - '([^']+)'$", workflow, re.MULTILINE)
         for changed in (
             "CLAUDE.md", ".claude/skills/design-spec/SKILL.md",
-            "org-skills/skills/brand/SKILL.md", "org-skills/.claude-plugin/plugin.json",
-            "policies/brand.md", "templates/spec.md", "evals/cases/04-org-policy-application.json",
+            "tdd-first/org-skills/skills/brand/SKILL.md",
+            "tdd-first/project/templates/spec.md",
+            "tdd-optional/org-skills/.claude-plugin/plugin.json",
+            "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+            "evals/cases/04-org-policy-application.json",
             ".claude-plugin/marketplace.json", ".github/workflows/agent-evals.yml",
         ):
             with self.subTest(path=changed):

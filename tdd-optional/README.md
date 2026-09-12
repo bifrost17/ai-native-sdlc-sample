@@ -1,0 +1,26 @@
+# TDD 선택형
+
+작업별로 TDD, 동작별 구현 후 테스트, 기존 테스트 활용, 혼합 방식을 선택하는 배포판이다.
+선택과 이유를 plan에 담고, 인수 조건·독립 기대·회귀 보호·실제 검증 근거를 유지한다.
+TDD를 고르지 않았다는 이유만으로 별도의 예외 승인을 요구하지 않는다.
+
+## 채택
+
+1. [project/README.md](project/README.md)를 읽고 `project/`의 **내용**을 별도 제품 저장소 루트로 복사한다.
+2. 제품의 [PROJECT-POLICY.md](project/PROJECT-POLICY.md)에 실제 역할·명령·정책을 채운다.
+3. 필요하면 이 판의 [팀 스킬](org-skills/README.md)을 선택 설치한다. 식별자는 `intent-sdlc-skills-optional`이다.
+
+기본형 패키지나 기존 사용자 전역의 TDD 지침을 함께 적용하지 않도록 실제 설치·로드 출처를 확인한다.
+이 구조 변경은 기존 설치를 자동 갱신·제거하지 않는다. `project/`에는 활성 스킬·훅이 없고
+작성 스킬은 `project/examples/skills/`의 선택 예시다.
+
+## 방식 선택과 검증
+
+[plan 양식](project/templates/plan.md)은 실행 순서 안에서 선택 이유와 선행 인수 조건·검증 방법을 연결한다.
+[F01](project/docs/sdlc-authoring/examples/F01/plan.md)은 동작별 구현 후 테스트,
+[B01](project/docs/sdlc-authoring/examples/B01/plan.md)은 TDD,
+[W01](project/docs/sdlc-authoring/examples/W01/plan.md)은 서버 TDD와 UI 구현 후 테스트의 혼합을 보여준다.
+검증자는 선택한 방식과 실제 근거를 대조한다. 구현 후 만든 시험을 과거의 test-first 증거로 바꾸지 않는다.
+
+기본형의 intent/spec와 사람의 수락·병합·운영 구조를 유지한다. 테스트를 약화해 실패를 감추거나
+완료 전 검증을 생략하는 방식은 선택지가 아니다. 기본형의 과거 실행 통과를 이 판의 통과로 승계하지 않는다.

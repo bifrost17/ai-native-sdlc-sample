@@ -5,7 +5,7 @@ L14 1036행: "The agent writes its diagnosis as intent.md in the Stage 1:
 Plan format, covering the anomaly and its evidence, a proposed outcome,
 the affected systems, and any open questions."
 
-templates/intent.md 를 읽어 섹션 제목(## …) 순서를 가져온다 — 하드코딩하면
+tdd-first/project/templates/intent.md 를 읽어 섹션 제목(## …) 순서를 가져온다 — 하드코딩하면
 템플릿이 바뀔 때 조용히 어긋난다. 템플릿엔 frontmatter 가 없고 2행이
 'Author: …. Status: draft.' 다. tier none/1sigma 는 초안을 만들지 않는다
 (행동이 log 뿐). Status 는 언제나 draft — 승인은 머지다.
@@ -13,7 +13,8 @@ templates/intent.md 를 읽어 섹션 제목(## …) 순서를 가져온다 — 
 import argparse, json, os, re, sys
 
 WRITE_TIERS = ("2sigma", "3sigma")
-TEMPLATE = os.path.join(os.path.dirname(__file__), "..", "templates", "intent.md")
+# Intent has the same contract in both editions; test_template_editions checks that invariant.
+TEMPLATE = os.path.join(os.path.dirname(__file__), "..", "tdd-first", "project", "templates", "intent.md")
 
 
 class InputError(Exception):

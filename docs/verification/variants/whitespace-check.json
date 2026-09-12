@@ -1,0 +1,7 @@
+{
+  "command": "git diff --cached --check",
+  "exit_code": 2,
+  "output": "tdd-first/org-skills/opencode/patches/ux-copy.patch:21: trailing whitespace.\n+ \ntdd-optional/org-skills/opencode/patches/ux-copy.patch:21: trailing whitespace.\n+ \ntdd-optional/org-skills/skills/accessibility/SKILL.md:61: trailing whitespace.\n+  <img src=\"infographic.png\" alt=\"2024 market trends infographic\" \n",
+  "disposition": "Preserve two unified-diff blank context lines and one inherited upstream HTML example line. These warnings are not normalized because patch syntax and original example content are retained.",
+  "upstream_example": "13376e8049c5650c0fe3a8a258a6595f8d3ada8f:org-skills/skills/accessibility/SKILL.md"
+}

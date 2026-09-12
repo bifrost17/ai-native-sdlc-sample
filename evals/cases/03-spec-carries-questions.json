@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "03-spec-carries-questions",
-  "prompt": "The workspace evals/out/03-spec-carries-questions/ws/ holds intent.md. Treat it as accepted: it was merged to main at 0123456789abcdef0123456789abcdef01234567. Read .claude/skills/design-spec/SKILL.md and templates/spec.md, then write spec.md in the same workspace.\n\nRules: (1) every open question of the intent (Q1, Q2) appears under `## Open questions` as `- Q1 answered: …` or `- Q1 carried forward: … (owner)` — none dropped; (2) every constraint of the intent (C1, C2) is restated under `## Constraints and scope`; (3) leave no ‹…› placeholder; (4) line 2 is `Upstream: intent.md@<sha>. Status: draft.`",
+  "prompt": "The workspace evals/out/03-spec-carries-questions/ws/ holds intent.md. Treat it as accepted: it was merged to main at 0123456789abcdef0123456789abcdef01234567. Read SDLC_PROJECT/CLAUDE.md, SDLC_PROJECT/examples/skills/design-spec/SKILL.md and SDLC_PROJECT/templates/spec.md, then write spec.md in the same workspace.\n\nRules: (1) every open question of the intent (Q1, Q2) appears under `## Open questions` as `- Q1 answered: …` or `- Q1 carried forward: … (owner)` — none dropped; (2) every constraint of the intent (C1, C2) is restated under `## Constraints and scope`; (3) leave no ‹…› placeholder; (4) line 2 is `Upstream: intent.md@<sha>. Status: draft.`",
   "expected_output": "One spec.md: Q1 and Q2 each appear as answered: or carried forward:, C1 and C2 are restated, no placeholder left, Status: draft.",
   "files": [
     "evals/fixtures/03-spec-carries-questions/intent.md"
@@ -41,8 +41,8 @@
     }
   ],
   "grading_context": [
-    "CLAUDE.md",
-    ".claude/skills/design-spec/SKILL.md",
-    "templates/spec.md"
+    "SDLC_PROJECT/CLAUDE.md",
+    "SDLC_PROJECT/examples/skills/design-spec/SKILL.md",
+    "SDLC_PROJECT/templates/spec.md"
   ]
 }
