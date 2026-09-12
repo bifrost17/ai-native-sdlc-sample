@@ -53,3 +53,22 @@ HUMAN-only oracle은 제품에 전달하지 않는다. 단계별 입력·raw 사
 Sol high는 일반 제품·스킬 본문을 유지하고 채택 안내만 연결하는 범위를 수락했다. 상태 질문을 위한
 추가 호출은 이번 발견을 판별하는 데 불필요하므로 생략한다. 첫 제출이 핵심 기준을 통과하면 즉시
 반복을 끝낸다. private0030 `r02/followup-design-review.md`에 원본을 보존한다.
+
+## 적용한 소스와 첫 실행 준비
+
+source `3a57b7fd57362e147ef099a70c3fed6eb886a3fd`, 팀 패키지0.1.3이다. 제품 정책·스킬·검증자
+본문은 그대로이며 설치 안내와4줄 채택 예시·판 색인만 바꿨다. Sol high가 실제 diff 범위를 다시
+검토해 차단 발견 없음으로 판단했다. 순수 사용판은 동일 tree의 `ab83dcc`이며 활성 스킬이 없다.
+
+JSON 전 기준 `8031dff`만 새 복제본에 가져오고 미래 JSON `79745ab`와 통합 `9a187f8` 객체 부재를
+확인했다. 전체0.1.3 팀 패키지·선택 작성 예시·실험 Sonnet/medium 검증자·명시적 채택 안내를 적용한
+seed는 `e232dfc`다. 새 제품의 main에서 `codex/0031-sonnet-json`을 파생했다.
+
+원본/실험본 플러그인·marketplace strict validation, 기준20시험, OpenCode 변환3개의 dry-run/실제
+적용, 제작 make check(Python102 중1skip·hooks28·eval fixture8·managed settings)를 통과했다.
+설치 준비 중 구형 Python의 tarfile 인자 오류1회는 모델 실행 전에 private setup만 수정하고 보존했다.
+
+첫 프롬프트는0030 raw07의 D7 업무 요청과 **동일 바이트**다. 새 session에서 Sonnet/medium으로
+실행하며 질문·발견은 HUMAN이 응답한다. 변경 전후 문맥과 채택 결정이 다르므로 한 문구의 인과 효과로
+판단하지 않는다. private 원본은 `/Users/jake/Projects/ai-native-sdlc-experiment-private/0031-optional-feedback-adoption/`,
+제품은 `/Users/jake/Projects/ai-native-sdlc-sonnet-feedback-20260912/`에 보존한다.
