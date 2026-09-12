@@ -72,3 +72,67 @@ seed는 `e232dfc`다. 새 제품의 main에서 `codex/0031-sonnet-json`을 파�
 실행하며 질문·발견은 HUMAN이 응답한다. 변경 전후 문맥과 채택 결정이 다르므로 한 문구의 인과 효과로
 판단하지 않는다. private 원본은 `/Users/jake/Projects/ai-native-sdlc-experiment-private/0031-optional-feedback-adoption/`,
 제품은 `/Users/jake/Projects/ai-native-sdlc-sonnet-feedback-20260912/`에 보존한다.
+
+## 실제 첫 실행과 판정
+
+**첫 부분 실행에서 핵심 기준을 통과해 반복을 종료했다.** 개발 CLI1회·341.25초(5분41초), 실제
+developer와 native child는 Sonnet5였고 medium은 요청/설정 근거다. 별도의 스킬/검토 상기나 구현
+수정 대화를 추가하지 않았다. source0.1.3이 모든 상황을 제어한다는 뜻은 아니다.
+
+| 기준 | 실제 공개 사건과 결과(1부터 센 raw01 줄 번호) |
+|---|---|
+| 채택 스킬 사용 |6행 `Skill(intent-sdlc-skills-optional:sdlc-feedback)` 호출·본문 전달. 설치 목록만 확인한 것이 아님 |
+| 중요한 문서 선행 | spec61/63/65/68/70 → plan73/75/78/83/85 → 코드88/93 → 시험96 → 전체 실행98/99 |
+| 같은 커밋 | `1d0627e`에 spec R9/AC15–AC20·plan 범위/작업/Proof·제품·시험·기록 모두 포함 |
+| 선택한 방식 | 기존 PR2의 구현 후 테스트를 유지하고 안정된 집계의 출력 확장이라는 이유를 plan에 기록. 코드 뒤 독립 fixture 기대의6개 시험을 추가, 기존20개 유지. non-TDD 예외 승인·가짜 RED 없음 |
+| 최신 독립 검토 |113행 native Agent에 현재 미커밋 diff와 기준 e232dfc·현재 계약/문서/관측 전달. child가26시험·수동 명령 재실행 후159행 ready 반환 |
+| 반환 후 완료 | 중간 응답은 검토 대기라고 명시. 반환 후170행 결과 확인,173행 커밋,176행 최종 완료. native1회 완료·실패0. background 시작과 최종 result2개를 두 root 호출/두 독립 실험으로 세지 않음 |
+| HUMAN 수락 | root가1d0627e를 읽고26시험·55명령/9판정 직접 확인. `1042c1b`는 사람의 현재 spec 수락·plan 상류 참조·상태 표기이며 구현 수정이 아님 |
+| 통합·인도 | main `ff4b80f` 및 새 복제본에서 각각26시험·55명령·9추가 판정 통과, Git clean |
+
+검증자가 본 작업 트리와 커밋한 제품/시험은 같고, 그 뒤 HUMAN 변경은 수락 기록·문서 참조뿐이다.
+native는 현재 계약·동작·문서 일치를 확인했으나 커밋 내부의 시간 순서를 자체 입증한 것은 아니다.
+HUMAN이 별도로 보존한 공개 사건을 대조했다. 사소한 Proof 라벨 의견은 의미나 인계에 영향이 없어
+새 규칙·수정·재실험 사유로 삼지 않았다.
+
+독립 Sol high 감사도 중요한 차단 발견 없이 통과로 판단했다(private `runtime-audit.md`). child의
+REVIEW.md 직접 읽기는 관측되지 않았고 모델의 일부 시험 출력은 파이프를 거쳤다. 종료 코드의 확실한
+근거는 HUMAN observer의 파이프 없는 전체26시험 rc0이다. 검증자 본문 전체 준수나 모든 이벤트의
+자연 호출로 확대하지 않으며 이 한계 때문에 추가 규칙·반복을 만들지 않는다.
+
+seed가 포함한0030의 과거20시험·실행 서술을 이번26시험으로 덮지 않았다. 당시 과장된 여섯 주기
+기록은0030에서 이미 확인·정정한 역사적 문제이며 이번 새 실행의 증거로 사용하지 않는다.
+이번 개발자가 그 과거 오류까지 자연스럽게 발견·수정했다는 주장은 하지 않는다.
+
+### 전체 회귀와 남는 한계
+
+동일 독립 observer로 새 JSON 계약과 기존 list/show/complete·owner/text·공동 공개 게이트의
+OFF→ON→OFF·빈 결과/null/대소문자·상태 변경 후 최신 집계·대상 한정 쓰기/반복 무쓰기·관측한 소스와
+입력 불변을 확인했다. 최초 제출·통합·fresh 세 판정 모두55명령(CLI50+unittest1+Git4)·9추가 판정이며
+각 suite26개다. 구체적인 명령 결과는 private `*-observer.json`에 있다.
+
+의도/설계/계획을 처음부터 다시 작성한 전체 실험은0030이다. 0031은 반복 누락을 겨냥한 새 문맥의
+후속 변경 부분 실험이고, 기존 제품 회귀·통합·인도까지 재확인했다. 고정 플레이북/양식/역할 설명을
+모두 새로 채점하지 않았다. OpenCode는 설치 변환을 정적으로 확인했으며0.1.3의 새 runtime은 아니다.
+실제 조직 승인·hosted PR/CI·배포·장기 운영·관계없는 모든 스킬의 자동 사용은 평가하지 않았다.
+
+앞선 최초 실패는 보존한다. 새 문맥·채택 안내·HUMAN 결정·제품 이력이 함께 달라 단일 문구의
+인과 효과나 일반 성공률을 입증하지 않는다. 다만 중요한 문서 갱신을 유지하면서 채택한 검토 절차로
+넘어간 사례와 전체 제품 회귀가 확인됐으므로 **사람과 함께 플레이북을 대체로 따르는 목표에서
+추가 강제 장치 없이 이 보완을 수용**한다.
+
+## 영구 보존
+
+| maker 브랜치 | SHA |
+|---|---|
+| `codex/use-template-optional-0031` | `ab83dcc` (제품 tree 동일) |
+| `codex/experiment-0031-seed` | `e232dfc` |
+| `codex/experiment-0031-initial` | `1d0627e` |
+| `codex/experiment-0031-accepted` | `1042c1b` |
+| `codex/experiment-0031-main` | `ff4b80f` |
+| `codex/experiment-2026-09-12-optional-adoption-r01` | `ffb2cae` (사후 공개 증거13파일) |
+
+공개 증거는 `experiment-records/0031/`의 업무 프롬프트·공개 JSONL·metadata·결과·설치·요약·manifest다.
+이 사후 기록 SHA는 시험한 제품 SHA가 아니다. private `refs.json`, `record-branch.json`,
+`budget-result.json`, `public-event-index.json`, 검증한 `json-r01.bundle`/`use-template.bundle`과
+observer 원본에 전체 값을 보존했다. HUMAN-only input/oracle은0030의 원본 경로에 유지했다.

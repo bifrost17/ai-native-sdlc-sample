@@ -273,8 +273,13 @@ spec→plan→구현→시험, 명시한 비TDD 적용과 전체 회귀를 관�
 HUMAN이 복구했다. 통합·fresh 각각25시험·55명령/9판정 통과이며 스킬 자연 활성화는 부분이다.
 [0029와의 차이·공통 발견](comparisons/0029-vs-0030.md)을 함께 읽는다.
 
+[0031 보완–실험](0031-optional-feedback-adoption.md)은 팀0.1.3에4줄 채택 안내와 설치 연결만 추가했다.
+새 Sonnet 부분 세션1호출·5분41초에서 스킬 사용·문서 선행/같은 커밋·최신 native 검토/대기를 관측하고
+첫 통과에서 종료했다. 통합·fresh 각각26시험·55명령/9판정 통과이며 일반 제품·스킬 본문·훅은 유지했다.
+
 | Run | Case / dataset / seed | 기준 → 최종 해시 | 브랜치·근거 | 범위·결과 |
 |---|---|---|---|---|
+| Optional-adoption | F04 JSON 부분 /6.0.0 /102 | seede232dfc →1d0627e (통합ff4b80f) | `codex/experiment-2026-09-12-optional-adoption-r01@ffb2cae` · [0031](0031-optional-feedback-adoption.md) | 새 세션1호출. 문서 동기화·최신 native/대기·26시험·fresh55명령/9판정. 최초 통과 후 종료 |
 | Optional-Sonnet-r02 | F04 /6.0.0 /102 | seeddd48653 →79745ab (통합9a187f8) | `codex/experiment-2026-09-12-optional-sonnet-r02@69b57b3` · [0030](0030-optional-sonnet.md) | 전체8호출·두 PR·25시험·fresh55명령/9판정. 문서 선행 통과, 검토 누락/HUMAN 복구 보존 |
 | Optional-F04 | F04 /6.0.0 /102 | seed068a969 → d876845 (통합2efa27a) | `codex/experiment-2026-09-12-optional-f04-r01@50a621f` · [0029](0029-optional-opencode.md) | 전체6호출·두 PR. 제품/fresh20시험·55명령/9판정, 문서 시점 실패·HUMAN 복구 보존 |
 | Optional-JSON | F04 JSON 부분 /6.0.0 /102 | seed5c3935e →19845a2 →cc34efc (통합f563f68) | `codex/experiment-2026-09-12-optional-json-r01@b97a87d` · [0029](0029-optional-opencode.md) | 새 세션2호출. 문서 선행·명시한 비TDD·26시험·fresh55명령/9판정, 기록 오판/HUMAN 정정 보존 |
