@@ -1,0 +1,24 @@
+--- a/org-skills/skills/ux-copy/SKILL.md
++++ b/org-skills/skills/ux-copy/SKILL.md
+@@ -9 +9 @@
+-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
++> The connector names below are categories, not configured services. See the bundled [CONNECTORS.md](CONNECTORS.md).
+@@ -15,3 +15,3 @@
+-```
+-/ux-copy $ARGUMENTS
+-```
++Use the context or copy in the current user request. If the user selected text in another tool, use
++that text only when the tool is actually connected and the selection is available. Do not expect
++`$ARGUMENTS` command-template substitution when this file is loaded as an OpenCode skill.
+@@ -94,0 +95,3 @@
++Use this section only when the current OpenCode session exposes a matching connector. If none is
++available, continue from the user-provided context and do not treat `~~...` placeholders as tools.
++
+--- a/org-skills/skills/ux-copy/PROVENANCE.md
++++ b/org-skills/skills/ux-copy/PROVENANCE.md
+@@ -15,2 +15,3 @@
+-- **수정 여부: 없음.** `SKILL.md` 는 원본과 바이트 동일하다 — sha256 `d46a00a6…cdcde7`, 3,436 B,
+-  `cmp` 통과(`docs/research/ux/raw/12-adopt-copies.txt`).
++- **팀 원본 채택 시 수정 여부: 없음.** 원래 `SKILL.md` 는 원본과 바이트 동일하다 — sha256
++  `d46a00a6…cdcde7`, 3,436 B, `cmp` 통과(`docs/research/ux/raw/12-adopt-copies.txt`).
++  OpenCode 설치본은 `org-skills/opencode/patches/ux-copy.patch`의 입력·링크·connector 문구를 적용한 변환본이다.
