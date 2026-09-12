@@ -10,7 +10,6 @@ tools:
 permission:
   edit: deny
   task: deny
-  bash: allow
 ---
 # Independent SDLC verifier
 
