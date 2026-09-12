@@ -30,9 +30,11 @@ implementing. A draft label does not erase that authorization or create a new ac
 
 ## Implementation and commit
 
-Run the chosen verification feedback loop as work proceeds and keep independent expectations, actual results
-and regression evidence
-needed by the common Review criteria. Include affected spec documents and plan changes, with the reason,
+Run the chosen feedback loop as work proceeds: use tests, permitted browser interaction or direct observation
+suited to the behavior, with independent expectations, actual results and relevant regression evidence.
+For exploration, record the learning question, constraints, observations and unresolved decisions. Answering
+that question is not product completion; adopting the result requires current spec/AC, regression and integration
+proof. A screenshot alone does not establish interactive behavior. Include affected spec documents and plan changes, with the reason,
 in the same commit as the related implementation. Before committing, inspect
 what will actually be included, including new files. Follow the project's upstream acceptance and
 Git policy; permission to inspect or review does not itself authorize a commit, push or merge.
@@ -44,10 +46,16 @@ verifier. Prefer an equivalent project verifier; this plugin provides `intent-sd
 as a default team example. Wait for its result before a final completion report; a pending review
 is still pending. Do not run both for the same purpose. A routine prose correction or a
 status/decision question does not require this independent implementation review.
+This completion check is a deliberate rule of this adopted team skill, not a requirement to use a
+particular verifier tool in every project. A fresh context or different model does not guarantee
+independent expectations or a correct verdict.
 
 Give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
 paths, the agreed diff base, and checks already run with their evidence. Also include the declared
 spec document set and the current PR, integration or whole-release scope.
+Provide the expectation sources and relevant browser/manual procedures, observations and tool limitations.
+The verifier should understand those expectations before inspecting implementation and test diffs.
+This review still reads implementation; it is not an implementation-hidden test-generation experiment.
 Distinguish the tested combined/merged revision from planned checks or a previous branch result.
 The default team verifier receives the common criteria in its own definition; confirm or supply
 equivalent criteria when using a project verifier. Include uncommitted and untracked work. Do not ask it to trust your

@@ -13,9 +13,16 @@
 | 웹 UI와 API | [W01](examples/W01/context.md) | 서버 TDD·화면 구현 후 테스트의 혼합, 전체 기능 공개 |
 | 구현 중 발견 | [변경 walkthrough](change-walkthrough.md) | 영향받는 spec 집합·plan·시험을 함께 갱신하는 범위 |
 
+완성된 intent/spec 합성 예시를 되풀이하지 않고 plan 판단만 볼 때는 간결한 plan-only 예시인
+[기존 시험을 활용한 리팩터링](../../examples/skills/plan/examples/refactor-existing-tests.md)과
+[폐기할 UI 탐색](../../examples/skills/plan/examples/disposable-ui-exploration.md)을 참고한다.
+전자는 보존 계약과 기존 검증 범위를, 후자는 탐색 질문·직접 관찰·폐기 또는 제품 편입 경계를 보여준다.
+둘 다 실제 실행이나 제품 수락 기록이 아니다.
+
 작성 깊이는 [설계 지침](../../examples/skills/design-spec/references/design-depth.md)과
 [실행 지침](../../examples/skills/plan/references/execution-depth.md)을 따른다. 공개와 PR 판단에는
 [Git 흐름](../GIT-WORKFLOW.md), [PR 크기](../PR-SIZE.md), [공개 제어](../RELEASE-CONTROL.md)를 적용한다.
+검증 순서와 탐색·제품 편입 판단은 [검증 방식 가이드](../TESTING-STRATEGY.md)를 필요한 범위에서 읽는다.
 각 context가 연결한 [교육 입력](inputs/README.md)은 이 패키지 안에 있다. 이 경로들과 프로젝트 루트의
 양식·정책 문서만으로 예시의 필수 읽기가 닫힌다.
 

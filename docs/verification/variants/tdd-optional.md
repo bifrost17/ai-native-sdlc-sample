@@ -1,7 +1,9 @@
 # TDD 선택형의 의도한 차이
 
 2026-09-12. [tdd-optional](../../../tdd-optional/README.md)은 검증 방식을 작업별로 선택한다.
-새 패키지 이름은 `intent-sdlc-skills-optional`, 버전은 0.1.0이다.
+최초 분리 당시 새 패키지 이름은 `intent-sdlc-skills-optional`, 버전은 0.1.0이었다.
+후속 0.1.1의 설계·검증은 [선택형 SDLC 설계 검증](optional-sdlc-design.md)에 기록한다.
+아래 실행 사례는 최초 분리판의 근거로 보존하며 후속판의 실행 결과로 승계하지 않는다.
 
 | 영역 | 반영한 차이 |
 |---|---|

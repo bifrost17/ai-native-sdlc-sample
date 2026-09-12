@@ -16,10 +16,17 @@ TDD를 고르지 않았다는 이유만으로 별도의 예외 승인을 요구�
 
 ## 방식 선택과 검증
 
+[검증 방식 가이드](project/docs/TESTING-STRATEGY.md)에서 작업 조건별 선택, 기대값의 출처, 탐색·실행·완료 기준을 읽는다.
+원하는 동작과 판정 근거를 먼저 정하되 모든 테스트 코드를 먼저 작성할 필요는 없다. 플레이북의 버그
+test-first 처방을 팀의 선택 정책으로 조정한 범위도 가이드에 명시한다.
+
 [plan 양식](project/templates/plan.md)은 실행 순서 안에서 선택 이유와 선행 인수 조건·검증 방법을 연결한다.
 [F01](project/docs/sdlc-authoring/examples/F01/plan.md)은 동작별 구현 후 테스트,
 [B01](project/docs/sdlc-authoring/examples/B01/plan.md)은 TDD,
 [W01](project/docs/sdlc-authoring/examples/W01/plan.md)은 서버 TDD와 UI 구현 후 테스트의 혼합을 보여준다.
+[기존 테스트로 보호하는 리팩터링](project/examples/skills/plan/examples/refactor-existing-tests.md)과
+[폐기 가능한 UI 탐색](project/examples/skills/plan/examples/disposable-ui-exploration.md)은 새 테스트가
+필요하지 않은 경우와 학습 결과를 제품에 편입할 때의 조건을 보여주는 계획 예시다. 실제 실행 기록은 아니다.
 검증자는 선택한 방식과 실제 근거를 대조한다. 구현 후 만든 시험을 과거의 test-first 증거로 바꾸지 않는다.
 
 기본형의 intent/spec와 사람의 수락·병합·운영 구조를 유지한다. 테스트를 약화해 실패를 감추거나

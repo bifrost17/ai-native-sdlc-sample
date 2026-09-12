@@ -1,6 +1,6 @@
 # OpenCode 프로젝트별 전달 — tdd-optional
 
-현재 선택판 **intent-sdlc-skills-optional 0.1.0**의 스킬과 native 검증자를 프로젝트 안에 복사한다.
+현재 선택판 **intent-sdlc-skills-optional 0.1.1**의 스킬과 native 검증자를 프로젝트 안에 복사한다.
 이 폴더의 원본·patch·검증자·색인은 함께 배포한다. 제작 저장소의 Git 이력이나 다른 판을 실행 중
 읽을 필요가 없다. 사용자 전역 설정·설치·모델을 자동 변경하지 않는다.
 

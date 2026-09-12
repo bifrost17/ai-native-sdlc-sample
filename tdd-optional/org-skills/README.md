@@ -3,7 +3,7 @@
 이 폴더는 우리 팀의 선택 가능한 기본 스킬 예시를 배포한다. 아래 기본 설치 안내는 Claude Code용이다.
 사용 템플릿에 내장되는 필수 스킬이 아니다. 팀이 채택한 스킬과 프로젝트 정책을 함께 사용한다.
 
-이 패키지는 **tdd-optional 0.1.0**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+이 패키지는 **tdd-optional 0.1.1**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
 OpenCode 전달은 [어댑터 안내](opencode/README.md)를 따른다.
 [0025](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0025-opencode.md), [0026](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0026-muse-spark.md),
 [0028](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0028-review-tdd.md)은 분리 전 판의 실행 기록이다.
@@ -88,6 +88,10 @@ TDD 선택 범위의 공통 실행법은 이 스킬, 첫 시험·실행 순서�
 [sdlc-verifier.md의 Review criteria](agents/sdlc-verifier.md#review-criteria)다.
 [sdlc-verifier](agents/sdlc-verifier.md)는 동등한 프로젝트 검증자가 없을 때 쓸 기본 예시다.
 업무 대화는 주 세션에 유지하고 필요한 합의·수락·기준·증거를 검증자에게 전달한다.
+완료 전 새 문맥 검토는 이 스킬을 채택한 팀의 의도적 규칙이다. 새 문맥·다른 모델만으로 독립 기대나
+정답이 보장되지는 않는다. 먼저 요구·기준 입력의 기대를 읽고 구현·시험 diff와 대조하며, 구현을
+숨긴 별도 테스트 생성 실험과 구별한다. UI·탐색에서는 허용된 브라우저/직접 관찰의 절차와 결과도
+검토한다. 탐색의 질문에 답한 것과 제품 편입에 필요한 AC·회귀·통합 검증을 구분한다.
 해당 PR 범위와 전체 공개 단위를 구별하고, 최신 결합/머지 결과와 실제 시험 근거를 인계한다.
 이미 허가된 현재 draft 작업을 과거 수락 판과 혼동해 새 승인 절차를 만들지 않는다.
 기본 검증자는 자신의 정의에 공통 판단 기준을 함께 받는다. 별도 기준 파일을 찾거나 그 경로를

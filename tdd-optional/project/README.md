@@ -13,6 +13,7 @@
 2. [개발 절차](docs/PROCESS.md)를 읽고 문제 하나를 [intent/](intent/README.md)에 기록한다.
 3. 승인된 의도에서 요구·설계를, 승인된 요구·설계에서 구현 계획을 만든다.
    [문서 양식](templates/)을 사용하고 사람의 결정과 근거를 다음 단계로 넘긴다.
+   [검증 방식 가이드](docs/TESTING-STRATEGY.md)를 보고 작업별 순서와 기대의 출처를 정한다.
 4. 구현한 결과를 실제 프로젝트의 방법으로 검증하고 [리뷰 지침](REVIEW.md)에 따라 검토한다.
 
 ## 들어 있는 것
@@ -21,6 +22,7 @@
 |---|---|
 | [CLAUDE.md](CLAUDE.md) | 에이전트가 따를 프로젝트 작업 원칙 |
 | [docs/PROCESS.md](docs/PROCESS.md) | 역할, 단계별 인계, 승인과 검증 근거 |
+| [docs/TESTING-STRATEGY.md](docs/TESTING-STRATEGY.md) | TDD·구현 후 테스트·기존 시험의 선택, 독립 기대, 탐색과 제품 완료 |
 | [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md) | main·작업 브랜치·PR·단계 수락·통합과 정리 |
 | [docs/PR-SIZE.md](docs/PR-SIZE.md) | 변경을 나누거나 함께 두는 유연한 판단 기준 |
 | [docs/RELEASE-CONTROL.md](docs/RELEASE-CONTROL.md) | 미완성 기능의 일반 OFF·테스트 ON, 공개와 제어 제거 |

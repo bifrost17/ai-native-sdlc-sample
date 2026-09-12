@@ -25,6 +25,8 @@ cached or directory-loaded versions. Do not invent policy values or require a pa
 
 Use [the project's spec form](../../../templates/spec.md);
 [conditional design blocks](references/design-depth.md) provide fillable contracts and diagrams.
+[The verification-strategy guide](../../../docs/TESTING-STRATEGY.md) explains how independent expectations,
+short exploration and later product proof connect without prescribing one test-writing order.
 Write in the originator's language and retain the six English section names and their information roles.
 Small changes can fit one file; spec.md is the entrypoint, not a one-file limit.
 List each authoritative design document, what decision it owns and what must be read. Keep one source per decision.
@@ -33,7 +35,9 @@ revision or snapshot. Do not put architecture/classes/contracts in plan merely t
 
 - Requirements: changed and preserved contracts with their intent/answer/policy basis.
 - Acceptance criteria: representative input, action, observable outcome and important failure/neighbor invariants.
-  Map AC/R many-to-many as useful. Do not invent metrics or copy a vague R sentence as its own proof.
+  Map AC/R many-to-many as useful. Give consequential expected results a basis such as an owner decision, policy,
+  protocol, pinned reference data or independent calculation. Current implementation output is evidence about the
+  baseline, not by itself the answer for a new contract. Do not invent metrics or copy a vague R sentence as its own proof.
 - Design: connect the current problem and constraints to the chosen structure, a representative flow and exact
   contracts. Explain meaningful alternatives and accepted operating/maintenance costs; do not invent numerical goals.
   Use prose for causal explanation and tables for comparable fields/contracts. A small change may combine these in
@@ -42,6 +46,11 @@ revision or snapshot. Do not put architecture/classes/contracts in plan merely t
 - Open questions: account for every input Q as answered with basis or carried forward with impact/owner/needed time.
   A question that can invalidate this design must be resolved before dependent handoff, not merely assigned.
 - Flagged concerns: material conflicts/decisions with evidence, effect and responsible role; if none, state examined scope.
+
+If a technical or UI choice is too uncertain to settle responsibly, keep the user goal, fixed constraints and unresolved
+question visible. A short authorized exploration may answer that question before the dependent product design is accepted.
+Treat its observations as design input: if the result is adopted, update the affected requirement, AC and design; if it is
+discarded, do not present the prototype as product behavior. Exploration success alone is not product completion.
 
 Choose a worked example by need: [small F01](../../../docs/sdlc-authoring/examples/F01/spec.md), [defect B01](../../../docs/sdlc-authoring/examples/B01/spec.md),
 [staged release F03](../../../docs/sdlc-authoring/examples/F03/spec.md), [multi-document M01](../../../docs/sdlc-authoring/examples/M01/spec.md),
