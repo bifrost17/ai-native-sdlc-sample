@@ -9,8 +9,8 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 | 구분 | 고정 판 | 사용 내용 |
 |---|---|---|
 | 팀 스킬 | `4bac3823c4271612263b90d5959bb8bc0ad8d46b`, Claude plugin `0.1.6` | `org-skills/skills/`의 13개 폴더와 원본 verifier |
-| 사용 템플릿 | `84a77b3` (`codex/use-template-0026`) | `examples/skills/`의 작성 예시 3개; spec 양식의 저장소 기준 경로 보완 |
-| OpenCode 어댑터 | 이 디렉터리를 포함하는 배포 커밋 | verifier 전체 변환본, patch 3개, 자료 색인 |
+| 사용 템플릿 | `84a77b3890cfdc97f3c6603f433e1382453ca261` (`codex/use-template-0026`) | `examples/skills/`의 작성 예시 3개; spec 양식의 저장소 기준 경로 보완 |
+| OpenCode 어댑터 | `fbe019c6282d6bab056e885632891e8ff6266c9d` | verifier 전체 변환본, patch 3개, 자료 색인 |
 
 조건 A는 native skill 14개와 직접 읽는 파일 자료 2개를 제공한다.
 
@@ -47,9 +47,10 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 특정 `github-copilot/...` 또는 Claude 모델 이름을 이 배포물이 추측하지 않는다.
 
 검토가 단계 제한에 도달하면 중간 결과와 남은 범위를 구분한다. 동일 검증자 세션에 남은 범위만
-이어 맡길 수 있으며, 프로젝트는 작업량과 자원 한도에 맞춰 `agent.sdlc-verifier.steps`를 조정한다.
-0026의 첫 Muse 검토는 기본 20단계에서 제한에 도달해 이어 검토했고, 두 번째 실행은 프로젝트에서
-30단계로 설정했다. 이것은 실험 운영 선택이며 모든 검토의 무제한 반복이나 배포 기본 변경이 아니다.
+이어 맡길 수 있으며, 프로젝트는 작업량과 자원 한도에 맞춰 설치한 agent의 `steps`를 조정한다.
+이 배포의 Markdown frontmatter가 있으므로 JSON 설정만 바꾸지 말고
+`.opencode/agents/sdlc-verifier.md`의 값과 `opencode debug agent sdlc-verifier`의 최종값을 확인한다.
+작업량에 맞는 유한한 한도를 정하며, 제한 도달을 모든 검토의 무제한 반복으로 해결하지 않는다.
 
 검증자에는 `read: allow` 같은 와일드카드 권한을 추가하지 않았다. 프로젝트의 기존 `.env`와
 비밀 파일 읽기 제한을 상속해야 하며, agent 뒤쪽의 넓은 allow가 이를 덮을 수 있기 때문이다.
@@ -69,10 +70,12 @@ Git 객체에서 통째로 복사하고, 플랫폼 계약이 다른 두 스킬�
 export OC_SOURCE=/absolute/path/to/ai-native-sdlc-sample
 export OC_TARGET=/absolute/path/to/experiment-product
 export OC_TEAM_REV=4bac3823c4271612263b90d5959bb8bc0ad8d46b
-export OC_TEMPLATE_REV=84a77b3
+export OC_TEMPLATE_REV=84a77b3890cfdc97f3c6603f433e1382453ca261
+export OC_ADAPTER_REV=fbe019c6282d6bab056e885632891e8ff6266c9d
 
 git -C "$OC_SOURCE" cat-file -e "$OC_TEAM_REV^{commit}"
 git -C "$OC_SOURCE" cat-file -e "$OC_TEMPLATE_REV^{commit}"
+git -C "$OC_SOURCE" cat-file -e "$OC_ADAPTER_REV^{commit}"
 
 mkdir -p "$OC_TARGET/.opencode/skills" "$OC_TARGET/.opencode/agents"
 mkdir -p "$OC_TARGET/.claude/skills" "$OC_TARGET/team-resources/skills"
@@ -102,17 +105,17 @@ git -C "$OC_SOURCE" archive "$OC_TEAM_REV" \
   org-skills/skills/pr-loop \
   | tar -x -C "$OC_TARGET/team-resources/skills" --strip-components=2
 
-cp "$OC_SOURCE/org-skills/opencode/agents/sdlc-verifier.md" \
-  "$OC_TARGET/.opencode/agents/sdlc-verifier.md"
-cp "$OC_SOURCE/org-skills/opencode/team-resources/INDEX.md" \
-  "$OC_TARGET/team-resources/INDEX.md"
+git -C "$OC_SOURCE" show "$OC_ADAPTER_REV:org-skills/opencode/agents/sdlc-verifier.md" \
+  > "$OC_TARGET/.opencode/agents/sdlc-verifier.md"
+git -C "$OC_SOURCE" show "$OC_ADAPTER_REV:org-skills/opencode/team-resources/INDEX.md" \
+  > "$OC_TARGET/team-resources/INDEX.md"
 
-patch -d "$OC_TARGET/.opencode/skills/sdlc-feedback" -p4 \
-  < "$OC_SOURCE/org-skills/opencode/patches/sdlc-feedback.patch"
-patch -d "$OC_TARGET/.opencode/skills/ux-copy" -p4 \
-  < "$OC_SOURCE/org-skills/opencode/patches/ux-copy.patch"
-patch -d "$OC_TARGET/.claude/skills" -p3 \
-  < "$OC_SOURCE/org-skills/opencode/patches/authoring-native.patch"
+git -C "$OC_SOURCE" show "$OC_ADAPTER_REV:org-skills/opencode/patches/sdlc-feedback.patch" \
+  | patch -d "$OC_TARGET/.opencode/skills/sdlc-feedback" -p4
+git -C "$OC_SOURCE" show "$OC_ADAPTER_REV:org-skills/opencode/patches/ux-copy.patch" \
+  | patch -d "$OC_TARGET/.opencode/skills/ux-copy" -p4
+git -C "$OC_SOURCE" show "$OC_ADAPTER_REV:org-skills/opencode/patches/authoring-native.patch" \
+  | patch -d "$OC_TARGET/.claude/skills" -p3
 ```
 
 설치 뒤 OpenCode 판, 실제 provider/model/variant, `debug skill`의 14개 발견, verifier 구성 파싱,
