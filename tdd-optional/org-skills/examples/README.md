@@ -1,4 +1,7 @@
-# examples — 한 프로젝트가 슬롯을 채운 모습
+# examples — 팀 채택과 프로젝트 적용 예시
+
+[sdlc-feedback 채택 안내](sdlc-feedback-adoption.md)는 팀이 선택한 절차를 제품 `CLAUDE.md`에
+연결하는 짧은 예시다. 아래 청구 도메인 예시는 팀 정책의 프로젝트 적용 모습을 보여준다.
 
 여기 있는 것은 **팀 스킬이 아니다.** 플러그인은 `org-skills/skills/` 만 로드하므로 이 폴더의 스킬은 세션에 뜨지 않는다.
 
