@@ -17,6 +17,8 @@ document set declared by spec. Apply the common Review criteria to update the ar
 changed: requirements/design/acceptance criteria in their spec documents, implementation/verification/PR
 boundaries in plan, and intent only if the problem or constraints changed. A conversation or README
 does not substitute for the affected artifact. Existing planning and policy skills retain their roles.
+Make affected spec/design documents and the plan current before starting the changed behavior's test-first
+cycle; if a discovery changes them during implementation, update them before the next dependent change.
 
 Use human decisions already supplied. If the accepted upstream version changed, update downstream
 references under the project's policy. Ask only for material decisions still missing; do not turn

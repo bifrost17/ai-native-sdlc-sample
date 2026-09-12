@@ -5,6 +5,8 @@ description: Implement new or changed behavior with an observed test-first feedb
 # Test-driven development
 
 Read the affected spec (including its declared design documents), plan, actual code and existing test commands.
+If the current request or discovery changes the contract/design or plan, reflect the authorized change in the
+affected spec documents and plan before starting its test-first cycle.
 Use the team's required test-first approach for new/changed behavior. Select one meaningful behavior or boundary
 at a time; do not build a batch of production changes before running their first tests.
 
