@@ -126,6 +126,8 @@ spec 안내 경로 두 곳만 보완했다. 사용판에는 활성 스킬을 넣
 팀 원본 0.1.6에는 변경된 설계·계획을 해당 test-first cycle 전에 현재화하는 연결 문장을 보완했다.
 [OpenCode 전달 안내](org-skills/opencode/README.md)와 [Muse 반복 실험](docs/experiments/0026-muse-spark.md)에
 실제 설치 판·관측·HUMAN 개입을 구분해 남긴다. 목표는 사람이 함께 주요 흐름을 대체로 잘 따르는 수준이다.
+[더 큰 F05 실험](docs/experiments/0027-muse-larger.md)은 SQLite·HTTP API·CSV를 4 PR로 개발해
+다문서 인계·요구 변경의 선행 동기화·main/fresh 69시험과 실제 연동을 확인했다. 사람 협업 목표는 통과이며 오류와 개입도 보존한다.
 기존 양식의 [기능 공개 제어](docs/RELEASE-CONTROL.md)를 이어 유지한다.
 미완성 기능은 일반 OFF·테스트 ON으로 통합하며 공개는 별도 결정한다.
 [조사·설계 판단](docs/research/release-controls/README.md)과 [두 PR 공개 실험](docs/research/release-controls/probe/README.md)에
