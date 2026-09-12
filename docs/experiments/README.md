@@ -267,6 +267,10 @@ spec→plan→구현→시험, 명시한 비TDD 적용과 전체 회귀를 관�
 [필수형 계열과의 비교](comparisons/0026-vs-0029.md)를 구분해 읽는다. 위의 0.1.7 등은 과거 실행판이며
 현재 선택형 채택은 `tdd-optional/`0.1.2, 기본형은 `tdd-first/` 안내에서 시작한다.
 
+[0030 Sonnet 시도](0030-optional-sonnet.md)는 최신 선택형0.1.2의 순수 사용판·F04 seed·Claude 스킬
+설치와 기준3시험을 준비했으나 첫 CLI가 OAuth 만료로 중단됐다. 모델 개발·스킬 적용·제품 평가는
+미실행이다. 인증 실패와 별도 브랜치·입력·설치 원본을 보존했으며 재인증이 필요하다.
+
 | Run | Case / dataset / seed | 기준 → 최종 해시 | 브랜치·근거 | 범위·결과 |
 |---|---|---|---|---|
 | Optional-F04 | F04 /6.0.0 /102 | seed068a969 → d876845 (통합2efa27a) | `codex/experiment-2026-09-12-optional-f04-r01@50a621f` · [0029](0029-optional-opencode.md) | 전체6호출·두 PR. 제품/fresh20시험·55명령/9판정, 문서 시점 실패·HUMAN 복구 보존 |

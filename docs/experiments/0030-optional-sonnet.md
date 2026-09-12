@@ -42,3 +42,30 @@ PR 의존성·방식 선택/독립 기대/실제 순서·문서 선행 갱신과
 원본: `/Users/jake/Projects/ai-native-sdlc-experiment-private/0030-optional-sonnet/`.
 제품: `/Users/jake/Projects/ai-native-sdlc-sonnet-optional-20260912/`.
 실행 후 소스·설치·모델·결과·refs를 아래에 기록한다.
+
+## 첫 호출: 인증 차단, 모델 실험 미실행
+
+설치 준비와 사전 정적 검토는 완료했다. 순수 사용판 `ab83dcc`는 source의 제품 tree와 동일하며,
+입력·정책·선택 설치 seed는 `dd48653`이다. 팀13개와 작성3개 스킬을 완결 폴더로 배치했고 원본
+플러그인·실험 플러그인·작성 스킬의 strict validation 및 baseline3시험이 통과했다.
+
+Claude Code2.1.265 첫 호출은 2026-09-12 11:51:50 UTC에 시작해 약1.3초 뒤 rc1로 종료했다.
+오류는 `Failed to authenticate: OAuth session expired and could not be refreshed`다.
+`claude auth status`도 loggedIn=false를 반환했다. 현재 실행 환경에는 Anthropic/Claude 인증 환경변수가
+없고 사용자 설정에 apiKeyHelper도 없었다. 다른 모델이나 인증 수단으로 대체하지 않았다.
+
+init은 `sonnet` 별칭을 `claude-sonnet-5`로 해석하고 inline 플러그인0.1.2, 선택한16개 스킬과
+namespaced verifier를 등록했다. 그 밖의 내장/전역 스킬 이름도 목록에 있어 완전 격리로 표현하지 않는다.
+**실제 assistant model은 오류용 `<synthetic>`뿐이고 도구 호출은0회다.** 모델 실행·스킬 본문 사용·
+의도 작성·검토·제품 구현은 모두 미실행이며 init의 모델명이나 설치 통과를 실행 성공으로 세지 않는다.
+제품은 seed에서 변경되지 않았다. 공개 첫 실패는 `raw/01-intent.jsonl`과 meta에 보존했다.
+
+이 시도는 인증 차단으로 종료한다. 재인증 후 기존 실패를 덮지 않는 새 실행 번호·브랜치와 시간 예산을
+먼저 기록하고 같은 고정 seed·업무 데이터로 시작한다. 재개 전 실제 auth 상태와 source 변경 여부를
+확인한다. 이 단계에서는 북극성의 실행 평가나 통과 주석을 갱신하지 않는다.
+
+제작 저장소에 `codex/use-template-optional-sonnet-0030@ab83dcc`,
+`codex/experiment-0030-sonnet-seed@dd48653`,
+`codex/experiment-0030-sonnet-auth-blocked@dd48653`를 보존했다. private `refs.json`은 전체 SHA,
+두 `.bundle`은 검증한 Git 보관본이다. `README.md`에 입력·설치·로그·인증 상태·재개 절차를 연결했다.
+독립 Sol 사전 리뷰는 정적 준비를 확인하고 인증 차단을 재확인했으며, 실행 통과로 판정하지 않았다.
