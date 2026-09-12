@@ -231,8 +231,14 @@ add296d의 두 부분 실행은 지침 전문 읽기를 확인한 새 세션에�
 활성화·영구 설치·실제 개발·실패/복구/재시험·기록 refs를 함께 둔다. 작은 한 사례의 결과이며
 다문서/UI 교육 예시까지 실제 제품 구현으로 검증했다는 뜻은 아니다.
 
+0025는 같은 F04를 OpenCode 1.18.30에서 새로 실행했다. 사람 검토·복구를 포함한 제품 인도는
+통과했고 협업 과정은 부분 통과다. 실제 native 스킬 9종과 독립 native 검토 8회, S1 문서 작성 뒤
+새 S2 구현, 두 로컬 PR 통합과 최종 제품 검증을 관측했다. 요구 변경의 사전 spec 수락 참조 누락과
+HUMAN 복구, 검증자 권한 어댑터 결함과 수정판 부분 확인은 [0025 결과](0025-opencode.md)에 구분한다.
+
 | Run | Case / dataset / seed | 기준 → 최종 해시 | 브랜치·근거 | 범위·결과 |
 |---|---|---|---|---|
+| OC-F04-r01 | F04 / 6.0.0 / 102 | d4d2153 → 4dc0d48 (제품 M1 bdb89f7 · M2 2ac54ad) | `codex/experiment-2026-09-12-oc-f04-a-r01` · [0025 기록](0025-opencode.md) | 전체 F04 10회 대화. 제품 20시험·handoff 24관측·OFF→ON→OFF 12호출 통과, 문서 수락 연결 실패와 HUMAN 복구·권한 어댑터 부분 보완 보존 |
 | F04-r01 | F04 / 6.0.0 / 102 | fbc23c0 → f77217f (제품 b712a2f) | `codex/experiment-2026-09-11-f04-r01` · [0024 기록](0024-spec-plan-activation.md) | 전체 11회 대화·두 local PR 통합·기능/공개 검증. 첫 문서·커밋 경계 실패와 HUMAN 복구 보존 |
 | F04-json-r01 | F04 후속 / 6.0.0 / 102 | d4e24d9 → 1959913 (제품 b4aad4c) | `codex/experiment-2026-09-11-f04-json-retest` · [0024 기록](0024-spec-plan-activation.md) | partial 1회 대화. 기능 16시험·50관측, 같은 커밋 기준 실패·미통합 |
 | F04-json-r02 | F04 후속 / 6.0.0 / 102 | fe61fe7 (정책 d4d2153) → 0fe8aae (제품 910e2ac) | `codex/experiment-2026-09-11-f04-json-r2` · [0024 기록](0024-spec-plan-activation.md) | partial 2회 대화. 같은 커밋·native 보완·HUMAN 문서 정정, 통합 17시험·50관측·관측 범위 root 통과 |
