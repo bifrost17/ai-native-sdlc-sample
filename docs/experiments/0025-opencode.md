@@ -58,3 +58,29 @@ reasoning/signature는 쓰기 전 제외한다. 출력 수집 검사는 이 부�
 이 과정은 명시 호출·부분 작업이므로 자연 스킬 선택이나 전체 사슬 통과로 계산하지 않는다.
 준비 결과와 수집 오류를 보존하고 F04는 별도 깨끗한 clone·새 session에서 시작한다.
 배포 자료는 [org-skills/opencode](../../org-skills/opencode/README.md)에 포함했다.
+
+### F04 작성 단계 — 진행 중
+
+제품 seed는 `7f53ac5`, S1은 `ses_f6ca0eb0bfferRB1Oj5bOrjOt9`다.
+실제 공개 사실만으로 질문하고 HUMAN이 D1–D6을 답했다. intent `f714c73`, spec `246c85a`를
+HUMAN이 읽고 수락했으며, 설정/오류 제안 수락을 `e1a9ae6`에 보존했다.
+합의는 `TRACKER_REQUEST_VIEWS=on`만 ON, 나머지 OFF, 거부 rc3와 영어 stderr 한 줄,
+기존 명령 유지, 조회 바이트 불변, 두 기능 공동 공개다. 첫 complete 저장의 기존 직렬화는 허용한다.
+
+S1 첫 질문은 capture-intent/brand 파일을 직접 읽었다. intent 작성 때 capture-intent/stop-slop-ko,
+spec 작성 때 design-spec/data-compliance/spec-policy-pass/brand를 실제 native skill로 읽었다.
+파일 Read·native 호출·산출물 적용을 구별한다. 설계에서 관련 정책을 구체 계약에 적용했고,
+해당 없는 API/UI 스킬을 사용하지 않은 것은 결함이 아니다.
+
+현재까지 독립 실험 설계 검토(Astra/high)는 진행 차단 사유가 없다고 판단했다. 별도 S2,
+요구 변경 전후 판·동일 커밋·최신 통합·실제 검증자 완료 근거를 최종 판정에서 확인하도록 했다.
+작성 단계만으로 전체 개발·자발적 후속 문서 동기화 통과를 주장하지 않는다.
+
+계획 `918e306`의 사용 설명 파일 부재 주장과 gate 구현/시험 선후는 HUMAN이 실제 파일과 대조해
+수정을 요청했다. `15c4831`이 USAGE 갱신과 선행 gate 시험을 반영해 수락됐다.
+새 구현 S2 `ses_f6c94bda8ffeJK9OqprfDYTwXu`에는 S1 대화 없이 문서 경로·수락 SHA·이유와
+PR1 범위만 전달했다. 초기 native tdd와 sdlc-feedback 읽기를 관측했다.
+
+HUMAN 관측 도구에도 준비 오류가 있었다. 설정 제안 전 작성한 helper가 ON 값을 `1`로 가정했다.
+제품 관측 전에 본문을 검토해 발견했고, 공개 수락한 정확한 `on`으로 정정했다. 원본 helper도 보존한다.
+이는 제품 실패나 숨겨진 기대 변경이 아니라 아직 미정이던 실행 설정을 합의 값으로 맞춘 것이다.
