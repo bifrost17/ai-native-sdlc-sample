@@ -56,7 +56,11 @@ can use Sonnet. If that capability is unavailable, use an appropriate available 
 with the limitation. A stronger model is not proof of correctness.
 
 Address concrete findings in the developer session, update affected artifacts and recheck changed
-evidence before completion. Reuse a relevant review only while its scope and evidence are unchanged.
+evidence before completion. When a finding requires a behavior-changing fix, return to
+[tdd](../tdd/SKILL.md): reproduce the defect in an automated test and observe its expected failure
+before changing production code. Apply that skill's existing exceptions and evidence rules;
+a reviewer's manual reproduction is not the automated test's RED.
+Reuse a relevant review only while its scope and evidence are unchanged.
 If progress stalls or a human decision is needed, report the unresolved point instead of looping.
 If independent execution was unavailable, say so rather than calling self-review independent.
 
