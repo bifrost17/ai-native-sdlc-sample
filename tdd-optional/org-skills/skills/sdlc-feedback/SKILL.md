@@ -1,6 +1,6 @@
 ---
 name: sdlc-feedback
-description: Keep agreed requirements, spec, plan and implementation aligned during software work. Use when implementing a planned change, incorporating new requirements or design/review feedback, departing from a plan, receiving an updated artifact acceptance, preparing related changes for commit, reporting implementation complete, or reviewing a branch/PR against its spec and plan. Questions and status-only requests do not call for completion review.
+description: Keep agreed requirements, spec, plan and implementation aligned during software work. Use when implementing a planned change, incorporating new requirements or design/review feedback, departing from a plan, receiving an updated artifact acceptance or later test/review evidence that changes the handoff, preparing related changes for commit, reporting implementation complete, or reviewing a branch/PR against its spec and plan. Questions and status-only requests do not call for completion review.
 ---
 # SDLC feedback
 
@@ -30,6 +30,11 @@ Distinguish an accepted baseline from current changes the human has already auth
 implementing; identify the actual current upstream content used by readable document paths and relevant
 sections, without attributing later amendments to the baseline SHA.
 A draft label does not erase that authorization or create a new acceptance gate.
+
+When later test or review evidence changes what remains, update the current plan/handoff summary
+and next steps, linking the actual tested revision and the existing evidence record. Preserve earlier
+records and their authors as history. Passing checks do not themselves accept, merge or complete
+outstanding work; keep the full execution results in their existing record.
 
 ## Implementation and commit
 

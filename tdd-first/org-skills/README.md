@@ -3,7 +3,9 @@
 이 폴더는 우리 팀의 선택 가능한 기본 스킬 예시를 배포한다. 아래 기본 설치 안내는 Claude Code용이다.
 사용 템플릿에 내장되는 필수 스킬이 아니다. 팀이 채택한 스킬과 프로젝트 정책을 함께 사용한다.
 
-이 패키지는 **tdd-first 0.1.8**이다. 기존 intent-sdlc-skills 식별자와 TDD 기본 동작을 유지한다.
+이 패키지는 **tdd-first 0.1.9**이다. 기존 intent-sdlc-skills 식별자와 TDD 기본 동작을 유지한다.
+0.1.9는 후속 시험·검토 근거가 남은 작업을 바꾸면 현재 plan·인계에 실제 시험 판과 근거를 연결하도록
+feedback 안내를 보완한다. 과거 기록·작성 주체와 수락·통합·완료 구분을 유지하며 새 승인 단계나 검사기는 추가하지 않는다.
 OpenCode 전달은 [어댑터 안내](opencode/README.md)를 따른다.
 [0025](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0025-opencode.md), [0026](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0026-muse-spark.md),
 [0028](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0028-review-tdd.md)은 분리 전 판의 실행 기록이다.
@@ -77,6 +79,7 @@ claude plugin list --json
 | 이벤트 | 수행 |
 |---|---|
 | 요구·설계 변경, 계획 이탈, 새 수락 판 | 연결된 설계 정본을 포함한 필요한 spec/plan과 하위 참조를 갱신 |
+| 남은 작업을 바꾸는 후속 시험·검토 결과 | 현재 plan·인계에서 실제 시험 판과 기존 근거를 연결; 과거 기록·작성 주체와 수락·통합·완료 구분 유지 |
 | 관련 커밋 준비 | 실제 포함 파일·test-first 근거를 확인하고 영향 문서와 구현을 함께 기록 |
 | 구현 완료 보고 전 | 새 문맥의 검증자로 현재 결과를 확인하고 중요한 발견을 보완 |
 | 리뷰에서 동작 결함 수신 | 기존 TDD로 돌아가 자동 재현 시험의 예상 실패를 수정 전에 확인 |
