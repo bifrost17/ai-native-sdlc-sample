@@ -1,0 +1,24 @@
+{
+  "scope": "Document identity, syntax and reference checks only; no new product experiment or full OpenAPI conformance validation",
+  "input_files_verified": 18,
+  "accepted_vs_observed_unchanged": {
+    "intent.md": true,
+    "spec.md": true,
+    "design/contracts.md": true,
+    "design/storage.md": true,
+    "design/openapi.json": true
+  },
+  "plan_accepted_lines": 282,
+  "plan_observed_lines": 350,
+  "plan_original_retained_as_prefix": true,
+  "plan_appended_lines": 68,
+  "spec_total_lines": 1010,
+  "openapi_internal_refs": 45,
+  "openapi_unique_refs": 10,
+  "openapi_paths": [
+    "/health",
+    "/requests",
+    "/requests/{id}"
+  ],
+  "openapi_operation_count": 4
+}
