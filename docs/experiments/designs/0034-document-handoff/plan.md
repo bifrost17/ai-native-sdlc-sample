@@ -1,6 +1,6 @@
 # 0034 북극성 기반 문서 보완·부분 재검증
 
-Status: planned
+Status: completed — 문서 부분 검증 통과. 실행·판정은 [0034 기록](../../0034-document-handoff.md)에 보존한다.
 
 ## 목표와 범위
 

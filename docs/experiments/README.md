@@ -15,6 +15,7 @@
 | [datasets/v6/manifest.json](datasets/v6/manifest.json) | F04: 새 구체 양식·TDD·두 PR/한 공개 단위·구현 중 JSON 요구 변경 |
 | [run-record.template.md](run-record.template.md) | 실행별 환경·대화·결정·단계·측정·결과 기록 |
 | [OpenCode 실험 설계](../research/opencode-compatibility/experiment/README.md) | 미실행 계획: 스킬 최대 제공·파일 참조 대안, F04 전체 1회와 필요한 부분 재시험 |
+| [0034 문서 표현·후속 근거 인계](0034-document-handoff.md) | 기본형0.1.9·선택형0.1.5 공통 보완. 선택형 Codex Astra/medium 작성2회·새 Sol/high 독자1회, 약15분27초 부분 검증 통과. PR3·D7·최종 인도 미완료 유지 |
 | [0033 Astra medium · F05](0033-astra-medium-f05.md) · [문서 충실도](reviews/0033-document-quality/README.md) | 선택형0.1.4 · 8회/약89분. PR1/2 수락·통합, PR3 후보77시험·216관찰 통과. 남은 전용 시험·D7 문서 동기화·최종 인도는 미완료로 보존 |
 | [0032 Codex Luna 설계](0032-codex-luna.md) · [실행 기록](0032-codex-luna-run.md) | 선택형0.1.3 전체 실행의 중요 절차 실패·HUMAN 복구 보존,0.1.4 JSON 부분 재실험 핵심 통과. Luna/high·Sol/high, 설치 배포판·원본 기록·fresh 회귀 |
 
