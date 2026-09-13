@@ -19,6 +19,14 @@ JSON 문서 선행 갱신을 놓쳤으며 0.1.2의 진입/검토 안내 보완 �
 새 부분 세션에서 sdlc-feedback 실제 사용·문서 선행/같은 커밋·최신 native 검토와 대기를 관측했다.
 통합·fresh26시험·55명령/9판정 통과 후1회에서 종료했다. 일반 정책·스킬 본문을 더 조이지 않았다.
 
+[0032 Codex Luna](../../experiments/0032-codex-luna-run.md)는0.1.3 전체 실행에서 spec/plan 선행은
+지켰지만 intent 제약과 실제 상위 문서 참조를 놓쳤다. 원본과 HUMAN 복구를 보존하고0.1.4에서
+기존 feedback/verifier의 두 비교 질문을 명확히 했다. 새 JSON 부분 실행은 intent→spec→plan→
+RED→GREEN·같은 커밋·fresh native Sol 검토와 대기를 관측했다. 경미한 표 참조 한 칸은 HUMAN이
+정정했고, 통합판의 새 복제본9시험·55명령/3추가 판정 통과 후 종료했다. 새 훅·검사기·승인 단계는
+없다. 첫 전체 실행의 단계 인계 공백·마지막 검토 중단, named custom-agent 자동 적용 미검증과
+전체0.1.4 사슬 미검증은 유지한다. 프로젝트별 Codex 설치16개와 자연 사용의 관측도 구별한다.
+
 | 영역 | 반영한 차이 |
 |---|---|
 | PROJECT-POLICY·CLAUDE·PROCESS·REVIEW | TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 허용. TDD 미선택 자체에 예외 승인 요구 없음 |

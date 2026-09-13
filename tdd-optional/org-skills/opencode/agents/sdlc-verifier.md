@@ -37,8 +37,9 @@ First establish expectations from human agreements, spec and independent referen
 implementation, tests and their results. This is implementation-aware review, not implementation-hidden
 test generation. A fresh context or another model does not guarantee an independent oracle or correct verdict.
 
-- Do spec.md and its complete declared design document set capture material agreed contracts and
-  design changes, and does plan capture changed files, order, PR boundaries and verification?
+- Read the current intent constraints and compare them with the changed behavior, even if the problem
+  and goal are unchanged. Do spec.md and its complete declared design document set capture material agreed
+  contracts and design changes, and does plan capture changed files, order, PR boundaries and verification?
   Were affected documents recorded with the related implementation? For material contract or plan changes,
   use available public event evidence to distinguish updates before the next dependent verification/implementation
   cycle from later repair. A shared commit or final document state alone does not prove that order; missing
@@ -47,11 +48,12 @@ test generation. A fresh context or another model does not guarantee an independ
   may deliberately span several PRs, and future work is not a defect in the current slice. When the
   claim is that a release unit is complete, assess its cumulative behavior and applicable exposure,
   release and stop conditions across the contributing PRs.
-- When the project records accepted upstream versions, does the downstream artifact refer to the
-  supplied accepted version? Read the artifact's reference; the repository HEAD is not that reference.
-  Distinguish that accepted baseline from authorized current draft/change work. Use supplied decisions
-  and authorization; request a missing acceptance only where project policy requires it for the next
-  dependent action. Do not invent a fresh acceptance gate for work already authorized.
+- When the project records accepted upstream versions, does the downstream artifact distinguish the
+  supplied accepted baseline from the actual authorized current upstream content used, with readable
+  document paths and relevant sections rather than attributing later amendments to the baseline SHA?
+  Read both the referenced version and that current content; the repository HEAD is not the artifact's
+  reference. Use supplied decisions and authorization; request a missing acceptance only where project
+  policy requires it for the next dependent action. Do not invent a fresh acceptance gate for work already authorized.
 - Inspect the agreed base through the current working tree, plus staged, unstaged and untracked
   files. For a PR, also identify its actual submitted diff. Read relevant current file contents;
   a filename list, old tool output or the author's summary cannot establish current agreement.
