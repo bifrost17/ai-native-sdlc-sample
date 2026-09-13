@@ -9,7 +9,8 @@
 ## Conventions
 
 - 변경의 문제와 의도를 `intent/<NNNN>-<slug>/intent.md`, 요구·설계를 `spec.md`, 구현 계획을
-  `plan.md`로 이어 기록한다. 단계와 역할은 `docs/PROCESS.md`를 따른다.
+  `plan.md`로 이어 기록한다. 기존 건을 이어갈지와 번호·이름은 [변경 기록 규칙](intent/README.md)을,
+  단계와 역할은 `docs/PROCESS.md`를 따른다.
 - 후속 요청·리뷰·구현 중 발견으로 합의한 동작·범위·수용 기준이 달라지면 해당 spec과 plan을 읽고,
   필요한 문서 갱신을 이번 작업에 포함한다. 대화나 README의 설명만으로 설계·계획 갱신을 대신하지 않는다.
 - 브랜치는 [GitHub Flow](docs/GIT-WORKFLOW.md), 변경 묶음은 [PR 크기 가이드](docs/PR-SIZE.md)를 따른다.

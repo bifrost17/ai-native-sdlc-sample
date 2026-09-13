@@ -1,0 +1,98 @@
+# Development-change document naming: check outputs
+
+Date: 2026-09-13
+Baseline: 182deba756111635f6cda182b7a795aa0926ea47
+Branch: codex/change-document-naming
+
+## make check
+Exit: 0
+
+python3 -m unittest discover -s tests
+..................................................................s...................................
+----------------------------------------------------------------------
+Ran 102 tests in 32.976s
+
+OK (skipped=1)
+bash tests/test_hooks.sh
+ok   protect-paths: .github blocked (rc=2)
+ok   protect-paths: Makefile blocked (rc=2)
+ok   protect-paths: .claude/hooks blocked (rc=2)
+ok   protect-paths: settings.json blocked (rc=2)
+ok   protect-paths: accepted intent passes (PO reviews it, not the hook) (rc=0)
+ok   protect-paths: src file passes (rc=0)
+ok   protect-tests: fix task, test file blocked (rc=2)
+ok   protect-tests: fix task, src passes (rc=0)
+ok   protect-tests: no fix task, test passes (rc=0)
+ok   no-secrets: AWS key blocked (rc=2)
+ok   no-secrets: password literal blocked (rc=2)
+ok   no-secrets: plain edit passes (rc=0)
+ok   format-lint: broken .py reported (rc=2)
+ok   format-lint: broken .sh reported (rc=2)
+ok   format-lint: valid .py passes (rc=0)
+ok   format-lint: valid .sh passes (rc=0)
+ok   production-gate: unapproved prod deploy blocked (rc=2)
+ok   production-gate: approved prod deploy passes (rc=0)
+ok   production-gate: staging deploy passes (rc=0)
+ok   fail-closed: broken JSON blocks (rc=2)
+ok   fail-closed: no jq blocks (rc=2)
+ok   wiring: settings.json is valid JSON
+ok   wiring: protect-paths.sh wired and executable
+ok   wiring: protect-tests.sh wired and executable
+ok   wiring: no-secrets.sh wired and executable
+ok   wiring: format-lint.sh wired and executable
+ok   wiring: production-gate.sh wired and executable
+ok   decision log: block appended (2026-09-13T08:04:07Z protect-paths.sh block Makefile)
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+PASS  1. 케이스 전량 스키마
+PASS  2. 통과 픽스처 rc=0 (01-pass = capture-intent 스킬대로 손으로 쓴 intent)
+PASS  3. 위반 픽스처 rc=1+FAIL
+PASS  4. 없는 파일/워크스페이스 → rc=2
+PASS  5. 닫힌 집합 밖 kind → rc=2
+PASS  6. run.sh 키 없음 → rc=2+SKIP
+PASS  7. jq 없는 PATH → rc=2
+PASS  8. 셸 구문
+
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약
+
+## Final copied-product checks after review edits
+Command: python3 -m unittest discover -s tests -p test_template_editions.py
+Exit: 0
+
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.099s
+
+OK
+
+## Temporary Codex adapter check
+Initial attempt incorrectly assumed both editions ship a Codex adapter. It stopped with FileNotFoundError for tdd-first/org-skills/codex/patches/explicit-only.patch. No product file or installation was changed by the attempt. The scope was corrected to the actual tdd-optional Codex adapter.
+
+Temporary directory: automatic cleanup after validation.
+Inputs: tdd-optional project examples capture-intent/design-spec/plan, org-skills to-questionnaire, codex/patches/explicit-only.patch.
+Command: patch --batch --fuzz=0 -p1 -d <temporary product>, patch provided on stdin.
+Validator: /Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py
+Python: existing validation-venv/bin/python under ai-native-sdlc-experiment-private/0034-document-handoff, used read-only; no changes to 0034 artifacts.
+Assertions: no offsets/fuzz; source body unchanged except adapter frontmatter removal; explicit-only openai.yaml preserved; cross-edition naming/source example parity.
+Exit: 0
+
+{
+  "scope": "temporary copy and static adapter validation; no model execution or permanent install",
+  "edition_parity": "pass for naming source and capture-intent example",
+  "result": {
+    "edition": "tdd-optional",
+    "codex_explicit_only_patch": "pass without offsets or fuzz",
+    "capture_intent_body": "unchanged after adapter conversion",
+    "explicit_only_policy": "preserved",
+    "quick_validate": "Skill is valid!",
+    "source_sha256": "23d840df4ed12a84207e19b32390cf74ca5c16fd80a2d747ff835027a0d76327",
+    "adapted_sha256": "8eacdc0ee68de63d8754e80b20d053d4a2de56451436920622ea03f8e4a2fbcb"
+  }
+}
+
+## Formatting
+Command: git diff --check
+Exit: 0
