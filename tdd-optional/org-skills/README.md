@@ -3,12 +3,16 @@
 이 폴더는 우리 팀의 선택 가능한 기본 스킬 예시를 배포한다. 아래 기본 설치 안내는 Claude Code용이다.
 사용 템플릿에 내장되는 필수 스킬이 아니다. 팀이 채택한 스킬과 프로젝트 정책을 함께 사용한다.
 
-이 패키지는 **tdd-optional 0.1.3**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+이 패키지는 **tdd-optional 0.1.4**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+0.1.4는 목표가 같아도 intent의 현재 제약을 비교하고, 수락 기준 SHA와 실제 사용하는 허용된 상위 문서
+내용을 구별하도록 feedback/검토 지침을 명확히 한다. 새 승인 단계나 검사기는 추가하지 않는다.
 0.1.3은 팀이 sdlc-feedback을 채택했을 때 사용하는 [프로젝트 진입 안내 예시](examples/sdlc-feedback-adoption.md)를
 추가한다. 순수 제품 정책이나 기존 스킬/검증자 기준을 늘리지 않고 설치와 팀의 사용 결정을 연결한다.
 0.1.2 검증자는 공개 실행 근거가 있을 때 문서 선행 갱신과 사후 복구를 구별한다. 최종 파일·같은 커밋만으로
 순서를 추정하지 않으며 이력이 없으면 미검증으로 남긴다. 새 승인 단계·기록 양식·검사기는 추가하지 않는다.
 OpenCode 전달은 [어댑터 안내](opencode/README.md)를 따른다.
+Codex 프로젝트 설치는 [Codex 어댑터](codex/README.md)를 따른다. 전체 폴더와 명시 사용 정책을 보존하며,
+named custom-agent 설정의 자동 적용과 새 native 검토자의 기준 파일 직접 읽기를 구별한다.
 [0025](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0025-opencode.md), [0026](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0026-muse-spark.md),
 [0028](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0028-review-tdd.md)은 분리 전 판의 실행 기록이다.
 현행 패키지의 설치·파싱과 자연 호출·실제 행동 증거를 구별한다. 선택형은 과거 통과를 승계하지 않는다.

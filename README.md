@@ -61,7 +61,8 @@ tests/, evals/  배포판과 제작 도구 검증
 [선택형 패키지](tdd-optional/org-skills/README.md)에서 확인한다. 기존 사용자 설치를 이 구조 변경만으로
 갱신하거나 비활성화하지 않는다. 채택한 판·설치한 판·실제 로드한 경로를 함께 확인한다.
 
-Claude 및 OpenCode용 검증자·설치 어댑터를 각각 포함한다. [팀 CLI](team-harness/README.md)는 기존의
+Claude 및 OpenCode용 검증자·설치 어댑터를 포함하며, 선택형에는
+[Codex 프로젝트 설치](tdd-optional/org-skills/codex/README.md)도 제공한다. [팀 CLI](team-harness/README.md)는 기존의
 선택적 실행·기록 실험 도구로 보존한다. 회사의 사람 승인과 GitHub 병합 권한은 별도의 통제다.
 
 ## 이 저장소의 개발과 검증

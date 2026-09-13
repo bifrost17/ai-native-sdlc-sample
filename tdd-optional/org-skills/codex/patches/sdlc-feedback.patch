@@ -1,0 +1,54 @@
+--- a/.agents/skills/sdlc-feedback/SKILL.md
++++ b/.agents/skills/sdlc-feedback/SKILL.md
+@@ -5,8 +5,9 @@
+ # SDLC feedback
+ 
+ Work in the developer's conversation so that the human's decisions remain available. Read
+-the **Review criteria** section of [sdlc-verifier.md](../../agents/sdlc-verifier.md) when comparing
+-agreements, artifacts and evidence. Its reviewer-only permissions apply to the verifier, not to
++the **Review criteria** embedded in the `developer_instructions` of
++[sdlc-verifier.toml](../../../.codex/agents/sdlc-verifier.toml) when comparing agreements, artifacts
++and evidence. Its reviewer-only permissions apply to the verifier, not to
+ your developer session.
+ Use the part below that fits the current event; this is not an extra phase for every response.
+ 
+@@ -42,9 +43,20 @@
+ ## Completion and review
+ 
+ Before reporting an implementation task complete, delegate a final check to a fresh-context
+-verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills-optional:sdlc-verifier`
+-as a default team example. Wait for its result before a final completion report; a pending review
+-is still pending. Do not run both for the same purpose. A routine prose correction or a
++verifier. Prefer an equivalent project verifier; this Codex distribution includes `sdlc-verifier`
++as the default team criteria and configuration. When the runtime supports named project-agent selection,
++select that agent. Codex 0.153.4's observed native child spawn interface did not expose a named selector.
++In that runtime, start a fresh native child with `fork_context=false`, the configured model and reasoning
++effort, give it the minimum task handoff, and explicitly tell it to read
++`.codex/agents/sdlc-verifier.toml` and apply the
++`developer_instructions` before reviewing. This file-read fallback transfers the criteria; it does not
++prove that the TOML custom-agent role or other configuration was selected. Missing role metadata remains
++unverified rather than evidence of that role.
++
++Wait for the verifier's result before a final completion report; a pending review is still pending.
++Preserve the returned result, then close the completed child with Codex's provided close action so the
++next review can use a fresh context. Keep the child history; do not delete it. Do not run both a named
++agent and the fallback for the same purpose. A routine prose correction or a
+ status/decision question does not require this independent implementation review.
+ This completion check is a deliberate rule of this adopted team skill, not a requirement to use a
+ particular verifier tool in every project. A fresh context or different model does not guarantee
+@@ -61,10 +73,11 @@
+ equivalent criteria when using a project verifier. Include uncommitted and untracked work. Do not ask it to trust your
+ completion claim. It should read the current files and return findings, not edit or approve.
+ 
+-Choose model and effort for difficulty, impact and uncertainty within the user's limits. The default
+-team verifier uses Opus/high for consequential cross-artifact judgments; ordinary implementation
+-can use Sonnet. If that capability is unavailable, use an appropriate available verifier or hand off
+-with the limitation. A stronger model is not proof of correctness.
++Choose the Codex model and reasoning effort for difficulty, impact and uncertainty within the user's
++limits. The included verifier is configured with gpt-5.6-sol/high for consequential cross-artifact
++judgments; pass those values explicitly when using the 0.153.4 fallback if the native interface supports
++them. If an appropriate independent verifier is unavailable, hand off with the limitation. A stronger
++model is not proof of correctness.
+ 
+ Address concrete findings in the developer session, update affected artifacts and recheck changed
+ evidence before completion. When a finding requires a behavior-changing fix, follow the selected strategy and reassess its coverage.

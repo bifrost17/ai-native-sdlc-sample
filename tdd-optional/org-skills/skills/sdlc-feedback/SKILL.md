@@ -13,8 +13,9 @@ Use the part below that fits the current event; this is not an extra phase for e
 ## Change or acceptance
 
 Read the applicable project instructions and current intent/spec/plan, including the complete design
-document set declared by spec. Apply the common Review criteria to update the artifacts whose meaning
-changed: requirements/design/acceptance criteria in their spec documents, implementation/verification/PR
+document set declared by spec. Check the current intent constraints against the changed behavior even
+when the problem and goal are unchanged. Apply the common Review criteria to update the artifacts whose
+meaning changed: requirements/design/acceptance criteria in their spec documents, implementation/verification/PR
 boundaries in plan, and intent only if the problem or constraints changed. A conversation or README
 does not substitute for the affected artifact. Existing planning and policy skills retain their roles.
 Record the chosen verification strategy (TDD, behavior-by-behavior implementation then tests, existing-test
@@ -26,7 +27,9 @@ Use human decisions already supplied. If the accepted upstream version changed, 
 references under the project's policy. Ask only for material decisions still missing; do not turn
 an already clear answer into another approval request. Leave unaffected documents alone.
 Distinguish an accepted baseline from current changes the human has already authorized drafting or
-implementing. A draft label does not erase that authorization or create a new acceptance gate.
+implementing; identify the actual current upstream content used by readable document paths and relevant
+sections, without attributing later amendments to the baseline SHA.
+A draft label does not erase that authorization or create a new acceptance gate.
 
 ## Implementation and commit
 

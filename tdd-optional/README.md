@@ -10,6 +10,9 @@ TDD를 고르지 않았다는 이유만으로 별도의 예외 승인을 요구�
 2. 제품의 [PROJECT-POLICY.md](project/PROJECT-POLICY.md)에 실제 역할·명령·정책을 채운다.
 3. 필요하면 이 판의 [팀 스킬](org-skills/README.md)을 선택 설치한다. 식별자는 `intent-sdlc-skills-optional`이다.
 
+Codex에는 [프로젝트별 Codex 설치 안내](org-skills/codex/README.md)를 사용한다. 스킬 폴더·참조와
+명시 사용 정책을 유지하며, 실제 CLI에서 관측한 검증자 전달 방식과 한계를 함께 설명한다.
+
 기본형 패키지나 기존 사용자 전역의 TDD 지침을 함께 적용하지 않도록 실제 설치·로드 출처를 확인한다.
 이 구조 변경은 기존 설치를 자동 갱신·제거하지 않는다. `project/`에는 활성 스킬·훅이 없고
 작성 스킬은 `project/examples/skills/`의 선택 예시다.
