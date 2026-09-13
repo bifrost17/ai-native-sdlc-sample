@@ -693,8 +693,6 @@ test_status.py covers the four claim states; screenshot matches the approved moc
 <p><b>템플릿</b> <code>templates/plan.md</code> 머리 <code># Plan: ‹what is built› (from intent.md ‹date›)</code> 와 네 절이 예시와 같은 머리·순서. 예시에 없는 줄 하나: <code>Upstream: spec.md@‹sha›</code>(spec 판 고정, L3 279 계열).</p>
 <p><b>실험</b> 0008 <code>plan.md</code> 머리 <code># Plan: 배정 사정인용 청구 상태 조회 (from intent.md 2026-09-09)</code>, 네 절 이름·순서 동일. 0009 도 같은 꼴.</p>
 <p><b>보완</b> 없음.</p>
-<p><b>0031 채택한 절차의 실제 사용</b> 짧은 팀 채택 안내를 연결한 새 부분 세션은 업무 요청만으로 sdlc-feedback을 호출하고 최신 미커밋 변경을 Sonnet5 native 검증자에게 넘겼다. 검토 대기임을 보고한 뒤 반환을 기다려 커밋·완료했으며 별도 HUMAN 상기는 없었다. 통합·fresh 전체 회귀를 확인하고1회에서 멈췄다. 기존 스킬·verifier 본문은 그대로이며 명시 채택·새 문맥·제품 이력이 함께 다른 제한된 관측이다. <a href="../experiments/0031-optional-feedback-adoption.md">1호출·검토·예산·보존 근거</a>.</p>
-<p><b>0030 호출과 판단은 별도 평가</b> Sonnet5 native 검토3회가 반환했고 부모가 기다렸으나 PR1·JSON의 최초 완료에서 검토를 빠뜨려 HUMAN이 두 차례 요청했다. 최종 검토의 diff 기반 시간 순서 추론은 HUMAN이 공개 사건 근거로 정정했다. 설치16개를 전체 사용으로 세지 않으며 실제 스킬 본문 사용은 정책 검토의3개만 확인했다. 사람과 함께 제품·현재 문서·통합을 수락한 근거이며 자연 호출·검토 무오류의 통과는 아니다. <a href="../experiments/0030-optional-sonnet.md">최초 누락·최종 검토·HUMAN 복구</a>.</p>
 </div></details>
 <h2>governance 고려사항</h2>
 <p>설계 review는 코드가 생성되기 전에, 방향을 바꾸는 일이 아직 문서 편집으로 끝나는 시점에 일어난다. 엔지니어가 계획을 수락하기 전까지 Claude가 파일을 편집할 수 없으므로, plan mode가 이것을 스스로 강제한다. 계획과 그 개정본은 누가 그것을 수락했는지와 함께 기록된다. 일상적인 변경은 엔지니어가 승인하고, 조직이 고위험으로 분류하는 것은 tech lead나 아키텍트에게 간다.</p>
@@ -1083,6 +1081,8 @@ behavior that does not match plan.md. Do not fix anything; report only.
 <p><b>0027 실제 결함을 찾은 네 검토</b> native 4세션 모두 결과를 반환했고 부모가 기다렸다. HTTP 미등록 메서드의 HTML 오류와 CSV의 특수 DB 경로 오동작을 직접 찾아 수정·회귀로 이어졌다. 실제 Muse 모델은 export로 확인했지만 child variant는 default라 설정 xhigh를 실제 내부 추론 증명으로 쓰지 않는다. 사람 수락과 정상 경로 사용의 근거이며 자동 승인·우회 차단 보장이 아니다. <a href="../experiments/0027-muse-larger.md">발견·수정·metadata 한계</a>.</p>
 <p><b>0028 검토 판단과 HUMAN 복구</b> 최종 검토 3회 모두 반환·대기를 확인했다. 첫 HTTP 검증자는 끝 슬래시 경로의 405를 관측하고도 기존 404 계약의 누락을 경미한 선택으로 낮췄다. HUMAN이 기존 계약을 적용하도록 후속 대화했고 자동 RED·수정·55시험·새 검토 뒤 수락했다. CSV는 69시험·독립 126관측 통과다. 최초 판단 누락, 파이프가 가린 시험 rc, native variant default 한계는 유지하며 완전 통제로 해석하지 않는다. <a href="../experiments/0028-review-tdd.md">판단 누락·후속 대화·회귀</a>.</p>
 <p><b>0029 검토 근거와 과거 기록</b> 선택형의 native 검토 4회 모두 반환·대기를 확인했다. 최초 검토는 늦은 문서 갱신을 놓쳤고, 보완판 검토는 이력이 없는 선후 관계를 미검증으로 구별했다. 다만 현재 시험 수로 정상 과거 기록을 반박한 의견을 AGENT가 받아들여 HUMAN이 공개 사건으로 정정했다. 최신 제품 26시험과 독립 55명령·9추가 판정, 통합·새 디렉터리 인도를 확인했다. 검토 이후 변경은 HUMAN이 확인했으며 native가 최종 모든 변경을 다시 검토한 것은 아니다. 실제 child 모델은 Muse지만 xhigh 내부 적용은 variant default/미표기로 미확인이다. <a href="../experiments/0029-optional-opencode.md">대상 판·원본·최종 판단</a>.</p>
+<p><b>0030 호출과 판단은 별도 평가</b> Sonnet5 native 검토3회가 반환했고 부모가 기다렸으나 PR1·JSON의 최초 완료에서 검토를 빠뜨려 HUMAN이 두 차례 요청했다. 최종 검토의 diff 기반 시간 순서 추론은 HUMAN이 공개 사건 근거로 정정했다. 설치16개를 전체 사용으로 세지 않으며 실제 스킬 본문 사용은 정책 검토의3개만 확인했다. 사람과 함께 제품·현재 문서·통합을 수락한 근거이며 자연 호출·검토 무오류의 통과는 아니다. <a href="../experiments/0030-optional-sonnet.md">최초 누락·최종 검토·HUMAN 복구</a>.</p>
+<p><b>0031 채택한 절차의 실제 사용</b> 짧은 팀 채택 안내를 연결한 새 부분 세션은 업무 요청만으로 sdlc-feedback을 호출하고 최신 미커밋 변경을 Sonnet5 native 검증자에게 넘겼다. 검토 대기임을 보고한 뒤 반환을 기다려 커밋·완료했으며 별도 HUMAN 상기는 없었다. 통합·fresh 전체 회귀를 확인하고1회에서 멈췄다. 기존 스킬·verifier 본문은 그대로이며 명시 채택·새 문맥·제품 이력이 함께 다른 제한된 관측이다. <a href="../experiments/0031-optional-feedback-adoption.md">1호출·검토·예산·보존 근거</a>.</p>
 </div></details>
 <h2>governance 고려사항</h2>
 <p>session이 늘면 artifact도 늘어나므로, 통제는 repo 안의 설정에서 나와야 한다. 거기 있는 hook과 권한 설정은 모든 session에 적용되고, session이 하는 일은 기록되어 그것을 돌린 엔지니어에게 귀속된다.</p>

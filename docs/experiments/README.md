@@ -15,6 +15,7 @@
 | [datasets/v6/manifest.json](datasets/v6/manifest.json) | F04: 새 구체 양식·TDD·두 PR/한 공개 단위·구현 중 JSON 요구 변경 |
 | [run-record.template.md](run-record.template.md) | 실행별 환경·대화·결정·단계·측정·결과 기록 |
 | [OpenCode 실험 설계](../research/opencode-compatibility/experiment/README.md) | 미실행 계획: 스킬 최대 제공·파일 참조 대안, F04 전체 1회와 필요한 부분 재시험 |
+| [0032 Codex Luna 실험 설계](0032-codex-luna.md) | 설치·실행 전 계획: 선택형0.1.3의 Codex 이식, Luna/high 개발·Sol/high native 검토, smoke→F04 전체→필요한 보완 |
 
 현재 데이터는 합성된 초기 사례다. 실제 최근 업무 20~50건이나 다양한 조직을 대표한다고 주장하지 않는다.
 먼저 F01 한 건으로 대화와 기록 방법을 확인하고, 이후 분야·불확실성·정책 조건을 바꾼 판을 추가한다.
