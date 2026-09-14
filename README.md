@@ -5,12 +5,23 @@ Anthropic의 AI-Native SDLC Playbook을 바탕으로 우리 팀이 사용할 **�
 제거하기 위해 절차나 검사기를 계속 늘리지는 않는다. 우리 팀은 사내 동료에게 소프트웨어를 제공하며,
 정책은 실제 영향과 대응 가능성에 맞게 얇게 유지한다. Unofficial; not an Anthropic project.
 
-## 사용할 템플릿 선택
+## 에이전트 시작점 — 사용할 템플릿은 `main` 브랜치
 
-| 배포판 | 개발 방식 | 채택·설치 안내 |
-|---|---|---|
-| **TDD 기본형** | 새·변경 동작은 test-first 기본. 의미 있는 RED→GREEN과 기존 예외를 유지한다. | [tdd-first](tdd-first/README.md) |
-| **TDD 선택형** | 작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택한다. | [tdd-optional](tdd-optional/README.md) |
+**현재 사용 템플릿의 정본은 `main` 브랜치의 아래 두 `project/` 폴더다.** 이 저장소를 살펴보는
+에이전트는 요청된 배포판의 경로와 채택 안내부터 확인한다. 두 배포판은 같은 브랜치 안에서 폴더로 구분한다.
+
+| 배포판 | 브랜치 · 실제 제품용 경로 | 개발 방식 | 채택·설치 안내 |
+|---|---|---|---|
+| **TDD 기본형** | `main` · [`tdd-first/project/`](tdd-first/project/README.md) | 새·변경 동작은 test-first 기본. 의미 있는 RED→GREEN과 기존 예외를 유지한다. | [tdd-first](tdd-first/README.md) |
+| **TDD 선택형** | `main` · [`tdd-optional/project/`](tdd-optional/project/README.md) | 작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택한다. | [tdd-optional](tdd-optional/README.md) |
+
+`main`의 루트는 템플릿 **제작용**이다. 새 제품은 선택한 `project/`의 내용만 별도 제품 저장소로
+복사하고, 사용한 `main` 커밋 SHA와 배포판을 기록한다. 이미 채택한 제품의 후속 개발은 **그 제품의
+최신 `main`**에서 시작한다.
+
+`codex/use-template*`와 `codex/experiment-*`는 **실험 당시의 고정 사용판·실험 기록**이다.
+특정 실험 재현을 요청받았을 때 해당 기록에 적힌 브랜치·커밋을 사용한다. 번호가 가장 큰 브랜치를
+현재 사용 템플릿으로 선택하지 않는다. 다른 브랜치를 읽고 있다면 위 경로의 `main` 판을 확인한다.
 
 두 판은 intent→spec→plan, 영향 문서 갱신, 회귀 보호, 독립 검토와 사람의 의사결정 구조를 공유한다.
 선택형에서 TDD를 고르지 않았다는 이유만으로 예외 승인을 요구하지 않는다. 테스트를 약화하거나
