@@ -6,6 +6,10 @@ spec 검증 절차를 어떻게 보완할지 먼저 설계한다. **이번에는
 
 [사건 분석과 현재 지침 대조](analysis.md) · [원본 목록](inputs/manifest.json) · [대화 발췌](inputs/session-excerpt.json).
 
+후속 상태: 위 구현 금지는 당시 설계 요청의 범위다. 이후 사용자 요청으로
+[0025 제작 계획](../../../intent/0025-spec-verification/plan.md)과 [0035 Muse 실험](../../experiments/0035-spec-validation-muse.md)을
+진행했다. 원본 설계 제안은 보존하며, 실제 보완·설치·실패·부분 성과와 남은 한계는 후속 기록을 따른다.
+
 ## 목표와 선택
 
 문서가 서로 일치하는지에 더해, **합의된 범위의 중요한 계약을 구현자가 새로 결정하지 않고 이어받을 수 있는지**를
