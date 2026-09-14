@@ -50,7 +50,7 @@ the human's task or project policy. A prior edit or passing review does not prov
   check any new transport/translation separately instead of demanding duplicate definitions of the original.
   For a new protocol, a common header or one representative operation does not define the inputs,
   results and errors of its other supported operations. Verify their semantic coverage, not the
-  production of numeric opcode assignments or generated manifests. At consequential shared boundaries,
+  production of generated implementation artifacts. At consequential shared boundaries,
   can interacting implementations follow the documents and still produce incompatible behavior? Trace the required
   inputs, allowed/missing values, results, errors and resulting state; include authority, compatibility,
   ordering, retries or cancellation when they affect outcomes. Cite the authoritative contract and the
