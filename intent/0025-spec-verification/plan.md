@@ -5,6 +5,7 @@ Upstream: spec.md@4a855c7. Status: draft.
 ## Files that change
 - 양판 project/REVIEW.md, docs/PROCESS.md, examples/skills/design-spec/SKILL.md와 references/design-depth.md.
 - 양판 org-skills의 sdlc-feedback, sdlc-verifier와 기존 OpenCode·선택형 Codex adapter.
+- 기존 선택형 feedback 채택 예시와 Codex AGENTS 예시: 새 적용 사건을 짧게 연결. 기본형에 없는 예시는 신설하지 않는다.
 - 패키지·루트/배포판 카탈로그와 설치 안내, 실행 후 관측 범위의 북극성 주석.
 - docs/experiments/designs/spec-validation-muse/, 새 부분 실험 기록 및 별도 사용판·실험 브랜치.
 원 설계 분석·외부 제품·고정된 역사 입력은 수정하지 않는다.

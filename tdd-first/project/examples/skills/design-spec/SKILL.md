@@ -51,6 +51,12 @@ Explain names and ownership when they matter to the flow; label current/target/t
 Link required current contracts directly. History is supporting evidence, not an implicit detour needed for implementation.
 Keep provenance/authorization findable in the existing record without overwhelming the product explanation.
 
+Before handing the spec to planning or reporting the design ready, apply [the project's review criteria](../../../REVIEW.md)
+to the complete declared design set. Use [design-depth](references/design-depth.md) for shared-contract or recovery questions.
+Confirm needed references are accessible; source names or prior PASS counts do not establish that their contents were reviewed.
+For important shared boundaries or independent lifetimes, prefer a capable fresh-context reviewer. Keep small changes proportionate.
+Report the contracts/branches actually checked, resolved findings and justified deferrals; design readiness is not runtime proof or acceptance.
+
 Review with the owner: "Does the spec solve the stated problem, and are the open questions from intent.md answered
 or carried forward?" Show linked design documents with it. Model review does not grant owner acceptance.
 When decisions change, update the actual affected requirements/AC/design documents, not only a discussion appendix.

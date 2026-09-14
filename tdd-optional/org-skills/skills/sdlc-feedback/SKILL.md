@@ -1,6 +1,6 @@
 ---
 name: sdlc-feedback
-description: Keep agreed requirements, spec, plan and implementation aligned during software work. Use when implementing a planned change, incorporating new requirements or design/review feedback, departing from a plan, receiving an updated artifact acceptance or later test/review evidence that changes the handoff, preparing related changes for commit, reporting implementation complete, or reviewing a branch/PR against its spec and plan. Questions and status-only requests do not call for completion review.
+description: Keep agreed requirements, spec, plan and implementation aligned. Use when preparing a spec handoff, reviewing or revising important design contracts, implementing or departing from a plan, incorporating requirement or acceptance changes, updating plans after test/review evidence, preparing related commits, reporting implementation complete, or reviewing a branch/PR. Questions and status-only requests do not call for completion review.
 ---
 # SDLC feedback
 
@@ -10,15 +10,35 @@ agreements, artifacts and evidence. Its reviewer-only permissions apply to the v
 your developer session.
 Use the part below that fits the current event; this is not an extra phase for every response.
 
+## Spec handoff and design review
+
+Before handing a spec to planning or reporting design complete, apply the common Review criteria to the
+current intent, complete declared spec document set and required existing contracts. State the actual
+revision and whether the scope is a design slice or the handoff-ready spec. Make required linked criteria
+and references accessible; a skill name, file hash or prior PASS does not establish that their content
+was read or that the contracts are sufficient. Report inaccessible material as a limitation.
+
+Small changes may use the author's check and existing owner review. Prefer a capable fresh-context
+reviewer for consequential shared contracts or independent lifetimes, authority and recovery. This is
+not a mandatory reviewer count or a new gate for every spec edit. When delegating design-only review,
+use the verifier setup below and supply those inputs, agreements and scope; do not require a nonexistent
+plan, implementation diff or execution results. Wait for the result before using it in the handoff conclusion. Keep the existing
+implementation-completion check below: mixed work is scoped by its actual changes and completion claim,
+not a design-only label.
+
+Summarize the important contracts/branches examined, findings and their resolution, justified deferrals
+and remaining limits in the existing review/handoff record. Do not total PASS votes as proof of readiness.
+Distinguish design sufficiency, executed verification and human acceptance; reuse supplied authorization.
+
 ## Change or acceptance
 
-Read the applicable project instructions and current intent/spec/plan, including the complete design
-document set declared by spec. Check the current intent constraints against the changed behavior even
+Read the applicable project instructions and current intent/spec and any applicable plan, including the
+complete design document set declared by spec. Check the current intent constraints against the changed behavior even
 when the problem and goal are unchanged. Apply the common Review criteria to update the artifacts whose
 meaning changed: requirements/design/acceptance criteria in their spec documents, implementation/verification/PR
 boundaries in plan, and intent only if the problem or constraints changed. A conversation or README
 does not substitute for the affected artifact. Existing planning and policy skills retain their roles.
-Record the chosen verification strategy (TDD, behavior-by-behavior implementation then tests, existing-test
+For implementation planning, record the chosen verification strategy (TDD, behavior-by-behavior implementation then tests, existing-test
 reuse or a mix), its reason and coverage in plan. Selection does not create an exception or approval gate.
 Make affected spec/design documents and the plan current before starting the changed behavior's implementation
 and verification cycle; if a discovery changes them during implementation, update them before the next dependent change.
@@ -58,7 +78,7 @@ This completion check is a deliberate rule of this adopted team skill, not a req
 particular verifier tool in every project. A fresh context or different model does not guarantee
 independent expectations or a correct verdict.
 
-Give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
+For implementation review, give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
 paths, the agreed diff base, and checks already run with their evidence. Also include the declared
 spec document set and the current PR, integration or whole-release scope.
 Provide the expectation sources and relevant browser/manual procedures, observations and tool limitations.
@@ -82,6 +102,7 @@ retain meaningful independent behavior and regression proof in the planned order
 reproduction is not a permanent regression test or automated RED. Non-use of TDD alone is not a finding;
 missing acceptance coverage or implementation-derived expectations remain findings under every strategy.
 Reuse a relevant review only while its scope and evidence are unchanged.
+A design PASS does not replace the fresh implementation-completion review.
 If progress stalls or a human decision is needed, report the unresolved point instead of looping.
 If independent execution was unavailable, say so rather than calling self-review independent.
 
