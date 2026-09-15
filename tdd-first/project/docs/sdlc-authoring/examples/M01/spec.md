@@ -12,16 +12,17 @@ Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합
 현재 API와 주어진 제약은 입력 계약에서 바로 확인할 수 있다. [context](context.md)는 가상 파일 배치와 제작 출처를
 설명하며, 과거 합성 문서는 출처 확인용이다. 이 spec 집합은 아래 결정의 정본이며 plan도 같은 판을 참조한다.
 
-| 설계 정본 | 소유하는 결정 |
+| 설계 정본 | 소유하는 결정·ID |
 |---|---|
 | 이 파일 | 요구·AC·범위·질문·중요 우려 |
-| [design/architecture.md](design/architecture.md) | 구성·배포 경계, 호출/권한/오류, 저장 인터페이스 |
-| [design/storage.md](design/storage.md) | 데이터 스키마·원자성·동시성·import/export 계약 |
-| [design/operations.md](design/operations.md) | 중지·전환·복구·재개 조건 |
+| [design/architecture.md](design/architecture.md) | SP01 구성·대표 흐름, SP02 인터페이스/오류, SP03 배포·선택 |
+| [design/storage.md](design/storage.md) | SP04 데이터, SP05 트랜잭션, SP06 import/export |
+| [design/operations.md](design/operations.md) | SP07 중지·전환·복구·재개 조건 |
 
 제품 docs/operations.md는 위 조건을 실행하는 실제 호스트 명령·경로·리허설 절차를 소유한다.
 조건의 정본은 design/operations.md이며, 운영 명령을 이 spec에 중복 복사하지 않는다.
 
+기존 R/AC 번호는 유지한다. 각 SP의 관련 요구와 상세 계약은 해당 정본에서 정의하며 plan의 T 작업이 참조한다.
 중요 결정을 요약과 상세에 중복 정의하지 않는다. 예를 들어 저장 필드 제약의 정본은 storage.md다.
 어느 문서만 바뀌어도 spec 집합 변경이며 관련 구현과 같은 커밋에서 영향받는 문서와 plan을 갱신한다.
 

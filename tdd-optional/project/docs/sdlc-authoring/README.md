@@ -1,5 +1,7 @@
 # spec·plan 작성 예시
 
+새 FR/NFR/SP/T와 기존 R/AC를 함께 쓰는 [추적 규칙](traceability.md)은 ID의 정본·수명·참조 방식을 설명한다.
+
 이 패키지는 [`templates/spec.md`](../../templates/spec.md)와 [`templates/plan.md`](../../templates/plan.md)를
 실제 변경에 채우는 방법을 보여주는 교육 자료다. 먼저 해당 사례의 `context.md`와 `intent.md`, 이어서
 `spec.md`와 `plan.md`를 읽는다. M01만 `spec.md`가 선언한 현재 계약과 세 설계 문서까지 같은 spec 집합으로 읽는다.

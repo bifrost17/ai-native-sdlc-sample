@@ -4,6 +4,8 @@
 입력의 미제공 범위는 [Limits](../inputs/current-contract.md#limits-of-the-supplied-input)에서 직접 확인한다.
 
 ## 구성과 데이터 소유
+<a id="sp01"></a>
+**SP01 — 활성 저장소와 소비자 경계.** 관련 요구: R1, R2, R6. 본 절과 Representative flow가 정본이다.
 현재는 API의 JSON 전체 쓰기와 보고서의 직접 JSON 읽기가 있다. 목표는 API facade가 선택한 저장소를
 웹과 보고서가 함께 읽는 구성이다. 보고서를 API로 옮긴 전환 중에는 JSON이 활성이고, 검증된 운영 전환 뒤에는
 SQLite가 활성이다. 아래 점선은 상태별 선택 경로이며 동시에 연결해 쓰는 경로가 아니다.
@@ -46,6 +48,8 @@ SQLite를 명시 선택한 목표 상태에서 기존 사용자의 완료 요청
    같은 완료를 재시도할 수 있으며 [멱등 계약](storage.md#트랜잭션과-동시성)에 따라 결과가 유지된다.
 
 ## 저장 인터페이스와 오류
+<a id="sp02"></a>
+**SP02 — 저장 인터페이스·연결 수명·오류 매핑.** 관련 요구: R1, R2, R5. 이 절이 정본이다.
 기존 facade의 list_requests(), complete_request(id)는 유지한다. 아래 SQLite 클래스는 새 설계의
 공유 계약이다. 내부 SQL 메서드는 구현 중 정한다. Json 어댑터는 기존 형태를 유지하고 facade가 연결한다.
 
@@ -80,6 +84,8 @@ Request는 런타임에 기존 dict이며 별도 도메인 클래스 생성 요�
 실제 제품에 적용할 때 확인한 기존 계약 시험을 기준으로 보존하며 이 합성 예시에서 값을 새로 정하지 않는다.
 
 ## 배포 경계
+<a id="sp03"></a>
+**SP03 — 기본 JSON과 명시 SQLite 시작 검증.** 관련 요구: R2, R3, R5. 이 절이 정본이다.
 ```mermaid
 flowchart TB
   subgraph HOST["전환 중·목표 공통 / 단일 호스트·로컬 저장소"]

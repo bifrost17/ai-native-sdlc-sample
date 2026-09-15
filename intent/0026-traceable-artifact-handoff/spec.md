@@ -1,6 +1,7 @@
 # Spec: 고정 식별자와 문서 인계 대조
 Upstream: intent.md@5385148. Status: draft.
 Skills applied: skill-creator, spec-policy-pass, sdlc-feedback, stop-slop-ko의 현재 로컬 지침을 읽었다.
+최종 기록에는 설치된 brand 0.1.6의 문구 지침도 적용한다. FR/NFR/SP/T 표기는 사용자가 지정한 범위다.
 사용자 설치 feedback은 선택형 0.1.6이며 maker의 정책·기존 허가가 우선한다. 개인정보·외부 API 동작은 변경하지 않는다.
 
 사용자는 추적 구조와 정책·스킬의 구현을 허용했다. 북극성 L2의 의도, L3의 요구·설계,

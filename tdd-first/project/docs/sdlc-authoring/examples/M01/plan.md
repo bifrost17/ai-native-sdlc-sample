@@ -9,13 +9,15 @@ Current change: 같은 변경의 spec·설계 정본 개정과 함께 읽는다.
 이 저장소에 M01 제품 코드가 있거나 명령을 실행해 성공했다는 뜻이 아니다. 실제 제품에 적용할 때 기존 코드·fixture·
 실행 명령을 먼저 확인하고 경로가 달라지면 관련 구현 커밋에서 plan을 갱신한다. 미제공 오류 본문은 추측하지 않는다.
 실제 운영 명령은 Q4 미확인이므로 코드 인계와 실제 전환의 준비 상태를 구분한다.
+현재 인계: 아래는 미실행 합성 계획이다. 첫 인도 후보는 T01의 PR-A이며 T02–T04의 PR-B와 병렬 준비한다.
+T05 이후 통합과 Q4·T06/T07 운영 검증은 남는다. SP/T는 같은 변경의 현재 정본을 가리키며 Upstream은 기존 입력 판이다.
 
 ## Files that change
 | PR | 경로 | 변경 역할·설계 참조 |
 |---|---|---|
-| A | reports/nightly.py, tests/test_report.py | 기존 GET API로 전환·오류 노출, architecture/R6 |
-| B | service/sqlite_store.py (new), service/storage_errors.py (new), tools/migrate_store.py (new), tests/test_sqlite_store.py (new), tests/test_migrate_store.py (new) | SQLite 클래스·예외, import/export와 시험, architecture/storage |
-| C | service/store.py, service/api.py, config/service.toml, tests/test_api.py, tests/test_report.py, tests/test_cutover.py (new), docs/operations.md | 선택/HTTP 예외 연결·통합·실제 전환 절차 |
+| A | reports/nightly.py, tests/test_report.py | T01 · SP01 / R6: 기존 GET API로 전환·오류 노출 |
+| B | service/sqlite_store.py (new), service/storage_errors.py (new), tools/migrate_store.py (new), tests/test_sqlite_store.py (new), tests/test_migrate_store.py (new) | T02–T04 · SP02/SP04/SP05/SP06: 저장·예외와 이행 도구 |
+| C | service/store.py, service/api.py, config/service.toml, tests/test_api.py, tests/test_report.py, tests/test_cutover.py (new), docs/operations.md | T05/T06 · SP01/SP02/SP03/SP07: 선택·HTTP 연결·통합·운영 절차 |
 service/json_store.py는 읽기 기준이다. 기존 함수/오류를 보존하는 연결로 충분하지 않다면 관련 설계/plan을 갱신한다.
 문서 정본인 design/architecture.md·storage.md·operations.md와 spec/plan은 영향이 생길 때 해당 구현 커밋에 포함한다.
 
@@ -34,6 +36,8 @@ service/json_store.py는 읽기 기준이다. 기존 함수/오류를 보존하�
 | 운영 전환 | 통합 검증, Q4, 사본 리허설 성공 | 운영 담당이 중지·대조 뒤 SQLite 쓰기 경로 재개 | 실패 시 operations의 중지·최신 데이터 보존·복구 |
 
 ### PR-A — 보고서 API 전환
+<a id="t01"></a>
+**T01 — 보고서 API 전환.** 설계: [SP01](design/architecture.md#sp01). 소속: PR-A.
 **보고서가 활성 저장소의 값을 API로 읽게 한다.** 입력은 [현재 GET·읽기 계정 계약](inputs/current-contract.md)과
 [architecture의 대표 흐름](design/architecture.md#representative-flow), spec R6/AC2/AC6다.
 변경 파일은 기존 `reports/nightly.py`, `tests/test_report.py`이며 기준 회귀는
@@ -55,6 +59,8 @@ B가 미완성이어도 독립 공개 가능하며 저장소는 JSON 그대로�
 
 ### PR-B — 비활성 저장소·이행·복구
 #### B1 — 행 단위 완료와 저장 오류
+<a id="t02"></a>
+**T02.** 설계: [SP02](design/architecture.md#sp02), [SP04](design/storage.md#sp04), [SP05](design/storage.md#sp05). 소속: PR-B.
 
 [architecture의 인터페이스·예외](design/architecture.md#저장-인터페이스와-오류)와
 [storage의 데이터·트랜잭션](design/storage.md)을 사용한다. 새 `service/sqlite_store.py`,
@@ -75,6 +81,8 @@ thread를 시작했다는 사실이나 직렬 완료 결과는 경합 증거가 
 이 작업의 통과로 API 연결이나 일반 사용이 끝났다고 표시하지 않는다.
 
 #### B2 — 원본을 보존하는 import
+<a id="t03"></a>
+**T03.** 설계: [SP04](design/storage.md#sp04), [SP06](design/storage.md#sp06). 선행: T02. 소속: PR-B.
 
 [storage의 import/export CLI 계약](design/storage.md#importexport-cli-계약)이 정본이다.
 새 `tools/migrate_store.py`, `tests/test_migrate_store.py`에서 작업하며 B1의 스키마·어댑터를 사용한다.
@@ -91,6 +99,8 @@ thread를 시작했다는 사실이나 직렬 완료 결과는 경합 증거가 
 파일 존재만으로 성공을 판단하거나 실패 파일 자동 삭제를 전제로 재시도하지 않는다.
 
 #### B3 — 최신 쓰기를 포함한 export
+<a id="t04"></a>
+**T04.** 설계: [SP04](design/storage.md#sp04), [SP06](design/storage.md#sp06), [SP07](design/operations.md#sp07). 선행: T02/T03, 동일 파일의 수정은 순차 진행. 소속: PR-B.
 
 같은 `tools/migrate_store.py`, `tests/test_migrate_store.py`에 [storage의 export 계약](design/storage.md#importexport-cli-계약)을
 연결한다. [operations의 복구 조건](design/operations.md)을 읽고 모든 writer를 멈춘 fixture에서 수행한다.
@@ -114,6 +124,8 @@ A/B의 독립성은 고정 계약에 한정된다. 계약 변경은 정본 spec 
 A/B 둘 다 main에 머지된 뒤 최신 main에서 시작한다.
 
 #### C1 — 시작 시 저장소 선택과 기존 API 연결
+<a id="t05"></a>
+**T05.** 설계: [SP01](design/architecture.md#sp01), [SP02](design/architecture.md#sp02), [SP03](design/architecture.md#sp03), [SP05](design/storage.md#sp05). 선행: PR-A/B 통합. 소속: PR-C.
 
 [architecture의 배포·오류 계약](design/architecture.md)과 AC2/AC5/AC6/AC8이 기준이다.
 기존 `service/store.py`, `service/api.py`, `config/service.toml`, `tests/test_api.py`, `tests/test_report.py`와
@@ -136,17 +148,21 @@ SQLite 동시성과 완료 후 API/보고서 일치, A/B의 이행·복구 시�
 JSON 기본을 유지하며, 같은 최신 main 결합 판과 머지 뒤 통합 main에서 A/B 전체를 다시 확인한다.
 
 #### C2 — 실제 전환 절차의 운영 입력
+<a id="t06"></a>
+**T06.** 설계: [SP07](design/operations.md#sp07). 입력: SP07과 운영 담당의 Q4 답. 입력 수집·초안은 T05와 병행하고, 문서 확정 시 Q4와 대상 통합 판을 확인한다. 소속: PR-C의 운영 문서.
 
 [operations 정본](design/operations.md)의 조건을 실행할 기존 `docs/operations.md`에 운영 담당과 함께
 Q4의 실제 데이터 경로·권한·중지/재개/상태 확인 명령을 채운다. 첫 확인은 운영 담당이 제공한 명령으로
 리허설 환경의 대상 프로세스·writer와 중지 상태를 식별하는 것이다. 아직 명령이 없으므로 여기에는 실행 결과나
 예상 오류 문자열을 만들지 않는다. 문서 작성에 제품 행동 RED를 강제하지 않는다.
 
-완료 증명은 아래 사본 리허설에서 실제 판·명령·상태와 중지/재개 근거를 남기는 것이다. Q4가 없거나
-리허설이 미실행이면 운영 준비 완료라고 표시하지 않는다. 코드 PR은 그 미해소 운영 제한을 명시할 수 있다.
+T06 완료 증명은 실제 경로·권한·중지/재개/상태 확인 명령과 사본 리허설 절차가 확인된 문서 인계다.
+Q4가 없으면 T06은 미완료다. 리허설 실행과 운영 준비 판정은 T07에 남는다. 코드 PR은 그 미해소 운영 제한을 명시할 수 있다.
 이 PR 뒤 main은 JSON 기본으로 배포 가능하고 선택 가능한 SQLite가 준비된다. 머지는 운영 전환이 아니다.
 
 ### 운영 전환/복구 — PR 이후 운영 담당 실행
+<a id="t07"></a>
+**T07.** 설계: [SP03](design/architecture.md#sp03), [SP06](design/storage.md#sp06), [SP07](design/operations.md#sp07). 선행: T05의 통합 검증 판과 T06의 확정 운영 문서. 사본 리허설을 먼저 수행하고 그 성공을 실제 전환의 진입 조건으로 삼는다. PR 이후 운영 인도이며 작업 ID가 PR 번호는 아니다.
 [operations 정본](design/operations.md)의 조건을 실제 운영 문서와 연결한다.
 사본 리허설: 실제 중지 명령/상태 확인 → writer 없음 확인 → 원본 보존 → 새 DB import → 전체 값·순서 비교
 → 선택 sqlite → API/권한/완료·재조회·보고서·최신 export/복구 확인 → 안전 쓰기 경로 재개 판단을 기록한다.
@@ -168,12 +184,12 @@ PR 전체·통합 공통 명령은 `python3 -m unittest discover -s tests -v`다
 Order of work의 해당 블록에 있고, 아래는 AC와 완료 증명의 색인이다. 모두 예정이며 실제 수치/성공이 아니다.
 | ID·연결 | 기존/추가 대상 | 기대/확인 방법 |
 |---|---|---|
-| P-A AC2/6 | 기존 tests/test_report.py 확장 + 기존 API/JSON 시험 | 고정 API 결과와 기존 보고서 값 일치, JSON 접근 안 함, API 실패 노출 |
-| P-B1 AC1/2/5 | 추가 test_sqlite_store.py | 서로 다른 연결의 완료 구간 겹침과 두 완료 보존, 반복/원순서/타입, 잠금 보유 연결과 timeout=5 설정·실패 관측, rollback |
-| P-B2 AC3 | 추가 test_migrate_store.py import 사례 | 모든 키/값/순서, 빈/정상 배열, 중복/누락/unknown/타입/버전/target 기존 거부, 중단·새 target 재시도, source 바이트 불변 |
-| P-B3 AC4 | 같은 파일 export 사례 | 새 완료 이후 최신 값/순서, user_version 오류/부분 실패·target 기존 거부, 복구 JSON 사본에서 구버전 호환 |
-| P-C AC1–8 | 추가 test_cutover.py + API/report 확장, A/B 전체 | 양 backend 기존200/401/403/404/503·거부 무쓰기, SQLite 동시성, 선택/DB 경로·스키마 실패 시 시작 거부·DB 비생성·fallback 없음, 완료 후 API와 보고서 일치 |
-| 운영 AC7 | 운영/통합 담당의 실제 환경 사본 리허설 기록 | Q4 명령·판·상태·값/순서·새 완료 보존·중지/재개 근거. 미실행/실패면 전환하지 않음 |
+| P-A T01 · AC2/6 | 기존 tests/test_report.py 확장 + 기존 API/JSON 시험 | 고정 API 결과와 기존 보고서 값 일치, JSON 접근 안 함, API 실패 노출 |
+| P-B1 T02 · AC1/2/5 | 추가 test_sqlite_store.py | 서로 다른 연결의 완료 구간 겹침과 두 완료 보존, 반복/원순서/타입, 잠금 보유 연결과 timeout=5 설정·실패 관측, rollback |
+| P-B2 T03 · AC3 | 추가 test_migrate_store.py import 사례 | 모든 키/값/순서, 빈/정상 배열, 중복/누락/unknown/타입/버전/target 기존 거부, 중단·새 target 재시도, source 바이트 불변 |
+| P-B3 T04 · AC4 | 같은 파일 export 사례 | 새 완료 이후 최신 값/순서, user_version 오류/부분 실패·target 기존 거부, 복구 JSON 사본에서 구버전 호환 |
+| P-C T05 · AC1–6/8 (코드 통합) | 추가 test_cutover.py + API/report 확장, A/B 전체 | 양 backend 기존200/401/403/404/503·거부 무쓰기, SQLite 동시성, 선택/DB 경로·스키마 실패 시 시작 거부·DB 비생성·fallback 없음, 완료 후 API와 보고서 일치 |
+| 운영 T07 · AC7 (T06 문서 입력) | 운영/통합 담당의 실제 환경 사본 리허설 기록 | Q4 명령·판·상태·값/순서·새 완료 보존·중지/재개 근거. 미실행/실패면 전환하지 않음 |
 
 PR마다 최신 main 결합과 통합 후 전체 시험을 확인한다. 코드 시험이 운영 상태/권한/중지를 증명하지 않는다.
 실제 RED/GREEN과 사용한 판·명령·출력은 PR 기록에, 운영 결과는 기존 운영 기록에 남긴다.

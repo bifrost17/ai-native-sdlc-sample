@@ -1,6 +1,6 @@
 ---
 name: sdlc-feedback
-description: Keep agreed requirements, spec, plan and implementation aligned. Use when preparing a spec handoff, reviewing or revising important design contracts, implementing or departing from a plan, incorporating requirement or acceptance changes, updating plans after test/review evidence, preparing related commits, reporting implementation complete, or reviewing a branch/PR. Questions and status-only requests do not call for completion review.
+description: Keep agreed requirements, spec, plan and implementation aligned. Use when preparing a spec or plan handoff, reviewing or revising important design contracts, implementing or departing from a plan, incorporating requirement or acceptance changes, updating plans after test/review evidence, preparing related commits, reporting implementation complete, or reviewing a branch/PR. Questions and status-only requests do not call for completion review.
 ---
 # SDLC feedback
 
@@ -10,7 +10,7 @@ agreements, artifacts and evidence. Its reviewer-only permissions apply to the v
 your developer session.
 Use the part below that fits the current event; this is not an extra phase for every response.
 
-## Spec handoff and design review
+## Spec and plan handoff review
 
 Before handing a spec to planning or reporting design complete, apply the common Review criteria to the
 current intent, complete declared spec document set and required existing contracts. State the actual
@@ -30,6 +30,12 @@ Summarize the important contracts/branches examined, findings and their resoluti
 and remaining limits in the existing review/handoff record. Do not total PASS votes as proof of readiness.
 Distinguish design sufficiency, executed verification and human acceptance; reuse supplied authorization.
 
+For a plan handoff, supply the current intent and authoritative design set, the actual revision to use,
+the first deliverable, task order and dependencies, real implementation method, risks and rejected
+alternatives, verification and handoff conditions. Review whether the next developer can start the first
+task and reach the stated result. Do not require code, tests or execution results that do not exist yet.
+Keep this scoped plan review separate from implementation completion and from human plan acceptance.
+
 ## Change or acceptance
 
 Read the applicable project instructions and current intent/spec and any applicable plan, including the
@@ -42,6 +48,12 @@ For implementation planning, record the chosen verification strategy (TDD, behav
 reuse or a mix), its reason and coverage in plan. Selection does not create an exception or approval gate.
 Make affected spec/design documents and the plan current before starting the changed behavior's implementation
 and verification cycle; if a discovery changes them during implementation, update them before the next dependent change.
+
+Start from the actual diff and trace its meaning through the applicable plan task (T), authoritative
+design unit (SP), requirements/AC and current intent constraints. Do not infer consistency from which
+documents changed. Existing IDs remain valid; older artifacts may use readable paths and sections, and
+no all-ID gate is implied. Distinguish a spec-only or plan-only change, a missing real decision and a code
+bug against an unchanged contract. Leave intent unchanged when its problem, outcome and constraints did not change.
 
 Use human decisions already supplied. If the accepted upstream version changed, update downstream
 references under the project's policy. Ask only for material decisions still missing; do not turn
@@ -56,6 +68,12 @@ and next steps, linking the actual tested revision and the existing evidence rec
 records and their authors as history. Passing checks do not themselves accept, merge or complete
 outstanding work; keep the full execution results in their existing record.
 
+Treat pause, handoff and resume as explicit work events. Without creating a new ledger, update the current
+plan summary and existing execution record with the actual revision, completed and unverified work, pending
+dependencies and the next step. On resume, compare that account with current artifacts, Git state and evidence
+before dependent work. Expose conflicts without claiming forced-stop prevention or an all-work-ready verdict.
+A status question alone does not trigger execution or artifact revision.
+
 ## Implementation and commit
 
 Run the chosen feedback loop as work proceeds: use tests, permitted browser interaction or direct observation
@@ -63,17 +81,19 @@ suited to the behavior, with independent expectations, actual results and releva
 For exploration, record the learning question, constraints, observations and unresolved decisions. Answering
 that question is not product completion; adopting the result requires current spec/AC, regression and integration
 proof. A screenshot alone does not establish interactive behavior. Include affected spec documents and plan changes, with the reason,
-in the same commit as the related implementation. Before committing, inspect
-what will actually be included, including new files. Follow the project's upstream acceptance and
+in the same commit as the related implementation. Before committing, inspect the actual staged scope and
+related unstaged or untracked work without sweeping unrelated WIP into the commit. After committing, inspect
+the resulting content. Follow the project's upstream acceptance and
 Git policy; permission to inspect or review does not itself authorize a commit, push or merge.
 
 ## Completion and review
 
-Before reporting an implementation task complete, delegate a final check to a fresh-context
+At a meaningful delivery boundary, before reporting an implementation task complete, delegate a final check to a fresh-context
 verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills-optional:sdlc-verifier`
 as a default team example. Wait for its result before a final completion report; a pending review
 is still pending. Do not run both for the same purpose. A routine prose correction or a
-status/decision question does not require this independent implementation review.
+status/decision question does not require this independent implementation review. Do not repeat it for
+every helper task or commit. A prior plan-handoff review does not replace this fresh completion review.
 This completion check is a deliberate rule of this adopted team skill, not a requirement to use a
 particular verifier tool in every project. A fresh context or different model does not guarantee
 independent expectations or a correct verdict.

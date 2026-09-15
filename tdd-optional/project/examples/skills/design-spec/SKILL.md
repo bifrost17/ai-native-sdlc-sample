@@ -25,6 +25,7 @@ cached or directory-loaded versions. Do not invent policy values or require a pa
 
 Use [the project's spec form](../../../templates/spec.md);
 [conditional design blocks](references/design-depth.md) provide fillable contracts and diagrams.
+Use [traceability rules](../../../docs/sdlc-authoring/traceability.md) for stable FR/NFR, SP and existing IDs.
 [The verification-strategy guide](../../../docs/TESTING-STRATEGY.md) explains how independent expectations,
 short exploration and later product proof connect without prescribing one test-writing order.
 Write in the originator's language and retain the six English section names and their information roles.
@@ -33,13 +34,16 @@ List each authoritative design document, what decision it owns and what must be 
 A split document is part of the same spec scope/revision/review; an external moving reference needs an identified
 revision or snapshot. Do not put architecture/classes/contracts in plan merely to shorten spec.md.
 
-- Requirements: changed and preserved contracts with their intent/answer/policy basis.
+- Requirements: assign FR/NFR in new specs; retain existing R/AC IDs. Derive changed and preserved contracts from
+  intent passages, answers, policy and current contracts; keep intent prose and do not backfill every requirement into it.
 - Acceptance criteria: representative input, action, observable outcome and important failure/neighbor invariants.
-  Map AC/R many-to-many as useful. Give consequential expected results a basis such as an owner decision, policy,
+  Map AC/requirements many-to-many as useful. Give consequential expected results a basis such as an owner decision, policy,
   protocol, pinned reference data or independent calculation. Current implementation output is evidence about the
   baseline, not by itself the answer for a new contract. Do not invent metrics or copy a vague R sentence as its own proof.
 - Design: connect the current problem and constraints to the chosen structure, a representative flow and exact
-  contracts. Explain meaningful alternatives and accepted operating/maintenance costs; do not invent numerical goals.
+  contracts. Give each material design contract/decision or component responsibility a stable SP, defined once at its
+  authoritative path and linked there to the requirements it serves. Explain meaningful alternatives and accepted
+  operating/maintenance costs; do not invent numerical goals.
   Use prose for causal explanation and tables for comparable fields/contracts. A small change may combine these in
   one paragraph/table. Distinguish confirmed context, proposed decisions and illustrative internals.
 - Constraints and scope: all upstream limits, discovered restrictions with evidence, explicit exclusions.

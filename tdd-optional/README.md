@@ -17,6 +17,9 @@ Codex에는 [프로젝트별 Codex 설치 안내](org-skills/codex/README.md)를
 이 구조 변경은 기존 설치를 자동 갱신·제거하지 않는다. `project/`에는 활성 스킬·훅이 없고
 작성 스킬은 `project/examples/skills/`의 선택 예시다.
 
+현재 `intent-sdlc-skills-optional` 0.1.7은 [요구·설계·작업 추적](project/docs/sdlc-authoring/traceability.md)과
+커밋·인계 시점의 문서 대조를 보완한다. intent 작성 방식은 유지한다.
+
 ## 방식 선택과 검증
 
 [검증 방식 가이드](project/docs/TESTING-STRATEGY.md)에서 작업 조건별 선택, 기대값의 출처, 탐색·실행·완료 기준을 읽는다.

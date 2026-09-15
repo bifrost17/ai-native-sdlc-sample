@@ -1,0 +1,49 @@
+{
+  "install_source_comparison": [
+    {
+      "edition": "tdd-first",
+      "runtime": "opencode",
+      "unchanged_source_payloads": 125,
+      "intentional_transformations": [
+        ".claude/skills/capture-intent/SKILL.md",
+        ".claude/skills/design-spec/SKILL.md",
+        ".claude/skills/plan/SKILL.md",
+        ".opencode/skills/sdlc-feedback/SKILL.md",
+        ".opencode/skills/ux-copy/PROVENANCE.md",
+        ".opencode/skills/ux-copy/SKILL.md"
+      ],
+      "unexpected_mismatch": []
+    },
+    {
+      "edition": "tdd-optional",
+      "runtime": "opencode",
+      "unchanged_source_payloads": 130,
+      "intentional_transformations": [
+        ".claude/skills/capture-intent/SKILL.md",
+        ".claude/skills/design-spec/SKILL.md",
+        ".claude/skills/plan/SKILL.md",
+        ".opencode/skills/sdlc-feedback/SKILL.md",
+        ".opencode/skills/ux-copy/PROVENANCE.md",
+        ".opencode/skills/ux-copy/SKILL.md"
+      ],
+      "unexpected_mismatch": []
+    },
+    {
+      "edition": "tdd-optional",
+      "runtime": "codex",
+      "unchanged_source_payloads": 129,
+      "intentional_transformations": [
+        ".agents/skills/capture-intent/SKILL.md",
+        ".agents/skills/design-spec/SKILL.md",
+        ".agents/skills/plan/SKILL.md",
+        ".agents/skills/sdlc-feedback/SKILL.md",
+        ".agents/skills/to-questionnaire/SKILL.md",
+        ".agents/skills/ux-copy/PROVENANCE.md",
+        ".agents/skills/ux-copy/SKILL.md"
+      ],
+      "unexpected_mismatch": []
+    }
+  ],
+  "reviewed_source_count": 60,
+  "reviewed_source_sha256": "f68443b3c5e6b661c30ba5d892bf37ee1a896e025bf25f98fcaba4b3f36cd65a"
+}

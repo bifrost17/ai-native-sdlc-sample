@@ -2,6 +2,8 @@
 [spec 진입점](../spec.md). 새 SQLite 설계이며 과거 예시에 없던 중요한 결정을 여기서 정한다.
 
 ## 데이터 계약
+<a id="sp04"></a>
+**SP04 — 데이터 스키마·순서 보존.** 관련 요구: R2, R3, R4. 이 절이 정본이다.
 입력 JSON의 최상위 키는 schema_version, requests만, schema_version은 정수 1(불리언 제외)이다.
 requests는 배열, 각 행은 id/title/owner/status 네 키를 모두 갖는다. id/title 문자열, owner 문자열 또는 null,
 status는 open/done. 빈 문자열을 금지한다는 새 요구는 만들지 않는다. id는 대소문자 구별 유일이다.
@@ -21,6 +23,8 @@ import 전에 Python에서 엄격한 입력 타입(불리언/숫자 coercion 제
 이 범위에는 삽입/삭제 API가 없다. export도 ordinal 순서와 schema_version=1을 복원한다.
 
 ## 트랜잭션과 동시성
+<a id="sp05"></a>
+**SP05 — 행 단위 완료·멱등성·원자 실패.** 관련 요구: R1, R2, R5. 이 절이 정본이다.
 각 complete 호출은 timeout=5초 연결, BEGIN IMMEDIATE로 write transaction을 얻고 ID 존재를 조회한다.
 없으면 rollback/RequestNotFound. open이면 그 ID의 status만 done으로 UPDATE, 이미 done이면 UPDATE 없이
 같은 결과를 반환한다. 성공 commit 후에만 결과 반환. 실패는 rollback하고 StorageUnavailable로 매핑한다.
@@ -51,6 +55,8 @@ list는 단일 SELECT snapshot을 읽고 연결을 닫는다. complete는 JSON �
 서로 다른 완료가 덮이지 않는다. 이미 done의 결과 동일은 API 멱등 계약이며 DB파일 바이트 동일을 약속하지 않는다.
 
 ## import/export CLI 계약
+<a id="sp06"></a>
+**SP06 — 원본 보존과 새 출력의 이행·복구 CLI.** 관련 요구: R3, R4. 이 절이 정본이다.
 - `python3 tools/migrate_store.py import --source input.json --target new.db`
 - `python3 tools/migrate_store.py export --source current.db --target new.json`
 

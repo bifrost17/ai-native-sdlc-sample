@@ -1,6 +1,6 @@
 # Codex 프로젝트별 설치 — tdd-optional
 
-현재 선택판 **intent-sdlc-skills-optional 0.1.6**의 13개 팀 스킬, 제품 작성 예시 3개와 독립
+현재 선택판 **intent-sdlc-skills-optional 0.1.7**의 13개 팀 스킬, 제품 작성 예시 3개와 독립
 검토 기준을 한 제품 repo에 설치하는 Codex adapter다. 전체 skill 폴더는 원 source에서
 복사하고, 이 디렉터리는 Codex에 필요한 patch와 완성된 verifier TOML, 얇은 `AGENTS.md` 예시만 둔다.
 사용자 전역 설정·설치와 maker source는 바꾸지 않는다.
@@ -23,7 +23,7 @@ Claude plugin/marketplace manifest와 command는 Codex 설치 파일이 아니�
 
 ## 새 제품 repo에 설치
 
-`SDLC_PACKAGE`는 선택한 0.1.6의 `tdd-optional/org-skills` 절대 경로이고, `CODEX_ADAPTER`는
+`SDLC_PACKAGE`는 선택한 0.1.7의 `tdd-optional/org-skills` 절대 경로이고, `CODEX_ADAPTER`는
 그 package의 `codex/` 경로다. `CODEX_TARGET`에는 같은 판의 `project/` 내용이 이미
 복사돼 있어야 한다. 다음 명령은 깨끗한 대상용이며 기존 설치가 있으면 중단한다.
 
@@ -83,7 +83,7 @@ child를 다시 시작할 수 있다. 0032의 JSON 검토에서는 완료 보고
 fresh child, criteria 읽기, 보고 반환, parent 대기, close와 프로젝트 무변경을 따로 관측한다.
 
 Codex CLI 0.153.4의 위 전달 방식은 source 0.1.3으로 관측했고, 현재 전달판은 같은 방식으로
-source 0.1.6의 설계 검토 범위·충분성과 기존 후속 근거 인계·구현 검토 기준을 제공한다. hosted PR용 `pr-loop`의
+source 0.1.7의 설계·계획 검토와 추적·커밋·인계 기준을 제공한다. hosted PR용 `pr-loop`의
 Claude `argument-hint`/선실행 문법, 다른 Codex 버전, 조직 전역 설치와 장기 운영은 검증하지 않았다.
 
 실제 설치판과 공개 실행 범위·실패·HUMAN의 보완은 maker의

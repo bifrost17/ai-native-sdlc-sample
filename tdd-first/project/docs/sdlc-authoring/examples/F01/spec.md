@@ -22,6 +22,9 @@ Skills applied: none（root가 고정 연구자료를 바탕으로 작성한 합
 | AC4 → R2 | 없는 데이터 파일로 list --owner hana | rc2, stderr는 기존 Cannot read or update requests: 접두사, 파일 생성 없음 |
 
 ## Design
+<a id="sp01"></a>
+### SP01 — list 담당자 필터 계약
+관련 요구: R1, R2, R3. 기존 R/AC는 보존한다. 아래 경계와 선택이 SP01의 정본이다.
 | 경계 | 정한 계약·선택 |
 |---|---|
 | CLI | list에만 선택 인자 --owner ID. 생략과 문자열 입력을 구별. show/complete 옵션은 불변 |
