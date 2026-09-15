@@ -3,8 +3,9 @@
 Status: draft
 Upstream: [spec](spec.md), [intent](intent.md), 현재 변경. 기준 `b9af49a`.
 
-현재 인계: T01–T03 구현·임시 설치와 T04 독립 최종 검토를 완료했다. 중요한 미해결 발견은 없고
-관련 구현 커밋과 로컬 main 통합이 남았다. 검증자는 실제 모델 행동을 이번 결과로 판정하지 않았다.
+현재 인계: T01–T04 완료. 구현 커밋 `46908f4`를 깨끗한 로컬 main에 fast-forward했고
+동일 Git 판·기본형 삭제·0.1.8을 확인했다. 이 후속 기록은 실제 통합 결과를 담는다.
+중요한 미해결 발견은 없다. 검증자는 실제 모델 행동을 이번 결과로 판정하지 않았다.
 브랜치 `codex/single-template-skill-parity`. 실제 근거는 [실행 기록](execution/README.md)에 있다.
 기존 미추적 `docs/research/003-execution-plan-audit/`, `docs/research/plan-skill-design/`는 범위 밖이다.
 
