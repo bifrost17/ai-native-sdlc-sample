@@ -1,0 +1,1047 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:43:35Z",
+  "pull": {
+    "url": "https://api.github.com/repos/django/django/pulls/21746",
+    "id": 4234998017,
+    "node_id": "PR_kwDOAD-Lgs78bPEB",
+    "html_url": "https://github.com/django/django/pull/21746",
+    "diff_url": "https://github.com/django/django/pull/21746.diff",
+    "patch_url": "https://github.com/django/django/pull/21746.patch",
+    "issue_url": "https://api.github.com/repos/django/django/issues/21746",
+    "number": 21746,
+    "state": "closed",
+    "locked": false,
+    "title": "Fixed #37254 -- Added fields.E323 for models referenced by ManyToManyFields.",
+    "user": {
+      "login": "felixxm",
+      "id": 2865885,
+      "node_id": "MDQ6VXNlcjI4NjU4ODU=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2865885?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/felixxm",
+      "html_url": "https://github.com/felixxm",
+      "followers_url": "https://api.github.com/users/felixxm/followers",
+      "following_url": "https://api.github.com/users/felixxm/following{/other_user}",
+      "gists_url": "https://api.github.com/users/felixxm/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/felixxm/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/felixxm/subscriptions",
+      "organizations_url": "https://api.github.com/users/felixxm/orgs",
+      "repos_url": "https://api.github.com/users/felixxm/repos",
+      "events_url": "https://api.github.com/users/felixxm/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/felixxm/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "\r\n#### Trac ticket number\r\n\r\nticket-37254\r\n\r\n#### AI Assistance Disclosure (REQUIRED)\r\n<!-- Select exactly ONE of the following: -->\r\n- [x] **No AI tools were used** in preparing this PR.\r\n- [ ] **If AI tools were used**, I have disclosed which ones, and fully reviewed and verified their output.\r\n<!-- If AI tools were used, provide which tools were used here. -->\r\n\r\n#### Checklist\r\n- [x] This PR follows the [contribution guidelines](https://docs.djangoproject.com/en/stable/internals/contributing/writing-code/submitting-patches/).\r\n- [x] This PR **does not** disclose a security vulnerability (see [vulnerability reporting](https://docs.djangoproject.com/en/stable/internals/security/)).\r\n- [x] This PR targets the `main` branch. <!-- Backports will be evaluated and done by mergers, when necessary. -->\r\n- [x] The commit message is written in past tense, mentions the ticket number (if applicable), and ends with a period (see [guidelines](https://docs.djangoproject.com/en/dev/internals/contributing/committing-code/#committing-guidelines)).\r\n- [x] I have not requested, and will not request, an automated AI review for this PR. <!-- You are welcome to do so in your own fork. -->",
+    "created_at": "2026-08-08T15:20:03Z",
+    "updated_at": "2026-08-13T06:09:27Z",
+    "closed_at": "2026-08-13T06:00:33Z",
+    "merged_at": "2026-08-13T06:00:33Z",
+    "merge_commit_sha": "c6be0bf3bb744d234947cefd6def9f31d9655800",
+    "assignees": [
+      {
+        "login": "sarahboyce",
+        "id": 42296566,
+        "node_id": "MDQ6VXNlcjQyMjk2NTY2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/42296566?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sarahboyce",
+        "html_url": "https://github.com/sarahboyce",
+        "followers_url": "https://api.github.com/users/sarahboyce/followers",
+        "following_url": "https://api.github.com/users/sarahboyce/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sarahboyce/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sarahboyce/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sarahboyce/subscriptions",
+        "organizations_url": "https://api.github.com/users/sarahboyce/orgs",
+        "repos_url": "https://api.github.com/users/sarahboyce/repos",
+        "events_url": "https://api.github.com/users/sarahboyce/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sarahboyce/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      }
+    ],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/django/django/pulls/21746/commits",
+    "review_comments_url": "https://api.github.com/repos/django/django/pulls/21746/comments",
+    "review_comment_url": "https://api.github.com/repos/django/django/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/django/django/issues/21746/comments",
+    "statuses_url": "https://api.github.com/repos/django/django/statuses/fbd81ea3eb93b4290f408a8b187be39c359ff962",
+    "head": {
+      "label": "felixxm:issue-37254",
+      "ref": "issue-37254",
+      "sha": "fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "user": {
+        "login": "felixxm",
+        "id": 2865885,
+        "node_id": "MDQ6VXNlcjI4NjU4ODU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2865885?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/felixxm",
+        "html_url": "https://github.com/felixxm",
+        "followers_url": "https://api.github.com/users/felixxm/followers",
+        "following_url": "https://api.github.com/users/felixxm/following{/other_user}",
+        "gists_url": "https://api.github.com/users/felixxm/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/felixxm/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/felixxm/subscriptions",
+        "organizations_url": "https://api.github.com/users/felixxm/orgs",
+        "repos_url": "https://api.github.com/users/felixxm/repos",
+        "events_url": "https://api.github.com/users/felixxm/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/felixxm/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 10663111,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMDY2MzExMQ==",
+        "name": "django",
+        "full_name": "felixxm/django",
+        "private": false,
+        "owner": {
+          "login": "felixxm",
+          "id": 2865885,
+          "node_id": "MDQ6VXNlcjI4NjU4ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/2865885?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/felixxm",
+          "html_url": "https://github.com/felixxm",
+          "followers_url": "https://api.github.com/users/felixxm/followers",
+          "following_url": "https://api.github.com/users/felixxm/following{/other_user}",
+          "gists_url": "https://api.github.com/users/felixxm/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/felixxm/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/felixxm/subscriptions",
+          "organizations_url": "https://api.github.com/users/felixxm/orgs",
+          "repos_url": "https://api.github.com/users/felixxm/repos",
+          "events_url": "https://api.github.com/users/felixxm/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/felixxm/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/felixxm/django",
+        "description": "The Web framework for perfectionists with deadlines.",
+        "fork": true,
+        "url": "https://api.github.com/repos/felixxm/django",
+        "forks_url": "https://api.github.com/repos/felixxm/django/forks",
+        "keys_url": "https://api.github.com/repos/felixxm/django/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/felixxm/django/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/felixxm/django/teams",
+        "hooks_url": "https://api.github.com/repos/felixxm/django/hooks",
+        "issue_events_url": "https://api.github.com/repos/felixxm/django/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/felixxm/django/events",
+        "assignees_url": "https://api.github.com/repos/felixxm/django/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/felixxm/django/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/felixxm/django/tags",
+        "blobs_url": "https://api.github.com/repos/felixxm/django/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/felixxm/django/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/felixxm/django/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/felixxm/django/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/felixxm/django/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/felixxm/django/languages",
+        "stargazers_url": "https://api.github.com/repos/felixxm/django/stargazers",
+        "contributors_url": "https://api.github.com/repos/felixxm/django/contributors",
+        "subscribers_url": "https://api.github.com/repos/felixxm/django/subscribers",
+        "subscription_url": "https://api.github.com/repos/felixxm/django/subscription",
+        "commits_url": "https://api.github.com/repos/felixxm/django/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/felixxm/django/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/felixxm/django/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/felixxm/django/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/felixxm/django/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/felixxm/django/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/felixxm/django/merges",
+        "archive_url": "https://api.github.com/repos/felixxm/django/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/felixxm/django/downloads",
+        "issues_url": "https://api.github.com/repos/felixxm/django/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/felixxm/django/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/felixxm/django/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/felixxm/django/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/felixxm/django/labels{/name}",
+        "releases_url": "https://api.github.com/repos/felixxm/django/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/felixxm/django/deployments",
+        "created_at": "2013-06-13T09:37:52Z",
+        "updated_at": "2026-08-08T15:08:14Z",
+        "pushed_at": "2026-08-13T06:09:27Z",
+        "git_url": "git://github.com/felixxm/django.git",
+        "ssh_url": "git@github.com:felixxm/django.git",
+        "clone_url": "https://github.com/felixxm/django.git",
+        "svn_url": "https://github.com/felixxm/django",
+        "homepage": "http://www.djangoproject.com/",
+        "size": 250189,
+        "stargazers_count": 3,
+        "watchers_count": 3,
+        "language": "Python",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3,
+        "license": {
+          "key": "bsd-3-clause",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://api.github.com/licenses/bsd-3-clause",
+          "node_id": "MDc6TGljZW5zZTU="
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 3,
+        "watchers": 3,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "django:main",
+      "ref": "main",
+      "sha": "082b3df4067c3899dd4d57e8c2eca5baea9d07bb",
+      "user": {
+        "login": "django",
+        "id": 27804,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3ODA0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/27804?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/django",
+        "html_url": "https://github.com/django",
+        "followers_url": "https://api.github.com/users/django/followers",
+        "following_url": "https://api.github.com/users/django/following{/other_user}",
+        "gists_url": "https://api.github.com/users/django/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/django/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/django/subscriptions",
+        "organizations_url": "https://api.github.com/users/django/orgs",
+        "repos_url": "https://api.github.com/users/django/repos",
+        "events_url": "https://api.github.com/users/django/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/django/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 4164482,
+        "node_id": "MDEwOlJlcG9zaXRvcnk0MTY0NDgy",
+        "name": "django",
+        "full_name": "django/django",
+        "private": false,
+        "owner": {
+          "login": "django",
+          "id": 27804,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3ODA0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/27804?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/django",
+          "html_url": "https://github.com/django",
+          "followers_url": "https://api.github.com/users/django/followers",
+          "following_url": "https://api.github.com/users/django/following{/other_user}",
+          "gists_url": "https://api.github.com/users/django/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/django/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/django/subscriptions",
+          "organizations_url": "https://api.github.com/users/django/orgs",
+          "repos_url": "https://api.github.com/users/django/repos",
+          "events_url": "https://api.github.com/users/django/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/django/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/django/django",
+        "description": "The Web framework for perfectionists with deadlines.",
+        "fork": false,
+        "url": "https://api.github.com/repos/django/django",
+        "forks_url": "https://api.github.com/repos/django/django/forks",
+        "keys_url": "https://api.github.com/repos/django/django/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/django/django/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/django/django/teams",
+        "hooks_url": "https://api.github.com/repos/django/django/hooks",
+        "issue_events_url": "https://api.github.com/repos/django/django/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/django/django/events",
+        "assignees_url": "https://api.github.com/repos/django/django/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/django/django/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/django/django/tags",
+        "blobs_url": "https://api.github.com/repos/django/django/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/django/django/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/django/django/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/django/django/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/django/django/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/django/django/languages",
+        "stargazers_url": "https://api.github.com/repos/django/django/stargazers",
+        "contributors_url": "https://api.github.com/repos/django/django/contributors",
+        "subscribers_url": "https://api.github.com/repos/django/django/subscribers",
+        "subscription_url": "https://api.github.com/repos/django/django/subscription",
+        "commits_url": "https://api.github.com/repos/django/django/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/django/django/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/django/django/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/django/django/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/django/django/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/django/django/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/django/django/merges",
+        "archive_url": "https://api.github.com/repos/django/django/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/django/django/downloads",
+        "issues_url": "https://api.github.com/repos/django/django/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/django/django/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/django/django/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/django/django/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/django/django/labels{/name}",
+        "releases_url": "https://api.github.com/repos/django/django/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/django/django/deployments",
+        "created_at": "2012-04-28T02:47:18Z",
+        "updated_at": "2026-09-12T05:05:16Z",
+        "pushed_at": "2026-09-08T19:01:03Z",
+        "git_url": "git://github.com/django/django.git",
+        "ssh_url": "git@github.com:django/django.git",
+        "clone_url": "https://github.com/django/django.git",
+        "svn_url": "https://github.com/django/django",
+        "homepage": "https://www.djangoproject.com/",
+        "size": 282843,
+        "stargazers_count": 90763,
+        "watchers_count": 90763,
+        "language": "Python",
+        "has_issues": false,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 34251,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 501,
+        "license": {
+          "key": "bsd-3-clause",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://api.github.com/licenses/bsd-3-clause",
+          "node_id": "MDc6TGljZW5zZTU="
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "apps",
+          "django",
+          "framework",
+          "models",
+          "orm",
+          "python",
+          "templates",
+          "views",
+          "web"
+        ],
+        "visibility": "public",
+        "forks": 34251,
+        "open_issues": 501,
+        "watchers": 90763,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/django/django/pulls/21746"
+      },
+      "html": {
+        "href": "https://github.com/django/django/pull/21746"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/django/django/issues/21746"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/django/django/issues/21746/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/django/django/pulls/21746/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/django/django/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/django/django/pulls/21746/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/django/django/statuses/fbd81ea3eb93b4290f408a8b187be39c359ff962"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": null,
+    "assignee": {
+      "login": "sarahboyce",
+      "id": 42296566,
+      "node_id": "MDQ6VXNlcjQyMjk2NTY2",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42296566?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sarahboyce",
+      "html_url": "https://github.com/sarahboyce",
+      "followers_url": "https://api.github.com/users/sarahboyce/followers",
+      "following_url": "https://api.github.com/users/sarahboyce/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sarahboyce/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sarahboyce/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sarahboyce/subscriptions",
+      "organizations_url": "https://api.github.com/users/sarahboyce/orgs",
+      "repos_url": "https://api.github.com/users/sarahboyce/repos",
+      "events_url": "https://api.github.com/users/sarahboyce/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sarahboyce/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "felixxm",
+      "id": 2865885,
+      "node_id": "MDQ6VXNlcjI4NjU4ODU=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2865885?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/felixxm",
+      "html_url": "https://github.com/felixxm",
+      "followers_url": "https://api.github.com/users/felixxm/followers",
+      "following_url": "https://api.github.com/users/felixxm/following{/other_user}",
+      "gists_url": "https://api.github.com/users/felixxm/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/felixxm/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/felixxm/subscriptions",
+      "organizations_url": "https://api.github.com/users/felixxm/orgs",
+      "repos_url": "https://api.github.com/users/felixxm/repos",
+      "events_url": "https://api.github.com/users/felixxm/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/felixxm/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 16,
+    "maintainer_can_modify": false,
+    "commits": 1,
+    "additions": 93,
+    "deletions": 1,
+    "changed_files": 4
+  },
+  "commits": [
+    {
+      "sha": "fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "node_id": "C_kwDOAKK0x9oAKGZiZDgxZWEzZWI5M2I0MjkwZjQwOGE4YjE4N2JlMzljMzU5ZmY5NjI",
+      "commit": {
+        "author": {
+          "name": "Mariusz Felisiak",
+          "email": "felisiak.mariusz@gmail.com",
+          "date": "2026-08-07T11:45:59Z"
+        },
+        "committer": {
+          "name": "Mariusz Felisiak",
+          "email": "felisiak.mariusz@gmail.com",
+          "date": "2026-08-12T15:11:06Z"
+        },
+        "message": "Fixed #37254 -- Added fields.E323 for models referenced by ManyToManyFields.",
+        "tree": {
+          "sha": "abdb5057754ba3b76fdf33d7ed01b6b11d7ef24d",
+          "url": "https://api.github.com/repos/django/django/git/trees/abdb5057754ba3b76fdf33d7ed01b6b11d7ef24d"
+        },
+        "url": "https://api.github.com/repos/django/django/git/commits/fbd81ea3eb93b4290f408a8b187be39c359ff962",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/django/django/commits/fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "html_url": "https://github.com/django/django/commit/fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "comments_url": "https://api.github.com/repos/django/django/commits/fbd81ea3eb93b4290f408a8b187be39c359ff962/comments",
+      "author": {
+        "login": "felixxm",
+        "id": 2865885,
+        "node_id": "MDQ6VXNlcjI4NjU4ODU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2865885?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/felixxm",
+        "html_url": "https://github.com/felixxm",
+        "followers_url": "https://api.github.com/users/felixxm/followers",
+        "following_url": "https://api.github.com/users/felixxm/following{/other_user}",
+        "gists_url": "https://api.github.com/users/felixxm/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/felixxm/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/felixxm/subscriptions",
+        "organizations_url": "https://api.github.com/users/felixxm/orgs",
+        "repos_url": "https://api.github.com/users/felixxm/repos",
+        "events_url": "https://api.github.com/users/felixxm/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/felixxm/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "felixxm",
+        "id": 2865885,
+        "node_id": "MDQ6VXNlcjI4NjU4ODU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2865885?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/felixxm",
+        "html_url": "https://github.com/felixxm",
+        "followers_url": "https://api.github.com/users/felixxm/followers",
+        "following_url": "https://api.github.com/users/felixxm/following{/other_user}",
+        "gists_url": "https://api.github.com/users/felixxm/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/felixxm/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/felixxm/subscriptions",
+        "organizations_url": "https://api.github.com/users/felixxm/orgs",
+        "repos_url": "https://api.github.com/users/felixxm/repos",
+        "events_url": "https://api.github.com/users/felixxm/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/felixxm/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "082b3df4067c3899dd4d57e8c2eca5baea9d07bb",
+          "url": "https://api.github.com/repos/django/django/commits/082b3df4067c3899dd4d57e8c2eca5baea9d07bb",
+          "html_url": "https://github.com/django/django/commit/082b3df4067c3899dd4d57e8c2eca5baea9d07bb"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "56cde9cee327c5dd357dd08a0ef65a9d881ed286",
+      "filename": "django/db/models/fields/related.py",
+      "status": "modified",
+      "additions": 45,
+      "deletions": 0,
+      "changes": 45,
+      "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/django%2Fdb%2Fmodels%2Ffields%2Frelated.py",
+      "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/django%2Fdb%2Fmodels%2Ffields%2Frelated.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/django%2Fdb%2Fmodels%2Ffields%2Frelated.py?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "patch": "@@ -1533,6 +1533,7 @@ def check(self, **kwargs):\n             *self._check_relationship_model(**kwargs),\n             *self._check_ignored_options(**kwargs),\n             *self._check_table_uniqueness(**kwargs),\n+            *self._check_on_delete(**kwargs),\n         ]\n \n     def _check_unique(self, **kwargs):\n@@ -1893,6 +1894,50 @@ def _get_field_name(model):\n             ]\n         return []\n \n+    def _check_on_delete(self, **kwargs):\n+        errors = []\n+        if (\n+            isinstance(self.remote_field.through, str)\n+            or not self.remote_field.through._meta.auto_created\n+        ):\n+            # Manually created through models are checked on their own.\n+            return []\n+        # Database and Python cascade variants cannot be mixed in a chain of\n+        # model references. Auto-created through models are using Python\n+        # variants.\n+        m2m_through_remote_fields = (\n+            m2m_model_field.remote_field\n+            for m2m_model_field in self.remote_field.through._meta.get_fields()\n+            if m2m_model_field.remote_field\n+            and not isinstance(m2m_model_field.remote_field.model, str)\n+        )\n+        ref_model_fields = (\n+            ref_model_field\n+            for remote_field in m2m_through_remote_fields\n+            for ref_model_field in remote_field.model._meta.get_fields()\n+            if ref_model_field.related_model\n+            and hasattr(ref_model_field.remote_field, \"on_delete\")\n+        )\n+        for ref_model_field in ref_model_fields:\n+            if (\n+                ref_model_field.remote_field.on_delete is not None\n+                and ref_model_field.remote_field.on_delete != DO_NOTHING\n+                and isinstance(ref_model_field.remote_field.on_delete, DatabaseOnDelete)\n+            ):\n+                errors.append(\n+                    checks.Error(\n+                        \"Field specifies database-level on_delete variant, but \"\n+                        \"auto-created intermediary model uses Python-level variant.\",\n+                        hint=(\n+                            \"Use either one of the Python on_delete variants or \"\n+                            f\"create a through model for {self}.\"\n+                        ),\n+                        obj=ref_model_field,\n+                        id=\"fields.E323\",\n+                    )\n+                )\n+        return errors\n+\n     def deconstruct(self):\n         name, path, args, kwargs = super().deconstruct()\n         # Handle the simpler arguments."
+    },
+    {
+      "sha": "14dc374b57639aa7750146a2796ef98ee5ff4016",
+      "filename": "docs/ref/checks.txt",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 1,
+      "changes": 3,
+      "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Fref%2Fchecks.txt",
+      "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Fref%2Fchecks.txt",
+      "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Fref%2Fchecks.txt?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "patch": "@@ -322,7 +322,8 @@ Related fields\n * **fields.E322**: Field specifies ``on_delete=DB_SET_DEFAULT``, but has no\n   ``db_default`` value.\n * **fields.E323**: Field specifies database/Python-level on_delete variant, but\n-  referenced model uses python/database-level variant.\n+  referenced/auto-created intermediary model uses python/database-level\n+  variant.\n * **fields.E324**: ``<database>`` does not support\n   ``<database delete option>``.\n * **fields.E330**: ``ManyToManyField``\\s cannot be unique."
+    },
+    {
+      "sha": "f53eb8c68de31064328e46f5d0488b1ccd6bf8c4",
+      "filename": "docs/releases/6.1.1.txt",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Freleases%2F6.1.1.txt",
+      "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Freleases%2F6.1.1.txt",
+      "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Freleases%2F6.1.1.txt?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "patch": "@@ -16,3 +16,7 @@ Bugfixes\n * Fixed a regression in Django 6.1 where :attr:`.ModelAdmin.list_display`\n   entries that traverse multiple relations using ``__`` could crash or display\n   incorrect values (:ticket:`37270`).\n+\n+* Fixed a bug in Django 6.1 where the ``fields.E323`` system check did not\n+  detect mixed ``on_delete`` variants for auto-created intermediate models for\n+  ``ManyToManyField``\\s (:ticket:`37254`)."
+    },
+    {
+      "sha": "24409e9f4d95c58b69c3cd63a20c8ad29854f26b",
+      "filename": "tests/invalid_models_tests/test_relative_fields.py",
+      "status": "modified",
+      "additions": 42,
+      "deletions": 0,
+      "changes": 42,
+      "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/tests%2Finvalid_models_tests%2Ftest_relative_fields.py",
+      "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/tests%2Finvalid_models_tests%2Ftest_relative_fields.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/tests%2Finvalid_models_tests%2Ftest_relative_fields.py?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "patch": "@@ -2500,6 +2500,48 @@ class Child(models.Model):\n             ],\n         )\n \n+    @skipUnlessDBFeature(\"supports_on_delete_db_cascade\")\n+    def test_db_python_m2m_chain(self):\n+        class OtherModelParent(models.Model):\n+            pass\n+\n+        class OtherModel(models.Model):\n+            parent = models.ForeignKey(OtherModelParent, on_delete=models.DB_CASCADE)\n+\n+        class Parent(models.Model):\n+            pass\n+\n+        class Child(models.Model):\n+            parent = models.ForeignKey(Parent, on_delete=models.DB_CASCADE)\n+            other_models = models.ManyToManyField(OtherModel)\n+\n+        field = Child._meta.get_field(\"other_models\")\n+        self.assertEqual(\n+            field.check(from_model=Child, databases=self.databases),\n+            [\n+                Error(\n+                    \"Field specifies database-level on_delete variant, but \"\n+                    \"auto-created intermediary model uses Python-level variant.\",\n+                    hint=(\n+                        \"Use either one of the Python on_delete variants or create a \"\n+                        \"through model for invalid_models_tests.Child.other_models.\"\n+                    ),\n+                    obj=Child._meta.get_field(\"parent\"),\n+                    id=\"fields.E323\",\n+                ),\n+                Error(\n+                    \"Field specifies database-level on_delete variant, but \"\n+                    \"auto-created intermediary model uses Python-level variant.\",\n+                    hint=(\n+                        \"Use either one of the Python on_delete variants or create a \"\n+                        \"through model for invalid_models_tests.Child.other_models.\"\n+                    ),\n+                    obj=OtherModel._meta.get_field(\"parent\"),\n+                    id=\"fields.E323\",\n+                ),\n+            ],\n+        )\n+\n     @skipUnlessDBFeature(\"supports_on_delete_db_cascade\")\n     def test_db_python_chain_auto_created(self):\n         class GrandParent(models.Model):"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "html_url": "https://github.com/django/django/commit/fbd81ea3eb93b4290f408a8b187be39c359ff962",
+      "commit": {
+        "author": {
+          "name": "Mariusz Felisiak",
+          "email": "felisiak.mariusz@gmail.com",
+          "date": "2026-08-07T11:45:59Z"
+        },
+        "committer": {
+          "name": "Mariusz Felisiak",
+          "email": "felisiak.mariusz@gmail.com",
+          "date": "2026-08-12T15:11:06Z"
+        },
+        "message": "Fixed #37254 -- Added fields.E323 for models referenced by ManyToManyFields."
+      },
+      "parents": [
+        {
+          "sha": "082b3df4067c3899dd4d57e8c2eca5baea9d07bb",
+          "url": "https://api.github.com/repos/django/django/commits/082b3df4067c3899dd4d57e8c2eca5baea9d07bb",
+          "html_url": "https://github.com/django/django/commit/082b3df4067c3899dd4d57e8c2eca5baea9d07bb"
+        }
+      ],
+      "stats": {
+        "total": 94,
+        "additions": 93,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "56cde9cee327c5dd357dd08a0ef65a9d881ed286",
+          "filename": "django/db/models/fields/related.py",
+          "status": "modified",
+          "additions": 45,
+          "deletions": 0,
+          "changes": 45,
+          "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/django%2Fdb%2Fmodels%2Ffields%2Frelated.py",
+          "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/django%2Fdb%2Fmodels%2Ffields%2Frelated.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/django%2Fdb%2Fmodels%2Ffields%2Frelated.py?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+          "patch": "@@ -1533,6 +1533,7 @@ def check(self, **kwargs):\n             *self._check_relationship_model(**kwargs),\n             *self._check_ignored_options(**kwargs),\n             *self._check_table_uniqueness(**kwargs),\n+            *self._check_on_delete(**kwargs),\n         ]\n \n     def _check_unique(self, **kwargs):\n@@ -1893,6 +1894,50 @@ def _get_field_name(model):\n             ]\n         return []\n \n+    def _check_on_delete(self, **kwargs):\n+        errors = []\n+        if (\n+            isinstance(self.remote_field.through, str)\n+            or not self.remote_field.through._meta.auto_created\n+        ):\n+            # Manually created through models are checked on their own.\n+            return []\n+        # Database and Python cascade variants cannot be mixed in a chain of\n+        # model references. Auto-created through models are using Python\n+        # variants.\n+        m2m_through_remote_fields = (\n+            m2m_model_field.remote_field\n+            for m2m_model_field in self.remote_field.through._meta.get_fields()\n+            if m2m_model_field.remote_field\n+            and not isinstance(m2m_model_field.remote_field.model, str)\n+        )\n+        ref_model_fields = (\n+            ref_model_field\n+            for remote_field in m2m_through_remote_fields\n+            for ref_model_field in remote_field.model._meta.get_fields()\n+            if ref_model_field.related_model\n+            and hasattr(ref_model_field.remote_field, \"on_delete\")\n+        )\n+        for ref_model_field in ref_model_fields:\n+            if (\n+                ref_model_field.remote_field.on_delete is not None\n+                and ref_model_field.remote_field.on_delete != DO_NOTHING\n+                and isinstance(ref_model_field.remote_field.on_delete, DatabaseOnDelete)\n+            ):\n+                errors.append(\n+                    checks.Error(\n+                        \"Field specifies database-level on_delete variant, but \"\n+                        \"auto-created intermediary model uses Python-level variant.\",\n+                        hint=(\n+                            \"Use either one of the Python on_delete variants or \"\n+                            f\"create a through model for {self}.\"\n+                        ),\n+                        obj=ref_model_field,\n+                        id=\"fields.E323\",\n+                    )\n+                )\n+        return errors\n+\n     def deconstruct(self):\n         name, path, args, kwargs = super().deconstruct()\n         # Handle the simpler arguments."
+        },
+        {
+          "sha": "14dc374b57639aa7750146a2796ef98ee5ff4016",
+          "filename": "docs/ref/checks.txt",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 1,
+          "changes": 3,
+          "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Fref%2Fchecks.txt",
+          "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Fref%2Fchecks.txt",
+          "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Fref%2Fchecks.txt?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+          "patch": "@@ -322,7 +322,8 @@ Related fields\n * **fields.E322**: Field specifies ``on_delete=DB_SET_DEFAULT``, but has no\n   ``db_default`` value.\n * **fields.E323**: Field specifies database/Python-level on_delete variant, but\n-  referenced model uses python/database-level variant.\n+  referenced/auto-created intermediary model uses python/database-level\n+  variant.\n * **fields.E324**: ``<database>`` does not support\n   ``<database delete option>``.\n * **fields.E330**: ``ManyToManyField``\\s cannot be unique."
+        },
+        {
+          "sha": "f53eb8c68de31064328e46f5d0488b1ccd6bf8c4",
+          "filename": "docs/releases/6.1.1.txt",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Freleases%2F6.1.1.txt",
+          "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/docs%2Freleases%2F6.1.1.txt",
+          "contents_url": "https://api.github.com/repos/django/django/contents/docs%2Freleases%2F6.1.1.txt?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+          "patch": "@@ -16,3 +16,7 @@ Bugfixes\n * Fixed a regression in Django 6.1 where :attr:`.ModelAdmin.list_display`\n   entries that traverse multiple relations using ``__`` could crash or display\n   incorrect values (:ticket:`37270`).\n+\n+* Fixed a bug in Django 6.1 where the ``fields.E323`` system check did not\n+  detect mixed ``on_delete`` variants for auto-created intermediate models for\n+  ``ManyToManyField``\\s (:ticket:`37254`)."
+        },
+        {
+          "sha": "24409e9f4d95c58b69c3cd63a20c8ad29854f26b",
+          "filename": "tests/invalid_models_tests/test_relative_fields.py",
+          "status": "modified",
+          "additions": 42,
+          "deletions": 0,
+          "changes": 42,
+          "blob_url": "https://github.com/django/django/blob/fbd81ea3eb93b4290f408a8b187be39c359ff962/tests%2Finvalid_models_tests%2Ftest_relative_fields.py",
+          "raw_url": "https://github.com/django/django/raw/fbd81ea3eb93b4290f408a8b187be39c359ff962/tests%2Finvalid_models_tests%2Ftest_relative_fields.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/tests%2Finvalid_models_tests%2Ftest_relative_fields.py?ref=fbd81ea3eb93b4290f408a8b187be39c359ff962",
+          "patch": "@@ -2500,6 +2500,48 @@ class Child(models.Model):\n             ],\n         )\n \n+    @skipUnlessDBFeature(\"supports_on_delete_db_cascade\")\n+    def test_db_python_m2m_chain(self):\n+        class OtherModelParent(models.Model):\n+            pass\n+\n+        class OtherModel(models.Model):\n+            parent = models.ForeignKey(OtherModelParent, on_delete=models.DB_CASCADE)\n+\n+        class Parent(models.Model):\n+            pass\n+\n+        class Child(models.Model):\n+            parent = models.ForeignKey(Parent, on_delete=models.DB_CASCADE)\n+            other_models = models.ManyToManyField(OtherModel)\n+\n+        field = Child._meta.get_field(\"other_models\")\n+        self.assertEqual(\n+            field.check(from_model=Child, databases=self.databases),\n+            [\n+                Error(\n+                    \"Field specifies database-level on_delete variant, but \"\n+                    \"auto-created intermediary model uses Python-level variant.\",\n+                    hint=(\n+                        \"Use either one of the Python on_delete variants or create a \"\n+                        \"through model for invalid_models_tests.Child.other_models.\"\n+                    ),\n+                    obj=Child._meta.get_field(\"parent\"),\n+                    id=\"fields.E323\",\n+                ),\n+                Error(\n+                    \"Field specifies database-level on_delete variant, but \"\n+                    \"auto-created intermediary model uses Python-level variant.\",\n+                    hint=(\n+                        \"Use either one of the Python on_delete variants or create a \"\n+                        \"through model for invalid_models_tests.Child.other_models.\"\n+                    ),\n+                    obj=OtherModel._meta.get_field(\"parent\"),\n+                    id=\"fields.E323\",\n+                ),\n+            ],\n+        )\n+\n     @skipUnlessDBFeature(\"supports_on_delete_db_cascade\")\n     def test_db_python_chain_auto_created(self):\n         class GrandParent(models.Model):"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610962475/job/94161869418",
+        "name": "PostgreSQL ${{ matrix.pg_major }}, Python ${{ matrix.python }}",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961766/job/94161867938",
+        "name": "python",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961741/job/94161867667",
+        "name": "SQLite",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961766/job/94161867406",
+        "name": "define-matrix",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961741/job/94161867350",
+        "name": "PostgreSQL",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961739/job/94161867203",
+        "name": "Screenshots",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961754/job/94161867157",
+        "name": "Coverage Tests (PostgreSQL)",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961815/job/94161867011",
+        "name": "check-commit-prefix",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:46Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/31610961759/job/94161866819",
+        "name": "Run_benchmarks",
+        "started_at": "2026-08-12T15:11:46Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961751/job/94161866816",
+        "name": "black",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961751/job/94161866712",
+        "name": "biome",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961751/job/94161866663",
+        "name": "flake8",
+        "started_at": "2026-08-12T15:11:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961751/job/94161866651",
+        "name": "zizmor",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961751/job/94161866609",
+        "name": "isort",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961777/job/94161866434",
+        "name": "JavaScript tests",
+        "started_at": "2026-08-12T15:11:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961777/job/94161866402",
+        "name": "Scripts tests",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:20:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961777/job/94161866390",
+        "name": "Windows, SQLite, Python 3.14",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:11:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961815/job/94161866385",
+        "name": "check-commit-suffix",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:17:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961777/job/94161866346",
+        "name": "Ubuntu, SQLite, Python 3.14t",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:13:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610961793/job/94161865964",
+        "name": "docs",
+        "started_at": "2026-08-12T15:11:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-12T15:12:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/31610959810/job/94161859947",
+        "name": "Run Quality Checks on a PR",
+        "started_at": "2026-08-12T15:11:53Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 21
+  },
+  "combined_status": {
+    "sha": "fbd81ea3eb93b4290f408a8b187be39c359ff962",
+    "state": "failure",
+    "statuses": [
+      {
+        "context": "pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:13:11Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.14/6210/",
+        "updated_at": "2026-08-12T15:13:11Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.12",
+        "created_at": "2026-08-12T15:13:16Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.12/6210/",
+        "updated_at": "2026-08-12T15:13:16Z"
+      },
+      {
+        "context": "pr-mariadb/database=mysql_gis,label=mariadb,python=python3.14",
+        "created_at": "2026-08-12T15:13:17Z",
+        "description": "Build #40058 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pr-mariadb/database=mysql_gis,label=mariadb,python=python3.14/40058/",
+        "updated_at": "2026-08-12T15:13:17Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.13",
+        "created_at": "2026-08-12T15:13:34Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.13/6210/",
+        "updated_at": "2026-08-12T15:13:34Z"
+      },
+      {
+        "context": "pr-mariadb/database=mysql,label=mariadb,python=python3.14",
+        "created_at": "2026-08-12T15:27:14Z",
+        "description": "Build #40058 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pr-mariadb/database=mysql,label=mariadb,python=python3.14/40058/",
+        "updated_at": "2026-08-12T15:27:14Z"
+      },
+      {
+        "context": "pull-requests-postgresql-psycopg2/database=postgres,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:31:09Z",
+        "description": "Build #21532 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-postgresql-psycopg2/database=postgres,label=noble-pr,python=python3.14/21532/",
+        "updated_at": "2026-08-12T15:31:09Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgres,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:31:30Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgres,label=noble-pr,python=python3.14/6210/",
+        "updated_at": "2026-08-12T15:31:30Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql,label=noble-pr,python=python3.13",
+        "created_at": "2026-08-12T15:32:03Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql,label=noble-pr,python=python3.13/6210/",
+        "updated_at": "2026-08-12T15:32:03Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgres,label=noble-pr,python=python3.12",
+        "created_at": "2026-08-12T15:32:14Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgres,label=noble-pr,python=python3.12/6210/",
+        "updated_at": "2026-08-12T15:32:14Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgis,label=noble-pr,python=python3.13",
+        "created_at": "2026-08-12T15:32:42Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgis,label=noble-pr,python=python3.13/6210/",
+        "updated_at": "2026-08-12T15:32:42Z"
+      },
+      {
+        "context": "pull-requests-pg-server-side-binding/database=postgres,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:32:47Z",
+        "description": "Build #20745 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-pg-server-side-binding/database=postgres,label=noble-pr,python=python3.14/20745/",
+        "updated_at": "2026-08-12T15:32:47Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgis,label=noble-pr,python=python3.12",
+        "created_at": "2026-08-12T15:32:47Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgis,label=noble-pr,python=python3.12/6210/",
+        "updated_at": "2026-08-12T15:32:47Z"
+      },
+      {
+        "context": "pull-requests-postgresql-psycopg2/database=postgis,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:33:02Z",
+        "description": "Build #21532 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-postgresql-psycopg2/database=postgis,label=noble-pr,python=python3.14/21532/",
+        "updated_at": "2026-08-12T15:33:02Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql,label=noble-pr,python=python3.12",
+        "created_at": "2026-08-12T15:33:09Z",
+        "description": "Build #6210 ended",
+        "state": "failure",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql,label=noble-pr,python=python3.12/6210/",
+        "updated_at": "2026-08-12T15:33:09Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:33:53Z",
+        "description": "Build #6210 ended",
+        "state": "failure",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql,label=noble-pr,python=python3.14/6210/",
+        "updated_at": "2026-08-12T15:33:53Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgis,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:33:57Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgis,label=noble-pr,python=python3.14/6210/",
+        "updated_at": "2026-08-12T15:33:57Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgres,label=noble-pr,python=python3.13",
+        "created_at": "2026-08-12T15:36:19Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgres,label=noble-pr,python=python3.13/6210/",
+        "updated_at": "2026-08-12T15:36:19Z"
+      },
+      {
+        "context": "pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.13",
+        "created_at": "2026-08-12T15:38:41Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.13/6210/",
+        "updated_at": "2026-08-12T15:38:41Z"
+      },
+      {
+        "context": "pull-requests-pg-server-side-binding/database=postgis,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:38:50Z",
+        "description": "Build #20745 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-pg-server-side-binding/database=postgis,label=noble-pr,python=python3.14/20745/",
+        "updated_at": "2026-08-12T15:38:50Z"
+      },
+      {
+        "context": "pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.12",
+        "created_at": "2026-08-12T15:39:09Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.12/6210/",
+        "updated_at": "2026-08-12T15:39:09Z"
+      },
+      {
+        "context": "pull-requests-noble/database=spatialite,label=noble-pr,python=python3.13",
+        "created_at": "2026-08-12T15:42:03Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=spatialite,label=noble-pr,python=python3.13/6210/",
+        "updated_at": "2026-08-12T15:42:03Z"
+      },
+      {
+        "context": "pull-requests-noble/database=spatialite,label=noble-pr,python=python3.12",
+        "created_at": "2026-08-12T15:42:45Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=spatialite,label=noble-pr,python=python3.12/6210/",
+        "updated_at": "2026-08-12T15:42:45Z"
+      },
+      {
+        "context": "pull-requests-noble/database=spatialite,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:43:50Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=spatialite,label=noble-pr,python=python3.14/6210/",
+        "updated_at": "2026-08-12T15:43:50Z"
+      },
+      {
+        "context": "pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.14",
+        "created_at": "2026-08-12T15:45:18Z",
+        "description": "Build #6210 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.14/6210/",
+        "updated_at": "2026-08-12T15:45:18Z"
+      }
+    ],
+    "total_count": 24
+  }
+}

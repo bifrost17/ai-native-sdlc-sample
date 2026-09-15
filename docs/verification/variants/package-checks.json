@@ -1,0 +1,210 @@
+{
+  "verified_at": "2026-09-12T09:02:18.888387+00:00",
+  "scope": "5 native manifest validations; 6 adapter dry-runs and 6 applications to disposable copies. No installation or model execution.",
+  "result": "pass",
+  "commands": [
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        ".claude-plugin/marketplace.json"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample",
+      "exit_code": 0,
+      "stdout": "Validating marketplace manifest: /Users/jake/Projects/ai-native-sdlc-sample/.claude-plugin/marketplace.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        "org-skills"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-first",
+      "exit_code": 0,
+      "stdout": "Validating plugin manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-first/org-skills/.claude-plugin/plugin.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        ".claude-plugin/marketplace.json"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-first",
+      "exit_code": 0,
+      "stdout": "Validating marketplace manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-first/.claude-plugin/marketplace.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-t4qqgppe/sdlc-feedback",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-t4qqgppe/sdlc-feedback",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-t4qqgppe/ux-copy",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-t4qqgppe/ux-copy",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-t4qqgppe/authoring-native",
+      "exit_code": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-t4qqgppe/authoring-native",
+      "exit_code": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        "org-skills"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional",
+      "exit_code": 0,
+      "stdout": "Validating plugin manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/.claude-plugin/plugin.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        ".claude-plugin/marketplace.json"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional",
+      "exit_code": 0,
+      "stdout": "Validating marketplace manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/.claude-plugin/marketplace.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-a0l5bucq/sdlc-feedback",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-a0l5bucq/sdlc-feedback",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-a0l5bucq/ux-copy",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-a0l5bucq/ux-copy",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-a0l5bucq/authoring-native",
+      "exit_code": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/edition-adapter-check-a0l5bucq/authoring-native",
+      "exit_code": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+--- source/org-skills/agents/sdlc-verifier.md
++++ parsing-only/.opencode/agents/sdlc-verifier.md
+@@ -2,7 +2,9 @@
+-name: sdlc-verifier
+-description: Independently check a completed implementation or important branch/PR change against current human agreements, spec, plan and actual verification evidence. Report findings before completion; do not use for status questions or perform implementation.
+-tools: Read, Glob, Grep, Bash
+-disallowedTools: Edit, Write, Agent, Skill
+-model: opus
+-effort: high
+-maxTurns: 20
++description: Independently check implementation against current human agreements, spec, plan and actual evidence; report findings without implementing corrections.
++mode: subagent
++steps: 20
++permission:
++  '*': deny
++  read: allow
++  glob: allow
++  grep: allow
++  bash: allow
+@@ -9,0 +12 @@
++
+--- source/org-skills/skills/sdlc-feedback/SKILL.md
++++ parsing-only/.opencode/skills/sdlc-feedback/SKILL.md
+@@ -38 +38 @@
+-verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills:sdlc-verifier`
++verifier. Prefer an equivalent project verifier; this installation provides `sdlc-verifier`

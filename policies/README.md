@@ -20,8 +20,8 @@
 ## 서명과 판
 
 - 정책을 바꾸는 것은 PR 이고 **오너가 머지하는 것이 서명이다**(L6 460 · `.github/CODEOWNERS` 의 `policies/**`).
-- 정책이 바뀌면 인용하는 스킬도 같은 PR 에서 바꾸고 `org-skills/.claude-plugin/plugin.json` 의 `version` 을 올린다 — 안 올리면 팀 세션에 갱신이 가지 않는다.
-- spec 은 적용된 판을 `Skills applied: name@sha` 로 남긴다(`templates/spec.md`).
+- 정책이 바뀌면 유일한 `tdd-optional` 템플릿과 Claude Code·Codex 전달본의 영향을 확인하고 인용하는 스킬도 같은 PR에서 바꾼다. `tdd-optional/org-skills/.claude-plugin/plugin.json` 버전과 marketplace 항목을 함께 갱신한다. 설치 소스 변경과 실제 세션 갱신은 구분한다.
+- spec은 실제 읽은 스킬의 출처와 판을 `Skills applied`에 남긴다(선택한 판의 `project/templates/spec.md`). Git 이력을 확인할 수 있으면 `name@sha`, 설치 캐시에 이력이 없거나 Git 접근이 없으면 해당 플러그인의 manifest/설치 메타데이터에서 확인한 버전과 출처를 적는다. 로컬 체크아웃의 manifest만 읽은 경우에는 미커밋 변경 여부를 확인하지 못했음을 함께 적고, 판 자체를 확인하지 못하면 이유와 함께 `version-unverified`로 남긴다.
 
 ## 🔴 지금 문면의 지위
 

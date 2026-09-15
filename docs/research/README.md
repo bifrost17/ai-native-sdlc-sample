@@ -10,5 +10,9 @@
 | spec-command | S6 | `spec-command/` | (진행 중) | |
 | pr-loop | S7 | `pr-loop/` | 채택 0 · **설계** `pr-loop` · 실 PR 4/4 완주 | 2026-09-09 |
 | plugin | S8 | `plugin/` | 레포 = 플러그인 1 + 마켓플레이스 1(`.claude-plugin/`) · 헤드리스 로드 12/12 · 대체 경로 `.claude/skills/` 복사 · 오너 질문 6 · PR #1 | 2026-09-09 |
+| PR 크기·GitHub Flow | 0016 | [pr-size/](pr-size/README.md) | 연구·공식 운영·공개 PR 사례를 비교해 유연한 크기 기준과 GitHub Flow 채택 | 2026-09-11 |
+| SDLC 문서·양식 | research | [sdlc-documentation/](sdlc-documentation/README.md) | 북극성 기준 12개 레퍼런스·원본 양식 28개·실제 적용 2건 비교. intent/spec/plan 유지와 선택적 보완 권고 | 2026-09-11 |
+| TDD 스킬·책임 배치 | research | [tdd-skills/](tdd-skills/README.md) | 6개 후보·선택 원문 40개 비교. 작은 TDD 스킬에 반복 절차, spec·plan에 개발건별 검증 설계 권고 | 2026-09-11 |
+| OpenCode 스킬 설치 호환성 | research | [opencode-compatibility/](opencode-compatibility/README.md) | 1.18.30에서 팀 13개 스킬 발견 확인. Claude 검증자 원본은 설정 오류, 임시 변환본은 등록 성공. 영구 설치·모델 실행 전 검토 | 2026-09-11 |
 
 겹치는 후보는 부모 세션이 여기서 한 번 묶는다.

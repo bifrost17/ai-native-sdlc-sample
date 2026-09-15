@@ -1,0 +1,20 @@
+{
+  "case_id": "F01",
+  "dataset_version": "1.0.0",
+  "seed": 101,
+  "audience": "HUMAN only; do not copy into AGENT checkout",
+  "owner_decisions": [
+    {"id": "F01-D1", "topic": "목록 의미", "decision": "담당자 조건만 적용한다. 완료된 요청도 포함하고 입력 파일 순서를 유지한다.", "reason": "최근 완료 건도 같은 담당자와 확인한다."},
+    {"id": "F01-D2", "topic": "일치와 빈 결과", "decision": "담당자 ID는 정확히 일치시킨다. 없는 담당자는 빈 stdout과 rc=0이다. null은 어떤 문자열 담당자와도 일치하지 않는다.", "reason": "미배정 선택 기능은 이번 범위 밖이다."},
+    {"id": "F01-D3", "topic": "기존 사용법과 옵션", "decision": "list --owner <ID>를 제공한다. 옵션 없는 list는 기존 전체 목록 그대로다.", "reason": "기존 명령 사용자는 변경 없이 계속 쓴다."}
+  ],
+  "reveal_rule": "관련 질문에 답하거나 해당 가정이 spec에 나타날 때 D1~D3를 설명한다. 구현 전에 합의하고 공개한 턴을 기록한다.",
+  "oracle_rules": "각 independent group은 원래 requests.json을 새 임시 디렉터리에 복사해 실행한다. arguments는 --data <임시파일> 뒤에 붙인다. IDs는 stdout의 탭 첫 열이다.",
+  "oracles": [
+    {"id": "F01-O1", "decision": "F01-D1", "arguments": ["list", "--owner", "hana"], "exit": 0, "ids": ["R-101", "R-103"], "file": "byte-unchanged"},
+    {"id": "F01-O2", "decision": "F01-D2", "arguments": ["list", "--owner", "nobody"], "exit": 0, "stdout": "", "file": "byte-unchanged"},
+    {"id": "F01-O3", "decision": "F01-D3", "arguments": ["list"], "exit": 0, "ids": ["R-101", "R-102", "R-103", "R-104"], "file": "byte-unchanged"},
+    {"id": "F01-O4", "decision": "F01-D2", "arguments": ["list", "--owner", "HANA"], "exit": 0, "stdout": "", "file": "byte-unchanged"}
+  ],
+  "negative_skill_selection": "로컬 CLI의 담당자 필터에 무관한 외부 API·결제·UI 디자인 스킬은 요구하지 않는다."
+}

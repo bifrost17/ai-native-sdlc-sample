@@ -1,0 +1,531 @@
+{
+  "cutoff_date": "2026-09-12",
+  "window_start": "2024-09-12",
+  "classification_legend": {
+    "same_commit_order_unknown": "Relevant test and production changes first appear in the same public commit; Git cannot reveal edit or execution order inside it.",
+    "existing_tests_only": "No relevant new test was committed; final-head CI or author-reported existing tests/evals are visible, but test-first chronology is not.",
+    "unknown": "No relevant test change and no reliable public test execution evidence were found.",
+    "retrospective_red_replay": "A PR body reports running added tests against base code after the branch existed; useful mutation evidence, but not evidence that the tests preceded implementation.",
+    "test_commits_first_failure_author_report": "Relevant tests precede production commits. The author reports expected failure in a committed summary; raw execution artifacts and independent CI are unavailable."
+  },
+  "sampling": {
+    "rule": "For each repository, choose the two latest eligible merged feature, bugfix, and refactor PRs in the 24-month window. Because at least four of the initial six had unknowable chronology in every repository, add the next eligible PR in each category, capped at nine.",
+    "search_counts_before_manual_exclusions": {
+      "OpenHands/OpenHands": 5667,
+      "SWE-agent/SWE-agent": 312,
+      "obra/superpowers": 172
+    },
+    "queries": [
+      "repo:OpenHands/OpenHands is:pr is:merged merged:>=2024-09-12",
+      "repo:OpenHands/OpenHands is:pr is:merged merged:>=2024-09-12 label:\"type: refactor\"",
+      "repo:SWE-agent/SWE-agent is:pr is:merged merged:>=2024-09-12",
+      "repo:SWE-agent/SWE-agent is:pr is:merged merged:>=2024-09-12 (feat OR enh OR add OR support) in:title",
+      "repo:SWE-agent/SWE-agent is:pr is:merged merged:>=2024-09-12 (simplify OR move OR cleanup OR restructure OR ref) in:title",
+      "repo:obra/superpowers is:pr is:merged merged:>=2024-09-12",
+      "repo:obra/superpowers is:pr is:merged merged:>=2024-09-12 feat in:title",
+      "repo:obra/superpowers is:pr is:merged merged:>=2024-09-12 refactor in:title"
+    ],
+    "representative_exclusions": [
+      {
+        "repo": "OpenHands/OpenHands",
+        "prs": [
+          17221,
+          17245,
+          17243
+        ],
+        "reason": "docs, CI housekeeping, or release automation"
+      },
+      {
+        "repo": "SWE-agent/SWE-agent",
+        "prs": [
+          1447,
+          1448,
+          1438,
+          1427,
+          1350,
+          1351
+        ],
+        "reason": "docs-only, automated hook/dependency upkeep, or warning copy rather than an implementation feature"
+      },
+      {
+        "repo": "obra/superpowers",
+        "prs": [
+          2250,
+          2125,
+          2109,
+          2122
+        ],
+        "reason": "issue-template metadata, aggregate release vehicle, docs-only, or code-of-conduct administration"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "repo": "OpenHands/OpenHands",
+      "head_branch": "main",
+      "head": "de5a79b4ce578c56f5fef330551a0c1fb8bd12bc",
+      "pull_requests": [
+        {
+          "number": 17164,
+          "category": "feature",
+          "merged_at": "2026-09-12T03:22:28Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/17164",
+          "merge_commit": "de5a79b4ce578c56f5fef330551a0c1fb8bd12bc",
+          "commits": [
+            "e7930c381a",
+            "294f86635b",
+            "ea8bec8660",
+            "d193d734be",
+            "6a934d209f",
+            "a471a20ac1",
+            "47683dc10e"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Production and test changes occur together in multiple commits; a later test-only compatibility update cannot establish original local order. Final Ubuntu and Windows test-and-build checks succeeded; live E2E was skipped."
+        },
+        {
+          "number": 17289,
+          "category": "feature",
+          "merged_at": "2026-09-11T22:50:56Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/17289",
+          "merge_commit": "2c5ce2fa2dca3aa9c7442ff1c46876c60a794eeb",
+          "commits": [
+            "cc5d44a6af",
+            "6ffaaa1003",
+            "ae520c33cd",
+            "dd8474554a"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The initial feature commit contains production and four test-file changes. Final Ubuntu and Windows test-and-build checks succeeded; live E2E was skipped."
+        },
+        {
+          "number": 16685,
+          "category": "feature",
+          "merged_at": "2026-09-10T16:38:06Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/16685",
+          "merge_commit": "b6e27d596666bbb93e3146945f91404f1d6fb04f",
+          "commits": [
+            "9a32d2d3fb",
+            "90e9f3ea31",
+            "65b3707b23",
+            "fbec528c8e",
+            "4d956cf212",
+            "66b02aefaf",
+            "c8301cbdd4",
+            "141890f861"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The first feature snapshot already mixes production and tests; later fixes and a test-only commit do not reveal initial order. Final Ubuntu and Windows test-and-build checks succeeded."
+        },
+        {
+          "number": 17228,
+          "category": "bugfix",
+          "merged_at": "2026-09-11T16:03:22Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/17228",
+          "merge_commit": "f920c74f6d1b2f022584d4b88779ca4ab57ce80a",
+          "commits": [
+            "e8270fc27f",
+            "d01be7e202",
+            "f3b2ce9b6a",
+            "a393807b6d"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The first bugfix commit contains production and tests. Final Ubuntu and Windows test-and-build checks succeeded."
+        },
+        {
+          "number": 17264,
+          "category": "bugfix",
+          "merged_at": "2026-09-11T10:41:20Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/17264",
+          "merge_commit": "7beb87f31c46e4f6ff4907f5f4ac2da313b0c247",
+          "commits": [
+            "c7f840e707",
+            "f3643877df",
+            "16bbb1baf3"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The initial fix snapshot contains product and test changes; a later test-infrastructure commit followed it. Final test-and-build checks succeeded; PR-description validator had historical failures unrelated to code tests."
+        },
+        {
+          "number": 17253,
+          "category": "bugfix",
+          "merged_at": "2026-09-10T15:05:06Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/17253",
+          "merge_commit": "725f5584b9411b1e47f1d0c5ebaf640676609940",
+          "commits": [
+            "6e2be0f239",
+            "930ccd6e9b"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "secondary_evidence": "retrospective_red_replay",
+          "evidence": "Code and three tests were committed together. The public body reports copying only the tests onto clean main and seeing exactly three expected failures, then 38 tests passing on the branch. This is strong retrospective mutation evidence, not temporal proof of test-first work. Final Ubuntu and Windows checks succeeded."
+        },
+        {
+          "number": 16982,
+          "category": "refactor",
+          "merged_at": "2026-09-09T17:55:38Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/16982",
+          "merge_commit": "7ef4da5f2dac16443cb8f0273a0b0f3a35c7099f",
+          "commits": [
+            "d6f6224b5e",
+            "29c8563288",
+            "22185c45c9",
+            "9f38b68efe"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Refactor and updated tests first appear in one commit; final Ubuntu and Windows test-and-build checks succeeded."
+        },
+        {
+          "number": 16955,
+          "category": "refactor",
+          "merged_at": "2026-09-09T05:12:48Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/16955",
+          "merge_commit": "1a6babd445ff9a6cd908bce226de58dcd3080281",
+          "commits": [
+            "acc31c10e4",
+            "e2474d689f"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Workflow/script refactor and tests first appear together. Dedicated test plus Ubuntu and Windows test-and-build checks succeeded."
+        },
+        {
+          "number": 17064,
+          "category": "refactor",
+          "merged_at": "2026-09-08T14:37:39Z",
+          "url": "https://github.com/OpenHands/OpenHands/pull/17064",
+          "merge_commit": "ea7a85c27628a6abad4d5738527e5044b34b91ff",
+          "commits": [
+            "c1e71c552f",
+            "45ae4760d1",
+            "92dca68130",
+            "7d99b54fb3"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The initial rename commit already includes unit-test changes; later E2E fixes follow. Final unit/build and mock-LLM E2E checks succeeded."
+        }
+      ]
+    },
+    {
+      "repo": "SWE-agent/SWE-agent",
+      "head_branch": "main",
+      "head": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+      "pull_requests": [
+        {
+          "number": 1346,
+          "category": "feature",
+          "merged_at": "2026-02-23T18:43:59Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1346",
+          "merge_commit": "ed7dd55cbcbfed012147ac1cf7558f3498404808",
+          "commits": [
+            "97796d222d"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "User-Agent behavior and 83 test lines are in one commit. Python 3.11/3.12 test checks succeeded."
+        },
+        {
+          "number": 1343,
+          "category": "feature",
+          "merged_at": "2026-02-23T15:45:37Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1343",
+          "merge_commit": "bb81cc9901df9f894f468424217d6c37494c872d",
+          "commits": [
+            "41fdecebcf",
+            "85440f83b4"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Private-repository support and its tests first appear together, followed by an authentication refactor. Only pre-commit CI is visible in the final rollup."
+        },
+        {
+          "number": 1239,
+          "category": "feature",
+          "merged_at": "2025-08-04T19:34:21Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1239",
+          "merge_commit": "d2cf5529cb27fb04337c98e161164276a1f09b09",
+          "commits": [
+            "693a03e2e5",
+            "edd6427555"
+          ],
+          "test_files_changed": false,
+          "classification": "existing_tests_only",
+          "evidence": "No tests were added or changed. Python 3.11/3.12 CI succeeded; a markdown-link check failed."
+        },
+        {
+          "number": 1458,
+          "category": "bugfix",
+          "merged_at": "2026-07-16T15:21:19Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1458",
+          "merge_commit": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+          "commits": [
+            "4c15b9dde3"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Mapping fix and regression tests are in one commit. Final recorded test jobs failed in unrelated ghapi coroutine behavior (10 failures, 118 passes); the dependency pin landed in immediately adjacent PR #1463. This CI does not independently validate the final merged fix."
+        },
+        {
+          "number": 1463,
+          "category": "bugfix",
+          "merged_at": "2026-07-16T15:20:34Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1463",
+          "merge_commit": "1dd50afb587781df7ab500dd45119e848ce3c126",
+          "commits": [
+            "afa9137554",
+            "0069ecc975",
+            "677af05bcc"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "URL parser fix and updated tests are in the first commit; later commits pin docs Python and ghapi. Python 3.11/3.12 test checks succeeded."
+        },
+        {
+          "number": 1446,
+          "category": "bugfix",
+          "merged_at": "2026-07-07T14:34:16Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1446",
+          "merge_commit": "10ab1a978954a117b1b577b8c39fbeb78fedf69f",
+          "commits": [
+            "abb2594558"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Content-Type fix and 17 test lines are in one commit. Python 3.11/3.12 test checks succeeded."
+        },
+        {
+          "number": 1266,
+          "category": "refactor",
+          "merged_at": "2025-08-04T20:03:07Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1266",
+          "merge_commit": "d6aedd1444b55408feea4ee34da557be9c0fe1c9",
+          "commits": [
+            "f7e6098b89"
+          ],
+          "test_files_changed": false,
+          "classification": "existing_tests_only",
+          "evidence": "No test files changed; Python 3.11/3.12 CI succeeded."
+        },
+        {
+          "number": 1224,
+          "category": "refactor",
+          "merged_at": "2025-06-26T22:13:34Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1224",
+          "merge_commit": "c68ba15eeb4686e434a24574f96db2627ca725ce",
+          "commits": [
+            "edb258e89e",
+            "a60e426524"
+          ],
+          "test_files_changed": false,
+          "classification": "unknown",
+          "evidence": "A tokenizer fix precedes simplification; no test files changed and no PR check rollup is visible."
+        },
+        {
+          "number": 1201,
+          "category": "refactor",
+          "merged_at": "2025-06-12T20:34:49Z",
+          "url": "https://github.com/SWE-agent/SWE-agent/pull/1201",
+          "merge_commit": "be69e037bbea807d9b0dee6783bb22a07ef81115",
+          "commits": [
+            "04940adfc2"
+          ],
+          "test_files_changed": false,
+          "classification": "unknown",
+          "evidence": "One production-only commit, no test changes, and no PR check rollup."
+        }
+      ]
+    },
+    {
+      "repo": "obra/superpowers",
+      "head_branch": "main",
+      "head": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "pull_requests": [
+        {
+          "number": 2275,
+          "category": "feature",
+          "merged_at": "2026-09-12T00:16:38Z",
+          "url": "https://github.com/obra/superpowers/pull/2275",
+          "merge_commit": "c3116b22c6b30bda7135828c4b62f3049808ec5d",
+          "commits": [
+            "e19c6b72de",
+            "62eab78d66",
+            "0b22f61807",
+            "49bc293285",
+            "a2e7743020",
+            "03995d48f1",
+            "2996ad255c",
+            "442a48d990",
+            "5621d1d6aa",
+            "b8a723f474",
+            "ce9b3fcf26",
+            "ef1e080141",
+            "4f5304bd31",
+            "26c44ceee0",
+            "4d4ede2925"
+          ],
+          "test_files_changed": true,
+          "classification": "test_commits_first_failure_author_report",
+          "evidence": "Relevant probe/test commits precede production changes in the public commit graph. The Task 1 report at 49bc293 summarizes expected KeyError failures for shells/native_success and supports the author account of named feasibility/probe cycles. It does not independently verify execution or establish TDD adherence throughout the PR. Detailed run artifacts are Git-ignored and intermediate GitHub check-runs were empty."
+        },
+        {
+          "number": 2236,
+          "category": "feature",
+          "merged_at": "2026-09-11T22:21:17Z",
+          "url": "https://github.com/obra/superpowers/pull/2236",
+          "merge_commit": "5940bd8d48fe9488056a1f6718ed2670dc9596c0",
+          "commits": [
+            "fca1136291",
+            "0c59ebc9c6",
+            "9682098521",
+            "20c37ac909",
+            "3dd5b621a1",
+            "d4236278fb"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The initial feature commit includes the new skill, structure test, plan, and spec; later refinements follow. PR body reports extensive external evals, but records were kept outside the repository and there are no GitHub checks."
+        },
+        {
+          "number": 1995,
+          "category": "feature",
+          "merged_at": "2026-08-07T20:42:37Z",
+          "url": "https://github.com/obra/superpowers/pull/1995",
+          "merge_commit": "2d4b675b498b466df249304e2ba8a4640ccaa01f",
+          "commits": [
+            "09a567b6f4",
+            "d21e171f57"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Manifest/support changes and CI-safe test are in the first commit. The PR body includes after-change acceptance transcripts, not a pre-implementation failing test. No GitHub checks are visible."
+        },
+        {
+          "number": 2287,
+          "category": "bugfix",
+          "merged_at": "2026-09-11T22:21:18Z",
+          "url": "https://github.com/obra/superpowers/pull/2287",
+          "merge_commit": "5940bd8d48fe9488056a1f6718ed2670dc9596c0",
+          "commits": [
+            "ac22047ce8",
+            "cf1f040986"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "The evidence-preservation fix and a one-line structure-test update first appear together. This stacked PR shares the resulting merge commit with #2236; no GitHub checks are visible."
+        },
+        {
+          "number": 2258,
+          "category": "bugfix",
+          "merged_at": "2026-09-08T18:17:37Z",
+          "url": "https://github.com/obra/superpowers/pull/2258",
+          "merge_commit": "929b017964faf3f0ab659ae43d4c2444325fd441",
+          "commits": [
+            "3b4f2caf9e",
+            "069edf3ffc"
+          ],
+          "test_files_changed": false,
+          "classification": "existing_tests_only",
+          "evidence": "Only skill prose changed. The PR body reports behavioral evaluation, but no eval artifacts or GitHub checks are in the PR, so chronology is unknown."
+        },
+        {
+          "number": 2100,
+          "category": "bugfix",
+          "merged_at": "2026-08-06T23:21:13Z",
+          "url": "https://github.com/obra/superpowers/pull/2100",
+          "merge_commit": "5f8f500b1d8655607890b8439cb5c31b4301917c",
+          "commits": [
+            "782f5f2270",
+            "5e9006f282",
+            "e17a3cd39c",
+            "51cc536d72"
+          ],
+          "test_files_changed": true,
+          "classification": "same_commit_order_unknown",
+          "evidence": "Design and plan are public before implementation, but the script change and focused test arrive together in the implementation commit. The body says TDD red/green cycles were used, without a transcript or check run."
+        },
+        {
+          "number": 1934,
+          "category": "refactor",
+          "merged_at": "2026-07-14T22:02:17Z",
+          "url": "https://github.com/obra/superpowers/pull/1934",
+          "merge_commit": "4562d18dcfc1ff7c65ec9aae5848539532724a1d",
+          "commits": [
+            "37d9a63d45",
+            "880b9b84d5",
+            "447edeea29",
+            "dee15bcb9e",
+            "232993b395",
+            "3adac24a6c",
+            "2e039d0229",
+            "10f4868e4d",
+            "12960fbaf7",
+            "0aff5d6c64",
+            "75ef64f3df",
+            "67714e036c"
+          ],
+          "test_files_changed": false,
+          "classification": "existing_tests_only",
+          "evidence": "The body reports a before/after behavioral eval that caused the TDD prose cut to be revised, but eval artifacts are not committed and no GitHub checks are visible. This supports evaluation-informed iteration, not code TDD chronology."
+        },
+        {
+          "number": 1935,
+          "category": "refactor",
+          "merged_at": "2026-07-13T21:25:56Z",
+          "url": "https://github.com/obra/superpowers/pull/1935",
+          "merge_commit": "92164e2d1a1eb8aa78113202030191e499f0590d",
+          "commits": [
+            "0cfc0a16b4",
+            "6f3eca4f2e",
+            "78fb4643da",
+            "deb9d855cb",
+            "8afa64b49d",
+            "0e69a4d32c"
+          ],
+          "test_files_changed": false,
+          "classification": "existing_tests_only",
+          "evidence": "Skill prose only. The body reports two after-change sanity checks and says full before/after evals were still pending; no artifacts or GitHub checks are visible."
+        },
+        {
+          "number": 1933,
+          "category": "refactor",
+          "merged_at": "2026-07-13T21:25:33Z",
+          "url": "https://github.com/obra/superpowers/pull/1933",
+          "merge_commit": "f68c94334d6cd7b6bb760583970344c24e1d3858",
+          "commits": [
+            "a91d64301e",
+            "caf14785a7",
+            "227c26ca8d",
+            "94dc995719"
+          ],
+          "test_files_changed": false,
+          "classification": "existing_tests_only",
+          "evidence": "Skill prose only. The body reports dry-run test subjects after change waves and says full before/after evals were pending; no artifacts or GitHub checks are visible."
+        }
+      ],
+      "special_case": {
+        "source_pr": 1720,
+        "source_pr_url": "https://github.com/obra/superpowers/pull/1720",
+        "original_plan_commit": "83b5d3a963ed63d8231ecb3276c8368caf1857a3",
+        "original_implementation_commit": "b17d54f839831b2345aa389e2f65f435f3a82867",
+        "original_parent_relation": true,
+        "original_elapsed_minutes": 44,
+        "rebased_plan_commit_in_pr": "f656a28e6ed35adb924ce09d3e3c757e2c2015d6",
+        "rebased_implementation_commit_in_pr": "7b757c6de626fa25b1a25ca87154d6b13ad4a4ef",
+        "classification": "same_commit_order_unknown",
+        "checks": {
+          "implementation_commit_check_runs": 0,
+          "source_pr_check_rollup": 0
+        },
+        "finding": "The plan is definitely before the implementation snapshot, but the implementation commit changes production and four test files together. The PR body claims focused RED/GREEN regressions and gives outcome summaries; it also says the original four-run eval artifacts are absent from the PR diff/current worktree. No public transcript or GitHub check proves the test suite was run failing before production code was written. Therefore plan-before-code is established; red-before-green execution is author-reported, not independently visible."
+      }
+    }
+  ]
+}

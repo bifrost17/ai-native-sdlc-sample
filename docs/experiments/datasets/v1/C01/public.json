@@ -1,0 +1,16 @@
+{
+  "case_id": "C01",
+  "dataset_version": "1.0.0",
+  "seed": 301,
+  "kind": "change-request",
+  "title": "완료와 구별되는 요청 취소",
+  "problem": "요청자가 일을 철회했을 때 지금은 완료로 표시할 수밖에 없다. 실제 완료와 철회를 구분해서 남기고 싶다. 요청 행을 삭제하는 방식은 원하지 않는다.",
+  "stable_facts": [
+    {"id": "C01-F1", "fact": "Python 3.9 이상 표준 라이브러리 로컬 CLI/JSON이며 외부 서비스·계정·네트워크는 없다."},
+    {"id": "C01-F2", "fact": "현재 상태는 open과 done이다. list, show <ID>, complete <ID> 명령이 있다."},
+    {"id": "C01-F3", "fact": "list와 show는 상태 열을 그대로 표시한다. complete를 완료된 요청에 반복하면 rc=0이고 파일을 다시 쓰지 않는다."},
+    {"id": "C01-F4", "fact": "사용자는 한 로컬 요청 파일을 순차적으로 다룬다. 동시 사용자·권한·서버 기능은 범위 밖이다."}
+  ],
+  "constraints": ["기존 명령과 요청 필드는 유지하며 새로운 상태를 추가할 수 있다.", "취소 시 요청 행을 삭제하거나 다른 요청을 바꾸지 않는다.", "업무 코드는 2~4파일 이내로 유지한다."],
+  "baseline": {"entrypoint": "tracker.py", "data": "requests.json", "tests": "python3 -m unittest discover -s tests -v"}
+}

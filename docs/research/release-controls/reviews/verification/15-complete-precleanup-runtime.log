@@ -1,0 +1,60 @@
+$ complete pre-cleanup PR2 verification at exp/f03-summary@7bd1af4
+HEAD_BEFORE=7bd1af4516f194ff6fa5ea331e0c33ce5d3e0408
+STATUS_BEFORE=
+TRACKER_SHA_OFF_BEFORE=afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567  tracker.py
+REQUESTS_SHA_BEFORE=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795  requests.json
+$ python3 -m unittest discover -s tests -v
+test_off_baseline_commands_unaffected (test_owner.OwnerFilterTests) ... ok
+test_off_rejects_owner_option_and_summary (test_owner.OwnerFilterTests) ... ok
+test_on_no_match_is_empty_and_read_only (test_owner.OwnerFilterTests) ... ok
+test_on_owner_filter_exact_match_and_order (test_owner.OwnerFilterTests) ... ok
+test_off_rejects_summary (test_summary.SummaryTests) ... ok
+test_on_summary_reflects_latest_state_after_complete (test_summary.SummaryTests) ... ok
+test_on_summary_totals_and_by_owner (test_summary.SummaryTests) ... ok
+test_complete_changes_only_target_status_and_is_repeatable (test_tracker.ExistingTrackerTests) ... ok
+test_list_preserves_order_and_does_not_write (test_tracker.ExistingTrackerTests) ... ok
+test_show_existing_and_missing_id (test_tracker.ExistingTrackerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.790s
+
+OK
+tests_exit_code=0
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data /definitely/missing.json list --owner hana
+usage: tracker.py [-h] [--data DATA] {list,show,complete} ...
+tracker.py: error: unrecognized arguments: --owner hana
+off_owner_exit_code=2
+$ env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data /definitely/missing.json summary
+usage: tracker.py [-h] [--data DATA] {list,show,complete} ...
+tracker.py: error: argument command: invalid choice: 'summary' (choose from 'list', 'show', 'complete')
+off_summary_exit_code=2
+HEAD_ON=7bd1af4516f194ff6fa5ea331e0c33ce5d3e0408
+TRACKER_SHA_ON=afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567  tracker.py
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data requests.json list --owner hana
+R-101	open	hana	회의실 키 확인
+R-103	done	hana	회의록 정리
+on_owner_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=TrUe python3 tracker.py --data requests.json summary
+all	4
+open	3
+done	1
+on_summary_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data requests.json summary --owner hana
+all	2
+open	1
+done	1
+on_hana_summary_exit_code=0
+TEMP_COPY=/tmp/f03-verifier-copy.XXXXXX.json
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data <temp-copy> complete R-101
+R-101	done	hana	회의실 키 확인
+complete_copy_exit_code=0
+$ TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data <temp-copy> summary --owner hana
+all	2
+open	0
+done	2
+post_complete_summary_exit_code=0
+HEAD_OFF_AFTER=7bd1af4516f194ff6fa5ea331e0c33ce5d3e0408
+TRACKER_SHA_OFF_AFTER=afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567  tracker.py
+REQUESTS_SHA_AFTER=c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795  requests.json
+STATUS_AFTER=
+exit_code=0

@@ -1,0 +1,21 @@
+test_no_owner_option_lists_all_four_rows_in_order (test_owner_list.OwnerListTests) ... ok
+test_owner_case_mismatch_is_empty (test_owner_list.OwnerListTests) ... ok
+test_owner_dash_does_not_match_null_owner (test_owner_list.OwnerListTests) ... ok
+test_owner_exact_match_preserves_order_and_includes_done (test_owner_list.OwnerListTests) ... ok
+test_owner_unknown_is_empty (test_owner_list.OwnerListTests) ... ok
+test_complete_missing_id_matches_show_missing_id_error_and_leaves_data_unchanged (test_summary.ExistingErrorPathRegressionTests) ... ok
+test_missing_data_file_reports_existing_error_prefix (test_summary.ExistingErrorPathRegressionTests) ... ok
+test_owner_dash_does_not_match_null_owner (test_summary.OwnerListRegressionAfterRefactor) ... ok
+test_owner_exact_match_preserves_order_and_includes_done (test_summary.OwnerListRegressionAfterRefactor) ... ok
+test_summary_after_complete_reflects_new_state_and_does_not_write (test_summary.SummaryTests) ... ok
+test_summary_all (test_summary.SummaryTests) ... ok
+test_summary_owner_hana (test_summary.SummaryTests) ... ok
+test_summary_unknown_owner (test_summary.SummaryTests) ... ok
+test_complete_changes_only_target_status_and_is_repeatable (test_tracker.ExistingTrackerTests) ... ok
+test_list_preserves_order_and_does_not_write (test_tracker.ExistingTrackerTests) ... ok
+test_show_existing_and_missing_id (test_tracker.ExistingTrackerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.676s
+
+OK

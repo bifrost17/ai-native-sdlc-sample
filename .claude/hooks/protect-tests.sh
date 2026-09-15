@@ -6,8 +6,9 @@
 # Fail-closed (no jq / bad JSON → exit 2), see _lib.sh.
 . "${BASH_SOURCE[0]%/*}/_lib.sh"
 [ "${INTENT_TASK:-}" = "fix" ] || exit 0
-rel="$(rel_path)"
-case "$rel" in tests/*)
-  block "$rel is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR." ;;
-esac
+while IFS= read -r rel; do
+  case "$rel" in tests/*)
+    block "$rel is a test file and INTENT_TASK=fix. Reason: the failing test committed before the fix is the proof the bug is gone; if the fix can rewrite it, it proves nothing. Route: fix the code, not the test. If the test itself is wrong, that is a separate task — start a session without INTENT_TASK=fix and say so in the PR." ;;
+  esac
+done <<< "$PATH_CANDIDATES"
 exit 0

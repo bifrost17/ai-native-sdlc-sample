@@ -7,7 +7,9 @@
 - Test: `make test` (python unittest, `tests/test_hooks.sh`, `tests/test_evals.sh`,
   `tests/test_managed_settings.sh`; healthy: rc=0, the four suites end with `OK`,
   `test_hooks: 28 passed, 0 failed`, `8 passed, 0 failed`, `PASS  managed-settings 키·훅 계약`)
-- Evals: `make evals` (`bash evals/run.sh`, needs `ANTHROPIC_API_KEY`; healthy: `evals: 전 케이스 통과`)
+- Evals: `make evals` (`bash evals/run.sh --semantic`, needs `ANTHROPIC_API_KEY`; healthy:
+  `evals: pass; 4 passed, 0 failed, 0 undecidable; summary=…/summary.json`). Generation and
+  independent assertion grading use Sonnet/low. Bare `bash evals/run.sh` is deterministic-only.
 - Check: `make check` (= `make test`; non-zero on any failure). Evals are not in it: without
   `ANTHROPIC_API_KEY` `make evals` prints `SKIP: ANTHROPIC_API_KEY 없음` and exits 2; CI runs them
   with the key in `.github/workflows/agent-evals.yml` (L10 689).
@@ -29,11 +31,30 @@
   Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
   detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
+- This root makes one product template: `tdd-optional/project`, with optional team skills beside it
+  in `tdd-optional/org-skills`. Preserve task-specific testing strategy choice and the shared
+  Claude Code/Codex skill criteria. `tdd-first` is retired; use Git history for its old evidence.
+  For maker tools, choose focused verification appropriate to the change and retain actual evidence.
+  Existing hooks and protected defect-test boundaries keep their scope; this split does not install
+  them into the product template or add an approval gate for choosing a testing strategy.
+- Choose models and reasoning effort for the task's difficulty, impact and uncertainty, including
+  subagents. Use more capable models and higher reasoning upfront for important or error-prone
+  judgments (complex design, cross-artifact consistency, consequential changes). For repeated
+  mistakes, check the evidence/context and adjust the model or effort; hand off when the needed
+  capability is unavailable. Respect the user's resource limits. Agent and reviewer fallibility is
+  expected: retain relevant tests and human review, but do not add a new rule or checker for every
+  model error. See the selected edition's `org-skills/README.md`.
 
 ## Architecture
+- The project's north star is [AI-Native SDLC Playbook](docs/verification/north-star-playbook.html).
+  Its annotations assess our template, skills and policies against the playbook. Read the relevant
+  passage and annotation before proposing or making changes; fill the team's choices from its actual standards.
 - `.claude/skills/` — what the agent is told (advisory). `.claude/hooks/` + `settings.json` —
   what the machine blocks. `tests/`, `evals/`, `.github/` — what CI proves. See docs/BOUNDARY.md.
-- `intent/` — the artifact chains; `templates/` — copies of the skill-embedded templates.
+- `intent/` — maker artifact history. `tdd-optional/project/templates/` — product forms; the maker
+  authoring skills route there instead of keeping another source copy.
+- Historical research, experiments and playbook annotations retain their original paths and Git
+  revisions. Current adoption starts at `tdd-optional/README.md`.
 - `docs/PLAYBOOK-MAP.md` maps the 14 lessons to files; `docs/METRICS.md` is git commands.
 
 ## Verifying your work

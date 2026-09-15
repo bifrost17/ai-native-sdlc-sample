@@ -1,0 +1,174 @@
+# Browser snapshot; login account UI and challenge URL parameter redacted. Article and comments unchanged.
+✔︎ Opened a new tab and set it active: tabs[0], page → Dan Luu ran 160 agent runs per testing instruction (TDD, QuickCheck, fuzz, TLA+). Almost none of them did the thing that gets the value out of the technique : r/AgentsOfAI (https://www.reddit.com/r/AgentsOfAI/comments/1wd29ns/dan_luu_ran_160_agent_runs_per_testing/)
+- title: "Dan Luu ran 160 agent runs per testing instruction (TDD, QuickCheck, fuzz, TLA+). Almost none of them did the thing that gets the value out of the technique : r/AgentsOfAI" [url=https://www.reddit.com/r/AgentsOfAI/comments/1wd29ns/dan_luu_ran_160_agent_runs_per_testing/]
+- banner:
+  - navigation:
+    - text: "탐색 메뉴 열기"
+    - link "홈" [ref=e1]
+    - text: "Reddit 홈으로 이동"
+    - form:
+      - textbox "Reddit 검색" [ref=e2] [placeholder="Reddit 검색"]
+    - form:
+      - search "Reddit 검색" [placeholder="Reddit 검색"]:
+        - button "검색 초기화" [ref=e3]
+        - label:
+          - textbox "Reddit 검색" [ref=e4] [placeholder="Reddit 검색"]
+    - link "가입" [ref=e5]
+    - text: "Reddit에 가입하세요"
+    - link "로그인" [ref=e6]
+    - text: "Reddit에 로그인하기"
+    - button "사용자 메뉴 펼치기" [ref=e7]
+    - text: "설정 메뉴 열기"
+- link "가입 바로가기" [ref=e9]
+- link "오른쪽 사이드바 바로가기" [ref=e10]
+- main:
+  - button "뒤로" [ref=e11]
+  - link "AgentsOfAI 커뮤니티로 이동" [ref=e13]
+  - group:
+    - link "r/AgentsOfAI" [ref=e15]
+    - text: "1일 전"
+    - link "작성자는 RunAI_Coder입니다" [ref=e16]: "RunAI_Coder"
+  - button "사용자 작업 열기" [ref=e17]
+  - listitem:
+    - menuitem "이 게시물에 어워드 주기" [ref=e18]
+  - listitem:
+    - menuitem "신고" [ref=e19]
+  - menu
+  - heading "게시물 제목: Dan Luu ran 160 agent runs per testing instruction (TDD, QuickCheck, fuzz, TLA+). Almost non" [level=1]: "Dan Luu ran 160 agent runs per testing instruction (TDD, QuickCheck, fuzz, TLA+). Almost none of them did the thing that gets the value out of the technique"
+  - link "Discussion" [ref=e20]
+  - text: "Dan Luu's post on agents and testing techniques is the one to read if you've ever appended \"use property-based testing\" to a prompt and felt virtuous. Same task every time, implement Zstd in Rust from the RFC, codex on GPT-5.6 Sol, 160 runs per condition, and the conditions were mostly one line stuck on the end: use TDD, use QuickCheck, use Lean 4, use fuzzing, audit first. Scored on how many runs passed a hidden test suite.Headline: nothing wildly outperformed the run with no instruction at all. He'd written down six guesses beforehand, all in the direction of \"this won't outperform\", and all six held.The part I keep thinking about is what the runs did instead of failing loudly. Told to use QuickCheck, all of them used it, and 63 of 160 checked exactly one property, mostly with random inputs that fell into the same rejection path. Told to do differential testing, 135 runs did something that looked like it and none built a second full implementation; where it mattered, the agent wrote the same thing twice and put the same bug in both copies. 159 of 160 TLA+ runs wrote a model, and he couldn't find one case where the model changed the Rust code. TDD doubled the number of tests and the condition scored below average. One Kani run in 160 caught a real bug on the real code and changed the implementation; the rest mostly used it superficially.My read (his framing is close but not identical): every one of those techniques is a way of getting a check that didn't come from the implementation under test. A second implementation, a property written before the code, an input generator aimed at the hard part, a planted fault. Name the technique and the agent produces the motions inside the new framework, but the check still comes from its own reading of the spec, so you get the same tests in a different costume. We saw the small version of this in August: agents asked to write tests for a function with a sixteen-year-old bug wrote suites that all passed, and two of them pinned the bug as intended behavior.What has moved things for him, by his account, is structure: set up the test and triage layout with the agent, then let it fill in, and look before typing the next instruction. His own five-bullet skill scored highest (he says don't read the table as a ranking) and still didn't work as intended.So when you name a technique in a prompt, where does the independent check come from in your setup?"
+  - button "더 읽기" [ref=e21]
+  - button "공유" [ref=e22]
+  - generic [ref=e23]:
+    - button "좋아요" [ref=e24]
+    - text: "5"
+    - button "싫어요" [ref=e26]
+    - button "3 댓글로 이동" [ref=e28]
+  - link "Advertisement: Most AI tools get you 90 percent of the way there. Grok Bot signs in and finishes the" [ref=e31]
+  - link "Grok-by-SpaceXAI" [ref=e32]:
+    - image "u/Grok-by-SpaceXAI 님의 아바타입니다"
+    - text: "Grok-by-SpaceXAI"
+  - text: "•"
+  - link "광고" [ref=e33]
+  - link [ref=e35]
+  - button "사용자 작업 열기" [ref=e36]
+  - listitem:
+    - menuitem "신고" [ref=e37]
+  - listitem:
+    - menuitem "이 광고 정보" [ref=e38]
+  - listitem:
+    - menuitem "광고가 지겨우신가요?" [ref=e39]
+  - menu
+  - generic [ref=e40]:
+    - text: "Most AI tools get you 90 percent of the way there. Grok Bot signs in and finishes the job."
+    - link [ref=e41]
+  - link [ref=e43]
+  - text: "가입"
+  - link [ref=e44]
+  - generic [ref=e45]:
+    - text: "x.ai"
+    - link [ref=e46]
+  - generic [ref=e47]:
+    - image "Clickable image which will reveal the video player: Most AI tools get you 90 percent of the way ther"
+    - button "동영상 재생" [ref=e48]
+  - button "댓글 추가 버튼" [ref=e49] [disabled] [placeholder="대화에 참여해보세요"]:
+    - label:
+      - textbox "대화에 참여해보세요" [ref=e50] [disabled] [placeholder="대화에 참여해보세요"]
+  - button "정렬 기준 좋아요 많은 순(기본값)" [ref=e51]: "좋아요 많은 순(기본값)"
+  - button "댓글 검색 댓글 검색 펼치기" [ref=e52]
+  - region "댓글" [ref=e54]:
+    - article "AutoModerator 1일 전 댓글" [ref=e55]:
+      - generic [ref=e56]:
+        - link "AutoModerator 님의 프로필 --- 아바타" [ref=e57]:
+          - image "u/AutoModerator 님의 아바타입니다"
+        - link "AutoModerator 님의 프로필" [ref=e58]: "AutoModerator"
+        - button "자동화된 계정입니다." [ref=e59]
+        - generic "모더레이터" [ref=e60]
+        - link "1일 전" [ref=e61]
+      - text: "Thank you for your submission! To keep our community healthy, please ensure you've followed our rules."
+      - list:
+        - listitem:
+          - paragraph:
+            - text: "New to the sub? Check out our"
+            - link "Wiki" [ref=e62]
+            - text: "(We are actively adding resources)."
+        - listitem:
+          - paragraph:
+            - text: "Join the Discord:"
+            - link "Click here to join our Discord" [ref=e63]
+        - listitem:
+          - paragraph:
+            - text: "Join X community:"
+            - link "Click here to join our X Community" [ref=e64]
+      - paragraph:
+        - text: "I am a bot, and this action was performed automatically. Please"
+        - link "contact the moderators of this subreddit" [ref=e65]
+        - text: "if you have any questions or concerns."
+    - article "No-Big-3541 1일 전 댓글" [ref=e66]:
+      - generic [ref=e67]:
+        - link "No-Big-3541 님의 프로필 --- 아바타" [ref=e68]:
+          - image "u/No-Big-3541 님의 아바타입니다"
+        - link "No-Big-3541 님의 프로필" [ref=e69]: "No-Big-3541"
+        - link "1일 전" [ref=e70]
+      - text: "The TLA+ result is the funny one, 159 out of 160 wrote a model and it never touched the Rust. That's just ceremony with a proof-shaped hat on. The differential testing bit stings too, same bug in both copies because the agent wrote the same implementation twice and called it a second opinion."
+    - article "Stubbby 11시간 전 댓글" [ref=e71]:
+      - generic [ref=e72]:
+        - link "Stubbby 님의 프로필 --- 아바타" [ref=e73]
+        - link "Stubbby 님의 프로필" [ref=e74]: "Stubbby"
+        - link "11시간 전" [ref=e75]
+      - text: "Oftentimes LLMs will write tests to prove the existing implementation instead of the expected outcome.LLM tests serve as a demo of the implementation.The key is to find alternative ground truth to test it against."
+- complementary "프로모션"
+- complementary "관련 게시물 섹션": "관련 게시물"
+- complementary "커뮤니티 정보":
+  - button "커뮤니티 상태는 Verified Community입니다." [ref=e76]:
+    - image "verify"
+  - article
+  - text: "공개\n    누구나 이 커뮤니티를 열람하고, 게시물을 올리고, 댓글을 남길 수 있습니다"
+  - link "r/AgentsOfAI" [ref=e77]
+  - button "가입" [ref=e78]
+  - text: "AgentsOfAI    A community for sharing and discussing AI Agents! Whether you’re building, learning, or just curious, dive in.\n\nLet’s grow this space together!"
+  - button "더 보기" [ref=e79]
+- list:
+  - listitem:
+    - link "홈" [ref=e80]
+  - listitem:
+    - link "인기" [ref=e81]
+  - listitem:
+    - link "뉴스" [ref=e82]
+  - listitem:
+    - link "둘러보기" [ref=e83]
+  - listitem:
+    - link "Reddit 베스트 콘텐츠" [ref=e84]
+  - listitem:
+    - link "포르투갈 Reddit 베스트 콘텐츠" [ref=e85]
+  - listitem:
+    - link "독일의 Reddit 베스트 콘텐츠" [ref=e86]
+  - listitem:
+    - link "Reddit 콘텐츠 규정" [ref=e87]
+  - listitem:
+    - link "개인정보 처리방침" [ref=e88]
+  - listitem:
+    - link "이용 약관" [ref=e89]
+  - listitem:
+    - link "접근성" [ref=e90]
+  - listitem "Reddit, Inc. © 2026. All rights reserved." [ref=e91]:
+    - link "Reddit, Inc. © 2026. All rights reserved." [ref=e92]
+- complementary "사업체 하이라이트 패널"
+- text: "인터넷에서 가장 진솔한 공간에 참여해보세요"
+- button "Google 계정으로 계속하기. 새 탭에서 열림" [ref=e93]: "Google 계정으로 계속하기"
+- iframe "Google 계정으로 로그인 버튼" [ref=e94]:
+  - button "[account name redacted] 계정 사용, [account redacted] 새 탭에서 열림" [ref=f1e1]:
+    - image "[account name redacted]님의 프로필 이미지"
+    - text: "[account name redacted] 계정 사용 [account redacted]"
+- generic "Apple로 계속하기" [ref=e95]
+- generic "전화번호로 계속하기" [ref=e96]
+- link [ref=e97]
+- generic "이메일로 계속하기" [ref=e98]
+- link [ref=e99]
+- paragraph:
+  - text: "계속 진행할 경우 Reddit의"
+  - link "이용 약관" [ref=e100]
+  - text: "에 동의하고"
+  - link "개인정보 처리방침" [ref=e101]
+  - text: "을 이해하고 인정하는 것으로 간주됩니다."
+[2m[ok | 2204ms][0m

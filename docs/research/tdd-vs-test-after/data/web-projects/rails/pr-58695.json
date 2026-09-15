@@ -1,0 +1,1354 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:44:03Z",
+  "pull": {
+    "url": "https://api.github.com/repos/rails/rails/pulls/58695",
+    "id": 4475635077,
+    "node_id": "PR_kwDNIULPAAAAAQrExYU",
+    "html_url": "https://github.com/rails/rails/pull/58695",
+    "diff_url": "https://github.com/rails/rails/pull/58695.diff",
+    "patch_url": "https://github.com/rails/rails/pull/58695.patch",
+    "issue_url": "https://api.github.com/repos/rails/rails/issues/58695",
+    "number": 58695,
+    "state": "closed",
+    "locked": false,
+    "title": "Allow exception backtraces from Ractor workers",
+    "user": {
+      "login": "etiennebarrie",
+      "id": 3535,
+      "node_id": "MDQ6VXNlcjM1MzU=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/etiennebarrie",
+      "html_url": "https://github.com/etiennebarrie",
+      "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+      "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+      "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+      "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+      "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+      "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "There are a few missing pieces which means that a Ractor worker serving a request that raises an exception doesn't log properly, this addresses them.\r\n\r\n* The error reporter uses a few values that were not shareable, `Rails::VERSION::STRING`, `Rails.env`.\r\n* The logger is wrapped with a `BroadcastLogger` which isn't shareable.\r\n* The event reporter was ractor-safe, but since it was a Ractor-local new instance (from https://github.com/rails/rails/pull/58599), it wasn't subscribed to any event from the LogSubscribers.\r\n* The backtrace cleaner refers to `RbConfig::CONFIG[\"rubylibdir\"]` and `Rails::BacktraceCleaner.root`, both of which were unfrozen strings which were not shareable.\r\n\r\nHere's a new Rails app (disabling a few frameworks) that adds a ractor environment: https://github.com/etiennebarrie/rails-app/commit/db51ca33b4702112bc04fb118c94c35d0083a44f\r\n\r\nFrom which we can get a backtrace:\r\n\r\n```console\r\n$ bin/rails server -e ractor & until nc -z localhost 3000 2>/dev/null; do :; done\r\n[1] 5496\r\n=> Booting Cougar\r\n=> Rails 8.2.0.alpha application starting in ractor http://0.0.0.0:3000\r\n=> Run `bin/rails server --help` for more startup options\r\nconfig.ru:10: warning: Ractor support in Rails is experimental and subject to change.\r\nCougar listening on 0.0.0.0:3000 with 8 workers\r\n$ curl http://127.0.0.1:3000/up &>/dev/null\r\nStarted GET \"/up\" for 127.0.0.1 at 2026-09-08 17:03:18 +0200\r\nProcessing by Rails::HealthController#show as */*\r\nCompleted 200 OK in 2ms (Views: 0.8ms | GC: 0.0ms)\r\n$ curl http://127.0.0.1:3000/500 &>/dev/null\r\nStarted GET \"/500\" for 127.0.0.1 at 2026-09-08 17:03:20 +0200\r\nProcessing by BoomController#show as */*\r\nCompleted 500 Internal Server Error in 1ms (GC: 0.0ms)\r\n  \r\nRuntimeError (boom):\r\n  \r\napp/controllers/boom_controller.rb:3:in 'BoomController#show'\r\n```\r\n\r\ncc @gmcgibbon @andrewn617 @Edouard-chin @skipkayhil ",
+    "created_at": "2026-09-08T15:04:32Z",
+    "updated_at": "2026-09-11T23:13:53Z",
+    "closed_at": "2026-09-08T22:35:15Z",
+    "merged_at": "2026-09-08T22:35:15Z",
+    "merge_commit_sha": "bd885faee983c6986da1919d96ee6f671a35164c",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 107194,
+        "node_id": "MDU6TGFiZWwxMDcxOTQ=",
+        "url": "https://api.github.com/repos/rails/rails/labels/activesupport",
+        "name": "activesupport",
+        "color": "FC9300",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      },
+      {
+        "id": 107195,
+        "node_id": "MDU6TGFiZWwxMDcxOTU=",
+        "url": "https://api.github.com/repos/rails/rails/labels/railties",
+        "name": "railties",
+        "color": "8BE06E",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      },
+      {
+        "id": 3666649,
+        "node_id": "MDU6TGFiZWwzNjY2NjQ5",
+        "url": "https://api.github.com/repos/rails/rails/labels/actionview",
+        "name": "actionview",
+        "color": "d7e102",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      },
+      {
+        "id": 11217180692,
+        "node_id": "LA_kwDNIULPAAAAApyYmBQ",
+        "url": "https://api.github.com/repos/rails/rails/labels/Ractor%20Support",
+        "name": "Ractor Support",
+        "color": "854f6e",
+        "default": false,
+        "description": "Issues and pull requests regarding Ractor support",
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/rails/rails/pulls/58695/commits",
+    "review_comments_url": "https://api.github.com/repos/rails/rails/pulls/58695/comments",
+    "review_comment_url": "https://api.github.com/repos/rails/rails/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/rails/rails/issues/58695/comments",
+    "statuses_url": "https://api.github.com/repos/rails/rails/statuses/cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+    "head": {
+      "label": "Shopify:ractor-debuggable-workers",
+      "ref": "ractor-debuggable-workers",
+      "sha": "cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "user": {
+        "login": "Shopify",
+        "id": 8085,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjgwODU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8085?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Shopify",
+        "html_url": "https://github.com/Shopify",
+        "followers_url": "https://api.github.com/users/Shopify/followers",
+        "following_url": "https://api.github.com/users/Shopify/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Shopify/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Shopify/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Shopify/subscriptions",
+        "organizations_url": "https://api.github.com/users/Shopify/orgs",
+        "repos_url": "https://api.github.com/users/Shopify/repos",
+        "events_url": "https://api.github.com/users/Shopify/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Shopify/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 60858413,
+        "node_id": "MDEwOlJlcG9zaXRvcnk2MDg1ODQxMw==",
+        "name": "rails",
+        "full_name": "Shopify/rails",
+        "private": false,
+        "owner": {
+          "login": "Shopify",
+          "id": 8085,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjgwODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/8085?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Shopify",
+          "html_url": "https://github.com/Shopify",
+          "followers_url": "https://api.github.com/users/Shopify/followers",
+          "following_url": "https://api.github.com/users/Shopify/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Shopify/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Shopify/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Shopify/subscriptions",
+          "organizations_url": "https://api.github.com/users/Shopify/orgs",
+          "repos_url": "https://api.github.com/users/Shopify/repos",
+          "events_url": "https://api.github.com/users/Shopify/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Shopify/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/Shopify/rails",
+        "description": "Ruby on Rails",
+        "fork": true,
+        "url": "https://api.github.com/repos/Shopify/rails",
+        "forks_url": "https://api.github.com/repos/Shopify/rails/forks",
+        "keys_url": "https://api.github.com/repos/Shopify/rails/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/Shopify/rails/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/Shopify/rails/teams",
+        "hooks_url": "https://api.github.com/repos/Shopify/rails/hooks",
+        "issue_events_url": "https://api.github.com/repos/Shopify/rails/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/Shopify/rails/events",
+        "assignees_url": "https://api.github.com/repos/Shopify/rails/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/Shopify/rails/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/Shopify/rails/tags",
+        "blobs_url": "https://api.github.com/repos/Shopify/rails/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/Shopify/rails/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/Shopify/rails/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/Shopify/rails/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/Shopify/rails/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/Shopify/rails/languages",
+        "stargazers_url": "https://api.github.com/repos/Shopify/rails/stargazers",
+        "contributors_url": "https://api.github.com/repos/Shopify/rails/contributors",
+        "subscribers_url": "https://api.github.com/repos/Shopify/rails/subscribers",
+        "subscription_url": "https://api.github.com/repos/Shopify/rails/subscription",
+        "commits_url": "https://api.github.com/repos/Shopify/rails/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/Shopify/rails/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/Shopify/rails/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/Shopify/rails/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/Shopify/rails/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/Shopify/rails/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/Shopify/rails/merges",
+        "archive_url": "https://api.github.com/repos/Shopify/rails/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/Shopify/rails/downloads",
+        "issues_url": "https://api.github.com/repos/Shopify/rails/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/Shopify/rails/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/Shopify/rails/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/Shopify/rails/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/Shopify/rails/labels{/name}",
+        "releases_url": "https://api.github.com/repos/Shopify/rails/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/Shopify/rails/deployments",
+        "created_at": "2016-06-10T15:34:34Z",
+        "updated_at": "2026-09-11T15:55:08Z",
+        "pushed_at": "2026-09-11T21:12:59Z",
+        "git_url": "git://github.com/Shopify/rails.git",
+        "ssh_url": "git@github.com:Shopify/rails.git",
+        "clone_url": "https://github.com/Shopify/rails.git",
+        "svn_url": "https://github.com/Shopify/rails",
+        "homepage": "http://rubyonrails.org",
+        "size": 280751,
+        "stargazers_count": 19,
+        "watchers_count": 19,
+        "language": "Ruby",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 6,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 5,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 6,
+        "open_issues": 5,
+        "watchers": 19,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "rails:main",
+      "ref": "main",
+      "sha": "71191796c080cd7dd378ab85774f9303c6377499",
+      "user": {
+        "login": "rails",
+        "id": 4223,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyMjM=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/4223?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/rails",
+        "html_url": "https://github.com/rails",
+        "followers_url": "https://api.github.com/users/rails/followers",
+        "following_url": "https://api.github.com/users/rails/following{/other_user}",
+        "gists_url": "https://api.github.com/users/rails/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/rails/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/rails/subscriptions",
+        "organizations_url": "https://api.github.com/users/rails/orgs",
+        "repos_url": "https://api.github.com/users/rails/repos",
+        "events_url": "https://api.github.com/users/rails/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/rails/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 8514,
+        "node_id": "MDEwOlJlcG9zaXRvcnk4NTE0",
+        "name": "rails",
+        "full_name": "rails/rails",
+        "private": false,
+        "owner": {
+          "login": "rails",
+          "id": 4223,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyMjM=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/4223?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/rails",
+          "html_url": "https://github.com/rails",
+          "followers_url": "https://api.github.com/users/rails/followers",
+          "following_url": "https://api.github.com/users/rails/following{/other_user}",
+          "gists_url": "https://api.github.com/users/rails/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/rails/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/rails/subscriptions",
+          "organizations_url": "https://api.github.com/users/rails/orgs",
+          "repos_url": "https://api.github.com/users/rails/repos",
+          "events_url": "https://api.github.com/users/rails/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/rails/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/rails/rails",
+        "description": "Ruby on Rails",
+        "fork": false,
+        "url": "https://api.github.com/repos/rails/rails",
+        "forks_url": "https://api.github.com/repos/rails/rails/forks",
+        "keys_url": "https://api.github.com/repos/rails/rails/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/rails/rails/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/rails/rails/teams",
+        "hooks_url": "https://api.github.com/repos/rails/rails/hooks",
+        "issue_events_url": "https://api.github.com/repos/rails/rails/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/rails/rails/events",
+        "assignees_url": "https://api.github.com/repos/rails/rails/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/rails/rails/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/rails/rails/tags",
+        "blobs_url": "https://api.github.com/repos/rails/rails/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/rails/rails/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/rails/rails/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/rails/rails/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/rails/rails/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/rails/rails/languages",
+        "stargazers_url": "https://api.github.com/repos/rails/rails/stargazers",
+        "contributors_url": "https://api.github.com/repos/rails/rails/contributors",
+        "subscribers_url": "https://api.github.com/repos/rails/rails/subscribers",
+        "subscription_url": "https://api.github.com/repos/rails/rails/subscription",
+        "commits_url": "https://api.github.com/repos/rails/rails/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/rails/rails/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/rails/rails/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/rails/rails/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/rails/rails/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/rails/rails/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/rails/rails/merges",
+        "archive_url": "https://api.github.com/repos/rails/rails/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/rails/rails/downloads",
+        "issues_url": "https://api.github.com/repos/rails/rails/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/rails/rails/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/rails/rails/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/rails/rails/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/rails/rails/labels{/name}",
+        "releases_url": "https://api.github.com/repos/rails/rails/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/rails/rails/deployments",
+        "created_at": "2008-04-11T02:19:47Z",
+        "updated_at": "2026-09-12T07:15:44Z",
+        "pushed_at": "2026-09-11T23:20:55Z",
+        "git_url": "git://github.com/rails/rails.git",
+        "ssh_url": "git@github.com:rails/rails.git",
+        "clone_url": "https://github.com/rails/rails.git",
+        "svn_url": "https://github.com/rails/rails",
+        "homepage": "https://rubyonrails.org",
+        "size": 289047,
+        "stargazers_count": 58751,
+        "watchers_count": 58751,
+        "language": "Ruby",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 22384,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1638,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "activejob",
+          "activerecord",
+          "framework",
+          "html",
+          "mvc",
+          "rails",
+          "ruby"
+        ],
+        "visibility": "public",
+        "forks": 22384,
+        "open_issues": 1638,
+        "watchers": 58751,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/58695"
+      },
+      "html": {
+        "href": "https://github.com/rails/rails/pull/58695"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/rails/rails/issues/58695"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/rails/rails/issues/58695/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/58695/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/58695/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/rails/rails/statuses/cf3eaa599a0730b2a4d913ddffd63ee7694417fe"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "skipkayhil",
+      "id": 6014046,
+      "node_id": "MDQ6VXNlcjYwMTQwNDY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6014046?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/skipkayhil",
+      "html_url": "https://github.com/skipkayhil",
+      "followers_url": "https://api.github.com/users/skipkayhil/followers",
+      "following_url": "https://api.github.com/users/skipkayhil/following{/other_user}",
+      "gists_url": "https://api.github.com/users/skipkayhil/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/skipkayhil/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/skipkayhil/subscriptions",
+      "organizations_url": "https://api.github.com/users/skipkayhil/orgs",
+      "repos_url": "https://api.github.com/users/skipkayhil/repos",
+      "events_url": "https://api.github.com/users/skipkayhil/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/skipkayhil/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 0,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 5,
+    "additions": 62,
+    "deletions": 20,
+    "changed_files": 11
+  },
+  "commits": [
+    {
+      "sha": "5805375d70b7429ef1238d1711d9dc55e6d33820",
+      "node_id": "C_kwDOA6CgLdoAKDU4MDUzNzVkNzBiNzQyOWVmMTIzOGQxNzExZDlkYzU1ZTZkMzM4MjA",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-08-31T13:44:53Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T12:56:18Z"
+        },
+        "message": "Freeze Rails::VERSION::STRING\n\nThe error context middleware defined in the initialize_error_reporter\ninitializer includes the Rails version string, so it needs to be\nshareable.",
+        "tree": {
+          "sha": "d0e3cec1e07d1f5755dc19f068f39afa76543d9b",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/d0e3cec1e07d1f5755dc19f068f39afa76543d9b"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/5805375d70b7429ef1238d1711d9dc55e6d33820",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/5805375d70b7429ef1238d1711d9dc55e6d33820",
+      "html_url": "https://github.com/rails/rails/commit/5805375d70b7429ef1238d1711d9dc55e6d33820",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/5805375d70b7429ef1238d1711d9dc55e6d33820/comments",
+      "author": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "97f7349bfe907a4cde3e7e4bdc10bceac8d79d27",
+          "url": "https://api.github.com/repos/rails/rails/commits/97f7349bfe907a4cde3e7e4bdc10bceac8d79d27",
+          "html_url": "https://github.com/rails/rails/commit/97f7349bfe907a4cde3e7e4bdc10bceac8d79d27"
+        }
+      ]
+    },
+    {
+      "sha": "5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+      "node_id": "C_kwDOA6CgLdoAKDU4NTFkMWQ3YmMzOTk4YTc4YzhiMWQ1ZGQzNGU5YTA3NjM2NjA4Nzk",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-08-31T13:44:54Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T12:56:18Z"
+        },
+        "message": "Share Rails.env in ractorize!\n\nThe error context middleware defined in the initialize_error_reporter\ninitializer includes Rails.env when reporting an error, so it needs to\nbe shareable.",
+        "tree": {
+          "sha": "94600baa313d9db16c04731cf71e2b384febfa50",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/94600baa313d9db16c04731cf71e2b384febfa50"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+      "html_url": "https://github.com/rails/rails/commit/5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/5851d1d7bc3998a78c8b1d5dd34e9a0763660879/comments",
+      "author": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "5805375d70b7429ef1238d1711d9dc55e6d33820",
+          "url": "https://api.github.com/repos/rails/rails/commits/5805375d70b7429ef1238d1711d9dc55e6d33820",
+          "html_url": "https://github.com/rails/rails/commit/5805375d70b7429ef1238d1711d9dc55e6d33820"
+        }
+      ]
+    },
+    {
+      "sha": "2720c15c3e9b92a84317ae75940b48a559367672",
+      "node_id": "C_kwDOA6CgLdoAKDI3MjBjMTVjM2U5YjkyYTg0MzE3YWU3NTk0MGI0OGE1NTkzNjc2NzI",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-08-31T13:37:59Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T12:56:18Z"
+        },
+        "message": "Share Rails.logger in ractorize!\n\nThe initialize_logger initializer wraps the configured logger in a\nBroadcastLogger, which needs to be shareable to be readable from Ractor\nworkers.",
+        "tree": {
+          "sha": "3930d59660dd472aa3046443b72eeede55ffa728",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/3930d59660dd472aa3046443b72eeede55ffa728"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/2720c15c3e9b92a84317ae75940b48a559367672",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/2720c15c3e9b92a84317ae75940b48a559367672",
+      "html_url": "https://github.com/rails/rails/commit/2720c15c3e9b92a84317ae75940b48a559367672",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/2720c15c3e9b92a84317ae75940b48a559367672/comments",
+      "author": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+          "url": "https://api.github.com/repos/rails/rails/commits/5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+          "html_url": "https://github.com/rails/rails/commit/5851d1d7bc3998a78c8b1d5dd34e9a0763660879"
+        }
+      ]
+    },
+    {
+      "sha": "6875760cb078915ea89b6c1d2fc924cd5e542949",
+      "node_id": "C_kwDOA6CgLdoAKDY4NzU3NjBjYjA3ODkxNWVhODliNmMxZDJmYzkyNGNkNWU1NDI5NDk",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-07T15:24:08Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T17:01:05Z"
+        },
+        "message": "Make the event reporter usable from Ractor workers\n\nCurrently a new event reporter is created for each Ractor. However since\nall the framework subscriptions happen from the main Ractor, these new\nevent reporters have no subscribers.\n\nSo for example, controller logging goes through the structured event\nsubscribers, which are silenced when the event reporter has no\nsubscribers. A non-main Ractor got a new empty reporter, so workers\nprocessed requests without logging anything.\n\nNon-main Ractors now read the reporter attached during boot and made\nshareable by ractorize!.",
+        "tree": {
+          "sha": "9cfb660c67aacc9269e4dbaf73cab1b8dd49c139",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/9cfb660c67aacc9269e4dbaf73cab1b8dd49c139"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/6875760cb078915ea89b6c1d2fc924cd5e542949",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/6875760cb078915ea89b6c1d2fc924cd5e542949",
+      "html_url": "https://github.com/rails/rails/commit/6875760cb078915ea89b6c1d2fc924cd5e542949",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/6875760cb078915ea89b6c1d2fc924cd5e542949/comments",
+      "author": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "2720c15c3e9b92a84317ae75940b48a559367672",
+          "url": "https://api.github.com/repos/rails/rails/commits/2720c15c3e9b92a84317ae75940b48a559367672",
+          "html_url": "https://github.com/rails/rails/commit/2720c15c3e9b92a84317ae75940b48a559367672"
+        }
+      ]
+    },
+    {
+      "sha": "cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "node_id": "C_kwDOA6CgLdoAKGNmM2VhYTU5OWEwNzMwYjJhNGQ5MTNkZGZmZDYzZWU3Njk0NDE3ZmU",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-07T15:24:08Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T17:01:06Z"
+        },
+        "message": "Make the backtrace cleaner usable from Ractor workers\n\nWithout this, DebugExceptions produces no error log from a worker\nbecause computing the exception trace raises.",
+        "tree": {
+          "sha": "bc3c03ece314c9db931bfdc1a5daf52cb2015401",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/bc3c03ece314c9db931bfdc1a5daf52cb2015401"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "html_url": "https://github.com/rails/rails/commit/cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/comments",
+      "author": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "etiennebarrie",
+        "id": 3535,
+        "node_id": "MDQ6VXNlcjM1MzU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3535?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/etiennebarrie",
+        "html_url": "https://github.com/etiennebarrie",
+        "followers_url": "https://api.github.com/users/etiennebarrie/followers",
+        "following_url": "https://api.github.com/users/etiennebarrie/following{/other_user}",
+        "gists_url": "https://api.github.com/users/etiennebarrie/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/etiennebarrie/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/etiennebarrie/subscriptions",
+        "organizations_url": "https://api.github.com/users/etiennebarrie/orgs",
+        "repos_url": "https://api.github.com/users/etiennebarrie/repos",
+        "events_url": "https://api.github.com/users/etiennebarrie/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/etiennebarrie/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "url": "https://api.github.com/repos/rails/rails/commits/6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "html_url": "https://github.com/rails/rails/commit/6875760cb078915ea89b6c1d2fc924cd5e542949"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "ec93d8d5c2a6f415c10f6f72e8dd2e04c66fdd41",
+      "filename": "actionview/test/template/render_test.rb",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/actionview%2Ftest%2Ftemplate%2Frender_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/actionview%2Ftest%2Ftemplate%2Frender_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Frender_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -1138,6 +1138,7 @@ def self.render_object_partial\n       ActionView::Template::Handlers::ERB.escape_ignore_list.freeze\n       ActiveSupport::Ractors.unshareable_proc_action = :raise\n       ActiveSupport::Notifications.send(:record_subscriptions)\n+      Ractor.make_shareable(ActiveSupport.event_reporter)\n \n       I18n::Config.prepend(Module.new do\n         def available_locales = [:en].freeze"
+    },
+    {
+      "sha": "43b17f27307bff02866394b73c04be68692c8e39",
+      "filename": "activesupport/lib/active_support.rb",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 7,
+      "changes": 8,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Flib%2Factive_support.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Flib%2Factive_support.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Flib%2Factive_support.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -117,13 +117,7 @@ def self.eager_load!\n   singleton_class.attr_accessor :error_reporter # :nodoc:\n \n   @event_reporter = ActiveSupport::EventReporter.new\n-  singleton_class.attr_writer :event_reporter # :nodoc:\n-\n-  def self.event_reporter # :nodoc:\n-    return @event_reporter if ActiveSupport::Ractors.main?\n-\n-    Ractor[:__event_reporter] ||= ActiveSupport::EventReporter.new\n-  end\n+  singleton_class.attr_accessor :event_reporter # :nodoc:\n \n   cattr_accessor :filter_parameters, default: [] # :nodoc:\n "
+    },
+    {
+      "sha": "9ca937badebf61fd3f9150b9a2f03e7a435fafa6",
+      "filename": "activesupport/lib/active_support/backtrace_cleaner.rb",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 1,
+      "changes": 3,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Flib%2Factive_support%2Fbacktrace_cleaner.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Flib%2Factive_support%2Fbacktrace_cleaner.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Flib%2Factive_support%2Fbacktrace_cleaner.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -214,7 +214,8 @@ def add_gem_silencer\n       end\n \n       def add_stdlib_silencer\n-        add_silencer(&Ractors.shareable_proc  { |line| line.start_with?(RbConfig::CONFIG[\"rubylibdir\"]) })\n+        rubylibdir = -RbConfig::CONFIG[\"rubylibdir\"]\n+        add_silencer(&Ractors.shareable_proc { |line| line.start_with?(rubylibdir) })\n       end\n \n       def filter_backtrace(backtrace)"
+    },
+    {
+      "sha": "b34653521dc7e7d89d9edba2db5abe6c7d76a302",
+      "filename": "activesupport/test/event_reporter_test.rb",
+      "status": "modified",
+      "additions": 9,
+      "deletions": 10,
+      "changes": 19,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Ftest%2Fevent_reporter_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Ftest%2Fevent_reporter_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Ftest%2Fevent_reporter_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -701,18 +701,17 @@ class EventReporterRactorTest < ActiveSupport::TestCase\n     include ActiveSupport::Testing::RactorsAssertions\n \n     if RUBY_VERSION >= \"4.0\"\n-      test \"each Ractor gets its own event reporter\" do\n-        main_subscriber_count = ActiveSupport.event_reporter.subscribers.size\n-\n-        event_names = on_ractor do\n-          subscriber = EventReporter::TestHelper::EventSubscriber.new\n-          ActiveSupport.event_reporter.subscribe(subscriber)\n-          ActiveSupport.event_reporter.notify(\"ractor_event\")\n-          subscriber.events.map { |event| event[:name] }\n+      test \"a shareable event reporter notifies its subscribers from other Ractors\" do\n+        reporter = ActiveSupport::EventReporter.new\n+        reporter.subscribe(Class.new { def emit(event); end }.new)\n+        Ractor.make_shareable(reporter)\n+\n+        subscriber_count = on_ractor(reporter) do |reporter|\n+          reporter.notify(\"ractor_event\")\n+          reporter.subscribers.size\n         end\n \n-        assert_equal [\"ractor_event\"], event_names\n-        assert_equal main_subscriber_count, ActiveSupport.event_reporter.subscribers.size\n+        assert_equal 1, subscriber_count\n       end\n     end\n   end"
+    },
+    {
+      "sha": "745a09128b90a1d5d50291ad145eb8f5ad3bfb76",
+      "filename": "activesupport/test/ractors_test.rb",
+      "status": "modified",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Ftest%2Fractors_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Ftest%2Fractors_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Ftest%2Fractors_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -56,6 +56,17 @@ def test_on_main_evaluates_block_against_object\n       assert_equal :bar, object.foo\n     end\n \n+    def test_non_main_ractors_cannot_read_the_event_reporter_before_it_is_shareable\n+      error = Ractor.new do\n+        ActiveSupport.event_reporter\n+        nil\n+      rescue Ractor::IsolationError => e\n+        e\n+      end.value\n+\n+      assert_kind_of Ractor::IsolationError, error\n+    end\n+\n     def test_ractor_make_shareable_returns_a_shareable_object\n       string = +\"hello\"\n       assert_not ActiveSupport::Ractors.shareable?(string)"
+    },
+    {
+      "sha": "125cf957431b389d52e042cc53bd8ec484b3de43",
+      "filename": "railties/lib/rails/application.rb",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fapplication.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fapplication.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fapplication.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -682,6 +682,8 @@ def ractorize! # :nodoc:\n       end\n \n       Ractor.make_shareable(self)\n+      Ractor.make_shareable(Rails.env)\n+      Ractor.make_shareable(Rails.logger)\n       Ractor.make_shareable(Rails.event)\n       Ractor.make_shareable(Rails.error)\n       Ractor.make_shareable(Rails.backtrace_cleaner)"
+    },
+    {
+      "sha": "72a275d929d63a2e443d6271cb1e879ff1a9ceab",
+      "filename": "railties/lib/rails/backtrace_cleaner.rb",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fbacktrace_cleaner.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fbacktrace_cleaner.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fbacktrace_cleaner.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -9,7 +9,7 @@ class BacktraceCleaner < ActiveSupport::BacktraceCleaner # :nodoc:\n \n     class << self\n       def root\n-        @root ||= Rails.root && \"#{Rails.root}/\"\n+        @root ||= Rails.root && \"#{Rails.root}/\".freeze\n       end\n     end\n "
+    },
+    {
+      "sha": "b39420f71c5ac1e3f321041e091f6815c69693d2",
+      "filename": "railties/lib/rails/gem_version.rb",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fgem_version.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fgem_version.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fgem_version.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -12,6 +12,6 @@ module VERSION\n     TINY  = 0\n     PRE   = \"alpha\"\n \n-    STRING = [MAJOR, MINOR, TINY, PRE].compact.join(\".\")\n+    STRING = [MAJOR, MINOR, TINY, PRE].compact.join(\".\").freeze\n   end\n end"
+    },
+    {
+      "sha": "8a740d549a065f1e5c3b12f17c246aa36e8baa70",
+      "filename": "railties/test/application/ractors_test.rb",
+      "status": "modified",
+      "additions": 16,
+      "deletions": 0,
+      "changes": 16,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fapplication%2Fractors_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fapplication%2Fractors_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fapplication%2Fractors_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -36,6 +36,14 @@ def teardown\n         assert_ractor_shareable Rails.backtrace_cleaner\n       end\n \n+      test \"ractorize! makes Rails.env shareable\" do\n+        app \"production\"\n+\n+        ractorize!\n+\n+        assert_ractor_shareable Rails.env\n+      end\n+\n       test \"ractorize! makes the controller configs shareable\" do\n         app \"production\"\n \n@@ -45,6 +53,14 @@ def teardown\n         assert_ractor_shareable Rails::HealthController.config\n       end\n \n+      test \"ractorize! makes Rails.logger shareable\" do\n+        app \"production\"\n+\n+        ractorize!\n+\n+        assert_ractor_shareable Rails.logger\n+      end\n+\n       test \"ractorize! eager loads and compiles view templates\" do\n         app \"production\"\n "
+    },
+    {
+      "sha": "6497afb13d967ea3f4cf230e3b679bf7b4086b61",
+      "filename": "railties/test/backtrace_cleaner_test.rb",
+      "status": "modified",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fbacktrace_cleaner_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fbacktrace_cleaner_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fbacktrace_cleaner_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -96,4 +96,18 @@ def setup\n   test \"backtrace cleaner can be made Ractor shareable\" do\n     assert_ractor_make_shareable @cleaner\n   end\n+\n+  test \"backtrace cleaner cleans from a non-main Ractor\" do\n+    assert_ractor_make_shareable @cleaner\n+\n+    backtrace = [ \"#{Rails::BacktraceCleaner.root}app/models/post.rb:4:in 'boom'\",\n+                  \"#{RbConfig::CONFIG[\"rubylibdir\"]}/net/http.rb:12:in 'get'\" ]\n+    original_experimental_warning = Warning[:experimental]\n+    Warning[:experimental] = false\n+    result = on_ractor(@cleaner, backtrace) { |cleaner, lines| cleaner.clean(lines) }\n+\n+    assert_equal [\"app/models/post.rb:4:in 'boom'\"], result\n+  ensure\n+    Warning[:experimental] = original_experimental_warning\n+  end\n end"
+    },
+    {
+      "sha": "c4fec6625c83d057c0e09a7f42052f22eb08b7d3",
+      "filename": "railties/test/version_test.rb",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fversion_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fversion_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fversion_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "patch": "@@ -7,6 +7,10 @@ def test_rails_version_returns_a_string\n     assert Rails.version.is_a? String\n   end\n \n+  def test_rails_version_string_is_frozen\n+    assert_predicate Rails::VERSION::STRING, :frozen?\n+  end\n+\n   def test_rails_gem_version_returns_a_correct_gem_version_object\n     assert Rails.gem_version.is_a? Gem::Version\n     assert_equal Rails.version, Rails.gem_version.to_s"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "5805375d70b7429ef1238d1711d9dc55e6d33820",
+      "html_url": "https://github.com/rails/rails/commit/5805375d70b7429ef1238d1711d9dc55e6d33820",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-08-31T13:44:53Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T12:56:18Z"
+        },
+        "message": "Freeze Rails::VERSION::STRING\n\nThe error context middleware defined in the initialize_error_reporter\ninitializer includes the Rails version string, so it needs to be\nshareable."
+      },
+      "parents": [
+        {
+          "sha": "97f7349bfe907a4cde3e7e4bdc10bceac8d79d27",
+          "url": "https://api.github.com/repos/rails/rails/commits/97f7349bfe907a4cde3e7e4bdc10bceac8d79d27",
+          "html_url": "https://github.com/rails/rails/commit/97f7349bfe907a4cde3e7e4bdc10bceac8d79d27"
+        }
+      ],
+      "stats": {
+        "total": 6,
+        "additions": 5,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "b39420f71c5ac1e3f321041e091f6815c69693d2",
+          "filename": "railties/lib/rails/gem_version.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/rails/rails/blob/5805375d70b7429ef1238d1711d9dc55e6d33820/railties%2Flib%2Frails%2Fgem_version.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5805375d70b7429ef1238d1711d9dc55e6d33820/railties%2Flib%2Frails%2Fgem_version.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fgem_version.rb?ref=5805375d70b7429ef1238d1711d9dc55e6d33820",
+          "patch": "@@ -12,6 +12,6 @@ module VERSION\n     TINY  = 0\n     PRE   = \"alpha\"\n \n-    STRING = [MAJOR, MINOR, TINY, PRE].compact.join(\".\")\n+    STRING = [MAJOR, MINOR, TINY, PRE].compact.join(\".\").freeze\n   end\n end"
+        },
+        {
+          "sha": "c4fec6625c83d057c0e09a7f42052f22eb08b7d3",
+          "filename": "railties/test/version_test.rb",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "blob_url": "https://github.com/rails/rails/blob/5805375d70b7429ef1238d1711d9dc55e6d33820/railties%2Ftest%2Fversion_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5805375d70b7429ef1238d1711d9dc55e6d33820/railties%2Ftest%2Fversion_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fversion_test.rb?ref=5805375d70b7429ef1238d1711d9dc55e6d33820",
+          "patch": "@@ -7,6 +7,10 @@ def test_rails_version_returns_a_string\n     assert Rails.version.is_a? String\n   end\n \n+  def test_rails_version_string_is_frozen\n+    assert_predicate Rails::VERSION::STRING, :frozen?\n+  end\n+\n   def test_rails_gem_version_returns_a_correct_gem_version_object\n     assert Rails.gem_version.is_a? Gem::Version\n     assert_equal Rails.version, Rails.gem_version.to_s"
+        }
+      ]
+    },
+    {
+      "sha": "5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+      "html_url": "https://github.com/rails/rails/commit/5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-08-31T13:44:54Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T12:56:18Z"
+        },
+        "message": "Share Rails.env in ractorize!\n\nThe error context middleware defined in the initialize_error_reporter\ninitializer includes Rails.env when reporting an error, so it needs to\nbe shareable."
+      },
+      "parents": [
+        {
+          "sha": "5805375d70b7429ef1238d1711d9dc55e6d33820",
+          "url": "https://api.github.com/repos/rails/rails/commits/5805375d70b7429ef1238d1711d9dc55e6d33820",
+          "html_url": "https://github.com/rails/rails/commit/5805375d70b7429ef1238d1711d9dc55e6d33820"
+        }
+      ],
+      "stats": {
+        "total": 9,
+        "additions": 9,
+        "deletions": 0
+      },
+      "files": [
+        {
+          "sha": "935d1f1716d2c8ac05f6e60c13fbcd8813275772",
+          "filename": "railties/lib/rails/application.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/rails/rails/blob/5851d1d7bc3998a78c8b1d5dd34e9a0763660879/railties%2Flib%2Frails%2Fapplication.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5851d1d7bc3998a78c8b1d5dd34e9a0763660879/railties%2Flib%2Frails%2Fapplication.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fapplication.rb?ref=5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+          "patch": "@@ -682,6 +682,7 @@ def ractorize! # :nodoc:\n       end\n \n       Ractor.make_shareable(self)\n+      Ractor.make_shareable(Rails.env)\n       Ractor.make_shareable(Rails.event)\n       Ractor.make_shareable(Rails.error)\n       Ractor.make_shareable(Rails.backtrace_cleaner)"
+        },
+        {
+          "sha": "11dd81a1e30ca2ce104c43d2e78e99a429b8c4a9",
+          "filename": "railties/test/application/ractors_test.rb",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 0,
+          "changes": 8,
+          "blob_url": "https://github.com/rails/rails/blob/5851d1d7bc3998a78c8b1d5dd34e9a0763660879/railties%2Ftest%2Fapplication%2Fractors_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5851d1d7bc3998a78c8b1d5dd34e9a0763660879/railties%2Ftest%2Fapplication%2Fractors_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fapplication%2Fractors_test.rb?ref=5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+          "patch": "@@ -36,6 +36,14 @@ def teardown\n         assert_ractor_shareable Rails.backtrace_cleaner\n       end\n \n+      test \"ractorize! makes Rails.env shareable\" do\n+        app \"production\"\n+\n+        ractorize!\n+\n+        assert_ractor_shareable Rails.env\n+      end\n+\n       test \"ractorize! makes the controller configs shareable\" do\n         app \"production\"\n "
+        }
+      ]
+    },
+    {
+      "sha": "2720c15c3e9b92a84317ae75940b48a559367672",
+      "html_url": "https://github.com/rails/rails/commit/2720c15c3e9b92a84317ae75940b48a559367672",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-08-31T13:37:59Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T12:56:18Z"
+        },
+        "message": "Share Rails.logger in ractorize!\n\nThe initialize_logger initializer wraps the configured logger in a\nBroadcastLogger, which needs to be shareable to be readable from Ractor\nworkers."
+      },
+      "parents": [
+        {
+          "sha": "5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+          "url": "https://api.github.com/repos/rails/rails/commits/5851d1d7bc3998a78c8b1d5dd34e9a0763660879",
+          "html_url": "https://github.com/rails/rails/commit/5851d1d7bc3998a78c8b1d5dd34e9a0763660879"
+        }
+      ],
+      "stats": {
+        "total": 9,
+        "additions": 9,
+        "deletions": 0
+      },
+      "files": [
+        {
+          "sha": "125cf957431b389d52e042cc53bd8ec484b3de43",
+          "filename": "railties/lib/rails/application.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/rails/rails/blob/2720c15c3e9b92a84317ae75940b48a559367672/railties%2Flib%2Frails%2Fapplication.rb",
+          "raw_url": "https://github.com/rails/rails/raw/2720c15c3e9b92a84317ae75940b48a559367672/railties%2Flib%2Frails%2Fapplication.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fapplication.rb?ref=2720c15c3e9b92a84317ae75940b48a559367672",
+          "patch": "@@ -683,6 +683,7 @@ def ractorize! # :nodoc:\n \n       Ractor.make_shareable(self)\n       Ractor.make_shareable(Rails.env)\n+      Ractor.make_shareable(Rails.logger)\n       Ractor.make_shareable(Rails.event)\n       Ractor.make_shareable(Rails.error)\n       Ractor.make_shareable(Rails.backtrace_cleaner)"
+        },
+        {
+          "sha": "8a740d549a065f1e5c3b12f17c246aa36e8baa70",
+          "filename": "railties/test/application/ractors_test.rb",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 0,
+          "changes": 8,
+          "blob_url": "https://github.com/rails/rails/blob/2720c15c3e9b92a84317ae75940b48a559367672/railties%2Ftest%2Fapplication%2Fractors_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/2720c15c3e9b92a84317ae75940b48a559367672/railties%2Ftest%2Fapplication%2Fractors_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fapplication%2Fractors_test.rb?ref=2720c15c3e9b92a84317ae75940b48a559367672",
+          "patch": "@@ -53,6 +53,14 @@ def teardown\n         assert_ractor_shareable Rails::HealthController.config\n       end\n \n+      test \"ractorize! makes Rails.logger shareable\" do\n+        app \"production\"\n+\n+        ractorize!\n+\n+        assert_ractor_shareable Rails.logger\n+      end\n+\n       test \"ractorize! eager loads and compiles view templates\" do\n         app \"production\"\n "
+        }
+      ]
+    },
+    {
+      "sha": "6875760cb078915ea89b6c1d2fc924cd5e542949",
+      "html_url": "https://github.com/rails/rails/commit/6875760cb078915ea89b6c1d2fc924cd5e542949",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-07T15:24:08Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T17:01:05Z"
+        },
+        "message": "Make the event reporter usable from Ractor workers\n\nCurrently a new event reporter is created for each Ractor. However since\nall the framework subscriptions happen from the main Ractor, these new\nevent reporters have no subscribers.\n\nSo for example, controller logging goes through the structured event\nsubscribers, which are silenced when the event reporter has no\nsubscribers. A non-main Ractor got a new empty reporter, so workers\nprocessed requests without logging anything.\n\nNon-main Ractors now read the reporter attached during boot and made\nshareable by ractorize!."
+      },
+      "parents": [
+        {
+          "sha": "2720c15c3e9b92a84317ae75940b48a559367672",
+          "url": "https://api.github.com/repos/rails/rails/commits/2720c15c3e9b92a84317ae75940b48a559367672",
+          "html_url": "https://github.com/rails/rails/commit/2720c15c3e9b92a84317ae75940b48a559367672"
+        }
+      ],
+      "stats": {
+        "total": 39,
+        "additions": 22,
+        "deletions": 17
+      },
+      "files": [
+        {
+          "sha": "ec93d8d5c2a6f415c10f6f72e8dd2e04c66fdd41",
+          "filename": "actionview/test/template/render_test.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/rails/rails/blob/6875760cb078915ea89b6c1d2fc924cd5e542949/actionview%2Ftest%2Ftemplate%2Frender_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/6875760cb078915ea89b6c1d2fc924cd5e542949/actionview%2Ftest%2Ftemplate%2Frender_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Frender_test.rb?ref=6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "patch": "@@ -1138,6 +1138,7 @@ def self.render_object_partial\n       ActionView::Template::Handlers::ERB.escape_ignore_list.freeze\n       ActiveSupport::Ractors.unshareable_proc_action = :raise\n       ActiveSupport::Notifications.send(:record_subscriptions)\n+      Ractor.make_shareable(ActiveSupport.event_reporter)\n \n       I18n::Config.prepend(Module.new do\n         def available_locales = [:en].freeze"
+        },
+        {
+          "sha": "43b17f27307bff02866394b73c04be68692c8e39",
+          "filename": "activesupport/lib/active_support.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 7,
+          "changes": 8,
+          "blob_url": "https://github.com/rails/rails/blob/6875760cb078915ea89b6c1d2fc924cd5e542949/activesupport%2Flib%2Factive_support.rb",
+          "raw_url": "https://github.com/rails/rails/raw/6875760cb078915ea89b6c1d2fc924cd5e542949/activesupport%2Flib%2Factive_support.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Flib%2Factive_support.rb?ref=6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "patch": "@@ -117,13 +117,7 @@ def self.eager_load!\n   singleton_class.attr_accessor :error_reporter # :nodoc:\n \n   @event_reporter = ActiveSupport::EventReporter.new\n-  singleton_class.attr_writer :event_reporter # :nodoc:\n-\n-  def self.event_reporter # :nodoc:\n-    return @event_reporter if ActiveSupport::Ractors.main?\n-\n-    Ractor[:__event_reporter] ||= ActiveSupport::EventReporter.new\n-  end\n+  singleton_class.attr_accessor :event_reporter # :nodoc:\n \n   cattr_accessor :filter_parameters, default: [] # :nodoc:\n "
+        },
+        {
+          "sha": "b34653521dc7e7d89d9edba2db5abe6c7d76a302",
+          "filename": "activesupport/test/event_reporter_test.rb",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 10,
+          "changes": 19,
+          "blob_url": "https://github.com/rails/rails/blob/6875760cb078915ea89b6c1d2fc924cd5e542949/activesupport%2Ftest%2Fevent_reporter_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/6875760cb078915ea89b6c1d2fc924cd5e542949/activesupport%2Ftest%2Fevent_reporter_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Ftest%2Fevent_reporter_test.rb?ref=6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "patch": "@@ -701,18 +701,17 @@ class EventReporterRactorTest < ActiveSupport::TestCase\n     include ActiveSupport::Testing::RactorsAssertions\n \n     if RUBY_VERSION >= \"4.0\"\n-      test \"each Ractor gets its own event reporter\" do\n-        main_subscriber_count = ActiveSupport.event_reporter.subscribers.size\n-\n-        event_names = on_ractor do\n-          subscriber = EventReporter::TestHelper::EventSubscriber.new\n-          ActiveSupport.event_reporter.subscribe(subscriber)\n-          ActiveSupport.event_reporter.notify(\"ractor_event\")\n-          subscriber.events.map { |event| event[:name] }\n+      test \"a shareable event reporter notifies its subscribers from other Ractors\" do\n+        reporter = ActiveSupport::EventReporter.new\n+        reporter.subscribe(Class.new { def emit(event); end }.new)\n+        Ractor.make_shareable(reporter)\n+\n+        subscriber_count = on_ractor(reporter) do |reporter|\n+          reporter.notify(\"ractor_event\")\n+          reporter.subscribers.size\n         end\n \n-        assert_equal [\"ractor_event\"], event_names\n-        assert_equal main_subscriber_count, ActiveSupport.event_reporter.subscribers.size\n+        assert_equal 1, subscriber_count\n       end\n     end\n   end"
+        },
+        {
+          "sha": "745a09128b90a1d5d50291ad145eb8f5ad3bfb76",
+          "filename": "activesupport/test/ractors_test.rb",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 0,
+          "changes": 11,
+          "blob_url": "https://github.com/rails/rails/blob/6875760cb078915ea89b6c1d2fc924cd5e542949/activesupport%2Ftest%2Fractors_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/6875760cb078915ea89b6c1d2fc924cd5e542949/activesupport%2Ftest%2Fractors_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Ftest%2Fractors_test.rb?ref=6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "patch": "@@ -56,6 +56,17 @@ def test_on_main_evaluates_block_against_object\n       assert_equal :bar, object.foo\n     end\n \n+    def test_non_main_ractors_cannot_read_the_event_reporter_before_it_is_shareable\n+      error = Ractor.new do\n+        ActiveSupport.event_reporter\n+        nil\n+      rescue Ractor::IsolationError => e\n+        e\n+      end.value\n+\n+      assert_kind_of Ractor::IsolationError, error\n+    end\n+\n     def test_ractor_make_shareable_returns_a_shareable_object\n       string = +\"hello\"\n       assert_not ActiveSupport::Ractors.shareable?(string)"
+        }
+      ]
+    },
+    {
+      "sha": "cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "html_url": "https://github.com/rails/rails/commit/cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+      "commit": {
+        "author": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-07T15:24:08Z"
+        },
+        "committer": {
+          "name": "Étienne Barrié",
+          "email": "etienne.barrie@gmail.com",
+          "date": "2026-09-08T17:01:06Z"
+        },
+        "message": "Make the backtrace cleaner usable from Ractor workers\n\nWithout this, DebugExceptions produces no error log from a worker\nbecause computing the exception trace raises."
+      },
+      "parents": [
+        {
+          "sha": "6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "url": "https://api.github.com/repos/rails/rails/commits/6875760cb078915ea89b6c1d2fc924cd5e542949",
+          "html_url": "https://github.com/rails/rails/commit/6875760cb078915ea89b6c1d2fc924cd5e542949"
+        }
+      ],
+      "stats": {
+        "total": 19,
+        "additions": 17,
+        "deletions": 2
+      },
+      "files": [
+        {
+          "sha": "9ca937badebf61fd3f9150b9a2f03e7a435fafa6",
+          "filename": "activesupport/lib/active_support/backtrace_cleaner.rb",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 1,
+          "changes": 3,
+          "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Flib%2Factive_support%2Fbacktrace_cleaner.rb",
+          "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/activesupport%2Flib%2Factive_support%2Fbacktrace_cleaner.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/activesupport%2Flib%2Factive_support%2Fbacktrace_cleaner.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+          "patch": "@@ -214,7 +214,8 @@ def add_gem_silencer\n       end\n \n       def add_stdlib_silencer\n-        add_silencer(&Ractors.shareable_proc  { |line| line.start_with?(RbConfig::CONFIG[\"rubylibdir\"]) })\n+        rubylibdir = -RbConfig::CONFIG[\"rubylibdir\"]\n+        add_silencer(&Ractors.shareable_proc { |line| line.start_with?(rubylibdir) })\n       end\n \n       def filter_backtrace(backtrace)"
+        },
+        {
+          "sha": "72a275d929d63a2e443d6271cb1e879ff1a9ceab",
+          "filename": "railties/lib/rails/backtrace_cleaner.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fbacktrace_cleaner.rb",
+          "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Flib%2Frails%2Fbacktrace_cleaner.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Flib%2Frails%2Fbacktrace_cleaner.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+          "patch": "@@ -9,7 +9,7 @@ class BacktraceCleaner < ActiveSupport::BacktraceCleaner # :nodoc:\n \n     class << self\n       def root\n-        @root ||= Rails.root && \"#{Rails.root}/\"\n+        @root ||= Rails.root && \"#{Rails.root}/\".freeze\n       end\n     end\n "
+        },
+        {
+          "sha": "6497afb13d967ea3f4cf230e3b679bf7b4086b61",
+          "filename": "railties/test/backtrace_cleaner_test.rb",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "blob_url": "https://github.com/rails/rails/blob/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fbacktrace_cleaner_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/cf3eaa599a0730b2a4d913ddffd63ee7694417fe/railties%2Ftest%2Fbacktrace_cleaner_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/railties%2Ftest%2Fbacktrace_cleaner_test.rb?ref=cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+          "patch": "@@ -96,4 +96,18 @@ def setup\n   test \"backtrace cleaner can be made Ractor shareable\" do\n     assert_ractor_make_shareable @cleaner\n   end\n+\n+  test \"backtrace cleaner cleans from a non-main Ractor\" do\n+    assert_ractor_make_shareable @cleaner\n+\n+    backtrace = [ \"#{Rails::BacktraceCleaner.root}app/models/post.rb:4:in 'boom'\",\n+                  \"#{RbConfig::CONFIG[\"rubylibdir\"]}/net/http.rb:12:in 'get'\" ]\n+    original_experimental_warning = Warning[:experimental]\n+    Warning[:experimental] = false\n+    result = on_ractor(@cleaner, backtrace) { |cleaner, lines| cleaner.clean(lines) }\n+\n+    assert_equal [\"app/models/post.rb:4:in 'boom'\"], result\n+  ensure\n+    Warning[:experimental] = original_experimental_warning\n+  end\n end"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-08T21:06:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/34278660880/job/102237827633",
+        "name": "Check Markdown APIs in new files",
+        "started_at": "2026-09-08T21:06:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-08T21:08:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/34278660911/job/102237827384",
+        "name": "rails-new-docker",
+        "started_at": "2026-09-08T21:06:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-08T21:06:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/34278656688/job/102237814425",
+        "name": "labeler",
+        "started_at": "2026-09-08T21:06:18Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 3
+  },
+  "combined_status": {
+    "sha": "cf3eaa599a0730b2a4d913ddffd63ee7694417fe",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "buildkite/rails",
+        "created_at": "2026-09-08T21:13:48Z",
+        "description": "Build #133344 passed (7 minutes, 33 seconds)",
+        "state": "success",
+        "target_url": "https://buildkite.com/rails/rails/builds/133344",
+        "updated_at": "2026-09-08T21:13:48Z"
+      },
+      {
+        "context": "buildkite/docs-preview",
+        "created_at": "2026-09-08T21:14:08Z",
+        "description": "Build #22793 passed (7 minutes, 40 seconds)",
+        "state": "success",
+        "target_url": "https://buildkite.com/rails/docs-preview/builds/22793",
+        "updated_at": "2026-09-08T21:14:08Z"
+      }
+    ],
+    "total_count": 2
+  }
+}

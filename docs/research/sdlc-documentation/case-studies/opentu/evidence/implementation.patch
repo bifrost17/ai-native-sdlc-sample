@@ -1,0 +1,997 @@
+From 204da5a4433aa8e7b41b509cafc40ee99b94da07 Mon Sep 17 00:00:00 2001
+From: liquid <ljquan@qq.com>
+Date: Thu, 9 Apr 2026 20:14:24 +0800
+Subject: [PATCH] =?UTF-8?q?fix:=20=E9=9F=B3=E4=B9=90=E6=92=AD=E6=94=BE?=
+ =?UTF-8?q?=E5=99=A8=E6=97=B6=E9=97=B4=E5=B1=95=E7=A4=BA=E5=9B=9E=E9=80=80?=
+ =?UTF-8?q?\n\n=E9=97=AE=E9=A2=98=E6=8F=8F=E8=BF=B0=EF=BC=9A=E9=9F=B3?=
+ =?UTF-8?q?=E4=B9=90=E6=92=AD=E6=94=BE=E5=99=A8=E5=88=97=E8=A1=A8=E5=9C=A8?=
+ =?UTF-8?q?=E6=8B=BF=E4=B8=8D=E5=88=B0=E9=9F=B3=E9=A2=91=E6=97=B6=E9=95=BF?=
+ =?UTF-8?q?=E6=97=B6=E5=B1=95=E7=A4=BA=20--:--=EF=BC=8C=E6=97=A0=E6=B3=95?=
+ =?UTF-8?q?=E5=90=91=E7=94=A8=E6=88=B7=E6=8F=90=E4=BE=9B=E6=9C=89=E6=95=88?=
+ =?UTF-8?q?=E6=97=B6=E9=97=B4=E4=BF=A1=E6=81=AF=E3=80=82\n=E4=BF=AE?=
+ =?UTF-8?q?=E5=A4=8D=E6=80=9D=E8=B7=AF=EF=BC=9A=E6=96=B0=E5=A2=9E=E7=BB=9F?=
+ =?UTF-8?q?=E4=B8=80=E6=97=B6=E9=97=B4=E5=89=AF=E6=A0=87=E9=A2=98=E6=A0=BC?=
+ =?UTF-8?q?=E5=BC=8F=E5=8C=96=EF=BC=8C=E4=BC=98=E5=85=88=E5=B1=95=E7=A4=BA?=
+ =?UTF-8?q?=E8=A7=A3=E6=9E=90/=E5=B7=B2=E6=9C=89=E6=97=B6=E9=95=BF?=
+ =?UTF-8?q?=EF=BC=8C=E7=BC=BA=E5=A4=B1=E6=97=B6=E5=9B=9E=E9=80=80=E5=B1=95?=
+ =?UTF-8?q?=E7=A4=BA=E7=B4=A0=E6=9D=90=E7=94=9F=E6=88=90=E6=97=B6=E9=97=B4?=
+ =?UTF-8?q?=E3=80=82\n=E6=9B=B4=E6=96=B0=E4=BB=A3=E7=A0=81=E6=9E=B6?=
+ =?UTF-8?q?=E6=9E=84=EF=BC=9A=E5=9C=A8=20MusicPlayerTool=20=E6=94=B6?=
+ =?UTF-8?q?=E6=95=9B=E9=9F=B3=E9=A2=91=E6=97=B6=E9=97=B4=E5=B1=95=E7=A4=BA?=
+ =?UTF-8?q?=E7=AD=96=E7=95=A5=EF=BC=8C=E5=B9=B6=E4=B8=BA=E7=B4=A0=E6=9D=90?=
+ =?UTF-8?q?=E5=88=97=E8=A1=A8=E8=A1=A5=E5=85=85=E5=85=83=E6=95=B0=E6=8D=AE?=
+ =?UTF-8?q?=E6=97=B6=E9=95=BF=E8=A7=A3=E6=9E=90=E9=93=BE=E8=B7=AF=E3=80=82?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .../add-audio-playback-modes/proposal.md      |  18 ++
+ .../specs/canvas-audio-playback/spec.md       |  39 ++++
+ .../changes/add-audio-playback-modes/tasks.md |   6 +
+ .../audio-node-element/CanvasAudioPlayer.tsx  |  43 +++-
+ .../canvas-audio-player.scss                  |  26 ++-
+ .../drawnix/src/constants/storage-keys.ts     |   2 +
+ .../src/hooks/useCanvasAudioPlayback.ts       |   2 +
+ .../canvas-audio-playback-service.test.ts     | 179 ++++++++++++++-
+ .../services/canvas-audio-playback-service.ts | 206 ++++++++++++++----
+ .../tools/music-player/MusicPlayerTool.tsx    |  92 +++++++-
+ 10 files changed, 555 insertions(+), 58 deletions(-)
+ create mode 100644 openspec/changes/add-audio-playback-modes/proposal.md
+ create mode 100644 openspec/changes/add-audio-playback-modes/specs/canvas-audio-playback/spec.md
+ create mode 100644 openspec/changes/add-audio-playback-modes/tasks.md
+
+diff --git a/openspec/changes/add-audio-playback-modes/proposal.md b/openspec/changes/add-audio-playback-modes/proposal.md
+new file mode 100644
+index 000000000..3ee3fe1c5
+--- /dev/null
++++ b/openspec/changes/add-audio-playback-modes/proposal.md
+@@ -0,0 +1,18 @@
++# Change: add audio playback modes
++
++## Why
++- 当前播放器只有基础上一首/下一首能力，缺少顺序播放、循环播放和随机播放等常见模式。
++- 悬浮播放器与音乐播放器工具页共用同一播放状态，如果播放模式只做在某一个入口，会造成体验割裂。
++
++## What Changes
++- 为统一音频播放 service 增加 `顺序播放`、`列表循环`、`单曲循环`、`随机播放` 4 种模式
++- 在悬浮播放器和音乐播放器工具页都提供播放模式下拉切换
++- 播放模式持久化到本地存储，刷新后恢复
++- 曲目结束和朗读结束时按当前模式自动续播
++
++## Impact
++- Affected specs: `canvas-audio-playback`
++- Affected code:
++  - `packages/drawnix/src/services/canvas-audio-playback-service.ts`
++  - `packages/drawnix/src/components/audio-node-element/CanvasAudioPlayer.tsx`
++  - `packages/drawnix/src/tools/tools/music-player/MusicPlayerTool.tsx`
+diff --git a/openspec/changes/add-audio-playback-modes/specs/canvas-audio-playback/spec.md b/openspec/changes/add-audio-playback-modes/specs/canvas-audio-playback/spec.md
+new file mode 100644
+index 000000000..a3d66f4fd
+--- /dev/null
++++ b/openspec/changes/add-audio-playback-modes/specs/canvas-audio-playback/spec.md
+@@ -0,0 +1,39 @@
++## ADDED Requirements
++
++### Requirement: Shared playback modes for audio players
++The system SHALL provide shared playback modes for the global floating audio player and the music player tool.
++
++#### Scenario: Switch playback mode from the floating player
++- **GIVEN** an audio or reading queue is active
++- **WHEN** the user changes playback mode from the floating player dropdown
++- **THEN** the system SHALL update the shared playback mode state
++- **AND** the music player tool SHALL reflect the same selected mode
++
++#### Scenario: Switch playback mode from the music player tool
++- **GIVEN** an audio or reading queue is active
++- **WHEN** the user changes playback mode from the music player tool dropdown
++- **THEN** the system SHALL update the shared playback mode state
++- **AND** the floating player SHALL reflect the same selected mode
++
++### Requirement: Continue playback according to the selected mode
++The system SHALL determine queue continuation behavior according to the selected playback mode.
++
++#### Scenario: Stop at the end in sequential mode
++- **GIVEN** the current playback mode is `顺序播放`
++- **WHEN** the last item in the active queue finishes
++- **THEN** the system SHALL stop playback on the current item
++
++#### Scenario: Restart queue in list-loop mode
++- **GIVEN** the current playback mode is `列表循环`
++- **WHEN** the last item in the active queue finishes
++- **THEN** the system SHALL continue playback from the first item in the same queue
++
++#### Scenario: Replay current item in single-loop mode
++- **GIVEN** the current playback mode is `单曲循环`
++- **WHEN** the active queue item finishes
++- **THEN** the system SHALL restart the same queue item from the beginning
++
++#### Scenario: Pick another item in shuffle mode
++- **GIVEN** the current playback mode is `随机播放`
++- **WHEN** the active queue item finishes and the queue contains multiple items
++- **THEN** the system SHALL continue playback with a different queue item when possible
+diff --git a/openspec/changes/add-audio-playback-modes/tasks.md b/openspec/changes/add-audio-playback-modes/tasks.md
+new file mode 100644
+index 000000000..7e2061139
+--- /dev/null
++++ b/openspec/changes/add-audio-playback-modes/tasks.md
+@@ -0,0 +1,6 @@
++## 1. Implementation
++- [x] 1.1 为统一音频播放 service 增加播放模式状态、持久化和自动续播逻辑
++- [x] 1.2 在悬浮播放器增加播放模式下拉切换
++- [x] 1.3 在音乐播放器工具页增加播放模式下拉切换
++- [x] 1.4 为播放模式补充单元测试
++- [x] 1.5 校验 OpenSpec 变更
+diff --git a/packages/drawnix/src/components/audio-node-element/CanvasAudioPlayer.tsx b/packages/drawnix/src/components/audio-node-element/CanvasAudioPlayer.tsx
+index 9c4d27777..387a7afba 100644
+--- a/packages/drawnix/src/components/audio-node-element/CanvasAudioPlayer.tsx
++++ b/packages/drawnix/src/components/audio-node-element/CanvasAudioPlayer.tsx
+@@ -1,27 +1,49 @@
+ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ import classNames from 'classnames';
++import { Dropdown } from 'tdesign-react';
+ import {
+   ChevronDown,
+   PanelsTopLeft,
+   Pause,
+   Play,
++  Repeat,
++  Repeat1,
+   SkipBack,
+   SkipForward,
++  Shuffle,
+   X,
+   Rows3,
+   Columns3,
++  ListOrdered,
+ } from 'lucide-react';
+ import { useCanvasAudioPlayback } from '../../hooks/useCanvasAudioPlayback';
+ import { useDraggablePosition } from '../../hooks/useDraggablePosition';
+ import { LS_KEYS } from '../../constants/storage-keys';
+ import { toolWindowService } from '../../services/tool-window-service';
+-import { isReadingPlaybackSource } from '../../services/canvas-audio-playback-service';
++import {
++  isReadingPlaybackSource,
++  PLAYBACK_MODE_LABELS,
++  type PlaybackMode,
++} from '../../services/canvas-audio-playback-service';
+ import { MUSIC_PLAYER_TOOL_ID } from '../../tools/tool-ids';
+ import { AudioCover } from '../shared/AudioCover';
+ import { CanvasAudioPlayerVolume } from './CanvasAudioPlayerVolume';
+ import { CanvasAudioPlayerPlaylist } from './CanvasAudioPlayerPlaylist';
+ import './canvas-audio-player.scss';
+ 
++const PLAYBACK_MODE_ICONS: Record<PlaybackMode, React.ReactNode> = {
++  sequential: <ListOrdered size={14} />,
++  'list-loop': <Repeat size={14} />,
++  'single-loop': <Repeat1 size={14} />,
++  shuffle: <Shuffle size={14} />,
++};
++
++const PLAYBACK_MODE_OPTIONS = (Object.keys(PLAYBACK_MODE_LABELS) as PlaybackMode[]).map((mode) => ({
++  value: mode,
++  content: PLAYBACK_MODE_LABELS[mode],
++  prefixIcon: PLAYBACK_MODE_ICONS[mode],
++}));
++
+ function formatDuration(duration?: number): string {
+   if (typeof duration !== 'number' || !Number.isFinite(duration) || duration <= 0) {
+     return '--:--';
+@@ -111,6 +133,8 @@ export const CanvasAudioPlayer: React.FC = () => {
+   );
+   const hasActivePlayback = hasReadingPlayback || !!playback.activeAudioUrl;
+   const canSeek = playback.mediaType === 'audio';
++  const playbackModeLabel = PLAYBACK_MODE_LABELS[playback.playbackMode];
++  const playbackModeIcon = PLAYBACK_MODE_ICONS[playback.playbackMode];
+ 
+   const scrubberStyle = {
+     '--canvas-audio-progress': `${progress}%`,
+@@ -350,6 +374,23 @@ export const CanvasAudioPlayer: React.FC = () => {
+         onVolumeChange={playback.setVolume}
+       />
+ 
++      <Dropdown
++        options={PLAYBACK_MODE_OPTIONS}
++        trigger="click"
++        placement="bottom"
++        minColumnWidth={132}
++        onClick={(data) => playback.setPlaybackMode(data.value as PlaybackMode)}
++      >
++        <button
++          type="button"
++          className="canvas-audio-player__toggle canvas-audio-player__mode-toggle"
++          aria-label={`切换播放模式，当前${playbackModeLabel}`}
++          data-tooltip={playbackModeLabel}
++        >
++          {playbackModeIcon}
++        </button>
++      </Dropdown>
++
+       <button
+         type="button"
+         className="canvas-audio-player__toggle canvas-audio-player__player-switch canvas-audio-player__switch-toggle"
+diff --git a/packages/drawnix/src/components/audio-node-element/canvas-audio-player.scss b/packages/drawnix/src/components/audio-node-element/canvas-audio-player.scss
+index 948f8fc52..6cbfdbe45 100644
+--- a/packages/drawnix/src/components/audio-node-element/canvas-audio-player.scss
++++ b/packages/drawnix/src/components/audio-node-element/canvas-audio-player.scss
+@@ -20,8 +20,9 @@
+     minmax(220px, 1fr)
+     auto
+     auto
++    auto
+     auto;
+-  grid-template-areas: 'cover meta controls progress volume switch toggle close';
++  grid-template-areas: 'cover meta controls progress volume mode switch toggle close';
+   align-items: center;
+   gap: 10px;
+   padding: 6px 12px;
+@@ -42,8 +43,9 @@
+       minmax(180px, 1fr)
+       auto
+       auto
++      auto
+       auto;
+-    grid-template-areas: 'cover meta controls progress volume switch toggle close';
++    grid-template-areas: 'cover meta controls progress volume mode switch toggle close';
+   }
+ 
+   @media (max-width: 768px) {
+@@ -55,10 +57,10 @@
+     transform: none;
+     width: var(--canvas-audio-mobile-width);
+     max-width: none;
+-    grid-template-columns: 32px minmax(0, 1fr) auto auto;
++    grid-template-columns: 32px minmax(0, 1fr) auto auto auto;
+     grid-template-areas:
+-      'cover meta controls close'
+-      'cover progress progress progress';
++      'cover meta controls mode close'
++      'cover progress progress progress progress';
+     row-gap: 3px;
+     column-gap: 8px;
+     padding: 7px 10px 5px;
+@@ -403,6 +405,10 @@
+   grid-area: switch;
+ }
+ 
++.canvas-audio-player__mode-toggle {
++  grid-area: mode;
++}
++
+ .canvas-audio-player__layout-toggle {
+   grid-area: toggle;
+ }
+@@ -429,12 +435,12 @@
+ 
+ // ---- 垂直布局 ----
+ .canvas-audio-player--vertical {
+-  width: 200px;
+-  grid-template-columns: 32px 1fr auto auto auto;
++  width: 236px;
++  grid-template-columns: 32px 1fr auto auto auto auto;
+   grid-template-areas:
+-    'cover meta switch toggle close'
+-    'controls controls controls controls controls'
+-    'progress progress progress progress progress';
++    'cover meta mode switch toggle close'
++    'controls controls controls controls controls controls'
++    'progress progress progress progress progress progress';
+   border-radius: 16px;
+   gap: 4px 8px;
+   padding: 8px 10px;
+diff --git a/packages/drawnix/src/constants/storage-keys.ts b/packages/drawnix/src/constants/storage-keys.ts
+index cc38409db..755333a8f 100644
+--- a/packages/drawnix/src/constants/storage-keys.ts
++++ b/packages/drawnix/src/constants/storage-keys.ts
+@@ -75,6 +75,8 @@ export const LS_KEYS = {
+   AUDIO_PLAYER_POSITION: 'aitu:audio-player-position',
+   /** 画布音频播放器布局模式 */
+   AUDIO_PLAYER_LAYOUT: 'aitu:audio-player-layout',
++  /** 音频播放器播放模式 */
++  AUDIO_PLAYER_PLAYBACK_MODE: 'aitu:audio-player-playback-mode',
+ 
+   // ---- 废弃键（仅用于迁移读取后删除） ----
+   /** @deprecated 旧版本本地数据，迁移后删除 */
+diff --git a/packages/drawnix/src/hooks/useCanvasAudioPlayback.ts b/packages/drawnix/src/hooks/useCanvasAudioPlayback.ts
+index f81d70cdf..3048dcbf4 100644
+--- a/packages/drawnix/src/hooks/useCanvasAudioPlayback.ts
++++ b/packages/drawnix/src/hooks/useCanvasAudioPlayback.ts
+@@ -4,6 +4,7 @@ import {
+   type CanvasAudioPlaybackSource,
+   type CanvasAudioQueueSource,
+   type CanvasAudioPlaybackState,
++  type PlaybackMode,
+ } from '../services/canvas-audio-playback-service';
+ import type { ReadingPlaybackSource } from '../services/reading-playback-source';
+ 
+@@ -61,6 +62,7 @@ export function useCanvasAudioPlaybackControls() {
+     resumePlayback: () => canvasAudioPlaybackService.resumePlayback(),
+     playPrevious: () => canvasAudioPlaybackService.playPrevious(),
+     playNext: () => canvasAudioPlaybackService.playNext(),
++    setPlaybackMode: (mode: PlaybackMode) => canvasAudioPlaybackService.setPlaybackMode(mode),
+     seekTo: (time: number) => canvasAudioPlaybackService.seekTo(time),
+     seekToReadingSegment: (index: number) => canvasAudioPlaybackService.seekToReadingSegment(index),
+     setVolume: (volume: number) => canvasAudioPlaybackService.setVolume(volume),
+diff --git a/packages/drawnix/src/services/__tests__/canvas-audio-playback-service.test.ts b/packages/drawnix/src/services/__tests__/canvas-audio-playback-service.test.ts
+index 1146968ef..e9e0eead9 100644
+--- a/packages/drawnix/src/services/__tests__/canvas-audio-playback-service.test.ts
++++ b/packages/drawnix/src/services/__tests__/canvas-audio-playback-service.test.ts
+@@ -1,9 +1,14 @@
+-import { describe, expect, it, vi } from 'vitest';
++import { beforeEach, describe, expect, it, vi } from 'vitest';
+ import {
+   CanvasAudioPlaybackService,
++  DEFAULT_PLAYBACK_MODE,
+   EMPTY_AUDIO_SPECTRUM,
+   EMPTY_AUDIO_WAVEFORM,
+ } from '../canvas-audio-playback-service';
++
++beforeEach(() => {
++  globalThis.localStorage?.clear?.();
++});
+ import { createReadingPlaybackSource } from '../reading-playback-source';
+ 
+ class MockAudioElement extends EventTarget {
+@@ -93,6 +98,18 @@ class MockSpeechSynthesis {
+ }
+ 
+ describe('CanvasAudioPlaybackService', () => {
++  it('uses sequential as the default playback mode and persists mode changes', () => {
++    const service = new CanvasAudioPlaybackService();
++
++    expect(service.getState().playbackMode).toBe(DEFAULT_PLAYBACK_MODE);
++
++    service.setPlaybackMode('list-loop');
++    expect(service.getState().playbackMode).toBe('list-loop');
++
++    const restoredService = new CanvasAudioPlaybackService();
++    expect(restoredService.getState().playbackMode).toBe('list-loop');
++  });
++
+   it('starts playback and stores active metadata for a source', async () => {
+     const audio = new MockAudioElement();
+     audio.duration = 215;
+@@ -348,6 +365,127 @@ describe('CanvasAudioPlaybackService', () => {
+     expect(service.getState().volume).toBe(0.35);
+   });
+ 
++  it('stops at queue end in sequential mode when playback ends', async () => {
++    const audio = new MockAudioElement();
++    audio.duration = 180;
++    const service = new CanvasAudioPlaybackService(() => audio as unknown as HTMLAudioElement);
++    const queue = [
++      {
++        elementId: 'audio-node-1',
++        audioUrl: 'https://example.com/audio-1.mp3',
++        title: 'Track One',
++      },
++      {
++        elementId: 'audio-node-2',
++        audioUrl: 'https://example.com/audio-2.mp3',
++        title: 'Track Two',
++      },
++    ];
++
++    service.setQueue(queue);
++    await service.togglePlayback(queue[1]);
++
++    audio.dispatchEvent(new Event('ended'));
++    await Promise.resolve();
++
++    expect(service.getState()).toMatchObject({
++      activeAudioUrl: queue[1].audioUrl,
++      activeQueueIndex: 1,
++      playing: false,
++      currentTime: 180,
++    });
++  });
++
++  it('loops back to the first track in list-loop mode when playback ends', async () => {
++    const audio = new MockAudioElement();
++    const service = new CanvasAudioPlaybackService(() => audio as unknown as HTMLAudioElement);
++    const queue = [
++      {
++        elementId: 'audio-node-1',
++        audioUrl: 'https://example.com/audio-1.mp3',
++        title: 'Track One',
++      },
++      {
++        elementId: 'audio-node-2',
++        audioUrl: 'https://example.com/audio-2.mp3',
++        title: 'Track Two',
++      },
++    ];
++
++    service.setPlaybackMode('list-loop');
++    service.setQueue(queue);
++    await service.togglePlayback(queue[1]);
++
++    audio.dispatchEvent(new Event('ended'));
++    await Promise.resolve();
++
++    expect(service.getState()).toMatchObject({
++      activeAudioUrl: queue[0].audioUrl,
++      activeQueueIndex: 0,
++      playing: true,
++    });
++  });
++
++  it('restarts the same track in single-loop mode when playback ends', async () => {
++    const audio = new MockAudioElement();
++    const service = new CanvasAudioPlaybackService(() => audio as unknown as HTMLAudioElement);
++    const track = {
++      elementId: 'audio-node-1',
++      audioUrl: 'https://example.com/audio-1.mp3',
++      title: 'Track One',
++    };
++
++    service.setPlaybackMode('single-loop');
++    service.setQueue([track]);
++    await service.togglePlayback(track);
++
++    audio.currentTime = 42;
++    audio.dispatchEvent(new Event('ended'));
++    await Promise.resolve();
++
++    expect(audio.currentTime).toBe(0);
++    expect(service.getState()).toMatchObject({
++      activeAudioUrl: track.audioUrl,
++      activeQueueIndex: 0,
++      playing: true,
++      currentTime: 0,
++    });
++  });
++
++  it('uses a different queue item for shuffle auto-advance when possible', async () => {
++    const audio = new MockAudioElement();
++    const service = new CanvasAudioPlaybackService(() => audio as unknown as HTMLAudioElement);
++    const queue = [
++      {
++        elementId: 'audio-node-1',
++        audioUrl: 'https://example.com/audio-1.mp3',
++        title: 'Track One',
++      },
++      {
++        elementId: 'audio-node-2',
++        audioUrl: 'https://example.com/audio-2.mp3',
++        title: 'Track Two',
++      },
++      {
++        elementId: 'audio-node-3',
++        audioUrl: 'https://example.com/audio-3.mp3',
++        title: 'Track Three',
++      },
++    ];
++    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.9);
++
++    service.setPlaybackMode('shuffle');
++    service.setQueue(queue);
++    await service.togglePlayback(queue[0]);
++
++    audio.dispatchEvent(new Event('ended'));
++    await Promise.resolve();
++
++    expect(service.getState().activeAudioUrl).toBe(queue[2].audioUrl);
++    expect(service.getState().activeQueueIndex).toBe(2);
++    randomSpy.mockRestore();
++  });
++
+   it('publishes live spectrum and pulse data when audio analysis is available', async () => {
+     const audio = new MockAudioElement();
+     const audioContext = new MockAudioContext();
+@@ -483,4 +621,43 @@ describe('CanvasAudioPlaybackService', () => {
+     expect(service.getState().playing).toBe(true);
+     expect(speechSynthesis.paused).toBe(false);
+   });
++
++  it('restarts reading from the same source in single-loop mode after the last segment', () => {
++    const audio = new MockAudioElement();
++    const speechSynthesis = new MockSpeechSynthesis();
++    const readingSource = createReadingPlaybackSource({
++      elementId: 'kb-note:2',
++      title: '循环笔记',
++      content: '第一句。第二句。',
++      origin: {
++        kind: 'kb-note',
++        id: '2',
++      },
++    });
++
++    const service = new CanvasAudioPlaybackService(
++      () => audio as unknown as HTMLAudioElement,
++      {
++        speechSynthesis: speechSynthesis as unknown as SpeechSynthesis,
++        utteranceFactory: (text) => ({ text } as SpeechSynthesisUtterance),
++      }
++    );
++
++    service.setPlaybackMode('single-loop');
++    service.toggleReadingPlaybackInQueue(readingSource ? [readingSource][0] : (null as never), readingSource ? [readingSource] : []);
++
++    const firstUtterance = speechSynthesis.utterances[0];
++    firstUtterance?.onend?.(new Event('end') as SpeechSynthesisEvent);
++    const secondUtterance = speechSynthesis.utterances[1];
++    secondUtterance?.onend?.(new Event('end') as SpeechSynthesisEvent);
++
++    expect(speechSynthesis.utterances).toHaveLength(1);
++    expect(speechSynthesis.utterances[0]?.text).toBe(firstUtterance?.text);
++    expect(service.getState()).toMatchObject({
++      activeReadingSourceId: readingSource?.readingSourceId,
++      activeQueueIndex: 0,
++      activeReadingSegmentIndex: 0,
++      playing: true,
++    });
++  });
+ });
+diff --git a/packages/drawnix/src/services/canvas-audio-playback-service.ts b/packages/drawnix/src/services/canvas-audio-playback-service.ts
+index 4bcc89cfa..cf3ae9dc6 100644
+--- a/packages/drawnix/src/services/canvas-audio-playback-service.ts
++++ b/packages/drawnix/src/services/canvas-audio-playback-service.ts
+@@ -2,6 +2,7 @@ import {
+   DEFAULT_TTS_SETTINGS,
+   resolveVoice,
+ } from '../hooks/useTextToSpeech';
++import { LS_KEYS } from '../constants/storage-keys';
+ import { ttsSettings } from '../utils/settings-manager';
+ import type {
+   ReadingPlaybackOrigin,
+@@ -24,6 +25,49 @@ export type PlaybackQueueSource = 'canvas' | 'playlist' | 'reading';
+ export type CanvasAudioQueueSource = PlaybackQueueSource;
+ export type PlaybackMediaType = 'audio' | 'reading' | null;
+ export type PlaybackQueueItem = CanvasAudioPlaybackSource | ReadingPlaybackSource;
++export type PlaybackMode = 'sequential' | 'list-loop' | 'single-loop' | 'shuffle';
++
++export const DEFAULT_PLAYBACK_MODE: PlaybackMode = 'sequential';
++export const PLAYBACK_MODE_LABELS: Record<PlaybackMode, string> = {
++  sequential: '顺序播放',
++  'list-loop': '列表循环',
++  'single-loop': '单曲循环',
++  shuffle: '随机播放',
++};
++
++function isPlaybackMode(value: string | null | undefined): value is PlaybackMode {
++  return (
++    value === 'sequential'
++    || value === 'list-loop'
++    || value === 'single-loop'
++    || value === 'shuffle'
++  );
++}
++
++function readPersistedPlaybackMode(): PlaybackMode {
++  if (typeof window === 'undefined') {
++    return DEFAULT_PLAYBACK_MODE;
++  }
++
++  try {
++    const stored = window.localStorage.getItem(LS_KEYS.AUDIO_PLAYER_PLAYBACK_MODE);
++    return isPlaybackMode(stored) ? stored : DEFAULT_PLAYBACK_MODE;
++  } catch {
++    return DEFAULT_PLAYBACK_MODE;
++  }
++}
++
++function persistPlaybackMode(mode: PlaybackMode): void {
++  if (typeof window === 'undefined') {
++    return;
++  }
++
++  try {
++    window.localStorage.setItem(LS_KEYS.AUDIO_PLAYER_PLAYBACK_MODE, mode);
++  } catch {
++    // ignore
++  }
++}
+ 
+ export interface CanvasAudioPlaybackState {
+   mediaType: PlaybackMediaType;
+@@ -44,6 +88,7 @@ export interface CanvasAudioPlaybackState {
+   activePlaylistName?: string;
+   queue: PlaybackQueueItem[];
+   activeQueueIndex: number;
++  playbackMode: PlaybackMode;
+   playing: boolean;
+   currentTime: number;
+   duration: number;
+@@ -73,23 +118,26 @@ export const EMPTY_AUDIO_WAVEFORM = Object.freeze(
+   Array.from({ length: ANALYSIS_WAVEFORM_SAMPLE_COUNT }, () => 0)
+ );
+ 
+-const INITIAL_STATE: CanvasAudioPlaybackState = {
+-  mediaType: null,
+-  activeReadingSegmentIndex: -1,
+-  readingSegments: [],
+-  subtitleMode: 'none',
+-  queueSource: 'canvas',
+-  queue: [],
+-  activeQueueIndex: -1,
+-  playing: false,
+-  currentTime: 0,
+-  duration: 0,
+-  volume: DEFAULT_VOLUME,
+-  analysisAvailable: false,
+-  spectrumLevels: [...EMPTY_AUDIO_SPECTRUM],
+-  waveformLevels: [...EMPTY_AUDIO_WAVEFORM],
+-  pulseLevel: 0,
+-};
++function createInitialState(): CanvasAudioPlaybackState {
++  return {
++    mediaType: null,
++    activeReadingSegmentIndex: -1,
++    readingSegments: [],
++    subtitleMode: 'none',
++    queueSource: 'canvas',
++    queue: [],
++    activeQueueIndex: -1,
++    playbackMode: readPersistedPlaybackMode(),
++    playing: false,
++    currentTime: 0,
++    duration: 0,
++    volume: DEFAULT_VOLUME,
++    analysisAvailable: false,
++    spectrumLevels: [...EMPTY_AUDIO_SPECTRUM],
++    waveformLevels: [...EMPTY_AUDIO_WAVEFORM],
++    pulseLevel: 0,
++  };
++}
+ 
+ interface CanvasAudioPlaybackRuntime {
+   audioContextFactory?: () => AudioContext;
+@@ -136,7 +184,7 @@ export class CanvasAudioPlaybackService {
+   private analysisFrameHandle: number | null = null;
+   private lastAnalysisFrameAt = 0;
+   private readonly listeners = new Set<PlaybackListener>();
+-  private state: CanvasAudioPlaybackState = INITIAL_STATE;
++  private state: CanvasAudioPlaybackState = createInitialState();
+   private canvasQueue: CanvasAudioPlaybackSource[] = [];
+   private currentReadingSource: ReadingPlaybackSource | null = null;
+   private readingVersion = 0;
+@@ -384,6 +432,8 @@ export class CanvasAudioPlaybackService {
+       duration,
+       pulseLevel: 0,
+     });
++
++    void this.continueQueueAfterCurrentEnd();
+   };
+ 
+   private handleTimeUpdate = (): void => {
+@@ -703,10 +753,16 @@ export class CanvasAudioPlaybackService {
+     });
+   }
+ 
+-  private async startPlayback(source: CanvasAudioPlaybackSource): Promise<void> {
++  private async startPlayback(
++    source: CanvasAudioPlaybackSource,
++    restartFromBeginning = false
++  ): Promise<void> {
+     this.stopReadingForAudio();
+     const audio = this.ensureAudio();
+-    const switchingTrack = this.state.activeAudioUrl !== source.audioUrl || this.state.mediaType !== 'audio';
++    const switchingTrack =
++      restartFromBeginning
++      || this.state.activeAudioUrl !== source.audioUrl
++      || this.state.mediaType !== 'audio';
+     const activeQueueIndex = this.findQueueIndex(this.state.queue, source);
+ 
+     if (switchingTrack) {
+@@ -828,6 +884,7 @@ export class CanvasAudioPlaybackService {
+           currentTime: segment.endMs / 1000,
+           activeReadingSegmentIndex: segmentIndex,
+         });
++        void this.continueQueueAfterCurrentEnd();
+         return;
+       }
+ 
+@@ -915,6 +972,86 @@ export class CanvasAudioPlaybackService {
+     this.startReading(source);
+   }
+ 
++  setPlaybackMode(mode: PlaybackMode): void {
++    persistPlaybackMode(mode);
++    this.patchState({
++      playbackMode: mode,
++    });
++  }
++
++  private getSequentialQueueIndex(offset: -1 | 1): number {
++    const targetIndex = this.state.activeQueueIndex + offset;
++    if (targetIndex < 0 || targetIndex >= this.state.queue.length) {
++      return -1;
++    }
++
++    return targetIndex;
++  }
++
++  private getNextQueueIndexForAutoAdvance(): number {
++    const { activeQueueIndex, playbackMode, queue } = this.state;
++    if (activeQueueIndex < 0 || queue.length === 0) {
++      return -1;
++    }
++
++    if (playbackMode === 'single-loop') {
++      return activeQueueIndex;
++    }
++
++    if (playbackMode === 'shuffle') {
++      if (queue.length === 1) {
++        return activeQueueIndex;
++      }
++
++      let candidate = activeQueueIndex;
++      let attempts = 0;
++      while (candidate === activeQueueIndex && attempts < 8) {
++        candidate = Math.floor(Math.random() * queue.length);
++        attempts += 1;
++      }
++
++      return candidate === activeQueueIndex
++        ? (activeQueueIndex + 1) % queue.length
++        : candidate;
++    }
++
++    const nextIndex = activeQueueIndex + 1;
++    if (nextIndex < queue.length) {
++      return nextIndex;
++    }
++
++    if (playbackMode === 'list-loop') {
++      return 0;
++    }
++
++    return -1;
++  }
++
++  private async playQueueItemAt(index: number, restartFromBeginning = false): Promise<void> {
++    if (index < 0 || index >= this.state.queue.length) {
++      return;
++    }
++
++    const target = this.state.queue[index];
++    if (isReadingPlaybackSource(target)) {
++      this.startReading(target);
++      return;
++    }
++
++    if (isAudioPlaybackSource(target)) {
++      await this.startPlayback(target, restartFromBeginning);
++    }
++  }
++
++  private async continueQueueAfterCurrentEnd(): Promise<void> {
++    const nextIndex = this.getNextQueueIndexForAutoAdvance();
++    if (nextIndex < 0) {
++      return;
++    }
++
++    await this.playQueueItemAt(nextIndex, nextIndex === this.state.activeQueueIndex);
++  }
++
+   setCanvasQueue(queue: CanvasAudioPlaybackSource[]): void {
+     const normalizedQueue = this.normalizeQueue(queue);
+     this.canvasQueue = normalizedQueue;
+@@ -1047,35 +1184,21 @@ export class CanvasAudioPlaybackService {
+   }
+ 
+   async playPrevious(): Promise<void> {
+-    const previousIndex = this.state.activeQueueIndex - 1;
+-    if (previousIndex < 0 || previousIndex >= this.state.queue.length) {
++    const previousIndex = this.getSequentialQueueIndex(-1);
++    if (previousIndex < 0) {
+       return;
+     }
+ 
+-    const target = this.state.queue[previousIndex];
+-    if (isReadingPlaybackSource(target)) {
+-      this.startReading(target);
+-      return;
+-    }
+-    if (isAudioPlaybackSource(target)) {
+-      await this.startPlayback(target);
+-    }
++    await this.playQueueItemAt(previousIndex);
+   }
+ 
+   async playNext(): Promise<void> {
+-    const nextIndex = this.state.activeQueueIndex + 1;
+-    if (nextIndex < 0 || nextIndex >= this.state.queue.length) {
++    const nextIndex = this.getSequentialQueueIndex(1);
++    if (nextIndex < 0) {
+       return;
+     }
+ 
+-    const target = this.state.queue[nextIndex];
+-    if (isReadingPlaybackSource(target)) {
+-      this.startReading(target);
+-      return;
+-    }
+-    if (isAudioPlaybackSource(target)) {
+-      await this.startPlayback(target);
+-    }
++    await this.playQueueItemAt(nextIndex);
+   }
+ 
+   async resumePlayback(): Promise<void> {
+@@ -1170,9 +1293,10 @@ export class CanvasAudioPlaybackService {
+     }
+ 
+     this.setState({
+-      ...INITIAL_STATE,
++      ...createInitialState(),
+       queue: this.state.queue,
+       volume: this.state.volume,
++      playbackMode: this.state.playbackMode,
+       queueSource: this.state.queueSource,
+       activePlaylistId: this.state.activePlaylistId,
+       activePlaylistName: this.state.activePlaylistName,
+diff --git a/packages/drawnix/src/tools/tools/music-player/MusicPlayerTool.tsx b/packages/drawnix/src/tools/tools/music-player/MusicPlayerTool.tsx
+index 79f36bffa..7f918d5f4 100644
+--- a/packages/drawnix/src/tools/tools/music-player/MusicPlayerTool.tsx
++++ b/packages/drawnix/src/tools/tools/music-player/MusicPlayerTool.tsx
+@@ -1,6 +1,17 @@
+ import React, { useEffect, useMemo, useRef, useState } from 'react';
+-import { Input, Dialog } from 'tdesign-react';
+-import { Pause, Play, Search, Minimize2, SkipBack, SkipForward } from 'lucide-react';
++import { Input, Dialog, Dropdown } from 'tdesign-react';
++import {
++  Pause,
++  Play,
++  Search,
++  Minimize2,
++  SkipBack,
++  SkipForward,
++  Repeat,
++  Repeat1,
++  Shuffle,
++  ListOrdered,
++} from 'lucide-react';
+ import { useAssets } from '../../../contexts/AssetContext';
+ import { useAudioPlaylists } from '../../../contexts/AudioPlaylistContext';
+ import { AssetType } from '../../../types/asset.types';
+@@ -20,7 +31,9 @@ import { useAllTracksPlaybackSources } from '../../../hooks/useAllTracksPlayback
+ import { useResolvedAudioDurations } from '../../../hooks/useResolvedAudioDurations';
+ import {
+   isReadingPlaybackSource,
++  PLAYBACK_MODE_LABELS,
+   type PlaybackQueueItem,
++  type PlaybackMode,
+ } from '../../../services/canvas-audio-playback-service';
+ import { toolWindowService } from '../../../services/tool-window-service';
+ import { MUSIC_PLAYER_TOOL_ID } from '../../tool-ids';
+@@ -29,6 +42,17 @@ import './music-player-tool.scss';
+ 
+ const DEFAULT_PLAYER_WINDOW_SIZE = { width: 520, height: 640 };
+ const SUBTITLE_PLAYER_WINDOW_SIZE = { width: 860, height: 640 };
++const PLAYBACK_MODE_ICONS: Record<PlaybackMode, React.ReactNode> = {
++  sequential: <ListOrdered size={16} />,
++  'list-loop': <Repeat size={16} />,
++  'single-loop': <Repeat1 size={16} />,
++  shuffle: <Shuffle size={16} />,
++};
++const PLAYBACK_MODE_OPTIONS = (Object.keys(PLAYBACK_MODE_LABELS) as PlaybackMode[]).map((mode) => ({
++  value: mode,
++  content: PLAYBACK_MODE_LABELS[mode],
++  prefixIcon: PLAYBACK_MODE_ICONS[mode],
++}));
+ 
+ function formatDuration(duration?: number): string {
+   if (typeof duration !== 'number' || !Number.isFinite(duration) || duration <= 0) {
+@@ -41,6 +65,28 @@ function formatDuration(duration?: number): string {
+   return `${minutes}:${String(seconds).padStart(2, '0')}`;
+ }
+ 
++function formatGeneratedTime(createdAt?: number): string {
++  if (typeof createdAt !== 'number' || !Number.isFinite(createdAt) || createdAt <= 0) {
++    return '--:--';
++  }
++
++  return new Date(createdAt).toLocaleString('zh-CN', {
++    month: '2-digit',
++    day: '2-digit',
++    hour: '2-digit',
++    minute: '2-digit',
++    hour12: false,
++  });
++}
++
++function formatTrackSubtitle(duration?: number, createdAt?: number): string {
++  const formattedDuration = formatDuration(duration);
++  if (formattedDuration !== '--:--') {
++    return formattedDuration;
++  }
++  return formatGeneratedTime(createdAt);
++}
++
+ export const MusicPlayerTool: React.FC = () => {
+   const { assets, loadAssets } = useAssets();
+   const {
+@@ -126,6 +172,10 @@ export const MusicPlayerTool: React.FC = () => {
+       })),
+     [audioAssets]
+   );
++  const audioAssetById = useMemo(
++    () => new Map(audioAssets.map((asset) => [asset.id, asset])),
++    [audioAssets]
++  );
+   const showPlaybackQueue =
+     playback.queue.length > 0 && (isReadingMode || !!playback.activeAudioUrl);
+   const playbackTabId = playback.activePlaylistId || (
+@@ -185,6 +235,14 @@ export const MusicPlayerTool: React.FC = () => {
+     [playback.queue]
+   );
+   const resolvedQueueDurations = useResolvedAudioDurations(audioPlaybackQueue);
++  const audioAssetDurationSources = useMemo(
++    () =>
++      audioAssets.map((asset) => ({
++        audioUrl: asset.url,
++      })),
++    [audioAssets]
++  );
++  const resolvedAudioAssetDurations = useResolvedAudioDurations(audioAssetDurationSources);
+ 
+   const getQueueItemId = (item: PlaybackQueueItem, index: number) =>
+     isReadingPlaybackSource(item) ? item.readingSourceId : `${item.audioUrl}-${index}`;
+@@ -213,7 +271,10 @@ export const MusicPlayerTool: React.FC = () => {
+         return {
+           id: getQueueItemId(item, index),
+           title: item.title || '未命名音频',
+-          subtitle: formatDuration(resolvedQueueDurations.get(item.audioUrl) ?? item.duration),
++          subtitle: formatTrackSubtitle(
++            resolvedQueueDurations.get(item.audioUrl) ?? item.duration,
++            assetId ? audioAssetById.get(assetId)?.createdAt : undefined
++          ),
+           previewImageUrl: item.previewImageUrl,
+           isActive: index === playback.activeQueueIndex,
+           isPlaying: index === playback.activeQueueIndex && playback.playing,
+@@ -221,7 +282,7 @@ export const MusicPlayerTool: React.FC = () => {
+           canFavorite: !!assetId,
+         };
+       }),
+-    [assets, favoriteAssetIds, playback.activeQueueIndex, playback.playing, playback.queue, resolvedQueueDurations]
++    [audioAssetById, assets, favoriteAssetIds, playback.activeQueueIndex, playback.playing, playback.queue, resolvedQueueDurations]
+   );
+ 
+   const handlePlayAsset = async (assetId: string) => {
+@@ -310,6 +371,8 @@ export const MusicPlayerTool: React.FC = () => {
+     ? `${shouldShowPlaybackQueue ? playback.queue.length : noteMetas.length} 段语音`
+     : isAllTracksTab ? `${noteMetas.length} 篇笔记`
+       : `${shouldShowPlaybackQueue ? playback.queue.length : audioAssets.length} 首音频`;
++  const playbackModeLabel = PLAYBACK_MODE_LABELS[playback.playbackMode];
++  const playbackModeIcon = PLAYBACK_MODE_ICONS[playback.playbackMode];
+ 
+   const closePlaylistDialog = () => {
+     setCreateDialogVisible(false);
+@@ -448,6 +511,22 @@ export const MusicPlayerTool: React.FC = () => {
+               >
+                 <SkipForward size={16} />
+               </button>
++              <Dropdown
++                options={PLAYBACK_MODE_OPTIONS}
++                trigger="click"
++                placement="bottom-right"
++                minColumnWidth={132}
++                onClick={(data) => playback.setPlaybackMode(data.value as PlaybackMode)}
++              >
++                <button
++                  type="button"
++                  className="music-player-tool__action-btn"
++                  aria-label={`切换播放模式，当前${playbackModeLabel}`}
++                  data-tooltip={playbackModeLabel}
++                >
++                  {playbackModeIcon}
++                </button>
++              </Dropdown>
+               <button
+                 type="button"
+                 className="music-player-tool__action-btn music-player-tool__action-btn--ghost"
+@@ -511,7 +590,10 @@ export const MusicPlayerTool: React.FC = () => {
+               audioAssetItems={audioAssets.map((asset) => ({
+                 id: asset.id,
+                 title: asset.name,
+-                subtitle: new Date(asset.createdAt).toLocaleDateString('zh-CN'),
++                subtitle: formatTrackSubtitle(
++                  resolvedAudioAssetDurations.get(asset.url),
++                  asset.createdAt
++                ),
+                 previewImageUrl: asset.thumbnail,
+                 isActive: activeAssetId === asset.id,
+                 isPlaying: activeAssetId === asset.id && playback.playing,

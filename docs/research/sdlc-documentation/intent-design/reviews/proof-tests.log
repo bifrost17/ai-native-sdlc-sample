@@ -1,0 +1,41 @@
+test_skill_embeds_template_verbatim (tests.test_skill_template.SkillTemplateMatchesCopy) ... ok
+test_all_zero_baseline_hits_zero_sigma_before_min_rate (tests.test_detect_bands.DetectBandsTest) ... ok
+test_bad_value_type_is_input_error_rc1 (tests.test_detect_bands.DetectBandsTest) ... ok
+test_broken_jsonl_is_input_error_rc1 (tests.test_detect_bands.DetectBandsTest) ... ok
+test_drift_1sigma_logs_only (tests.test_detect_bands.DetectBandsTest) ... ok
+test_emit_intent_draft_follows_the_template (tests.test_detect_bands.DetectBandsTest)
+L14 1036행 — 진단을 Stage 1 intent 형식으로 쓴다: 자기 산출물 시험(레포 절차 검사가 아니다). ... ok
+test_emit_intent_skips_1sigma (tests.test_detect_bands.DetectBandsTest) ... ok
+test_missing_samples_file_is_input_error_rc1 (tests.test_detect_bands.DetectBandsTest) ... ok
+test_mutation_flipping_3sigma_comparison_breaks_spike_detection (tests.test_detect_bands.DetectBandsTest)
+뮤테이션 — abs(z_last) > 3.0 을 뒤집으면(<) 스파이크가 안 잡혀야 한다. ... ok
+test_normal_is_tier_none (tests.test_detect_bands.DetectBandsTest) ... ok
+test_rc_never_doubles_as_tier (tests.test_detect_bands.DetectBandsTest)
+rc≠0 이면 stdout 은 파싱 가능한 결과가 아니다 — tier 로 오독될 수 없다. ... ok
+test_run_of_9_one_side_is_tier_2sigma_diagnose (tests.test_detect_bands.DetectBandsTest) ... ok
+test_spike_3sigma_is_tier_3sigma_propose (tests.test_detect_bands.DetectBandsTest)
+양성 대조 — 3σ 를 넘는 값이 반드시 tier 3sigma·action propose 를 낸다. ... ok
+test_too_few_samples_is_insufficient (tests.test_detect_bands.DetectBandsTest) ... ok
+test_two_of_three_beyond_2sigma_is_tier_2sigma (tests.test_detect_bands.DetectBandsTest) ... ok
+test_unimplemented_rule_in_config_is_rejected (tests.test_detect_bands.DetectBandsTest)
+설정이 요구한 규칙을 조용히 건너뛰지 않는다 — rc=1 로 죽는다. ... ok
+test_unknown_rule_family_is_rejected (tests.test_detect_bands.DetectBandsTest) ... ok
+test_unsupported_yaml_syntax_is_rejected (tests.test_detect_bands.DetectBandsTest) ... ok
+test_zero_sigma_baseline_guards_instead_of_dividing (tests.test_detect_bands.DetectBandsTest)
+가드 — 기준선 σ=0 이면 3σ 로 튀지 않고 reason 으로 멈춘다. ... ok
+test_2sigma_diagnoses_without_model_write_tools_or_existing_draft (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_3sigma_creates_proposal_with_diagnosis (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_3sigma_without_key_keeps_draft_and_records_skipped_diagnosis (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_draft_failure_is_nonzero_and_recorded (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_invalid_diagnosis_is_nonzero_and_preserves_raw_output (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_model_artifact_write_failure_updates_run_record (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_model_failure_is_nonzero_and_recorded (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_non_object_model_envelope_is_invalid_and_recorded (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_none_and_1sigma_record_without_model_or_draft (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_record_failure_is_nonzero (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+test_zero_exit_model_error_envelope_is_nonzero_and_recorded (tests.test_bands_workflow.BandsWorkflowTest) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 2.551s
+
+OK

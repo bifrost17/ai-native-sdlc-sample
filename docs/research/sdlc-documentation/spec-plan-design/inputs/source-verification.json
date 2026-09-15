@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-09-11",
+  "source_manifest": "docs/research/sdlc-documentation/spec-plan-design/inputs/sources.json",
+  "manifest_baseline": "efa7339",
+  "hash_algorithm": "sha256",
+  "sources": [
+    {"path": "docs/verification/north-star-playbook.html", "expected": "04945f0ebaa80d5ca58f9b2c8c0df9d0175b91cb6eae4e50bba37b1a4eeec707", "actual": "04945f0ebaa80d5ca58f9b2c8c0df9d0175b91cb6eae4e50bba37b1a4eeec707", "result": "match"},
+    {"path": "templates/spec.md", "expected": "06b7e3015d7be1c8d46423e8684ff955efd4f996a67ee1b412f066d0ef6b2723", "actual": "06b7e3015d7be1c8d46423e8684ff955efd4f996a67ee1b412f066d0ef6b2723", "result": "match"},
+    {"path": "templates/plan.md", "expected": "a03b79224cfa37fa860ce768da7f747a70603d64794f7889e5fa1db9f07fe17b", "actual": "a03b79224cfa37fa860ce768da7f747a70603d64794f7889e5fa1db9f07fe17b", "result": "match"},
+    {"path": "docs/GIT-WORKFLOW.md", "expected": "adac8630ac4a2f83448c4d1422f14a20c9820233a8bd6f1c1f9bdd28e3fc9779", "actual": "adac8630ac4a2f83448c4d1422f14a20c9820233a8bd6f1c1f9bdd28e3fc9779", "result": "match"},
+    {"path": "docs/PR-SIZE.md", "expected": "38e7c1639c678d7114a80258131aa38dea0d97aac32cb651dbac79bd4a9416fe", "actual": "38e7c1639c678d7114a80258131aa38dea0d97aac32cb651dbac79bd4a9416fe", "result": "match"},
+    {"path": "docs/RELEASE-CONTROL.md", "expected": "da97242c7f7140b8c1090c67b0fe5f0ba43eb58063210d82280c27e067044ff8", "actual": "da97242c7f7140b8c1090c67b0fe5f0ba43eb58063210d82280c27e067044ff8", "result": "match"},
+    {"path": ".claude/skills/design-spec/SKILL.md", "expected": "7f4ccc4931166de0bc10ea1b937adc64c6854692830623faa41d2bd99f381d79", "actual": "7f4ccc4931166de0bc10ea1b937adc64c6854692830623faa41d2bd99f381d79", "result": "match"},
+    {"path": ".claude/skills/plan/SKILL.md", "expected": "db98a5c0d22d71691a36258b077980f868ba72ab7d58a40934de1895bbcc33ec", "actual": "db98a5c0d22d71691a36258b077980f868ba72ab7d58a40934de1895bbcc33ec", "result": "match"},
+    {"path": "docs/research/sdlc-documentation/design-approaches.md", "expected": "fcd82e140e4ca35de1a8484b680d83c26fc1f61ec6c261fb95a54ca92d759004", "actual": "fcd82e140e4ca35de1a8484b680d83c26fc1f61ec6c261fb95a54ca92d759004", "result": "match"},
+    {"path": "docs/research/sdlc-documentation/sources.json", "expected": "3f10fc3a20d6045f5a1aea94376265ba6716cbd0a74a2e650c375f927267113e", "actual": "3f10fc3a20d6045f5a1aea94376265ba6716cbd0a74a2e650c375f927267113e", "result": "match"},
+    {"path": "docs/research/tdd-skills/comparison.md", "expected": "cf6a9b64d7a28182ca3f198927b0d0d70cf3cc7f147bc645e6c56f43e7250773", "actual": "cf6a9b64d7a28182ca3f198927b0d0d70cf3cc7f147bc645e6c56f43e7250773", "result": "match"},
+    {"path": "docs/research/tdd-skills/sources.json", "expected": "fea345313724db2bf2fb370939ef5c43a3836daee1835c27b7c3bce6fd8afc97", "actual": "fea345313724db2bf2fb370939ef5c43a3836daee1835c27b7c3bce6fd8afc97", "result": "match"},
+    {"path": "org-skills/.claude-plugin/plugin.json", "expected": "30127df8792ef7214964401353ecc4794ad871e49f6a53e87ca4b178ba072e28", "actual": "30127df8792ef7214964401353ecc4794ad871e49f6a53e87ca4b178ba072e28", "result": "match"},
+    {"path": "org-skills/README.md", "expected": "a437042a87a92c59aaa96ef670f840b9b0dc073e14d488a1b61d1b80dd1bb1d2", "actual": "a437042a87a92c59aaa96ef670f840b9b0dc073e14d488a1b61d1b80dd1bb1d2", "result": "match"}
+  ],
+  "copied_inputs": [
+    {
+      "copy": "docs/research/sdlc-documentation/spec-plan-design/inputs/baseline/tracker.py",
+      "original": "docs/experiments/datasets/v1/baseline/tracker.py",
+      "copy_sha256": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653",
+      "original_sha256": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653",
+      "byte_comparison": "identical"
+    },
+    {
+      "copy": "docs/research/sdlc-documentation/spec-plan-design/inputs/baseline/test_tracker.py",
+      "original": "docs/experiments/datasets/v1/baseline/test_tracker.py",
+      "copy_sha256": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3",
+      "original_sha256": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3",
+      "byte_comparison": "identical"
+    },
+    {
+      "copy": "docs/research/sdlc-documentation/spec-plan-design/inputs/f01-requests.json",
+      "original": "docs/experiments/datasets/v1/F01/requests.json",
+      "copy_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+      "original_sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+      "byte_comparison": "identical"
+    },
+    {
+      "copy": "docs/research/sdlc-documentation/spec-plan-design/inputs/b01-requests.json",
+      "original": "docs/experiments/datasets/v1/B01/requests.json",
+      "copy_sha256": "3092fab6bf33de6ed0ac91638c768f7e08fbee693e95e30bff80684d4b9a649f",
+      "original_sha256": "3092fab6bf33de6ed0ac91638c768f7e08fbee693e95e30bff80684d4b9a649f",
+      "byte_comparison": "identical"
+    },
+    {
+      "copy": "docs/research/sdlc-documentation/spec-plan-design/inputs/f03-spec-historical.md",
+      "original": "f1ba82e:intent/f03-owner-insights/spec.md",
+      "copy_sha256": "75c66e68df21196a19c88ba1999bd9c48355944491f2116c27bbf803bd7dea80",
+      "original_sha256": "75c66e68df21196a19c88ba1999bd9c48355944491f2116c27bbf803bd7dea80",
+      "byte_comparison": "identical"
+    },
+    {
+      "copy": "docs/research/sdlc-documentation/spec-plan-design/inputs/f03-plan-historical.md",
+      "original": "5fc8bdc:intent/f03-owner-insights/plan.md",
+      "copy_sha256": "105c2dab8370bc46351e285ef109798ab02251b0198e692cfd1f003ee8e92e09",
+      "original_sha256": "105c2dab8370bc46351e285ef109798ab02251b0198e692cfd1f003ee8e92e09",
+      "byte_comparison": "identical"
+    }
+  ],
+  "summary": {
+    "manifest_sources_checked": 14,
+    "manifest_sources_matched": 14,
+    "copied_inputs_checked": 6,
+    "copied_inputs_identical": 6,
+    "issues": []
+  },
+  "notes": "cases.md names datasets/v1 relative to the experiment dataset area; the originals resolved to docs/experiments/datasets/v1. Comparisons record current workspace bytes, and historical originals were read from the indicated Git objects."
+}

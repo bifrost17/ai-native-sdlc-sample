@@ -1,0 +1,1010 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:44:14Z",
+  "pull": {
+    "url": "https://api.github.com/repos/rails/rails/pulls/53403",
+    "id": 2136478477,
+    "node_id": "PR_kwDNIULOf1gTDQ",
+    "html_url": "https://github.com/rails/rails/pull/53403",
+    "diff_url": "https://github.com/rails/rails/pull/53403.diff",
+    "patch_url": "https://github.com/rails/rails/pull/53403.patch",
+    "issue_url": "https://api.github.com/repos/rails/rails/issues/53403",
+    "number": 53403,
+    "state": "closed",
+    "locked": false,
+    "title": "Include default headers in ActionController::Live responses.",
+    "user": {
+      "login": "afn",
+      "id": 2779422,
+      "node_id": "MDQ6VXNlcjI3Nzk0MjI=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2779422?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/afn",
+      "html_url": "https://github.com/afn",
+      "followers_url": "https://api.github.com/users/afn/followers",
+      "following_url": "https://api.github.com/users/afn/following{/other_user}",
+      "gists_url": "https://api.github.com/users/afn/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/afn/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/afn/subscriptions",
+      "organizations_url": "https://api.github.com/users/afn/orgs",
+      "repos_url": "https://api.github.com/users/afn/repos",
+      "events_url": "https://api.github.com/users/afn/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/afn/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "### Motivation / Background\r\n\r\nDefault headers are added to ActionDispatch::Response in the `.create`\r\nmethod, not in `#initialize`. The `make_response!` method in\r\nActionController::Live calls `Live::Response.new` rather than\r\n`Live::Response.create`, which bypasses the merging of default headers.\r\n\r\nFixes #53402.\r\n\r\n### Checklist\r\n\r\nBefore submitting the PR make sure the following are checked:\r\n\r\n* [x] This Pull Request is related to one change. Unrelated changes should be opened in separate PRs.\r\n* [x] Commit message has a detailed description of what changed and why. If this PR fixes a related issue include it in the commit message. Ex: `[Fix #issue-number]`\r\n* [x] Tests are added or updated if you fix a bug or add a feature.\r\n* [x] CHANGELOG files are updated for the changed libraries if there is a behavior change or additional feature. Minor bug fixes and documentation changes should not be included.\r\n",
+    "created_at": "2024-10-21T15:59:55Z",
+    "updated_at": "2026-09-11T20:52:46Z",
+    "closed_at": "2026-09-11T20:52:46Z",
+    "merged_at": "2026-09-11T20:52:46Z",
+    "merge_commit_sha": "6444abc2c3b2d9118841fea135408450c2d25335",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 107189,
+        "node_id": "MDU6TGFiZWwxMDcxODk=",
+        "url": "https://api.github.com/repos/rails/rails/labels/actionpack",
+        "name": "actionpack",
+        "color": "FFF700",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/rails/rails/pulls/53403/commits",
+    "review_comments_url": "https://api.github.com/repos/rails/rails/pulls/53403/comments",
+    "review_comment_url": "https://api.github.com/repos/rails/rails/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/rails/rails/issues/53403/comments",
+    "statuses_url": "https://api.github.com/repos/rails/rails/statuses/c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+    "head": {
+      "label": "afn:default-headers-for-live-response",
+      "ref": "default-headers-for-live-response",
+      "sha": "c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "user": {
+        "login": "afn",
+        "id": 2779422,
+        "node_id": "MDQ6VXNlcjI3Nzk0MjI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2779422?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/afn",
+        "html_url": "https://github.com/afn",
+        "followers_url": "https://api.github.com/users/afn/followers",
+        "following_url": "https://api.github.com/users/afn/following{/other_user}",
+        "gists_url": "https://api.github.com/users/afn/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/afn/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/afn/subscriptions",
+        "organizations_url": "https://api.github.com/users/afn/orgs",
+        "repos_url": "https://api.github.com/users/afn/repos",
+        "events_url": "https://api.github.com/users/afn/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/afn/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 17087387,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxNzA4NzM4Nw==",
+        "name": "rails",
+        "full_name": "afn/rails",
+        "private": false,
+        "owner": {
+          "login": "afn",
+          "id": 2779422,
+          "node_id": "MDQ6VXNlcjI3Nzk0MjI=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/2779422?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/afn",
+          "html_url": "https://github.com/afn",
+          "followers_url": "https://api.github.com/users/afn/followers",
+          "following_url": "https://api.github.com/users/afn/following{/other_user}",
+          "gists_url": "https://api.github.com/users/afn/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/afn/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/afn/subscriptions",
+          "organizations_url": "https://api.github.com/users/afn/orgs",
+          "repos_url": "https://api.github.com/users/afn/repos",
+          "events_url": "https://api.github.com/users/afn/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/afn/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/afn/rails",
+        "description": "Ruby on Rails",
+        "fork": true,
+        "url": "https://api.github.com/repos/afn/rails",
+        "forks_url": "https://api.github.com/repos/afn/rails/forks",
+        "keys_url": "https://api.github.com/repos/afn/rails/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/afn/rails/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/afn/rails/teams",
+        "hooks_url": "https://api.github.com/repos/afn/rails/hooks",
+        "issue_events_url": "https://api.github.com/repos/afn/rails/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/afn/rails/events",
+        "assignees_url": "https://api.github.com/repos/afn/rails/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/afn/rails/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/afn/rails/tags",
+        "blobs_url": "https://api.github.com/repos/afn/rails/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/afn/rails/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/afn/rails/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/afn/rails/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/afn/rails/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/afn/rails/languages",
+        "stargazers_url": "https://api.github.com/repos/afn/rails/stargazers",
+        "contributors_url": "https://api.github.com/repos/afn/rails/contributors",
+        "subscribers_url": "https://api.github.com/repos/afn/rails/subscribers",
+        "subscription_url": "https://api.github.com/repos/afn/rails/subscription",
+        "commits_url": "https://api.github.com/repos/afn/rails/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/afn/rails/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/afn/rails/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/afn/rails/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/afn/rails/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/afn/rails/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/afn/rails/merges",
+        "archive_url": "https://api.github.com/repos/afn/rails/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/afn/rails/downloads",
+        "issues_url": "https://api.github.com/repos/afn/rails/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/afn/rails/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/afn/rails/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/afn/rails/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/afn/rails/labels{/name}",
+        "releases_url": "https://api.github.com/repos/afn/rails/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/afn/rails/deployments",
+        "created_at": "2014-02-22T15:24:03Z",
+        "updated_at": "2015-01-27T20:56:38Z",
+        "pushed_at": "2026-09-10T21:58:10Z",
+        "git_url": "git://github.com/afn/rails.git",
+        "ssh_url": "git@github.com:afn/rails.git",
+        "clone_url": "https://github.com/afn/rails.git",
+        "svn_url": "https://github.com/afn/rails",
+        "homepage": "http://rubyonrails.org",
+        "size": 253264,
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "language": "Ruby",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": null,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 0,
+        "default_branch": "master"
+      }
+    },
+    "base": {
+      "label": "rails:main",
+      "ref": "main",
+      "sha": "4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f",
+      "user": {
+        "login": "rails",
+        "id": 4223,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyMjM=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/4223?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/rails",
+        "html_url": "https://github.com/rails",
+        "followers_url": "https://api.github.com/users/rails/followers",
+        "following_url": "https://api.github.com/users/rails/following{/other_user}",
+        "gists_url": "https://api.github.com/users/rails/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/rails/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/rails/subscriptions",
+        "organizations_url": "https://api.github.com/users/rails/orgs",
+        "repos_url": "https://api.github.com/users/rails/repos",
+        "events_url": "https://api.github.com/users/rails/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/rails/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 8514,
+        "node_id": "MDEwOlJlcG9zaXRvcnk4NTE0",
+        "name": "rails",
+        "full_name": "rails/rails",
+        "private": false,
+        "owner": {
+          "login": "rails",
+          "id": 4223,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyMjM=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/4223?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/rails",
+          "html_url": "https://github.com/rails",
+          "followers_url": "https://api.github.com/users/rails/followers",
+          "following_url": "https://api.github.com/users/rails/following{/other_user}",
+          "gists_url": "https://api.github.com/users/rails/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/rails/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/rails/subscriptions",
+          "organizations_url": "https://api.github.com/users/rails/orgs",
+          "repos_url": "https://api.github.com/users/rails/repos",
+          "events_url": "https://api.github.com/users/rails/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/rails/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/rails/rails",
+        "description": "Ruby on Rails",
+        "fork": false,
+        "url": "https://api.github.com/repos/rails/rails",
+        "forks_url": "https://api.github.com/repos/rails/rails/forks",
+        "keys_url": "https://api.github.com/repos/rails/rails/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/rails/rails/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/rails/rails/teams",
+        "hooks_url": "https://api.github.com/repos/rails/rails/hooks",
+        "issue_events_url": "https://api.github.com/repos/rails/rails/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/rails/rails/events",
+        "assignees_url": "https://api.github.com/repos/rails/rails/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/rails/rails/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/rails/rails/tags",
+        "blobs_url": "https://api.github.com/repos/rails/rails/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/rails/rails/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/rails/rails/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/rails/rails/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/rails/rails/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/rails/rails/languages",
+        "stargazers_url": "https://api.github.com/repos/rails/rails/stargazers",
+        "contributors_url": "https://api.github.com/repos/rails/rails/contributors",
+        "subscribers_url": "https://api.github.com/repos/rails/rails/subscribers",
+        "subscription_url": "https://api.github.com/repos/rails/rails/subscription",
+        "commits_url": "https://api.github.com/repos/rails/rails/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/rails/rails/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/rails/rails/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/rails/rails/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/rails/rails/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/rails/rails/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/rails/rails/merges",
+        "archive_url": "https://api.github.com/repos/rails/rails/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/rails/rails/downloads",
+        "issues_url": "https://api.github.com/repos/rails/rails/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/rails/rails/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/rails/rails/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/rails/rails/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/rails/rails/labels{/name}",
+        "releases_url": "https://api.github.com/repos/rails/rails/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/rails/rails/deployments",
+        "created_at": "2008-04-11T02:19:47Z",
+        "updated_at": "2026-09-12T07:15:44Z",
+        "pushed_at": "2026-09-11T23:20:55Z",
+        "git_url": "git://github.com/rails/rails.git",
+        "ssh_url": "git@github.com:rails/rails.git",
+        "clone_url": "https://github.com/rails/rails.git",
+        "svn_url": "https://github.com/rails/rails",
+        "homepage": "https://rubyonrails.org",
+        "size": 289047,
+        "stargazers_count": 58751,
+        "watchers_count": 58751,
+        "language": "Ruby",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 22384,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1638,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "activejob",
+          "activerecord",
+          "framework",
+          "html",
+          "mvc",
+          "rails",
+          "ruby"
+        ],
+        "visibility": "public",
+        "forks": 22384,
+        "open_issues": 1638,
+        "watchers": 58751,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/53403"
+      },
+      "html": {
+        "href": "https://github.com/rails/rails/pull/53403"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/rails/rails/issues/53403"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/rails/rails/issues/53403/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/53403/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/53403/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/rails/rails/statuses/c8877b24f02370a8a09df72c7aee88f3f4b5e884"
+      }
+    },
+    "author_association": "CONTRIBUTOR",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "flavorjones",
+      "id": 8207,
+      "node_id": "MDQ6VXNlcjgyMDc=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/flavorjones",
+      "html_url": "https://github.com/flavorjones",
+      "followers_url": "https://api.github.com/users/flavorjones/followers",
+      "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+      "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+      "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+      "repos_url": "https://api.github.com/users/flavorjones/repos",
+      "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 1,
+    "maintainer_can_modify": false,
+    "commits": 4,
+    "additions": 33,
+    "deletions": 2,
+    "changed_files": 3
+  },
+  "commits": [
+    {
+      "sha": "e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+      "node_id": "C_kwDOAQS7m9oAKGUxZDJmMjBhZWU1YTMzMDQ1NWQyYzZmOTcyOGQ0MjdhYjU5NjVlNTk",
+      "commit": {
+        "author": {
+          "name": "Tony Novak",
+          "email": "tnovak@cygnuseducation.com",
+          "date": "2024-10-21T15:57:23Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:29:55Z"
+        },
+        "message": "[Fix #53402] Include default headers in ActionController::Live responses\n\nDefault headers are added to ActionDispatch::Response in the `.create`\nmethod, not in `#initialize`. The `make_response!` method in\nActionController::Live calls `Live::Response.new` rather than\n`Live::Response.create`, which bypasses the merging of default headers.\n\nFixes 53402.",
+        "tree": {
+          "sha": "0af1ccbd368efa647c91944a3934dbf42a000010",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/0af1ccbd368efa647c91944a3934dbf42a000010"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgdkKZe3XEFE4WYNSvZb/P52qTWw\nC84/6BqtjHScpDfZsAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQHar0gAHhsAHUzKBkMg8apHe+6KIN02yvriNG4xDiU7g4NF5p04isqHIlZ3pTUioxC\nWqVq3JbQbTLEFa+7CwGAg=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 0af1ccbd368efa647c91944a3934dbf42a000010\nparent 4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f\nauthor Tony Novak <tnovak@cygnuseducation.com> 1729526243 -0400\ncommitter Mike Dalessio <mike.dalessio@gmail.com> 1789075795 -0400\n\n[Fix #53402] Include default headers in ActionController::Live responses\n\nDefault headers are added to ActionDispatch::Response in the `.create`\nmethod, not in `#initialize`. The `make_response!` method in\nActionController::Live calls `Live::Response.new` rather than\n`Live::Response.create`, which bypasses the merging of default headers.\n\nFixes 53402.\n",
+          "verified_at": "2026-09-10T21:58:11Z"
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+      "html_url": "https://github.com/rails/rails/commit/e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/e1d2f20aee5a330455d2c6f9728d427ab5965e59/comments",
+      "author": {
+        "login": "afn",
+        "id": 2779422,
+        "node_id": "MDQ6VXNlcjI3Nzk0MjI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2779422?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/afn",
+        "html_url": "https://github.com/afn",
+        "followers_url": "https://api.github.com/users/afn/followers",
+        "following_url": "https://api.github.com/users/afn/following{/other_user}",
+        "gists_url": "https://api.github.com/users/afn/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/afn/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/afn/subscriptions",
+        "organizations_url": "https://api.github.com/users/afn/orgs",
+        "repos_url": "https://api.github.com/users/afn/repos",
+        "events_url": "https://api.github.com/users/afn/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/afn/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "flavorjones",
+        "id": 8207,
+        "node_id": "MDQ6VXNlcjgyMDc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/flavorjones",
+        "html_url": "https://github.com/flavorjones",
+        "followers_url": "https://api.github.com/users/flavorjones/followers",
+        "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+        "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+        "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+        "repos_url": "https://api.github.com/users/flavorjones/repos",
+        "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f",
+          "url": "https://api.github.com/repos/rails/rails/commits/4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f",
+          "html_url": "https://github.com/rails/rails/commit/4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f"
+        }
+      ]
+    },
+    {
+      "sha": "17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+      "node_id": "C_kwDOAQS7m9oAKDE3ZTcyNmUzYjQzZjhiZTA5NmMyYzRkNzlkNmU3NTRiOWMxOGE3YmU",
+      "commit": {
+        "author": {
+          "name": "Tony Novak",
+          "email": "tnovak@cygnuseducation.com",
+          "date": "2024-10-24T20:14:27Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:29:55Z"
+        },
+        "message": "Address RuboCop warning",
+        "tree": {
+          "sha": "f46943666d84d8a3c7fc82fae4c60bc45eb6affe",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/f46943666d84d8a3c7fc82fae4c60bc45eb6affe"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgdkKZe3XEFE4WYNSvZb/P52qTWw\nC84/6BqtjHScpDfZsAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQDOKhP3jfeE/1/yhs7GZlsDkKtWFwbRaOpuBwZaG3++KqDHF3ZiH6AI2l5T5rxkApl\ngF8ctAkp/PNxqM8naC+gc=\n-----END SSH SIGNATURE-----",
+          "payload": "tree f46943666d84d8a3c7fc82fae4c60bc45eb6affe\nparent e1d2f20aee5a330455d2c6f9728d427ab5965e59\nauthor Tony Novak <tnovak@cygnuseducation.com> 1729800867 -0400\ncommitter Mike Dalessio <mike.dalessio@gmail.com> 1789075795 -0400\n\nAddress RuboCop warning\n",
+          "verified_at": "2026-09-10T21:58:11Z"
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+      "html_url": "https://github.com/rails/rails/commit/17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/17e726e3b43f8be096c2c4d79d6e754b9c18a7be/comments",
+      "author": {
+        "login": "afn",
+        "id": 2779422,
+        "node_id": "MDQ6VXNlcjI3Nzk0MjI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/2779422?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/afn",
+        "html_url": "https://github.com/afn",
+        "followers_url": "https://api.github.com/users/afn/followers",
+        "following_url": "https://api.github.com/users/afn/following{/other_user}",
+        "gists_url": "https://api.github.com/users/afn/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/afn/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/afn/subscriptions",
+        "organizations_url": "https://api.github.com/users/afn/orgs",
+        "repos_url": "https://api.github.com/users/afn/repos",
+        "events_url": "https://api.github.com/users/afn/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/afn/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "flavorjones",
+        "id": 8207,
+        "node_id": "MDQ6VXNlcjgyMDc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/flavorjones",
+        "html_url": "https://github.com/flavorjones",
+        "followers_url": "https://api.github.com/users/flavorjones/followers",
+        "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+        "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+        "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+        "repos_url": "https://api.github.com/users/flavorjones/repos",
+        "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+          "url": "https://api.github.com/repos/rails/rails/commits/e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+          "html_url": "https://github.com/rails/rails/commit/e1d2f20aee5a330455d2c6f9728d427ab5965e59"
+        }
+      ]
+    },
+    {
+      "sha": "e747615eefbb23c34c1ff93686e69c98498ae5ab",
+      "node_id": "C_kwDOAQS7m9oAKGU3NDc2MTVlZWZiYjIzYzM0YzFmZjkzNjg2ZTY5Yzk4NDk4YWU1YWI",
+      "commit": {
+        "author": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:30:08Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:30:30Z"
+        },
+        "message": "Force HTTP/1.1 in the Live default-headers test\n\nRack::Test defaults `SERVER_PROTOCOL` to HTTP/1.0, which sends\n`Live#make_response!` down the non-streaming branch, so the test passed\nwithout the fix. Set `SERVER_PROTOCOL` to HTTP/1.1 so the streaming\nbranch is exercised.",
+        "tree": {
+          "sha": "96beea41c1b7c878693d38fb3cf790b09f59584b",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/96beea41c1b7c878693d38fb3cf790b09f59584b"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/e747615eefbb23c34c1ff93686e69c98498ae5ab",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgdkKZe3XEFE4WYNSvZb/P52qTWw\nC84/6BqtjHScpDfZsAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQLmDPv0TxREOd6H65iE92Tuv/7PCSXmkiAJMRWwX3qFVYcNQBJUMj/8KnFyasCW2tP\nbZ4bV3CdqNcoEbH1f5cQ0=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 96beea41c1b7c878693d38fb3cf790b09f59584b\nparent 17e726e3b43f8be096c2c4d79d6e754b9c18a7be\nauthor Mike Dalessio <mike.dalessio@gmail.com> 1789075808 -0400\ncommitter Mike Dalessio <mike.dalessio@gmail.com> 1789075830 -0400\n\nForce HTTP/1.1 in the Live default-headers test\n\nRack::Test defaults `SERVER_PROTOCOL` to HTTP/1.0, which sends\n`Live#make_response!` down the non-streaming branch, so the test passed\nwithout the fix. Set `SERVER_PROTOCOL` to HTTP/1.1 so the streaming\nbranch is exercised.\n",
+          "verified_at": "2026-09-10T21:58:11Z"
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/e747615eefbb23c34c1ff93686e69c98498ae5ab",
+      "html_url": "https://github.com/rails/rails/commit/e747615eefbb23c34c1ff93686e69c98498ae5ab",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/e747615eefbb23c34c1ff93686e69c98498ae5ab/comments",
+      "author": {
+        "login": "flavorjones",
+        "id": 8207,
+        "node_id": "MDQ6VXNlcjgyMDc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/flavorjones",
+        "html_url": "https://github.com/flavorjones",
+        "followers_url": "https://api.github.com/users/flavorjones/followers",
+        "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+        "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+        "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+        "repos_url": "https://api.github.com/users/flavorjones/repos",
+        "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "flavorjones",
+        "id": 8207,
+        "node_id": "MDQ6VXNlcjgyMDc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/flavorjones",
+        "html_url": "https://github.com/flavorjones",
+        "followers_url": "https://api.github.com/users/flavorjones/followers",
+        "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+        "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+        "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+        "repos_url": "https://api.github.com/users/flavorjones/repos",
+        "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+          "url": "https://api.github.com/repos/rails/rails/commits/17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+          "html_url": "https://github.com/rails/rails/commit/17e726e3b43f8be096c2c4d79d6e754b9c18a7be"
+        }
+      ]
+    },
+    {
+      "sha": "c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "node_id": "C_kwDOAQS7m9oAKGM4ODc3YjI0ZjAyMzcwYThhMDlkZjcyYzdhZWU4OGYzZjRiNWU4ODQ",
+      "commit": {
+        "author": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:30:08Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:55:11Z"
+        },
+        "message": "Add CHANGELOG entry for Live default headers",
+        "tree": {
+          "sha": "5d2dca3e0c94b6a5ec58fe9e0f1025967f32c46b",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/5d2dca3e0c94b6a5ec58fe9e0f1025967f32c46b"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgdkKZe3XEFE4WYNSvZb/P52qTWw\nC84/6BqtjHScpDfZsAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQBISL4RZKsUD2GJI7YKqgoQ89elwsarvsW2BlFEbztE8vvxE6+KhJRPezGYWJVj8mr\nAnr+7YaCojTM1r3oPTlQ4=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 5d2dca3e0c94b6a5ec58fe9e0f1025967f32c46b\nparent e747615eefbb23c34c1ff93686e69c98498ae5ab\nauthor Mike Dalessio <mike.dalessio@gmail.com> 1789075808 -0400\ncommitter Mike Dalessio <mike.dalessio@gmail.com> 1789077311 -0400\n\nAdd CHANGELOG entry for Live default headers\n",
+          "verified_at": "2026-09-10T21:58:11Z"
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "html_url": "https://github.com/rails/rails/commit/c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/c8877b24f02370a8a09df72c7aee88f3f4b5e884/comments",
+      "author": {
+        "login": "flavorjones",
+        "id": 8207,
+        "node_id": "MDQ6VXNlcjgyMDc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/flavorjones",
+        "html_url": "https://github.com/flavorjones",
+        "followers_url": "https://api.github.com/users/flavorjones/followers",
+        "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+        "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+        "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+        "repos_url": "https://api.github.com/users/flavorjones/repos",
+        "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "flavorjones",
+        "id": 8207,
+        "node_id": "MDQ6VXNlcjgyMDc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8207?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/flavorjones",
+        "html_url": "https://github.com/flavorjones",
+        "followers_url": "https://api.github.com/users/flavorjones/followers",
+        "following_url": "https://api.github.com/users/flavorjones/following{/other_user}",
+        "gists_url": "https://api.github.com/users/flavorjones/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/flavorjones/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/flavorjones/subscriptions",
+        "organizations_url": "https://api.github.com/users/flavorjones/orgs",
+        "repos_url": "https://api.github.com/users/flavorjones/repos",
+        "events_url": "https://api.github.com/users/flavorjones/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/flavorjones/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "e747615eefbb23c34c1ff93686e69c98498ae5ab",
+          "url": "https://api.github.com/repos/rails/rails/commits/e747615eefbb23c34c1ff93686e69c98498ae5ab",
+          "html_url": "https://github.com/rails/rails/commit/e747615eefbb23c34c1ff93686e69c98498ae5ab"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "67204d8ac38fb597b7d449f9678738b3a09e541a",
+      "filename": "actionpack/CHANGELOG.md",
+      "status": "modified",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "blob_url": "https://github.com/rails/rails/blob/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2FCHANGELOG.md",
+      "raw_url": "https://github.com/rails/rails/raw/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2FCHANGELOG.md",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2FCHANGELOG.md?ref=c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "patch": "@@ -1,3 +1,14 @@\n+*   Include default headers in `ActionController::Live` responses.\n+\n+    Previously, responses from `ActionController::Live` controllers, including\n+    the Active Storage proxy controllers, were served over HTTP/1.1 without\n+    `config.action_dispatch.default_headers` such as `X-Content-Type-Options`\n+    and `X-Frame-Options`.\n+\n+    Fixes #53402.\n+\n+    *Tony Novak*\n+\n *   Check `PATCH` and `QUERY` in `assert_recognizes` and `assert_routing` with `method: :all`.\n \n     Both assertions only recognized the path for `GET`, `POST`, `PUT` and"
+    },
+    {
+      "sha": "65c45c66045afe2111140c4b73906549d1135b68",
+      "filename": "actionpack/lib/action_controller/metal/live.rb",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/rails/rails/blob/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2Flib%2Faction_controller%2Fmetal%2Flive.rb",
+      "raw_url": "https://github.com/rails/rails/raw/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2Flib%2Faction_controller%2Fmetal%2Flive.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Flib%2Faction_controller%2Fmetal%2Flive.rb?ref=c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "patch": "@@ -106,7 +106,7 @@ def make_response!(request)\n         if (request.get_header(\"SERVER_PROTOCOL\") || request.get_header(\"HTTP_VERSION\")) == \"HTTP/1.0\"\n           super\n         else\n-          Live::Response.new.tap do |res|\n+          Live::Response.create.tap do |res|\n             res.request = request\n           end\n         end"
+    },
+    {
+      "sha": "b8e534cdc2d62e9b39e6e1d790fb8f6c6b08cf10",
+      "filename": "actionpack/test/controller/integration_test.rb",
+      "status": "modified",
+      "additions": 21,
+      "deletions": 1,
+      "changes": 22,
+      "blob_url": "https://github.com/rails/rails/blob/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb?ref=c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "patch": "@@ -651,6 +651,18 @@ def test_respect_removal_of_default_headers_by_a_controller_action\n     assert_includes @response.headers, \"c\"\n   end\n \n+  def test_default_headers_for_live_request\n+    with_test_route_set do |controller|\n+      with_live_controller(controller) do\n+        with_default_headers \"a\" => \"1\", \"b\" => \"2\" do\n+          get \"/get\", env: { \"SERVER_PROTOCOL\" => \"HTTP/1.1\" }\n+        end\n+      end\n+    end\n+\n+    assert_includes @response.headers, \"a\"\n+  end\n+\n   def test_accept_not_overridden_when_xhr_true\n     with_test_route_set do\n       get \"/get\", headers: { \"Accept\" => \"application/json\" }, xhr: true\n@@ -723,8 +735,16 @@ def with_test_route_set\n \n         singleton_class.include(set.url_helpers)\n \n-        yield\n+        yield controller\n+      end\n+    end\n+\n+    def with_live_controller(controller)\n+      controller.class_eval do\n+        include ActionController::Live\n       end\n+\n+      yield\n     end\n end\n "
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+      "html_url": "https://github.com/rails/rails/commit/e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+      "commit": {
+        "author": {
+          "name": "Tony Novak",
+          "email": "tnovak@cygnuseducation.com",
+          "date": "2024-10-21T15:57:23Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:29:55Z"
+        },
+        "message": "[Fix #53402] Include default headers in ActionController::Live responses\n\nDefault headers are added to ActionDispatch::Response in the `.create`\nmethod, not in `#initialize`. The `make_response!` method in\nActionController::Live calls `Live::Response.new` rather than\n`Live::Response.create`, which bypasses the merging of default headers.\n\nFixes 53402."
+      },
+      "parents": [
+        {
+          "sha": "4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f",
+          "url": "https://api.github.com/repos/rails/rails/commits/4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f",
+          "html_url": "https://github.com/rails/rails/commit/4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f"
+        }
+      ],
+      "stats": {
+        "total": 24,
+        "additions": 22,
+        "deletions": 2
+      },
+      "files": [
+        {
+          "sha": "65c45c66045afe2111140c4b73906549d1135b68",
+          "filename": "actionpack/lib/action_controller/metal/live.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/rails/rails/blob/e1d2f20aee5a330455d2c6f9728d427ab5965e59/actionpack%2Flib%2Faction_controller%2Fmetal%2Flive.rb",
+          "raw_url": "https://github.com/rails/rails/raw/e1d2f20aee5a330455d2c6f9728d427ab5965e59/actionpack%2Flib%2Faction_controller%2Fmetal%2Flive.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Flib%2Faction_controller%2Fmetal%2Flive.rb?ref=e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+          "patch": "@@ -106,7 +106,7 @@ def make_response!(request)\n         if (request.get_header(\"SERVER_PROTOCOL\") || request.get_header(\"HTTP_VERSION\")) == \"HTTP/1.0\"\n           super\n         else\n-          Live::Response.new.tap do |res|\n+          Live::Response.create.tap do |res|\n             res.request = request\n           end\n         end"
+        },
+        {
+          "sha": "1c282faa00ee6d14766dacfb130effbba863b5ef",
+          "filename": "actionpack/test/controller/integration_test.rb",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 1,
+          "changes": 22,
+          "blob_url": "https://github.com/rails/rails/blob/e1d2f20aee5a330455d2c6f9728d427ab5965e59/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/e1d2f20aee5a330455d2c6f9728d427ab5965e59/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb?ref=e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+          "patch": "@@ -651,6 +651,18 @@ def test_respect_removal_of_default_headers_by_a_controller_action\n     assert_includes @response.headers, \"c\"\n   end\n \n+  def test_default_headers_for_live_request\n+    with_test_route_set do |controller|\n+      with_live_controller(controller) do\n+        with_default_headers \"a\" => \"1\", \"b\" => \"2\" do\n+          get \"/get\"\n+        end\n+      end\n+    end\n+\n+    assert_includes @response.headers, \"a\"\n+  end\n+\n   def test_accept_not_overridden_when_xhr_true\n     with_test_route_set do\n       get \"/get\", headers: { \"Accept\" => \"application/json\" }, xhr: true\n@@ -723,8 +735,16 @@ def with_test_route_set\n \n         singleton_class.include(set.url_helpers)\n \n-        yield\n+        yield controller\n+      end\n+    end\n+\n+    def with_live_controller controller\n+      controller.class_eval do\n+        include ActionController::Live\n       end\n+\n+      yield\n     end\n end\n "
+        }
+      ]
+    },
+    {
+      "sha": "17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+      "html_url": "https://github.com/rails/rails/commit/17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+      "commit": {
+        "author": {
+          "name": "Tony Novak",
+          "email": "tnovak@cygnuseducation.com",
+          "date": "2024-10-24T20:14:27Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:29:55Z"
+        },
+        "message": "Address RuboCop warning"
+      },
+      "parents": [
+        {
+          "sha": "e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+          "url": "https://api.github.com/repos/rails/rails/commits/e1d2f20aee5a330455d2c6f9728d427ab5965e59",
+          "html_url": "https://github.com/rails/rails/commit/e1d2f20aee5a330455d2c6f9728d427ab5965e59"
+        }
+      ],
+      "stats": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "56b4f2f1e282fa322e75d3bebf58ab1bf434d174",
+          "filename": "actionpack/test/controller/integration_test.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/rails/rails/blob/17e726e3b43f8be096c2c4d79d6e754b9c18a7be/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/17e726e3b43f8be096c2c4d79d6e754b9c18a7be/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb?ref=17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+          "patch": "@@ -739,7 +739,7 @@ def with_test_route_set\n       end\n     end\n \n-    def with_live_controller controller\n+    def with_live_controller(controller)\n       controller.class_eval do\n         include ActionController::Live\n       end"
+        }
+      ]
+    },
+    {
+      "sha": "e747615eefbb23c34c1ff93686e69c98498ae5ab",
+      "html_url": "https://github.com/rails/rails/commit/e747615eefbb23c34c1ff93686e69c98498ae5ab",
+      "commit": {
+        "author": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:30:08Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:30:30Z"
+        },
+        "message": "Force HTTP/1.1 in the Live default-headers test\n\nRack::Test defaults `SERVER_PROTOCOL` to HTTP/1.0, which sends\n`Live#make_response!` down the non-streaming branch, so the test passed\nwithout the fix. Set `SERVER_PROTOCOL` to HTTP/1.1 so the streaming\nbranch is exercised."
+      },
+      "parents": [
+        {
+          "sha": "17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+          "url": "https://api.github.com/repos/rails/rails/commits/17e726e3b43f8be096c2c4d79d6e754b9c18a7be",
+          "html_url": "https://github.com/rails/rails/commit/17e726e3b43f8be096c2c4d79d6e754b9c18a7be"
+        }
+      ],
+      "stats": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "b8e534cdc2d62e9b39e6e1d790fb8f6c6b08cf10",
+          "filename": "actionpack/test/controller/integration_test.rb",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/rails/rails/blob/e747615eefbb23c34c1ff93686e69c98498ae5ab/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/e747615eefbb23c34c1ff93686e69c98498ae5ab/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Ftest%2Fcontroller%2Fintegration_test.rb?ref=e747615eefbb23c34c1ff93686e69c98498ae5ab",
+          "patch": "@@ -655,7 +655,7 @@ def test_default_headers_for_live_request\n     with_test_route_set do |controller|\n       with_live_controller(controller) do\n         with_default_headers \"a\" => \"1\", \"b\" => \"2\" do\n-          get \"/get\"\n+          get \"/get\", env: { \"SERVER_PROTOCOL\" => \"HTTP/1.1\" }\n         end\n       end\n     end"
+        }
+      ]
+    },
+    {
+      "sha": "c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "html_url": "https://github.com/rails/rails/commit/c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+      "commit": {
+        "author": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:30:08Z"
+        },
+        "committer": {
+          "name": "Mike Dalessio",
+          "email": "mike.dalessio@gmail.com",
+          "date": "2026-09-10T21:55:11Z"
+        },
+        "message": "Add CHANGELOG entry for Live default headers"
+      },
+      "parents": [
+        {
+          "sha": "e747615eefbb23c34c1ff93686e69c98498ae5ab",
+          "url": "https://api.github.com/repos/rails/rails/commits/e747615eefbb23c34c1ff93686e69c98498ae5ab",
+          "html_url": "https://github.com/rails/rails/commit/e747615eefbb23c34c1ff93686e69c98498ae5ab"
+        }
+      ],
+      "stats": {
+        "total": 11,
+        "additions": 11,
+        "deletions": 0
+      },
+      "files": [
+        {
+          "sha": "67204d8ac38fb597b7d449f9678738b3a09e541a",
+          "filename": "actionpack/CHANGELOG.md",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 0,
+          "changes": 11,
+          "blob_url": "https://github.com/rails/rails/blob/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2FCHANGELOG.md",
+          "raw_url": "https://github.com/rails/rails/raw/c8877b24f02370a8a09df72c7aee88f3f4b5e884/actionpack%2FCHANGELOG.md",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2FCHANGELOG.md?ref=c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+          "patch": "@@ -1,3 +1,14 @@\n+*   Include default headers in `ActionController::Live` responses.\n+\n+    Previously, responses from `ActionController::Live` controllers, including\n+    the Active Storage proxy controllers, were served over HTTP/1.1 without\n+    `config.action_dispatch.default_headers` such as `X-Content-Type-Options`\n+    and `X-Frame-Options`.\n+\n+    Fixes #53402.\n+\n+    *Tony Novak*\n+\n *   Check `PATCH` and `QUERY` in `assert_recognizes` and `assert_routing` with `method: :all`.\n \n     Both assertions only recognized the path for `GET`, `POST`, `PUT` and"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:58:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/34535013705/job/103064481356",
+        "name": "Check Markdown APIs in new files",
+        "started_at": "2026-09-10T21:58:19Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T22:00:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/34535013604/job/103064481165",
+        "name": "rails-new-docker",
+        "started_at": "2026-09-10T21:58:19Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:58:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/34535011558/job/103064475558",
+        "name": "labeler",
+        "started_at": "2026-09-10T21:58:18Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 3
+  },
+  "combined_status": {
+    "sha": "c8877b24f02370a8a09df72c7aee88f3f4b5e884",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "buildkite/docs-preview",
+        "created_at": "2026-09-10T22:03:30Z",
+        "description": "Build #22871 passed (4 minutes, 27 seconds)",
+        "state": "success",
+        "target_url": "https://buildkite.com/rails/docs-preview/builds/22871",
+        "updated_at": "2026-09-10T22:03:30Z"
+      },
+      {
+        "context": "buildkite/rails",
+        "created_at": "2026-09-10T22:06:47Z",
+        "description": "Build #133428 passed (8 minutes, 32 seconds)",
+        "state": "success",
+        "target_url": "https://buildkite.com/rails/rails/builds/133428",
+        "updated_at": "2026-09-10T22:06:47Z"
+      }
+    ],
+    "total_count": 2
+  }
+}

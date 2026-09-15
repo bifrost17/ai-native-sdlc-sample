@@ -1,0 +1,31 @@
+{
+  "reviewed_source_sha256": "f68443b3c5e6b661c30ba5d892bf37ee1a896e025bf25f98fcaba4b3f36cd65a",
+  "final_source_sha256": "31fb2af8a1963ff05174249a6f504987fc453ca44706ee5c6080705d9cb99c87",
+  "only_post_review_source_change": "remove one extra blank line at EOF in both new traceability.md files; no semantic change",
+  "git_diff_cached_check": "exit 0",
+  "installation_delta": [
+    {
+      "edition": "tdd-first",
+      "runtime": "opencode",
+      "file": "docs/sdlc-authoring/traceability.md",
+      "before": "b20f6e3d65903db5574e75355c977e7a55db1cef004b00da16e6c4a70c59af4f",
+      "after": "2d8f3493dc90199b7ccabd002a5ca862fce33e36b3510ab77707a527d8ec7ab6"
+    },
+    {
+      "edition": "tdd-optional",
+      "runtime": "opencode",
+      "file": "docs/sdlc-authoring/traceability.md",
+      "before": "b20f6e3d65903db5574e75355c977e7a55db1cef004b00da16e6c4a70c59af4f",
+      "after": "2d8f3493dc90199b7ccabd002a5ca862fce33e36b3510ab77707a527d8ec7ab6"
+    },
+    {
+      "edition": "tdd-optional",
+      "runtime": "codex",
+      "file": "docs/sdlc-authoring/traceability.md",
+      "before": "b20f6e3d65903db5574e75355c977e7a55db1cef004b00da16e6c4a70c59af4f",
+      "after": "2d8f3493dc90199b7ccabd002a5ca862fce33e36b3510ab77707a527d8ec7ab6"
+    }
+  ],
+  "other_installed_files": "unchanged versus installation-manifest.json",
+  "probe_revision": "bc80ef8 source with the historical extra blank line is preserved; behavior conclusions unaffected"
+}

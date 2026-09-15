@@ -1,0 +1,25 @@
+$ compare phase-one core manifest entries to final core manifest
+old_maker=88b367b
+old_adopter=f89a92a
+new_maker=4e766f8
+new_adopter=787af77
+same_path_set=true
+path_count=23
+changed_entries=5
+maker	docs/ADOPTING.md	a607decad3505ebc1574fda73ea7950b522e4e81a7d70c5f598222b03636c515 -> e1f4dbd3fdf6b67f88b28696c54b0c6e603d3dda6a50c3a6434b591814b513e8
+maker	docs/GIT-WORKFLOW.md	d423abe5fd7a57ddc5881820b27ff878f8118a19fe3eaa970d6dfd8179f4fb94 -> adac8630ac4a2f83448c4d1422f14a20c9820233a8bd6f1c1f9bdd28e3fc9779
+maker	docs/RELEASE-CONTROL.md	72fe60259bf12ccd98a9b41b1e75ccb9d893076347ab9dfa769bd61ae9f39a06 -> da97242c7f7140b8c1090c67b0fe5f0ba43eb58063210d82280c27e067044ff8
+adopter	docs/GIT-WORKFLOW.md	d423abe5fd7a57ddc5881820b27ff878f8118a19fe3eaa970d6dfd8179f4fb94 -> adac8630ac4a2f83448c4d1422f14a20c9820233a8bd6f1c1f9bdd28e3fc9779
+adopter	docs/RELEASE-CONTROL.md	72fe60259bf12ccd98a9b41b1e75ccb9d893076347ab9dfa769bd61ae9f39a06 -> da97242c7f7140b8c1090c67b0fe5f0ba43eb58063210d82280c27e067044ff8
+unchanged_entries=18
+python_exit_code=0
+$ git diff --name-status 88b367b..4e766f8
+M	docs/ADOPTING.md
+M	docs/GIT-WORKFLOW.md
+M	docs/RELEASE-CONTROL.md
+maker_diff_exit_code=0
+$ git -C adopter diff --name-status f89a92a..787af77
+M	docs/GIT-WORKFLOW.md
+M	docs/RELEASE-CONTROL.md
+adopter_diff_exit_code=0
+exit_code=0

@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-13T07:17:09.266Z",
+  "repository": "/Users/jake/Projects/ai-native-sdlc-sample",
+  "branch": "codex/0034-document-handoff",
+  "base_commit": "fc4c730066fb7100aff4b94ee58efa8784090bd8",
+  "candidate_head_at_install": "fc4c730066fb7100aff4b94ee58efa8784090bd8",
+  "candidate_content_commit_after_review": "f89def09c2a00514b31a09b8888e74c3d95e41d7",
+  "scope": {
+    "source_edits": "Only three authorized sdlc-feedback.patch hunk-header alignments; transformed bodies unchanged",
+    "actual_model_runs": false,
+    "global_installations": false,
+    "review_artifacts_written": true,
+    "review_fix": "three sdlc-feedback.patch hunk headers only; no transformed body change"
+  },
+  "candidates": {
+    "tdd_first": "0.1.9",
+    "tdd_optional": "0.1.5"
+  },
+  "version_map": [
+    {
+      "path": "tdd-first/org-skills/.claude-plugin/plugin.json",
+      "value": "0.1.9"
+    },
+    {
+      "path": "tdd-first/.claude-plugin/marketplace.json",
+      "value": "0.1.9"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json#intent-sdlc-skills",
+      "value": "0.1.9"
+    },
+    {
+      "path": "tdd-first/org-skills/README.md",
+      "value": "0.1.9"
+    },
+    {
+      "path": "tdd-first/org-skills/opencode/README.md",
+      "value": "0.1.9"
+    },
+    {
+      "path": "tdd-first/org-skills/opencode/team-resources/INDEX.md",
+      "value": "0.1.9"
+    },
+    {
+      "path": "tdd-optional/org-skills/.claude-plugin/plugin.json",
+      "value": "0.1.5"
+    },
+    {
+      "path": "tdd-optional/.claude-plugin/marketplace.json",
+      "value": "0.1.5"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json#intent-sdlc-skills-optional",
+      "value": "0.1.5"
+    },
+    {
+      "path": "tdd-optional/org-skills/README.md",
+      "value": "0.1.5"
+    },
+    {
+      "path": "tdd-optional/org-skills/codex/README.md",
+      "value": "0.1.5"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/README.md",
+      "value": "0.1.5"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/team-resources/INDEX.md",
+      "value": "0.1.5"
+    }
+  ],
+  "commands": [
+    {
+      "command": "claude plugin validate --strict tdd-first/org-skills",
+      "exit_code": 0,
+      "result": "Validation passed"
+    },
+    {
+      "command": "claude plugin validate --strict tdd-optional/org-skills",
+      "exit_code": 0,
+      "result": "Validation passed"
+    },
+    {
+      "command": "claude plugin validate --strict tdd-first",
+      "exit_code": 0,
+      "result": "Validation passed"
+    },
+    {
+      "command": "claude plugin validate --strict tdd-optional",
+      "exit_code": 0,
+      "result": "Validation passed"
+    },
+    {
+      "command": "claude plugin validate --strict .",
+      "exit_code": 0,
+      "result": "Validation passed"
+    },
+    {
+      "command": "mkdir optional-codex-r02; cp -R tdd-optional/project/. optional-codex-r02/; execute tdd-optional/org-skills/codex/README.md installation block with SDLC_PACKAGE and CODEX_TARGET set to absolute paths",
+      "exit_code": 0,
+      "result": "16 skill dirs; 3 patches applied; no fuzz/offset text; .orig=0; .rej=0; expected transforms pass"
+    },
+    {
+      "command": "mkdir tdd-first-opencode-r02; cp -R tdd-first/project/. target/; execute both OpenCode README installation blocks with absolute OC_PACKAGE and OC_TARGET",
+      "exit_code": 0,
+      "result": "11 native skills; 2 team resources; 3 authoring skills; 3 patches applied; no fuzz/offset text; .orig=0; .rej=0; expected transforms pass"
+    },
+    {
+      "command": "mkdir tdd-optional-opencode-r02; cp -R tdd-optional/project/. target/; execute both OpenCode README installation blocks with absolute OC_PACKAGE and OC_TARGET",
+      "exit_code": 0,
+      "result": "11 native skills; 2 team resources; 3 authoring skills; 3 patches applied; no fuzz/offset text; .orig=0; .rej=0; expected transforms pass"
+    },
+    {
+      "command": "git diff --check fc4c730",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    },
+    {
+      "command": "compare unique 7-40 hex references in changed files between fc4c730 and worktree",
+      "exit_code": 0,
+      "result": "historical_refs_removed_count=0"
+    }
+  ],
+  "initial_patch_regression": {
+    "observed_targets": [
+      "optional-codex",
+      "tdd-first-opencode",
+      "tdd-optional-opencode"
+    ],
+    "result": "all exit 0 with no rejected hunk, but Apple patch 2.0 left sdlc-feedback/SKILL.md.orig because hunk starts were five lines stale",
+    "resolution": "updated only hunk header starts by +5 and reran in clean r02 copies",
+    "r02_orig_count": 0,
+    "r02_rej_count": 0
+  },
+  "patch_hashes": [
+    {
+      "path": "tdd-optional/org-skills/codex/patches/explicit-only.patch",
+      "sha256": "91db87dc7334f95b8df378fdcd8e2e2780d2e64759fb5a847a370cf27f7f931d"
+    },
+    {
+      "path": "tdd-optional/org-skills/codex/patches/sdlc-feedback.patch",
+      "sha256": "f5d837e1514c6febffcdd40c6c6377a2cf19fb82ee78ccae5d74804ad41fe86f"
+    },
+    {
+      "path": "tdd-optional/org-skills/codex/patches/ux-copy.patch",
+      "sha256": "10ce76a40b7c921388f631cfda0bee37ac849f92b0653a69fba9b939ffc4e090"
+    },
+    {
+      "path": "tdd-first/org-skills/opencode/patches/authoring-native.patch",
+      "sha256": "a263f335211b3fba40e23d95ed6206f5f51cde1a0c988c014231adfc8e56b713"
+    },
+    {
+      "path": "tdd-first/org-skills/opencode/patches/sdlc-feedback.patch",
+      "sha256": "3875ff30180c638daaa2b49ee1c557fa9ce18ed0e5eb121336f1ca3ba0fffcc6"
+    },
+    {
+      "path": "tdd-first/org-skills/opencode/patches/ux-copy.patch",
+      "sha256": "ad3fdc5fb0e9470a7fa1437a336fffcbc4aef39da79fc664ae147ec23b2887c4"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/patches/authoring-native.patch",
+      "sha256": "a263f335211b3fba40e23d95ed6206f5f51cde1a0c988c014231adfc8e56b713"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/patches/sdlc-feedback.patch",
+      "sha256": "f8094fb9a278e4ebd22600f94d38aab5d1b1b4e27cdf07aeb105ffad5ecd4f74"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/patches/ux-copy.patch",
+      "sha256": "4b5e57fbec314bac885a56fecececc6545e5eee42a73116979f02f2c5d827ecc"
+    }
+  ],
+  "opencode_patched_target_hashes": [
+    {
+      "installation": "codex-optional",
+      "path": ".agents/skills/sdlc-feedback/SKILL.md",
+      "sha256": "d697383d4b47c7dc4ebcf613e960cb535e0d5e3cf315b525ef5e4847a7dff7a3"
+    },
+    {
+      "installation": "codex-optional",
+      "path": ".agents/skills/ux-copy/SKILL.md",
+      "sha256": "07efba9e1a214436c037ddbf4e1eb3075a253963de0f31796e104a970f52c639"
+    },
+    {
+      "installation": "opencode-first",
+      "path": ".opencode/skills/sdlc-feedback/SKILL.md",
+      "sha256": "f087328607b510279fb8a7fe917ca0d076c387f92c8f1feec3626025884bd977"
+    },
+    {
+      "installation": "opencode-first",
+      "path": ".opencode/skills/ux-copy/SKILL.md",
+      "sha256": "2c59187e1bc21cf024d8b62dfc3576c9ccf1ff3853e10f30fbc359ffab4cf830"
+    },
+    {
+      "installation": "opencode-first",
+      "path": ".claude/skills/capture-intent/SKILL.md",
+      "sha256": "f6c2abf92696e16c745913b6fcc23bdbeb5da8281616b8759c193f6a81499ecc"
+    },
+    {
+      "installation": "opencode-first",
+      "path": ".claude/skills/design-spec/SKILL.md",
+      "sha256": "4595b865b64e1ebcee7e88b8f41a1d49d823b86b1f3ceff2238e074094837bf9"
+    },
+    {
+      "installation": "opencode-first",
+      "path": ".claude/skills/plan/SKILL.md",
+      "sha256": "f979f4ba5c9001fc12963df06c12ff05dea899d6da645b1958747f38afa4dedf"
+    },
+    {
+      "installation": "opencode-optional",
+      "path": ".opencode/skills/sdlc-feedback/SKILL.md",
+      "sha256": "cda6c36b9fe622a6ebc92f13859ba1a02360b9869df13156b3f91ca225b11e78"
+    },
+    {
+      "installation": "opencode-optional",
+      "path": ".opencode/skills/ux-copy/SKILL.md",
+      "sha256": "2c59187e1bc21cf024d8b62dfc3576c9ccf1ff3853e10f30fbc359ffab4cf830"
+    },
+    {
+      "installation": "opencode-optional",
+      "path": ".claude/skills/capture-intent/SKILL.md",
+      "sha256": "f6c2abf92696e16c745913b6fcc23bdbeb5da8281616b8759c193f6a81499ecc"
+    },
+    {
+      "installation": "opencode-optional",
+      "path": ".claude/skills/design-spec/SKILL.md",
+      "sha256": "f055b2aa6abfaa3d92ba19fdebe6da8d2f1e1db5b505da5a6383b9473bc38475"
+    },
+    {
+      "installation": "opencode-optional",
+      "path": ".claude/skills/plan/SKILL.md",
+      "sha256": "7622dce72efda5798d0950378fa56a1412ca9c6d99f41441e729eed9f30a3959"
+    }
+  ],
+  "codex_optional_install": {
+    "target": "/Users/jake/Projects/ai-native-sdlc-experiment-private/0034-document-handoff/validation-install/optional-codex-r02",
+    "skill_directory_count": 16,
+    "source_file_count": 59,
+    "installed_only_file_count": 4,
+    "orig_count": 0,
+    "rej_count": 0,
+    "expected_transforms": "pass",
+    "file_manifest": [
+      {
+        "skill": "accessibility",
+        "source": "tdd-optional/org-skills/skills/accessibility/LICENSE-web-quality-skills.md",
+        "installed": ".agents/skills/accessibility/LICENSE-web-quality-skills.md",
+        "source_sha256": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+        "installed_sha256": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+        "relation": "identical"
+      },
+      {
+        "skill": "accessibility",
+        "source": "tdd-optional/org-skills/skills/accessibility/PROVENANCE.md",
+        "installed": ".agents/skills/accessibility/PROVENANCE.md",
+        "source_sha256": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+        "installed_sha256": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+        "relation": "identical"
+      },
+      {
+        "skill": "accessibility",
+        "source": "tdd-optional/org-skills/skills/accessibility/SKILL.md",
+        "installed": ".agents/skills/accessibility/SKILL.md",
+        "source_sha256": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+        "installed_sha256": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+        "relation": "identical"
+      },
+      {
+        "skill": "accessibility",
+        "source": "tdd-optional/org-skills/skills/accessibility/references/A11Y-PATTERNS.md",
+        "installed": ".agents/skills/accessibility/references/A11Y-PATTERNS.md",
+        "source_sha256": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "installed_sha256": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "relation": "identical"
+      },
+      {
+        "skill": "accessibility",
+        "source": "tdd-optional/org-skills/skills/accessibility/references/WCAG.md",
+        "installed": ".agents/skills/accessibility/references/WCAG.md",
+        "source_sha256": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361",
+        "installed_sha256": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361",
+        "relation": "identical"
+      },
+      {
+        "skill": "brand",
+        "source": "tdd-optional/org-skills/skills/brand/PROVENANCE.md",
+        "installed": ".agents/skills/brand/PROVENANCE.md",
+        "source_sha256": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+        "installed_sha256": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+        "relation": "identical"
+      },
+      {
+        "skill": "brand",
+        "source": "tdd-optional/org-skills/skills/brand/SKILL.md",
+        "installed": ".agents/skills/brand/SKILL.md",
+        "source_sha256": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1",
+        "installed_sha256": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1",
+        "relation": "identical"
+      },
+      {
+        "skill": "data-compliance",
+        "source": "tdd-optional/org-skills/skills/data-compliance/PROVENANCE.md",
+        "installed": ".agents/skills/data-compliance/PROVENANCE.md",
+        "source_sha256": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+        "installed_sha256": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+        "relation": "identical"
+      },
+      {
+        "skill": "data-compliance",
+        "source": "tdd-optional/org-skills/skills/data-compliance/SKILL.md",
+        "installed": ".agents/skills/data-compliance/SKILL.md",
+        "source_sha256": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d",
+        "installed_sha256": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d",
+        "relation": "identical"
+      },
+      {
+        "skill": "grilling",
+        "source": "tdd-optional/org-skills/skills/grilling/PROVENANCE.md",
+        "installed": ".agents/skills/grilling/PROVENANCE.md",
+        "source_sha256": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+        "installed_sha256": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+        "relation": "identical"
+      },
+      {
+        "skill": "grilling",
+        "source": "tdd-optional/org-skills/skills/grilling/SKILL.md",
+        "installed": ".agents/skills/grilling/SKILL.md",
+        "source_sha256": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2",
+        "installed_sha256": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2",
+        "relation": "identical"
+      },
+      {
+        "skill": "pr-loop",
+        "source": "tdd-optional/org-skills/skills/pr-loop/PROVENANCE.md",
+        "installed": ".agents/skills/pr-loop/PROVENANCE.md",
+        "source_sha256": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+        "installed_sha256": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+        "relation": "identical"
+      },
+      {
+        "skill": "pr-loop",
+        "source": "tdd-optional/org-skills/skills/pr-loop/SKILL.md",
+        "installed": ".agents/skills/pr-loop/SKILL.md",
+        "source_sha256": "ad53d0bd05c2f5058e5445c3da8fc81c44ffb44425e909437fb4ddbdce01a41d",
+        "installed_sha256": "ad53d0bd05c2f5058e5445c3da8fc81c44ffb44425e909437fb4ddbdce01a41d",
+        "relation": "identical"
+      },
+      {
+        "skill": "sdlc-feedback",
+        "source": "tdd-optional/org-skills/skills/sdlc-feedback/PROVENANCE.md",
+        "installed": ".agents/skills/sdlc-feedback/PROVENANCE.md",
+        "source_sha256": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+        "installed_sha256": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+        "relation": "identical"
+      },
+      {
+        "skill": "sdlc-feedback",
+        "source": "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md",
+        "installed": ".agents/skills/sdlc-feedback/SKILL.md",
+        "source_sha256": "595e10b08f37fdff75495a211cbc8b2bd54ea2143563ee0eab506859b5a92981",
+        "installed_sha256": "d697383d4b47c7dc4ebcf613e960cb535e0d5e3cf315b525ef5e4847a7dff7a3",
+        "relation": "patched"
+      },
+      {
+        "skill": "secrets-scan",
+        "source": "tdd-optional/org-skills/skills/secrets-scan/LICENSE-OWASP.md",
+        "installed": ".agents/skills/secrets-scan/LICENSE-OWASP.md",
+        "source_sha256": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+        "installed_sha256": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+        "relation": "identical"
+      },
+      {
+        "skill": "secrets-scan",
+        "source": "tdd-optional/org-skills/skills/secrets-scan/PROVENANCE.md",
+        "installed": ".agents/skills/secrets-scan/PROVENANCE.md",
+        "source_sha256": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+        "installed_sha256": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+        "relation": "identical"
+      },
+      {
+        "skill": "secrets-scan",
+        "source": "tdd-optional/org-skills/skills/secrets-scan/SKILL.md",
+        "installed": ".agents/skills/secrets-scan/SKILL.md",
+        "source_sha256": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+        "installed_sha256": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+        "relation": "identical"
+      },
+      {
+        "skill": "secrets-scan",
+        "source": "tdd-optional/org-skills/skills/secrets-scan/plays/secrets-scan.md",
+        "installed": ".agents/skills/secrets-scan/plays/secrets-scan.md",
+        "source_sha256": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+        "installed_sha256": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+        "relation": "identical"
+      },
+      {
+        "skill": "secrets-scan",
+        "source": "tdd-optional/org-skills/skills/secrets-scan/templates/finding.md",
+        "installed": ".agents/skills/secrets-scan/templates/finding.md",
+        "source_sha256": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3",
+        "installed_sha256": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3",
+        "relation": "identical"
+      },
+      {
+        "skill": "secure-api-review",
+        "source": "tdd-optional/org-skills/skills/secure-api-review/PROVENANCE.md",
+        "installed": ".agents/skills/secure-api-review/PROVENANCE.md",
+        "source_sha256": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+        "installed_sha256": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+        "relation": "identical"
+      },
+      {
+        "skill": "secure-api-review",
+        "source": "tdd-optional/org-skills/skills/secure-api-review/SKILL.md",
+        "installed": ".agents/skills/secure-api-review/SKILL.md",
+        "source_sha256": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143",
+        "installed_sha256": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143",
+        "relation": "identical"
+      },
+      {
+        "skill": "spec-policy-pass",
+        "source": "tdd-optional/org-skills/skills/spec-policy-pass/PROVENANCE.md",
+        "installed": ".agents/skills/spec-policy-pass/PROVENANCE.md",
+        "source_sha256": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+        "installed_sha256": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+        "relation": "identical"
+      },
+      {
+        "skill": "spec-policy-pass",
+        "source": "tdd-optional/org-skills/skills/spec-policy-pass/SKILL.md",
+        "installed": ".agents/skills/spec-policy-pass/SKILL.md",
+        "source_sha256": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502",
+        "installed_sha256": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502",
+        "relation": "identical"
+      },
+      {
+        "skill": "stop-slop-ko",
+        "source": "tdd-optional/org-skills/skills/stop-slop-ko/PROVENANCE.md",
+        "installed": ".agents/skills/stop-slop-ko/PROVENANCE.md",
+        "source_sha256": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+        "installed_sha256": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+        "relation": "identical"
+      },
+      {
+        "skill": "stop-slop-ko",
+        "source": "tdd-optional/org-skills/skills/stop-slop-ko/SKILL.md",
+        "installed": ".agents/skills/stop-slop-ko/SKILL.md",
+        "source_sha256": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444",
+        "installed_sha256": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444",
+        "relation": "identical"
+      },
+      {
+        "skill": "tdd",
+        "source": "tdd-optional/org-skills/skills/tdd/PROVENANCE.md",
+        "installed": ".agents/skills/tdd/PROVENANCE.md",
+        "source_sha256": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+        "installed_sha256": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+        "relation": "identical"
+      },
+      {
+        "skill": "tdd",
+        "source": "tdd-optional/org-skills/skills/tdd/SKILL.md",
+        "installed": ".agents/skills/tdd/SKILL.md",
+        "source_sha256": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78",
+        "installed_sha256": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78",
+        "relation": "identical"
+      },
+      {
+        "skill": "to-questionnaire",
+        "source": "tdd-optional/org-skills/skills/to-questionnaire/PROVENANCE.md",
+        "installed": ".agents/skills/to-questionnaire/PROVENANCE.md",
+        "source_sha256": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+        "installed_sha256": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+        "relation": "identical"
+      },
+      {
+        "skill": "to-questionnaire",
+        "source": "tdd-optional/org-skills/skills/to-questionnaire/SKILL.md",
+        "installed": ".agents/skills/to-questionnaire/SKILL.md",
+        "source_sha256": "b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b",
+        "installed_sha256": "f6f8227600d4ccf60ac4f39a27baea1d5a73bbcca3864e11a9e3b3c0ef3e077f",
+        "relation": "patched"
+      },
+      {
+        "skill": "ux-copy",
+        "source": "tdd-optional/org-skills/skills/ux-copy/CONNECTORS.md",
+        "installed": ".agents/skills/ux-copy/CONNECTORS.md",
+        "source_sha256": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+        "installed_sha256": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+        "relation": "identical"
+      },
+      {
+        "skill": "ux-copy",
+        "source": "tdd-optional/org-skills/skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md",
+        "installed": ".agents/skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md",
+        "source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "installed_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "relation": "identical"
+      },
+      {
+        "skill": "ux-copy",
+        "source": "tdd-optional/org-skills/skills/ux-copy/PROVENANCE.md",
+        "installed": ".agents/skills/ux-copy/PROVENANCE.md",
+        "source_sha256": "3e9057bf07aecd1bd1c288d10fff89a2e0b71304d1bdcabeacd1ae6c8fbc5225",
+        "installed_sha256": "3e9057bf07aecd1bd1c288d10fff89a2e0b71304d1bdcabeacd1ae6c8fbc5225",
+        "relation": "identical"
+      },
+      {
+        "skill": "ux-copy",
+        "source": "tdd-optional/org-skills/skills/ux-copy/SKILL.md",
+        "installed": ".agents/skills/ux-copy/SKILL.md",
+        "source_sha256": "b38daf15530fd3dc7ac4e8646cad392bb3122eba132665c1e0aa2d00b802ea1f",
+        "installed_sha256": "07efba9e1a214436c037ddbf4e1eb3075a253963de0f31796e104a970f52c639",
+        "relation": "patched"
+      },
+      {
+        "skill": "capture-intent",
+        "source": "tdd-optional/project/examples/skills/capture-intent/SKILL.md",
+        "installed": ".agents/skills/capture-intent/SKILL.md",
+        "source_sha256": "8841a9c6d532adfb98945f5b739a864f9819139e620400b3338d5a6e3baeecab",
+        "installed_sha256": "f6c2abf92696e16c745913b6fcc23bdbeb5da8281616b8759c193f6a81499ecc",
+        "relation": "patched"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+        "installed": ".agents/skills/design-spec/SKILL.md",
+        "source_sha256": "9016009e1acf4e3aa81f2c211be3bfa08f6f61d8764862ba6632a0eccebad974",
+        "installed_sha256": "f055b2aa6abfaa3d92ba19fdebe6da8d2f1e1db5b505da5a6383b9473bc38475",
+        "relation": "patched"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/README.md",
+        "installed": ".agents/skills/design-spec/examples/README.md",
+        "source_sha256": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+        "installed_sha256": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/bug/context.md",
+        "installed": ".agents/skills/design-spec/examples/bug/context.md",
+        "source_sha256": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+        "installed_sha256": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/bug/intent.md",
+        "installed": ".agents/skills/design-spec/examples/bug/intent.md",
+        "source_sha256": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+        "installed_sha256": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/bug/spec.md",
+        "installed": ".agents/skills/design-spec/examples/bug/spec.md",
+        "source_sha256": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+        "installed_sha256": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/feature/context.md",
+        "installed": ".agents/skills/design-spec/examples/feature/context.md",
+        "source_sha256": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+        "installed_sha256": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/feature/intent.md",
+        "installed": ".agents/skills/design-spec/examples/feature/intent.md",
+        "source_sha256": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+        "installed_sha256": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/feature/spec.md",
+        "installed": ".agents/skills/design-spec/examples/feature/spec.md",
+        "source_sha256": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+        "installed_sha256": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/migration/context.md",
+        "installed": ".agents/skills/design-spec/examples/migration/context.md",
+        "source_sha256": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+        "installed_sha256": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/migration/intent.md",
+        "installed": ".agents/skills/design-spec/examples/migration/intent.md",
+        "source_sha256": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+        "installed_sha256": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/examples/migration/spec.md",
+        "installed": ".agents/skills/design-spec/examples/migration/spec.md",
+        "source_sha256": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+        "installed_sha256": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/references/design-depth.md",
+        "installed": ".agents/skills/design-spec/references/design-depth.md",
+        "source_sha256": "c87fc61b2fcee0e7d38b560e00c2f0c4f3c85f520e3c4aa158ae667facd20a92",
+        "installed_sha256": "c87fc61b2fcee0e7d38b560e00c2f0c4f3c85f520e3c4aa158ae667facd20a92",
+        "relation": "identical"
+      },
+      {
+        "skill": "design-spec",
+        "source": "tdd-optional/project/examples/skills/design-spec/references/skill-provenance.md",
+        "installed": ".agents/skills/design-spec/references/skill-provenance.md",
+        "source_sha256": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc",
+        "installed_sha256": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/SKILL.md",
+        "installed": ".agents/skills/plan/SKILL.md",
+        "source_sha256": "e4b7aaf1449b4aecc0edc427111eeebb79b19f975574238fbcc1550b072f0183",
+        "installed_sha256": "7622dce72efda5798d0950378fa56a1412ca9c6d99f41441e729eed9f30a3959",
+        "relation": "patched"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/README.md",
+        "installed": ".agents/skills/plan/examples/README.md",
+        "source_sha256": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+        "installed_sha256": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/bug.md",
+        "installed": ".agents/skills/plan/examples/bug.md",
+        "source_sha256": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+        "installed_sha256": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/context.md",
+        "installed": ".agents/skills/plan/examples/context.md",
+        "source_sha256": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+        "installed_sha256": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/disposable-ui-exploration.md",
+        "installed": ".agents/skills/plan/examples/disposable-ui-exploration.md",
+        "source_sha256": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+        "installed_sha256": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/feature.md",
+        "installed": ".agents/skills/plan/examples/feature.md",
+        "source_sha256": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+        "installed_sha256": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/migration.md",
+        "installed": ".agents/skills/plan/examples/migration.md",
+        "source_sha256": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+        "installed_sha256": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md",
+        "installed": ".agents/skills/plan/examples/refactor-existing-tests.md",
+        "source_sha256": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+        "installed_sha256": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/two-pr-spec.md",
+        "installed": ".agents/skills/plan/examples/two-pr-spec.md",
+        "source_sha256": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+        "installed_sha256": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/examples/two-pr.md",
+        "installed": ".agents/skills/plan/examples/two-pr.md",
+        "source_sha256": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+        "installed_sha256": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+        "relation": "identical"
+      },
+      {
+        "skill": "plan",
+        "source": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+        "installed": ".agents/skills/plan/references/execution-depth.md",
+        "source_sha256": "fd73601b421635bd6d397039e3103e987741e075e90a52773428f61c7d23e075",
+        "installed_sha256": "fd73601b421635bd6d397039e3103e987741e075e90a52773428f61c7d23e075",
+        "relation": "identical"
+      }
+    ],
+    "installed_only_files": [
+      {
+        "installed": ".agents/skills/capture-intent/agents/openai.yaml",
+        "installed_sha256": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "source": "generated by explicit-only.patch"
+      },
+      {
+        "installed": ".agents/skills/design-spec/agents/openai.yaml",
+        "installed_sha256": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "source": "generated by explicit-only.patch"
+      },
+      {
+        "installed": ".agents/skills/plan/agents/openai.yaml",
+        "installed_sha256": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "source": "generated by explicit-only.patch"
+      },
+      {
+        "installed": ".agents/skills/to-questionnaire/agents/openai.yaml",
+        "installed_sha256": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "source": "generated by explicit-only.patch"
+      }
+    ],
+    "adapter_artifacts": [
+      {
+        "source": "tdd-optional/org-skills/codex/agents/sdlc-verifier.toml",
+        "installed": ".codex/agents/sdlc-verifier.toml",
+        "source_sha256": "a982b7bd0b468d66851f757d5ae626a94d618b9e82f8f434734a7114a49b0307",
+        "installed_sha256": "a982b7bd0b468d66851f757d5ae626a94d618b9e82f8f434734a7114a49b0307",
+        "relation": "identical"
+      },
+      {
+        "source": "tdd-optional/org-skills/codex/templates/AGENTS.md",
+        "installed": "AGENTS.md",
+        "source_sha256": "8c3a3f8ff9d991769d6557822dc677cd948e31e741ec8d9aa4654076e622a9ae",
+        "installed_sha256": "8c3a3f8ff9d991769d6557822dc677cd948e31e741ec8d9aa4654076e622a9ae",
+        "relation": "identical"
+      }
+    ]
+  },
+  "limits": [
+    "Static installation and parsing/patch verification only.",
+    "No Codex/OpenCode/Claude model behavior was executed.",
+    "No global installation was performed.",
+    "make check was run separately by root, not by this reviewer."
+  ]
+}

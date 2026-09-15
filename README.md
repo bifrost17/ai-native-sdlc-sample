@@ -1,95 +1,108 @@
 # ai-native-sdlc-sample
 
-A small repo that applies the fourteen lessons of Anthropic's "The AI-Native SDLC Playbook"
-(Claude Academy) as written — skills that say what to do, a few hooks that block what the lessons
-say to block, and an `intent/` folder where each change is recorded as intent → spec → plan.
-Unofficial; not an Anthropic project.
+Anthropic의 AI-Native SDLC Playbook을 바탕으로 우리 팀이 사용할 **템플릿·스킬·정책**을 만든다.
+사람이 참여하는 실제 개발에서 중요한 요구·설계·계획과 검증이 연결되는 것이 목표다. 모든 실수를
+제거하기 위해 절차나 검사기를 계속 늘리지는 않는다. 우리 팀은 사내 동료에게 소프트웨어를 제공하며,
+정책은 실제 영향과 대응 가능성에 맞게 얇게 유지한다. Unofficial; not an Anthropic project.
 
-## Read in this order
-1. `docs/PLAYBOOK-MAP.md` — each lesson, the device this repo uses for it, and which layer it lives
-   in (person, tool, skill, or code).
-2. `docs/BOUNDARY.md` — what the machine checks, what a skill says, what a person decides, and
-   why a checker inside the tree is not an approval authority.
-3. `.claude/skills/` — `capture-intent`, `design-spec`, `plan`, `secure-api-review`.
-4. `intent/0004-lesson-only/` — the change that made this repo look like this, recorded as its own
-   chain. `intent/0001-bootstrap-repo/` is the earlier chain, kept as history in the pre-slim
-   convention (frontmatter, status fields); the current template is what 0004 uses.
-5. `CLAUDE.md`, `REVIEW.md`, `.claude/agents/verifier.md` — the agent-facing files.
-6. `docs/METRICS.md` — the lessons' indicators as git commands.
-7. `docs/ADOPTING.md` — where this template needs another organization's own values instead of
-   this repo's sample ones, and who (in the playbook's terms) fills each one in.
-8. `docs/RUNS.md` (on the experiment branch, see Experiments below) — actual runs against these devices, judged by each play's own governance and
-   measurement sections, not a separate scorecard.
+## 에이전트 시작점 — 유일한 템플릿은 `main`의 `tdd-optional/project/`
 
-## What this repo does
-- Encodes the intent, spec and plan templates in skills, with `templates/` as copies.
-- Keeps the hooks the lessons name as deterministic (protected paths, test protection, secrets,
-  format/lint, production gate). A plan-sync hook is optional in L4 329 ("Consider") — this repo
-  does not have one.
-- Runs `make check` (= `make test`) in CI; a red check is a red PR. Evals need an API key and run
-  in their own workflow on config changes and on a schedule (L10 689). Without the
-  `ANTHROPIC_API_KEY` secret that job exits 2 and shows red: it did not run, and "did not
-  run" is not "passed". Add the secret to make it real.
-- Records each change to what the template *is* as a chain under `intent/`. Upkeep of the repo
-  (factual corrections, citation refreshes, chores) is a PR, not a chain — `CLAUDE.md` scopes this.
+**Codex와 Claude Code 사용자를 위한 현재 템플릿은 [TDD 선택형](tdd-optional/README.md) 하나다.**
+작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택하고 plan에 이유와 검증을 기록한다.
+현재 팀 스킬 패키지는 **0.1.8**이다. 기존 채택 경로와 호환되도록 `tdd-optional/` 이름을 유지한다.
 
-## Chains
-| Chain | Kind | Entry path | PR(s) |
-|---|---|---|---|
-| 0001 bootstrap-repo | record · pre-slim convention | this repo, self-recorded | #12 |
-| 0004 lesson-only | slim | this repo, self-recorded | #16 |
-| 0010 experiments-on-branches | structure | this repo, self-recorded | #55 |
+`main`의 루트는 템플릿 **제작용**이다. 새 제품은 [`tdd-optional/project/`](tdd-optional/project/README.md)의
+내용만 별도 제품 저장소 루트로 복사하고 사용한 `main` 커밋 SHA를 기록한다. 이미 채택한 제품의
+후속 개발은 **그 제품의 최신 `main`**에서 시작한다.
 
-## Organization skill set (`org-skills/`)
-This repository is also one team's answer to the team's part of the playbook, in two layers:
+| 사용하는 도구 | 작성 3개·팀 13개 스킬과 검증자 설치 |
+|---|---|
+| Claude Code | [Claude 설치·갱신·확인](tdd-optional/org-skills/claude/README.md) |
+| Codex | [Codex 설치·갱신·확인](tdd-optional/org-skills/codex/README.md) |
 
-- **팀 조항** — `policies/*.md`, thin on purpose (the team builds internal-only software; about a
-  dozen clauses). Owner sign-off is the merge (`.github/CODEOWNERS`).
-- **프로젝트 슬롯** — each project copies `policies/PROJECT-POLICY.template.md` into its own
-  repository and fills six slots; skills cite the slot IDs rather than inventing values.
+작성 스킬은 선택 예시이며 자동 설치되지 않는다. 두 도구는 같은 스킬·양식·검토 기준을 사용하고,
+설치 경로·호출 문법·검증자 설정은 각 도구에 맞춘다.
 
-The skill set is one plugin under `org-skills/skills/` (root `.claude-plugin/marketplace.json`
-serves it); `org-skills/examples/` holds one project's filled-in example and does **not** load.
-The research behind every adopted or designed skill is under `docs/research/<skill>/`, decisions in
-`docs/decisions/`. The template's own skills stay in `.claude/skills/`. Chains `intent/0011` and
-`intent/0012` record the move and the split.
+`codex/use-template*`와 `codex/experiment-*`는 **실험 당시의 고정 사용판·실험 기록**이다.
+특정 실험 재현을 요청받았을 때 해당 기록에 적힌 브랜치·커밋을 사용한다. 번호가 가장 큰 브랜치를
+현재 사용 템플릿으로 선택하지 않는다. 다른 브랜치를 읽고 있다면 위 경로의 `main` 판을 확인한다.
 
-## Verification (`docs/verification/`)
-The playbook itself is the standard: every guidance paragraph of the Korean edition carries an
-evidence block naming the file and line in this repository that implements it, with the verdict
-(충실 · 부분 · 팀 몫 · 보완 필요). 179 blocks, `V2-01`~`V13-16`. What the verification found became
-PRs #44-#54.
+템플릿은 intent→spec→plan, 영향 문서 갱신, 회귀 보호, 독립 검토와 사람의 의사결정을 연결한다.
+TDD를 고르지 않았다는 이유만으로 예외 승인을 요구하지 않는다. 테스트를 약화하거나
+실행하지 않은 검증을 통과로 보고해도 된다는 뜻은 아니다.
 
-## Experiments
-`main` is the template and the template's own chains only. Each experiment — chains run *on* the
-template to see whether it works — lives on a branch `experiment/<date>-<topic>` that is never
-merged, carries its raw evidence under `raw/`, and names the `main` commit it started from in
-`EXPERIMENT.md`. What an experiment reveals about the template comes back to `main` as a PR.
+선택형의 구체적인 판단은 [검증 방식 가이드](tdd-optional/project/docs/TESTING-STRATEGY.md)에 있다.
+[선택형 SDLC 설계](docs/decisions/tdd-optional-sdlc.md)는 조사에서 채택한 근거, 플레이북에서 유지·조정한 부분,
+UI 탐색과 제품 완료의 경계 및 문서별 책임을 설명한다.
 
-| Branch | Started from | What it holds |
-|---|---|---|
-| `experiment/2026-09-09-claims-status` | `main@0daf6550` (PR #54) | chains 0002 (feature) · 0005 (defect, issue #20) · 0006 (incident, band) · 0007 (defect, issue #24, unbriefed agent) · 0008 · 0009 (human–agent runs); example app `src/claims_status/`; `docs/RUNS.md`; 172 raw files. Template feedback from it: PRs #19 #27 #29 #33 #34 #35 #40 #44–#54 |
+팀 스킬은 `tdd-optional/org-skills/`에서 별도 선택 설치한다. 제품에는 제작용 훅이나 활성 작성 스킬을
+자동 설치하지 않는다. 채택한 제품의 루트에서 작업하고, 제작 저장소의 하위 폴더를 독립 제품 세션과
+같다고 가정하지 않는다. 이전 강제형 스킬이 설치돼 있으면 실제 로드 출처와 지침 충돌을 확인한다.
 
-Issues #24, #25, #26, #32 belong to that experiment's claims-status app.
+```text
+tdd-optional/    project/ + org-skills/    유일한 제품 템플릿과 선택 설치 스킬
+docs/           연구·결정·실험·플레이북 평가
+intent/         템플릿 자체의 제작 이력
+tests/, evals/  배포판과 제작 도구 검증
+```
 
-## Source of truth
-This repo is the source of truth (L4 380 "The repo as the source of truth"). There is no
-external system of record — no Jira, no separate requirements tool — for the artifacts under
-`intent/`; the commit is the timestamp authority.
+문서 양식과 작성 예시는 `tdd-optional/project/`가 정본이다. 루트 `.claude/skills/`의 작성 도구는 이
+경로로 연결하는 제작용 안내이며 별도의 제품 양식을 갖지 않는다. [단일 템플릿 결정](docs/decisions/single-template.md)
 
-## What this repo does not do
-- It does not check artifact form, status or transitions in code. Approval is a merged PR;
-  a missing section is caught by the skill and by the product owner reading the file.
-- It does not enforce policy skills with code unless the lesson names the hook.
-- It does not replace the playbook. Quotes are short and cite the line; the original is
-  Claude Academy, `courses/ai-native-sdlc-playbook`, Copyright Anthropic.
+## 북극성과 근거
 
-## Commands
-`make test` · `make evals` · `make check` (see `CLAUDE.md` for healthy output).
-Plan mode headless: `claude -p --permission-mode plan` writes the plan outside the repo and has no
-ExitPlanMode; the engineer's next prompt is the acceptance (chain 0008, L4 327).
-Implementation turns ran in auto mode (`claude -p --permission-mode bypassPermissions`, L4 361);
-the five hooks in `.claude/settings.json` were the guardrail (chains 0008 and 0009: 107 and 131
-hook events in the implementation turn, `docs/RUNS.md` on the experiment branch).
-`.claude/settings.json` allows this repo's own safe commands without a prompt (`permissions.allow`,
-L8 545); the team replaces the list with what its organization considers safe (`docs/ADOPTING.md`).
+북극성은 **[AI-Native SDLC Playbook과 문단별 주석](docs/verification/north-star-playbook.html)**이다.
+원문은 설계·판단의 기준이며 주석은 당시 템플릿·스킬·실행이 얼마나 충실히 따랐는지 기록한다.
+기존 주석의 경로·판정은 역사적 근거로 보존하며 새 선택형의 통과 증거로 승계하지 않는다.
+
+- [폐기한 기본형의 역사적 근거](docs/verification/variants/tdd-first.md)
+- [선택형의 의도한 차이와 검증](docs/verification/variants/tdd-optional.md)
+- [TDD와 구현 후 테스트 조사](docs/research/tdd-vs-test-after/README.md): 연구 16건, 프로젝트 8개·PR/MR 72건,
+  원문 다운로드와 반대 근거를 포함한다. 실제 TDD 사용률이나 보편적 생산성 우열을 추정한 자료는 아니다.
+- [사람·스킬·훅·CI의 책임 경계](docs/BOUNDARY.md), [레슨별 연결](docs/PLAYBOOK-MAP.md)
+
+모델과 추론 수준은 작업의 난도·영향·불확실성에 맞춘다. 중요한 판단과 반복되는 실수에는 더 역량 높은
+모델·추론을 사용하되, 개별 실수마다 새 절차나 검사기를 만들지 않는다. 일반 테스트 통과, 스킬 발견,
+설정 파싱과 실제 에이전트 행동은 각각 다른 근거다.
+
+## 팀 정책과 선택 설치 스킬
+
+`policies/`는 팀 정책의 제작 기준·예제다. 제품은 자기 `PROJECT-POLICY.md`에 실제 값과 결정자를 기록한다.
+현재 패키지는 `intent-sdlc-skills-optional` 식별자를 쓴다.
+설치 명령과 현재 버전은 [팀 패키지](tdd-optional/org-skills/README.md)에서 확인한다. 기존 사용자 설치를 이 구조 변경만으로
+갱신하거나 비활성화하지 않는다. 채택한 판·설치한 판·실제 로드한 경로를 함께 확인한다.
+
+Claude Code와 Codex의 설치·검증자 전달을 함께 제공하며 기존 OpenCode 어댑터도 보존한다. [팀 CLI](team-harness/README.md)는 기존의
+선택적 실행·기록 실험 도구로 보존한다. 회사의 사람 승인과 GitHub 병합 권한은 별도의 통제다.
+
+## 이 저장소의 개발과 검증
+
+루트 [CLAUDE.md](CLAUDE.md)는 템플릿 제작 지침이다. 제품의 개발 명령과 정책은 복사한 `project/`에서 정한다.
+
+```bash
+make check
+make evals
+```
+
+`make check`는 패키지 경로·격리, 기존 훅과 제작 도구의 결정적 검사를 실행한다. 모델 평가에는
+`ANTHROPIC_API_KEY`가 필요하며 없으면 종료 코드 2로 미실행을 알린다. 평가 범위와 판별 결과 위치는
+[evals 안내](evals/README.md)에 있다. 이 검사만으로 모든 에이전트의 TDD 선택·실행을 증명하지 않는다.
+
+공통 스킬을 바꾸면 Claude Code와 Codex 전달본의 영향을 함께 검토한다.
+승인·상태·문서 의미를 판정하는 별도 자동 검사기는 두지 않는다. 결과와 미확인 범위를
+[배포판 검증 기록](docs/verification/variants/README.md)에 남긴다.
+
+## 기존 실험과 이력
+
+[실험 안내](docs/experiments/README.md)에 HUMAN 역할·실행 방법·초기 데이터가 있다. 실제 제품 대화·코드·시험은
+당시 실험 브랜치와 고정 커밋에 남긴다. 제작 자산만 개선하고 실험 제품 전체를 제작 main에 합치지 않는다.
+
+TDD 강제형 `tdd-first/`는 현재 소스에서 삭제했다. 삭제 직전 파일은 `b9af49a`의 Git 이력으로 확인한다.
+과거 기본형의 출발 사용판은 `codex/use-template-0026@84a77b3`, 팀 스킬 기준은 `ece15c4`의 0.1.7이다.
+[0024](docs/experiments/0024-spec-plan-activation.md), [0026](docs/experiments/0026-muse-spark.md),
+[0027](docs/experiments/0027-muse-larger.md), [0028](docs/experiments/0028-review-tdd.md)의 실행 성공·실패·HUMAN 복구를
+보존한다. 당시 자료의 옛 경로는 해당 커밋을 기준으로 읽는다. 현재 소스는 `tdd-optional/`이며,
+옛 사용 브랜치를 최신 정본으로 사용하지 않는다.
+
+별도 제품 채택의 책임 항목은 [채택 안내](docs/ADOPTING.md), 보안·규정·브랜드·UX 예제는
+[정책 안내](policies/README.md), 변경 검토는 [REVIEW.md](REVIEW.md)에 있다.

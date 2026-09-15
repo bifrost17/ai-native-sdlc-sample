@@ -1,0 +1,288 @@
+# note: interactive (clickable / focusable) elements only.
+- title: "I feel like I've just had a breakthrough with how I handle large tasks in Claude Code : r/ClaudeAI" [url=https://www.reddit.com/r/ClaudeAI/comments/1q85tlf/i_feel_like_ive_just_had_a_breakthrough_with_how/]
+- main:
+  - button "뒤로" [ref=e1]
+  - link "ClaudeAI 커뮤니티로 이동" [ref=e3]
+  - group:
+    - link "r/ClaudeAI" [ref=e5]
+    - text: "8개월 전"
+    - link "작성자는 wynwyn87입니다" [ref=e6]: "wynwyn87"
+  - button "사용자 작업 열기" [ref=e7]
+  - menuitem "이 게시물에 어워드 주기" [ref=e8]
+  - menuitem "신고" [ref=e9]
+  - menu
+  - heading "게시물 제목: I feel like I've just had a breakthrough with how I handle large tasks in Claude Code" [level=1]: "I feel like I've just had a breakthrough with how I handle large tasks in Claude Code"
+  - link "Productivity" [ref=e10]
+  - text: "And it massively reduced my anxiety!\n    \n      I wanted to share something that felt like a genuine breakthrough for me in case it helps others who are building large projects with Claude Code.\n    \n      Over the last ~9 weeks, my Claude Code workflow has evolved a lot. I’m using skills to fill in the gaps where Claude needs a bit of assistance to write Golang code as per the needs of my project, I've made Grok and Gemini MCP servers to help me find optimal solutions when I don't know which direction to take or which option to choose when Claude asks me a difficult and very technical question, I deploy task agents more effectively, I now swear by TDD and won't implement any new features any other way, I created a suite of static analysis scripts to give me insight into what's actually happening in my codebase (and catch all the mistakes/drift Claude missed), and I’ve been generating fairly detailed reports saved to .md files for later review. On paper, everything looks “professional” and it's supposed to ease my anxiety of \"I can't afford to miss anything\".\n    \n      The problem was this:\n    \n      When I discover missing or incomplete implementations, the plans (whether I've used /superpowers:brainstorming, /superpowers:writing-plans, or the default Claude plan-mode) would often become too large in scope. Things would get skipped, partially implemented, or quietly forgotten. I tried to compensate by generating more reports and saving more analysis files… and that actually made things worse :( I ended up with a growing pile of documents I had to mentally reconcile with the actual codebase.\n    \n      The result: constant background anxiety and a feeling that I was losing control of the codebase.\n    \n      Today I tried something different — and it was like a weight lifted off my chest and I'm actually relaxing a bit.\n    \n      Instead of saving reports or plans to .md files, I told Claude to insert TODO stubs directly into the relevant files wherever something was missing, incomplete, or intentionally deferred - not vague TODOs, but explicit, scoped ones.\n    \n      Now:\n    \n      - The codebase itself is the source of truth\n    \n      - Missing work lives exactly where it belongs\n    \n      - I can run a simple script to list all TODOs\n    \n      - I can implement them one by one or group small ones logically\n    \n      - I write small, focused plans instead of massive ones\n     \n      I no longer have to “remember” what’s left to do, or cross-reference old/overlapping reports that may already be outdated. If something isn’t done, it’s visible in the code. If it’s done, the TODO disappears.\n    \n      This had an immediate psychological effect:\n    \n      - Less overwhelm\n    \n      - No fear of missing things\n    \n      - No guilt about unfinished analysis\n    \n      - Much better alignment with how Claude actually performs (small scope, clear intent)\n    \n      - Gives me a chance to \"Pretend you're a senior dev doing a code review of _____. What would you criticize? Which ____ are missing from _____?\" on smaller scopes of changes\n     \n      In hindsight, this feels obvious — but I think many of us default to out-of-band documentation because it feels more rigorous. For me, it turned into cognitive debt.\n    \n      Embedding intent directly into the code turned that debt into a clear, executable task list.\n    \n      If you’re struggling with large Claude Code plans, skipped steps, or anxiety from too much analysis: try letting the codebase carry the truth. Let TODOs be first-class citizens.\n    \n      I'm curious if others have landed on similar patterns, or if you’ve found better ways to keep large AI-assisted projects sane. For me, I'm continuously upskilling myself (currently reading: The Power of Go - Tests) because I'm not writing the code, but I want to ensure I make informed decisions when I guide Claude.\n    \n      This subreddit has given me golden nuggets of information based on the experience/workflows of others, and I wanted to share what I've learnt with the rest of the community. Happy coding everyone! :)"
+  - button "더 읽기" [ref=e11]
+  - button "공유" [ref=e12]
+  - generic [ref=e13]:
+    - button "좋아요" [ref=e14]
+    - text: "325"
+    - button "싫어요" [ref=e16]
+    - button "95 댓글로 이동" [ref=e18]
+  - link "Advertisement: I imported a video into ACE Studio and it generated editable music + SFX to match the" [ref=e21]
+  - link "Nice-Assumption2325" [ref=e22]: "u/Nice-Assumption2325 님의 아바타입니다\n  \n   Nice-Assumption2325"
+  - text: "•"
+  - link "광고" [ref=e23]
+  - link [ref=e25]
+  - button "사용자 작업 열기" [ref=e26]
+  - menuitem "신고" [ref=e27]
+  - menuitem "이 광고 정보" [ref=e28]
+  - menuitem "광고가 지겨우신가요?" [ref=e29]
+  - menu
+  - generic [ref=e30]:
+    - text: "I imported a video into ACE Studio and it generated editable music + SFX to match the scene."
+    - link [ref=e31]
+  - link [ref=e33]
+  - text: "더 알아보기"
+  - link [ref=e34]
+  - generic [ref=e35]:
+    - text: "acestudio.ai"
+    - link [ref=e36]
+  - generic [ref=e37]:
+    - text: "Thumbnail image: I imported a video into ACE Studio and it generated editable music + SFX to match t"
+    - link [ref=e38]
+  - button "댓글 추가 버튼" [ref=e39] [disabled] [placeholder="대화에 참여해보세요"]:
+    - textbox "대화에 참여해보세요" [ref=e40] [disabled] [placeholder="대화에 참여해보세요"]
+  - button "정렬 기준 좋아요 비율 높은 순" [ref=e41]: "좋아요 비율 높은 순"
+  - button "댓글 검색 댓글 검색 펼치기" [ref=e42]
+  - region "댓글" [ref=e44]:
+    - article "ClaudeAI-mod-bot 8개월 전 댓글" [ref=e45]:
+      - generic [ref=e46]:
+        - link "ClaudeAI-mod-bot 님의 프로필 --- 아바타" [ref=e47]: "u/ClaudeAI-mod-bot 님의 아바타입니다"
+        - link "ClaudeAI-mod-bot 님의 프로필" [ref=e48]: "ClaudeAI-mod-bot"
+        - button "자동화된 계정입니다." [ref=e49]
+        - generic "모더레이터" [ref=e50]
+        - link "8개월 전" [ref=e51]
+        - generic "고정된 댓글" [ref=e52]
+      - text: "TL;DR generated automatically after 50 comments.\n    \n      Alright, settle in, latecomers. The consensus is a resounding 'hell yeah' to OP's breakthrough.\n    \n      The big idea: Stop drowning in .md  plan files. Instead, have Claude embed specific  TODO  comments directly into the code wherever work is needed. This makes your codebase the one true source of truth and kills the anxiety of tracking a million separate documents.\n    \n      The reaction:\n    \n        \n      \n      Most of the thread is people saying \"this is genius\" and \"I'm stealing this immediately.\"\n    \n    \n      \n      A few veterans are gently reminding everyone that  TODO  comments are a classic dev practice, but agree it's a perfect strategy for wrangling AI-generated code.\n    \n    \n      \n      For the overachievers, the thread has some upgrades:\n    \n        \n      \n      Create a slash command to have Claude automatically find and list all your  TODO s.\n    \n    \n      \n      One user went full galaxy-brain, explaining how they use"
+      - link "Design by Contract" [ref=e53]
+      - text: "(DbC) as a form of \"executable TODOs\" that force the code to fail if a spec isn't met. It's a very detailed, high-value comment worth a read.\n    \n    \n      \n      There's also a healthy debate on alternative structured workflows like  BMAD/SDD  and  GSD  for those who want to go even deeper into process management.\n    \n      And yes, someone pointed out the classic reverse-problem: Claude proudly announcing \"Code Complete\" while leaving a trail of // TODO  comments in its wake. We've all been there."
+    - article "Robot_Apocalypse 8개월 전 댓글" [ref=e54]:
+      - generic [ref=e55]:
+        - link "Robot_Apocalypse 님의 프로필 --- 아바타" [ref=e56]: "u/Robot_Apocalypse 님의 아바타입니다"
+        - link "Robot_Apocalypse 님의 프로필" [ref=e57]: "Robot_Apocalypse"
+        - link "8개월 전" [ref=e58]
+      - text: "To does directly in the code is a GREAT idea. Thanks!"
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e59]:
+        - generic [ref=e60]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e61]
+          - link "wynwyn87 님의 프로필" [ref=e62]: "wynwyn87"
+          - generic "원글 작성자" [ref=e63]
+          - link "8개월 전" [ref=e64]
+        - text: "Thanks! Hope it helps you too!"
+        - button "답글 1 개 더 보기" [ref=e66]
+      - article "댓글 스레드 수준 1: FBIFreezeNow 8개월 전 답글" [ref=e68]:
+        - generic [ref=e69]:
+          - link "FBIFreezeNow 님의 프로필 --- 아바타" [ref=e70]
+          - link "FBIFreezeNow 님의 프로필" [ref=e71]: "FBIFreezeNow"
+          - link "8개월 전" [ref=e72]
+        - text: "To does whom thy loathe"
+        - button "답글 1 개 더 보기" [ref=e74]
+      - button "답글 3 개 더 보기" [ref=e77]
+    - article "M4CH86 8개월 전 댓글" [ref=e79]:
+      - generic [ref=e80]:
+        - link "M4CH86 님의 프로필 --- 아바타" [ref=e81]: "u/M4CH86 님의 아바타입니다"
+        - link "M4CH86 님의 프로필" [ref=e82]: "M4CH86"
+        - link "8개월 전" [ref=e83]
+      - link "Superpowers" [ref=e84]
+      - text: "with TDD are awesome. I suggest you check out"
+      - link "BMAD" [ref=e85]
+      - text: "(or one of the other SDD frameworks) to try full SDD too - that could be the next leap for you; it was for me."
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e86]:
+        - generic [ref=e87]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e88]
+          - link "wynwyn87 님의 프로필" [ref=e89]: "wynwyn87"
+          - generic "원글 작성자" [ref=e90]
+          - link "8개월 전" [ref=e91]
+        - text: "I've not come across BMAD or SDD yet. Thanks for the tip, I'm not quite sure what these mean, but I'll look into it!"
+        - button "답글 3 개 더 보기" [ref=e93]
+      - button "답글 4 개 더 보기" [ref=e96]
+    - article "quantum_splicer 8개월 전 댓글" [ref=e98]:
+      - generic [ref=e99]:
+        - link "quantum_splicer 님의 프로필 --- 아바타" [ref=e100]: "u/quantum_splicer 님의 아바타입니다"
+        - link "quantum_splicer 님의 프로필" [ref=e101]: "quantum_splicer"
+        - link "8개월 전" [ref=e102]
+      - text: "That is what I do also I find it useful, you could also possibly create an slash command which gets Claude code to find all todos not done and then create an task list and then go from their"
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e103]:
+        - generic [ref=e104]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e105]
+          - link "wynwyn87 님의 프로필" [ref=e106]: "wynwyn87"
+          - generic "원글 작성자" [ref=e107]
+          - link "8개월 전" [ref=e108]
+        - text: "I invoke my codebase analysis scripts with slash commands and added one to list all the TODOs 👍"
+      - button "답글 3 개 더 보기" [ref=e110]
+    - link "Advertisement: Grok Bots work inside your apps on their own computer, and come back with finished wo" [ref=e113]
+    - link "u/Grok-by-SpaceXAI" [ref=e114]: "u/Grok-by-SpaceXAI 님의 아바타입니다\n  \n   u/Grok-by-SpaceXAI"
+    - text: "•"
+    - link "광고" [ref=e115]
+    - link [ref=e117]
+    - button "사용자 작업 열기" [ref=e118]
+    - menuitem "신고" [ref=e119]
+    - menuitem "이 광고 정보" [ref=e120]
+    - menuitem "광고가 지겨우신가요?" [ref=e121]
+    - menu
+    - generic [ref=e122]:
+      - text: "Grok Bots work inside your apps on their own computer, and come back with finished work."
+      - link [ref=e123]
+    - link [ref=e125]
+    - text: "가입"
+    - link [ref=e126]
+    - generic [ref=e127]:
+      - text: "x.ai"
+      - link [ref=e128]
+    - generic [ref=e129]:
+      - text: "Clickable image which will reveal the video player: Grok Bots work inside your apps on their own com"
+      - button "동영상 재생" [ref=e130]
+    - article "crunchy_code 8개월 전 댓글" [ref=e131]:
+      - generic [ref=e132]:
+        - link "crunchy_code 님의 프로필 --- 아바타" [ref=e133]
+        - link "crunchy_code 님의 프로필" [ref=e134]: "crunchy_code"
+        - link "8개월 전" [ref=e135]
+      - text: "I came across the same"
+      - link "TDD" [ref=e136]
+      - text: "idea recently. I found this article online that has 3 subagents for TDD. Red-green approach.\n    \n      I haven’t tried it myself but I thought it may be helpful and relevant to your post. I am not affiliated with the author."
+      - link "https://alexop.dev/posts/custom-tdd-workflow-claude-code-vue/" [ref=e137]
+      - text: "first agent for red test writing\n    \n    \n       \n      second agent for implementation\n    \n    \n       \n      third agent for refactor"
+      - button "답글 3 개 더 보기" [ref=e139]
+    - article "CPT_Haunchey 8개월 전 댓글" [ref=e141]:
+      - generic [ref=e142]:
+        - link "CPT_Haunchey 님의 프로필 --- 아바타" [ref=e143]
+        - link "CPT_Haunchey 님의 프로필" [ref=e144]: "CPT_Haunchey"
+        - link "8개월 전" [ref=e145]
+      - text: "Search this sub for GSD. Completely changed my workflow and took a lot of the heavy lifting of planning off my plate. Based on what you described, I think it'll be helpful for you as well."
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e146]:
+        - generic [ref=e147]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e148]
+          - link "wynwyn87 님의 프로필" [ref=e149]: "wynwyn87"
+          - generic "원글 작성자" [ref=e150]
+          - link "8개월 전" [ref=e151]
+        - text: "Ok cool, thanks! This just shows that you don't know what you don't know :D I'll look into GSD as I am not familiar with the acronym..."
+      - button "답글 2 개 더 보기" [ref=e153]
+    - article "ThomasToIndia 8개월 전 댓글" [ref=e155]:
+      - generic [ref=e156]:
+        - link "ThomasToIndia 님의 프로필 --- 아바타" [ref=e157]: "u/ThomasToIndia 님의 아바타입니다"
+        - link "ThomasToIndia 님의 프로필" [ref=e158]: "ThomasToIndia"
+        - link "8개월 전" [ref=e159]
+      - text: "That is an amazing idea which I am going to implement."
+      - button "답글 2 개 더 보기" [ref=e161]
+    - article "NotJustAnyDNA 8개월 전 댓글" [ref=e163]:
+      - generic [ref=e164]:
+        - link "NotJustAnyDNA 님의 프로필 --- 아바타" [ref=e165]: "u/NotJustAnyDNA 님의 아바타입니다"
+        - link "NotJustAnyDNA 님의 프로필" [ref=e166]: "NotJustAnyDNA"
+        - link "8개월 전" [ref=e167]
+        - text: "8개월 전 \n           에 수정됨"
+      - text: "(Sorry/typos… on mobile device today) Excellent practice and I do something very similar but still dump to a .md file all the TODO’s.  Last step of code write or test will be to summarize all TODO’s as a comment at the top of the code file as a comment for next steps.  I classify and number each, then prioritize them and score them based on work effort and dependencies.    I do not like dozens of TODO comments scatted across my code base to try and find.\n    \n      I am an old-school developer from the 80’s/90’s, so this process has been part of my human workflow forever.\n    \n      This is then tied to my .md files and PRD/Featue docs, The numbering of these is based on classification.  I keep a long list of various feature classifications.\n    \n      —-\n    \n        \n      \n      TODO: SQL-001 (create/modify new Database handler or call or data type)\n    \n    \n      \n      TODO: File-### (create or read file here)\n    \n    \n      \n      TODO: API-### (needs API call/token/etc)\n    \n    \n      \n      TODO: SEC-### (needs security check/implement)\n    \n    \n      \n      TODO: BIZ-### (needs business logic)\n    \n    \n      \n      etc…\n    \n    \n      \n      —-\n    \n      They are summarized by category into my docs to be prioritized.\n    \n      I have an agent crawl the files and identify each to my documentation.\n    \n      I still see Claude code say it is complete, but when I look at the file header, I can immediately see the TODOs that are left to be resolved.  Some are future phase/release work while others are just Claude being lazy."
+      - button "답글 3 개 더 보기" [ref=e169]
+    - article "DrunkLahey1 8개월 전 댓글" [ref=e171]:
+      - generic [ref=e172]:
+        - link "DrunkLahey1 님의 프로필 --- 아바타" [ref=e173]
+        - link "DrunkLahey1 님의 프로필" [ref=e174]: "DrunkLahey1"
+        - link "8개월 전" [ref=e175]
+      - text: "So how do you go about actually implementing this? You explicitly tell Claude this in the User ~./home/.Claude , generate a CLAUDE.md file in there with specific instructions for this?"
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e176]:
+        - generic [ref=e177]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e178]
+          - link "wynwyn87 님의 프로필" [ref=e179]: "wynwyn87"
+          - generic "원글 작성자" [ref=e180]
+          - link "8개월 전" [ref=e181]
+        - text: "I haven't added anything to"
+        - link "claude.md" [ref=e182]
+        - text: "yet. Instead I asked Claude to analyze one of my implementations and to compare it to the compliance test suite that I created, specifically to identify redundant tests that are already covered by the compliance suite (which is new). Then, based on the analysis it would tell me that test X, Y, and Z are redundant and can be removed & test A, B, and C should be added to the compliance suite. Since I have a couple of implementations to still check, I didn't want to add those missing tests immediately or add another .md file listing the tests to add to the compliance suite, so I just told it to add TODO comments in the compliance suite. Now, I can continue to analyze all of the implementations and then once I'm done, I can then start to implement each TODO individually. No need to keep track of the .md files listing the tests - I just run a script to find all TODO comments in the compliance suite and then I'd choose which ones to work on and implement."
+    - link "Advertisement: Time's running out, Kiierr delivers." [ref=e184]
+    - link "u/Kiierr" [ref=e185]: "u/Kiierr 님의 아바타입니다\n  \n   u/Kiierr"
+    - text: "•"
+    - link "광고" [ref=e186]
+    - link [ref=e188]
+    - button "사용자 작업 열기" [ref=e189]
+    - menuitem "신고" [ref=e190]
+    - menuitem "이 광고 정보" [ref=e191]
+    - menuitem "광고가 지겨우신가요?" [ref=e192]
+    - menu
+    - generic [ref=e193]:
+      - text: "Time's running out, Kiierr delivers."
+      - link [ref=e194]
+    - link [ref=e196]
+    - text: "지금 구매"
+    - link [ref=e197]
+    - generic [ref=e198]:
+      - text: "kiierr.com"
+      - link [ref=e199]
+    - generic [ref=e200]:
+      - text: "Clickable image which will reveal the video player: Time's running out, Kiierr delivers."
+      - button "동영상 재생" [ref=e201]
+    - article "Rangizingo 8개월 전 댓글" [ref=e202]:
+      - generic [ref=e203]:
+        - link "Rangizingo 님의 프로필 --- 아바타" [ref=e204]: "u/Rangizingo 님의 아바타입니다"
+        - link "Rangizingo 님의 프로필" [ref=e205]: "Rangizingo"
+        - link "8개월 전" [ref=e206]
+      - text: "It seems like a great opportunity for a skill or a plug-in, I’m gonna experiment with it. Thank you, OP!"
+      - button "답글 1 개 더 보기" [ref=e208]
+    - article "symsafsavor 8개월 전 댓글" [ref=e210]:
+      - generic [ref=e211]:
+        - link "symsafsavor 님의 프로필 --- 아바타" [ref=e212]
+        - link "symsafsavor 님의 프로필" [ref=e213]: "symsafsavor"
+        - link "8개월 전" [ref=e214]
+      - text: "I’m currently doing a big refactor of our codebase and rewriting the legacy code so that it’s more streamlined and understandable. But, I’m facing the same issue as you OP, too much analysis and too big plans to follow through and review. But, since I’m rewriting the logic now, how does the TODO method fit in there? Anyways I’m gonna give it a try!"
+      - button "답글 1 개 더 보기" [ref=e216]
+    - article "MegaMint9 8개월 전 댓글" [ref=e218]:
+      - generic [ref=e219]:
+        - link "MegaMint9 님의 프로필 --- 아바타" [ref=e220]
+        - link "MegaMint9 님의 프로필" [ref=e221]: "MegaMint9"
+        - link "8개월 전" [ref=e222]
+      - text: "Hi could you DM and talk about it? I need surely guidance to effectively do my workflows in a way similar to yours. I am struggling using CC these days and I want to optimise things, use specific agents and so on. But things change too rapidly and when I learned skills there were already tons of things I haven't started using yet. Would you mind having a chat with me and share how you handle things?"
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e223]:
+        - generic [ref=e224]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e225]
+          - link "wynwyn87 님의 프로필" [ref=e226]: "wynwyn87"
+          - generic "원글 작성자" [ref=e227]
+          - link "8개월 전" [ref=e228]
+        - text: "Yeah sure, I'll share what I know if that can help you in any way :)"
+        - button "답글 1 개 더 보기" [ref=e230]
+    - article "Cobuter_Man 8개월 전 댓글" [ref=e232]:
+      - generic [ref=e233]:
+        - link "Cobuter_Man 님의 프로필 --- 아바타" [ref=e234]: "u/Cobuter_Man 님의 아바타입니다"
+        - link "Cobuter_Man 님의 프로필" [ref=e235]: "Cobuter_Man"
+        - link "8개월 전" [ref=e236]
+      - text: "To-Dos in comments and generally commenting progress in the comments of your source code has been around since ASSEMBLY times"
+      - article "댓글 스레드 수준 1: wynwyn87 8개월 전 답글" [ref=e237]:
+        - generic [ref=e238]:
+          - link "wynwyn87 님의 프로필 --- 아바타" [ref=e239]
+          - link "wynwyn87 님의 프로필" [ref=e240]: "wynwyn87"
+          - generic "원글 작성자" [ref=e241]
+          - link "8개월 전" [ref=e242]
+        - text: "Good habits from the early days 😅"
+    - article "fireis556 8개월 전 댓글" [ref=e243]:
+      - generic [ref=e244]:
+        - link "fireis556 님의 프로필 --- 아바타" [ref=e245]
+        - link "fireis556 님의 프로필" [ref=e246]: "fireis556"
+        - link "8개월 전" [ref=e247]
+      - text: "Do u perform any skill or prompt to guide Claude writing TODO? or just use native agent?"
+      - button "답글 3 개 더 보기" [ref=e249]
+    - article "marcusr_uk 8개월 전 댓글" [ref=e251]:
+      - generic [ref=e252]:
+        - link "marcusr_uk 님의 프로필 --- 아바타" [ref=e253]: "u/marcusr_uk 님의 아바타입니다"
+        - link "marcusr_uk 님의 프로필" [ref=e254]: "marcusr_uk"
+        - link "8개월 전" [ref=e255]
+      - text: "I have the exact opposite problem, where Claude proudly announces Code Complete, but the code is littered with // TODO comments"
+      - button "답글 1 개 더 보기" [ref=e257]
+    - article "vifer78 8개월 전 댓글" [ref=e259]:
+      - generic [ref=e260]:
+        - link "vifer78 님의 프로필 --- 아바타" [ref=e261]
+        - link "vifer78 님의 프로필" [ref=e262]: "vifer78"
+        - link "8개월 전" [ref=e263]
+      - text: "What if a todo touches multiple files?  Would asking Claude to add an id or something to be able to link them be a good idea? What does everyone think?\n    \n      Great idea OP, this needs to be a skill / Claude.md thing"
+      - button "답글 1 개 더 보기" [ref=e265]
+    - article "StravuKarl 8개월 전 댓글" [ref=e267]:
+      - generic [ref=e268]:
+        - link "StravuKarl 님의 프로필 --- 아바타" [ref=e269]: "u/StravuKarl 님의 아바타입니다"
+        - link "StravuKarl 님의 프로필" [ref=e270]: "StravuKarl"
+        - link "8개월 전" [ref=e271]
+      - link "u/wynwyn87" [ref=e272]
+      - text: "can you clarify?  I get that you have moved the To Dos out of your Plans and into the code. But, I'm unclear if you are (1) eliminating plans altogether or (2) just moving the ToDos out into the code while keeping the plans for understanding the big picture.  I would assume the latter. But, if you are eliminating the plan, can you explain how you are fully replacing their benefits?"
+      - button "답글 2 개 더 보기" [ref=e274]
+- iframe:
+[account UI omitted]
+- iframe:
+  - text: "reCAPTCHA 로 보호됨"

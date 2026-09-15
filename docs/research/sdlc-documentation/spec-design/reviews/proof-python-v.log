@@ -1,0 +1,25 @@
+test_every_case_loads_current_plugin_and_uses_its_workspace (tests.test_eval_plugin.EvalPluginIntegration) ... ok
+test_missing_plugin_is_undecidable_before_model_call (tests.test_eval_plugin.EvalPluginIntegration) ... ok
+test_model_failure_is_undecidable_and_later_cases_still_run (tests.test_eval_plugin.EvalPluginIntegration) ... ok
+test_policy_names_without_clause_evidence_fail_existing_grader (tests.test_eval_plugin.EvalPluginIntegration) ... ok
+test_relevant_changes_match_pull_request_paths (tests.test_eval_plugin.EvalWorkflowPaths) ... ok
+test_installer_does_not_follow_predictable_temporary_symlinks (tests.test_team_harness.TeamHarnessInstallerTests) ... ok
+test_installer_refuses_to_replace_an_existing_foreign_entrypoint (tests.test_team_harness.TeamHarnessInstallerTests) ... ok
+test_temporary_prefix_round_trip_preserves_existing_files_and_excludes_authoring_templates (tests.test_team_harness.TeamHarnessInstallerTests) ... ok
+test_pass_returns_current_developer_answer_after_independent_toolless_review (tests.test_team_harness.TeamHarnessTests) ... ok
+test_resume_after_developer_error_preserves_failed_turn_and_reviews_recovery (tests.test_team_harness.TeamHarnessTests) ... ok
+test_review_snapshot_contains_public_history_chain_and_all_git_change_classes (tests.test_team_harness.TeamHarnessTests) ... ok
+test_reviewer_non_json_error_and_timeout_fail_closed (tests.test_team_harness.TeamHarnessTests) ... ok
+test_revise_resumes_same_developer_session_and_reviews_each_new_final (tests.test_team_harness.TeamHarnessTests) ... ok
+test_snapshot_changed_during_review_is_stale_and_fails_closed (tests.test_team_harness.TeamHarnessTests) ... ok
+test_third_revise_is_unresolved_and_never_reported_as_pass (tests.test_team_harness.TeamHarnessTests) ... ok
+test_three_user_turns_resume_one_session_and_retry_budget_resets_each_turn (tests.test_team_harness.TeamHarnessTests) ... ok
+test_unknown_missing_and_unsupported_verdicts_fail_closed (tests.test_team_harness.TeamHarnessTests) ... ok
+test_untracked_symlink_loop_becomes_recorded_unknown_instead_of_traceback (tests.test_team_harness.TeamHarnessTests) ... ok
+test_wait_is_a_normal_return_without_automatic_resume (tests.test_team_harness.TeamHarnessTests) ... ok
+test_wait_question_survives_short_human_answer_while_prior_pass_text_is_omitted (tests.test_team_harness.TeamHarnessTests) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 14.811s
+
+OK

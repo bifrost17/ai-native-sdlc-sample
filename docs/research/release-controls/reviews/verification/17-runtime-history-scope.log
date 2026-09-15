@@ -1,0 +1,70 @@
+$ runtime ancestry, integration trees, slice paths, and source hashes
+*   f3126d1 (HEAD -> main) experiment: integrate release-control cleanup after mock acceptance
+|\  
+| * ea0965e (exp/f03-cleanup) docs: record HUMAN acceptance of release-control cleanup
+| * 5786273 experiment: cleanup PR removes TRACKER_OWNER_INSIGHTS after mock stabilization
+| * 64b9baa docs: authorize cleanup after mock release and disable observations
+|/  
+*   2e2bd22 experiment: integrate complete release unit still default off
+|\  
+| * 7bd1af4 (exp/f03-summary) docs: record HUMAN acceptance of PR2 local integration
+| * 55394d9 feat(tracker): PR2 owner summary aggregation behind TRACKER_OWNER_INSIGHTS
+|/  
+*   4c5bf2e experiment: integrate PR1 with ordinary release disabled
+|\  
+| * 3fefacd (exp/f03-owner) docs: record HUMAN acceptance of PR1 local integration
+| * 85dc853 feat(tracker): PR1 owner list filter behind TRACKER_OWNER_INSIGHTS
+|/  
+*   497db33 experiment: integrate accepted F03 planning records
+|\  
+| * 221298d (exp/f03-plan) docs: record HUMAN acceptance of F03 spec and plan
+| * 8623ec7 docs(decisions): record F03 review feedback and preserve initial drafts
+| * 5fc8bdc docs(plan): repin to spec@f1ba82e and add conditional cleanup step
+| * f1ba82e docs(spec): resolve F03 review findings on partial exposure, R3 scope, cleanup
+fatal: Not a valid object name 497db33 85dc853
+497db33 85dc853_is_ancestor_of__rc=128
+fatal: Not a valid object name 85dc853 3fefacd
+85dc853 3fefacd_is_ancestor_of__rc=128
+fatal: Not a valid object name 3fefacd 4c5bf2e
+3fefacd 4c5bf2e_is_ancestor_of__rc=128
+fatal: Not a valid object name 4c5bf2e 55394d9
+4c5bf2e 55394d9_is_ancestor_of__rc=128
+fatal: Not a valid object name 55394d9 7bd1af4
+55394d9 7bd1af4_is_ancestor_of__rc=128
+fatal: Not a valid object name 7bd1af4 2e2bd22
+7bd1af4 2e2bd22_is_ancestor_of__rc=128
+fatal: Not a valid object name 2e2bd22 5786273
+2e2bd22 5786273_is_ancestor_of__rc=128
+fatal: Not a valid object name 5786273 ea0965e
+5786273 ea0965e_is_ancestor_of__rc=128
+fatal: Not a valid object name ea0965e f3126d1
+ea0965e f3126d1_is_ancestor_of__rc=128
+pr1_accepted_branch_tree_equals_integrated_main_rc=0
+pr2_accepted_branch_tree_equals_integrated_main_rc=0
+cleanup_accepted_branch_tree_equals_integrated_main_rc=0
+PR1_CODE_SLICE
+M	USAGE.md
+M	intent/f03-owner-insights/decisions.md
+A	tests/test_owner.py
+M	tracker.py
+PR2_CODE_SLICE
+M	USAGE.md
+M	intent/f03-owner-insights/decisions.md
+A	tests/test_summary.py
+M	tracker.py
+CLEANUP_CODE_SLICE
+M	USAGE.md
+M	intent/f03-owner-insights/decisions.md
+M	tests/test_owner.py
+M	tests/test_summary.py
+M	tracker.py
+85dc853_tracker_sha256=be28924a9b12d8827e912949e0502489a514c6b42751ae5d3ebad197a473000c  -
+3fefacd_tracker_sha256=be28924a9b12d8827e912949e0502489a514c6b42751ae5d3ebad197a473000c  -
+4c5bf2e_tracker_sha256=be28924a9b12d8827e912949e0502489a514c6b42751ae5d3ebad197a473000c  -
+55394d9_tracker_sha256=afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567  -
+7bd1af4_tracker_sha256=afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567  -
+2e2bd22_tracker_sha256=afa894f40f03e97cc0081cabbfbe422880d778f452d627252cabf549d499c567  -
+5786273_tracker_sha256=be4a70e02a10d71fbd3575bf07abed2c3bc1927394136af7de9420b9da8a1f0c  -
+ea0965e_tracker_sha256=be4a70e02a10d71fbd3575bf07abed2c3bc1927394136af7de9420b9da8a1f0c  -
+f3126d1_tracker_sha256=be4a70e02a10d71fbd3575bf07abed2c3bc1927394136af7de9420b9da8a1f0c  -
+exit_code=0

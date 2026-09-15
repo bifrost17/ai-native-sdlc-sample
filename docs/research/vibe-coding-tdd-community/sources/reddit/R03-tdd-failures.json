@@ -1,0 +1,203 @@
+{
+  "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/how_is_tdd_for_vibe_coding/",
+  "title": "How is TDD for Vibe Coding?",
+  "author": "NullzeroJP",
+  "created": "2026-02-15T07:33:22.628000+0000",
+  "reported_comment_count": "22",
+  "post_html": "\n       <div class=\"text-neutral-content\" slot=\"text-body\">\n    <div class=\"mb-xs px-md xs:px-0 overflow-hidden\" data-post-click-location=\"text-body\">\n      <div id=\"t3_1r58l0p-post-rtjson-content\" class=\"md max-h-[253px] overflow-hidden s:max-h-[318px] m:max-h-[337px] l:max-h-[352px] xl:max-h-[452px] text-14-scalable pb-2xs [--emote-size:20px]\" about=\"t3_1r58l0p\" property=\"schema:articleBody\" dir=\"auto\">\n      <p>\n      Been experimenting with TDD for the first time, with the help of GLM + ClaudeCode. Mostly come from a game dev coding background, so vibe coding a mix of TDD + WebDev has been a steep steep learning curve for me.\n    </p><p>\n      I have had some successes and some failures… and so I am wondering if I should even bother with the TDD approach at all, and just let AI Jesus take the wheel.\n    </p><p>\n      Seen so many failure modes… AI writing its own tests to pass… writing stubs and mocks that pass even without existing implementation code. When I made tests read only, I saw an agent spin into hallucinations that caused it to delete and corrupt its Linux install… luckily in a sandbox + source control, so nothing was lost!  But so many little details I could not have anticipated.\n    </p><p>\n      What have been your guys’ experience with TDD and vibe coding?\n    </p>\n    </div>\n    <div id=\"t3_1r58l0p-overflow-cover\" class=\"h-[66px] mt-[-66px] md px-md from-[color:var(--color-neutral-background)] bg-gradient-to-t hidden isolate\n      pointer-events-none read-more-overflow-cover\"></div>\n    <button rpl=\"\" class=\"m-0 -ms-md md px-md py-0 not-italic font-normal text-sm h-[28px] bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent visited:bg-transparent hidden text-body-2 text-primary-plain no-underline hover:no-underline\nbutton-medium px-[calc(var(--rem12)-var(--button-border-width,0px))]\nbutton-plain\n\n\n\nitems-center justify-center\nbutton inline-flex \" id=\"t3_1r58l0p-read-more-button\" type=\"button\">\n      <span class=\"flex items-center justify-center\">\n      \n      <span class=\"flex items-center gap-xs\">더 읽기</span>\n    </span>\n    <span class=\"flex ms-2xs me-[-2px]\"><svg rpl=\"\" class=\"align-text-bottom\" fill=\"currentColor\" height=\"16\" icon-name=\"caret-down\" viewBox=\"0 0 20 20\" width=\"16\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M10 13.7a.897.897 0 01-.636-.264l-4.6-4.6a.9.9 0 111.272-1.273L10 11.526l3.964-3.963a.9.9 0 011.272 1.273l-4.6 4.6A.897.897 0 0110 13.7Z\"></path>\n    </svg></span>\n    </button>\n    </div>\n  </div> \n    ",
+  "post_text": "Been experimenting with TDD for the first time, with the help of GLM + ClaudeCode. Mostly come from a game dev coding background, so vibe coding a mix of TDD + WebDev has been a steep steep learning curve for me.\n\nI have had some successes and some failures… and so I am wondering if I should even bother with the TDD approach at all, and just let AI Jesus take the wheel.\n\nSeen so many failure modes… AI writing its own tests to pass… writing stubs and mocks that pass even without existing implementation code. When I made tests read only, I saw an agent spin into hallucinations that caused it to delete and corrupt its Linux install… luckily in a sandbox + source control, so nothing was lost! But so many little details I could not have anticipated.\n\nWhat have been your guys’ experience with TDD and vibe coding?",
+  "comments": [
+    {
+      "id": "t1_o5jmyl3",
+      "parent": null,
+      "author": "Great_Department3335",
+      "created": "2026-02-15T18:06:00.730000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5jmyl3/",
+      "body_html": "\n        <div id=\"t1_o5jmyl3-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      You can have two sub agents in Claude code, acting as pair programmers with driver and navigator roles. It allows you to offload TDD completely to the Claude code. <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://medium.com/@shivam.agarwal.in/claude-code-pair-programming-sub-agents-that-tdd-with-minimal-supervision-904e586ed009\" rel=\"noopener nofollow ugc\" target=\"_blank\">Link to full approach</a>\n    </p>\n    </div>\n      ",
+      "body_text": "You can have two sub agents in Claude code, acting as pair programmers with driver and navigator roles. It allows you to offload TDD completely to the Claude code. Link to full approach"
+    },
+    {
+      "id": "t1_o5m2ux7",
+      "parent": "t1_o5jmyl3",
+      "author": "NullzeroJP",
+      "created": "2026-02-16T02:03:48.780000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5m2ux7/",
+      "body_html": "\n        <div id=\"t1_o5m2ux7-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Thank you for this. I will check it out. At first glance it sounds token intensive… but I mean… fixing buggy code is also token intensive, so maybe it works out.\n    </p>\n    </div>\n      ",
+      "body_text": "Thank you for this. I will check it out. At first glance it sounds token intensive… but I mean… fixing buggy code is also token intensive, so maybe it works out."
+    },
+    {
+      "id": "t1_o5h3591",
+      "parent": null,
+      "author": "Ok-Hotel-8551",
+      "created": "2026-02-15T07:46:46.239000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h3591/",
+      "body_html": "\n        <div id=\"t1_o5h3591-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      When I'm asking models to follow TDD it's doing the code first, then tests which are green. I think it should be the other way around, but cannot force the models to make it right.\n    </p>\n    </div>\n      ",
+      "body_text": "When I'm asking models to follow TDD it's doing the code first, then tests which are green. I think it should be the other way around, but cannot force the models to make it right."
+    },
+    {
+      "id": "t1_o5h90rs",
+      "parent": "t1_o5h3591",
+      "author": "Michaeli_Starky",
+      "created": "2026-02-15T08:43:45.438000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h90rs/",
+      "body_html": "\n        <div id=\"t1_o5h90rs-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yes you can force\n    </p>\n    </div>\n      ",
+      "body_text": "Yes you can force"
+    },
+    {
+      "id": "t1_o5hayqs",
+      "parent": "t1_o5h90rs",
+      "author": "Ok-Hotel-8551",
+      "created": "2026-02-15T09:02:30.971000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5hayqs/",
+      "body_html": "\n        <div id=\"t1_o5hayqs-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      How?\n    </p>\n    </div>\n      ",
+      "body_text": "How?"
+    },
+    {
+      "id": "t1_o5ip87e",
+      "parent": "t1_o5h3591",
+      "author": "Illustrious-Many-782",
+      "created": "2026-02-15T15:21:18.383000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5ip87e/",
+      "body_html": "\n        <div id=\"t1_o5ip87e-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Look at Google's Conductor framework -- it does a very good job at enforcing red-green TDD.\n    </p>\n    </div>\n      ",
+      "body_text": "Look at Google's Conductor framework -- it does a very good job at enforcing red-green TDD."
+    },
+    {
+      "id": "t1_o5h8zk2",
+      "parent": null,
+      "author": "Michaeli_Starky",
+      "created": "2026-02-15T08:43:26.223000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h8zk2/",
+      "body_html": "\n        <div id=\"t1_o5h8zk2-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      TDD is a must.\n    </p>\n    </div>\n      ",
+      "body_text": "TDD is a must."
+    },
+    {
+      "id": "t1_o5hgqos",
+      "parent": null,
+      "author": "guywithknife",
+      "created": "2026-02-15T09:58:55.878000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5hgqos/",
+      "body_html": "\n        <div id=\"t1_o5hgqos-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      In my opinion strict test first TDD is the only way to reliably have AI test itself. If the tests aren’t written first, it will cheat. I follow a strict Red, Green, Refactor TDD workflow and it works pretty well.\n    </p><p>\n      The important part is that it must not have the code it’s writing tests for otherwise it will just test whatever the code is doing, instead of testing what it should be doing. The other important thing is that if during Green it is determined that the tests are wrong, it must not just go and fix the tests — it has to abort and go back to redoing the Red phase.\n    </p>\n    </div>\n      ",
+      "body_text": "In my opinion strict test first TDD is the only way to reliably have AI test itself. If the tests aren’t written first, it will cheat. I follow a strict Red, Green, Refactor TDD workflow and it works pretty well.\n\nThe important part is that it must not have the code it’s writing tests for otherwise it will just test whatever the code is doing, instead of testing what it should be doing. The other important thing is that if during Green it is determined that the tests are wrong, it must not just go and fix the tests — it has to abort and go back to redoing the Red phase."
+    },
+    {
+      "id": "t1_ophkv8e",
+      "parent": "t1_o5hgqos",
+      "author": "1970blueshifter",
+      "created": "2026-06-03T10:28:39.748000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/ophkv8e/",
+      "body_html": "\n        <div id=\"t1_ophkv8e-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Explain that last \"redoing the red phase\" bit - do you mean: tell it to delete the bogus Green test, and write a brand new Red test?  Won't it just end up doing an edit anyways?\n    </p>\n    </div>\n      ",
+      "body_text": "Explain that last \"redoing the red phase\" bit - do you mean: tell it to delete the bogus Green test, and write a brand new Red test? Won't it just end up doing an edit anyways?"
+    },
+    {
+      "id": "t1_opkc3x5",
+      "parent": "t1_ophkv8e",
+      "author": "guywithknife",
+      "created": "2026-06-03T18:33:46.293000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/opkc3x5/",
+      "body_html": "\n        <div id=\"t1_opkc3x5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      If you detect that the tests are wrong, it means they were written based on invalid assumptions. That means that you need to roll back and try again, with assumptions corrected.\n    </p><p>\n      So you need to discard both the green and red phases, and replan. This time, you include what was learned in the replanning to make sure you don’t end up making the same mistake again. The mistaken assumptions need to be recorded and taken into account, to ensure that the same mistake isn’t made again.\n    </p>\n    </div>\n      ",
+      "body_text": "If you detect that the tests are wrong, it means they were written based on invalid assumptions. That means that you need to roll back and try again, with assumptions corrected.\n\nSo you need to discard both the green and red phases, and replan. This time, you include what was learned in the replanning to make sure you don’t end up making the same mistake again. The mistaken assumptions need to be recorded and taken into account, to ensure that the same mistake isn’t made again."
+    },
+    {
+      "id": "t1_o5h5nud",
+      "parent": null,
+      "author": "thee_gummbini",
+      "created": "2026-02-15T08:11:08.870000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h5nud/",
+      "body_html": "\n        <div id=\"t1_o5h5nud-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      If there is one thing to actually read it is the tests\n    </p>\n    </div>\n      ",
+      "body_text": "If there is one thing to actually read it is the tests"
+    },
+    {
+      "id": "t1_o5hcrwp",
+      "parent": null,
+      "author": "wewerecreaturres",
+      "created": "2026-02-15T09:20:12.133000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5hcrwp/",
+      "body_html": "\n        <div id=\"t1_o5hcrwp-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      the key do developing with AI is to give it structure. you cant just vibe it out in chat and pray for the best. <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"http://claude.md\" rel=\"noopener nofollow ugc\" target=\"_blank\">claude.md</a>, sub-agents, rules, and slash commands are your new best friends.\n    </p>\n    </div>\n      ",
+      "body_text": "the key do developing with AI is to give it structure. you cant just vibe it out in chat and pray for the best. claude.md, sub-agents, rules, and slash commands are your new best friends."
+    },
+    {
+      "id": "t1_o6r6zrx",
+      "parent": null,
+      "author": "Ok-Reception7565",
+      "created": "2026-02-22T11:17:41.336000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o6r6zrx/",
+      "body_html": "\n        <div id=\"t1_o6r6zrx-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      AI starts to hallucinate once task becoms somewhat complex. You try to lock test cases or you can use tools like Traycer they also works fine for this.\n    </p>\n    </div>\n      ",
+      "body_text": "AI starts to hallucinate once task becoms somewhat complex. You try to lock test cases or you can use tools like Traycer they also works fine for this."
+    },
+    {
+      "id": "t1_o5h4wnl",
+      "parent": null,
+      "author": "larowin",
+      "created": "2026-02-15T08:03:49.869000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h4wnl/",
+      "body_html": "\n        <div id=\"t1_o5h4wnl-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      In my opinion, TDD was designed because humans are stupid and miss things, so it’s best to scope and write unit tests for every little thing so that we don’t forget to do something. LLMs don’t really have this problem, and I think it’s just not a pattern that fits well in agentic coding. Better to just have a handful of function/integration/e2e tests that make sure the thing works.\n    </p>\n    </div>\n      ",
+      "body_text": "In my opinion, TDD was designed because humans are stupid and miss things, so it’s best to scope and write unit tests for every little thing so that we don’t forget to do something. LLMs don’t really have this problem, and I think it’s just not a pattern that fits well in agentic coding. Better to just have a handful of function/integration/e2e tests that make sure the thing works."
+    },
+    {
+      "id": "t1_o5h5v6h",
+      "parent": "t1_o5h4wnl",
+      "author": "thee_gummbini",
+      "created": "2026-02-15T08:13:08.529000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h5v6h/",
+      "body_html": "\n        <div id=\"t1_o5h5v6h-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      TDD is a pattern based on clear specification of how the program should behave. If there's one trad development pattern that translates well to vibe coding it's TDD\n    </p>\n    </div>\n      ",
+      "body_text": "TDD is a pattern based on clear specification of how the program should behave. If there's one trad development pattern that translates well to vibe coding it's TDD"
+    },
+    {
+      "id": "t1_o5i76vr",
+      "parent": "t1_o5h4wnl",
+      "author": "DarkXanthos",
+      "created": "2026-02-15T13:39:26.252000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5i76vr/",
+      "body_html": "\n        <div id=\"t1_o5i76vr-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Agents are stupid and miss things too. We do tdd to ensure the code works the way we assume it will. It gives an LLM one less degree of freedom to have to do both.\n    </p>\n    </div>\n      ",
+      "body_text": "Agents are stupid and miss things too. We do tdd to ensure the code works the way we assume it will. It gives an LLM one less degree of freedom to have to do both."
+    },
+    {
+      "id": "t1_o5h29f8",
+      "parent": null,
+      "author": "[삭제됨]",
+      "created": "2026-02-15T07:38:10.684000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5h29f8/",
+      "body_html": "\n        <div id=\"t1_o5hpce5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Or better ask another llm like codex to write the tests first\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_o5hpce5",
+      "parent": "t1_o5h29f8",
+      "author": "Excellent-Relief-460",
+      "created": "2026-02-15T11:20:40.595000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/o5hpce5/",
+      "body_html": "\n        <div id=\"t1_o5hpce5-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Or better ask another llm like codex to write the tests first\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_ob7qey1",
+      "parent": "t1_o5h29f8",
+      "author": "L0rdBizn3ss",
+      "created": "2026-03-18T23:54:28.471000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/vibecoding/comments/1r58l0p/comment/ob7qey1/",
+      "body_html": "\n        <div id=\"t1_ob7qey1-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Thought I would reply to this - I use Antigravity and have near perfect TDD process. One persona is soley responsible for writing the reds (test cases) and then in charge of validation. This persona can only write or run tests and is not allowed to touch any other non-testing related code.\n    </p><p>\n      I have separate programmer personas that only write the code that turns the reds green. They have rules that do not allow them to modify test code or cases and they are not allowed to run tests.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    }
+  ],
+  "retrieved_at": "2026-09-12T11:59:41.722Z",
+  "scope": "Aside rendered public post and currently loaded comment bodies; not complete server HTML, hidden or deleted comments. Login UI and ads excluded from body extraction."
+}

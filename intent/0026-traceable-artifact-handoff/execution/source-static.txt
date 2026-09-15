@@ -1,0 +1,28 @@
+Read-only checks; no new semantic checker added to templates.
+Initial comparison falsely treated documented Codex AGENTS.md entry and TOML delimiter as drift. Corrected comparison uses parsed TOML and permits only the documented entry.
+{
+  "unchanged_intent": [
+    {
+      "unchanged": "tdd-first/project/templates/intent.md",
+      "sha256": "ed0a1cc1307daa7c03c72a48b988e87d4b3c4d614987eaa9783c6f955ecbddb7"
+    },
+    {
+      "unchanged": "tdd-first/project/examples/skills/capture-intent/SKILL.md",
+      "sha256": "23d840df4ed12a84207e19b32390cf74ca5c16fd80a2d747ff835027a0d76327"
+    },
+    {
+      "unchanged": "tdd-optional/project/templates/intent.md",
+      "sha256": "ed0a1cc1307daa7c03c72a48b988e87d4b3c4d614987eaa9783c6f955ecbddb7"
+    },
+    {
+      "unchanged": "tdd-optional/project/examples/skills/capture-intent/SKILL.md",
+      "sha256": "23d840df4ed12a84207e19b32390cf74ca5c16fd80a2d747ff835027a0d76327"
+    }
+  ],
+  "versions": "0.1.11 / 0.1.7 across 5 manifests",
+  "verifier_criteria": "Claude/OpenCode equal; Codex equal apart from documented AGENTS.md entry",
+  "codex_toml": "parsed with tomllib Python 3.12.14"
+}
+
+Python 3.12.14
+YAML frontmatter parsed: 10

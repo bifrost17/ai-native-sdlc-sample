@@ -1,0 +1,36 @@
+--- a/.agents/skills/sdlc-feedback/SKILL.md
++++ b/.agents/skills/sdlc-feedback/SKILL.md
+@@ -8,2 +8,3 @@
+-the **Review criteria** section of [sdlc-verifier.md](../../agents/sdlc-verifier.md) when comparing
+-agreements, artifacts and evidence. Its reviewer-only permissions apply to the verifier, not to
++the **Review criteria** embedded in the `developer_instructions` of
++[sdlc-verifier.toml](../../../.codex/agents/sdlc-verifier.toml) when comparing agreements, artifacts
++and evidence. Its reviewer-only permissions apply to the verifier, not to
+@@ -92,3 +93,14 @@
+-verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills-optional:sdlc-verifier`
+-as a default team example. Wait for its result before a final completion report; a pending review
+-is still pending. Do not run both for the same purpose. A routine prose correction or a
++verifier. Prefer an equivalent project verifier; this Codex distribution includes `sdlc-verifier`
++as the default team criteria and configuration. When the runtime supports named project-agent selection,
++select that agent. Codex 0.153.4's observed native child spawn interface did not expose a named selector.
++In that runtime, start a fresh native child with `fork_context=false`, the configured model and reasoning
++effort, give it the minimum task handoff, and explicitly tell it to read
++`.codex/agents/sdlc-verifier.toml` and apply the
++`developer_instructions` before reviewing. This file-read fallback transfers the criteria; it does not
++prove that the TOML custom-agent role or other configuration was selected. Missing role metadata remains
++unverified rather than evidence of that role.
++
++Wait for the verifier's result before a final completion report; a pending review is still pending.
++Preserve the returned result, then close the completed child with Codex's provided close action so the
++next review can use a fresh context. Keep the child history; do not delete it. Do not run both a named
++agent and the fallback for the same purpose. A routine prose correction or a
+@@ -112,4 +124,5 @@
+-Choose model and effort for difficulty, impact and uncertainty within the user's limits. The default
+-team verifier uses Opus/high for consequential cross-artifact judgments; ordinary implementation
+-can use Sonnet. If that capability is unavailable, use an appropriate available verifier or hand off
+-with the limitation. A stronger model is not proof of correctness.
++Choose the Codex model and reasoning effort for difficulty, impact and uncertainty within the user's
++limits. The included verifier is configured with gpt-5.6-sol/high for consequential cross-artifact
++judgments; pass those values explicitly when using the 0.153.4 fallback if the native interface supports
++them. If an appropriate independent verifier is unavailable, hand off with the limitation. A stronger
++model is not proof of correctness.

@@ -5,6 +5,36 @@ stay flexible; code is added only where a lesson says a check matters and code c
 breaking. The test is one sentence: **code stays only where the lesson itself names a
 deterministic layer** — a hook, a deterministic script, or a CI merge check.
 
+On 2026-09-11 the user explicitly extended the goal to an installed, separate team execution
+entry point: independent review must actually run and feed important omissions back to the agent.
+`team-harness/` implements that transport and bounded retry loop. It does not decide artifact
+meaning, sections, status, or approval in code. A separate model reviews evidence; a person still
+accepts business decisions and merges. The bare adopting template stays unchanged. This explicit
+extension permits runtime orchestration, not a general process validator.
+
+The user's clarification on 2026-09-11: neither the developer nor the reviewer becomes infallible
+because a harness invokes it. Eliminating every agent mistake is not a harness goal. Choose model
+capability and reasoning effort for the difficulty, impact and uncertainty; use stronger settings
+upfront for important judgments and reconsider them after repeated mistakes. Preserve useful tests,
+review and human decisions without growing a bespoke control for each model error. An execution
+failure in the harness still needs a fix; a model's mistaken judgment does not by itself justify a
+new gate. The team's current guidance is in the selected edition's `org-skills/README.md`.
+
+The user then selected event-driven team skills and native subagents as the normal path (0019).
+`tdd-optional/org-skills/skills/sdlc-feedback` keeps the developer conversation and updates affected artifacts;
+its `org-skills/agents/sdlc-verifier.md` is an optional default for completion review in a fresh context.
+The trigger is meaningful work, not every response. The 0018 CLI and its packet-specific prompt
+remain a separate experiment tool; they are not invoked by this skill. Skill adoption does not
+guarantee invocation, correctness or approval. No new semantic checker or runtime gate is added.
+
+The user replaced the two-edition structure with one template on 2026-09-15.
+`tdd-optional/project` permits task-specific testing strategies; the former `tdd-first` tree is
+removed from current distribution and remains available in Git at `b9af49a`. Acceptance criteria,
+independent evidence and human decisions remain. This root contains maker tools; its hooks are
+not automatically installed into the product. Choosing a non-TDD strategy is not itself an
+exception requiring approval. Claude Code and Codex receive the same skill criteria through their
+own installation paths. Historical annotations describe their original edition and revisions.
+
 ## The three layers
 
 | Layer | Lives in | Lesson sentence that puts it there |
@@ -36,10 +66,17 @@ file must contain, the product owner reads it, and the merge records the decisio
   the CLAUDE.md instruction plus the PR `check`; a team that wants it guaranteed adds the hook.
 - Not here: a plan-sync hook. L4 329 says "Consider using a hook" — optional; this repo does not
   have one, the plan skill says to update plan.md in the same commit.
+- Separate opt-in team entry point: `sdlc-claude` calls a tool-free independent reviewer after
+  each developer response and automatically resumes for concrete corrections, at most twice.
+  Review failures and unresolved findings return a handoff; questions/acceptance waits return
+  normally. It is not a Stop hook, PR approval, or coverage of direct `claude` invocations.
 - `make check` red on a PR (L13 963, through branch protection) — CI.
 Each of these is named by the lesson as a hook or a check. Nothing else is.
-Evals' deterministic checks (`evals/check.sh` `kind`s) only judge code shape — a regex over the
-diff. Behavior is judged by the LLM assertions in each case and by the unit/regression tests.
+Evals' deterministic checks (`evals/check.sh` `kind`s) judge file presence and literal/pattern
+matches, not semantic policy compliance. `make evals` also runs each case's assertions through
+an independent, tool-free grader against actual files and tool evidence. Unit/regression tests
+exercise the deterministic behavior. Both grade results and undecidable errors are preserved;
+an evaluation judgment is not a person's artifact approval.
 
 ## Hooks watch tool calls, not effects
 
@@ -76,7 +113,7 @@ these is a device the playbook names; this repo does not build it, and here is w
   967, 971). All four presuppose running infrastructure — containers, network policy, a deploy
   tool with MCP tools registered, a staging environment to rehearse in — that a checked-out
   source tree cannot provide or prove.
-- **20-50 real eval cases** (L10 685). `evals/cases/` holds three (the incident eval from chain 0006 is on `experiment/2026-09-09-claims-status`, L14 1040), enough to prove the harness
+- **20-50 real eval cases** (L10 685). `evals/cases/` holds four, including the organization-policy application case (the incident eval from chain 0006 is on `experiment/2026-09-09-claims-status`, L14 1040), enough to prove the harness
   runs; filling it to the lesson's count needs that organization's actual recent task history,
   which this sample repo does not have.
 - **A test that a skill actually triggers** (L6 470, "confirm the skill loads each time"). That is

@@ -1,0 +1,63 @@
+Capture type: selected public-API reading copy (not a byte-for-byte server response)
+Retrieved: 2026-09-12
+Thread URL: https://www.reddit.com/r/codex/comments/1to6329/superpowers_is_it_really_worth_it/
+Public API URL: https://www.reddit.com/comments/1to6329.json?raw_json=1
+Access note: the public JSON was readable through the web research tool. Direct unauthenticated curl returned HTTP 403, so the relevant records below were transcribed from that public response. Fields not relevant to the research question were omitted.
+
+THREAD
+id: 1to6329
+subreddit: codex
+title: Superpowers, is it really worth it ?
+author: Spirited-Car-3560
+created_utc: 1779800053
+created_iso_utc: 2026-05-26T12:54:13Z
+selftext (relevant paragraphs):
+I’ve been using my own custom development harness for a while, covering not only implementation but also planning, reviews, and project governance.
+
+Out of curiosity, I tried integrating Superpowers into my workflow, since some parts — especially runtime planning, agentic development, and TDD — looked more structured and potentially safer than my current approach.
+
+However, after testing it, I’m honestly a bit disappointed and would like to hear other people’s experience.
+
+Agentic development + TDD + dual reviews is the biggest issue for me. Even a single task can require many iterations between developer, spec reviewer, quality reviewer, and back again.
+This consumes a lot of tokens and time, often without a clear quality improvement compared to my previous simpler workflow: plan > implementation > external review.
+
+I’m close to uninstalling it, unless there’s a better way to use it that I’m missing.
+But at the moment my own harness, built without big expectations, works several times better in my use cases.
+
+COMMENT
+id: onyry7t
+author: sarcasmguy1
+created_utc: 1779800509
+created_iso_utc: 2026-05-26T13:01:49Z
+permalink: https://www.reddit.com/r/codex/comments/1to6329/superpowers_is_it_really_worth_it/onyry7t/
+body:
+I switched to ADRs + specs, but I kept brainstorming.
+
+Like you said, the plans were extremely verbose and often read more like success theatre more than actual implementation work.
+
+Brainstorming is still great for rough ideation sessions imo. But I plan to remove it and replace it with something more lightweight.
+
+The TDD and agentic development skill is honestly not even needed anymore. TDD maybe, but you can use a much more lightweight version ([I use Matt Pococks](https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md)).
+
+COMMENT
+id: onzgv1h
+author: Spirited-Car-3560
+created_utc: 1779807803
+created_iso_utc: 2026-05-26T15:03:23Z
+permalink: https://www.reddit.com/r/codex/comments/1to6329/superpowers_is_it_really_worth_it/onzgv1h/
+body:
+I see, probably for someone new or who can't code is still better than nothing.
+But subpar when it comes to what I've been used to.
+
+Honestly I just reverted back and deleted it, my take away is the TDD skill which I may implement later on in my harness
+
+COMMENT (reply to onzgv1h)
+id: onzk3lr
+author: tonyboi76
+created_utc: 1779808689
+created_iso_utc: 2026-05-26T15:18:09Z
+permalink: https://www.reddit.com/r/codex/comments/1to6329/superpowers_is_it_really_worth_it/onzk3lr/
+body:
+makes sense.
+fwiw when you reimplement the TDD skill in your own harness, the bit that made it actually useful for me was forcing claude to run the failing test FIRST and show the red output, BEFORE writing any impl. without that step it tends to write impl + test in the same turn and call it green even if its not actually testing the right thing.
+costs an extra turn but the no-cheating signal is worth it.

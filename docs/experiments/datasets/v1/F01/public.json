@@ -1,0 +1,16 @@
+{
+  "case_id": "F01",
+  "dataset_version": "1.0.0",
+  "seed": 101,
+  "kind": "feature",
+  "title": "담당자별 요청 목록",
+  "problem": "작은 팀이 로컬 CLI로 업무 요청을 확인한다. 목록이 섞여 있어서 특정 담당자의 요청을 찾을 때마다 눈으로 고르고 있다. 담당자 ID로 목록을 좁혀 보고 싶다.",
+  "stable_facts": [
+    {"id": "F01-F1", "fact": "Python 3.9 이상 표준 라이브러리만 사용하며 외부 서비스·계정·네트워크는 없다."},
+    {"id": "F01-F2", "fact": "기존 명령은 python3 tracker.py --data requests.json list, show <ID>, complete <ID>다."},
+    {"id": "F01-F3", "fact": "list는 파일 순서대로 전체 행을 출력한다. 출력 열은 ID, 상태, 담당자, 제목이며 탭으로 구분한다. 담당자 없음은 -로 표시한다."},
+    {"id": "F01-F4", "fact": "담당자 ID는 소문자 ASCII 문자열이고 미배정 행의 owner는 null이다. 이 데이터는 가상의 팀 요청이다."}
+  ],
+  "constraints": ["기존 명령과 JSON 필드를 유지한다.", "조회는 파일을 변경하지 않는다.", "업무 코드는 2~4파일 이내의 작은 CLI 변경으로 제한한다. 시험·문서는 별도로 둔다."],
+  "baseline": {"entrypoint": "tracker.py", "data": "requests.json", "tests": "python3 -m unittest discover -s tests -v"}
+}

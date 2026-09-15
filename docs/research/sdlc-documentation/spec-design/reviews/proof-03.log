@@ -1,0 +1,18 @@
+COMMAND: bash evals/check.sh evals/cases/03-spec-carries-questions.json evals/testdata/03-pass/result.json
+CASE 03-spec-carries-questions (5 판정 · evals/testdata/03-pass/ws)
+  PASS  [0] file_exists spec.md
+  PASS  [1] regex_present spec.md
+  PASS  [2] regex_present spec.md
+  PASS  [3] regex_present spec.md
+  PASS  [4] not_contains spec.md
+03-spec-carries-questions: 5 passed, 0 failed
+EXIT: 0
+COMMAND: bash evals/check.sh evals/cases/03-spec-carries-questions.json evals/testdata/03-fail-carry/result.json
+CASE 03-spec-carries-questions (5 판정 · evals/testdata/03-fail-carry/ws)
+  PASS  [0] file_exists spec.md
+  PASS  [1] regex_present spec.md
+  FAIL  [2] regex_present spec.md — 패턴 불일치: /^- Q1 (answered|carried forward):/
+  PASS  [3] regex_present spec.md
+  PASS  [4] not_contains spec.md
+03-spec-carries-questions: 4 passed, 1 failed
+EXIT: 1

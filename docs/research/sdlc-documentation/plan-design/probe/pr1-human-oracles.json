@@ -1,0 +1,63 @@
+[
+  {
+    "args": [
+      "list",
+      "--owner",
+      "hana"
+    ],
+    "rc": 0,
+    "stdout": "R-101\topen\thana\t회의실 키 확인\nR-103\tdone\thana\t회의록 정리\n",
+    "byte_unchanged": true,
+    "pass": true
+  },
+  {
+    "args": [
+      "list",
+      "--owner",
+      "HANA"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "byte_unchanged": true,
+    "pass": true
+  },
+  {
+    "args": [
+      "list",
+      "--owner",
+      "nobody"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "byte_unchanged": true,
+    "pass": true
+  },
+  {
+    "args": [
+      "list",
+      "--owner",
+      "-"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "byte_unchanged": true,
+    "pass": true
+  },
+  {
+    "args": [
+      "list"
+    ],
+    "rc": 0,
+    "stdout": "R-101\topen\thana\t회의실 키 확인\nR-102\topen\tmin\t문구함 채우기\nR-103\tdone\thana\t회의록 정리\nR-104\topen\t-\t책장 위치 확인\n",
+    "byte_unchanged": true,
+    "pass": true
+  },
+  {
+    "args": [
+      "summary"
+    ],
+    "rc": 2,
+    "not_yet_present": true,
+    "pass": true
+  }
+]

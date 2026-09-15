@@ -1,0 +1,941 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:43:51Z",
+  "pull": {
+    "url": "https://api.github.com/repos/django/django/pulls/21507",
+    "id": 3885395937,
+    "node_id": "PR_kwDOAD-Lgs7nlm_h",
+    "html_url": "https://github.com/django/django/pull/21507",
+    "diff_url": "https://github.com/django/django/pull/21507.diff",
+    "patch_url": "https://github.com/django/django/pull/21507.patch",
+    "issue_url": "https://api.github.com/repos/django/django/issues/21507",
+    "number": 21507,
+    "state": "closed",
+    "locked": false,
+    "title": "Refs #37139 -- Renamed helper inside _is_pk_set().",
+    "user": {
+      "login": "jacobtylerwalls",
+      "id": 38668450,
+      "node_id": "MDQ6VXNlcjM4NjY4NDUw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38668450?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jacobtylerwalls",
+      "html_url": "https://github.com/jacobtylerwalls",
+      "followers_url": "https://api.github.com/users/jacobtylerwalls/followers",
+      "following_url": "https://api.github.com/users/jacobtylerwalls/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jacobtylerwalls/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jacobtylerwalls/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jacobtylerwalls/subscriptions",
+      "organizations_url": "https://api.github.com/users/jacobtylerwalls/orgs",
+      "repos_url": "https://api.github.com/users/jacobtylerwalls/repos",
+      "events_url": "https://api.github.com/users/jacobtylerwalls/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jacobtylerwalls/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "ticket-37139\r\n\r\nSee discussion in https://github.com/django/django/pull/21420/changes#r3429521783.\r\n\r\nI briefly toyed with a rewrite to remove the double negative, but it wasn't any clearer IMO.",
+    "created_at": "2026-06-17T17:13:33Z",
+    "updated_at": "2026-06-17T17:45:24Z",
+    "closed_at": "2026-06-17T17:44:38Z",
+    "merged_at": "2026-06-17T17:44:38Z",
+    "merge_commit_sha": "f3e66a32a3bdbf3c362b70e06c16393639dd36f3",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/django/django/pulls/21507/commits",
+    "review_comments_url": "https://api.github.com/repos/django/django/pulls/21507/comments",
+    "review_comment_url": "https://api.github.com/repos/django/django/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/django/django/issues/21507/comments",
+    "statuses_url": "https://api.github.com/repos/django/django/statuses/5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+    "head": {
+      "label": "jacobtylerwalls:jtw/rename-helper",
+      "ref": "jtw/rename-helper",
+      "sha": "5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "user": {
+        "login": "jacobtylerwalls",
+        "id": 38668450,
+        "node_id": "MDQ6VXNlcjM4NjY4NDUw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/38668450?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jacobtylerwalls",
+        "html_url": "https://github.com/jacobtylerwalls",
+        "followers_url": "https://api.github.com/users/jacobtylerwalls/followers",
+        "following_url": "https://api.github.com/users/jacobtylerwalls/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jacobtylerwalls/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jacobtylerwalls/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jacobtylerwalls/subscriptions",
+        "organizations_url": "https://api.github.com/users/jacobtylerwalls/orgs",
+        "repos_url": "https://api.github.com/users/jacobtylerwalls/repos",
+        "events_url": "https://api.github.com/users/jacobtylerwalls/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jacobtylerwalls/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 275381313,
+        "node_id": "MDEwOlJlcG9zaXRvcnkyNzUzODEzMTM=",
+        "name": "django",
+        "full_name": "jacobtylerwalls/django",
+        "private": false,
+        "owner": {
+          "login": "jacobtylerwalls",
+          "id": 38668450,
+          "node_id": "MDQ6VXNlcjM4NjY4NDUw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/38668450?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/jacobtylerwalls",
+          "html_url": "https://github.com/jacobtylerwalls",
+          "followers_url": "https://api.github.com/users/jacobtylerwalls/followers",
+          "following_url": "https://api.github.com/users/jacobtylerwalls/following{/other_user}",
+          "gists_url": "https://api.github.com/users/jacobtylerwalls/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/jacobtylerwalls/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/jacobtylerwalls/subscriptions",
+          "organizations_url": "https://api.github.com/users/jacobtylerwalls/orgs",
+          "repos_url": "https://api.github.com/users/jacobtylerwalls/repos",
+          "events_url": "https://api.github.com/users/jacobtylerwalls/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/jacobtylerwalls/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/jacobtylerwalls/django",
+        "description": "The Web framework for perfectionists with deadlines.",
+        "fork": true,
+        "url": "https://api.github.com/repos/jacobtylerwalls/django",
+        "forks_url": "https://api.github.com/repos/jacobtylerwalls/django/forks",
+        "keys_url": "https://api.github.com/repos/jacobtylerwalls/django/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/jacobtylerwalls/django/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/jacobtylerwalls/django/teams",
+        "hooks_url": "https://api.github.com/repos/jacobtylerwalls/django/hooks",
+        "issue_events_url": "https://api.github.com/repos/jacobtylerwalls/django/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/jacobtylerwalls/django/events",
+        "assignees_url": "https://api.github.com/repos/jacobtylerwalls/django/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/jacobtylerwalls/django/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/jacobtylerwalls/django/tags",
+        "blobs_url": "https://api.github.com/repos/jacobtylerwalls/django/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/jacobtylerwalls/django/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/jacobtylerwalls/django/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/jacobtylerwalls/django/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/jacobtylerwalls/django/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/jacobtylerwalls/django/languages",
+        "stargazers_url": "https://api.github.com/repos/jacobtylerwalls/django/stargazers",
+        "contributors_url": "https://api.github.com/repos/jacobtylerwalls/django/contributors",
+        "subscribers_url": "https://api.github.com/repos/jacobtylerwalls/django/subscribers",
+        "subscription_url": "https://api.github.com/repos/jacobtylerwalls/django/subscription",
+        "commits_url": "https://api.github.com/repos/jacobtylerwalls/django/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/jacobtylerwalls/django/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/jacobtylerwalls/django/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/jacobtylerwalls/django/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/jacobtylerwalls/django/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/jacobtylerwalls/django/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/jacobtylerwalls/django/merges",
+        "archive_url": "https://api.github.com/repos/jacobtylerwalls/django/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/jacobtylerwalls/django/downloads",
+        "issues_url": "https://api.github.com/repos/jacobtylerwalls/django/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/jacobtylerwalls/django/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/jacobtylerwalls/django/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/jacobtylerwalls/django/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/jacobtylerwalls/django/labels{/name}",
+        "releases_url": "https://api.github.com/repos/jacobtylerwalls/django/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/jacobtylerwalls/django/deployments",
+        "created_at": "2020-06-27T13:48:03Z",
+        "updated_at": "2026-08-18T12:01:01Z",
+        "pushed_at": "2026-09-08T16:45:59Z",
+        "git_url": "git://github.com/jacobtylerwalls/django.git",
+        "ssh_url": "git@github.com:jacobtylerwalls/django.git",
+        "clone_url": "https://github.com/jacobtylerwalls/django.git",
+        "svn_url": "https://github.com/jacobtylerwalls/django",
+        "homepage": "https://www.djangoproject.com/",
+        "size": 281873,
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "language": "Python",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "bsd-3-clause",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://api.github.com/licenses/bsd-3-clause",
+          "node_id": "MDc6TGljZW5zZTU="
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 0,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "django:main",
+      "ref": "main",
+      "sha": "14988f14d94f9ce617f967d26b8ed2946172a140",
+      "user": {
+        "login": "django",
+        "id": 27804,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3ODA0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/27804?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/django",
+        "html_url": "https://github.com/django",
+        "followers_url": "https://api.github.com/users/django/followers",
+        "following_url": "https://api.github.com/users/django/following{/other_user}",
+        "gists_url": "https://api.github.com/users/django/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/django/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/django/subscriptions",
+        "organizations_url": "https://api.github.com/users/django/orgs",
+        "repos_url": "https://api.github.com/users/django/repos",
+        "events_url": "https://api.github.com/users/django/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/django/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 4164482,
+        "node_id": "MDEwOlJlcG9zaXRvcnk0MTY0NDgy",
+        "name": "django",
+        "full_name": "django/django",
+        "private": false,
+        "owner": {
+          "login": "django",
+          "id": 27804,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjI3ODA0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/27804?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/django",
+          "html_url": "https://github.com/django",
+          "followers_url": "https://api.github.com/users/django/followers",
+          "following_url": "https://api.github.com/users/django/following{/other_user}",
+          "gists_url": "https://api.github.com/users/django/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/django/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/django/subscriptions",
+          "organizations_url": "https://api.github.com/users/django/orgs",
+          "repos_url": "https://api.github.com/users/django/repos",
+          "events_url": "https://api.github.com/users/django/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/django/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/django/django",
+        "description": "The Web framework for perfectionists with deadlines.",
+        "fork": false,
+        "url": "https://api.github.com/repos/django/django",
+        "forks_url": "https://api.github.com/repos/django/django/forks",
+        "keys_url": "https://api.github.com/repos/django/django/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/django/django/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/django/django/teams",
+        "hooks_url": "https://api.github.com/repos/django/django/hooks",
+        "issue_events_url": "https://api.github.com/repos/django/django/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/django/django/events",
+        "assignees_url": "https://api.github.com/repos/django/django/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/django/django/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/django/django/tags",
+        "blobs_url": "https://api.github.com/repos/django/django/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/django/django/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/django/django/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/django/django/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/django/django/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/django/django/languages",
+        "stargazers_url": "https://api.github.com/repos/django/django/stargazers",
+        "contributors_url": "https://api.github.com/repos/django/django/contributors",
+        "subscribers_url": "https://api.github.com/repos/django/django/subscribers",
+        "subscription_url": "https://api.github.com/repos/django/django/subscription",
+        "commits_url": "https://api.github.com/repos/django/django/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/django/django/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/django/django/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/django/django/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/django/django/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/django/django/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/django/django/merges",
+        "archive_url": "https://api.github.com/repos/django/django/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/django/django/downloads",
+        "issues_url": "https://api.github.com/repos/django/django/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/django/django/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/django/django/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/django/django/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/django/django/labels{/name}",
+        "releases_url": "https://api.github.com/repos/django/django/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/django/django/deployments",
+        "created_at": "2012-04-28T02:47:18Z",
+        "updated_at": "2026-09-12T05:05:16Z",
+        "pushed_at": "2026-09-08T19:01:03Z",
+        "git_url": "git://github.com/django/django.git",
+        "ssh_url": "git@github.com:django/django.git",
+        "clone_url": "https://github.com/django/django.git",
+        "svn_url": "https://github.com/django/django",
+        "homepage": "https://www.djangoproject.com/",
+        "size": 282843,
+        "stargazers_count": 90763,
+        "watchers_count": 90763,
+        "language": "Python",
+        "has_issues": false,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 34251,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 501,
+        "license": {
+          "key": "bsd-3-clause",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "spdx_id": "BSD-3-Clause",
+          "url": "https://api.github.com/licenses/bsd-3-clause",
+          "node_id": "MDc6TGljZW5zZTU="
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "apps",
+          "django",
+          "framework",
+          "models",
+          "orm",
+          "python",
+          "templates",
+          "views",
+          "web"
+        ],
+        "visibility": "public",
+        "forks": 34251,
+        "open_issues": 501,
+        "watchers": 90763,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/django/django/pulls/21507"
+      },
+      "html": {
+        "href": "https://github.com/django/django/pull/21507"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/django/django/issues/21507"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/django/django/issues/21507/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/django/django/pulls/21507/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/django/django/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/django/django/pulls/21507/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/django/django/statuses/5da2f8b58e83771c6bd04a4dd228871fb0271d7b"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "jacobtylerwalls",
+      "id": 38668450,
+      "node_id": "MDQ6VXNlcjM4NjY4NDUw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38668450?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jacobtylerwalls",
+      "html_url": "https://github.com/jacobtylerwalls",
+      "followers_url": "https://api.github.com/users/jacobtylerwalls/followers",
+      "following_url": "https://api.github.com/users/jacobtylerwalls/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jacobtylerwalls/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jacobtylerwalls/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jacobtylerwalls/subscriptions",
+      "organizations_url": "https://api.github.com/users/jacobtylerwalls/orgs",
+      "repos_url": "https://api.github.com/users/jacobtylerwalls/repos",
+      "events_url": "https://api.github.com/users/jacobtylerwalls/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jacobtylerwalls/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 0,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 1,
+    "additions": 3,
+    "deletions": 3,
+    "changed_files": 1
+  },
+  "commits": [
+    {
+      "sha": "5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "node_id": "C_kwDOEGn8QdoAKDVkYTJmOGI1OGU4Mzc3MWM2YmQwNGE0ZGQyMjg4NzFmYjAyNzFkN2I",
+      "commit": {
+        "author": {
+          "name": "Jacob Walls",
+          "email": "jacobtylerwalls@gmail.com",
+          "date": "2026-06-17T17:12:57Z"
+        },
+        "committer": {
+          "name": "Jacob Walls",
+          "email": "jacobtylerwalls@gmail.com",
+          "date": "2026-06-17T17:12:57Z"
+        },
+        "message": "Refs #37139 -- Renamed helper inside _is_pk_set().",
+        "tree": {
+          "sha": "483eeb63c2132d24fef7693d7a9515202778ba97",
+          "url": "https://api.github.com/repos/django/django/git/trees/483eeb63c2132d24fef7693d7a9515202778ba97"
+        },
+        "url": "https://api.github.com/repos/django/django/git/commits/5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/django/django/commits/5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "html_url": "https://github.com/django/django/commit/5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "comments_url": "https://api.github.com/repos/django/django/commits/5da2f8b58e83771c6bd04a4dd228871fb0271d7b/comments",
+      "author": {
+        "login": "jacobtylerwalls",
+        "id": 38668450,
+        "node_id": "MDQ6VXNlcjM4NjY4NDUw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/38668450?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jacobtylerwalls",
+        "html_url": "https://github.com/jacobtylerwalls",
+        "followers_url": "https://api.github.com/users/jacobtylerwalls/followers",
+        "following_url": "https://api.github.com/users/jacobtylerwalls/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jacobtylerwalls/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jacobtylerwalls/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jacobtylerwalls/subscriptions",
+        "organizations_url": "https://api.github.com/users/jacobtylerwalls/orgs",
+        "repos_url": "https://api.github.com/users/jacobtylerwalls/repos",
+        "events_url": "https://api.github.com/users/jacobtylerwalls/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jacobtylerwalls/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "jacobtylerwalls",
+        "id": 38668450,
+        "node_id": "MDQ6VXNlcjM4NjY4NDUw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/38668450?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jacobtylerwalls",
+        "html_url": "https://github.com/jacobtylerwalls",
+        "followers_url": "https://api.github.com/users/jacobtylerwalls/followers",
+        "following_url": "https://api.github.com/users/jacobtylerwalls/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jacobtylerwalls/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jacobtylerwalls/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jacobtylerwalls/subscriptions",
+        "organizations_url": "https://api.github.com/users/jacobtylerwalls/orgs",
+        "repos_url": "https://api.github.com/users/jacobtylerwalls/repos",
+        "events_url": "https://api.github.com/users/jacobtylerwalls/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jacobtylerwalls/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "14988f14d94f9ce617f967d26b8ed2946172a140",
+          "url": "https://api.github.com/repos/django/django/commits/14988f14d94f9ce617f967d26b8ed2946172a140",
+          "html_url": "https://github.com/django/django/commit/14988f14d94f9ce617f967d26b8ed2946172a140"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "c88a10118a6e82ed459e58a3feb94feb9f4a5aae",
+      "filename": "django/db/models/base.py",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 3,
+      "changes": 6,
+      "blob_url": "https://github.com/django/django/blob/5da2f8b58e83771c6bd04a4dd228871fb0271d7b/django%2Fdb%2Fmodels%2Fbase.py",
+      "raw_url": "https://github.com/django/django/raw/5da2f8b58e83771c6bd04a4dd228871fb0271d7b/django%2Fdb%2Fmodels%2Fbase.py",
+      "contents_url": "https://api.github.com/repos/django/django/contents/django%2Fdb%2Fmodels%2Fbase.py?ref=5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "patch": "@@ -710,16 +710,16 @@ def _set_pk_val(self, value):\n     def _is_pk_set(self, meta=None):\n         pk_val = self._get_pk_val(meta)\n \n-        def _is_set(value):\n+        def _is_unset(value):\n             return (\n                 value is None\n                 # Empty value when db_default is used.\n                 or isinstance(value, DatabaseDefault)\n             )\n \n         return not (\n-            _is_set(pk_val)\n-            or (isinstance(pk_val, tuple) and any(_is_set(f) for f in pk_val))\n+            _is_unset(pk_val)\n+            or (isinstance(pk_val, tuple) and any(_is_unset(f) for f in pk_val))\n         )\n \n     def get_deferred_fields(self):"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "html_url": "https://github.com/django/django/commit/5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+      "commit": {
+        "author": {
+          "name": "Jacob Walls",
+          "email": "jacobtylerwalls@gmail.com",
+          "date": "2026-06-17T17:12:57Z"
+        },
+        "committer": {
+          "name": "Jacob Walls",
+          "email": "jacobtylerwalls@gmail.com",
+          "date": "2026-06-17T17:12:57Z"
+        },
+        "message": "Refs #37139 -- Renamed helper inside _is_pk_set()."
+      },
+      "parents": [
+        {
+          "sha": "14988f14d94f9ce617f967d26b8ed2946172a140",
+          "url": "https://api.github.com/repos/django/django/commits/14988f14d94f9ce617f967d26b8ed2946172a140",
+          "html_url": "https://github.com/django/django/commit/14988f14d94f9ce617f967d26b8ed2946172a140"
+        }
+      ],
+      "stats": {
+        "total": 6,
+        "additions": 3,
+        "deletions": 3
+      },
+      "files": [
+        {
+          "sha": "c88a10118a6e82ed459e58a3feb94feb9f4a5aae",
+          "filename": "django/db/models/base.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "blob_url": "https://github.com/django/django/blob/5da2f8b58e83771c6bd04a4dd228871fb0271d7b/django%2Fdb%2Fmodels%2Fbase.py",
+          "raw_url": "https://github.com/django/django/raw/5da2f8b58e83771c6bd04a4dd228871fb0271d7b/django%2Fdb%2Fmodels%2Fbase.py",
+          "contents_url": "https://api.github.com/repos/django/django/contents/django%2Fdb%2Fmodels%2Fbase.py?ref=5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+          "patch": "@@ -710,16 +710,16 @@ def _set_pk_val(self, value):\n     def _is_pk_set(self, meta=None):\n         pk_val = self._get_pk_val(meta)\n \n-        def _is_set(value):\n+        def _is_unset(value):\n             return (\n                 value is None\n                 # Empty value when db_default is used.\n                 or isinstance(value, DatabaseDefault)\n             )\n \n         return not (\n-            _is_set(pk_val)\n-            or (isinstance(pk_val, tuple) and any(_is_set(f) for f in pk_val))\n+            _is_unset(pk_val)\n+            or (isinstance(pk_val, tuple) and any(_is_unset(f) for f in pk_val))\n         )\n \n     def get_deferred_fields(self):"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633227/job/81956771886",
+        "name": "Coverage Tests (PostgreSQL)",
+        "started_at": "2026-06-17T17:13:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633120/job/81956768440",
+        "name": "python",
+        "started_at": "2026-06-17T17:13:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633160/job/81956767377",
+        "name": "SQLite",
+        "started_at": "2026-06-17T17:13:48Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633807/job/81956747170",
+        "name": "Screenshots",
+        "started_at": "2026-06-17T17:13:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633650/job/81956745993",
+        "name": "Scripts tests",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:20:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633650/job/81956745987",
+        "name": "Windows, SQLite, Python 3.14",
+        "started_at": "2026-06-17T17:13:47Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:14:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633650/job/81956745950",
+        "name": "JavaScript tests",
+        "started_at": "2026-06-17T17:13:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633021/job/81956745530",
+        "name": "check-commit-prefix",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633160/job/81956745515",
+        "name": "PostgreSQL",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633234/job/81956745457",
+        "name": "Run_benchmarks",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706633120/job/81956745372",
+        "name": "define-matrix",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:41Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/django/django/actions/runs/27706632962/job/81956744950",
+        "name": "PostGIS ${{ matrix.postgis-version }}",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633304/job/81956744780",
+        "name": "zizmor",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633021/job/81956744762",
+        "name": "check-commit-suffix",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:14:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633304/job/81956744505",
+        "name": "biome",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:14:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633304/job/81956744489",
+        "name": "black",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633304/job/81956744481",
+        "name": "isort",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:14:17Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706633304/job/81956744471",
+        "name": "flake8",
+        "started_at": "2026-06-17T17:13:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706631670/job/81956740543",
+        "name": "Run Quality Checks on a PR",
+        "started_at": "2026-06-17T17:13:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706631580/job/81956739804",
+        "name": "Flag if no Trac ticket is found in the title",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-06-17T17:13:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/django/django/actions/runs/27706631381/job/81956739186",
+        "name": "Hello new contributor",
+        "started_at": "2026-06-17T17:13:41Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 21
+  },
+  "combined_status": {
+    "sha": "5da2f8b58e83771c6bd04a4dd228871fb0271d7b",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "docs/readthedocs.org:django",
+        "created_at": "2026-06-17T17:15:13Z",
+        "description": "Read the Docs build succeeded!",
+        "state": "success",
+        "target_url": "https://django--21507.org.readthedocs.build/en/21507/",
+        "updated_at": "2026-06-17T17:15:13Z"
+      },
+      {
+        "context": "pr-mariadb/database=mysql_gis,label=mariadb,python=python3.14",
+        "created_at": "2026-06-17T17:21:59Z",
+        "description": "Build #39147 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pr-mariadb/database=mysql_gis,label=mariadb,python=python3.14/39147/",
+        "updated_at": "2026-06-17T17:21:59Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.12",
+        "created_at": "2026-06-17T17:27:56Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.12/5346/",
+        "updated_at": "2026-06-17T17:27:56Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:27:58Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.14/5346/",
+        "updated_at": "2026-06-17T17:27:58Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.13",
+        "created_at": "2026-06-17T17:28:01Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql_gis,label=noble-pr,python=python3.13/5346/",
+        "updated_at": "2026-06-17T17:28:01Z"
+      },
+      {
+        "context": "pr-mariadb/database=mysql,label=mariadb,python=python3.14",
+        "created_at": "2026-06-17T17:33:01Z",
+        "description": "Build #39147 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pr-mariadb/database=mysql,label=mariadb,python=python3.14/39147/",
+        "updated_at": "2026-06-17T17:33:01Z"
+      },
+      {
+        "context": "pull-requests-postgresql-psycopg2/database=postgres,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:35:08Z",
+        "description": "Build #20639 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-postgresql-psycopg2/database=postgres,label=noble-pr,python=python3.14/20639/",
+        "updated_at": "2026-06-17T17:35:08Z"
+      },
+      {
+        "context": "pull-requests-postgresql-psycopg2/database=postgis,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:37:31Z",
+        "description": "Build #20639 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-postgresql-psycopg2/database=postgis,label=noble-pr,python=python3.14/20639/",
+        "updated_at": "2026-06-17T17:37:31Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql,label=noble-pr,python=python3.13",
+        "created_at": "2026-06-17T17:42:02Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql,label=noble-pr,python=python3.13/5346/",
+        "updated_at": "2026-06-17T17:42:02Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgres,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:42:04Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgres,label=noble-pr,python=python3.14/5346/",
+        "updated_at": "2026-06-17T17:42:04Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:42:13Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql,label=noble-pr,python=python3.14/5346/",
+        "updated_at": "2026-06-17T17:42:13Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgres,label=noble-pr,python=python3.12",
+        "created_at": "2026-06-17T17:42:37Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgres,label=noble-pr,python=python3.12/5346/",
+        "updated_at": "2026-06-17T17:42:37Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgres,label=noble-pr,python=python3.13",
+        "created_at": "2026-06-17T17:42:47Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgres,label=noble-pr,python=python3.13/5346/",
+        "updated_at": "2026-06-17T17:42:47Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgis,label=noble-pr,python=python3.13",
+        "created_at": "2026-06-17T17:43:08Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgis,label=noble-pr,python=python3.13/5346/",
+        "updated_at": "2026-06-17T17:43:08Z"
+      },
+      {
+        "context": "pull-requests-noble/database=mysql,label=noble-pr,python=python3.12",
+        "created_at": "2026-06-17T17:43:19Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=mysql,label=noble-pr,python=python3.12/5346/",
+        "updated_at": "2026-06-17T17:43:19Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgis,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:43:29Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgis,label=noble-pr,python=python3.14/5346/",
+        "updated_at": "2026-06-17T17:43:29Z"
+      },
+      {
+        "context": "pull-requests-noble/database=postgis,label=noble-pr,python=python3.12",
+        "created_at": "2026-06-17T17:44:02Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=postgis,label=noble-pr,python=python3.12/5346/",
+        "updated_at": "2026-06-17T17:44:02Z"
+      },
+      {
+        "context": "pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.13",
+        "created_at": "2026-06-17T17:48:18Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.13/5346/",
+        "updated_at": "2026-06-17T17:48:18Z"
+      },
+      {
+        "context": "pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.12",
+        "created_at": "2026-06-17T17:48:32Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.12/5346/",
+        "updated_at": "2026-06-17T17:48:32Z"
+      },
+      {
+        "context": "pull-requests-pg-server-side-binding/database=postgres,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:49:26Z",
+        "description": "Build #19874 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-pg-server-side-binding/database=postgres,label=noble-pr,python=python3.14/19874/",
+        "updated_at": "2026-06-17T17:49:26Z"
+      },
+      {
+        "context": "pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:49:38Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=sqlite3,label=noble-pr,python=python3.14/5346/",
+        "updated_at": "2026-06-17T17:49:38Z"
+      },
+      {
+        "context": "pull-requests-pg-server-side-binding/database=postgis,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:51:38Z",
+        "description": "Build #19874 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-pg-server-side-binding/database=postgis,label=noble-pr,python=python3.14/19874/",
+        "updated_at": "2026-06-17T17:51:38Z"
+      },
+      {
+        "context": "pull-requests-noble/database=spatialite,label=noble-pr,python=python3.13",
+        "created_at": "2026-06-17T17:52:18Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=spatialite,label=noble-pr,python=python3.13/5346/",
+        "updated_at": "2026-06-17T17:52:18Z"
+      },
+      {
+        "context": "pull-requests-noble/database=spatialite,label=noble-pr,python=python3.12",
+        "created_at": "2026-06-17T17:52:33Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=spatialite,label=noble-pr,python=python3.12/5346/",
+        "updated_at": "2026-06-17T17:52:33Z"
+      },
+      {
+        "context": "pull-requests-noble/database=spatialite,label=noble-pr,python=python3.14",
+        "created_at": "2026-06-17T17:52:48Z",
+        "description": "Build #5346 ended",
+        "state": "success",
+        "target_url": "https://djangoci.com/job/pull-requests-noble/database=spatialite,label=noble-pr,python=python3.14/5346/",
+        "updated_at": "2026-06-17T17:52:48Z"
+      }
+    ],
+    "total_count": 25
+  }
+}

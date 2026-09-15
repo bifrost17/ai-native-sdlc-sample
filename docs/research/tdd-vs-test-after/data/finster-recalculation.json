@@ -1,0 +1,98 @@
+{
+  "source": "../originals/practitioner/B3-refactor-workflow-matrix.jsonl",
+  "rows": 672,
+  "arms": [
+    {
+      "arm": "all-tests-first-single",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 2.3046132770833334,
+      "mean_mutation": 0.9782500000000001,
+      "mean_blast": 50.958333333333336,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    },
+    {
+      "arm": "all-tests-first-split",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 4.40901275,
+      "mean_mutation": 0.9548181818181818,
+      "mean_blast": 50.90277777777778,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    },
+    {
+      "arm": "continuous-single",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 0.9934522083333334,
+      "mean_mutation": 0.8627916666666666,
+      "mean_blast": 40.02777777777778,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    },
+    {
+      "arm": "continuous-split",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 3.0710128666666665,
+      "mean_mutation": 0.9565833333333333,
+      "mean_blast": 51.638888888888886,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    },
+    {
+      "arm": "one-shot-single",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 2.08883039375,
+      "mean_mutation": 0.9340833333333334,
+      "mean_blast": 51.486111111111114,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    },
+    {
+      "arm": "one-shot-split",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 2.9900000979166665,
+      "mean_mutation": 0.976375,
+      "mean_blast": 49.56944444444444,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    },
+    {
+      "arm": "tdd-refactor",
+      "rows": 96,
+      "cells": 24,
+      "mean_cost_per_cell": 1.5886820041666667,
+      "mean_mutation": 0.7989583333333333,
+      "mean_blast": 39.65277777777778,
+      "violations": 0,
+      "build_acceptance_pass": 24,
+      "change_acceptance_pass": 72,
+      "build_rows": 24,
+      "change_rows": 72
+    }
+  ],
+  "scope": "Recalculation of public raw results; original agent experiment not rerun."
+}

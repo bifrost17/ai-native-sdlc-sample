@@ -1,0 +1,151 @@
+$ PR2 reuses PR1 gate/configuration and filtering path
+diff --git a/tracker.py b/tracker.py
+index 978bd4d..41c36ce 100644
+--- a/tracker.py
++++ b/tracker.py
+@@ -1,54 +1,62 @@
+ """Dataset v1 baseline contract: list, show, and complete local JSON requests."""
+ 
+ import argparse
+ import json
+ import os
+ from pathlib import Path
+ import sys
+ 
+ 
+ def display(request):
+     return "\t".join((request["id"], request["status"], request["owner"] or "-", request["title"]))
+ 
+ 
+ def owner_insights_enabled():
+     return os.environ.get("TRACKER_OWNER_INSIGHTS", "").lower() in ("1", "true")
+ 
+ 
+ def main(argv=None):
+     parser = argparse.ArgumentParser(description="Local team request tracker")
+     parser.add_argument("--data", default="requests.json")
+     commands = parser.add_subparsers(dest="command", required=True)
+     list_command = commands.add_parser("list")
+-    if owner_insights_enabled():
++    insights_enabled = owner_insights_enabled()
++    if insights_enabled:
+         list_command.add_argument("--owner")
++        summary_command = commands.add_parser("summary")
++        summary_command.add_argument("--owner")
+     for name in ("show", "complete"):
+         command = commands.add_parser(name)
+         command.add_argument("id")
+     args = parser.parse_args(argv)
+     path = Path(args.data)
+     try:
+         data = json.loads(path.read_text(encoding="utf-8"))
+         requests = data["requests"]
+-        if args.command == "list":
++        if args.command in ("list", "summary"):
+             owner = getattr(args, "owner", None)
+             rows = requests if owner is None else [row for row in requests if row["owner"] == owner]
+-            for request in rows:
+-                print(display(request))
++            if args.command == "list":
++                for request in rows:
++                    print(display(request))
++            else:
++                open_count = sum(1 for row in rows if row["status"] == "open")
++                done_count = sum(1 for row in rows if row["status"] == "done")
++                print("all\t{}\nopen\t{}\ndone\t{}".format(len(rows), open_count, done_count))
+             return 0
+         request = next((row for row in requests if row["id"] == args.id), None)
+         if request is None:
+             print("Request not found: " + args.id, file=sys.stderr)
+             return 1
+         if args.command == "complete" and request["status"] != "done":
+             request["status"] = "done"
+             path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+         print(display(request))
+         return 0
+     except (OSError, ValueError, KeyError, TypeError) as error:
+         print("Cannot read or update requests: " + str(error), file=sys.stderr)
+         return 2
+ 
+ 
+ if __name__ == "__main__":
+     sys.exit(main())
+$ git diff --exit-code 85dc853:owner gate function vs 55394d9 extracted lines (manual patch evidence above)
+PR1_GATE_LINES
+
+
+def owner_insights_enabled():
+    return os.environ.get("TRACKER_OWNER_INSIGHTS", "").lower() in ("1", "true")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Local team request tracker")
+    parser.add_argument("--data", default="requests.json")
+    commands = parser.add_subparsers(dest="command", required=True)
+    list_command = commands.add_parser("list")
+    if owner_insights_enabled():
+        list_command.add_argument("--owner")
+    for name in ("show", "complete"):
+        command = commands.add_parser(name)
+        command.add_argument("id")
+    args = parser.parse_args(argv)
+    path = Path(args.data)
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        requests = data["requests"]
+        if args.command == "list":
+            owner = getattr(args, "owner", None)
+            rows = requests if owner is None else [row for row in requests if row["owner"] == owner]
+            for request in rows:
+                print(display(request))
+            return 0
+        request = next((row for row in requests if row["id"] == args.id), None)
+        if request is None:
+            print("Request not found: " + args.id, file=sys.stderr)
+            return 1
+        if args.command == "complete" and request["status"] != "done":
+            request["status"] = "done"
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PR2_GATE_LINES
+
+
+def owner_insights_enabled():
+    return os.environ.get("TRACKER_OWNER_INSIGHTS", "").lower() in ("1", "true")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Local team request tracker")
+    parser.add_argument("--data", default="requests.json")
+    commands = parser.add_subparsers(dest="command", required=True)
+    list_command = commands.add_parser("list")
+    insights_enabled = owner_insights_enabled()
+    if insights_enabled:
+        list_command.add_argument("--owner")
+        summary_command = commands.add_parser("summary")
+        summary_command.add_argument("--owner")
+    for name in ("show", "complete"):
+        command = commands.add_parser(name)
+        command.add_argument("id")
+    args = parser.parse_args(argv)
+    path = Path(args.data)
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        requests = data["requests"]
+        if args.command in ("list", "summary"):
+            owner = getattr(args, "owner", None)
+            rows = requests if owner is None else [row for row in requests if row["owner"] == owner]
+            if args.command == "list":
+                for request in rows:
+                    print(display(request))
+            else:
+                open_count = sum(1 for row in rows if row["status"] == "open")
+                done_count = sum(1 for row in rows if row["status"] == "done")
+                print("all\t{}\nopen\t{}\ndone\t{}".format(len(rows), open_count, done_count))
+            return 0
+        request = next((row for row in requests if row["id"] == args.id), None)
+        if request is None:
+            print("Request not found: " + args.id, file=sys.stderr)
+            return 1
+        if args.command == "complete" and request["status"] != "done":
+            request["status"] = "done"
+exit_code=0

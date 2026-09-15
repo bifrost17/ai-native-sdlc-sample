@@ -1,0 +1,2011 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:59:22Z",
+  "pull": {
+    "url": "https://api.github.com/repos/vercel/next.js/pulls/97988",
+    "id": 4377851916,
+    "node_id": "PR_kwDOBC3Cis8AAAABBPC4DA",
+    "html_url": "https://github.com/vercel/next.js/pull/97988",
+    "diff_url": "https://github.com/vercel/next.js/pull/97988.diff",
+    "patch_url": "https://github.com/vercel/next.js/pull/97988.patch",
+    "issue_url": "https://api.github.com/repos/vercel/next.js/issues/97988",
+    "number": 97988,
+    "state": "closed",
+    "locked": true,
+    "title": "[image-optimizer] Refactor into lightweight transform module",
+    "user": {
+      "login": "styfle",
+      "id": 229881,
+      "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/styfle",
+      "html_url": "https://github.com/styfle",
+      "followers_url": "https://api.github.com/users/styfle/followers",
+      "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+      "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+      "organizations_url": "https://api.github.com/users/styfle/orgs",
+      "repos_url": "https://api.github.com/users/styfle/repos",
+      "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/styfle/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "This PR is strictly a refactor, no logic should change.\r\n\r\nThe idea is that we eventually want to run the image optimizer transform step in a child process. This PR refactors the code to make a new `transform.ts` that is lightweight and should reduce some of the overhead of loading a large module graph when spawning a new process.",
+    "created_at": "2026-08-27T16:48:23Z",
+    "updated_at": "2026-09-12T00:24:41Z",
+    "closed_at": "2026-08-28T15:52:51Z",
+    "merged_at": "2026-08-28T15:52:51Z",
+    "merge_commit_sha": "1cb20a1d1431f9216f44230a1e5a698c23ba9f70",
+    "assignees": [],
+    "requested_reviewers": [
+      {
+        "login": "devjiwonchoi",
+        "id": 120007119,
+        "node_id": "U_kgDOBycpzw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/120007119?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/devjiwonchoi",
+        "html_url": "https://github.com/devjiwonchoi",
+        "followers_url": "https://api.github.com/users/devjiwonchoi/followers",
+        "following_url": "https://api.github.com/users/devjiwonchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/devjiwonchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/devjiwonchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/devjiwonchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/devjiwonchoi/orgs",
+        "repos_url": "https://api.github.com/users/devjiwonchoi/repos",
+        "events_url": "https://api.github.com/users/devjiwonchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/devjiwonchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      }
+    ],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 5721224978,
+        "node_id": "LA_kwDOBC3Cis8AAAABVQL3Eg",
+        "url": "https://api.github.com/repos/vercel/next.js/labels/locked",
+        "name": "locked",
+        "color": "ededed",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/vercel/next.js/pulls/97988/commits",
+    "review_comments_url": "https://api.github.com/repos/vercel/next.js/pulls/97988/comments",
+    "review_comment_url": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/vercel/next.js/issues/97988/comments",
+    "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+    "head": {
+      "label": "styfle:styfle/imgopt-lightweight-transform",
+      "ref": "styfle/imgopt-lightweight-transform",
+      "sha": "e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "user": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 134434394,
+        "node_id": "MDEwOlJlcG9zaXRvcnkxMzQ0MzQzOTQ=",
+        "name": "next.js",
+        "full_name": "styfle/next.js",
+        "private": false,
+        "owner": {
+          "login": "styfle",
+          "id": 229881,
+          "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+          "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/styfle",
+          "html_url": "https://github.com/styfle",
+          "followers_url": "https://api.github.com/users/styfle/followers",
+          "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+          "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+          "organizations_url": "https://api.github.com/users/styfle/orgs",
+          "repos_url": "https://api.github.com/users/styfle/repos",
+          "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/styfle/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/styfle/next.js",
+        "description": "Framework for server-rendered or statically-exported React apps",
+        "fork": true,
+        "url": "https://api.github.com/repos/styfle/next.js",
+        "forks_url": "https://api.github.com/repos/styfle/next.js/forks",
+        "keys_url": "https://api.github.com/repos/styfle/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/styfle/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/styfle/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/styfle/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/styfle/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/styfle/next.js/events",
+        "assignees_url": "https://api.github.com/repos/styfle/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/styfle/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/styfle/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/styfle/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/styfle/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/styfle/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/styfle/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/styfle/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/styfle/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/styfle/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/styfle/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/styfle/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/styfle/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/styfle/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/styfle/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/styfle/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/styfle/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/styfle/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/styfle/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/styfle/next.js/merges",
+        "archive_url": "https://api.github.com/repos/styfle/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/styfle/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/styfle/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/styfle/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/styfle/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/styfle/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/styfle/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/styfle/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/styfle/next.js/deployments",
+        "created_at": "2018-05-22T15:16:52Z",
+        "updated_at": "2026-09-05T20:42:55Z",
+        "pushed_at": "2026-09-11T20:43:10Z",
+        "git_url": "git://github.com/styfle/next.js.git",
+        "ssh_url": "git@github.com:styfle/next.js.git",
+        "clone_url": "https://github.com/styfle/next.js.git",
+        "svn_url": "https://github.com/styfle/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2383035,
+        "stargazers_count": 1,
+        "watchers_count": 1,
+        "language": "JavaScript",
+        "has_issues": false,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 0,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 0,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 1,
+        "default_branch": "canary"
+      }
+    },
+    "base": {
+      "label": "vercel:canary",
+      "ref": "canary",
+      "sha": "451985dcde65b7426599bbea423d6ad86d4c819e",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/97988"
+      },
+      "html": {
+        "href": "https://github.com/vercel/next.js/pull/97988"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/97988"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/97988/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/97988/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/97988/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/vercel/next.js/statuses/e2635d839a6f2824d2a348d4f11565ac8e50eb48"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": "resolved",
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 2,
+    "additions": 837,
+    "deletions": 509,
+    "changed_files": 18
+  },
+  "commits": [
+    {
+      "sha": "ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+      "node_id": "C_kwDOCANOWtoAKGNhNTJhYTYyYjliZTIwYjRjYWM0MjAzMmM2MjIyOTBmMmE4MmQwZTk",
+      "commit": {
+        "author": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-27T13:44:58Z"
+        },
+        "committer": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-28T04:18:48Z"
+        },
+        "message": "[image-optimizer] Extract lightweight transform runtime",
+        "tree": {
+          "sha": "6b24ae70cc04648fd10f9d2411d7398242191fff",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/6b24ae70cc04648fd10f9d2411d7398242191fff"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAglJv3LuRSYyh37Tic48igki/iZD\nXrKCJXuWbUQ5shCt0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQPpY6Vkyx2op0DwEgrzhnzRtA9qpRRM07AVZRnBjpEEURh96DnnjqYDojpJVoTF6+O\nSfrViZgBbndvPwSTn0Hgs=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 6b24ae70cc04648fd10f9d2411d7398242191fff\nparent ee3a50ccb98e27a1cae594cd602390b057bfcf20\nauthor Steven <steven@ceriously.com> 1787838298 -0400\ncommitter Steven <steven@ceriously.com> 1787890728 -0400\n\n[image-optimizer] Extract lightweight transform runtime\n",
+          "verified_at": "2026-08-28T04:19:16Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+      "html_url": "https://github.com/vercel/next.js/commit/ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/ca52aa62b9be20b4cac42032c622290f2a82d0e9/comments",
+      "author": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "ee3a50ccb98e27a1cae594cd602390b057bfcf20",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ee3a50ccb98e27a1cae594cd602390b057bfcf20",
+          "html_url": "https://github.com/vercel/next.js/commit/ee3a50ccb98e27a1cae594cd602390b057bfcf20"
+        }
+      ]
+    },
+    {
+      "sha": "e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "node_id": "C_kwDOCANOWtoAKGUyNjM1ZDgzOWE2ZjI4MjRkMmEzNDhkNGYxMTU2NWFjOGU1MGViNDg",
+      "commit": {
+        "author": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-28T04:29:34Z"
+        },
+        "committer": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-28T04:29:34Z"
+        },
+        "message": "also ignore the directory",
+        "tree": {
+          "sha": "d81f04d6a5760220da3be9a02778fa86e04cc76f",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/d81f04d6a5760220da3be9a02778fa86e04cc76f"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAglJv3LuRSYyh37Tic48igki/iZD\nXrKCJXuWbUQ5shCt0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQMRy20g7mlSU/W4hVOJEg5evVp4M91RJZbiYbYSmXDV935tN7PXqbr4fIbhUJnZWPi\nBlxhtuBWpiDs6mPnHcqAI=\n-----END SSH SIGNATURE-----",
+          "payload": "tree d81f04d6a5760220da3be9a02778fa86e04cc76f\nparent ca52aa62b9be20b4cac42032c622290f2a82d0e9\nauthor Steven <steven@ceriously.com> 1787891374 -0400\ncommitter Steven <steven@ceriously.com> 1787891374 -0400\n\nalso ignore the directory\n",
+          "verified_at": "2026-08-28T04:29:44Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "html_url": "https://github.com/vercel/next.js/commit/e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/e2635d839a6f2824d2a348d4f11565ac8e50eb48/comments",
+      "author": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "styfle",
+        "id": 229881,
+        "node_id": "MDQ6VXNlcjIyOTg4MQ==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/229881?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/styfle",
+        "html_url": "https://github.com/styfle",
+        "followers_url": "https://api.github.com/users/styfle/followers",
+        "following_url": "https://api.github.com/users/styfle/following{/other_user}",
+        "gists_url": "https://api.github.com/users/styfle/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/styfle/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/styfle/subscriptions",
+        "organizations_url": "https://api.github.com/users/styfle/orgs",
+        "repos_url": "https://api.github.com/users/styfle/repos",
+        "events_url": "https://api.github.com/users/styfle/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/styfle/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "html_url": "https://github.com/vercel/next.js/commit/ca52aa62b9be20b4cac42032c622290f2a82d0e9"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "18696c621c7504a846774e2c61d1cd3c03870b9b",
+      "filename": "packages/next/src/build/collect-build-traces.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fcollect-build-traces.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fcollect-build-traces.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fcollect-build-traces.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -240,6 +240,7 @@ export async function collectBuildTraces({\n               // only ignore image-optimizer code when\n               // this is being handled outside of next-server\n               '**/next/dist/server/image-optimizer.js',\n+              '**/next/dist/server/image-optimizer/**/*',\n             ]\n           : []),\n "
+    },
+    {
+      "sha": "f6934273df76ba4bd4d4e3c84ee7147be5fb4e0c",
+      "filename": "packages/next/src/build/webpack/loaders/next-image-loader/blur.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Fblur.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Fblur.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Fblur.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -1,5 +1,5 @@\n import isAnimated from 'next/dist/compiled/is-animated'\n-import { optimizeImage } from '../../../../server/image-optimizer'\n+import { optimizeImage } from '../../../../server/image-optimizer/transform'\n \n const BLUR_IMG_SIZE = 8\n const BLUR_QUALITY = 70"
+    },
+    {
+      "sha": "e47656bbf8d37dbdf7c84f550a0da518131421fb",
+      "filename": "packages/next/src/build/webpack/loaders/next-image-loader/index.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Findex.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Findex.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Findex.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -2,7 +2,7 @@ import type { CompilerNameValues } from '../../../../shared/lib/constants'\n \n import path from 'path'\n import loaderUtils from 'next/dist/compiled/loader-utils3'\n-import { getImageSize } from '../../../../server/image-optimizer'\n+import { getImageSize } from '../../../../server/image-optimizer/get-image-size'\n import { getBlurImage } from './blur'\n \n interface Options {"
+    },
+    {
+      "sha": "237daa77f67f3804c941f3a44d8fd588fec20107",
+      "filename": "packages/next/src/build/webpack/loaders/next-metadata-image-loader.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-metadata-image-loader.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-metadata-image-loader.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-metadata-image-loader.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -10,7 +10,7 @@ import type {\n import { existsSync, promises as fs } from 'fs'\n import path from 'path'\n import loaderUtils from 'next/dist/compiled/loader-utils3'\n-import { getImageSize } from '../../../server/image-optimizer'\n+import { getImageSize } from '../../../server/image-optimizer/get-image-size'\n import { imageExtMimeTypeMap } from '../../../lib/mime-type'\n import { WEBPACK_RESOURCE_QUERIES } from '../../../lib/constants'\n import { fillStaticMetadataSegment } from '../../../lib/metadata/get-metadata-route'"
+    },
+    {
+      "sha": "1e6f4daf1f3d55b5efe26ed17b7f18b26d3a5936",
+      "filename": "packages/next/src/server/image-optimizer.ts",
+      "status": "modified",
+      "additions": 50,
+      "deletions": 499,
+      "changes": 549,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -1,11 +1,7 @@\n-import { createHash } from 'crypto'\n import { promises } from 'fs'\n import type { IncomingMessage, ServerResponse } from 'http'\n import { mediaType } from 'next/dist/compiled/@hapi/accept'\n import contentDisposition from 'next/dist/compiled/content-disposition'\n-import imageSizeOf from 'next/dist/compiled/image-size'\n-import { detector } from 'next/dist/compiled/image-detector/detector.js'\n-import isAnimated from 'next/dist/compiled/is-animated'\n import { join } from 'path'\n import { getImageBlurSvg } from '../shared/lib/image-blur-svg'\n import type { ImageConfigComplete } from '../shared/lib/image-config'\n@@ -17,16 +13,13 @@ import type { NextUrlWithParsedQuery } from './request-meta'\n import {\n   CachedRouteKind,\n   IncrementalCacheKind,\n-  type CachedImageValue,\n-  type IncrementalCacheEntry,\n   type IncrementalCacheValue,\n   type IncrementalResponseCacheEntry,\n } from './response-cache'\n import type { CacheHandler } from './lib/incremental-cache'\n import { sendEtagResponse } from './send-payload'\n import { getContentType, getExtension } from './serve-static'\n import * as Log from '../build/output/log'\n-import isError from '../lib/is-error'\n import { isPrivateIp } from './is-private-ip'\n import { getOrInitDiskLRU } from './lib/disk-lru-cache.external'\n import { parseUrl, parseReqUrl } from '../lib/url'\n@@ -35,30 +28,28 @@ import { InvariantError } from '../shared/lib/invariant-error'\n import { lookup } from 'dns/promises'\n import { isIP } from 'net'\n import { ALL } from 'dns'\n+import {\n+  imageOptimizerTransform,\n+  type ImageUpstream,\n+} from './image-optimizer/transform'\n+import { extractEtag, getHash } from './image-optimizer/extract-etag'\n+import { getPreviouslyCachedImageOrNull } from './image-optimizer/get-previously-cached-image-or-null'\n+import { getImageSize } from './image-optimizer/get-image-size'\n+import { ImageError } from './image-optimizer/image-error'\n+\n+// `next-server.ts` destructures `ImageError` from this module to check\n+// `instanceof` on errors thrown by the transform.\n+export { ImageError } from './image-optimizer/image-error'\n \n type XCacheHeader = 'MISS' | 'HIT' | 'STALE'\n \n-const AVIF = 'image/avif'\n-const WEBP = 'image/webp'\n-const PNG = 'image/png'\n-const JPEG = 'image/jpeg'\n-const JXL = 'image/jxl'\n-const JP2 = 'image/jp2'\n-const HEIC = 'image/heic'\n-const GIF = 'image/gif'\n-const SVG = 'image/svg+xml'\n-const ICO = 'image/x-icon'\n-const ICNS = 'image/x-icns'\n-const TIFF = 'image/tiff'\n-const BMP = 'image/bmp'\n-const PDF = 'application/pdf'\n const CACHE_VERSION = 4\n-const ANIMATABLE_TYPES = [WEBP, PNG, GIF]\n-const BYPASS_TYPES = [SVG, ICO, ICNS, BMP, JXL, HEIC]\n const BLUR_IMG_SIZE = 8 // should match `next-image-loader`\n const BLUR_QUALITY = 70 // should match `next-image-loader`\n \n-let _sharp: typeof import('sharp').default\n+function isValidMime(contentType: string) {\n+  return Boolean(getExtension(contentType))\n+}\n \n async function initCacheEntries(\n   cacheDir: string\n@@ -83,50 +74,6 @@ async function initCacheEntries(\n   return entries.sort((a, b) => a.expireAt - b.expireAt)\n }\n \n-export function getSharp(\n-  concurrency: number | null | undefined,\n-  operationCache: boolean | null | undefined\n-) {\n-  if (_sharp) {\n-    return _sharp\n-  }\n-  try {\n-    _sharp = require('sharp') as typeof import('sharp').default\n-    _sharp.block({ operation: ['VipsForeignLoad'] })\n-    _sharp.unblock({\n-      operation: [\n-        'VipsForeignLoadHeif', // avif\n-        'VipsForeignLoadJpeg',\n-        'VipsForeignLoadNsgif',\n-        'VipsForeignLoadPng',\n-        'VipsForeignLoadSvg',\n-        'VipsForeignLoadTiff',\n-        'VipsForeignLoadWebp',\n-      ],\n-    })\n-    if (typeof operationCache === 'boolean') {\n-      _sharp.cache(operationCache)\n-    }\n-    if (_sharp.concurrency() > 1) {\n-      // Reducing concurrency should reduce the memory usage too.\n-      // We more aggressively reduce in dev but also reduce in prod.\n-      // https://sharp.pixelplumbing.com/api-utility#concurrency\n-      const divisor = process.env.NODE_ENV === 'development' ? 4 : 2\n-      _sharp.concurrency(\n-        concurrency ?? Math.floor(Math.max(_sharp.concurrency() / divisor, 1))\n-      )\n-    }\n-  } catch (e: unknown) {\n-    if (isError(e) && e.code === 'MODULE_NOT_FOUND') {\n-      throw new Error(\n-        'Module `sharp` not found. Please run `npm install --cpu=wasm32 sharp` to install it.'\n-      )\n-    }\n-    throw e\n-  }\n-  return _sharp\n-}\n-\n export interface ImageParamsResult {\n   href: string\n   isAbsolute: boolean\n@@ -138,46 +85,11 @@ export interface ImageParamsResult {\n   minimumCacheTTL: number\n }\n \n-interface ImageUpstream {\n-  buffer: Buffer\n-  contentType: string | null | undefined\n-  cacheControl: string | null | undefined\n-  etag: string\n-}\n-\n function getSupportedMimeType(options: string[], accept = ''): string {\n   const mimeType = mediaType(accept, options)\n   return accept.includes(mimeType) ? mimeType : ''\n }\n \n-export function getHash(items: (string | number | Buffer)[]) {\n-  const hash = createHash('sha256')\n-  for (let item of items) {\n-    if (typeof item === 'number') hash.update(String(item))\n-    else {\n-      hash.update(item)\n-    }\n-  }\n-  // See https://en.wikipedia.org/wiki/Base64#URL_applications\n-  return hash.digest('base64url')\n-}\n-\n-export function extractEtag(\n-  etag: string | null | undefined,\n-  imageBuffer: Buffer\n-) {\n-  if (etag) {\n-    // upstream etag needs to be base64url encoded due to weak etag signature\n-    // as we store this in the cache-entry file name.\n-    return Buffer.from(etag).toString('base64url')\n-  }\n-  return getImageEtag(imageBuffer)\n-}\n-\n-export function getImageEtag(image: Buffer) {\n-  return getHash([image])\n-}\n-\n async function writeToCacheDir(\n   cacheDir: string,\n   cacheKey: string,\n@@ -241,132 +153,6 @@ async function deleteFromCacheDir(cacheDir: string, cacheKey: string) {\n     })\n }\n \n-/**\n- * Inspects the first few bytes of a buffer to determine if\n- * it matches the \"magic number\" of known file signatures.\n- * https://en.wikipedia.org/wiki/List_of_file_signatures\n- */\n-export async function detectContentType(\n-  buffer: Buffer\n-): Promise<string | null> {\n-  if (buffer.byteLength === 0) {\n-    return null\n-  }\n-  if ([0xff, 0xd8, 0xff].every((b, i) => buffer[i] === b)) {\n-    return JPEG\n-  }\n-  if (\n-    [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every(\n-      (b, i) => buffer[i] === b\n-    )\n-  ) {\n-    return PNG\n-  }\n-  if ([0x47, 0x49, 0x46, 0x38].every((b, i) => buffer[i] === b)) {\n-    return GIF\n-  }\n-  if (\n-    [0x52, 0x49, 0x46, 0x46, 0, 0, 0, 0, 0x57, 0x45, 0x42, 0x50].every(\n-      (b, i) => !b || buffer[i] === b\n-    )\n-  ) {\n-    return WEBP\n-  }\n-  if ([0x3c, 0x3f, 0x78, 0x6d, 0x6c].every((b, i) => buffer[i] === b)) {\n-    return SVG\n-  }\n-  if ([0x3c, 0x73, 0x76, 0x67].every((b, i) => buffer[i] === b)) {\n-    return SVG\n-  }\n-  if (\n-    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x61, 0x76, 0x69, 0x66].every(\n-      (b, i) => !b || buffer[i] === b\n-    )\n-  ) {\n-    return AVIF\n-  }\n-  if ([0x00, 0x00, 0x01, 0x00].every((b, i) => buffer[i] === b)) {\n-    return ICO\n-  }\n-  if ([0x69, 0x63, 0x6e, 0x73].every((b, i) => buffer[i] === b)) {\n-    return ICNS\n-  }\n-  if ([0x49, 0x49, 0x2a, 0x00].every((b, i) => buffer[i] === b)) {\n-    return TIFF\n-  }\n-  if ([0x42, 0x4d].every((b, i) => buffer[i] === b)) {\n-    return BMP\n-  }\n-  if ([0xff, 0x0a].every((b, i) => buffer[i] === b)) {\n-    return JXL\n-  }\n-  if (\n-    [\n-      0x00, 0x00, 0x00, 0x0c, 0x4a, 0x58, 0x4c, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n-    ].every((b, i) => buffer[i] === b)\n-  ) {\n-    return JXL\n-  }\n-  if (\n-    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63].every(\n-      (b, i) => !b || buffer[i] === b\n-    )\n-  ) {\n-    return HEIC\n-  }\n-  if ([0x25, 0x50, 0x44, 0x46, 0x2d].every((b, i) => buffer[i] === b)) {\n-    return PDF\n-  }\n-  if (\n-    [\n-      0x00, 0x00, 0x00, 0x0c, 0x6a, 0x50, 0x20, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n-    ].every((b, i) => buffer[i] === b)\n-  ) {\n-    return JP2\n-  }\n-\n-  const format = detector(buffer.subarray(0, 1024))\n-\n-  switch (format) {\n-    case 'webp':\n-      return WEBP\n-    case 'png':\n-      return PNG\n-    case 'jpg':\n-      return JPEG\n-    case 'gif':\n-      return GIF\n-    case 'svg':\n-      return SVG\n-    case 'jxl':\n-    case 'jxl-stream':\n-      return JXL\n-    case 'jp2':\n-      return JP2\n-    case 'tiff':\n-      return TIFF\n-    case 'bmp':\n-      return BMP\n-    case 'ico':\n-      return ICO\n-    case 'icns':\n-      return ICNS\n-    case 'heif':\n-    case 'cur':\n-    case 'dds':\n-    case 'j2c':\n-    case 'ktx':\n-    case 'pnm':\n-    case 'psd':\n-    case 'tga':\n-    case undefined:\n-      return null // unsupported formats\n-    default:\n-      format satisfies never // exhaustive check\n-      return null // impossible to reach\n-  }\n-}\n-\n export class ImageOptimizerCache {\n   private cacheDir: string\n   private nextConfig: NextConfigRuntime\n@@ -732,132 +518,6 @@ export class ImageOptimizerCache {\n     }\n   }\n }\n-export class ImageError extends Error {\n-  statusCode: number\n-\n-  constructor(statusCode: number, message: string) {\n-    super(message)\n-\n-    // ensure an error status is used > 400\n-    if (statusCode >= 400) {\n-      this.statusCode = statusCode\n-    } else {\n-      this.statusCode = 500\n-    }\n-  }\n-}\n-\n-function parseCacheControl(\n-  str: string | null | undefined\n-): Map<string, string> {\n-  const map = new Map<string, string>()\n-  if (!str) {\n-    return map\n-  }\n-  for (let directive of str.split(',')) {\n-    let [key, value] = directive.trim().split('=', 2)\n-    key = key.toLowerCase()\n-    if (value) {\n-      value = value.toLowerCase()\n-    }\n-    map.set(key, value)\n-  }\n-  return map\n-}\n-\n-export function getMaxAge(str: string | null | undefined): number {\n-  const map = parseCacheControl(str)\n-  if (map) {\n-    let age = map.get('s-maxage') || map.get('max-age') || ''\n-    if (age.startsWith('\"') && age.endsWith('\"')) {\n-      age = age.slice(1, -1)\n-    }\n-    const n = parseInt(age, 10)\n-    if (!isNaN(n)) {\n-      return n\n-    }\n-  }\n-  return 0\n-}\n-export function getPreviouslyCachedImageOrNull(\n-  upstreamImage: ImageUpstream,\n-  previousCacheEntry: IncrementalCacheEntry | null | undefined\n-): CachedImageValue | null {\n-  if (\n-    previousCacheEntry?.value?.kind === 'IMAGE' &&\n-    // Images that are SVGs, animated or failed the optimization previously end up using upstreamEtag as their etag as well,\n-    // in these cases we want to trigger a new \"optimization\" attempt.\n-    previousCacheEntry.value.upstreamEtag !== previousCacheEntry.value.etag &&\n-    // and the upstream etag is the same as the previous cache entry's\n-    upstreamImage.etag === previousCacheEntry.value.upstreamEtag\n-  ) {\n-    return previousCacheEntry.value\n-  }\n-  return null\n-}\n-\n-export async function optimizeImage({\n-  buffer,\n-  contentType,\n-  quality,\n-  width,\n-  height,\n-  concurrency,\n-  operationCache,\n-  limitInputPixels,\n-  sequentialRead,\n-  timeoutInSeconds,\n-}: {\n-  buffer: Buffer\n-  contentType: string\n-  quality: number\n-  width: number\n-  height?: number\n-  concurrency?: number | null\n-  operationCache?: boolean | null | undefined\n-  limitInputPixels?: number\n-  sequentialRead?: boolean | null\n-  timeoutInSeconds?: number\n-}): Promise<Buffer> {\n-  const sharp = getSharp(concurrency, operationCache)\n-  const transformer = sharp(buffer, {\n-    limitInputPixels,\n-    sequentialRead: sequentialRead ?? undefined,\n-  })\n-    .timeout({\n-      seconds: timeoutInSeconds ?? 7,\n-    })\n-    .rotate()\n-\n-  if (height) {\n-    transformer.resize(width, height)\n-  } else {\n-    transformer.resize(width, undefined, {\n-      withoutEnlargement: true,\n-    })\n-  }\n-\n-  if (contentType === AVIF) {\n-    transformer.avif({\n-      // Scale the quality to try and match webp. This ratio was derived\n-      // from sharp's default 80 (webp) and 50 (avif), and then verified\n-      // using dssim and ssimulacra2 visual quality tests.\n-      quality: Math.max(Math.round(quality * (50 / 80)), 1),\n-      effort: 3,\n-    })\n-  } else if (contentType === WEBP) {\n-    transformer.webp({ quality })\n-  } else if (contentType === PNG) {\n-    transformer.png({ quality })\n-  } else if (contentType === JPEG) {\n-    transformer.jpeg({ quality, mozjpeg: true })\n-  }\n-\n-  const optimizedBuffer = await transformer.toBuffer()\n-\n-  return optimizedBuffer\n-}\n-\n function isRedirect(statusCode: number) {\n   return [301, 302, 303, 307, 308].includes(statusCode)\n }\n@@ -1054,6 +714,22 @@ export async function fetchInternalImage(\n   }\n }\n \n+async function makeBlurPlaceholder(buffer: Buffer, contentType: string) {\n+  // During `next dev`, we don't want to generate blur placeholders with webpack\n+  // because it can delay starting the dev server. Instead, `next-image-loader.js`\n+  // will inline a special url to lazily generate the blur placeholder at request time.\n+  const meta = await getImageSize(buffer)\n+  const blurOpts = {\n+    blurWidth: meta.width,\n+    blurHeight: meta.height,\n+    blurDataURL: `data:${contentType};base64,${buffer.toString('base64')}`,\n+  }\n+  return {\n+    buffer: Buffer.from(unescape(getImageBlurSvg(blurOpts))),\n+    contentType: 'image/svg+xml',\n+  }\n+}\n+\n export async function imageOptimizer(\n   imageUpstream: ImageUpstream,\n   paramsResult: Pick<\n@@ -1087,147 +763,30 @@ export async function imageOptimizer(\n   upstreamEtag: string\n   error?: unknown\n }> {\n-  const { href, quality, width, mimeType } = paramsResult\n-  const { buffer: upstreamBuffer, etag: upstreamEtag } = imageUpstream\n-  const maxAge = Math.max(\n-    nextConfig.images.minimumCacheTTL,\n-    getMaxAge(imageUpstream.cacheControl)\n-  )\n-\n-  const upstreamType = await detectContentType(upstreamBuffer)\n-\n-  if (\n-    !upstreamType ||\n-    !upstreamType.startsWith('image/') ||\n-    upstreamType.includes(',')\n-  ) {\n-    if (!opts.silent) {\n-      Log.error(\n-        \"The requested resource isn't a valid image for\",\n-        href,\n-        'received',\n-        upstreamType\n-      )\n-    }\n-    throw new ImageError(400, \"The requested resource isn't a valid image.\")\n-  }\n-  if (\n-    upstreamType.startsWith('image/svg') &&\n-    !nextConfig.images.dangerouslyAllowSVG\n-  ) {\n-    if (!opts.silent) {\n-      Log.error(\n-        `The requested resource \"${href}\" has type \"${upstreamType}\" but dangerouslyAllowSVG is disabled. Consider adding the \"unoptimized\" property to the <Image>.`\n-      )\n-    }\n-    throw new ImageError(\n-      400,\n-      '\"url\" parameter is valid but image type is not allowed'\n-    )\n-  }\n-  if (ANIMATABLE_TYPES.includes(upstreamType) && isAnimated(upstreamBuffer)) {\n-    if (!opts.silent) {\n-      Log.warnOnce(\n-        `The requested resource \"${href}\" is an animated image so it will not be optimized. Consider adding the \"unoptimized\" property to the <Image>.`\n-      )\n-    }\n-    return {\n-      buffer: upstreamBuffer,\n-      contentType: upstreamType,\n-      maxAge,\n-      etag: upstreamEtag,\n-      upstreamEtag,\n-    }\n-  }\n-  if (BYPASS_TYPES.includes(upstreamType)) {\n-    return {\n-      buffer: upstreamBuffer,\n-      contentType: upstreamType,\n-      maxAge,\n-      etag: upstreamEtag,\n-      upstreamEtag,\n-    }\n-  }\n-\n-  let contentType: string\n-\n-  if (mimeType) {\n-    contentType = mimeType\n-  } else if (\n-    getExtension(upstreamType) &&\n-    upstreamType !== WEBP &&\n-    upstreamType !== AVIF\n-  ) {\n-    contentType = upstreamType\n-  } else {\n-    contentType = JPEG\n-  }\n   const previouslyCachedImage = getPreviouslyCachedImageOrNull(\n     imageUpstream,\n     opts.previousCacheEntry\n   )\n-  if (previouslyCachedImage) {\n-    return {\n-      buffer: previouslyCachedImage.buffer,\n-      contentType,\n-      maxAge: opts?.previousCacheEntry?.cacheControl?.revalidate || maxAge,\n-      etag: previouslyCachedImage.etag,\n-      upstreamEtag: previouslyCachedImage.upstreamEtag,\n-    }\n-  }\n \n-  try {\n-    let optimizedBuffer = await optimizeImage({\n-      buffer: upstreamBuffer,\n-      contentType,\n-      quality,\n-      width,\n-      concurrency: nextConfig.experimental.imgOptConcurrency,\n-      operationCache: nextConfig.experimental.imgOptOperationCache,\n-      limitInputPixels: nextConfig.experimental.imgOptMaxInputPixels,\n-      sequentialRead: nextConfig.experimental.imgOptSequentialRead,\n-      timeoutInSeconds: nextConfig.experimental.imgOptTimeoutInSeconds,\n-    })\n-    if (opts.isDev && width <= BLUR_IMG_SIZE && quality === BLUR_QUALITY) {\n-      // During `next dev`, we don't want to generate blur placeholders with webpack\n-      // because it can delay starting the dev server. Instead, `next-image-loader.js`\n-      // will inline a special url to lazily generate the blur placeholder at request time.\n-      const meta = await getImageSize(optimizedBuffer)\n-      const blurOpts = {\n-        blurWidth: meta.width,\n-        blurHeight: meta.height,\n-        blurDataURL: `data:${contentType};base64,${optimizedBuffer.toString(\n-          'base64'\n-        )}`,\n-      }\n-      optimizedBuffer = Buffer.from(unescape(getImageBlurSvg(blurOpts)))\n-      contentType = 'image/svg+xml'\n-    }\n-    return {\n-      buffer: optimizedBuffer,\n-      contentType,\n-      maxAge,\n-      etag: getImageEtag(optimizedBuffer),\n-      upstreamEtag,\n-    }\n-  } catch (error) {\n-    if (upstreamType) {\n-      // If we fail to optimize, fallback to the original image\n-      return {\n-        buffer: upstreamBuffer,\n-        contentType: upstreamType,\n-        maxAge: nextConfig.images.minimumCacheTTL,\n-        etag: upstreamEtag,\n-        upstreamEtag,\n-        error,\n-      }\n-    } else {\n-      throw new ImageError(\n-        400,\n-        'Unable to optimize image and unable to fallback to upstream image'\n-      )\n-    }\n-  }\n+  return imageOptimizerTransform(imageUpstream, paramsResult, nextConfig, {\n+    isValidMime,\n+    previousOutput: previouslyCachedImage\n+      ? {\n+          buffer: previouslyCachedImage.buffer,\n+          maxAge:\n+            opts.previousCacheEntry?.cacheControl?.revalidate || undefined,\n+          etag: previouslyCachedImage.etag,\n+          upstreamEtag: previouslyCachedImage.upstreamEtag,\n+        }\n+      : undefined,\n+    logger: opts.silent ? undefined : Log,\n+    handleDevOutput:\n+      opts.isDev &&\n+      paramsResult.width <= BLUR_IMG_SIZE &&\n+      paramsResult.quality === BLUR_QUALITY\n+        ? makeBlurPlaceholder\n+        : undefined,\n+  })\n }\n \n function getFileNameWithExtension(\n@@ -1320,11 +879,3 @@ export function sendResponse(\n     }\n   }\n }\n-\n-export async function getImageSize(buffer: Buffer): Promise<{\n-  width?: number\n-  height?: number\n-}> {\n-  const { width, height } = imageSizeOf(buffer)\n-  return { width, height }\n-}"
+    },
+    {
+      "sha": "435a927208a442b7be616e397715b614bf4adf7c",
+      "filename": "packages/next/src/server/image-optimizer/detect-content-type.ts",
+      "status": "added",
+      "additions": 143,
+      "deletions": 0,
+      "changes": 143,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fdetect-content-type.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fdetect-content-type.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fdetect-content-type.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,143 @@\n+import { detector } from 'next/dist/compiled/image-detector/detector.js'\n+import {\n+  AVIF,\n+  BMP,\n+  GIF,\n+  HEIC,\n+  ICNS,\n+  ICO,\n+  JPEG,\n+  JP2,\n+  JXL,\n+  PDF,\n+  PNG,\n+  SVG,\n+  TIFF,\n+  WEBP,\n+} from './image-type'\n+\n+/**\n+ * Inspects the first few bytes of a buffer to determine if\n+ * it matches the \"magic number\" of known file signatures.\n+ * https://en.wikipedia.org/wiki/List_of_file_signatures\n+ */\n+export async function detectContentType(\n+  buffer: Buffer\n+): Promise<string | null> {\n+  if (buffer.byteLength === 0) {\n+    return null\n+  }\n+  if ([0xff, 0xd8, 0xff].every((b, i) => buffer[i] === b)) {\n+    return JPEG\n+  }\n+  if (\n+    [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every(\n+      (b, i) => buffer[i] === b\n+    )\n+  ) {\n+    return PNG\n+  }\n+  if ([0x47, 0x49, 0x46, 0x38].every((b, i) => buffer[i] === b)) {\n+    return GIF\n+  }\n+  if (\n+    [0x52, 0x49, 0x46, 0x46, 0, 0, 0, 0, 0x57, 0x45, 0x42, 0x50].every(\n+      (b, i) => !b || buffer[i] === b\n+    )\n+  ) {\n+    return WEBP\n+  }\n+  if ([0x3c, 0x3f, 0x78, 0x6d, 0x6c].every((b, i) => buffer[i] === b)) {\n+    return SVG\n+  }\n+  if ([0x3c, 0x73, 0x76, 0x67].every((b, i) => buffer[i] === b)) {\n+    return SVG\n+  }\n+  if (\n+    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x61, 0x76, 0x69, 0x66].every(\n+      (b, i) => !b || buffer[i] === b\n+    )\n+  ) {\n+    return AVIF\n+  }\n+  if ([0x00, 0x00, 0x01, 0x00].every((b, i) => buffer[i] === b)) {\n+    return ICO\n+  }\n+  if ([0x69, 0x63, 0x6e, 0x73].every((b, i) => buffer[i] === b)) {\n+    return ICNS\n+  }\n+  if ([0x49, 0x49, 0x2a, 0x00].every((b, i) => buffer[i] === b)) {\n+    return TIFF\n+  }\n+  if ([0x42, 0x4d].every((b, i) => buffer[i] === b)) {\n+    return BMP\n+  }\n+  if ([0xff, 0x0a].every((b, i) => buffer[i] === b)) {\n+    return JXL\n+  }\n+  if (\n+    [\n+      0x00, 0x00, 0x00, 0x0c, 0x4a, 0x58, 0x4c, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n+    ].every((b, i) => buffer[i] === b)\n+  ) {\n+    return JXL\n+  }\n+  if (\n+    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63].every(\n+      (b, i) => !b || buffer[i] === b\n+    )\n+  ) {\n+    return HEIC\n+  }\n+  if ([0x25, 0x50, 0x44, 0x46, 0x2d].every((b, i) => buffer[i] === b)) {\n+    return PDF\n+  }\n+  if (\n+    [\n+      0x00, 0x00, 0x00, 0x0c, 0x6a, 0x50, 0x20, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n+    ].every((b, i) => buffer[i] === b)\n+  ) {\n+    return JP2\n+  }\n+\n+  const format = detector(buffer.subarray(0, 1024))\n+\n+  switch (format) {\n+    case 'webp':\n+      return WEBP\n+    case 'png':\n+      return PNG\n+    case 'jpg':\n+      return JPEG\n+    case 'gif':\n+      return GIF\n+    case 'svg':\n+      return SVG\n+    case 'jxl':\n+    case 'jxl-stream':\n+      return JXL\n+    case 'jp2':\n+      return JP2\n+    case 'tiff':\n+      return TIFF\n+    case 'bmp':\n+      return BMP\n+    case 'ico':\n+      return ICO\n+    case 'icns':\n+      return ICNS\n+    case 'heif':\n+    case 'cur':\n+    case 'dds':\n+    case 'j2c':\n+    case 'ktx':\n+    case 'pnm':\n+    case 'psd':\n+    case 'tga':\n+    case undefined:\n+      return null // unsupported formats\n+    default:\n+      format satisfies never // exhaustive check\n+      return null // impossible to reach\n+  }\n+}"
+    },
+    {
+      "sha": "5455a98c87138980ea12db6591129e94802f1dc8",
+      "filename": "packages/next/src/server/image-optimizer/extract-etag.ts",
+      "status": "added",
+      "additions": 29,
+      "deletions": 0,
+      "changes": 29,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fextract-etag.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fextract-etag.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fextract-etag.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,29 @@\n+import { createHash } from 'crypto'\n+\n+export function getHash(items: (string | number | Buffer)[]) {\n+  const hash = createHash('sha256')\n+  for (let item of items) {\n+    if (typeof item === 'number') hash.update(String(item))\n+    else {\n+      hash.update(item)\n+    }\n+  }\n+  // See https://en.wikipedia.org/wiki/Base64#URL_applications\n+  return hash.digest('base64url')\n+}\n+\n+export function extractEtag(\n+  etag: string | null | undefined,\n+  imageBuffer: Buffer\n+) {\n+  if (etag) {\n+    // upstream etag needs to be base64url encoded due to weak etag signature\n+    // as we store this in the cache-entry file name.\n+    return Buffer.from(etag).toString('base64url')\n+  }\n+  return getImageEtag(imageBuffer)\n+}\n+\n+export function getImageEtag(image: Buffer) {\n+  return getHash([image])\n+}"
+    },
+    {
+      "sha": "f2b2c0a68532408d0e03cb2c6164a859a929d933",
+      "filename": "packages/next/src/server/image-optimizer/get-image-size.ts",
+      "status": "added",
+      "additions": 9,
+      "deletions": 0,
+      "changes": 9,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-image-size.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-image-size.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-image-size.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,9 @@\n+import imageSizeOf from 'next/dist/compiled/image-size'\n+\n+export async function getImageSize(buffer: Buffer): Promise<{\n+  width?: number\n+  height?: number\n+}> {\n+  const { width, height } = imageSizeOf(buffer)\n+  return { width, height }\n+}"
+    },
+    {
+      "sha": "8eac077bed61826ded12bda31f3d680892ea82ed",
+      "filename": "packages/next/src/server/image-optimizer/get-max-age.ts",
+      "status": "added",
+      "additions": 32,
+      "deletions": 0,
+      "changes": 32,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-max-age.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-max-age.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-max-age.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,32 @@\n+function parseCacheControl(\n+  str: string | null | undefined\n+): Map<string, string> {\n+  const map = new Map<string, string>()\n+  if (!str) {\n+    return map\n+  }\n+  for (let directive of str.split(',')) {\n+    let [key, value] = directive.trim().split('=', 2)\n+    key = key.toLowerCase()\n+    if (value) {\n+      value = value.toLowerCase()\n+    }\n+    map.set(key, value)\n+  }\n+  return map\n+}\n+\n+export function getMaxAge(str: string | null | undefined): number {\n+  const map = parseCacheControl(str)\n+  if (map) {\n+    let age = map.get('s-maxage') || map.get('max-age') || ''\n+    if (age.startsWith('\"') && age.endsWith('\"')) {\n+      age = age.slice(1, -1)\n+    }\n+    const n = parseInt(age, 10)\n+    if (!isNaN(n)) {\n+      return n\n+    }\n+  }\n+  return 0\n+}"
+    },
+    {
+      "sha": "8c443204bf0c430cc58fb7a41706666e6c929292",
+      "filename": "packages/next/src/server/image-optimizer/get-previously-cached-image-or-null.ts",
+      "status": "added",
+      "additions": 22,
+      "deletions": 0,
+      "changes": 22,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-previously-cached-image-or-null.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-previously-cached-image-or-null.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-previously-cached-image-or-null.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,22 @@\n+import type {\n+  CachedImageValue,\n+  IncrementalCacheEntry,\n+} from '../response-cache/types'\n+import type { ImageUpstream } from './transform'\n+\n+export function getPreviouslyCachedImageOrNull(\n+  upstreamImage: ImageUpstream,\n+  previousCacheEntry: IncrementalCacheEntry | null | undefined\n+): CachedImageValue | null {\n+  if (\n+    previousCacheEntry?.value?.kind === 'IMAGE' &&\n+    // Images that are SVGs, animated or failed the optimization previously end up using upstreamEtag as their etag as well,\n+    // in these cases we want to trigger a new \"optimization\" attempt.\n+    previousCacheEntry.value.upstreamEtag !== previousCacheEntry.value.etag &&\n+    // and the upstream etag is the same as the previous cache entry's\n+    upstreamImage.etag === previousCacheEntry.value.upstreamEtag\n+  ) {\n+    return previousCacheEntry.value\n+  }\n+  return null\n+}"
+    },
+    {
+      "sha": "f302fdb9b703f15d1cf84018cb05981ba4aabb5c",
+      "filename": "packages/next/src/server/image-optimizer/image-error.ts",
+      "status": "added",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-error.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-error.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-error.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,14 @@\n+export class ImageError extends Error {\n+  statusCode: number\n+\n+  constructor(statusCode: number, message: string) {\n+    super(message)\n+\n+    // ensure an error status is used > 400\n+    if (statusCode >= 400) {\n+      this.statusCode = statusCode\n+    } else {\n+      this.statusCode = 500\n+    }\n+  }\n+}"
+    },
+    {
+      "sha": "bd64ed6f9ebe4e77b62d6bafc6956c43d4cc6b66",
+      "filename": "packages/next/src/server/image-optimizer/image-type.ts",
+      "status": "added",
+      "additions": 14,
+      "deletions": 0,
+      "changes": 14,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-type.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-type.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-type.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,14 @@\n+export const AVIF = 'image/avif'\n+export const WEBP = 'image/webp'\n+export const PNG = 'image/png'\n+export const JPEG = 'image/jpeg'\n+export const JXL = 'image/jxl'\n+export const JP2 = 'image/jp2'\n+export const HEIC = 'image/heic'\n+export const GIF = 'image/gif'\n+export const SVG = 'image/svg+xml'\n+export const ICO = 'image/x-icon'\n+export const ICNS = 'image/x-icns'\n+export const TIFF = 'image/tiff'\n+export const BMP = 'image/bmp'\n+export const PDF = 'application/pdf'"
+    },
+    {
+      "sha": "c89ec5d7ed79489307486d55372dbc8fa35a5835",
+      "filename": "packages/next/src/server/image-optimizer/transform.ts",
+      "status": "added",
+      "additions": 321,
+      "deletions": 0,
+      "changes": 321,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,321 @@\n+// WARNING: Please keep this module lightweight with very few imports since\n+// we intend to run it in a child process in the future. Please do NOT\n+// add new imports without considering their impact on its dependency graph.\n+import isAnimated from 'next/dist/compiled/is-animated'\n+import type { NextConfigComplete } from '../config-shared'\n+import isError from '../../lib/is-error'\n+import { detectContentType } from './detect-content-type'\n+import {\n+  AVIF,\n+  BMP,\n+  GIF,\n+  HEIC,\n+  ICNS,\n+  ICO,\n+  JPEG,\n+  JXL,\n+  PNG,\n+  SVG,\n+  WEBP,\n+} from './image-type'\n+import { getImageEtag } from './extract-etag'\n+import { getMaxAge } from './get-max-age'\n+import { ImageError } from './image-error'\n+\n+const ANIMATABLE_TYPES = [WEBP, PNG, GIF]\n+const BYPASS_TYPES = [SVG, ICO, ICNS, BMP, JXL, HEIC]\n+\n+let _sharp: typeof import('sharp').default\n+\n+export interface ImageUpstream {\n+  buffer: Buffer\n+  contentType: string | null | undefined\n+  cacheControl: string | null | undefined\n+  etag: string\n+}\n+\n+export interface ImageOptimizerTransformParams {\n+  href: string\n+  width: number\n+  quality: number\n+  mimeType: string\n+}\n+\n+export type ImageOptimizerTransformConfig = {\n+  experimental: Pick<\n+    NextConfigComplete['experimental'],\n+    | 'imgOptConcurrency'\n+    | 'imgOptOperationCache'\n+    | 'imgOptMaxInputPixels'\n+    | 'imgOptSequentialRead'\n+    | 'imgOptTimeoutInSeconds'\n+  >\n+  images: Pick<\n+    NextConfigComplete['images'],\n+    'dangerouslyAllowSVG' | 'minimumCacheTTL'\n+  >\n+}\n+\n+export interface ImageOptimizerTransformLogger {\n+  error(...args: unknown[]): void\n+  warnOnce(message: string): void\n+}\n+\n+export interface ImageOptimizerTransformOptions {\n+  isValidMime: (contentType: string) => boolean\n+  previousOutput?: {\n+    buffer: Buffer\n+    maxAge?: number\n+    etag: string\n+    upstreamEtag: string\n+  }\n+  logger?: ImageOptimizerTransformLogger\n+  handleDevOutput?: (\n+    buffer: Buffer,\n+    contentType: string\n+  ) => Promise<{ buffer: Buffer; contentType: string }>\n+}\n+\n+export interface ImageOptimizerResult {\n+  buffer: Buffer\n+  contentType: string\n+  maxAge: number\n+  etag: string\n+  upstreamEtag: string\n+  error?: unknown\n+}\n+\n+export function getSharp(\n+  concurrency: number | null | undefined,\n+  operationCache: boolean | null | undefined\n+) {\n+  if (_sharp) {\n+    return _sharp\n+  }\n+  try {\n+    _sharp = require('sharp') as typeof import('sharp').default\n+    _sharp.block({ operation: ['VipsForeignLoad'] })\n+    _sharp.unblock({\n+      operation: [\n+        'VipsForeignLoadHeif', // avif\n+        'VipsForeignLoadJpeg',\n+        'VipsForeignLoadNsgif',\n+        'VipsForeignLoadPng',\n+        'VipsForeignLoadSvg',\n+        'VipsForeignLoadTiff',\n+        'VipsForeignLoadWebp',\n+      ],\n+    })\n+    if (typeof operationCache === 'boolean') {\n+      _sharp.cache(operationCache)\n+    }\n+    if (_sharp.concurrency() > 1) {\n+      // Reducing concurrency should reduce the memory usage too.\n+      // We more aggressively reduce in dev but also reduce in prod.\n+      // https://sharp.pixelplumbing.com/api-utility#concurrency\n+      const divisor = process.env.NODE_ENV === 'development' ? 4 : 2\n+      _sharp.concurrency(\n+        concurrency ?? Math.floor(Math.max(_sharp.concurrency() / divisor, 1))\n+      )\n+    }\n+  } catch (e: unknown) {\n+    if (isError(e) && e.code === 'MODULE_NOT_FOUND') {\n+      throw new Error(\n+        'Module `sharp` not found. Please run `npm install --cpu=wasm32 sharp` to install it.'\n+      )\n+    }\n+    throw e\n+  }\n+  return _sharp\n+}\n+\n+export async function optimizeImage({\n+  buffer,\n+  contentType,\n+  quality,\n+  width,\n+  height,\n+  concurrency,\n+  operationCache,\n+  limitInputPixels,\n+  sequentialRead,\n+  timeoutInSeconds,\n+}: {\n+  buffer: Buffer\n+  contentType: string\n+  quality: number\n+  width: number\n+  height?: number\n+  concurrency?: number | null\n+  operationCache?: boolean | null | undefined\n+  limitInputPixels?: number\n+  sequentialRead?: boolean | null\n+  timeoutInSeconds?: number\n+}): Promise<Buffer> {\n+  const sharp = getSharp(concurrency, operationCache)\n+  const transformer = sharp(buffer, {\n+    limitInputPixels,\n+    sequentialRead: sequentialRead ?? undefined,\n+  })\n+    .timeout({\n+      seconds: timeoutInSeconds ?? 7,\n+    })\n+    .rotate()\n+\n+  if (height) {\n+    transformer.resize(width, height)\n+  } else {\n+    transformer.resize(width, undefined, {\n+      withoutEnlargement: true,\n+    })\n+  }\n+\n+  if (contentType === AVIF) {\n+    transformer.avif({\n+      // Scale the quality to try and match webp. This ratio was derived\n+      // from sharp's default 80 (webp) and 50 (avif), and then verified\n+      // using dssim and ssimulacra2 visual quality tests.\n+      quality: Math.max(Math.round(quality * (50 / 80)), 1),\n+      effort: 3,\n+    })\n+  } else if (contentType === WEBP) {\n+    transformer.webp({ quality })\n+  } else if (contentType === PNG) {\n+    transformer.png({ quality })\n+  } else if (contentType === JPEG) {\n+    transformer.jpeg({ quality, mozjpeg: true })\n+  }\n+\n+  const optimizedBuffer = await transformer.toBuffer()\n+\n+  return optimizedBuffer\n+}\n+\n+export async function imageOptimizerTransform(\n+  imageUpstream: ImageUpstream,\n+  paramsResult: ImageOptimizerTransformParams,\n+  nextConfig: ImageOptimizerTransformConfig,\n+  opts: ImageOptimizerTransformOptions\n+): Promise<ImageOptimizerResult> {\n+  const { href, quality, width, mimeType } = paramsResult\n+  const { buffer: upstreamBuffer, etag: upstreamEtag } = imageUpstream\n+  const maxAge = Math.max(\n+    nextConfig.images.minimumCacheTTL,\n+    getMaxAge(imageUpstream.cacheControl)\n+  )\n+  const upstreamType = await detectContentType(upstreamBuffer)\n+\n+  if (\n+    !upstreamType ||\n+    !upstreamType.startsWith('image/') ||\n+    upstreamType.includes(',')\n+  ) {\n+    opts.logger?.error(\n+      \"The requested resource isn't a valid image for\",\n+      href,\n+      'received',\n+      upstreamType\n+    )\n+    throw new ImageError(400, \"The requested resource isn't a valid image.\")\n+  }\n+  if (\n+    upstreamType.startsWith('image/svg') &&\n+    !nextConfig.images.dangerouslyAllowSVG\n+  ) {\n+    opts.logger?.error(\n+      `The requested resource \"${href}\" has type \"${upstreamType}\" but dangerouslyAllowSVG is disabled. Consider adding the \"unoptimized\" property to the <Image>.`\n+    )\n+    throw new ImageError(\n+      400,\n+      '\"url\" parameter is valid but image type is not allowed'\n+    )\n+  }\n+  if (ANIMATABLE_TYPES.includes(upstreamType) && isAnimated(upstreamBuffer)) {\n+    opts.logger?.warnOnce(\n+      `The requested resource \"${href}\" is an animated image so it will not be optimized. Consider adding the \"unoptimized\" property to the <Image>.`\n+    )\n+    return {\n+      buffer: upstreamBuffer,\n+      contentType: upstreamType,\n+      maxAge,\n+      etag: upstreamEtag,\n+      upstreamEtag,\n+    }\n+  }\n+  if (BYPASS_TYPES.includes(upstreamType)) {\n+    return {\n+      buffer: upstreamBuffer,\n+      contentType: upstreamType,\n+      maxAge,\n+      etag: upstreamEtag,\n+      upstreamEtag,\n+    }\n+  }\n+\n+  let contentType: string\n+\n+  if (mimeType) {\n+    contentType = mimeType\n+  } else if (\n+    opts.isValidMime(upstreamType) &&\n+    upstreamType !== WEBP &&\n+    upstreamType !== AVIF\n+  ) {\n+    contentType = upstreamType\n+  } else {\n+    contentType = JPEG\n+  }\n+\n+  if (opts.previousOutput) {\n+    return {\n+      buffer: opts.previousOutput.buffer,\n+      contentType,\n+      maxAge: opts.previousOutput.maxAge || maxAge,\n+      etag: opts.previousOutput.etag,\n+      upstreamEtag: opts.previousOutput.upstreamEtag,\n+    }\n+  }\n+\n+  try {\n+    let optimizedBuffer = await optimizeImage({\n+      buffer: upstreamBuffer,\n+      contentType,\n+      quality,\n+      width,\n+      concurrency: nextConfig.experimental.imgOptConcurrency,\n+      operationCache: nextConfig.experimental.imgOptOperationCache,\n+      limitInputPixels: nextConfig.experimental.imgOptMaxInputPixels,\n+      sequentialRead: nextConfig.experimental.imgOptSequentialRead,\n+      timeoutInSeconds: nextConfig.experimental.imgOptTimeoutInSeconds,\n+    })\n+    if (opts.handleDevOutput) {\n+      const output = await opts.handleDevOutput(optimizedBuffer, contentType)\n+      optimizedBuffer = output.buffer\n+      contentType = output.contentType\n+    }\n+    return {\n+      buffer: optimizedBuffer,\n+      contentType,\n+      maxAge,\n+      etag: getImageEtag(optimizedBuffer),\n+      upstreamEtag,\n+    }\n+  } catch (error) {\n+    if (upstreamType) {\n+      // If we fail to optimize, fallback to the original image\n+      return {\n+        buffer: upstreamBuffer,\n+        contentType: upstreamType,\n+        maxAge: nextConfig.images.minimumCacheTTL,\n+        etag: upstreamEtag,\n+        upstreamEtag,\n+        error,\n+      }\n+    } else {\n+      throw new ImageError(\n+        400,\n+        'Unable to optimize image and unable to fallback to upstream image'\n+      )\n+    }\n+  }\n+}"
+    },
+    {
+      "sha": "8205df4edb7d9f73455c538dababc3b271ee20e9",
+      "filename": "test/unit/image-optimizer/detect-content-type.test.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fdetect-content-type.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fdetect-content-type.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fdetect-content-type.test.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -1,5 +1,5 @@\n /* eslint-env jest */\n-import { detectContentType as dct } from 'next/dist/server/image-optimizer'\n+import { detectContentType as dct } from 'next/dist/server/image-optimizer/detect-content-type'\n import { readFile } from 'fs-extra'\n import { join } from 'path'\n "
+    },
+    {
+      "sha": "0a035a6eba1e3114eea27fd97ae94e5b2e04d947",
+      "filename": "test/unit/image-optimizer/extract-etag.test.ts",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 1,
+      "changes": 5,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fextract-etag.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fextract-etag.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fextract-etag.test.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -1,5 +1,8 @@\n /* eslint-env jest */\n-import { extractEtag, getImageEtag } from 'next/dist/server/image-optimizer'\n+import {\n+  extractEtag,\n+  getImageEtag,\n+} from 'next/dist/server/image-optimizer/extract-etag'\n import { readFile } from 'fs-extra'\n import { join } from 'path'\n "
+    },
+    {
+      "sha": "b8c142f9ec4e22b0605bd1de4e19d764aa0369fc",
+      "filename": "test/unit/image-optimizer/get-max-age.test.ts",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fget-max-age.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fget-max-age.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fget-max-age.test.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -1,5 +1,5 @@\n /* eslint-env jest */\n-import { getMaxAge } from 'next/dist/server/image-optimizer'\n+import { getMaxAge } from 'next/dist/server/image-optimizer/get-max-age'\n \n describe('getMaxAge', () => {\n   it('should return 0 when no cache-control provided', () => {"
+    },
+    {
+      "sha": "c7dde4484a06c50441155ef0b8b58eda0250d7e7",
+      "filename": "test/unit/image-optimizer/get-previously-cached-image-or-null.test.ts",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 4,
+      "changes": 6,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fget-previously-cached-image-or-null.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Fget-previously-cached-image-or-null.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fget-previously-cached-image-or-null.test.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -1,8 +1,6 @@\n /* eslint-env jest */\n-import {\n-  getPreviouslyCachedImageOrNull,\n-  getImageEtag,\n-} from 'next/dist/server/image-optimizer'\n+import { getPreviouslyCachedImageOrNull } from 'next/dist/server/image-optimizer/get-previously-cached-image-or-null'\n+import { getImageEtag } from 'next/dist/server/image-optimizer/extract-etag'\n import {\n   CachedRouteKind,\n   IncrementalCacheEntry,"
+    },
+    {
+      "sha": "2c7d79b44ed433f592003f36cb886b1638873c85",
+      "filename": "test/unit/image-optimizer/transform.test.ts",
+      "status": "added",
+      "additions": 191,
+      "deletions": 0,
+      "changes": 191,
+      "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "patch": "@@ -0,0 +1,191 @@\n+/* eslint-env jest */\n+import { readFile } from 'fs-extra'\n+import { join } from 'path'\n+import {\n+  imageOptimizerTransform,\n+  type ImageOptimizerTransformOptions,\n+} from 'next/dist/server/image-optimizer/transform'\n+import type {\n+  CachedRouteKind,\n+  IncrementalResponseCacheEntry,\n+} from 'next/dist/server/response-cache/types'\n+\n+const getImage = (filename: string) =>\n+  readFile(join(__dirname, 'images', filename))\n+\n+const isValidMime = (contentType: string) => contentType === 'image/png'\n+\n+const config = {\n+  images: {\n+    dangerouslyAllowSVG: true,\n+    minimumCacheTTL: 60,\n+  },\n+  experimental: {\n+    imgOptConcurrency: 1,\n+    imgOptOperationCache: false,\n+    imgOptMaxInputPixels: 67_108_864,\n+    imgOptSequentialRead: true,\n+    imgOptTimeoutInSeconds: 6,\n+  },\n+}\n+\n+async function transform(\n+  filename: string,\n+  mimeType = 'image/webp',\n+  options?: ImageOptimizerTransformOptions\n+) {\n+  const buffer = await getImage(filename)\n+  return imageOptimizerTransform(\n+    {\n+      buffer,\n+      contentType: undefined,\n+      cacheControl: 'public, max-age=120',\n+      etag: 'source-etag',\n+    },\n+    { href: `/${filename}`, width: 64, quality: 75, mimeType },\n+    config,\n+    { isValidMime, ...options }\n+  )\n+}\n+\n+async function transformInDevelopment(\n+  filename: string,\n+  previousCacheEntry?: IncrementalResponseCacheEntry\n+) {\n+  const { imageOptimizer } =\n+    require('next/dist/server/image-optimizer') as typeof import('next/dist/server/image-optimizer')\n+  const buffer = await getImage(filename)\n+  return imageOptimizer(\n+    {\n+      buffer,\n+      contentType: undefined,\n+      cacheControl: undefined,\n+      etag: 'source-etag',\n+    },\n+    { href: `/${filename}`, width: 8, quality: 70, mimeType: 'image/webp' },\n+    config,\n+    { isDev: true, silent: true, previousCacheEntry }\n+  )\n+}\n+\n+describe('imageOptimizerTransform', () => {\n+  it('loads without the server image optimizer dependency graph', () => {\n+    const loaded = Object.keys(require.cache)\n+    expect(\n+      loaded.some((path) => /\\/server\\/image-optimizer\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => path.includes('/server/response-cache/'))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/server\\/serve-static\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/server\\/lib\\/mock-request\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/server\\/config-shared\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/build\\/output\\/log\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+  })\n+\n+  it('transforms a png buffer', async () => {\n+    const result = await transform('test.png')\n+    expect(result.contentType).toBe('image/webp')\n+    expect(result.buffer.byteLength).toBeGreaterThan(0)\n+    expect(result.maxAge).toBe(120)\n+  })\n+\n+  it('preserves the source format when no output format is requested', async () => {\n+    const result = await transform('test.png', '')\n+    expect(result.contentType).toBe('image/png')\n+  })\n+\n+  it('transforms an avif source', async () => {\n+    const source = await getImage('test.avif')\n+    const result = await transform('test.avif')\n+    expect(result.buffer).not.toEqual(source)\n+    expect(result.contentType).toBe('image/webp')\n+  })\n+\n+  it('generates blur placeholders in development', async () => {\n+    const result = await transformInDevelopment('test.png')\n+    expect(result.contentType).toBe('image/svg+xml')\n+    expect(result.buffer.toString()).toContain('<svg')\n+  })\n+\n+  it('does not generate blur placeholders for bypassed images', async () => {\n+    const source = await getImage('test.svg')\n+    const result = await transformInDevelopment('test.svg')\n+    expect(result.buffer).toEqual(source)\n+    expect(result.contentType).toBe('image/svg+xml')\n+  })\n+\n+  it('reuses a previous cache entry without generating a blur placeholder', async () => {\n+    const previousBuffer = Buffer.from('previous image')\n+    const result = await transformInDevelopment('test.png', {\n+      value: {\n+        kind: 'IMAGE' as CachedRouteKind.IMAGE,\n+        buffer: previousBuffer,\n+        etag: 'optimized-etag',\n+        upstreamEtag: 'source-etag',\n+        extension: 'webp',\n+      },\n+      cacheControl: { revalidate: 90, expire: undefined },\n+    })\n+    expect(result.buffer).toEqual(previousBuffer)\n+    expect(result.contentType).toBe('image/webp')\n+    expect(result.maxAge).toBe(90)\n+  })\n+\n+  it('bypasses svg buffers', async () => {\n+    const source = await getImage('test.svg')\n+    const result = await transform('test.svg')\n+    expect(result.buffer).toEqual(source)\n+    expect(result.contentType).toBe('image/svg+xml')\n+  })\n+\n+  it('bypasses animated buffers', async () => {\n+    const source = await getImage('animated.webp')\n+    const result = await transform('animated.webp')\n+    expect(result.buffer).toEqual(source)\n+    expect(result.contentType).toBe('image/webp')\n+  })\n+\n+  it('rejects disallowed svg buffers', async () => {\n+    await expect(\n+      imageOptimizerTransform(\n+        {\n+          buffer: await getImage('test.svg'),\n+          contentType: undefined,\n+          cacheControl: undefined,\n+          etag: 'source-etag',\n+        },\n+        { href: '/test.svg', width: 64, quality: 75, mimeType: 'image/webp' },\n+        {\n+          ...config,\n+          images: { ...config.images, dangerouslyAllowSVG: false },\n+        },\n+        { isValidMime }\n+      )\n+    ).rejects.toMatchObject({ statusCode: 400 })\n+  })\n+\n+  it('rejects unrecognized buffers', async () => {\n+    await expect(\n+      imageOptimizerTransform(\n+        {\n+          buffer: Buffer.from('not an image'),\n+          contentType: undefined,\n+          cacheControl: undefined,\n+          etag: 'source-etag',\n+        },\n+        { href: '/bad', width: 64, quality: 75, mimeType: 'image/webp' },\n+        config,\n+        { isValidMime }\n+      )\n+    ).rejects.toMatchObject({ statusCode: 400 })\n+  })\n+})"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+      "html_url": "https://github.com/vercel/next.js/commit/ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+      "commit": {
+        "author": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-27T13:44:58Z"
+        },
+        "committer": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-28T04:18:48Z"
+        },
+        "message": "[image-optimizer] Extract lightweight transform runtime"
+      },
+      "parents": [
+        {
+          "sha": "ee3a50ccb98e27a1cae594cd602390b057bfcf20",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ee3a50ccb98e27a1cae594cd602390b057bfcf20",
+          "html_url": "https://github.com/vercel/next.js/commit/ee3a50ccb98e27a1cae594cd602390b057bfcf20"
+        }
+      ],
+      "stats": {
+        "total": 1345,
+        "additions": 836,
+        "deletions": 509
+      },
+      "files": [
+        {
+          "sha": "f6934273df76ba4bd4d4e3c84ee7147be5fb4e0c",
+          "filename": "packages/next/src/build/webpack/loaders/next-image-loader/blur.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Fblur.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Fblur.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Fblur.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -1,5 +1,5 @@\n import isAnimated from 'next/dist/compiled/is-animated'\n-import { optimizeImage } from '../../../../server/image-optimizer'\n+import { optimizeImage } from '../../../../server/image-optimizer/transform'\n \n const BLUR_IMG_SIZE = 8\n const BLUR_QUALITY = 70"
+        },
+        {
+          "sha": "e47656bbf8d37dbdf7c84f550a0da518131421fb",
+          "filename": "packages/next/src/build/webpack/loaders/next-image-loader/index.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Findex.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Findex.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-image-loader%2Findex.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -2,7 +2,7 @@ import type { CompilerNameValues } from '../../../../shared/lib/constants'\n \n import path from 'path'\n import loaderUtils from 'next/dist/compiled/loader-utils3'\n-import { getImageSize } from '../../../../server/image-optimizer'\n+import { getImageSize } from '../../../../server/image-optimizer/get-image-size'\n import { getBlurImage } from './blur'\n \n interface Options {"
+        },
+        {
+          "sha": "237daa77f67f3804c941f3a44d8fd588fec20107",
+          "filename": "packages/next/src/build/webpack/loaders/next-metadata-image-loader.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-metadata-image-loader.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-metadata-image-loader.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fwebpack%2Floaders%2Fnext-metadata-image-loader.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -10,7 +10,7 @@ import type {\n import { existsSync, promises as fs } from 'fs'\n import path from 'path'\n import loaderUtils from 'next/dist/compiled/loader-utils3'\n-import { getImageSize } from '../../../server/image-optimizer'\n+import { getImageSize } from '../../../server/image-optimizer/get-image-size'\n import { imageExtMimeTypeMap } from '../../../lib/mime-type'\n import { WEBPACK_RESOURCE_QUERIES } from '../../../lib/constants'\n import { fillStaticMetadataSegment } from '../../../lib/metadata/get-metadata-route'"
+        },
+        {
+          "sha": "1e6f4daf1f3d55b5efe26ed17b7f18b26d3a5936",
+          "filename": "packages/next/src/server/image-optimizer.ts",
+          "status": "modified",
+          "additions": 50,
+          "deletions": 499,
+          "changes": 549,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -1,11 +1,7 @@\n-import { createHash } from 'crypto'\n import { promises } from 'fs'\n import type { IncomingMessage, ServerResponse } from 'http'\n import { mediaType } from 'next/dist/compiled/@hapi/accept'\n import contentDisposition from 'next/dist/compiled/content-disposition'\n-import imageSizeOf from 'next/dist/compiled/image-size'\n-import { detector } from 'next/dist/compiled/image-detector/detector.js'\n-import isAnimated from 'next/dist/compiled/is-animated'\n import { join } from 'path'\n import { getImageBlurSvg } from '../shared/lib/image-blur-svg'\n import type { ImageConfigComplete } from '../shared/lib/image-config'\n@@ -17,16 +13,13 @@ import type { NextUrlWithParsedQuery } from './request-meta'\n import {\n   CachedRouteKind,\n   IncrementalCacheKind,\n-  type CachedImageValue,\n-  type IncrementalCacheEntry,\n   type IncrementalCacheValue,\n   type IncrementalResponseCacheEntry,\n } from './response-cache'\n import type { CacheHandler } from './lib/incremental-cache'\n import { sendEtagResponse } from './send-payload'\n import { getContentType, getExtension } from './serve-static'\n import * as Log from '../build/output/log'\n-import isError from '../lib/is-error'\n import { isPrivateIp } from './is-private-ip'\n import { getOrInitDiskLRU } from './lib/disk-lru-cache.external'\n import { parseUrl, parseReqUrl } from '../lib/url'\n@@ -35,30 +28,28 @@ import { InvariantError } from '../shared/lib/invariant-error'\n import { lookup } from 'dns/promises'\n import { isIP } from 'net'\n import { ALL } from 'dns'\n+import {\n+  imageOptimizerTransform,\n+  type ImageUpstream,\n+} from './image-optimizer/transform'\n+import { extractEtag, getHash } from './image-optimizer/extract-etag'\n+import { getPreviouslyCachedImageOrNull } from './image-optimizer/get-previously-cached-image-or-null'\n+import { getImageSize } from './image-optimizer/get-image-size'\n+import { ImageError } from './image-optimizer/image-error'\n+\n+// `next-server.ts` destructures `ImageError` from this module to check\n+// `instanceof` on errors thrown by the transform.\n+export { ImageError } from './image-optimizer/image-error'\n \n type XCacheHeader = 'MISS' | 'HIT' | 'STALE'\n \n-const AVIF = 'image/avif'\n-const WEBP = 'image/webp'\n-const PNG = 'image/png'\n-const JPEG = 'image/jpeg'\n-const JXL = 'image/jxl'\n-const JP2 = 'image/jp2'\n-const HEIC = 'image/heic'\n-const GIF = 'image/gif'\n-const SVG = 'image/svg+xml'\n-const ICO = 'image/x-icon'\n-const ICNS = 'image/x-icns'\n-const TIFF = 'image/tiff'\n-const BMP = 'image/bmp'\n-const PDF = 'application/pdf'\n const CACHE_VERSION = 4\n-const ANIMATABLE_TYPES = [WEBP, PNG, GIF]\n-const BYPASS_TYPES = [SVG, ICO, ICNS, BMP, JXL, HEIC]\n const BLUR_IMG_SIZE = 8 // should match `next-image-loader`\n const BLUR_QUALITY = 70 // should match `next-image-loader`\n \n-let _sharp: typeof import('sharp').default\n+function isValidMime(contentType: string) {\n+  return Boolean(getExtension(contentType))\n+}\n \n async function initCacheEntries(\n   cacheDir: string\n@@ -83,50 +74,6 @@ async function initCacheEntries(\n   return entries.sort((a, b) => a.expireAt - b.expireAt)\n }\n \n-export function getSharp(\n-  concurrency: number | null | undefined,\n-  operationCache: boolean | null | undefined\n-) {\n-  if (_sharp) {\n-    return _sharp\n-  }\n-  try {\n-    _sharp = require('sharp') as typeof import('sharp').default\n-    _sharp.block({ operation: ['VipsForeignLoad'] })\n-    _sharp.unblock({\n-      operation: [\n-        'VipsForeignLoadHeif', // avif\n-        'VipsForeignLoadJpeg',\n-        'VipsForeignLoadNsgif',\n-        'VipsForeignLoadPng',\n-        'VipsForeignLoadSvg',\n-        'VipsForeignLoadTiff',\n-        'VipsForeignLoadWebp',\n-      ],\n-    })\n-    if (typeof operationCache === 'boolean') {\n-      _sharp.cache(operationCache)\n-    }\n-    if (_sharp.concurrency() > 1) {\n-      // Reducing concurrency should reduce the memory usage too.\n-      // We more aggressively reduce in dev but also reduce in prod.\n-      // https://sharp.pixelplumbing.com/api-utility#concurrency\n-      const divisor = process.env.NODE_ENV === 'development' ? 4 : 2\n-      _sharp.concurrency(\n-        concurrency ?? Math.floor(Math.max(_sharp.concurrency() / divisor, 1))\n-      )\n-    }\n-  } catch (e: unknown) {\n-    if (isError(e) && e.code === 'MODULE_NOT_FOUND') {\n-      throw new Error(\n-        'Module `sharp` not found. Please run `npm install --cpu=wasm32 sharp` to install it.'\n-      )\n-    }\n-    throw e\n-  }\n-  return _sharp\n-}\n-\n export interface ImageParamsResult {\n   href: string\n   isAbsolute: boolean\n@@ -138,46 +85,11 @@ export interface ImageParamsResult {\n   minimumCacheTTL: number\n }\n \n-interface ImageUpstream {\n-  buffer: Buffer\n-  contentType: string | null | undefined\n-  cacheControl: string | null | undefined\n-  etag: string\n-}\n-\n function getSupportedMimeType(options: string[], accept = ''): string {\n   const mimeType = mediaType(accept, options)\n   return accept.includes(mimeType) ? mimeType : ''\n }\n \n-export function getHash(items: (string | number | Buffer)[]) {\n-  const hash = createHash('sha256')\n-  for (let item of items) {\n-    if (typeof item === 'number') hash.update(String(item))\n-    else {\n-      hash.update(item)\n-    }\n-  }\n-  // See https://en.wikipedia.org/wiki/Base64#URL_applications\n-  return hash.digest('base64url')\n-}\n-\n-export function extractEtag(\n-  etag: string | null | undefined,\n-  imageBuffer: Buffer\n-) {\n-  if (etag) {\n-    // upstream etag needs to be base64url encoded due to weak etag signature\n-    // as we store this in the cache-entry file name.\n-    return Buffer.from(etag).toString('base64url')\n-  }\n-  return getImageEtag(imageBuffer)\n-}\n-\n-export function getImageEtag(image: Buffer) {\n-  return getHash([image])\n-}\n-\n async function writeToCacheDir(\n   cacheDir: string,\n   cacheKey: string,\n@@ -241,132 +153,6 @@ async function deleteFromCacheDir(cacheDir: string, cacheKey: string) {\n     })\n }\n \n-/**\n- * Inspects the first few bytes of a buffer to determine if\n- * it matches the \"magic number\" of known file signatures.\n- * https://en.wikipedia.org/wiki/List_of_file_signatures\n- */\n-export async function detectContentType(\n-  buffer: Buffer\n-): Promise<string | null> {\n-  if (buffer.byteLength === 0) {\n-    return null\n-  }\n-  if ([0xff, 0xd8, 0xff].every((b, i) => buffer[i] === b)) {\n-    return JPEG\n-  }\n-  if (\n-    [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every(\n-      (b, i) => buffer[i] === b\n-    )\n-  ) {\n-    return PNG\n-  }\n-  if ([0x47, 0x49, 0x46, 0x38].every((b, i) => buffer[i] === b)) {\n-    return GIF\n-  }\n-  if (\n-    [0x52, 0x49, 0x46, 0x46, 0, 0, 0, 0, 0x57, 0x45, 0x42, 0x50].every(\n-      (b, i) => !b || buffer[i] === b\n-    )\n-  ) {\n-    return WEBP\n-  }\n-  if ([0x3c, 0x3f, 0x78, 0x6d, 0x6c].every((b, i) => buffer[i] === b)) {\n-    return SVG\n-  }\n-  if ([0x3c, 0x73, 0x76, 0x67].every((b, i) => buffer[i] === b)) {\n-    return SVG\n-  }\n-  if (\n-    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x61, 0x76, 0x69, 0x66].every(\n-      (b, i) => !b || buffer[i] === b\n-    )\n-  ) {\n-    return AVIF\n-  }\n-  if ([0x00, 0x00, 0x01, 0x00].every((b, i) => buffer[i] === b)) {\n-    return ICO\n-  }\n-  if ([0x69, 0x63, 0x6e, 0x73].every((b, i) => buffer[i] === b)) {\n-    return ICNS\n-  }\n-  if ([0x49, 0x49, 0x2a, 0x00].every((b, i) => buffer[i] === b)) {\n-    return TIFF\n-  }\n-  if ([0x42, 0x4d].every((b, i) => buffer[i] === b)) {\n-    return BMP\n-  }\n-  if ([0xff, 0x0a].every((b, i) => buffer[i] === b)) {\n-    return JXL\n-  }\n-  if (\n-    [\n-      0x00, 0x00, 0x00, 0x0c, 0x4a, 0x58, 0x4c, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n-    ].every((b, i) => buffer[i] === b)\n-  ) {\n-    return JXL\n-  }\n-  if (\n-    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63].every(\n-      (b, i) => !b || buffer[i] === b\n-    )\n-  ) {\n-    return HEIC\n-  }\n-  if ([0x25, 0x50, 0x44, 0x46, 0x2d].every((b, i) => buffer[i] === b)) {\n-    return PDF\n-  }\n-  if (\n-    [\n-      0x00, 0x00, 0x00, 0x0c, 0x6a, 0x50, 0x20, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n-    ].every((b, i) => buffer[i] === b)\n-  ) {\n-    return JP2\n-  }\n-\n-  const format = detector(buffer.subarray(0, 1024))\n-\n-  switch (format) {\n-    case 'webp':\n-      return WEBP\n-    case 'png':\n-      return PNG\n-    case 'jpg':\n-      return JPEG\n-    case 'gif':\n-      return GIF\n-    case 'svg':\n-      return SVG\n-    case 'jxl':\n-    case 'jxl-stream':\n-      return JXL\n-    case 'jp2':\n-      return JP2\n-    case 'tiff':\n-      return TIFF\n-    case 'bmp':\n-      return BMP\n-    case 'ico':\n-      return ICO\n-    case 'icns':\n-      return ICNS\n-    case 'heif':\n-    case 'cur':\n-    case 'dds':\n-    case 'j2c':\n-    case 'ktx':\n-    case 'pnm':\n-    case 'psd':\n-    case 'tga':\n-    case undefined:\n-      return null // unsupported formats\n-    default:\n-      format satisfies never // exhaustive check\n-      return null // impossible to reach\n-  }\n-}\n-\n export class ImageOptimizerCache {\n   private cacheDir: string\n   private nextConfig: NextConfigRuntime\n@@ -732,132 +518,6 @@ export class ImageOptimizerCache {\n     }\n   }\n }\n-export class ImageError extends Error {\n-  statusCode: number\n-\n-  constructor(statusCode: number, message: string) {\n-    super(message)\n-\n-    // ensure an error status is used > 400\n-    if (statusCode >= 400) {\n-      this.statusCode = statusCode\n-    } else {\n-      this.statusCode = 500\n-    }\n-  }\n-}\n-\n-function parseCacheControl(\n-  str: string | null | undefined\n-): Map<string, string> {\n-  const map = new Map<string, string>()\n-  if (!str) {\n-    return map\n-  }\n-  for (let directive of str.split(',')) {\n-    let [key, value] = directive.trim().split('=', 2)\n-    key = key.toLowerCase()\n-    if (value) {\n-      value = value.toLowerCase()\n-    }\n-    map.set(key, value)\n-  }\n-  return map\n-}\n-\n-export function getMaxAge(str: string | null | undefined): number {\n-  const map = parseCacheControl(str)\n-  if (map) {\n-    let age = map.get('s-maxage') || map.get('max-age') || ''\n-    if (age.startsWith('\"') && age.endsWith('\"')) {\n-      age = age.slice(1, -1)\n-    }\n-    const n = parseInt(age, 10)\n-    if (!isNaN(n)) {\n-      return n\n-    }\n-  }\n-  return 0\n-}\n-export function getPreviouslyCachedImageOrNull(\n-  upstreamImage: ImageUpstream,\n-  previousCacheEntry: IncrementalCacheEntry | null | undefined\n-): CachedImageValue | null {\n-  if (\n-    previousCacheEntry?.value?.kind === 'IMAGE' &&\n-    // Images that are SVGs, animated or failed the optimization previously end up using upstreamEtag as their etag as well,\n-    // in these cases we want to trigger a new \"optimization\" attempt.\n-    previousCacheEntry.value.upstreamEtag !== previousCacheEntry.value.etag &&\n-    // and the upstream etag is the same as the previous cache entry's\n-    upstreamImage.etag === previousCacheEntry.value.upstreamEtag\n-  ) {\n-    return previousCacheEntry.value\n-  }\n-  return null\n-}\n-\n-export async function optimizeImage({\n-  buffer,\n-  contentType,\n-  quality,\n-  width,\n-  height,\n-  concurrency,\n-  operationCache,\n-  limitInputPixels,\n-  sequentialRead,\n-  timeoutInSeconds,\n-}: {\n-  buffer: Buffer\n-  contentType: string\n-  quality: number\n-  width: number\n-  height?: number\n-  concurrency?: number | null\n-  operationCache?: boolean | null | undefined\n-  limitInputPixels?: number\n-  sequentialRead?: boolean | null\n-  timeoutInSeconds?: number\n-}): Promise<Buffer> {\n-  const sharp = getSharp(concurrency, operationCache)\n-  const transformer = sharp(buffer, {\n-    limitInputPixels,\n-    sequentialRead: sequentialRead ?? undefined,\n-  })\n-    .timeout({\n-      seconds: timeoutInSeconds ?? 7,\n-    })\n-    .rotate()\n-\n-  if (height) {\n-    transformer.resize(width, height)\n-  } else {\n-    transformer.resize(width, undefined, {\n-      withoutEnlargement: true,\n-    })\n-  }\n-\n-  if (contentType === AVIF) {\n-    transformer.avif({\n-      // Scale the quality to try and match webp. This ratio was derived\n-      // from sharp's default 80 (webp) and 50 (avif), and then verified\n-      // using dssim and ssimulacra2 visual quality tests.\n-      quality: Math.max(Math.round(quality * (50 / 80)), 1),\n-      effort: 3,\n-    })\n-  } else if (contentType === WEBP) {\n-    transformer.webp({ quality })\n-  } else if (contentType === PNG) {\n-    transformer.png({ quality })\n-  } else if (contentType === JPEG) {\n-    transformer.jpeg({ quality, mozjpeg: true })\n-  }\n-\n-  const optimizedBuffer = await transformer.toBuffer()\n-\n-  return optimizedBuffer\n-}\n-\n function isRedirect(statusCode: number) {\n   return [301, 302, 303, 307, 308].includes(statusCode)\n }\n@@ -1054,6 +714,22 @@ export async function fetchInternalImage(\n   }\n }\n \n+async function makeBlurPlaceholder(buffer: Buffer, contentType: string) {\n+  // During `next dev`, we don't want to generate blur placeholders with webpack\n+  // because it can delay starting the dev server. Instead, `next-image-loader.js`\n+  // will inline a special url to lazily generate the blur placeholder at request time.\n+  const meta = await getImageSize(buffer)\n+  const blurOpts = {\n+    blurWidth: meta.width,\n+    blurHeight: meta.height,\n+    blurDataURL: `data:${contentType};base64,${buffer.toString('base64')}`,\n+  }\n+  return {\n+    buffer: Buffer.from(unescape(getImageBlurSvg(blurOpts))),\n+    contentType: 'image/svg+xml',\n+  }\n+}\n+\n export async function imageOptimizer(\n   imageUpstream: ImageUpstream,\n   paramsResult: Pick<\n@@ -1087,147 +763,30 @@ export async function imageOptimizer(\n   upstreamEtag: string\n   error?: unknown\n }> {\n-  const { href, quality, width, mimeType } = paramsResult\n-  const { buffer: upstreamBuffer, etag: upstreamEtag } = imageUpstream\n-  const maxAge = Math.max(\n-    nextConfig.images.minimumCacheTTL,\n-    getMaxAge(imageUpstream.cacheControl)\n-  )\n-\n-  const upstreamType = await detectContentType(upstreamBuffer)\n-\n-  if (\n-    !upstreamType ||\n-    !upstreamType.startsWith('image/') ||\n-    upstreamType.includes(',')\n-  ) {\n-    if (!opts.silent) {\n-      Log.error(\n-        \"The requested resource isn't a valid image for\",\n-        href,\n-        'received',\n-        upstreamType\n-      )\n-    }\n-    throw new ImageError(400, \"The requested resource isn't a valid image.\")\n-  }\n-  if (\n-    upstreamType.startsWith('image/svg') &&\n-    !nextConfig.images.dangerouslyAllowSVG\n-  ) {\n-    if (!opts.silent) {\n-      Log.error(\n-        `The requested resource \"${href}\" has type \"${upstreamType}\" but dangerouslyAllowSVG is disabled. Consider adding the \"unoptimized\" property to the <Image>.`\n-      )\n-    }\n-    throw new ImageError(\n-      400,\n-      '\"url\" parameter is valid but image type is not allowed'\n-    )\n-  }\n-  if (ANIMATABLE_TYPES.includes(upstreamType) && isAnimated(upstreamBuffer)) {\n-    if (!opts.silent) {\n-      Log.warnOnce(\n-        `The requested resource \"${href}\" is an animated image so it will not be optimized. Consider adding the \"unoptimized\" property to the <Image>.`\n-      )\n-    }\n-    return {\n-      buffer: upstreamBuffer,\n-      contentType: upstreamType,\n-      maxAge,\n-      etag: upstreamEtag,\n-      upstreamEtag,\n-    }\n-  }\n-  if (BYPASS_TYPES.includes(upstreamType)) {\n-    return {\n-      buffer: upstreamBuffer,\n-      contentType: upstreamType,\n-      maxAge,\n-      etag: upstreamEtag,\n-      upstreamEtag,\n-    }\n-  }\n-\n-  let contentType: string\n-\n-  if (mimeType) {\n-    contentType = mimeType\n-  } else if (\n-    getExtension(upstreamType) &&\n-    upstreamType !== WEBP &&\n-    upstreamType !== AVIF\n-  ) {\n-    contentType = upstreamType\n-  } else {\n-    contentType = JPEG\n-  }\n   const previouslyCachedImage = getPreviouslyCachedImageOrNull(\n     imageUpstream,\n     opts.previousCacheEntry\n   )\n-  if (previouslyCachedImage) {\n-    return {\n-      buffer: previouslyCachedImage.buffer,\n-      contentType,\n-      maxAge: opts?.previousCacheEntry?.cacheControl?.revalidate || maxAge,\n-      etag: previouslyCachedImage.etag,\n-      upstreamEtag: previouslyCachedImage.upstreamEtag,\n-    }\n-  }\n \n-  try {\n-    let optimizedBuffer = await optimizeImage({\n-      buffer: upstreamBuffer,\n-      contentType,\n-      quality,\n-      width,\n-      concurrency: nextConfig.experimental.imgOptConcurrency,\n-      operationCache: nextConfig.experimental.imgOptOperationCache,\n-      limitInputPixels: nextConfig.experimental.imgOptMaxInputPixels,\n-      sequentialRead: nextConfig.experimental.imgOptSequentialRead,\n-      timeoutInSeconds: nextConfig.experimental.imgOptTimeoutInSeconds,\n-    })\n-    if (opts.isDev && width <= BLUR_IMG_SIZE && quality === BLUR_QUALITY) {\n-      // During `next dev`, we don't want to generate blur placeholders with webpack\n-      // because it can delay starting the dev server. Instead, `next-image-loader.js`\n-      // will inline a special url to lazily generate the blur placeholder at request time.\n-      const meta = await getImageSize(optimizedBuffer)\n-      const blurOpts = {\n-        blurWidth: meta.width,\n-        blurHeight: meta.height,\n-        blurDataURL: `data:${contentType};base64,${optimizedBuffer.toString(\n-          'base64'\n-        )}`,\n-      }\n-      optimizedBuffer = Buffer.from(unescape(getImageBlurSvg(blurOpts)))\n-      contentType = 'image/svg+xml'\n-    }\n-    return {\n-      buffer: optimizedBuffer,\n-      contentType,\n-      maxAge,\n-      etag: getImageEtag(optimizedBuffer),\n-      upstreamEtag,\n-    }\n-  } catch (error) {\n-    if (upstreamType) {\n-      // If we fail to optimize, fallback to the original image\n-      return {\n-        buffer: upstreamBuffer,\n-        contentType: upstreamType,\n-        maxAge: nextConfig.images.minimumCacheTTL,\n-        etag: upstreamEtag,\n-        upstreamEtag,\n-        error,\n-      }\n-    } else {\n-      throw new ImageError(\n-        400,\n-        'Unable to optimize image and unable to fallback to upstream image'\n-      )\n-    }\n-  }\n+  return imageOptimizerTransform(imageUpstream, paramsResult, nextConfig, {\n+    isValidMime,\n+    previousOutput: previouslyCachedImage\n+      ? {\n+          buffer: previouslyCachedImage.buffer,\n+          maxAge:\n+            opts.previousCacheEntry?.cacheControl?.revalidate || undefined,\n+          etag: previouslyCachedImage.etag,\n+          upstreamEtag: previouslyCachedImage.upstreamEtag,\n+        }\n+      : undefined,\n+    logger: opts.silent ? undefined : Log,\n+    handleDevOutput:\n+      opts.isDev &&\n+      paramsResult.width <= BLUR_IMG_SIZE &&\n+      paramsResult.quality === BLUR_QUALITY\n+        ? makeBlurPlaceholder\n+        : undefined,\n+  })\n }\n \n function getFileNameWithExtension(\n@@ -1320,11 +879,3 @@ export function sendResponse(\n     }\n   }\n }\n-\n-export async function getImageSize(buffer: Buffer): Promise<{\n-  width?: number\n-  height?: number\n-}> {\n-  const { width, height } = imageSizeOf(buffer)\n-  return { width, height }\n-}"
+        },
+        {
+          "sha": "435a927208a442b7be616e397715b614bf4adf7c",
+          "filename": "packages/next/src/server/image-optimizer/detect-content-type.ts",
+          "status": "added",
+          "additions": 143,
+          "deletions": 0,
+          "changes": 143,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fdetect-content-type.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fdetect-content-type.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fdetect-content-type.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,143 @@\n+import { detector } from 'next/dist/compiled/image-detector/detector.js'\n+import {\n+  AVIF,\n+  BMP,\n+  GIF,\n+  HEIC,\n+  ICNS,\n+  ICO,\n+  JPEG,\n+  JP2,\n+  JXL,\n+  PDF,\n+  PNG,\n+  SVG,\n+  TIFF,\n+  WEBP,\n+} from './image-type'\n+\n+/**\n+ * Inspects the first few bytes of a buffer to determine if\n+ * it matches the \"magic number\" of known file signatures.\n+ * https://en.wikipedia.org/wiki/List_of_file_signatures\n+ */\n+export async function detectContentType(\n+  buffer: Buffer\n+): Promise<string | null> {\n+  if (buffer.byteLength === 0) {\n+    return null\n+  }\n+  if ([0xff, 0xd8, 0xff].every((b, i) => buffer[i] === b)) {\n+    return JPEG\n+  }\n+  if (\n+    [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every(\n+      (b, i) => buffer[i] === b\n+    )\n+  ) {\n+    return PNG\n+  }\n+  if ([0x47, 0x49, 0x46, 0x38].every((b, i) => buffer[i] === b)) {\n+    return GIF\n+  }\n+  if (\n+    [0x52, 0x49, 0x46, 0x46, 0, 0, 0, 0, 0x57, 0x45, 0x42, 0x50].every(\n+      (b, i) => !b || buffer[i] === b\n+    )\n+  ) {\n+    return WEBP\n+  }\n+  if ([0x3c, 0x3f, 0x78, 0x6d, 0x6c].every((b, i) => buffer[i] === b)) {\n+    return SVG\n+  }\n+  if ([0x3c, 0x73, 0x76, 0x67].every((b, i) => buffer[i] === b)) {\n+    return SVG\n+  }\n+  if (\n+    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x61, 0x76, 0x69, 0x66].every(\n+      (b, i) => !b || buffer[i] === b\n+    )\n+  ) {\n+    return AVIF\n+  }\n+  if ([0x00, 0x00, 0x01, 0x00].every((b, i) => buffer[i] === b)) {\n+    return ICO\n+  }\n+  if ([0x69, 0x63, 0x6e, 0x73].every((b, i) => buffer[i] === b)) {\n+    return ICNS\n+  }\n+  if ([0x49, 0x49, 0x2a, 0x00].every((b, i) => buffer[i] === b)) {\n+    return TIFF\n+  }\n+  if ([0x42, 0x4d].every((b, i) => buffer[i] === b)) {\n+    return BMP\n+  }\n+  if ([0xff, 0x0a].every((b, i) => buffer[i] === b)) {\n+    return JXL\n+  }\n+  if (\n+    [\n+      0x00, 0x00, 0x00, 0x0c, 0x4a, 0x58, 0x4c, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n+    ].every((b, i) => buffer[i] === b)\n+  ) {\n+    return JXL\n+  }\n+  if (\n+    [0, 0, 0, 0, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63].every(\n+      (b, i) => !b || buffer[i] === b\n+    )\n+  ) {\n+    return HEIC\n+  }\n+  if ([0x25, 0x50, 0x44, 0x46, 0x2d].every((b, i) => buffer[i] === b)) {\n+    return PDF\n+  }\n+  if (\n+    [\n+      0x00, 0x00, 0x00, 0x0c, 0x6a, 0x50, 0x20, 0x20, 0x0d, 0x0a, 0x87, 0x0a,\n+    ].every((b, i) => buffer[i] === b)\n+  ) {\n+    return JP2\n+  }\n+\n+  const format = detector(buffer.subarray(0, 1024))\n+\n+  switch (format) {\n+    case 'webp':\n+      return WEBP\n+    case 'png':\n+      return PNG\n+    case 'jpg':\n+      return JPEG\n+    case 'gif':\n+      return GIF\n+    case 'svg':\n+      return SVG\n+    case 'jxl':\n+    case 'jxl-stream':\n+      return JXL\n+    case 'jp2':\n+      return JP2\n+    case 'tiff':\n+      return TIFF\n+    case 'bmp':\n+      return BMP\n+    case 'ico':\n+      return ICO\n+    case 'icns':\n+      return ICNS\n+    case 'heif':\n+    case 'cur':\n+    case 'dds':\n+    case 'j2c':\n+    case 'ktx':\n+    case 'pnm':\n+    case 'psd':\n+    case 'tga':\n+    case undefined:\n+      return null // unsupported formats\n+    default:\n+      format satisfies never // exhaustive check\n+      return null // impossible to reach\n+  }\n+}"
+        },
+        {
+          "sha": "5455a98c87138980ea12db6591129e94802f1dc8",
+          "filename": "packages/next/src/server/image-optimizer/extract-etag.ts",
+          "status": "added",
+          "additions": 29,
+          "deletions": 0,
+          "changes": 29,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fextract-etag.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fextract-etag.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fextract-etag.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,29 @@\n+import { createHash } from 'crypto'\n+\n+export function getHash(items: (string | number | Buffer)[]) {\n+  const hash = createHash('sha256')\n+  for (let item of items) {\n+    if (typeof item === 'number') hash.update(String(item))\n+    else {\n+      hash.update(item)\n+    }\n+  }\n+  // See https://en.wikipedia.org/wiki/Base64#URL_applications\n+  return hash.digest('base64url')\n+}\n+\n+export function extractEtag(\n+  etag: string | null | undefined,\n+  imageBuffer: Buffer\n+) {\n+  if (etag) {\n+    // upstream etag needs to be base64url encoded due to weak etag signature\n+    // as we store this in the cache-entry file name.\n+    return Buffer.from(etag).toString('base64url')\n+  }\n+  return getImageEtag(imageBuffer)\n+}\n+\n+export function getImageEtag(image: Buffer) {\n+  return getHash([image])\n+}"
+        },
+        {
+          "sha": "f2b2c0a68532408d0e03cb2c6164a859a929d933",
+          "filename": "packages/next/src/server/image-optimizer/get-image-size.ts",
+          "status": "added",
+          "additions": 9,
+          "deletions": 0,
+          "changes": 9,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-image-size.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-image-size.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-image-size.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,9 @@\n+import imageSizeOf from 'next/dist/compiled/image-size'\n+\n+export async function getImageSize(buffer: Buffer): Promise<{\n+  width?: number\n+  height?: number\n+}> {\n+  const { width, height } = imageSizeOf(buffer)\n+  return { width, height }\n+}"
+        },
+        {
+          "sha": "8eac077bed61826ded12bda31f3d680892ea82ed",
+          "filename": "packages/next/src/server/image-optimizer/get-max-age.ts",
+          "status": "added",
+          "additions": 32,
+          "deletions": 0,
+          "changes": 32,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-max-age.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-max-age.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-max-age.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,32 @@\n+function parseCacheControl(\n+  str: string | null | undefined\n+): Map<string, string> {\n+  const map = new Map<string, string>()\n+  if (!str) {\n+    return map\n+  }\n+  for (let directive of str.split(',')) {\n+    let [key, value] = directive.trim().split('=', 2)\n+    key = key.toLowerCase()\n+    if (value) {\n+      value = value.toLowerCase()\n+    }\n+    map.set(key, value)\n+  }\n+  return map\n+}\n+\n+export function getMaxAge(str: string | null | undefined): number {\n+  const map = parseCacheControl(str)\n+  if (map) {\n+    let age = map.get('s-maxage') || map.get('max-age') || ''\n+    if (age.startsWith('\"') && age.endsWith('\"')) {\n+      age = age.slice(1, -1)\n+    }\n+    const n = parseInt(age, 10)\n+    if (!isNaN(n)) {\n+      return n\n+    }\n+  }\n+  return 0\n+}"
+        },
+        {
+          "sha": "8c443204bf0c430cc58fb7a41706666e6c929292",
+          "filename": "packages/next/src/server/image-optimizer/get-previously-cached-image-or-null.ts",
+          "status": "added",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-previously-cached-image-or-null.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-previously-cached-image-or-null.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fget-previously-cached-image-or-null.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,22 @@\n+import type {\n+  CachedImageValue,\n+  IncrementalCacheEntry,\n+} from '../response-cache/types'\n+import type { ImageUpstream } from './transform'\n+\n+export function getPreviouslyCachedImageOrNull(\n+  upstreamImage: ImageUpstream,\n+  previousCacheEntry: IncrementalCacheEntry | null | undefined\n+): CachedImageValue | null {\n+  if (\n+    previousCacheEntry?.value?.kind === 'IMAGE' &&\n+    // Images that are SVGs, animated or failed the optimization previously end up using upstreamEtag as their etag as well,\n+    // in these cases we want to trigger a new \"optimization\" attempt.\n+    previousCacheEntry.value.upstreamEtag !== previousCacheEntry.value.etag &&\n+    // and the upstream etag is the same as the previous cache entry's\n+    upstreamImage.etag === previousCacheEntry.value.upstreamEtag\n+  ) {\n+    return previousCacheEntry.value\n+  }\n+  return null\n+}"
+        },
+        {
+          "sha": "f302fdb9b703f15d1cf84018cb05981ba4aabb5c",
+          "filename": "packages/next/src/server/image-optimizer/image-error.ts",
+          "status": "added",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-error.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-error.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-error.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,14 @@\n+export class ImageError extends Error {\n+  statusCode: number\n+\n+  constructor(statusCode: number, message: string) {\n+    super(message)\n+\n+    // ensure an error status is used > 400\n+    if (statusCode >= 400) {\n+      this.statusCode = statusCode\n+    } else {\n+      this.statusCode = 500\n+    }\n+  }\n+}"
+        },
+        {
+          "sha": "bd64ed6f9ebe4e77b62d6bafc6956c43d4cc6b66",
+          "filename": "packages/next/src/server/image-optimizer/image-type.ts",
+          "status": "added",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-type.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-type.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Fimage-type.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,14 @@\n+export const AVIF = 'image/avif'\n+export const WEBP = 'image/webp'\n+export const PNG = 'image/png'\n+export const JPEG = 'image/jpeg'\n+export const JXL = 'image/jxl'\n+export const JP2 = 'image/jp2'\n+export const HEIC = 'image/heic'\n+export const GIF = 'image/gif'\n+export const SVG = 'image/svg+xml'\n+export const ICO = 'image/x-icon'\n+export const ICNS = 'image/x-icns'\n+export const TIFF = 'image/tiff'\n+export const BMP = 'image/bmp'\n+export const PDF = 'application/pdf'"
+        },
+        {
+          "sha": "c89ec5d7ed79489307486d55372dbc8fa35a5835",
+          "filename": "packages/next/src/server/image-optimizer/transform.ts",
+          "status": "added",
+          "additions": 321,
+          "deletions": 0,
+          "changes": 321,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fserver%2Fimage-optimizer%2Ftransform.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,321 @@\n+// WARNING: Please keep this module lightweight with very few imports since\n+// we intend to run it in a child process in the future. Please do NOT\n+// add new imports without considering their impact on its dependency graph.\n+import isAnimated from 'next/dist/compiled/is-animated'\n+import type { NextConfigComplete } from '../config-shared'\n+import isError from '../../lib/is-error'\n+import { detectContentType } from './detect-content-type'\n+import {\n+  AVIF,\n+  BMP,\n+  GIF,\n+  HEIC,\n+  ICNS,\n+  ICO,\n+  JPEG,\n+  JXL,\n+  PNG,\n+  SVG,\n+  WEBP,\n+} from './image-type'\n+import { getImageEtag } from './extract-etag'\n+import { getMaxAge } from './get-max-age'\n+import { ImageError } from './image-error'\n+\n+const ANIMATABLE_TYPES = [WEBP, PNG, GIF]\n+const BYPASS_TYPES = [SVG, ICO, ICNS, BMP, JXL, HEIC]\n+\n+let _sharp: typeof import('sharp').default\n+\n+export interface ImageUpstream {\n+  buffer: Buffer\n+  contentType: string | null | undefined\n+  cacheControl: string | null | undefined\n+  etag: string\n+}\n+\n+export interface ImageOptimizerTransformParams {\n+  href: string\n+  width: number\n+  quality: number\n+  mimeType: string\n+}\n+\n+export type ImageOptimizerTransformConfig = {\n+  experimental: Pick<\n+    NextConfigComplete['experimental'],\n+    | 'imgOptConcurrency'\n+    | 'imgOptOperationCache'\n+    | 'imgOptMaxInputPixels'\n+    | 'imgOptSequentialRead'\n+    | 'imgOptTimeoutInSeconds'\n+  >\n+  images: Pick<\n+    NextConfigComplete['images'],\n+    'dangerouslyAllowSVG' | 'minimumCacheTTL'\n+  >\n+}\n+\n+export interface ImageOptimizerTransformLogger {\n+  error(...args: unknown[]): void\n+  warnOnce(message: string): void\n+}\n+\n+export interface ImageOptimizerTransformOptions {\n+  isValidMime: (contentType: string) => boolean\n+  previousOutput?: {\n+    buffer: Buffer\n+    maxAge?: number\n+    etag: string\n+    upstreamEtag: string\n+  }\n+  logger?: ImageOptimizerTransformLogger\n+  handleDevOutput?: (\n+    buffer: Buffer,\n+    contentType: string\n+  ) => Promise<{ buffer: Buffer; contentType: string }>\n+}\n+\n+export interface ImageOptimizerResult {\n+  buffer: Buffer\n+  contentType: string\n+  maxAge: number\n+  etag: string\n+  upstreamEtag: string\n+  error?: unknown\n+}\n+\n+export function getSharp(\n+  concurrency: number | null | undefined,\n+  operationCache: boolean | null | undefined\n+) {\n+  if (_sharp) {\n+    return _sharp\n+  }\n+  try {\n+    _sharp = require('sharp') as typeof import('sharp').default\n+    _sharp.block({ operation: ['VipsForeignLoad'] })\n+    _sharp.unblock({\n+      operation: [\n+        'VipsForeignLoadHeif', // avif\n+        'VipsForeignLoadJpeg',\n+        'VipsForeignLoadNsgif',\n+        'VipsForeignLoadPng',\n+        'VipsForeignLoadSvg',\n+        'VipsForeignLoadTiff',\n+        'VipsForeignLoadWebp',\n+      ],\n+    })\n+    if (typeof operationCache === 'boolean') {\n+      _sharp.cache(operationCache)\n+    }\n+    if (_sharp.concurrency() > 1) {\n+      // Reducing concurrency should reduce the memory usage too.\n+      // We more aggressively reduce in dev but also reduce in prod.\n+      // https://sharp.pixelplumbing.com/api-utility#concurrency\n+      const divisor = process.env.NODE_ENV === 'development' ? 4 : 2\n+      _sharp.concurrency(\n+        concurrency ?? Math.floor(Math.max(_sharp.concurrency() / divisor, 1))\n+      )\n+    }\n+  } catch (e: unknown) {\n+    if (isError(e) && e.code === 'MODULE_NOT_FOUND') {\n+      throw new Error(\n+        'Module `sharp` not found. Please run `npm install --cpu=wasm32 sharp` to install it.'\n+      )\n+    }\n+    throw e\n+  }\n+  return _sharp\n+}\n+\n+export async function optimizeImage({\n+  buffer,\n+  contentType,\n+  quality,\n+  width,\n+  height,\n+  concurrency,\n+  operationCache,\n+  limitInputPixels,\n+  sequentialRead,\n+  timeoutInSeconds,\n+}: {\n+  buffer: Buffer\n+  contentType: string\n+  quality: number\n+  width: number\n+  height?: number\n+  concurrency?: number | null\n+  operationCache?: boolean | null | undefined\n+  limitInputPixels?: number\n+  sequentialRead?: boolean | null\n+  timeoutInSeconds?: number\n+}): Promise<Buffer> {\n+  const sharp = getSharp(concurrency, operationCache)\n+  const transformer = sharp(buffer, {\n+    limitInputPixels,\n+    sequentialRead: sequentialRead ?? undefined,\n+  })\n+    .timeout({\n+      seconds: timeoutInSeconds ?? 7,\n+    })\n+    .rotate()\n+\n+  if (height) {\n+    transformer.resize(width, height)\n+  } else {\n+    transformer.resize(width, undefined, {\n+      withoutEnlargement: true,\n+    })\n+  }\n+\n+  if (contentType === AVIF) {\n+    transformer.avif({\n+      // Scale the quality to try and match webp. This ratio was derived\n+      // from sharp's default 80 (webp) and 50 (avif), and then verified\n+      // using dssim and ssimulacra2 visual quality tests.\n+      quality: Math.max(Math.round(quality * (50 / 80)), 1),\n+      effort: 3,\n+    })\n+  } else if (contentType === WEBP) {\n+    transformer.webp({ quality })\n+  } else if (contentType === PNG) {\n+    transformer.png({ quality })\n+  } else if (contentType === JPEG) {\n+    transformer.jpeg({ quality, mozjpeg: true })\n+  }\n+\n+  const optimizedBuffer = await transformer.toBuffer()\n+\n+  return optimizedBuffer\n+}\n+\n+export async function imageOptimizerTransform(\n+  imageUpstream: ImageUpstream,\n+  paramsResult: ImageOptimizerTransformParams,\n+  nextConfig: ImageOptimizerTransformConfig,\n+  opts: ImageOptimizerTransformOptions\n+): Promise<ImageOptimizerResult> {\n+  const { href, quality, width, mimeType } = paramsResult\n+  const { buffer: upstreamBuffer, etag: upstreamEtag } = imageUpstream\n+  const maxAge = Math.max(\n+    nextConfig.images.minimumCacheTTL,\n+    getMaxAge(imageUpstream.cacheControl)\n+  )\n+  const upstreamType = await detectContentType(upstreamBuffer)\n+\n+  if (\n+    !upstreamType ||\n+    !upstreamType.startsWith('image/') ||\n+    upstreamType.includes(',')\n+  ) {\n+    opts.logger?.error(\n+      \"The requested resource isn't a valid image for\",\n+      href,\n+      'received',\n+      upstreamType\n+    )\n+    throw new ImageError(400, \"The requested resource isn't a valid image.\")\n+  }\n+  if (\n+    upstreamType.startsWith('image/svg') &&\n+    !nextConfig.images.dangerouslyAllowSVG\n+  ) {\n+    opts.logger?.error(\n+      `The requested resource \"${href}\" has type \"${upstreamType}\" but dangerouslyAllowSVG is disabled. Consider adding the \"unoptimized\" property to the <Image>.`\n+    )\n+    throw new ImageError(\n+      400,\n+      '\"url\" parameter is valid but image type is not allowed'\n+    )\n+  }\n+  if (ANIMATABLE_TYPES.includes(upstreamType) && isAnimated(upstreamBuffer)) {\n+    opts.logger?.warnOnce(\n+      `The requested resource \"${href}\" is an animated image so it will not be optimized. Consider adding the \"unoptimized\" property to the <Image>.`\n+    )\n+    return {\n+      buffer: upstreamBuffer,\n+      contentType: upstreamType,\n+      maxAge,\n+      etag: upstreamEtag,\n+      upstreamEtag,\n+    }\n+  }\n+  if (BYPASS_TYPES.includes(upstreamType)) {\n+    return {\n+      buffer: upstreamBuffer,\n+      contentType: upstreamType,\n+      maxAge,\n+      etag: upstreamEtag,\n+      upstreamEtag,\n+    }\n+  }\n+\n+  let contentType: string\n+\n+  if (mimeType) {\n+    contentType = mimeType\n+  } else if (\n+    opts.isValidMime(upstreamType) &&\n+    upstreamType !== WEBP &&\n+    upstreamType !== AVIF\n+  ) {\n+    contentType = upstreamType\n+  } else {\n+    contentType = JPEG\n+  }\n+\n+  if (opts.previousOutput) {\n+    return {\n+      buffer: opts.previousOutput.buffer,\n+      contentType,\n+      maxAge: opts.previousOutput.maxAge || maxAge,\n+      etag: opts.previousOutput.etag,\n+      upstreamEtag: opts.previousOutput.upstreamEtag,\n+    }\n+  }\n+\n+  try {\n+    let optimizedBuffer = await optimizeImage({\n+      buffer: upstreamBuffer,\n+      contentType,\n+      quality,\n+      width,\n+      concurrency: nextConfig.experimental.imgOptConcurrency,\n+      operationCache: nextConfig.experimental.imgOptOperationCache,\n+      limitInputPixels: nextConfig.experimental.imgOptMaxInputPixels,\n+      sequentialRead: nextConfig.experimental.imgOptSequentialRead,\n+      timeoutInSeconds: nextConfig.experimental.imgOptTimeoutInSeconds,\n+    })\n+    if (opts.handleDevOutput) {\n+      const output = await opts.handleDevOutput(optimizedBuffer, contentType)\n+      optimizedBuffer = output.buffer\n+      contentType = output.contentType\n+    }\n+    return {\n+      buffer: optimizedBuffer,\n+      contentType,\n+      maxAge,\n+      etag: getImageEtag(optimizedBuffer),\n+      upstreamEtag,\n+    }\n+  } catch (error) {\n+    if (upstreamType) {\n+      // If we fail to optimize, fallback to the original image\n+      return {\n+        buffer: upstreamBuffer,\n+        contentType: upstreamType,\n+        maxAge: nextConfig.images.minimumCacheTTL,\n+        etag: upstreamEtag,\n+        upstreamEtag,\n+        error,\n+      }\n+    } else {\n+      throw new ImageError(\n+        400,\n+        'Unable to optimize image and unable to fallback to upstream image'\n+      )\n+    }\n+  }\n+}"
+        },
+        {
+          "sha": "8205df4edb7d9f73455c538dababc3b271ee20e9",
+          "filename": "test/unit/image-optimizer/detect-content-type.test.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fdetect-content-type.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fdetect-content-type.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fdetect-content-type.test.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -1,5 +1,5 @@\n /* eslint-env jest */\n-import { detectContentType as dct } from 'next/dist/server/image-optimizer'\n+import { detectContentType as dct } from 'next/dist/server/image-optimizer/detect-content-type'\n import { readFile } from 'fs-extra'\n import { join } from 'path'\n "
+        },
+        {
+          "sha": "0a035a6eba1e3114eea27fd97ae94e5b2e04d947",
+          "filename": "test/unit/image-optimizer/extract-etag.test.ts",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fextract-etag.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fextract-etag.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fextract-etag.test.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -1,5 +1,8 @@\n /* eslint-env jest */\n-import { extractEtag, getImageEtag } from 'next/dist/server/image-optimizer'\n+import {\n+  extractEtag,\n+  getImageEtag,\n+} from 'next/dist/server/image-optimizer/extract-etag'\n import { readFile } from 'fs-extra'\n import { join } from 'path'\n "
+        },
+        {
+          "sha": "b8c142f9ec4e22b0605bd1de4e19d764aa0369fc",
+          "filename": "test/unit/image-optimizer/get-max-age.test.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fget-max-age.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fget-max-age.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fget-max-age.test.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -1,5 +1,5 @@\n /* eslint-env jest */\n-import { getMaxAge } from 'next/dist/server/image-optimizer'\n+import { getMaxAge } from 'next/dist/server/image-optimizer/get-max-age'\n \n describe('getMaxAge', () => {\n   it('should return 0 when no cache-control provided', () => {"
+        },
+        {
+          "sha": "c7dde4484a06c50441155ef0b8b58eda0250d7e7",
+          "filename": "test/unit/image-optimizer/get-previously-cached-image-or-null.test.ts",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 4,
+          "changes": 6,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fget-previously-cached-image-or-null.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Fget-previously-cached-image-or-null.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Fget-previously-cached-image-or-null.test.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -1,8 +1,6 @@\n /* eslint-env jest */\n-import {\n-  getPreviouslyCachedImageOrNull,\n-  getImageEtag,\n-} from 'next/dist/server/image-optimizer'\n+import { getPreviouslyCachedImageOrNull } from 'next/dist/server/image-optimizer/get-previously-cached-image-or-null'\n+import { getImageEtag } from 'next/dist/server/image-optimizer/extract-etag'\n import {\n   CachedRouteKind,\n   IncrementalCacheEntry,"
+        },
+        {
+          "sha": "2c7d79b44ed433f592003f36cb886b1638873c85",
+          "filename": "test/unit/image-optimizer/transform.test.ts",
+          "status": "added",
+          "additions": 191,
+          "deletions": 0,
+          "changes": 191,
+          "blob_url": "https://github.com/vercel/next.js/blob/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ca52aa62b9be20b4cac42032c622290f2a82d0e9/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Funit%2Fimage-optimizer%2Ftransform.test.ts?ref=ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "patch": "@@ -0,0 +1,191 @@\n+/* eslint-env jest */\n+import { readFile } from 'fs-extra'\n+import { join } from 'path'\n+import {\n+  imageOptimizerTransform,\n+  type ImageOptimizerTransformOptions,\n+} from 'next/dist/server/image-optimizer/transform'\n+import type {\n+  CachedRouteKind,\n+  IncrementalResponseCacheEntry,\n+} from 'next/dist/server/response-cache/types'\n+\n+const getImage = (filename: string) =>\n+  readFile(join(__dirname, 'images', filename))\n+\n+const isValidMime = (contentType: string) => contentType === 'image/png'\n+\n+const config = {\n+  images: {\n+    dangerouslyAllowSVG: true,\n+    minimumCacheTTL: 60,\n+  },\n+  experimental: {\n+    imgOptConcurrency: 1,\n+    imgOptOperationCache: false,\n+    imgOptMaxInputPixels: 67_108_864,\n+    imgOptSequentialRead: true,\n+    imgOptTimeoutInSeconds: 6,\n+  },\n+}\n+\n+async function transform(\n+  filename: string,\n+  mimeType = 'image/webp',\n+  options?: ImageOptimizerTransformOptions\n+) {\n+  const buffer = await getImage(filename)\n+  return imageOptimizerTransform(\n+    {\n+      buffer,\n+      contentType: undefined,\n+      cacheControl: 'public, max-age=120',\n+      etag: 'source-etag',\n+    },\n+    { href: `/${filename}`, width: 64, quality: 75, mimeType },\n+    config,\n+    { isValidMime, ...options }\n+  )\n+}\n+\n+async function transformInDevelopment(\n+  filename: string,\n+  previousCacheEntry?: IncrementalResponseCacheEntry\n+) {\n+  const { imageOptimizer } =\n+    require('next/dist/server/image-optimizer') as typeof import('next/dist/server/image-optimizer')\n+  const buffer = await getImage(filename)\n+  return imageOptimizer(\n+    {\n+      buffer,\n+      contentType: undefined,\n+      cacheControl: undefined,\n+      etag: 'source-etag',\n+    },\n+    { href: `/${filename}`, width: 8, quality: 70, mimeType: 'image/webp' },\n+    config,\n+    { isDev: true, silent: true, previousCacheEntry }\n+  )\n+}\n+\n+describe('imageOptimizerTransform', () => {\n+  it('loads without the server image optimizer dependency graph', () => {\n+    const loaded = Object.keys(require.cache)\n+    expect(\n+      loaded.some((path) => /\\/server\\/image-optimizer\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => path.includes('/server/response-cache/'))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/server\\/serve-static\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/server\\/lib\\/mock-request\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/server\\/config-shared\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+    expect(\n+      loaded.some((path) => /\\/build\\/output\\/log\\.[jt]s$/.test(path))\n+    ).toBe(false)\n+  })\n+\n+  it('transforms a png buffer', async () => {\n+    const result = await transform('test.png')\n+    expect(result.contentType).toBe('image/webp')\n+    expect(result.buffer.byteLength).toBeGreaterThan(0)\n+    expect(result.maxAge).toBe(120)\n+  })\n+\n+  it('preserves the source format when no output format is requested', async () => {\n+    const result = await transform('test.png', '')\n+    expect(result.contentType).toBe('image/png')\n+  })\n+\n+  it('transforms an avif source', async () => {\n+    const source = await getImage('test.avif')\n+    const result = await transform('test.avif')\n+    expect(result.buffer).not.toEqual(source)\n+    expect(result.contentType).toBe('image/webp')\n+  })\n+\n+  it('generates blur placeholders in development', async () => {\n+    const result = await transformInDevelopment('test.png')\n+    expect(result.contentType).toBe('image/svg+xml')\n+    expect(result.buffer.toString()).toContain('<svg')\n+  })\n+\n+  it('does not generate blur placeholders for bypassed images', async () => {\n+    const source = await getImage('test.svg')\n+    const result = await transformInDevelopment('test.svg')\n+    expect(result.buffer).toEqual(source)\n+    expect(result.contentType).toBe('image/svg+xml')\n+  })\n+\n+  it('reuses a previous cache entry without generating a blur placeholder', async () => {\n+    const previousBuffer = Buffer.from('previous image')\n+    const result = await transformInDevelopment('test.png', {\n+      value: {\n+        kind: 'IMAGE' as CachedRouteKind.IMAGE,\n+        buffer: previousBuffer,\n+        etag: 'optimized-etag',\n+        upstreamEtag: 'source-etag',\n+        extension: 'webp',\n+      },\n+      cacheControl: { revalidate: 90, expire: undefined },\n+    })\n+    expect(result.buffer).toEqual(previousBuffer)\n+    expect(result.contentType).toBe('image/webp')\n+    expect(result.maxAge).toBe(90)\n+  })\n+\n+  it('bypasses svg buffers', async () => {\n+    const source = await getImage('test.svg')\n+    const result = await transform('test.svg')\n+    expect(result.buffer).toEqual(source)\n+    expect(result.contentType).toBe('image/svg+xml')\n+  })\n+\n+  it('bypasses animated buffers', async () => {\n+    const source = await getImage('animated.webp')\n+    const result = await transform('animated.webp')\n+    expect(result.buffer).toEqual(source)\n+    expect(result.contentType).toBe('image/webp')\n+  })\n+\n+  it('rejects disallowed svg buffers', async () => {\n+    await expect(\n+      imageOptimizerTransform(\n+        {\n+          buffer: await getImage('test.svg'),\n+          contentType: undefined,\n+          cacheControl: undefined,\n+          etag: 'source-etag',\n+        },\n+        { href: '/test.svg', width: 64, quality: 75, mimeType: 'image/webp' },\n+        {\n+          ...config,\n+          images: { ...config.images, dangerouslyAllowSVG: false },\n+        },\n+        { isValidMime }\n+      )\n+    ).rejects.toMatchObject({ statusCode: 400 })\n+  })\n+\n+  it('rejects unrecognized buffers', async () => {\n+    await expect(\n+      imageOptimizerTransform(\n+        {\n+          buffer: Buffer.from('not an image'),\n+          contentType: undefined,\n+          cacheControl: undefined,\n+          etag: 'source-etag',\n+        },\n+        { href: '/bad', width: 64, quality: 75, mimeType: 'image/webp' },\n+        config,\n+        { isValidMime }\n+      )\n+    ).rejects.toMatchObject({ statusCode: 400 })\n+  })\n+})"
+        }
+      ]
+    },
+    {
+      "sha": "e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "html_url": "https://github.com/vercel/next.js/commit/e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+      "commit": {
+        "author": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-28T04:29:34Z"
+        },
+        "committer": {
+          "name": "Steven",
+          "email": "steven@ceriously.com",
+          "date": "2026-08-28T04:29:34Z"
+        },
+        "message": "also ignore the directory"
+      },
+      "parents": [
+        {
+          "sha": "ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ca52aa62b9be20b4cac42032c622290f2a82d0e9",
+          "html_url": "https://github.com/vercel/next.js/commit/ca52aa62b9be20b4cac42032c622290f2a82d0e9"
+        }
+      ],
+      "stats": {
+        "total": 1,
+        "additions": 1,
+        "deletions": 0
+      },
+      "files": [
+        {
+          "sha": "18696c621c7504a846774e2c61d1cd3c03870b9b",
+          "filename": "packages/next/src/build/collect-build-traces.ts",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "blob_url": "https://github.com/vercel/next.js/blob/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fcollect-build-traces.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/e2635d839a6f2824d2a348d4f11565ac8e50eb48/packages%2Fnext%2Fsrc%2Fbuild%2Fcollect-build-traces.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fbuild%2Fcollect-build-traces.ts?ref=e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+          "patch": "@@ -240,6 +240,7 @@ export async function collectBuildTraces({\n               // only ignore image-optimizer code when\n               // this is being handled outside of next-server\n               '**/next/dist/server/image-optimizer.js',\n+              '**/next/dist/server/image-optimizer/**/*',\n             ]\n           : []),\n "
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "vercel",
+        "completed_at": "2026-08-28T15:52:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/runs/98887040724",
+        "name": "Vercel – Code Owners",
+        "started_at": "2026-08-28T14:54:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T13:07:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98857667201",
+        "name": "thank you, next",
+        "started_at": "2026-08-28T13:07:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:30:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856126976",
+        "name": "Determine changes",
+        "started_at": "2026-08-28T04:30:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:30:26Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856122292",
+        "name": "Upload PR CI metadata",
+        "started_at": "2026-08-28T04:30:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:41:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105309",
+        "name": "test cache components dev (6/6) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:41:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105266",
+        "name": "test cache components dev (4/6) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105209",
+        "name": "test turbopack production (5/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:49:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105200",
+        "name": "test cache components dev (2/6) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105136",
+        "name": "test turbopack production (3/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105075",
+        "name": "test turbopack production (1/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:41:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856105040",
+        "name": "test cache components dev (3/6) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:49:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104815",
+        "name": "test prod (6/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:52:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104753",
+        "name": "test prod (2/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:41:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104725",
+        "name": "test cache components dev (5/6) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104717",
+        "name": "test prod (4/10) / build",
+        "started_at": "2026-08-28T04:35:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:46:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104716",
+        "name": "test prod (9/10) / build",
+        "started_at": "2026-08-28T04:35:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:43Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104677",
+        "name": "test prod (3/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:40:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104605",
+        "name": "test cache components dev (1/6) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104584",
+        "name": "test prod (7/10) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104578",
+        "name": "test turbopack production (6/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104543",
+        "name": "test turbopack production (7/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:38:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104494",
+        "name": "test next-config-ts-native-ts prod (24.15.0) / build",
+        "started_at": "2026-08-28T04:35:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:52:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104493",
+        "name": "test prod (1/10) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104466",
+        "name": "Test new and changed tests for flakes (prod) (3/5) / build",
+        "started_at": "2026-08-28T04:35:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:52:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104455",
+        "name": "test turbopack production (4/7) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104402",
+        "name": "test prod (8/10) / build",
+        "started_at": "2026-08-28T04:35:13Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:59Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104401",
+        "name": "test prod (10/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:49:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104366",
+        "name": "test dev (1/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104362",
+        "name": "test prod (5/10) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:24Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104339",
+        "name": "test turbopack production (2/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104307",
+        "name": "test dev (2/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104306",
+        "name": "Test new and changed tests for flakes (prod) (1/5) / build",
+        "started_at": "2026-08-28T04:35:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104076",
+        "name": "Test new and changed tests for flakes (prod) (5/5) / build",
+        "started_at": "2026-08-28T04:35:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856104003",
+        "name": "test turbopack dev (1/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:48:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103985",
+        "name": "test dev (5/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:45:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103912",
+        "name": "test turbopack dev (4/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103856",
+        "name": "test dev (6/10) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103844",
+        "name": "test next-config-ts-native-ts prod (22) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103831",
+        "name": "test dev (4/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103810",
+        "name": "test dev (3/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103782",
+        "name": "test turbopack dev (5/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:46:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103725",
+        "name": "test dev (9/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:43:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103721",
+        "name": "test dev (7/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103716",
+        "name": "test turbopack dev (6/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:47:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103703",
+        "name": "test dev (10/10) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103653",
+        "name": "test unit (20) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103625",
+        "name": "Test new and changed tests for flakes (dev) (1/5) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103617",
+        "name": "test cache components prod (5/7) / build",
+        "started_at": "2026-08-28T04:35:53Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103613",
+        "name": "Test new and changed tests for flakes (dev) (3/5) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103598",
+        "name": "Test new and changed tests for flakes (dev) (2/5) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103590",
+        "name": "Test new and changed tests for flakes (prod) (4/5) / build",
+        "started_at": "2026-08-28T04:35:47Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103569",
+        "name": "test unit (22) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:43:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103516",
+        "name": "test cache components prod (4/7) / build",
+        "started_at": "2026-08-28T04:35:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:45:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103511",
+        "name": "test turbopack dev (2/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103453",
+        "name": "Test new and changed tests when deployed (2/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103410",
+        "name": "test next-config-ts-native-ts dev (22) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103359",
+        "name": "Test new and changed tests for flakes (dev) (5/5) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103324",
+        "name": "Test new and changed tests for flakes (prod) (2/5) / build",
+        "started_at": "2026-08-28T04:35:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103309",
+        "name": "test turbopack dev (3/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103306",
+        "name": "Test new and changed tests for flakes (dev) (4/5) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103300",
+        "name": "test cache components prod (1/7) / build",
+        "started_at": "2026-08-28T04:35:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:41:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103246",
+        "name": "test cache components prod (7/7) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:42:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103230",
+        "name": "test cache components prod (3/7) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103182",
+        "name": "test next-config-ts-native-ts dev (24.15.0) / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103180",
+        "name": "Test new and changed tests when deployed (4/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:42:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103170",
+        "name": "test cache components prod (2/7) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:50:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103165",
+        "name": "test turbopack dev (7/7) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:49:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103123",
+        "name": "test cache components prod (6/7) / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:54:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103054",
+        "name": "test unit windows (22) / build",
+        "started_at": "2026-08-28T04:46:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856103003",
+        "name": "Test new and changed tests when deployed (1/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:55:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102915",
+        "name": "test unit windows (20) / build",
+        "started_at": "2026-08-28T04:46:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102902",
+        "name": "Test new and changed tests when deployed (cache components) (4/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102838",
+        "name": "Test new and changed tests when deployed (cache components) (2/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102832",
+        "name": "Test new and changed tests when deployed (cache components) (1/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102787",
+        "name": "Test new and changed tests when deployed (cache components) (3/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T13:06:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102779",
+        "name": "test dev (8/10) / build",
+        "started_at": "2026-08-28T13:00:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102760",
+        "name": "Test new and changed tests when deployed (5/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102755",
+        "name": "Test new and changed tests when deployed (3/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:40:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102682",
+        "name": "test firefox and safari / build",
+        "started_at": "2026-08-28T04:34:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856102450",
+        "name": "Test new and changed tests when deployed (cache components) (5/5) / build",
+        "started_at": "2026-08-28T04:42:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856101895",
+        "name": "types and precompiled / build",
+        "started_at": "2026-08-28T04:34:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:53:45Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856101865",
+        "name": "test prod windows / build",
+        "started_at": "2026-08-28T04:46:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:56:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856101571",
+        "name": "test integration windows / build",
+        "started_at": "2026-08-28T04:46:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:53:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856101553",
+        "name": "test dev windows / build",
+        "started_at": "2026-08-28T04:46:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T13:00:35Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856101476",
+        "name": "test rspack dev",
+        "started_at": "2026-08-28T13:00:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T13:00:35Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856101383",
+        "name": "test rspack production",
+        "started_at": "2026-08-28T13:00:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T13:00:35Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856100958",
+        "name": "Run devlow benchmarks",
+        "started_at": "2026-08-28T13:00:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:08Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856099301",
+        "name": "test next-swc wasm / build",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:44:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856099180",
+        "name": "test cargo unit / build",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:38:30Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856099157",
+        "name": "test cargo benches / Test",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:34:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856098990",
+        "name": "rustdoc check / build",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:37:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856098936",
+        "name": "lint / build",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:32:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856098736",
+        "name": "test devlow package / build",
+        "started_at": "2026-08-28T04:30:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:36:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856098550",
+        "name": "rust check / build",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:34:28Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856098189",
+        "name": "build-native / build",
+        "started_at": "2026-08-28T04:30:34Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:32:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856098168",
+        "name": "ast-grep lint",
+        "started_at": "2026-08-28T04:31:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T13:00:35Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856097989",
+        "name": "test next-swc wasi",
+        "started_at": "2026-08-28T13:00:35Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:42:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856097981",
+        "name": "Wait for preview tarball",
+        "started_at": "2026-08-28T04:30:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:31:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856097717",
+        "name": "fetch test timings",
+        "started_at": "2026-08-28T04:30:35Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-08-28T04:31:49Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/33141969869/job/98856097356",
+        "name": "build-next / build",
+        "started_at": "2026-08-28T04:30:20Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 116
+  },
+  "combined_status": {
+    "sha": "e2635d839a6f2824d2a348d4f11565ac8e50eb48",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

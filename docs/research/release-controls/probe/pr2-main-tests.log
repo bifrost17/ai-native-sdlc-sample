@@ -1,0 +1,20 @@
+Command: python3 -m unittest discover -s tests -v
+CWD: /Users/jake/Projects/ai-native-sdlc-exp-0023-product
+Exit code: 0
+
+test_off_baseline_commands_unaffected (test_owner.OwnerFilterTests) ... ok
+test_off_rejects_owner_option_and_summary (test_owner.OwnerFilterTests) ... ok
+test_on_no_match_is_empty_and_read_only (test_owner.OwnerFilterTests) ... ok
+test_on_owner_filter_exact_match_and_order (test_owner.OwnerFilterTests) ... ok
+test_off_rejects_summary (test_summary.SummaryTests) ... ok
+test_on_summary_reflects_latest_state_after_complete (test_summary.SummaryTests) ... ok
+test_on_summary_totals_and_by_owner (test_summary.SummaryTests) ... ok
+test_complete_changes_only_target_status_and_is_repeatable (test_tracker.ExistingTrackerTests) ... ok
+test_list_preserves_order_and_does_not_write (test_tracker.ExistingTrackerTests) ... ok
+test_show_existing_and_missing_id (test_tracker.ExistingTrackerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.820s
+
+OK
+

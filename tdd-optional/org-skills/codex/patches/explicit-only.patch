@@ -1,0 +1,60 @@
+--- a/.agents/skills/to-questionnaire/SKILL.md
++++ b/.agents/skills/to-questionnaire/SKILL.md
+@@ -1,7 +1,6 @@
+ ---
+ name: to-questionnaire
+ description: Turn a decision you can't fully answer into a questionnaire for someone else to fill in.
+-disable-model-invocation: true
+ ---
+ 
+ Turn something the user can't answer alone into a **questionnaire**: a Markdown document they hand to one person to fill in async, or fill out together over a meeting. The recipient holds knowledge the user lacks; the questionnaire pulls it out of them.
+--- /dev/null
++++ b/.agents/skills/to-questionnaire/agents/openai.yaml
+@@ -0,0 +1,2 @@
++policy:
++  allow_implicit_invocation: false
+--- a/.agents/skills/capture-intent/SKILL.md
++++ b/.agents/skills/capture-intent/SKILL.md
+@@ -1,7 +1,6 @@
+ ---
+ name: capture-intent
+ description: Explicitly selected workflow example for turning an originator's idea, ticket, or incident into an intent document using this project's artifact template.
+-disable-model-invocation: true
+ ---
+ # 의도 기록 예시
+ 
+--- /dev/null
++++ b/.agents/skills/capture-intent/agents/openai.yaml
+@@ -0,0 +1,2 @@
++policy:
++  allow_implicit_invocation: false
+--- a/.agents/skills/design-spec/SKILL.md
++++ b/.agents/skills/design-spec/SKILL.md
+@@ -1,7 +1,6 @@
+ ---
+ name: design-spec
+ description: Create or revise a combined requirements and design spec from the accepted intent and real product context. Produce concrete contracts, acceptance criteria and linked design documents that people and agents can implement from; leave execution planning and approval to their own stages.
+-disable-model-invocation: true
+ ---
+ # Design spec
+ 
+--- /dev/null
++++ b/.agents/skills/design-spec/agents/openai.yaml
+@@ -0,0 +1,2 @@
++policy:
++  allow_implicit_invocation: false
+--- a/.agents/skills/plan/SKILL.md
++++ b/.agents/skills/plan/SKILL.md
+@@ -1,7 +1,6 @@
+ ---
+ name: plan
+ description: Turn an accepted spec and linked design documents into an executable implementation plan, revise it when work changes, or frame an authorized bounded exploration needed before a dependent design decision. Connect real paths, task-specific verification strategies, PR boundaries, release state and proof without approving the plan or implementing the product.
+-disable-model-invocation: true
+ ---
+ # Plan
+ 
+--- /dev/null
++++ b/.agents/skills/plan/agents/openai.yaml
+@@ -0,0 +1,2 @@
++policy:
++  allow_implicit_invocation: false

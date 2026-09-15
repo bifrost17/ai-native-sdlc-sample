@@ -1,0 +1,157 @@
+# note: interactive (clickable / focusable) elements only.
+- title: "I've made about 20 apps, some in production for actual real businesses and I never wrote a test in my life...how do you even begin testing as a vibe coder? : r/vibecoding" [url=https://www.reddit.com/r/vibecoding/comments/1vklmm8/ive_made_about_20_apps_some_in_production_for/]
+- main:
+  - button "뒤로" [ref=e1]
+  - link "vibecoding 커뮤니티로 이동" [ref=e3]
+  - group:
+    - link "r/vibecoding" [ref=e5]
+    - text: "1개월 전"
+    - link "작성자는 10c70377입니다" [ref=e6]: "10c70377"
+  - button "사용자 작업 열기" [ref=e7]
+  - menuitem "이 게시물에 어워드 주기" [ref=e8]
+  - menuitem "신고" [ref=e9]
+  - menu
+  - heading "게시물 제목: I've made about 20 apps, some in production for actual real businesses and I never wrote a t" [level=1]: "I've made about 20 apps, some in production for actual real businesses and I never wrote a test in my life...how do you even begin testing as a vibe coder?"
+  - text: "Title says it all. I have this nagging anxiety everytime I build something. I use expensive models to go through the architecture, to spec correctly, consider the dataflow, and I spend all my time in the planning stages making sure I understand the app being built myself - even though I could just trust claude and probably be fine.\n    \n      But I don't even know where to begin writing 'tests'? It just seems so futile. Like I made a hammer, and now I have to use it on a bunch of nails everytime in case I wanted to paint the hammer blue, even tho I know its gonna work just completely fine, and not a chance it breaks unless I've completely missed something during planning.\n    \n      I know I should be writing tests, but I just can't seem to find the reason to -  I've missed the experience that old software heads had where they built that instinct.\n    \n      Closest thing I've done to testing, that didnt really feel like it, was creating a prompt testset, and a grader but once I got a prompt I was happy with, I discarded of it and never used it again.\n    \n      Maybe I haven't built anything big enough to test but I have a few businesses that I feel I have cheated, passing them untested webapps - other than trying it on a few pcs and phones before deploying it for them.\n    \n      Anyway rant over - does anyone relate? What have you done to solve this? or learnt that instinct? or have you found ways to make AI include and write tests for you during your building?\n    \n      All the best vibers"
+  - button "더 읽기" [ref=e10]
+  - button "공유" [ref=e11]
+  - generic [ref=e12]:
+    - button "좋아요" [ref=e13]
+    - text: "2"
+    - button "싫어요" [ref=e15]
+    - button "17 댓글로 이동" [ref=e17]
+  - link "Advertisement: Upload any image -- a sketch, a photo, a screenshot -- and Meshy turns it into a text" [ref=e20]
+  - link "Meshyai" [ref=e21]: "u/Meshyai 님의 아바타입니다\n  \n   Meshyai"
+  - text: "•"
+  - link "광고" [ref=e22]
+  - link [ref=e24]
+  - button "사용자 작업 열기" [ref=e25]
+  - menuitem "신고" [ref=e26]
+  - menuitem "이 광고 정보" [ref=e27]
+  - menuitem "광고가 지겨우신가요?" [ref=e28]
+  - menu
+  - generic [ref=e29]:
+    - text: "Upload any image -- a sketch, a photo, a screenshot -- and Meshy turns it into a textured 3D model. I still can't believe this is real and not a demo."
+    - link [ref=e30]
+  - link [ref=e32]
+  - text: "더 보기"
+  - link [ref=e33]
+  - generic [ref=e34]:
+    - text: "meshy.ai"
+    - link [ref=e35]
+  - generic [ref=e36]:
+    - text: "Thumbnail image: Upload any image -- a sketch, a photo, a screenshot -- and Meshy turns it into a te"
+    - link [ref=e37]
+  - button "댓글 추가 버튼" [ref=e38] [disabled] [placeholder="대화에 참여해보세요"]:
+    - textbox "대화에 참여해보세요" [ref=e39] [disabled] [placeholder="대화에 참여해보세요"]
+  - button "정렬 기준 좋아요 비율 높은 순" [ref=e40]: "좋아요 비율 높은 순"
+  - button "댓글 검색 댓글 검색 펼치기" [ref=e41]
+  - region "댓글" [ref=e43]:
+    - article "3tt07kjt 1개월 전 댓글" [ref=e44]:
+      - generic [ref=e45]:
+        - link "3tt07kjt 님의 프로필 --- 아바타" [ref=e46]
+        - link "3tt07kjt 님의 프로필" [ref=e47]: "3tt07kjt"
+        - link "1개월 전" [ref=e48]
+      - text: "My experience is that everybody misses something during planning. It always happens.\n    \n      My vibe coded projects have lots of tests because the models write the tests unprompted. I review the tests to make sure the right properties are being tested, and I go in and delete tests if I think they’re not valuable.\n    \n      It’s fast to make changes this way because the LLM can detect test failures and automatically fix them. In any long running project, you will likely make changes that break something. The AI is no different, and the test helps the AI automatically fix problems."
+    - article "LibertyCap10 1개월 전 댓글" [ref=e49]:
+      - generic [ref=e50]:
+        - link "LibertyCap10 님의 프로필 --- 아바타" [ref=e51]
+        - link "LibertyCap10 님의 프로필" [ref=e52]: "LibertyCap10"
+        - link "1개월 전" [ref=e53]
+      - text: "You can ask your agent to write tests (which is already does whether you realize it or not). The only real answer is for you to learn principles of programming and the syntax behind the language/tools you're building with, so that you can read and understand the structure/operations in your project. There is no other way."
+    - article "notwim 1개월 전 댓글" [ref=e54]:
+      - generic [ref=e55]:
+        - link "notwim 님의 프로필 --- 아바타" [ref=e56]: "u/notwim 님의 아바타입니다"
+        - link "notwim 님의 프로필" [ref=e57]: "notwim"
+        - link "1개월 전" [ref=e58]
+      - text: "Tests are there to make sure that old code does not break when making changes. Just add it into your agents.md that when creating a feature it should be covered by tests."
+    - article "fyn_world 1개월 전 댓글" [ref=e59]:
+      - generic [ref=e60]:
+        - link "fyn_world 님의 프로필 --- 아바타" [ref=e61]: "u/fyn_world 님의 아바타입니다"
+        - link "fyn_world 님의 프로필" [ref=e62]: "fyn_world"
+        - link "1개월 전" [ref=e63]
+      - text: "Don't worry, Sol will make 200 tests without you asking for it"
+    - article "Altruistic-Sorbet702 1개월 전 댓글" [ref=e64]:
+      - generic [ref=e65]:
+        - link "Altruistic-Sorbet702 님의 프로필 --- 아바타" [ref=e66]: "u/Altruistic-Sorbet702 님의 아바타입니다"
+        - link "Altruistic-Sorbet702 님의 프로필" [ref=e67]: "Altruistic-Sorbet702"
+        - link "1개월 전" [ref=e68]
+      - text: "AI is pretty cracked for unit tests. Then you only have to add some integration tests for your most common use cases and you'll have plenty of coverage for most scenarios."
+    - article "Spare-Hold4005 1개월 전 댓글" [ref=e69]:
+      - generic [ref=e70]:
+        - link "Spare-Hold4005 님의 프로필 --- 아바타" [ref=e71]: "u/Spare-Hold4005 님의 아바타입니다"
+        - link "Spare-Hold4005 님의 프로필" [ref=e72]: "Spare-Hold4005"
+        - link "1개월 전" [ref=e73]
+      - text: "imo the real question is how often are you going back and changing these apps after launch? if theyre mostly build-and-hand-off, tests add way less value than if youre maintaining them long term. tests are mostly insurance against future-you breaking things"
+    - article "CryptBay 1개월 전 댓글" [ref=e74]:
+      - generic [ref=e75]:
+        - link "CryptBay 님의 프로필 --- 아바타" [ref=e76]: "u/CryptBay 님의 아바타입니다"
+        - link "CryptBay 님의 프로필" [ref=e77]: "CryptBay"
+        - link "1개월 전" [ref=e78]
+      - text: "I'll give you some advice, but you're not going to like it. You have three options:\n    \n        \n      \n      Get a third-party security code auditing agency to review your code.\n    \n    \n      \n      If you're rich and you can afford a good lawyer and not worrying getting sued by users due  to un-patched security holes. Then go for it.\n    \n    \n      \n      If you are serious about commercialising your product, either set some cash aside and get your code properly vetted and audited by an external third-party agency, or if you can't afford it, learn how to code."
+    - article "Aretebeliever 1개월 전 댓글" [ref=e79]:
+      - generic [ref=e80]:
+        - link "Aretebeliever 님의 프로필 --- 아바타" [ref=e81]
+        - link "Aretebeliever 님의 프로필" [ref=e82]: "Aretebeliever"
+        - link "1개월 전" [ref=e83]
+      - text: "Just tell Claude to make no mistakes. Boom."
+    - link "Advertisement: The best traders already use AI. Now you can too." [ref=e85]
+    - link "u/buttonxyz" [ref=e86]: "u/buttonxyz 님의 아바타입니다\n  \n   u/buttonxyz"
+    - text: "•"
+    - link "광고" [ref=e87]
+    - link [ref=e89]
+    - button "사용자 작업 열기" [ref=e90]
+    - menuitem "신고" [ref=e91]
+    - menuitem "이 광고 정보" [ref=e92]
+    - menuitem "광고가 지겨우신가요?" [ref=e93]
+    - menu
+    - generic [ref=e94]:
+      - text: "The best traders already use AI. Now you can too."
+      - link [ref=e95]
+    - link [ref=e97]
+    - text: "가입"
+    - link [ref=e98]
+    - generic [ref=e99]:
+      - text: "app.button.xyz"
+      - link [ref=e100]
+    - generic [ref=e101]:
+      - text: "Thumbnail image: The best traders already use AI. Now you can too."
+      - link [ref=e102]
+    - article "JT-1963 1개월 전 댓글" [ref=e103]:
+      - generic [ref=e104]:
+        - link "JT-1963 님의 프로필 --- 아바타" [ref=e105]
+        - link "JT-1963 님의 프로필" [ref=e106]: "JT-1963"
+        - link "1개월 전" [ref=e107]
+      - text: "I use the superpowers skill that does test driven development. My apps all have hundreds, or even thousands of tests"
+    - article "ItsFlybye 1개월 전 댓글" [ref=e108]:
+      - generic [ref=e109]:
+        - link "ItsFlybye 님의 프로필 --- 아바타" [ref=e110]
+        - link "ItsFlybye 님의 프로필" [ref=e111]: "ItsFlybye"
+        - link "1개월 전" [ref=e112]
+      - text: "Who is using the product? Humans Who needs to test the product? Humans\n    \n      \"Like I made a hammer, and now I have to use it on a bunch of nails...\"You are assuming people will use the hammer only as a hammer. People will use it to:-Punch holes-As a wedge to pry something-Pound something other than a nail to change its shape-Use the handle to temporarily hang something from it-A mini anvil-Using the claw side to wedge something large into position\n     \n      And god knows what else. My point is you or someone else needs to test it as intended with your own specific test planned out and by having them do their own actions without your guidance. This is where you need to put your User Experience hat on and see how the software reacts to different uses on different devices. You need to try to break it."
+    - article "jayseattle 1개월 전 댓글" [ref=e113]:
+      - generic [ref=e114]:
+        - link "jayseattle 님의 프로필 --- 아바타" [ref=e115]: "u/jayseattle 님의 아바타입니다"
+        - link "jayseattle 님의 프로필" [ref=e116]: "jayseattle"
+        - link "1개월 전" [ref=e117]
+      - text: "SECURITY.md\n             \n              Security expectations\n            \n        \n        \n      \n\n      \n        \n      \n    \n      \n        \n          \n               TESTING.md\n             \n              How to prove changes work\n            \n        \n        \n      \n\n      \n        \n      \n     \n      I think at the least you could have your LLM create these files."
+    - article "Arcanite_Cartel 1개월 전 댓글" [ref=e118]:
+      - generic [ref=e119]:
+        - link "Arcanite_Cartel 님의 프로필 --- 아바타" [ref=e120]
+        - link "Arcanite_Cartel 님의 프로필" [ref=e121]: "Arcanite_Cartel"
+        - link "1개월 전" [ref=e122]
+      - text: "I have a regression suite of about 500 tests that Claude runs for me after every \"big\" change. It uses playwright extensively."
+    - article "TheKiddIncident 1개월 전 댓글" [ref=e123]:
+      - generic [ref=e124]:
+        - link "TheKiddIncident 님의 프로필 --- 아바타" [ref=e125]
+        - link "TheKiddIncident 님의 프로필" [ref=e126]: "TheKiddIncident"
+        - link "1개월 전" [ref=e127]
+      - text: "Testing is a whole thing.  There are people who literally spend their entire career building and designing test suites.\n    \n      So, don't worry if you're not an expert here, most of us aren't.\n    \n      The AI can help you.  Start by asking for a comprehensive test plan.  \"Based on our current code base and our planned architecture, design a detailed testing plan that will automate testing including unit test, end to end testing and security scanning.\"\n    \n      You'll get a whole plan back.  Take the parts of that plan and then implement them one by one.\n    \n      One important check is to ensure that your end to end testing is actually testing the outcomes you want.  If you have a PRD or other detailed requirements document, that's a good source of test cases.  If not, then you can also just write down critical use cases in your app and ask the AI to ensure that each of these use cases have a good E2E test.\n    \n      You can also do threshold checks.  So, I have my projects set that I can't commit new code unless unit testing meets a certain threshold.  This check ensures that unit tests are getting written as the code is getting checked in."
+    - article "[삭제됨] 1개월 전 댓글" [ref=e128]:
+      - generic [ref=e129]:
+        - text: "[삭제됨]"
+        - link "1개월 전" [ref=e130]
+- iframe:
+[account UI omitted]
+- iframe:
+  - text: "reCAPTCHA 로 보호됨"

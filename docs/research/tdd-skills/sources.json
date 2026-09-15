@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "research_date": "2026-09-11",
+  "purpose": "TDD agent skill reference research and responsibility allocation design; not an installation or runtime evaluation",
+  "snapshot_kind": "default branch heads at retrieval; not a release ranking",
+  "repositories": [
+    {
+      "requested_repo": "obra/superpowers",
+      "repository": "obra/superpowers",
+      "default_branch": "main",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "commit_date": "2026-08-12T16:53:21Z",
+      "api_license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "license_paths": [
+        "LICENSE"
+      ],
+      "candidates": [
+        "skills/test-driven-development/SKILL.md",
+        "skills/test-driven-development/writing-good-tests.md"
+      ],
+      "tree_truncated": false,
+      "id": "superpowers"
+    },
+    {
+      "requested_repo": "mattpocock/skills",
+      "repository": "mattpocock/skills",
+      "default_branch": "main",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "commit_date": "2026-09-04T08:43:27Z",
+      "api_license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "license_paths": [
+        "LICENSE"
+      ],
+      "candidates": [
+        "docs/engineering/tdd.md",
+        "skills/engineering/tdd/SKILL.md",
+        "skills/engineering/tdd/agents/openai.yaml",
+        "skills/engineering/tdd/mocking.md",
+        "skills/engineering/tdd/tests.md",
+        "skills/in-progress/setup-ts-deep-modules/SKILL.md",
+        "skills/in-progress/setup-ts-deep-modules/agents/openai.yaml",
+        "skills/in-progress/setup-ts-deep-modules/dependency-cruiser.config.cjs"
+      ],
+      "tree_truncated": false,
+      "id": "mattpocock"
+    },
+    {
+      "requested_repo": "addyosmani/agent-skills",
+      "repository": "addyosmani/agent-skills",
+      "default_branch": "main",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "commit_date": "2026-09-08T07:21:56Z",
+      "api_license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "license_paths": [
+        "LICENSE"
+      ],
+      "candidates": [
+        "evals/cases/api-and-interface-design.json",
+        "evals/cases/test-driven-development.json",
+        "evals/fixtures/api-and-interface-design/service-brief.md",
+        "evals/fixtures/test-driven-development-ecosystem/README.md",
+        "evals/fixtures/test-driven-development-ecosystem/ledger.py",
+        "evals/fixtures/test-driven-development-ecosystem/test_ledger.py",
+        "evals/fixtures/test-driven-development/BUG.md",
+        "evals/fixtures/test-driven-development/README.md",
+        "evals/fixtures/test-driven-development/package.json",
+        "evals/fixtures/test-driven-development/src/split.js",
+        "evals/fixtures/test-driven-development/test/split.test.js",
+        "skills/api-and-interface-design/SKILL.md",
+        "skills/test-driven-development/SKILL.md"
+      ],
+      "tree_truncated": false,
+      "id": "addyosmani"
+    },
+    {
+      "requested_repo": "affaan-m/everything-claude-code",
+      "repository": "affaan-m/ECC",
+      "default_branch": "main",
+      "revision": "c9148d0bb239ed01a95724a5928b98cdf9c30658",
+      "commit_date": "2026-09-10T20:57:26Z",
+      "api_license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "license_paths": [
+        "LICENSE"
+      ],
+      "candidates": [
+        ".agents/skills/tdd-workflow/SKILL.md",
+        ".agents/skills/tdd-workflow/agents/openai.yaml",
+        ".github/prompts/tdd.prompt.md",
+        ".kiro/agents/tdd-guide.json",
+        ".kiro/agents/tdd-guide.md",
+        ".kiro/hooks/tdd-reminder.kiro.hook",
+        ".kiro/skills/tdd-workflow/SKILL.md",
+        ".opencode/commands/tdd.md",
+        ".opencode/prompts/agents/tdd-guide.txt",
+        "agents/tdd-guide.md",
+        "docs/es/agents/tdd-guide.md",
+        "docs/es/commands/tdd.md",
+        "docs/es/skills/laravel-tdd/SKILL.md",
+        "docs/es/skills/quarkus-tdd/SKILL.md",
+        "docs/es/skills/springboot-tdd/SKILL.md",
+        "docs/es/skills/tdd-workflow/SKILL.md",
+        "docs/ja-JP/agents/tdd-guide.md",
+        "docs/ja-JP/commands/tdd.md",
+        "docs/ja-JP/skills/django-tdd/SKILL.md",
+        "docs/ja-JP/skills/laravel-tdd/SKILL.md",
+        "docs/ja-JP/skills/quarkus-tdd/SKILL.md",
+        "docs/ja-JP/skills/springboot-tdd/SKILL.md",
+        "docs/ja-JP/skills/tdd-workflow/SKILL.md",
+        "docs/ko-KR/agents/tdd-guide.md",
+        "docs/ko-KR/commands/tdd.md",
+        "docs/ko-KR/skills/tdd-workflow/SKILL.md",
+        "docs/pt-BR/agents/tdd-guide.md",
+        "docs/pt-BR/commands/tdd.md",
+        "docs/releases/2.2.0/ecc-2.2-release-readiness.tdd.md",
+        "docs/releases/2.2.0/ecc-ito-real-cli-bridge.tdd.md",
+        "docs/tr/agents/tdd-guide.md",
+        "docs/tr/commands/tdd.md",
+        "docs/tr/skills/laravel-tdd/SKILL.md",
+        "docs/tr/skills/quarkus-tdd/SKILL.md",
+        "docs/tr/skills/springboot-tdd/SKILL.md",
+        "docs/tr/skills/tdd-workflow/SKILL.md",
+        "docs/zh-CN/agents/tdd-guide.md",
+        "docs/zh-CN/commands/tdd.md",
+        "docs/zh-CN/skills/django-tdd/SKILL.md",
+        "docs/zh-CN/skills/laravel-tdd/SKILL.md",
+        "docs/zh-CN/skills/springboot-tdd/SKILL.md",
+        "docs/zh-CN/skills/tdd-workflow/SKILL.md",
+        "docs/zh-TW/agents/tdd-guide.md",
+        "docs/zh-TW/commands/tdd.md",
+        "docs/zh-TW/skills/tdd-workflow/SKILL.md",
+        "legacy-command-shims/commands/tdd.md",
+        "skills/django-tdd/SKILL.md",
+        "skills/laravel-tdd/SKILL.md",
+        "skills/quarkus-tdd/SKILL.md",
+        "skills/skill-comply/fixtures/tdd_spec.yaml",
+        "skills/springboot-tdd/SKILL.md",
+        "skills/tdd-workflow/SKILL.md"
+      ],
+      "tree_truncated": false,
+      "id": "ecc"
+    },
+    {
+      "requested_repo": "bebraw/kirjolab",
+      "repository": "bebraw/kirjolab",
+      "default_branch": "main",
+      "revision": "ac72a52670c537a4f468f994f4ed6ba855392733",
+      "commit_date": "2026-09-04T12:31:16Z",
+      "api_license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "license_paths": [
+        "LICENSE"
+      ],
+      "candidates": [
+        ".codex/skills/tdd/LICENSE",
+        ".codex/skills/tdd/SKILL.md",
+        ".codex/skills/tdd/agents/openai.yaml",
+        ".template/updates/2026-08-03-repository-local-spec-tdd/README.md",
+        ".template/updates/2026-08-03-repository-local-spec-tdd/patch.diff",
+        ".template/updates/2026-08-03-repository-local-spec-tdd/update.json",
+        "docs/adrs/implemented/ADR-219-adopt-local-spec-and-tdd-skills.md",
+        "specs/interface-design-system/spec.md"
+      ],
+      "tree_truncated": false,
+      "id": "kirjolab"
+    },
+    {
+      "requested_repo": "glebis/claude-skills",
+      "repository": "glebis/claude-skills",
+      "default_branch": "main",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "commit_date": "2026-09-02T10:58:37Z",
+      "api_license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "license_paths": [
+        "LICENSE"
+      ],
+      "candidates": [
+        "tdd/.claude-plugin/plugin.json",
+        "tdd/README.md",
+        "tdd/SKILL.md",
+        "tdd/references/agent_prompts.md",
+        "tdd/references/anti_patterns.md",
+        "tdd/references/framework_configs.md",
+        "tdd/references/layer_guide.md",
+        "tdd/scripts/discover_docs.sh",
+        "tdd/scripts/extract_api.sh",
+        "tdd/scripts/run_tests.sh",
+        "tdd/tests/conftest.py",
+        "tdd/tests/fixtures/go_project/calculator.go",
+        "tdd/tests/fixtures/python_project/README.md",
+        "tdd/tests/fixtures/python_project/docs/API.md",
+        "tdd/tests/fixtures/python_project/docs/openapi.yaml",
+        "tdd/tests/fixtures/python_project/src/calculator.py",
+        "tdd/tests/fixtures/python_project/src/models.py",
+        "tdd/tests/fixtures/ts_project/README.md",
+        "tdd/tests/fixtures/ts_project/src/calculator.ts",
+        "tdd/tests/snapshots/implementer.txt",
+        "tdd/tests/snapshots/refactorer.txt",
+        "tdd/tests/snapshots/test_writer.txt",
+        "tdd/tests/test_discover_docs.py",
+        "tdd/tests/test_extract_api.py",
+        "tdd/tests/test_prompts.py",
+        "tdd/tests/test_run_tests.py"
+      ],
+      "tree_truncated": false,
+      "id": "glebis"
+    }
+  ],
+  "files": [
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/LICENSE",
+      "bytes": 1070,
+      "sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+      "retrieved_at": "2026-09-11T06:18:43.837636+00:00",
+      "local_path": "references/superpowers/source/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/README.md",
+      "bytes": 12137,
+      "sha256": "4cd0e751210f24a5e4788730e7b5bb145b4d03a2b2c71202721454481a5c5e81",
+      "retrieved_at": "2026-09-11T06:18:43.849266+00:00",
+      "local_path": "references/superpowers/source/README.md",
+      "line_count": 346
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/test-driven-development/SKILL.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/test-driven-development/SKILL.md",
+      "bytes": 9015,
+      "sha256": "bf1b8216e523851a411e91d429a7c1c2a173e79d88957bc78e348218d50edd54",
+      "retrieved_at": "2026-09-11T06:18:43.844544+00:00",
+      "local_path": "references/superpowers/source/skills/test-driven-development/SKILL.md",
+      "line_count": 320
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/test-driven-development/writing-good-tests.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/test-driven-development/writing-good-tests.md",
+      "bytes": 8268,
+      "sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
+      "retrieved_at": "2026-09-11T06:18:43.831309+00:00",
+      "local_path": "references/superpowers/source/skills/test-driven-development/writing-good-tests.md",
+      "line_count": 198
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/using-superpowers/SKILL.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/using-superpowers/SKILL.md",
+      "bytes": 3108,
+      "sha256": "30f2ab78e20ddc27ee7158ae8d4a2abe161c360981c7cc3548070913142d3dc3",
+      "retrieved_at": "2026-09-11T06:18:43.824696+00:00",
+      "local_path": "references/superpowers/source/skills/using-superpowers/SKILL.md",
+      "line_count": 63
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/brainstorming/SKILL.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/brainstorming/SKILL.md",
+      "bytes": 15456,
+      "sha256": "74edf03ea6d24ef53db48677b93558d14a979bdf052ca3f57ecdca0c66791608",
+      "retrieved_at": "2026-09-11T06:18:43.853861+00:00",
+      "local_path": "references/superpowers/source/skills/brainstorming/SKILL.md",
+      "line_count": 250
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/writing-plans/SKILL.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/writing-plans/SKILL.md",
+      "bytes": 7053,
+      "sha256": "48508f44bbfd7d24b029fbf3a314f3cd14c9615599059366e922f47b8dc08cf2",
+      "retrieved_at": "2026-09-11T06:18:43.843438+00:00",
+      "local_path": "references/superpowers/source/skills/writing-plans/SKILL.md",
+      "line_count": 171
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/subagent-driven-development/SKILL.md",
+      "bytes": 32339,
+      "sha256": "8dd1b8e698edec3700c6d89517dbe96febd3bacd3f6ea21c1a3569c62ea104b5",
+      "retrieved_at": "2026-09-11T06:18:43.862551+00:00",
+      "local_path": "references/superpowers/source/skills/subagent-driven-development/SKILL.md",
+      "line_count": 568
+    },
+    {
+      "repository": "obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "path": "skills/subagent-driven-development/implementer-prompt.md",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/subagent-driven-development/implementer-prompt.md",
+      "bytes": 6335,
+      "sha256": "81dd9d5a3fb0b09b96b5829f03b9796842f3199ef7591d1ba1c2db2a515f64d0",
+      "retrieved_at": "2026-09-11T06:18:44.080375+00:00",
+      "local_path": "references/superpowers/source/skills/subagent-driven-development/implementer-prompt.md",
+      "line_count": 154
+    },
+    {
+      "repository": "mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/3cca18b368ae95cdbdebbff572ccafa662551015/LICENSE",
+      "bytes": 1068,
+      "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+      "retrieved_at": "2026-09-11T06:18:43.914846+00:00",
+      "local_path": "references/mattpocock/source/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "path": "skills/engineering/tdd/SKILL.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/tdd/SKILL.md",
+      "bytes": 3549,
+      "sha256": "cb01f66bebfaa25fa1f88e6b7e769cd9fd9f35b1120b8563749820738814c927",
+      "retrieved_at": "2026-09-11T06:18:43.922527+00:00",
+      "local_path": "references/mattpocock/source/skills/engineering/tdd/SKILL.md",
+      "line_count": 38
+    },
+    {
+      "repository": "mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "path": "skills/engineering/tdd/tests.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/tdd/tests.md",
+      "bytes": 2214,
+      "sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a",
+      "retrieved_at": "2026-09-11T06:18:43.927124+00:00",
+      "local_path": "references/mattpocock/source/skills/engineering/tdd/tests.md",
+      "line_count": 77
+    },
+    {
+      "repository": "mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "path": "skills/engineering/tdd/mocking.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/tdd/mocking.md",
+      "bytes": 1481,
+      "sha256": "3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef",
+      "retrieved_at": "2026-09-11T06:18:43.904189+00:00",
+      "local_path": "references/mattpocock/source/skills/engineering/tdd/mocking.md",
+      "line_count": 59
+    },
+    {
+      "repository": "mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "path": "docs/engineering/tdd.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/3cca18b368ae95cdbdebbff572ccafa662551015/docs/engineering/tdd.md",
+      "bytes": 10453,
+      "sha256": "879c4bad53e79f3972dd3b37438330f9ff86035843f3bf83ef41ff51e8337860",
+      "retrieved_at": "2026-09-11T06:18:43.909251+00:00",
+      "local_path": "references/mattpocock/source/docs/engineering/tdd.md",
+      "line_count": 94
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/LICENSE",
+      "bytes": 1068,
+      "sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "retrieved_at": "2026-09-11T06:18:43.910111+00:00",
+      "local_path": "references/addyosmani/source/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "skills/test-driven-development/SKILL.md",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/skills/test-driven-development/SKILL.md",
+      "bytes": 16517,
+      "sha256": "7c0c6ac057c19d7f8be65d9f49c3a638703b868f4625c78b70da5439d5d74fca",
+      "retrieved_at": "2026-09-11T06:18:43.931481+00:00",
+      "local_path": "references/addyosmani/source/skills/test-driven-development/SKILL.md",
+      "line_count": 398
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "evals/cases/test-driven-development.json",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/evals/cases/test-driven-development.json",
+      "bytes": 3981,
+      "sha256": "b038011ea007a91aee8b92cb0fca7493c92f4027e2a6560d674bb4977fe4bf56",
+      "retrieved_at": "2026-09-11T06:18:43.966562+00:00",
+      "local_path": "references/addyosmani/source/evals/cases/test-driven-development.json",
+      "line_count": 73
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "evals/fixtures/test-driven-development-ecosystem/README.md",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/evals/fixtures/test-driven-development-ecosystem/README.md",
+      "bytes": 131,
+      "sha256": "547759129cbf421b53d506be5caab15baa4d3a13210798983abfeadb24f642a9",
+      "retrieved_at": "2026-09-11T06:18:44.181193+00:00",
+      "local_path": "references/addyosmani/source/evals/fixtures/test-driven-development-ecosystem/README.md",
+      "line_count": 9
+    },
+    {
+      "repository": "affaan-m/ECC",
+      "revision": "c9148d0bb239ed01a95724a5928b98cdf9c30658",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/affaan-m/ECC/c9148d0bb239ed01a95724a5928b98cdf9c30658/LICENSE",
+      "bytes": 1071,
+      "sha256": "326146379f01bb137c0a5d3c54770c1aa31076705c8b88a7f6b26a460f6221b2",
+      "retrieved_at": "2026-09-11T06:18:44.139024+00:00",
+      "local_path": "references/ecc/source/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "affaan-m/ECC",
+      "revision": "c9148d0bb239ed01a95724a5928b98cdf9c30658",
+      "path": "skills/tdd-workflow/SKILL.md",
+      "url": "https://raw.githubusercontent.com/affaan-m/ECC/c9148d0bb239ed01a95724a5928b98cdf9c30658/skills/tdd-workflow/SKILL.md",
+      "bytes": 21473,
+      "sha256": "f5d8543733c557f0c53b688d40f14e9b870a6b2c7e405bab07433954e363828a",
+      "retrieved_at": "2026-09-11T06:18:44.156410+00:00",
+      "local_path": "references/ecc/source/skills/tdd-workflow/SKILL.md",
+      "line_count": 583
+    },
+    {
+      "repository": "affaan-m/ECC",
+      "revision": "c9148d0bb239ed01a95724a5928b98cdf9c30658",
+      "path": "agents/tdd-guide.md",
+      "url": "https://raw.githubusercontent.com/affaan-m/ECC/c9148d0bb239ed01a95724a5928b98cdf9c30658/agents/tdd-guide.md",
+      "bytes": 3865,
+      "sha256": "979afbb40c42bfdd02fc308c130d7e257f5d6dd5f6531ef2562644862f6b7771",
+      "retrieved_at": "2026-09-11T06:18:43.983394+00:00",
+      "local_path": "references/ecc/source/agents/tdd-guide.md",
+      "line_count": 100
+    },
+    {
+      "repository": "bebraw/kirjolab",
+      "revision": "ac72a52670c537a4f468f994f4ed6ba855392733",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/bebraw/kirjolab/ac72a52670c537a4f468f994f4ed6ba855392733/LICENSE",
+      "bytes": 1075,
+      "sha256": "2af605beda88b6596925ed7c924736945e311c461d11ddd9353db9fa5a2836e0",
+      "retrieved_at": "2026-09-11T06:18:44.226058+00:00",
+      "local_path": "references/kirjolab/source/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "bebraw/kirjolab",
+      "revision": "ac72a52670c537a4f468f994f4ed6ba855392733",
+      "path": ".codex/skills/tdd/LICENSE",
+      "url": "https://raw.githubusercontent.com/bebraw/kirjolab/ac72a52670c537a4f468f994f4ed6ba855392733/.codex/skills/tdd/LICENSE",
+      "bytes": 1068,
+      "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+      "retrieved_at": "2026-09-11T06:18:44.220954+00:00",
+      "local_path": "references/kirjolab/source/.codex/skills/tdd/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "bebraw/kirjolab",
+      "revision": "ac72a52670c537a4f468f994f4ed6ba855392733",
+      "path": ".codex/skills/tdd/SKILL.md",
+      "url": "https://raw.githubusercontent.com/bebraw/kirjolab/ac72a52670c537a4f468f994f4ed6ba855392733/.codex/skills/tdd/SKILL.md",
+      "bytes": 1421,
+      "sha256": "447d9a5517a4100c718d8c09992b851ba6be379bf153255c1381e349cbf75fe7",
+      "retrieved_at": "2026-09-11T06:18:44.244237+00:00",
+      "local_path": "references/kirjolab/source/.codex/skills/tdd/SKILL.md",
+      "line_count": 24
+    },
+    {
+      "repository": "bebraw/kirjolab",
+      "revision": "ac72a52670c537a4f468f994f4ed6ba855392733",
+      "path": "docs/adrs/implemented/ADR-219-adopt-local-spec-and-tdd-skills.md",
+      "url": "https://raw.githubusercontent.com/bebraw/kirjolab/ac72a52670c537a4f468f994f4ed6ba855392733/docs/adrs/implemented/ADR-219-adopt-local-spec-and-tdd-skills.md",
+      "bytes": 3945,
+      "sha256": "699550e12ddf442ef970e4cfab653dd00e023b1411de0114970b891fc3f8f2ed",
+      "retrieved_at": "2026-09-11T06:18:44.349234+00:00",
+      "local_path": "references/kirjolab/source/docs/adrs/implemented/ADR-219-adopt-local-spec-and-tdd-skills.md",
+      "line_count": 94
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/LICENSE",
+      "bytes": 1074,
+      "sha256": "c865f0594f9e986f4d635fe7d7d1dd091d344cc06116207e216c6160bb3ed2bb",
+      "retrieved_at": "2026-09-11T06:18:44.357802+00:00",
+      "local_path": "references/glebis/source/LICENSE",
+      "line_count": 21
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/README.md",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/README.md",
+      "bytes": 6293,
+      "sha256": "4ab2777c44362fb8efc141d8b9c9da76baac3fe32757ce953769e8836649c2e9",
+      "retrieved_at": "2026-09-11T06:18:44.207706+00:00",
+      "local_path": "references/glebis/source/tdd/README.md",
+      "line_count": 102
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/SKILL.md",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/SKILL.md",
+      "bytes": 33980,
+      "sha256": "8ff431a11ab2a14d3f6a34a9de396012aa901dc27606904e5d9f6765828132da",
+      "retrieved_at": "2026-09-11T06:18:44.231347+00:00",
+      "local_path": "references/glebis/source/tdd/SKILL.md",
+      "line_count": 744
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/references/agent_prompts.md",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/references/agent_prompts.md",
+      "bytes": 15544,
+      "sha256": "830030ad2b0cd12af560f287f0636a1fc9825185c9eb072b35c2e4ba7f6a8715",
+      "retrieved_at": "2026-09-11T06:18:44.264320+00:00",
+      "local_path": "references/glebis/source/tdd/references/agent_prompts.md",
+      "line_count": 317
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/references/anti_patterns.md",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/references/anti_patterns.md",
+      "bytes": 11502,
+      "sha256": "29dba73b06e0731fc5f3693b8b3a0afd48ab056553fbc4789b50fa539402b572",
+      "retrieved_at": "2026-09-11T06:18:44.264441+00:00",
+      "local_path": "references/glebis/source/tdd/references/anti_patterns.md",
+      "line_count": 165
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/references/framework_configs.md",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/references/framework_configs.md",
+      "bytes": 8144,
+      "sha256": "3e99d4927d5d6ce9c76838d09634942c5aa4f5f737a6fcc063f06c13f036c88c",
+      "retrieved_at": "2026-09-11T06:18:44.485880+00:00",
+      "local_path": "references/glebis/source/tdd/references/framework_configs.md",
+      "line_count": 421
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/references/layer_guide.md",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/references/layer_guide.md",
+      "bytes": 4137,
+      "sha256": "688830b5de59bf2218968fbd9e2b72379e4fb3fc076ec87ce567230eb6a72096",
+      "retrieved_at": "2026-09-11T06:18:44.493480+00:00",
+      "local_path": "references/glebis/source/tdd/references/layer_guide.md",
+      "line_count": 77
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/scripts/discover_docs.sh",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/scripts/discover_docs.sh",
+      "bytes": 10301,
+      "sha256": "0c64edbd76172fea2230f2a0c611e5c566bfd91c90778e203c1fc8de552b59c0",
+      "retrieved_at": "2026-09-11T06:18:44.492318+00:00",
+      "local_path": "references/glebis/source/tdd/scripts/discover_docs.sh",
+      "line_count": 317
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/scripts/extract_api.sh",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/scripts/extract_api.sh",
+      "bytes": 7726,
+      "sha256": "4818ec870932b36b3c01ec3d44076f38feb5107d8bf094b04ef1e8d676b8c153",
+      "retrieved_at": "2026-09-11T06:18:44.514503+00:00",
+      "local_path": "references/glebis/source/tdd/scripts/extract_api.sh",
+      "line_count": 248
+    },
+    {
+      "repository": "glebis/claude-skills",
+      "revision": "d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc",
+      "path": "tdd/scripts/run_tests.sh",
+      "url": "https://raw.githubusercontent.com/glebis/claude-skills/d0bc2063d00d9d1a76d9fde5cd098fd8c92a68bc/tdd/scripts/run_tests.sh",
+      "bytes": 11000,
+      "sha256": "082ded072db72e3acd384f5bdfc1f6e5601a659eba687ffa09ced4cd19dcb7ee",
+      "retrieved_at": "2026-09-11T06:18:44.540105+00:00",
+      "local_path": "references/glebis/source/tdd/scripts/run_tests.sh",
+      "line_count": 316
+    },
+    {
+      "repository": "mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "path": "skills/engineering/codebase-design/SKILL.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/codebase-design/SKILL.md",
+      "bytes": 6446,
+      "sha256": "2c20617f87ec8af6a434859f381b2f061a69b530444e74eb39e78bb016a6d1e2",
+      "retrieved_at": "2026-09-11T06:24:13.134964+00:00",
+      "local_path": "references/mattpocock/source/skills/engineering/codebase-design/SKILL.md",
+      "line_count": 114
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "references/testing-patterns.md",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/references/testing-patterns.md",
+      "bytes": 7460,
+      "sha256": "f0bf05acd0edcadc27297ad5b74f104c8103ccfedba1a05cd6d6ae4af8364c56",
+      "retrieved_at": "2026-09-11T06:24:13.144984+00:00",
+      "local_path": "references/addyosmani/source/references/testing-patterns.md",
+      "line_count": 235
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "skills/browser-testing-with-devtools/SKILL.md",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/skills/browser-testing-with-devtools/SKILL.md",
+      "bytes": 14539,
+      "sha256": "4e3aacd6a380cd25bc6c2d67fdd1c926a9b22535b8a62109ecd33cefd909e3d9",
+      "retrieved_at": "2026-09-11T06:24:13.139553+00:00",
+      "local_path": "references/addyosmani/source/skills/browser-testing-with-devtools/SKILL.md",
+      "line_count": 317
+    },
+    {
+      "repository": "affaan-m/ECC",
+      "revision": "c9148d0bb239ed01a95724a5928b98cdf9c30658",
+      "path": "scripts/setup-package-manager.js",
+      "url": "https://raw.githubusercontent.com/affaan-m/ECC/c9148d0bb239ed01a95724a5928b98cdf9c30658/scripts/setup-package-manager.js",
+      "bytes": 5961,
+      "sha256": "499f38ef03b3f7f9896ad97229b8213df215544bb3c6bd6343e3889f023f6bda",
+      "retrieved_at": "2026-09-11T06:24:12.953202+00:00",
+      "local_path": "references/ecc/source/scripts/setup-package-manager.js",
+      "line_count": 204
+    },
+    {
+      "repository": "affaan-m/ECC",
+      "revision": "c9148d0bb239ed01a95724a5928b98cdf9c30658",
+      "path": "skills/bun-runtime/SKILL.md",
+      "url": "https://raw.githubusercontent.com/affaan-m/ECC/c9148d0bb239ed01a95724a5928b98cdf9c30658/skills/bun-runtime/SKILL.md",
+      "bytes": 2608,
+      "sha256": "8015a977827ddd8536e89c4693a575b8deb5b04073b8a483c320c5419abc35da",
+      "retrieved_at": "2026-09-11T06:24:12.954181+00:00",
+      "local_path": "references/ecc/source/skills/bun-runtime/SKILL.md",
+      "line_count": 85
+    }
+  ],
+  "fetch_notes": [
+    {
+      "repository": "addyosmani/agent-skills",
+      "revision": "6ca0cd7db39b41b1c37e26d335c507ee92382c6d",
+      "path": "skills/test-driven-development/references/testing-patterns.md",
+      "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/6ca0cd7db39b41b1c37e26d335c507ee92382c6d/skills/test-driven-development/references/testing-patterns.md",
+      "error": "HTTP Error 404: Not Found",
+      "explanation": "Researcher initially resolved the relative reference incorrectly. The correct repository-root references/testing-patterns.md was retrieved and archived. This is not an upstream broken-link finding."
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kirjolab",
+      "derived_from": "mattpocock/skills",
+      "upstream_revision": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+      "basis": ".codex/skills/tdd/SKILL.md and ADR-219",
+      "note": "This is a local adaptation of an older revision, not an independent TDD method or a copy of the current Matt snapshot."
+    }
+  ],
+  "theory_sources": [
+    {
+      "title": "Anthropic: Give Claude a feedback loop",
+      "url": "https://academy.claude.com/courses/ai-native-sdlc-playbook/give-claude-a-feedback-loop",
+      "accessed": "2026-09-11",
+      "use": "Continuous feedback and defect-only explicit test-first, same test protection, evidence"
+    },
+    {
+      "title": "Anthropic: Claude Code plan mode as the default starting point",
+      "url": "https://academy.claude.com/courses/ai-native-sdlc-playbook/plan-mode",
+      "accessed": "2026-09-11",
+      "use": "Named files, work order, tests, self-contained handoff, same-commit plan revisions"
+    },
+    {
+      "title": "Kent Beck: Canon TDD",
+      "url": "https://newsletter.kentbeck.com/p/canon-tdd",
+      "accessed": "2026-09-11",
+      "use": "Behavioral test list, one concrete test, make tests pass, optional refactor, repeat"
+    },
+    {
+      "title": "Anthropic: Skills as institutional knowledge",
+      "url": "https://academy.claude.com/courses/ai-native-sdlc-playbook/skills-as-institutional-knowledge",
+      "accessed": "2026-09-11",
+      "use": "Reusable organizational procedures, activation and advisory control boundary"
+    },
+    {
+      "title": "Martin Fowler: Test Driven Development",
+      "url": "https://martinfowler.com/bliki/TestDrivenDevelopment.html",
+      "accessed": "2026-09-11",
+      "use": "Supplementary description of TDD iteration"
+    }
+  ],
+  "archive_scope": "Selected primary skill files, relevant direct references, workflow comparison files and licenses. Not complete repositories or installable packages. Archived scripts are inert research sources and were not run.",
+  "license_note": "All six repository snapshots have MIT LICENSE files archived. Kirjolab additionally preserves the Matt Pocock MIT license inside its adapted tdd skill. Preserve attribution and license notices when reusing substantive code or text."
+}

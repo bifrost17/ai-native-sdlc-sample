@@ -1,0 +1,42 @@
+{
+  "captured_on": "2026-09-12",
+  "original_manifest": "../../originals/projects-agent/source-manifest.json",
+  "evidence_dataset": "pr-evidence.json",
+  "core_case_raw_api_manifest": "raw/manifest.json",
+  "repositories": [
+    {
+      "repo": "OpenHands/OpenHands",
+      "default_branch": "main",
+      "head": "de5a79b4ce578c56f5fef330551a0c1fb8bd12bc",
+      "head_author_date": "2026-09-12T03:22:27Z",
+      "head_committer_date": "2026-09-12T03:22:27Z",
+      "github": "https://github.com/OpenHands/OpenHands",
+      "local_originals_prefix": "../../originals/projects-agent/openhands-"
+    },
+    {
+      "repo": "SWE-agent/SWE-agent",
+      "default_branch": "main",
+      "head": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+      "head_author_date": "2026-07-16T15:21:18Z",
+      "head_committer_date": "2026-07-16T15:21:18Z",
+      "github": "https://github.com/SWE-agent/SWE-agent",
+      "local_originals_prefix": "../../originals/projects-agent/swe-agent-"
+    },
+    {
+      "repo": "obra/superpowers",
+      "default_branch": "main",
+      "head": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "head_author_date": "2026-08-12T16:53:21Z",
+      "head_committer_date": "2026-08-12T16:53:21Z",
+      "github": "https://github.com/obra/superpowers",
+      "local_originals_prefix": "../../originals/projects-agent/superpowers-"
+    }
+  ],
+  "notes": [
+    "The original manifest contains every fixed raw URL, source commit, SHA-256 digest, byte count, and representation note.",
+    "Mutable PR bodies are explicitly labeled as snapshots in the original manifest.",
+    "The evidence dataset records GitHub PR URLs, merge commits, public commit sequences, classifications, CI observations, candidate queries, and representative exclusions.",
+    "Heads are default-branch HEADs reverified on 2026-09-12. A sampled merged PR can target a non-default or stacked branch and therefore be newer than the default HEAD commit.",
+    "The raw API manifest indexes unmodified GitHub REST responses for the three core cases: obra/superpowers#2275, OpenHands/OpenHands#17253, and obra/superpowers#1720."
+  ]
+}

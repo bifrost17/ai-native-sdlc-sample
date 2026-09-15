@@ -1,0 +1,19 @@
+{
+  "note": "Stored streams omit private reasoning blocks. Tool I/O, final responses and invocation metadata are retained; these are filtered CLI exports, not byte-identical raw transcripts.",
+  "streams": [
+    {
+      "path": "docs/research/sdlc-documentation/intent-design/reviews/fable-r1.jsonl",
+      "raw_stream_sha256": "16fba54d38211bcdcbf664c0ad5b01b629d7d1a2adc114abfd869cfd451dcb23",
+      "stored_stream_sha256": "8ec29d1c48a67634d313b286330f38e7adfaaa4f2b0fa571928e97079d8ff62b",
+      "private_reasoning_blocks_omitted": 12,
+      "tool_io_and_final_result_preserved": true
+    },
+    {
+      "path": "docs/research/sdlc-documentation/intent-design/reviews/fable-r2.jsonl",
+      "raw_stream_sha256": "28bd4e8f4ed819b2a96d1788a7bb746027b412e6f3d8930d37c040a599e20b4e",
+      "stored_stream_sha256": "f6d78c8a0f7f99580691e5c3a7d260667be66a8b86086bd5393d226fddd81fac",
+      "private_reasoning_blocks_omitted": 3,
+      "tool_io_and_final_result_preserved": true
+    }
+  ]
+}

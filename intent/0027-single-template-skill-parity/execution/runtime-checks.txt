@@ -1,0 +1,83 @@
+T02 runtime and test evidence
+Date: 2026-09-15 KST
+Working branch: codex/single-template-skill-parity
+
+RED
+
+$ python3 -m unittest tests.test_detect_bands tests.test_eval_assertions tests.test_eval_plugin tests.test_eval_semantic_runner tests.test_template_editions
+Ran 47 tests in 3.329s
+FAILED (failures=13, errors=2)
+
+The changed expectations failed against the old runtime defaults. Representative failures:
+- emit_intent.py still read tdd-first/project/templates/intent.md.
+- evals/run.sh defaulted to tdd-first, so sole-edition fixtures stopped before model execution.
+- grade_assertions.py accepted tdd-first and reached the missing retired manifest instead of rejecting the argument.
+- the CI pull-request path list still included tdd-first/**.
+
+GREEN: focused contract
+
+$ python3 -m unittest tests.test_detect_bands tests.test_eval_assertions tests.test_eval_plugin tests.test_eval_semantic_runner tests.test_template_editions
+................................................
+----------------------------------------------------------------------
+Ran 48 tests in 9.137s
+
+OK
+
+$ python3 -m unittest tests.test_template_editions
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.048s
+
+OK
+
+The distribution checks copy the sole product without maker-managed Claude,
+Codex or OpenCode installation directories; resolve its local plugin catalog;
+and verify the root catalog exports exactly that package and matching version.
+
+GREEN: retired-edition boundaries
+
+$ SDLC_EDITION=tdd-first bash evals/run.sh
+UNDECIDABLE: invalid SDLC_EDITION: tdd-first (expected tdd-optional)
+exit: 2
+
+$ python3 evals/grade_assertions.py --case /does/not/exist --result /does/not/exist --trace /does/not/exist --out /does/not/exist --edition tdd-first
+usage: grade_assertions.py [-h] --case CASE --result RESULT --trace TRACE
+                           --out OUT [--claude CLAUDE]
+                           [--edition {tdd-optional}]
+grade_assertions.py: error: argument --edition: invalid choice: 'tdd-first' (choose from 'tdd-optional')
+exit: 2
+
+$ python3 evals/record.py case --case-id probe --out /tmp/should-not-exist-single-template-runtime.json --edition tdd-first --generation-rc 0 --deterministic-rc 0 --semantic-rc 0
+usage: record.py case [-h] --case-id CASE_ID --out OUT
+                      [--edition {tdd-optional}] --generation-rc GENERATION_RC
+                      --deterministic-rc DETERMINISTIC_RC --semantic-rc
+                      SEMANTIC_RC
+record.py case: error: argument --edition: invalid choice: 'tdd-first' (choose from 'tdd-optional')
+exit: 2
+
+$ test ! -e /tmp/should-not-exist-single-template-runtime.json
+exit: 0
+
+GREEN: combined repository check
+
+$ make check
+python3 -m unittest discover -s tests
+...................................................................s...................................
+----------------------------------------------------------------------
+Ran 103 tests in 29.112s
+
+OK (skipped=1)
+bash tests/test_hooks.sh
+test_hooks: 28 passed, 0 failed
+bash tests/test_evals.sh
+8 passed, 0 failed
+bash tests/test_managed_settings.sh
+org/managed-settings.example.json 키 11개 전부 공식 목록 안
+PASS  managed-settings 키·훅 계약
+exit: 0
+
+Limits
+- Fake-Claude integration tests prove path, plugin, isolation, fail-closed and record wiring. They do not prove live model behavior.
+- make check does not run the API-key-dependent semantic eval suite.
+- The repository's one skipped unittest is the existing case-sensitive-filesystem comparison on this macOS filesystem.
+- Existing evals/out historical records were not rewritten.

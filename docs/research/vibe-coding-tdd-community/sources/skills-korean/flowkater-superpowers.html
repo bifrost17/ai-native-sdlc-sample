@@ -1,0 +1,954 @@
+<!DOCTYPE html><html dir="ltr" lang="ko" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://flowkater.io/posts/2026-02-08-superpowers-introduction/"><meta name="generator" content="Astro v6.0.4"><!-- General Meta Tags --><title>Claude Code에 날개를 달아줘라! - Superpowers 소개 | Flowkater.io</title><meta name="title" content="Claude Code에 날개를 달아줘라! - Superpowers 소개 | Flowkater.io"><meta name="description" content="Claude Code에 Superpowers를 설치하면 바로 코딩부터 하던 AI가 질문부터 시작하고, 설계하고, 계획하고, TDD로 구현하고, 코드 리뷰까지 자동으로 수행한다. 설득의 심리학 원칙을 LLM에 적용해 스킬 준수를 강제하는 프레임워크로, GitHub 4.7만 스타를 받은 오픈소스 프로젝트다. 7단계 워크플로우, Writing Skills 메타 스킬, 실전 활용 팁까지 정리했다."><meta name="author" content="Tony Cho"><meta name="robots" content="index, follow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:site_name" content="Flowkater.io"><meta property="og:title" content="Claude Code에 날개를 달아줘라! - Superpowers 소개"><meta property="og:description" content="Claude Code에 Superpowers를 설치하면 질문부터 TDD, 코드 리뷰까지 7단계가 자동 실행된다. 설치법과 커스텀 스킬 생성까지 정리."><meta property="og:url" content="https://flowkater.io/posts/2026-02-08-superpowers-introduction/"><meta property="og:image" content="https://flowkater.io/_astro/superpowers.BFir9vPk_Z165gzq.jpg"><!-- Article Published/Modified time --><meta property="article:published_time" content="2026-02-08T01:00:00.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://flowkater.io/posts/2026-02-08-superpowers-introduction/"><meta property="twitter:title" content="Claude Code에 날개를 달아줘라! - Superpowers 소개"><meta property="twitter:description" content="Claude Code에 Superpowers를 설치하면 질문부터 TDD, 코드 리뷰까지 7단계가 자동 실행된다. 설치법과 커스텀 스킬 생성까지 정리."><meta property="twitter:image" content="https://flowkater.io/_astro/superpowers.BFir9vPk_Z165gzq.jpg"><meta property="twitter:image:alt" content="Claude Code에 날개를 달아줘라! - Superpowers 소개"><!-- Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Claude Code에 날개를 달아줘라! - Superpowers 소개","description":"Claude Code에 Superpowers를 설치하면 바로 코딩부터 하던 AI가 질문부터 시작하고, 설계하고, 계획하고, TDD로 구현하고, 코드 리뷰까지 자동으로 수행한다. 설득의 심리학 원칙을 LLM에 적용해 스킬 준수를 강제하는 프레임워크로, GitHub 4.7만 스타를 받은 오픈소스 프로젝트다. 7단계 워크플로우, Writing Skills 메타 스킬, 실전 활용 팁까지 정리했다.","image":"https://flowkater.io/_astro/superpowers.BFir9vPk_Z165gzq.jpg","url":"https://flowkater.io/posts/2026-02-08-superpowers-introduction/","datePublished":"2026-02-08T01:00:00.000Z","dateModified":"2026-02-08T01:00:00.000Z","keywords":"Claude Code, Superpowers, AI 코딩, 개발 워크플로우, TDD, 스킬 프레임워크, 서브 에이전트, 코드 리뷰, 바이브 코딩, AI 개발 자동화, Claude Code 플러그인, 설득의 심리학 LLM","articleSection":"스터디","inLanguage":"ko","isAccessibleForFree":true,"wordCount":2053,"timeRequired":"PT10M","about":[{"@type":"Thing","name":"Claude Code"},{"@type":"Thing","name":"Superpowers"},{"@type":"Thing","name":"AI 코딩"},{"@type":"Thing","name":"개발 워크플로우"},{"@type":"Thing","name":"TDD"},{"@type":"Thing","name":"스킬 프레임워크"},{"@type":"Thing","name":"서브 에이전트"},{"@type":"Thing","name":"코드 리뷰"},{"@type":"Thing","name":"바이브 코딩"},{"@type":"Thing","name":"AI 개발 자동화"},{"@type":"Thing","name":"Claude Code 플러그인"},{"@type":"Thing","name":"설득의 심리학 LLM"}],"author":[{"@type":"Person","@id":"https://flowkater.io/about/#person","name":"Tony Cho","url":"https://flowkater.io/about/","sameAs":["https://github.com/flowkater","https://www.linkedin.com/in/jaewoo-cho-6a943750/","https://www.threads.net/@flowkater"],"image":"https://flowkater.io/desk-og.jpg","jobTitle":"Product Engineer, Fractional CTO, and Writer","description":"제품을 만들고 회고를 남기는 개발자이자 Fractional CTO. 제품 아키텍처, AI production readiness, web·mobile, AI-native 조직과 리더십을 다룬다.","knowsAbout":["AI coding","AI agents","developer productivity","startup product development","Fractional CTO","product architecture","AI product engineering","AI transformation","retrospectives","Go","React","SwiftUI","iOS","team building","leadership"],"worksFor":{"@type":"Organization","name":"Loopetto","description":"Indie product experiments — Co-Founder & Builder (2025–present)"},"alumniOf":[{"@type":"Organization","name":"IHFB","description":"CTO / R&D Leadership (2021–2025) — grew the engineering org from 3 to 35+"},{"@type":"Organization","name":"Todait Inc.","description":"Founder & CEO (2015–2021) — study planner mobile app"}]}],"publisher":{"@type":"Organization","@id":"https://flowkater.io/#organization","name":"Flowkater.io","url":"https://flowkater.io/","logo":{"@type":"ImageObject","url":"https://flowkater.io/favicon.svg"}},"isPartOf":{"@type":"Blog","name":"Flowkater.io","url":"https://flowkater.io/posts/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://flowkater.io/posts/2026-02-08-superpowers-introduction/"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["#article-summary-heading + p","#article > p:first-of-type"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://flowkater.io/#website","name":"Flowkater.io","url":"https://flowkater.io/","description":"한국어 개발 회고, AI 코딩, 에이전트 워크플로우, 스타트업 제품 개발을 기록하는 Tony의 블로그","inLanguage":"ko","publisher":{"@type":"Organization","@id":"https://flowkater.io/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://flowkater.io/search/?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://flowkater.io/#organization","name":"Flowkater.io","url":"https://flowkater.io/","description":"한국어 개발 회고, AI 코딩, 에이전트 워크플로우, 스타트업 제품 개발을 기록하는 Tony의 블로그","logo":"https://flowkater.io/favicon.svg","founder":{"@type":"Person","@id":"https://flowkater.io/about/#person"},"sameAs":["https://github.com/flowkater","https://www.threads.net/@flowkater","https://www.linkedin.com/in/jaewoo-cho-6a943750/"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://flowkater.io/about/#person","name":"Tony Cho","url":"https://flowkater.io/about/","image":"https://flowkater.io/desk-og.jpg","email":"chjw102@gmail.com","jobTitle":"Product Engineer, Fractional CTO, and Writer","description":"제품을 만들고 회고를 남기는 개발자이자 Fractional CTO. 제품 아키텍처, AI production readiness, web·mobile, AI-native 조직과 리더십을 다룬다.","sameAs":["https://github.com/flowkater","https://www.linkedin.com/in/jaewoo-cho-6a943750/","https://www.threads.net/@flowkater"],"knowsAbout":["AI coding","AI agents","developer productivity","startup product development","Fractional CTO","product architecture","AI product engineering","AI transformation","retrospectives","Go","React","SwiftUI","iOS","team building","leadership"],"worksFor":{"@type":"Organization","name":"Loopetto","description":"Indie product experiments — Co-Founder & Builder (2025–present)"},"alumniOf":[{"@type":"Organization","name":"IHFB","description":"CTO / R&D Leadership (2021–2025) — grew the engineering org from 3 to 35+"},{"@type":"Organization","name":"Todait Inc.","description":"Founder & CEO (2015–2021) — study planner mobile app"}]}</script><!-- Enable RSS feed auto-discovery  --><link rel="alternate" type="application/rss+xml" title="Flowkater.io" href="https://flowkater.io/rss.xml" hreflang="ko"><link rel="alternate" type="application/rss+xml" title="Flowkater.io (English)" href="https://flowkater.io/rss.en.xml" hreflang="en"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DmQZLfuR.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-F9CRSLNLL8"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-F9CRSLNLL8', { send_page_view: false });
+
+function trackAstroPageView() {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', 'page_view', {
+    send_to: 'G-F9CRSLNLL8',
+    page_path: window.location.pathname + window.location.search,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
+}
+
+document.addEventListener('astro:page-load', trackAstroPageView, {
+  passive: true,
+});
+
+trackAstroPageView();</script><script type="text/javascript" id="posthog-js">
+  /* eslint-disable @typescript-eslint/no-unused-expressions, no-var, prefer-rest-params */
+  !(function (t, e) {
+    var o, n, p, r;
+    e.__SV ||
+      ((window.posthog = e),
+      (e._i = []),
+      (e.init = function (i, s, a) {
+        function g(t, e) {
+          var o = e.split(".");
+          (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+            (t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            }));
+        }
+        (((p = t.createElement("script")).type = "text/javascript"),
+          (p.crossOrigin = "anonymous"),
+          (p.async = !0),
+          (p.src =
+            s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js"),
+          (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+            p,
+            r
+          ));
+        var u = e;
+        for (
+          void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+            u.people = u.people || [],
+            u.toString = function (t) {
+              var e = "posthog";
+              return (
+                "posthog" !== a && (e += "." + a),
+                t || (e += " (stub)"),
+                e
+              );
+            },
+            u.people.toString = function () {
+              return u.toString(1) + ".people (stub)";
+            },
+            o =
+              "init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(
+                " "
+              ),
+            n = 0;
+          n < o.length;
+          n++
+        )
+          g(u, o[n]);
+        e._i.push([i, s, a]);
+      }),
+      (e.__SV = 1));
+  })(document, window.posthog || []);
+  posthog.init("phc_mDOIDGNHoVPPmoKdF3GItgg38rMqjys4ZdGy31jKtX", {
+    api_host: "https://us.i.posthog.com",
+    defaults: "2025-11-30",
+  });
+</script> <!-- Handle Astro View Transitions for PostHog pageview tracking --><script>
+  document.addEventListener("astro:page-load", function () {
+    if (typeof window.posthog !== "undefined" && window.posthog.capture) {
+      window.posthog.capture("$pageview");
+    }
+  });
+</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Flowkater.io","item":"https://flowkater.io"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://flowkater.io/posts/"},{"@type":"ListItem","position":3,"name":"Claude Code에 날개를 달아줘라! - Superpowers 소개","item":"https://flowkater.io/posts/2026-02-08-superpowers-introduction/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Superpowers란 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"Superpowers는 Claude Code용 스킬 프레임워크로, 마크다운 기반 지식 모듈(Skills)을 통해 AI에게 브레인스토밍, TDD, 코드 리뷰 등 체계적인 개발 워크플로우를 자동으로 수행하게 합니다. 설득의 심리학 원칙을 LLM에 적용하여 스킬 준수를 강제합니다."}},{"@type":"Question","name":"Superpowers는 어떻게 설치하나요?","acceptedAnswer":{"@type":"Answer","text":"Claude Code 2.0.13 이상에서 /plugin marketplace add obra/superpowers-marketplace 명령어로 마켓플레이스를 등록한 뒤, /plugin install superpowers@superpowers-marketplace로 설치합니다. 설치 완료 시 'I have Superpowers' 메시지가 표시됩니다."}},{"@type":"Question","name":"Superpowers의 7단계 워크플로우는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"브레인스토밍, Git 워크트리 생성, 계획 작성, 서브 에이전트 기반 개발, TDD 및 디버깅, 검증, 코드 리뷰 및 피니싱의 7단계입니다. 명령어 없이 자동으로 이 흐름이 시작됩니다."}},{"@type":"Question","name":"Writing Skills 메타 스킬로 무엇을 할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"기존 스킬을 업데이트하거나 새로운 커스텀 스킬을 생성할 수 있습니다. 예를 들어 회사 코딩 컨벤션 강제 스킬, 외부 API 연동 스킬 등을 만들 수 있으며, 프로그래밍 책 PDF를 던져주고 스킬로 변환하는 것도 가능합니다."}}]}</script><meta name="keywords" content="Claude Code, Superpowers, AI 코딩, 개발 워크플로우, TDD, 스킬 프레임워크, 서브 에이전트, 코드 리뷰, 바이브 코딩, AI 개발 자동화, Claude Code 플러그인, 설득의 심리학 LLM"><meta property="article:section" content="스터디"><meta property="article:tag" content="Claude Code"><meta property="article:tag" content="Superpowers"><meta property="article:tag" content="AI 코딩"><meta property="article:tag" content="개발 워크플로우"><meta property="article:tag" content="TDD"><meta property="article:tag" content="스킬 프레임워크"><meta property="article:tag" content="서브 에이전트"><meta property="article:tag" content="코드 리뷰"><meta property="article:tag" content="바이브 코딩"><meta property="article:tag" content="AI 개발 자동화"><meta property="article:tag" content="Claude Code 플러그인"><meta property="article:tag" content="설득의 심리학 LLM"><link rel="alternate" hreflang="ko" href="https://flowkater.io/posts/2026-02-08-superpowers-introduction/"><link rel="alternate" hreflang="en" href="https://flowkater.io/en/posts/2026-02-08-superpowers-introduction/"><link rel="alternate" hreflang="x-default" href="https://flowkater.io/posts/2026-02-08-superpowers-introduction/"><script src="/toggle-theme.js"></script><style>:where([data-astro-image]){height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}[data-astro-image-fit=fill]{object-fit:fill}[data-astro-image-fit=contain]{object-fit:contain}[data-astro-image-fit=cover]{object-fit:cover}[data-astro-image-fit=scale-down]{object-fit:scale-down}
+</style>
+<link rel="stylesheet" href="/_astro/Footer.Dlu1fLuP.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-467ahj5m-1"] { view-transition-name: claude-code\C5D0-\B0A0\AC1C\B97C-\B2EC\C544\C918\B77C-superpowers-\C18C\AC1C; }@layer astro { ::view-transition-old(claude-code\C5D0-\B0A0\AC1C\B97C-\B2EC\C544\C918\B77C-superpowers-\C18C\AC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(claude-code\C5D0-\B0A0\AC1C\B97C-\B2EC\C544\C918\B77C-superpowers-\C18C\AC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(claude-code\C5D0-\B0A0\AC1C\B97C-\B2EC\C544\C918\B77C-superpowers-\C18C\AC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(claude-code\C5D0-\B0A0\AC1C\B97C-\B2EC\C544\C918\B77C-superpowers-\C18C\AC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-467ahj5m-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-467ahj5m-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-467ahj5m-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-467ahj5m-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-467ahj5m-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-467ahj5m-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-467ahj5m-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-467ahj5m-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: \AE30\C220; }@layer astro { ::view-transition-old(\AE30\C220) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\AE30\C220) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\AE30\C220) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\AE30\C220) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: \BC14\C774\BE0C\CF54\B529; }@layer astro { ::view-transition-old(\BC14\C774\BE0C\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\BC14\C774\BE0C\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\BC14\C774\BE0C\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\BC14\C774\BE0C\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: ai\CF54\B529; }@layer astro { ::view-transition-old(ai\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(ai\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(ai\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(ai\CF54\B529) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: \AC1C\BC1C; }@layer astro { ::view-transition-old(\AC1C\BC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\AC1C\BC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\AC1C\BC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\AC1C\BC1C) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>      <header> <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Flowkater.io </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="https://nuggest.flowkater.io/daily/tech" target="_blank" rel="noopener noreferrer">
+Nuggets
+</a> </li> <li class="col-span-2"> <a href="/fractional-cto/">
+CTO
+</a> </li> <li class="col-span-2"> <a href="/categories">
+Categories
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/en/posts" title="Read in English (AI-translated)" hreflang="en" class="focus-outline flex items-center px-2 py-1 text-sm font-semibold tracking-wide opacity-70 hover:text-accent hover:opacity-100"> EN </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="mx-auto max-w-app px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-app items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-app px-4 pb-12" data-pagefind-body> <a href="/categories/study/" class="mb-2 inline-block text-sm font-medium opacity-70 hover:opacity-100"> 🔬 스터디 </a> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-467ahj5m-1"> Claude Code에 날개를 달아줘라! - Superpowers 소개 </h1> <div class="my-2 flex flex-wrap items-center gap-2 text-sm text-foreground/70"> <span>by Tony Cho</span> <span aria-hidden="true">·</span> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2026-02-08T01:00:00.000Z">8 Feb, 2026</time> </div>  <span aria-hidden="true">·</span> <span> 10분 </span>  <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  <span aria-hidden="true" class="opacity-60">
+|
+</span>  <a href="/en/posts/2026-02-08-superpowers-introduction/" class="text-sm underline opacity-80 hover:opacity-100" hreflang="en">
+Read in English
+</a> </div>  <section aria-labelledby="article-summary-heading" class="mt-8 rounded-xl border border-border bg-muted/30 px-5 py-4"> <h2 id="article-summary-heading" class="text-base font-semibold"> 핵심 요약 </h2> <p class="mt-2 text-sm leading-7 text-foreground/80">Claude Code에 Superpowers를 설치하면 바로 코딩부터 하던 AI가 질문부터 시작하고, 설계하고, 계획하고, TDD로 구현하고, 코드 리뷰까지 자동으로 수행한다. 설득의 심리학 원칙을 LLM에 적용해 스킬 준수를 강제하는 프레임워크로, GitHub 4.7만 스타를 받은 오픈소스 프로젝트다. 7단계 워크플로우, Writing Skills 메타 스킬, 실전 활용 팁까지 정리했다.</p> </section> <article id="article" class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="들어가며">들어가며</h2>
+<p><img src="/assets/superpowers.png" alt="Superpowers"></p>
+<blockquote>
+<p>Red Bull gives you wiiings!
+<strong>레드불, 날개를 펼쳐줘요!</strong>
+— 레드불 광고</p>
+</blockquote>
+<p>완전히 처음에 아이디어를 테스트해보거나 바이브 코딩을 잠깐 ‘우와’하고 쓰고 말 것이 아니라면, 꽤 많은 경우 context를 구체화하고 정확한 프롬프트를 전달하고, Spec 문서를 먼저 작성하는 스펙 주도 개발 등 여러 방법을 사용한다.</p>
+<p>그런데 어떤 방식으로 정의하고 전달해도, 자기가 마음대로 판단하고 의도하지 않은 방향으로 작업이 진행되는 경우가 잦다. 특히 프로젝트가 점점 복잡해지고 커지면서 더 그렇다. 그래서 내가 도입한 커맨드 하나는 interview 커맨드인데, 프론트매터 설명은 대략 이렇다.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="markdown"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">---</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">description: ></span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  프로젝트 요구사항이 불분명할 때, Claude가 직접 질문을 통해</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  세부 정책, 구현 방법, 엣지 케이스를 명확히 하는 인터뷰 커맨드.</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  "니가 판단하지 말고, 애매한 게 명확해질 때까지 나한테 계속 질문해라."</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#82B1FF">---</span></span></code></pre>
+<p>요약하면, “니가 판단하지 말고, 애매한 게 명확해질 때까지 나한테 계속 질문해라.” 정도이다. 그러면 자기 마음대로 판단하지 않고 AskUserQuestions를 이용해서 세부 정책이나 현재 구현 방법 또는 요구사항에 대해서 명확하게 나를 대상으로 인터뷰가 진행된다. 특히 우리가 기획 내용이나 요구사항을 전달했을 때, “언어”라는 본질을 흐리는 표상의 원죄로 아무리 명확히 작성해도 AI는 잘못 이해한다. (사람도 마찬가지) 그리고 사실 내가 요구사항을 던지면서도 세부 정책은 생각하지 않고 막 던지는 경우도 많고.</p>
+<p>그래서 Codex나 Claude Code에서 plan mode를 키고 인터뷰 커맨드를 실행하면 굉장히 구체화된 요구사항과 구현 계획이 세워지게 된다. 처음 기능을 구현할 때도, 버그를 고칠 때도 여러모로 전부 쓸모가 있다.</p>
+<p>그리고 내 이전 글 <a href="https://flowkater.io/posts/2026-01-09-15-year-cto-vibe-coding/">15년차 CTO가 바이브 코딩하는 법</a>에서 얘기한 TDD Planning을 마치고 작업을 들어가면, 아주 구체적이고 단계별로 나뉘어진 계획을 따르게 된다.</p>
+<p>하지만 작업을 병렬적으로 하다 보면 이 커맨드 실행을 까먹을 때도 있고, TDD Planning 특성상 언어나 프레임워크마다 사용 포맷이 좀 다르다 보니 그때마다 맞춤형 스킬을 세팅하는 게 번거로워서 클라이언트에서는 스킵되는 경우가 많았다. 인터뷰 또한 구체적으로 물어보는 건 좋으나, 또 어느 정도는 알잘딱이 되었으면 했고.. (사람 마음이란..)</p>
+<p>그럼에도 불구하고 잘 사용하던 와중에, 내가 직접 만들고 사용하고 있던 모든 커맨드와 스킬을 통합하고 <strong>로버트 치알디니</strong>의 <strong>설득의 심리학</strong>을 기반으로 LLM에 적용한 스킬 프레임워크를 발견했다. 이름 그대로 우리 코드 에이전트(Claude Code, Codex 등)에게 슈퍼파워를 달아주는 프레임워크, <strong>Superpowers</strong>다.</p>
+<p>치알디니 본인이 참여한 연구에서 이 원칙이 LLM에도 먹힌다는 게 실제로 증명됐다. Superpowers는 치알디니의 6가지 설득 원칙 중 세 가지를 핵심적으로 적용한다.</p>
+<p><strong>설득의 심리학 3가지 원칙 적용</strong></p>
+<ol>
+<li><strong>권위의 원칙</strong>: 스킬 파일에 해당 스킬이 필수임을 명시하여, Claude(또는 Codex)가 반드시 따라야 한다고 인식하게 한다.</li>
+<li><strong>일관성의 원칙</strong>: Claude(또는 Codex)에게 특정 스킬을 따르겠다고 선언하게 만들어, 선언한 내용을 지키도록 유도한다.</li>
+<li><strong>사회적 증거</strong>: 다른 스킬들도 모두 이 방식을 따른다고 알려주어, Claude(또는 Codex)가 이를 표준으로 인식하게 한다.</li>
+</ol>
+<p>Claude Code에서는 설치도 간단하다. 마켓플레이스에서 플러그인을 바로 받아주면 된다. 난 간단한 작업이나 빠르게 치는 작업은 Claude Code, 프로덕션 레벨은 보통 Codex를 많이 쓰는데, Superpowers는 둘 다에서 아주 유용하게 사용된다.</p>
+<p>특히 내가 적극 활용하는 인터뷰나 TDD 워크플로우 모두를 반영하면서도, 코드 리뷰나 검증 등의 추가 보완 스킬을 모두 포함한 프레임워크이니, 여기서 소개를 해보려고 한다.</p>
+<hr>
+<h2 id="설치-및-기본-사용법">설치 및 기본 사용법</h2>
+<h3 id="설치">설치</h3>
+<p>Superpowers는 Claude Code 2.0.13 이상에서 동작한다. 설치는 두 줄이면 끝난다.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 1. 마켓플레이스 등록</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">/plugin</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> marketplace</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> add</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> obra/superpowers-marketplace</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 2. Superpowers 설치</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">/plugin</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> install</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> superpowers@superpowers-marketplace</span></span></code></pre>
+<p>설치 후에도 작동하지 않는다면 Claude Code를 껐다가 다시 켜면 된다. 설치가 완료되면 **“I have Superpowers”**라는 메시지가 표시되며, Brainstorm, Write Plan, Execute Plan 등의 스킬을 사용할 수 있게 된다.</p>
+<p>참고로 Claude Code뿐만 아니라 Codex나 OpenCode에서도 사용 가능하다. (GitHub 스타 4.7만 개를 받은 오픈소스 프로젝트(MIT License)이니 안심하고 써도 된다.)</p>
+<h3 id="핵심-변화-바로-코딩하지-않는다">핵심 변화: 바로 코딩하지 않는다</h3>
+<p>Superpowers를 설치하고 나면 가장 먼저 체감되는 변화가 있다. <strong>Claude가 절대로 바로 코딩하지 않는다.</strong> 일반 Claude Code에서 “만들어 줘”라고 하면 바로 코드부터 치기 시작하는데, Superpowers가 설치된 Claude는 무조건 질문부터 시작한다.</p>
+<p>이게 핵심이다. 내가 만들었던 interview 커맨드가 자동으로 내장된 셈이다. 그것도 명령어 없이.</p>
+<p>질문 -> 설계 -> 계획 -> TDD -> 서브 에이전트 위임 -> 코드 리뷰 -> 완성.</p>
+<p>이 흐름이 <strong>명령어 없이 자동으로</strong> 시작된다는 점이 Superpowers의 가장 큰 장점이다.</p>
+<hr>
+<h2 id="개발-워크플로우-7단계">개발 워크플로우: 7단계</h2>
+<p>Superpowers의 워크플로우는 7단계로 구성된다. 전체 흐름을 먼저 보자.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">flowchart TD</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    A["1. Brainstorming\n질문 &#x26; 설계 문서 작성"] --> B["2. Git Worktrees\n독립 워크트리 생성"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    B --> C["3. Writing Plan\n태스크 분해 &#x26; 승인"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    C --> D["4. Development\n서브 에이전트 병렬 개발"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    D --> E["5. Testing (TDD)\nRED -> GREEN -> REFACTOR"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    E --> F["6. Verification\n수정 사항 검증"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    F --> G["7. Code Review &#x26; Finishing\n리뷰 &#x26; PR 생성"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    G -->|"다음 태스크"| D</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    E -->|"테스트 실패"| H["Systematic Debugging\n4단계 근본 원인 분석"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    H --> E</span></span></code></pre>
+<h3 id="1단계-브레인스토밍">1단계: 브레인스토밍</h3>
+<p>프로젝트를 요청하면, Claude는 바로 코딩하지 않고 <strong>질문부터 시작</strong>한다.</p>
+<blockquote>
+<p>“무엇을 어떻게 만들 건가요?”
+“대표 문구는 어떻게 쓸까요?”
+“상황 입력은 자유 텍스트인가요, 카테고리 선택인가요?”</p>
+</blockquote>
+<p>이런 식으로 대화를 통해 기능 목록, 기술 스택, 컴포넌트 구조 등을 포함한 <strong>설계 문서</strong>를 스스로 작성한다.</p>
+<p>내가 이전에 만든 interview 커맨드와 비슷하지만, Superpowers는 이 과정이 별도 명령어 없이 자동으로 발동된다. 내가 까먹어도 Claude가 알아서 질문부터 한다. (이게 진짜 편하다.)</p>
+<h3 id="2단계-git-워크트리-생성">2단계: Git 워크트리 생성</h3>
+<p>설계가 승인되면, <strong>git worktrees</strong> 스킬을 이용해 독립된 워크트리를 생성한다.</p>
+<p>왜 워크트리인가? AI 코딩 시 여러 작업을 동시에 진행하다 보면 Git이 꼬이는 경우가 잦다. (나도 Codex에서 병렬 작업하다 merge conflict 지옥을 겪은 적이 한두 번이 아니다.) 워크트리로 분리하면 실험 중 문제가 생겨도 메인 브랜치는 안전하고, 워크트리만 삭제하면 깔끔하게 원복된다.</p>
+<h3 id="3단계-계획-작성-writing-plan">3단계: 계획 작성 (Writing Plan)</h3>
+<p>Writing Plan 스킬이 설계 문서를 받아서 <strong>구체적인 태스크(Task)로 쪼갠다.</strong> 태스크는 사이즈별로 분해되고, Claude는 사용자에게 계획 승인을 요청한다.</p>
+<p>내가 만든 TDD Planning과 비슷한 흐름인데, 언어나 프레임워크에 상관없이 자동으로 적절한 포맷으로 만들어준다. 그때마다 맞춤형 스킬을 세팅하던 번거로움이 사라진 셈이다.</p>
+<h3 id="4단계-서브-에이전트-기반-개발">4단계: 서브 에이전트 기반 개발</h3>
+<p>여기서부터가 Superpowers의 진가가 드러난다.</p>
+<p>계획 실행 시 <strong>서브 에이전트 드리븐 방식</strong> 또는 <strong>배치 실행 방식</strong> 중 하나를 선택할 수 있다. 서브 에이전트 드리븐 방식이 더 효율적인데, 메인 Claude가 <strong>PM 역할</strong>을 하고 서브 에이전트들에게 개발을 시킨 후 결과물을 취합하는 구조다.</p>
+<p>일종의 오케스트라 지휘자와 비슷하다. 메인 Claude가 지휘자로서 전체 흐름을 관장하고, 서브 에이전트들이 각자 맡은 파트(UI, API, 데이터 레이어 등)를 동시에 작업한다. <strong>Dispatch Parallel Agent</strong> 스킬로 병렬 작업이 가능하니, 단일 Claude로 작업할 때 발생하는 컨텍스트 오류도 줄어든다.</p>
+<p>(단, Codex 는 아직 sub agent 를 지원하지 않기 때문에 사용이 불가하다.)</p>
+<h3 id="5단계-tdd-및-디버깅">5단계: TDD 및 디버깅</h3>
+<p>Superpowers는 <strong>TDD를 강제</strong>한다. RED -> GREEN -> REFACTOR 사이클을 반복한다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>단계</th><th>설명</th></tr></thead><tbody><tr><td><strong>RED</strong></td><td>테스트를 먼저 작성하고 실패를 확인</td></tr><tr><td><strong>GREEN</strong></td><td>최소한의 코드로 테스트를 통과시킴</td></tr><tr><td><strong>REFACTOR</strong></td><td>코드를 정리하고 품질을 개선</td></tr></tbody></table>
+<p>테스트 실패나 버그 발생 시에는 <strong>Systematic Debugging</strong> 스킬이 4단계 프로세스로 자동 발동된다.</p>
+<ol>
+<li><strong>에러 메시지 분석</strong> - 무엇이 잘못되었는지 파악</li>
+<li><strong>관련 코드 범위 특정</strong> - 어디서 문제가 발생했는지 좁히기</li>
+<li><strong>가설 수립 및 검증</strong> - 왜 발생했는지 추론하고 확인</li>
+<li><strong>수정 및 테스트</strong> - 고치고 다시 검증</li>
+</ol>
+<p>내 이전 글에서 말한 TDD 사이클과 거의 동일한 철학이다. 다만 Superpowers는 이걸 별도 커맨드 없이, 어떤 언어/프레임워크에서든 자동으로 적용한다는 점이 다르다.</p>
+<h3 id="6단계-검증-verification">6단계: 검증 (Verification)</h3>
+<p><strong>Verification</strong> 스킬이 모든 수정 사항을 확인한다. 테스트 재실행, 관련 기능 영향 확인, 엣지 케이스 체크 등을 수행한다.</p>
+<p>솔직히 Claude가 “다 됐어요”라고 해놓고 실제로는 안 돌아가는 경우, 한두 번 겪은 게 아니다. 이 검증 단계가 있으니까 그런 상황이 크게 줄어든다.</p>
+<h3 id="7단계-코드-리뷰-및-피니싱">7단계: 코드 리뷰 및 피니싱</h3>
+<p>태스크 하나가 끝날 때마다 <strong>코드 리뷰</strong>를 진행한다. 2단계 리뷰 구조다.</p>
+<ol>
+<li><strong>스펙 준수 확인</strong> - 요구사항대로 구현했는가</li>
+<li><strong>코드 품질 확인</strong> - 보안 취약점, 성능 이슈, 코드 스타일 등</li>
+</ol>
+<p>리뷰 결과는 Critical, Major, Minor로 분류되고, 피드백에 따라 자동으로 코드를 수정한다.</p>
+<p>모든 태스크가 완료되면 <strong>Finishing</strong> 스킬이 워크트리 정리, PR 생성까지 처리한다.</p>
+<hr>
+<h2 id="writing-skills-메타-스킬의-힘">Writing Skills: 메타 스킬의 힘</h2>
+<h3 id="스킬-라이브러리">스킬 라이브러리</h3>
+<p>Superpowers에 내장된 스킬들을 정리하면 이렇다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>카테고리</th><th>스킬</th><th>설명</th></tr></thead><tbody><tr><td><strong>Testing &#x26; Quality</strong></td><td>TDD</td><td>RED-GREEN-REFACTOR 사이클</td></tr><tr><td><strong>Debugging</strong></td><td>Systematic Debugging</td><td>4단계 근본 원인 분석</td></tr><tr><td><strong>Debugging</strong></td><td>Verification</td><td>완료 전 검증</td></tr><tr><td><strong>Collaboration</strong></td><td>Brainstorming</td><td>질문 기반 요구사항 정의</td></tr><tr><td><strong>Collaboration</strong></td><td>Plan Composition/Execution</td><td>계획 작성 및 실행</td></tr><tr><td><strong>Collaboration</strong></td><td>Parallel Agent Dispatching</td><td>서브 에이전트 병렬 작업</td></tr><tr><td><strong>Collaboration</strong></td><td>Code Review</td><td>2단계 코드 리뷰</td></tr><tr><td><strong>Collaboration</strong></td><td>Git Worktree Management</td><td>워크트리 생성/정리</td></tr><tr><td><strong>Collaboration</strong></td><td>Subagent-Driven Development</td><td>PM-개발자 분업</td></tr><tr><td><strong>Meta</strong></td><td>Writing Skills</td><td>스킬 생성/수정 프레임워크</td></tr><tr><td><strong>Meta</strong></td><td>Superpowers Introduction</td><td>시스템 소개</td></tr></tbody></table>
+<p>모든 스킬은 <strong>마크다운 파일 기반</strong>이다. 절차, 모범 사례, 워크플로우를 문서화한 재사용 가능한 지식 모듈이라고 보면 된다.</p>
+<h3 id="커스텀-스킬-만들기">커스텀 스킬 만들기</h3>
+<p>여기서 진짜 강력한 게 <strong>Writing Skills</strong> 메타 스킬이다. 기존 스킬을 업데이트하거나 <strong>새로운 스킬을 직접 생성</strong>할 수 있다.</p>
+<p>사용법은 간단하다. Claude에게 이렇게 말하면 된다.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>"우리 회사 코딩 컨벤션을 강제하는 스킬을 만들어 줘"</span></span></code></pre>
+<p>그러면 Claude가 알아서 스킬 파일을 생성한다. 새로운 스킬을 만들 때도 TDD, 서브 에이전트, 압박 시나리오 확인 등 기존 개발 프로세스를 동일하게 적용한다. 스킬을 만드는 것 자체가 Superpowers 워크플로우를 따르는 거다.</p>
+<p>더 재밌는 건, <strong>프로그래밍 책 PDF를 던져주고 “책 읽고 새로 배운 걸 스킬로 만들어”라고 요청</strong>하는 것도 가능하다는 점이다. 클린 코드 원칙이든, 특정 아키텍처 패턴이든, 문서화된 지식이면 뭐든 스킬로 변환할 수 있다.</p>
+<h3 id="실전-사례들">실전 사례들</h3>
+<p>Superpowers의 진가는 실전에서 드러난다. 몇 가지 사례를 살펴보자.</p>
+<p><strong>1. <a href="https://www.trevorlasn.com/blog/superpowers-claude-code-skills">Next.js 16 마이그레이션</a> — 500줄 계획이 자동 생성</strong></p>
+<p>한 개발자가 자신의 서비스를 Next.js 16으로 업그레이드하면서 <code>cacheComponents</code> 기능을 활성화하는 작업을 Superpowers에 맡겼다. <code>/superpowers:write-plan</code>을 실행하자, <strong>500줄짜리 마이그레이션 계획</strong>이 생성되었다.</p>
+<ul>
+<li>수정이 필요한 <strong>23개 API 라우트 파일</strong> 전체 목록</li>
+<li><code>new Date()</code> 사용으로 프리렌더링이 깨질 <strong>2개 컴포넌트</strong> 식별</li>
+<li>Suspense 경계 설정이 필요한 <strong>컨텍스트 프로바이더</strong> 특정</li>
+<li><strong>4일 타임라인</strong>과 각 단계별 테스트 체크포인트</li>
+</ul>
+<p>사람이 코드베이스를 분석해서 이 목록을 만들었다면 하루 이상 걸렸을 작업이다.</p>
+<p><strong>2. <a href="https://www.pasqualepillitteri.it/en/news/215/superpowers-claude-code-complete-guide">Notion 클론</a> — 45분, 수동 코드 0줄</strong></p>
+<p>Notion 스타일의 웹 앱(리치 텍스트 에디터, 인터랙티브 테이블, 드래그앤드롭 칸반보드)을 Superpowers로 개발한 사례다. 결과가 꽤 인상적이다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>항목</th><th>결과</th></tr></thead><tbody><tr><td>개발 시간</td><td>45~60분 (대부분 자동)</td></tr><tr><td>테스트 커버리지</td><td>87% (단위, 통합, E2E)</td></tr><tr><td>수동 작성 코드</td><td><strong>0줄</strong></td></tr><tr><td>포함 기능</td><td>CRUD 테이블, 칸반보드, 리치 텍스트, 인증</td></tr></tbody></table>
+<p><strong>3. <a href="https://www.nathanonn.com/claude-skills-part-2-how-to-turn-your-battle-tested-code-into-a-reusable-superpower/">인증 시스템 스킬화</a> — 6개 프로젝트에 14시간 절감</strong></p>
+<p>한 개발자가 여러 프로젝트에서 반복 구축하던 인증 시스템(OAuth, 세션 관리, 토큰 갱신 등)을 Writing Skills로 스킬화한 사례다. 기존 코드베이스를 분석해서 302줄의 구현 가이드를 생성하고, ASCII 와이어프레임으로 모든 화면을 매핑한 뒤, 약 <strong>20분 만에 재사용 가능한 스킬을 완성</strong>했다. 이후 새 프로젝트에서 <code>/authentication-setup</code> 한 줄로 전체 인증 시스템을 배포했고, <strong>6개 프로젝트에 적용하면서 총 14시간을 절감</strong>했다. 100% 일관성도 유지됐다.</p>
+<p><strong>4. <a href="https://www.youtube.com/watch?v=308zzinIVSA&#x26;t=210s">채널톡 연동 스킬</a> — 3일을 30분에</strong></p>
+<p>채널톡 공식 문서 전체를 Claude에게 전달하고, Writing Skills로 채널톡 연동 스킬을 만든 사례다. 이 스킬을 설치하면 “채널톡 연동 해줘”라고만 요청해도 SDK 설치, 봇 설정, 웹훅 연결, ALF 태스크까지 모두 자동 처리된다. 원래 3일 걸릴 작업이 <strong>30분</strong>이면 끝난다.</p>
+<p>결국 Superpowers의 진짜 가치는 <strong>스킬을 쌓아갈수록 점점 강력해진다</strong>는 점이다. 프로젝트별로, 팀별로, 회사별로 맞춤형 스킬을 축적하면, 그 자체가 팀의 개발 지식 베이스가 된다.</p>
+<hr>
+<h2 id="왜-잘-동작하나-설득의-심리학--압박-테스트">왜 잘 동작하나?: 설득의 심리학 + 압박 테스트</h2>
+<h3 id="압박-시나리오로-단련된-스킬">압박 시나리오로 단련된 스킬</h3>
+<p>Superpowers의 제작자는 단순히 스킬을 만들고 끝낸 게 아니다. <strong>프로덕션 서버 다운, 분당 5,000달러 손실</strong> 같은 극한 압박 시나리오를 사용해서 스킬을 테스트했다.</p>
+<p>왜냐하면, 압박 상황에서 Claude가 스킬을 무시하고 바로 코딩하려는 경향이 있기 때문이다. 제작자는 이런 상황에서 Claude가 스킬을 사용하지 않고 바로 코딩하면, 테스트를 실패 처리하고 스킬을 더 강화하는 과정을 반복했다.</p>
+<p>그래서 Superpowers의 스킬들은 단순한 프롬프트가 아니라, <strong>실전에서 검증된 프레임워크</strong>다. 급한 상황에서도 “일단 질문부터, 계획부터”라는 프로세스를 지킨다.</p>
+<p><strong>Superpowers의 철학</strong></p>
+<p>Superpowers가 지향하는 핵심 철학을 정리하면 이렇다.</p>
+<ul>
+<li><strong>Test-first development</strong> - 테스트가 먼저, 구현은 그 다음</li>
+<li><strong>Systematic processes over intuition</strong> - 직감보다 체계적 프로세스</li>
+<li><strong>Simplicity as primary objective</strong> - 단순함이 최우선 목표</li>
+<li><strong>Empirical verification before success declarations</strong> - “됐어요” 전에 실제 검증</li>
+</ul>
+<p>결국 좋은 개발 습관을 AI에게 강제하는 거다.</p>
+<hr>
+<h2 id="실전-활용-팁">실전 활용 팁</h2>
+<p><strong>토큰 사용량 참고</strong></p>
+<p>Superpowers는 계획 단계에서 딥 이터레이션을 하기 때문에 토큰을 많이 사용한다. Claude Max 플랜을 추천한다. 간단한 기능 수정에는 오버킬일 수 있으니, 적합한 사용 시점을 잘 골라야 한다.</p>
+<p><strong>이럴 때 쓰면 좋다</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>상황</th><th>적합도</th><th>이유</th></tr></thead><tbody><tr><td>신규 MVP 프로젝트 시작</td><td>높음</td><td>설계부터 구현까지 전체 흐름 활용</td></tr><tr><td>복잡한 기능 추가</td><td>높음</td><td>서브 에이전트 병렬 개발 + TDD</td></tr><tr><td>전체 코드 리팩토링</td><td>높음</td><td>체계적 계획 + 검증이 중요</td></tr><tr><td>간단한 버그 수정</td><td>낮음</td><td>오버킬, 직접 수정이 빠름</td></tr><tr><td>한 줄짜리 설정 변경</td><td>낮음</td><td>Superpowers 없이 진행</td></tr></tbody></table>
+<p><strong>야간 자율 작업</strong></p>
+<p>큰 플랜을 잡아 놓으면 몇 시간 동안 혼자서 자율 작업이 가능하다. 밤에 계획을 승인시키고 작업을 시키면, 아침에 PR이 와 있는 형태로 활용할 수 있다.</p>
+<hr>
+<h2 id="나가며">나가며</h2>
+<p>Superpowers를 한 마디로 요약하면, <strong>내가 하나하나 만들어 쓰던 interview 커맨드, TDD 스킬, 코드 리뷰 스킬을 하나로 통합하고, 거기에 서브 에이전트 병렬 개발과 Git 워크트리 관리까지 얹은 프레임워크</strong>다. 게다가 설득의 심리학까지 적용해서 AI가 이 워크플로우를 확실하게 지키도록 만들었다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>핵심 기능</th><th>설명</th></tr></thead><tbody><tr><td>자동 브레인스토밍</td><td>명령어 없이 질문부터 시작</td></tr><tr><td>7단계 워크플로우</td><td>설계 -> 계획 -> TDD -> 리뷰까지 자동</td></tr><tr><td>서브 에이전트</td><td>PM-개발자 분업, 병렬 실행</td></tr><tr><td>TDD 강제</td><td>RED-GREEN-REFACTOR 사이클</td></tr><tr><td>검증 내장</td><td>”됐어요” 사기 방지</td></tr><tr><td>Writing Skills</td><td>커스텀 스킬 자율 생성</td></tr><tr><td>심리학 기반</td><td>스킬 준수를 확실하게 강제</td></tr></tbody></table>
+<p>설치는 두 줄이면 끝나니, 일단 해보는 걸 추천한다. 처음부터 완벽하게 쓸 필요 없다. Superpowers를 깔고 평소처럼 작업을 시작하면, Claude가 알아서 질문부터 시작할 거다. 그 흐름을 따라가 보면서 자기한테 맞는 활용법을 찾아가면 된다.</p>
+<p>그리고 Writing Skills로 자기만의 스킬을 하나씩 추가해 나가면, 점점 더 강력해진다. 나도 계속 스킬을 추가하면서 쓰고 있다.</p>
+<blockquote>
+<p>“a complete software development workflow for your coding agents, built on top of a set of composable ‘skills.’”
+조합 가능한 스킬 위에 구축된, 코딩 에이전트를 위한 완전한 소프트웨어 개발 워크플로우.</p>
+<p>— Superpowers GitHub README</p>
+</blockquote>
+<p>Claude Code 지금 바로 Superpowers 설치하고, 다음 프로젝트에서 한번 써봐라.</p>
+<p>날개가 달린다.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=308zzinIVSA&#x26;t=210s">채널톡 사례 출처 포함 소개 영상</a></li>
+<li><a href="https://blog.fsck.com/2025/10/09/superpowers/">https://blog.fsck.com/2025/10/09/superpowers/</a></li>
+<li><a href="https://github.com/obra/superpowers">https://github.com/obra/superpowers</a></li>
+</ul> </article> <section id="article-faq" aria-labelledby="article-faq-heading" class="mt-10 rounded-xl border border-border bg-muted/30 px-5 py-5"> <h2 id="article-faq-heading" class="text-xl font-semibold"> 자주 묻는 질문 </h2> <dl class="mt-3 space-y-4"> <div> <dt class="font-semibold">Superpowers란 무엇인가요?</dt> <dd class="mt-1 text-foreground/80">Superpowers는 Claude Code용 스킬 프레임워크로, 마크다운 기반 지식 모듈(Skills)을 통해 AI에게 브레인스토밍, TDD, 코드 리뷰 등 체계적인 개발 워크플로우를 자동으로 수행하게 합니다. 설득의 심리학 원칙을 LLM에 적용하여 스킬 준수를 강제합니다.</dd> </div><div> <dt class="font-semibold">Superpowers는 어떻게 설치하나요?</dt> <dd class="mt-1 text-foreground/80">Claude Code 2.0.13 이상에서 /plugin marketplace add obra/superpowers-marketplace 명령어로 마켓플레이스를 등록한 뒤, /plugin install superpowers@superpowers-marketplace로 설치합니다. 설치 완료 시 &#39;I have Superpowers&#39; 메시지가 표시됩니다.</dd> </div><div> <dt class="font-semibold">Superpowers의 7단계 워크플로우는 무엇인가요?</dt> <dd class="mt-1 text-foreground/80">브레인스토밍, Git 워크트리 생성, 계획 작성, 서브 에이전트 기반 개발, TDD 및 디버깅, 검증, 코드 리뷰 및 피니싱의 7단계입니다. 명령어 없이 자동으로 이 흐름이 시작됩니다.</dd> </div><div> <dt class="font-semibold">Writing Skills 메타 스킬로 무엇을 할 수 있나요?</dt> <dd class="mt-1 text-foreground/80">기존 스킬을 업데이트하거나 새로운 커스텀 스킬을 생성할 수 있습니다. 예를 들어 회사 코딩 컨벤션 강제 스킬, 외부 API 연동 스킬 등을 만들 수 있으며, 프로그래밍 책 PDF를 던져주고 스킬로 변환하는 것도 가능합니다.</dd> </div> </dl> </section> <section aria-labelledby="author-card-heading" class="rounded-xl border border-border bg-muted/30 px-5 py-5 mt-10"> <div class="flex flex-col gap-4 sm:flex-row sm:items-start"> <img src="https://flowkater.io/assets/tony-profile.jpg" alt="Tony Cho profile image" width="80" height="80" class="size-20 rounded-full border border-border object-cover" loading="lazy" decoding="async"> <div class="min-w-0 flex-1"> <p class="text-xs font-medium tracking-wide text-foreground/60 uppercase">
+About the author
+</p> <h2 id="author-card-heading" class="mt-1 text-lg font-semibold text-accent"> Tony Cho </h2> <p class="mt-1 text-sm text-foreground/70">Product Engineer, Fractional CTO, and Writer</p> <p class="mt-3 text-sm leading-7 text-foreground/80"> 제품을 만들고 회고를 남기는 개발자이자 Fractional CTO. 제품 아키텍처, AI production readiness, web·mobile, AI-native 조직과 리더십을 다룬다. </p> <ul class="mt-4 flex flex-wrap gap-2 text-sm"> <li> <a href="https://github.com/flowkater" class="inline-flex rounded-full border border-border px-3 py-1 transition-colors hover:border-accent/60 hover:bg-accent/5" target="_blank" rel="noopener noreferrer"> GitHub </a> </li><li> <a href="https://www.threads.net/@flowkater" class="inline-flex rounded-full border border-border px-3 py-1 transition-colors hover:border-accent/60 hover:bg-accent/5" target="_blank" rel="noopener noreferrer"> Threads </a> </li><li> <a href="https://www.linkedin.com/in/jaewoo-cho-6a943750/" class="inline-flex rounded-full border border-border px-3 py-1 transition-colors hover:border-accent/60 hover:bg-accent/5" target="_blank" rel="noopener noreferrer"> LinkedIn </a> </li> <li> <a href="https://flowkater.io/about/" class="inline-flex rounded-full border border-border px-3 py-1 transition-colors hover:border-accent/60 hover:bg-accent/5">
+About page
+</a> </li> </ul> </div> </div> </section> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/기술/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>기술</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/바이브코딩/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>바이브코딩</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/ai코딩/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>AI코딩</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/개발/" class="relative pe-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 focus-visible:no-underline text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -me-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>개발</span> </a> </li> </ul> <section class="my-10" aria-labelledby="related-posts-heading"> <h2 id="related-posts-heading" class="mb-4 text-xl font-semibold"> 함께 읽으면 좋은 글 </h2> <ul class="space-y-3"> <li> <a href="/posts/2026-03-08-ai-code-review" aria-label="Claude Code에 날개를 달아줘라! - Superpowers 소개 관련 글: AI 시대에 코드 리뷰, 어떻게 해야할까?" class="group flex flex-col gap-1 rounded-md border border-border px-4 py-3 transition-colors hover:border-accent/60 hover:bg-accent/5"> <span class="font-medium text-accent group-hover:underline"> AI 시대에 코드 리뷰, 어떻게 해야할까? </span> <span class="text-sm text-foreground/70"> 코드 리뷰는 항상 문제였다. 시간이 없어서, 사람이 없어서, 프로세스가 없어서. AI가 코드 생산량을 3배로 늘렸지만 리뷰 역량은 그대로다. 코드 리뷰를 없애자는 사람, 재설계하자는 사람, 절대 유지해야 한다는 사람 — 각 진영의 논거를 정리하고, AI 시대에 우리가 진짜 리뷰해야 할 것이 무엇인지 묻는다. </span> </a> </li><li> <a href="/posts/2026-03-06-anthropic-codepath-curriculum" aria-label="Claude Code에 날개를 달아줘라! - Superpowers 소개 관련 글: 세계 최대의 AI 기업은 차세대 엔지니어를 어떻게 교육하는가 — Anthropic x CodePath 커리큘럼 리뷰" class="group flex flex-col gap-1 rounded-md border border-border px-4 py-3 transition-colors hover:border-accent/60 hover:bg-accent/5"> <span class="font-medium text-accent group-hover:underline"> 세계 최대의 AI 기업은 차세대 엔지니어를 어떻게 교육하는가 — Anthropic x CodePath 커리큘럼 리뷰 </span> <span class="text-sm text-foreground/70"> Claude Code를 만든 Anthropic이 정작 가르치는 건 Claude Code를 의심하는 법이다. 3단계 30주 커리큘럼을 뜯어보면 &#39;AI가 짠 코드에서 버그를 찾아라&#39;가 첫 과제이고, 마지막은 실제 오픈소스 PR이다. 비판적 코드 평가, 대규모 코드베이스 이해, 프로덕션 관심사, 실전 기여 — 이 4가지가 Anthropic이 바라보는 AI Native Engineer의 조건이다. Stanford, Harvard, UW 등 미국 대학들의 AI 교육 실험과 Andrew Ng, 포쉔로의 시각을 교차하며, AI 시대 엔지니어에게 진짜 필요한 것이 무엇인지 파고든다. </span> </a> </li><li> <a href="/posts/2026-03-01-agentic-engineering-9-skills" aria-label="Claude Code에 날개를 달아줘라! - Superpowers 소개 관련 글: 에이전틱 엔지니어링 시대의 생존 스킬 9가지" class="group flex flex-col gap-1 rounded-md border border-border px-4 py-3 transition-colors hover:border-accent/60 hover:bg-accent/5"> <span class="font-medium text-accent group-hover:underline"> 에이전틱 엔지니어링 시대의 생존 스킬 9가지 </span> <span class="text-sm text-foreground/70"> Karpathy는 &#39;코드를 직접 타이핑하던 시대는 끝났다&#39;고 선언하며 에이전틱 엔지니어링이라는 이름을 붙였다. 하지만 끝난 건 타이핑이지 엔지니어링이 아니다. 분해 능력, 컨텍스트 설계, 완료 정의, 실패 복구, 관찰 가능성, 메모리 설계, 병렬 관리, 추상화 계층, 감각 — 에이전트 시대에 엔지니어가 갖춰야 할 9가지 능력을 경험과 함께 풀어본다. </span> </a> </li> </ul> </section> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <aside class="my-8 rounded-xl border border-border bg-muted/30 px-5 py-4 text-sm leading-relaxed" aria-labelledby="subscribe-heading"> <h3 id="subscribe-heading" class="font-semibold"> 새 글 받아보기 </h3> <p class="mt-1 opacity-80"> RSS 로 구독하거나 Threads 를 팔로우하세요. 새 글은 그곳에 먼저 올라옵니다. </p> <p class="mt-2 flex flex-wrap gap-3"> <a href="/rss.xml" class="text-accent underline">RSS</a> <a href="https://www.threads.net/@flowkater" class="text-accent underline" target="_blank" rel="noopener">Threads</a> </p> </aside> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post on:</span><div class="text-center"><a href="https://wa.me/?text=https://flowkater.io/posts/2026-02-08-superpowers-introduction/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg><span class="sr-only">Share this post via WhatsApp</span></a><a href="https://www.facebook.com/sharer.php?u=https://flowkater.io/posts/2026-02-08-superpowers-introduction/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg><span class="sr-only">Share this post on Facebook</span></a><a href="https://www.threads.net/intent/post?text=https://flowkater.io/posts/2026-02-08-superpowers-introduction/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Threads"><svg width="24" height="24" viewBox="0 0 24 24" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.77 8.515c2.23-1.812 5.444-.845 5.823 2.135c.403 3.163-.4 5.67-3.52 5.67c-2.895 0-2.806-2.52-2.806-2.52c0-2.7 4.589-3.06 7.262-1.71c4.9 3.15 1.336 8.91-4.01 8.91C8.09 21 4.5 18.75 4.5 12s3.59-9 8.02-9c3.125 0 5.944 1.626 6.98 4.879" /></svg><span class="sr-only">Share this post on Threads</span></a><a href="https://x.com/intent/post?url=https://flowkater.io/posts/2026-02-08-superpowers-introduction/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg><span class="sr-only">Share this post on X</span></a><a href="https://t.me/share/url?url=https://flowkater.io/posts/2026-02-08-superpowers-introduction/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg><span class="sr-only">Share this post via Telegram</span></a><a href="https://pinterest.com/pin/create/button/?url=https://flowkater.io/posts/2026-02-08-superpowers-introduction/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg><span class="sr-only">Share this post on Pinterest</span></a><a href="/cdn-cgi/l/email-protection#27185452454d4244531a744242021517534f4e54021517574854530104141f1c4548435e1a4f535357541d0808414b48504c46534255094e4808574854535408151715110a17150a171f0a54525742555748504255540a4e49535548435244534e484908" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg><span class="sr-only">Share this post via email</span></a></div></div> <hr class="my-8 border-dashed border-border"> <div id="post-reactions" class="flex items-center gap-3" data-post-slug="2026-02-08-superpowers-introduction"> <span class="text-sm text-foreground/60">반응</span> <div id="post-reaction-buttons" class="flex items-center gap-2"></div> </div> <hr class="my-8 border-dashed border-border"> <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="/_astro/PostReactions.astro_astro_type_script_index_0_lang.CCfGGzff.js"></script> <p class="mt-2 mb-4 text-center text-sm text-foreground/40"> 여기까지 읽어주셨다면, 한마디 남겨주세요. 경험, 반론, 질문 뭐든 환영합니다. </p> <section id="comments" class="mt-10" aria-labelledby="comments-heading" data-pagefind-ignore> <div id="comments-section" data-post-slug="2026-02-08-superpowers-introduction"> <h3 id="comments-heading" class="mb-6 text-lg font-semibold">
+댓글 <span id="comment-count" class="text-foreground/50"></span> </h3> <div id="comments-list" class="space-y-6"> <p class="text-sm text-foreground/50">댓글을 불러오는 중...</p> </div> <hr class="my-8 border-dashed border-border"> <div class="rounded-xl border border-border p-6"> <h4 class="mb-4 text-sm font-semibold">댓글 남기기</h4> <form id="comment-form" class="space-y-4"> <div class="grid grid-cols-1 gap-4 sm:grid-cols-2"> <div> <label for="comment-name" class="mb-1 block text-sm font-medium">이름</label> <input type="text" id="comment-name" name="name" required class="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-accent"> </div> <div> <label for="comment-email" class="mb-1 block text-sm font-medium">이메일</label> <input type="email" id="comment-email" name="email" required class="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-accent"> <p class="mt-1 text-xs text-foreground/40">이메일은 공개되지 않습니다</p> </div> </div> <div> <label for="comment-content" class="mb-1 block text-sm font-medium">내용</label> <textarea id="comment-content" name="content" required rows="4" class="w-full resize-y rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-accent"></textarea> </div> <button type="submit" class="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-80">
+댓글 남기기
+</button> </form> </div> </div> <script type="module" src="/_astro/Comments.astro_astro_type_script_index_0_lang.-LgNSADs.js"></script> <div class="mt-12 border-t border-dashed border-border pt-10"> <h2 class="mb-4 text-xl font-semibold opacity-70"> 기존 댓글 (Giscus) </h2> <div id="giscus-container"></div> </div> </section> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/2026-02-08-pangyo-it-episode-2-2" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">(픽션) 허공을 미는 사람들 - 에피소드 2, 허무한 성공 - 2</div> </div> </a> <a href="/posts/2026-02-03-book-review-the-obstacle-is-the-way" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">&quot;돌파력&quot;을 읽고 (feat. 명상록을 곁들인..)</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="mx-auto max-w-app px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/flowkater" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Flowkater.io on GitHub"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Flowkater.io on GitHub</span> </a><a href="https://www.threads.net/@flowkater" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Flowkater.io on Threads"> <svg width="24" height="24" viewBox="0 0 24 24" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.77 8.515c2.23-1.812 5.444-.845 5.823 2.135c.403 3.163-.4 5.67-3.52 5.67c-2.895 0-2.806-2.52-2.806-2.52c0-2.7 4.589-3.06 7.262-1.71c4.9 3.15 1.336 8.91-4.01 8.91C8.09 21 4.5 18.75 4.5 12s3.59-9 8.02-9c3.125 0 5.944 1.626 6.98 4.879" /></svg> <span class="sr-only">Flowkater.io on Threads</span> </a><a href="https://www.linkedin.com/in/jaewoo-cho-6a943750/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Flowkater.io on LinkedIn"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Flowkater.io on LinkedIn</span> </a><a href="/cdn-cgi/l/email-protection#0a6962607d3b3a384a6d676b636624696567" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to Flowkater.io"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Flowkater.io</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <a href="/en/posts/" class="underline underline-offset-2 opacity-70 hover:opacity-100" hreflang="en"> English </a> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <a href="/rss.xml" class="underline underline-offset-2 opacity-70 hover:opacity-100">
+RSS
+</a> </div> </div> </footer> <div id="floating-reaction" class="fixed bottom-6 left-1/2 z-20 hidden -translate-x-1/2 rounded-2xl border border-border bg-background/95 px-4 py-2 shadow-lg backdrop-blur-sm transition-all duration-300 max-w-[calc(100vw-2rem)]" data-post-slug="2026-02-08-superpowers-introduction"> <div class="flex flex-nowrap items-center gap-2 whitespace-nowrap"> <span class="hidden text-sm text-foreground/60 sm:inline">이 글이 어땠나요?</span> <div id="floating-reaction-buttons" class="flex flex-nowrap gap-1"></div> <button id="floating-reaction-close" type="button" class="flex-none text-foreground/30 hover:text-foreground/60 transition-colors" aria-label="닫기"> <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> <path d="M18 6L6 18M6 6l12 12"></path> </svg> </button> </div> </div> <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="/_astro/FloatingReaction.astro_astro_type_script_index_0_lang.BSOY3agy.js"></script> </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Render Mermaid diagrams when code fences use ```mermaid */
+  function initializeMermaid() {
+    const mermaidBlocks = Array.from(
+      document.querySelectorAll("pre[data-language='mermaid']")
+    );
+
+    for (const pre of mermaidBlocks) {
+      if (!(pre instanceof HTMLElement)) {
+        continue;
+      }
+      const source = pre.querySelector("code")?.textContent?.trim();
+      if (!source) {
+        continue;
+      }
+
+      const container = document.createElement("div");
+      container.className = "mermaid";
+      container.textContent = source;
+      pre.replaceWith(container);
+    }
+
+    const renderDiagrams = async () => {
+      if (!window.mermaid) {
+        return;
+      }
+      window.mermaid.initialize({ startOnLoad: false });
+      const nodes = Array.from(document.querySelectorAll(".mermaid"));
+      let index = 0;
+      for (const node of nodes) {
+        if (!(node instanceof HTMLElement)) {
+          continue;
+        }
+        const definition = node.textContent ?? "";
+        if (!definition.trim()) {
+          continue;
+        }
+        const id = `mermaid-${Date.now()}-${index++}`;
+        try {
+          const { svg } = await window.mermaid.render(id, definition);
+          node.innerHTML = svg;
+        } catch {
+          // Mermaid render failed - silently ignore
+        }
+      }
+    };
+
+    if (window.mermaid) {
+      renderDiagrams();
+      return;
+    }
+
+    let script = document.querySelector("script[data-mermaid-loader]");
+    if (script instanceof HTMLScriptElement) {
+      script.addEventListener(
+        "load",
+        () => {
+          void renderDiagrams();
+        },
+        { once: true }
+      );
+      return;
+    }
+
+    script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js";
+    script.async = true;
+    script.dataset.mermaidLoader = "true";
+    script.addEventListener(
+      "load",
+      () => {
+        void renderDiagrams();
+      },
+      { once: true }
+    );
+
+    document.head.appendChild(script);
+  }
+  initializeMermaid();
+  document.addEventListener("astro:after-swap", () => {
+    requestAnimationFrame(() => {
+      initializeMermaid();
+    });
+  });
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      if (codeBlock.dataset.language === "mermaid") {
+        continue;
+      }
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+
+  /** Load or re-load Giscus comments on navigation */
+  function loadGiscus() {
+    const container = document.getElementById("giscus-container");
+    if (!container) {
+      return;
+    }
+
+    container.innerHTML = "";
+
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.dataset.repo = "flowkater/flowkater.io";
+    script.dataset.repoId = "R_kgDOP1uhhQ";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOP1uhhc4Cv0oU";
+    script.dataset.mapping = "pathname";
+    script.dataset.strict = "0";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "bottom";
+    script.dataset.theme = "preferred_color_scheme";
+    script.dataset.lang = "ko";
+
+    container.appendChild(script);
+  }
+
+  if (document.getElementById("giscus-container")) {
+    loadGiscus();
+  }
+
+  if (!window.__giscusListenerAttached) {
+    document.addEventListener("astro:after-swap", () => {
+      if (document.getElementById("giscus-container")) {
+        loadGiscus();
+      }
+    });
+    window.__giscusListenerAttached = true;
+  }
+</script>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="disquiet style-vega">
+  <head>
+      <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BC27486NQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0BC27486NQ');
+  </script>
+
+
+    <title>Codex CLI 사용 후기 | Disquiet*</title>
+<meta name="description" content="오늘은 OpenAI의 Codex CLI를 활용해 바이브 코딩 테스트를 진행해보았습니다.테스트 목표는, 기존 프로젝트에 GPT-image-1 모델을 이용한 이미지 생성 기능을 추가하는 것이었습니다.설치는 간단했습니다. 로컬 환경(MacBook Pro M1)에 Codex를 설치하고, ...">
+<link rel="canonical" href="https://disquiet.io/articles/Yns49X">
+<meta property="og:description" content="오늘은 OpenAI의 Codex CLI를 활용해 바이브 코딩 테스트를 진행해보았습니다.테스트 목표는, 기존 프로젝트에 GPT-image-1 모델을 이용한 이미지 생성 기능을 추가하는 것이었습니다.설치는 간단했습니다. 로컬 환경(MacBook Pro M1)에 Codex를 설치하고, ...">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://disquiet.io/images/disquiet-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://disquiet.io/articles/Yns49X">
+<meta property="og:title" content="Codex CLI 사용 후기">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="오늘은 OpenAI의 Codex CLI를 활용해 바이브 코딩 테스트를 진행해보았습니다.테스트 목표는, 기존 프로젝트에 GPT-image-1 모델을 이용한 이미지 생성 기능을 추가하는 것이었습니다.설치는 간단했습니다. 로컬 환경(MacBook Pro M1)에 Codex를 설치하고, ...">
+<meta name="twitter:image" content="https://disquiet.io/images/disquiet-og.jpg">
+<meta name="twitter:title" content="Codex CLI 사용 후기">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Disquiet">
+    <meta name="theme-color" content="#000000">
+    <meta property="fb:app_id" content="186461220047377">
+    <meta name="naver-site-verification" content="8f167e1c71c9fec31699ab45552e78fecedd5eb0">
+    <meta name="google-site-verification" content="nymOCiFm5J8P3xSOc9-F0tiGUkBgEwfMmxmUybE7H8o">
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="MzWKIdXVpgt2mMwl8wvyGbUX-J9ezNePbzNxJHBpRUlmq-lk6vazfNPc9VqxhRVCFK0Gdn4Uc4RPdJ3uhTKpsA" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/assets/disquiet_favicon-e2470a54.png" />
+    <link rel="apple-touch-icon" type="image/png" href="/assets/disquiet_favicon-e2470a54.png" />
+
+    <link rel="stylesheet" href="/assets/tailwind-48b48553.css" data-turbo-track="reload" />
+    <script src="/assets/application-75602008.js" data-turbo-track="reload" type="module"></script>
+  </head>
+
+  <body class="bg-base-200 text-base-content antialiased font-sans">
+    <header class="sticky top-0 z-50 bg-base-100 border-b border-base-300 md:hidden" aria-label="모바일 헤더">
+  <div class="flex items-center justify-between h-14 px-4">
+    <a class="flex items-center shrink-0 text-base-content" aria-label="Disquiet 홈" href="/">
+      <svg class="h-auto w-6" width="160" height="138" viewBox="0 0 160 138" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_mobile_header)"><path d="M0 22.6838H36.9198C49.2264 22.6838 59.9321 24.9994 69.0227 29.6304C78.1133 34.2615 85.117 40.8793 90.0196 49.4839C94.9223 58.0885 97.3664 68.2225 97.3664 79.8716C97.3664 91.5207 94.9223 101.655 90.0196 110.259C85.117 118.864 78.1133 125.482 69.0227 130.113C59.9321 134.744 49.2264 137.059 36.9198 137.059H0V22.6838ZM36.2766 119.078C49.1263 119.078 59.1174 115.791 66.2641 109.187C73.3965 102.598 76.9698 92.8214 76.9698 79.8573C76.9698 66.8932 73.3965 57.1166 66.2641 50.5273C59.1317 43.9381 49.1263 40.6363 36.2766 40.6363H20.4252V119.064H36.2766V119.078Z" fill="currentColor"/><path d="M159.228 22.998L160 22.6979L152.396 9.80525L151.967 9.11917L133.357 23.6698L136.587 0.829015L136.716 0H120.665L124.024 23.6698L105.414 9.11917L97.3807 22.6979L119.636 31.6741L98.1526 40.3359L97.3807 40.6361L104.985 53.5287L105.414 54.2148L124.024 39.6641L120.793 62.5192L120.665 63.3339H136.716L133.357 39.6641L151.967 54.2148L160 40.6361L137.745 31.6741L159.228 22.998Z" fill="currentColor"/></g><defs><clipPath id="clip0_mobile_header"><rect width="160" height="137.059" fill="white"/></clipPath></defs></svg>
+</a>
+    <div class="flex items-center gap-1" data-test="disquiet-mobile-header-actions">
+
+      <div data-controller="dropdown" data-dropdown-placement-value="bottom-end">
+        <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="disquiet-mobile-menu"
+                aria-label="메뉴" data-test="disquiet-mobile-menu-trigger"
+                data-dropdown-target="trigger" data-action="click->dropdown#toggle"
+                class="flex items-center justify-center w-9 h-9 rounded-lg text-base-content/60">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-xl"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+        </button>
+
+        <div id="disquiet-mobile-menu" data-dropdown-target="content" role="menu"
+             class="hidden w-44 bg-base-100 border border-base-300 rounded-lg shadow-lg p-1">
+
+          <a role="menuitem" data-dropdown-target="item" class="flex items-center gap-3 px-3 py-2 rounded-md w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/groups">
+            <span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></span><span class="text-[15px]">그룹</span>
+</a>          <a role="menuitem" data-dropdown-target="item" class="flex items-center gap-3 px-3 py-2 rounded-md w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/profiles">
+            <span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M15 13a3 3 0 1 0-6 0"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path><circle cx="12" cy="8" r="2"></circle></svg></span><span class="text-[15px]">사람들</span>
+</a>
+          <div class="my-1 border-t border-base-200"></div>
+
+            <a role="menuitem" data-dropdown-target="item" class="flex items-center gap-3 px-3 py-2 rounded-md w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/login">
+              <span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m10 17 5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg></span><span class="text-[15px]">로그인</span>
+</a>        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="md:grid md:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_15rem] min-h-screen">
+      <aside class="hidden md:flex flex-col sticky top-0 self-start h-screen w-full bg-base-100 z-40 py-4 px-3">
+  <div class="mb-6 px-3">
+    <a class="flex items-center" href="/">
+      <svg class="h-auto w-6" width="160" height="138" viewBox="0 0 160 138" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_sidebar)"><path d="M0 22.6838H36.9198C49.2264 22.6838 59.9321 24.9994 69.0227 29.6304C78.1133 34.2615 85.117 40.8793 90.0196 49.4839C94.9223 58.0885 97.3664 68.2225 97.3664 79.8716C97.3664 91.5207 94.9223 101.655 90.0196 110.259C85.117 118.864 78.1133 125.482 69.0227 130.113C59.9321 134.744 49.2264 137.059 36.9198 137.059H0V22.6838ZM36.2766 119.078C49.1263 119.078 59.1174 115.791 66.2641 109.187C73.3965 102.598 76.9698 92.8214 76.9698 79.8573C76.9698 66.8932 73.3965 57.1166 66.2641 50.5273C59.1317 43.9381 49.1263 40.6363 36.2766 40.6363H20.4252V119.064H36.2766V119.078Z" fill="currentColor"/><path d="M159.228 22.998L160 22.6979L152.396 9.80525L151.967 9.11917L133.357 23.6698L136.587 0.829015L136.716 0H120.665L124.024 23.6698L105.414 9.11917L97.3807 22.6979L119.636 31.6741L98.1526 40.3359L97.3807 40.6361L104.985 53.5287L105.414 54.2148L124.024 39.6641L120.793 62.5192L120.665 63.3339H136.716L133.357 39.6641L151.967 54.2148L160 40.6361L137.745 31.6741L159.228 22.998Z" fill="currentColor"/></g><defs><clipPath id="clip0_sidebar"><rect width="160" height="137.059" fill="white"/></clipPath></defs></svg>
+</a>  </div>
+
+  <nav aria-label="메인 내비게이션" class="flex flex-col gap-1 w-full">
+    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/"><span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span><span class="text-[15px]">홈</span></a>
+    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/products"><span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path><circle cx="12" cy="12" r="10"></circle></svg></span><span class="text-[15px]">프로덕트</span></a>
+    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/groups"><span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></span><span class="text-[15px]">그룹</span></a>
+    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/articles"><span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></span><span class="text-[15px]">아티클</span></a>
+    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/profiles"><span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M15 13a3 3 0 1 0-6 0"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path><circle cx="12" cy="8" r="2"></circle></svg></span><span class="text-[15px]">사람들</span></a>
+  </nav>
+
+  <div class="mt-auto w-full pt-2" data-controller="dropdown" data-dropdown-placement-value="top-start">
+    <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="disquiet-more-menu"
+            data-dropdown-target="trigger" data-action="click->dropdown#toggle"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content">
+      <span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></span><span class="text-[15px]">더 보기</span>
+    </button>
+
+    <div id="disquiet-more-menu" data-dropdown-target="content" role="menu" class="hidden w-52 bg-base-100 border border-base-300 rounded-lg shadow-lg p-1">
+        <a role="menuitem" data-dropdown-target="item" class="flex items-center gap-3 px-3 py-2 rounded-md w-full text-base-content/60 hover:bg-base-content/5 hover:text-base-content" href="/login">
+          <span class="text-xl shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m10 17 5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg></span><span class="text-[15px]">로그인</span>
+</a>    </div>
+  </div>
+</aside>
+
+
+      <div class="px-4 sm:px-6 pt-6 pb-24 md:pb-6">
+        <main class="relative w-full max-w-2xl mx-auto">
+          
+
+          
+<div>
+  <a class="inline-flex items-center gap-1 text-sm text-base-content/60 hover:text-base-content mb-4" data-controller="disquiet--back" data-action="disquiet--back#navigate" href="/articles">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m15 18-6-6 6-6"></path></svg>
+    <span>뒤로</span>
+</a>
+  <div class="card card-md">
+    <div class="card-body">
+      <header class="flex items-start gap-3 mb-5">
+          <a class="shrink-0" href="/profiles/prt2oY">
+            <img class="shrink-0 object-cover rounded-full " style="width: 36px; height: 36px;" alt="세나" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/bf2zo22r8zd9neworg17lkg9r0es" />
+</a>        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5">
+              <a class="font-medium text-base-content hover:underline" href="/profiles/prt2oY">세나</a>
+            <span class="text-base-content/60">&middot;</span>
+            <span class="text-base-content/60"><time datetime="2025-04-27T21:30:14Z" data-local="time-ago">April 27, 2025  9:30pm</time></span>
+          </div>
+        </div>
+      </header>
+
+      <div class="prose prose-neutral disquiet-prose">
+          <p><strong>Codex CLI 사용 후기</strong></p>
+        <p>오늘은 OpenAI의 <strong>Codex CLI</strong>를 활용해 바이브 코딩 테스트를 진행해보았습니다.<br>테스트 목표는, 기존 프로젝트에 <strong>GPT-image-1 모델</strong>을 이용한 이미지 생성 기능을 추가하는 것이었습니다.</p><p>설치는 간단했습니다. 로컬 환경(MacBook Pro M1)에 Codex를 설치하고, OPENAI API KEY만 세팅하면 바로 사용할 수 있었습니다.<br>Codex를 실행하자 프롬프트 입력 창이 뜨고, 현재 프로젝트를 인식하는 과정을 거쳤습니다. 프로젝트 파일과 폴더 구조를 잘 파악하는 모습을 볼 수 있었고, 추가로 요청한 프로젝트 상세 설명도 꽤 정확하게 정리해주었습니다.</p><p>다만, 프로젝트 스캔 과정에서 시간이 다소 오래 걸려(4분 이상) 강제 종료한 부분은 아쉬웠습니다.<br>그럼에도 Codex가 정리한 프로젝트 기능 설명은 꽤 수준이 높았고, 사용된 API 요금도 단 0.14달러로 매우 경제적이었습니다.</p><p>본격적으로 <strong>GPT-image-1 API 기능</strong> 추가 작업에 들어가면서, 개인 프로젝트인 노바(Nova)의 미디어 도구 메뉴에 새로운 "GPT-image" 항목을 만드는 작업을 지시했습니다. Codex가 작성해준 API 템플릿과 파일 구성도 전체적으로 정확했고, 원하는 기능을 대부분 잘 반영해주었습니다.</p><p>코드 추가 요청과 에러 처리 과정에서는 수동 확인이 필요했지만, Codex CLI는 기본적인 방향성과 구조를 잘 잡아주는 데 큰 도움이 되었습니다.<br>최종적으로 이미지를 정상적으로 생성하는 데 성공했고, Codex CLI의 바이브 코딩 기능은 <strong>비용, 속도, 퀄리티 모두 꽤 만족스러운 수준</strong>이라는 인상을 받았습니다.</p><p><strong>결론적으로</strong>, 규모가 큰 기능 개발은 Codex CLI로 빠르게 진행하고, 디테일한 수정은 IDE에서 직접 다듬는 방식으로 활용하면 개발 생산성을 크게 높일 수 있을 것 같습니다.<br></p><p></p><img src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/images/makerlog/1fe14d960d323eb6b4acc2be1070e170780f9ab7c496c0040122aee5d3b3864b?w=1200" alt="CleanShot 2025-04-28 at 06.25.07.png" title="CleanShot 2025-04-28 at 06.25.07.png"><p></p><img src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/images/makerlog/548b52bfd6a569f13d0a3cc42b806d9e03fdddc8c10b07524840038fcbf30d67?w=1200" alt="CleanShot 2025-04-28 at 06.25.41.png" title="CleanShot 2025-04-28 at 06.25.41.png"><p></p><img src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/images/makerlog/a69212be84ffce796fc3eb7f18bbb4419a286e20d77b2634a85e934e2908e856?w=1200" alt="CleanShot 2025-04-28 at 06.29.32.png" title="CleanShot 2025-04-28 at 06.29.32.png"><p><br></p>
+      </div>
+
+
+
+        <div class="grid gap-2 mt-5 grid-cols-2">
+              <img class="w-full rounded-lg object-cover" loading="lazy" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/il6ahza1q4nfhhyt89en0erl9mop" />
+              <img class="w-full rounded-lg object-cover" loading="lazy" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/y4qbjc3g611nh11ab0585jlnlkvd" />
+              <img class="w-full rounded-lg object-cover" loading="lazy" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/07htx6ft390iwoon8hjf1yse3hn2" />
+        </div>
+
+      <div class="flex items-center justify-between mt-5 pt-4 border-t border-base-300">
+        <div class="flex items-center gap-1">
+          <div id="upvote_article_25000">
+      <span class="inline-flex items-center gap-1.5 px-2 py-1 text-base-content/60"
+            role="img" aria-label="추천 2">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-base-content/60"><path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path></svg>
+        <span>2</span>
+      </span>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-md mt-4">
+    <div class="card-body">
+      <section id="comments" data-controller="disquiet--reply-form">
+        <h2 class="text-base-content/60 mb-4">댓글</h2>
+
+          <div id="comment_form">
+      <p class="text-base-content/60 text-center py-6">
+        <a class="underline hover:text-base-content" href="/users/sign_in">로그인</a> 후 댓글을 남길 수 있습니다.
+      </p>
+  </div>
+
+
+        
+
+        <div id="comments_list" class="mt-6 divide-y divide-base-300">
+        </div>
+
+          <p id="comments_empty" class="text-base-content/60 text-center py-10">
+            아직 댓글이 없습니다.
+          </p>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+            <div class="hidden min-[84rem]:block absolute left-full top-0 bottom-0 ml-8">
+              <aside class="w-[300px] h-full">
+  <div class="sticky top-6 space-y-6">
+      <div class="card bg-base-100" data-test="disquiet-guest-card">
+        <div class="card-body text-center space-y-3">
+          <h3 class="text-base-content">디스콰이엇에 오신 걸 환영해요</h3>
+          <p class="text-sm text-base-content/60">로그인하면 글을 쓰고 댓글·좋아요를 남길 수 있어요.</p>
+          <div class="flex gap-2">
+            <a class="btn flex-1" data-test="disquiet-login" href="/login">로그인</a>
+            <a class="btn btn-primary flex-1" data-test="disquiet-signup" href="/signup">가입하기</a>
+          </div>
+        </div>
+      </div>
+
+    
+
+      <div>
+        <h2 class="text-base-content/60 mb-3">인기 프로덕트</h2>
+        <div class="space-y-0">
+            <a class="flex items-center gap-3 py-2 hover:bg-base-300/50 -mx-2 px-2 rounded-lg transition-colors group" href="/products/f72a7be4-07cc-4677-8ec7-242691694d12">
+                <img class="size-8 rounded-lg object-cover shrink-0" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/xxj7axn1bml5r3acmcny6pxis1wa" />
+              <div class="min-w-0 flex-1">
+                <p class="text-base-content truncate group-hover:underline">오피셜메일</p>
+                <p class="text-sm text-base-content/60 truncate">1인 창업자와 스타트업이 쉽고 빠르게 기업용 도메인 메일을 사용할 수 있도록 만드는 서비스입니다.</p>
+              </div>
+</a>            <a class="flex items-center gap-3 py-2 hover:bg-base-300/50 -mx-2 px-2 rounded-lg transition-colors group" href="/products/ai-%EC%9E%90%EC%84%9C%EC%A0%84-%EC%A0%9C%EC%9E%91-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%9D%BC%EC%9D%B4%ED%94%84%EB%A1%9C%EA%B7%B8">
+                <img class="size-8 rounded-lg object-cover shrink-0" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/q7ifx4m5m6qsh9jdycov4f6dijg2" />
+              <div class="min-w-0 flex-1">
+                <p class="text-base-content truncate group-hover:underline">AI 자서전 제작 웹사이트 라이프로그</p>
+                <p class="text-sm text-base-content/60 truncate">파편화된 기억, AI를 만나 문학이 되다. 인터뷰 기반 자서전 서비스</p>
+              </div>
+</a>            <a class="flex items-center gap-3 py-2 hover:bg-base-300/50 -mx-2 px-2 rounded-lg transition-colors group" href="/products/%EC%8A%A4%EB%83%85-%EB%8B%A4%EC%9D%B4%EC%96%B4%EB%A6%AC">
+                <img class="size-8 rounded-lg object-cover shrink-0" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/2sq7aioxq9kbd93068i5yihgcv02" />
+              <div class="min-w-0 flex-1">
+                <p class="text-base-content truncate group-hover:underline">스냅 다이어리</p>
+                <p class="text-sm text-base-content/60 truncate">기록할 시간 없는 날을 위한 AI 감성 다이어리</p>
+              </div>
+</a>            <a class="flex items-center gap-3 py-2 hover:bg-base-300/50 -mx-2 px-2 rounded-lg transition-colors group" href="/products/eoditno">
+                <img class="size-8 rounded-lg object-cover shrink-0" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/qkw6xvy0kah42y7wjt1upw7okozw" />
+              <div class="min-w-0 flex-1">
+                <p class="text-base-content truncate group-hover:underline">eoditno</p>
+                <p class="text-sm text-base-content/60 truncate">내 손 안의 공공데이터 내비게이션, 어딨노</p>
+              </div>
+</a>            <a class="flex items-center gap-3 py-2 hover:bg-base-300/50 -mx-2 px-2 rounded-lg transition-colors group" href="/products/%EB%94%94%EC%8A%A4%EC%BD%B0%EC%9D%B4%EC%97%87">
+                <img class="size-8 rounded-lg object-cover shrink-0" src="https://disquiet-public.s3.ap-northeast-2.amazonaws.com/e7e9and44zoflrka400wo6el26zb" />
+              <div class="min-w-0 flex-1">
+                <p class="text-base-content truncate group-hover:underline">디스콰이엇</p>
+                <p class="text-sm text-base-content/60 truncate">IT 프로덕트 메이커들을 위한 소셜네트워크</p>
+              </div>
+</a>        </div>
+      </div>
+  </div>
+</aside>
+
+            </div>
+        </main>
+      </div>
+    </div>
+
+    <nav class="fixed bottom-0 inset-x-0 z-40 bg-base-100 border-t border-base-300 md:hidden"
+     aria-label="모바일 내비게이션" data-test="disquiet-mobile-nav">
+  <div class="flex items-stretch">
+    <a class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-base-content/60" data-test="disquiet-mobile-nav-home" href="/"><span class="text-xl"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span><span class="text-[10px] leading-tight">홈</span></a>
+    <a class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-base-content/60" data-test="disquiet-mobile-nav-products" href="/products"><span class="text-xl"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path><circle cx="12" cy="12" r="10"></circle></svg></span><span class="text-[10px] leading-tight">프로덕트</span></a>
+    <a class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-base-content" aria-current="page" data-test="disquiet-mobile-nav-articles" href="/articles"><span class="text-xl"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></span><span class="text-[10px] leading-tight">아티클</span></a>
+  </div>
+</nav>
+
+  </body>
+</html>

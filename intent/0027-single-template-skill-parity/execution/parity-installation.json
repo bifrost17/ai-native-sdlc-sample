@@ -1,0 +1,986 @@
+{
+  "temporary_root": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "claude",
+        "--version"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "2.1.269 (Claude Code)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "codex",
+        "--version"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "codex-cli 0.153.4\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "\n\n(\n  set -eu\n  test -f \"$PRODUCT_ROOT/CLAUDE.md\"\n  test -f \"$PRODUCT_ROOT/PROJECT-POLICY.md\"\n  test -f \"$PRODUCT_ROOT/REVIEW.md\"\n  cd \"$PRODUCT_ROOT\"\n  claude plugin validate --strict \"$EDITION_SOURCE/org-skills\"\n  claude plugin validate --strict \"$EDITION_SOURCE/.claude-plugin/marketplace.json\"\n  claude plugin marketplace add \"$EDITION_SOURCE\" --scope project\n  claude plugin install intent-sdlc-skills-optional@intent-sdlc-skills-optional --scope project\n  claude plugin list --json\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Validating plugin manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/.claude-plugin/plugin.json\n\n✔ Validation passed\nValidating marketplace manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/.claude-plugin/marketplace.json\n\n✔ Validation passed\nAdding marketplace…✔ Successfully added marketplace: intent-sdlc-skills-optional (declared in project settings)\nInstalling plugin \"intent-sdlc-skills-optional@intent-sdlc-skills-optional\"...✔ Successfully installed plugin: intent-sdlc-skills-optional@intent-sdlc-skills-optional (scope: project)\n[\n  {\n    \"id\": \"intent-sdlc-skills-optional@intent-sdlc-skills-optional\",\n    \"version\": \"0.1.8\",\n    \"scope\": \"project\",\n    \"enabled\": true,\n    \"installPath\": \"/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8\",\n    \"installedAt\": \"2026-09-15T08:15:14.920Z\",\n    \"lastUpdated\": \"2026-09-15T08:15:14.920Z\",\n    \"projectPath\": \"/private/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude\"\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "(\n  set -eu\n  test -f \"$PRODUCT_ROOT/CLAUDE.md\"\n  test -f \"$PRODUCT_ROOT/PROJECT-POLICY.md\"\n  test -f \"$PRODUCT_ROOT/REVIEW.md\"\n  for skill in capture-intent design-spec plan; do\n    test -f \"$PRODUCT_ROOT/examples/skills/$skill/SKILL.md\"\n    test ! -e \"$PRODUCT_ROOT/.claude/skills/$skill\"\n  done\n  mkdir -p \"$PRODUCT_ROOT/.claude/skills\"\n  for skill in capture-intent design-spec plan; do\n    cp -R \"$PRODUCT_ROOT/examples/skills/$skill\" \"$PRODUCT_ROOT/.claude/skills/$skill\"\n  done\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "(\n  set -eu\n  test -f \"$PRODUCT_ROOT/CLAUDE.md\"\n  test -f \"$PRODUCT_ROOT/PROJECT-POLICY.md\"\n  test -f \"$PRODUCT_ROOT/REVIEW.md\"\n  for skill in capture-intent design-spec plan; do\n    test -f \"$PRODUCT_ROOT/examples/skills/$skill/SKILL.md\"\n    test ! -e \"$PRODUCT_ROOT/.claude/skills/$skill\"\n  done\n  mkdir -p \"$PRODUCT_ROOT/.claude/skills\"\n  for skill in capture-intent design-spec plan; do\n    cp -R \"$PRODUCT_ROOT/examples/skills/$skill\" \"$PRODUCT_ROOT/.claude/skills/$skill\"\n  done\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "\nCODEX_ADAPTER=\"$SDLC_PACKAGE/codex\"\n\n(\n  set -eu\n  test -f \"$SDLC_PACKAGE/.claude-plugin/plugin.json\"\n  test -f \"$CODEX_TARGET/CLAUDE.md\"\n  test -f \"$CODEX_TARGET/PROJECT-POLICY.md\"\n  test -f \"$CODEX_TARGET/REVIEW.md\"\n  test ! -e \"$CODEX_TARGET/.agents/skills\"\n  test ! -e \"$CODEX_TARGET/.codex/agents/sdlc-verifier.toml\"\n  test ! -e \"$CODEX_TARGET/AGENTS.md\"\n  for skill in accessibility brand data-compliance grilling pr-loop sdlc-feedback \\\n    secrets-scan secure-api-review spec-policy-pass stop-slop-ko tdd to-questionnaire ux-copy; do\n    test -f \"$SDLC_PACKAGE/skills/$skill/SKILL.md\"\n  done\n  for skill in capture-intent design-spec plan; do\n    test -f \"$CODEX_TARGET/examples/skills/$skill/SKILL.md\"\n  done\n  mkdir -p \"$CODEX_TARGET/.agents/skills\" \"$CODEX_TARGET/.codex/agents\"\n  for skill in accessibility brand data-compliance grilling pr-loop sdlc-feedback \\\n    secrets-scan secure-api-review spec-policy-pass stop-slop-ko tdd to-questionnaire ux-copy; do\n    cp -R \"$SDLC_PACKAGE/skills/$skill\" \"$CODEX_TARGET/.agents/skills/$skill\"\n  done\n  for skill in capture-intent design-spec plan; do\n    test -f \"$CODEX_TARGET/examples/skills/$skill/SKILL.md\"\n    cp -R \"$CODEX_TARGET/examples/skills/$skill\" \"$CODEX_TARGET/.agents/skills/$skill\"\n  done\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/explicit-only.patch\"\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/sdlc-feedback.patch\"\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/ux-copy.patch\"\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/pr-loop.patch\"\n  cp \"$CODEX_ADAPTER/agents/sdlc-verifier.toml\" \"$CODEX_TARGET/.codex/agents/sdlc-verifier.toml\"\n  cp \"$CODEX_ADAPTER/templates/AGENTS.md\" \"$CODEX_TARGET/AGENTS.md\"\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "patching file '.agents/skills/to-questionnaire/SKILL.md'\npatching file '.agents/skills/to-questionnaire/agents/openai.yaml'\npatching file '.agents/skills/capture-intent/SKILL.md'\npatching file '.agents/skills/capture-intent/agents/openai.yaml'\npatching file '.agents/skills/design-spec/SKILL.md'\npatching file '.agents/skills/design-spec/agents/openai.yaml'\npatching file '.agents/skills/plan/SKILL.md'\npatching file '.agents/skills/plan/agents/openai.yaml'\npatching file '.agents/skills/sdlc-feedback/SKILL.md'\npatching file '.agents/skills/ux-copy/SKILL.md'\npatching file '.agents/skills/pr-loop/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "\nCODEX_ADAPTER=\"$SDLC_PACKAGE/codex\"\n\n(\n  set -eu\n  test -f \"$SDLC_PACKAGE/.claude-plugin/plugin.json\"\n  test -f \"$CODEX_TARGET/CLAUDE.md\"\n  test -f \"$CODEX_TARGET/PROJECT-POLICY.md\"\n  test -f \"$CODEX_TARGET/REVIEW.md\"\n  test ! -e \"$CODEX_TARGET/.agents/skills\"\n  test ! -e \"$CODEX_TARGET/.codex/agents/sdlc-verifier.toml\"\n  test ! -e \"$CODEX_TARGET/AGENTS.md\"\n  for skill in accessibility brand data-compliance grilling pr-loop sdlc-feedback \\\n    secrets-scan secure-api-review spec-policy-pass stop-slop-ko tdd to-questionnaire ux-copy; do\n    test -f \"$SDLC_PACKAGE/skills/$skill/SKILL.md\"\n  done\n  for skill in capture-intent design-spec plan; do\n    test -f \"$CODEX_TARGET/examples/skills/$skill/SKILL.md\"\n  done\n  mkdir -p \"$CODEX_TARGET/.agents/skills\" \"$CODEX_TARGET/.codex/agents\"\n  for skill in accessibility brand data-compliance grilling pr-loop sdlc-feedback \\\n    secrets-scan secure-api-review spec-policy-pass stop-slop-ko tdd to-questionnaire ux-copy; do\n    cp -R \"$SDLC_PACKAGE/skills/$skill\" \"$CODEX_TARGET/.agents/skills/$skill\"\n  done\n  for skill in capture-intent design-spec plan; do\n    test -f \"$CODEX_TARGET/examples/skills/$skill/SKILL.md\"\n    cp -R \"$CODEX_TARGET/examples/skills/$skill\" \"$CODEX_TARGET/.agents/skills/$skill\"\n  done\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/explicit-only.patch\"\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/sdlc-feedback.patch\"\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/ux-copy.patch\"\n  patch --batch -d \"$CODEX_TARGET\" -p1 < \"$CODEX_ADAPTER/patches/pr-loop.patch\"\n  cp \"$CODEX_ADAPTER/agents/sdlc-verifier.toml\" \"$CODEX_TARGET/.codex/agents/sdlc-verifier.toml\"\n  cp \"$CODEX_ADAPTER/templates/AGENTS.md\" \"$CODEX_TARGET/AGENTS.md\"\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "\n\n(\n  set -eu\n  test -f \"$OC_PACKAGE/.claude-plugin/plugin.json\"\n  test -d \"$OC_TARGET\"\n  test ! -e \"$OC_TARGET/.opencode/skills\"\n  test ! -e \"$OC_TARGET/.opencode/agents/sdlc-verifier.md\"\n  test ! -e \"$OC_TARGET/team-resources\"\n  mkdir -p \"$OC_TARGET/.opencode/skills\" \"$OC_TARGET/.opencode/agents\" \"$OC_TARGET/team-resources/skills\"\n  for skill in brand data-compliance secure-api-review spec-policy-pass tdd stop-slop-ko accessibility secrets-scan grilling sdlc-feedback ux-copy; do\n    cp -R \"$OC_PACKAGE/skills/$skill\" \"$OC_TARGET/.opencode/skills/$skill\"\n  done\n  for skill in to-questionnaire pr-loop; do\n    cp -R \"$OC_PACKAGE/skills/$skill\" \"$OC_TARGET/team-resources/skills/$skill\"\n  done\n  cp \"$OC_PACKAGE/opencode/agents/sdlc-verifier.md\" \"$OC_TARGET/.opencode/agents/sdlc-verifier.md\"\n  cp \"$OC_PACKAGE/opencode/team-resources/INDEX.md\" \"$OC_TARGET/team-resources/INDEX.md\"\n  patch --batch -d \"$OC_TARGET/.opencode/skills/sdlc-feedback\" -p1 < \"$OC_PACKAGE/opencode/patches/sdlc-feedback.patch\"\n  patch --batch -d \"$OC_TARGET/.opencode/skills/ux-copy\" -p1 < \"$OC_PACKAGE/opencode/patches/ux-copy.patch\"\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "patching file SKILL.md\npatching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "(\n  set -eu\n  for skill in capture-intent design-spec plan; do\n    test -f \"$OC_TARGET/examples/skills/$skill/SKILL.md\"\n    test ! -e \"$OC_TARGET/.claude/skills/$skill\"\n  done\n  mkdir -p \"$OC_TARGET/.claude/skills\"\n  for skill in capture-intent design-spec plan; do\n    cp -R \"$OC_TARGET/examples/skills/$skill\" \"$OC_TARGET/.claude/skills/$skill\"\n  done\n  patch --batch -d \"$OC_TARGET/.claude/skills\" -p1 < \"$OC_PACKAGE/opencode/patches/authoring-native.patch\"\n)"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/accessibility"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/brand"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/data-compliance"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/grilling"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/pr-loop"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/sdlc-feedback"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/secrets-scan"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/secure-api-review"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/spec-policy-pass"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/stop-slop-ko"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/tdd"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/to-questionnaire"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/ux-copy"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/capture-intent"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/design-spec"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/jake/.cache/uv/archive-v0/W-d-byGkH7rGOdQrL9wEW/bin/python",
+        "/Users/jake/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/plan"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx",
+      "exit": 0,
+      "stdout": "Skill is valid!\n",
+      "stderr": ""
+    }
+  ],
+  "checks": [
+    "Claude project installation version/scope",
+    "Claude preserves adopted file .git/HEAD",
+    "Claude preserves adopted file .git/config",
+    "Claude preserves adopted file .git/description",
+    "Claude preserves adopted file .git/hooks/applypatch-msg.sample",
+    "Claude preserves adopted file .git/hooks/commit-msg.sample",
+    "Claude preserves adopted file .git/hooks/fsmonitor-watchman.sample",
+    "Claude preserves adopted file .git/hooks/post-update.sample",
+    "Claude preserves adopted file .git/hooks/pre-applypatch.sample",
+    "Claude preserves adopted file .git/hooks/pre-commit.sample",
+    "Claude preserves adopted file .git/hooks/pre-merge-commit.sample",
+    "Claude preserves adopted file .git/hooks/pre-push.sample",
+    "Claude preserves adopted file .git/hooks/pre-rebase.sample",
+    "Claude preserves adopted file .git/hooks/pre-receive.sample",
+    "Claude preserves adopted file .git/hooks/prepare-commit-msg.sample",
+    "Claude preserves adopted file .git/hooks/push-to-checkout.sample",
+    "Claude preserves adopted file .git/hooks/update.sample",
+    "Claude preserves adopted file .git/info/exclude",
+    "Claude preserves adopted file .gitignore",
+    "Claude preserves adopted file CLAUDE.md",
+    "Claude preserves adopted file LICENSE",
+    "Claude preserves adopted file NOTICE",
+    "Claude preserves adopted file PROJECT-POLICY.md",
+    "Claude preserves adopted file README.md",
+    "Claude preserves adopted file REVIEW.md",
+    "Claude preserves adopted file docs/GIT-WORKFLOW.md",
+    "Claude preserves adopted file docs/PR-SIZE.md",
+    "Claude preserves adopted file docs/PROCESS.md",
+    "Claude preserves adopted file docs/RELEASE-CONTROL.md",
+    "Claude preserves adopted file docs/TESTING-STRATEGY.md",
+    "Claude preserves adopted file docs/sdlc-authoring/README.md",
+    "Claude preserves adopted file docs/sdlc-authoring/change-walkthrough.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/B01/context.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/B01/intent.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/B01/plan.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/B01/spec.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F01/context.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F01/intent.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F01/plan.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F01/spec.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F03/context.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F03/intent.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F03/plan.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/F03/spec.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/context.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/design/architecture.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/design/operations.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/design/storage.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/inputs/current-contract.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/intent.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/plan.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/M01/spec.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/W01/context.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/W01/intent.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/W01/plan.md",
+    "Claude preserves adopted file docs/sdlc-authoring/examples/W01/spec.md",
+    "Claude preserves adopted file docs/sdlc-authoring/inputs/README.md",
+    "Claude preserves adopted file docs/sdlc-authoring/inputs/b01-requests.json",
+    "Claude preserves adopted file docs/sdlc-authoring/inputs/baseline/test_tracker.py",
+    "Claude preserves adopted file docs/sdlc-authoring/inputs/baseline/tracker.py",
+    "Claude preserves adopted file docs/sdlc-authoring/inputs/cases.md",
+    "Claude preserves adopted file docs/sdlc-authoring/inputs/f01-requests.json",
+    "Claude preserves adopted file docs/sdlc-authoring/traceability.md",
+    "Claude preserves adopted file examples/README.md",
+    "Claude preserves adopted file examples/skills/capture-intent/SKILL.md",
+    "Claude preserves adopted file examples/skills/design-spec/SKILL.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/README.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/bug/context.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/bug/intent.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/bug/spec.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/feature/context.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/feature/intent.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/feature/spec.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/migration/context.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/migration/intent.md",
+    "Claude preserves adopted file examples/skills/design-spec/examples/migration/spec.md",
+    "Claude preserves adopted file examples/skills/design-spec/references/design-depth.md",
+    "Claude preserves adopted file examples/skills/design-spec/references/skill-provenance.md",
+    "Claude preserves adopted file examples/skills/plan/SKILL.md",
+    "Claude preserves adopted file examples/skills/plan/examples/README.md",
+    "Claude preserves adopted file examples/skills/plan/examples/bug.md",
+    "Claude preserves adopted file examples/skills/plan/examples/context.md",
+    "Claude preserves adopted file examples/skills/plan/examples/disposable-ui-exploration.md",
+    "Claude preserves adopted file examples/skills/plan/examples/feature.md",
+    "Claude preserves adopted file examples/skills/plan/examples/migration.md",
+    "Claude preserves adopted file examples/skills/plan/examples/refactor-existing-tests.md",
+    "Claude preserves adopted file examples/skills/plan/examples/two-pr-spec.md",
+    "Claude preserves adopted file examples/skills/plan/examples/two-pr.md",
+    "Claude preserves adopted file examples/skills/plan/references/execution-depth.md",
+    "Claude preserves adopted file intent/README.md",
+    "Claude preserves adopted file templates/intent.md",
+    "Claude preserves adopted file templates/plan.md",
+    "Claude preserves adopted file templates/spec.md",
+    "Claude repeat install stops without overwriting",
+    "Codex repeat install stops without overwriting",
+    "Common source counts: 13 team + 3 authoring",
+    "accessibility: entire Claude source folder identical",
+    "accessibility: all Codex companion bytes preserved",
+    "accessibility: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "accessibility: no patch reject/orig files",
+    "brand: entire Claude source folder identical",
+    "brand: all Codex companion bytes preserved",
+    "brand: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "brand: no patch reject/orig files",
+    "data-compliance: entire Claude source folder identical",
+    "data-compliance: all Codex companion bytes preserved",
+    "data-compliance: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "data-compliance: no patch reject/orig files",
+    "grilling: entire Claude source folder identical",
+    "grilling: all Codex companion bytes preserved",
+    "grilling: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "grilling: no patch reject/orig files",
+    "pr-loop: entire Claude source folder identical",
+    "pr-loop: all Codex companion bytes preserved",
+    "pr-loop: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "pr-loop: no patch reject/orig files",
+    "sdlc-feedback: entire Claude source folder identical",
+    "sdlc-feedback: all Codex companion bytes preserved",
+    "sdlc-feedback: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "sdlc-feedback: no patch reject/orig files",
+    "secrets-scan: entire Claude source folder identical",
+    "secrets-scan: all Codex companion bytes preserved",
+    "secrets-scan: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "secrets-scan: no patch reject/orig files",
+    "secure-api-review: entire Claude source folder identical",
+    "secure-api-review: all Codex companion bytes preserved",
+    "secure-api-review: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "secure-api-review: no patch reject/orig files",
+    "spec-policy-pass: entire Claude source folder identical",
+    "spec-policy-pass: all Codex companion bytes preserved",
+    "spec-policy-pass: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "spec-policy-pass: no patch reject/orig files",
+    "stop-slop-ko: entire Claude source folder identical",
+    "stop-slop-ko: all Codex companion bytes preserved",
+    "stop-slop-ko: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "stop-slop-ko: no patch reject/orig files",
+    "tdd: entire Claude source folder identical",
+    "tdd: all Codex companion bytes preserved",
+    "tdd: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "tdd: no patch reject/orig files",
+    "to-questionnaire: entire Claude source folder identical",
+    "to-questionnaire: all Codex companion bytes preserved",
+    "to-questionnaire: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "to-questionnaire: no patch reject/orig files",
+    "ux-copy: entire Claude source folder identical",
+    "ux-copy: all Codex companion bytes preserved",
+    "ux-copy: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "ux-copy: no patch reject/orig files",
+    "capture-intent: entire Claude source folder identical",
+    "capture-intent: all Codex companion bytes preserved",
+    "capture-intent: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "capture-intent: no patch reject/orig files",
+    "design-spec: entire Claude source folder identical",
+    "design-spec: all Codex companion bytes preserved",
+    "design-spec: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "design-spec: no patch reject/orig files",
+    "plan: entire Claude source folder identical",
+    "plan: all Codex companion bytes preserved",
+    "plan: OpenCode companion bytes preserved except declared ux-copy provenance adapter",
+    "plan: no patch reject/orig files",
+    "Codex exactly 16 installed skills",
+    "capture-intent: explicit-only Codex metadata",
+    "design-spec: explicit-only Codex metadata",
+    "plan: explicit-only Codex metadata",
+    "to-questionnaire: explicit-only Codex metadata",
+    "Claude/OpenCode common review criteria identical",
+    "Codex common criteria unchanged except project AGENTS entrypoint",
+    "PR workflow, limits and safeguards unchanged",
+    "PR context uses no Claude interpolation or metadata"
+  ],
+  "inventory": [
+    {
+      "skill": "accessibility",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/accessibility",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/accessibility",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/accessibility",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/accessibility",
+      "source_hashes": {
+        "LICENSE-web-quality-skills.md": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+        "PROVENANCE.md": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+        "SKILL.md": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
+      },
+      "claude_hashes": {
+        "LICENSE-web-quality-skills.md": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+        "PROVENANCE.md": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+        "SKILL.md": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
+      },
+      "codex_hashes": {
+        "LICENSE-web-quality-skills.md": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+        "PROVENANCE.md": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+        "SKILL.md": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
+      },
+      "opencode_hashes": {
+        "LICENSE-web-quality-skills.md": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+        "PROVENANCE.md": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+        "SKILL.md": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
+      }
+    },
+    {
+      "skill": "brand",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/brand",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/brand",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/brand",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/brand",
+      "source_hashes": {
+        "PROVENANCE.md": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+        "SKILL.md": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+        "SKILL.md": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+        "SKILL.md": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+        "SKILL.md": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1"
+      }
+    },
+    {
+      "skill": "data-compliance",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/data-compliance",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/data-compliance",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/data-compliance",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/data-compliance",
+      "source_hashes": {
+        "PROVENANCE.md": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+        "SKILL.md": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+        "SKILL.md": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+        "SKILL.md": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+        "SKILL.md": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d"
+      }
+    },
+    {
+      "skill": "grilling",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/grilling",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/grilling",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/grilling",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/grilling",
+      "source_hashes": {
+        "PROVENANCE.md": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+        "SKILL.md": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+        "SKILL.md": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+        "SKILL.md": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+        "SKILL.md": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2"
+      }
+    },
+    {
+      "skill": "pr-loop",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/pr-loop",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/pr-loop",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/pr-loop",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/team-resources/skills/pr-loop",
+      "source_hashes": {
+        "PROVENANCE.md": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+        "SKILL.md": "ad53d0bd05c2f5058e5445c3da8fc81c44ffb44425e909437fb4ddbdce01a41d"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+        "SKILL.md": "ad53d0bd05c2f5058e5445c3da8fc81c44ffb44425e909437fb4ddbdce01a41d"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+        "SKILL.md": "fa88cfa2e5012268f18bf04741f4bf41a115c45762356684094d415cc0154447"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+        "SKILL.md": "ad53d0bd05c2f5058e5445c3da8fc81c44ffb44425e909437fb4ddbdce01a41d"
+      }
+    },
+    {
+      "skill": "sdlc-feedback",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/sdlc-feedback",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/sdlc-feedback",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/sdlc-feedback",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/sdlc-feedback",
+      "source_hashes": {
+        "PROVENANCE.md": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+        "SKILL.md": "e9eaf39f5bbf2f157563883925ca9ea3cb58b2353620a4d7b72fc92c397e7cc1"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+        "SKILL.md": "e9eaf39f5bbf2f157563883925ca9ea3cb58b2353620a4d7b72fc92c397e7cc1"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+        "SKILL.md": "7684e3841ef7e60ad058ce9d701cb2614a822ddf04b302c1a485dd7a88517872"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+        "SKILL.md": "8de3cead2c40620322802313c088eeca138801f339ffde5fd4c0888f1bebc36b"
+      }
+    },
+    {
+      "skill": "secrets-scan",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/secrets-scan",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/secrets-scan",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/secrets-scan",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/secrets-scan",
+      "source_hashes": {
+        "LICENSE-OWASP.md": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+        "PROVENANCE.md": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+        "SKILL.md": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+        "plays/secrets-scan.md": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+        "templates/finding.md": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3"
+      },
+      "claude_hashes": {
+        "LICENSE-OWASP.md": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+        "PROVENANCE.md": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+        "SKILL.md": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+        "plays/secrets-scan.md": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+        "templates/finding.md": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3"
+      },
+      "codex_hashes": {
+        "LICENSE-OWASP.md": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+        "PROVENANCE.md": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+        "SKILL.md": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+        "plays/secrets-scan.md": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+        "templates/finding.md": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3"
+      },
+      "opencode_hashes": {
+        "LICENSE-OWASP.md": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+        "PROVENANCE.md": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+        "SKILL.md": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+        "plays/secrets-scan.md": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+        "templates/finding.md": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3"
+      }
+    },
+    {
+      "skill": "secure-api-review",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/secure-api-review",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/secure-api-review",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/secure-api-review",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/secure-api-review",
+      "source_hashes": {
+        "PROVENANCE.md": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+        "SKILL.md": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+        "SKILL.md": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+        "SKILL.md": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+        "SKILL.md": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143"
+      }
+    },
+    {
+      "skill": "spec-policy-pass",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/spec-policy-pass",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/spec-policy-pass",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/spec-policy-pass",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/spec-policy-pass",
+      "source_hashes": {
+        "PROVENANCE.md": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+        "SKILL.md": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+        "SKILL.md": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+        "SKILL.md": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+        "SKILL.md": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502"
+      }
+    },
+    {
+      "skill": "stop-slop-ko",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/stop-slop-ko",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/stop-slop-ko",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/stop-slop-ko",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/stop-slop-ko",
+      "source_hashes": {
+        "PROVENANCE.md": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+        "SKILL.md": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+        "SKILL.md": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+        "SKILL.md": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+        "SKILL.md": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444"
+      }
+    },
+    {
+      "skill": "tdd",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/tdd",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/tdd",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/tdd",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/tdd",
+      "source_hashes": {
+        "PROVENANCE.md": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+        "SKILL.md": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+        "SKILL.md": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+        "SKILL.md": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+        "SKILL.md": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78"
+      }
+    },
+    {
+      "skill": "to-questionnaire",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/to-questionnaire",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/to-questionnaire",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/to-questionnaire",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/team-resources/skills/to-questionnaire",
+      "source_hashes": {
+        "PROVENANCE.md": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+        "SKILL.md": "b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b"
+      },
+      "claude_hashes": {
+        "PROVENANCE.md": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+        "SKILL.md": "b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b"
+      },
+      "codex_hashes": {
+        "PROVENANCE.md": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+        "SKILL.md": "f6f8227600d4ccf60ac4f39a27baea1d5a73bbcca3864e11a9e3b3c0ef3e077f",
+        "agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94"
+      },
+      "opencode_hashes": {
+        "PROVENANCE.md": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+        "SKILL.md": "b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b"
+      }
+    },
+    {
+      "skill": "ux-copy",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/skills/ux-copy",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8/skills/ux-copy",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/ux-copy",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.opencode/skills/ux-copy",
+      "source_hashes": {
+        "CONNECTORS.md": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+        "LICENSE-anthropic-knowledge-work-plugins.md": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "PROVENANCE.md": "3e9057bf07aecd1bd1c288d10fff89a2e0b71304d1bdcabeacd1ae6c8fbc5225",
+        "SKILL.md": "b38daf15530fd3dc7ac4e8646cad392bb3122eba132665c1e0aa2d00b802ea1f"
+      },
+      "claude_hashes": {
+        "CONNECTORS.md": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+        "LICENSE-anthropic-knowledge-work-plugins.md": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "PROVENANCE.md": "3e9057bf07aecd1bd1c288d10fff89a2e0b71304d1bdcabeacd1ae6c8fbc5225",
+        "SKILL.md": "b38daf15530fd3dc7ac4e8646cad392bb3122eba132665c1e0aa2d00b802ea1f"
+      },
+      "codex_hashes": {
+        "CONNECTORS.md": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+        "LICENSE-anthropic-knowledge-work-plugins.md": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "PROVENANCE.md": "3e9057bf07aecd1bd1c288d10fff89a2e0b71304d1bdcabeacd1ae6c8fbc5225",
+        "SKILL.md": "07efba9e1a214436c037ddbf4e1eb3075a253963de0f31796e104a970f52c639"
+      },
+      "opencode_hashes": {
+        "CONNECTORS.md": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+        "LICENSE-anthropic-knowledge-work-plugins.md": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "PROVENANCE.md": "65a0c21a2f2c88e463043cf3d379ca7dddb9ba6928fddc42c8947ca856bcd827",
+        "SKILL.md": "2c59187e1bc21cf024d8b62dfc3576c9ccf1ff3853e10f30fbc359ffab4cf830"
+      }
+    },
+    {
+      "skill": "capture-intent",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/project/examples/skills/capture-intent",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude/.claude/skills/capture-intent",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/capture-intent",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.claude/skills/capture-intent",
+      "source_hashes": {
+        "SKILL.md": "23d840df4ed12a84207e19b32390cf74ca5c16fd80a2d747ff835027a0d76327"
+      },
+      "claude_hashes": {
+        "SKILL.md": "23d840df4ed12a84207e19b32390cf74ca5c16fd80a2d747ff835027a0d76327"
+      },
+      "codex_hashes": {
+        "SKILL.md": "8eacdc0ee68de63d8754e80b20d053d4a2de56451436920622ea03f8e4a2fbcb",
+        "agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94"
+      },
+      "opencode_hashes": {
+        "SKILL.md": "8eacdc0ee68de63d8754e80b20d053d4a2de56451436920622ea03f8e4a2fbcb"
+      }
+    },
+    {
+      "skill": "design-spec",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/project/examples/skills/design-spec",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude/.claude/skills/design-spec",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/design-spec",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.claude/skills/design-spec",
+      "source_hashes": {
+        "SKILL.md": "89687684ba6d37d21d26880d5512f303f095fd866ff98f1c022c1935400fb49d",
+        "examples/README.md": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+        "examples/bug/context.md": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+        "examples/bug/intent.md": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+        "examples/bug/spec.md": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+        "examples/feature/context.md": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+        "examples/feature/intent.md": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+        "examples/feature/spec.md": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+        "examples/migration/context.md": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+        "examples/migration/intent.md": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+        "examples/migration/spec.md": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+        "references/design-depth.md": "5fb2f968d24507585c91e2540118aa0d57be641d0c34f337d9ff84defb1a9d46",
+        "references/skill-provenance.md": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc"
+      },
+      "claude_hashes": {
+        "SKILL.md": "89687684ba6d37d21d26880d5512f303f095fd866ff98f1c022c1935400fb49d",
+        "examples/README.md": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+        "examples/bug/context.md": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+        "examples/bug/intent.md": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+        "examples/bug/spec.md": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+        "examples/feature/context.md": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+        "examples/feature/intent.md": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+        "examples/feature/spec.md": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+        "examples/migration/context.md": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+        "examples/migration/intent.md": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+        "examples/migration/spec.md": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+        "references/design-depth.md": "5fb2f968d24507585c91e2540118aa0d57be641d0c34f337d9ff84defb1a9d46",
+        "references/skill-provenance.md": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc"
+      },
+      "codex_hashes": {
+        "SKILL.md": "42a28e339f21e5479432386741419a1db23abe74c9f4b28b794f89eecbd87772",
+        "agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "examples/README.md": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+        "examples/bug/context.md": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+        "examples/bug/intent.md": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+        "examples/bug/spec.md": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+        "examples/feature/context.md": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+        "examples/feature/intent.md": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+        "examples/feature/spec.md": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+        "examples/migration/context.md": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+        "examples/migration/intent.md": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+        "examples/migration/spec.md": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+        "references/design-depth.md": "5fb2f968d24507585c91e2540118aa0d57be641d0c34f337d9ff84defb1a9d46",
+        "references/skill-provenance.md": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc"
+      },
+      "opencode_hashes": {
+        "SKILL.md": "42a28e339f21e5479432386741419a1db23abe74c9f4b28b794f89eecbd87772",
+        "examples/README.md": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+        "examples/bug/context.md": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+        "examples/bug/intent.md": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+        "examples/bug/spec.md": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+        "examples/feature/context.md": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+        "examples/feature/intent.md": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+        "examples/feature/spec.md": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+        "examples/migration/context.md": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+        "examples/migration/intent.md": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+        "examples/migration/spec.md": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+        "references/design-depth.md": "5fb2f968d24507585c91e2540118aa0d57be641d0c34f337d9ff84defb1a9d46",
+        "references/skill-provenance.md": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc"
+      }
+    },
+    {
+      "skill": "plan",
+      "source": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/project/examples/skills/plan",
+      "claude": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude/.claude/skills/plan",
+      "codex": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/codex/.agents/skills/plan",
+      "opencode": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/opencode/.claude/skills/plan",
+      "source_hashes": {
+        "SKILL.md": "60a5921419f7138e173e4597e9ab7ae566065cbcbf92bddb22659907bff358a4",
+        "examples/README.md": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+        "examples/bug.md": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+        "examples/context.md": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+        "examples/disposable-ui-exploration.md": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+        "examples/feature.md": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+        "examples/migration.md": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+        "examples/refactor-existing-tests.md": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+        "examples/two-pr-spec.md": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+        "examples/two-pr.md": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+        "references/execution-depth.md": "08b236aa9f52ebc190909310a1e0d3b5b6a018d451058be6dba83ff1f749181d"
+      },
+      "claude_hashes": {
+        "SKILL.md": "60a5921419f7138e173e4597e9ab7ae566065cbcbf92bddb22659907bff358a4",
+        "examples/README.md": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+        "examples/bug.md": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+        "examples/context.md": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+        "examples/disposable-ui-exploration.md": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+        "examples/feature.md": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+        "examples/migration.md": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+        "examples/refactor-existing-tests.md": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+        "examples/two-pr-spec.md": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+        "examples/two-pr.md": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+        "references/execution-depth.md": "08b236aa9f52ebc190909310a1e0d3b5b6a018d451058be6dba83ff1f749181d"
+      },
+      "codex_hashes": {
+        "SKILL.md": "8e714afcf34f0c0e50ad7f13db433cd539188beb402b7273d27eb80b40af41a9",
+        "agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "examples/README.md": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+        "examples/bug.md": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+        "examples/context.md": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+        "examples/disposable-ui-exploration.md": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+        "examples/feature.md": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+        "examples/migration.md": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+        "examples/refactor-existing-tests.md": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+        "examples/two-pr-spec.md": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+        "examples/two-pr.md": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+        "references/execution-depth.md": "08b236aa9f52ebc190909310a1e0d3b5b6a018d451058be6dba83ff1f749181d"
+      },
+      "opencode_hashes": {
+        "SKILL.md": "8e714afcf34f0c0e50ad7f13db433cd539188beb402b7273d27eb80b40af41a9",
+        "examples/README.md": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+        "examples/bug.md": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+        "examples/context.md": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+        "examples/disposable-ui-exploration.md": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+        "examples/feature.md": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+        "examples/migration.md": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+        "examples/refactor-existing-tests.md": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+        "examples/two-pr-spec.md": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+        "examples/two-pr.md": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+        "references/execution-depth.md": "08b236aa9f52ebc190909310a1e0d3b5b6a018d451058be6dba83ff1f749181d"
+      }
+    }
+  ],
+  "claude_install_entry": {
+    "scope": "project",
+    "installPath": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude-profile/plugins/cache/intent-sdlc-skills-optional/intent-sdlc-skills-optional/0.1.8",
+    "version": "0.1.8",
+    "installedAt": "2026-09-15T08:15:14.920Z",
+    "lastUpdated": "2026-09-15T08:15:14.920Z",
+    "gitCommitSha": "79dedb88b155b414cd02eb2df1db695329d63efa",
+    "projectPath": "/private/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/sdlc-parity-0027-1gz_vvdx/claude"
+  },
+  "patch_hashes": {
+    "explicit-only.patch": "91db87dc7334f95b8df378fdcd8e2e2780d2e64759fb5a847a370cf27f7f931d",
+    "pr-loop.patch": "f772eded29fe391c853904fc443eb86f6787130a41614b815ff7c36a4c6000c9",
+    "sdlc-feedback.patch": "5fd463c50284a3c7a4078f3b330a75921225f8090eb2a2fa8701a33870412c1e",
+    "ux-copy.patch": "10ce76a40b7c921388f631cfda0bee37ac849f92b0653a69fba9b939ffc4e090"
+  },
+  "verifier_hashes": {
+    "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/agents/sdlc-verifier.md": "6011efd7c8de0ad092db19751364d890dafbca6d390560aaeae3c1855e1e617a",
+    "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/codex/agents/sdlc-verifier.toml": "c34eb0d9970546dd8855d9068fde2f6fb6c770c535fcc73f384de0e298ef593c",
+    "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/opencode/agents/sdlc-verifier.md": "6f1c305ecd53a72ac38122564d6fcdec7c4722fda44687ae95506ff9b503eea5"
+  },
+  "limits": "No paid/model turn, skill invocation, runtime behavior or hosted PR operation. Local plugin CLI install/list and file/metadata/patch preservation only. Isolated CLAUDE_CONFIG_DIR; no real profile installation.",
+  "result": "PASS"
+}

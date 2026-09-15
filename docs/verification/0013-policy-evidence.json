@@ -1,0 +1,175 @@
+{
+  "case_id": "04-org-policy-application",
+  "date": "2026-09-10",
+  "implementation_commit": "91727d2",
+  "execution": "Local logged-in Claude Code 2.1.265; focused case only, not evals/run.sh or hosted CI",
+  "model_requested": "sonnet",
+  "model_observed": "claude-sonnet-5",
+  "effort_requested": "low",
+  "arguments": [
+    "-p",
+    "<case prompt plus absolute workspace instruction>",
+    "--model",
+    "sonnet",
+    "--effort",
+    "low",
+    "--plugin-dir",
+    "<repo>/org-skills",
+    "--tools",
+    "Read,Write,Glob,Grep,Skill",
+    "--allowedTools",
+    "Read,Glob,Grep,Skill,Write(<repo>/evals/out/04-org-policy-application/ws/**)",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--no-session-persistence"
+  ],
+  "duration_ms": 136666,
+  "process_exit": 0,
+  "result_subtype": "success",
+  "is_error": false,
+  "trace_sha256": "2403f02edd062d4eeb92526ec9d0b0df053f85e8999875cc03ab4a1388560673",
+  "trace_scope": "Only Read/Write/Skill event names and repository-relative target paths preserved. No account metadata, session identifiers, hidden reasoning, unrelated skill catalog, or raw tool returns.",
+  "file_tool_events": [
+    {
+      "tool": "Read",
+      "path": "evals/out/04-org-policy-application/ws/intent.md"
+    },
+    {
+      "tool": "Read",
+      "path": "evals/out/04-org-policy-application/ws/PROJECT-POLICY.md"
+    },
+    {
+      "tool": "Read",
+      "path": ".claude/skills/design-spec/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": "templates/spec.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/spec-policy-pass/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/brand/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/data-compliance/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": ".claude/skills/secure-api-review/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/ux-copy/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/brand/PROVENANCE.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/data-compliance/PROVENANCE.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/ux-copy/PROVENANCE.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/.claude-plugin/plugin.json"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/secure-api-review/SKILL.md"
+    },
+    {
+      "tool": "Read",
+      "path": "org-skills/skills/secure-api-review/PROVENANCE.md"
+    },
+    {
+      "tool": "Read",
+      "path": "policies/brand.md"
+    },
+    {
+      "tool": "Read",
+      "path": "policies/compliance.md"
+    },
+    {
+      "tool": "Read",
+      "path": "policies/api-security.md"
+    },
+    {
+      "tool": "Read",
+      "path": "policies/ux.md"
+    },
+    {
+      "tool": "Write",
+      "path": "evals/out/04-org-policy-application/ws/spec.md"
+    }
+  ],
+  "generated_spec": "# Spec: 임직원 작업 상태 조회 (from intent 04-org-policy-application)\nUpstream: intent.md@sha 미확인(이 세션에 git 조회 도구가 없어 커밋 해시를 확인하지 못함 — 파일 경로\n`evals/out/04-org-policy-application/ws/intent.md` 로 참조). Status: draft.\n\n**예외 기록**: 이 intent.md 는 머지되지 않은 draft 다. 이 spec 은 이번 평가 실행을 위해 프로젝트 오너가\n\"이 draft intent 로부터 spec 을 작성하라\"고 명시적으로 승인해 작성했다 — `design-spec` 스킬의 draft 예외\n조항(엔지니어가 draft 위에서 시작하라고 지시한 경우)에 해당한다. 이 승인은 spec 자체를 accepted 로 만들지\n않는다. accepted 는 여전히 이 spec 이 실린 PR 의 머지이며, intent.md 도 별도로 머지되어야 한다.\n\nSkills applied:\n- design-spec · `.claude/skills/design-spec/SKILL.md` (project) · version-unverified (이 세션에\n  git log 를 실행할 도구가 없음 — Bash 미제공. `.claude-plugin` 메타데이터도 없는 프로젝트 로컬 파일이라\n  대체 판 출처가 없음)\n- intent-sdlc-skills:spec-policy-pass · `org-skills/skills/spec-policy-pass/SKILL.md` (plugin\n  source; 세션에 로드된 설치본의 실제 경로는 확인 못함) · plugin manifest `intent-sdlc-skills@0.1.1`\n  (`org-skills/.claude-plugin/plugin.json`) 기준, 파일 단위 SHA 는 version-unverified\n- intent-sdlc-skills:brand · `org-skills/skills/brand/SKILL.md` (plugin source) ·\n  `intent-sdlc-skills@0.1.1`, 파일 단위 SHA 는 version-unverified. PROVENANCE.md 는 이 파일이\n  설계분(팀 자체 조항, 외부 스킬 이식 아님)이라고 기록함 — 그 기록 자체도 이 세션에서 git 으로 재확인 못함\n- intent-sdlc-skills:data-compliance · `org-skills/skills/data-compliance/SKILL.md` (plugin\n  source) · `intent-sdlc-skills@0.1.1`, 파일 단위 SHA 는 version-unverified. PROVENANCE.md 기록:\n  설계분(팀 자체 조항)\n- intent-sdlc-skills:secure-api-review · `org-skills/skills/secure-api-review/SKILL.md`\n  (plugin source) · `intent-sdlc-skills@0.1.1`, 파일 단위 SHA 는 version-unverified.\n  PROVENANCE.md 기록상 템플릿 HEAD `016705e01c91a422222eedfad4e2833c36bc9007` 에서 바이트 동일 채택 —\n  이 세션에서 diff 로 재확인은 못함(version-unverified 로 남김)\n- secure-api-review · `.claude/skills/secure-api-review/SKILL.md` (project local) ·\n  version-unverified. 내용은 plugin 판과 Read 결과가 바이트 단위로 동일해 보이나, 이 세션의 도구로 체크섬\n  대조는 하지 못함\n- intent-sdlc-skills:ux-copy · `org-skills/skills/ux-copy/SKILL.md` (plugin source) ·\n  `intent-sdlc-skills@0.1.1`, 파일 단위 SHA 는 version-unverified. PROVENANCE.md 기록상 원본\n  `anthropics/knowledge-work-plugins` `design/skills/ux-copy/SKILL.md` 커밋\n  `2d6f7e22dd25593f0f748010430ef86f19659735`(Apache-2.0) 를 무수정 채택 — 이 세션에서 재확인은 못함\n\n## 정책 스킬 적용/미적용 표 (spec-policy-pass 요구 P1)\n\n| 스킬 · 출처 | 적용 | 이유 |\n|---|---|---|\n| design-spec · `.claude/skills/design-spec/SKILL.md` | 예 | 이 spec 의 뼈대(수락 확인·템플릿·리뷰 질문) |\n| intent-sdlc-skills:spec-policy-pass · `org-skills/skills/spec-policy-pass/SKILL.md` | 예 | design-spec 위에 정책 통과 절차를 겹쳐 적용 |\n| intent-sdlc-skills:brand · `org-skills/skills/brand/SKILL.md` | 예 | 화면 문구(상태명·완료 시각 표기)가 있다 |\n| intent-sdlc-skills:data-compliance · `org-skills/skills/data-compliance/SKILL.md` | 예 | 임직원 개인정보 필드, 로그, 접근 이력을 다룬다 |\n| intent-sdlc-skills:secure-api-review · `org-skills/skills/secure-api-review/SKILL.md` | 예 | 새 읽기 전용 엔드포인트를 만든다 |\n| secure-api-review · `.claude/skills/secure-api-review/SKILL.md` | 예 | 위와 같은 사유(프로젝트 로컬 판도 함께 적용) |\n| intent-sdlc-skills:ux-copy · `org-skills/skills/ux-copy/SKILL.md` | 예 | 오류 메시지·재조회 버튼 문구를 설계한다 |\n| intent-sdlc-skills:spec-policy · `org-skills/commands/spec-policy.md` | 아니오 | spec-policy-pass 와 같은 절차의 슬래시 명령 별칭 — 중복 적용 안 함 |\n| capture-intent | 아니오 | intent 작성 단계가 아니다(이미 intent.md 있음) |\n| plan | 아니오 | plan.md 작성 시점이 아니다 — design-spec 은 plan 을 만들지 않는다 |\n| intent-sdlc-skills:accessibility | 아니오 | PROJECT-POLICY.md P3: \"이 프로젝트가 따로 정한 접근성 판·검사 방법은 없다\" — 판정 기준이 없어 지어내지 않는다 |\n| intent-sdlc-skills:grilling | 아니오 | 계획·결정을 몰아붙여 검증하라는 요청이 아니다 |\n| intent-sdlc-skills:pr-loop | 아니오 | PR 리뷰·CI 대응 작업이 아니다 |\n| intent-sdlc-skills:secrets-scan | 아니오 | 코드를 쓰지 않는다 — 자격증명이 실릴 코드/설정이 없다 |\n| intent-sdlc-skills:stop-slop-ko | 아니오 | 기존 한국어 산문을 다듬어 달라는 요청이 아니다 — spec 은 정해진 형식으로 새로 쓴다 |\n| understand-anything:* (understand, understand-chat, understand-dashboard, understand-diff, understand-domain, understand-explain, understand-figma, understand-knowledge, understand-onboard) | 아니오 | 코드베이스 지식 그래프·Figma·diff 분석 요청이 아니다 |\n| dataviz | 아니오 | 차트·대시보드를 만들지 않는다 |\n| update-config | 아니오 | settings.json 변경이 아니다 |\n| keybindings-help | 아니오 | 키바인딩 변경이 아니다 |\n| code-review / simplify / fewer-permission-prompts | 아니오 | 코드 diff 가 없다 — 이 작업은 spec.md 만 쓴다 |\n| loop / schedule | 아니오 | 반복·예약 실행 요청이 아니다 |\n| claude-api | 아니오 | Claude API 통합 질문이 아니다 |\n| workflow-authoring | 아니오 | Workflow 도구 스크립트 작성이 아니다 |\n| run | 아니오 | 앱 실행·스크린샷 요청이 아니다 |\n| init | 아니오 | CLAUDE.md 생성이 아니다 |\n| security-review | 아니오 | 현재 브랜치의 코드 diff 를 보는 요청이 아니다 — 신규 엔드포인트 보안은 secure-api-review 로 충분히 덮인다 |\n| aside-browser | 아니오 | 브라우저·개인 메모리 조회가 필요 없다 |\n\n## Requirements\n- R1 사용자는 사내 포털의 작업 상태 조회 화면에서 작업 ID, 상태(대기·처리 중·완료·실패), 완료 시각을\n  볼 수 있다. (intent Desired outcome)\n- R2 조회가 실패하면 화면은 \"무엇이 안 됐는지 · 왜(알 수 있으면) · 다음에 할 행동\"을 보여주고, 원본 예외\n  문구는 보여주지 않는다. (U1, intent Problem \"조회가 안 되면 어떻게 다시 확인할지\")\n- R3 화면과 엔드포인트 응답에는 employee_email, employee_phone 을 포함하지 않는다. 업무 연결은 작업\n  ID 와 내부 임직원 ID 로만 한다. (PROJECT-POLICY P2)\n- R4 완료 시각은 절대 시각(`YYYY-MM-DD`, 24시간제, KST 명시)으로 표시한다. 상대 시간만 단독으로\n  쓰지 않는다. (B3, PROJECT-POLICY P1)\n- R5 엔드포인트는 읽기 전용이며 인증된 세션(게이트웨이 JWT 를 검증한 포털 세션)에서만 응답한다. (S1)\n- R6 엔드포인트는 요청을 OpenAPI 스키마로 검증하고 알 수 없는 필드를 거부한다. (S2)\n- R7 접근 이력에는 누가(역할+내부 임직원 ID)·무엇을(작업 ID)·언제(UTC)가 한 줄에 남는다. 보존\n  기간은 90일이다. (C3, PROJECT-POLICY P2)\n- R8 오류 로그와 감사 이벤트에는 원본 요청 헤더나 원본 응답 전체를 그대로 남기지 않는다 — 필요한\n  필드와 내부 ID 만 남긴다. (C2)\n- R9 재조회 버튼은 동작을 그대로 이름으로 밝힌다: \"다시 조회\". (PROJECT-POLICY P1, ux-copy CTA 원칙)\n\n## Design\n- 화면: 작업 상태 조회 페이지 1개. 입력은 작업 ID(또는 로그인한 임직원의 최근 작업 목록에서 선택),\n  출력은 작업 ID·상태·완료 시각(KST, 절대 시각)이다. employee_email/employee_phone 필드는 화면에도\n  API 응답 모델에도 넣지 않는다 — 읽기 전용 응답 모델을 작업 ID·상태·완료 시각·내부 임직원 ID 로만\n  구성한다(data-compliance C2 \"엔티티를 그대로 반환하지 않는다\").\n- API: `GET /tasks/{taskId}/status` 같은 단일 읽기 전용 엔드포인트. 포털 세션을 검증하고(S1, 세션\n  계약 변경 없음 — secure-api-review 의 org note 를 그대로 따름), 요청 스키마 외 필드는 거부한다(S2).\n  존재하지 않거나 접근 권한 밖인 작업 ID 는 일반화된 오류로 응답하고 원본 예외 스택은 응답에도 로그\n  본문에도 넣지 않는다.\n- 오류 처리: 사용자에게는 \"조회할 수 없습니다. [원인을 알 수 있으면 한 줄로]. 다시 조회를 눌러\n  재시도하세요.\" 형태(U1 세 요소)로 보여주고, 서버 로그에는 오류 코드·작업 ID·내부 임직원 ID·시각만\n  남긴다(C2 \"예외를 통째로 찍지 않는다\").\n- 접근 이력: 조회가 일어날 때마다 \"누가(역할+내부 임직원 ID)·무엇을(작업 ID)·언제(UTC)\" 한 줄을\n  감사 로그에 남기고, 90일 보존 후 자동 만료한다(C3, P2). 이력을 조회한 담당자 본인이 그 이력을\n  즉시 삭제하는 기능은 만들지 않는다 — Flagged concerns #3 참고.\n- 완료 시각 표시: 절대 시각(`YYYY-MM-DD HH:MM KST`)을 항상 노출한다. 상대 시간 보조 표기(\"3분 전\")를\n  덧붙이는 것은 B3 위반이 아니다(절대 시각과 \"함께\"라면 허용) — 다만 절대 시각 없이 상대 시간만 쓰자는\n  운영 담당자의 원제안은 채택하지 않는다.\n\n## Constraints\n(intent.md 원문)\n- 새 사외 사용자나 외부 전송은 없다.\n- 프로젝트의 PROJECT-POLICY.md 값과 조직 정책을 적용하고, 제안이 정책에 맞지 않으면 우려를 남긴다.\n- 이 작업은 요구·설계 문서만 작성하며 코드나 정책을 바꾸지 않는다.\n\n(이 spec 을 쓰며 추가로 발견한 제약)\n- PROJECT-POLICY P3: 이 프로젝트가 따로 정한 접근성 판·검사 방법이 없다 — 새로 지어내지 않는다.\n- PROJECT-POLICY P1: 상태 이름은 대기·처리 중·완료·실패 넷으로 고정, 다른 이름을 새로 만들지 않는다.\n- secure-api-review 의 org note: 게이트웨이 JWT 검증은 포털이 하고, 이 엔드포인트는 세션만 읽으면\n  S1 을 만족한다 — 세션 계약이 바뀌지 않는 한 재론하지 않는다.\n\n## Open questions from intent\n- Q1 \"즉시 이력 삭제\" 요청을 유지할 수 있는가? 결정자: 정책 오너. →\n  **carried forward: 정책 오너.** 이 spec 은 유지하지 않는 쪽으로 설계했다(Design, R7) — PROJECT-POLICY\n  P2 가 접근·변경 이력의 보존 기간을 90일로 명시했고, 조회 당사자가 자신의 접근 이력을 즉시 삭제할 수\n  있게 하면 그 90일 보존을 사실상 무력화한다. 그러나 이 충돌의 최종 판단은 정책 오너의 몫이므로\n  Flagged concerns #3 으로도 남긴다.\n\n## Flagged concerns\n\n| # | 우려 | 종류 | 근거 조항 | 결정자 | 결정 |\n|---|---|---|---|---|---|\n| 1 | intent.md 는 employee_email·employee_phone 을 화면에 포함하자고 제안했으나, 상태 조회에는 필요하지 않다 | 충돌 | data-compliance C2 · PROJECT-POLICY P2(\"상태 조회에 필요하지 않다\") | 정책 오너 | (비움) |\n| 2 | intent.md 는 진단 편의를 위해 원본 응답 전체와 요청 헤더를 로그에 남기자고 제안했다 | 충돌 | data-compliance C2(\"예외를 통째로 찍지 않는다 — 요청 본문·헤더가 함께 나간다\") · intent.md Desired outcome 해당 문장 | 정책 오너 | (비움) |\n| 3 | intent.md 는 담당자가 접근 이력을 즉시 삭제할 수 있게 해 달라고 제안했으나, PROJECT-POLICY P2 는 접근·변경 이력을 90일 보존한다고 정했다 (intent Open questions Q1과 동일 사안) | 충돌 | data-compliance C3 · PROJECT-POLICY P2(90일 보존) · intent.md Desired outcome 해당 문장 | 정책 오너 | (비움) |\n| 4 | intent.md 는 오류에 예외 원문을 보여 주자고 제안했다 | 충돌 | ux-copy `### Error Messages`(\"What happened + Why + How to fix\" — 원본 스택트레이스가 아니라 세 요소 구조) · data-compliance C2(민감 정보가 예외 메시지에 섞여 나갈 수 있음) | 정책 오너 | (비움) |\n| 5 | 완료 시각을 \"3분 전\"으로만 표시하자는 제안 | 충돌 | brand B3(\"상대 시간만 쓰지 않는다 — 절대 시각을 함께\") · PROJECT-POLICY P1(형식은 팀 기본값) | 정책 오너 | (비움) |\n\n## Out of scope\n- 작업 상태 변경(작업을 완료·실패로 바꾸는 기능).\n- 사외 알림, 사외 사용자 접근.\n- 새 개인정보 수집.\n- 접근성 판·검사 방법 신설(PROJECT-POLICY P3 미정 — 정책 오너가 정할 사안이며 이 spec 은 만들지 않는다).\n- plan.md, 코드, 정책 파일 변경 — 이 spec 은 요구·설계 문서만이다.\n\n## Acceptance criteria\n- AC1 → R1 화면에 작업 ID·상태(넷 중 하나)·완료 시각이 표시된다.\n- AC2 → R2 조회 실패 시 화면 문구에 원본 예외 문자열이 없고, 무엇이·왜(가능하면)·다음 행동이 있다.\n- AC3 → R3 화면 마크업과 API 응답 스키마 어디에도 employee_email, employee_phone 필드가 없다.\n- AC4 → R4 완료 시각 표기에 `YYYY-MM-DD`, 24시간제, `KST` 문자열이 함께 나타난다.\n- AC5 → R5 세션 없는 요청은 엔드포인트에서 거부된다.\n- AC6 → R6 스키마에 없는 필드를 포함한 요청은 거부된다.\n- AC7 → R7 접근 이력 각 행에 역할+내부 임직원 ID, 작업 ID, UTC 타임스탬프가 있고, 90일 경과 행은\n  더 이상 조회되지 않는다.\n- AC8 → R8 오류 로그·감사 이벤트 레코드에 원본 요청 헤더 전체 또는 원본 응답 전체가 필드로 존재하지\n  않는다.\n- AC9 → R9 재조회 버튼의 레이블이 \"다시 조회\"이다.\n",
+  "deterministic_check": {
+    "exit_code": 1,
+    "passed": 10,
+    "failed": 1,
+    "failing_index": 9,
+    "expected_literal": "gateway JWT",
+    "observed_text": "게이트웨이 JWT",
+    "grader_modified": false
+  },
+  "review_limitations": [
+    "Skill bodies were read and core brand/data/auth/error-copy requirements appeared in spec. This is one model run, not end-to-end owner acceptance.",
+    "Installed-cache version behavior was not exercised; manifest0.1.1 was read and Git versions left unverified.",
+    "Semantic assertions remain ungraded; source-excerpt quality and conflict-resolution wording still require human review.",
+    "The initial default-model Opus attempt was terminated (rc143) after the user requested Sonnet. It is not a completed evaluation."
+  ],
+  "loaded_repository_plugin": {
+    "name": "intent-sdlc-skills",
+    "path": "org-skills",
+    "source": "intent-sdlc-skills@inline",
+    "version": "0.1.1"
+  },
+  "permanent_installation": {
+    "authorization": "User explicitly allowed permanent installation after the focused policy run.",
+    "marketplace_source": "/Users/jake/Projects/ai-native-sdlc-sample",
+    "scope": "user",
+    "plugin_id": "intent-sdlc-skills@intent-sdlc-skills",
+    "version": "0.1.1",
+    "enabled": true,
+    "installed_at": "2026-09-10T13:10:40.957Z",
+    "registered_install_path": "/Users/jake/.claude/plugins/cache/intent-sdlc-skills/intent-sdlc-skills/0.1.1",
+    "commands": [
+      "claude plugin validate org-skills",
+      "claude plugin validate .claude-plugin/marketplace.json",
+      "claude plugin marketplace add /Users/jake/Projects/ai-native-sdlc-sample --scope user",
+      "claude plugin install intent-sdlc-skills@intent-sdlc-skills --scope user",
+      "claude plugin list --json"
+    ],
+    "commands_exit": 0,
+    "smoke": {
+      "model": "sonnet",
+      "effort": "low",
+      "plugin_dir_argument": false,
+      "tools": "Read,Glob",
+      "exit": 0,
+      "result_subtype": "success",
+      "is_error": false,
+      "loaded_plugin": {
+        "name": "intent-sdlc-skills",
+        "path": "/Users/jake/Projects/ai-native-sdlc-sample/org-skills",
+        "source": "intent-sdlc-skills@intent-sdlc-skills",
+        "version": "0.1.1"
+      },
+      "read_paths": [
+        "org-skills/.claude-plugin/plugin.json",
+        "org-skills/skills/spec-policy-pass/SKILL.md"
+      ],
+      "limitation": "With the local directory marketplace, the new session resolved the plugin to the source checkout even though installation metadata has a cache path. Isolated cache deployment, update propagation, and a full installed-policy eval remain untested."
+    }
+  }
+}

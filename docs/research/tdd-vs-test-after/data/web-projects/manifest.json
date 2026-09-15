@@ -1,0 +1,86 @@
+{
+  "as_of": "2026-09-12",
+  "observed_through": "2026-09-12T07:48:59Z",
+  "timezone": "UTC",
+  "eligibility_window": {
+    "start_inclusive": "2024-09-12T00:00:00Z",
+    "end_inclusive": "2026-09-12T23:59:59Z"
+  },
+  "selection_rule": "Within each saved and documented candidate set, for each project and semantic change class, take the latest two qualifying merged changes by merged_at after excluding bots, docs-only, generated-only, backports, test-only, CI-only, and performance-only changes. Because at least four of each project's six base changes had sequence-unknown evidence, add the next qualifying change in every class, for nine changes per project.",
+  "sequence_labels": {
+    "test-first-visible-with-failure-confirmation": "A test-only commit precedes its implementation commit and a contemporaneous source confirms that pre-fix test failed.",
+    "test-first-visible-without-failure-confirmation": "A test-only commit precedes the relevant implementation commit, but no surviving CI or author report confirms the test failed at that point.",
+    "same-commit-unknown": "The first relevant commit contains both implementation and test changes; Git cannot reveal local authoring order.",
+    "implementation-then-test-commits": "A relevant implementation-only commit precedes the test commit. This is repository commit order, not proof of the author's local editing order.",
+    "existing-tests-only": "No relevant test file changed; available CI exercises existing checks or the change relies on non-automated validation.",
+    "insufficient-history": "Available history cannot resolve the relevant file or commit sequence."
+  },
+  "candidate_sources": [
+    "candidate-decisions.json",
+    "django/candidates-page1.json",
+    "django/candidates-refactor-title-page1.json",
+    "rails/candidates-page1.json",
+    "rails/candidates-refactor-title-page1.json",
+    "react/candidates-recent.json",
+    "nextjs/candidates-page1.json",
+    "nextjs/candidates-refactor-title-page1.json",
+    "gitlab/candidates-page1.json"
+  ],
+  "limitations": [
+    "GitHub Search returned HTTP 422 for facebook/react date queries, so React candidates use the repository's official Pulls API and are sorted locally by merged_at.",
+    "Candidate endpoints are capped at 100 items per saved page. The saved lists are the actual inspected candidate sets, not a claim of a complete two-year census.",
+    "GitHub check-runs endpoints are capped to the fetched first 100 runs in large React and Next.js suites; CI snapshots support only bounded status claims.",
+    "PR/MR commit history can be rebased, force-pushed, squashed, or amended before merge and never exposes uncommitted local editing order."
+  ],
+  "samples": [
+    {"project":"Django","repository":"django/django","id":20842,"class":"feature","slot":"base-1","merged_at":"2026-09-08T19:01:03Z","sequence":"existing-tests-only","evidence":"django/pr-20842.json","note":"Accessibility-oriented admin icon behavior; one commit changes SVG and documentation images, with no test file in the PR."},
+    {"project":"Django","repository":"django/django","id":21875,"class":"feature","slot":"base-2","merged_at":"2026-09-04T19:43:51Z","sequence":"same-commit-unknown","evidence":"django/pr-21875.json","note":"qualname implementation and unit test are in the same relevant commit."},
+    {"project":"Django","repository":"django/django","id":21886,"class":"feature","slot":"expansion-3","merged_at":"2026-09-04T18:19:15Z","sequence":"same-commit-unknown","evidence":"django/pr-21886.json","note":"The target calendar-version implementation and test share one commit; an earlier unrelated middleware commit does not resolve target order."},
+    {"project":"Django","repository":"django/django","id":21881,"class":"bugfix","slot":"base-1","merged_at":"2026-09-08T16:45:55Z","sequence":"same-commit-unknown","evidence":"django/pr-21881.json","note":"Raster fix and regression test share one commit; the PR body does not report a pre-fix failure run."},
+    {"project":"Django","repository":"django/django","id":21482,"class":"bugfix","slot":"base-2","merged_at":"2026-09-07T15:02:23Z","sequence":"same-commit-unknown","evidence":"django/pr-21482.json","note":"ModelFormSet fix and test share one commit."},
+    {"project":"Django","repository":"django/django","id":21064,"class":"bugfix","slot":"expansion-3","merged_at":"2026-09-04T21:24:26Z","sequence":"same-commit-unknown","evidence":"django/pr-21064.json","note":"Migration/deconstruction behavior and test share one commit."},
+    {"project":"Django","repository":"django/django","id":21696,"class":"refactor","slot":"base-1","merged_at":"2026-08-03T14:27:35Z","sequence":"same-commit-unknown","evidence":"django/pr-21696.json","note":"Fetch-mode rename and affected tests share one commit."},
+    {"project":"Django","repository":"django/django","id":21519,"class":"refactor","slot":"base-2","merged_at":"2026-07-13T19:01:16Z","sequence":"same-commit-unknown","evidence":"django/pr-21519.json","note":"MiddlewareMixin move and related tests share one commit."},
+    {"project":"Django","repository":"django/django","id":21507,"class":"refactor","slot":"expansion-3","merged_at":"2026-06-17T17:44:38Z","sequence":"existing-tests-only","evidence":"django/pr-21507.json","note":"Internal helper rename changes implementation only; no test file changed."},
+
+    {"project":"Rails","repository":"rails/rails","id":58710,"class":"feature","slot":"base-1","merged_at":"2026-09-11T18:40:23Z","sequence":"same-commit-unknown","evidence":"rails/pr-58710.json","note":"Ractor time-zone capability and its test share one commit."},
+    {"project":"Rails","repository":"rails/rails","id":58695,"class":"feature","slot":"expansion-3","merged_at":"2026-09-08T22:35:15Z","sequence":"same-commit-unknown","evidence":"rails/pr-58695.json","note":"Each of five capability commits contains its own implementation and tests."},
+    {"project":"Rails","repository":"rails/rails","id":58668,"class":"feature","slot":"base-2","merged_at":"2026-09-10T21:23:22Z","sequence":"same-commit-unknown","evidence":"rails/pr-58668.json","note":"Copy-on-write reflection support and tests share one commit."},
+    {"project":"Rails","repository":"rails/rails","id":58747,"class":"bugfix","slot":"base-1","merged_at":"2026-09-11T23:20:55Z","sequence":"same-commit-unknown","evidence":"rails/pr-58747.json","note":"Ractor safety fix and regression test share one commit."},
+    {"project":"Rails","repository":"rails/rails","id":53403,"class":"bugfix","slot":"base-2","merged_at":"2026-09-11T20:52:46Z","sequence":"same-commit-unknown","evidence":"rails/pr-53403.json","note":"The first relevant commit contains fix and test; later commits adjust that test and changelog, so primary authoring order stays unknown."},
+    {"project":"Rails","repository":"rails/rails","id":58711,"class":"bugfix","slot":"expansion-3","merged_at":"2026-09-10T21:18:17Z","sequence":"same-commit-unknown","evidence":"rails/pr-58711.json","note":"Reloader write fix and test share one commit."},
+    {"project":"Rails","repository":"rails/rails","id":58735,"class":"refactor","slot":"base-1","merged_at":"2026-09-11T05:28:42Z","sequence":"existing-tests-only","evidence":"rails/pr-58735.json","note":"Method move changes implementation files only."},
+    {"project":"Rails","repository":"rails/rails","id":58673,"class":"refactor","slot":"base-2","merged_at":"2026-09-05T01:32:39Z","sequence":"same-commit-unknown","evidence":"rails/pr-58673.json","note":"Six refactor commits each pair implementation and related tests."},
+    {"project":"Rails","repository":"rails/rails","id":58497,"class":"refactor","slot":"expansion-3","merged_at":"2026-08-17T00:18:16Z","sequence":"existing-tests-only","evidence":"rails/pr-58497.json","note":"Constructor simplification changes one implementation file only."},
+
+    {"project":"React","repository":"facebook/react","id":37513,"class":"feature","slot":"base-1","merged_at":"2026-09-11T09:22:40Z","sequence":"same-commit-unknown","evidence":"react/pr-37513.json","note":"Compiler support and fixtures/tests start in the same relevant commit."},
+    {"project":"React","repository":"facebook/react","id":37339,"class":"feature","slot":"base-2","merged_at":"2026-09-02T15:58:53Z","sequence":"same-commit-unknown","evidence":"react/pr-37339.json","note":"Nonce implementation and initial test share the first commit; a later test-only commit adds another case."},
+    {"project":"React","repository":"facebook/react","id":37491,"class":"feature","slot":"expansion-3","merged_at":"2026-09-02T15:47:17Z","sequence":"existing-tests-only","evidence":"react/pr-37491.json","note":"Canary flag activation changes feature-flag implementation files and adds no test."},
+    {"project":"React","repository":"facebook/react","id":37579,"class":"bugfix","slot":"base-1","merged_at":"2026-09-11T13:24:42Z","sequence":"same-commit-unknown","evidence":"react/pr-37579.json","note":"The first commit contains the DOM fix and regression test; later commits refactor the fix."},
+    {"project":"React","repository":"facebook/react","id":37539,"class":"bugfix","slot":"base-2","merged_at":"2026-09-09T12:06:01Z","sequence":"same-commit-unknown","evidence":"react/pr-37539.json","note":"Both commits pair Rust implementation and fixture tests."},
+    {"project":"React","repository":"facebook/react","id":37545,"class":"bugfix","slot":"expansion-3","merged_at":"2026-09-08T22:40:40Z","sequence":"same-commit-unknown","evidence":"react/pr-37545.json","note":"Integer conversion fix and tests share one commit."},
+    {"project":"React","repository":"facebook/react","id":37574,"class":"refactor","slot":"base-1","merged_at":"2026-09-11T10:07:17Z","sequence":"same-commit-unknown","evidence":"react/pr-37574.json","note":"Flag cleanup and affected tests share one commit."},
+    {"project":"React","repository":"facebook/react","id":37573,"class":"refactor","slot":"base-2","merged_at":"2026-09-10T17:24:22Z","sequence":"same-commit-unknown","evidence":"react/pr-37573.json","note":"Initial cleanup commit contains code and tests; a later test-only commit fixes a gate."},
+    {"project":"React","repository":"facebook/react","id":37550,"class":"refactor","slot":"expansion-3","merged_at":"2026-09-09T13:21:54Z","sequence":"same-commit-unknown","evidence":"react/pr-37550.json","note":"RN global move and test update share one commit."},
+
+    {"project":"Next.js","repository":"vercel/next.js","id":98532,"class":"feature","slot":"base-1","merged_at":"2026-09-11T19:05:04Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-98532.json","note":"Loader mode implementation and test suite share the first commit; later commits reorganize or update tests."},
+    {"project":"Next.js","repository":"vercel/next.js","id":98571,"class":"feature","slot":"base-2","merged_at":"2026-09-11T17:58:23Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-98571.json","note":"Image optimizer configuration and unit tests share one commit."},
+    {"project":"Next.js","repository":"vercel/next.js","id":97203,"class":"feature","slot":"expansion-3","merged_at":"2026-09-11T14:29:44Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-97203.json","note":"The feature begins with implementation and tests in the same commit; later mixed commits do not recover local order."},
+    {"project":"Next.js","repository":"vercel/next.js","id":98506,"class":"bugfix","slot":"base-1","merged_at":"2026-09-11T14:01:15Z","sequence":"implementation-then-test-commits","evidence":"nextjs/pr-98506.json","note":"Implementation-only 254faa2 precedes test-only ac34a62. This is commit order only; the PR body reports manual before/after behavior, not local editing order."},
+    {"project":"Next.js","repository":"vercel/next.js","id":98252,"class":"bugfix","slot":"base-2","merged_at":"2026-09-11T11:44:24Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-98252.json","note":"Type-generation fix and tests share the first commit; a later test-only commit adjusts tsconfig."},
+    {"project":"Next.js","repository":"vercel/next.js","id":98512,"class":"bugfix","slot":"expansion-3","merged_at":"2026-09-11T08:46:56Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-98512.json","note":"Fallback staging implementation and many related tests share one commit."},
+    {"project":"Next.js","repository":"vercel/next.js","id":98575,"class":"refactor","slot":"base-1","merged_at":"2026-09-11T23:25:09Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-98575.json","note":"Initial type refactor and tests share commits; the final implementation-only follow-up does not resolve initial order."},
+    {"project":"Next.js","repository":"vercel/next.js","id":98347,"class":"refactor","slot":"base-2","merged_at":"2026-09-10T11:50:40Z","sequence":"existing-tests-only","evidence":"nextjs/pr-98347.json","note":"Node-fetch removal changes scripts, benchmark code, dependencies, and workflow config, with no test file change."},
+    {"project":"Next.js","repository":"vercel/next.js","id":97988,"class":"refactor","slot":"expansion-3","merged_at":"2026-08-28T15:52:51Z","sequence":"same-commit-unknown","evidence":"nextjs/pr-97988.json","note":"The PR explicitly states no logic should change; extraction and related unit tests share the first commit."},
+
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":254453,"class":"feature","slot":"base-1","merged_at":"2026-09-11T22:36:41.627Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-254453.json","note":"Feature and Jest test share the sole relevant commit; latest fetched pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":254982,"class":"feature","slot":"base-2","merged_at":"2026-09-11T22:21:10.670Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-254982.json","note":"Filter behavior and tests share one commit; latest fetched pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":255081,"class":"feature","slot":"expansion-3","merged_at":"2026-09-11T19:11:35.282Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-255081.json","note":"Both commits combine UI behavior and test changes; latest fetched pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":254560,"class":"bugfix","slot":"base-1","merged_at":"2026-09-11T18:42:33.212Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-254560.json","note":"Navigation metadata fix and specs share one commit; latest fetched pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":254677,"class":"bugfix","slot":"base-2","merged_at":"2026-09-11T18:39:48.670Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-254677.json","note":"Initial fix and test share a commit; a later test-only stub adjustment does not resolve initial order; latest pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":254620,"class":"bugfix","slot":"expansion-3","merged_at":"2026-09-11T18:36:20.959Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-254620.json","note":"Both commits combine implementation and tests; latest fetched pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":254298,"class":"refactor","slot":"base-1","merged_at":"2026-09-12T02:35:52.182Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-254298.json","note":"Initial tool-catalog change and tests share a commit; later test/rule changes follow; latest pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":252442,"class":"refactor","slot":"base-2","merged_at":"2026-09-11T19:33:18.072Z","sequence":"same-commit-unknown","evidence":"gitlab/mr-252442.json","note":"State refactor and extensive Jest updates share one commit; latest pipeline is successful."},
+    {"project":"GitLab","repository":"gitlab-org/gitlab","id":253525,"class":"refactor","slot":"expansion-3","merged_at":"2026-09-11T16:00:48.040Z","sequence":"existing-tests-only","evidence":"gitlab/mr-253525.json","note":"Feature-flag lifecycle refactor changes application/config/docs without test files; latest pipeline is successful."}
+  ]
+}

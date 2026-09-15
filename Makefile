@@ -10,5 +10,5 @@ test:
 	bash tests/test_managed_settings.sh
 evals:
 	@[ -n "$$ANTHROPIC_API_KEY" ] || { echo "SKIP: ANTHROPIC_API_KEY 없음 — evals 는 돌지 않았다(rc=2, 통과 아님)"; exit 2; }
-	bash evals/run.sh
+	bash evals/run.sh --semantic
 check: test

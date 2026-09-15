@@ -1,0 +1,2784 @@
+
+
+
+T ENET : One Step Toward Test-Driven Development for Repository-Level Code Generation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      Report GitHub Issue
+      ×
+    
+
+    
+
+      Title:
+      
+
+      
+Content selection saved. Describe the issue below:
+
+      Description:
+      
+    
+
+    
+      Submit without GitHub
+      Submit in GitHub
+    
+  
+
+
+    
+    arXiv is now an independent nonprofit!
+    Learn more
+    ×
+  
+
+
+  
+
+    
+      Back to arXiv
+    
+  
+  
+  
+    Why HTML?
+    
+      
+        
+      
+      Report Issue
+    
+    
+      
+        
+        
+      
+      Back to Abstract
+    
+    
+    
+      
+        
+      
+      Download PDF
+    
+    
+      
+        
+        
+      
+    
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+          
+          
+        
+      
+      
+        
+          
+          
+        
+      
+      
+        
+          
+          
+        
+      
+    
+  
+
+
+
+Abstract
+I Introduction
+II Related Work
+
+II-A Test-Driven Development
+II-B Repository-Level Code Generation
+II-C Large Language Model Agents
+
+III Approach: T
+
+ENET
+
+
+III-A Test Harness Mechanism
+III-B Tailored Agent Toolset
+III-C Reflection-Based Refinement Workflow
+
+IV Experimental Setup
+
+IV-A Research Questions
+IV-B Benchmarks
+IV-C Baselines
+
+V Evaluation Results
+
+V-A RQ1: Baseline Comparison
+V-B RQ2: Contributions of T
+
+ENET
+ ’s Components
+
+V-B1 Test Harness Mechanism
+V-B2 Tailored Agent Toolset
+V-B3 Reflection-Based Refinement Workflow
+
+V-C RQ3: The Impact of Test Suite Size
+V-D RQ4: The Impact of Test Selection Strategies
+
+V-D1 Random Selection (RS)
+V-D2 Simplicity-Based Selection (SS)
+V-D3 Failure-Revealing Selection (FRS)
+V-D4 Invocation-Proximity Selection (IPS)
+
+V-E RQ5: The Impact of Test Usage Stage
+
+VI Threats to Validity
+VII Conclusion & Future Work
+References
+
+
+
+
+
+
+  
+    License: CC BY-NC-ND 4.0
+  
+  
+
+arXiv:2509.24148v4 [cs.SE] 13 Aug 2026
+
+
+
+
+T
+
+ENET
+: One Step Toward Test-Driven Development for
+Repository-Level Code Generation
+
+
+
+Yiran Hu
+
+  
+Shanchao Liang
+
+  
+Nan Jiang†
+
+  
+Yi Wu
+
+  
+Lin Tan
+
+Affiliation: Purdue University
+
+Affiliation: {hu954, liang422, wu1827, lintan}@purdue.edu
+
+Email: †nan.nathan.jiang@gmail.com
+
+
+
+Abstract
+    
+
+Test-Driven Development (TDD) is a widely adopted practice that requires developers to create and execute tests alongside implementation. With recent advances in Large Language Models (LLMs), developers can shift from manually writing the code to defining tests as executable specifications and delegating code synthesis to AI agents. However, enabling repository-level TDD under developer-written tests is challenging, requiring: (1) specification enhancement: identifying a concise yet representative test subset from large suites with rich task semantics; (2) retrieval augmentation: using tests to guide reasoning and context retrieval; and (3) test-driven refinement: interpreting test feedback for iterative improvement. We propose T
+
+ENET
+, an agentic framework for repository-level code generation under the TDD paradigm. T
+
+ENET
+ includes: (1) a test harness mechanism that selects a concise test suite to maximize diversity of the target usage scenarios; (2) a tailored agent toolset for efficient retrieval and debugging; and (3) a reflection-based refinement workflow that iteratively analyzes failures and updates implementations.
+T
+
+ENET
+ consistently outperforms the strongest baselines across backbones, achieving 69.08% and 81.77% Pass@1 on RepoCod and RepoEval with Claude Sonnet 4, improving by 9.49 and 2.17 percentage points, respectively. Additionally, we present the first systematic study of how test suite characteristics influence LLM agent performance in TDD settings.
+  
+
+
+
+Index Terms: Test-Driven Development, Repository-Level Code Generation, Large Language Models, AI Agent.
+
+
+
+Fig. 1: Examples of repository-level code generation under standard and test-driven setups.
+
+
+
+
+I Introduction
+
+
+
+
+Test-Driven Development (TDD) is a widely adopted practice in software engineering that tightly couples the testing and implementation processes [6]: developers typically start by writing test cases that specify the desired behavior or capture potential failure scenarios, then incrementally implement and refine code to satisfy these tests. Extensive studies have demonstrated that TDD improves implementation accuracy, code quality, and design clarity [34, 39, 44, 17, 50, 20, 42, 33, 8, 5].
+
+
+
+
+In the era of vibe coding [22], developers increasingly delegate code writing to large language models (LLMs) by providing high-level intentions. However, such descriptions often fail to capture detailed functionality, making it challenging for LLMs to implement correctly and sometimes even amplifying the ambiguity, especially with the repository-level context. This makes TDD even more crucial, as it systematically specifies and validates requirements through executable test cases to improve functional correctness. Recent industry practices further highlight the effectiveness of TDD in agentic coding workflows [1, 12].
+
+
+
+
+Fig. 1 shows how an LLM agent generates the target function for scikit-learn_304 from RepoCod [29]. In the standard setting, the agent is given 1 the task description, 2 repository context, and 3 function specification. Based on these, it assumes that y\_prob.shape[1] (the size of distributions) is always greater than 1, since classification should involve at least two classes, and produces the implementation in 5. However, scikit-learn also requires supporting singleton probability representations for binary classification (e.g., [0.9] instead of [0.1,0.9]), which cannot be inferred from 1–3 and the implementation in 5 fails on such inputs. In contrast, the TDD setting additionally provides 4 test cases that include such usage examples (the gray lines in 4) for specification enhancement, guiding the agent to generate the correct implementation in 6.
+
+
+
+
+While this highlights TDD as a promising setting, existing studies on automated code generation in TDD are largely limited to standalone function generation [44, 34, 39, 16, 26]. Automating TDD in repository-level code generation remains underexplored. Although the ultimate goal of AI-driven TDD involves authoring new tests and the full ”test-implement-refactor” cycle, a crucial step forward is enabling agents to reliably utilize and satisfy existing developer-written tests. This focused setting introduces several challenges.
+
+
+
+
+First, unlike standalone functions, where tests directly invoke the target, software repositories contain large test suites where tests reach the target function through long and indirect call chains. How to strategically leverage these tests for specification enhancement to guide LLMs under computational budgets remains an open question.
+Second, relevant context is often scattered across the repository, and implementations must follow repository-specific structures, imports, and conventions that are invisible at function granularity. This poses a key challenge for retrieval augmentation: effectively leveraging test context and signals to guide agents toward effective reasoning and retrieval.
+Finally, test execution feedback is often sparse and noisy, and failures may arise from interactions far from the generated function, making it difficult for models to precisely interpret for code refinement.
+
+
+
+
+To tackle these challenges, we introduce T
+
+ENET
+, an agentic framework for repository-level code generation focusing on how to effectively utilize developer-written tests, retrieve informative context, and leverage test feedback for code refinement. The framework features three components. First, given developer-written test cases, T
+
+ENET
+ employs a test harness mechanism (THM) that utilizes dynamic analysis to select a subset of tests that invoke target functions from distinct caller functions in the call stack to maximize coverage of diverse usage scenarios.
+Second, it leverages a tailored agent toolset for repository-level code generation, enabling efficient discovery of diverse usage patterns of the target function and supporting interactive debugging.
+Third, it implements a reflection-based refinement workflow (RRW) that iteratively improves generated code via failure analysis, contextual replenishment, and execution-based debugging. Together, these components allow T
+
+ENET
+ to generate more accurate code in complex real-world repositories. The core contributions are summarized as follows.
+
+• 
+
+
+
+We propose an effective test harness mechanism for efficient test-driven supervision, using dynamic analysis to select a concise subset of tests for specification enhancement.
+
+• 
+
+
+
+We design a tailored agent toolset that supports LLM agents to efficiently utilize test signals and perform context retrieval with interactive debugging.
+
+• 
+
+
+
+We build a reflection-based refinement workflow for test-aware debugging, enabling LLM agents to precisely interpret test feedback for code refinement.
+
+• 
+
+
+
+We develop T
+
+ENET
+, a test-driven agentic framework that integrates the above components for repository-level code generation. It achieves 69.08% and 81.77% Pass@1 on RepoCod and RepoEval, outperforming the strongest agentic baselines by 9.49 and 2.17 percentage points (pp), respectively. These margins further widen to 20.10 and 6.97 pp under the DeepSeek-V3 backbone.
+
+• 
+
+
+
+We conduct the first systematic study of test-driven code generation using LLM agents at the repository level. The key findings include:
+
+– 
+
+
+
+A larger quantity of test cases does not necessarily lead to superior results; a moderate number, typically three to five, often yields optimal performance.
+
+– 
+
+
+
+Test suites considering both caller diversity and invocation proximity provide the most effective guidance for LLM agent repository-level code generation.
+
+– 
+
+
+
+While incorporating test signals in both context retrieval and refinement consistently improves the performance, it comes with higher token consumption. We should balance the trade-off between accuracy and efficiency.
+
+
+
+
+
+
+Fig. 2: T
+
+ENET
+ workflow.
+
+
+
+
+
+II Related Work
+
+
+
+
+II-A Test-Driven Development
+
+
+
+
+A typical Test-Driven Development (TDD) workflow follows a “test–implement–refactor” cycle: developers begin with test cases that specify desired functionality, write the minimal code required to pass the tests, and refactor the implementation while ensuring tests continue to pass. Prior work has demonstrated the effectiveness of TDD in improving software quality [17, 50, 20, 42, 33, 5] and has further explored its application to LLM-based code generation, primarily on standalone function generation benchmarks [34, 39, 44, 16, 26]. Under this setting, models do not need to navigate complex file dependencies or isolate the specific subset of tests relevant to a change.
+
+
+
+
+In contrast, T
+
+ENET
+ takes a step towards repository-level TDD. Our setting requires the agent to select, utilize, and satisfy the existing developer-written test cases in the repository. It introduces new challenges in test selection for specification enhancement and test-guided retrieval that standalone baselines do not address.
+
+
+
+
+
+II-B Repository-Level Code Generation
+
+
+
+
+Many code generation benchmarks focus on generating isolated code units [9, 3, 18], which differ from real-world software development where implementations must integrate with large repositories and satisfy project-specific dependencies. To better reflect such scenarios, repository-level code generation benchmarks have been proposed [29, 58, 14, 24, 60, 49, 27, 53], requiring models to implement new functionalities within complex codebases while maintaining consistency.
+
+
+
+
+Existing approaches for repository-level code generation with LLM can be categorized into non-agentic and agentic methods. Non-agentic approaches mainly follow two paradigms: Retrieval-Augmented Generation (RAG), which retrieves relevant repository context using semantic or structural strategies [58, 48, 51, 43, 30, 11, 32, 25, 28, 37, 38]; and feedback-driven refinement, which improves generated code using external signals such as compiler errors [7] or symbolic planning [4].
+Agentic approaches formulate repository-level code generation as a multi-step decision-making process, where the model interacts with external tools to explore the repository, modify code, and validate changes [59, 47, 54, 41].
+
+
+
+
+
+II-C Large Language Model Agents
+
+
+
+
+LLM agents leverage LLMs as central reasoning engines to decompose complex problems, formulate multi-step plans, and interact with external environments through tool invocation.
+Prior work explores diverse agent designs for software engineering tasks.
+Approaches including AutoCodeRover [61], SpecRover [41], as well as CodeAgent [59], are designed for specific scenarios, such as issue fixing or repository-level code generation. These methods typically rely on pre-defined workflows and toolsets to guide program analysis and code modification.
+General-purpose software engineering agents, including SWE-Agent [54], CodeAct [46], and Live-SWE-Agent [52], can solve real-world GitHub issues by equipping LLMs with tools for code navigation, editing, and test execution, with Live-SWE-Agent further enabling agents to dynamically construct their own toolsets on the fly.
+
+
+
+
+However, when generating code in a test-driven manner, they lack mechanisms to select informative tests and to effectively leverage execution feedback for refinement. T
+
+ENET
+ addresses this by using THM to select diverse and informative test cases for better specification, equipping LLMs with a powerful toolset for retrieval and interactive debugging, and adopting RRW for structured and effective code refinement.
+
+
+
+
+
+
+III Approach: T
+
+ENET
+
+
+
+
+
+Fig. 2 illustrates the workflow of T
+
+ENET
+, which consists of three major components: (1) the test harness mechanism (THM), (2) the tailored agent toolset, and (3) the reflection-based refinement workflow (RRW). The THM is a dynamic-analysis preprocessing stage that operates outside the agent: it first selects a small yet effective test subset from the repository’s complete test suite. This subset is provided as additional input 4, alongside the 1 task description, 2 repository context, and 3 target function specification. Throughout the subsequent workflow, the agent can access and execute only the selected tests, while all remaining tests are held out from the agent. Guided by the test subset, T
+
+ENET
+ explores the repository using the tailored agent toolset, which supports efficient retrieval and interactive debugging. After gathering sufficient context, it generates a solution and validates it against the selected tests. If any test fails, T
+
+ENET
+ enters the RRW to repair the generated code.
+
+
+
+
+During the RRW, the agent assesses whether the current information provides adequate support for a correct refinement, including fault localization and issue understanding. If not, the RRW prompts the agent to retrieve additional context and use interactive debugging to gather further insights. This loop continues until the agent deems the evidence sufficient for a fix, at which point it generates a candidate refinement. The updated code is then validated using the THM-selected tests. T
+
+ENET
+ stays in the RRW until all selected tests pass or a maximum number of attempts is reached.
+
+
+
+
+III-A Test Harness Mechanism
+
+
+
+
+Test cases can expose diverse usage scenarios of the target function, serving as a form of specification enhancement beyond the function signature and docstring. However, dumping the entire test suite to the LLM is infeasible due to two reasons.
+
+• 
+
+
+
+Effectiveness. Providing massive test cases can overwhelm the LLM with long, complex prompts, increasing the cognitive load of the model [34, 31].
+
+• 
+
+
+
+Efficiency. Such massive test suites and long prompts inevitably incur higher generation latency and execution workload, reducing the efficiency of the agent pipeline [23].
+
+
+
+
+
+
+To identify a concise and effective test subset from the entire repository test suite, T
+
+ENET
+ employs an effective THM that first executes the full test suite against the unimplemented target function to collect failing cases. These failing cases are then clustered according to the caller function that directly invokes the target function in their call stack. The intuition is that different caller functions are likely to expose distinct usage patterns and test diverse aspects of the target function’s logic, thereby providing complementary test coverage. For the example shown in Fig. 1, the test function with call chain test\_log\_loss\_1\_prob\_finite →\rightarrow log\_loss tests the target function under the binary classification scenario and covers the if branch, while another cluster of test functions, with call chain …→\ldots\rightarrow \_backprop →\rightarrow log\_loss, all test the target function by covering the else branch.
+
+
+
+
+From these clusters, T
+
+ENET
+ selects at most TT test cases. The selection further prioritizes tests with the shortest call chain from the entry test function to the target function.
+The motivation is that tests with shorter invocation paths may expose cleaner execution contexts and more localized failure signals. In contrast, tests with deeper invocation paths often provide longer and more complex feedback, indicating complicated execution paths and error propagation. Selecting tests with shorter call chains may expose the agent to more concise and focused feedback, thereby simplifying the refinement process and reducing the overall task difficulty.
+
+
+
+
+In practice, the process first attempts to pick one representative test case from each cluster with the shortest call chain. If the number of clusters is greater than or equal to TT, the top TT clusters are chosen, with one test case selected from each. If the number of clusters is fewer than TT, additional test cases with the shortest call chains are selected until the budget of TT is reached. This strategy ensures that the final subset of test cases remains both diverse across failure patterns and closely tied to the target function’s behavior.
+
+
+
+
+We emphasize that the full-suite execution above is performed by the THM alone for candidate discovery; the subsequent agent only has access to the selected tests.
+We set T=3T=3 for the algorithm described above based on preliminary experiments on the sphinx project from RepoCod (Section V-C). We study alternative test selection strategies in Section V-D.
+
+
+
+
+
+III-B Tailored Agent Toolset
+
+
+
+
+T
+
+ENET
+ provides a tailored toolset that extends the abstract-syntax-tree (AST)-based toolset of SpecRover [41] for structural context retrieval and interactive debugging. The API toolsets of existing agents can be roughly divided into two categories: AST-based, such as AutoCodeRover and SpecRover, and terminal-command based, such as SWE-Agent [54] and OpenHands [47]. While AST-based interfaces allow structural navigation and terminal-command based interfaces offer more flexibility, they still face several limitations when generating functions under repository-level context.
+
+
+
+
+First, RAG techniques can substantially improve generation accuracy by providing relevant code examples. However, existing LLM agents have not incorporated semantic retrieval as an API beyond basic repository navigation, which usually requires multiple attempts to locate the desired context. Second, understanding the use cases is crucial for accurate code generation. Yet, existing LLM agents rely on terminal commands to find the usage of a certain function based on string matching, which is inefficient and error-prone. Third, although interactive debugging plays an important role in refining code [57], existing agents treat it as an end-to-end process, lacking support for fine-grained interactive debugging that enables stepwise evidence collection and fault diagnosis.
+
+
+
+
+To address these, we extend SpecRover’s AST-based toolset with four new APIs:
+
+• 
+
+
+
+search\_similar\_method(n) retrieves the top-n methods most relevant to the signature and docstring of the target function, ranked by BM25 similarity [29, 59]. This API enables the agent to collect context as references efficiently.
+
+• 
+
+
+
+search\_target\_usage(n)
+retrieves up to n usage examples of the target function via AST analysis. Unlike keyword-matching commands that require multiple indirect queries and often return noisy snippets, this API provides usage contexts in a single step, making it easier for the agent to understand how the target function is invoked.
+
+• 
+
+
+
+run\_debugger\_cmd(cmd) executes terminal commands within a container session, including interactive debugger commands (e.g., pdb) for step-by-step execution, variable inspection, and stack frame traversal.
+
+• 
+
+
+
+search\_import\_statement(f) retrieves all top-level import statements in the specified file f. This enables the agent to analyze dependencies and disambiguate call paths in cross-file analysis.
+
+
+
+Together, these APIs address the identified limitations by allowing T
+
+ENET
+ to efficiently retrieve relevant context and conduct structured interactive debugging.
+
+
+TABLE I: Comparison of Pass@1, token consumption, monetary cost, and Cost-of-Pass (CoP) on RepoCod and RepoEval under Claude Sonnet 4 and DeepSeek-V3.
+
+
+
+
+
+Backbone
+Approach
+RepoCod
+RepoEval
+
+
+Pass@1 (%)↑\uparrow
+Input ↓\downarrow
+Output ↓\downarrow
+Cost ($)↓\downarrow
+CoP ↓\downarrow
+Pass@1 (%)↑\uparrow
+Input ↓\downarrow
+Output ↓\downarrow
+Cost ($)↓\downarrow
+CoP ↓\downarrow
+
+
+Sonnet 4
+RepoCoder
+26.22
+14,225
+787
+$0.03
+0.11
+53.08
+6,048
+306
+$0.01
+0.02
+
+
+SpecRover
+33.33
+95,884
+6,609
+$0.35
+1.05
+72.12
+52,317
+4,643
+$0.20
+0.28
+
+
+OpenHands
+59.18
+1,119,149
+8,988
+$0.64
+1.08
+79.60
+471,103
+4,434
+$0.30
+0.38
+
+
+SWE-Agent
+59.59
+597,507
+1,252
+$0.45
+0.76
+67.02
+344,374
+1,242
+$0.30
+0.45
+
+
+T
+
+
+
+ENET
+
+69.08
+194,932
+6,560
+$0.53
+0.76
+81.77
+111,934
+3,790
+$0.28
+0.34
+
+
+DeepSeek-V3
+RepoCoder
+19.80
+12,477
+511
+$0.004
+0.018
+48.26
+12,830
+222
+$0.003
+0.007
+
+
+SpecRover
+18.24
+61,378
+5,456
+$0.023
+0.124
+46.11
+46,603
+4,256
+$0.017
+0.038
+
+
+OpenHands
+29.08
+353,648
+6,608
+$0.051
+0.176
+43.16
+176,073
+2,210
+$0.025
+0.059
+
+
+SWE-Agent
+27.04
+386,932
+736
+$0.049
+0.181
+35.66
+70,540
+533
+$0.007
+0.020
+
+
+T
+
+
+
+ENET
+
+49.18
+147,968
+4,645
+$0.026
+0.052
+55.23
+82,473
+2,967
+$0.017
+0.031
+
+
+
+
+
+
+
+III-C Reflection-Based Refinement Workflow
+
+
+
+
+With the THM and the tailored toolset, T
+
+ENET
+ first generates a code snippet which is then validated against the chosen test cases. If any THM-selected test fails, T
+
+ENET
+ enters the RRW to revise the code snippet iteratively. Throughout the RRW, generation and refinement are validated exclusively against the THM-selected tests.
+Unlike refinement in the setting of self-contained functions, where the LLM only needs to review and revise its own faulty implementation [10, 36, 19], the generation of incorrect code within a repository could be due to more complex reasons. For example, LLM can get “lost in the middle” due to long trajectories [31], overlooking important context such as the usage of repository-specific functions.
+
+
+
+
+To address such issues, T
+
+ENET
+ employs a structured and bounded RRW rather than relying on unguided self-reflection. Each refinement attempt follows three stages:
+(1) Failure Identification. The LLM identifies potentially faulty locations from the current trajectory and invokes debugger commands only when additional execution evidence is needed.
+(2) Context Review. The LLM is then prompted to identify relevant code snippets (e.g., implementations of similar functionality) based on the current trajectory to avoid redundant tool calling. When such snippets are available, the LLM is guided to explain their implementations, such as the handling of edge cases or the usage of specific functions, and compare them with the faulty implementations to extract insights for bug fixing.
+(3) Code Refinement. The LLM determines whether the available evidence is sufficient for refinement. If so, it formulates and applies a concrete repair strategy; otherwise, it selectively gathers additional context or debugging signals before revising the solution.
+The RRW terminates when either all THM-selected tests pass or the refinement budget is exhausted, preventing indefinite oscillation among failing solutions.
+
+
+
+
+
+
+IV Experimental Setup
+
+
+
+
+IV-A Research Questions
+
+
+
+
+To assess the effectiveness of T
+
+ENET
+ and to gain deeper insights into repository-level code generation under the TDD setting, we formulate the following research questions (RQs).
+
+• 
+
+
+
+RQ1: How effective is T
+
+ENET
+ compared to other repository-level code generation baselines?
+
+• 
+
+
+
+RQ2: How does each component of T
+
+ENET
+ contribute to its overall effectiveness?
+
+• 
+
+
+
+RQ3: What effect does the quantity of test cases in T
+
+ENET
+ have on code generation performance?
+
+• 
+
+
+
+RQ4: How do different test selection strategies affect the code generation pass rate?
+
+• 
+
+
+
+RQ5: What is the impact of using test cases at different stages of T
+
+ENET
+ on performance?
+
+
+
+
+
+
+
+IV-B Benchmarks
+
+
+
+
+We evaluate our approach on two repository-level code generation benchmarks, RepoCod [29] and the function-level tasks of RepoEval [58]. Both benchmarks preserve full repository context and executable test suites, comprising 980 and 373 function generation tasks, respectively. Each task requires synthesizing a missing target function such that the completed implementation passes the associated tests. Although both benchmarks fall under repository-level code generation, they differ in both the scope of required code modifications and the size of test suites. RepoCod tasks typically involve synthesizing more substantial code, with an average of 38.18 edited lines of code (LOC) and 334.42 code-edit tokens11
+              1
+              
+              
+              
+            The average number of code-edit tokens per task is computed using a fixed byte-pair encoding tokenizer from the tiktoken library.. Each task is evaluated against approximately 68 tests to determine Pass@122
+              2
+              
+              
+              
+            This count does not distinguish test functions executed with different inputs. When each input variant is counted as a separate test, the average increases to 313 [29].. In contrast, RepoEval tasks generally require more concise implementations, averaging 9.78 edited LOC and 84.92 code-edit tokens, with approximately 15 evaluation tests per task. This distinction enables evaluating T
+
+ENET
+ across varying implementation scopes. For each task, we execute all agentic approaches in isolated Docker environments with complete dependencies to ensure consistent and reproducible evaluation.
+
+
+
+
+A related but distinct line of work focuses on automated issue fixing, exemplified by SWE-Bench Verified [55, 56, 21]. In this setting, the primary objective is software maintenance: agents interpret issue descriptions, localize faulty code, and generate minimal patches to repair existing implementations. Prior analysis shows that 87.20% of SWE-Bench Verified tasks correspond to bug fixing, while only 8.60% involve feature implementation [40]. This distribution reflects a fundamental difference in task scope. Unlike issue-fixing benchmarks that emphasize fault localization and patch generation, the setting we consider requires synthesizing new functionality under test-driven constraints, introducing distinct challenges in test selection, context understanding, and test-guided refinement.
+
+
+Fig. 3: Case study on task seaborn\_34 from RepoCod, explaining how THM guides T
+
+ENET
+ toward correct code generation.
+
+
+
+
+
+IV-C Baselines
+
+
+
+
+Across all RQs, we use DeepSeek-V3 [13] as the primary backbone for its cost efficiency. In RQ1, we compare T
+
+ENET
+ with four open-source baselines covering both non-agentic and agentic paradigms, and further evaluate all methods with Claude Sonnet 4 [2] as a high-performance reference.
+All baselines receive the task description and full repository context, including the complete test suites. Agentic baselines may freely inspect and execute any repository test. In contrast, T
+
+ENET
+ exposes only the THM-selected tests to the downstream agent; all other tests are withheld during generation and refinement and used only for final evaluation. We configure T
+
+ENET
+ with up to three THM-selected tests, 15 pre-generation conversation rounds, five RRW refinement attempts, and 15 conversation rounds per refinement attempt for debugging and context retrieval. For all baselines and configurations, we set the model temperature to 0 and sample one patch per task.
+
+1. 
+
+
+
+RepoCoder adopts an iterative retrieval–generation framework [58]. We follow the original configuration on RepoEval. For RepoCod, we use a 12,288-token retrieval window, retrieve up to 30 snippets per query, and cap the maximum completions at 4,096 tokens.
+
+2. 
+
+
+
+SpecRover [41] is a multi-agent framework coordinating specialized agents for retrieval, generation, testing, and reflection. We follow the same configuration in the paper.
+
+3. 
+
+
+
+SWE-Agent equips LLMs with shell commands and custom actions [54] for general software engineering tasks. We use a maximum of 50 conversation rounds for each task.
+
+4. 
+
+
+
+OpenHands is an open-source platform for developing software engineering agents [47]. We employ the default CodeAct Agent [46], which supports shell command execution, file reading, and file editing. OpenHands follows the same conversation rounds as SWE-Agent.
+
+
+
+
+
+
+The round budgets for SWE-Agent and OpenHands are relatively higher, as they support only one tool invocation per response, while T
+
+ENET
+ can perform multiple API calls in a single round. This adjustment balances comparable tool-calling capacity and cost efficiency.
+
+
+
+
+
+
+V Evaluation Results
+
+
+
+
+V-A RQ1: Baseline Comparison
+
+
+
+
+We report the performance of T
+
+ENET
+ and baseline approaches on RepoCod and RepoEval under two backbones in Table I, including Pass@1 [9], average token consumption, average monetary cost, and Cost-of-Pass (CoP) [15]. CoP is defined as the expected monetary cost to obtain one correct solution for a problem, computed as the ratio between the average monetary cost per task and the Pass@1 of an approach. Lower CoP indicates a more favorable accuracy-cost trade-off.
+
+
+
+
+Accuracy Gains. T
+
+ENET
+ achieves the highest Pass@1 across both benchmarks under both backbones. Under Sonnet 4, it reaches 69.08% and 81.77% Pass@1, surpassing the strongest baselines by 9.49 and 2.17 pp, respectively. Under DeepSeek-V3, T
+
+ENET
+ attains 49.18% and 55.23%, where its margin over the strongest baselines widens to 20.10 and 6.97 pp. This demonstrates the effectiveness of our design.
+
+
+
+
+Cost Efficiency. T
+
+ENET
+ achieves a favorable accuracy–cost tradeoff under both backbones.
+
+1. 
+
+
+
+Token Consumption. Agentic baselines incur substantially higher token usage compared with RepoCoder. On RepoCod under Sonnet 4, OpenHands and SWE-Agent consume 1,119,149 and 597,507 input tokens per task on average, corresponding to 574.12% and 306.52% of T
+
+ENET
+, respectively. A similar trend is observed on RepoEval (420.88% and 250.46% of T
+
+ENET
+’s input tokens) and under DeepSeek-V3 (239% and 261% on RepoCod). This overhead primarily stems from two factors: (1) lengthy system prompts that encode detailed execution policies, security constraints, and multi-step workflows; and (2) reliance on terminal-level commands (e.g., grep, find) that require many sequential, fragmented steps for code retrieval. These interactions cause trajectories to grow rapidly, resulting in a dramatic increase in token consumption.
+
+2. 
+
+
+
+Monetary Cost. Under Sonnet 4 on RepoCod, T
+
+ENET
+ attains a higher Pass@1 while maintaining a comparable CoP (0.76) to SWE-Agent, which achieves the strongest Pass@1 and CoP among agentic baselines; on RepoEval, it achieves the highest Pass@1 with a competitive CoP of 0.34, only slightly higher than SpecRover, while outperforming it by 9.65 pp in Pass@1. The advantage is even clearer under the consistent DeepSeek-V3 backbone: T
+
+ENET
+ attains the lowest CoP among all agentic approaches on RepoCod, and a competitive CoP on RepoEval (0.031), second only to SWE-Agent, which trails T
+
+ENET
+ by 19.57 pp in Pass@1.
+
+
+
+
+
+
+Overall, T
+
+ENET
+ achieves high accuracy without sacrificing cost efficiency, and its advantage holds under different backbone models. While TENET excels, general-purpose agents exhibit competitive performance across benchmarks [35, 40, 45, 55], reflecting their strong generality.
+
+
+TABLE II: Ablation study of T
+
+ENET
+ using DeepSeek-V3 on RepoCod. Compared with T
+
+ENET
+, red arrows indicate worse results and blue arrows indicate better results.
+
+
+
+Variants
+Pass@1 (%) ↑\uparrow
+Input ↓\downarrow
+Output ↓\downarrow
+API Call ↓\downarrow
+
+
+T
+
+ENET
+-THM
+33.06↓16.12\downarrow 16.12 pp
+208,179↑40.69%\uparrow 40.69\ \%
+5,547↑19.41%\uparrow 19.41\ \%
+12.05
+↑45.53%\uparrow 45.53\ \%
+
+
+T
+
+ENET
+-APIs
+34.29↓14.89\downarrow 14.89 pp
+138,031↓6.72%\downarrow 6.72\ \%
+6,358↑36.87%\uparrow 36.87\ \%
+10.53
+↑27.17%\uparrow 27.17\ \%
+
+
+T
+
+ENET
+-RRW
+39.94↓9.24\downarrow 9.24 pp
+132,427↓10.50%\downarrow 10.50\ \%
+4,008↓13.71%\downarrow 13.71\ \%
+6.62
+↓20.05%\downarrow 20.05\ \%
+
+
+T
+
+ENET
+
+49.18
+147,968
+4,645
+8.28
+
+
+
+
+TABLE III: Effect of THM-selected tests on SWE-Agent using DeepSeek-V3 on RepoCod.
+
+
+
+Variants
+Pass@1 (%) ↑\uparrow
+Input ↓\downarrow
+Output ↓\downarrow
+API Calls ↓\downarrow
+
+
+SWE-Agent
+27.04
+386,932
+736
+21.12
+
+
+
+SWE-Agent+THM
+41.02↑13.98\uparrow 13.98 pp
+412,377↑6.58%\uparrow 6.58\ \%
+916↑24.46%\uparrow 24.46\ \%
+26.44
+↑25.19%\uparrow 25.19\ \%
+
+
+
+Fig. 4: Average API calls per task on RepoCod (T
+
+ENET
+, DeepSeek-V3).
+
+
+Fig. 5: Number of solved tasks per round (T
+
+ENET
+, DeepSeek-V3).
+
+
+
+
+
+V-B RQ2: Contributions of T
+
+ENET
+ ’s Components
+
+
+
+
+To address RQ2, we first remove each component from the full T
+
+ENET
+ system to perform an ablation study on RepoCod. Removing the THM (T
+
+ENET
+-THM{}_{\text{-THM}}) provides the agent with full target test suite instead of the selected subset; removing the tailored toolset (T
+
+ENET
+-APIs{}_{\text{-APIs}}) limits the agent to the SpecRover toolset; and removing the RRW (T
+
+ENET
+-RRW{}_{\text{-RRW}}) applies naive refinement given test feedback if test execution fails. Table II reports the Pass@1, average token consumptions, and the number of API calls on RepoCod. Across all cases, removing any component results in a clear decline in Pass@1.
+
+
+
+
+V-B1 Test Harness Mechanism
+
+
+
+
+Removing THM causes the largest Pass@1 drop (16.12 pp). The token consumption also rises substantially with inputs by 40.69% and outputs by 19.41%, along with a 45.53% rise in API calls. This is mainly due to two factors. First, each RepoCod task contains 68 test cases on average, far more than the curated suites from the THM. Feeding the model with the full suite introduces redundancy and noise, reducing accuracy. Second, handling the full suite requires analyzing more tests, which increases API calls and token usage.
+
+
+
+
+Fig. 3 illustrates the task seaborn\_34 from RepoCod to demonstrate the effectiveness of the THM. The full target test suite of seaborn\_34 contains 156 test cases for the target function desaturate, located in seaborn/utils.py. Without the THM, 0 the large test suite overwhelms the LLM, causing the agent to overlook critical test signals and generate 5 the incorrect code. Specifically, the generated function fails to satisfy the input validation requirements specified in test\_desaturation\_prop. It further fails the test test\_desaturate with the following error message.
+
+
+⬇
+
+E   AssertionError: assert (0.6784313725...9607843137256) == (0.6784313725...9607843137255)
+
+
+E     At index 1 diff: 0.8470588235294119 != 0.8470588235294118
+
+
+
+The failure occurs because the incorrect code in 5 always performs an RGB→\toHLS→\toRGB round-trip, even for the boundary case prop==1, introducing small floating-point deviations that cause the test to fail. In contrast, THM selects three representative test cases without overwhelming the agent, and T
+
+ENET
+ uses two refinement rounds to generate the correct code in 6 that properly handles all edge cases.
+
+
+
+
+We further examine whether THM-selected tests benefit other agentic baselines beyond T
+
+ENET
+. Keeping the RQ1 baseline setting unchanged, we additionally provide SWE-Agent with the THM-selected tests for each task and instruct it to verify its implementation against them. Table III reports Pass@1, average token consumption, and API calls on RepoCod.
+THM-selected tests improve SWE-Agent’s Pass@1 by 13.98 pp, from 27.04% to 41.02%, at the cost of moderately higher token consumption and 25.19% more API calls. This gain is largely driven by SWE-Agent’s original test-usage behavior: despite unrestricted access to the full test suite, it submits patches without any test verification in 28.98% of tasks. THM-selected tests, together with an explicit verification instruction, make testing a routine step in the workflow. These results demonstrate that THM is an effective and transferable test-selection mechanism across agent designs. However, SWE-Agent+THM still trails T
+
+ENET
+ by 8.16 pp, indicating that selected tests alone are insufficient; the tailored toolset and RRW are needed to fully exploit them.
+
+
+Fig. 6: Case study on task scikit\_49 in RepoCod, explaining how the RRW contributes to the code refinement in T
+
+ENET
+.
+
+
+
+
+
+V-B2 Tailored Agent Toolset
+
+
+
+
+Removing the tailored toolset reduces Pass@1 by 14.89 pp. Without T
+
+ENET
+’s specialized tools, such as retrieving semantically similar code, the agent must rely on less efficient APIs to analyze the context, which increases reasoning complexity. Though the input tokens are fewer, the more expensive output tokens and API calls increase substantially. Fig. 4 shows the average call frequency of different APIs33
+                3
+                
+                
+                
+              The APIs not highlighted in bold are inherited from SpecRover.. Our four newly introduced APIs (colored in blue) rank among the top five. We observe that run\_debugger\_cmd dominates with the highest frequency (2.11), highlighting the frequent usage of interactive debugging in the RRW. The next most frequently used APIs are search\_target\_usage (1.18) and search\_similar\_method (1.02), suggesting that retrieving usage examples and similar methods are also favorable in the TDD setting.
+These observations indicate that the model consistently favors our tailored toolset in the TDD setting, achieving efficient retrieval and improved performance with only a minor increase in input costs while reducing output costs and API overhead.
+
+
+
+
+
+V-B3 Reflection-Based Refinement Workflow
+
+
+
+
+Removing the RRW leads to a decrease of 9.24 pp on Pass@1. We let T
+
+ENET
+-RRW naively regenerate code without explicit reasoning about fault localization or code comparison. As a result, the performance drops while the token consumption and API calls slightly decrease. Shown in Fig. 5, solved tasks drop gradually over rounds, and out of 482 passed tasks in total, 296 (61.41%) are solved in the first attempt. The remaining 186 tasks (38.59%) are recovered through the RRW.
+
+
+TABLE IV: Pass@1 (%) of T
+
+
+
+ENET
+ with different test suite sizes on RepoCod.
+
+
+
+
+
+#Test
+Sph.
+Sea.
+Fla.
+Xar.
+Sym.
+More.
+Data.
+Skl.
+Ast.
+Pyl.
+Plot.
+Total
+
+
+1
+39.3939.39
+47.4447.44
+67.4467.44
+25.3025.30
+26.8026.80
+56.9856.98
+47.4647.46
+22.6122.61
+43.5243.52
+23.0823.08
+43.42
+35.7135.71
+
+
+3
+54.55
+55.1355.13
+72.0972.09
+42.17
+34.02
+70.9370.93
+62.71
+46.18
+47.0647.06
+30.7730.77
+40.7940.79
+49.18
+
+
+5
+42.4242.42
+55.1355.13
+79.07
+37.3537.35
+28.8728.87
+80.23
+59.3259.32
+43.9543.95
+50.59
+34.62
+42.1142.11
+48.5748.57
+
+
+10
+36.3636.36
+57.69
+74.4274.42
+34.9434.94
+26.8026.80
+76.7476.74
+54.2354.23
+35.3535.35
+48.2448.24
+34.62
+40.7940.79
+44.2944.29
+
+
+All
+30.3030.30
+41.0341.03
+53.4953.49
+18.0718.07
+24.7424.74
+76.7476.74
+38.9838.98
+20.0620.06
+40.0040.00
+19.2319.23
+38.1638.16
+33.0633.06
+
+
+
+
+TABLE V: Pass@1 and test coverage of T
+
+ENET
+ (DeepSeek-V3) under different selection strategies on RepoCod.
+
+
+
+Strategies
+Pass@1
+Avg.
+
+
+
+
+Sea.
+
+
+
+Fla.
+
+
+
+Xar.
+
+
+
+Sph.
+
+
+
+Sym.
+
+
+
+More.
+
+
+
+Data.
+
+
+
+Skl.
+
+
+
+Ast.
+
+
+
+Pyl.
+
+
+
+Plot.
+
+
+
+Total
+
+
+
+Cov (%)
+
+
+
+RS
+
+
+44.87
+
+
+
+76.74
+
+
+
+32.53
+
+
+
+42.42
+
+
+
+28.87
+
+
+
+68.60
+
+
+
+44.07
+
+
+
+12.10
+
+
+
+34.12
+
+
+
+19.23
+
+
+
+36.84
+
+
+
+32.86
+
+
+
+70.94
+
+
+
+SS
+
+
+51.28
+
+
+
+69.77
+
+
+
+36.14
+
+
+
+45.45
+
+
+
+32.99
+
+
+
+68.60
+
+
+
+47.46
+
+
+
+15.97
+
+
+
+36.47
+
+
+
+23.08
+
+
+
+43.42
+
+
+
+36.12
+
+
+
+72.72
+
+
+
+FRS
+
+
+47.44
+
+
+
+74.72
+
+
+
+30.12
+
+
+
+36.36
+
+
+
+32.99
+
+
+
+63.95
+
+
+
+50.84
+
+
+
+28.98
+
+
+
+36.47
+
+
+
+19.23
+
+
+
+40.79
+
+
+
+38.88
+
+
+
+71.58
+
+
+
+IPS
+
+
+55.13
+
+
+
+74.42
+
+
+
+33.73
+
+
+
+48.48
+
+
+
+29.90
+
+
+
+69.77
+
+
+
+50.84
+
+
+
+28.66
+
+
+
+47.06
+
+
+
+26.92
+
+
+
+42.11
+
+
+
+41.53
+
+
+
+76.98
+
+
+
+THM
+
+
+55.13
+
+
+
+72.09
+
+
+
+42.17
+
+
+
+54.55
+
+
+
+34.02
+
+
+
+70.93
+
+
+
+62.71
+
+
+
+46.18
+
+
+
+47.06
+
+
+
+30.77
+
+
+
+40.79
+
+
+
+49.18
+
+
+
+79.38
+
+
+
+
+
+
+Fig. 6 illustrates the task scikit_49 from RepoCod to show how the RRW enables T
+
+ENET
+ to progressively correct generation errors and converge to the ground-truth solution. The task requires generating the get_feature_names_out method of the FeatureUnion class in sklearn/pipeline.py. T
+
+ENET
+ first invokes three APIs in [1] to retrieve the FeatureUnion class context, similar methods, and usage examples of the target function. Believing the collected context to be sufficient, T
+
+ENET
+ generates an initial implementation in [2]. However, test execution exposes a runtime error in [3]: ValueError: too many values to unpack. Guided by the RRW, T
+
+ENET
+ identifies the failure location, reviews the retrieved context, locates a similar loop structure in the reference implementation, and produces the first refinement in [4].
+
+
+
+
+Upon re-testing, a new error is triggered: TypeError: _add_prefix_for_feature_names_out takes 2 positional arguments but 3 were given. T
+
+ENET
+ quickly localizes the failure and recognizes that the current trajectory only contains the signature of
+\_add\_prefix\_for\_feature\_names\_out, but not its full body: the earlier search\_class("FeatureUnion") call was truncated due to context-window constraints. This incomplete context causes the agent to invoke the method with an incorrect argument structure. Therefore, T
+
+ENET
+ issues an additional query, search\_method\_in\_class("\_add\_prefix\_for\_feature\_names\_out", "FeatureUnion"), to retrieve the complete method definition, as shown in [5]. With the correct usage clarified, T
+
+ENET
+ applies the fix in [6] and produces a final refinement in [7] that matches the ground-truth implementation.
+
+
+
+
+In summary, despite increased token usage, the RRW consistently enhances the effectiveness of T
+
+ENET
+, by iteratively identifying failure signals, reviewing context, and adaptively invoking APIs when necessary.
+
+
+
+
+
+
+V-C RQ3: The Impact of Test Suite Size
+
+
+
+
+While incorporating more tests may offer richer feedback, it can also introduce redundant signals and increase overhead. To study this trade-off, we investigate how varying the number of selected tests influences the performance of T
+
+ENET
+. As a tunable parameter, we set T=3T=3 based on preliminary results on the sphinx project (33 tasks) in RepoCod. We use the default settings of T
+
+ENET
+ and only change the number of selected tests T={1,3,5,10,A​l​l}T=\{1,3,5,10,All\}. Table IV reports Pass@1 across different test suite sizes on RepoCod 44
+              4
+              
+              
+              
+            Repository abbreviations: Sph.=sphinx, Sea.=seaborn, Fla.=flask, Xar.=xarray, Sym.=sympy, More.=more-itertools, Data.=datasets, Skl.=scikit-learn, Ast.=astropy, Pyl.=pylint, Plot=plotly.py.. Overall, T=3T=3 delivers the highest overall Pass@1 (49.18%). T=5T=5 is optimal for four projects and ranks second overall. Moreover, performance generally declines as the test suite size increases. These results show that our finding on sphinx generalizes to the full benchmark. Importantly, providing more tests does not necessarily improve outcomes, and a moderate number of tests provides consistent gains under the TDD setting.
+
+
+
+
+
+V-D RQ4: The Impact of Test Selection Strategies
+
+
+
+
+In the TDD setting, developers can design tests along multiple dimensions, such as test complexity, whether a test targets fine-grained functionality or spans multiple interacting components, and the form of validation such as assertions. These design choices may lead to tests with different features and feedback signals. Understanding such differences is important not only for agent design but also for informing how developers should construct tests in practice. To this end, we formulate RQ4 to compare THM with four test selection strategies that emphasize different test properties, and analyze how these strategies influence the generation performance.
+
+
+
+
+V-D1 Random Selection (RS)
+
+
+
+
+RS is used as a baseline that uniformly samples a fixed number TT of test cases from the full test suite, enabling a direct comparison with more informed selection strategies.
+
+
+
+
+
+V-D2 Simplicity-Based Selection (SS)
+
+
+
+
+SS prioritizes test cases with low cyclomatic complexity, based on the intuition that simpler tests introduce fewer dependencies and provide clearer failure signals. We compute the cyclomatic complexity of each test function, rank them in ascending order, and select the top-TT tests. In RepoCod, 66.17% of tests per task have complexity below 4, indicating that most tests are relatively simple and supporting the practicality of using low-complexity tests to guide LLM-based code generation.
+
+
+
+
+
+V-D3 Failure-Revealing Selection (FRS)
+
+
+
+
+FRS prefers tests that contain explicit assertions or exception checks. The intuition behind FRS is that tests with explicit validation logic are more likely to expose intended behaviors and produce actionable feedback when failures occur, compared to tests that simply execute code without verification, which may pass silently or fail with ambiguous signals. To implement FRS, we perform AST analysis to identify tests containing assertion-related constructs, including Python assert/raise, pytest.raises, unittest assertions, and their variants. We then randomly sample TT tests from this subset to provide to the agent. In RepoCod, 89% of tests contain assertion-related constructs, indicating that assertion-based tests are prevalent in practice. However, this also enlarges the candidate pool, making FRS behavior closer to RS and potentially reducing its distinctiveness.
+
+
+
+
+
+V-D4 Invocation-Proximity Selection (IPS)
+
+
+
+
+IPS prioritizes test cases that invoke the target function through shorter call chains. For implementation, we measure the invocation depth of each test case following the THM procedure. We then rank tests in ascending order of depth and select the top-TT tests.
+
+
+Fig. 7: Pass@1 performance of THM and IPS across tasks grouped by average invocation depth in the full test suite.
+
+
+
+
+Table V reports the complete Pass@1 and average test coverage of T
+
+ENET
+ on RepoCod under different test selection strategies when T=3T=3. The average test coverage is computed based on the ground-truth target functions. All test selection strategies outperform the RS baseline, with improvements in Pass@1 generally aligning with higher coverage. Among them, T
+
+ENET
+’s default THM strategy, which emphasizes both invocation proximity and caller diversity, achieves the best results (49.18% Pass@1 and 79.38% coverage). This advantage can be attributed to the complementary roles of these two factors. Invocation proximity increases the likelihood that selected tests are semantically relevant to the target function, reducing the reasoning burden to relate the test behaviors with the target implementations. Meanwhile, caller diversity exposes the agent to multiple invocation contexts, enabling it to capture different usage patterns and interaction scenarios.
+
+
+
+
+To further examine the trade-off between invocation proximity and caller diversity, Fig. 7 presents the Pass@1 performance of THM and IPS across tasks grouped by their average invocation depth in the full test suite.
+When the average invocation depth is relatively small (∼\sim1–10, covering 913 tasks, 93.16% of the RepoCod), THM consistently outperforms IPS. In this regime, test cases provide sufficiently direct interactions with the target function, allowing THM to effectively leverage diverse invocation contexts and expose T
+
+ENET
+ to richer usage patterns while maintaining manageable reasoning complexity, resulting in higher generation accuracy.
+As the invocation depth increases (≥\geq 11, 67 tasks, 6.84% of the RepoCod), the advantage of THM diminishes. This suggests that when test suites lack close-range invocations of the target function, prioritizing caller diversity may select tests with long and indirect call chains. Such cases may require the agent to traverse deeper execution paths to interpret test behavior, introducing additional abstractions, noisy signals, and increasing reasoning difficulty.
+
+
+
+
+Overall, THM is effective in the vast majority of tasks with moderate invocation depth, where combining caller diversity and invocation proximity provides strong and complementary guidance for code generation. In scenarios with highly indirect invocation test structures, prioritizing shorter call chains may yield cleaner signals and suggest a promising direction.
+
+
+
+
+
+
+V-E RQ5: The Impact of Test Usage Stage
+
+
+
+
+Tests can be incorporated at different stages of the agent workflow, potentially influencing generation quality and refinement behavior. To better understand when and how tests contribute, we analyze the impact of using tests at different phases in T
+
+ENET
+. In the NoTest setting, no tests are provided and the RRW is disabled. In PreGen, tests are used only during retrieval before the initial generation. In PostGen, tests are applied only in the RRW after the initial generation. Finally, in AllStage, tests are available throughout the workflow.
+
+
+TABLE VI: Results of leveraging tests at different phases in T
+
+
+
+ENET
+’s workflow.
+
+
+
+Phases
+Pass@1 (%)↑\uparrow
+Input Cons.↓\downarrow
+Output Cons.↓\downarrow
+API Calls↓\downarrow
+
+
+NoTest
+29.90
+32,829
+2,482
+5.04
+
+
+PreGen
+36.93
+35,427
+2,408
+5.63
+
+
+PostGen
+42.65
+138,330
+4,710
+8.91
+
+
+AllStage
+49.18
+147,968
+4,645
+8.28
+
+
+
+Fig. 8: Overlap of solved tasks on RepoCod across different test usage stages.
+
+
+
+
+Table VI reports the performance of leveraging tests at different stages of T
+
+ENET
+. We make three main observations.
+First, leveraging tests across more stages consistently improves the implementation accuracy. Pass@1 increases from 29.90% (NoTest) to 36.93% (PreGen), 42.65% (PostGen), and peaks at 49.18% with AllStage. AllStage performs best on 10 projects, with plotly.py as the only exception where PostGen is superior. These results demonstrate the effectiveness of incorporating tests throughout the generation process and highlight the potential of TDD for LLM-based software development.
+Second, this improvement comes at a higher cost. PostGen and AllStage incur substantially higher computational costs than NoTest and PreGen, requiring nearly 100k additional input tokens, roughly twice the number of output tokens, and more API calls, which reflects the extra context retrieval and debugging efforts required by the RRW.
+
+
+
+
+Third, test usage at different stages exhibits complementary effects rather than solving an identical set of tasks. Fig. 8 shows that AllStage achieves the largest number of uniquely solved tasks (66), while a shared core (177) is solved by all settings. Although part of this diversity may arise from the inherent randomness of LLMs, the substantial partial overlaps (e.g., 80 and 69) indicate that different stages provide complementary rather than redundant signals. Notably, PostGen shares larger intersections with AllStage, suggesting that refinement-time test usage contributes more directly to final correctness. It also points to potential opportunities for improvement by tailoring how tests are leveraged at different stages for different repositories.
+
+
+
+
+
+
+VI Threats to Validity
+
+
+
+
+Generalizability.
+This work focuses on repository-level code generation under the TDD setting with existing developer-written tests; our findings may not generalize to other settings, such as issue-resolution benchmarks or repositories with incomplete test suites.
+Test Information Leakage.
+The THM-selected tests exposed to the agent could leak implementation logic. A test leaks if it reveals the internal algorithm of the target function, such as its formula or control flow, instead of asserting observable behaviors such as I/O formats, exceptions, and relational properties, the intended role of tests as executable specifications. Manually examining 20 randomly sampled tasks per benchmark revealed no evidence of leakage: the selected tests specify observable behaviors only. In Fig. 3, they validate concrete RGB outputs while the core RGB→\toHLS→\toRGB transformation stays hidden. Still, tests written with knowledge of the implementation may implicitly encode design decisions. An ideal AI-driven TDD workflow would author tests before the implementation exists to remove such concern.
+Evaluation Confounds.
+Agentic systems differ in control flow, tool use, and configuration. We reduce these confounds by aligning tool-calling capacity, monetary budgets, model temperature, and backbone models, but architectural differences and LLM stochasticity remain; repeated runs would further strengthen the robustness.
+Metric Limitations.
+We define correctness as passing the available tests. Since test suites may be incomplete, our results should be read as test satisfaction under existing developer-written tests rather than full semantic correctness.
+In RQ4, we select tests using heuristic proxies such as cyclomatic complexity and invocation depth. These metrics may not fully capture test quality or fault-revealing capability, which may limit the generality of our findings on test selection strategies.
+
+
+
+
+
+VII Conclusion & Future Work
+
+
+
+
+This work introduces T
+
+ENET
+, an agentic framework for repository-level code generation under the TDD paradigm, comprising (1) a test harness mechanism for selecting concise, effective tests, (2) a tailored toolset for context retrieval and debugging, and (3) a reflection-based refinement workflow for iterative code fixing.
+T
+
+ENET
+ achieves 69.08% and 81.77% Pass@1 on RepoCod and RepoEval respectively with Claude Sonnet 4, outperforming baselines by 9.49 and 2.17 percentage points.
+We also present the first systematic study of test suite usage in this setting, analyzing test quantity, selection strategies, and usage stages to inform how TDD can be leveraged in agent-based development.
+Future work includes extending T
+
+ENET
+ from using existing developer-written tests to actively co-evolving tests with implementations, enabling a fuller realization of test-driven repository-level code generation.
+
+
+
+
+
+Acknowledgment
+
+
+
+
+This research was supported in part by NSF 1901242 and 2006688. Any opinions, findings, and conclusions in this paper are those of the authors only and do not necessarily reflect the views of our sponsors.
+
+
+
+
+
+References
+
+
+[1]
+Anthropic (2025)
+
+Claude code best practices.
+
+Note: https://www.anthropic.com/engineering/claude-code-best-practices
+
+Cited by: §I.
+
+[2]
+Anthropic (2025)
+
+Claude sonnet 4.
+
+Note: https://www.anthropic.com/claude/sonnet
+
+External Links: Link
+
+Cited by: §IV-C.
+
+[3]
+J. Austin, A. Odena, M. Nye, M. Bosma, H. Michalewski, D. Dohan, E. Jiang, C. Cai, M. Terry, Q. Le, and C. Sutton (2021)
+
+Program synthesis with large language models.
+
+Note: arXiv preprint arXiv:2108.07732
+
+External Links: 2108.07732,
+Link
+
+Cited by: §II-B.
+
+[4]
+R. Bairi, A. Sonwane, A. Kanade, V. D. C., A. Iyer, S. Parthasarathy, S. Rajamani, B. Ashok, and S. Shet (2024)
+
+CodePlan: repository-level coding using llms and planning.
+
+Proc. ACM Softw. Eng. 1 (FSE).
+
+External Links: Link,
+Document
+
+Cited by: §II-B.
+
+[5]
+M. T. Baldassarre, D. Caivano, D. Fucci, N. Juristo, S. Romano, G. Scanniello, and B. Turhan (2021)
+
+Studying test-driven development and its retainment over a six-month time span.
+
+Journal of Systems and Software 176, pp. 110937.
+
+External Links: ISSN 0164-1212,
+Document,
+Link
+
+Cited by: §I,
+§II-A.
+
+[6]
+K. Beck (2022)
+
+Test driven development: by example.
+
+ Addison-Wesley Professional.
+
+Cited by: §I.
+
+[7]
+Z. Bi, Y. Wan, Z. Wang, H. Zhang, B. Guan, F. Lu, Z. Zhang, Y. Sui, H. Jin, and X. Shi (2024)
+
+Iterative refinement of project-level code context for precise code generation with compiler feedback.
+
+In Findings of the Association for Computational Linguistics: ACL 2024,  L. Ku, A. Martins, and V. Srikumar (Eds.),
+
+Bangkok, Thailand, pp. 2336–2353.
+
+External Links: Link,
+Document
+
+Cited by: §II-B.
+
+[8]
+P. Cassieri, S. Romano, and G. Scanniello (2024)
+
+Generative artificial intelligence for test-driven development: gai4- tdd.
+
+In 2024 IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER),
+
+Vol. , pp. 902–906.
+
+External Links: Document
+
+Cited by: §I.
+
+[9]
+M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. de Oliveira Pinto, J. Kaplan, H. Edwards, Y. Burda, N. Joseph, G. Brockman, A. Ray, R. Puri, G. Krueger, M. Petrov, H. Khlaaf, G. Sastry, P. Mishkin, B. Chan, S. Gray, N. Ryder, M. Pavlov, A. Power, L. Kaiser, M. Bavarian, C. Winter, P. Tillet, F. P. Such, D. Cummings, M. Plappert, F. Chantzis, E. Barnes, A. Herbert-Voss, W. H. Guss, A. Nichol, A. Paino, N. Tezak, J. Tang, I. Babuschkin, S. Balaji, S. Jain, W. Saunders, C. Hesse, A. N. Carr, J. Leike, J. Achiam, V. Misra, E. Morikawa, A. Radford, M. Knight, M. Brundage, M. Murati, K. Mayer, P. Welinder, B. McGrew, D. Amodei, S. McCandlish, I. Sutskever, and W. Zaremba (2021)
+
+Evaluating large language models trained on code.
+
+Note: arXiv preprint arXiv:2107.03374
+
+External Links: 2107.03374,
+Link
+
+Cited by: §II-B,
+§V-A.
+
+[10]
+X. Chen, M. Lin, N. Schärli, and D. Zhou (2023)
+
+Teaching large language models to self-debug.
+
+External Links: 2304.05128
+
+Cited by: §III-C.
+
+[11]
+W. Cheng, Y. Wu, and W. Hu (2024)
+
+Dataflow-guided retrieval augmentation for repository-level code completion.
+
+In ACL,
+
+Cited by: §II-B.
+
+[12]
+B. Cherny (2025)
+
+Claude code & the evolution of agentic coding.
+
+ Anthropic.
+
+Note: https://www.youtube.com/watch?v=Lue8K2jqfKkTalk at AI Engineer World’s Fair, San Francisco. Premiered July 4, 2025. Accessed: 2025-08-31
+
+Cited by: §I.
+
+[13]
+DeepSeek-AI, A. Liu, B. Feng, B. Xue, B. Wang, B. Wu, C. Lu, C. Zhao, C. Deng, C. Zhang, C. Ruan, D. Dai, D. Guo, D. Yang, D. Chen, D. Ji, E. Li, F. Lin, F. Dai, F. Luo, G. Hao, G. Chen, G. Li, H. Zhang, H. Bao, H. Xu, H. Wang, H. Zhang, H. Ding, H. Xin, H. Gao, H. Li, H. Qu, J. L. Cai, J. Liang, J. Guo, J. Ni, J. Li, J. Wang, J. Chen, J. Chen, J. Yuan, J. Qiu, J. Li, J. Song, K. Dong, K. Hu, K. Gao, K. Guan, K. Huang, K. Yu, L. Wang, L. Zhang, L. Xu, L. Xia, L. Zhao, L. Wang, L. Zhang, M. Li, M. Wang, M. Zhang, M. Zhang, M. Tang, M. Li, N. Tian, P. Huang, P. Wang, P. Zhang, Q. Wang, Q. Zhu, Q. Chen, Q. Du, R. J. Chen, R. L. Jin, R. Ge, R. Zhang, R. Pan, R. Wang, R. Xu, R. Zhang, R. Chen, S. S. Li, S. Lu, S. Zhou, S. Chen, S. Wu, S. Ye, S. Ye, S. Ma, S. Wang, S. Zhou, S. Yu, S. Zhou, S. Pan, T. Wang, T. Yun, T. Pei, T. Sun, W. L. Xiao, W. Zeng, W. Zhao, W. An, W. Liu, W. Liang, W. Gao, W. Yu, W. Zhang, X. Q. Li, X. Jin, X. Wang, X. Bi, X. Liu, X. Wang, X. Shen, X. Chen, X. Zhang, X. Chen, X. Nie, X. Sun, X. Wang, X. Cheng, X. Liu, X. Xie, X. Liu, X. Yu, X. Song, X. Shan, X. Zhou, X. Yang, X. Li, X. Su, X. Lin, Y. K. Li, Y. Q. Wang, Y. X. Wei, Y. X. Zhu, Y. Zhang, Y. Xu, Y. Xu, Y. Huang, Y. Li, Y. Zhao, Y. Sun, Y. Li, Y. Wang, Y. Yu, Y. Zheng, Y. Zhang, Y. Shi, Y. Xiong, Y. He, Y. Tang, Y. Piao, Y. Wang, Y. Tan, Y. Ma, Y. Liu, Y. Guo, Y. Wu, Y. Ou, Y. Zhu, Y. Wang, Y. Gong, Y. Zou, Y. He, Y. Zha, Y. Xiong, Y. Ma, Y. Yan, Y. Luo, Y. You, Y. Liu, Y. Zhou, Z. F. Wu, Z. Z. Ren, Z. Ren, Z. Sha, Z. Fu, Z. Xu, Z. Huang, Z. Zhang, Z. Xie, Z. Zhang, Z. Hao, Z. Gou, Z. Ma, Z. Yan, Z. Shao, Z. Xu, Z. Wu, Z. Zhang, Z. Li, Z. Gu, Z. Zhu, Z. Liu, Z. Li, Z. Xie, Z. Song, Z. Gao, and Z. Pan (2025)
+
+DeepSeek-v3 technical report.
+
+Note: arXiv preprint arXiv:2412.19437
+
+External Links: 2412.19437,
+Link
+
+Cited by: §IV-C.
+
+[14]
+Y. Ding, Z. Wang, W. U. Ahmad, H. Ding, M. Tan, N. Jain, M. K. Ramanathan, R. Nallapati, P. Bhatia, D. Roth, and B. Xiang (2023)
+
+CrossCodeEval: a diverse and multilingual benchmark for cross-file code completion.
+
+In Thirty-seventh Conference on Neural Information Processing Systems Datasets and Benchmarks Track,
+
+External Links: Link
+
+Cited by: §II-B.
+
+[15]
+M. H. Erol, B. El, M. Suzgun, M. Yuksekgonul, and J. Zou (2025)
+
+Cost-of-pass: an economic framework for evaluating language models.
+
+Note: arXiv preprint arXiv:2504.13359
+
+External Links: 2504.13359,
+Link
+
+Cited by: §V-A.
+
+[16]
+S. Fakhoury, A. Naik, G. Sakkas, S. Chakraborty, and S. K. Lahiri (2024)
+
+LLM-based test-driven interactive code generation: user study and empirical evaluation.
+
+IEEE Transactions on Software Engineering 50 (9), pp. 2254–2268.
+
+External Links: Document
+
+Cited by: §I,
+§II-A.
+
+[17]
+B. George and L. Williams (2004)
+
+A structured experiment of test-driven development.
+
+Information and Software Technology 46 (5), pp. 337–342.
+
+Note: Special Issue on Software Engineering, Applications, Practices and Tools from the ACM Symposium on Applied Computing 2003
+
+External Links: ISSN 0950-5849,
+Document,
+Link
+
+Cited by: §I,
+§II-A.
+
+[18]
+D. Hendrycks, S. Basart, S. Kadavath, M. Mazeika, A. Arora, E. Guo, C. Burns, S. Puranik, H. He, D. Song, and J. Steinhardt (2021)
+
+Measuring coding challenge competence with apps.
+
+NeurIPS.
+
+Cited by: §II-B.
+
+[19]
+D. Huang, Q. Bu, J. M. Zhang, M. Luck, and H. Cui (2024)
+
+AgentCoder: multi-agent-based code generation with iterative testing and optimisation.
+
+External Links: 2312.13010
+
+Cited by: §III-C.
+
+[20]
+D. Janzen and H. Saiedian (2008)
+
+Does test-driven development really improve software design quality?.
+
+IEEE Software 25 (2), pp. 77–84.
+
+External Links: Document
+
+Cited by: §I,
+§II-A.
+
+[21]
+C. E. Jimenez, J. Yang, A. Wettig, S. Yao, K. Pei, O. Press, and K. R. Narasimhan (2024)
+
+SWE-bench: can language models resolve real-world github issues?.
+
+In The Twelfth International Conference on Learning Representations,
+
+External Links: Link
+
+Cited by: §IV-B.
+
+[22]
+A. Karpathy (2025)
+
+There’s a new kind of coding i call ”vibe coding”, where you fully give in to the vibes….
+
+Note: https://x.com/karpathy/status/1886192184808149383Accessed: 2025-07-15
+
+Cited by: §I.
+
+[23]
+D. J. Kim, J. Yang, and T. Chen (2024)
+
+A first look at the inheritance-induced redundant test execution.
+
+In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering,
+
+ICSE ’24, New York, NY, USA.
+
+External Links: ISBN 9798400702174,
+Link,
+Document
+
+Cited by: 2nd item.
+
+[24]
+J. Li, G. Li, Y. Zhao, Y. Li, H. Liu, H. Zhu, L. Wang, K. Liu, Z. Fang, L. Wang, J. Ding, X. Zhang, Y. Zhu, Y. Dong, Z. Jin, B. Li, F. Huang, Y. Li, B. Gu, and M. Yang (2024)
+
+DevEval: a manually-annotated code generation benchmark aligned with real-world code repositories.
+
+In Findings of the Association for Computational Linguistics: ACL 2024,  L. Ku, A. Martins, and V. Srikumar (Eds.),
+
+Bangkok, Thailand, pp. 3603–3614.
+
+External Links: Link,
+Document
+
+Cited by: §II-B.
+
+[25]
+J. Li, X. Shi, K. Zhang, L. Li, G. Li, Z. Tao, J. Li, F. Liu, C. Tao, and Z. Jin (2025)
+
+CodeRAG: supportive code retrieval on bigraph for real-world code generation.
+
+Note: arXiv preprint arXiv:2504.10046
+
+External Links: 2504.10046,
+Link
+
+Cited by: §II-B.
+
+[26]
+J. Li, Y. Zhao, Y. Li, G. Li, and Z. Jin (2024)
+
+AceCoder: an effective prompting technique specialized in code generation.
+
+ACM Trans. Softw. Eng. Methodol. 33 (8).
+
+External Links: ISSN 1049-331X,
+Link,
+Document
+
+Cited by: §I,
+§II-A.
+
+[27]
+W. Li, X. Zhang, Z. Guo, S. Mao, W. Luo, G. Peng, Y. Huang, H. Wang, and S. Li (2025)
+
+Fea-bench: a benchmark for evaluating repository-level code generation for feature implementation.
+
+In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),
+
+pp. 17160–17176.
+
+Cited by: §II-B.
+
+[28]
+M. Liang, X. Xie, G. Zhang, X. Zheng, P. Di, wei jiang, H. Chen, C. Wang, and G. Fan (2024)
+
+REPOFUSE: repository-level code completion with fused dual context.
+
+Note: arXiv preprint arXiv:2402.14323
+
+External Links: 2402.14323,
+Link
+
+Cited by: §II-B.
+
+[29]
+S. Liang, Y. Hu, N. Jiang, and L. Tan (2024)
+
+Can language models replace programmers? repocod says ’not yet’.
+
+Note: arXiv preprint arXiv:2410.21647
+
+External Links: 2410.21647,
+Link
+
+Cited by: §I,
+§II-B,
+1st item,
+§IV-B,
+footnote 2.
+
+[30]
+D. Liao, S. Pan, X. Sun, X. Ren, Q. Huang, Z. Xing, H. Jin, and Q. Li (2024)
+
+𝐀𝟑\mathbf{A^{3}}-CodGen: a repository-level code generation framework for code reuse with local-aware, global-aware, and third-party-library-aware.
+
+IEEE Transactions on Software Engineering 50 (12), pp. 3369–3384.
+
+External Links: Document
+
+Cited by: §II-B.
+
+[31]
+N. F. Liu, K. Lin, J. Hewitt, A. Paranjape, M. Bevilacqua, F. Petroni, and P. Liang (2024)
+
+Lost in the middle: how language models use long contexts.
+
+Transactions of the Association for Computational Linguistics 12, pp. 157–173.
+
+External Links: Link,
+Document
+
+Cited by: 1st item,
+§III-C.
+
+[32]
+W. Liu, A. Yu, D. Zan, B. Shen, W. Zhang, H. Zhao, Z. Jin, and Q. Wang (2024)
+
+GraphCoder: enhancing repository-level code completion via code context graph-based retrieval and language model.
+
+Note: arXiv preprint arXiv:2406.07003
+
+External Links: 2406.07003,
+Link
+
+Cited by: §II-B.
+
+[33]
+Z. Mafi and S. Mirian-Hosseinabadi (2023)
+
+Regression test selection in test-driven development.
+
+Automated Software Engineering 31 (1), pp. 9.
+
+External Links: Document,
+Link,
+ISSN 1573-7535
+
+Cited by: §I,
+§II-A.
+
+[34]
+N. S. Mathews and M. Nagappan (2024)
+
+Test-driven development and llm-based code generation.
+
+In Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering,
+
+ASE ’24, New York, NY, USA, pp. 1583–1594.
+
+External Links: ISBN 9798400712487,
+Link,
+Document
+
+Cited by: §I,
+§I,
+§II-A,
+1st item.
+
+[35]
+G. Mialon, C. Fourrier, C. Swift, T. Wolf, Y. LeCun, and T. Scialom (2023)
+
+GAIA: a benchmark for general ai assistants.
+
+Note: arXiv preprint arXiv:2311.12983
+
+External Links: 2311.12983,
+Link
+
+Cited by: §V-A.
+
+[36]
+T. X. Olausson, J. P. Inala, C. Wang, J. Gao, and A. Solar-Lezama (2023)
+
+Demystifying gpt self-repair for code generation.
+
+External Links: 2306.09896
+
+Cited by: §III-C.
+
+[37]
+S. Ouyang, W. Yu, K. Ma, Z. Xiao, Z. Zhang, M. Jia, J. Han, H. Zhang, and D. Yu (2025)
+
+RepoGraph: enhancing ai software engineering with repository-level code graph.
+
+Note: arXiv preprint arXiv:2410.14684
+
+External Links: 2410.14684,
+Link
+
+Cited by: §II-B.
+
+[38]
+H. N. Phan, H. N. Phan, T. N. Nguyen, and N. D. Q. Bui (2024)
+
+RepoHyper: search-expand-refine on semantic graphs for repository-level code completion.
+
+Note: arXiv preprint arXiv:2403.06095
+
+External Links: 2403.06095,
+Link
+
+Cited by: §II-B.
+
+[39]
+S. Piya and A. Sullivan (2024)
+
+LLM4TDD: best practices for test driven development using large language models.
+
+In Proceedings of the 1st International Workshop on Large Language Models for Code,
+
+LLM4Code ’24, New York, NY, USA, pp. 14–21.
+
+External Links: ISBN 9798400705793,
+Link,
+Document
+
+Cited by: §I,
+§I,
+§II-A.
+
+[40]
+M. S. Rashid, C. Bock, Y. Zhuang, A. Buchholz, T. Esler, S. Valentin, L. Franceschi, M. Wistuba, P. T. Sivaprasad, W. J. Kim, A. Deoras, G. Zappella, and L. Callot (2025)
+
+SWE-polybench: a multi-language benchmark for repository level evaluation of coding agents.
+
+Note: arXiv preprint arXiv:2504.08703
+
+External Links: 2504.08703,
+Link
+
+Cited by: §IV-B,
+§V-A.
+
+[41]
+H. Ruan, Y. Zhang, and A. Roychoudhury (2025)
+
+ SpecRover: Code Intent Extraction via LLMs .
+
+In 2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE),
+
+Vol. , Los Alamitos, CA, USA, pp. 617–617.
+
+External Links: ISSN 1558-1225,
+Document,
+Link
+
+Cited by: §II-B,
+§II-C,
+§III-B,
+item 2.
+
+[42]
+S. V. Sheta (2023)
+
+The role of test-driven development in enhancing software reliability and maintainability.
+
+Journal of Software Engineering (JSE) 1 (1), pp. 13–21.
+
+Note: Available at SSRN: https://ssrn.com/abstract=5034145 or http://dx.doi.org/10.2139/ssrn.5034145
+
+Cited by: §I,
+§II-A.
+
+[43]
+D. Shrivastava, H. Larochelle, and D. Tarlow (2023)
+
+Repository-level prompt generation for large language models of code.
+
+In Proceedings of the 40th International Conference on Machine Learning,
+
+ICML’23.
+
+Cited by: §II-B.
+
+[44]
+Z. Tian, J. Chen, and X. Zhang (2025)
+
+ Fixing Large Language Models’ Specification Misunderstanding for Better Code Generation .
+
+In 2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE),
+
+Vol. , Los Alamitos, CA, USA, pp. 645–645.
+
+External Links: ISSN 1558-1225,
+Document,
+Link
+
+Cited by: §I,
+§I,
+§II-A.
+
+[45]
+S. Vijayvargiya, A. B. Soni, X. Zhou, Z. Z. Wang, N. Dziri, G. Neubig, and M. Sap (2025)
+
+OpenAgentSafety: a comprehensive framework for evaluating real-world ai agent safety.
+
+Note: arXiv preprint arXiv:2507.06134
+
+External Links: 2507.06134,
+Link
+
+Cited by: §V-A.
+
+[46]
+X. Wang, Y. Chen, L. Yuan, Y. Zhang, Y. Li, H. Peng, and H. Ji (2024)
+
+Executable code actions elicit better llm agents.
+
+In Proceedings of the 41st International Conference on Machine Learning,
+
+ICML’24.
+
+Cited by: §II-C,
+item 4.
+
+[47]
+X. Wang, B. Li, Y. Song, F. F. Xu, X. Tang, M. Zhuge, J. Pan, Y. Song, B. Li, J. Singh, H. H. Tran, F. Li, R. Ma, M. Zheng, B. Qian, Y. Shao, N. Muennighoff, Y. Zhang, B. Hui, J. Lin, R. Brennan, H. Peng, H. Ji, and G. Neubig (2024)
+
+OpenHands: An Open Platform for AI Software Developers as Generalist Agents.
+
+Note: arXiv preprint arXiv:2407.16741
+
+External Links: 2407.16741,
+Link
+
+Cited by: §II-B,
+§III-B,
+item 4.
+
+[48]
+Y. Wang, Y. Wang, D. Guo, J. Chen, R. Zhang, Y. Ma, and Z. Zheng (2025)
+
+ RLCoder: Reinforcement Learning for Repository-Level Code Completion .
+
+In 2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE),
+
+Vol. , Los Alamitos, CA, USA, pp. 165–177.
+
+External Links: ISSN 1558-1225,
+Document,
+Link
+
+Cited by: §II-B.
+
+[49]
+Z. Z. Wang, A. Asai, X. V. Yu, F. F. Xu, Y. Xie, G. Neubig, and D. Fried (2024)
+
+CodeRAG-bench: can retrieval augment code generation?.
+
+Cited by: §II-B.
+
+[50]
+L. Williams, E.M. Maximilien, and M. Vouk (2003)
+
+Test-driven development as a defect-reduction practice.
+
+In 14th International Symposium on Software Reliability Engineering, 2003. ISSRE 2003.,
+
+Vol. , pp. 34–45.
+
+External Links: Document
+
+Cited by: §I,
+§II-A.
+
+[51]
+D. Wu, W. U. Ahmad, D. Zhang, M. K. Ramanathan, and X. Ma (2024)
+
+REPOFORMER: selective retrieval for repository-level code completion.
+
+In Proceedings of the 41st International Conference on Machine Learning,
+
+ICML’24.
+
+Cited by: §II-B.
+
+[52]
+C. S. Xia, Z. Wang, Y. Yang, Y. Wei, and L. Zhang (2025)
+
+Live-swe-agent: can software engineering agents self-evolve on the fly?.
+
+Note: arXiv preprint arXiv:2511.13646
+
+External Links: 2511.13646,
+Link
+
+Cited by: §II-C.
+
+[53]
+J. Yang, J. Zhang, J. Yang, K. Jin, L. Zhang, Q. Peng, K. Deng, Y. Miao, T. Liu, Z. Cui, B. Hui, and J. Lin (2024)
+
+ExecRepoBench: multi-level executable code completion evaluation.
+
+Note: arXiv preprint arXiv:2412.11990
+
+External Links: 2412.11990,
+Link
+
+Cited by: §II-B.
+
+[54]
+J. Yang, C. E. Jimenez, A. Wettig, K. Lieret, S. Yao, K. R. Narasimhan, and O. Press (2024)
+
+SWE-agent: agent-computer interfaces enable automated software engineering.
+
+In The Thirty-eighth Annual Conference on Neural Information Processing Systems,
+
+External Links: Link
+
+Cited by: §II-B,
+§II-C,
+§III-B,
+item 3.
+
+[55]
+J. Yang, C. E. Jimenez, A. L. Zhang, K. Lieret, J. Yang, X. Wu, O. Press, N. Muennighoff, G. Synnaeve, K. R. Narasimhan, D. Yang, S. Wang, and O. Press (2025)
+
+SWE-bench multimodal: do AI systems generalize to visual software domains?.
+
+In The Thirteenth International Conference on Learning Representations,
+
+External Links: Link
+
+Cited by: §IV-B,
+§V-A.
+
+[56]
+J. Yang, K. Lieret, C. E. Jimenez, A. Wettig, K. Khandpur, Y. Zhang, B. Hui, O. Press, L. Schmidt, and D. Yang (2025)
+
+SWE-smith: scaling data for software engineering agents.
+
+Note: arXiv preprint arXiv:2504.21798
+
+External Links: 2504.21798,
+Link
+
+Cited by: §IV-B.
+
+[57]
+X. Yuan, M. M. Moss, C. E. Feghali, C. Singh, D. Moldavskaya, D. MacPhee, L. Caccia, M. Pereira, M. Kim, A. Sordoni, and M. Côté (2025)
+
+Debug-gym: a text-based environment for interactive debugging.
+
+Note: arXiv preprint arXiv:2503.21557
+
+External Links: 2503.21557,
+Link
+
+Cited by: §III-B.
+
+[58]
+F. Zhang, B. Chen, Y. Zhang, J. Keung, J. Liu, D. Zan, Y. Mao, J. Lou, and W. Chen (2023)
+
+RepoCoder: repository-level code completion through iterative retrieval and generation.
+
+In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing,  H. Bouamor, J. Pino, and K. Bali (Eds.),
+
+Singapore, pp. 2471–2484.
+
+External Links: Link,
+Document
+
+Cited by: §II-B,
+§II-B,
+item 1,
+§IV-B.
+
+[59]
+K. Zhang, J. Li, G. Li, X. Shi, and Z. Jin (2024)
+
+CodeAgent: enhancing code generation with tool-integrated agent systems for real-world repo-level coding challenges.
+
+In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),  L. Ku, A. Martins, and V. Srikumar (Eds.),
+
+Bangkok, Thailand, pp. 13643–13658.
+
+External Links: Link,
+Document
+
+Cited by: §II-B,
+§II-C,
+1st item.
+
+[60]
+Y. Zhang, W. Zhang, D. Ran, Q. Zhu, C. Dou, D. Hao, T. Xie, and L. Zhang (2024)
+
+Learning-based widget matching for migrating gui test cases.
+
+In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering,
+
+ICSE ’24, Vol. 66, pp. 1–13.
+
+External Links: Link,
+Document
+
+Cited by: §II-B.
+
+[61]
+Y. Zhang, H. Ruan, Z. Fan, and A. Roychoudhury (2024)
+
+AutoCodeRover: autonomous program improvement.
+
+In Proceedings of the 33rd ACM SIGSOFT International Symposium on Software Testing and Analysis,
+
+ISSTA 2024, New York, NY, USA, pp. 1592–1604.
+
+External Links: ISBN 9798400706127,
+Link,
+Document
+
+Cited by: §II-C.
+
+
+
+
+
+
+
+  
+
+    Experimental support, please
+    view the build logs
+    for errors. Generated by
+    
+      
+        L
+        A
+        T
+        E
+      
+      xml
+      
+    .
+  
+  
+
+    
+Instructions for reporting errors
+    
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+      support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+      methods listed below:
+    
+      Click the "Report Issue" (
+            
+          ) button, located in the page header.
+    
+    
+Tip: You can select the relevant text first, to include it in your report.
+    
+Our team has already identified the following issues. We appreciate your time reviewing and reporting rendering errors we
+      may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+      should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+      all.
+    
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion, and welcome developer contributions.
+  
+
+  
+
+    
+
+      
+
+        We gratefully acknowledge support from
+        our major funders,
+        member institutions, ,
+        and all contributors.
+      
+      
+        About
+        ·
+        Help
+        ·
+        Contact
+        ·
+        Subscribe
+        ·
+        Copyright
+        ·
+        Privacy
+        ·
+        Accessibility
+        ·
+        Operational Status (opens in new tab)
+      
+    
+
+    
+
+      
+Major funding support from
+      
+
+        
+          
+        
+        
+          
+        
+        
+          
+        
+      
+    
+  
+
+
+  
+    
+      
+    
+  
+
+

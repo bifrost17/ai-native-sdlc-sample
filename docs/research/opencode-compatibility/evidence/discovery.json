@@ -1,0 +1,133 @@
+{
+  "root": "/private/tmp/opencode-skill-review-ye3z5guh",
+  "source_commit": "9b7772f0fe0704b98bd00467525cf42f0a58f1a1",
+  "cli_version": "1.18.30",
+  "capture_note": "First PIPE capture raised UnicodeDecodeError at byte65535; repeated with direct stdout file, no semantic result inferred from failed capture.",
+  "cases": [
+    {
+      "case": "skills-only",
+      "command": "opencode debug skill",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout_bytes": 105904,
+      "source_skills": [
+        "accessibility",
+        "brand",
+        "data-compliance",
+        "grilling",
+        "pr-loop",
+        "sdlc-feedback",
+        "secrets-scan",
+        "secure-api-review",
+        "spec-policy-pass",
+        "stop-slop-ko",
+        "tdd",
+        "to-questionnaire",
+        "ux-copy"
+      ],
+      "skills": [
+        {
+          "name": "customize-opencode",
+          "location": "<built-in>"
+        },
+        {
+          "name": "aside-browser",
+          "location": "/Users/jake/.claude/skills/aside-browser/SKILL.md"
+        },
+        {
+          "name": "brand",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/brand/SKILL.md"
+        },
+        {
+          "name": "tdd",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/tdd/SKILL.md"
+        },
+        {
+          "name": "data-compliance",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/data-compliance/SKILL.md"
+        },
+        {
+          "name": "to-questionnaire",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/to-questionnaire/SKILL.md"
+        },
+        {
+          "name": "ux-copy",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/ux-copy/SKILL.md"
+        },
+        {
+          "name": "grilling",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/grilling/SKILL.md"
+        },
+        {
+          "name": "secure-api-review",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/secure-api-review/SKILL.md"
+        },
+        {
+          "name": "accessibility",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/accessibility/SKILL.md"
+        },
+        {
+          "name": "stop-slop-ko",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/stop-slop-ko/SKILL.md"
+        },
+        {
+          "name": "secrets-scan",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/secrets-scan/SKILL.md"
+        },
+        {
+          "name": "spec-policy-pass",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/spec-policy-pass/SKILL.md"
+        },
+        {
+          "name": "sdlc-feedback",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/sdlc-feedback/SKILL.md"
+        },
+        {
+          "name": "pr-loop",
+          "location": "/private/tmp/opencode-skill-review-ye3z5guh/skills-only/.opencode/skills/pr-loop/SKILL.md"
+        }
+      ],
+      "source_content_equal": {
+        "brand": true,
+        "tdd": true,
+        "data-compliance": true,
+        "to-questionnaire": true,
+        "ux-copy": true,
+        "grilling": true,
+        "secure-api-review": true,
+        "accessibility": true,
+        "stop-slop-ko": true,
+        "secrets-scan": true,
+        "spec-policy-pass": true,
+        "sdlc-feedback": true,
+        "pr-loop": true
+      },
+      "feedback_verifier_reference_exists": false
+    },
+    {
+      "case": "claude-bundle",
+      "command": "opencode debug skill",
+      "exit_code": 1,
+      "stderr": "\u001b[91m\u001b[1mError: \u001b[0mConfiguration is invalid at /private/tmp/opencode-skill-review-ye3z5guh/claude-bundle/.opencode/agents/sdlc-verifier.md\n↳ Expected object | undefined, got \"Read, Glob, Grep, Bash\" tools\n",
+      "stdout_bytes": 0,
+      "source_skills": [
+        "accessibility",
+        "brand",
+        "data-compliance",
+        "grilling",
+        "pr-loop",
+        "sdlc-feedback",
+        "secrets-scan",
+        "secure-api-review",
+        "spec-policy-pass",
+        "stop-slop-ko",
+        "tdd",
+        "to-questionnaire",
+        "ux-copy"
+      ],
+      "parse_error": "JSONDecodeError",
+      "stdout_preview": "",
+      "feedback_verifier_reference_exists": true
+    }
+  ]
+}

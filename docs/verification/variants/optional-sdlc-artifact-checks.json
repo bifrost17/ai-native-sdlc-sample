@@ -1,0 +1,995 @@
+{
+  "whitespace_check": {
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "verified_at": "2026-09-12T09:46:25.947655+00:00",
+  "base": "e6b16db",
+  "result": "pass",
+  "scope": "Local Markdown links outside fenced examples in changed/added documents, with local heading or HTML ID fragments. Not online availability or model execution.",
+  "markdown_files": 31,
+  "relative_links": 225,
+  "fragments": 24,
+  "errors": [],
+  "pages": [
+    "README.md",
+    "docs/decisions/tdd-optional-sdlc.md",
+    "docs/research/tdd-vs-test-after/review.md",
+    "docs/research/tdd-vs-test-after/working/agent-studies.md",
+    "docs/verification/variants/README.md",
+    "docs/verification/variants/optional-sdlc-design.md",
+    "docs/verification/variants/optional-sdlc-independent-review.md",
+    "docs/verification/variants/tdd-optional.md",
+    "tdd-optional/README.md",
+    "tdd-optional/org-skills/README.md",
+    "tdd-optional/org-skills/agents/sdlc-verifier.md",
+    "tdd-optional/org-skills/opencode/README.md",
+    "tdd-optional/org-skills/opencode/agents/sdlc-verifier.md",
+    "tdd-optional/org-skills/opencode/team-resources/INDEX.md",
+    "tdd-optional/org-skills/skills/sdlc-feedback/PROVENANCE.md",
+    "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md",
+    "tdd-optional/org-skills/skills/tdd/PROVENANCE.md",
+    "tdd-optional/project/CLAUDE.md",
+    "tdd-optional/project/PROJECT-POLICY.md",
+    "tdd-optional/project/README.md",
+    "tdd-optional/project/REVIEW.md",
+    "tdd-optional/project/docs/PROCESS.md",
+    "tdd-optional/project/docs/TESTING-STRATEGY.md",
+    "tdd-optional/project/docs/sdlc-authoring/README.md",
+    "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+    "tdd-optional/project/examples/skills/plan/SKILL.md",
+    "tdd-optional/project/examples/skills/plan/examples/README.md",
+    "tdd-optional/project/examples/skills/plan/examples/disposable-ui-exploration.md",
+    "tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md",
+    "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+    "tdd-optional/project/templates/plan.md"
+  ],
+  "checks": [
+    {
+      "page": "README.md",
+      "target": "tdd-first/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "tdd-optional/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "tdd-optional/project/docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/decisions/tdd-optional-sdlc.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/decisions/template-variants.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/verification/north-star-playbook.html"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/verification/variants/tdd-first.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/verification/variants/tdd-optional.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/research/tdd-vs-test-after/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/BOUNDARY.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/PLAYBOOK-MAP.md"
+    },
+    {
+      "page": "README.md",
+      "target": "tdd-first/org-skills/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "tdd-optional/org-skills/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "team-harness/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "CLAUDE.md"
+    },
+    {
+      "page": "README.md",
+      "target": "evals/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/verification/variants/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/experiments/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/experiments/0024-spec-plan-activation.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/experiments/0026-muse-spark.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/experiments/0027-muse-larger.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/experiments/0028-review-tdd.md"
+    },
+    {
+      "page": "README.md",
+      "target": "docs/ADOPTING.md"
+    },
+    {
+      "page": "README.md",
+      "target": "policies/README.md"
+    },
+    {
+      "page": "README.md",
+      "target": "REVIEW.md"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/working/agent-studies.md#a1-tenet--가장-유용한-테스트-사용-시점-비교"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/working/agent-studies.md#a5-구현을-본-테스트의-오류-전파"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/originals/studies-agent/2607.05139.pdf.txt"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/practitioner-evidence.md"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/working/agent-studies.md"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/human-studies.md"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../research/tdd-vs-test-after/README.md#유명-프로젝트의-정책과-관찰-사례"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V2-11"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V3-09"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V4-06"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V4-11"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V8-01"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V8-07"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V8-10"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V8-13"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V10-04"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V10-05"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V10-06"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V12-08"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/north-star-playbook.html#V13-09"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../../tdd-optional/project/docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "docs/decisions/tdd-optional-sdlc.md",
+      "target": "../verification/variants/optional-sdlc-design.md"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "working/critical-review.md"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "working/agent-studies.md#a5-구현을-본-테스트의-오류-전파"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "originals/studies-agent/2607.05139.pdf.txt"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "../../decisions/tdd-optional-sdlc.md"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "data/artifact-check.json"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "originals/README.md"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "README.md"
+    },
+    {
+      "page": "docs/research/tdd-vs-test-after/review.md",
+      "target": "methodology.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "../../decisions/template-variants.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "optional-sdlc-design.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "baseline.json"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "checks.log"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "package-checks.json"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/verification.json"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "independent-review.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "tdd-first.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "tdd-optional.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "whitespace-check.json"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/first/PLAN.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/first/evidence.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/optional-after/PLAN.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/optional-after/evidence.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/optional-tdd/PLAN.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/optional-tdd/evidence.md"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "evidence/verification.json"
+    },
+    {
+      "page": "docs/verification/variants/README.md",
+      "target": "../../research/tdd-vs-test-after/README.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "../../decisions/tdd-optional-sdlc.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "../../../tdd-optional/project/docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "../../research/tdd-vs-test-after/review.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "../../../tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "../../../tdd-optional/project/examples/skills/plan/examples/disposable-ui-exploration.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "optional-sdlc-checks.log"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "optional-sdlc-package-checks.json"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "optional-sdlc-independent-review.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "optional-sdlc-artifact-checks.json"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-design.md",
+      "target": "README.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../decisions/tdd-optional-sdlc.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../../tdd-optional/project/docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../north-star-playbook.html#V4-06"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../north-star-playbook.html#V8-07"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../north-star-playbook.html#V8-10"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../north-star-playbook.html#V8-01"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../north-star-playbook.html#V8-13"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../research/tdd-vs-test-after/working/agent-studies.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../research/tdd-vs-test-after/originals/studies-agent/2607.05139.pdf.txt"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../research/tdd-vs-test-after/practitioner-evidence.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../research/tdd-vs-test-after/human-studies.md"
+    },
+    {
+      "page": "docs/verification/variants/optional-sdlc-independent-review.md",
+      "target": "../../research/tdd-vs-test-after/working/critical-review.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "../../../tdd-optional/README.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "optional-sdlc-design.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "evidence/optional-after/evidence.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "evidence/optional-tdd/evidence.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "evidence/verification.json"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "README.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "independent-review.md"
+    },
+    {
+      "page": "docs/verification/variants/tdd-optional.md",
+      "target": "../../research/tdd-vs-test-after/README.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/README.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/PROJECT-POLICY.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "org-skills/README.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/templates/plan.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/docs/sdlc-authoring/examples/F01/plan.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/docs/sdlc-authoring/examples/B01/plan.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/docs/sdlc-authoring/examples/W01/plan.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/examples/skills/plan/examples/refactor-existing-tests.md"
+    },
+    {
+      "page": "tdd-optional/README.md",
+      "target": "project/examples/skills/plan/examples/disposable-ui-exploration.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "opencode/README.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "skills/spec-policy-pass/SKILL.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "commands/spec-policy.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "skills/spec-policy-pass/PROVENANCE.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "skills/tdd/SKILL.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "skills/tdd/PROVENANCE.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "skills/sdlc-feedback/SKILL.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "agents/sdlc-verifier.md#review-criteria"
+    },
+    {
+      "page": "tdd-optional/org-skills/README.md",
+      "target": "agents/sdlc-verifier.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md",
+      "target": "../../agents/sdlc-verifier.md"
+    },
+    {
+      "page": "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md",
+      "target": "../tdd/SKILL.md"
+    },
+    {
+      "page": "tdd-optional/project/CLAUDE.md",
+      "target": "docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/CLAUDE.md",
+      "target": "docs/PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/CLAUDE.md",
+      "target": "docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/PROJECT-POLICY.md",
+      "target": "docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/PROJECT-POLICY.md",
+      "target": "docs/RELEASE-CONTROL.md"
+    },
+    {
+      "page": "tdd-optional/project/PROJECT-POLICY.md",
+      "target": "docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/PROJECT-POLICY.md",
+      "target": "docs/TESTING-STRATEGY.md#플레이북을-적용하는-범위"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "PROJECT-POLICY.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/PROCESS.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "intent/README.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "templates/"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "REVIEW.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "CLAUDE.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/PROCESS.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/RELEASE-CONTROL.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "PROJECT-POLICY.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "templates/"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "intent/README.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "examples/README.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "docs/sdlc-authoring/README.md"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "NOTICE"
+    },
+    {
+      "page": "tdd-optional/project/README.md",
+      "target": "LICENSE"
+    },
+    {
+      "page": "tdd-optional/project/REVIEW.md",
+      "target": "docs/PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/REVIEW.md",
+      "target": "docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/REVIEW.md",
+      "target": "docs/RELEASE-CONTROL.md"
+    },
+    {
+      "page": "tdd-optional/project/REVIEW.md",
+      "target": "docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "../PROJECT-POLICY.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "../templates/intent.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "../templates/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "../templates/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "../REVIEW.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/PROCESS.md",
+      "target": "GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/TESTING-STRATEGY.md",
+      "target": "PROCESS.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/TESTING-STRATEGY.md",
+      "target": "../PROJECT-POLICY.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/TESTING-STRATEGY.md",
+      "target": "../templates/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/TESTING-STRATEGY.md",
+      "target": "../REVIEW.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../../templates/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../../templates/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "examples/F01/context.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "examples/B01/context.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "examples/F03/context.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "examples/M01/context.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "examples/W01/context.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "change-walkthrough.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../../examples/skills/plan/examples/refactor-existing-tests.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../../examples/skills/plan/examples/disposable-ui-exploration.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../../examples/skills/design-spec/references/design-depth.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../../examples/skills/plan/references/execution-depth.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../RELEASE-CONTROL.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "../TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "target": "inputs/README.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "references/skill-provenance.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../templates/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "references/design-depth.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/F01/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/B01/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/F03/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/M01/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/W01/spec.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../templates/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/TESTING-STRATEGY.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "references/execution-depth.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/F01/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/B01/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/F03/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/M01/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "../../../docs/sdlc-authoring/examples/W01/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "examples/refactor-existing-tests.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "target": "examples/disposable-ui-exploration.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/examples/README.md",
+      "target": "../../../../docs/sdlc-authoring/README.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/examples/README.md",
+      "target": "refactor-existing-tests.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/examples/README.md",
+      "target": "disposable-ui-exploration.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md",
+      "target": "../../../../docs/sdlc-authoring/inputs/baseline/tracker.py"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md",
+      "target": "../../../../docs/sdlc-authoring/inputs/baseline/test_tracker.py"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/RELEASE-CONTROL.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../examples/disposable-ui-exploration.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/sdlc-authoring/examples/F03/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/sdlc-authoring/examples/M01/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/sdlc-authoring/examples/W01/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/sdlc-authoring/examples/F03/plan.md"
+    },
+    {
+      "page": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "target": "../../../../docs/sdlc-authoring/change-walkthrough.md"
+    },
+    {
+      "page": "tdd-optional/project/templates/plan.md",
+      "target": "../docs/GIT-WORKFLOW.md"
+    },
+    {
+      "page": "tdd-optional/project/templates/plan.md",
+      "target": "../docs/PR-SIZE.md"
+    },
+    {
+      "page": "tdd-optional/project/templates/plan.md",
+      "target": "../docs/RELEASE-CONTROL.md"
+    },
+    {
+      "page": "tdd-optional/project/templates/plan.md",
+      "target": "../docs/TESTING-STRATEGY.md"
+    }
+  ],
+  "file_sha256": {
+    ".claude-plugin/marketplace.json": "46adc9119813bfcf5153ddd3dee43d855439878aa9122ea777815e4259eb98e6",
+    "README.md": "c9d7ba7b8057e14daacdcbeb1f4d9db1005858bb9c68eaa9cfb66b0f9f5fffa7",
+    "docs/decisions/tdd-optional-sdlc.md": "a7ae41e994b5e64264827bcd1252db5037de7d3c2cf8e3182630176c29db50ca",
+    "docs/research/tdd-vs-test-after/review.md": "481c90850c25d63d63a3d74c5d2052becb2ae8334f18f9fefcebdbae35453ba8",
+    "docs/research/tdd-vs-test-after/working/agent-studies.md": "599e7b9efa9f3dd0c1b599ceb126be5ceb03c39d6cdf1a1c0bd20b23509671f8",
+    "docs/verification/variants/README.md": "46bf7552fd523dfacc2964632f4ac7a8b879c1bd4d870634451a3008978057ab",
+    "docs/verification/variants/optional-sdlc-checks.log": "f5c8040cdacd4157aac0224249ce68ee9a9c2220603e9fd420d5c00f055504ee",
+    "docs/verification/variants/optional-sdlc-design.md": "d462c8d940abeaac130c2039c1582143093d6ac574a93e56b340274b684b9861",
+    "docs/verification/variants/optional-sdlc-independent-review.md": "2a11c1e382a3b1b882724d9572c09f268dc22ec3634115e2fb187bc79e0717f3",
+    "docs/verification/variants/optional-sdlc-package-checks.json": "96fe15227291349e6dab6bcda6f77cd019a7421db744d6abe3a6abe2cffe87d7",
+    "docs/verification/variants/tdd-optional.md": "9800be04033a668d722edcab1f20aedca7f71f174e40ce58ebc54c9c8fc6bc45",
+    "tdd-optional/.claude-plugin/marketplace.json": "d323e48aba7f7b0811f26176c8db3bd90e55a028b72b552a0f10938dc1c3bef8",
+    "tdd-optional/README.md": "aed817b28e03ebea776256c8f370d9779f2cc347664801aa54eda01f25a3032f",
+    "tdd-optional/org-skills/.claude-plugin/plugin.json": "8fe2982940cd9db170790ceb8da513d62fba0e714abec3fc0c2921cfd75be775",
+    "tdd-optional/org-skills/README.md": "4aea37eb74562c09dd9c09961a5855f83ed058913835cb3892d8452b50e1cb98",
+    "tdd-optional/org-skills/agents/sdlc-verifier.md": "858c96929d02a7284bd3756e5d3fe5c71591735f263fbf5d6824758d2017bec5",
+    "tdd-optional/org-skills/opencode/README.md": "4943a3a0a48fa9938f3a1e6aebd0870c662a2fd33877c9447b611d2e57cc2a17",
+    "tdd-optional/org-skills/opencode/agents/sdlc-verifier.md": "9902f0417131890c9aed89e0c0bbff7002e193d8079a9111adeeb0c00287e426",
+    "tdd-optional/org-skills/opencode/patches/sdlc-feedback.patch": "e4167b2cc3f8e858961987242c2592bc5027ee018e7de1229454f57fababf163",
+    "tdd-optional/org-skills/opencode/team-resources/INDEX.md": "13d25013d5a7f62f28ce229a8bb2c093192c4e8d1ceb0c38fc85cf3359fe22ea",
+    "tdd-optional/org-skills/skills/sdlc-feedback/PROVENANCE.md": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+    "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md": "e5d0bd81091a5c9593f184d100732b957ac38ba2f7027e79e609aabd4a8727b7",
+    "tdd-optional/org-skills/skills/tdd/PROVENANCE.md": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+    "tdd-optional/project/CLAUDE.md": "28c7b84574dcbee68d8e2133ff23c8f98c196eb13be71a30412439cdb872af7d",
+    "tdd-optional/project/PROJECT-POLICY.md": "ba4717a6d1dab754605219a80a8f527b50ecb6fa338ff07be41178e142c3600f",
+    "tdd-optional/project/README.md": "7fb6aff9d0b7dee2c0ec4d3da6f6a2a710ad8183d26b5f11124cc28b1cf1eb00",
+    "tdd-optional/project/REVIEW.md": "237ffa58d32765c5d65a013765c550049cd00a45435e9a9a23b3a1c46d71ec83",
+    "tdd-optional/project/docs/PROCESS.md": "d6c2e9515023798b7f7414f33d8bd8954880681fa6525066101f93b2edf35246",
+    "tdd-optional/project/docs/TESTING-STRATEGY.md": "c2243207740bb1b59bbcf7332af9daf5a0470b08d10ae19e8dfb2af5c2cb9246",
+    "tdd-optional/project/docs/sdlc-authoring/README.md": "a6a908717e977489e81a4c8202a26d9d60c97a6830cfedf0e5409b3456a5003a",
+    "tdd-optional/project/examples/skills/design-spec/SKILL.md": "9016009e1acf4e3aa81f2c211be3bfa08f6f61d8764862ba6632a0eccebad974",
+    "tdd-optional/project/examples/skills/plan/SKILL.md": "e4b7aaf1449b4aecc0edc427111eeebb79b19f975574238fbcc1550b072f0183",
+    "tdd-optional/project/examples/skills/plan/examples/README.md": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+    "tdd-optional/project/examples/skills/plan/examples/disposable-ui-exploration.md": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+    "tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+    "tdd-optional/project/examples/skills/plan/references/execution-depth.md": "fd73601b421635bd6d397039e3103e987741e075e90a52773428f61c7d23e075",
+    "tdd-optional/project/templates/plan.md": "962c53f66c92e8b39d83f0e06934e49f915cae8e7a524a1bcfb40c7b262a3ef1"
+  }
+}

@@ -1,0 +1,1421 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:44:26Z",
+  "pull": {
+    "url": "https://api.github.com/repos/rails/rails/pulls/58673",
+    "id": 4447998742,
+    "node_id": "PR_kwDNIULPAAAAAQkfExY",
+    "html_url": "https://github.com/rails/rails/pull/58673",
+    "diff_url": "https://github.com/rails/rails/pull/58673.diff",
+    "patch_url": "https://github.com/rails/rails/pull/58673.patch",
+    "issue_url": "https://api.github.com/repos/rails/rails/issues/58673",
+    "number": 58673,
+    "state": "closed",
+    "locked": false,
+    "title": "Refactor more class variables to accessors and delegators",
+    "user": {
+      "login": "gmcgibbon",
+      "id": 5162312,
+      "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gmcgibbon",
+      "html_url": "https://github.com/gmcgibbon",
+      "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+      "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+      "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+      "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+      "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "### Motivation / Background\r\n\r\nThis Pull Request has been created because `@@variables` class variables aren't ractor safe in Ruby 4.0.6, but they are on edge Ruby.\r\n\r\n### Detail\r\n\r\nThis Pull Request changes `mattr_accessor` usage to plain old `attr_accessor`s so they may be referenced safely on Ractors today.\r\n\r\n### Checklist\r\n\r\nBefore submitting the PR make sure the following are checked:\r\n\r\n* [x] This Pull Request is related to one change. Unrelated changes should be opened in separate PRs.\r\n* [x] Commit message has a detailed description of what changed and why. If this PR fixes a related issue include it in the commit message. Ex: `[Fix #issue-number]`\r\n* [x] Tests are added or updated if you fix a bug or add a feature.\r\n* [ ] CHANGELOG files are updated for the changed libraries if there is a behavior change or additional feature. Minor bug fixes and documentation changes should not be included.\r\n",
+    "created_at": "2026-09-05T01:22:47Z",
+    "updated_at": "2026-09-05T01:32:41Z",
+    "closed_at": "2026-09-05T01:32:39Z",
+    "merged_at": "2026-09-05T01:32:39Z",
+    "merge_commit_sha": "7ba5fa304be84f57d93e93515c507085339b8402",
+    "assignees": [],
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "labels": [
+      {
+        "id": 107189,
+        "node_id": "MDU6TGFiZWwxMDcxODk=",
+        "url": "https://api.github.com/repos/rails/rails/labels/actionpack",
+        "name": "actionpack",
+        "color": "FFF700",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      },
+      {
+        "id": 3666649,
+        "node_id": "MDU6TGFiZWwzNjY2NjQ5",
+        "url": "https://api.github.com/repos/rails/rails/labels/actionview",
+        "name": "actionview",
+        "color": "d7e102",
+        "default": false,
+        "description": null,
+        "archived_at": null,
+        "archived_by": null
+      }
+    ],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/rails/rails/pulls/58673/commits",
+    "review_comments_url": "https://api.github.com/repos/rails/rails/pulls/58673/comments",
+    "review_comment_url": "https://api.github.com/repos/rails/rails/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/rails/rails/issues/58673/comments",
+    "statuses_url": "https://api.github.com/repos/rails/rails/statuses/efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+    "head": {
+      "label": "Shopify:remove_more_cvars",
+      "ref": "remove_more_cvars",
+      "sha": "efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "user": {
+        "login": "Shopify",
+        "id": 8085,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjgwODU=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/8085?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Shopify",
+        "html_url": "https://github.com/Shopify",
+        "followers_url": "https://api.github.com/users/Shopify/followers",
+        "following_url": "https://api.github.com/users/Shopify/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Shopify/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Shopify/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Shopify/subscriptions",
+        "organizations_url": "https://api.github.com/users/Shopify/orgs",
+        "repos_url": "https://api.github.com/users/Shopify/repos",
+        "events_url": "https://api.github.com/users/Shopify/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Shopify/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 60858413,
+        "node_id": "MDEwOlJlcG9zaXRvcnk2MDg1ODQxMw==",
+        "name": "rails",
+        "full_name": "Shopify/rails",
+        "private": false,
+        "owner": {
+          "login": "Shopify",
+          "id": 8085,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjgwODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/8085?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Shopify",
+          "html_url": "https://github.com/Shopify",
+          "followers_url": "https://api.github.com/users/Shopify/followers",
+          "following_url": "https://api.github.com/users/Shopify/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Shopify/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Shopify/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Shopify/subscriptions",
+          "organizations_url": "https://api.github.com/users/Shopify/orgs",
+          "repos_url": "https://api.github.com/users/Shopify/repos",
+          "events_url": "https://api.github.com/users/Shopify/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Shopify/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/Shopify/rails",
+        "description": "Ruby on Rails",
+        "fork": true,
+        "url": "https://api.github.com/repos/Shopify/rails",
+        "forks_url": "https://api.github.com/repos/Shopify/rails/forks",
+        "keys_url": "https://api.github.com/repos/Shopify/rails/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/Shopify/rails/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/Shopify/rails/teams",
+        "hooks_url": "https://api.github.com/repos/Shopify/rails/hooks",
+        "issue_events_url": "https://api.github.com/repos/Shopify/rails/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/Shopify/rails/events",
+        "assignees_url": "https://api.github.com/repos/Shopify/rails/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/Shopify/rails/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/Shopify/rails/tags",
+        "blobs_url": "https://api.github.com/repos/Shopify/rails/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/Shopify/rails/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/Shopify/rails/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/Shopify/rails/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/Shopify/rails/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/Shopify/rails/languages",
+        "stargazers_url": "https://api.github.com/repos/Shopify/rails/stargazers",
+        "contributors_url": "https://api.github.com/repos/Shopify/rails/contributors",
+        "subscribers_url": "https://api.github.com/repos/Shopify/rails/subscribers",
+        "subscription_url": "https://api.github.com/repos/Shopify/rails/subscription",
+        "commits_url": "https://api.github.com/repos/Shopify/rails/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/Shopify/rails/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/Shopify/rails/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/Shopify/rails/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/Shopify/rails/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/Shopify/rails/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/Shopify/rails/merges",
+        "archive_url": "https://api.github.com/repos/Shopify/rails/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/Shopify/rails/downloads",
+        "issues_url": "https://api.github.com/repos/Shopify/rails/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/Shopify/rails/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/Shopify/rails/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/Shopify/rails/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/Shopify/rails/labels{/name}",
+        "releases_url": "https://api.github.com/repos/Shopify/rails/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/Shopify/rails/deployments",
+        "created_at": "2016-06-10T15:34:34Z",
+        "updated_at": "2026-09-11T15:55:08Z",
+        "pushed_at": "2026-09-11T21:12:59Z",
+        "git_url": "git://github.com/Shopify/rails.git",
+        "ssh_url": "git@github.com:Shopify/rails.git",
+        "clone_url": "https://github.com/Shopify/rails.git",
+        "svn_url": "https://github.com/Shopify/rails",
+        "homepage": "http://rubyonrails.org",
+        "size": 280751,
+        "stargazers_count": 19,
+        "watchers_count": 19,
+        "language": "Ruby",
+        "has_issues": false,
+        "has_projects": true,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": false,
+        "forks_count": 6,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 5,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 6,
+        "open_issues": 5,
+        "watchers": 19,
+        "default_branch": "main"
+      }
+    },
+    "base": {
+      "label": "rails:main",
+      "ref": "main",
+      "sha": "1ec64ce82451c52d7407fa665ea5f95291430c23",
+      "user": {
+        "login": "rails",
+        "id": 4223,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyMjM=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/4223?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/rails",
+        "html_url": "https://github.com/rails",
+        "followers_url": "https://api.github.com/users/rails/followers",
+        "following_url": "https://api.github.com/users/rails/following{/other_user}",
+        "gists_url": "https://api.github.com/users/rails/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/rails/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/rails/subscriptions",
+        "organizations_url": "https://api.github.com/users/rails/orgs",
+        "repos_url": "https://api.github.com/users/rails/repos",
+        "events_url": "https://api.github.com/users/rails/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/rails/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 8514,
+        "node_id": "MDEwOlJlcG9zaXRvcnk4NTE0",
+        "name": "rails",
+        "full_name": "rails/rails",
+        "private": false,
+        "owner": {
+          "login": "rails",
+          "id": 4223,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyMjM=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/4223?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/rails",
+          "html_url": "https://github.com/rails",
+          "followers_url": "https://api.github.com/users/rails/followers",
+          "following_url": "https://api.github.com/users/rails/following{/other_user}",
+          "gists_url": "https://api.github.com/users/rails/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/rails/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/rails/subscriptions",
+          "organizations_url": "https://api.github.com/users/rails/orgs",
+          "repos_url": "https://api.github.com/users/rails/repos",
+          "events_url": "https://api.github.com/users/rails/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/rails/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/rails/rails",
+        "description": "Ruby on Rails",
+        "fork": false,
+        "url": "https://api.github.com/repos/rails/rails",
+        "forks_url": "https://api.github.com/repos/rails/rails/forks",
+        "keys_url": "https://api.github.com/repos/rails/rails/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/rails/rails/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/rails/rails/teams",
+        "hooks_url": "https://api.github.com/repos/rails/rails/hooks",
+        "issue_events_url": "https://api.github.com/repos/rails/rails/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/rails/rails/events",
+        "assignees_url": "https://api.github.com/repos/rails/rails/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/rails/rails/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/rails/rails/tags",
+        "blobs_url": "https://api.github.com/repos/rails/rails/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/rails/rails/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/rails/rails/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/rails/rails/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/rails/rails/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/rails/rails/languages",
+        "stargazers_url": "https://api.github.com/repos/rails/rails/stargazers",
+        "contributors_url": "https://api.github.com/repos/rails/rails/contributors",
+        "subscribers_url": "https://api.github.com/repos/rails/rails/subscribers",
+        "subscription_url": "https://api.github.com/repos/rails/rails/subscription",
+        "commits_url": "https://api.github.com/repos/rails/rails/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/rails/rails/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/rails/rails/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/rails/rails/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/rails/rails/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/rails/rails/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/rails/rails/merges",
+        "archive_url": "https://api.github.com/repos/rails/rails/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/rails/rails/downloads",
+        "issues_url": "https://api.github.com/repos/rails/rails/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/rails/rails/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/rails/rails/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/rails/rails/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/rails/rails/labels{/name}",
+        "releases_url": "https://api.github.com/repos/rails/rails/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/rails/rails/deployments",
+        "created_at": "2008-04-11T02:19:47Z",
+        "updated_at": "2026-09-12T07:15:44Z",
+        "pushed_at": "2026-09-11T23:20:55Z",
+        "git_url": "git://github.com/rails/rails.git",
+        "ssh_url": "git@github.com:rails/rails.git",
+        "clone_url": "https://github.com/rails/rails.git",
+        "svn_url": "https://github.com/rails/rails",
+        "homepage": "https://rubyonrails.org",
+        "size": 289047,
+        "stargazers_count": 58751,
+        "watchers_count": 58751,
+        "language": "Ruby",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 22384,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 1638,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "activejob",
+          "activerecord",
+          "framework",
+          "html",
+          "mvc",
+          "rails",
+          "ruby"
+        ],
+        "visibility": "public",
+        "forks": 22384,
+        "open_issues": 1638,
+        "watchers": 58751,
+        "default_branch": "main"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/58673"
+      },
+      "html": {
+        "href": "https://github.com/rails/rails/pull/58673"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/rails/rails/issues/58673"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/rails/rails/issues/58673/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/58673/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/rails/rails/pulls/58673/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/rails/rails/statuses/efb0c7b5973ce68b2730c0c8df44f32700a597b7"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "gmcgibbon",
+      "id": 5162312,
+      "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gmcgibbon",
+      "html_url": "https://github.com/gmcgibbon",
+      "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+      "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+      "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+      "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+      "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 0,
+    "review_comments": 0,
+    "maintainer_can_modify": false,
+    "commits": 6,
+    "additions": 112,
+    "deletions": 22,
+    "changed_files": 10
+  },
+  "commits": [
+    {
+      "sha": "55141ecff313ff62e230b36d42630a1f69020cfe",
+      "node_id": "C_kwDOA6CgLdoAKDU1MTQxZWNmZjMxM2ZmNjJlMjMwYjM2ZDQyNjMwYTFmNjkwMjBjZmU",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:48:01Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:02Z"
+        },
+        "message": "Store prepend_content_exfiltration_prevention in a singleton class attribute\n\nThe setting was a class variable, which non-main Ractors cannot read\non Ruby 4.0.",
+        "tree": {
+          "sha": "4d5bc7aff0a94b53a416be43ee7a40dc58003baf",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/4d5bc7aff0a94b53a416be43ee7a40dc58003baf"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/55141ecff313ff62e230b36d42630a1f69020cfe",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/55141ecff313ff62e230b36d42630a1f69020cfe",
+      "html_url": "https://github.com/rails/rails/commit/55141ecff313ff62e230b36d42630a1f69020cfe",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/55141ecff313ff62e230b36d42630a1f69020cfe/comments",
+      "author": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "1ec64ce82451c52d7407fa665ea5f95291430c23",
+          "url": "https://api.github.com/repos/rails/rails/commits/1ec64ce82451c52d7407fa665ea5f95291430c23",
+          "html_url": "https://github.com/rails/rails/commit/1ec64ce82451c52d7407fa665ea5f95291430c23"
+        }
+      ]
+    },
+    {
+      "sha": "5a00423021412ee600df7cc9446e93fe88e98502",
+      "node_id": "C_kwDOA6CgLdoAKDVhMDA0MjMwMjE0MTJlZTYwMGRmN2NjOTQ0NmU5M2ZlODhlOTg1MDI",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:21Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:14:56Z"
+        },
+        "message": "Store the ActionDispatch::Http::URL settings in singleton class attributes\n\ntld_length, secure_protocol, and domain_extractor were class variables,\nwhich non-main Ractors cannot read on Ruby 4.0.",
+        "tree": {
+          "sha": "9183d77cc945a0ba717677afb2ceeddcb2a37cac",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/9183d77cc945a0ba717677afb2ceeddcb2a37cac"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/5a00423021412ee600df7cc9446e93fe88e98502",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/5a00423021412ee600df7cc9446e93fe88e98502",
+      "html_url": "https://github.com/rails/rails/commit/5a00423021412ee600df7cc9446e93fe88e98502",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/5a00423021412ee600df7cc9446e93fe88e98502/comments",
+      "author": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "55141ecff313ff62e230b36d42630a1f69020cfe",
+          "url": "https://api.github.com/repos/rails/rails/commits/55141ecff313ff62e230b36d42630a1f69020cfe",
+          "html_url": "https://github.com/rails/rails/commit/55141ecff313ff62e230b36d42630a1f69020cfe"
+        }
+      ]
+    },
+    {
+      "sha": "4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+      "node_id": "C_kwDOA6CgLdoAKDRlOTQ4YjZlMDBlYmQ0ZWJlYjFiZjBmMTYzMTM5NTRlZTFlODM1M2I",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:37Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store the FormTagHelper settings in singleton class attributes\n\ndefault_enforce_utf8 and embed_authenticity_token_in_remote_forms were\nclass variables, which non-main Ractors cannot read on Ruby 4.0.",
+        "tree": {
+          "sha": "caaa29b8587128e250d28f89c146f33c8fc08e9b",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/caaa29b8587128e250d28f89c146f33c8fc08e9b"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+      "html_url": "https://github.com/rails/rails/commit/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b/comments",
+      "author": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "5a00423021412ee600df7cc9446e93fe88e98502",
+          "url": "https://api.github.com/repos/rails/rails/commits/5a00423021412ee600df7cc9446e93fe88e98502",
+          "html_url": "https://github.com/rails/rails/commit/5a00423021412ee600df7cc9446e93fe88e98502"
+        }
+      ]
+    },
+    {
+      "sha": "271b76079d31633f3594dcec0439060c1292fd33",
+      "node_id": "C_kwDOA6CgLdoAKDI3MWI3NjA3OWQzMTYzM2YzNTk0ZGNlYzA0MzkwNjBjMTI5MmZkMzM",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:55Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store ActionView::Base.default_form_builder in a singleton class attribute\n\nThe setting was a class variable, which non-main Ractors cannot read\non Ruby 4.0. It is only read through ActionView::Base, so a singleton\nclass attribute is enough.",
+        "tree": {
+          "sha": "cb306795e8c2c61eed775d1da12633b1492efcb9",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/cb306795e8c2c61eed775d1da12633b1492efcb9"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/271b76079d31633f3594dcec0439060c1292fd33",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/271b76079d31633f3594dcec0439060c1292fd33",
+      "html_url": "https://github.com/rails/rails/commit/271b76079d31633f3594dcec0439060c1292fd33",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/271b76079d31633f3594dcec0439060c1292fd33/comments",
+      "author": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+          "url": "https://api.github.com/repos/rails/rails/commits/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+          "html_url": "https://github.com/rails/rails/commit/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b"
+        }
+      ]
+    },
+    {
+      "sha": "5c36751e52802bb6deebae975ad04ebc49e191f1",
+      "node_id": "C_kwDOA6CgLdoAKDVjMzY3NTFlNTI4MDJiYjZkZWViYWU5NzVhZDA0ZWJjNDllMTkxZjE",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:00:19Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store the FormHelper settings in singleton class attributes\n\nform_with_generates_remote_forms, form_with_generates_ids, and\nmultiple_file_field_include_hidden were class variables, which\nnon-main Ractors cannot read on Ruby 4.0.",
+        "tree": {
+          "sha": "06ee31bb06d65b1a3b35fdc26c36d967a60c0cfe",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/06ee31bb06d65b1a3b35fdc26c36d967a60c0cfe"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/5c36751e52802bb6deebae975ad04ebc49e191f1",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/5c36751e52802bb6deebae975ad04ebc49e191f1",
+      "html_url": "https://github.com/rails/rails/commit/5c36751e52802bb6deebae975ad04ebc49e191f1",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/5c36751e52802bb6deebae975ad04ebc49e191f1/comments",
+      "author": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "271b76079d31633f3594dcec0439060c1292fd33",
+          "url": "https://api.github.com/repos/rails/rails/commits/271b76079d31633f3594dcec0439060c1292fd33",
+          "html_url": "https://github.com/rails/rails/commit/271b76079d31633f3594dcec0439060c1292fd33"
+        }
+      ]
+    },
+    {
+      "sha": "efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "node_id": "C_kwDOA6CgLdoAKGVmYjBjN2I1OTczY2U2OGIyNzMwYzBjOGRmNDRmMzI3MDBhNTk3Yjc",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:00:41Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store button_to_generates_button_tag in a singleton class attribute\n\nThe setting was a class variable, which non-main Ractors cannot read\non Ruby 4.0.",
+        "tree": {
+          "sha": "e85b2042f7334e022a48bf7eb8b0509529d0d52d",
+          "url": "https://api.github.com/repos/rails/rails/git/trees/e85b2042f7334e022a48bf7eb8b0509529d0d52d"
+        },
+        "url": "https://api.github.com/repos/rails/rails/git/commits/efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/rails/rails/commits/efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "html_url": "https://github.com/rails/rails/commit/efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "comments_url": "https://api.github.com/repos/rails/rails/commits/efb0c7b5973ce68b2730c0c8df44f32700a597b7/comments",
+      "author": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "gmcgibbon",
+        "id": 5162312,
+        "node_id": "MDQ6VXNlcjUxNjIzMTI=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5162312?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gmcgibbon",
+        "html_url": "https://github.com/gmcgibbon",
+        "followers_url": "https://api.github.com/users/gmcgibbon/followers",
+        "following_url": "https://api.github.com/users/gmcgibbon/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gmcgibbon/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gmcgibbon/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gmcgibbon/subscriptions",
+        "organizations_url": "https://api.github.com/users/gmcgibbon/orgs",
+        "repos_url": "https://api.github.com/users/gmcgibbon/repos",
+        "events_url": "https://api.github.com/users/gmcgibbon/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gmcgibbon/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "5c36751e52802bb6deebae975ad04ebc49e191f1",
+          "url": "https://api.github.com/repos/rails/rails/commits/5c36751e52802bb6deebae975ad04ebc49e191f1",
+          "html_url": "https://github.com/rails/rails/commit/5c36751e52802bb6deebae975ad04ebc49e191f1"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "99fa124f94077e150414f8e9152c232529dfa9fd",
+      "filename": "actionpack/lib/action_dispatch/http/url.rb",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 9,
+      "changes": 17,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionpack%2Flib%2Faction_dispatch%2Fhttp%2Furl.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionpack%2Flib%2Faction_dispatch%2Fhttp%2Furl.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Flib%2Faction_dispatch%2Fhttp%2Furl.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -2,8 +2,6 @@\n \n # :markup: markdown\n \n-require \"active_support/core_ext/module/attribute_accessors\"\n-\n module ActionDispatch\n   module Http\n     module URL\n@@ -109,9 +107,10 @@ def subdomains_from(host, tld_length)\n         end\n       end\n \n-      mattr_accessor :secure_protocol, default: false\n-      mattr_accessor :tld_length, default: 1\n-      mattr_accessor :domain_extractor, default: DomainExtractor\n+      singleton_class.attr_accessor :secure_protocol, :tld_length, :domain_extractor\n+      self.secure_protocol = false\n+      self.tld_length = 1\n+      self.domain_extractor = DomainExtractor\n \n       class << self\n         # Returns the domain part of a host given the domain level.\n@@ -246,7 +245,7 @@ def normalize_protocol(protocol)\n           def normalize_host(_host, options)\n             return _host unless named_host?(_host)\n \n-            tld_length = options[:tld_length] || @@tld_length\n+            tld_length = options[:tld_length] || self.tld_length\n             subdomain  = options.fetch :subdomain, true\n             domain     = options[:domain]\n \n@@ -419,22 +418,22 @@ def server_port\n       # Returns the domain part of a host, such as \"rubyonrails.org\" in\n       # \"www.rubyonrails.org\". You can specify a different `tld_length`, such as 2 to\n       # catch rubyonrails.co.uk in \"www.rubyonrails.co.uk\".\n-      def domain(tld_length = @@tld_length)\n+      def domain(tld_length = ActionDispatch::Http::URL.tld_length)\n         ActionDispatch::Http::URL.extract_domain(host, tld_length)\n       end\n \n       # Returns all the subdomains as an array, so `[\"dev\", \"www\"]` would be returned\n       # for \"dev.www.rubyonrails.org\". You can specify a different `tld_length`, such\n       # as 2 to catch `[\"www\"]` instead of `[\"www\", \"rubyonrails\"]` in\n       # \"www.rubyonrails.co.uk\".\n-      def subdomains(tld_length = @@tld_length)\n+      def subdomains(tld_length = ActionDispatch::Http::URL.tld_length)\n         ActionDispatch::Http::URL.extract_subdomains(host, tld_length)\n       end\n \n       # Returns all the subdomains as a string, so `\"dev.www\"` would be returned for\n       # \"dev.www.rubyonrails.org\". You can specify a different `tld_length`, such as 2\n       # to catch `\"www\"` instead of `\"www.rubyonrails\"` in \"www.rubyonrails.co.uk\".\n-      def subdomain(tld_length = @@tld_length)\n+      def subdomain(tld_length = ActionDispatch::Http::URL.tld_length)\n         ActionDispatch::Http::URL.extract_subdomain(host, tld_length)\n       end\n     end"
+    },
+    {
+      "sha": "3bf4e3d4fb4f4758337675082b9d0ff1806513d1",
+      "filename": "actionpack/test/dispatch/url_generation_test.rb",
+      "status": "modified",
+      "additions": 19,
+      "deletions": 0,
+      "changes": 19,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionpack%2Ftest%2Fdispatch%2Furl_generation_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionpack%2Ftest%2Fdispatch%2Furl_generation_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Ftest%2Fdispatch%2Furl_generation_test.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -1,6 +1,7 @@\n # frozen_string_literal: true\n \n require \"abstract_unit\"\n+require \"active_support/testing/ractors_assertions\"\n \n module TestUrlGeneration\n   class WithMountPoint < ActionDispatch::IntegrationTest\n@@ -242,5 +243,23 @@ def app\n         format: \"json\"\n       )\n     end\n+\n+    class UrlSettingsRactorTest < ActiveSupport::TestCase\n+      include ActiveSupport::Testing::Isolation\n+      include ActiveSupport::Testing::RactorsAssertions\n+\n+      test \"the settings are readable from a non-main Ractor\" do\n+        expected = [\n+          ActionDispatch::Http::URL.secure_protocol,\n+          ActionDispatch::Http::URL.tld_length,\n+          ActionDispatch::Http::URL.domain_extractor,\n+        ]\n+\n+        assert_equal expected, on_ractor {\n+          url = ActionDispatch::Http::URL\n+          [url.secure_protocol, url.tld_length, url.domain_extractor]\n+        }\n+      end\n+    end\n   end\n end"
+    },
+    {
+      "sha": "6ad0a6caa1c284ad332657e17f89bf43639aee48",
+      "filename": "actionview/lib/action_view/helpers/content_exfiltration_prevention_helper.rb",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 2,
+      "changes": 6,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fcontent_exfiltration_prevention_helper.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fcontent_exfiltration_prevention_helper.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fcontent_exfiltration_prevention_helper.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -1,12 +1,14 @@\n # frozen_string_literal: true\n \n-require \"active_support/core_ext/module/attribute_accessors\"\n+require \"active_support/core_ext/module/delegation\"\n require \"active_support/core_ext/string/output_safety\"\n \n module ActionView\n   module Helpers\n     module ContentExfiltrationPreventionHelper\n-      mattr_accessor :prepend_content_exfiltration_prevention, default: false\n+      singleton_class.attr_accessor :prepend_content_exfiltration_prevention\n+      self.prepend_content_exfiltration_prevention = false\n+      delegate :prepend_content_exfiltration_prevention, to: ContentExfiltrationPreventionHelper\n \n       # Close any open attributes before each form tag. This prevents attackers from\n       # injecting partial tags that could leak markup offsite."
+    },
+    {
+      "sha": "027f3127ac631039502552992dbf869fc69ea7b1",
+      "filename": "actionview/lib/action_view/helpers/form_helper.rb",
+      "status": "modified",
+      "additions": 7,
+      "deletions": 6,
+      "changes": 13,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -7,7 +7,6 @@\n require \"action_view/model_naming\"\n require \"action_view/record_identifier\"\n require \"active_support/code_generator\"\n-require \"active_support/core_ext/module/attribute_accessors\"\n require \"active_support/core_ext/hash/slice\"\n require \"active_support/core_ext/string/output_safety\"\n require \"active_support/core_ext/string/inflections\"\n@@ -476,11 +475,12 @@ def apply_form_for_options!(object, options) # :nodoc:\n       end\n       private :apply_form_for_options!\n \n-      mattr_accessor :form_with_generates_remote_forms, default: true\n+      singleton_class.attr_accessor :form_with_generates_remote_forms, :form_with_generates_ids, :multiple_file_field_include_hidden\n+      delegate :form_with_generates_remote_forms, :form_with_generates_ids, :multiple_file_field_include_hidden, to: FormHelper\n \n-      mattr_accessor :form_with_generates_ids, default: false\n-\n-      mattr_accessor :multiple_file_field_include_hidden, default: false\n+      self.form_with_generates_remote_forms = true\n+      self.form_with_generates_ids = false\n+      self.multiple_file_field_include_hidden = false\n \n       # Creates a form tag based on mixing URLs, scopes, or models.\n       #\n@@ -2761,6 +2761,7 @@ def convert_to_legacy_options(options)\n   end\n \n   ActiveSupport.on_load(:action_view) do\n-    cattr_accessor :default_form_builder, instance_writer: false, instance_reader: false, default: ::ActionView::Helpers::FormBuilder\n+    singleton_class.attr_accessor :default_form_builder\n+    self.default_form_builder = ::ActionView::Helpers::FormBuilder\n   end\n end"
+    },
+    {
+      "sha": "1971791059f6c71f264f0078b9f16b50165c79f6",
+      "filename": "actionview/lib/action_view/helpers/form_tag_helper.rb",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 4,
+      "changes": 8,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_tag_helper.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_tag_helper.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_tag_helper.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -4,7 +4,6 @@\n require \"action_view/helpers/url_helper\"\n require \"action_view/helpers/text_helper\"\n require \"active_support/core_ext/string/output_safety\"\n-require \"active_support/core_ext/module/attribute_accessors\"\n \n module ActionView\n   module Helpers # :nodoc:\n@@ -22,10 +21,11 @@ module FormTagHelper\n       include TextHelper\n       include ContentExfiltrationPreventionHelper\n \n-      mattr_accessor :embed_authenticity_token_in_remote_forms\n-      self.embed_authenticity_token_in_remote_forms = nil\n+      singleton_class.attr_accessor :embed_authenticity_token_in_remote_forms, :default_enforce_utf8\n+      delegate :embed_authenticity_token_in_remote_forms, :default_enforce_utf8, to: FormTagHelper\n \n-      mattr_accessor :default_enforce_utf8, default: true\n+      self.embed_authenticity_token_in_remote_forms = nil\n+      self.default_enforce_utf8 = true\n \n       # Starts a form tag that points the action to a URL configured with <tt>url_for_options</tt> just like\n       # ActionController::Base#url_for. The method for the form defaults to POST."
+    },
+    {
+      "sha": "48157cc3c495b0e001f3fbb597dc5b7593f53f5e",
+      "filename": "actionview/lib/action_view/helpers/navigation_helper.rb",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 1,
+      "changes": 4,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fnavigation_helper.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fnavigation_helper.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fnavigation_helper.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -24,7 +24,9 @@ module NavigationHelper\n       include TagHelper\n       include ContentExfiltrationPreventionHelper\n \n-      mattr_accessor :button_to_generates_button_tag, default: false\n+      singleton_class.attr_accessor :button_to_generates_button_tag\n+      self.button_to_generates_button_tag = false\n+      delegate :button_to_generates_button_tag, to: NavigationHelper\n \n       # True if the current request URI was generated by the given +options+.\n       #"
+    },
+    {
+      "sha": "fa7b8bf2584a62e621f7de279145e0efd3cf1e2e",
+      "filename": "actionview/test/template/base_ractor_test.rb",
+      "status": "modified",
+      "additions": 10,
+      "deletions": 0,
+      "changes": 10,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fbase_ractor_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fbase_ractor_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fbase_ractor_test.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -56,6 +56,16 @@ class BaseRactorTest < ActiveSupport::TestCase\n       ActionView::Base.field_error_proc = old_proc\n     end\n   end\n+\n+  class DefaultFormBuilderRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"default_form_builder is readable from a non-main Ractor\" do\n+      assert_equal ActionView::Base.default_form_builder,\n+        on_ractor { ActionView::Base.default_form_builder }\n+    end\n+  end\n end\n \n class BaseDefaultFormatsRactorTest < ActiveSupport::TestCase"
+    },
+    {
+      "sha": "b6f7464b11870a557c39b6c8ff74b5e13a50f160",
+      "filename": "actionview/test/template/form_helper_test.rb",
+      "status": "modified",
+      "additions": 23,
+      "deletions": 0,
+      "changes": 23,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fform_helper_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fform_helper_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fform_helper_test.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -4,6 +4,7 @@\n require \"controller/fake_models\"\n \n require \"active_support/core_ext/object/with\"\n+require \"active_support/testing/ractors_assertions\"\n \n class FormHelperTest < ActionView::TestCase\n   include RenderERBUtils\n@@ -4330,6 +4331,28 @@ def test_form_for_with_persisted_cpk_model\n     assert_dom_equal expected, @rendered\n   end\n \n+  class FormHelperRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"the settings are readable from a non-main Ractor\" do\n+      expected = [\n+        ActionView::Helpers::FormHelper.form_with_generates_remote_forms,\n+        ActionView::Helpers::FormHelper.form_with_generates_ids,\n+        ActionView::Helpers::FormHelper.multiple_file_field_include_hidden,\n+      ]\n+\n+      assert_equal expected, on_ractor {\n+        helper = ActionView::Helpers::FormHelper\n+        [\n+          helper.form_with_generates_remote_forms,\n+          helper.form_with_generates_ids,\n+          helper.multiple_file_field_include_hidden,\n+        ]\n+      }\n+    end\n+  end\n+\n   private\n     def hidden_fields(options = {})\n       method = options[:method]"
+    },
+    {
+      "sha": "9fb016f662b3c97aa3aa35bff064bf134e9167df",
+      "filename": "actionview/test/template/form_tag_helper_test.rb",
+      "status": "modified",
+      "additions": 23,
+      "deletions": 0,
+      "changes": 23,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -2,6 +2,7 @@\n \n require \"abstract_unit\"\n require \"active_support/core_ext/object/with\"\n+require \"active_support/testing/ractors_assertions\"\n \n class FormTagHelperTest < ActionView::TestCase\n   include RenderERBUtils\n@@ -1181,6 +1182,28 @@ def protect_against_forgery?\n     false\n   end\n \n+  class FormHelperRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"prepend_content_exfiltration_prevention is readable from a non-main Ractor\" do\n+      assert_equal ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention,\n+        on_ractor { ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention }\n+    end\n+\n+    test \"the settings are readable from a non-main Ractor\" do\n+      expected = [\n+        ActionView::Helpers::FormTagHelper.embed_authenticity_token_in_remote_forms,\n+        ActionView::Helpers::FormTagHelper.default_enforce_utf8,\n+      ]\n+\n+      assert_equal expected, on_ractor {\n+        helper = ActionView::Helpers::FormTagHelper\n+        [helper.embed_authenticity_token_in_remote_forms, helper.default_enforce_utf8]\n+      }\n+    end\n+  end\n+\n   private\n     def root_elem(rendered_content)\n       Rails::Dom::Testing.html_document_fragment.parse(rendered_content).children.first # extract from nodeset"
+    },
+    {
+      "sha": "11f8bd3438af3cafa97cf87510ea1d5c1efe697c",
+      "filename": "actionview/test/template/navigation_helper_test.rb",
+      "status": "modified",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fnavigation_helper_test.rb",
+      "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fnavigation_helper_test.rb",
+      "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fnavigation_helper_test.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "patch": "@@ -1,6 +1,7 @@\n # frozen_string_literal: true\n \n require \"abstract_unit\"\n+require \"active_support/testing/ractors_assertions\"\n \n class Workshop\n   extend ActiveModel::Naming\n@@ -817,6 +818,16 @@ def request_forgery_protection_token\n     \"form_token\"\n   end\n \n+  class NavigationHelperRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"button_to_generates_button_tag is readable from a non-main Ractor\" do\n+      assert_equal ActionView::Helpers::NavigationHelper.button_to_generates_button_tag,\n+        on_ractor { ActionView::Helpers::NavigationHelper.button_to_generates_button_tag }\n+    end\n+  end\n+\n   private\n     def with_prepend_content_exfiltration_prevention(value)\n       old_value = ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "55141ecff313ff62e230b36d42630a1f69020cfe",
+      "html_url": "https://github.com/rails/rails/commit/55141ecff313ff62e230b36d42630a1f69020cfe",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:48:01Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:02Z"
+        },
+        "message": "Store prepend_content_exfiltration_prevention in a singleton class attribute\n\nThe setting was a class variable, which non-main Ractors cannot read\non Ruby 4.0."
+      },
+      "parents": [
+        {
+          "sha": "1ec64ce82451c52d7407fa665ea5f95291430c23",
+          "url": "https://api.github.com/repos/rails/rails/commits/1ec64ce82451c52d7407fa665ea5f95291430c23",
+          "html_url": "https://github.com/rails/rails/commit/1ec64ce82451c52d7407fa665ea5f95291430c23"
+        }
+      ],
+      "stats": {
+        "total": 17,
+        "additions": 15,
+        "deletions": 2
+      },
+      "files": [
+        {
+          "sha": "6ad0a6caa1c284ad332657e17f89bf43639aee48",
+          "filename": "actionview/lib/action_view/helpers/content_exfiltration_prevention_helper.rb",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 2,
+          "changes": 6,
+          "blob_url": "https://github.com/rails/rails/blob/55141ecff313ff62e230b36d42630a1f69020cfe/actionview%2Flib%2Faction_view%2Fhelpers%2Fcontent_exfiltration_prevention_helper.rb",
+          "raw_url": "https://github.com/rails/rails/raw/55141ecff313ff62e230b36d42630a1f69020cfe/actionview%2Flib%2Faction_view%2Fhelpers%2Fcontent_exfiltration_prevention_helper.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fcontent_exfiltration_prevention_helper.rb?ref=55141ecff313ff62e230b36d42630a1f69020cfe",
+          "patch": "@@ -1,12 +1,14 @@\n # frozen_string_literal: true\n \n-require \"active_support/core_ext/module/attribute_accessors\"\n+require \"active_support/core_ext/module/delegation\"\n require \"active_support/core_ext/string/output_safety\"\n \n module ActionView\n   module Helpers\n     module ContentExfiltrationPreventionHelper\n-      mattr_accessor :prepend_content_exfiltration_prevention, default: false\n+      singleton_class.attr_accessor :prepend_content_exfiltration_prevention\n+      self.prepend_content_exfiltration_prevention = false\n+      delegate :prepend_content_exfiltration_prevention, to: ContentExfiltrationPreventionHelper\n \n       # Close any open attributes before each form tag. This prevents attackers from\n       # injecting partial tags that could leak markup offsite."
+        },
+        {
+          "sha": "ced22b2250003e571919eb5baad7fb687dcbea64",
+          "filename": "actionview/test/template/form_tag_helper_test.rb",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 0,
+          "changes": 11,
+          "blob_url": "https://github.com/rails/rails/blob/55141ecff313ff62e230b36d42630a1f69020cfe/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/55141ecff313ff62e230b36d42630a1f69020cfe/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb?ref=55141ecff313ff62e230b36d42630a1f69020cfe",
+          "patch": "@@ -2,6 +2,7 @@\n \n require \"abstract_unit\"\n require \"active_support/core_ext/object/with\"\n+require \"active_support/testing/ractors_assertions\"\n \n class FormTagHelperTest < ActionView::TestCase\n   include RenderERBUtils\n@@ -1181,6 +1182,16 @@ def protect_against_forgery?\n     false\n   end\n \n+  class FormHelperRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"prepend_content_exfiltration_prevention is readable from a non-main Ractor\" do\n+      assert_equal ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention,\n+        on_ractor { ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention }\n+    end\n+  end\n+\n   private\n     def root_elem(rendered_content)\n       Rails::Dom::Testing.html_document_fragment.parse(rendered_content).children.first # extract from nodeset"
+        }
+      ]
+    },
+    {
+      "sha": "5a00423021412ee600df7cc9446e93fe88e98502",
+      "html_url": "https://github.com/rails/rails/commit/5a00423021412ee600df7cc9446e93fe88e98502",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:21Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:14:56Z"
+        },
+        "message": "Store the ActionDispatch::Http::URL settings in singleton class attributes\n\ntld_length, secure_protocol, and domain_extractor were class variables,\nwhich non-main Ractors cannot read on Ruby 4.0."
+      },
+      "parents": [
+        {
+          "sha": "55141ecff313ff62e230b36d42630a1f69020cfe",
+          "url": "https://api.github.com/repos/rails/rails/commits/55141ecff313ff62e230b36d42630a1f69020cfe",
+          "html_url": "https://github.com/rails/rails/commit/55141ecff313ff62e230b36d42630a1f69020cfe"
+        }
+      ],
+      "stats": {
+        "total": 36,
+        "additions": 27,
+        "deletions": 9
+      },
+      "files": [
+        {
+          "sha": "99fa124f94077e150414f8e9152c232529dfa9fd",
+          "filename": "actionpack/lib/action_dispatch/http/url.rb",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 9,
+          "changes": 17,
+          "blob_url": "https://github.com/rails/rails/blob/5a00423021412ee600df7cc9446e93fe88e98502/actionpack%2Flib%2Faction_dispatch%2Fhttp%2Furl.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5a00423021412ee600df7cc9446e93fe88e98502/actionpack%2Flib%2Faction_dispatch%2Fhttp%2Furl.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Flib%2Faction_dispatch%2Fhttp%2Furl.rb?ref=5a00423021412ee600df7cc9446e93fe88e98502",
+          "patch": "@@ -2,8 +2,6 @@\n \n # :markup: markdown\n \n-require \"active_support/core_ext/module/attribute_accessors\"\n-\n module ActionDispatch\n   module Http\n     module URL\n@@ -109,9 +107,10 @@ def subdomains_from(host, tld_length)\n         end\n       end\n \n-      mattr_accessor :secure_protocol, default: false\n-      mattr_accessor :tld_length, default: 1\n-      mattr_accessor :domain_extractor, default: DomainExtractor\n+      singleton_class.attr_accessor :secure_protocol, :tld_length, :domain_extractor\n+      self.secure_protocol = false\n+      self.tld_length = 1\n+      self.domain_extractor = DomainExtractor\n \n       class << self\n         # Returns the domain part of a host given the domain level.\n@@ -246,7 +245,7 @@ def normalize_protocol(protocol)\n           def normalize_host(_host, options)\n             return _host unless named_host?(_host)\n \n-            tld_length = options[:tld_length] || @@tld_length\n+            tld_length = options[:tld_length] || self.tld_length\n             subdomain  = options.fetch :subdomain, true\n             domain     = options[:domain]\n \n@@ -419,22 +418,22 @@ def server_port\n       # Returns the domain part of a host, such as \"rubyonrails.org\" in\n       # \"www.rubyonrails.org\". You can specify a different `tld_length`, such as 2 to\n       # catch rubyonrails.co.uk in \"www.rubyonrails.co.uk\".\n-      def domain(tld_length = @@tld_length)\n+      def domain(tld_length = ActionDispatch::Http::URL.tld_length)\n         ActionDispatch::Http::URL.extract_domain(host, tld_length)\n       end\n \n       # Returns all the subdomains as an array, so `[\"dev\", \"www\"]` would be returned\n       # for \"dev.www.rubyonrails.org\". You can specify a different `tld_length`, such\n       # as 2 to catch `[\"www\"]` instead of `[\"www\", \"rubyonrails\"]` in\n       # \"www.rubyonrails.co.uk\".\n-      def subdomains(tld_length = @@tld_length)\n+      def subdomains(tld_length = ActionDispatch::Http::URL.tld_length)\n         ActionDispatch::Http::URL.extract_subdomains(host, tld_length)\n       end\n \n       # Returns all the subdomains as a string, so `\"dev.www\"` would be returned for\n       # \"dev.www.rubyonrails.org\". You can specify a different `tld_length`, such as 2\n       # to catch `\"www\"` instead of `\"www.rubyonrails\"` in \"www.rubyonrails.co.uk\".\n-      def subdomain(tld_length = @@tld_length)\n+      def subdomain(tld_length = ActionDispatch::Http::URL.tld_length)\n         ActionDispatch::Http::URL.extract_subdomain(host, tld_length)\n       end\n     end"
+        },
+        {
+          "sha": "3bf4e3d4fb4f4758337675082b9d0ff1806513d1",
+          "filename": "actionpack/test/dispatch/url_generation_test.rb",
+          "status": "modified",
+          "additions": 19,
+          "deletions": 0,
+          "changes": 19,
+          "blob_url": "https://github.com/rails/rails/blob/5a00423021412ee600df7cc9446e93fe88e98502/actionpack%2Ftest%2Fdispatch%2Furl_generation_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5a00423021412ee600df7cc9446e93fe88e98502/actionpack%2Ftest%2Fdispatch%2Furl_generation_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionpack%2Ftest%2Fdispatch%2Furl_generation_test.rb?ref=5a00423021412ee600df7cc9446e93fe88e98502",
+          "patch": "@@ -1,6 +1,7 @@\n # frozen_string_literal: true\n \n require \"abstract_unit\"\n+require \"active_support/testing/ractors_assertions\"\n \n module TestUrlGeneration\n   class WithMountPoint < ActionDispatch::IntegrationTest\n@@ -242,5 +243,23 @@ def app\n         format: \"json\"\n       )\n     end\n+\n+    class UrlSettingsRactorTest < ActiveSupport::TestCase\n+      include ActiveSupport::Testing::Isolation\n+      include ActiveSupport::Testing::RactorsAssertions\n+\n+      test \"the settings are readable from a non-main Ractor\" do\n+        expected = [\n+          ActionDispatch::Http::URL.secure_protocol,\n+          ActionDispatch::Http::URL.tld_length,\n+          ActionDispatch::Http::URL.domain_extractor,\n+        ]\n+\n+        assert_equal expected, on_ractor {\n+          url = ActionDispatch::Http::URL\n+          [url.secure_protocol, url.tld_length, url.domain_extractor]\n+        }\n+      end\n+    end\n   end\n end"
+        }
+      ]
+    },
+    {
+      "sha": "4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+      "html_url": "https://github.com/rails/rails/commit/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:37Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store the FormTagHelper settings in singleton class attributes\n\ndefault_enforce_utf8 and embed_authenticity_token_in_remote_forms were\nclass variables, which non-main Ractors cannot read on Ruby 4.0."
+      },
+      "parents": [
+        {
+          "sha": "5a00423021412ee600df7cc9446e93fe88e98502",
+          "url": "https://api.github.com/repos/rails/rails/commits/5a00423021412ee600df7cc9446e93fe88e98502",
+          "html_url": "https://github.com/rails/rails/commit/5a00423021412ee600df7cc9446e93fe88e98502"
+        }
+      ],
+      "stats": {
+        "total": 20,
+        "additions": 16,
+        "deletions": 4
+      },
+      "files": [
+        {
+          "sha": "1971791059f6c71f264f0078b9f16b50165c79f6",
+          "filename": "actionview/lib/action_view/helpers/form_tag_helper.rb",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "blob_url": "https://github.com/rails/rails/blob/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_tag_helper.rb",
+          "raw_url": "https://github.com/rails/rails/raw/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_tag_helper.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_tag_helper.rb?ref=4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+          "patch": "@@ -4,7 +4,6 @@\n require \"action_view/helpers/url_helper\"\n require \"action_view/helpers/text_helper\"\n require \"active_support/core_ext/string/output_safety\"\n-require \"active_support/core_ext/module/attribute_accessors\"\n \n module ActionView\n   module Helpers # :nodoc:\n@@ -22,10 +21,11 @@ module FormTagHelper\n       include TextHelper\n       include ContentExfiltrationPreventionHelper\n \n-      mattr_accessor :embed_authenticity_token_in_remote_forms\n-      self.embed_authenticity_token_in_remote_forms = nil\n+      singleton_class.attr_accessor :embed_authenticity_token_in_remote_forms, :default_enforce_utf8\n+      delegate :embed_authenticity_token_in_remote_forms, :default_enforce_utf8, to: FormTagHelper\n \n-      mattr_accessor :default_enforce_utf8, default: true\n+      self.embed_authenticity_token_in_remote_forms = nil\n+      self.default_enforce_utf8 = true\n \n       # Starts a form tag that points the action to a URL configured with <tt>url_for_options</tt> just like\n       # ActionController::Base#url_for. The method for the form defaults to POST."
+        },
+        {
+          "sha": "9fb016f662b3c97aa3aa35bff064bf134e9167df",
+          "filename": "actionview/test/template/form_tag_helper_test.rb",
+          "status": "modified",
+          "additions": 12,
+          "deletions": 0,
+          "changes": 12,
+          "blob_url": "https://github.com/rails/rails/blob/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fform_tag_helper_test.rb?ref=4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+          "patch": "@@ -1190,6 +1190,18 @@ class FormHelperRactorTest < ActiveSupport::TestCase\n       assert_equal ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention,\n         on_ractor { ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention }\n     end\n+\n+    test \"the settings are readable from a non-main Ractor\" do\n+      expected = [\n+        ActionView::Helpers::FormTagHelper.embed_authenticity_token_in_remote_forms,\n+        ActionView::Helpers::FormTagHelper.default_enforce_utf8,\n+      ]\n+\n+      assert_equal expected, on_ractor {\n+        helper = ActionView::Helpers::FormTagHelper\n+        [helper.embed_authenticity_token_in_remote_forms, helper.default_enforce_utf8]\n+      }\n+    end\n   end\n \n   private"
+        }
+      ]
+    },
+    {
+      "sha": "271b76079d31633f3594dcec0439060c1292fd33",
+      "html_url": "https://github.com/rails/rails/commit/271b76079d31633f3594dcec0439060c1292fd33",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T00:59:55Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store ActionView::Base.default_form_builder in a singleton class attribute\n\nThe setting was a class variable, which non-main Ractors cannot read\non Ruby 4.0. It is only read through ActionView::Base, so a singleton\nclass attribute is enough."
+      },
+      "parents": [
+        {
+          "sha": "4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+          "url": "https://api.github.com/repos/rails/rails/commits/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b",
+          "html_url": "https://github.com/rails/rails/commit/4e948b6e00ebd4ebeb1bf0f16313954ee1e8353b"
+        }
+      ],
+      "stats": {
+        "total": 13,
+        "additions": 12,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "dfd47221c7dde7e7b71d0e36bf434981b70de374",
+          "filename": "actionview/lib/action_view/helpers/form_helper.rb",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 1,
+          "changes": 3,
+          "blob_url": "https://github.com/rails/rails/blob/271b76079d31633f3594dcec0439060c1292fd33/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb",
+          "raw_url": "https://github.com/rails/rails/raw/271b76079d31633f3594dcec0439060c1292fd33/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb?ref=271b76079d31633f3594dcec0439060c1292fd33",
+          "patch": "@@ -2761,6 +2761,7 @@ def convert_to_legacy_options(options)\n   end\n \n   ActiveSupport.on_load(:action_view) do\n-    cattr_accessor :default_form_builder, instance_writer: false, instance_reader: false, default: ::ActionView::Helpers::FormBuilder\n+    singleton_class.attr_accessor :default_form_builder\n+    self.default_form_builder = ::ActionView::Helpers::FormBuilder\n   end\n end"
+        },
+        {
+          "sha": "fa7b8bf2584a62e621f7de279145e0efd3cf1e2e",
+          "filename": "actionview/test/template/base_ractor_test.rb",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 0,
+          "changes": 10,
+          "blob_url": "https://github.com/rails/rails/blob/271b76079d31633f3594dcec0439060c1292fd33/actionview%2Ftest%2Ftemplate%2Fbase_ractor_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/271b76079d31633f3594dcec0439060c1292fd33/actionview%2Ftest%2Ftemplate%2Fbase_ractor_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fbase_ractor_test.rb?ref=271b76079d31633f3594dcec0439060c1292fd33",
+          "patch": "@@ -56,6 +56,16 @@ class BaseRactorTest < ActiveSupport::TestCase\n       ActionView::Base.field_error_proc = old_proc\n     end\n   end\n+\n+  class DefaultFormBuilderRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"default_form_builder is readable from a non-main Ractor\" do\n+      assert_equal ActionView::Base.default_form_builder,\n+        on_ractor { ActionView::Base.default_form_builder }\n+    end\n+  end\n end\n \n class BaseDefaultFormatsRactorTest < ActiveSupport::TestCase"
+        }
+      ]
+    },
+    {
+      "sha": "5c36751e52802bb6deebae975ad04ebc49e191f1",
+      "html_url": "https://github.com/rails/rails/commit/5c36751e52802bb6deebae975ad04ebc49e191f1",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:00:19Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store the FormHelper settings in singleton class attributes\n\nform_with_generates_remote_forms, form_with_generates_ids, and\nmultiple_file_field_include_hidden were class variables, which\nnon-main Ractors cannot read on Ruby 4.0."
+      },
+      "parents": [
+        {
+          "sha": "271b76079d31633f3594dcec0439060c1292fd33",
+          "url": "https://api.github.com/repos/rails/rails/commits/271b76079d31633f3594dcec0439060c1292fd33",
+          "html_url": "https://github.com/rails/rails/commit/271b76079d31633f3594dcec0439060c1292fd33"
+        }
+      ],
+      "stats": {
+        "total": 33,
+        "additions": 28,
+        "deletions": 5
+      },
+      "files": [
+        {
+          "sha": "027f3127ac631039502552992dbf869fc69ea7b1",
+          "filename": "actionview/lib/action_view/helpers/form_helper.rb",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 5,
+          "changes": 10,
+          "blob_url": "https://github.com/rails/rails/blob/5c36751e52802bb6deebae975ad04ebc49e191f1/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5c36751e52802bb6deebae975ad04ebc49e191f1/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fform_helper.rb?ref=5c36751e52802bb6deebae975ad04ebc49e191f1",
+          "patch": "@@ -7,7 +7,6 @@\n require \"action_view/model_naming\"\n require \"action_view/record_identifier\"\n require \"active_support/code_generator\"\n-require \"active_support/core_ext/module/attribute_accessors\"\n require \"active_support/core_ext/hash/slice\"\n require \"active_support/core_ext/string/output_safety\"\n require \"active_support/core_ext/string/inflections\"\n@@ -476,11 +475,12 @@ def apply_form_for_options!(object, options) # :nodoc:\n       end\n       private :apply_form_for_options!\n \n-      mattr_accessor :form_with_generates_remote_forms, default: true\n+      singleton_class.attr_accessor :form_with_generates_remote_forms, :form_with_generates_ids, :multiple_file_field_include_hidden\n+      delegate :form_with_generates_remote_forms, :form_with_generates_ids, :multiple_file_field_include_hidden, to: FormHelper\n \n-      mattr_accessor :form_with_generates_ids, default: false\n-\n-      mattr_accessor :multiple_file_field_include_hidden, default: false\n+      self.form_with_generates_remote_forms = true\n+      self.form_with_generates_ids = false\n+      self.multiple_file_field_include_hidden = false\n \n       # Creates a form tag based on mixing URLs, scopes, or models.\n       #"
+        },
+        {
+          "sha": "b6f7464b11870a557c39b6c8ff74b5e13a50f160",
+          "filename": "actionview/test/template/form_helper_test.rb",
+          "status": "modified",
+          "additions": 23,
+          "deletions": 0,
+          "changes": 23,
+          "blob_url": "https://github.com/rails/rails/blob/5c36751e52802bb6deebae975ad04ebc49e191f1/actionview%2Ftest%2Ftemplate%2Fform_helper_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/5c36751e52802bb6deebae975ad04ebc49e191f1/actionview%2Ftest%2Ftemplate%2Fform_helper_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fform_helper_test.rb?ref=5c36751e52802bb6deebae975ad04ebc49e191f1",
+          "patch": "@@ -4,6 +4,7 @@\n require \"controller/fake_models\"\n \n require \"active_support/core_ext/object/with\"\n+require \"active_support/testing/ractors_assertions\"\n \n class FormHelperTest < ActionView::TestCase\n   include RenderERBUtils\n@@ -4330,6 +4331,28 @@ def test_form_for_with_persisted_cpk_model\n     assert_dom_equal expected, @rendered\n   end\n \n+  class FormHelperRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"the settings are readable from a non-main Ractor\" do\n+      expected = [\n+        ActionView::Helpers::FormHelper.form_with_generates_remote_forms,\n+        ActionView::Helpers::FormHelper.form_with_generates_ids,\n+        ActionView::Helpers::FormHelper.multiple_file_field_include_hidden,\n+      ]\n+\n+      assert_equal expected, on_ractor {\n+        helper = ActionView::Helpers::FormHelper\n+        [\n+          helper.form_with_generates_remote_forms,\n+          helper.form_with_generates_ids,\n+          helper.multiple_file_field_include_hidden,\n+        ]\n+      }\n+    end\n+  end\n+\n   private\n     def hidden_fields(options = {})\n       method = options[:method]"
+        }
+      ]
+    },
+    {
+      "sha": "efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "html_url": "https://github.com/rails/rails/commit/efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+      "commit": {
+        "author": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:00:41Z"
+        },
+        "committer": {
+          "name": "Gannon McGibbon",
+          "email": "gannon.mcgibbon@gmail.com",
+          "date": "2026-09-05T01:18:32Z"
+        },
+        "message": "Store button_to_generates_button_tag in a singleton class attribute\n\nThe setting was a class variable, which non-main Ractors cannot read\non Ruby 4.0."
+      },
+      "parents": [
+        {
+          "sha": "5c36751e52802bb6deebae975ad04ebc49e191f1",
+          "url": "https://api.github.com/repos/rails/rails/commits/5c36751e52802bb6deebae975ad04ebc49e191f1",
+          "html_url": "https://github.com/rails/rails/commit/5c36751e52802bb6deebae975ad04ebc49e191f1"
+        }
+      ],
+      "stats": {
+        "total": 15,
+        "additions": 14,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "48157cc3c495b0e001f3fbb597dc5b7593f53f5e",
+          "filename": "actionview/lib/action_view/helpers/navigation_helper.rb",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 1,
+          "changes": 4,
+          "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fnavigation_helper.rb",
+          "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Flib%2Faction_view%2Fhelpers%2Fnavigation_helper.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Flib%2Faction_view%2Fhelpers%2Fnavigation_helper.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+          "patch": "@@ -24,7 +24,9 @@ module NavigationHelper\n       include TagHelper\n       include ContentExfiltrationPreventionHelper\n \n-      mattr_accessor :button_to_generates_button_tag, default: false\n+      singleton_class.attr_accessor :button_to_generates_button_tag\n+      self.button_to_generates_button_tag = false\n+      delegate :button_to_generates_button_tag, to: NavigationHelper\n \n       # True if the current request URI was generated by the given +options+.\n       #"
+        },
+        {
+          "sha": "11f8bd3438af3cafa97cf87510ea1d5c1efe697c",
+          "filename": "actionview/test/template/navigation_helper_test.rb",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 0,
+          "changes": 11,
+          "blob_url": "https://github.com/rails/rails/blob/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fnavigation_helper_test.rb",
+          "raw_url": "https://github.com/rails/rails/raw/efb0c7b5973ce68b2730c0c8df44f32700a597b7/actionview%2Ftest%2Ftemplate%2Fnavigation_helper_test.rb",
+          "contents_url": "https://api.github.com/repos/rails/rails/contents/actionview%2Ftest%2Ftemplate%2Fnavigation_helper_test.rb?ref=efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+          "patch": "@@ -1,6 +1,7 @@\n # frozen_string_literal: true\n \n require \"abstract_unit\"\n+require \"active_support/testing/ractors_assertions\"\n \n class Workshop\n   extend ActiveModel::Naming\n@@ -817,6 +818,16 @@ def request_forgery_protection_token\n     \"form_token\"\n   end\n \n+  class NavigationHelperRactorTest < ActiveSupport::TestCase\n+    include ActiveSupport::Testing::Isolation\n+    include ActiveSupport::Testing::RactorsAssertions\n+\n+    test \"button_to_generates_button_tag is readable from a non-main Ractor\" do\n+      assert_equal ActionView::Helpers::NavigationHelper.button_to_generates_button_tag,\n+        on_ractor { ActionView::Helpers::NavigationHelper.button_to_generates_button_tag }\n+    end\n+  end\n+\n   private\n     def with_prepend_content_exfiltration_prevention(value)\n       old_value = ActionView::Helpers::ContentExfiltrationPreventionHelper.prepend_content_exfiltration_prevention"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-05T01:25:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/33935982822/job/101223899390",
+        "name": "rails-new-docker",
+        "started_at": "2026-09-05T01:22:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-05T01:23:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/33935982846/job/101223899341",
+        "name": "Check Markdown APIs in new files",
+        "started_at": "2026-09-05T01:22:53Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-05T01:22:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/rails/rails/actions/runs/33935981480/job/101223896319",
+        "name": "labeler",
+        "started_at": "2026-09-05T01:22:52Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 3
+  },
+  "combined_status": {
+    "sha": "efb0c7b5973ce68b2730c0c8df44f32700a597b7",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "buildkite/docs-preview",
+        "created_at": "2026-09-05T01:29:07Z",
+        "description": "Build #22693 passed (5 minutes, 40 seconds)",
+        "state": "success",
+        "target_url": "https://buildkite.com/rails/docs-preview/builds/22693",
+        "updated_at": "2026-09-05T01:29:07Z"
+      },
+      {
+        "context": "buildkite/rails",
+        "created_at": "2026-09-05T01:31:00Z",
+        "description": "Build #133232 passed (8 minutes, 8 seconds)",
+        "state": "success",
+        "target_url": "https://buildkite.com/rails/rails/builds/133232",
+        "updated_at": "2026-09-05T01:31:00Z"
+      }
+    ],
+    "total_count": 2
+  }
+}

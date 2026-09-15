@@ -15,7 +15,7 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCRIPT = ROOT / "scripts" / "detect_bands.py"
 EMIT = ROOT / "scripts" / "emit_intent.py"
-TEMPLATE = ROOT / "templates" / "intent.md"
+TEMPLATE = ROOT / "tdd-optional" / "project" / "templates" / "intent.md"
 DATA = ROOT / "tests" / "data" / "bands"
 CONFIG = ROOT / "ops" / "bands.yaml"
 

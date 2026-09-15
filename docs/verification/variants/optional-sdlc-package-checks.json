@@ -1,0 +1,177 @@
+{
+  "verified_at": "2026-09-12T09:43:32.208499+00:00",
+  "base": "e6b16db",
+  "scope": "Optional 0.1.1 manifests; three OpenCode patches on disposable copies; five YAML frontmatters; preservation and whitespace. No install or native model execution.",
+  "result": "pass",
+  "checks": {
+    "verifier_criteria_identical": true,
+    "intent_spec_forms_identical": true,
+    "no_untracked_tdd_first_files": true
+  },
+  "commands": [
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        ".claude-plugin/marketplace.json"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample",
+      "exit_code": 0,
+      "stdout": "Validating marketplace manifest: /Users/jake/Projects/ai-native-sdlc-sample/.claude-plugin/marketplace.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        "org-skills"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional",
+      "exit_code": 0,
+      "stdout": "Validating plugin manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/org-skills/.claude-plugin/plugin.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "claude",
+        "plugin",
+        "validate",
+        "--strict",
+        ".claude-plugin/marketplace.json"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample/tdd-optional",
+      "exit_code": 0,
+      "stdout": "Validating marketplace manifest: /Users/jake/Projects/ai-native-sdlc-sample/tdd-optional/.claude-plugin/marketplace.json\n\n✔ Validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/optional-sdlc-adapter-m7gcjdws/sdlc-feedback",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/optional-sdlc-adapter-m7gcjdws/sdlc-feedback",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/optional-sdlc-adapter-m7gcjdws/ux-copy",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/optional-sdlc-adapter-m7gcjdws/ux-copy",
+      "exit_code": 0,
+      "stdout": "patching file SKILL.md\npatching file PROVENANCE.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "--dry-run",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/optional-sdlc-adapter-m7gcjdws/authoring-native",
+      "exit_code": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "--batch",
+        "-p1"
+      ],
+      "cwd": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/optional-sdlc-adapter-m7gcjdws/authoring-native",
+      "exit_code": 0,
+      "stdout": "patching file 'capture-intent/SKILL.md'\npatching file 'design-spec/SKILL.md'\npatching file 'plan/SKILL.md'\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ruby",
+        "-e",
+        "require \"yaml\"; ARGV.each { |p| body=File.read(p); abort(\"missing frontmatter: \"+p) unless body.start_with?(\"---\\n\"); YAML.safe_load(body.split(/^---\\s*$/, 3)[1]); puts \"PASS YAML \"+p }",
+        "tdd-optional/project/examples/skills/plan/SKILL.md",
+        "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+        "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md",
+        "tdd-optional/org-skills/agents/sdlc-verifier.md",
+        "tdd-optional/org-skills/opencode/agents/sdlc-verifier.md"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample",
+      "exit_code": 0,
+      "stdout": "PASS YAML tdd-optional/project/examples/skills/plan/SKILL.md\nPASS YAML tdd-optional/project/examples/skills/design-spec/SKILL.md\nPASS YAML tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md\nPASS YAML tdd-optional/org-skills/agents/sdlc-verifier.md\nPASS YAML tdd-optional/org-skills/opencode/agents/sdlc-verifier.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "e6b16db",
+        "--",
+        "tdd-first"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "e6b16db",
+        "--",
+        "tdd-optional/project/templates/intent.md",
+        "tdd-optional/project/templates/spec.md"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/jake/Projects/ai-native-sdlc-sample",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

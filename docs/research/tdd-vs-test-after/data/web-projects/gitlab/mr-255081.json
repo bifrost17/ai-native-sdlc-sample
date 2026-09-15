@@ -1,0 +1,465 @@
+{
+  "source": "GitLab REST API",
+  "fetched_at": "2026-09-12T07:46:19Z",
+  "merge_request": {
+    "id": 531120535,
+    "iid": 255081,
+    "project_id": 278964,
+    "title": "Show alert when overrides list is hidden due to unset flat cap",
+    "description": "<!--\n**Not ready yet?** Add `[ci skip]` to your MR title to skip the pipeline and save CI resources. \nIt's a small habit that makes a big difference for our shared compute budget and overall system load. \nEvery pipeline counts! 🙌\n-->\n\n## What does this MR do and why?\n\nThe MR does two things when no User caps was set on a subscription before:\n\n- adds an info alert\n\n- displays the flat cap value input empty\n\n## References\n\n- Follow-up on https://gitlab.com/gitlab-org/gitlab/-/work_items/628337#note_3811636720 thread\n- Part of https://gitlab.com/gitlab-org/gitlab/-/work_items/596232\n\n## Screenshots or screen recordings\n\n\n| Before | After  |\n| ------ | ------ |\n| ![image](/uploads/b63fd3284c3fbdaef58982265ad0d697/image.png){width=761 height=600}       | ![Screen_Recording_2026-09-11_at_20.22.46](/uploads/37f4b33e838fce85bdcd339d2c4aadbc/Screen_Recording_2026-09-11_at_20.22.46.mov){width=900 height=545}       |\n|        | ![Screen_Recording_2026-09-11_at_20.20.49](/uploads/69e824fc523c98df6219c949b1ebfdde/Screen_Recording_2026-09-11_at_20.20.49.mov)       |\n\n## How to set up and validate locally\n\nThe easiest way is to verify this through Storybook:\n\n1. `yarn storybook:start`\n2. Open http://localhost:6006/?path=/story/ee-usage-quotas-wallet-agnostic-credits-dashboard-credit-caps-app--null-cap story\n3. Ensure that the fields are empty, and alert is displayed\n\nThe e2e way:\n\n1. SM or SaaS instance with a paid license, where no caps were set previously\n1. Open the GitLab Credits page (Admin area or settings area)\n1. To the right of the header click \"Credit caps\"\n    - SM: http://localhost:3000/admin/gitlab_credits_dashboard/credit_caps\n    - SaaS: http://localhost:3000/groups/gitlab-org/-/settings/gitlab_credits_dashboard/credit_caps\n1. On the Credit caps page verify that the input is empty, the status toggle is off, and there's the info alert\n2. Set the Flat cap and save it\n3. Verify that the alert is hidden and overrides list shows up\n4. Reload the page, ensure that the Flat cap is preserved\n\n**note:** this page is behind a `credit_caps_ui` Feature flag, but that flag is [currently default-enabled](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/255003)\n\n## MR acceptance checklist\n\nEvaluate this MR against the [MR acceptance checklist](https://docs.gitlab.com/development/code_review/#acceptance-checklist).\nIt helps you analyze changes to reduce risks in quality, performance, reliability, security, and maintainability.",
+    "state": "merged",
+    "created_at": "2026-09-11T17:16:29.342Z",
+    "updated_at": "2026-09-11T22:48:07.928Z",
+    "merged_by": {
+      "id": 5327378,
+      "username": "fredericcaplette",
+      "public_email": "fcaplette@gitlab.com",
+      "name": "Frédéric Caplette",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5327378/avatar.png?v=1789165744",
+      "web_url": "https://gitlab.com/fredericcaplette"
+    },
+    "merge_user": {
+      "id": 5327378,
+      "username": "fredericcaplette",
+      "public_email": "fcaplette@gitlab.com",
+      "name": "Frédéric Caplette",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5327378/avatar.png?v=1789165744",
+      "web_url": "https://gitlab.com/fredericcaplette"
+    },
+    "merged_at": "2026-09-11T19:11:35.282Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "kpalchyk/624327-overrides-empty-alert",
+    "user_notes_count": 19,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 10373497,
+      "username": "kpalchyk",
+      "public_email": "",
+      "name": "Kos Palchyk",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/10373497/avatar.png?v=1789171207",
+      "web_url": "https://gitlab.com/kpalchyk"
+    },
+    "assignees": [
+      {
+        "id": 10373497,
+        "username": "kpalchyk",
+        "public_email": "",
+        "name": "Kos Palchyk",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/10373497/avatar.png?v=1789171207",
+        "web_url": "https://gitlab.com/kpalchyk"
+      }
+    ],
+    "assignee": {
+      "id": 10373497,
+      "username": "kpalchyk",
+      "public_email": "",
+      "name": "Kos Palchyk",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/10373497/avatar.png?v=1789171207",
+      "web_url": "https://gitlab.com/kpalchyk"
+    },
+    "reviewers": [
+      {
+        "id": 5327378,
+        "username": "fredericcaplette",
+        "public_email": "fcaplette@gitlab.com",
+        "name": "Frédéric Caplette",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5327378/avatar.png?v=1789165744",
+        "web_url": "https://gitlab.com/fredericcaplette"
+      },
+      {
+        "id": 21826781,
+        "username": "GitLabDuo",
+        "public_email": null,
+        "name": "GitLab Duo",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21826781/duo-bot.png?v=1781708173",
+        "web_url": "https://gitlab.com/GitLabDuo"
+      },
+      {
+        "id": 28926411,
+        "username": "brothwell1",
+        "public_email": "",
+        "name": "Bryan Rothwell",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/28926411/avatar.png?v=1789171472",
+        "web_url": "https://gitlab.com/brothwell1"
+      }
+    ],
+    "source_project_id": 278964,
+    "target_project_id": 278964,
+    "labels": [
+      "frontend",
+      "group::utilization",
+      "pipeline::tier-3",
+      "pipeline:as-if-foss-run-predictive",
+      "pipeline:mr-approved",
+      "priority::1",
+      "roulette-experiment::reviewer-column-shown",
+      "type::feature",
+      "workflow::staging-canary"
+    ],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": {
+      "id": 6239395,
+      "iid": 138,
+      "group_id": 9970,
+      "title": "19.4",
+      "description": "",
+      "state": "active",
+      "created_at": "2025-12-12T14:55:29.025Z",
+      "updated_at": "2025-12-12T14:55:29.025Z",
+      "due_date": "2026-09-11",
+      "start_date": "2026-08-15",
+      "expired": true,
+      "web_url": "https://gitlab.com/groups/gitlab-org/-/milestones/138"
+    },
+    "merge_when_pipeline_succeeds": true,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "224fa82b3e2bf51c876a69ef11479670d13a69b0",
+    "merge_commit_sha": "96e236aea2cd5ae64b030e36a3383b4a0f85c51c",
+    "squash_commit_sha": "039030c273423bb9653787064f46e0d91d9c6474",
+    "discussion_locked": null,
+    "should_remove_source_branch": true,
+    "force_remove_source_branch": true,
+    "prepared_at": "2026-09-11T17:16:42.841Z",
+    "reference": "!255081",
+    "references": {
+      "short": "!255081",
+      "relative": "!255081",
+      "full": "gitlab-org/gitlab!255081"
+    },
+    "web_url": "https://gitlab.com/gitlab-org/gitlab/-/merge_requests/255081",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null,
+    "subscribed": false,
+    "changes_count": "4",
+    "latest_build_started_at": "2026-09-11T19:09:14.598Z",
+    "latest_build_finished_at": "2026-09-11T19:11:18.039Z",
+    "first_deployed_to_production_at": null,
+    "pipeline": {
+      "id": 2841837913,
+      "iid": 6341485,
+      "project_id": 278964,
+      "sha": "0ffccc579e1b9269dd6db5ed3a061504f7f720a5",
+      "ref": "refs/merge-requests/255081/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T19:09:11.915Z",
+      "updated_at": "2026-09-11T19:11:18.053Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841837913"
+    },
+    "head_pipeline": {
+      "id": 2841837913,
+      "iid": 6341485,
+      "project_id": 278964,
+      "sha": "0ffccc579e1b9269dd6db5ed3a061504f7f720a5",
+      "ref": "refs/merge-requests/255081/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T19:09:11.915Z",
+      "updated_at": "2026-09-11T19:11:18.053Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841837913",
+      "before_sha": "0ffccc579e1b9269dd6db5ed3a061504f7f720a5",
+      "tag": false,
+      "yaml_errors": null,
+      "user": {
+        "id": 5327378,
+        "username": "fredericcaplette",
+        "public_email": "fcaplette@gitlab.com",
+        "name": "Frédéric Caplette",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5327378/avatar.png?v=1789165744",
+        "web_url": "https://gitlab.com/fredericcaplette"
+      },
+      "started_at": "2026-09-11T19:09:14.598Z",
+      "finished_at": "2026-09-11T19:11:18.039Z",
+      "committed_at": null,
+      "duration": 122,
+      "queued_duration": 2,
+      "coverage": null,
+      "detailed_status": {
+        "icon": "status_success",
+        "text": "Passed",
+        "label": "passed",
+        "group": "success",
+        "tooltip": "passed",
+        "has_details": true,
+        "details_path": "/gitlab-org/gitlab/-/pipelines/2841837913",
+        "illustration": null,
+        "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+      },
+      "archived": false
+    },
+    "diff_refs": {
+      "base_sha": "5dc5dc0d58265e6496cef1cdae5a6baa60a14ab1",
+      "head_sha": "224fa82b3e2bf51c876a69ef11479670d13a69b0",
+      "start_sha": "cadb7fa9a1d9e6da82e692ecb62db07509ebe219"
+    },
+    "merge_error": null,
+    "first_contribution": false,
+    "user": {
+      "can_merge": false
+    }
+  },
+  "commits": [
+    {
+      "id": "224fa82b3e2bf51c876a69ef11479670d13a69b0",
+      "short_id": "224fa82b",
+      "created_at": "2026-09-11T20:37:29.000+03:00",
+      "parent_ids": [
+        "04f67871f6ed4f4e879183f2d4abe8b161ee36a7"
+      ],
+      "title": "Change overrides unavailable alert variant to info",
+      "message": "Change overrides unavailable alert variant to info\n",
+      "author_name": "Kos Palchyk",
+      "author_email": "kpalchyk@gitlab.com",
+      "authored_date": "2026-09-11T20:37:29.000+03:00",
+      "committer_name": "Kos Palchyk",
+      "committer_email": "kpalchyk@gitlab.com",
+      "committed_date": "2026-09-11T20:37:29.000+03:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/224fa82b3e2bf51c876a69ef11479670d13a69b0"
+    },
+    {
+      "id": "04f67871f6ed4f4e879183f2d4abe8b161ee36a7",
+      "short_id": "04f67871",
+      "created_at": "2026-09-11T20:13:38.000+03:00",
+      "parent_ids": [
+        "5dc5dc0d58265e6496cef1cdae5a6baa60a14ab1"
+      ],
+      "title": "Show alert when overrides list is hidden due to unset flat cap",
+      "message": "Show alert when overrides list is hidden due to unset flat cap\n",
+      "author_name": "Kos Palchyk",
+      "author_email": "kpalchyk@gitlab.com",
+      "authored_date": "2026-09-11T19:39:49.000+03:00",
+      "committer_name": "Kos Palchyk",
+      "committer_email": "kpalchyk@gitlab.com",
+      "committed_date": "2026-09-11T20:13:38.000+03:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/04f67871f6ed4f4e879183f2d4abe8b161ee36a7"
+    }
+  ],
+  "diffs": [
+    {
+      "diff": "@@ -63,10 +63,10 @@ export default {\n       return this.$apollo.queries.creditCaps.loading;\n     },\n     flatUserCap() {\n-      return this.creditCaps?.flatUserCap ?? 0;\n+      return this.creditCaps?.flatUserCap;\n     },\n     flatUserCapEnabled() {\n-      return this.creditCaps?.flatUserCapEnabled ?? false;\n+      return this.creditCaps?.flatUserCapEnabled;\n     },\n     showUserOverridesList() {\n       return this.creditCaps?.flatUserCapEnabled !== null;\n@@ -153,7 +153,22 @@ export default {\n         @save=\"onSaveFlatCap\"\n       />\n \n-      <user-overrides-list v-if=\"showUserOverridesList\" class=\"gl-mt-6\" />\n+      <gl-alert\n+        v-if=\"!showUserOverridesList\"\n+        variant=\"info\"\n+        :dismissible=\"false\"\n+        :title=\"s__('UsageBilling|Per-user cap overrides require flat cap value')\"\n+        class=\"gl-mt-6\"\n+        data-testid=\"overrides-unavailable-alert\"\n+      >\n+        {{\n+          s__(\n+            \"UsageBilling|To add per-user overrides you need to save Flat cap value first. You can leave Enforce cap turned off until you're ready.\",\n+          )\n+        }}\n+      </gl-alert>\n+\n+      <user-overrides-list v-else class=\"gl-mt-6\" />\n     </template>\n   </section>\n </template>\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app.vue",
+      "old_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app.vue",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -23,11 +23,13 @@ export default {\n   props: {\n     flatUserCap: {\n       type: Number,\n-      required: true,\n+      required: false,\n+      default: undefined,\n     },\n     flatUserCapEnabled: {\n       type: Boolean,\n-      required: true,\n+      required: false,\n+      default: undefined,\n     },\n     isSaving: {\n       type: Boolean,\n@@ -54,7 +56,7 @@ export default {\n     onSubmit() {\n       this.$emit('save', {\n         flatUserCap: this.draftFlatUserCap,\n-        flatUserCapEnabled: this.draftFlatUserCapEnabled,\n+        flatUserCapEnabled: this.draftFlatUserCapEnabled ?? false,\n       });\n     },\n   },\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/flat_user_cap_control.vue",
+      "old_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/flat_user_cap_control.vue",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -57,6 +57,7 @@ describe('CreditCapsDashboardApp', () => {\n   const findFlatCapSaveErrorAlert = () => wrapper.findByTestId('flat-cap-save-error-alert');\n   const findFlatUserCapControl = () => wrapper.findComponent(FlatUserCapControl);\n   const findUserOverridesList = () => wrapper.findComponent(UserOverridesList);\n+  const findOverridesUnavailableAlert = () => wrapper.findByTestId('overrides-unavailable-alert');\n \n   const triggerSave = (payload = { flatUserCap: 300, flatUserCapEnabled: false }) =>\n     findFlatUserCapControl().vm.$emit('save', payload);\n@@ -220,6 +221,26 @@ describe('CreditCapsDashboardApp', () => {\n     it('renders flat user cap control', () => {\n       expect(findFlatUserCapControl().exists()).toBe(true);\n     });\n+\n+    it('shows overrides unavailable alert', () => {\n+      expect(findOverridesUnavailableAlert().exists()).toBe(true);\n+    });\n+\n+    it('renders overrides unavailable alert as non-dismissible tip', () => {\n+      expect(findOverridesUnavailableAlert().attributes()).toMatchObject({ variant: 'info' });\n+      expect(findOverridesUnavailableAlert().attributes('dismissible')).toBeUndefined();\n+    });\n+  });\n+\n+  describe('when flatUserCapEnabled is not null', () => {\n+    beforeEach(async () => {\n+      createComponent();\n+      await waitForPromises();\n+    });\n+\n+    it('does not show overrides unavailable alert', () => {\n+      expect(findOverridesUnavailableAlert().exists()).toBe(false);\n+    });\n   });\n \n   describe('when budgetCaps returns null (read_subscription_usage denied on type)', () => {\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "ee/spec/frontend/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app_spec.js",
+      "old_path": "ee/spec/frontend/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app_spec.js",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -86630,6 +86630,9 @@ msgstr \"\"\n msgid \"UsageBilling|Per-user cap overrides\"\n msgstr \"\"\n \n+msgid \"UsageBilling|Per-user cap overrides require flat cap value\"\n+msgstr \"\"\n+\n msgid \"UsageBilling|Product\"\n msgstr \"\"\n \n@@ -86684,6 +86687,9 @@ msgstr \"\"\n msgid \"UsageBilling|This dashboard may not display all current subscription data. For complete visibility, please upgrade to the latest version of GitLab or visit the %{linkStart}Customer Portal%{linkEnd}.\"\n msgstr \"\"\n \n+msgid \"UsageBilling|To add per-user overrides you need to save Flat cap value first. You can leave Enforce cap turned off until you're ready.\"\n+msgstr \"\"\n+\n msgid \"UsageBilling|Total credit consumption\"\n msgstr \"\"\n \n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "locale/gitlab.pot",
+      "old_path": "locale/gitlab.pot",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "224fa82b3e2bf51c876a69ef11479670d13a69b0",
+      "diffs": [
+        {
+          "diff": "@@ -155,7 +155,7 @@ export default {\n \n       <gl-alert\n         v-if=\"!showUserOverridesList\"\n-        variant=\"tip\"\n+        variant=\"info\"\n         :dismissible=\"false\"\n         :title=\"s__('UsageBilling|Per-user cap overrides require flat cap value')\"\n         class=\"gl-mt-6\"\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app.vue",
+          "old_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app.vue",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -227,7 +227,7 @@ describe('CreditCapsDashboardApp', () => {\n     });\n \n     it('renders overrides unavailable alert as non-dismissible tip', () => {\n-      expect(findOverridesUnavailableAlert().attributes()).toMatchObject({ variant: 'tip' });\n+      expect(findOverridesUnavailableAlert().attributes()).toMatchObject({ variant: 'info' });\n       expect(findOverridesUnavailableAlert().attributes('dismissible')).toBeUndefined();\n     });\n   });\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/frontend/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app_spec.js",
+          "old_path": "ee/spec/frontend/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app_spec.js",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    },
+    {
+      "sha": "04f67871f6ed4f4e879183f2d4abe8b161ee36a7",
+      "diffs": [
+        {
+          "diff": "@@ -63,10 +63,10 @@ export default {\n       return this.$apollo.queries.creditCaps.loading;\n     },\n     flatUserCap() {\n-      return this.creditCaps?.flatUserCap ?? 0;\n+      return this.creditCaps?.flatUserCap;\n     },\n     flatUserCapEnabled() {\n-      return this.creditCaps?.flatUserCapEnabled ?? false;\n+      return this.creditCaps?.flatUserCapEnabled;\n     },\n     showUserOverridesList() {\n       return this.creditCaps?.flatUserCapEnabled !== null;\n@@ -153,7 +153,22 @@ export default {\n         @save=\"onSaveFlatCap\"\n       />\n \n-      <user-overrides-list v-if=\"showUserOverridesList\" class=\"gl-mt-6\" />\n+      <gl-alert\n+        v-if=\"!showUserOverridesList\"\n+        variant=\"tip\"\n+        :dismissible=\"false\"\n+        :title=\"s__('UsageBilling|Per-user cap overrides require flat cap value')\"\n+        class=\"gl-mt-6\"\n+        data-testid=\"overrides-unavailable-alert\"\n+      >\n+        {{\n+          s__(\n+            \"UsageBilling|To add per-user overrides you need to save Flat cap value first. You can leave Enforce cap turned off until you're ready.\",\n+          )\n+        }}\n+      </gl-alert>\n+\n+      <user-overrides-list v-else class=\"gl-mt-6\" />\n     </template>\n   </section>\n </template>\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app.vue",
+          "old_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app.vue",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -23,11 +23,13 @@ export default {\n   props: {\n     flatUserCap: {\n       type: Number,\n-      required: true,\n+      required: false,\n+      default: undefined,\n     },\n     flatUserCapEnabled: {\n       type: Boolean,\n-      required: true,\n+      required: false,\n+      default: undefined,\n     },\n     isSaving: {\n       type: Boolean,\n@@ -54,7 +56,7 @@ export default {\n     onSubmit() {\n       this.$emit('save', {\n         flatUserCap: this.draftFlatUserCap,\n-        flatUserCapEnabled: this.draftFlatUserCapEnabled,\n+        flatUserCapEnabled: this.draftFlatUserCapEnabled ?? false,\n       });\n     },\n   },\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/flat_user_cap_control.vue",
+          "old_path": "ee/app/assets/javascripts/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/flat_user_cap_control.vue",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -57,6 +57,7 @@ describe('CreditCapsDashboardApp', () => {\n   const findFlatCapSaveErrorAlert = () => wrapper.findByTestId('flat-cap-save-error-alert');\n   const findFlatUserCapControl = () => wrapper.findComponent(FlatUserCapControl);\n   const findUserOverridesList = () => wrapper.findComponent(UserOverridesList);\n+  const findOverridesUnavailableAlert = () => wrapper.findByTestId('overrides-unavailable-alert');\n \n   const triggerSave = (payload = { flatUserCap: 300, flatUserCapEnabled: false }) =>\n     findFlatUserCapControl().vm.$emit('save', payload);\n@@ -220,6 +221,26 @@ describe('CreditCapsDashboardApp', () => {\n     it('renders flat user cap control', () => {\n       expect(findFlatUserCapControl().exists()).toBe(true);\n     });\n+\n+    it('shows overrides unavailable alert', () => {\n+      expect(findOverridesUnavailableAlert().exists()).toBe(true);\n+    });\n+\n+    it('renders overrides unavailable alert as non-dismissible tip', () => {\n+      expect(findOverridesUnavailableAlert().attributes()).toMatchObject({ variant: 'tip' });\n+      expect(findOverridesUnavailableAlert().attributes('dismissible')).toBeUndefined();\n+    });\n+  });\n+\n+  describe('when flatUserCapEnabled is not null', () => {\n+    beforeEach(async () => {\n+      createComponent();\n+      await waitForPromises();\n+    });\n+\n+    it('does not show overrides unavailable alert', () => {\n+      expect(findOverridesUnavailableAlert().exists()).toBe(false);\n+    });\n   });\n \n   describe('when budgetCaps returns null (read_subscription_usage denied on type)', () => {\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "ee/spec/frontend/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app_spec.js",
+          "old_path": "ee/spec/frontend/usage_quotas/wallet_agnostic_credits_dashboard/credit_caps/components/app_spec.js",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -86630,6 +86630,9 @@ msgstr \"\"\n msgid \"UsageBilling|Per-user cap overrides\"\n msgstr \"\"\n \n+msgid \"UsageBilling|Per-user cap overrides require flat cap value\"\n+msgstr \"\"\n+\n msgid \"UsageBilling|Product\"\n msgstr \"\"\n \n@@ -86684,6 +86687,9 @@ msgstr \"\"\n msgid \"UsageBilling|This dashboard may not display all current subscription data. For complete visibility, please upgrade to the latest version of GitLab or visit the %{linkStart}Customer Portal%{linkEnd}.\"\n msgstr \"\"\n \n+msgid \"UsageBilling|To add per-user overrides you need to save Flat cap value first. You can leave Enforce cap turned off until you're ready.\"\n+msgstr \"\"\n+\n msgid \"UsageBilling|Total credit consumption\"\n msgstr \"\"\n \n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "locale/gitlab.pot",
+          "old_path": "locale/gitlab.pot",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 2841837913,
+      "iid": 6341485,
+      "project_id": 278964,
+      "sha": "0ffccc579e1b9269dd6db5ed3a061504f7f720a5",
+      "ref": "refs/merge-requests/255081/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T19:09:11.915Z",
+      "updated_at": "2026-09-11T19:11:18.053Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841837913"
+    },
+    {
+      "id": 2841646178,
+      "iid": 6340790,
+      "project_id": 278964,
+      "sha": "d30445ba57229406d9cf7ac8a95f4e565b2df0a8",
+      "ref": "refs/merge-requests/255081/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T17:39:19.041Z",
+      "updated_at": "2026-09-11T19:12:18.509Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841646178"
+    },
+    {
+      "id": 2841601364,
+      "iid": 6340638,
+      "project_id": 278964,
+      "sha": "d2baeeec401b7c4dd85d23c123000cd071f4d2ca",
+      "ref": "refs/merge-requests/255081/merge",
+      "status": "canceled",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T17:16:56.931Z",
+      "updated_at": "2026-09-11T17:40:31.835Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2841601364"
+    }
+  ],
+  "notes": {
+    "message": "401 Unauthorized"
+  }
+}

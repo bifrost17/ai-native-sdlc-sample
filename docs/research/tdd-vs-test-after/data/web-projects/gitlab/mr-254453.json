@@ -1,0 +1,406 @@
+{
+  "source": "GitLab REST API",
+  "fetched_at": "2026-09-12T07:46:13Z",
+  "merge_request": {
+    "id": 529907796,
+    "iid": 254453,
+    "project_id": 278964,
+    "title": "Split grouping into shown and hidden",
+    "description": "<!--**Not ready yet?** Add `[ci skip]` to your MR title to skip the pipeline and save CI resources. \nIt's a small habit that makes a big difference for our shared compute budget and overall system load. \nEvery pipeline counts! 🙌-->\n\n## What does this MR do and why?\n\nSplit grouping into shown and hidden\n\nTo mirror the 'metadata visibility' UX, this change applies the same split list change to the group visibility settings in the display drawer.\n\nRelates to https://gitlab.com/gitlab-org/gitlab/-/work_items/613526\n\n## References\n\n<!--Include [links](https://handbook.gitlab.com/handbook/communication/#start-with-a-merge-request:~:text=Cross%20link%20issues,alternate%20if%20duplicate.) to any resources that are relevant to this MR.\nThis will give reviewers and future readers helpful context.-->\n\n## Screenshots or screen recordings\n\n<!---\nScreenshots are required for UI changes, and strongly recommended for all other merge requests.-->\n\n| Before | After |\n|--------|-------|\n|  |  |\n\n<!--OPTIONAL: For responsive UI changes, you can use the viewport size table below.\nDelete this table if not needed or delete rows that are not relevant to your changes.\n\n| Viewport size   | Before     | After      |\n| ----------------| ---------- | ---------- |\n| `xs` (<576px)   |            |            |\n| `sm` (>=576px)  |            |            |\n| `md` (>=768px)  |            |            |\n| `lg` (>=992px)  |            |            |\n| `xl` (>=1200px) |            |            |-->\n\n## How to set up and validate locally\n\n<!--Numbered steps to set up and validate the change are strongly suggested.\n\nExample:\n\n1. In rails console enable the feature flag\n   ```ruby\n   Feature.enable(:member_areas_of_focus)\n   ```\n1. Visit any group or project member pages such as `http://127.0.0.1:3000/groups/flightjs/-/group_members`\n1. Click the `invite members` button.-->\n\n## MR acceptance checklist\n\nEvaluate this MR against the [MR acceptance checklist](https://docs.gitlab.com/development/code_review/#acceptance-checklist). It helps you analyze changes to reduce risks in quality, performance, reliability, security, and maintainability.",
+    "state": "merged",
+    "created_at": "2026-09-09T12:12:55.086Z",
+    "updated_at": "2026-09-11T22:36:39.555Z",
+    "merged_by": {
+      "id": 21672738,
+      "username": "anastasia.khom",
+      "public_email": "",
+      "name": "Anastasia Khomchenko",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21672738/avatar.png?v=1789173273",
+      "web_url": "https://gitlab.com/anastasia.khom"
+    },
+    "merge_user": {
+      "id": 21672738,
+      "username": "anastasia.khom",
+      "public_email": "",
+      "name": "Anastasia Khomchenko",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21672738/avatar.png?v=1789173273",
+      "web_url": "https://gitlab.com/anastasia.khom"
+    },
+    "merged_at": "2026-09-11T22:36:41.627Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "jc/split-groups-into-shown-and-hidden",
+    "user_notes_count": 10,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 20358008,
+      "username": "jachapman",
+      "public_email": "",
+      "name": "Jack Chapman",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20358008/avatar.png?v=1789166353",
+      "web_url": "https://gitlab.com/jachapman"
+    },
+    "assignees": [
+      {
+        "id": 20358008,
+        "username": "jachapman",
+        "public_email": "",
+        "name": "Jack Chapman",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20358008/avatar.png?v=1789166353",
+        "web_url": "https://gitlab.com/jachapman"
+      }
+    ],
+    "assignee": {
+      "id": 20358008,
+      "username": "jachapman",
+      "public_email": "",
+      "name": "Jack Chapman",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/20358008/avatar.png?v=1789166353",
+      "web_url": "https://gitlab.com/jachapman"
+    },
+    "reviewers": [
+      {
+        "id": 13375904,
+        "username": "ramistry",
+        "public_email": "rmistry@gitlab.com",
+        "name": "Rajan Mistry",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/13375904/avatar.png?v=1789159786",
+        "web_url": "https://gitlab.com/ramistry"
+      },
+      {
+        "id": 21672738,
+        "username": "anastasia.khom",
+        "public_email": "",
+        "name": "Anastasia Khomchenko",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21672738/avatar.png?v=1789173273",
+        "web_url": "https://gitlab.com/anastasia.khom"
+      },
+      {
+        "id": 21826781,
+        "username": "GitLabDuo",
+        "public_email": null,
+        "name": "GitLab Duo",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21826781/duo-bot.png?v=1781708173",
+        "web_url": "https://gitlab.com/GitLabDuo"
+      }
+    ],
+    "source_project_id": 278964,
+    "target_project_id": 278964,
+    "labels": [
+      "Category:Planning Views",
+      "analytics instrumentation",
+      "analytics instrumentation::review pending",
+      "automation:quick-win-judged",
+      "devops::plan",
+      "frontend",
+      "group::planning views",
+      "pipeline::tier-3",
+      "pipeline:as-if-foss-run-predictive",
+      "pipeline:mr-approved",
+      "roulette-experiment::reviewer-column-shown",
+      "section::dev",
+      "type::feature",
+      "workflow::in dev"
+    ],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": {
+      "id": 6239395,
+      "iid": 138,
+      "group_id": 9970,
+      "title": "19.4",
+      "description": "",
+      "state": "active",
+      "created_at": "2025-12-12T14:55:29.025Z",
+      "updated_at": "2025-12-12T14:55:29.025Z",
+      "due_date": "2026-09-11",
+      "start_date": "2026-08-15",
+      "expired": true,
+      "web_url": "https://gitlab.com/groups/gitlab-org/-/milestones/138"
+    },
+    "merge_when_pipeline_succeeds": true,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "1d67f8fd0322d170e1b97a5769dc5bfe71c7c496",
+    "merge_commit_sha": "be3500ef0a1dc0c1f80580b4cd5e6abc1ed9e61e",
+    "squash_commit_sha": "1d67f8fd0322d170e1b97a5769dc5bfe71c7c496",
+    "discussion_locked": null,
+    "should_remove_source_branch": true,
+    "force_remove_source_branch": true,
+    "prepared_at": "2026-09-09T12:14:06.521Z",
+    "reference": "!254453",
+    "references": {
+      "short": "!254453",
+      "relative": "!254453",
+      "full": "gitlab-org/gitlab!254453"
+    },
+    "web_url": "https://gitlab.com/gitlab-org/gitlab/-/merge_requests/254453",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null,
+    "subscribed": false,
+    "changes_count": "3",
+    "latest_build_started_at": "2026-09-11T22:32:49.628Z",
+    "latest_build_finished_at": "2026-09-11T22:35:45.435Z",
+    "first_deployed_to_production_at": null,
+    "pipeline": {
+      "id": 2842208456,
+      "iid": 6342867,
+      "project_id": 278964,
+      "sha": "9c2f1482def93537f3cd0a524b8766457d78290d",
+      "ref": "refs/merge-requests/254453/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T22:32:46.100Z",
+      "updated_at": "2026-09-11T22:35:45.450Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2842208456"
+    },
+    "head_pipeline": {
+      "id": 2842208456,
+      "iid": 6342867,
+      "project_id": 278964,
+      "sha": "9c2f1482def93537f3cd0a524b8766457d78290d",
+      "ref": "refs/merge-requests/254453/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T22:32:46.100Z",
+      "updated_at": "2026-09-11T22:35:45.450Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2842208456",
+      "before_sha": "9c2f1482def93537f3cd0a524b8766457d78290d",
+      "tag": false,
+      "yaml_errors": null,
+      "user": {
+        "id": 21672738,
+        "username": "anastasia.khom",
+        "public_email": "",
+        "name": "Anastasia Khomchenko",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/21672738/avatar.png?v=1789173273",
+        "web_url": "https://gitlab.com/anastasia.khom"
+      },
+      "started_at": "2026-09-11T22:32:49.628Z",
+      "finished_at": "2026-09-11T22:35:45.435Z",
+      "committed_at": null,
+      "duration": 172,
+      "queued_duration": 3,
+      "coverage": null,
+      "detailed_status": {
+        "icon": "status_success",
+        "text": "Passed",
+        "label": "passed",
+        "group": "success",
+        "tooltip": "passed",
+        "has_details": true,
+        "details_path": "/gitlab-org/gitlab/-/pipelines/2842208456",
+        "illustration": null,
+        "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+      },
+      "archived": false
+    },
+    "diff_refs": {
+      "base_sha": "84f6df8fdb1b38b5ea4af2c9666c1d2ef3ab0761",
+      "head_sha": "1d67f8fd0322d170e1b97a5769dc5bfe71c7c496",
+      "start_sha": "4a7422333dc0b613eb3fff878945030381fc8147"
+    },
+    "merge_error": null,
+    "first_contribution": false,
+    "user": {
+      "can_merge": false
+    }
+  },
+  "commits": [
+    {
+      "id": "1d67f8fd0322d170e1b97a5769dc5bfe71c7c496",
+      "short_id": "1d67f8fd",
+      "created_at": "2026-09-09T13:09:45.000+01:00",
+      "parent_ids": [
+        "84f6df8fdb1b38b5ea4af2c9666c1d2ef3ab0761"
+      ],
+      "title": "Split grouping into shown and hidden",
+      "message": "Split grouping into shown and hidden\n\nTo mirror the 'metadata visibility' UX, this change\napplies the same split list change to the group\nvisibility settings in the display drawer.\n",
+      "author_name": "Jack Chapman",
+      "author_email": "jachapman@gitlab.com",
+      "authored_date": "2026-09-09T13:09:45.000+01:00",
+      "committer_name": "Jack Chapman",
+      "committer_email": "jachapman@gitlab.com",
+      "committed_date": "2026-09-09T13:09:45.000+01:00",
+      "trailers": {},
+      "extended_trailers": {},
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/commit/1d67f8fd0322d170e1b97a5769dc5bfe71c7c496"
+    }
+  ],
+  "diffs": [
+    {
+      "diff": "@@ -42,6 +42,7 @@ export default {\n     groups: s__('WorkItems|Groups'),\n     searchPlaceholder: s__('WorkItems|Search groups'),\n     shown: s__('WorkItems|Shown'),\n+    hidden: s__('WorkItems|Hidden'),\n     hideAll: s__('WorkItems|Hide all'),\n     noGroupsFound: s__('WorkItems|No groups match your search.'),\n   },\n@@ -136,6 +137,12 @@ export default {\n         };\n       });\n     },\n+    shownGroups() {\n+      return this.decoratedGroupByValues.filter((row) => this.isGroupVisible(row.value));\n+    },\n+    hiddenGroups() {\n+      return this.decoratedGroupByValues.filter((row) => !this.isGroupVisible(row.value));\n+    },\n     noGroupsAvailable() {\n       return this.isSearching && this.filteredGroupByValues.length === 0;\n     },\n@@ -179,8 +186,6 @@ export default {\n       this.persist(next);\n     },\n     hideAll() {\n-      // Everything is already hidden, so skip the redundant preference write.\n-      if (this.visibleGroups?.length === 0) return;\n       this.trackEvent('configure_columns_on_work_item_board', { label: 'hide_all_groups' });\n       this.persist([]);\n     },\n@@ -256,41 +261,62 @@ export default {\n         {{ $options.i18n.noGroupsFound }}\n       </p>\n       <template v-else>\n-        <div class=\"gl-mt-4 gl-flex gl-items-center gl-justify-between\">\n-          <span class=\"gl-text-sm gl-font-bold\">{{ $options.i18n.shown }}</span>\n-          <button\n-            type=\"button\"\n-            class=\"gl-border-none gl-bg-transparent gl-p-0 gl-text-sm gl-text-subtle\"\n-            data-testid=\"hide-all\"\n-            @click=\"hideAll\"\n-          >\n-            {{ $options.i18n.hideAll }}\n-          </button>\n-        </div>\n         <p\n           v-if=\"showGroupLimitHint\"\n-          class=\"gl-mb-0 gl-mt-2 gl-text-sm gl-text-subtle\"\n+          class=\"gl-mb-0 gl-mt-4 gl-text-sm gl-text-subtle\"\n           data-testid=\"group-limit-hint\"\n         >\n           {{ groupLimitHint }}\n         </p>\n-        <ul class=\"gl-m-0 gl-mt-2 gl-list-none gl-p-0\" data-testid=\"group-by-values\">\n-          <li\n-            v-for=\"row in decoratedGroupByValues\"\n-            :key=\"row.value.id\"\n-            class=\"gl-flex gl-items-center gl-gap-3 gl-py-2\"\n-          >\n-            <gl-icon v-if=\"row.showIcon\" :name=\"row.iconName\" :style=\"row.iconStyle\" />\n-            <gl-toggle\n-              :value=\"isGroupVisible(row.value)\"\n-              :disabled=\"isAtGroupLimit && !isGroupVisible(row.value)\"\n-              :label=\"row.value.name\"\n-              class=\"gl-w-full gl-justify-between\"\n-              label-position=\"left\"\n-              @change=\"toggleGroupVisibility(row.value)\"\n-            />\n-          </li>\n-        </ul>\n+        <div v-if=\"shownGroups.length\" class=\"gl-mt-4\" data-testid=\"shown-groups\">\n+          <div class=\"gl-flex gl-items-center gl-justify-between\">\n+            <span class=\"gl-text-sm gl-font-bold\">{{ $options.i18n.shown }}</span>\n+            <button\n+              type=\"button\"\n+              class=\"gl-border-none gl-bg-transparent gl-p-0 gl-text-sm gl-text-subtle\"\n+              data-testid=\"hide-all\"\n+              @click=\"hideAll\"\n+            >\n+              {{ $options.i18n.hideAll }}\n+            </button>\n+          </div>\n+          <ul class=\"gl-m-0 gl-mt-2 gl-list-none gl-p-0\">\n+            <li\n+              v-for=\"row in shownGroups\"\n+              :key=\"row.value.id\"\n+              class=\"gl-flex gl-items-center gl-gap-3 gl-py-2\"\n+            >\n+              <gl-icon v-if=\"row.showIcon\" :name=\"row.iconName\" :style=\"row.iconStyle\" />\n+              <gl-toggle\n+                :value=\"true\"\n+                :label=\"row.value.name\"\n+                class=\"gl-w-full gl-justify-between\"\n+                label-position=\"left\"\n+                @change=\"toggleGroupVisibility(row.value)\"\n+              />\n+            </li>\n+          </ul>\n+        </div>\n+        <div v-if=\"hiddenGroups.length\" class=\"gl-mt-4\" data-testid=\"hidden-groups\">\n+          <span class=\"gl-text-sm gl-font-bold\">{{ $options.i18n.hidden }}</span>\n+          <ul class=\"gl-m-0 gl-mt-2 gl-list-none gl-p-0\">\n+            <li\n+              v-for=\"row in hiddenGroups\"\n+              :key=\"row.value.id\"\n+              class=\"gl-flex gl-items-center gl-gap-3 gl-py-2\"\n+            >\n+              <gl-icon v-if=\"row.showIcon\" :name=\"row.iconName\" :style=\"row.iconStyle\" />\n+              <gl-toggle\n+                :value=\"false\"\n+                :disabled=\"isAtGroupLimit\"\n+                :label=\"row.value.name\"\n+                class=\"gl-w-full gl-justify-between\"\n+                label-position=\"left\"\n+                @change=\"toggleGroupVisibility(row.value)\"\n+              />\n+            </li>\n+          </ul>\n+        </div>\n       </template>\n     </div>\n   </div>\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "app/assets/javascripts/work_items/list/components/work_item_display_settings_group_by.vue",
+      "old_path": "app/assets/javascripts/work_items/list/components/work_item_display_settings_group_by.vue",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -1,5 +1,5 @@\n ---\n-description: 'Fires when a user changes which columns are shown on the work item planning board or changes their order, covering five actions carried in label: show_group and hide_group for toggling a single column, hide_all_groups for the \"Hide all\" action, and reorder_drag or reorder_menu depending on how a column was moved. The hide_group action covers both the display settings toggle and the \"Hide list\" action in the column header menu. It does not fire when \"Hide all\" is used but every column is already hidden, or when a reorder resolves to no change, such as the same index or a move off the end of the row. The column or status name is never sent, because status names are customer-defined data.'\n+description: 'Fires when a user changes which columns are shown on the work item planning board or changes their order, covering five actions carried in label: show_group and hide_group for toggling a single column, hide_all_groups for the \"Hide all\" action, and reorder_drag or reorder_menu depending on how a column was moved. The hide_group action covers both the display settings toggle and the \"Hide list\" action in the column header menu. It does not fire when a reorder resolves to no change, such as the same index or a move off the end of the row. The column or status name is never sent, because status names are customer-defined data.'\n internal_events: true\n status: active\n action: configure_columns_on_work_item_board\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "config/events/configure_columns_on_work_item_board.yml",
+      "old_path": "config/events/configure_columns_on_work_item_board.yml",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    },
+    {
+      "diff": "@@ -57,6 +57,10 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n   const findLoadingIcon = () => wrapper.findComponent(GlLoadingIcon);\n   const findHideAll = () => wrapper.findByTestId('hide-all');\n   const findToggles = () => wrapper.findAllComponents(GlToggle);\n+  const findShownSection = () => wrapper.findByTestId('shown-groups');\n+  const findHiddenSection = () => wrapper.findByTestId('hidden-groups');\n+  const findShownToggles = () => findShownSection().findAllComponents(GlToggle);\n+  const findHiddenToggles = () => findHiddenSection().findAllComponents(GlToggle);\n   const findNoGroupsFound = () => wrapper.findByTestId('no-groups-found');\n   const findGroupLimitHint = () => wrapper.findByTestId('group-limit-hint');\n \n@@ -134,11 +138,8 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       expect(findLoadingIcon().exists()).toBe(false);\n     });\n \n-    it('renders an enabled toggle for each status, shown by default', () => {\n-      const toggles = findToggles();\n-      expect(toggles).toHaveLength(2);\n-      expect(toggles.at(0).props()).toMatchObject({ value: true, label: 'Triage' });\n-      expect(toggles.at(1).props()).toMatchObject({ value: true, label: 'To do' });\n+    it('renders a toggle for each status', () => {\n+      expect(findToggles()).toHaveLength(2);\n     });\n   });\n \n@@ -162,27 +163,51 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n     });\n   });\n \n-  describe('when only some groups are visible', () => {\n-    beforeEach(async () => {\n+  describe('shown and hidden sections', () => {\n+    it('lists every group under Shown when they are all visible', async () => {\n+      createComponent();\n+      await waitForPromises();\n+\n+      expect(findShownToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'Triage',\n+        'To do',\n+      ]);\n+      expect(findHiddenSection().exists()).toBe(false);\n+    });\n+\n+    it('splits the groups across both sections when only some are visible', async () => {\n       createComponent({ visibleGroups: [groupId(statuses[0])] });\n       await waitForPromises();\n+\n+      expect(findShownToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'Triage',\n+      ]);\n+      expect(findHiddenToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'To do',\n+      ]);\n     });\n \n-    it('only turns on the toggles for the visible groups', () => {\n-      expect(findToggles().at(0).props('value')).toBe(true);\n-      expect(findToggles().at(1).props('value')).toBe(false);\n+    it('lists every group under Hidden when none are visible', async () => {\n+      createComponent({ visibleGroups: [] });\n+      await waitForPromises();\n+\n+      expect(findShownSection().exists()).toBe(false);\n+      expect(findHiddenToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'Triage',\n+        'To do',\n+      ]);\n     });\n   });\n \n   describe('when the persisted selection changes', () => {\n-    it('follows it', async () => {\n+    it('moves the newly hidden group into the Hidden section', async () => {\n       createComponent();\n       await waitForPromises();\n \n       await wrapper.setProps({ namespacePreferences: { visibleGroups: [groupId(statuses[0])] } });\n \n-      expect(findToggles().at(0).props('value')).toBe(true);\n-      expect(findToggles().at(1).props('value')).toBe(false);\n+      expect(findShownToggles().at(0).props('label')).toBe('Triage');\n+      expect(findHiddenToggles().at(0).props('label')).toBe('To do');\n     });\n   });\n \n@@ -192,7 +217,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         createComponent();\n         await waitForPromises();\n \n-        findToggles().at(1).vm.$emit('change');\n+        findShownToggles().at(1).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -215,7 +240,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         createComponent();\n         await waitForPromises();\n \n-        findToggles().at(0).vm.$emit('change');\n+        findShownToggles().at(0).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -231,7 +256,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         });\n         await waitForPromises();\n \n-        findToggles().at(1).vm.$emit('change');\n+        findHiddenToggles().at(0).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -247,7 +272,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         createComponent({ props: { isSavedView: true } });\n         await waitForPromises();\n \n-        findToggles().at(1).vm.$emit('change');\n+        findShownToggles().at(1).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -268,7 +293,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n           });\n           await waitForPromises();\n \n-          findToggles().at(0).vm.$emit('change');\n+          findShownToggles().at(0).vm.$emit('change');\n           await waitForPromises();\n         });\n \n@@ -310,7 +335,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n \n       describe('when the matching group is toggled off', () => {\n         beforeEach(async () => {\n-          findToggles().at(0).vm.$emit('change');\n+          findShownToggles().at(0).vm.$emit('change');\n           await waitForPromises();\n         });\n \n@@ -371,20 +396,6 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         }),\n       );\n     });\n-\n-    describe('when every group is already hidden', () => {\n-      beforeEach(async () => {\n-        createComponent({ visibleGroups: [] });\n-        await waitForPromises();\n-\n-        findHideAll().trigger('click');\n-        await waitForPromises();\n-      });\n-\n-      it('does not persist again', () => {\n-        expect(persistMetadataPreference).not.toHaveBeenCalled();\n-      });\n-    });\n   });\n \n   describe('group limit', () => {\n@@ -402,10 +413,9 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         await waitForPromises();\n       });\n \n-      it('turns every toggle off, so the user has to choose', () => {\n-        expect(findToggles().wrappers.every((toggle) => toggle.props('value') === false)).toBe(\n-          true,\n-        );\n+      it('hides every group, so the user has to choose', () => {\n+        expect(findShownSection().exists()).toBe(false);\n+        expect(findHiddenToggles()).toHaveLength(manyValues.length);\n       });\n \n       it('says how many groups can be selected', () => {\n@@ -413,7 +423,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       });\n \n       it('persists only the group toggled on', async () => {\n-        findToggles().at(3).vm.$emit('change');\n+        findHiddenToggles().at(3).vm.$emit('change');\n         await waitForPromises();\n \n         expect(persistMetadataPreference).toHaveBeenCalledWith(\n@@ -423,13 +433,6 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n           }),\n         );\n       });\n-\n-      it('does not persist anything when Hide all is clicked, since it is already effectively empty', async () => {\n-        findHideAll().trigger('click');\n-        await waitForPromises();\n-\n-        expect(persistMetadataPreference).not.toHaveBeenCalled();\n-      });\n     });\n \n     describe('when the limit is reached', () => {\n@@ -443,11 +446,11 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       });\n \n       it('disables the toggles for the hidden groups', () => {\n-        expect(findToggles().at(25).props('disabled')).toBe(true);\n+        expect(findHiddenToggles().at(0).props('disabled')).toBe(true);\n       });\n \n       it('leaves the shown groups toggleable, so the user can swap one out', () => {\n-        expect(findToggles().at(0).props('disabled')).toBe(false);\n+        expect(findShownToggles().at(0).props('disabled')).toBe(false);\n       });\n     });\n \n@@ -477,7 +480,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       await waitForPromises();\n       const { trackEventSpy } = bindInternalEventDocument(wrapper.element);\n \n-      findToggles().at(1).vm.$emit('change');\n+      findShownToggles().at(1).vm.$emit('change');\n       await waitForPromises();\n \n       expect(trackEventSpy).toHaveBeenCalledWith(\n@@ -492,7 +495,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       await waitForPromises();\n       const { trackEventSpy } = bindInternalEventDocument(wrapper.element);\n \n-      findToggles().at(1).vm.$emit('change');\n+      findHiddenToggles().at(0).vm.$emit('change');\n       await waitForPromises();\n \n       expect(trackEventSpy).toHaveBeenCalledWith(\n@@ -516,20 +519,5 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         undefined,\n       );\n     });\n-\n-    it('tracks nothing when Hide all is used and every group is already hidden', async () => {\n-      createComponent({ visibleGroups: [] });\n-      await waitForPromises();\n-      const { trackEventSpy } = bindInternalEventDocument(wrapper.element);\n-\n-      findHideAll().trigger('click');\n-      await waitForPromises();\n-\n-      expect(trackEventSpy).not.toHaveBeenCalledWith(\n-        'configure_columns_on_work_item_board',\n-        expect.anything(),\n-        undefined,\n-      );\n-    });\n   });\n });\n",
+      "collapsed": false,
+      "too_large": false,
+      "new_path": "spec/frontend/work_items/list/components/work_item_display_settings_group_by_spec.js",
+      "old_path": "spec/frontend/work_items/list/components/work_item_display_settings_group_by_spec.js",
+      "a_mode": "100644",
+      "b_mode": "100644",
+      "new_file": false,
+      "renamed_file": false,
+      "deleted_file": false,
+      "generated_file": false
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "1d67f8fd0322d170e1b97a5769dc5bfe71c7c496",
+      "diffs": [
+        {
+          "diff": "@@ -42,6 +42,7 @@ export default {\n     groups: s__('WorkItems|Groups'),\n     searchPlaceholder: s__('WorkItems|Search groups'),\n     shown: s__('WorkItems|Shown'),\n+    hidden: s__('WorkItems|Hidden'),\n     hideAll: s__('WorkItems|Hide all'),\n     noGroupsFound: s__('WorkItems|No groups match your search.'),\n   },\n@@ -136,6 +137,12 @@ export default {\n         };\n       });\n     },\n+    shownGroups() {\n+      return this.decoratedGroupByValues.filter((row) => this.isGroupVisible(row.value));\n+    },\n+    hiddenGroups() {\n+      return this.decoratedGroupByValues.filter((row) => !this.isGroupVisible(row.value));\n+    },\n     noGroupsAvailable() {\n       return this.isSearching && this.filteredGroupByValues.length === 0;\n     },\n@@ -179,8 +186,6 @@ export default {\n       this.persist(next);\n     },\n     hideAll() {\n-      // Everything is already hidden, so skip the redundant preference write.\n-      if (this.visibleGroups?.length === 0) return;\n       this.trackEvent('configure_columns_on_work_item_board', { label: 'hide_all_groups' });\n       this.persist([]);\n     },\n@@ -256,41 +261,62 @@ export default {\n         {{ $options.i18n.noGroupsFound }}\n       </p>\n       <template v-else>\n-        <div class=\"gl-mt-4 gl-flex gl-items-center gl-justify-between\">\n-          <span class=\"gl-text-sm gl-font-bold\">{{ $options.i18n.shown }}</span>\n-          <button\n-            type=\"button\"\n-            class=\"gl-border-none gl-bg-transparent gl-p-0 gl-text-sm gl-text-subtle\"\n-            data-testid=\"hide-all\"\n-            @click=\"hideAll\"\n-          >\n-            {{ $options.i18n.hideAll }}\n-          </button>\n-        </div>\n         <p\n           v-if=\"showGroupLimitHint\"\n-          class=\"gl-mb-0 gl-mt-2 gl-text-sm gl-text-subtle\"\n+          class=\"gl-mb-0 gl-mt-4 gl-text-sm gl-text-subtle\"\n           data-testid=\"group-limit-hint\"\n         >\n           {{ groupLimitHint }}\n         </p>\n-        <ul class=\"gl-m-0 gl-mt-2 gl-list-none gl-p-0\" data-testid=\"group-by-values\">\n-          <li\n-            v-for=\"row in decoratedGroupByValues\"\n-            :key=\"row.value.id\"\n-            class=\"gl-flex gl-items-center gl-gap-3 gl-py-2\"\n-          >\n-            <gl-icon v-if=\"row.showIcon\" :name=\"row.iconName\" :style=\"row.iconStyle\" />\n-            <gl-toggle\n-              :value=\"isGroupVisible(row.value)\"\n-              :disabled=\"isAtGroupLimit && !isGroupVisible(row.value)\"\n-              :label=\"row.value.name\"\n-              class=\"gl-w-full gl-justify-between\"\n-              label-position=\"left\"\n-              @change=\"toggleGroupVisibility(row.value)\"\n-            />\n-          </li>\n-        </ul>\n+        <div v-if=\"shownGroups.length\" class=\"gl-mt-4\" data-testid=\"shown-groups\">\n+          <div class=\"gl-flex gl-items-center gl-justify-between\">\n+            <span class=\"gl-text-sm gl-font-bold\">{{ $options.i18n.shown }}</span>\n+            <button\n+              type=\"button\"\n+              class=\"gl-border-none gl-bg-transparent gl-p-0 gl-text-sm gl-text-subtle\"\n+              data-testid=\"hide-all\"\n+              @click=\"hideAll\"\n+            >\n+              {{ $options.i18n.hideAll }}\n+            </button>\n+          </div>\n+          <ul class=\"gl-m-0 gl-mt-2 gl-list-none gl-p-0\">\n+            <li\n+              v-for=\"row in shownGroups\"\n+              :key=\"row.value.id\"\n+              class=\"gl-flex gl-items-center gl-gap-3 gl-py-2\"\n+            >\n+              <gl-icon v-if=\"row.showIcon\" :name=\"row.iconName\" :style=\"row.iconStyle\" />\n+              <gl-toggle\n+                :value=\"true\"\n+                :label=\"row.value.name\"\n+                class=\"gl-w-full gl-justify-between\"\n+                label-position=\"left\"\n+                @change=\"toggleGroupVisibility(row.value)\"\n+              />\n+            </li>\n+          </ul>\n+        </div>\n+        <div v-if=\"hiddenGroups.length\" class=\"gl-mt-4\" data-testid=\"hidden-groups\">\n+          <span class=\"gl-text-sm gl-font-bold\">{{ $options.i18n.hidden }}</span>\n+          <ul class=\"gl-m-0 gl-mt-2 gl-list-none gl-p-0\">\n+            <li\n+              v-for=\"row in hiddenGroups\"\n+              :key=\"row.value.id\"\n+              class=\"gl-flex gl-items-center gl-gap-3 gl-py-2\"\n+            >\n+              <gl-icon v-if=\"row.showIcon\" :name=\"row.iconName\" :style=\"row.iconStyle\" />\n+              <gl-toggle\n+                :value=\"false\"\n+                :disabled=\"isAtGroupLimit\"\n+                :label=\"row.value.name\"\n+                class=\"gl-w-full gl-justify-between\"\n+                label-position=\"left\"\n+                @change=\"toggleGroupVisibility(row.value)\"\n+              />\n+            </li>\n+          </ul>\n+        </div>\n       </template>\n     </div>\n   </div>\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "app/assets/javascripts/work_items/list/components/work_item_display_settings_group_by.vue",
+          "old_path": "app/assets/javascripts/work_items/list/components/work_item_display_settings_group_by.vue",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -1,5 +1,5 @@\n ---\n-description: 'Fires when a user changes which columns are shown on the work item planning board or changes their order, covering five actions carried in label: show_group and hide_group for toggling a single column, hide_all_groups for the \"Hide all\" action, and reorder_drag or reorder_menu depending on how a column was moved. The hide_group action covers both the display settings toggle and the \"Hide list\" action in the column header menu. It does not fire when \"Hide all\" is used but every column is already hidden, or when a reorder resolves to no change, such as the same index or a move off the end of the row. The column or status name is never sent, because status names are customer-defined data.'\n+description: 'Fires when a user changes which columns are shown on the work item planning board or changes their order, covering five actions carried in label: show_group and hide_group for toggling a single column, hide_all_groups for the \"Hide all\" action, and reorder_drag or reorder_menu depending on how a column was moved. The hide_group action covers both the display settings toggle and the \"Hide list\" action in the column header menu. It does not fire when a reorder resolves to no change, such as the same index or a move off the end of the row. The column or status name is never sent, because status names are customer-defined data.'\n internal_events: true\n status: active\n action: configure_columns_on_work_item_board\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "config/events/configure_columns_on_work_item_board.yml",
+          "old_path": "config/events/configure_columns_on_work_item_board.yml",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        },
+        {
+          "diff": "@@ -57,6 +57,10 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n   const findLoadingIcon = () => wrapper.findComponent(GlLoadingIcon);\n   const findHideAll = () => wrapper.findByTestId('hide-all');\n   const findToggles = () => wrapper.findAllComponents(GlToggle);\n+  const findShownSection = () => wrapper.findByTestId('shown-groups');\n+  const findHiddenSection = () => wrapper.findByTestId('hidden-groups');\n+  const findShownToggles = () => findShownSection().findAllComponents(GlToggle);\n+  const findHiddenToggles = () => findHiddenSection().findAllComponents(GlToggle);\n   const findNoGroupsFound = () => wrapper.findByTestId('no-groups-found');\n   const findGroupLimitHint = () => wrapper.findByTestId('group-limit-hint');\n \n@@ -134,11 +138,8 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       expect(findLoadingIcon().exists()).toBe(false);\n     });\n \n-    it('renders an enabled toggle for each status, shown by default', () => {\n-      const toggles = findToggles();\n-      expect(toggles).toHaveLength(2);\n-      expect(toggles.at(0).props()).toMatchObject({ value: true, label: 'Triage' });\n-      expect(toggles.at(1).props()).toMatchObject({ value: true, label: 'To do' });\n+    it('renders a toggle for each status', () => {\n+      expect(findToggles()).toHaveLength(2);\n     });\n   });\n \n@@ -162,27 +163,51 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n     });\n   });\n \n-  describe('when only some groups are visible', () => {\n-    beforeEach(async () => {\n+  describe('shown and hidden sections', () => {\n+    it('lists every group under Shown when they are all visible', async () => {\n+      createComponent();\n+      await waitForPromises();\n+\n+      expect(findShownToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'Triage',\n+        'To do',\n+      ]);\n+      expect(findHiddenSection().exists()).toBe(false);\n+    });\n+\n+    it('splits the groups across both sections when only some are visible', async () => {\n       createComponent({ visibleGroups: [groupId(statuses[0])] });\n       await waitForPromises();\n+\n+      expect(findShownToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'Triage',\n+      ]);\n+      expect(findHiddenToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'To do',\n+      ]);\n     });\n \n-    it('only turns on the toggles for the visible groups', () => {\n-      expect(findToggles().at(0).props('value')).toBe(true);\n-      expect(findToggles().at(1).props('value')).toBe(false);\n+    it('lists every group under Hidden when none are visible', async () => {\n+      createComponent({ visibleGroups: [] });\n+      await waitForPromises();\n+\n+      expect(findShownSection().exists()).toBe(false);\n+      expect(findHiddenToggles().wrappers.map((toggle) => toggle.props('label'))).toEqual([\n+        'Triage',\n+        'To do',\n+      ]);\n     });\n   });\n \n   describe('when the persisted selection changes', () => {\n-    it('follows it', async () => {\n+    it('moves the newly hidden group into the Hidden section', async () => {\n       createComponent();\n       await waitForPromises();\n \n       await wrapper.setProps({ namespacePreferences: { visibleGroups: [groupId(statuses[0])] } });\n \n-      expect(findToggles().at(0).props('value')).toBe(true);\n-      expect(findToggles().at(1).props('value')).toBe(false);\n+      expect(findShownToggles().at(0).props('label')).toBe('Triage');\n+      expect(findHiddenToggles().at(0).props('label')).toBe('To do');\n     });\n   });\n \n@@ -192,7 +217,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         createComponent();\n         await waitForPromises();\n \n-        findToggles().at(1).vm.$emit('change');\n+        findShownToggles().at(1).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -215,7 +240,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         createComponent();\n         await waitForPromises();\n \n-        findToggles().at(0).vm.$emit('change');\n+        findShownToggles().at(0).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -231,7 +256,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         });\n         await waitForPromises();\n \n-        findToggles().at(1).vm.$emit('change');\n+        findHiddenToggles().at(0).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -247,7 +272,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         createComponent({ props: { isSavedView: true } });\n         await waitForPromises();\n \n-        findToggles().at(1).vm.$emit('change');\n+        findShownToggles().at(1).vm.$emit('change');\n         await waitForPromises();\n       });\n \n@@ -268,7 +293,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n           });\n           await waitForPromises();\n \n-          findToggles().at(0).vm.$emit('change');\n+          findShownToggles().at(0).vm.$emit('change');\n           await waitForPromises();\n         });\n \n@@ -310,7 +335,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n \n       describe('when the matching group is toggled off', () => {\n         beforeEach(async () => {\n-          findToggles().at(0).vm.$emit('change');\n+          findShownToggles().at(0).vm.$emit('change');\n           await waitForPromises();\n         });\n \n@@ -371,20 +396,6 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         }),\n       );\n     });\n-\n-    describe('when every group is already hidden', () => {\n-      beforeEach(async () => {\n-        createComponent({ visibleGroups: [] });\n-        await waitForPromises();\n-\n-        findHideAll().trigger('click');\n-        await waitForPromises();\n-      });\n-\n-      it('does not persist again', () => {\n-        expect(persistMetadataPreference).not.toHaveBeenCalled();\n-      });\n-    });\n   });\n \n   describe('group limit', () => {\n@@ -402,10 +413,9 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         await waitForPromises();\n       });\n \n-      it('turns every toggle off, so the user has to choose', () => {\n-        expect(findToggles().wrappers.every((toggle) => toggle.props('value') === false)).toBe(\n-          true,\n-        );\n+      it('hides every group, so the user has to choose', () => {\n+        expect(findShownSection().exists()).toBe(false);\n+        expect(findHiddenToggles()).toHaveLength(manyValues.length);\n       });\n \n       it('says how many groups can be selected', () => {\n@@ -413,7 +423,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       });\n \n       it('persists only the group toggled on', async () => {\n-        findToggles().at(3).vm.$emit('change');\n+        findHiddenToggles().at(3).vm.$emit('change');\n         await waitForPromises();\n \n         expect(persistMetadataPreference).toHaveBeenCalledWith(\n@@ -423,13 +433,6 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n           }),\n         );\n       });\n-\n-      it('does not persist anything when Hide all is clicked, since it is already effectively empty', async () => {\n-        findHideAll().trigger('click');\n-        await waitForPromises();\n-\n-        expect(persistMetadataPreference).not.toHaveBeenCalled();\n-      });\n     });\n \n     describe('when the limit is reached', () => {\n@@ -443,11 +446,11 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       });\n \n       it('disables the toggles for the hidden groups', () => {\n-        expect(findToggles().at(25).props('disabled')).toBe(true);\n+        expect(findHiddenToggles().at(0).props('disabled')).toBe(true);\n       });\n \n       it('leaves the shown groups toggleable, so the user can swap one out', () => {\n-        expect(findToggles().at(0).props('disabled')).toBe(false);\n+        expect(findShownToggles().at(0).props('disabled')).toBe(false);\n       });\n     });\n \n@@ -477,7 +480,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       await waitForPromises();\n       const { trackEventSpy } = bindInternalEventDocument(wrapper.element);\n \n-      findToggles().at(1).vm.$emit('change');\n+      findShownToggles().at(1).vm.$emit('change');\n       await waitForPromises();\n \n       expect(trackEventSpy).toHaveBeenCalledWith(\n@@ -492,7 +495,7 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n       await waitForPromises();\n       const { trackEventSpy } = bindInternalEventDocument(wrapper.element);\n \n-      findToggles().at(1).vm.$emit('change');\n+      findHiddenToggles().at(0).vm.$emit('change');\n       await waitForPromises();\n \n       expect(trackEventSpy).toHaveBeenCalledWith(\n@@ -516,20 +519,5 @@ describe('WorkItemDisplaySettingsGroupBy', () => {\n         undefined,\n       );\n     });\n-\n-    it('tracks nothing when Hide all is used and every group is already hidden', async () => {\n-      createComponent({ visibleGroups: [] });\n-      await waitForPromises();\n-      const { trackEventSpy } = bindInternalEventDocument(wrapper.element);\n-\n-      findHideAll().trigger('click');\n-      await waitForPromises();\n-\n-      expect(trackEventSpy).not.toHaveBeenCalledWith(\n-        'configure_columns_on_work_item_board',\n-        expect.anything(),\n-        undefined,\n-      );\n-    });\n   });\n });\n",
+          "collapsed": false,
+          "too_large": false,
+          "new_path": "spec/frontend/work_items/list/components/work_item_display_settings_group_by_spec.js",
+          "old_path": "spec/frontend/work_items/list/components/work_item_display_settings_group_by_spec.js",
+          "a_mode": "100644",
+          "b_mode": "100644",
+          "new_file": false,
+          "renamed_file": false,
+          "deleted_file": false,
+          "generated_file": null
+        }
+      ]
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 2842208456,
+      "iid": 6342867,
+      "project_id": 278964,
+      "sha": "9c2f1482def93537f3cd0a524b8766457d78290d",
+      "ref": "refs/merge-requests/254453/train",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T22:32:46.100Z",
+      "updated_at": "2026-09-11T22:35:45.450Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2842208456"
+    },
+    {
+      "id": 2840232551,
+      "iid": 6336423,
+      "project_id": 278964,
+      "sha": "ea14b38752403ad03ad9ca348b2449a9e6c4e507",
+      "ref": "refs/merge-requests/254453/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-11T09:12:14.517Z",
+      "updated_at": "2026-09-11T22:39:43.900Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2840232551"
+    },
+    {
+      "id": 2836572732,
+      "iid": 6327341,
+      "project_id": 278964,
+      "sha": "c0110cd28d1cfc7e490eec9587f135d4bd9291c6",
+      "ref": "refs/merge-requests/254453/merge",
+      "status": "failed",
+      "source": "merge_request_event",
+      "created_at": "2026-09-10T09:59:18.752Z",
+      "updated_at": "2026-09-10T11:25:57.699Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2836572732"
+    },
+    {
+      "id": 2832982876,
+      "iid": 6319333,
+      "project_id": 278964,
+      "sha": "0eda5ec55549a905b217c7c89a8a6fcdfb74667b",
+      "ref": "refs/merge-requests/254453/merge",
+      "status": "success",
+      "source": "merge_request_event",
+      "created_at": "2026-09-09T12:14:48.415Z",
+      "updated_at": "2026-09-09T12:59:15.207Z",
+      "web_url": "https://gitlab.com/gitlab-org/gitlab/-/pipelines/2832982876"
+    }
+  ],
+  "notes": {
+    "message": "401 Unauthorized"
+  }
+}

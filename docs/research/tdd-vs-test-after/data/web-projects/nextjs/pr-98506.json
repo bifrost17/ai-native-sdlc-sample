@@ -1,0 +1,1755 @@
+{
+  "source": "GitHub REST API",
+  "fetched_at": "2026-09-12T07:45:48Z",
+  "pull": {
+    "url": "https://api.github.com/repos/vercel/next.js/pulls/98506",
+    "id": 4496768551,
+    "node_id": "PR_kwDOBC3Cis8AAAABDAc-Jw",
+    "html_url": "https://github.com/vercel/next.js/pull/98506",
+    "diff_url": "https://github.com/vercel/next.js/pull/98506.diff",
+    "patch_url": "https://github.com/vercel/next.js/pull/98506.patch",
+    "issue_url": "https://api.github.com/repos/vercel/next.js/issues/98506",
+    "number": 98506,
+    "state": "closed",
+    "locked": false,
+    "title": "fix(devtools): handle pointercancel when dragging the indicator",
+    "user": {
+      "login": "icyJoseph",
+      "id": 21013447,
+      "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/icyJoseph",
+      "html_url": "https://github.com/icyJoseph",
+      "followers_url": "https://api.github.com/users/icyJoseph/followers",
+      "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+      "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+      "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+      "repos_url": "https://api.github.com/users/icyJoseph/repos",
+      "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "Fixes #98468\r\n\r\n## Claude explanation of the fix\r\n\r\n`useDrag` listened for `pointermove` and `pointerup`, but never `pointercancel`.\r\n\r\nWhen a user agent cancels a gesture — a browser or system gesture takes over, a second finger arrives — it fires `pointercancel` and no `pointerup`, implicitly releasing pointer capture as it does. So `cancel()` never ran: the state machine stayed `{ state: 'drag' }` and `cleanup.current` was never invoked, leaving the `pointermove`/`pointerup` listeners on `window`.\r\n\r\nThe next `pointerup` anywhere on the page then hit those orphaned listeners, reached `cancel()` with the state still `'drag'`, and called `releasePointerCapture()` on a pointer that no longer existed — the reported `NotFoundError`. Each cancelled drag also leaked another listener pair.\r\n\r\nThis registers `pointercancel` alongside `pointerup` and removes it in the same cleanup, so the machine unwinds when a gesture is cancelled; and it releases pointer capture only when `hasPointerCapture()` says it is still held, which is preferable to `try/catch` swallowing genuine faults too.\r\n\r\nNote `touch-action: none` (#97723) removed the common touch trigger, but not the defect: on canary a forced `touchCancel` still throws.\r\n\r\nhttps://github.com/user-attachments/assets/45a9524d-9ffa-40b6-b59a-5af9d947f8c7\r\n\r\n## Fixed version\r\n\r\nhttps://github.com/user-attachments/assets/b5ada68c-7442-42ef-a256-bacc512fbeca\r\n\r\n## Browser checks\r\n\r\n- [x] Chrome, as describe by the bug report\r\n- [x] FF works fine pre and post fix (with and without the pointer simulation)\r\n- [x] iOS safari simulator, before the fix, I can't see an error, but, the drag gets frozen, with this fix it works correctly\r\n\r\nhttps://github.com/user-attachments/assets/bcfdc786-bada-4462-b530-299523fdca6d\r\n\r\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\r\n",
+    "created_at": "2026-09-10T14:30:29Z",
+    "updated_at": "2026-09-11T14:01:17Z",
+    "closed_at": "2026-09-11T14:01:15Z",
+    "merged_at": "2026-09-11T14:01:15Z",
+    "merge_commit_sha": "c5741d52309a1eeca40228c6b12731d0dd645831",
+    "assignees": [],
+    "requested_reviewers": [
+      {
+        "login": "devjiwonchoi",
+        "id": 120007119,
+        "node_id": "U_kgDOBycpzw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/120007119?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/devjiwonchoi",
+        "html_url": "https://github.com/devjiwonchoi",
+        "followers_url": "https://api.github.com/users/devjiwonchoi/followers",
+        "following_url": "https://api.github.com/users/devjiwonchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/devjiwonchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/devjiwonchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/devjiwonchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/devjiwonchoi/orgs",
+        "repos_url": "https://api.github.com/users/devjiwonchoi/repos",
+        "events_url": "https://api.github.com/users/devjiwonchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/devjiwonchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      }
+    ],
+    "requested_teams": [],
+    "labels": [],
+    "milestone": null,
+    "draft": false,
+    "commits_url": "https://api.github.com/repos/vercel/next.js/pulls/98506/commits",
+    "review_comments_url": "https://api.github.com/repos/vercel/next.js/pulls/98506/comments",
+    "review_comment_url": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}",
+    "comments_url": "https://api.github.com/repos/vercel/next.js/issues/98506/comments",
+    "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/aa250c652644183b444166b20aef3e1499f3636a",
+    "head": {
+      "label": "vercel:fix/devtools-draggable-pointer-capture",
+      "ref": "fix/devtools-draggable-pointer-capture",
+      "sha": "aa250c652644183b444166b20aef3e1499f3636a",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "base": {
+      "label": "vercel:canary",
+      "ref": "canary",
+      "sha": "ec62d6a48fde98ccbda4eb884cdbc58cfe585b52",
+      "user": {
+        "login": "vercel",
+        "id": 14985020,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/vercel",
+        "html_url": "https://github.com/vercel",
+        "followers_url": "https://api.github.com/users/vercel/followers",
+        "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+        "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+        "organizations_url": "https://api.github.com/users/vercel/orgs",
+        "repos_url": "https://api.github.com/users/vercel/repos",
+        "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/vercel/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "repo": {
+        "id": 70107786,
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MDEwNzc4Ng==",
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "private": false,
+        "owner": {
+          "login": "vercel",
+          "id": 14985020,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTg1MDIw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/vercel",
+          "html_url": "https://github.com/vercel",
+          "followers_url": "https://api.github.com/users/vercel/followers",
+          "following_url": "https://api.github.com/users/vercel/following{/other_user}",
+          "gists_url": "https://api.github.com/users/vercel/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/vercel/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/vercel/subscriptions",
+          "organizations_url": "https://api.github.com/users/vercel/orgs",
+          "repos_url": "https://api.github.com/users/vercel/repos",
+          "events_url": "https://api.github.com/users/vercel/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/vercel/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/vercel/next.js",
+        "description": "The React Framework",
+        "fork": false,
+        "url": "https://api.github.com/repos/vercel/next.js",
+        "forks_url": "https://api.github.com/repos/vercel/next.js/forks",
+        "keys_url": "https://api.github.com/repos/vercel/next.js/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/vercel/next.js/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/vercel/next.js/teams",
+        "hooks_url": "https://api.github.com/repos/vercel/next.js/hooks",
+        "issue_events_url": "https://api.github.com/repos/vercel/next.js/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/vercel/next.js/events",
+        "assignees_url": "https://api.github.com/repos/vercel/next.js/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/vercel/next.js/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/vercel/next.js/tags",
+        "blobs_url": "https://api.github.com/repos/vercel/next.js/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/vercel/next.js/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/vercel/next.js/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/vercel/next.js/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/vercel/next.js/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/vercel/next.js/languages",
+        "stargazers_url": "https://api.github.com/repos/vercel/next.js/stargazers",
+        "contributors_url": "https://api.github.com/repos/vercel/next.js/contributors",
+        "subscribers_url": "https://api.github.com/repos/vercel/next.js/subscribers",
+        "subscription_url": "https://api.github.com/repos/vercel/next.js/subscription",
+        "commits_url": "https://api.github.com/repos/vercel/next.js/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/vercel/next.js/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/vercel/next.js/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/vercel/next.js/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/vercel/next.js/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/vercel/next.js/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/vercel/next.js/merges",
+        "archive_url": "https://api.github.com/repos/vercel/next.js/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/vercel/next.js/downloads",
+        "issues_url": "https://api.github.com/repos/vercel/next.js/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/vercel/next.js/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/vercel/next.js/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/vercel/next.js/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/vercel/next.js/labels{/name}",
+        "releases_url": "https://api.github.com/repos/vercel/next.js/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/vercel/next.js/deployments",
+        "created_at": "2016-10-05T23:32:51Z",
+        "updated_at": "2026-09-12T06:59:59Z",
+        "pushed_at": "2026-09-12T07:19:34Z",
+        "git_url": "git://github.com/vercel/next.js.git",
+        "ssh_url": "git@github.com:vercel/next.js.git",
+        "clone_url": "https://github.com/vercel/next.js.git",
+        "svn_url": "https://github.com/vercel/next.js",
+        "homepage": "https://nextjs.org",
+        "size": 2560187,
+        "stargazers_count": 142248,
+        "watchers_count": 142248,
+        "language": "JavaScript",
+        "has_issues": true,
+        "has_projects": false,
+        "has_downloads": false,
+        "has_wiki": false,
+        "has_pages": false,
+        "has_discussions": true,
+        "forks_count": 31905,
+        "mirror_url": null,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 3351,
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [
+          "blog",
+          "browser",
+          "compiler",
+          "components",
+          "hybrid",
+          "nextjs",
+          "node",
+          "react",
+          "server-rendering",
+          "ssg",
+          "static",
+          "static-site-generator",
+          "universal",
+          "vercel"
+        ],
+        "visibility": "public",
+        "forks": 31905,
+        "open_issues": 3351,
+        "watchers": 142248,
+        "default_branch": "canary"
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98506"
+      },
+      "html": {
+        "href": "https://github.com/vercel/next.js/pull/98506"
+      },
+      "issue": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98506"
+      },
+      "comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/issues/98506/comments"
+      },
+      "review_comments": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98506/comments"
+      },
+      "review_comment": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/comments{/number}"
+      },
+      "commits": {
+        "href": "https://api.github.com/repos/vercel/next.js/pulls/98506/commits"
+      },
+      "statuses": {
+        "href": "https://api.github.com/repos/vercel/next.js/statuses/aa250c652644183b444166b20aef3e1499f3636a"
+      }
+    },
+    "author_association": "MEMBER",
+    "auto_merge": null,
+    "assignee": null,
+    "active_lock_reason": null,
+    "merged": true,
+    "mergeable": null,
+    "rebaseable": null,
+    "mergeable_state": "unknown",
+    "merged_by": {
+      "login": "icyJoseph",
+      "id": 21013447,
+      "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/icyJoseph",
+      "html_url": "https://github.com/icyJoseph",
+      "followers_url": "https://api.github.com/users/icyJoseph/followers",
+      "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+      "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+      "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+      "repos_url": "https://api.github.com/users/icyJoseph/repos",
+      "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "comments": 1,
+    "review_comments": 1,
+    "maintainer_can_modify": false,
+    "commits": 3,
+    "additions": 81,
+    "deletions": 4,
+    "changed_files": 2
+  },
+  "commits": [
+    {
+      "sha": "254faa2005a2b8b06818ecc033eef7e950c17107",
+      "node_id": "C_kwDOBC3CitoAKDI1NGZhYTIwMDVhMmI4YjA2ODE4ZWNjMDMzZWVmN2U5NTBjMTcxMDc",
+      "commit": {
+        "author": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T14:29:22Z"
+        },
+        "committer": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T14:29:22Z"
+        },
+        "message": "fix(devtools): handle pointercancel when dragging the indicator\n\n`useDrag` listened for pointermove/pointerup but not pointercancel. When\nthe user agent cancels a gesture, no pointerup arrives, so cancel() never\nran: the state machine stayed in 'drag' and the window listeners were\nnever removed. The next pointerup anywhere on the page then reached\ncancel() and called releasePointerCapture() on a pointer that no longer\nexisted, throwing NotFoundError.\n\nRegister pointercancel alongside pointerup, remove it in the same\ncleanup, and only release pointer capture that is still held.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "tree": {
+          "sha": "1fd77f7abada68191acbb5c64b77f15e9f18a77b",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/1fd77f7abada68191acbb5c64b77f15e9f18a77b"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/254faa2005a2b8b06818ecc033eef7e950c17107",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgcgMkjSYVoa90Nm0yhFXuGxuCiN\nL1bOT7g7t0hogm4iYAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQB4xVep63PJmVVIeJwzXrSZjYQkzvmzjd8oWJyCSCU9wf6H5t5VQy0oRjyvF9FX4dl\noCEIYLPbiLWEFDWSbdZAI=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 1fd77f7abada68191acbb5c64b77f15e9f18a77b\nparent ec62d6a48fde98ccbda4eb884cdbc58cfe585b52\nauthor Joseph Chamochumbi <joseph.chamochumbi@vercel.com> 1789050562 +0200\ncommitter Joseph Chamochumbi <joseph.chamochumbi@vercel.com> 1789050562 +0200\n\nfix(devtools): handle pointercancel when dragging the indicator\n\n`useDrag` listened for pointermove/pointerup but not pointercancel. When\nthe user agent cancels a gesture, no pointerup arrives, so cancel() never\nran: the state machine stayed in 'drag' and the window listeners were\nnever removed. The next pointerup anywhere on the page then reached\ncancel() and called releasePointerCapture() on a pointer that no longer\nexisted, throwing NotFoundError.\n\nRegister pointercancel alongside pointerup, remove it in the same\ncleanup, and only release pointer capture that is still held.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\n",
+          "verified_at": "2026-09-10T14:29:59Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/254faa2005a2b8b06818ecc033eef7e950c17107",
+      "html_url": "https://github.com/vercel/next.js/commit/254faa2005a2b8b06818ecc033eef7e950c17107",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/254faa2005a2b8b06818ecc033eef7e950c17107/comments",
+      "author": {
+        "login": "icyJoseph",
+        "id": 21013447,
+        "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/icyJoseph",
+        "html_url": "https://github.com/icyJoseph",
+        "followers_url": "https://api.github.com/users/icyJoseph/followers",
+        "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+        "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+        "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+        "repos_url": "https://api.github.com/users/icyJoseph/repos",
+        "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "icyJoseph",
+        "id": 21013447,
+        "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/icyJoseph",
+        "html_url": "https://github.com/icyJoseph",
+        "followers_url": "https://api.github.com/users/icyJoseph/followers",
+        "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+        "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+        "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+        "repos_url": "https://api.github.com/users/icyJoseph/repos",
+        "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "ec62d6a48fde98ccbda4eb884cdbc58cfe585b52",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ec62d6a48fde98ccbda4eb884cdbc58cfe585b52",
+          "html_url": "https://github.com/vercel/next.js/commit/ec62d6a48fde98ccbda4eb884cdbc58cfe585b52"
+        }
+      ]
+    },
+    {
+      "sha": "ac34a62bfad4f826ae86580ac93a4137371319bc",
+      "node_id": "C_kwDOBC3CitoAKGFjMzRhNjJiZmFkNGY4MjZhZTg2NTgwYWM5M2E0MTM3MzcxMzE5YmM",
+      "commit": {
+        "author": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T15:02:50Z"
+        },
+        "committer": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T15:02:50Z"
+        },
+        "message": "test(devtools): cover a cancelled drag of the indicator\n\nReplays the two-gesture sequence from #98468: pointerdown, a move past the\ndrag threshold, pointercancel, then a later move and up. Asserts no uncaught\nerror and that the indicator stops following the pointer.\n\nPointer capture is owned by the user agent and cannot be driven from script,\nso the three capture methods are stubbed to the post-cancel behaviour a real\nbrowser exhibits: capture no longer held, and releasing it throws\nNotFoundError.\n\nWith the fix reverted this is the only failing test in the directory, and it\nfails with the error string from the issue.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "tree": {
+          "sha": "3bede0e3de6ec562925830666be5c5b570e9c872",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/3bede0e3de6ec562925830666be5c5b570e9c872"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/ac34a62bfad4f826ae86580ac93a4137371319bc",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgcgMkjSYVoa90Nm0yhFXuGxuCiN\nL1bOT7g7t0hogm4iYAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQJ2rgnGd+t7Cj4xnnniDO/y/DGp67aedJHbi76aGN5e5mxJZH7qhRB7+FDalsLiGLg\nMyLSJtsC4nwMJCyZnjRAE=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 3bede0e3de6ec562925830666be5c5b570e9c872\nparent 254faa2005a2b8b06818ecc033eef7e950c17107\nauthor Joseph Chamochumbi <joseph.chamochumbi@vercel.com> 1789052570 +0200\ncommitter Joseph Chamochumbi <joseph.chamochumbi@vercel.com> 1789052570 +0200\n\ntest(devtools): cover a cancelled drag of the indicator\n\nReplays the two-gesture sequence from #98468: pointerdown, a move past the\ndrag threshold, pointercancel, then a later move and up. Asserts no uncaught\nerror and that the indicator stops following the pointer.\n\nPointer capture is owned by the user agent and cannot be driven from script,\nso the three capture methods are stubbed to the post-cancel behaviour a real\nbrowser exhibits: capture no longer held, and releasing it throws\nNotFoundError.\n\nWith the fix reverted this is the only failing test in the directory, and it\nfails with the error string from the issue.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\n",
+          "verified_at": "2026-09-10T15:03:04Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/ac34a62bfad4f826ae86580ac93a4137371319bc",
+      "html_url": "https://github.com/vercel/next.js/commit/ac34a62bfad4f826ae86580ac93a4137371319bc",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/ac34a62bfad4f826ae86580ac93a4137371319bc/comments",
+      "author": {
+        "login": "icyJoseph",
+        "id": 21013447,
+        "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/icyJoseph",
+        "html_url": "https://github.com/icyJoseph",
+        "followers_url": "https://api.github.com/users/icyJoseph/followers",
+        "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+        "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+        "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+        "repos_url": "https://api.github.com/users/icyJoseph/repos",
+        "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "icyJoseph",
+        "id": 21013447,
+        "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/icyJoseph",
+        "html_url": "https://github.com/icyJoseph",
+        "followers_url": "https://api.github.com/users/icyJoseph/followers",
+        "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+        "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+        "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+        "repos_url": "https://api.github.com/users/icyJoseph/repos",
+        "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "254faa2005a2b8b06818ecc033eef7e950c17107",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/254faa2005a2b8b06818ecc033eef7e950c17107",
+          "html_url": "https://github.com/vercel/next.js/commit/254faa2005a2b8b06818ecc033eef7e950c17107"
+        }
+      ]
+    },
+    {
+      "sha": "aa250c652644183b444166b20aef3e1499f3636a",
+      "node_id": "C_kwDOBC3CitoAKGFhMjUwYzY1MjY0NDE4M2I0NDQxNjZiMjBhZWYzZTE0OTlmMzYzNmE",
+      "commit": {
+        "author": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T20:52:29Z"
+        },
+        "committer": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T20:52:29Z"
+        },
+        "message": "refactor(devtools): rename onPointerUp to onPointerEnd\n\nIt now handles pointercancel as well as pointerup, so the old name no\nlonger described what it does.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "tree": {
+          "sha": "9b239679b7c8f6036d1e0f5b9b51a1f77dd5d651",
+          "url": "https://api.github.com/repos/vercel/next.js/git/trees/9b239679b7c8f6036d1e0f5b9b51a1f77dd5d651"
+        },
+        "url": "https://api.github.com/repos/vercel/next.js/git/commits/aa250c652644183b444166b20aef3e1499f3636a",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgcgMkjSYVoa90Nm0yhFXuGxuCiN\nL1bOT7g7t0hogm4iYAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQFbvoRJG7oz4IJJKBSNIg16R1BvMbbkz0hl0H882alOibjfEIiMzpUGuka0F5q/mdR\n75AJ+0fwt1fhEDoQfBSQg=\n-----END SSH SIGNATURE-----",
+          "payload": "tree 9b239679b7c8f6036d1e0f5b9b51a1f77dd5d651\nparent ac34a62bfad4f826ae86580ac93a4137371319bc\nauthor Joseph Chamochumbi <joseph.chamochumbi@vercel.com> 1789073549 +0200\ncommitter Joseph Chamochumbi <joseph.chamochumbi@vercel.com> 1789073549 +0200\n\nrefactor(devtools): rename onPointerUp to onPointerEnd\n\nIt now handles pointercancel as well as pointerup, so the old name no\nlonger described what it does.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\n",
+          "verified_at": "2026-09-10T20:52:52Z"
+        }
+      },
+      "url": "https://api.github.com/repos/vercel/next.js/commits/aa250c652644183b444166b20aef3e1499f3636a",
+      "html_url": "https://github.com/vercel/next.js/commit/aa250c652644183b444166b20aef3e1499f3636a",
+      "comments_url": "https://api.github.com/repos/vercel/next.js/commits/aa250c652644183b444166b20aef3e1499f3636a/comments",
+      "author": {
+        "login": "icyJoseph",
+        "id": 21013447,
+        "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/icyJoseph",
+        "html_url": "https://github.com/icyJoseph",
+        "followers_url": "https://api.github.com/users/icyJoseph/followers",
+        "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+        "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+        "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+        "repos_url": "https://api.github.com/users/icyJoseph/repos",
+        "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "icyJoseph",
+        "id": 21013447,
+        "node_id": "MDQ6VXNlcjIxMDEzNDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21013447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/icyJoseph",
+        "html_url": "https://github.com/icyJoseph",
+        "followers_url": "https://api.github.com/users/icyJoseph/followers",
+        "following_url": "https://api.github.com/users/icyJoseph/following{/other_user}",
+        "gists_url": "https://api.github.com/users/icyJoseph/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/icyJoseph/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/icyJoseph/subscriptions",
+        "organizations_url": "https://api.github.com/users/icyJoseph/orgs",
+        "repos_url": "https://api.github.com/users/icyJoseph/repos",
+        "events_url": "https://api.github.com/users/icyJoseph/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/icyJoseph/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "ac34a62bfad4f826ae86580ac93a4137371319bc",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ac34a62bfad4f826ae86580ac93a4137371319bc",
+          "html_url": "https://github.com/vercel/next.js/commit/ac34a62bfad4f826ae86580ac93a4137371319bc"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "669a4e911d8e6437150bd2029c3a3f1bdc63d743",
+      "filename": "packages/next/src/next-devtools/dev-overlay/components/errors/dev-tools-indicator/draggable.tsx",
+      "status": "modified",
+      "additions": 17,
+      "deletions": 4,
+      "changes": 21,
+      "blob_url": "https://github.com/vercel/next.js/blob/aa250c652644183b444166b20aef3e1499f3636a/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx",
+      "raw_url": "https://github.com/vercel/next.js/raw/aa250c652644183b444166b20aef3e1499f3636a/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx?ref=aa250c652644183b444166b20aef3e1499f3636a",
+      "patch": "@@ -187,7 +187,14 @@ function useDrag(options: UseDragOptions) {\n \n   const cancel = useCallback(() => {\n     if (machine.current.state === 'drag') {\n-      ref.current?.releasePointerCapture(machine.current.pointerId)\n+      // The user agent implicitly releases pointer capture when a gesture ends\n+      // or is cancelled, so the pointer may already be inactive by the time we\n+      // get here. Releasing an inactive pointer throws NotFoundError, so only\n+      // release capture we still hold.\n+      const { pointerId } = machine.current\n+      if (ref.current?.hasPointerCapture(pointerId)) {\n+        ref.current.releasePointerCapture(pointerId)\n+      }\n     }\n \n     machine.current =\n@@ -282,15 +289,20 @@ function useDrag(options: UseDragOptions) {\n     origin.current = { x: e.clientX, y: e.clientY }\n     machine.current = { state: 'press' }\n     window.addEventListener('pointermove', onPointerMove)\n-    window.addEventListener('pointerup', onPointerUp)\n+    // A gesture ends in either pointerup or pointercancel, and a cancelled one\n+    // never fires pointerup. Listening for only the former strands the machine\n+    // in 'drag' with these listeners still attached.\n+    window.addEventListener('pointerup', onPointerEnd)\n+    window.addEventListener('pointercancel', onPointerEnd)\n \n     if (cleanup.current !== null) {\n       cleanup.current()\n       cleanup.current = null\n     }\n     cleanup.current = () => {\n       window.removeEventListener('pointermove', onPointerMove)\n-      window.removeEventListener('pointerup', onPointerUp)\n+      window.removeEventListener('pointerup', onPointerEnd)\n+      window.removeEventListener('pointercancel', onPointerEnd)\n     }\n \n     ref.current?.addEventListener('click', onClick)\n@@ -343,7 +355,8 @@ function useDrag(options: UseDragOptions) {\n     options.onDrag?.(translation.current)\n   }\n \n-  function onPointerUp() {\n+  /** Ends the gesture, whether it was released (pointerup) or cancelled. */\n+  function onPointerEnd() {\n     const velocity = calculateVelocity(velocities.current)\n \n     cancel()"
+    },
+    {
+      "sha": "efd2580c23053892b0be91124c3bece0aee7b61b",
+      "filename": "test/development/app-dir/devtools-position/default-position.test.ts",
+      "status": "modified",
+      "additions": 64,
+      "deletions": 0,
+      "changes": 64,
+      "blob_url": "https://github.com/vercel/next.js/blob/aa250c652644183b444166b20aef3e1499f3636a/test%2Fdevelopment%2Fapp-dir%2Fdevtools-position%2Fdefault-position.test.ts",
+      "raw_url": "https://github.com/vercel/next.js/raw/aa250c652644183b444166b20aef3e1499f3636a/test%2Fdevelopment%2Fapp-dir%2Fdevtools-position%2Fdefault-position.test.ts",
+      "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fdevelopment%2Fapp-dir%2Fdevtools-position%2Fdefault-position.test.ts?ref=aa250c652644183b444166b20aef3e1499f3636a",
+      "patch": "@@ -29,4 +29,68 @@ describe('devtools-position-default', () => {\n \n     expect(touchAction).toBe('none')\n   })\n+\n+  it('should end the drag when the pointer is cancelled', async () => {\n+    const browser = await next.browser('/')\n+    await getDevIndicatorPosition(browser)\n+\n+    // A user agent cancels a gesture (a browser/system gesture takes over, a\n+    // second finger arrives) by firing pointercancel and no pointerup, and it\n+    // implicitly releases pointer capture as it does so. Pointer capture is\n+    // owned by the UA and cannot be driven from script, so the three capture\n+    // methods are stubbed to exactly that post-cancel behaviour: capture is no\n+    // longer held, and releasing it throws NotFoundError.\n+    const result = await browser.eval(() => {\n+      const portal = Array.from(\n+        document.querySelectorAll('nextjs-portal')\n+      ).find((p) => p.shadowRoot?.querySelector('[data-nextjs-toast]'))\n+      const indicator = portal?.shadowRoot?.querySelector('[data-nextjs-toast]')\n+      const draggable = indicator?.firstElementChild as HTMLElement\n+\n+      Element.prototype.setPointerCapture = function () {}\n+      Element.prototype.hasPointerCapture = function () {\n+        return false\n+      }\n+      Element.prototype.releasePointerCapture = function () {\n+        throw new DOMException(\n+          \"Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.\",\n+          'NotFoundError'\n+        )\n+      }\n+\n+      const errors: string[] = []\n+      window.addEventListener('error', (event) => errors.push(event.message))\n+\n+      const pointerEvent = (type: string, x: number, y: number) =>\n+        new PointerEvent(type, {\n+          pointerId: 1,\n+          button: 0,\n+          buttons: 1,\n+          clientX: x,\n+          clientY: y,\n+          bubbles: true,\n+        })\n+\n+      const box = draggable.getBoundingClientRect()\n+      const x = box.x + box.width / 2\n+      const y = box.y + box.height / 2\n+\n+      draggable.dispatchEvent(pointerEvent('pointerdown', x, y))\n+      // past the 5px threshold, so the drag actually starts\n+      window.dispatchEvent(pointerEvent('pointermove', x + 40, y - 40))\n+      window.dispatchEvent(pointerEvent('pointercancel', x + 40, y - 40))\n+      const afterCancel = draggable.style.translate\n+\n+      // The gesture is over. Neither of these may still be treated as a drag:\n+      // the move must be ignored, and the up must not release a pointer that\n+      // no longer exists.\n+      window.dispatchEvent(pointerEvent('pointermove', x + 200, y - 200))\n+      window.dispatchEvent(pointerEvent('pointerup', x + 200, y - 200))\n+\n+      return { errors, afterCancel, afterMove: draggable.style.translate }\n+    })\n+\n+    expect(result.errors).toEqual([])\n+    expect(result.afterMove).toBe(result.afterCancel)\n+  })\n })"
+    }
+  ],
+  "commit_details": [
+    {
+      "sha": "254faa2005a2b8b06818ecc033eef7e950c17107",
+      "html_url": "https://github.com/vercel/next.js/commit/254faa2005a2b8b06818ecc033eef7e950c17107",
+      "commit": {
+        "author": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T14:29:22Z"
+        },
+        "committer": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T14:29:22Z"
+        },
+        "message": "fix(devtools): handle pointercancel when dragging the indicator\n\n`useDrag` listened for pointermove/pointerup but not pointercancel. When\nthe user agent cancels a gesture, no pointerup arrives, so cancel() never\nran: the state machine stayed in 'drag' and the window listeners were\nnever removed. The next pointerup anywhere on the page then reached\ncancel() and called releasePointerCapture() on a pointer that no longer\nexisted, throwing NotFoundError.\n\nRegister pointercancel alongside pointerup, remove it in the same\ncleanup, and only release pointer capture that is still held.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
+      },
+      "parents": [
+        {
+          "sha": "ec62d6a48fde98ccbda4eb884cdbc58cfe585b52",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ec62d6a48fde98ccbda4eb884cdbc58cfe585b52",
+          "html_url": "https://github.com/vercel/next.js/commit/ec62d6a48fde98ccbda4eb884cdbc58cfe585b52"
+        }
+      ],
+      "stats": {
+        "total": 15,
+        "additions": 14,
+        "deletions": 1
+      },
+      "files": [
+        {
+          "sha": "54490773d903ad78c8bcef797e671de7e759e3cc",
+          "filename": "packages/next/src/next-devtools/dev-overlay/components/errors/dev-tools-indicator/draggable.tsx",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 1,
+          "changes": 15,
+          "blob_url": "https://github.com/vercel/next.js/blob/254faa2005a2b8b06818ecc033eef7e950c17107/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/254faa2005a2b8b06818ecc033eef7e950c17107/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx?ref=254faa2005a2b8b06818ecc033eef7e950c17107",
+          "patch": "@@ -187,7 +187,14 @@ function useDrag(options: UseDragOptions) {\n \n   const cancel = useCallback(() => {\n     if (machine.current.state === 'drag') {\n-      ref.current?.releasePointerCapture(machine.current.pointerId)\n+      // The user agent implicitly releases pointer capture when a gesture ends\n+      // or is cancelled, so the pointer may already be inactive by the time we\n+      // get here. Releasing an inactive pointer throws NotFoundError, so only\n+      // release capture we still hold.\n+      const { pointerId } = machine.current\n+      if (ref.current?.hasPointerCapture(pointerId)) {\n+        ref.current.releasePointerCapture(pointerId)\n+      }\n     }\n \n     machine.current =\n@@ -283,6 +290,11 @@ function useDrag(options: UseDragOptions) {\n     machine.current = { state: 'press' }\n     window.addEventListener('pointermove', onPointerMove)\n     window.addEventListener('pointerup', onPointerUp)\n+    // A cancelled gesture fires pointercancel and no pointerup. Without this\n+    // the machine is stranded in 'drag' and these listeners are never removed,\n+    // so the next pointerup anywhere on the page runs cancel() against a\n+    // pointer that no longer exists.\n+    window.addEventListener('pointercancel', onPointerUp)\n \n     if (cleanup.current !== null) {\n       cleanup.current()\n@@ -291,6 +303,7 @@ function useDrag(options: UseDragOptions) {\n     cleanup.current = () => {\n       window.removeEventListener('pointermove', onPointerMove)\n       window.removeEventListener('pointerup', onPointerUp)\n+      window.removeEventListener('pointercancel', onPointerUp)\n     }\n \n     ref.current?.addEventListener('click', onClick)"
+        }
+      ]
+    },
+    {
+      "sha": "ac34a62bfad4f826ae86580ac93a4137371319bc",
+      "html_url": "https://github.com/vercel/next.js/commit/ac34a62bfad4f826ae86580ac93a4137371319bc",
+      "commit": {
+        "author": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T15:02:50Z"
+        },
+        "committer": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T15:02:50Z"
+        },
+        "message": "test(devtools): cover a cancelled drag of the indicator\n\nReplays the two-gesture sequence from #98468: pointerdown, a move past the\ndrag threshold, pointercancel, then a later move and up. Asserts no uncaught\nerror and that the indicator stops following the pointer.\n\nPointer capture is owned by the user agent and cannot be driven from script,\nso the three capture methods are stubbed to the post-cancel behaviour a real\nbrowser exhibits: capture no longer held, and releasing it throws\nNotFoundError.\n\nWith the fix reverted this is the only failing test in the directory, and it\nfails with the error string from the issue.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
+      },
+      "parents": [
+        {
+          "sha": "254faa2005a2b8b06818ecc033eef7e950c17107",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/254faa2005a2b8b06818ecc033eef7e950c17107",
+          "html_url": "https://github.com/vercel/next.js/commit/254faa2005a2b8b06818ecc033eef7e950c17107"
+        }
+      ],
+      "stats": {
+        "total": 64,
+        "additions": 64,
+        "deletions": 0
+      },
+      "files": [
+        {
+          "sha": "efd2580c23053892b0be91124c3bece0aee7b61b",
+          "filename": "test/development/app-dir/devtools-position/default-position.test.ts",
+          "status": "modified",
+          "additions": 64,
+          "deletions": 0,
+          "changes": 64,
+          "blob_url": "https://github.com/vercel/next.js/blob/ac34a62bfad4f826ae86580ac93a4137371319bc/test%2Fdevelopment%2Fapp-dir%2Fdevtools-position%2Fdefault-position.test.ts",
+          "raw_url": "https://github.com/vercel/next.js/raw/ac34a62bfad4f826ae86580ac93a4137371319bc/test%2Fdevelopment%2Fapp-dir%2Fdevtools-position%2Fdefault-position.test.ts",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/test%2Fdevelopment%2Fapp-dir%2Fdevtools-position%2Fdefault-position.test.ts?ref=ac34a62bfad4f826ae86580ac93a4137371319bc",
+          "patch": "@@ -29,4 +29,68 @@ describe('devtools-position-default', () => {\n \n     expect(touchAction).toBe('none')\n   })\n+\n+  it('should end the drag when the pointer is cancelled', async () => {\n+    const browser = await next.browser('/')\n+    await getDevIndicatorPosition(browser)\n+\n+    // A user agent cancels a gesture (a browser/system gesture takes over, a\n+    // second finger arrives) by firing pointercancel and no pointerup, and it\n+    // implicitly releases pointer capture as it does so. Pointer capture is\n+    // owned by the UA and cannot be driven from script, so the three capture\n+    // methods are stubbed to exactly that post-cancel behaviour: capture is no\n+    // longer held, and releasing it throws NotFoundError.\n+    const result = await browser.eval(() => {\n+      const portal = Array.from(\n+        document.querySelectorAll('nextjs-portal')\n+      ).find((p) => p.shadowRoot?.querySelector('[data-nextjs-toast]'))\n+      const indicator = portal?.shadowRoot?.querySelector('[data-nextjs-toast]')\n+      const draggable = indicator?.firstElementChild as HTMLElement\n+\n+      Element.prototype.setPointerCapture = function () {}\n+      Element.prototype.hasPointerCapture = function () {\n+        return false\n+      }\n+      Element.prototype.releasePointerCapture = function () {\n+        throw new DOMException(\n+          \"Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.\",\n+          'NotFoundError'\n+        )\n+      }\n+\n+      const errors: string[] = []\n+      window.addEventListener('error', (event) => errors.push(event.message))\n+\n+      const pointerEvent = (type: string, x: number, y: number) =>\n+        new PointerEvent(type, {\n+          pointerId: 1,\n+          button: 0,\n+          buttons: 1,\n+          clientX: x,\n+          clientY: y,\n+          bubbles: true,\n+        })\n+\n+      const box = draggable.getBoundingClientRect()\n+      const x = box.x + box.width / 2\n+      const y = box.y + box.height / 2\n+\n+      draggable.dispatchEvent(pointerEvent('pointerdown', x, y))\n+      // past the 5px threshold, so the drag actually starts\n+      window.dispatchEvent(pointerEvent('pointermove', x + 40, y - 40))\n+      window.dispatchEvent(pointerEvent('pointercancel', x + 40, y - 40))\n+      const afterCancel = draggable.style.translate\n+\n+      // The gesture is over. Neither of these may still be treated as a drag:\n+      // the move must be ignored, and the up must not release a pointer that\n+      // no longer exists.\n+      window.dispatchEvent(pointerEvent('pointermove', x + 200, y - 200))\n+      window.dispatchEvent(pointerEvent('pointerup', x + 200, y - 200))\n+\n+      return { errors, afterCancel, afterMove: draggable.style.translate }\n+    })\n+\n+    expect(result.errors).toEqual([])\n+    expect(result.afterMove).toBe(result.afterCancel)\n+  })\n })"
+        }
+      ]
+    },
+    {
+      "sha": "aa250c652644183b444166b20aef3e1499f3636a",
+      "html_url": "https://github.com/vercel/next.js/commit/aa250c652644183b444166b20aef3e1499f3636a",
+      "commit": {
+        "author": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T20:52:29Z"
+        },
+        "committer": {
+          "name": "Joseph Chamochumbi",
+          "email": "joseph.chamochumbi@vercel.com",
+          "date": "2026-09-10T20:52:29Z"
+        },
+        "message": "refactor(devtools): rename onPointerUp to onPointerEnd\n\nIt now handles pointercancel as well as pointerup, so the old name no\nlonger described what it does.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
+      },
+      "parents": [
+        {
+          "sha": "ac34a62bfad4f826ae86580ac93a4137371319bc",
+          "url": "https://api.github.com/repos/vercel/next.js/commits/ac34a62bfad4f826ae86580ac93a4137371319bc",
+          "html_url": "https://github.com/vercel/next.js/commit/ac34a62bfad4f826ae86580ac93a4137371319bc"
+        }
+      ],
+      "stats": {
+        "total": 18,
+        "additions": 9,
+        "deletions": 9
+      },
+      "files": [
+        {
+          "sha": "669a4e911d8e6437150bd2029c3a3f1bdc63d743",
+          "filename": "packages/next/src/next-devtools/dev-overlay/components/errors/dev-tools-indicator/draggable.tsx",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 9,
+          "changes": 18,
+          "blob_url": "https://github.com/vercel/next.js/blob/aa250c652644183b444166b20aef3e1499f3636a/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx",
+          "raw_url": "https://github.com/vercel/next.js/raw/aa250c652644183b444166b20aef3e1499f3636a/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx",
+          "contents_url": "https://api.github.com/repos/vercel/next.js/contents/packages%2Fnext%2Fsrc%2Fnext-devtools%2Fdev-overlay%2Fcomponents%2Ferrors%2Fdev-tools-indicator%2Fdraggable.tsx?ref=aa250c652644183b444166b20aef3e1499f3636a",
+          "patch": "@@ -289,21 +289,20 @@ function useDrag(options: UseDragOptions) {\n     origin.current = { x: e.clientX, y: e.clientY }\n     machine.current = { state: 'press' }\n     window.addEventListener('pointermove', onPointerMove)\n-    window.addEventListener('pointerup', onPointerUp)\n-    // A cancelled gesture fires pointercancel and no pointerup. Without this\n-    // the machine is stranded in 'drag' and these listeners are never removed,\n-    // so the next pointerup anywhere on the page runs cancel() against a\n-    // pointer that no longer exists.\n-    window.addEventListener('pointercancel', onPointerUp)\n+    // A gesture ends in either pointerup or pointercancel, and a cancelled one\n+    // never fires pointerup. Listening for only the former strands the machine\n+    // in 'drag' with these listeners still attached.\n+    window.addEventListener('pointerup', onPointerEnd)\n+    window.addEventListener('pointercancel', onPointerEnd)\n \n     if (cleanup.current !== null) {\n       cleanup.current()\n       cleanup.current = null\n     }\n     cleanup.current = () => {\n       window.removeEventListener('pointermove', onPointerMove)\n-      window.removeEventListener('pointerup', onPointerUp)\n-      window.removeEventListener('pointercancel', onPointerUp)\n+      window.removeEventListener('pointerup', onPointerEnd)\n+      window.removeEventListener('pointercancel', onPointerEnd)\n     }\n \n     ref.current?.addEventListener('click', onClick)\n@@ -356,7 +355,8 @@ function useDrag(options: UseDragOptions) {\n     options.onDrag?.(translation.current)\n   }\n \n-  function onPointerUp() {\n+  /** Ends the gesture, whether it was released (pointerup) or cancelled. */\n+  function onPointerEnd() {\n     const velocity = calculateVelocity(velocities.current)\n \n     cancel()"
+        }
+      ]
+    }
+  ],
+  "check_runs": {
+    "check_runs": [
+      {
+        "app": "vercel",
+        "completed_at": "2026-09-11T10:23:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/runs/103229580588",
+        "name": "Vercel – Code Owners",
+        "started_at": "2026-09-11T10:23:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T22:50:57Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103078424269",
+        "name": "thank you, next",
+        "started_at": "2026-09-10T22:50:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:53:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077865502",
+        "name": "Upload PR CI metadata",
+        "started_at": "2026-09-10T20:53:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077863954",
+        "name": "test next-swc wasm / build",
+        "started_at": "2026-09-10T21:03:57Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:59:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077860753",
+        "name": "build-native / build",
+        "started_at": "2026-09-10T20:59:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:55:37Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077858539",
+        "name": "build-native-windows / build",
+        "started_at": "2026-09-10T20:54:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077853715",
+        "name": "test next-swc wasi / build",
+        "started_at": "2026-09-10T21:03:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:59:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077851978",
+        "name": "build-next / build",
+        "started_at": "2026-09-10T20:58:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:53:19Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077847467",
+        "name": "Determine changes",
+        "started_at": "2026-09-10T20:53:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:19:21Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077832017",
+        "name": "test cache components prod (5/7) / build",
+        "started_at": "2026-09-10T21:10:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:15:32Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077832010",
+        "name": "test cache components prod (3/7) / build",
+        "started_at": "2026-09-10T21:09:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831922",
+        "name": "Test new and changed tests when deployed (cache components) (4/5) / build",
+        "started_at": "2026-09-10T21:13:20Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:10:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831916",
+        "name": "test unit windows (22) / build",
+        "started_at": "2026-09-10T20:59:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831908",
+        "name": "test dev (3/10) / build",
+        "started_at": "2026-09-10T21:04:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:13:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831823",
+        "name": "Test new and changed tests when deployed (1/5) / build",
+        "started_at": "2026-09-10T21:13:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:12:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831809",
+        "name": "Test new and changed tests when deployed (cache components) (5/5) / build",
+        "started_at": "2026-09-10T21:12:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:16:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831768",
+        "name": "test cache components prod (6/7) / build",
+        "started_at": "2026-09-10T21:10:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:01Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831661",
+        "name": "Test new and changed tests when deployed (3/5) / build",
+        "started_at": "2026-09-10T21:13:18Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:44Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831630",
+        "name": "test cache components prod (2/7) / build",
+        "started_at": "2026-09-10T21:08:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:11:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831619",
+        "name": "test cache components dev (5/6) / build",
+        "started_at": "2026-09-10T21:04:27Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:15:31Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831577",
+        "name": "test cache components prod (7/7) / build",
+        "started_at": "2026-09-10T21:07:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:24:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831516",
+        "name": "test prod (3/10) / build",
+        "started_at": "2026-09-10T21:11:04Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:13:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831506",
+        "name": "Test new and changed tests when deployed (cache components) (2/5) / build",
+        "started_at": "2026-09-10T21:12:29Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:21:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831457",
+        "name": "test cache components prod (1/7) / build",
+        "started_at": "2026-09-10T21:08:35Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:17:22Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831435",
+        "name": "test dev (2/10) / build",
+        "started_at": "2026-09-10T21:04:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:11:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831428",
+        "name": "test cache components dev (6/6) / build",
+        "started_at": "2026-09-10T21:04:18Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:06Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831364",
+        "name": "test dev (9/10) / build",
+        "started_at": "2026-09-10T21:04:56Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:23:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831362",
+        "name": "test prod (9/10) / build",
+        "started_at": "2026-09-10T21:10:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:10:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831346",
+        "name": "test unit windows (20) / build",
+        "started_at": "2026-09-10T20:59:51Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:16:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831320",
+        "name": "test cache components prod (4/7) / build",
+        "started_at": "2026-09-10T21:09:17Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831316",
+        "name": "Test new and changed tests when deployed (4/5) / build",
+        "started_at": "2026-09-10T21:13:14Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:10:35Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831298",
+        "name": "test cache components dev (2/6) / build",
+        "started_at": "2026-09-10T21:04:19Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:12:27Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831267",
+        "name": "Test new and changed tests when deployed (cache components) (3/5) / build",
+        "started_at": "2026-09-10T21:11:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:25:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831262",
+        "name": "test prod (4/10) / build",
+        "started_at": "2026-09-10T21:11:29Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:16:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831257",
+        "name": "test dev (6/10) / build",
+        "started_at": "2026-09-10T21:04:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:13:46Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831192",
+        "name": "Test new and changed tests when deployed (cache components) (1/5) / build",
+        "started_at": "2026-09-10T21:13:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:36:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831190",
+        "name": "test prod (6/10) / build",
+        "started_at": "2026-09-10T21:11:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:10:11Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831178",
+        "name": "test cache components dev (4/6) / build",
+        "started_at": "2026-09-10T21:04:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:24:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831175",
+        "name": "test prod (5/10) / build",
+        "started_at": "2026-09-10T21:11:29Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:25:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831169",
+        "name": "test prod (7/10) / build",
+        "started_at": "2026-09-10T21:10:03Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831153",
+        "name": "Test new and changed tests when deployed (5/5) / build",
+        "started_at": "2026-09-10T21:13:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:17:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831128",
+        "name": "test dev (8/10) / build",
+        "started_at": "2026-09-10T21:05:44Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:08:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831113",
+        "name": "test cache components dev (3/6) / build",
+        "started_at": "2026-09-10T21:04:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831101",
+        "name": "test dev (1/10) / build",
+        "started_at": "2026-09-10T21:04:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831080",
+        "name": "test dev (10/10) / build",
+        "started_at": "2026-09-10T21:05:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831063",
+        "name": "test dev (4/10) / build",
+        "started_at": "2026-09-10T21:04:37Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:23:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831014",
+        "name": "test turbopack production (1/7) / build",
+        "started_at": "2026-09-10T21:07:10Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:19:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831004",
+        "name": "test prod (10/10) / build",
+        "started_at": "2026-09-10T21:10:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:05:51Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077831001",
+        "name": "Test new and changed tests for flakes (prod) (3/5) / build",
+        "started_at": "2026-09-10T21:05:12Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:21:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830992",
+        "name": "test turbopack production (2/7) / build",
+        "started_at": "2026-09-10T21:10:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:19:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830975",
+        "name": "test prod (8/10) / build",
+        "started_at": "2026-09-10T21:11:16Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:25:40Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830928",
+        "name": "test prod (1/10) / build",
+        "started_at": "2026-09-10T21:11:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:24:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830899",
+        "name": "test prod (2/10) / build",
+        "started_at": "2026-09-10T21:10:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:04Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830874",
+        "name": "Test new and changed tests when deployed (2/5) / build",
+        "started_at": "2026-09-10T21:13:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:18:58Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830825",
+        "name": "test turbopack production (6/7) / build",
+        "started_at": "2026-09-10T21:09:00Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:17:25Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830771",
+        "name": "test dev (7/10) / build",
+        "started_at": "2026-09-10T21:05:06Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:22:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830769",
+        "name": "test dev (5/10) / build",
+        "started_at": "2026-09-10T21:04:43Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:16:42Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830749",
+        "name": "test turbopack production (4/7) / build",
+        "started_at": "2026-09-10T21:06:42Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:12:16Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830739",
+        "name": "test turbopack dev (1/7) / build",
+        "started_at": "2026-09-10T21:03:58Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:03Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830718",
+        "name": "test turbopack dev (6/7) / build",
+        "started_at": "2026-09-10T21:04:11Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830681",
+        "name": "Test new and changed tests for flakes (prod) (4/5) / build",
+        "started_at": "2026-09-10T21:06:14Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830654",
+        "name": "Test new and changed tests for flakes (dev) (1/5) / build",
+        "started_at": "2026-09-10T21:05:08Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830627",
+        "name": "test turbopack dev (5/7) / build",
+        "started_at": "2026-09-10T21:04:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:07:56Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830622",
+        "name": "test next-config-ts-native-ts dev (22) / build",
+        "started_at": "2026-09-10T21:06:15Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830600",
+        "name": "Test new and changed tests for flakes (prod) (2/5) / build",
+        "started_at": "2026-09-10T21:06:12Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:11:07Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830581",
+        "name": "Test new and changed tests for flakes (prod) (1/5) / build",
+        "started_at": "2026-09-10T21:10:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830579",
+        "name": "Test new and changed tests for flakes (dev) (5/5) / build",
+        "started_at": "2026-09-10T21:05:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:23Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830536",
+        "name": "test next-config-ts-native-ts prod (22) / build",
+        "started_at": "2026-09-10T21:04:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:08:00Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830526",
+        "name": "Test new and changed tests for flakes (dev) (4/5) / build",
+        "started_at": "2026-09-10T21:07:07Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830517",
+        "name": "test next-config-ts-native-ts prod (24.15.0) / build",
+        "started_at": "2026-09-10T21:04:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T22:50:52Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830509",
+        "name": "test cache components dev (1/6) / build",
+        "started_at": "2026-09-10T22:48:31Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:19:10Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830475",
+        "name": "test turbopack production (7/7) / build",
+        "started_at": "2026-09-10T21:07:39Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:33Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830466",
+        "name": "Test new and changed tests for flakes (prod) (5/5) / build",
+        "started_at": "2026-09-10T21:05:52Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:14:14Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830460",
+        "name": "test turbopack dev (4/7) / build",
+        "started_at": "2026-09-10T21:04:18Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:20:36Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830429",
+        "name": "test turbopack dev (7/7) / build",
+        "started_at": "2026-09-10T21:04:07Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:48Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830423",
+        "name": "test unit (22) / build",
+        "started_at": "2026-09-10T21:05:27Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:20:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830407",
+        "name": "test turbopack production (5/7) / build",
+        "started_at": "2026-09-10T21:08:41Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:13:12Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830399",
+        "name": "test turbopack dev (2/7) / build",
+        "started_at": "2026-09-10T21:04:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:19:41Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830329",
+        "name": "test turbopack production (3/7) / build",
+        "started_at": "2026-09-10T21:06:54Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:13:20Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830297",
+        "name": "test turbopack dev (3/7) / build",
+        "started_at": "2026-09-10T21:04:18Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:55Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830282",
+        "name": "Test new and changed tests for flakes (dev) (2/5) / build",
+        "started_at": "2026-09-10T21:06:14Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:06:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830248",
+        "name": "Test new and changed tests for flakes (dev) (3/5) / build",
+        "started_at": "2026-09-10T21:05:23Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:08:02Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830162",
+        "name": "test next-config-ts-native-ts dev (24.15.0) / build",
+        "started_at": "2026-09-10T21:06:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:07:09Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830131",
+        "name": "test unit (20) / build",
+        "started_at": "2026-09-10T21:04:59Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:09:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077830028",
+        "name": "test dev windows / build",
+        "started_at": "2026-09-10T20:59:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:08:53Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077829951",
+        "name": "test prod windows / build",
+        "started_at": "2026-09-10T20:59:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:12:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077829830",
+        "name": "test integration windows / build",
+        "started_at": "2026-09-10T20:59:55Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:08:54Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077829717",
+        "name": "test firefox and safari / build",
+        "started_at": "2026-09-10T21:03:36Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:05:50Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077829678",
+        "name": "types and precompiled / build",
+        "started_at": "2026-09-10T21:03:32Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T22:48:27Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828778",
+        "name": "Run devlow benchmarks",
+        "started_at": "2026-09-10T22:48:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T22:48:27Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828654",
+        "name": "test rspack dev",
+        "started_at": "2026-09-10T22:48:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T22:48:27Z",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828614",
+        "name": "test rspack production",
+        "started_at": "2026-09-10T22:48:28Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:12:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828409",
+        "name": "test cargo unit / build",
+        "started_at": "2026-09-10T20:59:50Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:59:39Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828401",
+        "name": "test devlow package / build",
+        "started_at": "2026-09-10T20:58:05Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:03:38Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828363",
+        "name": "Wait for preview tarball",
+        "started_at": "2026-09-10T20:53:22Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:00:05Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828209",
+        "name": "ast-grep lint",
+        "started_at": "2026-09-10T20:59:49Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:05:47Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828170",
+        "name": "rustdoc check / build",
+        "started_at": "2026-09-10T21:03:26Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:04:15Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077828116",
+        "name": "rust check / build",
+        "started_at": "2026-09-10T21:03:30Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T20:54:13Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077827956",
+        "name": "fetch test timings",
+        "started_at": "2026-09-10T20:53:21Z",
+        "status": "completed"
+      },
+      {
+        "app": "github-actions",
+        "completed_at": "2026-09-10T21:07:18Z",
+        "conclusion": "success",
+        "html_url": "https://github.com/vercel/next.js/actions/runs/34528986856/job/103077827825",
+        "name": "test cargo benches / Test",
+        "started_at": "2026-09-10T20:59:50Z",
+        "status": "completed"
+      }
+    ],
+    "total_count": 118
+  },
+  "combined_status": {
+    "sha": "aa250c652644183b444166b20aef3e1499f3636a",
+    "state": "pending",
+    "statuses": [],
+    "total_count": 0
+  }
+}

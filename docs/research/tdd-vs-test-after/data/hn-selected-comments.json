@@ -1,0 +1,50 @@
+[
+  {
+    "user": "nseskin",
+    "url": "https://news.ycombinator.com/item?id=49609253",
+    "date": "2026-09-08T12:12:15.000000Z",
+    "text": "I think this article demonstrates a broader problem with constraint following in LLMs. Agents often satisfy the most obvious and easily verifiable part of a task, but lose track of the constraint that actually determines success. Testing makes this especially clear: “use fuzzing” turns into generating random bytes, and “use formal verification” into proving a property that isn’t particularly useful. Formally, the technique is applied, but its actual purpose is lost. This may also explain why different testing techniques produce similar results: the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint."
+  },
+  {
+    "user": "ivanzhaowy123",
+    "url": "https://news.ycombinator.com/item?id=49606921",
+    "date": "2026-09-08T07:46:07.000000Z",
+    "text": "In my experience, agents often think of more edge cases than humans when writing unit tests. But under the guidance of certain skills, they can become mechanical and lose sight of the business logic. For example, when I use the Superpowers skill set, the agent proactively adopts TDD for every new feature. But its understanding of testing often stays superficial: if the user asks for a screen with a “Send” button, it first writes a test checking whether the button exists. The test fails, so it adds the button to make it pass. As a result, the test suite fills up with low-value cases that check whether a property exists or a string matches exactly. The agent follows the “write a failing test, then implement the feature” workflow, but never really tests the business behavior: When should sending be allowed? What should happen after success or failure? How should duplicate submissions be handled? The problem isn’t that agents can’t write tests. It’s that they seem prone to reducing TDD to a rigid sequence of steps, struggling to independently derive meaningful test cases from business requirements and use them to drive development."
+  },
+  {
+    "user": "throwatdem12311",
+    "url": "https://news.ycombinator.com/item?id=49609031",
+    "date": "2026-09-08T11:50:37.000000Z",
+    "text": "This is not really my experience using TDD with Claude at all.  When I tell it “a button should appear under x condition” it writes the test, and will often even verify the test by changing the code to fail the condition correctly before coming back and tell me it’s done. Every once in a while one of those useless tests you mention will sneak in…but I still read the code and either just remove it or tell the agent to get rid of it.  It happens so rarely it’s barely an inconvenience. But I don’t use any skills or anything like that to drive it.  I just have a line in my CLAUDE.md to follow TDD best practices. Personally I find most skills like these “superpowers” are just bullshit and don’t really help at all."
+  },
+  {
+    "user": "pydry",
+    "url": "https://news.ycombinator.com/item?id=49609136",
+    "date": "2026-09-08T12:00:30.000000Z",
+    "text": "I think most people miss the point of TDD. It is not just about edge cases. It  ought  to be: * A way of matching requirement use cases to tests. * to modulate the number of tests written not only to make sure you have  enough  coverage but also to make sure you don't pointlessly cover the same edge cases multiple times. * a way to cheaply provide feedback and validation on code  as  you are writing it. With AI the ability to churn out useless tests has exploded (both with TDD done badly and with no TDD at all) and that has actually incurred a new type of cost we didnt have to face before."
+  },
+  {
+    "user": "siscia",
+    "url": "https://news.ycombinator.com/item?id=49605759",
+    "date": "2026-09-08T05:03:49.000000Z",
+    "text": "It is still early, but I find that this experiment makes little to no sense and it is barely useful. The way you test code cannot (and should not) be decoupled by the way in which you architect the code itself. 80%+ of effective testing is not in the testing framework but in the code architecture. The author doesn't mention how the code is being architected and managed. For what it is worth, I found that forcing agents on DI/hexagonal architecture and forcing a trivial coverage check is quite useful and produce overall good enough code with relative little effort"
+  },
+  {
+    "user": "siscia",
+    "url": "https://news.ycombinator.com/item?id=49608977",
+    "date": "2026-09-08T11:46:14.000000Z",
+    "text": "You are not wrong but if we go deeper we will find more nuances. > tests should test behaviour and not structure. Of what? The whole idea of software architecture, and underlying of my messages, is to structure the code so that it is easy, but before easy, possible, to work at the right abstraction level. Which allows to tests the behaviour of components and not their structure. Trivial example, say your code read from a socket and manage the bytes with some CPU operations and write them to another socket. (You may recognise it is basically what a compressor do) The way in which you manage read and write to the sockets will make dramatically simpler or much more difficult to write good tests. If you adopt strategies like sans-io, you will see that the testing is almost trivial. If all the logic sprawl up from the read syscall in a loop, you will notice how more challenging testing becomes. --- To answer your question, the way I let LLMs write code is very DI (dependency injection) based. A class never instantiates another class - all the dependencies are passed to the constructor. Including time. Including whatever DB iteraction. The reason why I prefer this is that I can test each component at every level of abstraction. I don't have to. But I can. My current approach is to force coverage higher than say 80% as default and then when a bug is discovered drill down to the components."
+  },
+  {
+    "user": "lmeyerov",
+    "url": "https://news.ycombinator.com/item?id=49610518",
+    "date": "2026-09-08T14:04:15.000000Z",
+    "text": "Picking rust also felt problematic as also somewhat out of distribution historically"
+  },
+  {
+    "user": "lmeyerov",
+    "url": "https://news.ycombinator.com/item?id=49610972",
+    "date": "2026-09-08T14:39:28.000000Z",
+    "text": "Wonderful data point! It's been interesting investing into different classic verification & testing methods for gfql (CPU/GPU graph queries on dataframes) and Louie (agentic investigation harness) over the last couple of years with different model & harness generations. The ones below are fewer but more longitudinal efforts compared to the shallower ones Dan worked through, and seem largely consistent: Overall, my takeaway on standard software has been LLMs favor smart, guided fuzzing, natural language specifications deployed as iterative parallel adverserial AI review (e.g., context-reset subagents) after the functional prototyping. For formal methods / static analysis, cheaper/faster/lighter ones, though for the next level of quality, I can see this changing. The concolic testing world's heuristic results carried through a lot for me vs most others, which is unsurprising as they went deep on engineering ROI curves for fuzzing large code bases and specializing for different bug classes. Highlights: - alloy for gfql fell on its face relative to fuzzing, even with guidance. This was disappointing as it was intended as a cheap experiment to justify doing more expensive formal methods. - prompts & skills need tuning: auto-memory doesn't transfer across harnesses by default, and one-shot auto-authored skills evals badly. More about iterating. Manual version of iterating would be editing skills when we hit new/repeat classes of bugs, though not guaranteed faithfulness: this is what we do the most. Positive experiments automating here, but not enough to invest deeper when we have to do manual anyways. - natural language specifications are now a thing. Our significant new features now come with a security.md, policy.md, concurrency.md, etc., and important for them to be close to the code and taught to the review skill. Coding and review agents then can triangulate between tests, specs, code, and their own skills & general knowledge. However, we find we prefer not to do localized invariants in method comments as that gets verbose and drifts, and instead, do those as tests. This gets a bit into the global cost question of better code gen iterations and/or better review phases. - staging coding vs reviewing. Overtesting early kills progress, so we stage heavier quality engineering at the end, and architectural research at the beginning. - Lessons from the concolic execution era: staging static LLM analysis early with dynamic LLM testing later. Test amplify findings by area, kind, etc to convergence. - We love community suites. GFQL builds against known Cypher language standards correctness conformance and benchmark suites, and Louie tools often start with community agent evals/benchmarks before we add our own specializations. I don't know how big and deep the experiment Dan ran was. Something like formal methods is generally a big & invasive investment, and the target of each kind is often a much higher quality rating for a narrow set of properties. This complicates benchmarking setup. Imagine building entire compilers, and experimenting with different combos of methods & having those methods come in at different times & places. I expect the AI security vulnerability analysis world to have similar findings. We end up baking that into our review harness as well without changing our overall methods above."
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "requestedModel": "opus",
+  "effort": "high",
+  "observed": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1222,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001312,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5": {
+      "inputTokens": 48,
+      "outputTokens": 22385,
+      "cacheReadInputTokens": 1236861,
+      "cacheCreationInputTokens": 105345,
+      "webSearchRequests": 0,
+      "costUSD": 2.2317454999999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 13711,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "sessionId": "efd82c2b-53d3-4c00-9680-3ff125b6e9a3",
+  "costUsd": 2.2330574999999993,
+  "durationMs": 315748,
+  "usage": {
+    "input_tokens": 48,
+    "cache_creation_input_tokens": 105345,
+    "cache_read_input_tokens": 1236861,
+    "output_tokens": 22385,
+    "output_tokens_details": {
+      "thinking_tokens": 13711
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 105345,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5952,
+        "cache_read_input_tokens": 100358,
+        "cache_creation_input_tokens": 6327,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6327
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "isError": false,
+  "exitCode": 0,
+  "substitution": "Fable 429; user explicitly requested Opus with appropriate effort; preceding max attempt interrupted.",
+  "candidate": "2634f07"
+}

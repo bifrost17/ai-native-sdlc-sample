@@ -1,0 +1,892 @@
+{
+  "created_at": "2026-09-13T02:05:21.140287+00:00",
+  "design_status": "pre-installation, pre-model-execution",
+  "maker_commit": "e19ed60adcae43fefd5c701a7fde7d05a01227f2",
+  "package_version": "0.1.3",
+  "package_source_commit": "3a57b7fd57362e147ef099a70c3fed6eb886a3fd",
+  "note": "Hashes are read from the pinned Git commit, not the edited working tree. This source inventory is not an AGENT copy list. HUMAN-only data stays outside product clones.",
+  "inputs": [
+    {
+      "path": "docs/experiments/0029-optional-opencode.md",
+      "bytes": 17979,
+      "sha256": "8d280961d02aa7ad5f785d95003b2a694ac36ed390c9bb703b89c5cece9bc9c7",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/0030-optional-sonnet.md",
+      "bytes": 14121,
+      "sha256": "a46c9a3e9be3eec811803db8ae767b66c39a5f7266613b43a4304e2158550ae3",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/0031-optional-feedback-adoption.md",
+      "bytes": 11865,
+      "sha256": "a189c62b1547819a1c35f35a753f44d88c491f691416c489fe6308c6c384a555",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/PERSONA.md",
+      "bytes": 7677,
+      "sha256": "1fdac207e31deef7c52ed9570d38f0d529f2a915e3dd509a754dc37e91a01de7",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/README.md",
+      "bytes": 32091,
+      "sha256": "f709294075e1fd6211f71d50a2871a45e985116ddd3040ec3ee90e3507e6bb90",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/comparisons/0029-vs-0030.md",
+      "bytes": 10552,
+      "sha256": "e625d1b3b4f52861b6927834c39d945fcde133bf4739291cc7e2d3b399ea7c67",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/datasets/v1/baseline/test_tracker.py",
+      "bytes": 2294,
+      "sha256": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/datasets/v1/baseline/tracker.py",
+      "bytes": 1617,
+      "sha256": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/datasets/v6/F04-release-json/human.json",
+      "bytes": 8151,
+      "sha256": "7b6ea95259ae143c58d7643a2fd008c7905e789e2d57746621b7ed46a802da82",
+      "audience": "HUMAN-only"
+    },
+    {
+      "path": "docs/experiments/datasets/v6/F04-release-json/public.json",
+      "bytes": 1537,
+      "sha256": "a9a5d0f3cb149dbf51e8e9f670032bd38e9c684085bd09c04d5c6298d376009e",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/datasets/v6/F04-release-json/requests.json",
+      "bytes": 394,
+      "sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/experiments/datasets/v6/manifest.json",
+      "bytes": 2700,
+      "sha256": "805071736469c559b14a44995b8a44dd92f20c3189f51bcb957a8866851540b1",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "docs/verification/north-star-playbook.html",
+      "bytes": 1295116,
+      "sha256": "b431f6db92d2105bae13a6f02cba0c745ae4775032688e9c3c93d1d4e20129d8",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/.claude-plugin/plugin.json",
+      "bytes": 429,
+      "sha256": "9f1d45a27238c9d0a9a1779a67c593b66abd4c479e5133824bc2a2e7c1f6181b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/README.md",
+      "bytes": 10424,
+      "sha256": "d8c684c24294d18972164fca7f3b761357b0d0aa055e6a04ed7f87f4b5f1edd0",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/agents/sdlc-verifier.md",
+      "bytes": 6604,
+      "sha256": "64a66ec17a9037660d9b03bb91c306780f0a182ee7cea1aad76dc38d0d5db7e9",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/commands/spec-policy.md",
+      "bytes": 1565,
+      "sha256": "40b061bb061c8cabcd896005519d0d390bc6d53669263acfbc8f7a4e7bbc3159",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/README.md",
+      "bytes": 1654,
+      "sha256": "1031361be26fd1b7b7fc601f9faf719cf5ec65a7198ae37c3e822c89d3cb8330",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/PROJECT-POLICY.md",
+      "bytes": 1660,
+      "sha256": "f1b12b143be8952b13785113c1602c2b5eb45fcf500ae8272db5b4e7f687ca21",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/brand/PROVENANCE.md",
+      "bytes": 5063,
+      "sha256": "137dd5112b6ca987b4da227f8aa7885bbe0d007ec501db36ea382be2a6beeead",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/brand/SKILL.md",
+      "bytes": 11717,
+      "sha256": "850a1a51092bf1edcbce0865734328c86743a1d43d6c8544afec8611e470eec2",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/brand/check-brand-copy.sh",
+      "bytes": 5004,
+      "sha256": "050f0c18222fd8260f2dd7aed5c74e2c1d466a21c2aec1230b807f45234cc4e4",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claim-data-compliance/PROVENANCE.md",
+      "bytes": 4950,
+      "sha256": "07dd6b191f316acbf5f4a317c8d2e7e988fc8d82f0199bb429e4a8520d11f12e",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claim-data-compliance/SKILL.md",
+      "bytes": 6494,
+      "sha256": "0bafbd9a91f1235c23b3fe741cd16bffa12a4ec7903584e2d232ecf49de92861",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claim-notice-compliance/PROVENANCE.md",
+      "bytes": 4999,
+      "sha256": "6eb7520cead4c30f612687f4f74cdb1a2e3644e6a929b54e0b5836a1f9426d6b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claim-notice-compliance/SKILL.md",
+      "bytes": 4844,
+      "sha256": "f469e6b0b7d2b19b948e158636e5ede4abb88ce53ceb6b63ef3a28f89d545ce9",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claims-api-security/PROVENANCE.md",
+      "bytes": 5085,
+      "sha256": "c97232f6bc6b458b69809fb16bf290b7a37b2748f46a1d1aff8f521ad929841a",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claims-api-security/SKILL.md",
+      "bytes": 4586,
+      "sha256": "a4836ee10ef4ec4063e55c415e309eeda42397657ffaaeef300662c67a245b26",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claims-ux-copy/PROVENANCE.md",
+      "bytes": 5538,
+      "sha256": "9be6819e92f49f012d707e9f77dc56b851939402ea04ebec678ca8c73104fd79",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claims-ux-copy/SKILL.md",
+      "bytes": 7935,
+      "sha256": "c7865f23c63b27c049be2b89b9222c2b53930883a73376edd9735f6c665c43e4",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claims-ux-interaction/PROVENANCE.md",
+      "bytes": 6800,
+      "sha256": "237ff3a2b90cabdb895b00e9954431024ab371586abc6ba1973147b39659ae01",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/claims-status/claims-ux-interaction/SKILL.md",
+      "bytes": 6326,
+      "sha256": "f0d8d6833ee9007eeaf5a864802218951f9cef1723cdf8255bd9dc4bd162f0fb",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/examples/sdlc-feedback-adoption.md",
+      "bytes": 1612,
+      "sha256": "902f28fe417c0c8acfb2206330727349d791f34f7038b01e9df5c20a058ac2fc",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/README.md",
+      "bytes": 7248,
+      "sha256": "b4928a9b215b950a41c1ffb9a164b0502c45725af2013491d43b85622410dd33",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/agents/sdlc-verifier.md",
+      "bytes": 6572,
+      "sha256": "476a1870c738739a4b2acf932da271cb66d9504427a0750e12af02ef546640dd",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/patches/authoring-native.patch",
+      "bytes": 292,
+      "sha256": "a263f335211b3fba40e23d95ed6206f5f51cde1a0c988c014231adfc8e56b713",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/patches/sdlc-feedback.patch",
+      "bytes": 1207,
+      "sha256": "e4167b2cc3f8e858961987242c2592bc5027ee018e7de1229454f57fababf163",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/patches/ux-copy.patch",
+      "bytes": 1271,
+      "sha256": "4b5e57fbec314bac885a56fecececc6545e5eee42a73116979f02f2c5d827ecc",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/opencode/team-resources/INDEX.md",
+      "bytes": 3060,
+      "sha256": "4091ded52e152735374bcc4d83f3913c7af566fdbf218a090092c6a1ee9d0f87",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/accessibility/LICENSE-web-quality-skills.md",
+      "bytes": 1068,
+      "sha256": "c122223ac43e86421958e18623979942c21b642951e2e3736dcb63eff13587c3",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/accessibility/PROVENANCE.md",
+      "bytes": 5810,
+      "sha256": "62860fcabfbc6d22d0d0655eac130c8a2a7dd1d6091cbbfcf2b1ab11705b8792",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/accessibility/SKILL.md",
+      "bytes": 14457,
+      "sha256": "03dfb23bd3c689643fbdc6d56b8a9041f698165a639bcdb6252ccf1dca9648a2",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/accessibility/references/A11Y-PATTERNS.md",
+      "bytes": 6036,
+      "sha256": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/accessibility/references/WCAG.md",
+      "bytes": 9079,
+      "sha256": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/brand/PROVENANCE.md",
+      "bytes": 619,
+      "sha256": "66c5187f5341ee4fc30a8026d2d6359474e74072179b4b721bc690837b8a09d5",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/brand/SKILL.md",
+      "bytes": 2265,
+      "sha256": "9be51f9c684da6551b0cb75be51662e9dec3c508c7b84437769854472e834cc1",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/data-compliance/PROVENANCE.md",
+      "bytes": 666,
+      "sha256": "f4d9d4cebd151fe40d922ecf4b323cf994221584781fd1a20b55f9c7dd4fd997",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/data-compliance/SKILL.md",
+      "bytes": 2980,
+      "sha256": "3236326ee78652e900197ad9268e10fcde40e7903ef9fba0f694781fe658c39d",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/grilling/PROVENANCE.md",
+      "bytes": 2256,
+      "sha256": "0e7a10c89f12b6cd2a65bf740e077254bb2399305fabc260ceb77791c24433c8",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/grilling/SKILL.md",
+      "bytes": 1987,
+      "sha256": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/pr-loop/PROVENANCE.md",
+      "bytes": 6546,
+      "sha256": "0f63ef5bddf0e946e949421a15dfddb906aa6fbdcd2327acd1672ec23a9e8c38",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/pr-loop/SKILL.md",
+      "bytes": 8626,
+      "sha256": "ad53d0bd05c2f5058e5445c3da8fc81c44ffb44425e909437fb4ddbdce01a41d",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/sdlc-feedback/PROVENANCE.md",
+      "bytes": 3625,
+      "sha256": "ad7028120bd2d17527b7209c71e168f81e6fd1515501fdf886d99a8bbc2f15f8",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md",
+      "bytes": 6660,
+      "sha256": "e5d0bd81091a5c9593f184d100732b957ac38ba2f7027e79e609aabd4a8727b7",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secrets-scan/LICENSE-OWASP.md",
+      "bytes": 187,
+      "sha256": "a6ef5f90d5f4d6df60f02545fd1b2c05f7108a690af0f914098ffa0f7025dca1",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secrets-scan/PROVENANCE.md",
+      "bytes": 3973,
+      "sha256": "c6f19912200a09dc597aee57e6dbd0f7ff4288ea160de0eeaeb23087c242f90e",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secrets-scan/SKILL.md",
+      "bytes": 2132,
+      "sha256": "dcb0c8236017a2f6530dcf310a02d5a1e49025623c800cf7fc2bd07100fa707d",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secrets-scan/plays/secrets-scan.md",
+      "bytes": 5389,
+      "sha256": "69bd30f64b1202b68743e55cee96b92029c463c93b8035b385b0f96b83a438ac",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secrets-scan/templates/finding.md",
+      "bytes": 2107,
+      "sha256": "36fd9adebe24e62ac2e5fe4f0b56df15a4101a12583d33ee731b423ab4c293a3",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secure-api-review/PROVENANCE.md",
+      "bytes": 1587,
+      "sha256": "811124b102ecb553464ca4c7dc774e2ae4c3da5ac73b0d5650424cf202806f82",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/secure-api-review/SKILL.md",
+      "bytes": 1374,
+      "sha256": "b8ee8709ad28110997b0420f062efb7c3820bf56d1b17c9d0608bde03a96e143",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/spec-policy-pass/PROVENANCE.md",
+      "bytes": 9629,
+      "sha256": "179adda49f55b1d547ceac21cbeda3a936c5b69e57e850bc657fb7a1eed62337",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/spec-policy-pass/SKILL.md",
+      "bytes": 5106,
+      "sha256": "b8b313758a4f43928b8afe3246196d9bb36ddd25ae4ce9fc88a33be3e68d0502",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/stop-slop-ko/PROVENANCE.md",
+      "bytes": 3433,
+      "sha256": "a314402ccdd60709ef2954718052b1ae875f60d9084cfcedd964ee41b972f062",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/stop-slop-ko/SKILL.md",
+      "bytes": 30813,
+      "sha256": "de9b830ec5cc028e33b9f4b36b2fcd1cf39a3bdb8e572b2ec360d960a27ba444",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/tdd/PROVENANCE.md",
+      "bytes": 2308,
+      "sha256": "19db12c41289a38d11a616c04275c7f92779d9dd5e5bf125248223222a447dae",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/tdd/SKILL.md",
+      "bytes": 4608,
+      "sha256": "3f1c90e37a95a1a91ac60b53d661070a6eb3deef39c5916e239d182ae23f9b78",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/to-questionnaire/PROVENANCE.md",
+      "bytes": 2373,
+      "sha256": "9153d6df9e9ce1106cbee2740fdb4b30b5e7a02c065a93d0c733bf06ff974541",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/to-questionnaire/SKILL.md",
+      "bytes": 2904,
+      "sha256": "b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/ux-copy/CONNECTORS.md",
+      "bytes": 1139,
+      "sha256": "242e232bb37b2bd5778d2e88db7edb53a6100819a8f037d786a3e1a55b4d141f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/ux-copy/LICENSE-anthropic-knowledge-work-plugins.md",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/ux-copy/PROVENANCE.md",
+      "bytes": 5179,
+      "sha256": "3e9057bf07aecd1bd1c288d10fff89a2e0b71304d1bdcabeacd1ae6c8fbc5225",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/org-skills/skills/ux-copy/SKILL.md",
+      "bytes": 3430,
+      "sha256": "b38daf15530fd3dc7ac4e8646cad392bb3122eba132665c1e0aa2d00b802ea1f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/.gitignore",
+      "bytes": 92,
+      "sha256": "ef4871e8ce95c9453aaad2d1dad1898f9a91381327efa0176855c6d81db9ec9a",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/CLAUDE.md",
+      "bytes": 4696,
+      "sha256": "bc119a789252a5a30ccaade5c547173d6753954efa517f03706c9a8549dd3fb3",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/LICENSE",
+      "bytes": 1091,
+      "sha256": "a01f6da1e7fccdcd1d321714038cb7f11c15ec86899fb662b8c7600f28c28d6d",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/NOTICE",
+      "bytes": 1186,
+      "sha256": "3a0dd3f9df5cf3546dc8923b8f073d0ebfacfcd8278ea421d9365cf2852b2d9b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/PROJECT-POLICY.md",
+      "bytes": 4956,
+      "sha256": "ba4717a6d1dab754605219a80a8f527b50ecb6fa338ff07be41178e142c3600f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/README.md",
+      "bytes": 3658,
+      "sha256": "7fb6aff9d0b7dee2c0ec4d3da6f6a2a710ad8183d26b5f11124cc28b1cf1eb00",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/REVIEW.md",
+      "bytes": 3297,
+      "sha256": "237ffa58d32765c5d65a013765c550049cd00a45435e9a9a23b3a1c46d71ec83",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/GIT-WORKFLOW.md",
+      "bytes": 6600,
+      "sha256": "7f5d038a41e540588658274ce6e7a112f7133cf5bed403721d136923c3b2c1b4",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/PR-SIZE.md",
+      "bytes": 3852,
+      "sha256": "38e7c1639c678d7114a80258131aa38dea0d97aac32cb651dbac79bd4a9416fe",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/PROCESS.md",
+      "bytes": 6564,
+      "sha256": "d6c2e9515023798b7f7414f33d8bd8954880681fa6525066101f93b2edf35246",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/RELEASE-CONTROL.md",
+      "bytes": 5590,
+      "sha256": "da97242c7f7140b8c1090c67b0fe5f0ba43eb58063210d82280c27e067044ff8",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/TESTING-STRATEGY.md",
+      "bytes": 11971,
+      "sha256": "c2243207740bb1b59bbcf7332af9daf5a0470b08d10ae19e8dfb2af5c2cb9246",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/README.md",
+      "bytes": 3824,
+      "sha256": "a6a908717e977489e81a4c8202a26d9d60c97a6830cfedf0e5409b3456a5003a",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/change-walkthrough.md",
+      "bytes": 3688,
+      "sha256": "66ae8e9ac5c52e7c5eb97d7f032e8ae34e6be9b830e0ed703d4609d78023c304",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/B01/context.md",
+      "bytes": 922,
+      "sha256": "e9b0d06ede42d9baeb1ffd25b94dd4048b5bc29e7c8698edea45d23d30042a44",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/B01/intent.md",
+      "bytes": 813,
+      "sha256": "7986cb94d6af3a69d56088befafb1e3059dd62d68a18cda91f6231eb2b9fd6cc",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/B01/plan.md",
+      "bytes": 3573,
+      "sha256": "892e5bc77158cdf9af52b1a9b3ef509b5b9175976c5e8ab1aff7b65abddafa74",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/B01/spec.md",
+      "bytes": 2754,
+      "sha256": "7d6a5a3908e92058aaeda660053849971009d17f96686e3b7cf516d79cb3629c",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F01/context.md",
+      "bytes": 1001,
+      "sha256": "4883107f2e7f0ebda43cc543e5eb184d877a9379078070e4218d11e8dc250731",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F01/intent.md",
+      "bytes": 919,
+      "sha256": "0fd99a19650beba4b2789ce38e42b7af83db5cc1e859e35e82a63e8231245c3b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F01/plan.md",
+      "bytes": 3632,
+      "sha256": "3061fa8c7190f0041ea87b5936cf8b6b3f8e97dea3a872ee1883111d645edbeb",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F01/spec.md",
+      "bytes": 3109,
+      "sha256": "6251241404809d6a8f48844add295fde34cfd03c0949bbe6f5a989eb552a8871",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F03/context.md",
+      "bytes": 1380,
+      "sha256": "fb85c7d2099800089a8aab6fea36c381916a7d07cc7d1451b880c460eddfa912",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F03/intent.md",
+      "bytes": 1019,
+      "sha256": "0493df141a1a54feaa3a6af541203793ce8328a06402706f90bb3c114934644f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F03/plan.md",
+      "bytes": 8023,
+      "sha256": "fa4b92e82c97fcd2c5c017a16a9f0cfe23422c654ffb1bdb69f4eeece46eea17",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/F03/spec.md",
+      "bytes": 6167,
+      "sha256": "5c33984b5d1e0d796160b6d26b978f84f4620437a0e71ead9c4a5384391d47aa",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/context.md",
+      "bytes": 2116,
+      "sha256": "2dabc6b2607527022c6e850cecee390be26033195efe4c6036e83b0530211264",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/design/architecture.md",
+      "bytes": 6497,
+      "sha256": "3f9f193aa7a54c86e79c92658c81dac851aa25e7c213493ddce3e30e5841cc9a",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/design/operations.md",
+      "bytes": 2021,
+      "sha256": "6d1170765d1c9f717a8e36be30f7b9c97d877c214821e9d906e5f0a3331dad7c",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/design/storage.md",
+      "bytes": 4409,
+      "sha256": "e5cb33be6f153e6ef77603df558ed564bd0d949ccf53bcc3e4f3893322f9c75d",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/inputs/current-contract.md",
+      "bytes": 5229,
+      "sha256": "f5d7d83a71b65fc3fe85a74653f0bfee28acbaa52e9c2a144723a6cecb478a13",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/intent.md",
+      "bytes": 1002,
+      "sha256": "51e1bdddf2cb09e82bcff74008e7304f49e2235880cab3739bc776e91dc94628",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/plan.md",
+      "bytes": 17361,
+      "sha256": "4d8ec6faad8fcdd80d08e35f54252c7c9e9fbe1e0592701c4119e0de63ee7d80",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/M01/spec.md",
+      "bytes": 7670,
+      "sha256": "8eafca6693e5c24c96252f385ba9ad2143ee2a875e49bbdfa391ff9fbc0959d5",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/W01/context.md",
+      "bytes": 6039,
+      "sha256": "45ac0109cc14ccdf27aba75e3b65eb970758f4f66363f7c8b131076a1db90000",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/W01/intent.md",
+      "bytes": 1479,
+      "sha256": "c64fe0a9cae76f0ed991278f48042cce4c69f378781fe8e515d0c388d2966557",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/W01/plan.md",
+      "bytes": 12767,
+      "sha256": "db169a401d24e89476c4294dddc96843af926254f5e1a12654a1ee4bb51ef4b8",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/examples/W01/spec.md",
+      "bytes": 12520,
+      "sha256": "79a3eb21a7669c982c9072308e552733967561b9fbd2e43a394a600c398d49e5",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/inputs/README.md",
+      "bytes": 1277,
+      "sha256": "52d148824ca56e5951855e64ed8acf473de99d0298b186412b146786ab32a207",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/inputs/b01-requests.json",
+      "bytes": 315,
+      "sha256": "3092fab6bf33de6ed0ac91638c768f7e08fbee693e95e30bff80684d4b9a649f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/inputs/baseline/test_tracker.py",
+      "bytes": 2294,
+      "sha256": "c0f8d34a164a9dbf059ad6d5a0b9763ec3914fca3aaca02c8545188046e746e3",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/inputs/baseline/tracker.py",
+      "bytes": 1617,
+      "sha256": "2520f1266ea027e66936887768a595e7ec60253a8243019f436eed02b00d1653",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/inputs/cases.md",
+      "bytes": 4968,
+      "sha256": "327a915d2b3cfdcf2007b0872a5463eedb06072bbf79badecb9529d809768e51",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/docs/sdlc-authoring/inputs/f01-requests.json",
+      "bytes": 394,
+      "sha256": "c038196ad9f748e482a446e4025e4c6c0746b23942c39f5f457ad37dd9a53795",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/README.md",
+      "bytes": 2911,
+      "sha256": "067dfe1c98b0ac00b95a7ee3a843e831563fc0f6b681a359ddd19ec57802223b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/capture-intent/SKILL.md",
+      "bytes": 1741,
+      "sha256": "8841a9c6d532adfb98945f5b739a864f9819139e620400b3338d5a6e3baeecab",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/SKILL.md",
+      "bytes": 6242,
+      "sha256": "9016009e1acf4e3aa81f2c211be3bfa08f6f61d8764862ba6632a0eccebad974",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/README.md",
+      "bytes": 402,
+      "sha256": "a0e3161e8d23aaf79e4b6424bd692c0de36b5b25909a26fb84e914795159fd35",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/bug/context.md",
+      "bytes": 1561,
+      "sha256": "1637cdca8b05211529398d9353802f2522e818c18f9c7a2fbae14a9b0667f09b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/bug/intent.md",
+      "bytes": 1238,
+      "sha256": "3c58da2268b96701bf24d1ce1ec9fe49357bf6f7d7f94dbb8860ed69f1bc195f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/bug/spec.md",
+      "bytes": 4330,
+      "sha256": "beac1c985454ea7dbda342f8e5924e0f2c580940957155652f49d172d6a9548c",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/feature/context.md",
+      "bytes": 1756,
+      "sha256": "4431542da7b8918b2d5b5c48a5e0fd664bebe57a53b99c08889a54c171bcd0e4",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/feature/intent.md",
+      "bytes": 1033,
+      "sha256": "abbff0e914c3f8b5e6c7f33972678b261e15e6fa29736bed4d4b00fb091dfae4",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/feature/spec.md",
+      "bytes": 3436,
+      "sha256": "25dda2bab919f1c44d353dd18da6f90b97e5226696a748adcf9cc71b980b5b4b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/migration/context.md",
+      "bytes": 4856,
+      "sha256": "515f8284978c2fa8cb1f1f61e82e7ae7e6152fc3f6f6ce3db33a5a3b56d7809a",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/migration/intent.md",
+      "bytes": 1522,
+      "sha256": "85819b603bfa073781507273234cd322d8dd995375b39fb8a0fa68efdbb15267",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/examples/migration/spec.md",
+      "bytes": 9740,
+      "sha256": "2194241f15b9fcc4c6acba64e8a6f074edf8829c0f70ef792d85f94ef410d543",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/references/design-depth.md",
+      "bytes": 5992,
+      "sha256": "1792056544c1d68bfad26bee2de3bad8f9ea960643efabf917074b98aff9cc19",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/design-spec/references/skill-provenance.md",
+      "bytes": 1310,
+      "sha256": "221361e5ad781771a9f122560d879607deb9123d5fd99d5b69e6ac0c1404b6cc",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/SKILL.md",
+      "bytes": 7667,
+      "sha256": "e4b7aaf1449b4aecc0edc427111eeebb79b19f975574238fbcc1550b072f0183",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/README.md",
+      "bytes": 1104,
+      "sha256": "1d58a819b187bb5119d9dbb815b6e61b9f6ee1bff1c6bc03f4e244000492db15",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/bug.md",
+      "bytes": 2574,
+      "sha256": "8cefeafe4dc347f95421beea77c1bdfb52f678cf67113cee54b4f58a302276f0",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/context.md",
+      "bytes": 3843,
+      "sha256": "5b3e2139f03347c025f6970a31ffcec8e51c140e7b506641b979d4569317580f",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/disposable-ui-exploration.md",
+      "bytes": 3911,
+      "sha256": "83c22e0c4c4c2d63e466512f9af4d49d5a83a83cdc64f6a3f164538d2fdabb2b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/feature.md",
+      "bytes": 2200,
+      "sha256": "f10fc803b6b6bdd42e00195dbf06d20cc994d55ba51126b8531390ae82ed5500",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/migration.md",
+      "bytes": 6983,
+      "sha256": "d5dee65533a61989f941adb69b5bf3c1e56832ff97c256a8e82cde1f6396399e",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/refactor-existing-tests.md",
+      "bytes": 3705,
+      "sha256": "02634bd94cacb127d3531ead64007df403533ff08c68d7639e7d951ef7366345",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/two-pr-spec.md",
+      "bytes": 1473,
+      "sha256": "88cef7981dcada376559fb79364a7137c20d67695f205d631286e9c39d91b14b",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/examples/two-pr.md",
+      "bytes": 3320,
+      "sha256": "1038a9782b0da5298bef5318745457b2b7ca9cee7e276d627fd18222588a4765",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/examples/skills/plan/references/execution-depth.md",
+      "bytes": 5778,
+      "sha256": "fd73601b421635bd6d397039e3103e987741e075e90a52773428f61c7d23e075",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/intent/README.md",
+      "bytes": 740,
+      "sha256": "1595906c0dab6bb35d5d26aa4dd7dc37460aa4ee937312189e9b2c74f36e3fae",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/templates/intent.md",
+      "bytes": 828,
+      "sha256": "ed0a1cc1307daa7c03c72a48b988e87d4b3c4d614987eaa9783c6f955ecbddb7",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/templates/plan.md",
+      "bytes": 5456,
+      "sha256": "962c53f66c92e8b39d83f0e06934e49f915cae8e7a524a1bcfb40c7b262a3ef1",
+      "audience": "source; installation allowlist in design"
+    },
+    {
+      "path": "tdd-optional/project/templates/spec.md",
+      "bytes": 3934,
+      "sha256": "fae59a558201513295d5340dfd00fe95a55e44e46bcbc982108706d127aa0108",
+      "audience": "source; installation allowlist in design"
+    }
+  ]
+}

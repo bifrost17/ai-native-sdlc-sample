@@ -1,0 +1,42 @@
+{
+  "cutoff_date": "2026-09-12",
+  "window_start": "2024-09-12",
+  "selection_rule": "Choose the latest two eligible merged PRs per feature, bugfix, and refactor category. If at least four of the initial six have unknowable chronology, add the next eligible PR per category, capped at nine per repository.",
+  "candidate_queries": [
+    "repo:OpenHands/OpenHands is:pr is:merged merged:>=2024-09-12",
+    "repo:OpenHands/OpenHands is:pr is:merged merged:>=2024-09-12 label:\"type: refactor\"",
+    "repo:SWE-agent/SWE-agent is:pr is:merged merged:>=2024-09-12",
+    "repo:SWE-agent/SWE-agent is:pr is:merged merged:>=2024-09-12 (feat OR enh OR add OR support) in:title",
+    "repo:SWE-agent/SWE-agent is:pr is:merged merged:>=2024-09-12 (simplify OR move OR cleanup OR restructure OR ref) in:title",
+    "repo:obra/superpowers is:pr is:merged merged:>=2024-09-12",
+    "repo:obra/superpowers is:pr is:merged merged:>=2024-09-12 feat in:title",
+    "repo:obra/superpowers is:pr is:merged merged:>=2024-09-12 refactor in:title"
+  ],
+  "raw_merged_counts_before_manual_exclusions": {
+    "OpenHands/OpenHands": 5667,
+    "SWE-agent/SWE-agent": 312,
+    "obra/superpowers": 172
+  },
+  "exclusion_policy": [
+    "docs-only",
+    "bot or dependency-only upkeep",
+    "generated output only",
+    "release automation or aggregate release vehicle",
+    "issue-template, code-of-conduct, or repository administration with no product implementation"
+  ],
+  "representative_exclusions": [
+    {"repo":"OpenHands/OpenHands","pull_requests":[17221,17245,17243],"reason":"docs, CI housekeeping, or release automation"},
+    {"repo":"SWE-agent/SWE-agent","pull_requests":[1447,1448,1438,1427,1350,1351],"reason":"docs-only, automated hook/dependency upkeep, or warning copy rather than an implementation feature"},
+    {"repo":"obra/superpowers","pull_requests":[2250,2125,2109,2122],"reason":"issue-template metadata, aggregate release vehicle, docs-only, or code-of-conduct administration"}
+  ],
+  "selected_counts": {
+    "OpenHands/OpenHands": {"feature":3,"bugfix":3,"refactor":3},
+    "SWE-agent/SWE-agent": {"feature":3,"bugfix":3,"refactor":3},
+    "obra/superpowers": {"feature":3,"bugfix":3,"refactor":3}
+  },
+  "limitations": [
+    "GitHub search counts are broad candidate counts before manual category and exclusion review.",
+    "Labels were used where maintained; otherwise title, body, and diff purpose were inspected manually.",
+    "A same-commit result cannot reveal local edit or execution order, especially after squash or rebase."
+  ]
+}

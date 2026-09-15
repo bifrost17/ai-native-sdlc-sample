@@ -1,0 +1,37 @@
+--- a/.agents/skills/ux-copy/SKILL.md
++++ b/.agents/skills/ux-copy/SKILL.md
+@@ -1,20 +1,19 @@
+ ---
+ name: ux-copy
+ description: Write or review UX copy — microcopy, error messages, empty states, CTAs. Trigger with "write copy for", "what should this button say?", "review this error message", or when naming a CTA, wording a confirmation dialog, filling an empty state, or writing onboarding text.
+-argument-hint: "<context or copy to review>"
+ ---
+ 
+ # /ux-copy
+ 
+-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
++> The connector names below are categories, not configured services. See the bundled [CONNECTORS.md](CONNECTORS.md).
+ 
+ Write or review UX copy for any interface context.
+ 
+ ## Usage
+ 
+-```
+-/ux-copy $ARGUMENTS
+-```
++Use the context or copy in the current user request. If the user selected text in another tool, use
++that text only when the tool is actually connected and the selection is available. Do not expect
++`$ARGUMENTS` command-template substitution when this file is loaded as a Codex skill.
+ 
+ ## What I Need From You
+ 
+@@ -92,6 +91,9 @@
+ 
+ ## If Connectors Available
+ 
++Use this section only when the current Codex session exposes a matching connector. If none is
++available, continue from the user-provided context and do not treat `~~...` placeholders as tools.
++
+ If **~~knowledge base** is connected:
+ - Pull your brand voice guidelines and content style guide
+ - Check for existing copy patterns and terminology standards

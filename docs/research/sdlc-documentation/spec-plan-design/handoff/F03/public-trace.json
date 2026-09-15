@@ -1,0 +1,621 @@
+{
+  "schema_version": 1,
+  "archive_kind": "claude_cli_public_trace",
+  "session_id": "b49f73a8-d67f-4921-bdf6-df789d9ef7b0",
+  "source_transcript": "/Users/jake/.claude/projects/-Users-jake-Projects-ai-native-sdlc-sample/b49f73a8-d67f-4921-bdf6-df789d9ef7b0.jsonl",
+  "source_transcript_sha256": "6ff18f680a442fb08fe588f046a8c0c55c5bce92e019d11de9f3286e0b9158aa",
+  "source_record_count": 77,
+  "requested_model": "sonnet",
+  "requested_efforts_by_turn": [
+    "medium",
+    "medium",
+    "high"
+  ],
+  "observed_assistant_models": [
+    "claude-sonnet-5"
+  ],
+  "status": "completed",
+  "export_policy": {
+    "ordinary_user_prompt_rule": "user record with string content, userType external, promptSource sdk, entrypoint sdk-cli, and isSidechain false",
+    "included": [
+      "ordinary user prompts matching the rule",
+      "assistant.content[type=text]",
+      "assistant.content[type=tool_use]",
+      "user.content[type=tool_result]"
+    ],
+    "excluded": [
+      "thinking",
+      "reasoning",
+      "signatures",
+      "system context",
+      "credentials",
+      "all other record and content types"
+    ]
+  },
+  "summary": {
+    "event_count": 34,
+    "ordinary_user_prompt_count": 3,
+    "assistant_text_count": 5,
+    "tool_use_count": 13,
+    "tool_result_count": 13,
+    "paired_tool_use_count": 13,
+    "unpaired_tool_use_count": 0
+  },
+  "phases": [
+    {
+      "turn": 1,
+      "prompt_record_index": 2,
+      "record_range": [
+        2,
+        49
+      ],
+      "requested_model": "sonnet",
+      "requested_effort": "medium",
+      "read_paths": [
+        {
+          "record_index": 13,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/context.md",
+          "category": "candidate"
+        },
+        {
+          "record_index": 15,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/intent.md",
+          "category": "candidate"
+        },
+        {
+          "record_index": 17,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/spec.md",
+          "category": "candidate"
+        },
+        {
+          "record_index": 19,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/plan.md",
+          "category": "candidate"
+        },
+        {
+          "record_index": 21,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/skills/tdd/SKILL.md",
+          "category": "candidate"
+        },
+        {
+          "record_index": 29,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/cases.md",
+          "category": "other_input"
+        },
+        {
+          "record_index": 31,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f01-requests.json",
+          "category": "other_input"
+        },
+        {
+          "record_index": 33,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/baseline/tracker.py",
+          "category": "other_input"
+        },
+        {
+          "record_index": 35,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/baseline/test_tracker.py",
+          "category": "other_input"
+        },
+        {
+          "record_index": 37,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f03-spec-historical.md",
+          "category": "historical"
+        },
+        {
+          "record_index": 39,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f03-plan-historical.md",
+          "category": "historical"
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "prompt_record_index": 50,
+      "record_range": [
+        50,
+        60
+      ],
+      "requested_model": "sonnet",
+      "requested_effort": "medium",
+      "read_paths": []
+    },
+    {
+      "turn": 3,
+      "prompt_record_index": 61,
+      "record_range": [
+        61,
+        76
+      ],
+      "requested_model": "sonnet",
+      "requested_effort": "high",
+      "read_paths": [
+        {
+          "record_index": 65,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/spec.md",
+          "category": "candidate"
+        },
+        {
+          "record_index": 67,
+          "path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/plan.md",
+          "category": "candidate"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "record_index": 2,
+      "timestamp": "2026-09-11T07:32:00.717Z",
+      "uuid": "f8a30b8a-fc4e-4f3f-8135-503fffca86e0",
+      "role": "user",
+      "model": null,
+      "kind": "ordinary_user_prompt",
+      "content": {
+        "type": "text",
+        "text": "문서 인계 점검입니다. 제품 구현·명령 실행·파일 편집·설치는 하지 마세요. docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/plan.md와 spec.md, context.md, intent.md, context가 연결한 baseline과 데이터, docs/research/sdlc-documentation/spec-plan-design/candidate/skills/tdd/SKILL.md만 읽으세요. 이전 리뷰나 다른 예시는 읽지 마세요. 이 문서를 처음 받는 개발 에이전트로서, 대화 없이 실제 구현을 시작할 수 있는지 판단하고 실행할 작업 순서·파일·검증, PR별 통합 후 동작·공개 상태·남은 결정을 한국어로 간결히 재구성하세요. 예정 검증과 관측 사실을 구분하세요. 문서만으로 중요한 결정을 알 수 없으면 정확한 누락을 말하세요. 900단어 이내."
+      }
+    },
+    {
+      "record_index": 12,
+      "timestamp": "2026-09-11T07:32:03.719Z",
+      "uuid": "871ae3fd-8f5e-40f4-bb8c-3088b846216e",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "text",
+        "text": "지정된 문서들을 읽어 인계 판단을 진행하겠습니다."
+      }
+    },
+    {
+      "record_index": 13,
+      "timestamp": "2026-09-11T07:32:04.373Z",
+      "uuid": "73711085-9cd1-4744-b57c-4fcb55b25e10",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01ADS3FS3ZxWDGBscXY71pjf",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/context.md"
+        }
+      }
+    },
+    {
+      "record_index": 14,
+      "timestamp": "2026-09-11T07:32:04.395Z",
+      "uuid": "15b660b4-4d74-46ce-8bc9-608f05a90243",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01ADS3FS3ZxWDGBscXY71pjf",
+        "content": "1\t# F03 작성 예시의 입력\n2\t\n3\t합성 draft. 과거 실험의 성공을 이 후보의 승인·실행 증거로 쓰지 않는다.\n4\t[고정 맥락](../../../inputs/cases.md)의 F03, [데이터](../../../inputs/f01-requests.json),\n5\t[기준 코드](../../../inputs/baseline/tracker.py), [기준 시험](../../../inputs/baseline/test_tracker.py),\n6\t[역사 spec](../../../inputs/f03-spec-historical.md), [역사 plan](../../../inputs/f03-plan-historical.md)을 읽는다.\n7\t제품 배치는 tracker.py, tests/test_tracker.py, requests.json, USAGE.md다. Python 3.9+ 표준 라이브러리.\n8\t목록+집계가 한 공개 단위라는 합성 오너 결정이 있다. 제어는 로컬 프로세스 환경 변수다.\n9\t"
+      }
+    },
+    {
+      "record_index": 15,
+      "timestamp": "2026-09-11T07:32:04.963Z",
+      "uuid": "1a0e62d4-29d5-4ca7-9849-81bd86b919cd",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01Rt7xrwv4ueBTj8umj8vn7D",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/intent.md"
+        }
+      }
+    },
+    {
+      "record_index": 16,
+      "timestamp": "2026-09-11T07:32:04.971Z",
+      "uuid": "ea2022d1-ef08-4d56-9b61-afa59a80ce38",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Rt7xrwv4ueBTj8umj8vn7D",
+        "content": "1\t# Intent: 담당자별 요청 목록과 진행 현황을 함께 제공\n2\tAuthor: 합성 업무 오너 F03. Status: draft.\n3\t\n4\t## Problem\n5\t동료들이 담당 건을 찾은 뒤 전체·미완료·완료 수를 따로 세고 있다.\n6\t## Proposed outcome\n7\t담당자 목록과 집계를 한 기능으로 사용하고 싶다. 두 PR로 개발하되 전체가 준비될 때 공개한다.\n8\t## Affected users and systems\n9\t요청 CLI 목록·집계 사용자와 개발 시험 프로세스.\n10\t## Constraints\n11\t기존 명령·데이터 형식·원순서와 읽기 전용 조회를 유지한다.\n12\t일반 사용자는 미완성 기능을 보지 않으며 개발자는 준비된 부분을 시험할 수 있어야 한다.\n13\t## Open questions\n14\t- Q1 정확 일치와 null, 집계 출력 순서는?\n15\t- Q2 일반/시험 공개는 어떻게 분리하는가?\n16\t- Q3 공개·중단·제어 제거는 언제 누가 하는가?\n17\t\n18\t답은 [context](context.md)의 고정 입력/역사 계약에 있다. 실제 공개 결정은 이 작성 예시에서 미실행이다.\n19\t"
+      }
+    },
+    {
+      "record_index": 17,
+      "timestamp": "2026-09-11T07:32:05.692Z",
+      "uuid": "59a5ab30-a376-4b1e-8b33-1096e904af89",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01TdcywQ9HJCy3mheyVqDXfK",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/spec.md"
+        }
+      }
+    },
+    {
+      "record_index": 18,
+      "timestamp": "2026-09-11T07:32:05.695Z",
+      "uuid": "2185f3c9-c6fd-423c-86bf-1945fd9d7a84",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01TdcywQ9HJCy3mheyVqDXfK",
+        "content": "1\t# Spec: 목록과 집계를 하나의 공개 단위로 제공\n2\tUpstream: intent.md@4a74823. Status: draft.\n3\tSkills applied: none（root가 고정 연구자료를 바탕으로 작성한 합성 예시）.\n4\t작성 권한: 사용자가 설계 패키지 작성을 허가했다. Upstream은 제작 입력이며 제품 수락을 뜻하지 않는다.\n5\t\n6\t[입력](context.md). 두 구현 PR이 같은 공개 제어를 쓴다. 이 파일이 spec 정본이며 과거 실행 결과는 참고 자료다.\n7\t\n8\t## Requirements\n9\t| ID | 변경·보존 계약 | 근거 |\n10\t|---|---|---|\n11\t| R1 | list --owner ID: 정확 일치·대소문자 구별·완료 포함·원순서, null 비일치 | Q1 |\n12\t| R2 | summary [--owner ID]: all/open/done 수를 이 순서로 출력. owner 생략은 전체 | Q1 |\n13\t| R3 | 새 조회 무쓰기, 기존 list/show/complete·데이터·오류 유지 | intent |\n14\t| R4 | 목록+집계가 한 공개 단위. 완성 전 일반 OFF, 개발자는 구현된 부분만 ON 시험 | intent/Q2 |\n15\t| R5 | 설정만으로 공개/중단. 안정화·구버전 의존 확인 후 같은 의미의 최종 기능을 유지하며 제어 제거 | Q3 |\n16\t\n17\t## Acceptance criteria\n18\t원 데이터 네 행을 각 사례에 새로 사용한다. 집계 형식은 이름과 정수 사이 탭, 행 끝 개행이다.\n19\t| ID → 요구 | 상태·행동 | 기대 |\n20\t|---|---|---|\n21\t| AC1 → R1,R3 | ON: list --owner hana | R-101/R-103만 원순서·기존 열, rc0, 바이트 불변 |\n22\t| AC2 → R1,R3 | ON: list --owner nobody/HANA/- 각각 | 빈 stdout·rc0, 바이트 불변 |\n23\t| AC3 → R2,R3 | 두 기능 구현 후 ON: summary, summary --owner hana/min/nobody | 각각 (4,3,1), (2,1,1), (1,1,0), (0,0,0)의 all/open/done 세 줄·rc0·무쓰기 |\n24\t| AC4 → R2,R3 | complete R-101 후 ON: summary --owner hana | (2,0,2). 완료 뒤 바이트를 기준으로 집계 무쓰기. all=open+done |\n25\t| AC5 → R3,R4 | 제어가 있는 판의 OFF: list --owner hana, summary | 둘 다 argparse rc2로 거부. 기존 무옵션 list/show/complete는 기존대로 |\n26\t| AC6 → R4,R5 | 같은 완성 코드에서 OFF→ON→OFF | 설정만으로 새 명령 허용/거부 전환, 기존 동작 유지 |\n27\t| AC7 → R5 | 제거 조건을 충족한 별도 cleanup 판 | 설정 없이 최종 AC1–4와 기존 명령 동작. 예전 OFF 거부는 이 판의 요구가 아님 |\n28\t\n29\tAC3의 표는 세 수의 순서까지 고정한다. 예: 전체 stdout은 `all\\t4\\nopen\\t3\\ndone\\t1\\n`.\n30\t스키마는 status=open/done만 지원한다. 다른 상태의 수를 누락한 채 all=open+done이라고 주장하지 않는다.\n31\t\n32\t## Design\n33\t공유 제어 이름은 `TRACKER_OWNER_INSIGHTS`. 프로세스 시작 시 \"1\" 또는 대소문자 무관 \"true\"만 ON,\n34\tunset/그 외는 OFF. 주변 공백은 제거하지 않는다. CLI를 실행하는 각 새 프로세스가 자기 환경을 읽는다.\n35\tOFF에서는 argparse에 list의 --owner와 summary를 등록하지 않아 직접 호출도 rc2다.\n36\t기존 명령의 등록·파일 오류 처리는 보존한다. ON일 때만 등록하는 같은 판정 함수를 두 PR에서 재사용한다.\n37\t이 로컬 환경 변수는 사용자 인증이나 서버 권한 장벽이 아니다.\n38\t\n39\tsummary는 읽은 배열에 R1과 같은 필터를 적용한 뒤 all=len, open/done의 수를 세고 출력한다.\n40\t새 쓰기·집계 저장·캐시·새 클래스는 없다. helper 이름은 예시 수준이며 출력/제어 의미가 계약이다.\n41\t\n42\t```mermaid\n43\tstateDiagram-v2\n44\t  [*] --> Partial: PR1 merge\n45\t  state \"PR1: 일반 OFF / 목록 TEST ON\" as Partial\n46\t  state \"PR2: 일반 OFF / 목록+집계 TEST ON\" as Complete\n47\t  state \"같은 코드: 일반 ON\" as Released\n48\t  state \"cleanup: 최종 기능\" as Clean\n49\t  Partial --> Complete: PR2 merge + 통합 검증\n50\t  Complete --> Released: 전체 검증 + 오너 공개 결정\n51\t  Released --> Complete: 환경 설정 OFF\n52\t  Released --> Clean: 제거 조건 충족\n53\t```\n54\t\n55\tPR1의 TEST ON은 목록만 구현된 상태다. summary는 ON에서도 아직 없다. PR2부터 ON에서는 있어야 한다.\n56\t공개 담당은 합성 업무 오너(root 역할), 환경 조작·관측은 개발 실행자다. 공개는 전체 AC1–6와\n57\t최신 main 통합 검증 후 별도 결정한다. 일반 실행 환경에 ON을 적용/제거하고 새 CLI 프로세스로 확인한다.\n58\t중단 OFF는 이미 한 쓰기를 되돌리지 않는다(새 기능은 조회뿐).\n59\t\n60\tcleanup은 PR2 통합·공개/중단 관측, 알려진 구버전/복구 대상의 flag 의존 없음, 오너의 정리 요청이\n61\t충족된 뒤 별도 PR이다. 설정이 없어도 최종 기능이 동작하는 코드/시험/설명을 먼저 배포한 뒤\n62\t남은 설정을 제거한다. 합성 예시에서 이 조건들은 아직 이행되지 않았다.\n63\t\n64\t## Constraints and scope\n65\t로컬 CLI 모의. hosted 배포·인증·장기 안정성 검증은 범위 밖이다. 두 기능은 한 공개 단위이며\n66\tPR마다 기능 노출 코드를 수동 전환하지 않는다. 다중 담당자·정렬·새 status·데이터 이행은 제외한다.\n67\t\n68\t## Open questions\n69\t- Q1 answered: R1/R2와 AC의 합성 오너 답/역사 계약.\n70\t- Q2 answered: 프로세스별 환경 제어. 개발 ON과 일반 공개는 별개(R4/Design).\n71\t- Q3 answered: 위 책임/조건. 실제 공개·제거 결정은 해당 시점에 기록하며 미리 승인 처리하지 않음.\n72\t\n73\t## Flagged concerns\n74\t부분 시험 성공을 전체 공개 승인으로 바꾸지 않는다. 이 로컬 제어를 실제 서비스에 적용할 때는\n75\t실제 배포·권한 경계를 다시 설계해야 한다. 현재 합성 CLI에서는 미해결 설계 우려 없음.\n76\t"
+      }
+    },
+    {
+      "record_index": 19,
+      "timestamp": "2026-09-11T07:32:06.226Z",
+      "uuid": "3467b48a-8b7a-439c-a7d5-f49ef24ab4cb",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01MnjbqZDRPjoLxqRpKnqrnW",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/plan.md"
+        }
+      }
+    },
+    {
+      "record_index": 20,
+      "timestamp": "2026-09-11T07:32:06.231Z",
+      "uuid": "785bedb9-6463-45a3-8c5c-7510b60e065f",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01MnjbqZDRPjoLxqRpKnqrnW",
+        "content": "1\t# Plan: 두 PR로 구현하고 설정으로 한 번 공개\n2\tUpstream: spec.md@23845b5. Status: draft.\n3\t합성 작성 예시. 사용자 허가 범위는 설계 패키지이며 제품 계획 승인/구현 성공이 아니다.\n4\t[spec](spec.md)와 [입력](context.md)을 함께 읽는다. 모든 시험은 예정이며 이름은 추가 계획이다.\n5\t\n6\t## Files that change\n7\t| PR | 경로 | 목적 |\n8\t|---|---|---|\n9\t| 1 | tracker.py, tests/test_owner.py (new), tests/test_release_control.py (new), USAGE.md | 공유 제어·목록·일반 OFF/목록 TEST ON |\n10\t| 2 | tracker.py, tests/test_summary.py (new), tests/test_release_control.py, USAGE.md | 같은 제어의 집계·전체 ON/OFF |\n11\t| cleanup (조건부) | tracker.py, tests/test_release_control.py, tests/test_owner.py, tests/test_summary.py, USAGE.md | 제어 제거와 최종 계약 시험/문서 정리 |\n12\ttests/test_tracker.py는 기존 회귀. spec.md/plan.md는 계약·실행 변경이 있을 때 관련 구현과 같이 갱신한다.\n13\t\n14\t## Order of work\n15\tPR1→PR2 순차. tracker.py/USAGE.md를 공유하므로 두 구현을 병렬 branch로 동시에 편집하지 않는다.\n16\t각 PR은 최신 main에서 짧은 branch/worktree로 시작해 기능·시험·설명을 함께 담는다.\n17\t\n18\t| PR | 완성할 목적·선행 | 머지 후 main과 일반/시험 상태 | 남은 범위·Proof |\n19\t|---|---|---|---|\n20\t| 1 | 담당자 목록과 공통 제어. 선행 없음 | 기존 명령 사용 가능. 일반 OFF에서 두 새 명령 거부, TEST ON에서 목록만 가능 | 집계·전체 공개 남음. P0/P1/P2 |\n21\t| 2 | 집계와 같은 제어. PR1 main에 의존 | 일반 OFF 유지, TEST ON에서 목록+집계 전체 가능 | 공개/중단 결정과 조건부 제거 남음. P0–P4 |\n22\t| cleanup | 공개/중단 관측·안정화/구버전 의존 해소·오너 정리 요청 뒤 | 설정 없이 최종 기능 제공 | 제품 범위 완료, 설정 제거 확인. P0/P1/P3/P5 |\n23\t\n24\tPR1: 기준 P0 → AC1 전체 stdout·rc0를 기대하는 목록 시험을 ON 환경에서 먼저 작성·실행한다.\n25\t현재는 --owner 미지원 rc2가 예상 RED다. 최소 목록/제어 연결로 GREEN 후 OFF 거부/설정 값별 P2를 확인한다.\n26\tOFF는 기존 코드에서도 실패할 수 있으므로 그 자체를 새 기능 RED로 주장하지 않는다.\n27\tON 성공과 OFF 거부를 함께 보여 제어가 작동하는지 판정한다. ON의 summary 부재는 PR1 시점 관측만 남긴다.\n28\t\n29\tPR2: 새 tests/test_summary.py에서 all/open/done 세 줄 시험을 먼저 실행, 현재 명령 미지원 rc2 RED 확인\n30\t→ 최소 집계 → 담당자별/완료 후 사례와 읽기 전용·설정 조합 확인. 각 새 동작의 예상 실패를 확인하며\n31\t이미 GREEN인 경우에는 그대로 회귀로 보존한다. PR1의 목록·OFF 거부 시험은 유지한다.\n32\tsummary가 ON에서도 없어야 한다는 PR1의 단계 한정 관측은 영구 회귀로 고정하지 않는다.\n33\t\n34\t각 PR의 필요한 리팩터링 후 전체 시험, 최신 main과 결합한 판·통합 main 검증을 한다.\n35\tRED/GREEN의 명령·코드판·실패 이유·출력과 일반/시험 환경을 PR 기록에 남긴다.\n36\t\n37\t공개 담당(root 역할)이 P0–P4 전체와 완료 범위를 확인해 공개 여부를 결정한다.\n38\t같은 완성 코드에서 일반 실행 환경의 TRACKER_OWNER_INSIGHTS=1로 새 프로세스를 실행해 ON,\n39\t설정을 제거해 OFF를 관측한다. 명령 예:\n40\t`env TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data <사본> summary`,\n41\t`env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data <사본> summary`.\n42\t후자는 제어가 있는 판에서 rc2. 설정 변경은 코드 PR이 아니며 결정·적용·관측 판/시각을 기존 공개 기록에 남긴다.\n43\t\n44\tcleanup은 조건이 충족됐다는 근거와 오너 요청이 있을 때 시작한다. 최종 무설정 동작 시험을 먼저 실행해\n45\t기존 OFF 거부가 예상 RED인지 확인한 뒤 flag 판정/조건을 제거한다. 최종 AC1–4는 유지하며 이전 OFF\n46\t거부·값별 토글 시험은 이제 폐기된 계약이라 교체/제거 이유를 spec/plan/PR에 명시한다.\n47\t코드/시험/설명 배포 확인 후 남은 환경 설정을 제거한다. 현재 예시에서 공개/cleanup은 미실행 조건이다.\n48\t\n49\t## Risks\n50\t부분 TEST ON을 일반 공개로 오인하거나 PR1 summary 부재 기대를 PR2까지 유지하면 계약과 시험이 충돌한다.\n51\t단계별 표와 P2/P3로 구분한다. 개발 PC의 환경 변수가 시험에 섞이지 않게 각 subprocess에 변수를 명시 설정/제거한다.\n52\t완료 후 집계 무쓰기 비교는 complete가 끝난 새 바이트를 기준으로 한다. 원본 fixture는 바꾸지 않는다.\n53\t\n54\t## Proof\n55\t기본 실행: `python3 -m unittest discover -s tests -v`. 기존 3개를 제외한 아래 시험은 모두 추가 예정이다.\n56\t| ID·연결 | 시험/관측 | 기대 |\n57\t|---|---|---|\n58\t| P0 R3 | tests/test_tracker.py + 각 명령의 기존 파일 오류 회귀 | 기존 list/show/complete·없는 ID·I/O rc2 유지 |\n59\t| P1 AC1/2 | test_owner.py의 test_owner_exact_and_order, test_owner_nonmatching | ON에서 순서/열·rc·바이트, null/-/HANA/nobody |\n60\t| P2 AC5 | test_release_control.py의 test_off_rejects_new_commands, test_setting_values | unset/0/false/공백true는 OFF; 1/true/TRUE는 ON. 기존 명령은 양쪽 정상. PR1 ON summary 부재는 단계 관측 |\n61\t| P3 AC3/4 | test_summary.py의 test_counts_and_owner, test_counts_after_complete | 네 담당자 조합·전체 세 줄, 완료 후 (2,0,2), all=open+done, 조회 무쓰기 |\n62\t| P4 AC6 | PR2 결합/통합 main 동일 판 OFF→ON→OFF 수동 명령 + P0–3 | 설정만으로 전환. 일부 PR의 ON 성공만으로 전체 통과 아님 |\n63\t| P5 AC7 | cleanup 전체 시험 + 설정 없는 직접 목록/집계 | 최종 기능 유지. 없어진 OFF 계약은 제외, 제거된 제어에 의존하는 실행 대상 없음 |\n64\t\n65\t검증 한계: 로컬 모의, 실제 배포/인증/장기 안정성 아님. 계약·단계가 바뀌면 영향 spec/plan과 시험을\n66\t같은 구현 커밋에서 갱신한다. 단순 시험 보강과 공개 계약의 교체를 구분한다.\n67\t"
+      }
+    },
+    {
+      "record_index": 21,
+      "timestamp": "2026-09-11T07:32:06.687Z",
+      "uuid": "d2086586-cbfb-4a2e-8b06-85f25a393f0a",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01KXPxT9YKAiLVnyR7NahNqj",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/skills/tdd/SKILL.md"
+        }
+      }
+    },
+    {
+      "record_index": 22,
+      "timestamp": "2026-09-11T07:32:06.693Z",
+      "uuid": "0b04742f-c07a-4b86-a956-44a73656f345",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01KXPxT9YKAiLVnyR7NahNqj",
+        "content": "1\t---\n2\tname: tdd\n3\tdescription: Implement new or changed behavior with an observed test-first feedback loop, or assess whether that loop was followed. Use during implementation and behavior-changing fixes; preserve existing proof for pure refactoring. This team default supports the project policy without granting approval or changing scope.\n4\t---\n5\t# Test-driven development\n6\t\n7\tRead the affected spec (including its declared design documents), plan, actual code and existing test commands.\n8\tUse the team's required test-first approach for new/changed behavior. Select one meaningful behavior or boundary\n9\tat a time; do not build a batch of production changes before running their first tests.\n10\t\n11\t1. Write a focused behavior test before its production change. Derive expectations from the agreed contract,\n12\t   examples, an independent calculation or a trusted reference, not by copying the implementation's answer.\n13\t   Exercise the real boundary when practical; substitute external/slow effects without mocking away what is proved.\n14\t2. Run it and inspect why it fails. Missing behavior or a deliberately not-yet-created planned boundary can be\n15\t   expected RED; syntax, wrong imports/paths, bad fixtures or unrelated environment failures are not proof.\n16\t   Resolve setup failures and confirm the behavior assertion discriminates the missing behavior.\n17\t3. Make the smallest adequate production change and rerun the same expectation to GREEN. Add the next case\n18\t   when it teaches new behavior or a material boundary. A case already GREEN is useful regression evidence;\n19\t   do not break production code just to manufacture RED.\n20\t4. Refactor where it improves the design, keeping behavior expectations stable, then rerun affected and neighboring\n21\t   tests. Before reporting completion, run the project's required checks and verify the latest combined result.\n22\t\n23\tFor a defect, reproduce it in a test, run and confirm the expected failure, and commit that test before the protected\n24\tfix stage. Make it pass without altering the frozen test. If a frozen test is demonstrably wrong, leave that stage\n25\tand have the engineer resolve/refix the reproduction through the existing process; do not bypass test protection.\n26\tPure refactoring uses existing behavior tests as a baseline; add missing protection before refactoring where needed.\n27\tNo new behavior means no manufactured RED.\n28\t\n29\tDo not skip/delete/relax assertions merely to get GREEN. A changed requirement, a demonstrated test defect or a\n30\tretired release-control phase can justify a test change: preserve the independent basis, update the affected spec\n31\tand plan with the related implementation, and retain the still-valid regressions. Review a consequential test change\n32\tindependently. Do not turn an implementation mismatch itself into a new expected value.\n33\t\n34\tIf implementation came first, record the deviation honestly. Add missing independent behavior proof and assess\n35\tthe affected risk with the engineer/reviewer; do not claim retroactive TDD or delete/rebuild working code by ritual.\n36\tIf executable test-first proof is infeasible (for example an exploratory spike or a manual-only change), expose\n37\twhy before dependent implementation and obtain the engineer's bounded alternative; do not silently substitute\n38\ttest-after for the team's required approach. Existing authorization for that exact alternative remains valid.\n39\t\n40\tWhen discoveries change contracts/design, update the relevant spec documents; when paths/order/PR/proof change,\n41\tupdate the affected plan in the same implementation commit. Keep actual commands, revision, expected failure reason,\n42\tresults and meaningful deviations in existing execution/PR records. Do not add a per-cycle state ledger or approval.\n43\tUse a model/effort suited to uncertainty and impact for difficult design/test-oracle decisions; repeat errors call for\n44\tbetter evidence/context or stronger review, not a rule for every possible mistake.\n45\t"
+      }
+    },
+    {
+      "record_index": 29,
+      "timestamp": "2026-09-11T07:32:10.490Z",
+      "uuid": "6118c9a0-b724-4b4f-a3ed-f609961a47f7",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01JDiSo6YE217DdsejgbdNr6",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/cases.md"
+        }
+      }
+    },
+    {
+      "record_index": 30,
+      "timestamp": "2026-09-11T07:32:10.503Z",
+      "uuid": "7669ea55-eb2c-435d-98cc-8b207b977666",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01JDiSo6YE217DdsejgbdNr6",
+        "content": "1\t# 네 예시의 입력과 관측 경계\n2\t\n3\t이 자료는 합성 입력을 이미 합의한 상태에서 **문서 작성·인계**를 점검한다. 질문 발견 능력 평가용\n4\t비공개 oracle은 전달하지 않는다. 원 데이터와 역사 실행은 고치지 않는다. 후보가 추가한 설계는\n5\t후보의 선택이며 역사적 승인·실행 관측으로 바꾸어 쓰지 않는다.\n6\t\n7\t## F01 / B01 공통 제품 맥락\n8\t\n9\t원본은 datasets/v1/baseline. 이 폴더의 baseline 두 Python 파일은 수정 없는 입력 사본이다.\n10\t제품 배치: tracker.py, tests/test_tracker.py, requests.json, README.md(기본 사용 설명이 있다는 합성 조건).\n11\t시험 명령: `python3 -m unittest discover -s tests -v`. 기존 세 시험은 목록의 순서/읽기 전용,\n12\tshow의 정상/없는 ID, complete의 대상 변경/반복 바이트 보존을 확인한다. I/O 실패는 추가 확인 대상이다.\n13\t명령: `python3 tracker.py --data requests.json list|show ID|complete ID`.\n14\t출력 행은 id/status/owner-or-'-'/title을 탭으로 잇고 개행한다. 없는 ID는 rc1과 원본 입력을 포함한\n15\t`Request not found: `, 파일 오류는 rc2와 `Cannot read or update requests: ` 접두사를 쓴다.\n16\t새 테스트는 각 사례별 데이터 사본과 격리된 실행으로 작성한다. 자료는 Python 3.9+ 표준 라이브러리\n17\t기준의 합성 CLI이며 실제 회사 서비스나 성능 측정이 아니다.\n18\t\n19\tF01: f01-requests.json. hana의 완료 건 포함, 원순서, 대소문자 구별 정확 일치, null은 문자열과\n20\t비일치, 없는 담당자 빈 stdout/rc0, 조회 바이트 불변. list --owner ID를 추가하며 기존 명령 유지.\n21\t업무 코드 2~4파일 이내라는 원 입력의 상한은 시험·문서에 적용하지 않는다.\n22\t\n23\tB01: b01-requests.json. show/complete의 주변 ASCII space/tab/CR/LF만 허용. 내부 공백·대소문자·\n24\tU+00A0은 그대로 구별. 빈 값·허용 공백뿐·없는 ID는 기존 오류, 저장 ID는 보정하지 않는다.\n25\tcomplete의 정상 status 변경/반복 무쓰기, 실패·조회 바이트 불변을 유지한다.\n26\t\n27\t## F03 — 두 PR, 한 공개 단위\n28\t\n29\tf01-requests.json과 같은 네 행을 사용한다. 제품 사용 문서는 USAGE.md다. F02의 open/done 두 줄\n30\t계약과 다르게 F03은 all/open/done 세 줄이다. 두 기능이 완성되기 전 일반 OFF, 완성된 부분만\n31\t개발자 프로세스 TEST ON. 설정은 로컬 프로세스 환경 변수이며 사용자 인증 장벽이 아니다.\n32\t상세 계약은 f03-spec-historical.md@f1ba82e, 실행 예시는 f03-plan-historical.md@5fc8bdc다.\n33\t후보는 이 역사에서 출발해 TDD 작업 순서와 실제 양식을 보강하되 원 계약의 phase 조건을 보존한다.\n34\t공개/중단과 정리 요청·모의 안정화는 후보에서 아직 수행되지 않은 조건이다.\n35\t\n36\t## M01 — 가상 서비스의 이행\n37\t\n38\t근거는 .claude/skills/design-spec/examples/migration/{intent,context,spec}.md와\n39\t.claude/skills/plan/examples/{context,migration}.md (기준 efa7339). 실제 코드가 없는 가상 배치다.\n40\t단일 호스트 Python 서비스, 기존 웹/API·권한·저장 어댑터, JSON을 SQLite로 바꾸고 야간 보고서는\n41\t기존 GET /requests를 사용한다. 별도 서비스·계정·무중단 요구·성능 개선 수치는 없다.\n42\tGET은 200 {requests:[...]}, 완료는 200 행 객체, 미인증401/권한403/없는ID404/일시저장오류503.\n43\t503은 {error:temporarily_unavailable}. 담당자 본인·운영자만 완료, 거부된 쓰기는 불변이다.\n44\t필드 id/title 문자열·owner 문자열/null·status open/done·원래 순서를 보존한다. JSON schema_version=1.\n45\t이행은 중지 중 원본 보존/전체 유효성/중복·알 수 없는 필드·버전 거부/원자적 import 후 대조.\n46\t경합 대기는 기존 5초 상한. 서로 다른 요청의 겹친 완료 보존과 반복 완료의 멱등성이 요구다.\n47\t전환 후 쓰기 또는 여부 불명은 최신 DB를 일관된 JSON으로 내보내 보존한다. 구 JSON writer의\n48\t동시 쓰기 결함이 남으면 그 경로로 서비스를 재개하지 않는다. 복구는 안전한 최신 SQLite 경로가 기본이다.\n49\t직접 소비자는 보고서 한 개, 다른 writer 없음이라는 합성 후속 결정이 제공됐다.\n50\t운영 호스트의 중지/재개 명령은 미확인이다. 실제 전환 전에 운영자가 채워야 할 조건이며 코드 인계를\n51\t막는 미정과 구별한다. 후보의 데이터 스키마·공유 인터페이스·오류 전달은 spec에서 구체화한다.\n52\t\n53\t예시 Upstream은 제작 입력을 가리키는 것으로 표기한다. 예시를 사용 제품에 복사할 때는 해당 제품의\n54\t실제 경로·수락 판·정책·검증 환경으로 바꾼다. 예정 테스트의 이름은 실행 성공의 증거가 아니다.\n55\t"
+      }
+    },
+    {
+      "record_index": 31,
+      "timestamp": "2026-09-11T07:32:11.041Z",
+      "uuid": "189f5515-8953-4065-ba6d-9cae4500851a",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01N9jVtmyKnTZuBCwJjGp8Rn",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f01-requests.json"
+        }
+      }
+    },
+    {
+      "record_index": 32,
+      "timestamp": "2026-09-11T07:32:11.049Z",
+      "uuid": "6452c057-40bc-4638-aec8-c15ba1a85aec",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01N9jVtmyKnTZuBCwJjGp8Rn",
+        "content": "1\t{\n2\t  \"schema_version\": 1,\n3\t  \"requests\": [\n4\t    {\"id\": \"R-101\", \"title\": \"회의실 키 확인\", \"status\": \"open\", \"owner\": \"hana\"},\n5\t    {\"id\": \"R-102\", \"title\": \"문구함 채우기\", \"status\": \"open\", \"owner\": \"min\"},\n6\t    {\"id\": \"R-103\", \"title\": \"회의록 정리\", \"status\": \"done\", \"owner\": \"hana\"},\n7\t    {\"id\": \"R-104\", \"title\": \"책장 위치 확인\", \"status\": \"open\", \"owner\": null}\n8\t  ]\n9\t}\n10\t"
+      }
+    },
+    {
+      "record_index": 33,
+      "timestamp": "2026-09-11T07:32:11.630Z",
+      "uuid": "9cc31495-f7d3-4bbf-853f-d0561e570f83",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01QiYJHFsDkWZnxfXi1f8zFe",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/baseline/tracker.py"
+        }
+      }
+    },
+    {
+      "record_index": 34,
+      "timestamp": "2026-09-11T07:32:11.637Z",
+      "uuid": "1fd73b93-89fc-44cb-a04b-9ccbbad249df",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01QiYJHFsDkWZnxfXi1f8zFe",
+        "content": "1\t\"\"\"Dataset v1 baseline contract: list, show, and complete local JSON requests.\"\"\"\n2\t\n3\timport argparse\n4\timport json\n5\tfrom pathlib import Path\n6\timport sys\n7\t\n8\t\n9\tdef display(request):\n10\t    return \"\\t\".join((request[\"id\"], request[\"status\"], request[\"owner\"] or \"-\", request[\"title\"]))\n11\t\n12\t\n13\tdef main(argv=None):\n14\t    parser = argparse.ArgumentParser(description=\"Local team request tracker\")\n15\t    parser.add_argument(\"--data\", default=\"requests.json\")\n16\t    commands = parser.add_subparsers(dest=\"command\", required=True)\n17\t    commands.add_parser(\"list\")\n18\t    for name in (\"show\", \"complete\"):\n19\t        command = commands.add_parser(name)\n20\t        command.add_argument(\"id\")\n21\t    args = parser.parse_args(argv)\n22\t    path = Path(args.data)\n23\t    try:\n24\t        data = json.loads(path.read_text(encoding=\"utf-8\"))\n25\t        requests = data[\"requests\"]\n26\t        if args.command == \"list\":\n27\t            for request in requests:\n28\t                print(display(request))\n29\t            return 0\n30\t        request = next((row for row in requests if row[\"id\"] == args.id), None)\n31\t        if request is None:\n32\t            print(\"Request not found: \" + args.id, file=sys.stderr)\n33\t            return 1\n34\t        if args.command == \"complete\" and request[\"status\"] != \"done\":\n35\t            request[\"status\"] = \"done\"\n36\t            path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + \"\\n\", encoding=\"utf-8\")\n37\t        print(display(request))\n38\t        return 0\n39\t    except (OSError, ValueError, KeyError, TypeError) as error:\n40\t        print(\"Cannot read or update requests: \" + str(error), file=sys.stderr)\n41\t        return 2\n42\t\n43\t\n44\tif __name__ == \"__main__\":\n45\t    sys.exit(main())\n46\t"
+      }
+    },
+    {
+      "record_index": 35,
+      "timestamp": "2026-09-11T07:32:12.572Z",
+      "uuid": "277b2835-7492-4155-b080-cadb90d3f14d",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01HD5dmbfvqd5ATXzHgZTQFg",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/baseline/test_tracker.py"
+        }
+      }
+    },
+    {
+      "record_index": 36,
+      "timestamp": "2026-09-11T07:32:12.576Z",
+      "uuid": "54c9f0cb-b9e8-4794-bb68-934676194373",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01HD5dmbfvqd5ATXzHgZTQFg",
+        "content": "1\t\"\"\"Dataset v1 baseline contract: existing list/show/complete behavior stays observable.\"\"\"\n2\t\n3\timport json\n4\tfrom pathlib import Path\n5\timport subprocess\n6\timport sys\n7\timport tempfile\n8\timport unittest\n9\t\n10\t\n11\tROOT = Path(__file__).resolve().parents[1]\n12\t\n13\t\n14\tclass ExistingTrackerTests(unittest.TestCase):\n15\t    def setUp(self):\n16\t        self.temp = tempfile.TemporaryDirectory()\n17\t        self.addCleanup(self.temp.cleanup)\n18\t        self.data = Path(self.temp.name) / \"requests.json\"\n19\t        self.data.write_bytes((ROOT / \"requests.json\").read_bytes())\n20\t        self.original = json.loads(self.data.read_text(encoding=\"utf-8\"))\n21\t\n22\t    def invoke(self, *args):\n23\t        return subprocess.run([sys.executable, str(ROOT / \"tracker.py\"), \"--data\", str(self.data), *args],\n24\t                              capture_output=True, text=True, check=False)\n25\t\n26\t    def test_list_preserves_order_and_does_not_write(self):\n27\t        before = self.data.read_bytes()\n28\t        result = self.invoke(\"list\")\n29\t        self.assertEqual(result.returncode, 0, result.stderr)\n30\t        self.assertEqual([line.split(\"\\t\")[0] for line in result.stdout.splitlines()],\n31\t                         [row[\"id\"] for row in self.original[\"requests\"]])\n32\t        self.assertEqual(self.data.read_bytes(), before)\n33\t\n34\t    def test_show_existing_and_missing_id(self):\n35\t        row = self.original[\"requests\"][0]\n36\t        result = self.invoke(\"show\", row[\"id\"])\n37\t        self.assertEqual(result.returncode, 0, result.stderr)\n38\t        self.assertEqual(result.stdout.split(\"\\t\")[0], row[\"id\"])\n39\t        missing = self.invoke(\"show\", \"R-999\")\n40\t        self.assertEqual(missing.returncode, 1)\n41\t        self.assertIn(\"Request not found\", missing.stderr)\n42\t\n43\t    def test_complete_changes_only_target_status_and_is_repeatable(self):\n44\t        target = self.original[\"requests\"][0][\"id\"]\n45\t        result = self.invoke(\"complete\", target)\n46\t        self.assertEqual(result.returncode, 0, result.stderr)\n47\t        expected = self.original\n48\t        expected[\"requests\"][0][\"status\"] = \"done\"\n49\t        self.assertEqual(json.loads(self.data.read_text(encoding=\"utf-8\")), expected)\n50\t        before_repeat = self.data.read_bytes()\n51\t        self.assertEqual(self.invoke(\"complete\", target).returncode, 0)\n52\t        self.assertEqual(self.data.read_bytes(), before_repeat)\n53\t\n54\t\n55\tif __name__ == \"__main__\":\n56\t    unittest.main()\n57\t"
+      }
+    },
+    {
+      "record_index": 37,
+      "timestamp": "2026-09-11T07:32:13.074Z",
+      "uuid": "7292632b-4e18-4fd1-9608-39875b35a1e3",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01MWUHQ4BZDRe9PX5pixP1jN",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f03-spec-historical.md"
+        }
+      }
+    },
+    {
+      "record_index": 38,
+      "timestamp": "2026-09-11T07:32:13.079Z",
+      "uuid": "bd0a66e4-945d-4613-8e9f-703d0640730c",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01MWUHQ4BZDRe9PX5pixP1jN",
+        "content": "1\t# Spec: 담당자 목록 필터와 all/open/done 집계 (F03)\n2\tUpstream: intent.md@f35b19e. Status: draft.\n3\tReferences applied: EXPERIMENT.md(F03 확정 입력·역할·검증 명령), PROJECT-POLICY.md(미정 슬롯·검증 위치),\n4\tdocs/PROCESS.md, docs/GIT-WORKFLOW.md, docs/PR-SIZE.md, docs/RELEASE-CONTROL.md(공개 제어 설계 절),\n5\ttemplates/spec.md; examples/skills/design-spec/SKILL.md과 그 참조\n6\texamples/skills/design-spec/references/design-depth.md(작성 절차·\"staged exposure\" 표 항목);\n7\texamples/skills/plan/examples/two-pr-spec.md·two-pr.md·plan/references/execution-depth.md는\n8\t같은 \"목록 먼저, 집계 이어서\"의 합성 작성 예시로 형식·분할 판단만 참고했고 실제 승인 근거로 쓰지\n9\t않았다(EXPERIMENT.md의 all/open/done 집계·표시 형식은 이 예시와 다르며 spec에서 새로 정한다).\n10\ttracker.py, tests/test_tracker.py, requests.json, USAGE.md를 읽고 현재 계약과 데이터를 확인했다.\n11\t\n12\t`list`에 선택 `--owner <ID>`를 더해 exact-match 필터를 적용하고, 신규 `summary [--owner <ID>]`로\n13\tall/open/done 집계를 낸다. 두 동작은 EXPERIMENT.md가 정한 한 공개 단위이며, 완성 전에는 개발자\n14\t프로세스만 환경 변수로 켜서 시험하고 일반 실행은 기존 동작 그대로 유지한다(OFF 기본). 사람이 먼저\n15\t판단할 우려는 없다 — 아래 Flagged concerns에서 살핀 범위를 밝힌다.\n16\t\n17\t## Requirements\n18\t- R1. 신규 동작은 환경 변수 `TRACKER_OWNER_INSIGHTS`로 켠다. 값이 미설정이거나 `\"1\"`/`\"true\"`\n19\t  (대소문자 무관) 이외이면 OFF다. OFF에서 `list`는 `--owner`를 인식하지 않고 `summary`\n20\t  하위 명령 자체가 존재하지 않는다(argparse가 알 수 없는 옵션/명령으로 거부). 기존\n21\t  list/show/complete의 동작·출력 열·JSON 필드·오류 메시지는 플래그 값과 무관하게 완전히 동일하다.\n22\t- R2. ON일 때 `list --owner <ID>`는 owner 필드가 `<ID>`와 문자열 그대로 정확히 일치하는 행만\n23\t  원본 순서로 출력한다. 완료(done) 행도 포함한다. owner가 `null`인 행은 어떤 문자열 ID와도\n24\t  일치하지 않는다(화면 표시용 `-`는 실제 값이 아니다). 대소문자 변환·부분 일치·정규화는 하지 않는다.\n25\t  일치하는 행이 없으면 stdout은 비고 rc=0이다. `--owner` 없이 쓴 `list`는 R1의 기존 동작과 같다.\n26\t- R3. ON일 때 `summary [--owner <ID>]`는 대상 집합(전체 또는 R2와 같은 exact-match 조건을 만족하는\n27\t  행)에서 all/open/done 개수를 `all\\t<n>\\nopen\\t<n>\\ndone\\t<n>\\n` 형식으로 그 순서대로 출력하고\n28\t  줄바꿈으로 끝난다. `--owner` 없으면 전체 4행 기준 집계다. 존재하지 않는 owner나 매칭되는 행이\n29\t  없으면 `all\\t0\\ndone\\t0\\nopen\\t0\\n`이 아니라 `all\\t0\\nopen\\t0\\ndone\\t0\\n`으로 0을 출력한다\n30\t  (오류가 아니다). 이 요구는 status가 `open`/`done` 두 값만 쓰는 현재 데이터 계약(requests.json,\n31\t  기존 complete 로직)에서 성립하는 불변식이다: all은 항상 open+done과 같다. 이 계약을 벗어난\n32\t  status 값의 처리는 이번 개발 항목의 범위 밖이다(Design, Constraints and scope 참고).\n33\t- R4. `list --owner`와 `summary`는 조회 전용이다. 두 명령 모두 대상 JSON 파일을 절대 쓰지 않는다.\n34\t  실행 전후 파일 바이트가 같다.\n35\t- R5. OFF 상태에서 산출한 결과는 현재 baseline(`tests/test_tracker.py`)과 완전히 같다. 즉 이번\n36\t  변경은 플래그 OFF인 한 어떤 기존 사용자에게도 관측 가능한 차이를 만들지 않는다. R1·R5의 이\n37\t  OFF/ON 구분은 `TRACKER_OWNER_INSIGHTS`와 그 조건부 분기가 존재하는 동안 적용된다 — 정리 이후의\n38\t  계약은 R6을 따른다.\n39\t- R6. 정리(clean-up) 이후 계약: Design의 모의 안정화 조건을 root가 실제로 충족했다고 선언하고\n40\t  별도 정리 PR을 진행하면, `TRACKER_OWNER_INSIGHTS`와 관련 조건부 분기를 제거한다. 이후\n41\t  `list --owner`와 `summary`는 플래그 없이 항상 존재하는 기본 명령이 되며 R2~R4의 동작(정확 일치·\n42\t  all/open/done 집계·read-only)은 그대로 유지한다. 정리 이후에는 R1의 \"OFF에서 명령이 존재하지\n43\t  않는다\"와 R5의 \"OFF 결과가 baseline과 같다\"는 전제 자체가 없어진다(플래그가 사라졌기 때문이다) —\n44\t  이는 계약을 약화한 것이 아니라 안정화된 최종 동작이 새 기본값이 된 것이다. 정리 이전에는 R1~R5가\n45\t  그대로 적용된다.\n46\t\n47\t## Acceptance criteria\n48\t데이터는 `requests.json`의 4행(R-101 hana/open, R-102 min/open, R-103 hana/done, R-104 owner=null/open)\n49\t을 기준으로 하며, 쓰기 시험은 임시 복사본을 쓴다(기존 test_tracker.py 방식과 동일).\n50\t- AC1 → R1,R5: 플래그 미설정에서 `list --owner hana`, `list --owner=hana`류 시도는 argparse 오류로\n51\t  거부되고(`unrecognized arguments`), `summary`도 알 수 없는 명령으로 거부된다. 같은 상태에서\n52\t  옵션 없는 `list`/`show`/`complete`는 기존 baseline 세 시험과 동일하게 동작한다.\n53\t- AC2 → R1,R2: 플래그를 `\"1\"`로 설정하면 `list --owner hana`가 R-101, R-103만 그 순서로 출력한다.\n54\t  `TRACKER_OWNER_INSIGHTS=yes`처럼 인정하지 않는 값은 OFF와 같다(AC1 재확인).\n55\t- AC3 → R2,R4: ON에서 `list --owner nobody`, `list --owner HANA`, `list --owner -` 각각 빈 stdout·\n56\t  rc=0이며 파일 바이트가 실행 전과 같다. `owner=null`인 R-104는 어떤 문자열로도 매칭되지 않는다.\n57\t- AC4 → R3,R4: ON에서 `summary`(옵션 없음)는 `all\\t4\\nopen\\t3\\ndone\\t1\\n`, `summary --owner hana`는\n58\t  `all\\t2\\nopen\\t1\\ndone\\t1\\n`, `summary --owner min`은 `all\\t1\\nopen\\t1\\ndone\\t0\\n`,\n59\t  `summary --owner nobody`는 `all\\t0\\nopen\\t0\\ndone\\t0\\n`을 출력하고 각각 파일은 변경되지 않는다.\n60\t- AC5 → R2,R3,R4: 별도 복사본에서 `complete R-101` 실행 후 ON 상태로 `summary --owner hana`를\n61\t  호출하면 `all\\t2\\nopen\\t0\\ndone\\t2\\n`이 되고, `list --owner hana`는 두 행 모두 status가\n62\t  `done`으로 출력된다(complete 자체 재검증이 아니라 집계·필터가 최신 파일 상태를 읽는지 확인).\n63\t\n64\t## Design\n65\targparse 서브파서 구성 전에 `os.environ.get(\"TRACKER_OWNER_INSIGHTS\", \"\")`를 읽어 켜짐 여부를\n66\t정하고, ON일 때만 `list`에 선택 `--owner` 인자를 추가하고 `summary` 서브파서를 등록한다. OFF에서는\n67\t현재 파서 구성과 동일해 새 옵션·명령이 애초에 존재하지 않는다 — 이는\n68\tdocs/RELEASE-CONTROL.md가 요구하는 \"메뉴만 숨기지 않고 직접 접근 경로도 막는다\"를 CLI 인자\n69\t차원에서 만족한다. 파일 읽기·JSON 파싱은 기존 흐름을 그대로 쓰고, 목록 필터와 집계 모두 이미 읽은\n70\t`requests` 배열을 한 번 순회해 만든다. 별도 인덱스·정렬·저장은 두지 않는다(intent 제약).\n71\t\n72\t필터: `[row for row in requests if row[\"owner\"] == args.owner]`처럼 원본 순서를 보존하는 단순\n73\t비교면 충분하다. 집계는 대상 집합에서 `len(subset)`과 status별 개수를 세어 all/open/done 세 줄로\n74\t출력한다. 이 항목의 데이터 계약은 status가 `open`/`done` 두 값만 쓰는 현재 스키마로 한정된다\n75\t(requests.json, 기존 complete 로직과 같은 전제). all=open+done 불변식(R3)은 이 계약 안에서만\n76\t보장하는 것이며, 계약을 벗어난 값(예: 새 상태 추가)의 처리는 이번 개발 항목의 범위 밖이다 — 두\n77\t경쟁하는 처리 방식을 제안하지 않는다. 스키마가 바뀌면 별도 intent/spec에서 R3를 다시 정의한다.\n78\t\n79\t공개 단위(RELEASE-CONTROL.md 적용): 공개 단위는 \"담당자 목록 필터 + all/open/done 집계\" 전체다.\n80\tPR1~PR2 개발 기간에는 시험 ON 상태에서 목록만 동작하고 집계가 아직 코드에 없는 부분 상태가 실제로\n81\t존재하며, 이는 개발자 프로세스의 시험용 **부분 TEST 노출**로 허용된다(RELEASE-CONTROL.md의\n82\t\"독립적으로 완성한 부분부터 시험\") — plan의 PR1이 이 상태다. 허용되지 않는 것은 **부분 GENERAL\n83\t공개**다: root는 목록과 집계가 둘 다 완성·검증되기 전에는 일반 기본(OFF→ON)을 전환하지 않는다.\n84\t하나의 환경 변수 `TRACKER_OWNER_INSIGHTS`를 PR1·PR2가 공유해 이 구분을 표현한다. 신뢰 대상은\n85\t로컬 개발자 프로세스가 같은 셸에서 이 변수를 켜고 호출하는 시험 실행뿐이며 원격 서버 대상이나\n86\t사용자 그룹 구분은 없다(EXPERIMENT.md: 로컬 모의). 설정 실패/미설정/인식 못 하는 값은 모두 OFF로\n87\t접힌다(R1). 이 변수는 프로세스 시작 시 매 실행마다 새로 읽으므로 별도 캐시나 재시작 절차가 없다 —\n88\tCLI가 실행될 때마다 새 프로세스이기 때문이다. 공개(=OFF→ON 기본 전환) 결정과 그 근거는\n89\tEXPERIMENT.md에 따라 root(HUMAN)가 하며 결정 기록 위치는 `intent/f03-owner-insights/decisions.md`와\n90\troot가 보존하는 대화다. 중단(다시 OFF)도 같은 변수 값을 되돌리는 것으로 충분하며 파일 쓰기가 없어\n91\t데이터 되돌림은 필요 없다.\n92\t\n93\t정리(clean-up, R6): PR2까지 통합되고 root가 명시적으로 정리를 요청하면 별도 정리 PR을 진행한다.\n94\t이번 로컬 프로브의 모의 안정화 조건은 root가 정한 다음 값이다 — PR2의 ON/OFF와 인접 흐름(list/\n95\tshow/complete) 검증을 마친 뒤, root가 모의 공개/중단 관측을 기록하고 이 제어를 읽는 구버전\n96\t프로세스나 롤백 대상이 없다고 선언한다. 이 조건은 로컬 정리 시험을 대신할 뿐이며 실제 운영\n97\t안정화 기간이나 다중 배포 대상의 안전성을 입증하지 않는다. 조건 충족 여부와 그 선언은\n98\t`intent/f03-owner-insights/decisions.md`에 남긴다. 정리 PR의 실행 상세(제거 대상 코드·시험·문서,\n99\t남길 회귀 시험)는 plan이 갖는다.\n100\t\n101\t## Constraints and scope\n102\tPython 3.9+ 표준 라이브러리만 쓰고 원본 `requests.json`은 보존하며 쓰기 시험은 사본을 쓴다(intent).\n103\t업무 코드 변경은 `tracker.py` 한 파일이면 충분하고 시험·문서는 별도 파일이다. 작은 순차 PR\n104\t(목록 → 집계)과 동일한 공개 제어 재사용은 plan에서 다룬다. 미배정 전용 조회, 부분/대소문자 무관\n105\t일치, 복수 담당자 동시 조회, status 재정의·새 저장 필드·원격 시스템·설치·배포는 범위 밖이다.\n106\t표시 형식(`all/open/done` 순서의 탭 구분 줄)은 이번 spec에서 새로 확정한 계약이며 바꾸려면 이\n107\t문서 개정이 먼저 필요하다.\n108\t\n109\t## Open questions\n110\t없음 — intent의 질문 없음을 이어받았고, EXPERIMENT.md가 확정한 입력(exact-match, all/open/done,\n111\t빈 결과 0, 원본 순서, read-only, 같은 공개 제어)을 그대로 반영했다. 표시 형식과 플래그 이름/값은\n112\t이 spec에서 새로 제안하는 결정이며, 위 Design에 근거를 남겼다. 리뷰에서 형식이 바뀌면 이 문서를\n113\t개정한다.\n114\t- Q4 answered: root의 32d64b9 리뷰에서 세 가지를 확인했다 — (1) 부분 TEST 노출과 부분 GENERAL\n115\t  공개는 서로 다른 것이며 전자는 PR1 시점에 허용된다(위 공개 단위 문단, R1 유지), (2) all=open+done\n116\t  불변식(R3)은 open/done만 쓰는 현재 데이터 계약에 한정하고 다른 status 처리는 범위 밖이다(R3,\n117\t  Design), (3) 모의 안정화 조건과 정리 이후 계약을 root가 직접 정의했다(R6, Design \"정리\"). 세\n118\t  결정 모두 이 spec에 반영했으며 `intent/f03-owner-insights/decisions.md`에 근거를 남겼다.\n119\t\n120\t## Flagged concerns\n121\t없음 — 확인한 범위: 외부 연동·인증·권한 경계를 바꾸지 않고, 새 저장 형식이나 원격 전송이 없으며,\n122\t플래그 기본값이 OFF라 일반 실행에 관측 가능한 변화가 없다(R1,R5). PROJECT-POLICY.md의 다른\n123\t미정 슬롯(이름·정책·CI 등)은 이번 F03 범위와 무관해 건드리지 않았다. 이는 팀의 모든 정책을\n124\t검토했다는 뜻은 아니며, 채택 팀이 별도 제약을 주면 관련 R·Design을 다시 검토한다.\n125\t"
+      }
+    },
+    {
+      "record_index": 39,
+      "timestamp": "2026-09-11T07:32:13.357Z",
+      "uuid": "6c8787a3-b276-48ff-a423-809f1e852d76",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01DX67HVYH5RWJjZ3fV65zbJ",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/inputs/f03-plan-historical.md"
+        }
+      }
+    },
+    {
+      "record_index": 40,
+      "timestamp": "2026-09-11T07:32:13.361Z",
+      "uuid": "7acafe6b-b4d3-40cf-a250-1a5102c1b73c",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01DX67HVYH5RWJjZ3fV65zbJ",
+        "content": "1\t# Plan: 담당자 목록 필터와 all/open/done 집계 (from intent f03-owner-insights)\n2\tUpstream: spec.md@f1ba82ecb285f69ae12136578e131972f6281753. Status: draft.\n3\tDRAFT 허용: HUMAN(Codex root)이 spec과 함께 검토하도록 초안 작성을 허용했다\n4\t(`intent/f03-owner-insights/decisions.md` \"초안 동시 작성 허용\"). 이 plan 자체의 실행·구현 허가는\n5\t아니며, HUMAN이 spec을 수락한 뒤 이 plan을 별도로 수락해야 한다.\n6\t새 세션이 대화 없이 실행할 수 있도록 필요한 참조: EXPERIMENT.md(검증 명령·역할·데이터),\n7\tdocs/RELEASE-CONTROL.md, docs/GIT-WORKFLOW.md, docs/PR-SIZE.md, USAGE.md, tracker.py,\n8\ttests/test_tracker.py, requests.json, 위 spec.md 전체.\n9\t\n10\t## Files that change\n11\t- `tracker.py`: PR1에서 플래그 읽기·조건부 서브파서 구성·`--owner` 필터, PR2에서 같은 플래그·\n12\t  필터를 재사용하는 `summary` 서브파서와 집계. 새 파일 아님.\n13\t- `tests/test_owner.py` (new, PR1): 플래그 OFF 거부, ON exact-match·순서·null 비매칭·빈 결과·\n14\t  read-only(AC1-AC3).\n15\t- `tests/test_summary.py` (new, PR2): all/open/done 형식·전체/담당자별/없는 담당자 집계·\n16\t  complete 이후 최신 상태 반영·read-only(AC4-AC5). PR2 시점에 test_owner.py도 재실행한다.\n17\t- `USAGE.md`: 플래그 이름·기본 OFF·개발자 시험 실행 예시, `list --owner`(PR1)와\n18\t  `summary [--owner]`(PR2) 사용법을 추가한다. 두 PR 모두 기존 세 줄(list/show/complete) 설명은 유지한다.\n19\t- 조건부(4단계, root의 명시적 정리 요청 후에만): `tracker.py`에서 플래그 읽기·조건부 분기 제거,\n20\t  `tests/test_owner.py`·`tests/test_summary.py`에서 OFF 거부를 확인하던 케이스 제거,\n21\t  `USAGE.md`에서 플래그 설정 언급 제거. 세 파일 모두 이번 PR1/PR2에서는 바꾸지 않는다.\n22\t\n23\t## Order of work\n24\t1. **기준 확인.** 작업 브랜치를 최신 `main`에서 만들고 `python3 -m unittest discover -s tests -v`로\n25\t   기존 3개 시험이 그대로 통과하는지 먼저 확인한다(회귀 기준선).\n26\t2. **PR1 — 담당자 목록 필터, 공개 제어 도입.** `TRACKER_OWNER_INSIGHTS` 읽기와 조건부 argparse\n27\t   구성을 넣고, OFF에서 `--owner`/`summary`가 존재하지 않음을 먼저 확인한 뒤 ON 경로의 필터를\n28\t   구현한다(R1,R2,R4). `tests/test_owner.py`와 `USAGE.md`의 목록 절을 함께 커밋한다.\n29\t   main에 머지되면 일반 실행은 기존과 동일(OFF)하고, 개발자 프로세스만 플래그를 켜 목록 필터를\n30\t   시험할 수 있다. summary는 아직 없다 — 이 PR만으로 공개 단위가 끝난 것은 아니다.\n31\t3. **PR2 — all/open/done 집계.** PR1이 검토·통합된 뒤 그 최신 `main`에서 새 브랜치를 만들고\n32\t   `summary` 서브파서와 집계를 같은 플래그·같은 exact-match 의미로 연결한다(R3,R4,R5).\n33\t   `tests/test_summary.py`와 `USAGE.md`의 요약 절을 추가하고, `test_owner.py`를 다시 실행해\n34\t   목록 동작이 그대로인지 확인한다. main에서 목록·요약·기존 list/show/complete가 모두 ON/OFF\n35\t   양쪽에서 의도대로 동작하면 이번 공개 단위(F03)의 구현 범위가 끝난다.\n36\t4. **공개/중단 결정.** PR2 통합 후 root가 실제로 `TRACKER_OWNER_INSIGHTS`를 일반 기본으로 켤지\n37\t   결정한다(EXPERIMENT.md의 이후 단계: \"같은 코드에서 설정 공개/중단\"). 이 plan은 켜는 코드\n38\t   변경을 만들지 않는다 — 값 전환은 root의 로컬 환경 설정과 결정 기록\n39\t   (`intent/f03-owner-insights/decisions.md`)으로 이루어진다.\n40\t5. **정리 PR(조건부 — root의 명시적 요청 후에만 실행).** 트리거는 spec R6/Design \"정리\"의 모의\n41\t   안정화 조건: PR2의 ON/OFF와 인접 흐름(list/show/complete) 검증 완료, root의 모의 공개/중단\n42\t   관측 기록, 이 제어를 읽는 구버전 프로세스·롤백 대상이 없다는 root의 선언 — 이 세 가지가\n43\t   `intent/f03-owner-insights/decisions.md`에 기록된 뒤에만 착수한다. 이 단계는 이번 PR1/PR2\n44\t   작업의 일부로 지금 실행하지 않으며, root가 별도로 착수를 요청할 때 새 브랜치에서 수행한다.\n45\t   범위: `tracker.py`에서 `TRACKER_OWNER_INSIGHTS` 읽기와 조건부 서브파서 분기를 제거해\n46\t   `list --owner`/`summary`를 무조건 사용 가능한 명령으로 만든다(R6). `tests/test_owner.py`·\n47\t   `tests/test_summary.py`에서 OFF 거부를 확인하던 케이스만 제거하고, exact-match·all/open/done·\n48\t   read-only 등 최종 동작을 확인하는 나머지 시험은 그대로 남겨 회귀 시험으로 유지한다.\n49\t   `USAGE.md`에서 플래그 설정·시험 방법 언급을 지우고 두 명령을 기본 사용법으로 옮긴다. 기존\n50\t   list/show/complete 관련 시험·설명은 전혀 건드리지 않는다.\n51\t\n52\t두 PR은 `tracker.py`·`USAGE.md`와 플래그·exact-match 의미를 공유하므로 병렬 세션 없이 순차\n53\t진행한다. 코드량이 작다는 이유로 한 PR에 몰아 목록 인도를 늦추거나, 시험만 별도 PR로 떼지 않는다.\n54\t실제 브랜치명·PR 번호·수락 SHA·머지 커밋은 실행 시 `intent/f03-owner-insights/decisions.md`에 남긴다.\n55\t\n56\t## Risks\n57\t- 가장 위험한 단계는 PR2에서 플래그 읽기·필터 로직을 목록과 공유하도록 리팩터링하는 부분이다.\n58\t  잘못 공유하면 PR1이 이미 통과시킨 exact-match·null 비매칭·순서·OFF 거부가 깨질 수 있다.\n59\t  대응: PR2에서 `test_owner.py`를 반드시 재실행하고, 실패하면 공유 리팩터링을 수정한 뒤\n60\t  재검증한다 — 이미 사용 가능한 목록 기능이 계속 됐다고 재판정하지 않는다.\n61\t- OFF 기본값이 새지 않는지가 두 번째 위험이다. argparse 구성을 조건 없이 항상 추가해 버리면\n62\t  일반 실행에서도 `--owner`/`summary`가 노출된다. 대응: AC1을 각 PR에서 실제로 실행해 OFF에서\n63\t  거부됨을 관측하고, 커밋 전 플래그 관련 조건문 위치를 diff에서 직접 확인한다.\n64\t- status 값이 open/done 외의 값을 갖게 되는 향후 변경이 있으면 all과 open+done 합이 달라질 수\n65\t  있음을 spec Design에 남겼다 — 지금 데이터·완료 흐름(complete는 done만 만든다)에서는 발생하지\n66\t  않는 낮은 위험이라 이번 plan에서 추가 코드를 두지 않는다.\n67\t\n68\t## Proof\n69\t각 PR은 `python3 -m unittest discover -s tests -v`로 그 시점의 전체 시험을 통과해야 한다(기존\n70\t3개 + 해당 PR까지 추가된 시험).\n71\t- PR1: `test_owner.py`에 다음을 포함한다 — 플래그 미설정/무효 값에서 `list --owner hana`와\n72\t  `summary`가 각각 argparse 오류로 거부됨(AC1); 플래그 `\"1\"`에서 `list --owner hana`가 R-101,\n73\t  R-103만 원래 순서로 출력(AC2); 같은 상태에서 `nobody`/`HANA`/`-`가 빈 stdout·rc=0(AC3); 위 모든\n74\t  케이스에서 파일 바이트 불변. 기존 3개 시험도 변경 없이 통과해야 한다(R5 회귀 확인).\n75\t- PR2: `test_summary.py`에 다음을 포함한다 — ON에서 옵션 없는 `summary`가\n76\t  `all\\t4\\nopen\\t3\\ndone\\t1\\n`(AC4); `--owner hana`가 `all\\t2\\nopen\\t1\\ndone\\t1\\n`, `--owner min`이\n77\t  `all\\t1\\nopen\\t1\\ndone\\t0\\n`, `--owner nobody`가 `all\\t0\\nopen\\t0\\ndone\\t0\\n`(AC4); 별도 복사본에서\n78\t  `complete R-101` 후 `summary --owner hana`가 `all\\t2\\nopen\\t0\\ndone\\t2\\n`이고 `list --owner hana`의\n79\t  두 행이 모두 done(AC5); 모든 케이스 파일 바이트 불변(R4). `test_owner.py`를 다시 실행해 회귀가\n80\t  없는지 확인한다.\n81\t- 두 PR 모두 머지 전 최신 `main`과 합친 판에서 위 명령을 다시 실행하고, 실제 실행한 명령·판·출력을\n82\t  해당 PR 기록에 남긴다(로컬 merge만 했다면 hosted CI·운영 인도라고 쓰지 않는다 — EXPERIMENT.md는\n83\t  로컬 모의만 다룬다).\n84\t- 수동 관측(자동 시험 보완): 개발자 셸에서 `TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data\n85\t  requests.json list --owner hana`와 동일 조건의 `summary`를 직접 실행해 OFF 기본과 ON 동작의\n86\t  차이를 눈으로도 확인하고, 그 출력을 PR 설명에 붙인다.\n87\t- 정리 PR(조건부, 5단계 실행 시): `python3 -m unittest discover -s tests -v`를 플래그를 전혀\n88\t  설정하지 않은 셸에서 실행해 `list --owner`/`summary`가 이제 기본으로 통과함을 확인한다(R6).\n89\t  OFF 거부를 확인하던 옛 케이스가 삭제됐는지, 나머지 exact-match/all·open·done/read-only 시험과\n90\t  기존 list/show/complete 시험이 모두 그대로 통과하는지 diff와 실행 결과로 함께 남긴다.\n91\t\n92\t이 Proof는 계획된 검사이며 실제 근거는 각 구현 PR/커밋 기록에 남긴다. 구현 중 파일·순서·PR\n93\t경계·검증이 달라지면 그 이유를 같은 구현 커밋에서 이 plan에 반영한다. 수용 기준·동작·범위가\n94\t바뀌면 spec.md를 먼저 개정하고 Upstream을 다시 고정한다.\n95\t"
+      }
+    },
+    {
+      "record_index": 46,
+      "timestamp": "2026-09-11T07:33:02.596Z",
+      "uuid": "27783388-115e-4ff8-886e-6b8c88748c6b",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "text",
+        "text": "## 판단: 대화 없이 바로 구현 착수 가능한가\n\n**불가능.** spec/plan은 기술 계약 면에서는 매우 구체적이지만(요구·AC·출력 바이트까지 고정), 실행에 필수적인 한 가지가 문서에 없습니다: **실제 제품 코드가 놓일 저장소 경로**. context.md/plan.md는 \"tracker.py, tests/test_tracker.py, requests.json, USAGE.md\"라는 파일명만 언급하고, 이 저장소 어디에 그 배치를 만들어야 하는지는 지정하지 않습니다. `inputs/baseline/`은 참조용 사본이라고 명시돼 있고(cases.md), 실제 작업 디렉터리는 별도로 정해져야 합니다. 이 한 가지를 빼면 나머지는 대화 없이 진행 가능한 수준으로 구체적입니다.\n\n또한 spec.md·plan.md·intent.md 모두 `Status: draft`이며, \"사용자 허가 범위는 설계 패키지 작성이며 제품 계획 승인/구현 실행이 아니다\"라고 명시돼 있습니다. 즉 이 문서 자체가 **아직 구현 승인을 받은 상태가 아닙니다.** 인계받은 개발 에이전트는 착수 전에 이 draft가 정식 승인됐는지부터 확인해야 합니다.\n\n## 실행할 작업 순서·파일·검증 (문서 기재 그대로, 미실행 계획)\n\n**사전 확인**: 최신 main에서 `python3 -m unittest discover -s tests -v`로 기존 3개 시험(list 순서/읽기전용, show 정상/누락, complete 변경/반복) 통과 확인 → 회귀 기준선.\n\n**PR1 (담당자 목록 + 공유 공개 제어)**\n- 변경 파일: `tracker.py`, `tests/test_owner.py`(신규), `tests/test_release_control.py`(신규), `USAGE.md`\n- 순서: `TRACKER_OWNER_INSIGHTS` 판정 함수 → OFF에서 `--owner`/`summary` 미등록 확인(RED 기대: 현재 `--owner` 미지원 rc2) → 최소 구현으로 GREEN → OFF 거부·설정값별(unset/0/false/공백/1/true/TRUE) 케이스 확인\n- 머지 후 상태(계획): 일반 실행 OFF 유지, 개발자 TEST ON에서 목록 필터만 가능, summary는 ON에서도 아직 없음(단계 한정 관측, 영구 계약 아님)\n\n**PR2 (all/open/done 집계, 같은 제어 재사용)**\n- 변경 파일: `tracker.py`, `tests/test_summary.py`(신규), `tests/test_release_control.py`(갱신), `USAGE.md`\n- 순서: summary 세 줄 출력 시험 먼저 작성·rc2 RED 확인 → 최소 집계 구현 → 담당자별/완료 후/설정 조합 확인, `test_owner.py` 재실행으로 회귀 확인\n- 머지 후 상태(계획): 일반 OFF 유지, TEST ON에서 목록+집계 전체 가능 — **여기서 개발 구현 범위는 끝나지만 아직 공개 아님**\n\n**공개/중단 결정 (코드 PR 아님)**\n- PR2 통합 뒤 합성 업무 오너가 P0–P4 전체·최신 main 통합 검증을 확인한 후 별도로 `TRACKER_OWNER_INSIGHTS=1`을 일반 실행 환경에 적용/제거하는 결정. 이는 코드 변경이 아니라 환경설정 결정이며 기록만 남김.\n\n**cleanup PR (조건부, 아직 미실행 조건)**\n- 트리거: PR2 통합·공개/중단 관측 완료 + 구버전/롤백 대상의 flag 의존 없음 확인 + 오너의 정리 요청 세 가지 모두 충족 시에만 착수\n- 변경: `tracker.py`에서 flag 분기 제거, 세 테스트 파일에서 OFF 거부 케이스만 제거(나머지 회귀는 유지), `USAGE.md`에서 flag 언급 제거\n- 현재 예시에서 이 조건은 **미충족**(문서 명시).\n\n## 예정 검증 vs 관측 사실 구분\n\n**관측된 사실(문서에 실제 기재된 것)**: baseline 데이터 4행, baseline 3개 회귀 시험의 내용, 기존 tracker.py의 display 포맷/오류 처리 로직, spec의 계약 문구 자체.\n\n**예정 검증(아직 실행되지 않은 계획)**: plan.md 스스로 \"모든 시험은 예정이며 이름은 추가 계획\", \"Proof는 계획된 검사이며 실제 근거는 각 구현 PR/커밋 기록에 남긴다\"고 명시. 즉 P0–P5 표, RED/GREEN 순서, OFF→ON→OFF 전환 관측, cleanup 검증은 전부 **미실행 계획**이며 실제 실행 증거가 아닙니다. 공개/중단 자체도 \"이 합성 예시에서 아직 이행되지 않은 조건\"으로 못 박혀 있습니다.\n\n## 남은 결정 (문서가 위임하거나 비워둔 것)\n\n1. **작업 경로 누락**: tracker.py 등 실제 배치 디렉터리가 어디인지 spec/plan/context 어디에도 없습니다 — 새 에이전트가 반드시 사람에게 확인해야 할 항목.\n2. **draft 승인 여부**: spec.md·plan.md가 draft 상태로, 구현 착수를 승인하는 별도 확인이 문서상 없습니다(root 역할의 명시적 accept 기록 부재).\n3. **공개(OFF→ON) 시점·주체**: \"합성 업무 오너(root 역할)\"가 결정한다고만 돼 있고, 실제 시점·승인 기준 통과 여부는 미기록.\n4. **cleanup 조건 충족 여부 확인 주체**: \"구버전/롤백 대상의 flag 의존 없음\"을 누가 어떻게 확인하는지 방법론은 없고 선언만 요구됨.\n5. **helper 함수 이름/구현 세부**: spec이 \"helper 이름은 예시 수준이며 출력/제어 의미가 계약\"이라 명시 — 구현 시 이름은 개발자 재량.\n\n## 결론\n\n기술 계약(요구·AC·출력 포맷·PR 분할·공개 제어 방식)은 대화 없이 실행 가능할 만큼 구체적입니다. 다만 (a) 실제 배치 경로 누락, (b) spec/plan이 아직 draft이고 명시적 구현 승인 기록이 없다는 두 가지는 개발 착수 전 반드시 확인이 필요한 진짜 공백입니다. 이 둘을 빼면 PR1→PR2→(조건부)cleanup 순서, 각 PR의 파일·시험·머지 후 ON/OFF 상태는 문서만으로 재구성 가능했습니다."
+      }
+    },
+    {
+      "record_index": 50,
+      "timestamp": "2026-09-11T07:34:14.049Z",
+      "uuid": "adf75915-2636-4d69-9015-fab230942f58",
+      "role": "user",
+      "model": null,
+      "kind": "ordinary_user_prompt",
+      "content": {
+        "type": "text",
+        "text": "이 점검은 실제 제품 구현 승인을 구하는 자리가 아니라 설계 문서 인계 점검입니다. 가상 채택 저장소의 루트에 context의 제품 파일이 배치되고 엔지니어가 구현을 수락한 상황으로 가정해 기술적 재구성만 하세요. 실제 저장소를 만들거나 승인 기록을 발명하지는 마세요.\n첫 응답의 PR1 순서는 \"판정 함수 → OFF 미등록 확인(RED) → 최소 구현\"이라고 했습니다. plan의 PR1 문단과 TDD 스킬을 다시 읽고 이 순서가 맞는지, RED가 무엇을 구분해야 하는지 설명해 주세요.\n또 PR1이 main에 통합됐고 목록 ON 시험이 모두 통과했다고 보고받은 상황입니다. 지금 일반 사용자에게 ON으로 바꿔도 되는지 판단하세요. PR2 후 cleanup을 요청하려면 남은 조건과 확인 역할이 무엇인지, cleanup 시험 변경은 왜 테스트 약화와 같은지/다른지도 설명하세요. 실제 편집/실행 없이 한국어로 답하세요."
+      }
+    },
+    {
+      "record_index": 54,
+      "timestamp": "2026-09-11T07:35:13.527Z",
+      "uuid": "44d94b0a-5060-40bf-886a-33424fa5504e",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "text",
+        "text": "## PR1 순서 재검토\n\n첫 답변의 \"판정 함수 → OFF 미등록 확인(RED) → 최소 구현\"은 plan 본문과 어긋납니다. plan.md의 PR1 문단을 다시 보면 순서는 다음과 같습니다.\n\n1. 기준 P0(기존 3개 회귀) 통과 확인\n2. **ON 환경에서** AC1 시험(`list --owner hana`가 R-101/R-103을 원순서·rc0로 출력)을 먼저 작성·실행 — 현재 코드는 `--owner` 자체를 모르므로 rc2가 예상 RED\n3. 최소 목록/제어 연결(판정 함수 + argparse 등록 + 필터)로 GREEN\n4. 그 다음에 OFF 거부·설정값별 케이스(P2)를 확인\n\n즉 RED는 **OFF 거부가 아니라 ON에서의 목록 필터 부재**에서 나와야 합니다. plan은 이유를 명시합니다: \"OFF는 기존 코드에서도 실패할 수 있으므로 그 자체를 새 기능 RED로 주장하지 않는다.\" 기존 baseline도 애초에 `--owner`를 모르므로 OFF 거부 시험은 구현 전이든 후든 항상 통과합니다 — 즉 이 실패는 **미구현 기능과 이미 존재하던 기존 제약을 구분해 주지 않습니다.**\n\nTDD 스킬의 기준과 정확히 맞물립니다: \"missing behavior... can be expected RED... confirm the behavior assertion discriminates the missing behavior.\" RED로 인정되려면 그 실패가 \"아직 없는 이 기능\" 때문이라는 것을 판별할 수 있어야 하는데, OFF 거부는 구현 여부와 무관하게 항상 참이므로 판별력이 없습니다. 판정 함수(게이팅 로직)는 RED 이전 단계가 아니라 GREEN 단계에서 필터 로직과 함께 최소로 구현하는 대상이고, OFF/설정값 검증(P2)은 GREEN 이후 \"제어가 실제로 작동하는지\"를 보여주는 별도 확인 단계입니다.\n\n## 지금 일반 ON 전환 가능한가\n\n**아니오.** 근거는 세 가지입니다.\n\n- spec Design \"공개 단위\": 공개 단위는 목록+집계 전체이며, root는 \"목록과 집계가 둘 다 완성·검증되기 전에는 일반 기본을 전환하지 않는다\"고 명시. PR1만 통합된 지금은 summary가 아예 코드에 없는 상태입니다.\n- spec Flagged concerns: \"부분 TEST 성공을 전체 공개 승인으로 바꾸지 않는다.\" 목록 ON 시험 전부 통과는 PR1 범위의 부분 증거일 뿐, 공개 승인 근거가 아닙니다.\n- intent 제약: \"일반 사용자는 미완성 기능을 보지 않는다.\" 지금 ON으로 돌리면 summary 없는 반쪽 기능이 일반 사용자에게 노출되어 이 제약을 직접 위반합니다.\n\n따라서 PR1 통합 + 목록 ON 시험 전부 통과는 \"제어가 의도대로 작동한다\"는 근거이지 \"공개해도 된다\"는 근거가 아닙니다.\n\n## cleanup 요청 전 남은 조건과 확인 역할\n\nspec Design \"정리\"와 plan 5단계에 따르면 cleanup 착수 전 아래가 모두 충족·기록돼야 합니다.\n\n1. PR2 통합 및 최신 main에서 목록+집계+기존 list/show/complete 전체 검증 완료\n2. root가 실제로 일반 실행 환경에서 ON→OFF(또는 그 반대)를 적용해보고 그 공개/중단 관측을 기록\n3. 이 플래그를 읽는 구버전 프로세스나 롤백 대상이 없다는 root의 명시적 선언\n4. root의 명시적 정리 요청\n\n역할 분담: 환경 변수 조작·시험 실행·관측 기록은 개발 실행자가 수행하지만, \"조건이 충족됐다\"는 판단과 정리 착수 승인은 root(공개 담당) 고유의 결정입니다. 개발자가 스스로 조건 충족을 선언하고 cleanup을 시작할 수 없습니다.\n\n## cleanup의 시험 변경은 테스트 약화와 같은가 다른가\n\n**절차적으로는 다르지만, 통제 수준은 같아야 합니다.**\n\n같은 점(왜 위험한지): 둘 다 \"기존에 존재하던 assertion을 삭제\"하는 행위입니다. TDD 스킬은 \"Do not skip/delete/relax assertions merely to get GREEN\"이라고 못 박고, 삭제 자체에는 항상 남용 위험이 따릅니다.\n\n다른 점(왜 정당한지): TDD 스킬은 예외를 명시합니다 — \"a changed requirement, a demonstrated test defect, or **a retired release-control phase** can justify a test change.\" cleanup에서 지우는 것은 정확히 이 세 번째 경우, 즉 R6에 의해 플래그 자체가 사라져 \"OFF에서는 명령이 존재하지 않는다\"는 전제 자체가 무의미해진 것입니다. GREEN을 얻기 위해 편의상 지우는 게 아니라, spec이 먼저 R6로 계약을 갱신하고 나서 그 갱신을 반영해 지우는 것이므로 인과관계가 반대입니다.\n\n또한 plan/스킬 모두 정당화 조건을 요구합니다: exact-match·all/open/done 형식·read-only 등 여전히 유효한 회귀 시험은 그대로 남기고, 제거 이유를 spec/plan/PR에 명시하며, \"Review a consequential test change independently\"에 따라 이 삭제를 독립적으로 검토받아야 합니다. 이 절차(선행 계약 갱신 + 근거 문서화 + 독립 리뷰 + 나머지 회귀 보존)를 지키지 않고 지운다면 정당한 cleanup이 아니라 일반적인 테스트 약화와 동일하게 취급해야 합니다."
+      }
+    },
+    {
+      "record_index": 61,
+      "timestamp": "2026-09-11T07:36:42.920Z",
+      "uuid": "b2e22393-4b9e-46f7-a510-4345a1f9b103",
+      "role": "user",
+      "model": null,
+      "kind": "ordinary_user_prompt",
+      "content": {
+        "type": "text",
+        "text": "핵심 수정은 이해했습니다. 다만 이번 후보 spec에는 R6가 없고 요구는 R1–R5, cleanup은 R5/AC7입니다. 방금 답의 일부 인용·plan 단계 번호는 과거 입력 문서와 혼동한 것으로 보입니다. 이번에는 docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/spec.md와 plan.md 두 현행 파일을 실제로 다시 읽고 그 두 파일만 정본으로 사용하세요. cleanup 전제·확인 역할·최초 시험과 최종 유지/폐기 시험을 정확한 현행 절·ID로 짧게 재구성하세요. 실제 조건 충족/공개를 관측한 것으로 쓰지 마세요. 파일 편집이나 명령 실행은 하지 마세요."
+      }
+    },
+    {
+      "record_index": 64,
+      "timestamp": "2026-09-11T07:36:48.087Z",
+      "uuid": "e879fca3-0ab2-49df-9aa2-86727bf3ed5c",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "text",
+        "text": "지시대로 두 현행 파일을 다시 정본으로 확인하겠습니다."
+      }
+    },
+    {
+      "record_index": 65,
+      "timestamp": "2026-09-11T07:36:48.963Z",
+      "uuid": "a24540e4-154f-492c-8936-73e6fe94fe3e",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01RmJyAmDsLcfubT7faGCgSw",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/spec.md"
+        }
+      }
+    },
+    {
+      "record_index": 66,
+      "timestamp": "2026-09-11T07:36:48.992Z",
+      "uuid": "f46371d4-77e7-424f-a833-f4cfa2d27f93",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01RmJyAmDsLcfubT7faGCgSw",
+        "content": "1\t# Spec: 목록과 집계를 하나의 공개 단위로 제공\n2\tUpstream: intent.md@4a74823. Status: draft.\n3\tSkills applied: none（root가 고정 연구자료를 바탕으로 작성한 합성 예시）.\n4\t작성 권한: 사용자가 설계 패키지 작성을 허가했다. Upstream은 제작 입력이며 제품 수락을 뜻하지 않는다.\n5\t\n6\t[입력](context.md). 두 구현 PR이 같은 공개 제어를 쓴다. 이 파일이 spec 정본이며 과거 실행 결과는 참고 자료다.\n7\t\n8\t## Requirements\n9\t| ID | 변경·보존 계약 | 근거 |\n10\t|---|---|---|\n11\t| R1 | list --owner ID: 정확 일치·대소문자 구별·완료 포함·원순서, null 비일치 | Q1 |\n12\t| R2 | summary [--owner ID]: all/open/done 수를 이 순서로 출력. owner 생략은 전체 | Q1 |\n13\t| R3 | 새 조회 무쓰기, 기존 list/show/complete·데이터·오류 유지 | intent |\n14\t| R4 | 목록+집계가 한 공개 단위. 완성 전 일반 OFF, 개발자는 구현된 부분만 ON 시험 | intent/Q2 |\n15\t| R5 | 설정만으로 공개/중단. 안정화·구버전 의존 확인 후 같은 의미의 최종 기능을 유지하며 제어 제거 | Q3 |\n16\t\n17\t## Acceptance criteria\n18\t원 데이터 네 행을 각 사례에 새로 사용한다. 집계 형식은 이름과 정수 사이 탭, 행 끝 개행이다.\n19\t| ID → 요구 | 상태·행동 | 기대 |\n20\t|---|---|---|\n21\t| AC1 → R1,R3 | ON: list --owner hana | R-101/R-103만 원순서·기존 열, rc0, 바이트 불변 |\n22\t| AC2 → R1,R3 | ON: list --owner nobody/HANA/- 각각 | 빈 stdout·rc0, 바이트 불변 |\n23\t| AC3 → R2,R3 | 두 기능 구현 후 ON: summary, summary --owner hana/min/nobody | 각각 (4,3,1), (2,1,1), (1,1,0), (0,0,0)의 all/open/done 세 줄·rc0·무쓰기 |\n24\t| AC4 → R2,R3 | complete R-101 후 ON: summary --owner hana | (2,0,2). 완료 뒤 바이트를 기준으로 집계 무쓰기. all=open+done |\n25\t| AC5 → R3,R4 | 제어가 있는 판의 OFF: list --owner hana, summary | 둘 다 argparse rc2로 거부. 기존 무옵션 list/show/complete는 기존대로 |\n26\t| AC6 → R4,R5 | 같은 완성 코드에서 OFF→ON→OFF | 설정만으로 새 명령 허용/거부 전환, 기존 동작 유지 |\n27\t| AC7 → R5 | 제거 조건을 충족한 별도 cleanup 판 | 설정 없이 최종 AC1–4와 기존 명령 동작. 예전 OFF 거부는 이 판의 요구가 아님 |\n28\t\n29\tAC3의 표는 세 수의 순서까지 고정한다. 예: 전체 stdout은 `all\\t4\\nopen\\t3\\ndone\\t1\\n`.\n30\t스키마는 status=open/done만 지원한다. 다른 상태의 수를 누락한 채 all=open+done이라고 주장하지 않는다.\n31\t\n32\t## Design\n33\t공유 제어 이름은 `TRACKER_OWNER_INSIGHTS`. 프로세스 시작 시 \"1\" 또는 대소문자 무관 \"true\"만 ON,\n34\tunset/그 외는 OFF. 주변 공백은 제거하지 않는다. CLI를 실행하는 각 새 프로세스가 자기 환경을 읽는다.\n35\tOFF에서는 argparse에 list의 --owner와 summary를 등록하지 않아 직접 호출도 rc2다.\n36\t기존 명령의 등록·파일 오류 처리는 보존한다. ON일 때만 등록하는 같은 판정 함수를 두 PR에서 재사용한다.\n37\t이 로컬 환경 변수는 사용자 인증이나 서버 권한 장벽이 아니다.\n38\t\n39\tsummary는 읽은 배열에 R1과 같은 필터를 적용한 뒤 all=len, open/done의 수를 세고 출력한다.\n40\t새 쓰기·집계 저장·캐시·새 클래스는 없다. helper 이름은 예시 수준이며 출력/제어 의미가 계약이다.\n41\t\n42\t```mermaid\n43\tstateDiagram-v2\n44\t  [*] --> Partial: PR1 merge\n45\t  state \"PR1: 일반 OFF / 목록 TEST ON\" as Partial\n46\t  state \"PR2: 일반 OFF / 목록+집계 TEST ON\" as Complete\n47\t  state \"같은 코드: 일반 ON\" as Released\n48\t  state \"cleanup: 최종 기능\" as Clean\n49\t  Partial --> Complete: PR2 merge + 통합 검증\n50\t  Complete --> Released: 전체 검증 + 오너 공개 결정\n51\t  Released --> Complete: 환경 설정 OFF\n52\t  Released --> Clean: 제거 조건 충족\n53\t```\n54\t\n55\tPR1의 TEST ON은 목록만 구현된 상태다. summary는 ON에서도 아직 없다. PR2부터 ON에서는 있어야 한다.\n56\t공개 담당은 합성 업무 오너(root 역할), 환경 조작·관측은 개발 실행자다. 공개는 전체 AC1–6와\n57\t최신 main 통합 검증 후 별도 결정한다. 일반 실행 환경에 ON을 적용/제거하고 새 CLI 프로세스로 확인한다.\n58\t중단 OFF는 이미 한 쓰기를 되돌리지 않는다(새 기능은 조회뿐).\n59\t\n60\tcleanup은 PR2 통합·공개/중단 관측, 알려진 구버전/복구 대상의 flag 의존 없음, 오너의 정리 요청이\n61\t충족된 뒤 별도 PR이다. 설정이 없어도 최종 기능이 동작하는 코드/시험/설명을 먼저 배포한 뒤\n62\t남은 설정을 제거한다. 합성 예시에서 이 조건들은 아직 이행되지 않았다.\n63\t\n64\t## Constraints and scope\n65\t로컬 CLI 모의. hosted 배포·인증·장기 안정성 검증은 범위 밖이다. 두 기능은 한 공개 단위이며\n66\tPR마다 기능 노출 코드를 수동 전환하지 않는다. 다중 담당자·정렬·새 status·데이터 이행은 제외한다.\n67\t\n68\t## Open questions\n69\t- Q1 answered: R1/R2와 AC의 합성 오너 답/역사 계약.\n70\t- Q2 answered: 프로세스별 환경 제어. 개발 ON과 일반 공개는 별개(R4/Design).\n71\t- Q3 answered: 위 책임/조건. 실제 공개·제거 결정은 해당 시점에 기록하며 미리 승인 처리하지 않음.\n72\t\n73\t## Flagged concerns\n74\t부분 시험 성공을 전체 공개 승인으로 바꾸지 않는다. 이 로컬 제어를 실제 서비스에 적용할 때는\n75\t실제 배포·권한 경계를 다시 설계해야 한다. 현재 합성 CLI에서는 미해결 설계 우려 없음.\n76\t"
+      }
+    },
+    {
+      "record_index": 67,
+      "timestamp": "2026-09-11T07:36:49.370Z",
+      "uuid": "e3d63500-b7f6-4516-a79b-ac8a5aca9f2f",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "tool_use",
+        "id": "toolu_01EFBWHgackm5LSNQy1EHUAf",
+        "name": "Read",
+        "input": {
+          "file_path": "/Users/jake/Projects/ai-native-sdlc-sample/docs/research/sdlc-documentation/spec-plan-design/candidate/examples/F03/plan.md"
+        }
+      }
+    },
+    {
+      "record_index": 68,
+      "timestamp": "2026-09-11T07:36:49.375Z",
+      "uuid": "a7bc2786-a1d0-473c-9c15-8342ce795083",
+      "role": "user",
+      "model": null,
+      "kind": "tool_result",
+      "content": {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01EFBWHgackm5LSNQy1EHUAf",
+        "content": "1\t# Plan: 두 PR로 구현하고 설정으로 한 번 공개\n2\tUpstream: spec.md@23845b5. Status: draft.\n3\t합성 작성 예시. 사용자 허가 범위는 설계 패키지이며 제품 계획 승인/구현 성공이 아니다.\n4\t[spec](spec.md)와 [입력](context.md)을 함께 읽는다. 모든 시험은 예정이며 이름은 추가 계획이다.\n5\t\n6\t## Files that change\n7\t| PR | 경로 | 목적 |\n8\t|---|---|---|\n9\t| 1 | tracker.py, tests/test_owner.py (new), tests/test_release_control.py (new), USAGE.md | 공유 제어·목록·일반 OFF/목록 TEST ON |\n10\t| 2 | tracker.py, tests/test_summary.py (new), tests/test_release_control.py, USAGE.md | 같은 제어의 집계·전체 ON/OFF |\n11\t| cleanup (조건부) | tracker.py, tests/test_release_control.py, tests/test_owner.py, tests/test_summary.py, USAGE.md | 제어 제거와 최종 계약 시험/문서 정리 |\n12\ttests/test_tracker.py는 기존 회귀. spec.md/plan.md는 계약·실행 변경이 있을 때 관련 구현과 같이 갱신한다.\n13\t\n14\t## Order of work\n15\tPR1→PR2 순차. tracker.py/USAGE.md를 공유하므로 두 구현을 병렬 branch로 동시에 편집하지 않는다.\n16\t각 PR은 최신 main에서 짧은 branch/worktree로 시작해 기능·시험·설명을 함께 담는다.\n17\t\n18\t| PR | 완성할 목적·선행 | 머지 후 main과 일반/시험 상태 | 남은 범위·Proof |\n19\t|---|---|---|---|\n20\t| 1 | 담당자 목록과 공통 제어. 선행 없음 | 기존 명령 사용 가능. 일반 OFF에서 두 새 명령 거부, TEST ON에서 목록만 가능 | 집계·전체 공개 남음. P0/P1/P2 |\n21\t| 2 | 집계와 같은 제어. PR1 main에 의존 | 일반 OFF 유지, TEST ON에서 목록+집계 전체 가능 | 공개/중단 결정과 조건부 제거 남음. P0–P4 |\n22\t| cleanup | 공개/중단 관측·안정화/구버전 의존 해소·오너 정리 요청 뒤 | 설정 없이 최종 기능 제공 | 제품 범위 완료, 설정 제거 확인. P0/P1/P3/P5 |\n23\t\n24\tPR1: 기준 P0 → AC1 전체 stdout·rc0를 기대하는 목록 시험을 ON 환경에서 먼저 작성·실행한다.\n25\t현재는 --owner 미지원 rc2가 예상 RED다. 최소 목록/제어 연결로 GREEN 후 OFF 거부/설정 값별 P2를 확인한다.\n26\tOFF는 기존 코드에서도 실패할 수 있으므로 그 자체를 새 기능 RED로 주장하지 않는다.\n27\tON 성공과 OFF 거부를 함께 보여 제어가 작동하는지 판정한다. ON의 summary 부재는 PR1 시점 관측만 남긴다.\n28\t\n29\tPR2: 새 tests/test_summary.py에서 all/open/done 세 줄 시험을 먼저 실행, 현재 명령 미지원 rc2 RED 확인\n30\t→ 최소 집계 → 담당자별/완료 후 사례와 읽기 전용·설정 조합 확인. 각 새 동작의 예상 실패를 확인하며\n31\t이미 GREEN인 경우에는 그대로 회귀로 보존한다. PR1의 목록·OFF 거부 시험은 유지한다.\n32\tsummary가 ON에서도 없어야 한다는 PR1의 단계 한정 관측은 영구 회귀로 고정하지 않는다.\n33\t\n34\t각 PR의 필요한 리팩터링 후 전체 시험, 최신 main과 결합한 판·통합 main 검증을 한다.\n35\tRED/GREEN의 명령·코드판·실패 이유·출력과 일반/시험 환경을 PR 기록에 남긴다.\n36\t\n37\t공개 담당(root 역할)이 P0–P4 전체와 완료 범위를 확인해 공개 여부를 결정한다.\n38\t같은 완성 코드에서 일반 실행 환경의 TRACKER_OWNER_INSIGHTS=1로 새 프로세스를 실행해 ON,\n39\t설정을 제거해 OFF를 관측한다. 명령 예:\n40\t`env TRACKER_OWNER_INSIGHTS=1 python3 tracker.py --data <사본> summary`,\n41\t`env -u TRACKER_OWNER_INSIGHTS python3 tracker.py --data <사본> summary`.\n42\t후자는 제어가 있는 판에서 rc2. 설정 변경은 코드 PR이 아니며 결정·적용·관측 판/시각을 기존 공개 기록에 남긴다.\n43\t\n44\tcleanup은 조건이 충족됐다는 근거와 오너 요청이 있을 때 시작한다. 최종 무설정 동작 시험을 먼저 실행해\n45\t기존 OFF 거부가 예상 RED인지 확인한 뒤 flag 판정/조건을 제거한다. 최종 AC1–4는 유지하며 이전 OFF\n46\t거부·값별 토글 시험은 이제 폐기된 계약이라 교체/제거 이유를 spec/plan/PR에 명시한다.\n47\t코드/시험/설명 배포 확인 후 남은 환경 설정을 제거한다. 현재 예시에서 공개/cleanup은 미실행 조건이다.\n48\t\n49\t## Risks\n50\t부분 TEST ON을 일반 공개로 오인하거나 PR1 summary 부재 기대를 PR2까지 유지하면 계약과 시험이 충돌한다.\n51\t단계별 표와 P2/P3로 구분한다. 개발 PC의 환경 변수가 시험에 섞이지 않게 각 subprocess에 변수를 명시 설정/제거한다.\n52\t완료 후 집계 무쓰기 비교는 complete가 끝난 새 바이트를 기준으로 한다. 원본 fixture는 바꾸지 않는다.\n53\t\n54\t## Proof\n55\t기본 실행: `python3 -m unittest discover -s tests -v`. 기존 3개를 제외한 아래 시험은 모두 추가 예정이다.\n56\t| ID·연결 | 시험/관측 | 기대 |\n57\t|---|---|---|\n58\t| P0 R3 | tests/test_tracker.py + 각 명령의 기존 파일 오류 회귀 | 기존 list/show/complete·없는 ID·I/O rc2 유지 |\n59\t| P1 AC1/2 | test_owner.py의 test_owner_exact_and_order, test_owner_nonmatching | ON에서 순서/열·rc·바이트, null/-/HANA/nobody |\n60\t| P2 AC5 | test_release_control.py의 test_off_rejects_new_commands, test_setting_values | unset/0/false/공백true는 OFF; 1/true/TRUE는 ON. 기존 명령은 양쪽 정상. PR1 ON summary 부재는 단계 관측 |\n61\t| P3 AC3/4 | test_summary.py의 test_counts_and_owner, test_counts_after_complete | 네 담당자 조합·전체 세 줄, 완료 후 (2,0,2), all=open+done, 조회 무쓰기 |\n62\t| P4 AC6 | PR2 결합/통합 main 동일 판 OFF→ON→OFF 수동 명령 + P0–3 | 설정만으로 전환. 일부 PR의 ON 성공만으로 전체 통과 아님 |\n63\t| P5 AC7 | cleanup 전체 시험 + 설정 없는 직접 목록/집계 | 최종 기능 유지. 없어진 OFF 계약은 제외, 제거된 제어에 의존하는 실행 대상 없음 |\n64\t\n65\t검증 한계: 로컬 모의, 실제 배포/인증/장기 안정성 아님. 계약·단계가 바뀌면 영향 spec/plan과 시험을\n66\t같은 구현 커밋에서 갱신한다. 단순 시험 보강과 공개 계약의 교체를 구분한다.\n67\t"
+      }
+    },
+    {
+      "record_index": 75,
+      "timestamp": "2026-09-11T07:37:16.373Z",
+      "uuid": "8399d9a4-fa6b-4f24-959f-5b41e66e81ee",
+      "role": "assistant",
+      "model": "claude-sonnet-5",
+      "kind": "assistant_content",
+      "content": {
+        "type": "text",
+        "text": "## cleanup 전제 (spec R5 / AC6 / AC7 + Design, plan Order of work \"cleanup\" 행)\n\nspec.md의 cleanup 근거는 **R5**이며, cleanup 검증 자체는 **AC7**(선행: AC6의 OFF→ON→OFF 전환 관측)에 걸려 있습니다. Design 문단(줄60-62)과 plan Order of work의 cleanup 행(줄21-22)이 요구하는 전제는 다음 넷입니다.\n\n1. PR2 통합 (Files/Order of work: PR2가 PR1 main에 의존, cleanup은 그 이후)\n2. 공개/중단 관측 — AC6·P4가 요구하는 \"같은 완성 코드에서 OFF→ON→OFF\" 전환이 실제 관측·기록됨\n3. 알려진 구버전/복구 대상이 이 flag에 의존하지 않는다는 확인\n4. 오너(합성 업무 오너, root 역할)의 정리 요청\n\n이 넷은 spec Design 줄62 \"합성 예시에서 이 조건들은 아직 이행되지 않았다\"로 **현재 미충족**임이 명시돼 있습니다. R6는 이번 spec에 없으므로 인용하지 않습니다.\n\n## 확인 역할\n\nspec Design 줄56 \"공개 담당은 합성 업무 오너(root 역할), 환경 조작·관측은 개발 실행자다\"와 plan 줄37, 44가 일관되게 구분합니다. 조건 충족 판단·정리 요청 승인은 오너(root) 소관이고, 환경변수 설정/해제와 그 관측·기록 실행은 개발 실행자 소관입니다. 개발자가 스스로 조건 충족을 선언하고 cleanup에 착수할 근거는 문서에 없습니다.\n\n## cleanup 최초 시험 (plan 줄44-46)\n\n착수 순서는 \"**최종 무설정 동작 시험을 먼저 실행해 기존 OFF 거부가 예상 RED인지 확인**\"입니다. 즉 flag 분기를 아직 지우기 전에, 설정 없이 `list --owner`/`summary`를 직접 호출하는 최종 계약 시험을 먼저 작성·실행하면 현재 코드(OFF 거부가 아직 남아있음)에서는 rc2로 실패하는 것이 예상 RED입니다. 그다음 flag 판정/조건부 분기를 제거해 GREEN으로 만듭니다.\n\n## 최종 유지 시험 vs 폐기 시험 (AC7, Proof P5)\n\n- **유지**: AC1–4에 대응하는 test_owner.py·test_summary.py의 exact-match·원순서·all/open/done 집계·무쓰기 케이스, 그리고 P0(test_tracker.py 기존 회귀). Proof P5가 이를 \"cleanup 전체 시험 + 설정 없는 직접 목록/집계\"로 재확인합니다.\n- **폐기**: test_release_control.py의 OFF 거부 시험과 값별 토글 시험(P2에 해당하는 test_off_rejects_new_commands, test_setting_values류). AC7이 \"예전 OFF 거부는 이 판의 요구가 아님\"이라 명시하고, plan 줄45-46이 \"이전 OFF 거부·값별 토글 시험은 이제 폐기된 계약이라 교체/제거 이유를 spec/plan/PR에 명시한다\"고 절차를 요구합니다.\n\n정리하면, 이번 현행 문서 기준으로 cleanup은 R5/AC6/AC7·P4/P5 라인을 따라 전제·역할·시험 순서가 정의돼 있으며, 조건 충족 여부는 아직 문서상 미이행 상태로 남아 있습니다."
+      }
+    }
+  ]
+}

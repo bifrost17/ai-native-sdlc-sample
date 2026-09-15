@@ -1,0 +1,229 @@
+{
+  "case": "native-draft",
+  "path": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft",
+  "changes": [
+    "native agent frontmatter: subagent, steps20, explicit tool permission names; model/effort not set, inherits parent for parsing test only",
+    "feedback default verifier name uses sdlc-verifier instead of Claude plugin namespace"
+  ],
+  "llm_called": false,
+  "permanent_install": false,
+  "skills": {
+    "command": [
+      "opencode",
+      "debug",
+      "skill"
+    ],
+    "rc": 0,
+    "stderr": "",
+    "names": [
+      "customize-opencode",
+      "grilling",
+      "tdd",
+      "secure-api-review",
+      "accessibility",
+      "sdlc-feedback",
+      "data-compliance",
+      "secrets-scan",
+      "brand",
+      "to-questionnaire",
+      "pr-loop",
+      "spec-policy-pass",
+      "aside-browser",
+      "stop-slop-ko",
+      "ux-copy"
+    ]
+  },
+  "agent": {
+    "command": [
+      "opencode",
+      "debug",
+      "agent",
+      "sdlc-verifier"
+    ],
+    "rc": 0,
+    "stderr": "",
+    "keys": [
+      "name",
+      "mode",
+      "permission",
+      "options",
+      "native",
+      "prompt",
+      "description",
+      "steps",
+      "tools"
+    ],
+    "resolved": {
+      "name": "sdlc-verifier",
+      "mode": "subagent",
+      "permission": [
+        {
+          "permission": "*",
+          "action": "allow",
+          "pattern": "*"
+        },
+        {
+          "permission": "doom_loop",
+          "action": "ask",
+          "pattern": "*"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "*",
+          "action": "ask"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/Users/jake/.local/share/opencode/tool-output/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/var/folders/wf/lt4wgcb54j902f2gw4jjrkf80000gn/T/opencode/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/Users/jake/.claude/skills/aside-browser/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/grilling/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/tdd/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/accessibility/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/secrets-scan/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/ux-copy/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/secure-api-review/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/brand/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/sdlc-feedback/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/spec-policy-pass/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/stop-slop-ko/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/pr-loop/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/to-questionnaire/*",
+          "action": "allow"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/private/tmp/opencode-skill-review-ye3z5guh/native-draft/.opencode/skills/data-compliance/*",
+          "action": "allow"
+        },
+        {
+          "permission": "question",
+          "action": "deny",
+          "pattern": "*"
+        },
+        {
+          "permission": "plan_enter",
+          "action": "deny",
+          "pattern": "*"
+        },
+        {
+          "permission": "plan_exit",
+          "action": "deny",
+          "pattern": "*"
+        },
+        {
+          "permission": "read",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "permission": "read",
+          "pattern": "*.env",
+          "action": "ask"
+        },
+        {
+          "permission": "read",
+          "pattern": "*.env.*",
+          "action": "ask"
+        },
+        {
+          "permission": "read",
+          "pattern": "*.env.example",
+          "action": "allow"
+        },
+        {
+          "permission": "*",
+          "action": "deny",
+          "pattern": "*"
+        },
+        {
+          "permission": "read",
+          "action": "allow",
+          "pattern": "*"
+        },
+        {
+          "permission": "glob",
+          "action": "allow",
+          "pattern": "*"
+        },
+        {
+          "permission": "grep",
+          "action": "allow",
+          "pattern": "*"
+        },
+        {
+          "permission": "bash",
+          "action": "allow",
+          "pattern": "*"
+        },
+        {
+          "permission": "external_directory",
+          "pattern": "/Users/jake/.local/share/opencode/tool-output/*",
+          "action": "allow"
+        }
+      ],
+      "options": {},
+      "native": false,
+      "description": "Independently check implementation against current human agreements, spec, plan and actual evidence; report findings without implementing corrections.",
+      "steps": 20
+    },
+    "prompt_includes_review_criteria": true
+  },
+  "feedback_relative_reference_exists": true
+}

@@ -1,0 +1,256 @@
+{
+  "url": "https://www.reddit.com/r/codex/comments/1to6329/superpowers_is_it_really_worth_it/",
+  "title": "Superpowers, is it really worth it ?",
+  "author": "Spirited-Car-3560",
+  "created": "2026-05-26T12:54:13.776000+0000",
+  "reported_comment_count": "27",
+  "post_html": "\n       <div class=\"text-neutral-content\" slot=\"text-body\">\n    <div class=\"mb-xs px-md xs:px-0 overflow-hidden\" data-post-click-location=\"text-body\">\n      <div id=\"t3_1to6329-post-rtjson-content\" class=\"md text-14-scalable pb-2xs [--emote-size:20px]\" about=\"t3_1to6329\" property=\"schema:articleBody\" dir=\"auto\">\n      <p>\n      Hello everyone!\n    </p><p>\n      I’ve been using my own custom development harness for a while, covering not only implementation but also planning, reviews, and project governance.\n    </p><p>\n      Out of curiosity, I tried integrating Superpowers into my workflow, since some parts — especially runtime planning, agentic development, and TDD — looked more structured and potentially safer than my current approach.\n    </p><p>\n      However, after testing it, I’m honestly a bit disappointed and would like to hear other people’s experience.\n    </p><p>\n      So far:\n    </p><p>\n      <strong>Brainstorming</strong> doesn’t feel very useful to me. The built-in <code>/plan</code> often gives results that are just as good, if not better: more scoped and actionable.\n    </p><p>\n      <strong>Plans and runtime tasks</strong> feel quite verbose. They generate a lot of output, but I’m not sure that verbosity actually improves the final result (read next point about it).\n    </p><p>\n      <strong>Agentic development + TDD + dual reviews</strong> is the biggest issue for me. Even a single task can require many iterations between developer, spec reviewer, quality reviewer, and back again. This consumes a lot of tokens and time, often without a clear quality improvement compared to my previous simpler workflow: plan &gt; implementation &gt; external review.\n    </p><p>\n      I’m not sure whether the problem is limited agent context, model choice, the workflow itself, or my configuration. But right now it feels slower and more expensive than what I had before, let alone quality and context drift which has to be fixed in review iterations.\n    </p><p>\n      What’s your experience with it? Did you find specific tweaks or settings that make it efficient in practice?\n    </p><p>\n      I’m close to uninstalling it, unless there’s a better way to use it that I’m missing. But at the moment my own harness, built without big expectations, works several times better in my use cases.\n    </p>\n    </div>\n    </div>\n  </div> \n    ",
+  "post_text": "Hello everyone!\n\nI’ve been using my own custom development harness for a while, covering not only implementation but also planning, reviews, and project governance.\n\nOut of curiosity, I tried integrating Superpowers into my workflow, since some parts — especially runtime planning, agentic development, and TDD — looked more structured and potentially safer than my current approach.\n\nHowever, after testing it, I’m honestly a bit disappointed and would like to hear other people’s experience.\n\nSo far:\n\nBrainstorming doesn’t feel very useful to me. The built-in /plan often gives results that are just as good, if not better: more scoped and actionable.\n\nPlans and runtime tasks feel quite verbose. They generate a lot of output, but I’m not sure that verbosity actually improves the final result (read next point about it).\n\nAgentic development + TDD + dual reviews is the biggest issue for me. Even a single task can require many iterations between developer, spec reviewer, quality reviewer, and back again. This consumes a lot of tokens and time, often without a clear quality improvement compared to my previous simpler workflow: plan > implementation > external review.\n\nI’m not sure whether the problem is limited agent context, model choice, the workflow itself, or my configuration. But right now it feels slower and more expensive than what I had before, let alone quality and context drift which has to be fixed in review iterations.\n\nWhat’s your experience with it? Did you find specific tweaks or settings that make it efficient in practice?\n\nI’m close to uninstalling it, unless there’s a better way to use it that I’m missing. But at the moment my own harness, built without big expectations, works several times better in my use cases.",
+  "comments": [
+    {
+      "id": "t1_onyz7my",
+      "author": "Relative_Clerk7384",
+      "created": "2026-05-26T13:39:37.366000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onyz7my/",
+      "body_html": "\n        <div id=\"t1_onyz7my-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      too much garbage/bloat in it.  I extracted the useful bits into my own skills, trew the rest overboard.\n    </p>\n    </div>\n      ",
+      "body_text": "too much garbage/bloat in it. I extracted the useful bits into my own skills, trew the rest overboard."
+    },
+    {
+      "id": "t1_onyry7t",
+      "author": "sarcasmguy1",
+      "created": "2026-05-26T13:01:49.417000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onyry7t/",
+      "body_html": "\n        <div id=\"t1_onyry7t-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I switched to ADRs + specs, but I kept brainstorming. Like you said, the plans were extremely verbose and often read more like success theatre more than actual implementation work.\n    </p><p>\n      Brainstorming is still great for rough ideation sessions imo. But I plan to remove it and replace it with something more lightweight.\n    </p><p>\n      The TDD and agentic development skill is honestly not even needed anymore. TDD maybe, but you can use a much more lightweight version (<a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md\" rel=\"noopener nofollow ugc\" target=\"_blank\">I use Matt Pococks</a>). Most harnesses seem to naturally use subagents, or simply saying \"use subagents for these tasks\" is enough.\n    </p><p>\n      I wrote about it on my <a rpl=\"\" class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://blog.27dogs.org/posts/how-i-use-ai-for-software-engineering/\" rel=\"noopener nofollow ugc\" target=\"_blank\">blog</a> if you'd like to read up on it.\n    </p>\n    </div>\n      ",
+      "body_text": "I switched to ADRs + specs, but I kept brainstorming. Like you said, the plans were extremely verbose and often read more like success theatre more than actual implementation work.\n\nBrainstorming is still great for rough ideation sessions imo. But I plan to remove it and replace it with something more lightweight.\n\nThe TDD and agentic development skill is honestly not even needed anymore. TDD maybe, but you can use a much more lightweight version (I use Matt Pococks). Most harnesses seem to naturally use subagents, or simply saying \"use subagents for these tasks\" is enough.\n\nI wrote about it on my blog if you'd like to read up on it."
+    },
+    {
+      "id": "t1_onz324k",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T13:58:47.822000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onz324k/",
+      "body_html": "\n        <div id=\"t1_onz324k-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Glad to hear it's not just me... and thanks for the heads up regarding Matt Pococks TDD, definitely going to uninstall superpower and try to integrate only tdd in my well rounded custom harness + tdd if needed\n    </p>\n    </div>\n      ",
+      "body_text": "Glad to hear it's not just me... and thanks for the heads up regarding Matt Pococks TDD, definitely going to uninstall superpower and try to integrate only tdd in my well rounded custom harness + tdd if needed"
+    },
+    {
+      "id": "t1_oo0x6bn",
+      "author": "buff_samurai",
+      "created": "2026-05-26T18:54:56.384000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo0x6bn/",
+      "body_html": "\n        <div id=\"t1_oo0x6bn-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Quality reply, thanks for Matt.\n    </p>\n    </div>\n      ",
+      "body_text": "Quality reply, thanks for Matt."
+    },
+    {
+      "id": "t1_oockgrb",
+      "author": "paagul",
+      "created": "2026-05-28T11:00:06.789000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oockgrb/",
+      "body_html": "\n        <div id=\"t1_oockgrb-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      It’s all trash, keep it simple.\n    </p>\n    </div>\n      ",
+      "body_text": "It’s all trash, keep it simple."
+    },
+    {
+      "id": "t1_oocmu5q",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-28T11:15:42.120000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oocmu5q/",
+      "body_html": "\n        <div id=\"t1_oocmu5q-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Well, I agree about superpowers, it's over engineering trash. But I would say the same about a well built harness to create structure from chaos, to keep track of what has been done and has to be done and plan next development tasks.\n    </p><p>\n      But I'm sure you didn't mean it\n    </p>\n    </div>\n      ",
+      "body_text": "Well, I agree about superpowers, it's over engineering trash. But I would say the same about a well built harness to create structure from chaos, to keep track of what has been done and has to be done and plan next development tasks.\n\nBut I'm sure you didn't mean it"
+    },
+    {
+      "id": "t1_oocqddp",
+      "author": "paagul",
+      "created": "2026-05-28T11:38:20.935000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oocqddp/",
+      "body_html": "\n        <div id=\"t1_oocqddp-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yea I meant superpowers.\n    </p>\n    </div>\n      ",
+      "body_text": "Yea I meant superpowers."
+    },
+    {
+      "id": "t1_onyrnby",
+      "author": "pjstanfield",
+      "created": "2026-05-26T13:00:11.876000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onyrnby/",
+      "body_html": "\n        <div id=\"t1_onyrnby-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I like it occasionally for brainstorming although just a chat with claude chat seems to produce equal or better results. I don't think codex is great for noodling up a design for certain poorly-defined ideas. The actual development for me has always been garbage and I'll never use superpowers again for that.\n    </p>\n    </div>\n      ",
+      "body_text": "I like it occasionally for brainstorming although just a chat with claude chat seems to produce equal or better results. I don't think codex is great for noodling up a design for certain poorly-defined ideas. The actual development for me has always been garbage and I'll never use superpowers again for that."
+    },
+    {
+      "id": "t1_onywdnu",
+      "author": "nicky_factz",
+      "created": "2026-05-26T13:25:10.475000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onywdnu/",
+      "body_html": "\n        <div id=\"t1_onywdnu-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I like a lot of the principles but it is definitely heavy, I had Chatgpt rewrite it more to my preferences and I run a custom version. It definitely is heavy handed if you work smaller slices, I tend to not kick it off for smaller things because that much planning and review doesn't really add to a small slice of work. It helps I think when you have a large feature you want to implement from beginning to end in a large ordered development plan the base model would wander to much without a structured spec and implementation plan.\n    </p>\n    </div>\n      ",
+      "body_text": "I like a lot of the principles but it is definitely heavy, I had Chatgpt rewrite it more to my preferences and I run a custom version. It definitely is heavy handed if you work smaller slices, I tend to not kick it off for smaller things because that much planning and review doesn't really add to a small slice of work. It helps I think when you have a large feature you want to implement from beginning to end in a large ordered development plan the base model would wander to much without a structured spec and implementation plan."
+    },
+    {
+      "id": "t1_onyzz5u",
+      "author": "Chupa-Skrull",
+      "created": "2026-05-26T13:43:27.066000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onyzz5u/",
+      "body_html": "\n        <div id=\"t1_onyzz5u-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      It doesn't work as a drop-in replacement for developer judgment and it uses a shitload of tokens.\n    </p><ul>\n        <li>\n      <p>\n      The writing-clearly-and-concisely skill is nice.\n    </p>\n    </li><li>\n      <p>\n      Native planning mode is good enough in most harnesses now that you don't need its writing-plans or executing-plans.\n    </p>\n    </li><li>\n      <p>\n      Brainstorming can still be nice for hashing out ideas (for anything, not just dev!).\n    </p>\n    </li><li>\n      <p>\n      The systematic debugging skill doesn't seem to improve performance at all, in terms of helping the model intelligently locate and fix bugs—you still get tons of looping while uselessly \"narrowing seams.\"\n    </p>\n    </li><li>\n      <p>\n      The subagent policy isn't really worth all the tokens used by the skills; better to define your own based on task complexity and your own experience and judgment, and better to leave it to the models if you don't have either of those to work with.\n    </p>\n    </li>\n      </ul><p>\n      Worth cherrypicking some things, in the end, but not installing the full package\n    </p>\n    </div>\n      ",
+      "body_text": "It doesn't work as a drop-in replacement for developer judgment and it uses a shitload of tokens.\n\nThe writing-clearly-and-concisely skill is nice.\n\nNative planning mode is good enough in most harnesses now that you don't need its writing-plans or executing-plans.\n\nBrainstorming can still be nice for hashing out ideas (for anything, not just dev!).\n\nThe systematic debugging skill doesn't seem to improve performance at all, in terms of helping the model intelligently locate and fix bugs—you still get tons of looping while uselessly \"narrowing seams.\"\n\nThe subagent policy isn't really worth all the tokens used by the skills; better to define your own based on task complexity and your own experience and judgment, and better to leave it to the models if you don't have either of those to work with.\n\nWorth cherrypicking some things, in the end, but not installing the full package"
+    },
+    {
+      "id": "t1_onz0ecs",
+      "author": "SnooDoggos9325",
+      "created": "2026-05-26T13:45:35.552000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onz0ecs/",
+      "body_html": "\n        <div id=\"t1_onz0ecs-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I'm experimenting with gpt generating the plan and deepseek flash implementing. It's better than standard plan because it explicitly states what has to be done. However I also tried to make a regular plan and convert it into a superpowers plan. It actually missed a lot from the initial plan and had to be refined. I'm also not sure how many tokens I really save since the plan is actually larger than the final diff. But at least gpt doesn't have to parse tests and make any on the fly decisions\n    </p>\n    </div>\n      ",
+      "body_text": "I'm experimenting with gpt generating the plan and deepseek flash implementing. It's better than standard plan because it explicitly states what has to be done. However I also tried to make a regular plan and convert it into a superpowers plan. It actually missed a lot from the initial plan and had to be refined. I'm also not sure how many tokens I really save since the plan is actually larger than the final diff. But at least gpt doesn't have to parse tests and make any on the fly decisions"
+    },
+    {
+      "id": "t1_oo47lze",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-27T05:27:43.403000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo47lze/",
+      "body_html": "\n        <div id=\"t1_oo47lze-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I actually do the same thing, like plan with got 5.4 or 5.5, then implements most steps with 5.4 mini unless it is very complicated. It is working quite well so far! Except for complex UI, where I usually have to iterate with the model to fix something, but we know that's a weak point of most models 😁\n    </p>\n    </div>\n      ",
+      "body_text": "I actually do the same thing, like plan with got 5.4 or 5.5, then implements most steps with 5.4 mini unless it is very complicated. It is working quite well so far! Except for complex UI, where I usually have to iterate with the model to fix something, but we know that's a weak point of most models 😁"
+    },
+    {
+      "id": "t1_onz78dz",
+      "author": "Old-Bake-420",
+      "created": "2026-05-26T14:18:53.351000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onz78dz/",
+      "body_html": "\n        <div id=\"t1_onz78dz-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I turned it off. It was over micromanaging codex. Really it was just firing constantly on every request and codex was over using the skills.\n    </p>\n    </div>\n      ",
+      "body_text": "I turned it off. It was over micromanaging codex. Really it was just firing constantly on every request and codex was over using the skills."
+    },
+    {
+      "id": "t1_onzh3cn",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T15:04:27.190000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onzh3cn/",
+      "body_html": "\n        <div id=\"t1_onzh3cn-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Hell yeah, stressfull. Yes I just made my decision, similar to yours, but even more radicali: uninstalled\n    </p>\n    </div>\n      ",
+      "body_text": "Hell yeah, stressfull. Yes I just made my decision, similar to yours, but even more radicali: uninstalled"
+    },
+    {
+      "id": "t1_onz7chi",
+      "author": "Haunting-Shirt6219",
+      "created": "2026-05-26T14:19:26.525000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onz7chi/",
+      "body_html": "\n        <div id=\"t1_onz7chi-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I think it consumed too many tokens. Take it as reference, and u can create your own version.\n    </p>\n    </div>\n      ",
+      "body_text": "I think it consumed too many tokens. Take it as reference, and u can create your own version."
+    },
+    {
+      "id": "t1_onzhe46",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T15:05:50.191000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onzhe46/",
+      "body_html": "\n        <div id=\"t1_onzhe46-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Definitely, going back to my version.\n    </p><p>\n      Somehow I thought \"well, a release plugin and so much discussed... they surely did better than me\". At least it has been a huge ego boost 😃\n    </p>\n    </div>\n      ",
+      "body_text": "Definitely, going back to my version.\n\nSomehow I thought \"well, a release plugin and so much discussed... they surely did better than me\". At least it has been a huge ego boost 😃"
+    },
+    {
+      "id": "t1_oo06j5i",
+      "author": "buff_samurai",
+      "created": "2026-05-26T16:57:32.358000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo06j5i/",
+      "body_html": "\n        <div id=\"t1_oo06j5i-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      This skill works much much better with Claude Code and it’s worth using 100%. On codex it’s quite annoying.\n    </p>\n    </div>\n      ",
+      "body_text": "This skill works much much better with Claude Code and it’s worth using 100%. On codex it’s quite annoying."
+    },
+    {
+      "id": "t1_oo0vbpv",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T18:46:42.687000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo0vbpv/",
+      "body_html": "\n        <div id=\"t1_oo0vbpv-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Ha, got  to give it a try ! Thanks for the heads up\n    </p>\n    </div>\n      ",
+      "body_text": "Ha, got to give it a try ! Thanks for the heads up"
+    },
+    {
+      "id": "t1_oo0vell",
+      "author": "Re-challenger",
+      "created": "2026-05-26T18:47:04.086000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo0vell/",
+      "body_html": "\n        <div id=\"t1_oo0vell-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      tdd worths a try which could prevent ur project to be a dump\n    </p>\n    </div>\n      ",
+      "body_text": "tdd worths a try which could prevent ur project to be a dump"
+    },
+    {
+      "id": "t1_oo7o5ul",
+      "author": "MarzipanEven7336",
+      "created": "2026-05-27T17:36:32.188000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo7o5ul/",
+      "body_html": "\n        <div id=\"t1_oo7o5ul-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Custom harness is the only way to go.\n    </p>\n    </div>\n      ",
+      "body_text": "Custom harness is the only way to go."
+    },
+    {
+      "id": "t1_onz74u1",
+      "author": "tonyboi76",
+      "created": "2026-05-26T14:18:24.771000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onz74u1/",
+      "body_html": "\n        <div id=\"t1_onz74u1-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      superpowers is opinionated software, like rails for agents. great if you dont have your own opinions yet, painful when you do. most comments here are basically saying the same thing in different words: extract 2-3 useful skills, throw the rest out.\n    </p><p>\n      the value distribution i found in mine: writing-clearly-and-concisely is genuinely good, the spec template is decent, the test-first skill is fine but i had my own version anyway. everything else was either competing with my own conventions or just bloating context.\n    </p><p>\n      honest take is its most useful for someone NEW to agentic dev who needs the scaffolding. once you have your own opinions on plan/spec/test rhythm, you graduate out of it. the heavy token use other commenters are flagging is the cost of those opinions loading every turn whether you need them or not.\n    </p>\n    </div>\n      ",
+      "body_text": "superpowers is opinionated software, like rails for agents. great if you dont have your own opinions yet, painful when you do. most comments here are basically saying the same thing in different words: extract 2-3 useful skills, throw the rest out.\n\nthe value distribution i found in mine: writing-clearly-and-concisely is genuinely good, the spec template is decent, the test-first skill is fine but i had my own version anyway. everything else was either competing with my own conventions or just bloating context.\n\nhonest take is its most useful for someone NEW to agentic dev who needs the scaffolding. once you have your own opinions on plan/spec/test rhythm, you graduate out of it. the heavy token use other commenters are flagging is the cost of those opinions loading every turn whether you need them or not."
+    },
+    {
+      "id": "t1_onzgv1h",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T15:03:23.445000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onzgv1h/",
+      "body_html": "\n        <div id=\"t1_onzgv1h-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I see, probably for someone new or who can't code is still better than nothing. But subpar when it comes to what I've been used to.\n    </p><p>\n      Honestly I just reverted back and deleted it, my take away is the TDD skill which I may implement later on in my harness\n    </p>\n    </div>\n      ",
+      "body_text": "I see, probably for someone new or who can't code is still better than nothing. But subpar when it comes to what I've been used to.\n\nHonestly I just reverted back and deleted it, my take away is the TDD skill which I may implement later on in my harness"
+    },
+    {
+      "id": "t1_onzk3lr",
+      "author": "tonyboi76",
+      "created": "2026-05-26T15:18:09.196000+0000",
+      "depth": "2",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onzk3lr/",
+      "body_html": "\n        <div id=\"t1_onzk3lr-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      makes sense. fwiw when you reimplement the TDD skill in your own harness, the bit that made it actually useful for me was forcing claude to run the failing test FIRST and show the red output, BEFORE writing any impl. without that step it tends to write impl + test in the same turn and call it green even if its not actually testing the right thing. costs an extra turn but the no-cheating signal is worth it.\n    </p>\n    </div>\n      ",
+      "body_text": "makes sense. fwiw when you reimplement the TDD skill in your own harness, the bit that made it actually useful for me was forcing claude to run the failing test FIRST and show the red output, BEFORE writing any impl. without that step it tends to write impl + test in the same turn and call it green even if its not actually testing the right thing. costs an extra turn but the no-cheating signal is worth it."
+    },
+    {
+      "id": "t1_oo0wygg",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T18:53:58.400000+0000",
+      "depth": "3",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oo0wygg/",
+      "body_html": "\n        <div id=\"t1_oo0wygg-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      That's definitely useful, thank you !\n    </p>\n    </div>\n      ",
+      "body_text": "That's definitely useful, thank you !"
+    },
+    {
+      "id": "t1_oqppil2",
+      "author": "Alternative-Wafer123",
+      "created": "2026-06-09T20:46:11.655000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/oqppil2/",
+      "body_html": "\n        <div id=\"t1_oqppil2-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      I have been using it which works perfectly fine for me. However I have staff tech depth to handle and correct it once sth looked wrong.\n    </p>\n    </div>\n      ",
+      "body_text": ""
+    },
+    {
+      "id": "t1_onz3ljn",
+      "author": "[deleted]",
+      "created": "2026-05-26T14:01:25.228000+0000",
+      "depth": "0",
+      "url": "https://www.reddit.com/null",
+      "body_html": "\n        <div id=\"t1_onzgioe-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yep, I've learnt that superpowers is not great the hard way. It just delivered an unusable feature of the app I'm working on. I never missed 1 single task using my own harness... just reverting back to it immediately. Thanks mate\n    </p>\n    </div>\n      ",
+      "body_text": "Yep, I've learnt that superpowers is not great the hard way. It just delivered an unusable feature of the app I'm working on. I never missed 1 single task using my own harness... just reverting back to it immediately. Thanks mate"
+    },
+    {
+      "id": "t1_onzgioe",
+      "author": "Spirited-Car-3560",
+      "created": "2026-05-26T15:01:48.852000+0000",
+      "depth": "1",
+      "url": "https://www.reddit.com/r/codex/comments/1to6329/comment/onzgioe/",
+      "body_html": "\n        <div id=\"t1_onzgioe-post-rtjson-content\" class=\"py-0 xs:mx-xs mx-2xs max-w-full scalable-text [--emote-size:20px]\" dir=\"auto\">\n      <p>\n      Yep, I've learnt that superpowers is not great the hard way. It just delivered an unusable feature of the app I'm working on. I never missed 1 single task using my own harness... just reverting back to it immediately. Thanks mate\n    </p>\n    </div>\n      ",
+      "body_text": "Yep, I've learnt that superpowers is not great the hard way. It just delivered an unusable feature of the app I'm working on. I never missed 1 single task using my own harness... just reverting back to it immediately. Thanks mate"
+    }
+  ],
+  "retrieved_at": "2026-09-12T12:16:20.426Z",
+  "scope": "Aside rendered public post and currently loaded comments; not complete server HTML or hidden comments; account UI excluded."
+}

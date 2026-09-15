@@ -10,10 +10,12 @@
 set -f  # no filename globbing: the patterns below are matched by case, not expanded by the shell
 # TEAM: real frozen/generated paths for PROTECTED — docs/ADOPTING.md · L15
 PROTECTED='.github/* Makefile .claude/hooks/* .claude/settings.json'
-rel="$(rel_path)"; [ -n "$rel" ] || exit 0
-for pat in $PROTECTED; do
-  case "$rel" in $pat)
-    block "$rel is a frozen path ($PROTECTED). Reason: CI wiring, the make targets and the hooks are the feedback loop itself; an agent must not loosen them mid-task. Route: a human changes it in its own PR, or edits PROTECTED in this hook in that PR." ;;
-  esac
-done
+while IFS= read -r rel; do
+  [ -n "$rel" ] || continue
+  for pat in $PROTECTED; do
+    case "$rel" in $pat)
+      block "$rel is a frozen path ($PROTECTED). Reason: CI wiring, the make targets and the hooks are the feedback loop itself; an agent must not loosen them mid-task. Route: a human changes it in its own PR, or edits PROTECTED in this hook in that PR." ;;
+    esac
+  done
+done <<< "$PATH_CANDIDATES"
 exit 0

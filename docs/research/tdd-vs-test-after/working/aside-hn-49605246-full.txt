@@ -1,0 +1,722 @@
+✔︎ Opened a new tab and set it active: tabs[0], page → How well do agents use test/verification techniques? | Hacker News (https://news.ycombinator.com/item?id=49605246)
+- title: "How well do agents use test/verification techniques? | Hacker News" [url=https://news.ycombinator.com/item?id=49605246]
+- table:
+  - table:
+    - link [ref=e1]
+    - link "Hacker News" [ref=e2]
+    - link "new" [ref=e3]
+    - text: "|"
+    - link "past" [ref=e4]
+    - text: "|"
+    - link "comments" [ref=e5]
+    - text: "|"
+    - link "ask" [ref=e6]
+    - text: "|"
+    - link "show" [ref=e7]
+    - text: "|"
+    - link "jobs" [ref=e8]
+    - text: "|"
+    - link "submit" [ref=e9]
+    - link "login" [ref=e10]
+  - table:
+    - link "upvote" [ref=e11]
+    - link "How well do agents use test/verification techniques?" [ref=e12]
+    - text: "("
+    - link "danluu.com" [ref=e13]
+    - text: ")189 points  by"
+    - link "vinhnx" [ref=e14]
+    - link "4 days ago" [ref=e15]
+    - text: "|"
+    - link "hide" [ref=e16]
+    - text: "|"
+    - link "past" [ref=e17]
+    - text: "|"
+    - link "favorite" [ref=e18]
+    - text: "|"
+    - link "72 comments" [ref=e19]
+    - form:
+      - textbox [ref=e20]
+      - link "help" [ref=e21]
+      - button "add comment" [ref=e22]
+  - table:
+    - table:
+      - link "upvote" [ref=e23]
+      - link "nseskin" [ref=e24]
+      - link "3 days ago" [ref=e25]
+      - text: "|"
+      - link "[–]" [ref=e26]
+      - text: "I think this article demonstrates a broader problem with constraint following in LLMs. Agents often satisfy the most obvious and easily verifiable part of a task, but lose track of the constraint that actually determines success.Testing makes this especially clear: “use fuzzing” turns into generating random bytes, and “use formal verification” into proving a property that isn’t particularly useful. Formally, the technique is applied, but its actual purpose is lost.This may also explain why different testing techniques produce similar results: the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint."
+      - paragraph:
+        - link "reply" [ref=e27]
+    - table:
+      - link "upvote" [ref=e28]
+      - link "getnormality" [ref=e29]
+      - link "3 days ago" [ref=e30]
+      - text: "|  |"
+      - link "[–]" [ref=e31]
+      - text: "> the problem may be less about knowing a particular technique and more about the agent’s ability to keep its actual goal as the primary constraint.I think the limiting factor is often the human's ability to articulate the goal and hold the agent accountable."
+      - paragraph:
+        - text: "The working memory of technical people and the way they communicate often seems to prioritize how they're doing a task and not why they're doing it. So when they talk to you about their problem, they give you the human equivalent of modem noises and stack traces. This is such a common problem on tech support and Q&A forums like StackOverflow that it spawned its own terminology and website:"
+        - link "https://xyproblem.info/" [ref=e32]
+      - text: "The agents don't respond to XY problems any better than a colleague does, and usually much worse.An effective colleague asks why, and we need a similar relationship between the agent and its human supervisor."
+      - paragraph:
+        - link "reply" [ref=e33]
+    - table:
+      - link "upvote" [ref=e34]
+      - link "orbital-decay" [ref=e35]
+      - link "3 days ago" [ref=e36]
+      - text: "|  |  |"
+      - link "[–]" [ref=e37]
+      - text: "It's well known that CoT needs a narrow problem or several independent narrow problems to perform well. With too broad of a task it often turns into a burden and hurts performance, making it hyperfocus on one thing where a non-reasoning model would just handle everything. I wonder if disabling it would make anything better, but likely not if the model is already trained to do it."
+      - paragraph:
+        - link "reply" [ref=e38]
+    - table:
+      - link "upvote" [ref=e39]
+      - link "cyanydeez" [ref=e40]
+      - link "3 days ago" [ref=e41]
+      - text: "|  |  |"
+      - link "[–]" [ref=e42]
+      - text: "CoT works really well in qwen3.8-flash-next. I think a lot of the problems obversed are literal skill issue: dumping huge system prompts/skills that prime it over some broad scope, when the request is narrow.The system prompt should be considered a starting point only if you want reusable intelligence and focus. It should not be a grab bag of tools and PR style guides, etc...Grab your agent and inspect its prompt."
+      - paragraph:
+        - link "reply" [ref=e43]
+    - table:
+      - link "upvote" [ref=e44]
+      - link "grohan" [ref=e45]
+      - link "3 days ago" [ref=e46]
+      - text: "|  |  |"
+      - link "[–]" [ref=e47]
+      - text: "Pretty good point - I would actually argue that the imperative nature of prompting takes some of the blame here too. Your initial goal gets \"steered\" by the agent system and follow-up messages take precedence."
+      - paragraph:
+        - link "reply" [ref=e48]
+    - table:
+      - link "upvote" [ref=e49]
+      - link "ivanzhaowy123" [ref=e50]
+      - link "3 days ago" [ref=e51]
+      - text: "|  |"
+      - link "[–]" [ref=e52]
+      - text: "In my experience, agents often think of more edge cases than humans when writing unit tests. But under the guidance of certain skills, they can become mechanical and lose sight of the business logic.For example, when I use the Superpowers skill set, the agent proactively adopts TDD for every new feature. But its understanding of testing often stays superficial: if the user asks for a screen with a “Send” button, it first writes a test checking whether the button exists. The test fails, so it adds the button to make it pass.As a result, the test suite fills up with low-value cases that check whether a property exists or a string matches exactly. The agent follows the “write a failing test, then implement the feature” workflow, but never really tests the business behavior: When should sending be allowed? What should happen after success or failure? How should duplicate submissions be handled?The problem isn’t that agents can’t write tests. It’s that they seem prone to reducing TDD to a rigid sequence of steps, struggling to independently derive meaningful test cases from business requirements and use them to drive development."
+      - paragraph:
+        - link "reply" [ref=e53]
+    - table:
+      - link "upvote" [ref=e54]
+      - link "andai" [ref=e55]
+      - link "3 days ago" [ref=e56]
+      - text: "|  |"
+      - link "[–]" [ref=e57]
+      - text: "I asked Sonnet to port a prolog interpreter from Python to JS. I was surprised and delighted that it ended up writing a test suite for it. All tests passed.Until... I inspected the code: it was just a bunch of print statements that said \"test passed!\" and didn't actually test anything.That was last year, so hopefully it doesn't do that anymore."
+      - paragraph:
+        - link "reply" [ref=e58]
+    - table:
+      - link "upvote" [ref=e59]
+      - link "vetronauta" [ref=e60]
+      - link "2 days ago" [ref=e61]
+      - text: "|  |  |"
+      - link "[–]" [ref=e62]
+      - text: "Few months ago I was debugging an integration with a no-code library that ships code in a custom binary format. I still smile thinking at the following test I read assertThrows(RuntimeException.class, () -> callFoo(notABinaryFile)); //well, foo library is very complex, obviously this test throws!"
+      - paragraph:
+        - link "reply" [ref=e63]
+    - table:
+      - link "upvote" [ref=e64]
+      - link "throwatdem12311" [ref=e65]
+      - link "3 days ago" [ref=e66]
+      - text: "|  |  |"
+      - link "[–]" [ref=e67]
+      - text: "This is not really my experience using TDD with Claude at all.  When I tell it “a button should appear under x condition” it writes the test, and will often even verify the test by changing the code to fail the condition correctly before coming back and tell me it’s done.Every once in a while one of those useless tests you mention will sneak in…but I still read the code and either just remove it or tell the agent to get rid of it.  It happens so rarely it’s barely an inconvenience.But I don’t use any skills or anything like that to drive it.  I just have a line in my CLAUDE.md to follow TDD best practices.Personally I find most skills like these “superpowers” are just bullshit and don’t really help at all."
+      - paragraph:
+        - link "reply" [ref=e68]
+    - table:
+      - link "upvote" [ref=e69]
+      - link "jiaosdjf" [ref=e70]
+      - link "3 days ago" [ref=e71]
+      - text: "|  |  |"
+      - link "[–]" [ref=e72]
+      - text: "Probably because thats how most companies do it because most corporate workers are lazy box-tickers who are long fed up with the processes. It really feels like we're forcing human processes onto AI.What actually is the point of TDD?\n- If its to force you to think about edge cases early before you've started building the feature then that sounds like a human trait\n- If its to be living documentation then that sounds like a human trait We're going into weird rabbit holes where we've mismatched the tool that is AI which produces extremely cheap code very quickly - with the processes that we've built for slow and expensive to write human-generated code."
+      - paragraph:
+        - link "reply" [ref=e73]
+    - table:
+      - link "upvote" [ref=e74]
+      - link "pydry" [ref=e75]
+      - link "3 days ago" [ref=e76]
+      - text: "|  |  |"
+      - link "[–]" [ref=e77]
+      - text: "I think most people miss the point of TDD. It is not just about edge cases. It  ought  to be:* A way of matching requirement use cases to tests.* to modulate the number of tests written not only to make sure you have  enough  coverage but also to make sure you don't pointlessly cover the same edge cases multiple times.* a way to cheaply provide feedback and validation on code  as  you are writing it.With AI the ability to churn out useless tests has exploded (both with TDD done badly and with no TDD at all) and that has actually incurred a new type of cost we didnt have to face before."
+      - paragraph:
+        - link "reply" [ref=e78]
+    - table:
+      - link "upvote" [ref=e79]
+      - link "siscia" [ref=e80]
+      - link "4 days ago" [ref=e81]
+      - text: "|  |"
+      - link "[–]" [ref=e82]
+      - text: "It is still early, but I find that this experiment makes little to no sense and it is barely useful.The way you test code cannot (and should not) be decoupled by the way in which you architect the code itself.80%+ of effective testing is not in the testing framework but in the code architecture.The author doesn't mention how the code is being architected and managed.For what it is worth, I found that forcing agents on DI/hexagonal architecture and forcing a trivial coverage check is quite useful and produce overall good enough code with relative little effort"
+      - paragraph:
+        - link "reply" [ref=e83]
+    - table:
+      - link "upvote" [ref=e84]
+      - link "kqr" [ref=e85]
+      - link "3 days ago" [ref=e86]
+      - text: "|  |"
+      - link "[–]" [ref=e87]
+      - text: "I thought it pretty clear that the code was generated by the same agent that received the testing prompt, so there were no constraints on the code structure, and the testing strategy was known at the time the structure was generated."
+      - paragraph:
+        - link "reply" [ref=e88]
+    - table:
+      - link "upvote" [ref=e89]
+      - link "sceptic123" [ref=e90]
+      - link "3 days ago" [ref=e91]
+      - text: "|  |  |"
+      - link "[–]" [ref=e92]
+      - text: "But what's the initial setup? Was it greenfields every time? And _how_ were the different testing frameworks used? What's the AGENTS.md there? So many things can influence these tests in positive/negative ways that are not included in the write up or results. Seems like a lot of effort without much in the way of actual helpful detail."
+      - paragraph:
+        - link "reply" [ref=e93]
+    - table:
+      - link "upvote" [ref=e94]
+      - link "MrJohz" [ref=e95]
+      - link "3 days ago" [ref=e96]
+      - text: "|  |  |"
+      - link "[–]" [ref=e97]
+      - text: "The setup is described in the linked post about programming language vs efficiency/token cost:"
+      - link "https://danluu.com/pl-tokens/#zstd" [ref=e98]
+      - text: "> For the first eval, I tried giving agents the zstd RFC (plus errata) and telling them to implement a complete zstd decoder (agents are stuck in a container without internet access). The tests were not given to agents. For something with the surface area of zstd, it's not really reasonable to expect that the tests cover every possible case. For example, even though zstd is a fairly well-tested piece of software, I once found a data corruption bug in zstd. The test suite isn't intended to find extreme corner cases that might be lurking for years and is instead intended to check various cases that can \"easily\" be derived from the RFC that should work.So basically, the agents were given the zstd RFC, told to implement a decoder, and also told to use a particular testing strategy (or not, for the control runs)."
+      - paragraph:
+        - link "reply" [ref=e99]
+    - table:
+      - link "upvote" [ref=e100]
+      - link "themgt" [ref=e101]
+      - link "3 days ago" [ref=e102]
+      - text: "|  |  |"
+      - link "[–]" [ref=e103]
+      - text: "agents are stuck in a container without internet access. The tests were not given to agents It's a bold strategy, cotton."
+      - paragraph:
+        - link "reply" [ref=e104]
+    - table:
+      - link "upvote" [ref=e105]
+      - link "yorwba" [ref=e106]
+      - link "3 days ago" [ref=e107]
+      - text: "|  |  |  |"
+      - link "[–]" [ref=e108]
+      - text: "The setup is described in an earlier post linked in the second paragraph. Agents are given the zstd RFC and told to implement it, greenfield. Testing frameworks were used however the agents decided, which is to say, as mentioned repeatedly throughout the post, badly or not at all. Other factors that could conceivably affect the results can be assumed to be held constant, since the goal is to see what happens when you vary the instructions regarding which testing methodology should be used."
+      - paragraph:
+        - link "reply" [ref=e109]
+    - table:
+      - link "upvote" [ref=e110]
+      - link "sceptic123" [ref=e111]
+      - link "3 days ago" [ref=e112]
+      - text: "|  |  |"
+      - link "[–]" [ref=e113]
+      - text: "So basically \"one-shot <complicated thing> using <x> testing methodology\".I don't think that's a very effective test of an agents ability."
+      - paragraph:
+        - link "reply" [ref=e114]
+    - table:
+      - link "upvote" [ref=e115]
+      - link "yorwba" [ref=e116]
+      - link "3 days ago" [ref=e117]
+      - text: "|  |  |"
+      - link "[–]" [ref=e118]
+      - text: "It's intended as a \"test to see how effective agents are when guided by someone with no expertise in testing who's maybe heard that you should apply certain techniques or use certain libraries.\" What do you think would be a more effective test for that purpose?"
+      - paragraph:
+        - link "reply" [ref=e119]
+    - table:
+      - link "upvote" [ref=e120]
+      - link "sceptic123" [ref=e121]
+      - link "2 days ago" [ref=e122]
+      - text: "|  |  |"
+      - link "[–]" [ref=e123]
+      - text: "So not \"How well do agents use test/verification techniques?\" like the title says then.It just looks like a lot of effort to go to in a way that doesn't answer the question the title poses.I'd love to see something that could guide how to set an agent up for success rather than this naive approach which only really answers the questions that most of the audience here probably don't have."
+      - paragraph:
+        - link "reply" [ref=e124]
+    - table:
+      - link "upvote" [ref=e125]
+      - link "wesselbindt" [ref=e126]
+      - link "3 days ago" [ref=e127]
+      - text: "|  |  |"
+      - link "[–]" [ref=e128]
+      - text: "> The way you test code cannot (and should not) be decoupled by the way in which you architect the code itself.I'm not sure I fully understand. In my view, it's pretty evident that tests should test behavior and not structure. Coupling to implementation details is unavoidable but should be managed, and ideally minimized, to keep the test suite robust and maintainable.Given the choice between a test suite that monkey patches out some dependency (redis, say) on a per-test basis, and one which substitutes a fake for this dependency in some centralized composition root, which one do you prefer, and why?"
+      - paragraph:
+        - link "reply" [ref=e129]
+    - table:
+      - link "upvote" [ref=e130]
+      - link "crabbone" [ref=e131]
+      - link "3 days ago" [ref=e132]
+      - text: "|  |  |"
+      - link "[–]" [ref=e133]
+      - text: "> I'm not sure I fully understand. In my view, it's pretty evident that tests should test behavior and not structure.Not OP, but I think I know what OP has in mind.  There are some trivial ways in which code can be made easier to test as well as more complex (let's call them architectural) ways.Examples of trivial conveniences include: making tested functionality accessible from the test (i.e. private class methods in Java present a problem for testing), coding against an interface rather than an implementation (this allows substituting a test implementation for a production implementation that can fish out some bugs), having internal to the code correctness checks that don't necessarily influence program execution (simply having runtime type checks, like it's done in eg. Java, compared to eg. C makes testing easier and more productive).  Of course, there's more, these are just very common and easy to understand.The architectural properties that improve the ability to test a program might be: the so-called \"observability\" programmed into the product, i.e. the product generates metrics data that's not part of the desired output.  The product is split into modules with formally defined interfaces, which allows testing modules in isolation and lowers the number of possible combinations to test.Improving testability isn't necessarily a good thing because it's likely to negatively impact complexity, size or speed of the program.  So, depending on what's more important for any given program, the testing strategy will be different..."
+      - paragraph:
+        - link "reply" [ref=e134]
+    - table:
+      - link "upvote" [ref=e135]
+      - link "siscia" [ref=e136]
+      - link "3 days ago" [ref=e137]
+      - text: "|  |  |  |"
+      - link "[–]" [ref=e138]
+      - text: "You are not wrong but if we go deeper we will find more nuances.> tests should test behaviour and not structure.Of what?The whole idea of software architecture, and underlying of my messages, is to structure the code so that it is easy, but before easy, possible, to work at the right abstraction level.Which allows to tests the behaviour of components and not their structure.Trivial example, say your code read from a socket and manage the bytes with some CPU operations and write them to another socket. (You may recognise it is basically what a compressor do)The way in which you manage read and write to the sockets will make dramatically simpler or much more difficult to write good tests.If you adopt strategies like sans-io, you will see that the testing is almost trivial.If all the logic sprawl up from the read syscall in a loop, you will notice how more challenging testing becomes.---To answer your question, the way I let LLMs write code is very DI (dependency injection) based.A class never instantiates another class - all the dependencies are passed to the constructor. Including time. Including whatever DB iteraction.The reason why I prefer this is that I can test each component at every level of abstraction. I don't have to. But I can.My current approach is to force coverage higher than say 80% as default and then when a bug is discovered drill down to the components."
+      - paragraph:
+        - link "reply" [ref=e139]
+    - table:
+      - link "upvote" [ref=e140]
+      - link "MrJohz" [ref=e141]
+      - link "3 days ago" [ref=e142]
+      - text: "|  |  |  |"
+      - link "[–]" [ref=e143]
+      - text: "The question \"for which functions/modules/classes should I write tests?\" and the question \"how do I structure my functions/modules/classes?\" are  very  closely related questions, which I think is what the other comment was getting at.That follows largely from what you're saying though, so I think the two of you agree, you're just coming at the same thing from different perspectives.  Like you say, you want to avoid/manage coupling tests to implementation details, and typically the best way to do that is to bundle a significant, testable chunk of code into a single module, define a clear public interface to that module, and then test that interface.  The internals of that module are then free to change, but the test interface should stay the same.But the corollary of that is that you can't just design your modules independently of your tests, you need to design them so that they are testable.  Which is why the previous comment links testing to code architecture/design.Regarding dependencies like that, the best situation is where you can either:(a) design a module so that the dependency is injected with a clear interface (not just \"here's an instance of libredis.rs\" but \"here's a series of callbacks for saving data, those callbacks might save to Redis, but they might be in-memory only, or they might save everything to the blockchain, either way it doesn't matter\").(b) just spin up an instance of Redis and test directly against that — it should be quick enough, and there's plenty of ways to ensure that the tests don't affect each other even while accessing a shared resource."
+      - paragraph:
+        - link "reply" [ref=e144]
+    - table:
+      - link "upvote" [ref=e145]
+      - link "gregwebs" [ref=e146]
+      - link "3 days ago" [ref=e147]
+      - text: "|  |"
+      - link "[–]" [ref=e148]
+      - text: "Amazing work! But deeply frustrating on the lack of reproducibility and how far off this is from a proper SDLC.How can I inspect exactly how agents were prompted? How can I reproduce this setup and try out my own AI setup? Am I missing a link to a repo somewhere?These evals probably match how many people are using AI, but its not the full package of how we know software development needs to be done, and not how I do it with AI. The closest would be \"Audit\" which scored the highest when using xhigh- that actually incorporates a review cycle- something we know is the most important part of the software development process for code correctness (design/specification is not as much of an issue in this problem since the task is to write code against an existing spec). However, we don't know what instructions they have in their \"Audit\".I would love to benchmark my own flow [1] if I can be given their exact problem. What it does is (assuming there is already a solid spec)  * plan with expensive model. Review the plan.\n  * implement with cheap model. Review for spec compliance and code quality.\n  * Reviews are done adversarially from the expensive model with a fresh context.\n  * ensure that verifications (automated or manual) are performed.\n\nFor non-trivial changes, the review and verification process almost always catch significant issues.The workflow does use TDD. I do find useless tests being written and I need to dig into this part of the workflow a lot more, so its great to see that aspect of this article. My experience writing software has taught me that code must be written to be easy to test, but not necessarily done TDD style."
+      - paragraph:
+        - text: "[1]"
+        - link "https://github.com/gregwebs/skills-sdlc/" [ref=e149]
+      - paragraph:
+        - link "reply" [ref=e150]
+    - table:
+      - link "upvote" [ref=e151]
+      - link "jakevoytko" [ref=e152]
+      - link "3 days ago" [ref=e153]
+      - text: "|  |"
+      - link "[–]" [ref=e154]
+      - text: "As someone who also spent a bunch of time benchmarking various techniques, this is as good as you can do without publishing a formal versioned benchmark suite that you want to maintain and run forever at immense cost to yourself. If you actually go to benchmark your own flow as you mentioned, you will quickly run into like a dozen problems that discourage you from publishing.- Are you sure that temperature and other nondeterminism isn't affecting your output?- Are you sure you're not being routed through an A/B test at this moment?- Are you sure there's not a bug affecting the model at this moment?- Are you sure that you picked the right model and effort level?- Are you sure that your result generalizes across providers?- Are you sure that you set up the correct level of sandboxing and the agent can't e.g. look at a sister directory or git history in the current directory for answers?- Are you sure that the agent isn't leaking answers in memory or its conversation history?- Are you sure that tool calls aren't somehow affecting results?- Are you sure that your results are robust, i.e. you see the same results with mild tweaks to the prompt?- Are you comfortable keeping your blog post live when your results are invalidated next week with the next model launch?And that's just a quick list off the top of my head.I personally decided that it wasn't worth it, I'm glad that Dan decided to publish his. Frankly I think we could use a lot more of these \"I ran these 2 techniques side by side and here's what I saw\" anecdata, because most people who promote prompt techniques can't produce a single prompt they ran twice because they never actually tested it per se.Edited to add: formatting + the word \"promote\""
+      - paragraph:
+        - link "reply" [ref=e155]
+    - table:
+      - link "upvote" [ref=e156]
+      - link "gregwebs" [ref=e157]
+      - link "3 days ago" [ref=e158]
+      - text: "|  |  |"
+      - link "[–]" [ref=e159]
+      - text: "I am really grateful that he’s publishing as well.I am just asking for the bare minimum to actually understand what has been tested and for reproducibility of methods- the publication of the prompts. It would take a lot less time than all the guess work analysis write up and be a lot more useful.Without the prompts the rest of your questions about reproducibility are moot."
+      - paragraph:
+        - link "reply" [ref=e160]
+    - table:
+      - link "upvote" [ref=e161]
+      - link "genxy" [ref=e162]
+      - link "2 days ago" [ref=e163]
+      - text: "|  |  |"
+      - link "[–]" [ref=e164]
+      - text: "This post boils down to, \"I tried a bunch of things that didn't work very well\". But we don't actually know what he tried. Everything hinges on Dan's prompting skills."
+      - paragraph:
+        - link "reply" [ref=e165]
+    - table:
+      - link "upvote" [ref=e166]
+      - link "movpasd" [ref=e167]
+      - link "3 days ago" [ref=e168]
+      - text: "|  |"
+      - link "[–]" [ref=e169]
+      - text: "This is significantly more thorough than any testing I've done, and in a totally different domain, but my anecdotal experience getting agents to use Hypothesis was quite poor.The agent really, really struggled to bridge the gap between the code and the actual business rules it was meant to be modelling. It also struggled to work out which functions at which layer were appropriate to write tests for. So, its tests tended to be very brittle to changes to domain logic.Essentially, agents have always seemed to struggle with modularity and problem decomposition. Good testing is about finding the right things to test, which means working out how to subdivide the input state into an appropriate product state, and checking each behaviour independently. IMO, this is the most difficult and complicated thing about programming, so I won't say it struggled _more_ than a human would --- but humans have the advantage of being able to sleep on it?One minor thing I observed was that it tended to get really hung up on floating point edge cases (NaNs, infinities). Maybe floating point edge cases are over-represented in the property-testing training data, but it's essentially irrelevant for my usecase, at least as far as the business rules go."
+      - paragraph:
+        - link "reply" [ref=e170]
+    - table:
+      - link "upvote" [ref=e171]
+      - link "crabbone" [ref=e172]
+      - link "3 days ago" [ref=e173]
+      - text: "|  |"
+      - link "[–]" [ref=e174]
+      - text: "I haven't finished reading and had to make a detour into another article by the same author, so, probably, I will have to extend the comment, but so far this:> Perhaps the limiting factor is just that knowledge of effective test techniques isn't very widespread"
+      - paragraph:
+        - text: "That linked to:"
+        - link "https://danluu.com/testing/" [ref=e175]
+      - text: "But of course... the problem of testing is a lot harder than performance optimization... I'm surprised this comes as a surprise.  Performance optimization has plenty of evaluation metrics by its very nature.  Testing? -- I wish there was  anything  tangible at all...  Because we have metrics for optimization, we have theories of optimization, i.e. we have a way of explaining how or what optimization should do.  With testing? -- we are nowhere close to this point.Another aspect of this disparity is that we also know how to sell performance optimizations.  It's easy to write into an ad pamphlet that the version 2.0 of gobbledygook does 185% more gobbledygook than the 1.0! (The number faithfully copied from my cereal box!)  With testing? -- How can you even tell the customer that the product was tested better?  Swear on your life and cross your heart (twice, as opposed to the last time when you only did it once?)In general, in the field, I've only have so far met with extreme pessimism about feasibility of \"theory of testing\" existing.  Even though the need for testing goes without saying, the actual testing task is reserved for the least competent and there's little no no effort made to improve anything in this department as it's perceived to be a black hole in the budget: no matter how much you could spend on testing, the effect is likely to be the same."
+      - paragraph:
+        - link "reply" [ref=e176]
+    - table:
+      - link "upvote" [ref=e177]
+      - link "vetronauta" [ref=e178]
+      - link "4 days ago" [ref=e179]
+      - text: "|  |"
+      - link "[–]" [ref=e180]
+      - text: "If I understood correctly, the author had the agent perform  manual  mutation testing (write code, write passing tests, manually change the code to see some tests fail, then revert the change), rather than  automated  mutation testing. Why not use a mutation-testing framework and consider the build failed if a certain percentage of mutations are not killed?The article claims that the agents didn’t actually use TDD or mutation testing. While it’s possible for an agent to ignore the TDD procedure even when instructed to follow it, it can’t ignore a build failure."
+      - paragraph:
+        - link "reply" [ref=e181]
+    - table:
+      - link "upvote" [ref=e182]
+      - link "lolpython" [ref=e183]
+      - link "3 days ago" [ref=e184]
+      - text: "|  |"
+      - link "[–]" [ref=e185]
+      - text: "I didn't understand this part in the article. It seems advantageous to have an AI do manual mutation testing because it can actually introduce realistic bugs, like raising an exception or returning a different, known error code. Instead of the quite limited approach offered by automated frameworks that mostly just change binary operators. The whole issue with manual mutation testing is that it's slow and has to be done by hand, but with AI it's not by hand any longer and if it takes a few minutes in the background, who cares."
+      - paragraph:
+        - link "reply" [ref=e186]
+    - table:
+      - link "upvote" [ref=e187]
+      - link "kqr" [ref=e188]
+      - link "3 days ago" [ref=e189]
+      - text: "|  |  |"
+      - link "[–]" [ref=e190]
+      - text: "This surprised me too. I suspect the robots only got a \"use mutation testing\" prompt and independently decided that it must mean manual mutation testing, or possibly that they ran in a sandbox where an automated mutation testing tool was not installed.But I'm surprised Dan Luu didn't make a remark about this. Surely he must know the difference!"
+      - paragraph:
+        - link "reply" [ref=e191]
+    - table:
+      - link "upvote" [ref=e192]
+      - link "yorwba" [ref=e193]
+      - link "3 days ago" [ref=e194]
+      - text: "|  |  |"
+      - link "[–]" [ref=e195]
+      - text: "He did remark on it: \"Although mutation testing is a standard programming term, agents generally didn't actually do mutation testing and instead did normal testing with some small amount of mutating things in a way that isn't really mutation testing, similar to how the TDD instruction modified behavior but didn't get agents to do TDD.\"If you're wondering why he doesn't go into greater detail, several testing methodologies earlier we have: \"Since just saying that agents didn't really meaningfully do the thing is repetitive, I'll make these sections short and only highlight particular curiosities.\""
+      - paragraph:
+        - link "reply" [ref=e196]
+    - table:
+      - link "upvote" [ref=e197]
+      - link "coder-pm" [ref=e198]
+      - link "3 days ago" [ref=e199]
+      - text: "|  |  |"
+      - link "[–]" [ref=e200]
+      - text: "Yes, automated and gated. Zero missed rather than percentage. This morning harness failed the agent written test that passed on the fixed code and also passed against the mutated code. Test looked fine, code reviews would approve it, only the gate caught it! The agent didn't game it. Why I said zero missed, not a percentage? Because only one mutation survived and percentage threshold would probably swallow it.Does anyone else gate at zero rather than a percentage threshold?"
+      - paragraph:
+        - link "reply" [ref=e201]
+    - table:
+      - link "upvote" [ref=e202]
+      - link "vetronauta" [ref=e203]
+      - link "2 days ago" [ref=e204]
+      - text: "|  |  |"
+      - link "[–]" [ref=e205]
+      - text: "Do you have specific strategies on handling equivalent mutants?"
+      - paragraph:
+        - link "reply" [ref=e206]
+    - table:
+      - link "upvote" [ref=e207]
+      - link "coder-pm" [ref=e208]
+      - link "1 day ago" [ref=e209]
+      - text: "|  |  |"
+      - link "[–]" [ref=e210]
+      - text: "I'm not generating the mutations automatically. Every one is a single targeted change assigned to a single test, reviewed one at a time. Thanks to that changes that mean the same thing don't stack up. The cost is reversed, I only catch what I thought about.My real issue is different. This week one change removed the step which is creating a filename from the path and the test didnt catch it, it was passing. It wasn't an equivalent mutant, the test was looking at the wrong place. It works for me only because I'm working here on a single file, a complex bash script. Does anyone have a sensible way to limit equivalent mutants without manually checking every one that survived?"
+      - paragraph:
+        - link "reply" [ref=e211]
+    - table:
+      - link "upvote" [ref=e212]
+      - link "devhunt-org" [ref=e213]
+      - link "4 days ago" [ref=e214]
+      - text: "|  |  |"
+      - link "[–]" [ref=e215]
+      - text: "Would automated mutation testing actually make a big difference for agents, or would they just find new ways to game the metric?"
+      - paragraph:
+        - link "reply" [ref=e216]
+    - table:
+      - link "upvote" [ref=e217]
+      - link "kqr" [ref=e218]
+      - link "3 days ago" [ref=e219]
+      - text: "|  |  |"
+      - link "[–]" [ref=e220]
+      - text: "I believe it would. Automated mutation testing is the test coverage metric that is nearly impossible to cheat."
+      - paragraph:
+        - link "reply" [ref=e221]
+    - table:
+      - link "upvote" [ref=e222]
+      - link "anitil" [ref=e223]
+      - link "4 days ago" [ref=e224]
+      - text: "|  |"
+      - link "[–]" [ref=e225]
+      - text: "You know how everyone thinks agents are bad at the thing they're good at and good at the thing they're bad at? It turns out I must be bad at testing, because I thought they do a reasonable job."
+      - paragraph:
+        - link "reply" [ref=e226]
+    - table:
+      - link "upvote" [ref=e227]
+      - link "ngruhn" [ref=e228]
+      - link "4 days ago" [ref=e229]
+      - text: "|  |"
+      - link "[–]" [ref=e230]
+      - text: "I thought so too but it's probably because I never review the tests. I made an exception recently and found tons of     assert(CONSTANT_CONFIG == valueOfConfig)\n\nor tests for keywords in prompts:    assert(prompt.includes(\"repo url\"))"
+      - paragraph:
+        - link "reply" [ref=e231]
+    - table:
+      - link "upvote" [ref=e232]
+      - link "genxy" [ref=e233]
+      - link "2 days ago" [ref=e234]
+      - text: "|  |  |"
+      - link "[–]" [ref=e235]
+      - text: "Was your prompt, \"make lazy ineffectual tests?\" Tests are code as well, they take the same effort to create, if not more. You need to specify the properties you want to test."
+      - paragraph:
+        - link "reply" [ref=e236]
+    - table:
+      - link "upvote" [ref=e237]
+      - link "ponector" [ref=e238]
+      - link "3 days ago" [ref=e239]
+      - text: "|  |  |"
+      - link "[–]" [ref=e240]
+      - text: "Most developers are not good at testing. That's why the role of test engineer exists.I've seen in multiple projects things like assertTrue(true).I'm sure the agent is better in testing than average enterprise developer."
+      - paragraph:
+        - link "reply" [ref=e241]
+    - table:
+      - link "upvote" [ref=e242]
+      - link "zaphirplane" [ref=e243]
+      - link "3 days ago" [ref=e244]
+      - text: "|  |  |"
+      - link "[–]" [ref=e245]
+      - text: "big tech is moving / has moved away from the role."
+      - paragraph:
+        - link "reply" [ref=e246]
+    - table:
+      - link "upvote" [ref=e247]
+      - link "ponector" [ref=e248]
+      - link "3 days ago" [ref=e249]
+      - text: "|  |  |"
+      - link "[–]" [ref=e250]
+      - text: "Unfortunately for the users, testing has been pushed to them. You can deploy whatever slop you want - nobody cares. More lines of code!"
+      - paragraph:
+        - link "reply" [ref=e251]
+    - table:
+      - link "upvote" [ref=e252]
+      - link "__alexs" [ref=e253]
+      - link "4 days ago" [ref=e254]
+      - text: "|  |  |"
+      - link "[–]" [ref=e255]
+      - text: "I don't think these results show that.I think they show that additional prompting for testing approaches have wide differences in error rate (worst has twice the error rate of the best) but actually no extra prompting is pretty fine and most custom prompts are worse than no prompt."
+      - paragraph:
+        - link "reply" [ref=e256]
+    - table:
+      - link "upvote" [ref=e257]
+      - link "gmueckl" [ref=e258]
+      - link "3 days ago" [ref=e259]
+      - text: "|  |  |"
+      - link "[–]" [ref=e260]
+      - text: "Isn't that just a form of Dunning-Kruger effect related to the parts that person is bad in? It looks good because they don't have the depth of knowledge/expertise to see the deficiencies."
+      - paragraph:
+        - link "reply" [ref=e261]
+    - table:
+      - link "upvote" [ref=e262]
+      - link "ngruhn" [ref=e263]
+      - link "4 days ago" [ref=e264]
+      - text: "|  |"
+      - link "[–]" [ref=e265]
+      - text: "I wonder how well this fares    try to make illegal states unrepresentable\n \nIn my experience, agents know how to do it. They just don't if it's not the default  style  of the language."
+      - paragraph:
+        - link "reply" [ref=e266]
+    - table:
+      - link "upvote" [ref=e267]
+      - link "ckvibubueu" [ref=e268]
+      - link "3 days ago" [ref=e269]
+      - text: "|  |"
+      - link "[–]" [ref=e270]
+      - text: "Go is an amazing AI language for this reason.The tests that get created also tend to be higher quality than say the slop I see in python.Though I do suspect my codebases are doing heavy lifting in terms of steering towards quality outcomes."
+      - paragraph:
+        - link "reply" [ref=e271]
+    - table:
+      - link "upvote" [ref=e272]
+      - link "salmonellaeater" [ref=e273]
+      - link "3 days ago" [ref=e274]
+      - text: "|  |  |"
+      - link "[–]" [ref=e275]
+      - text: "I've found the opposite. Go doesn't even have sum types, so it's hard to use constructive data modeling techniques to model the domain. The only tool available for ensuring exhaustive handling of all cases is interfaces (Visitor pattern) which is verbose."
+      - paragraph:
+        - link "reply" [ref=e276]
+    - table:
+      - link "upvote" [ref=e277]
+      - link "ckvibubueu" [ref=e278]
+      - link "2 days ago" [ref=e279]
+      - text: "|  |  |"
+      - link "[–]" [ref=e280]
+      - text: "Data modelling is helpful for humans that can expand that kind of context on the fly and with recall. For the midwit models I use it just creates context that is expressed once and then glossed over.Having to over express the data model everywhere is precisely what makes AI good at using it.Does the code suck to read? Sure, but I don't really do that very often anymore anyway.In this case, the verbosity of go is a feature not a bug.I guess it depends what your optimizing for, good code or fast turn around without needing to constantly remind the AI about certain type behaviors."
+      - paragraph:
+        - link "reply" [ref=e281]
+    - table:
+      - link "upvote" [ref=e282]
+      - link "williamdclt" [ref=e283]
+      - link "3 days ago" [ref=e284]
+      - text: "|  |  |  |"
+      - link "[–]" [ref=e285]
+      - text: "> Go is an amazing AI language for this reason.I'd be interested to hear more about why? because my experience with Go has been the opposite, I found it pretty bad for \"making illegal states unrepresentable\". In fact, its zero-values system often makes illegal states the _default_"
+      - paragraph:
+        - link "reply" [ref=e286]
+    - table:
+      - link "upvote" [ref=e287]
+      - link "andai" [ref=e288]
+      - link "3 days ago" [ref=e289]
+      - text: "|  |"
+      - link "[–]" [ref=e290]
+      - text: "I'm doing indie game dev, so not sure how much my experience transfers, but I've been working on a browser game and the game kind of sucks, but there's a huge amount of tests (by my standards). So you can have crap software with loads of tests. (You can also have awesome software with very few tests!)Also, had a funny experience where AI implemented an architectural change completely backwards. The implementation was pointless and made things worse rather than better. But I still got \"all tests green\" lol, because it just proved that the incorrect thing worked properly.I noted with some amusement that formal verification wouldn't have helped there either, it would just have been an even stronger proof of the \"correctness\" of the thing that shouldn't exist to begin with."
+      - paragraph:
+        - link "reply" [ref=e291]
+    - table:
+      - link "upvote" [ref=e292]
+      - link "Schlagbohrer" [ref=e293]
+      - link "3 days ago" [ref=e294]
+      - text: "|  |"
+      - link "[–]" [ref=e295]
+      - text: "I run in to this often with my Qwen3.8-27B agent. I roll my eyes when it reassures me \"467/467 tests green, it's good to go!\" and there is some basic misunderstanding or the output looks like crap."
+      - paragraph:
+        - link "reply" [ref=e296]
+    - table:
+      - link "upvote" [ref=e297]
+      - link "Havoc" [ref=e298]
+      - link "3 days ago" [ref=e299]
+      - text: "|  |"
+      - link "[–]" [ref=e300]
+      - text: "I've had good luck with audit technique, specifically with mixing LLMs that have very different heritage.Mostly write code with GLM5.3 and found that using Muse 1.3 to make detailed summary  bugs works well, especially for Rust. Somehow muse is really good at rust. And from what I can tell even using the original model (GLM here) against that list to go fix it seems fine even if it is the model that made the mistake.They seem to write 100s of tests too, but don't really have much confidence in those tbh much like author. I view it as a bonus. Tests are computationally cheap so knock yourself out Mr AI."
+      - paragraph:
+        - link "reply" [ref=e301]
+    - table:
+      - link "upvote" [ref=e302]
+      - link "gz09" [ref=e303]
+      - link "4 days ago" [ref=e304]
+      - text: "|  |"
+      - link "[–]" [ref=e305]
+      - text: "Results seem somewhat reasonable given that the amount of verus/TLA/Creusot/Lean code out there is tiny compared to all the other non-formal code.So it's understandable that the agents wont be able\nto go beyond proving trival things, given how much more difficult it is to write such code.A (more) interesting experiment (to me) would be to write a high level spec manually for a non-trivial system (liveness etc.) and see if the agent can produce an implementation using guided refinements that satisfies this specification."
+      - paragraph:
+        - link "reply" [ref=e306]
+    - table:
+      - link "upvote" [ref=e307]
+      - link "gr_norm" [ref=e308]
+      - link "4 days ago" [ref=e309]
+      - text: "|  |"
+      - link "[–]" [ref=e310]
+      - text: "Yeah, the interesting thing to me with formal methods is where  you  write some (partial) specs to tell the LLM what you want. It'll do the usual stuff, plus extra proof work to make sure your intent was actually realized.Throwing tools haphazardly at the LLM and hoping they increase the correctness of its output is expectedly pretty ineffective. Good to see this borne out in the article."
+      - paragraph:
+        - link "reply" [ref=e311]
+    - table:
+      - link "upvote" [ref=e312]
+      - link "lmeyerov" [ref=e313]
+      - link "3 days ago" [ref=e314]
+      - text: "|  |  |"
+      - link "[–]" [ref=e315]
+      - text: "Picking rust also felt problematic as also somewhat out of distribution historically"
+      - paragraph:
+        - link "reply" [ref=e316]
+    - table:
+      - link "upvote" [ref=e317]
+      - link "emtel" [ref=e318]
+      - link "3 days ago" [ref=e319]
+      - text: "|  |"
+      - link "[–]" [ref=e320]
+      - text: "I have dabbled with Verus in rust. I found that if you leave the agent to its own devices it will produce a spec that just restates the existing implementation. It took a lot of work to arrive at specs that were plausibly accurate and complete statements of what the code was supposed to do.But once you got there, Claude had no trouble proving the code satisfied the spec, and I uncovered a few interesting bugs this way."
+      - paragraph:
+        - link "reply" [ref=e321]
+    - table:
+      - link "upvote" [ref=e322]
+      - link "tomrod" [ref=e323]
+      - link "4 days ago" [ref=e324]
+      - text: "|  |"
+      - link "[–]" [ref=e325]
+      - text: "Timely. I'm also looking at this now, actually! We tend to throw benchmark after benchmark at systems, but miss that models are one part of the system. Harnesses are more than models and need tuning too, and in doing so there can be gains or loss of prior tested function as well."
+      - paragraph:
+        - link "reply" [ref=e326]
+    - table:
+      - link "upvote" [ref=e327]
+      - link "CharlieDigital" [ref=e328]
+      - link "3 days ago" [ref=e329]
+      - text: "|  |"
+      - link "[–]" [ref=e330]
+      - text: "I worked for a long stint building SaaS for life sciences/pharma.A big, big part of this space is \"traceability\" through the SDLC.  If something goes wrong, there is a long chain of liability from the final effect (a subject with an adverse event) to the root cause (system recorded the wrong data in a clinical trial) all the ways to a 3rd party vendor.  We call software \"validated\" if it has gone through the GAMP 5 V-model of software development and produced the necessary artifacts that correlate verified behavior to specification.While this is way too much rigor for many scenarios, I think more folks should be familiar with the  GAMP 5 V-model  in the agentic era.  The left side of the V defines the requirements moving from high level business requirements to low level technical requirements, the right side of the V defines the verification artifacts corresponding to the technical and business requirements (in that order).  In this structure, testing covers both the functional requirements as well as the technical requirements.I think this mental model is extremely useful and reflects the interaction model with agents: humans now focus on the requirements and less on the implementation details.  It is useful to separate the  business  from the  technical  and therefore, the two types of artifacts that need to be produced to satisfy verification thresholds.This style of structured software development (pre-agents) is very expensive.  With a 2-3 weeks planning/specification phase on the front-end (since the test specification has a dependency on the approved requirements), a 4 week implementation phase (this is iterative with the test team, but informal; changes from the approved plan are documented as  deviations), and then a 2-3 week formal test/verification phase.  But in a post-agent world, this model feels like it is 1) more reasonable, 2) perhaps more effective, 3) more manageable.While the teams I've now been on in startups have focused heavily on fast iteration with AI, a big downside I've noted is that it seems that we keep building the wrong things or things that are not useful because we are no longer verifying the business requirements before building.  We assume the cost of building is low so we build and the iterate; testing in this reality becomes ad-hoc and full of gaps because the functional behavior of the software is no longer scoped before building; it's \"vibes\" based  on each iteration because the iterations are cheap.  The result?  The teams I've been on feel like we're going nowhere in many cases, just spinning faster and producing more throwaway code (not a comment on whether this is good or bad; it may vary by domain and nature of the company).If one is looking to build a software factory or pipeline, I think it behooves an architect to examine the GAMP 5 V-model and consider how to adapt ideas from this model to agent systems."
+      - paragraph:
+        - link "reply" [ref=e331]
+    - table:
+      - link "upvote" [ref=e332]
+      - link "penguin_booze" [ref=e333]
+      - link "3 days ago" [ref=e334]
+      - text: "|  |"
+      - link "[–]" [ref=e335]
+      - text: "I'm curious: what's the shortest Dan Luu post people have seen?"
+      - paragraph:
+        - link "reply" [ref=e336]
+    - table:
+      - link "upvote" [ref=e337]
+      - link "kqr" [ref=e338]
+      - link "3 days ago" [ref=e339]
+      - text: "|  |"
+      - link "[–]" [ref=e340]
+      - text: "I don't know what I'm most impressed by: (a) the testing expertise, (b) the time spent looking into the reasoning mistakes generated by LLMs, or (c) the insane amounts of money this must have cost!"
+      - paragraph:
+        - link "reply" [ref=e341]
+    - table:
+      - link "upvote" [ref=e342]
+      - link "ianjbutler" [ref=e343]
+      - link "4 days ago" [ref=e344]
+      - text: "|  |"
+      - link "[–]" [ref=e345]
+      - text: "Detail in TFA looks impressive and I  promise  I'll do a close reading later.  But..The whole premise of the question is hilarious.  They change text in an existing one-line comment and the best models in the world think, gee, maybe I'll lint everything AND run 4000 units.  Maybe 5000 integration tests too, just to ensure we collide with any other work in progress.  So you write the obligatory but often-ignored obvious things into agent memory or project steering markdown or periodic nudges: You must have a hypothesis when you run expensive tests, you must spot check changes first, then start with the most relevant tests only, then move outwards only as necessary to broader labels and only then suites and only then ALL suites in a widening gyre.But like a falcon ignoring the falconer, the models want to run the everything for anything.  So you sigh, you get the model to write a deterministic hook to catch the wrong invocation of the test suite, and you spend weeks refining the rules every time you hit a edge-case, and so it goes.  At least you don't have to write the involved regexes by hand, and maybe one day it will be finished.."
+      - paragraph:
+        - link "reply" [ref=e346]
+    - table:
+      - link "upvote" [ref=e347]
+      - link "moritzwarhier" [ref=e348]
+      - link "3 days ago" [ref=e349]
+      - text: "|  |"
+      - link "[–]" [ref=e350]
+      - text: "It might sound sycophantic, but I'm sure your agent harness incorparated that poignant remark perfectly."
+      - paragraph:
+        - link "reply" [ref=e351]
+    - table:
+      - link "upvote" [ref=e352]
+      - link "epsteingpt" [ref=e353]
+      - link "3 days ago" [ref=e354]
+      - text: "|  |"
+      - link "[–]" [ref=e355]
+      - text: "Audit is the way. Even better is having one model family like Claude check another model family like Codex."
+      - paragraph:
+        - link "reply" [ref=e356]
+    - table:
+      - link "upvote" [ref=e357]
+      - link "luckydata" [ref=e358]
+      - link "2 days ago" [ref=e359]
+      - text: "|  |"
+      - link "[–]" [ref=e360]
+      - text: "without knowing the prompts and the test setup this exercise is essentially devoid of any value. I need to get into blogging more, there's no barrier to entry!"
+      - paragraph:
+        - link "reply" [ref=e361]
+    - table:
+      - link "upvote" [ref=e362]
+      - link "filmdilemma" [ref=e363]
+      - link "3 days ago" [ref=e364]
+      - text: "|  |"
+      - link "[–]" [ref=e365]
+      - text: "scary part is that '467/467 tests green' really doesn't mean much if you're testing the wrong thing"
+      - paragraph:
+        - link "reply" [ref=e366]
+    - table:
+      - link "upvote" [ref=e367]
+      - link "quietraster" [ref=e368]
+      - link "3 days ago" [ref=e369]
+      - text: "|  |"
+      - link "[–]" [ref=e370]
+      - text: "nice setup for this. did any single technique clearly stand out, or did it mostly come down to the base model?"
+      - paragraph:
+        - link "reply" [ref=e371]
+    - table:
+      - link "upvote" [ref=e372]
+      - link "kqr" [ref=e373]
+      - link "3 days ago" [ref=e374]
+      - text: "|  |"
+      - link "[–]" [ref=e375]
+      - text: "This is answered by the large plot early in TFA. All tests were made using the same model, and adding no special instructions at all provided performance above the average."
+      - paragraph:
+        - link "reply" [ref=e376]
+    - table:
+      - link "upvote" [ref=e377]
+      - link "a2ff6eeb0" [ref=e378]
+      - link "3 days ago" [ref=e379]
+      - text: "|  |  |"
+      - link "[–]" [ref=e380]
+      - text: "The answer is mostly \"do nothing, the model will figure it out\", with a side of \"ask the model to check its work\".This matches my experience, where the job of the engineer is mostly copy pasting requirements, letting the model do the thinking, and then manually testing the results."
+      - paragraph:
+        - link "reply" [ref=e381]
+    - table:
+      - link "upvote" [ref=e382]
+      - link "lmeyerov" [ref=e383]
+      - link "3 days ago" [ref=e384]
+      - text: "|  |"
+      - link "[–]" [ref=e385]
+      - text: "Wonderful data point!It's been interesting investing into different classic verification & testing methods for gfql (CPU/GPU graph queries on dataframes) and Louie (agentic investigation harness) over the last couple of years with different model & harness generations. The ones below are fewer but more longitudinal efforts compared to the shallower ones Dan worked through, and seem largely consistent:Overall, my takeaway on standard software has been LLMs favor smart, guided fuzzing, natural language specifications deployed as iterative parallel adverserial AI review (e.g., context-reset subagents) after the functional prototyping. For formal methods / static analysis, cheaper/faster/lighter ones, though for the next level of quality, I can see this changing. The concolic testing world's heuristic results carried through a lot for me vs most others, which is unsurprising as they went deep on engineering ROI curves for fuzzing large code bases and specializing for different bug classes.Highlights:- alloy for gfql fell on its face relative to fuzzing, even with guidance. This was disappointing as it was intended as a cheap experiment to justify doing more expensive formal methods.- prompts & skills need tuning: auto-memory doesn't transfer across harnesses by default, and one-shot auto-authored skills evals badly. More about iterating. Manual version of iterating would be editing skills when we hit new/repeat classes of bugs, though not guaranteed faithfulness: this is what we do the most. Positive experiments automating here, but not enough to invest deeper when we have to do manual anyways.- natural language specifications are now a thing. Our significant new features now come with a security.md, policy.md, concurrency.md, etc., and important for them to be close to the code and taught to the review skill. Coding and review agents then can triangulate between tests, specs, code, and their own skills & general knowledge. However, we find we prefer not to do localized invariants in method comments as that gets verbose and drifts, and instead, do those as tests. This gets a bit into the global cost question of better code gen iterations and/or better review phases.- staging coding vs reviewing. Overtesting early kills progress, so we stage heavier quality engineering at the end, and architectural research at the beginning.- Lessons from the concolic execution era: staging static LLM analysis early with dynamic LLM testing later. Test amplify findings by area, kind, etc to convergence.- We love community suites. GFQL builds against known Cypher language standards correctness conformance and benchmark suites, and Louie tools often start with community agent evals/benchmarks before we add our own specializations.I don't know how big and deep the experiment Dan ran was. Something like formal methods is generally a big & invasive investment, and the target of each kind is often a much higher quality rating for a narrow set of properties. This complicates benchmarking setup. Imagine building entire compilers, and experimenting with different combos of methods & having those methods come in at different times & places.I expect the AI security vulnerability analysis world to have similar findings. We end up baking that into our review harness as well without changing our overall methods above."
+      - paragraph:
+        - link "reply" [ref=e386]
+  - table
+  - link "Guidelines" [ref=e387]
+  - text: "|"
+  - link "FAQ" [ref=e388]
+  - text: "|"
+  - link "Lists" [ref=e389]
+  - text: "|"
+  - link "API" [ref=e390]
+  - text: "|"
+  - link "Security" [ref=e391]
+  - text: "|"
+  - link "Legal" [ref=e392]
+  - text: "|"
+  - link "Apply to YC" [ref=e393]
+  - text: "|"
+  - link "Contact" [ref=e394]
+  - form:
+    - text: "Search:"
+    - textbox [ref=e395]
+[2m[ok | 1130ms][0m
