@@ -75,7 +75,7 @@ HUMAN이 제공한 변경 초안의 관련 커밋·인계를 요청했다. 초�
 scratch/의 미추적 초안은 입력/최종 snapshot에만 있고 제품 커밋에는 없다.
 bundle을 새 디렉터리에 clone하면 임시 작업 공간이 없어도 커밋과 branch를 다시 읽을 수 있다.
 
-제작용 구현은 `codex/traceable-artifact-handoff`에서 커밋한 뒤 깨끗한 로컬 main에
-fast-forward한다. 실제 소스 커밋과 최종 main 결과는 후속 [Git 인계](git-handoff.md)에 기록한다.
+제작용 구현 `3f51398`을 `codex/traceable-artifact-handoff`에서 커밋한 뒤 깨끗한 로컬 main에
+fast-forward했다. 실제 소스 커밋과 Git 상태는 [Git 인계](git-handoff.md)에 기록한다.
 기존 미추적 연구 두 폴더는 보존하며 이번 제품 설치 경로의 의존성으로 만들지 않았다.
 개인 스킬 설치본, 별도 제품, 원격 push/PR, 기존 북극성 주석의 과거 판정은 변경하지 않았다.
