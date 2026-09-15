@@ -21,18 +21,19 @@ failure in the harness still needs a fix; a model's mistaken judgment does not b
 new gate. The team's current guidance is in the selected edition's `org-skills/README.md`.
 
 The user then selected event-driven team skills and native subagents as the normal path (0019).
-Each edition's `org-skills/skills/sdlc-feedback` keeps the developer conversation and updates affected artifacts;
+`tdd-optional/org-skills/skills/sdlc-feedback` keeps the developer conversation and updates affected artifacts;
 its `org-skills/agents/sdlc-verifier.md` is an optional default for completion review in a fresh context.
 The trigger is meaningful work, not every response. The 0018 CLI and its packet-specific prompt
 remain a separate experiment tool; they are not invoked by this skill. Skill adoption does not
 guarantee invocation, correctness or approval. No new semantic checker or runtime gate is added.
 
-The user approved two top-level editions on 2026-09-12. `tdd-first/project` preserves the
-test-first default; `tdd-optional/project` permits task-specific testing strategies. Common
-acceptance criteria, independent evidence and human decisions remain. This root contains maker
-tools; its hooks are not automatically installed into either product. Choosing a non-TDD strategy
-in the optional edition is not itself an exception requiring approval. Historical annotations
-continue to describe their original edition and revisions.
+The user replaced the two-edition structure with one template on 2026-09-15.
+`tdd-optional/project` permits task-specific testing strategies; the former `tdd-first` tree is
+removed from current distribution and remains available in Git at `b9af49a`. Acceptance criteria,
+independent evidence and human decisions remain. This root contains maker tools; its hooks are
+not automatically installed into the product. Choosing a non-TDD strategy is not itself an
+exception requiring approval. Claude Code and Codex receive the same skill criteria through their
+own installation paths. Historical annotations describe their original edition and revisions.
 
 ## The three layers
 

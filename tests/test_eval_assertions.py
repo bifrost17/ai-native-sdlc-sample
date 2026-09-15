@@ -88,7 +88,7 @@ class AssertionGraderTest(unittest.TestCase):
         self.fake.chmod(0o755)
         self.log = self.base / "call.json"
 
-    def run_grader(self, mode="pass", edition="tdd-first"):
+    def run_grader(self, mode="pass", edition="tdd-optional"):
         env = dict(os.environ, FAKE_LOG=str(self.log), FAKE_MODE=mode)
         return subprocess.run([
             sys.executable, str(GRADER), "--case", str(self.case), "--result", str(self.result),
@@ -136,28 +136,32 @@ class AssertionGraderTest(unittest.TestCase):
         self.assertTrue((self.base / "grade.packet.json").is_file())
         self.assertTrue((self.base / "grade.raw.json").is_file())
 
-    def test_policy_prompt_and_grading_sources_use_the_selected_edition(self):
+    def test_policy_prompt_and_grading_sources_use_the_sole_edition(self):
         policy = json.loads((ROOT / "evals/cases/04-org-policy-application.json").read_text())
         case = json.loads(self.case.read_text())
         case["prompt"] = policy["prompt"]
         case["grading_context"] = policy["grading_context"]
         self.case.write_text(json.dumps(case))
-        for edition in ("tdd-first", "tdd-optional"):
-            with self.subTest(edition=edition):
-                p = self.run_grader(edition=edition)
-                self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
-                packet = json.loads(self.log.read_text())["packet"]
-                manifest = json.loads((ROOT / edition /
-                                       "org-skills/.claude-plugin/plugin.json").read_text())
-                self.assertEqual(packet["edition"], edition)
-                self.assertIn(manifest["name"] + ":spec-policy-pass", packet["task_prompt"])
-                self.assertNotIn("SDLC_", packet["task_prompt"])
-                source = edition + "/org-skills/skills/spec-policy-pass/SKILL.md"
-                text = (ROOT / source).read_text()
-                self.assertIn(text, packet["sources"].values())
-                key = next(key for key, value in packet["sources"].items() if value == text)
-                self.assertEqual(packet["source_sha256"][key],
-                                 hashlib.sha256(text.encode()).hexdigest())
+        edition = "tdd-optional"
+        p = self.run_grader(edition=edition)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        packet = json.loads(self.log.read_text())["packet"]
+        manifest = json.loads((ROOT / edition /
+                               "org-skills/.claude-plugin/plugin.json").read_text())
+        self.assertEqual(packet["edition"], edition)
+        self.assertIn(manifest["name"] + ":spec-policy-pass", packet["task_prompt"])
+        self.assertNotIn("SDLC_", packet["task_prompt"])
+        source = edition + "/org-skills/skills/spec-policy-pass/SKILL.md"
+        text = (ROOT / source).read_text()
+        self.assertIn(text, packet["sources"].values())
+        key = next(key for key, value in packet["sources"].items() if value == text)
+        self.assertEqual(packet["source_sha256"][key], hashlib.sha256(text.encode()).hexdigest())
+
+    def test_retired_edition_is_rejected_before_grader_call(self):
+        p = self.run_grader(edition="tdd-first")
+        self.assertEqual(p.returncode, 2, p.stdout + p.stderr)
+        self.assertIn("invalid choice", p.stderr)
+        self.assertFalse(self.log.exists())
 
     def test_semantic_failure_is_rc1_even_when_keyword_is_present(self):
         p = self.run_grader("fail")

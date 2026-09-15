@@ -23,9 +23,9 @@
 - 후속 spec은 이전 기준판·경로·절과 변경·보존 범위를 연결한다. 현재 공통 설계 정본이 바뀌면 함께 갱신하고,
   과거 수락과 결정은 Git 이력에 보존한다. 이전 설계 전체 복제나 새 상태 장부는 필요하지 않다.
 
-정본은 [기본형 변경 기록 규칙](../../tdd-first/project/intent/README.md)과
-[선택형 변경 기록 규칙](../../tdd-optional/project/intent/README.md)이다.
-각 배포판의 CLAUDE·PROCESS·GIT-WORKFLOW가 이 정본으로 연결되고, 선택 작성 예시 capture-intent도
+당시에는 두 배포판의 변경 기록 규칙을 함께 보완했다. 2026-09-15 이후 현행 정본은
+[선택형 변경 기록 규칙](../../tdd-optional/project/intent/README.md) 하나다.
+각 배포판의 CLAUDE·PROCESS·GIT-WORKFLOW가 당시 정본으로 연결됐고, 선택 작성 예시 capture-intent도
 새 문서를 만들기 전에 기존 개발건을 확인하도록 보완했다. TDD 정책과 문서 양식의 항목은 바꾸지 않았다.
 
 ## 리뷰와 검증

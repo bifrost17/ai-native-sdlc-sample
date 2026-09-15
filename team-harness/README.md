@@ -1,8 +1,8 @@
 # 팀 개발·독립 검토 진입점
 
 이 CLI는 **0018의 선택적 실험 실행 경로**로 보존한다. 일반 개발의 팀 기본 경로는
-[기본형](../tdd-first/org-skills/README.md) 또는 [선택형](../tdd-optional/org-skills/README.md)의
-sdlc-feedback 스킬과 네이티브 검증자다. 채택한 판에 맞는 새 스킬 경로에서는
+[현재 템플릿](../tdd-optional/org-skills/README.md)의
+sdlc-feedback 스킬과 네이티브 검증자다. 현재 스킬 경로에서는
 이 CLI를 호출하지 않는다. 아래의 매 응답 검토와 고정 모델은 이 CLI에만 해당한다.
 `reviewer.md`는 기존 입력 패킷을 위한 실험판이며 새 스킬의 공통 검토 기준과 별개로 유지한다.
 

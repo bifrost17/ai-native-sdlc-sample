@@ -5,48 +5,49 @@ Anthropic의 AI-Native SDLC Playbook을 바탕으로 우리 팀이 사용할 **�
 제거하기 위해 절차나 검사기를 계속 늘리지는 않는다. 우리 팀은 사내 동료에게 소프트웨어를 제공하며,
 정책은 실제 영향과 대응 가능성에 맞게 얇게 유지한다. Unofficial; not an Anthropic project.
 
-## 에이전트 시작점 — 사용할 템플릿은 `main` 브랜치
+## 에이전트 시작점 — 유일한 템플릿은 `main`의 `tdd-optional/project/`
 
-**현재 사용 템플릿의 정본은 `main` 브랜치의 아래 두 `project/` 폴더다.** 이 저장소를 살펴보는
-에이전트는 요청된 배포판의 경로와 채택 안내부터 확인한다. 두 배포판은 같은 브랜치 안에서 폴더로 구분한다.
+**Codex와 Claude Code 사용자를 위한 현재 템플릿은 [TDD 선택형](tdd-optional/README.md) 하나다.**
+작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택하고 plan에 이유와 검증을 기록한다.
+현재 팀 스킬 패키지는 **0.1.8**이다. 기존 채택 경로와 호환되도록 `tdd-optional/` 이름을 유지한다.
 
-| 배포판 | 브랜치 · 실제 제품용 경로 | 개발 방식 | 채택·설치 안내 |
-|---|---|---|---|
-| **TDD 기본형** | `main` · [`tdd-first/project/`](tdd-first/project/README.md) | 새·변경 동작은 test-first 기본. 의미 있는 RED→GREEN과 기존 예외를 유지한다. | [tdd-first](tdd-first/README.md) |
-| **TDD 선택형** | `main` · [`tdd-optional/project/`](tdd-optional/project/README.md) | 작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택한다. | [tdd-optional](tdd-optional/README.md) |
+`main`의 루트는 템플릿 **제작용**이다. 새 제품은 [`tdd-optional/project/`](tdd-optional/project/README.md)의
+내용만 별도 제품 저장소 루트로 복사하고 사용한 `main` 커밋 SHA를 기록한다. 이미 채택한 제품의
+후속 개발은 **그 제품의 최신 `main`**에서 시작한다.
 
-`main`의 루트는 템플릿 **제작용**이다. 새 제품은 선택한 `project/`의 내용만 별도 제품 저장소로
-복사하고, 사용한 `main` 커밋 SHA와 배포판을 기록한다. 이미 채택한 제품의 후속 개발은 **그 제품의
-최신 `main`**에서 시작한다.
+| 사용하는 도구 | 작성 3개·팀 13개 스킬과 검증자 설치 |
+|---|---|
+| Claude Code | [Claude 설치·갱신·확인](tdd-optional/org-skills/claude/README.md) |
+| Codex | [Codex 설치·갱신·확인](tdd-optional/org-skills/codex/README.md) |
+
+작성 스킬은 선택 예시이며 자동 설치되지 않는다. 두 도구는 같은 스킬·양식·검토 기준을 사용하고,
+설치 경로·호출 문법·검증자 설정은 각 도구에 맞춘다.
 
 `codex/use-template*`와 `codex/experiment-*`는 **실험 당시의 고정 사용판·실험 기록**이다.
 특정 실험 재현을 요청받았을 때 해당 기록에 적힌 브랜치·커밋을 사용한다. 번호가 가장 큰 브랜치를
 현재 사용 템플릿으로 선택하지 않는다. 다른 브랜치를 읽고 있다면 위 경로의 `main` 판을 확인한다.
 
-두 판은 intent→spec→plan, 영향 문서 갱신, 회귀 보호, 독립 검토와 사람의 의사결정 구조를 공유한다.
-선택형에서 TDD를 고르지 않았다는 이유만으로 예외 승인을 요구하지 않는다. 테스트를 약화하거나
+템플릿은 intent→spec→plan, 영향 문서 갱신, 회귀 보호, 독립 검토와 사람의 의사결정을 연결한다.
+TDD를 고르지 않았다는 이유만으로 예외 승인을 요구하지 않는다. 테스트를 약화하거나
 실행하지 않은 검증을 통과로 보고해도 된다는 뜻은 아니다.
 
 선택형의 구체적인 판단은 [검증 방식 가이드](tdd-optional/project/docs/TESTING-STRATEGY.md)에 있다.
 [선택형 SDLC 설계](docs/decisions/tdd-optional-sdlc.md)는 조사에서 채택한 근거, 플레이북에서 유지·조정한 부분,
 UI 탐색과 제품 완료의 경계 및 문서별 책임을 설명한다.
 
-선택한 판의 **`project/` 내용만 새 제품 저장소의 루트에 복사**한다. 팀 스킬은 그 판의 `org-skills/`에서
-별도 선택 설치한다. 기존 사용 후보 `84a77b3`를 기본형의 출발점으로 삼았으며, 제품에는 제작용 훅이나
-활성 작성 스킬을 자동 설치하지 않는다. 채택한 제품의 루트에서 작업하고, 제작 저장소의 하위 폴더를
-독립 제품 세션과 같다고 가정하지 않는다. 두 판의 팀 패키지를 같은 제품에 중복 적용하지 않는다.
+팀 스킬은 `tdd-optional/org-skills/`에서 별도 선택 설치한다. 제품에는 제작용 훅이나 활성 작성 스킬을
+자동 설치하지 않는다. 채택한 제품의 루트에서 작업하고, 제작 저장소의 하위 폴더를 독립 제품 세션과
+같다고 가정하지 않는다. 이전 강제형 스킬이 설치돼 있으면 실제 로드 출처와 지침 충돌을 확인한다.
 
 ```text
-tdd-first/       project/ + org-skills/    기존 TDD 기본형
-tdd-optional/    project/ + org-skills/    TDD 선택형
+tdd-optional/    project/ + org-skills/    유일한 제품 템플릿과 선택 설치 스킬
 docs/           연구·결정·실험·플레이북 평가
 intent/         템플릿 자체의 제작 이력
 tests/, evals/  배포판과 제작 도구 검증
 ```
 
-문서 양식과 작성 예시는 각 `project/`가 정본이다. 루트 `.claude/skills/`의 작성 도구는 대상 판으로
-연결하는 제작용 안내이며 별도의 제품 양식을 갖지 않는다. 공통 내용의 작은 중복은 허용하되 두 판을
-공통 폴더·symlink·생성기에 실행 의존시키지 않는다. [구조 결정과 이행 범위](docs/decisions/template-variants.md)
+문서 양식과 작성 예시는 `tdd-optional/project/`가 정본이다. 루트 `.claude/skills/`의 작성 도구는 이
+경로로 연결하는 제작용 안내이며 별도의 제품 양식을 갖지 않는다. [단일 템플릿 결정](docs/decisions/single-template.md)
 
 ## 북극성과 근거
 
@@ -54,7 +55,7 @@ tests/, evals/  배포판과 제작 도구 검증
 원문은 설계·판단의 기준이며 주석은 당시 템플릿·스킬·실행이 얼마나 충실히 따랐는지 기록한다.
 기존 주석의 경로·판정은 역사적 근거로 보존하며 새 선택형의 통과 증거로 승계하지 않는다.
 
-- [기본형의 보존 범위](docs/verification/variants/tdd-first.md)
+- [폐기한 기본형의 역사적 근거](docs/verification/variants/tdd-first.md)
 - [선택형의 의도한 차이와 검증](docs/verification/variants/tdd-optional.md)
 - [TDD와 구현 후 테스트 조사](docs/research/tdd-vs-test-after/README.md): 연구 16건, 프로젝트 8개·PR/MR 72건,
   원문 다운로드와 반대 근거를 포함한다. 실제 TDD 사용률이나 보편적 생산성 우열을 추정한 자료는 아니다.
@@ -67,13 +68,11 @@ tests/, evals/  배포판과 제작 도구 검증
 ## 팀 정책과 선택 설치 스킬
 
 `policies/`는 팀 정책의 제작 기준·예제다. 제품은 자기 `PROJECT-POLICY.md`에 실제 값과 결정자를 기록한다.
-기본형 패키지는 기존 `intent-sdlc-skills` 식별자를 유지하고, 선택형은 `intent-sdlc-skills-optional`을 쓴다.
-설치 명령과 현재 버전은 [기본형 패키지](tdd-first/org-skills/README.md),
-[선택형 패키지](tdd-optional/org-skills/README.md)에서 확인한다. 기존 사용자 설치를 이 구조 변경만으로
+현재 패키지는 `intent-sdlc-skills-optional` 식별자를 쓴다.
+설치 명령과 현재 버전은 [팀 패키지](tdd-optional/org-skills/README.md)에서 확인한다. 기존 사용자 설치를 이 구조 변경만으로
 갱신하거나 비활성화하지 않는다. 채택한 판·설치한 판·실제 로드한 경로를 함께 확인한다.
 
-Claude 및 OpenCode용 검증자·설치 어댑터를 포함하며, 선택형에는
-[Codex 프로젝트 설치](tdd-optional/org-skills/codex/README.md)도 제공한다. [팀 CLI](team-harness/README.md)는 기존의
+Claude Code와 Codex의 설치·검증자 전달을 함께 제공하며 기존 OpenCode 어댑터도 보존한다. [팀 CLI](team-harness/README.md)는 기존의
 선택적 실행·기록 실험 도구로 보존한다. 회사의 사람 승인과 GitHub 병합 권한은 별도의 통제다.
 
 ## 이 저장소의 개발과 검증
@@ -82,15 +81,14 @@ Claude 및 OpenCode용 검증자·설치 어댑터를 포함하며, 선택형에
 
 ```bash
 make check
-SDLC_EDITION=tdd-first make evals
-SDLC_EDITION=tdd-optional make evals
+make evals
 ```
 
 `make check`는 패키지 경로·격리, 기존 훅과 제작 도구의 결정적 검사를 실행한다. 모델 평가에는
 `ANTHROPIC_API_KEY`가 필요하며 없으면 종료 코드 2로 미실행을 알린다. 평가 범위와 판별 결과 위치는
 [evals 안내](evals/README.md)에 있다. 이 검사만으로 모든 에이전트의 TDD 선택·실행을 증명하지 않는다.
 
-공통 변경은 두 판의 영향을 함께 검토하고, 선택형만의 정책 변경은 기본형으로 자동 전파하지 않는다.
+공통 스킬을 바꾸면 Claude Code와 Codex 전달본의 영향을 함께 검토한다.
 승인·상태·문서 의미를 판정하는 별도 자동 검사기는 두지 않는다. 결과와 미확인 범위를
 [배포판 검증 기록](docs/verification/variants/README.md)에 남긴다.
 
@@ -99,11 +97,12 @@ SDLC_EDITION=tdd-optional make evals
 [실험 안내](docs/experiments/README.md)에 HUMAN 역할·실행 방법·초기 데이터가 있다. 실제 제품 대화·코드·시험은
 당시 실험 브랜치와 고정 커밋에 남긴다. 제작 자산만 개선하고 실험 제품 전체를 제작 main에 합치지 않는다.
 
-기본형의 출발 사용판은 `codex/use-template-0026@84a77b3`, 팀 스킬 기준은 `ece15c4`의 0.1.7이다.
+TDD 강제형 `tdd-first/`는 현재 소스에서 삭제했다. 삭제 직전 파일은 `b9af49a`의 Git 이력으로 확인한다.
+과거 기본형의 출발 사용판은 `codex/use-template-0026@84a77b3`, 팀 스킬 기준은 `ece15c4`의 0.1.7이다.
 [0024](docs/experiments/0024-spec-plan-activation.md), [0026](docs/experiments/0026-muse-spark.md),
 [0027](docs/experiments/0027-muse-larger.md), [0028](docs/experiments/0028-review-tdd.md)의 실행 성공·실패·HUMAN 복구를
-보존한다. 당시 자료의 옛 경로는 해당 커밋을 기준으로 읽는다. 현재 소스는 두 최상위 폴더이며,
-옛 사용 브랜치와 새 폴더를 동시에 최신 정본으로 유지하지 않는다.
+보존한다. 당시 자료의 옛 경로는 해당 커밋을 기준으로 읽는다. 현재 소스는 `tdd-optional/`이며,
+옛 사용 브랜치를 최신 정본으로 사용하지 않는다.
 
 별도 제품 채택의 책임 항목은 [채택 안내](docs/ADOPTING.md), 보안·규정·브랜드·UX 예제는
 [정책 안내](policies/README.md), 변경 검토는 [REVIEW.md](REVIEW.md)에 있다.

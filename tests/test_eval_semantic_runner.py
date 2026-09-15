@@ -31,7 +31,7 @@ for event in events: print(json.dumps(event))
 GRADER = r'''import argparse,json,os,pathlib,sys
 p=argparse.ArgumentParser()
 for key in ("case","result","trace","out"): p.add_argument("--"+key,required=True)
-p.add_argument("--edition", choices=("tdd-first","tdd-optional"), default="tdd-first")
+p.add_argument("--edition", choices=("tdd-optional",), default="tdd-optional")
 a=p.parse_args()
 cid=json.loads(pathlib.Path(a.case).read_text())["id"]
 with open(os.environ["CALL_LOG"],"a") as f:
@@ -63,13 +63,13 @@ class SemanticRunner(unittest.TestCase):
                     "allowed_tools": "Read,Write",
                     "checks": [{"kind": "contains", "path": "output.md", "value": "completed"}]}
             (self.evals / "cases" / (cid + ".json")).write_text(json.dumps(case))
-        for edition in ("tdd-first", "tdd-optional"):
-            project = self.repo / edition / "project"
-            project.mkdir(parents=True)
-            (project / "CLAUDE.md").write_text("selected product guidance")
-            manifest = self.repo / edition / "org-skills/.claude-plugin/plugin.json"
-            manifest.parent.mkdir(parents=True)
-            manifest.write_text('{"name":"test-plugin","version":"0.0.1"}')
+        edition = "tdd-optional"
+        project = self.repo / edition / "project"
+        project.mkdir(parents=True)
+        (project / "CLAUDE.md").write_text("selected product guidance")
+        manifest = self.repo / edition / "org-skills/.claude-plugin/plugin.json"
+        manifest.parent.mkdir(parents=True)
+        manifest.write_text('{"name":"test-plugin","version":"0.0.1"}')
         (self.evals / "grade_assertions.py").write_text(GRADER)
         binary = self.repo / "bin"
         binary.mkdir()
@@ -99,7 +99,7 @@ class SemanticRunner(unittest.TestCase):
         p = self.run_suite()
         self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
         summary = self.summary()
-        self.assertEqual(summary["edition"], "tdd-first")
+        self.assertEqual(summary["edition"], "tdd-optional")
         self.assertEqual(summary["counts"], {"pass": 2, "fail": 0, "undecidable": 0})
         self.assertEqual(summary["pass_rate"], 1)
         self.assertEqual([(c["role"], c["id"]) for c in self.calls()],
@@ -117,21 +117,13 @@ class SemanticRunner(unittest.TestCase):
             self.assertEqual(args[args.index("--setting-sources") + 1], "")
             self.assertIn("--bare", args, "Maker CLAUDE auto-discovery must be disabled")
             self.assertEqual(args[args.index("--plugin-dir") + 1],
-                             str(self.repo / "tdd-first/org-skills"))
+                             str(self.repo / "tdd-optional/org-skills"))
 
-    def test_editions_have_separate_output_and_plugin_paths(self):
-        for edition in ("tdd-first", "tdd-optional"):
-            p = self.run_suite(SDLC_EDITION=edition)
-            self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
-        summaries = self.summaries()
-        self.assertEqual({json.loads(path.read_text())["edition"] for path in summaries},
-                         {"tdd-first", "tdd-optional"})
-        calls = self.calls()
-        for edition in ("tdd-first", "tdd-optional"):
-            expected = str(self.repo / edition / "org-skills")
-            self.assertTrue(any(call["role"] == "generator" and
-                                call["args"][call["args"].index("--plugin-dir") + 1] == expected
-                                for call in calls))
+    def test_retired_edition_is_rejected_before_model_call(self):
+        p = self.run_suite(SDLC_EDITION="tdd-first")
+        self.assertEqual(p.returncode, 2, p.stdout + p.stderr)
+        self.assertIn("invalid SDLC_EDITION", p.stderr)
+        self.assertFalse(self.log.exists())
 
     def test_semantic_failure_cannot_hide_behind_string_matches(self):
         p = self.run_suite(GRADE_FAIL="01-a")

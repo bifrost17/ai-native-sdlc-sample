@@ -1,6 +1,9 @@
 # TDD 기본형의 보존 범위
 
-2026-09-12. [tdd-first](../../../tdd-first/README.md)는 기존 test-first 기본과 예외를 유지한다.
+2026-09-15: 이 배포판은 [폐기](../../decisions/single-template.md)했다. 아래 내용은 2026-09-12의
+보존·검증 기록이다. 당시 소스는 Git에서 확인하며 삭제 직전 판은 `b9af49a:tdd-first/`다.
+
+2026-09-12 당시 `tdd-first`는 기존 test-first 기본과 예외를 유지했다.
 
 제품은 `codex/use-template-0026@84a77b3890cfdc97f3c6603f433e1382453ca261`에서 가져왔다.
 `project/`의 71개 파일이 원본과 byte 단위로 같고 파일 집합도 같다. PROJECT-POLICY, plan과 작성 예시,

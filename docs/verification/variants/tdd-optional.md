@@ -1,5 +1,8 @@
 # TDD 선택형의 의도한 차이
 
+2026-09-15부터 이 판이 [유일한 현재 템플릿](../../decisions/single-template.md)이다.
+아래는 두 판을 비교하던 당시의 결정·실험 기록이며, 현행 실행을 새로 검증한 결과가 아니다.
+
 2026-09-12. [tdd-optional](../../../tdd-optional/README.md)은 검증 방식을 작업별로 선택한다.
 최초 분리 당시 새 패키지 이름은 `intent-sdlc-skills-optional`, 버전은 0.1.0이었다.
 후속 0.1.1의 설계·검증은 [선택형 SDLC 설계 검증](optional-sdlc-design.md)에 기록한다.

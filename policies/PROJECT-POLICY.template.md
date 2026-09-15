@@ -13,4 +13,4 @@ Owner: ‹이 프로젝트의 파트 담당›. Upstream: 팀 조항 `policies/*
 | **P5** | 외부·상류 호출 — 한도, 캐시 정책, 실패 시 동작 | ‹› |
 | **P6** | 스키마 — 어디에 있고 민감 필드를 어떻게 표시하는가 | ‹› |
 
-채운 예시: 각 판의 `org-skills/examples/claims-status/PROJECT-POLICY.md` — 플레이북의 청구 상태 서비스를 한 프로젝트로 보고 채운 것(그 예시는 사외 고객 대상이라 P3 이 채워져 있다).
+채운 예시: `tdd-optional/org-skills/examples/claims-status/PROJECT-POLICY.md` — 플레이북의 청구 상태 서비스를 한 프로젝트로 보고 채운 것(그 예시는 사외 고객 대상이라 P3 이 채워져 있다).

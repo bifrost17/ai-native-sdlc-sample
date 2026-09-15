@@ -5,10 +5,10 @@
 # rc: 0=selected checks passed; 1=failed; 2=undecidable. Default is deterministic-only.
 set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$ROOT" || exit 2
-EDITION="${SDLC_EDITION:-tdd-first}"
+EDITION="${SDLC_EDITION:-tdd-optional}"
 case "$EDITION" in
-  tdd-first|tdd-optional) ;;
-  *) echo "UNDECIDABLE: invalid SDLC_EDITION: $EDITION (expected tdd-first or tdd-optional)" >&2; exit 2 ;;
+  tdd-optional) ;;
+  *) echo "UNDECIDABLE: invalid SDLC_EDITION: $EDITION (expected tdd-optional)" >&2; exit 2 ;;
 esac
 EDITION_ROOT="$ROOT/$EDITION"
 PROJECT_DIR="$EDITION_ROOT/project"

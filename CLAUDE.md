@@ -31,13 +31,12 @@
   Bash and the Edit/Write hooks fired zero times. A fix task is declared by the engineer, not
   detected: start the session with `INTENT_TASK=fix` (e.g. `INTENT_TASK=fix claude`).
 - python3 standard library only; bash 3.2 (no `mapfile`, no `declare -A`; `wc -l | tr -d ' '`).
-- This root is the maker repository for two editions. Product forms and policies live in
-  `tdd-first/project` and `tdd-optional/project`; optional team packages live beside them in `org-skills`.
-  Read the requested edition before changing its artifacts. Preserve test-first defaults in tdd-first;
-  preserve task-specific strategy choice in tdd-optional. Do not apply one edition's policy to the other.
+- This root makes one product template: `tdd-optional/project`, with optional team skills beside it
+  in `tdd-optional/org-skills`. Preserve task-specific testing strategy choice and the shared
+  Claude Code/Codex skill criteria. `tdd-first` is retired; use Git history for its old evidence.
   For maker tools, choose focused verification appropriate to the change and retain actual evidence.
   Existing hooks and protected defect-test boundaries keep their scope; this split does not install
-  them into product templates or add an approval gate for choosing a testing strategy.
+  them into the product template or add an approval gate for choosing a testing strategy.
 - Choose models and reasoning effort for the task's difficulty, impact and uncertainty, including
   subagents. Use more capable models and higher reasoning upfront for important or error-prone
   judgments (complex design, cross-artifact consistency, consequential changes). For repeated
@@ -52,10 +51,10 @@
   passage and annotation before proposing or making changes; fill the team's choices from its actual standards.
 - `.claude/skills/` — what the agent is told (advisory). `.claude/hooks/` + `settings.json` —
   what the machine blocks. `tests/`, `evals/`, `.github/` — what CI proves. See docs/BOUNDARY.md.
-- `intent/` — maker artifact history. `tdd-*/project/templates/` — product forms; the maker authoring
-  skills route to the selected edition's examples and forms instead of keeping a third source copy.
+- `intent/` — maker artifact history. `tdd-optional/project/templates/` — product forms; the maker
+  authoring skills route there instead of keeping another source copy.
 - Historical research, experiments and playbook annotations retain their original paths and Git
-  revisions. Current adoption starts at `tdd-first/README.md` or `tdd-optional/README.md`.
+  revisions. Current adoption starts at `tdd-optional/README.md`.
 - `docs/PLAYBOOK-MAP.md` maps the 14 lessons to files; `docs/METRICS.md` is git commands.
 
 ## Verifying your work

@@ -36,7 +36,7 @@ followed)."
 
 ## 전체 평가 결과
 
-`run.sh --semantic`은 실행마다 `evals/out/<edition>/semantic-*/`를 새로 만들고 다음을 남긴다. `<edition>`은 `SDLC_EDITION`의 엄격한 허용 목록(`tdd-first`, `tdd-optional`)에서 고르고 기본값은 `tdd-first`다.
+`run.sh --semantic`은 실행마다 `evals/out/<edition>/semantic-*/`를 새로 만들고 다음을 남긴다. `<edition>`은 `SDLC_EDITION`의 엄격한 허용 목록에 남은 `tdd-optional`이고 기본값도 같다. 폐기한 판이나 다른 값은 판정 불가로 거부한다.
 
 - `<id>.claude.jsonl`·`.claude.stderr`: 생성기의 실행 기록. 성공한 최종 result가 있어야 채점한다.
 - `<id>.json`: 생성 결과 wrapper. `record.py normalize`가 trace에서 만든다.

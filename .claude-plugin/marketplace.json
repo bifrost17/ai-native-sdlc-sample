@@ -1,19 +1,13 @@
 {
   "name": "intent-sdlc-skills",
-  "description": "Choose one SDLC edition: test-first default or task-specific testing strategy.",
+  "description": "AI-native SDLC template with task-specific testing and shared Claude Code/Codex skills.",
   "owner": {
     "name": "bifrost17"
   },
   "plugins": [
     {
-      "name": "intent-sdlc-skills",
-      "version": "0.1.11",
-      "source": "./tdd-first/org-skills",
-      "description": "Existing test-first default with organization policies and completion verification."
-    },
-    {
       "name": "intent-sdlc-skills-optional",
-      "version": "0.1.7",
+      "version": "0.1.8",
       "source": "./tdd-optional/org-skills",
       "description": "Task-specific testing strategy with optional TDD, organization policies and completion verification."
     }

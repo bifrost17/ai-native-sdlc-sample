@@ -27,4 +27,9 @@
 
 최신 spec·plan 양식은 [구체적 작성 예시 세트](../docs/sdlc-authoring/README.md)와 함께 읽는다. 기존 skills 내부의 작은 예시는 이전 판의 최소 설명으로 보존한다. design-spec/plan과 references는 최신 양식에 맞춰 갱신했다.
 
-채택 시 선택한 폴더를 프로젝트의 .claude/skills에 복사할 수 있다. 예시 소스는 명시 선택용이므로 자동 사용을 원하면 팀이 설치 사본의 disable-model-invocation 값을 제거하고 그 선택을 기록한다. 양식의 안내 링크는 선택 예시 위치를 참조하므로 스킬 설치 없이도 읽을 수 있다.
+채택 시 `references/`·`examples/`를 포함한 전체 폴더를 복사하고 명시 사용 정책을 유지한다.
+배포 저장소의 [Claude Code 설치 안내](https://github.com/bifrost17/ai-native-sdlc-sample/blob/main/tdd-optional/org-skills/claude/README.md)와
+[Codex 설치 안내](https://github.com/bifrost17/ai-native-sdlc-sample/blob/main/tdd-optional/org-skills/codex/README.md)에
+복사 전 확인·호출명·로컬 변경을 보존하는 갱신 절차가 있다. 오프라인 배포판에서는 같은 판의
+`org-skills/claude/README.md` 또는 `org-skills/codex/README.md`를 읽는다.
+양식의 안내 링크는 선택 예시 위치를 참조하므로 스킬 설치 없이도 읽을 수 있다.

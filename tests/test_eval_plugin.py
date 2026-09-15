@@ -37,7 +37,7 @@ import sys
 
 args = sys.argv[1:]
 prompt = args[args.index("-p") + 1]
-match = re.search(r"evals/out/(tdd-first|tdd-optional)/([^/]+)/ws", prompt)
+match = re.search(r"evals/out/(tdd-optional)/([^/]+)/ws", prompt)
 edition, cid = match.groups()
 with open(os.environ["FAKE_EVAL_LOG"], "a", encoding="utf-8") as log:
     log.write(json.dumps({"args": args, "cwd": os.getcwd(), "id": cid,
@@ -58,7 +58,7 @@ class EvalPluginIntegration(unittest.TestCase):
         self.base = Path(self.temp.name).resolve()
         self.repo = self.base / "checkout"
         self.repo.mkdir()
-        for directory in ("evals", "tdd-first", "tdd-optional"):
+        for directory in ("evals", "tdd-optional"):
             shutil.copytree(ROOT / directory, self.repo / directory,
                             ignore=shutil.ignore_patterns("out", "__pycache__"))
         self.outputs = self.base / "outputs"
@@ -129,12 +129,9 @@ class EvalPluginIntegration(unittest.TestCase):
                     self.assertTrue((workspace / Path(fixture).name).is_file())
 
     def test_every_case_loads_current_plugin_and_uses_its_workspace(self):
-        self.assert_edition_run("tdd-first", explicit=False)
+        self.assert_edition_run("tdd-optional", explicit=False)
         policy = json.loads((self.repo / "evals/cases" / (POLICY_CASE + ".json")).read_text())
         self.assertIn("Skill", policy["allowed_tools"].split(","))
-
-    def test_optional_edition_uses_its_product_and_plugin(self):
-        self.assert_edition_run("tdd-optional")
 
     def test_policy_names_without_clause_evidence_fail_existing_grader(self):
         self.assertTrue((self.repo / "evals/cases" / (POLICY_CASE + ".json")).exists())
@@ -154,17 +151,19 @@ class EvalPluginIntegration(unittest.TestCase):
         self.assertEqual(calls[-1]["id"], POLICY_CASE)
 
     def test_missing_plugin_is_undecidable_before_model_call(self):
-        shutil.rmtree(self.repo / "tdd-first/org-skills")
+        shutil.rmtree(self.repo / "tdd-optional/org-skills")
         result = self.run_evals()
         self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
         self.assertIn("UNDECIDABLE", result.stderr)
         self.assertFalse(self.log.exists())
 
-    def test_invalid_edition_is_undecidable_before_model_call(self):
-        result = self.run_evals("custom")
-        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
-        self.assertIn("invalid SDLC_EDITION", result.stderr)
-        self.assertFalse(self.log.exists())
+    def test_retired_and_unknown_editions_are_undecidable_before_model_call(self):
+        for edition in ("tdd-first", "custom"):
+            with self.subTest(edition=edition):
+                result = self.run_evals(edition)
+                self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                self.assertIn("invalid SDLC_EDITION", result.stderr)
+                self.assertFalse(self.log.exists())
 
 
 class EvalWorkflowPaths(unittest.TestCase):
@@ -173,8 +172,6 @@ class EvalWorkflowPaths(unittest.TestCase):
         paths = re.findall(r"^      - '([^']+)'$", workflow, re.MULTILINE)
         for changed in (
             "CLAUDE.md", ".claude/skills/design-spec/SKILL.md",
-            "tdd-first/org-skills/skills/brand/SKILL.md",
-            "tdd-first/project/templates/spec.md",
             "tdd-optional/org-skills/.claude-plugin/plugin.json",
             "tdd-optional/project/examples/skills/design-spec/SKILL.md",
             "evals/cases/04-org-policy-application.json",
@@ -182,6 +179,14 @@ class EvalWorkflowPaths(unittest.TestCase):
         ):
             with self.subTest(path=changed):
                 self.assertTrue(any(fnmatch.fnmatchcase(changed, path) for path in paths))
+        self.assertNotIn("tdd-first/**", paths)
+
+    def test_eval_job_runs_and_archives_only_the_current_edition(self):
+        workflow = (ROOT / ".github/workflows/agent-evals.yml").read_text()
+        self.assertNotIn("matrix:", workflow)
+        self.assertIn("SDLC_EDITION: tdd-optional", workflow)
+        self.assertIn("name: evals-tdd-optional-${{ github.run_id }}", workflow)
+        self.assertIn("path: evals/out/tdd-optional", workflow)
 
 
 if __name__ == "__main__":

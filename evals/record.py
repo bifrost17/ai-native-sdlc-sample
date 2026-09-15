@@ -99,14 +99,12 @@ def main():
     p = sub.add_parser("case")
     p.add_argument("--case-id", required=True)
     p.add_argument("--out", required=True)
-    p.add_argument("--edition", choices=("tdd-first", "tdd-optional"),
-                   default="tdd-first")
+    p.add_argument("--edition", choices=("tdd-optional",), default="tdd-optional")
     for key in ("generation-rc", "deterministic-rc", "semantic-rc"):
         p.add_argument("--" + key, required=True, type=int)
     p.set_defaults(fn=record_case)
     p = sub.add_parser("summary")
-    p.add_argument("--edition", choices=("tdd-first", "tdd-optional"),
-                   default="tdd-first")
+    p.add_argument("--edition", choices=("tdd-optional",), default="tdd-optional")
     p.add_argument("--out-dir", required=True)
     p.add_argument("--cases", required=True, nargs="+")
     p.set_defaults(fn=summarize)

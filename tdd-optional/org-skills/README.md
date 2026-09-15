@@ -3,7 +3,9 @@
 이 폴더는 우리 팀의 선택 가능한 기본 스킬 예시를 배포한다. 아래 기본 설치 안내는 Claude Code용이다.
 사용 템플릿에 내장되는 필수 스킬이 아니다. 팀이 채택한 스킬과 프로젝트 정책을 함께 사용한다.
 
-이 패키지는 **tdd-optional 0.1.7**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+이 패키지는 **tdd-optional 0.1.8**이다. 플러그인 식별자는 intent-sdlc-skills-optional이며 작업별 검증 방식 선택을 따른다.
+0.1.8은 유일한 배포판의 Claude·Codex 설치 안내를 맞추고 Codex의 PR 입력 변환을 보완한다.
+작성 3개·팀 13개 스킬의 정본·동반 자료·검토 기준은 공유하며 도구별 설정을 구별한다.
 0.1.7은 실제 diff에서 요구·설계·작업을 대조하고, 관련 커밋의 포함 범위와 중단·인계·재개 절차를 구체화한다.
 plan 인계 검토를 기존 절차에 연결하며 새 스킬·승인 단계·검사기는 추가하지 않는다.
 0.1.6는 spec 인계·중요 설계 개정의 검토 범위와 공유 계약·복구 분기·정당한 이월 판단을 보완한다.
@@ -16,6 +18,8 @@ feedback 안내를 보완한다. 과거 기록·작성 주체와 수락·통합�
 추가한다. 순수 제품 정책이나 기존 스킬/검증자 기준을 늘리지 않고 설치와 팀의 사용 결정을 연결한다.
 0.1.2 검증자는 공개 실행 근거가 있을 때 문서 선행 갱신과 사후 복구를 구별한다. 최종 파일·같은 커밋만으로
 순서를 추정하지 않으며 이력이 없으면 미검증으로 남긴다. 새 승인 단계·기록 양식·검사기는 추가하지 않는다.
+Claude Code 프로젝트 설치는 [Claude 안내](claude/README.md)를 따른다. 작성 3개는 프로젝트
+폴더로, 팀 13개와 검증자는 플러그인으로 선택 설치한다. 전체 폴더·명시 호출·갱신 절차를 함께 제공한다.
 OpenCode 전달은 [어댑터 안내](opencode/README.md)를 따른다.
 Codex 프로젝트 설치는 [Codex 어댑터](codex/README.md)를 따른다. 전체 폴더와 명시 사용 정책을 보존하며,
 named custom-agent 설정의 자동 적용과 새 native 검토자의 기준 파일 직접 읽기를 구별한다.
@@ -25,31 +29,15 @@ named custom-agent 설정의 자동 적용과 새 native 검토자의 기준 파
 
 ## 프로젝트별 설치·갱신
 
-선택한 `tdd-optional/` 전체(`project/`, `org-skills/`, `.claude-plugin/`)를 별도 위치에 복사해도
-설치할 수 있다. `project/` 내용은 별도 제품 저장소 루트로 채택한다. 아래의 경로 두 개를
-실제 절대 경로로 바꾸고, 제품 저장소에서 실행한다. 이 안내는 사용자 전역 설치를 변경하지 않는다.
+`tdd-optional/` 전체(`project/`, `org-skills/`, `.claude-plugin/`)를 별도 위치에 보관하고
+`project/` 내용은 제품 저장소 루트로 채택한다. [Claude Code 안내](claude/README.md)에
+프로젝트 범위 플러그인 설치, 작성 폴더의 별도 복사, 명시 호출과 기존 설치 갱신 명령을 둔다.
+[Codex 안내](codex/README.md)는 같은 정본을 프로젝트 경로에 복사하고 도구별 patch를 적용한다.
+두 경로 모두 기존 제품의 로컬 정책·자료를 비교·보존하며 전체 템플릿을 덮어쓰지 않는다.
 
-```bash
-EDITION_SOURCE=/absolute/path/to/tdd-optional
-PRODUCT_ROOT=/absolute/path/to/adopted-product
-cd "$PRODUCT_ROOT"
-claude plugin validate --strict "$EDITION_SOURCE/org-skills"
-claude plugin validate --strict "$EDITION_SOURCE/.claude-plugin/marketplace.json"
-claude plugin marketplace add "$EDITION_SOURCE" --scope project
-claude plugin install intent-sdlc-skills-optional@intent-sdlc-skills-optional --scope project
-claude plugin list --json
-```
-
-프로젝트가 선택한 판만 유효하게 로드해야 한다. 다른 판의 플러그인이나 같은 이름의 프로젝트·전역
-스킬이 이미 활성이라면 설치 전에 실제 로드 출처와 적용 범위를 확인하고 프로젝트 설정에서 충돌을
-해결한다. 이름만 다르게 설치해 두 판의 지침을 함께 적용하지 않는다. 사용자 전역 파일을 자동으로
-바꾸거나 기존 설치를 제거하지 않는다.
-
-갱신은 설치 소스·판·로컬 변경을 먼저 확인하고 새 판을 검증한 뒤, 제품 저장소에서
-`claude plugin update intent-sdlc-skills-optional@intent-sdlc-skills-optional --scope project`를 실행한다.
-로컬 marketplace source를 유지하고 새 세션에서 실제 경로·manifest 판을 확인한다.
-캐시 목록이나 파일 복사만으로 새 세션이 본문을 읽었다고 판단하지 않는다.
-플러그인 사용은 [공식 문서](https://code.claude.com/docs/en/plugin-marketplaces)를 참고한다.
+현재 배포판과 동명 개인·상위 프로젝트 스킬의 실제 출처를 확인한다. 목록·파일 검사와
+본문 읽기·업무 적용은 별도 근거다. 플러그인 배포는
+[Claude 공식 문서](https://code.claude.com/docs/en/plugin-marketplaces)를 참고한다.
 
 ## spec-policy-pass와 spec-policy
 
