@@ -3,7 +3,8 @@
 Status: draft
 Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 
-현재 상태: T01의 340 PR·114 브랜치·30 번호 개발건과 4 무번호 개발건 수집 완료. T02 전수 보고서 작성 중.
+현재 상태: T01의 340 PR·114 브랜치·30 번호 개발건과 4 무번호 개발건 수집 완료. T02 모든 건 보고서와 대형 후속 조사 작성 완료, 실행 원문·세부 감사의 한계는 coverage에 남긴다.
+후속 사용자 지시에 따라 T04 실제 개발 실험을 중단했다. T03 보완안·기존 수정 후보를 정리하고 T05는 조사/설계 기록 검토까지만 진행한다. 별도 지시 전 실험·배포를 재개하지 않는다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
@@ -20,6 +21,7 @@ Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 - T03b / SP05 (root 설계, Sol medium 구현, Astra high 검토): 사용자 추가 PR·커밋·총괄/정본 요구를 배포판의 기존 정책과 대조한다. changes 경로와 총괄 README, .github PR 양식과 commit 작성 문서를 제공한다. 기존 intent 경로·maker 이력은 자동 이동하지 않으며 source 작성 스킬/도구 전달의 참조를 맞춘다.
 - T03c / SP06 (root 구현, Astra high 설계 검토): templates/spec.md의 AC 안내에 검증 경계·입력/환경·독립 기대·관측/한계를 연결한다. design-spec/references/design-depth.md의 기존 설계 블록에 실제 UI/앱 셸과 검증 예시를, plan/references/execution-depth.md에 첫 실제 수직 경로와 늦는 경우의 대안을 보강한다. disposable-ui-exploration 예시는 정적 배치 탐색과 실제 컴포넌트 결합 탐색의 선택을 설명한다. 공통 feedback은 최종 PR본문·현재판·개발건색인/과거spec대조를 짧게 연결한다. source package를 0.1.9로 맞추고 Codex patch/Claude strict검증, 작은 사례 부담 검토를 거친다. Done: AC03/06의 실제 diff·검토 기록 및 T04의 현재판/수정판 경계 비교.
 - T04 / SP03 (root HUMAN + 실제 CLI): 원래 도구의 두 사례 전후 네 실행, 다른 도구의 별도 한 실행을 수행한다. 각 제품은 독립 repo와 고정 template ref/파생 branch를 갖는다. 설치 자산·실제 model/effort·질문/답변·실행·commit을 보존한다. 새 문맥 인계와 후속 변경을 관측한다. Done: AC04; 부족하면 최대 두 차례 수정과 전체 9실행 안에서 재검증.
+  현재 유예: Claude 조직 차단·OpenCode 공급자 인증 오류와 B의 부분 수행/사용자 중단을 보존한다. 완성 전후 쌍이 없으며 효과를 판정하지 않는다. 후속 지시가 있으면 그때 기준·권한·예산을 다시 고정한다.
 - T05 / 전체 (root + fresh verifier): 현재 diff와 coverage·실험·회귀 결과를 독립 검토한다. make check와 필요한 패키지/adapter 확인을 수행한다. 확인 범위만 주석·최종 보고·인계에 반영하고 관련 파일만 커밋한다. Done: AC05 및 실제 결과/잔여 한계.
 
 ## Risks
@@ -32,3 +34,9 @@ PR title·최종 문서·version 문자열만으로 실제 사건과 설치를 �
 원본/API/Git manifest, 전체 개발건 coverage와 보고서, 원문·발췌 대조, 후보 검토,
 실제 CLI 설치·전후 실행·독립 동작 확인·회귀·새 문맥 리뷰, maker make check와 필요한 배포 검사.
 전문은 .local/의 실행 자료에 보존하고 연구 문서에서 경로·hash·SHA·결론을 연결한다.
+
+현재 인계(후속 범위): 연구 폴더에 개발건별 분석·원전 조사·설계/전달/source/결론 리뷰 전문을 보존한다.
+`originals.md`와 `collection-originals.md`에서 로컬 원문·공개 보고 응답·바이트 스냅샷·manifest를 연결한다.
+과거 미검토·실패와 후속 정정은 같은 원문을 덮어쓰지 않고 함께 보존한다. Git partial clone과 초기 pack
+목록의 변화는 원문 보존 감사에서 드러내며 추가 실험 없이 링크·스냅샷 해시·scoped Git 인도를 확인한다.
+위 Proof의 실제 개발 비교 항목은 유예돼 있으며 이번 조사 인도의 완료 조건으로 세지 않는다.
