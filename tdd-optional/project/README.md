@@ -10,7 +10,7 @@
 1. [프로젝트 정책](PROJECT-POLICY.md)에 역할, 기록 위치, 적용할 정책과 실제 검증 방법을 적는다.
    아직 정하지 못한 것은 미정으로 남기고 결정할 사람을 적는다.
    브랜치는 [GitHub Flow](docs/GIT-WORKFLOW.md), 변경 묶음은 [PR 크기 가이드](docs/PR-SIZE.md)를 따른다.
-2. [개발 절차](docs/PROCESS.md)를 읽고 문제 하나를 [intent/](intent/README.md)에 기록한다.
+2. [개발 절차](docs/PROCESS.md)를 읽고 문제 하나를 [changes/](changes/README.md)에 기록한다.
 3. 승인된 의도에서 요구·설계를, 승인된 요구·설계에서 구현 계획을 만든다.
    [문서 양식](templates/)을 사용하고 사람의 결정과 근거를 다음 단계로 넘긴다.
    [검증 방식 가이드](docs/TESTING-STRATEGY.md)를 보고 작업별 순서와 기대의 출처를 정한다.
@@ -28,7 +28,7 @@
 | [docs/RELEASE-CONTROL.md](docs/RELEASE-CONTROL.md) | 미완성 기능의 일반 OFF·테스트 ON, 공개와 제어 제거 |
 | [PROJECT-POLICY.md](PROJECT-POLICY.md) | 팀과 프로젝트가 채울 정책·도구·책임자 |
 | [templates/](templates/) | intent, spec, plan의 빈 양식 |
-| [intent/](intent/README.md) | 앞으로 진행할 제품 변경의 기록 |
+| [changes/](changes/README.md) | 새 개발건의 경로 규칙과 현재 상태 총괄 표 |
 | [examples/](examples/README.md) | 팀이 선택해서 수정할 수 있는 작업 방식 예시 |
 | [docs/sdlc-authoring/](docs/sdlc-authoring/README.md) | 작은 기능·버그·두 PR·이행·웹 사례의 구체적인 spec/plan 작성 예시 |
 

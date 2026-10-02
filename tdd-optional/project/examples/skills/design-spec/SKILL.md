@@ -12,6 +12,10 @@ Human acceptance starts planning (L3 276). These source principles remain separa
 
 Confirm the actual intent revision and recorded human acceptance, or the already-authorized draft scope.
 Keep Upstream with the actual input revision and Status draft. An old accepted version does not approve new edits.
+Find the active change through [the project's change index](../../../changes/README.md), including a retained
+`intent/` path in an already-adopted product. Treat older specs as evidence of decisions made then: compare their
+relevant contracts with current code/configuration, policy and currently applicable accepted agreements. State in
+the new spec what is preserved, superseded or still unverified; a higher number or past acceptance is not current authority.
 Do not ask twice when authorization already covers this work; do not invent acceptance.
 Preserve the originating prompt, applied skill versions, and any required draft authorization (who, scope, reason)
 with the versioned spec/PR record (L3 279); a final summary alone does not preserve the original request.

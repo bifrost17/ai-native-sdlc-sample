@@ -129,3 +129,8 @@ If independent execution was unavailable, say so rather than calling self-review
 At PR review, apply the same criteria to the submitted diff and current artifacts. Existing PR
 tools/skills own comment collection, checks and pushes; this skill does not add a second PR loop.
 Report the observed result, meaningful remaining issues, and relevant artifact/commit references.
+Keep the PR description aligned with the final diff and latest tested revision after review changes.
+Use the project's commit/PR format and development-case index when present; update the affected summary
+at a meaningful delivery or handoff without copying full execution logs. Historical change specs are
+revision-bound evidence: reconcile preserved contracts with current code, policy and authoritative design
+before using them for a new change. Code alone does not authorize changing an agreed contract.

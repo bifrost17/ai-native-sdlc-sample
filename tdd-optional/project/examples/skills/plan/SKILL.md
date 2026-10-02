@@ -10,7 +10,9 @@ disable-model-invocation: true
 North star L4 317–321: name changed files, work order and proving tests; support an engineer without the conversation.
 L4 329: update plan.md in the same implementation commit when work departs from it.
 
-Read the current intent. For product planning, read spec.md and every declared required design document, actual
+Find the active change through [the project's change index](../../../changes/README.md); an adopted product may
+retain its existing `intent/` path. Read the current intent. For product planning, read the current spec.md and
+every declared required design document, actual
 code/tests and applicable project policies. Confirm the spec revision and human acceptance or already-authorized draft scope.
 For a bounded exploration before design acceptance, instead read the current intent/draft question, relevant product
 context and recorded exploration authority; do not call it an accepted product plan. Keep Upstream at the real revision
