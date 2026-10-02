@@ -9,7 +9,7 @@ Anthropic의 AI-Native SDLC Playbook을 바탕으로 우리 팀이 사용할 **�
 
 **Codex와 Claude Code 사용자를 위한 현재 템플릿은 [TDD 선택형](tdd-optional/README.md) 하나다.**
 작업별로 TDD·동작별 구현 후 테스트·기존 테스트 활용·혼합을 선택하고 plan에 이유와 검증을 기록한다.
-현재 팀 스킬 패키지는 **0.1.8**이다. 기존 채택 경로와 호환되도록 `tdd-optional/` 이름을 유지한다.
+현재 팀 스킬 패키지는 **0.1.9**이다. 기존 채택 경로와 호환되도록 `tdd-optional/` 이름을 유지한다.
 
 `main`의 루트는 템플릿 **제작용**이다. 새 제품은 [`tdd-optional/project/`](tdd-optional/project/README.md)의
 내용만 별도 제품 저장소 루트로 복사하고 사용한 `main` 커밋 SHA를 기록한다. 이미 채택한 제품의
