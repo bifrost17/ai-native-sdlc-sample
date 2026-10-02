@@ -15,6 +15,7 @@ Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 - T01 / SP01 (Luna medium + root): 원격 API 전수 페이지와 bare Git를 수집한다. main/ref SHA와 원본 hash를 고정한다. intent 이력, PR의 head/title/body/diff에서 개발건을 정규화한다. 당시 지침·현재 HEAD·후보를 서로 구분한다. Done: AC01의 조사 모집단과 담당 목록.
 - T02 / SP02 (Sol medium, 큰 계약 Astra high): 0018/0021/0028을 먼저 읽어 사건 기준을 맞춘다. 모든 개발건을 4~5개 묶음으로 병렬 분석한다. 승인·최초 문서·관련 구현·리뷰·후속 갱신의 실제 Git 판을 대조한다. 중요한 원인이 불명확할 때만 필요한 대화 구간을 수집한다. Done: AC02의 전체 건별 보고서와 coverage.
 - T03 / SP02 (root + Astra high): 공통 원인을 중복 제거하고 반증·성공 대조·현행 지침을 읽는다. 후보가 두 독립 사건 또는 중대한 현재 재현에 근거하는지 확인한다. 개선할 실제 지침과 바뀔 판단을 이 spec/plan에 추가한다. Done: AC03의 최대 2~3개 작은 변경 또는 근거 있는 보류.
+- T03a / SP04 (Astra high, T02와 병렬): 사용자 추가 네 가설을 원전 연구와 대조한다. 실제 UI/공유 시퀀스의 조기 검증과 설계 검증의 구체화를 현행 지침에 대조하고 역사 증거와 결합한다. 일반 방법의 효과를 해당 실사용 실패의 원인 증명으로 대신하지 않는다.
 - T04 / SP03 (root HUMAN + 실제 CLI): 원래 도구의 두 사례 전후 네 실행, 다른 도구의 별도 한 실행을 수행한다. 각 제품은 독립 repo와 고정 template ref/파생 branch를 갖는다. 설치 자산·실제 model/effort·질문/답변·실행·commit을 보존한다. 새 문맥 인계와 후속 변경을 관측한다. Done: AC04; 부족하면 최대 두 차례 수정과 전체 9실행 안에서 재검증.
 - T05 / 전체 (root + fresh verifier): 현재 diff와 coverage·실험·회귀 결과를 독립 검토한다. make check와 필요한 패키지/adapter 확인을 수행한다. 확인 범위만 주석·최종 보고·인계에 반영하고 관련 파일만 커밋한다. Done: AC05 및 실제 결과/잔여 한계.
 
