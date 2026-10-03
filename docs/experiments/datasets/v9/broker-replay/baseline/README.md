@@ -1,0 +1,7 @@
+# Request broker baseline
+
+Run `python3 server.py --port 8766 --db /tmp/broker-fixture.sqlite3`. JSON API: `POST /requests` with `{"prompt":"..."}` creates a running request and returns its id; `POST /requests/{id}/claim` with `{"subscriber":"owner"}` claims its owner; `POST /requests/{id}/ack` with `{"subscriber":"owner"}` accepts delivery; `POST /requests/{id}/final` with `{"subscriber":"owner","result":"..."}` ends it; `GET /requests/{id}` reads state. Invalid role/state transitions return 403 or 409. An observer may acknowledge a seen notification but may not claim or complete the request.
+
+New work: implement durable notification replay/reconnect for both subscribers. `GET /requests/{id}/notifications?subscriber=owner|observer&after=N` returns an `events` array sorted by increasing integer `seq` with `kind` values `created`, `claimed`, `acknowledged`, or `final`. `after=0` replays all visible events; later cursors return only higher sequences. A reconnecting subscriber should receive missed notifications in event order. Repeated delivery must be safe. ACK is evidence of receipt while work continues; the final event alone makes the request terminal. Existing API semantics and DB state must remain compatible. Notifications for observer are read-only; observer ACK cannot claim or finalize work.
+
+`history/old-ack-note.md` is a past specification excerpt that predates the current running-after-ACK behavior. Treat it as historical evidence, not the current runtime contract. The baseline tests and current API define the active behavior.

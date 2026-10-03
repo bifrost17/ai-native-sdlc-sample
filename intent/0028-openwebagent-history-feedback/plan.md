@@ -55,6 +55,8 @@ source 범위는 `4a84596..df3ae99`다. 후자의 10개 파일은 T06–T09 행�
 | tdd-optional/project/docs/CHANGE-DELIVERY.md, tdd-optional/project/docs/GIT-WORKFLOW.md | 메시지 검사와 선택 동기화 hook의 경계·확인 가능한 조건 연결 | T12, SP08 |
 | tests/test_document_sync_hook.py | 격리 Git repo에서 신호/포함/실제 index/부분stage·무관WIP·기존설치 보존 동작 시험 | T12, SP08 |
 | docs/BOUNDARY.md | 기존 미구현 plan-sync 설명과 사용자 후속 opt-in 예시·의미 판단 경계 정합성 | T12, SP08 |
+| docs/experiments/0038-document-sync-muse.md, docs/experiments/datasets/v9/broker-replay/ | 0018의 ACK/최종 구분에서 파생한 합성 원본 fixture·입력·HUMAN 조건·실제 실행 전문의 경로/결과/한계 | T13, SP09, FR10/AC09 |
+| docs/research/openwebagent-template-history/originals.md, docs/research/openwebagent-template-history/originals-index.json, docs/research/openwebagent-template-history/README.md, docs/research/openwebagent-template-history/recommendations.md | U1–U7 source 완료와 새 0038 실험 범위·전문/원문 색인·보존 감사 연결 | T13, SP03/07/08, FR10/AC09 |
 
 `.local/research/openwebagent-template-history/20261003/`는 원본/실행/해시의 private 산출 위치다.
 Codex의 `org-skills/codex/patches/`와 `agents/sdlc-verifier.toml`, Claude 공통 `org-skills/agents/`는
@@ -84,7 +86,10 @@ T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아
   리뷰의 P2 복구는 재현 실패 후 같은 기대의 통과를 확인한다. 지문은 SP08의 HEAD+index 엔트리+변경 경로 방식으로
   개정한다. 초기 시험/지적/복구를 소급해 첫 구현부터 TDD였다고 보고하지 않는다.
 
+- T13 / SP09 (T12 완료 후): 사용자 새 OpenCode Muse Spark/xhigh 요청을 [0038](../../docs/experiments/0038-document-sync-muse.md) 한 실행으로 수행한다. source a23a1ce의 선택판·전체 동반 스킬·hook을 별도 repo에 먼저 적용한다. HUMAN(root)는 실제 intent/spec/plan 초안을 검토해 구현을 요청하고 첫 구현 뒤 역할별 final 결과 가시성 변경을 전달한다. 초기 변경에는 갱신을 상기하지 않는다. 새 Muse 세션의 문서 인계와 실제 HTTP/SQLite·회귀·커밋 내용을 root가 확인한다. 실제 Git/HTTP 시나리오 검증을 사용하며 검증 방식은 에이전트의 선택을 관측한다. 총30분·parent6/child2, 사전1호출5분. Done: AC09의 실제 결과/미완료/한계 보존; AC04의 전체 전후 비교는 유예. 추가 source 변경은 일반 문제일 때만 최소로 검토한다.
+
 ## Risks
+
 PR title·최종 문서·version 문자열만으로 실제 사건과 설치를 판단하지 않는다.
 사람의 복구는 초기 자발적 수행 성공과 구별한다. 원격 body는 수집 시점의 mutable 자료다.
 큰 개발건의 반복 수정이 전체 실패율을 부풀리지 않도록 같은 사건을 dedupe한다.
