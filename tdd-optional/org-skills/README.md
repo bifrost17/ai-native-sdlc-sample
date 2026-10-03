@@ -25,6 +25,8 @@ Claude Code 프로젝트 설치는 [Claude 안내](claude/README.md)를 따른�
 OpenCode 전달은 [어댑터 안내](opencode/README.md)를 따른다.
 Codex 프로젝트 설치는 [Codex 어댑터](codex/README.md)를 따른다. 전체 폴더와 명시 사용 정책을 보존하며,
 named custom-agent 설정의 자동 적용과 새 native 검토자의 기준 파일 직접 읽기를 구별한다.
+커밋 때 문서 포함을 확인할 팀은 [선택 Git hook 예시](examples/document-sync-hook/README.md)를
+별도로 채택할 수 있다. 두 도구가 같은 예시를 사용하며 스킬 설치만으로 hook이 활성화되지 않는다.
 [0025](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0025-opencode.md), [0026](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0026-muse-spark.md),
 [0028](https://github.com/bifrost17/ai-native-sdlc-sample/blob/13376e8049c5650c0fe3a8a258a6595f8d3ada8f/docs/experiments/0028-review-tdd.md)은 분리 전 판의 실행 기록이다.
 현행 패키지의 설치·파싱과 자연 호출·실제 행동 증거를 구별한다. 선택형은 과거 통과를 승계하지 않는다.
@@ -82,6 +84,11 @@ TDD 선택 범위의 공통 실행법은 이 스킬, 첫 시험·실행 순서�
 팀의 개발 절차로 채택했다면 [짧은 CLAUDE.md 예시](examples/sdlc-feedback-adoption.md)를 제품 지침에
 합쳐 그 결정을 드러낸다. 플러그인 설치만으로 이 프로젝트가 모든 스킬의 절차를 채택했다고 가정하지
 않는다. 현재 업무에 필요한 절만 사용하며 기존 동등 절차와 중복시키지 않는다.
+
+선택한 [문서 동기화 hook](examples/document-sync-hook/README.md)은 기존 세션이 판단한 staged
+범위와 필요한 문서의 포함 여부만 확인한다. 의미 검토·문서 내용의 정합성을 대신하거나 별도 모델을
+호출하지 않는다. 작은 수정은 짧게 확인하며 매 커밋 새 검증자를 호출하지 않는다. 설치·한계·복구는
+예시 안내를 따르고 기존 hook/설치의 로컬 변경을 보존한다.
 
 | 이벤트 | 수행 |
 |---|---|

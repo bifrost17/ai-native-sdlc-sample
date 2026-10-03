@@ -50,10 +50,16 @@ source 범위는 `4a84596..df3ae99`다. 후자의 10개 파일은 T06–T09 행�
 | intent/0028-openwebagent-history-feedback/ | 실제 변경된 의도·설계·계획·현재 인계. 자기 문서 경로는 산출 lineage | T01–11, 전체 |
 | docs/experiments/0037-openwebagent-history-feedback.md | 이미 중단된 부분 실행·실패·후속 유예 기록 보존 | T04/T05, SP03 |
 | docs/verification/north-star-playbook.html | 검증된 범위만 연결할 대상. 이번 source 완료를 제품 행동 통과로 주석 승격하지 않으며 현재 바이트 보존 | T05/T11, SP07 |
+| tdd-optional/org-skills/examples/document-sync-hook/ | opt-in pre-commit·표준 라이브러리 검사와 설치/실행/한계 예시 | T12, SP08 |
+| tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md, tdd-optional/org-skills/claude/README.md, tdd-optional/org-skills/codex/README.md, tdd-optional/org-skills/README.md | 같은 예시·신호 계약을 선택한 커밋 절차에 연결. 원 스킬의 의미·최종 검토 경계 유지 | T12, SP08 |
+| tdd-optional/project/docs/CHANGE-DELIVERY.md, tdd-optional/project/docs/GIT-WORKFLOW.md | 메시지 검사와 선택 동기화 hook의 경계·확인 가능한 조건 연결 | T12, SP08 |
+| tests/test_document_sync_hook.py | 격리 Git repo에서 신호/포함/실제 index/부분stage·무관WIP·기존설치 보존 동작 시험 | T12, SP08 |
+| docs/BOUNDARY.md | 기존 미구현 plan-sync 설명과 사용자 후속 opt-in 예시·의미 판단 경계 정합성 | T12, SP08 |
 
 `.local/research/openwebagent-template-history/20261003/`는 원본/실행/해시의 private 산출 위치다.
 Codex의 `org-skills/codex/patches/`와 `agents/sdlc-verifier.toml`, Claude 공통 `org-skills/agents/`는
-T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아니다. `tests/`, `evals/`, Makefile도 보존한다.
+T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아니다. T12는 위 새 Git fixture 시험을
+추가하며 기존 `tests/`·`evals/`·Makefile의 실행 방식은 보존한다.
 원제품·전역 설치·별도 미커밋 WIP는 범위 밖이다.
 
 ## Order of work
@@ -72,6 +78,11 @@ T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아
 - T09 / SP05/07 (T08 후): changes 색인·현재 계약과 과거 spec의 구분·기존 intent 호환·작성 스킬 발견 경로를 대조한다. Astra/high가 정본 중복과 과거 수락 오인·업데이트 누락을 검토한다. Done: U4 기록과 중요한 지적 해결.
 - T10 / SP05/07 (T09 후): PR/커밋 양식과 기존 feedback에서 최종 diff·문서 개정·현재 인계/색인을 연결한다. Sol/high가 작은 수정의 부담·권한/수락 혼동·대상판·검증 한계를 적대적으로 검토한다. Done: U5 기록과 중요한 지적 해결.
 - T11 / SP07 (T10 후): Claude/Codex 패키지와 patch 참조·버전·링크를 확인하고 기존 make check/strict 검증을 실행한다. 새 verifier가 실제 전체 diff와 판별 근거를 검토한다. Done: AC05/07의 source 완료. AC04 제품 실험은 미입증으로 유지한다.
+- T12 / SP08 (T11 완료 후): [U7 설계](../../docs/research/openwebagent-template-history/completion/U7-hook-design.md)를 적용한다. root는 기존 feedback·정책/Claude·Codex 전달을, Sol/medium worker는 선택 hook/격리 Git 시험을 소유한다. 단계 승인이나 새 CLI는 추가하지 않는다. Astra/high 적대적 리뷰에서 대상 지문·문서 선택·부분stage·설치 범위·자기선언/우회 한계를 확인하고 중요한 지적만 수정한다. make check와 필요한 adapter 적용·설치판 참조를 확인한다. Done: AC08의 실제 source 시험/리뷰·대상판/한계 보존. 모델 개발 실험·전역 설치는 진행하지 않는다.
+  검증 방식은 실제 Git 저장소의 시나리오 시험이다. 메타데이터 모킹으로 실제 commit 대상/부분 stage를
+  입증할 수 없어 첫 commit·오류·alternate index·설치 보존을 확인한 뒤 전체 make check로 회귀를 확인한다.
+  리뷰의 P2 복구는 재현 실패 후 같은 기대의 통과를 확인한다. 지문은 SP08의 HEAD+index 엔트리+변경 경로 방식으로
+  개정한다. 초기 시험/지적/복구를 소급해 첫 구현부터 TDD였다고 보고하지 않는다.
 
 ## Risks
 PR title·최종 문서·version 문자열만으로 실제 사건과 설치를 판단하지 않는다.
@@ -101,3 +112,8 @@ AC04의 실제 제품 효과·자연 스킬 선택·전후 비교는 유예 상�
 root가 source를 소유하며 참조/검사 경로 조사는 Sol/medium에게 병렬 위임한다. 리뷰자는 source를 고치지 않는다.
 각 리뷰에는 다른 단위가 이미 완료됐다는 주장보다 실제 해당 파일과 필요한 정본을 제공한다. 중요 지적만
 수정하고 changed scope를 재검토한다. 보완 source는 미배포 0.1.9 후보를 유지하며 버전을 단위마다 올리지 않는다.
+
+후속 T12/U7: 선택 Git 예시·기존 feedback 연결의 source를 완료했다. fresh Astra/high의 P2 두 건과
+intent-to-add 반례를 복구·재검토했다. 실제 Git 시험13건, make check116건(1skip)과 기존 shell 검사,
+Claude/Codex 전달·선택 설치 확인이 통과했다. 앞선 T06–T11과 구별해 AC08만 완료로 판정한다.
+근거·최초 결함·복구는 completion/U7-review.md·U7-validation.md에 남긴다. 실제 모델 행동은 아직 미입증이다.

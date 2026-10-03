@@ -42,8 +42,12 @@ fix(settings): 저장 거절 후 다시 시도할 수 있게 한다
 
 예시는 형식 설명이며 실제 개발 결과가 아니다. 작은 오탈자는 제목만으로 목적과 변경이 충분하면
 본문을 생략할 수 있다. Git/GitHub가 만든 merge/revert 형식은 허용하고, revert에는 대상·이유·
-후속 영향을 남긴다. 과거 커밋을 이 형식에 맞추려고 재작성하지 않는다. commitlint·새 hook·
+후속 영향을 남긴다. 과거 커밋을 이 형식에 맞추려고 재작성하지 않는다. 메시지 형식을 위해 commitlint·새 hook·
 고정 글자 수·자동 버전 배포는 추가하지 않는다. staged 범위와 문서 정합성은 기존 Git 정책을 따른다.
+
+팀이 선택한 문서 동기화 hook은 메시지 형식 검사와 별개다. 기존 세션의 문서 영향 판단과 실제 staged
+범위/필수 동반 개정의 포함을 연결하며, 내용 정확성이나 검토 수행을 인증하지 않는다. 이미 채택했다면
+현재 설치 안내에 따라 커밋 한 번의 확인 신호를 전달한다. hook 통과를 수락·통합·완료로 쓰지 않는다.
 
 근거: [GitHub PR 작성](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request),
 [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).

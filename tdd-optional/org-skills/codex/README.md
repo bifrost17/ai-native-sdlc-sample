@@ -8,6 +8,8 @@
 `project/docs/CHANGE-DELIVERY.md`에서 읽는다. 팀의 `sdlc-feedback`은 Claude 배포판과 같은
 변경 정합성 기준을 전달하되 verifier 호출과 명시 호출 문법은 아래 Codex 경로를 따른다.
 파일 설치 확인은 실제 모델 행동의 검증과 구별한다.
+커밋 전 포함 확인은 [선택 Git hook](../examples/document-sync-hook/README.md)을 별도 채택한다.
+Claude와 같은 파일·신호 계약을 쓰며 위 skill 복사나 patch 적용으로 활성화되지 않는다.
 
 ## 파일과 변환 범위
 

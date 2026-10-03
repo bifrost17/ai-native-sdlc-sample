@@ -64,8 +64,11 @@ file must contain, the product owner reads it, and the merge records the decisio
 - Not here: a Stop hook that runs `make test` before the session reports done (L9 650 "both
   implemented as hooks where the organization wants them guaranteed"). Verification-before-done is
   the CLAUDE.md instruction plus the PR `check`; a team that wants it guaranteed adds the hook.
-- Not here: a plan-sync hook. L4 329 says "Consider using a hook" — optional; this repo does not
-  have one, the plan skill says to update plan.md in the same commit.
+- Optional example added after the user's thin-hook choice (2026-10-03):
+  [document-sync pre-commit](../tdd-optional/org-skills/examples/document-sync-hook/README.md).
+  L4 329 says "Consider using a hook". It checks the declared HEAD/index scope and inclusion of
+  required companion changes; the current developer session still judges meaning. Neither the
+  product template nor skill installation activates it. It adds no model call or approval authority.
 - Separate opt-in team entry point: `sdlc-claude` calls a tool-free independent reviewer after
   each developer response and automatically resumes for concrete corrections, at most twice.
   Review failures and unresolved findings return a handoff; questions/acceptance waits return

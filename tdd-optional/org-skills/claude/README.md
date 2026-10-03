@@ -7,6 +7,8 @@
 0.1.9의 개발건 색인과 PR·커밋 전달 기준은 같은 판의 `project/changes/README.md`와
 `project/docs/CHANGE-DELIVERY.md`에서 읽는다. 플러그인은 채택한 `sdlc-feedback`의 정합성 안내를
 전달하며 제품 문서나 기존 설치를 자동 갱신하지 않는다. 설치 확인은 실제 모델 행동의 검증과 구별한다.
+커밋 전 포함 확인은 [선택 Git hook](../examples/document-sync-hook/README.md)을 별도 채택한다.
+Codex와 같은 파일·신호 계약을 쓰며 플러그인이 자동 설치하거나 스킬/검증자를 호출하지 않는다.
 
 ## 준비와 설치 범위
 
