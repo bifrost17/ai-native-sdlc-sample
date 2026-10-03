@@ -1,6 +1,6 @@
 # openWebAgent 실사용 이력과 템플릿 개선
 
-Status: 조사·보완안 정리. [제작 작업](../../../intent/0028-openwebagent-history-feedback/plan.md)의 후속 사용자 지시에 따라 개발 실험은 중단했다.
+Status: 조사 전문 보존 후 [단위별 제작 보완](completion/README.md)을 진행한다. [제작 작업](../../../intent/0028-openwebagent-history-feedback/plan.md)의 후속 사용자 지시에 따라 개발 실험은 계속 유예한다.
 조사 기준일은 2026-10-03 Asia/Seoul이다. 원본 수집 시각은 manifest의 UTC 값으로 별도 보존한다.
 
 ## 기준과 범위
