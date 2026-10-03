@@ -4,9 +4,11 @@ Status: draft
 Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 
 현재 상태: T01의 340 PR·114 브랜치·30 번호 개발건과 4 무번호 개발건 수집 완료. T02 모든 건 보고서와 대형 후속 조사 작성 완료, 실행 원문·세부 감사의 한계는 coverage에 남긴다.
-후속 사용자 지시에 따라 T04 실제 개발 실험을 중단했다. T03 보완안·기존 수정 후보를 정리하고 T05는 조사/설계 기록 검토까지만 진행한다. 별도 지시 전 실험·배포를 재개하지 않는다.
-최신 실행 결정: T06–T11의 제작 보완을 순차 완료한다. 각 단위의 적대적 리뷰와 중요한 지적 해결 후
-다음으로 진행한다. 개발 실험은 실제 사례를 기반으로 후속 지시 후 수행하며 현재는 유예한다.
+후속 사용자 지시에 따라 T04의 0037 실제 개발 비교를 중단했다. 실패·부분 수행을 보존하고 AC04의 전체 전후 비교는 유예한다.
+현재 인계: T06–T12의 제작 보완·적대적 리뷰·중요 지적 해결을 완료했다. 새 사용자 요청으로 T13/0038을
+별도 실행해 AC09의 관측/보존을 완료했다. 계약 갱신·같은 커밋·동작은 통과했으나 현재 plan 요약 누락으로
+인계 상태 갱신은 부분이다. 이는 T04 재개나
+전체 개발 비교 완료가 아니다. 전역 설치·원제품 변경·원격 인도는 범위 밖이다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
@@ -43,13 +45,13 @@ source 범위는 `4a84596..df3ae99`다. 후자의 10개 파일은 T06–T09 행�
 | tdd-optional/org-skills/README.md | 공통 스킬·배포판/제품 정책 경계 | T03c/T11, SP07 |
 | tdd-optional/org-skills/claude/README.md | 공통 source 전체를 Claude에 전달·갱신·검증 | T03c/T11, SP07 |
 | tdd-optional/org-skills/codex/README.md | Codex 네 patch와 verifier/동반 자료·설치/행동 한계 | T03c/T11, SP07 |
-| tdd-optional/org-skills/opencode/README.md | 기존 도구의 판·안내 보존. 이번 실제 실행 대상 아님 | T03c, SP07 |
+| tdd-optional/org-skills/opencode/README.md | T03c의 기존 전달 안내를 유지하고 T13의 선택 hook·0038 관측 범위와 설치/행동 근거 차이를 연결 | T03c/T13, SP07/09, FR10/AC09 |
 | tdd-optional/org-skills/commands/spec-policy.md | 기존 정책 검토 예시의 같은 판 유지 | T03c, SP07 |
 | README.md, docs/decisions/single-template.md | 74e1148의 현재 0.1.9 표기 정정. README의 별도 미커밋 WIP는 그대로 보존 | T05, SP07 |
 | docs/research/openwebagent-template-history/ | T01–03의 방법·coverage/cases·조사/검토 전문과 원본색인. 하위 실제 보고서 목록은 coverage.md·originals-index.json, 이번 완료 자료는 completion/README.md에서 연결 | T01–03/T05–11, SP01/02/04/05/06/07 |
-| intent/0028-openwebagent-history-feedback/ | 실제 변경된 의도·설계·계획·현재 인계. 자기 문서 경로는 산출 lineage | T01–11, 전체 |
+| intent/0028-openwebagent-history-feedback/ | 실제 변경된 의도·설계·계획·현재 인계. 자기 문서 경로는 산출 lineage | T01–13, 전체 |
 | docs/experiments/0037-openwebagent-history-feedback.md | 이미 중단된 부분 실행·실패·후속 유예 기록 보존 | T04/T05, SP03 |
-| docs/verification/north-star-playbook.html | 검증된 범위만 연결할 대상. 이번 source 완료를 제품 행동 통과로 주석 승격하지 않으며 현재 바이트 보존 | T05/T11, SP07 |
+| docs/verification/north-star-playbook.html | T05/T11의 source만으로는 승격하지 않음. T13의 실제 문서 갱신·같은 커밋·새 인계 범위만 V4-11에 추가하며 기존 부분·실패를 유지 | T05/T11/T13, SP07/09, FR10/AC09 |
 | tdd-optional/org-skills/examples/document-sync-hook/ | opt-in pre-commit·표준 라이브러리 검사와 설치/실행/한계 예시 | T12, SP08 |
 | tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md, tdd-optional/org-skills/claude/README.md, tdd-optional/org-skills/codex/README.md, tdd-optional/org-skills/README.md | 같은 예시·신호 계약을 선택한 커밋 절차에 연결. 원 스킬의 의미·최종 검토 경계 유지 | T12, SP08 |
 | tdd-optional/project/docs/CHANGE-DELIVERY.md, tdd-optional/project/docs/GIT-WORKFLOW.md | 메시지 검사와 선택 동기화 hook의 경계·확인 가능한 조건 연결 | T12, SP08 |
@@ -80,7 +82,7 @@ T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아
 - T09 / SP05/07 (T08 후): changes 색인·현재 계약과 과거 spec의 구분·기존 intent 호환·작성 스킬 발견 경로를 대조한다. Astra/high가 정본 중복과 과거 수락 오인·업데이트 누락을 검토한다. Done: U4 기록과 중요한 지적 해결.
 - T10 / SP05/07 (T09 후): PR/커밋 양식과 기존 feedback에서 최종 diff·문서 개정·현재 인계/색인을 연결한다. Sol/high가 작은 수정의 부담·권한/수락 혼동·대상판·검증 한계를 적대적으로 검토한다. Done: U5 기록과 중요한 지적 해결.
 - T11 / SP07 (T10 후): Claude/Codex 패키지와 patch 참조·버전·링크를 확인하고 기존 make check/strict 검증을 실행한다. 새 verifier가 실제 전체 diff와 판별 근거를 검토한다. Done: AC05/07의 source 완료. AC04 제품 실험은 미입증으로 유지한다.
-- T12 / SP08 (T11 완료 후): [U7 설계](../../docs/research/openwebagent-template-history/completion/U7-hook-design.md)를 적용한다. root는 기존 feedback·정책/Claude·Codex 전달을, Sol/medium worker는 선택 hook/격리 Git 시험을 소유한다. 단계 승인이나 새 CLI는 추가하지 않는다. Astra/high 적대적 리뷰에서 대상 지문·문서 선택·부분stage·설치 범위·자기선언/우회 한계를 확인하고 중요한 지적만 수정한다. make check와 필요한 adapter 적용·설치판 참조를 확인한다. Done: AC08의 실제 source 시험/리뷰·대상판/한계 보존. 모델 개발 실험·전역 설치는 진행하지 않는다.
+- T12 / SP08 (T11 완료 후): [U7 설계](../../docs/research/openwebagent-template-history/completion/U7-hook-design.md)를 적용한다. root는 기존 feedback·정책/Claude·Codex 전달을, Sol/medium worker는 선택 hook/격리 Git 시험을 소유한다. 단계 승인이나 별도 모델 CLI는 추가하지 않는다. Astra/high 적대적 리뷰에서 대상 지문·문서 선택·부분stage·설치 범위·자기선언/우회 한계를 확인하고 중요한 지적만 수정한다. make check와 필요한 adapter 적용·설치판 참조를 확인한다. Done: AC08의 실제 source 시험/리뷰·대상판/한계 보존. 모델 개발 실험·전역 설치는 진행하지 않는다.
   검증 방식은 실제 Git 저장소의 시나리오 시험이다. 메타데이터 모킹으로 실제 commit 대상/부분 stage를
   입증할 수 없어 첫 commit·오류·alternate index·설치 보존을 확인한 뒤 전체 make check로 회귀를 확인한다.
   리뷰의 P2 복구는 재현 실패 후 같은 기대의 통과를 확인한다. 지문은 SP08의 HEAD+index 엔트리+변경 경로 방식으로
@@ -121,4 +123,14 @@ root가 source를 소유하며 참조/검사 경로 조사는 Sol/medium에게 �
 후속 T12/U7: 선택 Git 예시·기존 feedback 연결의 source를 완료했다. fresh Astra/high의 P2 두 건과
 intent-to-add 반례를 복구·재검토했다. 실제 Git 시험13건, make check116건(1skip)과 기존 shell 검사,
 Claude/Codex 전달·선택 설치 확인이 통과했다. 앞선 T06–T11과 구별해 AC08만 완료로 판정한다.
-근거·최초 결함·복구는 completion/U7-review.md·U7-validation.md에 남긴다. 실제 모델 행동은 아직 미입증이다.
+근거·최초 결함·복구는 completion/U7-review.md·U7-validation.md에 남긴다. T12 자체는 모델 행동을 입증하지 않는다.
+
+후속 T13/0038: source `a23a1ce`/0.1.9를 먼저 설치한 별도 제품에서 실제 OpenCode1.18.30의
+Muse Spark1.3/xhigh를 확인했다. HUMAN의 초안 피드백을 받은 첫 인도 뒤 문서 갱신을 상기하지 않은
+가시성 변경에서 spec→plan→RED→코드 GREEN을 관측했고 `d302942`에 코드·시험·spec/plan을 함께
+담았다. 새 세션의 현재 문서 인계, 새 clone `78ab6d5`의9시험·독립 HTTP/SQLite·별도 프로세스 재시작
+확인이 통과했다. AC09의 한 사례 관측/보존은 완료했지만 최종 독립 리뷰에서 제품 plan의 낡은
+다음 작업/원격 절차를 발견해 현재 인계 상태 갱신은 부분으로 정정했다. root의 최초 통과 보고와
+제품 원 제출판을 보존하며 새 실행이나 개별 실수에 대응한 정책을 추가하지 않는다. 초기 HUMAN 수정·자연 hook 실패 복구
+미관측·알림 외 상태조회 결과 가시성의 미결·전체 AC04 유예는 유지한다. 제품 main은 baseline `ab3d230`다.
+전체 응답·실행 결과·refs/bundle·설치 해시는 0038의 원본 경로에 보존하며 별도 모델 실행을 추가하지 않는다.

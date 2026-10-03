@@ -1,6 +1,6 @@
 # openWebAgent 실사용 이력과 템플릿 개선
 
-Status: [여섯 단위의 제작 보완](completion/README.md)을 완료했다. 후속 얇은 hook은 별도 설계 중이며 제품 개발 실험은 계속 유예한다. [제작 작업](../../../intent/0028-openwebagent-history-feedback/plan.md)에 대상판·범위를 남긴다.
+Status: [U1–U7 제작 보완](completion/README.md)을 완료했다. 새 사용자 지시의 [Muse 한 사례](../../experiments/0038-document-sync-muse.md)는 계약 갱신·동반 커밋·동작 확인을 통과했다. 현재 plan 요약 누락은 독립 리뷰에서 발견해 인계 상태 갱신을 부분으로 정정했다. 기존 전체 전후 비교는 유예하며 [제작 작업](../../../intent/0028-openwebagent-history-feedback/plan.md)에 대상판·한계를 남긴다.
 조사 기준일은 2026-10-03 Asia/Seoul이다. 원본 수집 시각은 manifest의 UTC 값으로 별도 보존한다.
 
 ## 기준과 범위
@@ -37,4 +37,5 @@ PR340건·브랜치114개에서 번호30개+무번호4개 개발건을 연결했
 - [설계 검토](design-review.md), [source 검토 전문](source-review.md), [최종 결론 검토](conclusion-review.md).
 - [원문 보존 안내](originals.md), [원격 수집 원문과 보존 감사](collection-originals.md).
 
-실사용 효과는 미입증이며 추가 실험은 별도 사용자 지시를 받는다. 원제품·운영·전역 스킬은 변경하지 않았다.
+실사용 전체 효과·hook의 개별 인과 효과는 미입증이다. 0038은 별도 합성 사례의 실제 행동 관측이며
+원제품·운영·전역 스킬은 변경하지 않았다. 추가 실험은 후속 사용자 지시를 받는다.

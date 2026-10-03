@@ -9,9 +9,16 @@ Codex0032이며, 이 OpenCode 전달판은 원본 기준 일치·patch 적용만
 0.1.4 OpenCode 실행 검증으로 확대하지 않는다. 0.1.5의 후속 근거 인계 안내도 OpenCode의 실제 행동 통과를 뜻하지 않는다.
 
 0.1.9는 0.1.8의 전달 경로로 개발건 색인·단계 수락·PR/커밋 근거 안내를 제공한다.
-원본·patch 확인과 실제 에이전트 행동은 구분하며 이 판의 OpenCode 모델 실행 통과는 주장하지 않는다.
+원본·patch 확인과 실제 에이전트 행동은 구분하며 설치 확인만으로 이 판의 OpenCode 행동 통과를 주장하지 않는다.
 개발건 색인과 PR·커밋 전달 기준은 같은 판의 `project/changes/README.md`와
 `project/docs/CHANGE-DELIVERY.md`에 있으며, 이 어댑터는 그 제품 문서를 자동 복사하지 않는다.
+
+선택 [문서 동기화 Git hook](../examples/document-sync-hook/README.md)은 다른 도구와 같은 파일을
+별도 채택한다. 스킬 복사로 활성화되지 않고 의미 판단·검토 수행을 인증하지 않는다.
+제작 저장소의 [0038](../../../docs/experiments/0038-document-sync-muse.md)은 0.1.9/U7과 Muse Spark/xhigh
+한 사례의 계약 문서 갱신·같은 커밋·동작을 확인했으나 최종 plan 요약 누락으로 인계 상태 갱신은 부분이다.
+자연 hook 오류 복구·다른 모델·전체 흐름이나
+개별 개선 효과를 입증하지 않는다. maker 참고 링크이며 설치 제품의 필수 참조가 아니다.
 
 ## 범위와 변환
 

@@ -14,6 +14,10 @@
   [source 검토](source-review.md), [결론 검토](conclusion-review.md)는 독립 검토 내용을 담은 전문이다.
   source 검토 본문은 검토자가 제출한 Markdown 본문을 그대로 추출했다. 보존 당시의 미추적·실험 중단 등
   표현은 그 시점의 기록이며 이후 Git 인도 상태를 소급해 덮어쓰지 않는다.
+- [단위별 제작 완료](completion/README.md)에는 U1–U7의 적대적 리뷰 전문·최초 지적·복구와 source 검사
+  결과를 연결한다. U7 설계의 초기 제안은 원문으로 남기고 최종 지문 계약·복구는 리뷰/검증 기록에서 구분한다.
+- [0038](../../experiments/0038-document-sync-muse.md)의 대화·실제 제출·새 세션 인계와 제한된 판정은
+  아래 별도 원본 경로에 연결한다. 보고서와 응답/공개 도구 기록을 요약으로 대체하지 않는다.
 
 ## 원본 보관소
 
@@ -31,6 +35,8 @@
 | `originals/tool-records/` | 원전 조사·source 검토자의 도구 호출·응답 원문 값 | 웹 도구의 열람 응답과 source 검사 출력을 포함한다. 도구가 당시 잘라 반환한 부분은 복원하지 않고 잘림 표시를 유지한다. |
 | `reviews/` | 후속 보존·링크 검토 전문 | 예: `archive-links-review.md`. 공개 보고서와 함께 해시 스냅샷을 남긴다. |
 | `runtime/` | 중단 전 준비 자료, 입력·프롬프트·응답·실행 로그·브랜치/설치 해시 | [0037](../../experiments/0037-openwebagent-history-feedback.md)의 실패·부분 실행·중단 기록이다. 완료된 비교 실험의 증거가 아니다. |
+| `completion/`, `.local/research/openwebagent-template-history/completion/` | U1–U7의 기준 patch·source/설치 해시·전체 검사·최초 실패/복구 출력·root 선택 도구 원문 | U6/U7 package·hook source 확인이며 모델 제품 실행과 구분한다. worker의 초기/중간/최종 시험 로그를 모두 보존한다. root 출력의 기존 잘림은 복원했다고 주장하지 않는다. |
+| `.local/experiments/private/0038-document-sync-muse/` (저장소 상대 경로) | 원문 입력·HUMAN 결정·prompt/response·공개 도구 이벤트·전체 공개 세션 export·Git bundle·설치 해시·새 clone/독립 관찰 | 새 사용자 요청으로 실행한 Muse/xhigh 한 사례다. 이전 0037을 대체하지 않으며 숨은 추론·인증 값은 제외한다. Git bundle이 포함하지 않는 설치 hook은 별도 hash와 실제 파일로 보존한다. |
 
 ## 재작성과 요약의 구분
 
@@ -51,3 +57,6 @@
 확보하지 못한 Windows 대화, 일부 원 실행 로그, Git mirror에서 받지 않은 제품 blob은 원문 보존을
 완료한 대상으로 세지 않는다. 조사 전문과 수집 원문의 파일 보존, 조사 coverage, 제품 실행 검증은 각각
 다른 사실이다. 추가 개발 실험은 별도 사용자 지시 전 실행하지 않는다.
+이후 명시 요청으로 실행한 0038은 계약 갱신·같은 커밋·동작을 통과했으나 현재 plan 요약 누락으로 인계 상태
+갱신은 부분이다. 독립 리뷰 전의 통과 보고와 당시 문서도 이전 원문·해시로 유지한다. 자연 hook 실패 복구,
+원제품 전체와 여러 도구 전후 비교는 완료한 것으로 세지 않는다. 원본 보존 자체도 실행 통과의 대용이 아니다.
