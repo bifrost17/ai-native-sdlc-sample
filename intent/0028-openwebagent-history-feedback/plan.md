@@ -11,9 +11,50 @@ Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
 ## Files that change
-제작 연구 폴더의 방법·개발건별 보고서·발견·검토·실험 요약과 이 chain을 작성한다.
-승격된 개선은 tdd-optional의 기존 정책·양식·스킬·전달 안내에 가장 작은 변경으로 반영한다.
-북극성과 연구 색인은 실제 확인한 근거만 연결한다. 원제품과 전역 설치는 범위 밖이다.
+아래는 실제 저장소 상대 경로다. 원 후보부터의 source 범위는 `ad98adec..df3ae99`, 이번 순차 정리의
+source 범위는 `4a84596..df3ae99`다. 후자의 10개 파일은 T06–T09 행에서 찾는다. T10은 기존 후보를
+검토해 유지했으며 T11은 패키지 source를 새로 바꾸지 않고 현재판을 확인한다. 이 목록은 첫 계획에
+이미 있었던 것으로 소급하지 않는다. U6가 발견한 경로 인계 누락을 후속 개정으로 정리한 것이다.
+
+| 실제 경로 | 수정/보존할 의미와 방법 | 작업·설계 |
+|---|---|---|
+| tdd-optional/project/templates/spec.md | AC의 독립 기대·검증 경계·미정 입력을 plan으로 연결 | T03c/T06, SP06/07 |
+| tdd-optional/project/examples/skills/design-spec/references/design-depth.md | 기존 설계 블록에서 검증 접근·실제 UI 선택과 편입 조건 설명 | T03c/T06/T07, SP06/07 |
+| tdd-optional/project/examples/skills/plan/examples/disposable-ui-exploration.md | 정적 예시와 실제 컴포넌트 선택·제품 편입을 구별 | T03c/T07, SP06/07 |
+| tdd-optional/project/examples/skills/plan/references/execution-depth.md | 첫 위험 경계의 실제 연결·늦는 연결과 독립 병렬 작업 설명 | T03c/T08, SP06/07 |
+| tdd-optional/project/changes/README.md | 개발건 색인·명명·후속 계약과 역사 구분. 기존 project/intent/README.md를 신규 배포에서 대체하며 기존 제품은 이사하지 않음 | T03b/T09, SP05/07 |
+| tdd-optional/project/docs/PROCESS.md | 실제 채택 색인·현재 plan 인계·작업 크기와 검증 경계 연결 | T03b/T09, SP05/07 |
+| tdd-optional/project/docs/GIT-WORKFLOW.md | 실제 색인 갱신 fallback, 계약/계획 개정·PR 최종판·통합 연결 | T03b/T09/T10, SP05/07 |
+| tdd-optional/project/examples/skills/capture-intent/SKILL.md | 실제 채택 색인/경로로 기존·신규 건 찾기 | T03b/T09, SP05/07 |
+| tdd-optional/project/examples/skills/design-spec/SKILL.md | 현재 계약/역사 대조·실제 색인 fallback·관련 설계 정본 찾기 | T03b/T09, SP05/07 |
+| tdd-optional/project/examples/skills/plan/SKILL.md | 현재 설계에서 실행·검증을 연결하고 기존 경로 유지 | T03b/T09, SP05/07 |
+| tdd-optional/project/docs/CHANGE-DELIVERY.md | 목적/범위/실제 검증판/인계의 PR 안내와 의미 있는 커밋 본문 | T03b/T10, SP05/07 |
+| tdd-optional/project/.github/pull_request_template.md | 네 부분의 기본 PR 양식, 작은 정리 예외 | T03b/T10, SP05/07 |
+| tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md | 최종 diff·시험판·영향 문서·기존 색인 갱신을 작업 사건에 연결 | T03b/T03c/T10, SP05/06/07 |
+| tdd-optional/project/CLAUDE.md | 채택 제품의 활성 경로와 기존 얇은 규칙 연결 | T03b, SP05 |
+| tdd-optional/project/PROJECT-POLICY.md | 실제 역할/기록 위치를 제공하는 슬롯과 새 색인 안내 | T03b, SP05 |
+| tdd-optional/project/README.md | 제품 진입점·색인·전달 기준 연결 | T03b, SP05 |
+| tdd-optional/project/REVIEW.md | 계획 구체성·현재 계약·검증 의미 대조 | T03b/T03c, SP05/06 |
+| tdd-optional/project/templates/plan.md | 원 WIP5의 실행 구체성 보완을 보존하고 적용 안내 연결 | T03c, SP06 |
+| .claude-plugin/marketplace.json | 단일 선택판의 source·0.1.9 일치 | T03c/T11, SP07 |
+| tdd-optional/.claude-plugin/marketplace.json | 배포판 catalog의 source·0.1.9 일치 | T03c/T11, SP07 |
+| tdd-optional/org-skills/.claude-plugin/plugin.json | 실제 팀 플러그인 0.1.9 | T03c/T11, SP07 |
+| tdd-optional/README.md | 같은 판의 채택/설치 시작점 | T03c/T11, SP07 |
+| tdd-optional/org-skills/README.md | 공통 스킬·배포판/제품 정책 경계 | T03c/T11, SP07 |
+| tdd-optional/org-skills/claude/README.md | 공통 source 전체를 Claude에 전달·갱신·검증 | T03c/T11, SP07 |
+| tdd-optional/org-skills/codex/README.md | Codex 네 patch와 verifier/동반 자료·설치/행동 한계 | T03c/T11, SP07 |
+| tdd-optional/org-skills/opencode/README.md | 기존 도구의 판·안내 보존. 이번 실제 실행 대상 아님 | T03c, SP07 |
+| tdd-optional/org-skills/commands/spec-policy.md | 기존 정책 검토 예시의 같은 판 유지 | T03c, SP07 |
+| README.md, docs/decisions/single-template.md | 74e1148의 현재 0.1.9 표기 정정. README의 별도 미커밋 WIP는 그대로 보존 | T05, SP07 |
+| docs/research/openwebagent-template-history/ | T01–03의 방법·coverage/cases·조사/검토 전문과 원본색인. 하위 실제 보고서 목록은 coverage.md·originals-index.json, 이번 완료 자료는 completion/README.md에서 연결 | T01–03/T05–11, SP01/02/04/05/06/07 |
+| intent/0028-openwebagent-history-feedback/ | 실제 변경된 의도·설계·계획·현재 인계. 자기 문서 경로는 산출 lineage | T01–11, 전체 |
+| docs/experiments/0037-openwebagent-history-feedback.md | 이미 중단된 부분 실행·실패·후속 유예 기록 보존 | T04/T05, SP03 |
+| docs/verification/north-star-playbook.html | 검증된 범위만 연결할 대상. 이번 source 완료를 제품 행동 통과로 주석 승격하지 않으며 현재 바이트 보존 | T05/T11, SP07 |
+
+`.local/research/openwebagent-template-history/20261003/`는 원본/실행/해시의 private 산출 위치다.
+Codex의 `org-skills/codex/patches/`와 `agents/sdlc-verifier.toml`, Claude 공통 `org-skills/agents/`는
+T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아니다. `tests/`, `evals/`, Makefile도 보존한다.
+원제품·전역 설치·별도 미커밋 WIP는 범위 밖이다.
 
 ## Order of work
 - T01 / SP01 (Luna medium + root): 원격 API 전수 페이지와 bare Git를 수집한다. main/ref SHA와 원본 hash를 고정한다. intent 이력, PR의 head/title/body/diff에서 개발건을 정규화한다. 당시 지침·현재 HEAD·후보를 서로 구분한다. Done: AC01의 조사 모집단과 담당 목록.
@@ -50,6 +91,13 @@ PR title·최종 문서·version 문자열만으로 실제 사건과 설치를 �
 위 Proof의 실제 개발 비교 항목은 유예돼 있으며 이번 조사 인도의 완료 조건으로 세지 않는다.
 
 단위별 완료 기록: [completion](../../docs/research/openwebagent-template-history/completion/README.md).
+현재 제작 인계: T06–T10의 source 검토를 완료했다. U4의 색인 충돌 P2는 수정·재검토했고 다른 단위에
+중요 미해결 지적은 없다. 단위 기록은 `bcb501f`, `b814ec2`, `e7ed3fa`, `c3c5a3a`, `df3ae99`다.
+T11의 임시 Claude/Codex 복사·strict·patch·공통 기준/자료 확인은 현재 source `df3ae99`에서 통과했다.
+T11은 make check와 새 verifier의 전체 정합성 검토·지적 복구/재검토 후 root가 source 완료로 판정했다.
+실제 경로 목록이 부족했던 maker plan은 후속 복구이며 처음부터 충분했다고 소급하지 않는다.
+근거와 최초 지적은 completion/U6-review.md·U6-validation.md에 보존했다. 제품 source는 df3ae99와 동일하다.
+AC04의 실제 제품 효과·자연 스킬 선택·전후 비교는 유예 상태다. 미배포 0.1.9, 기존 설치·main·원제품은 갱신하지 않았다.
 root가 source를 소유하며 참조/검사 경로 조사는 Sol/medium에게 병렬 위임한다. 리뷰자는 source를 고치지 않는다.
 각 리뷰에는 다른 단위가 이미 완료됐다는 주장보다 실제 해당 파일과 필요한 정본을 제공한다. 중요 지적만
 수정하고 changed scope를 재검토한다. 보완 source는 미배포 0.1.9 후보를 유지하며 버전을 단위마다 올리지 않는다.
