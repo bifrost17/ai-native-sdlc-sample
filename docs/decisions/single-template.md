@@ -15,7 +15,7 @@ git show b9af49a:tdd-first/README.md
 git ls-tree -r --name-only b9af49a -- tdd-first
 ```
 
-현재 패키지 0.1.8은 두 도구에 같은 작성 스킬 3개·팀 스킬 13개·검토 기준을 제공한다.
+단일 배포 전환 당시 패키지는 0.1.8이었다. 현재 0.1.9도 두 도구에 같은 작성 스킬 3개·팀 스킬 13개·검토 기준을 제공한다.
 [Claude Code](../../tdd-optional/org-skills/claude/README.md)는 프로젝트 작성 폴더와 팀 플러그인 설치를
 구분하고, [Codex](../../tdd-optional/org-skills/codex/README.md)는 같은 원본 폴더에 도구별 패치를 적용한다.
 명시 사용 정책, 동반 자료, 프로젝트 정책 우선과 갱신 시 기존 수정 보존을 함께 안내한다.

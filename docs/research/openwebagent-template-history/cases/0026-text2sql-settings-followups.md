@@ -1,0 +1,17 @@
+# 0026 — text2sql 설정 후속 보완과 통합
+
+판정: **검토 완료, 실브라우저 확인 없음.** 0023–0025 코드 리뷰 이월 항목을 하나의 화면·저장 경로로 묶은 후속 건이다. [PR #427](https://github.com/bifrost17/openwebagent/pull/427)의 수정과 0021 PR-B main 병합이 모두 사건의 일부다. 수집 원본 main은 `a08295f`.
+
+| 단계 | 근거와 관찰 |
+|---|---|
+| 의도·계약 | `intent/0026-text2sql-settings-followups/intent.md:4-15`는 409 때 초안 손실, 무제한 설명, SQL Lab version/유일 충돌 500, 키보드 문제 등을 이전 리뷰 이월로 기록한다. `spec.md:11-16,22-31`의 FR01은 편집 중 옛 token 보존과 **409 뒤에만** 최신판 채택을 구별하고, FR03은 SQL Lab 선택적 `version`·409·초안 보존을 정의한다. `plan.md:1-9`는 백엔드/SQL Lab T01·T02·T04와 text2sql 화면 T03, 리뷰 T05·T06으로 나눈다. 초기 문서 원본은 작업 트리로 적혀 있고 Git 최초 문서 [`c2d0830`](https://github.com/bifrost17/openwebagent/commit/c2d08306e0a8a63392edde41e43255967b3bfb44)이 제품 [`1aed144`](https://github.com/bifrost17/openwebagent/commit/1aed14494927dd298244c90892fc57f8bf85c822) 직후다. 사전 합의·TDD의 실제 순서는 plan 주장의 범위다. |
+| 1차 구현·의미 | `1aed144`: 설명 2000자 상한·422, SQL Lab version/409, text2sql 409 재조회·초안 병합, GoldPane 초안 가드·키보드가 들어왔다. 현행 `SchemaKnowledgePane.svelte:356-395,434-470`은 부분 저장 후 옛 version을 고정해 조용한 덮어쓰기를 막고, 409 뒤 `loadKnowledge(true,true)`로 새 판을 채택한다. 현행 `tableDetail.svelte.ts:467-514`은 version 전송과 409 뒤 조용한 재조회·성공/실패 문면을 가른다. 이는 0024 FR08의 “편집 중 옛 token”을 유지하고 409 뒤 처리만 바꾼 것이다(`spec.md:105-106`). |
+| 리뷰·수정 | [`95f3106`](https://github.com/bifrost17/openwebagent/commit/95f3106f66287a49ef62a7ee9f53e0eb5fa12ba3)·[`3b7b309`](https://github.com/bifrost17/openwebagent/commit/3b7b309c0a4eb60658f4cc79f70a702653109983), [`435e9e6`](https://github.com/bifrost17/openwebagent/commit/435e9e6299db464f017837816b85f5bbd4d5fa28)·[`6879df7`](https://github.com/bifrost17/openwebagent/commit/6879df7630df6bc0e9976b1cb35dab0f28b8e51e)가 PR 코드 리뷰 두 회차를 반영했다. `plan.md:175-193`의 2차는 409 재조회 실패에도 “불러왔다”는 거짓 문면, 모든 IntegrityError의 409 오분류, SQLite NOT NULL/FK/CHECK 오분류, 저장 중 더 친 Gold 초안 손실, retry의 옛 token, GET 등 무관 409의 `conflict` 오분류, 422 이름 없는 문면을 RED로 확인했다고 기록한다. 1차 발견은 `plan.md:145-164`. |
+| 다른 개발건 통합 | [`9348c85`](https://github.com/bifrost17/openwebagent/commit/9348c85f3f34238fed985bd8d6f607648c7ecfa9)은 0021 PR-B가 main에 들어온 뒤 병합이다. `plan.md:196-212`는 `Dropdown.svelte` 실제 텍스트 충돌 한 건과 `ko.po`/`sqllab.json` 합성, 0021 로직 유지+이 PR의 공용 portal 재적용, 카탈로그 재생성, 통합 후 57파일 878·207파일 2115 통과/1 skipped를 기록한다. 프런트 전체 7실패 중 1건은 부하 간헐로 단독 13통과, 백엔드 변경 없음이라 재실행하지 않았다. [`b9368c9`](https://github.com/bifrost17/openwebagent/commit/b9368c9bba35ada3877d36b5ac67b987b06cf93a)로 #427 머지. |
+| 증명 경계 | PR 본문과 `plan.md`는 frontend 전체 660파일 중 기존 6실패, 별도 main의 백엔드 전체 252실패·6942통과, 브랜치 끝 집중 백엔드 파일별 32/50/10/21/11/13 통과를 보고한다. **브랜치 백엔드 전체 스위트와 실제 브라우저 조작은 하지 않았다고 명시**한다. 기존 실패 판정은 해당 main/파일별 대조에 한정한다. 또한 0026의 라우트 사전 version 검사만으로 실제 동시 저장 경합이 완전히 막히지 않았고 0028이 후속 수정했다. |
+
+여섯 축: **의도 보존**은 이월 항목을 FR01–07에 매핑하되 0024의 옛 token 보존을 명시적으로 유지했다. **설계 충실성**은 UI state·API 409/422·오류 판별이 최종 코드에 대응하나 0028 전 동시성 약속은 과했다. **계획 실행 가능성**은 백엔드·화면·리뷰·main 충돌을 분리했고 합친 판의 결과를 기록했다. **PR 분할**은 이월 항목을 같은 인터페이스 묶음으로 처리했고 0021 충돌은 merge로 명시적으로 해결했다. **변경 피드백**은 3회차 리뷰가 실제 조용한 덮어쓰기·거짓 안내·오분류를 수정했다. **검증·보고**는 단독/전체·기존 실패·미실행을 구별하나 원시 출력·rc는 수집본에 없어 재검증하지 않았다.
+
+사용자 가설: H1은 **지지**(초기 409 합치기가 부분 저장의 옛 token을 풀어 조용한 덮어쓰기 가능성을 만들었고 리뷰 후 수정), H2는 **증거 부족**(jsdom 마운트 시험은 있으나 실제 앱 브라우저 없음), H3는 **직접 지지**(0021과 `Dropdown`·카탈로그 충돌을 병합·재검증; 0028이 저장소 하단 경합 결함을 이어 수정), H4는 **부분 지지**(검증 전략은 초기에 있었으나 실제 브라우저·동시성은 이번 PR에서 확인 못함). 원인은 제품의 화면 state/공유 저장소 경계와 도구 환경 드리프트로 분리한다. 현행 0.1.8·WIP 템플릿의 검증·인계 규칙은 이미 존재한다.
+
+보류된 SQL Lab OWUI 통일은 0021 UI 개편 뒤 0027로 이어졌다. 브랜치명에서 모델·OS를 추정하지 않으며, PR 본문과 plan의 리뷰·시험 수치는 원 실행 로그가 아닌 기록으로 표기한다.

@@ -18,8 +18,11 @@ TDD를 고르지 않았다는 이유만으로 별도의 예외 승인을 요구�
 이 구조 변경은 기존 설치를 자동 갱신·제거하지 않는다. `project/`에는 활성 스킬·훅이 없고
 작성 스킬은 `project/examples/skills/`의 선택 예시다.
 
-현재 `intent-sdlc-skills-optional` 0.1.8은 유일한 배포판이다. Claude와 Codex의 설치·갱신·명시 호출
-안내를 맞추고 Codex의 PR 입력 변환을 보완한다. 0.1.7의
+현재 `intent-sdlc-skills-optional` 0.1.9는 유일한 배포판이다. 제품 채택용
+[개발건 색인](project/changes/README.md)과 [PR·커밋 전달 기준](project/docs/CHANGE-DELIVERY.md)을 제공하고,
+단계 수락·실제 변경·검증판·남은 일을 구별한다. 문서·소스·검증 지침을 전달하는 패키지 변경이며
+새 판의 실제 모델 행동이나 제품 실행 통과를 주장하지 않는다. 0.1.8의 Claude·Codex 설치 안내와
+PR 입력 변환, 0.1.7의
 [요구·설계·작업 추적](project/docs/sdlc-authoring/traceability.md)과 커밋·인계 기준을 유지한다.
 
 ## 방식 선택과 검증

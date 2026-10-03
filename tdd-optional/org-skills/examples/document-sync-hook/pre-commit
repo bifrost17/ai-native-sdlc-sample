@@ -1,0 +1,14 @@
+#!/bin/sh
+# This optional hook checks the reviewed staged scope without changing the index.
+set -eu
+hook_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+python=${SDLC_PYTHON:-python3}
+case "$python" in
+  python3) ;;
+  /*) if [ ! -x "$python" ]; then
+    echo "document-sync: SDLC_PYTHON must name an executable absolute path" >&2
+    exit 1
+  fi ;;
+  *) echo "document-sync: SDLC_PYTHON must name an executable absolute path" >&2; exit 1 ;;
+esac
+exec "$python" "$hook_dir/document_sync.py" check

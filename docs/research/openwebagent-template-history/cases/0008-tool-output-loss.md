@@ -1,0 +1,30 @@
+# 0008 도구 출력 소실 — 진단 뒤 설계를 세운 사고 대응
+
+판정: **범위를 한정한 심층 검토 완료**. 근거는 수집된 `bifrost17/openwebagent` bare Git `main@a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e`와 PR API다. 사내 사고 원본 로그·별도 rig 저장소의 실제 Git 판·프로덕션 재현은 이 조사에서 독립 확인하지 않았다. 모델·개발자 OS는 추정하지 않는다.
+
+## 사건 사슬
+
+| 단계 | 관측·결정·변경과 출처 | 판정 경계 |
+|---|---|---|
+| 접수 | 9/21 사내 Codex 턴이 21분간 돌고 같은 `update_plan`·`shell_command`를 반복한 사고를 보고서와 코드 대조로 접수했다. 최초 intent는 브리지의 무음 도구 소실과 무진전 종료 부재를 질문으로 둔다. [intent@be550233:1–70](https://github.com/bifrost17/openwebagent/blob/be55023398bade86b5106571354ab0e90b578c68/intent/0008-tool-output-loss/intent.md#L1-L70) | 수치는 당시 보고서의 기록이다. 사고 원본을 새로 대조하지 않았다. |
+| 탐색 plan 선행 | 첫 plan `be550233`은 수정 위치가 rig/제품/상류 중 미확정이라 spec을 먼저 쓰지 않는다고 선언했다. 패치본/vanilla 브리지 프로브의 상류 수신 바이트와 로컬 격리 `:3090` 스택을 비교하고, `:3080` 보호·양성 대조·원문 보존을 Done으로 정했다. [plan@be550233:4–13,29–96](https://github.com/bifrost17/openwebagent/blob/be55023398bade86b5106571354ab0e90b578c68/intent/0008-tool-output-loss/plan.md#L4-L96) | 탐색 계획은 제품 인도 완료가 아니다. |
+| 진단 변화 | T01 패치본은 일부 모양에서 정상 쌍을 살렸지만 `empty_call_id`·`output_omitted`의 고아를 통째 소실로 **증상 치환**했다. T02는 첫 설정에 브리지 플래그가 없어 진단이 틀렸음을 정정했고, 네 번째 소실 지점을 찾았다. OWUI 자체 `misc.py`·`middleware.py`의 두 무음 투영도 발견했다. [plan@main:20–74](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L20-L74), [intent@main:85–185](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/intent.md#L85-L185) | rig 실측은 문서 기록으로 확인했다. 별도 저장소 HEAD는 이번 조사 대상 밖이다. |
+| 첫 spec·리뷰 | `782f8f10` spec은 OWUI 투영 손실 수치, Codex 턴 반복 예산, 종료 줄의 사실, 비밀 원문 미반출을 갈랐다. 독립 리뷰 2건의 FAIL에서 잘못 읽은 자리와 줄 인용을 고쳤고, 재검의 새 발견을 2·3판에 반영해 시간 축 대신 **연속 지문 횟수**로 문턱을 정했다. [spec@782f8f10:23–55,56–90](https://github.com/bifrost17/openwebagent/blob/782f8f10895dfefb9d10476a0f9955b1978dc809/intent/0008-tool-output-loss/spec.md#L23-L90), [spec@main:6–16,186–240](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/spec.md#L6-L16) | 리뷰 판정·실행은 프로젝트 기록이고 독립 재수행은 아니다. |
+| 구현 plan | `1cb4789a` 이후 T03 시험 전제→T04 기준선 관측→T05 OWUI 감사→T06 종료 계기→T07 반복 예산으로 확대했다. 문서상 PR-1/2/3은 실제 [#324](https://github.com/bifrost17/openwebagent/pull/324) 한 PR에서 `ac120b93`로 머지됐고, [#325](https://github.com/bifrost17/openwebagent/pull/325)는 사후 종결 문서다. [plan@main:183–276](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L183-L276) | 계획의 인도 단위와 실제 PR 단위를 섞지 않는다. |
+| 실행 중 재측정 | 처음 문턱 5는 정상 폴링형 5회와 겹쳤다. T04 재측정으로 10으로 올리고 HTTP 상태는 구조화된 필드가 없어 FR05⑥에서 내렸다. 설계가 둔 WARNING 위치도 실제 `router.py` 구현에 맞춰 마지막 문서 커밋 `dfc2d935`에서 고쳤다. [spec@main:51–68,378–389](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/spec.md#L51-L68), [plan@main:209–230,465–470](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L209-L230), [#324](https://github.com/bifrost17/openwebagent/pull/324) | T04가 사후 회차였다는 기록은 초기 순서대로 검증됐다는 증거가 아니다. |
+| 인도·한계 | #324는 OWUI 손실 감사, Codex 종료 계기, 반복 예산, 별도 rig 인접성 패치를 설명한다. 백엔드 전량은 7 failed(선재 무관 주장), 5,939 passed, 7 skipped, 1 xfailed; rig 23/23은 PR 주장이다. #325는 T04·Q6·머지 기록을 사후 정리했다. [#324](https://github.com/bifrost17/openwebagent/pull/324), [#325](https://github.com/bifrost17/openwebagent/pull/325) | `#324`만으로 사내 21분 사고 재발 불가를 독립 증명하지 않는다. |
+
+## 여섯 축·가설·귀속
+
+| 축 | 판정 |
+|---|---|
+| 의도 보존 | **확인.** 사고의 조용한 손실·반복 방지 목표를 유지하며 원인이 rig와 OWUI/Codex 경로로 갈리자 범위를 정정했다. 별도 rig 다섯 항목은 별도 저장소 책임으로 적었다. [spec@main:18–31](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/spec.md#L18-L31) |
+| 설계 충실성 | **부분 확인.** 정상 입력 바이트 동일, 빈 id·고아 별도 계수, 로그 원문 금지, 엔진 terminal 권위, 장기 명령/스트리밍 음성 대조가 구체적이다. 초판은 실제 코드 오독·잘못된 경로가 다수라 리뷰 뒤 수정됐다. [spec@main:35–69](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/spec.md#L35-L69) |
+| 계획 실행성 | **강점과 순서 이탈.** 탐색 plan은 안전한 관측·양성 대조를 정확히 제시했다. 구현 plan도 T/파일/방법/Done을 지정했으나 T04 기준선 관측이 T07 뒤 사후 수행돼 문턱 5를 다시 고쳤다. 이탈을 문서에 남긴 것은 좋은 피드백이다. [plan@main:241–276,559–578](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L241-L276) |
+| PR·병렬 분할 | **실제 단일 구현 PR.** 문서상 PR-1/2/3의 독립 main 인도는 일어나지 않았다. rig는 별도 저장소라고 명시했고 동일 저장소 PR #324와 #325는 구현/종결로 갈린다. [plan@main:255–266](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L255-L266) |
+| 변경 피드백 | **확인.** 첫 결함 원인을 단정하지 않은 탐색, 브리지 설정 오류 수정, 독립 FAIL의 코드 대조, 문턱 상향·HTTP 상태 축소, 구현 위치 문서 정정이 이력에 있다. 동일 커밋의 문서/코드 선후 시간은 주장하지 않는다. [spec@main:6–16,378–389](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/spec.md#L6-L16) |
+| 검증·보고 | **증거 계층 구분.** plan은 T05 시험이 OWUI 경로만 증명하고 T07 시험이 rig 몫을 증명하지 못한다고 적었다. #324의 전량 시험은 선재 red 포함이며, 사내 상류 재현·로그 반출/실배포 효과는 미검토다. [plan@main:570–578](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L570-L578), [#324](https://github.com/bifrost17/openwebagent/pull/324) |
+
+H1은 **부분 지지**: 첫 spec의 코드/근거 오독과 계획 순서 이탈이 재작업을 만들었지만, 원인 위치를 관측 후 확정한 것은 합리적 탐색이다. H2는 **비적용**: 화면 심미성·목업 과제가 아니다. H3는 **지지**: rig→OWUI 투영→Codex 턴의 전 경로와 별도 소실 지점이 드러났으며, `OWA #1500` 0건을 손실 없음으로 읽는 오류가 반증됐다. H4는 **부분 지지**: 양성 대조와 음성 경계가 구체적이었지만 T04를 늦게 실행해 문턱을 재결정했다. [plan@main:25–70,241–250](https://github.com/bifrost17/openwebagent/blob/a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e/intent/0008-tool-output-loss/plan.md#L25-L70).
+
+현 0.1.8 정본에는 탐색에서 질문·관측·편입 조건, AC의 독립 기대, plan의 순서와 이탈 갱신이 이미 있다([기준 비교](../baseline.md)). 새 템플릿 결함보다 **에이전트의 코드 독해·계획 실행 순서와 도구/환경 관측 경계**가 직접 귀속이다. `sdlc-feedback`의 당대 사용은 문서의 자체 기록일 뿐 설치·실제 호출을 추정하지 않는다. GitHub formal review 배열이 비어 있어도 기록된 독립 리뷰·CodeRabbit issue comment의 존재를 부정하지 않는다.

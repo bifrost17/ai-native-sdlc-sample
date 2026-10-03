@@ -86,6 +86,13 @@ related unstaged or untracked work without sweeping unrelated WIP into the commi
 the resulting content. Follow the project's upstream acceptance and
 Git policy; permission to inspect or review does not itself authorize a commit, push or merge.
 
+If the project adopts the optional document-sync Git hook example, complete the existing pre-commit
+meaning check in this session, stage only the needed changes, and pass its snapshot plus required
+companion-document paths for that commit. Use an empty list when no companion amendment is needed;
+do not create token edits or run a fresh verifier for every commit. Follow the project's actual installed
+example instructions. The hook checks the declared staged scope and inclusion, not whether this review
+occurred or the declaration/content is correct; it does not invoke this skill or grant completion.
+
 ## Completion and review
 
 At a meaningful delivery boundary, before reporting an implementation task complete, delegate a final check to a fresh-context
@@ -129,3 +136,8 @@ If independent execution was unavailable, say so rather than calling self-review
 At PR review, apply the same criteria to the submitted diff and current artifacts. Existing PR
 tools/skills own comment collection, checks and pushes; this skill does not add a second PR loop.
 Report the observed result, meaningful remaining issues, and relevant artifact/commit references.
+Keep the PR description aligned with the final diff and latest tested revision after review changes.
+Use the project's commit/PR format and development-case index when present; update the affected summary
+at a meaningful delivery or handoff without copying full execution logs. Historical change specs are
+revision-bound evidence: reconcile preserved contracts with current code, policy and authoritative design
+before using them for a new change. Code alone does not authorize changing an agreed contract.
