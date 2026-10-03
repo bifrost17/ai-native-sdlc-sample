@@ -9,6 +9,7 @@ Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 별도 실행해 AC09의 관측/보존을 완료했다. 계약 갱신·같은 커밋·동작은 통과했으나 현재 plan 요약 누락으로
 인계 상태 갱신은 부분이다. 이는 T04 재개나
 전체 개발 비교 완료가 아니다. 전역 설치·원제품 변경·원격 인도는 범위 밖이다.
+최신 인계: T14의 의도 없는 추가 요구/설계 개정을 줄이는 정본 설계·독립 제안·현재 지침 조사·적대적 리뷰를 완료했다. 활성 구현·새 실험은 진행하지 않았다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
@@ -59,6 +60,8 @@ source 범위는 `4a84596..df3ae99`다. 후자의 10개 파일은 T06–T09 행�
 | docs/BOUNDARY.md | 기존 미구현 plan-sync 설명과 사용자 후속 opt-in 예시·의미 판단 경계 정합성 | T12, SP08 |
 | docs/experiments/0038-document-sync-muse.md, docs/experiments/datasets/v9/broker-replay/ | 0018의 ACK/최종 구분에서 파생한 합성 원본 fixture·입력·HUMAN 조건·실제 실행 전문의 경로/결과/한계 | T13, SP09, FR10/AC09 |
 | docs/research/openwebagent-template-history/originals.md, docs/research/openwebagent-template-history/originals-index.json, docs/research/openwebagent-template-history/README.md, docs/research/openwebagent-template-history/recommendations.md | U1–U7 source 완료와 새 0038 실험 범위·전문/원문 색인·보존 감사 연결 | T13, SP03/07/08, FR10/AC09 |
+| docs/research/openwebagent-template-history/intent-design-alignment/ | 현행 지침 전문 조사·독립 제안·root 정본 설계·적대적 리뷰를 역할별 파일로 보존. 선언된 참조와 원문/해시 연결 | T14, SP10, FR11/AC10 |
+| intent/0028-openwebagent-history-feedback/intent.md, spec.md, plan.md, docs/research/openwebagent-template-history/README.md, originals.md, originals-index.json | 새 설계 요청의 이유·범위·근거·현재 인계와 전문 색인 갱신. 활성 스킬/정책과 제품은 그대로 유지 | T14, SP10, FR11/AC10 |
 
 `.local/research/openwebagent-template-history/20261003/`는 원본/실행/해시의 private 산출 위치다.
 Codex의 `org-skills/codex/patches/`와 `agents/sdlc-verifier.toml`, Claude 공통 `org-skills/agents/`는
@@ -89,6 +92,8 @@ T11의 **읽기·임시 복사 검증 입력**이며 이번 변경 파일이 아
   개정한다. 초기 시험/지적/복구를 소급해 첫 구현부터 TDD였다고 보고하지 않는다.
 
 - T13 / SP09 (T12 완료 후): 사용자 새 OpenCode Muse Spark/xhigh 요청을 [0038](../../docs/experiments/0038-document-sync-muse.md) 한 실행으로 수행한다. source a23a1ce의 선택판·전체 동반 스킬·hook을 별도 repo에 먼저 적용한다. HUMAN(root)는 실제 intent/spec/plan 초안을 검토해 구현을 요청하고 첫 구현 뒤 역할별 final 결과 가시성 변경을 전달한다. 초기 변경에는 갱신을 상기하지 않는다. 새 Muse 세션의 문서 인계와 실제 HTTP/SQLite·회귀·커밋 내용을 root가 확인한다. 실제 Git/HTTP 시나리오 검증을 사용하며 검증 방식은 에이전트의 선택을 관측한다. 총30분·parent6/child2, 사전1호출5분. Done: AC09의 실제 결과/미완료/한계 보존; AC04의 전체 전후 비교는 유예. 추가 source 변경은 일반 문제일 때만 최소로 검토한다.
+
+- T14 / SP10 (T13 기록 후): root가 북극성 intent/design 절을 정독한다. Sol/medium explorer가 현행 작성·feedback/전달본의 공백을 좁게 조사하고 Astra/high가 독립 설계 전문을 작성한다. root는 현재 intent에 맞는 중요한 변경 진입·근거/충돌·추천 전제 확인을 정본으로 통합한다. 새 Astra/high 검토자는 정본·원문의 의도와 현재 source를 대조해 적대적 리뷰를 전문에 남긴다. 중요한 지적만 수정·재확인한다. Done: AC10의 설계/수정 이유·실제 수정 경로·후속 검증안·리뷰·원문/해시 보존. 새 실행·활성 source/전역 설치·버전 변경은 하지 않는다.
 
 ## Risks
 
@@ -134,3 +139,11 @@ Muse Spark1.3/xhigh를 확인했다. HUMAN의 초안 피드백을 받은 첫 인
 제품 원 제출판을 보존하며 새 실행이나 개별 실수에 대응한 정책을 추가하지 않는다. 초기 HUMAN 수정·자연 hook 실패 복구
 미관측·알림 외 상태조회 결과 가시성의 미결·전체 AC04 유예는 유지한다. 제품 main은 baseline `ab3d230`다.
 전체 응답·실행 결과·refs/bundle·설치 해시는 0038의 원본 경로에 보존하며 별도 모델 실행을 추가하지 않는다.
+
+후속 T14/SP10: [정본 설계](../../docs/research/openwebagent-template-history/intent-design-alignment/README.md)와
+독립 제안·현재 안내 조사·적대적 리뷰를 전문으로 보존했다. 변경 입력의 이유/현재 의도/전제/충돌을
+기존 feedback·작성 진입에서 대조하고 중요한 근거는 실제 spec에 남기는 안을 선택했다. 기본 의미 검사
+hook·전수 의도 ID·모든 변경의 intent 편집·반복 질문/모델 검토를 추가하지 않는다. 새 Astra/high의14반례
+검토에 중요한 지적은 없고 root는 AC10의 설계 범위를 완료로 판단한다. 사용자 요청 원문·세션 공개 응답/
+도구 값·판/해시도 보존했다. 후속 구현 위치와 미실행 효과 검증은 정본에 남긴다. 현재0.1.9 source·설치판·버전,
+원제품·전역 설치는 그대로다. 다음 단계는 후속 범위에서 활성 자산에 짧게 반영하는 작업이며 이번에는 실행하지 않는다.

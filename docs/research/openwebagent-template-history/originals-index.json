@@ -1,8 +1,8 @@
 {
-  "created_at_utc": "2026-10-03T14:06:20.033388+00:00",
+  "created_at_utc": "2026-10-03T14:29:29.602595+00:00",
   "originals_manifest": {
-    "path": ".local/research/openwebagent-template-history/20261003/originals/manifest-20261003T140327727113Z.json",
-    "sha256": "f45d0b436f51cfcc1cc4428f010edd6c436075fa5bc77f48c1af08c3000911bd"
+    "path": ".local/research/openwebagent-template-history/20261003/originals/manifest-20261003T142758726782Z.json",
+    "sha256": "0c6564302d382b5e43ebddcf6542b3f37bb0eaef11e89ad4a2c5d4d41bbb5f59"
   },
   "earlier_originals_manifests": [
     {
@@ -13,6 +13,10 @@
       "path": ".local/research/openwebagent-template-history/20261003/originals/manifest-20261003T135842525111Z.json",
       "sha256": "7afab73d32a06eaaa08a7708c602519488dad34f24c3642baeb418a2560d3ba0",
       "scope": "Includes initial PASS wording before independent review correction; originals retained."
+    },
+    {
+      "path": ".local/research/openwebagent-template-history/20261003/originals/manifest-20261003T140327727113Z.json",
+      "sha256": "f45d0b436f51cfcc1cc4428f010edd6c436075fa5bc77f48c1af08c3000911bd"
     }
   ],
   "collection_preservation_audit": {
@@ -20,17 +24,17 @@
     "sha256": "75bafc973676826187c2123be57e545a3b0c9c75506cd7287def58a12d46a12d"
   },
   "counts": {
-    "investigation_agent_sessions": 25,
-    "full_visible_text_blocks": 180,
-    "visible_tool_records": 580,
-    "full_document_snapshots": 62
+    "investigation_agent_sessions": 28,
+    "full_visible_text_blocks": 193,
+    "visible_tool_records": 662,
+    "full_document_snapshots": 66
   },
   "source_review_body": {
     "sha256": "dc3b178c989fa45dccd89314a84274c0e4290d0ff06cfa410bccac37516ecf2d",
     "bytes": 5955,
     "public_path": "docs/research/openwebagent-template-history/source-review.md"
   },
-  "verified_original_records": 823,
+  "verified_original_records": 922,
   "hash_mismatches": 0,
   "source_main": "a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e",
   "U7_source": "a23a1ceefd0f442d7d5bb133ad71d4d1c14becde",
@@ -60,6 +64,28 @@
     "Original tool output truncation is retained, not reconstructed.",
     "0037 remains stopped; 0038 is one authorized synthetic case, not the full paired comparison.",
     "0038 contract update/commit/runtime PASS; current plan handoff PARTIAL, product original unchanged.",
-    "Source checks, visible record preservation, product behavior and human acceptance are separate."
-  ]
+    "Source checks, visible record preservation, product behavior and human acceptance are separate.",
+    "Intent-design alignment is reviewed design, not active-source adoption or reduced-error proof."
+  ],
+  "intent_design_alignment": {
+    "source_baseline": "c724213a7e4dc9233198df8b57eff523c4dbdb89",
+    "scope": "Design and independent review only; active assets, installed skills, versions and product/model experiments unchanged.",
+    "user_request_manifest": {
+      "path": ".local/research/openwebagent-template-history/20261003/intent-design-alignment/request-manifest.json",
+      "sha256": "02d7d8e174ec71c6b717e49f0b247b6f6b4e8533ffe9461fdee75c320028f27d",
+      "verified_records": 1
+    },
+    "root_visible_originals_manifest": {
+      "path": ".local/research/openwebagent-template-history/20261003/intent-design-alignment/root-originals/manifest.json",
+      "sha256": "580a9cdd9e29352b00c425d44048e78a3dae8722f9c9b813251726c920617325",
+      "verified_records": 31
+    },
+    "public_documents": [
+      "docs/research/openwebagent-template-history/intent-design-alignment/README.md",
+      "docs/research/openwebagent-template-history/intent-design-alignment/current-guidance.md",
+      "docs/research/openwebagent-template-history/intent-design-alignment/astra-proposal.md",
+      "docs/research/openwebagent-template-history/intent-design-alignment/adversarial-review.md"
+    ],
+    "design_review": "No important findings, 14 counterexamples; no behavioral effectiveness claim."
+  }
 }
