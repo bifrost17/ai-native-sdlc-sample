@@ -12,8 +12,10 @@ Human acceptance starts planning (L3 276). These source principles remain separa
 
 Confirm the actual intent revision and recorded human acceptance, or the already-authorized draft scope.
 Keep Upstream with the actual input revision and Status draft. An old accepted version does not approve new edits.
-Find the active change through [the project's change index](../../../changes/README.md), including a retained
-`intent/` path in an already-adopted product. Treat older specs as evidence of decisions made then: compare their
+Find the active change through the project's actual index and naming rules; [changes/README.md](../../../changes/README.md)
+is the new template's default. An adopted product may retain its `intent/` path and existing index. If no index exists,
+locate the current change/plan through its actual records and project rules; do not require relocation or a second index.
+Treat older specs as evidence of decisions made then: compare their
 relevant contracts with current code/configuration, policy and currently applicable accepted agreements. State in
 the new spec what is preserved, superseded or still unverified; a higher number or past acceptance is not current authority.
 Do not ask twice when authorization already covers this work; do not invent acceptance.
