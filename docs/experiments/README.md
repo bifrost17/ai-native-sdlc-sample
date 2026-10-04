@@ -19,6 +19,7 @@
 | [datasets/v6/manifest.json](datasets/v6/manifest.json) | F04: 새 구체 양식·TDD·두 PR/한 공개 단위·구현 중 JSON 요구 변경 |
 | [run-record.template.md](run-record.template.md) | 실행별 환경·대화·결정·단계·측정·결과 기록 |
 | [OpenCode 실험 설계](../research/opencode-compatibility/experiment/README.md) | 미실행 계획: 스킬 최대 제공·파일 참조 대안, F04 전체 1회와 필요한 부분 재시험 |
+| [0040 완료 인계 재실험 · Muse Spark](0040-completion-handoff-muse.md) | e38477c/0.1.10 후보 설치·0039와 같은 업무 baseline 확인. 실제 대화/완료 검토·현재 요약 관측 진행 중; 원0039 partial 보존 |
 | [0039 의도·설계 연결 · Muse Spark](0039-intent-design-alignment-muse.md) | 0.1.10 후보를 먼저 설치한 작은 실제 대화3회·native 검토1회/약10분22초. 의도 유지·충돌 확인·명시 제약 변경·5시험·독립 CLI11건 관측 통과. 최종 plan 요약 누락으로 전체 partial, 원문·제출판·한계 보존 |
 | [0035 spec 검토 · Muse Spark](0035-spec-validation-muse.md) | 기본형0.1.10·선택형0.1.6 공통 보완. 선택형 Muse Spark 1.3/xhigh 8호출·약25분24초. 설치·작은 문서·HUMAN 후속 갱신 확인, 복잡 설계 검출 개선 미입증·마지막 응답 미완료 보존 |
 | [0034 문서 표현·후속 근거 인계](0034-document-handoff.md) | 기본형0.1.9·선택형0.1.5 공통 보완. 선택형 Codex Astra/medium 작성2회·새 Sol/high 독자1회, 약15분27초 부분 검증 통과. PR3·D7·최종 인도 미완료 유지 |

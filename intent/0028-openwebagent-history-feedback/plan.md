@@ -20,6 +20,9 @@ OpenCode catalog의 완전 출력에서도 기대한 local native11·작성3의 
 fresh verifier가 최신 요약·기존 원문·실제 근거를 대조했고 중요한 미해결 발견은 없다.
 root는 AC12의 source·전달·현재 인계 검증을 완료로 판단하며 이 결과와 source를 같은 제작 commit으로
 후보 branch에 인도한다. 다음 단계의 후보 채택·원격 통합·제품 재실험은 별도 범위다.
+새 사용자 요청 “재실험해봐”로 T17/0040의 작은 재실험을 진행한다. source는 e38477c로 고정하며
+업무 baseline과 기존 대화 조건을 유지하고 완료 검토 전 요약/실제 근거 대조를 관측한다.
+현재 설치·baseline3시험·사전 설계 검토를 완료했고 실제 대화·독립 실행·결과 대조는 남았다.
 새 제품 실험·원 제출판 수정·
 전역 설치·원제품·push/merge·전체 AC04 비교는 이번 후속 범위에 포함하지 않는다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
@@ -261,3 +264,20 @@ fresh verifier가 갱신된 현재 요약/근거를 같은 검토에서 대조�
 source와 이 인계/검증 원문을 같은 제작 commit으로 보존하며 결과판 바이트도 실행 snapshot과 대조한다.
 모델 행동 재실험과 원 제출 인계의 복구는 미입증이다. 다음 단계는 별도 범위의 후보 채택·제품 재실험이며
 이번 source 인도의 후속 필수 작업으로 취급하지 않는다.
+
+## T17 — 사용자 요청에 따른 완료 인계 재실험0040
+
+입력은 “재실험해봐”, source e38477c의 SP12/FR13과0039 원 제출/partial이다. source 검증 AC12를
+실제 행동 검증으로 소급하지 않고 별도의0040 결과를 남긴다. template 동작/정책은 이번에 수정하지 않는다.
+root는 새 private/workspace에 설치하고 같은 baseline9파일·config/모델/variant·권한·대화 조건을
+대조한다. HUMAN은 실제 제출을 읽고 답하며, 처음 design-spec/plan 지정 외에 feedback나 최종
+요약 갱신을 따로 지시하지 않는다. parent3·native child최대1·첫 dispatch부터15분 기본 예산이다.
+runner는 현재 요약/색인의 관측 시각과 바이트를 보존해 native task 전후 상태와 대조한다.
+구현 뒤 새 clone의 기존 시험·독립 CLI11기대·조회/반복 무쓰기를 확인하고 child 공개 원문/설치
+본체·실제 모델/variant와 parent의 결과 대기를 확인한다. source, template/main/작업 branch,
+원본 prompt/응답/도구/실행/실패·snapshot/해시·bundle은0040에 보존한다.
+새 Sol/high maker verifier가 실제 원본·제출·판정/현재 요약을 대조하고 root가 통과 범위를 판단한다.
+위치는 `docs/experiments/0040-completion-handoff-muse.md`, 같은 연구 폴더의0040 검토 기록,
+`.local/experiments/{workspaces,private}/0040-completion-handoff-muse/`다.
+Done: 한 회의 실제 수행/회귀·완료 인계/검토 시점과 한계를 구분하고 현재 인계·색인·북극성에
+확인된 범위만 연결한다. 원0038/0039 partial은 유지하고 전역/원제품·push/merge는 수행하지 않는다.
