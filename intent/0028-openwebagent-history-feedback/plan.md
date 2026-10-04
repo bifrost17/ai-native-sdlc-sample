@@ -9,9 +9,12 @@ Upstream: [spec](spec.md)@f41128a, [intent](intent.md)@4ba9fd2, 사용자의 활
 별도 실행해 AC09의 관측/보존을 완료했다. 계약 갱신·같은 커밋·동작은 통과했으나 현재 plan 요약 누락으로
 인계 상태 갱신은 부분이다. 이는 T04 재개나
 전체 개발 비교 완료가 아니다. 전역 설치·원제품 변경·원격 인도는 범위 밖이다.
-최신 인계: T14의 정본 설계·독립 검토를 완료했고 사용자 후속 지시로 T15를 진행 중이다. base는 main@1d3ffd3,
-branch는 codex/intent-design-alignment다. 기존 스킬·정책과0.1.10 전달본을 보강하고 source 리뷰/설치 확인 뒤
-0039의 문서 개정·실제 구현 실험을 수행한다. 다음 단계는 중요한 source 리뷰 지적 처리와 설치 검증이다.
+최신 인계: T14의 정본 설계·독립 검토를 완료했고 T15의 source `b579ebb`/0.1.10 후보·설치 확인과
+0039의 작은 실제 대화를 수행했다. base는 main@1d3ffd3, branch는 codex/intent-design-alignment다.
+편입 전 의도 대조·명시 제약 변경·제품 동작은 관측 통과했으나 제품 최종 plan의 현재 요약은 미흡해
+0039 전체는 partial이다. 원본·실패·제출판을 보존했고 최종 verifier의 보고 범위 대조를 완료했다.
+root는 AC11의 source/관측·한계 보존 인도를 완료로 판단한다. 사용자에게 이 branch의 검토 가능한
+결과를 인도한다. 전역 설치·원제품·push/merge·전체 AC04 비교는 후속 범위로 남겨 둔다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
@@ -168,6 +171,7 @@ source의 중요 반례를 독립 검토한다. 검토 지적은 최소 수정 �
 - `README.md`, `docs/decisions/single-template.md`, `tdd-optional/README.md`, `tdd-optional/org-skills/README.md`, `tdd-optional/org-skills/{claude,codex,opencode}/README.md`: 현재 판과 설치 경로/행동 검증 한계 일치.
 - `docs/research/openwebagent-template-history/intent-design-alignment/{README,activation-review,activation-validation}.md`: 설계 당시 기록·원문 리뷰·실제 source 검증과 후속 상태 보존.
 - `docs/experiments/0039-intent-design-alignment-muse.md`, `docs/experiments/datasets/v10/intent-alignment/{public,human}.md`, `docs/experiments/datasets/v10/intent-alignment/requests.json`: 실험 입력/범위와 실제 결과; 기존 v1 원본은 유지.
+- `docs/experiments/README.md`: 실행0039의 현재 부분 판정과 원문 보고서로 연결하는 제작 색인.
 - `docs/verification/north-star-playbook.html`: 실제 관측한 범위만 해당 주석에 추가.
 
 검증 방식: 문서/설치 source는 의미 반례 리뷰, 기존 make check, 패키지 strict 검증, Codex/OpenCode 임시
@@ -180,3 +184,26 @@ source를 커밋한 뒤 그 판을 별도 제품 template branch→fixture main�
 내부 tool round-trip 수가 아닌 HUMAN parent dispatch와 native child dispatch다. 숨은 추론·인증 값은 보존 대상이 아니다.
 Done: AC11의 source·실제 관측/한계·원본 보존과 fresh verifier 최종 보고. 전역 설치·원제품·push/merge,
 전체 AC04 전후 비교는 수행하지 않는다.
+
+현재 T15 인계(2026-10-04): source `b579ebb`/0.1.10 후보를 구현·커밋했고 Astra/high의 누적 선택
+인계 기준 지적을 복구·재검토했다. 기존 make check116시험(1skip)·28hook·8harness, Claude strict,
+Codex/OpenCode patch·동반 자료·criteria 대조를 확인했다. quick_validate는 PyYAML 부재로 실행 불가이며
+Ruby YAML 파싱은 별도 검사다. source 검토·설치 검증과 실제0039의 입력판이 일치한다.
+
+0039는 OpenCode1.18.30의 Muse Spark1.3/xhigh를 parent3/native child1로 약10분22초 안에 실행했다.
+같은 의도의 owner 필터는 intent를 유지했고 정렬 제안은 기존 제약 충돌을 설명해 미정으로 두었다.
+명확한 HUMAN의 제약 변경 뒤 실제 intent→spec→plan→코드/시험 순서와 같은 제품 `921432a`의
+로컬 커밋을 관측했다. 새 clone의5시험·독립 CLI11건·임시 cfile 컴파일은 통과했다.
+제품 최종 plan은 이미 끝난 T01을 다음 작업/전체 미검증으로 남겼다. root는 핵심 편입 대조 관측은
+통과, 현재 인계 요약은 미흡으로 판정해 실험 전체를 partial로 기록한다. source에 인계 갱신 기준이
+이미 있으며 feedback 본문의 실제 parent 읽기는 미관측이므로 새 규칙을 더하지 않는다.
+원 제출/리뷰/실패·원본·Git bundle을 [0039](../../docs/experiments/0039-intent-design-alignment-muse.md)에 연결했다.
+
+현재 완료: 활성 source·정적/임시 설치 확인·허용된 작은 실제 대화와 독립 제품 검사·원본 보존·
+최종 verifier의 source/실행/보고 대조. [최종 검증 원문](../../docs/research/openwebagent-template-history/intent-design-alignment/activation-validation.md)은
+같은 제품 plan 누락을 Important로 확인했고 결과 기록의 중요한 과장/불일치는 없다고 보고했다.
+root는 AC11의 한정된 source/관측·실패 보존 범위를 완료로 판단해 제작 기록을 함께 인도한다.
+현재 인계: 사용자에게 후보 branch를 인도한다. 제품 인계를 후속 진행한다면 plan의 현재 요약 갱신이
+필요하며 이는 원 실험 제출판의 복구를 아직 입증하지 않는다. 추가 제품 실험은 이번에 진행하지 않는다.
+미입증: plan 인계 누락의 복구·새 세션/큰 설계·전제 반증/누적 효과·자연 feedback 사용·다른 도구 행동·
+개별 인과/전체 AC04 전후 비교. 제품/전역 설치·main·push/merge는 이번 작업 범위 밖이다.

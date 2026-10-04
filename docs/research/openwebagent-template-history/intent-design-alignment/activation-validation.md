@@ -92,3 +92,107 @@ Codex/OpenCode catalog 발견·자연 선택·모델의 기준 읽기/판단·na
 root가 source commit을 파일 지문과 대조한 뒤 별도 0039 제품 실험을 수행한다.
 실험·문서·인계의 fresh final 검증은 그 실행 완료 후 별도 후속으로 남긴다.
 이번 source 확인을 AC11 전체 완료나 제품 행동 효과·다른 두 도구의 행동 통과로 부르지 않는다.
+
+## 후속 최종 검증 원문 — 2026-10-04
+
+범위는 source commit `b579ebb3fa70ef6afffe6fcdf751a91f7e7f9ef2`, 실제 제품 제출
+`921432a575fedf8a45f9f44bca9750846819e72b`와 현재 maker의 결과 기록이다.
+원제품을 수정하지 않은 detached `final-checkout`의 문서·코드·시험을 읽고 공개 대화/도구 event,
+단계별 snapshot, 최종 실행 로그와 비교했다. 추가 OpenCode/모델 호출·제품 변경·행동 검사·
+전체 make 반복은 하지 않았다. maker의 다른 작업자 변경은 되돌리지 않았다.
+
+### 실행·열람한 근거
+
+이 검토자가 새로 실행한 것은 Git 상태/제출 내용 조회, JSON·문서 읽기와 기존 입력의 해시/판 대조다.
+주요 조회는 `git rev-parse HEAD`, `git status --short`, `git log -4 --oneline`,
+`git show --format=fuller --stat HEAD`이며 제출 clone에서 rc0, HEAD는 위 `921432a`, status는 비었다.
+source 입력 고정과 named verifier 본문/metadata 대조를 저장한 실제 명령은 다음이고 rc0이었다.
+
+```bash
+python3 independent-review/inspect.py
+```
+
+cwd는 `/Users/jake/Projects/ai-native-sdlc-sample/.local/experiments/private/0039-intent-design-alignment-muse/`다.
+`independent-review/inspect.py`, `inspect.stdout/.stderr`, `comparisons.json`, `public-tool-events.json`,
+`inputs.json`에 수행 코드·결과·입력 경로/해시·공개 도구 event 전문을 남겼다.
+
+source-validation의 **151개 파일**을 maker Git의 `git show b579ebb:<path>`와 직접 대조했고
+불일치가 없었다. 제출판의 모든 팀/작성 skill·동반 자료·검증자와 설치 manifest의 해시도 같았다.
+manifest에 포함된 로컬 `.opencode/.gitignore`는 커밋에 없는 runtime 보조 파일이며, source skill이나
+검증자 누락이 아니다. 제출/설치판/fixture main의 별도 SHA와 149개 설치·fixture manifest를 읽었다.
+
+root가 실제 실행한 `final-validation/product-unittest`는 제출 clone에서 rc0, 5시험 모두 통과했다.
+`product-pycompile`는 임시 cfile을 사용해 tracker와 두 시험 모듈을 컴파일했고 rc0이었다.
+`independent-cli.json/events.jsonl`의 11건은 표준 출력/오류/종료 코드와 바이트 보존을 기록한다.
+이 검토자는 위 실행 전문과 독립 기대를 만드는 `oracle.py`를 읽었으며 재실행하지 않았다.
+expectation은 HUMAN 결정과 비정렬 fixture에서 계산하고 구현 출력을 정답으로 복사하지 않았다.
+
+### 실제 대화·판정 대조
+
+첫 두 snapshot의 intent는 baseline `d3c23f3`와 같은 바이트이고 diff의 변경 경로는 spec·plan·색인뿐이다.
+owner 필터는 기존 비교 목적을 이어받는 spec 근거를 남겼다. 이유 없는 정렬 제안은 파일 순서 제약과
+충돌한다고 설명하고 Q2 미정으로 보존했으며 코드나 순서 계약에 먼저 편입하지 않았다.
+HUMAN 3차 원문은 기본/owner 목록 모두 ID 오름차순과 그 이유, 구현·검증·로컬 커밋을 명확히 허가한다.
+이 결정 뒤 추가 승인을 요구하지 않고 intent 제약과 하류 문서를 개정했다.
+
+설계 개정의 선후는 같은 커밋만으로 추정하지 않았다. `03-accept-and-implement.jsonl`의 공개
+tool event 행7(intent edit)→10(spec write)→13(plan write)→23/26(tracker edit)→29/30(시험)를
+직접 읽었다. 기존 3시험 baseline은 개정 전 현재 baseline을 확인하는 실행이며 이후 코드 구현/
+계약 개정 순서의 위반으로 세지 않는다. 구현 후 AST/5시험, native 검토 결과 반환, 로컬 commit,
+commit 뒤 5시험 재실행과 CLEAN까지 실제 도구 출력이 있다. 시험의 ID 순서 기대 개정은 HUMAN
+제약 변경에 근거하고 show/complete/반복 무쓰기 검증은 보존했다. non-TDD 선택 자체는 결함이 아니다.
+
+parent의 실제 read/skill event는 `design-spec`, `plan`, `spec-policy-pass`, `brand`,
+`data-compliance`와 제품 PROCESS/계약/정책을 보여준다. 첫 두 작성 스킬은 HUMAN이 명시 지정했다.
+feedback 본문의 read/skill event는 없으므로 자연 선택·본문 실제 읽기·전체 feedback 효과는 미관측이다.
+미관측을 스킬 미적용의 확정이나 기존 지침의 부재로 바꾸어 판정하지 않는다.
+
+named native 검토는 `subagent_type: sdlc-verifier`로 한 번 dispatch됐다. 공개 child metadata는
+parentID와 `agent: sdlc-verifier`, `opencode-go/muse-spark-1.3-contributor`/`xhigh`를 확인하며
+parent/child가 같은 모델/variant라는 사실을 보존한다. `verifier.stdout`의 실제 debug prompt는
+설치된 verifier body와 동일하다. 즉 기준이 구성된 named agent 선택과 공개 보고 반환을 확인했다.
+숨은 model prompt나 내부 추론을 추가 열람한 것은 아니며, 구성/선택 증거를 모든 기준 준수 보장으로
+확대하지 않는다. child는 코드·시험·미커밋 diff·정책·intent/spec/plan을 실제 읽고 임시 fixture를
+검사해 동작 영향 발견 없음으로 보고했다. task는 completed 결과 전문을 parent에 반환했다.
+이 검토는 commit 전의 동작 중심 범위이며 HUMAN 원문/실제 편집 선후/commit 후 상태를 직접
+확인하지 못했다고 스스로 남겼다. 이 검토자가 후속 공개 원문과 제출판으로 그 사실을 보강했다.
+
+실제 parent는 3회, native child는 1회이며 모두 Muse Spark/xhigh다. 세 dispatch 합계393.420초,
+첫 dispatch부터 마지막 종료까지621.758초(약10분22초)는 meta timestamp/elapsed와 일치한다.
+런 rc0·timeout 없음과 도구 실패를 구별했다. 첫 read의 `docs/REVIEW.md` 부재는 같은 턴의 실제
+`REVIEW.md` 읽기로 복구했다. parent/child의 기본 py_compile 캐시 권한 실패·AST 대체와 root의
+임시 cfile 컴파일은 다른 실행이다. tar filter 미지원·catalog 총수 assertion·export database lock의
+최초 실패와 복구도 보존되어 있다. 공개 original-public 도구 본문에는 truncation marker가 없었다.
+
+### 발견 목록
+
+**[Compliance / Important — 제품 인계] 최종 plan의 현재 요약은 실제 제출 상태와 불일치한다.**
+제품 `changes/0001-request-comparison/plan.md`의 현재 요약은 `완료(예정)`,
+`미검증: T01 실행 전체`, `다음 한 단계: T01을 실행한다`를 그대로 남겼다. 실제 `921432a`는
+intent/spec/plan·색인·tracker·시험7파일을 커밋했고 5시험/독립 CLI는 통과했으며 색인도 로컬
+인도·HUMAN 수락 대기로 개정됐다. 새 담당자가 끝난 T01을 다시 실행하거나 완료 근거를 잃을 수
+있으므로 표현 취향 수준의 nit가 아니다. 원 제출판은 수정하지 않아 최초 누락을 보존했다.
+후속 제품 인계를 실제로 진행한다면 개발자가 plan의 실제 판·완료/미검증·다음 일을 갱신해야 한다.
+이번 실험 관측과 원본 보존을 마치기 위해 모델을 추가 실행하거나 제품 제출을 사후 수정할 이유는 없다.
+
+source feedback의 `When later test or review evidence changes what remains`, PROCESS의 인계 절,
+명시 사용한 plan skill의 `Rewrite the current summary and next work`와 verifier의 pause/handoff
+criteria에 이미 같은 요구가 있다. source의 중요한 계약 누락보다는 이번 적용/검토의 누락이다.
+native 검토는 이를 발견하지 않았지만 commit 전/동작 중심 검토의 반환을 최종 인계 전체 통과로
+취급해서는 안 된다. 한 사례를 이유로 새 강제 hook·인계 장부·항상 묻는 단계·모델 호출을 추가할
+근거는 없다. Bugs/Security 관점에서는 합성 fixture와 선언된 CLI 범위 안에서 추가 중요한 발견이 없다.
+
+### maker 결과 기록과 남은 한계
+
+현재 maker의 6개 변경을 읽었다: 0039 보고서, 실험 README의0039 색인, 정본 README의 후속
+활성 적용 절, maker T15 현재 인계, OpenCode README의0039 근거, North Star V3-09의0039 주석이다.
+새 실험 색인 행은 T15 실제 경로 목록에도 연결했고 같은 partial 범위를 유지한다. 핵심 세 사건의
+관측·제품 동작 통과·최초 plan 인계 누락/전체 partial·명시 스킬/feedback 읽기 미관측·정확한
+source/제출판·3+1/시간·실패/복구를 실제 공개 원문과 일치하게 기록했다. 중요한 새 보고 과장은 없다.
+0038의 최초 부분 판정과 전체 AC04 유예, source 설치와 도구 행동의 차이를 유지한다.
+
+이번 후속 대조가 원 제품 plan 누락을 해소하거나 인계 새 세션을 실행한 것은 아니다. 정확한 현재
+요약의 복구, 추천 전제 반증의 다른 분기, 큰 설계 누적, 다른 도구/모델, 자연 feedback 선택,
+개별 인과 효과, 전체 SDLC/AC04는 미입증이다. 원격 PR/main 통합·배포·전역 설치는 이번 범위 밖이다.
+maker의 마지막 기록 commit과 그 resulting content/공개 보존 hashmanifest는 root의 후속 인도 작업이다.
+검토자는 발견을 보고하며 승인·병합·전체 SDLC 통과를 선언하지 않는다.

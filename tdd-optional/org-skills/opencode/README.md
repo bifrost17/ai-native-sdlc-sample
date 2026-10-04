@@ -21,6 +21,12 @@ Codex0032이며, 이 OpenCode 전달판은 원본 기준 일치·patch 적용만
 자연 hook 오류 복구·다른 모델·전체 흐름이나
 개별 개선 효과를 입증하지 않는다. maker 참고 링크이며 설치 제품의 필수 참조가 아니다.
 
+제작 저장소의 [0039](../../../docs/experiments/0039-intent-design-alignment-muse.md)는0.1.10을 먼저
+설치한 Muse Spark1.3/xhigh의 작은 실제 대화다. 같은 의도 유지·충돌 제안 확인·명확한 제약 변경과
+제품/회귀는 관측 통과했으나 최종 plan 요약 누락으로 전체는 partial이다. design-spec/plan은 명시
+지정했고 feedback 본문의 parent 읽기는 미관측이다. 자연 선택·새 세션·큰 설계·전후/개별 효과나
+다른 도구의 행동 통과로 확대하지 않는다. 이 결과도 maker 참고이며 설치 후 필수 원문은 아니다.
+
 ## 범위와 변환
 
 - `.opencode/skills/`: `brand`, `data-compliance`, `secure-api-review`, `spec-policy-pass`, `tdd`,

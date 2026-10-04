@@ -1,6 +1,6 @@
 # 설계 변경을 현재 의도와 연결하는 보완 설계
 
-Status: activation in progress — 정본 설계 완료, 후속 지시로0.1.10 source 구현·짧은 실험 준비
+Status: activated candidate — 0.1.10 source·설치 확인 완료,0039 핵심 관측 통과/최종 plan 인계 부분
 
 설계 책임자는 추가 요구·추천안·브레인스토밍 선택을 반영하기 전에 **바꾸려는 이유와 현재 의도의
 관계**를 확인한다. 중요한 선택의 근거를 실제 spec의 관련 설계에 남긴다. 현재 목적을 유지하는
@@ -193,9 +193,18 @@ Astra/high의 독립 제안과 Sol/medium의 현재 안내 조사를 root가 정
 ## 후속 활성 적용 — 2026-10-04 KST
 
 사용자는 별도 브랜치의 구현과 간단한 OpenCode 실험을 요청했다. main@1d3ffd3에서 파생한
-`codex/intent-design-alignment`에서 공통 feedback·design-spec·기존 검토 기준과 PROCESS를 보강한다.
+`codex/intent-design-alignment`에서 공통 feedback·design-spec·기존 검토 기준과 PROCESS를 보강했다.
 패키지는0.1.10 후보이며 새 스킬·검사기·승인 단계와 기존 hook의 동작 변경은 없다.
 [활성 source 적대적 리뷰 전문](activation-review.md)의 F1은 작은 선택의 누적 효과를 기존 인계에서
 대조하는 문장으로 복구·재확인했다. 최초 지적은 보존한다. 설치/실행 검증은
 [활성 검증 기록](activation-validation.md), 실제 대화와 결과는 [0039](../../../experiments/0039-intent-design-alignment-muse.md)에 남긴다.
 설계 당시의 미적용·미실행 범위와0038 부분 판정을 소급해 바꾸지 않는다.
+
+활성 source `b579ebb`를 먼저 커밋해 별도 제품에 설치했다. Claude strict·Codex/OpenCode patch·동반
+자료·criteria와 기존 make check를 확인했다. 실제 Muse Spark1.3/xhigh의3회 대화와1회 native 검토에서
+같은 의도의 spec-only 개정, 충돌 제안의 미편입/질문, 명확한 제약 변경 뒤 intent부터 구현까지의
+갱신·같은 제품 `921432a` commit을 관측했다. 새 clone의5시험·독립 CLI11건·컴파일은 통과했다.
+최종 plan 요약은 끝난 T01을 아직 미검증/다음 작업으로 남겨0039 전체 판정은 partial이다.
+첫 설계 스킬은 명시 지정했으며 feedback 본문의 parent 읽기는 미관측이므로 자연 선택이나
+각 자산의 개별 효과를 주장하지 않는다. 전제 반증·큰 설계 누적·새 세션·다른 도구 행동과 전체 AC04는
+남으며, 이번 관측 때문에 새 훅·질문 단계·상태 장부를 추가하지 않는다.
