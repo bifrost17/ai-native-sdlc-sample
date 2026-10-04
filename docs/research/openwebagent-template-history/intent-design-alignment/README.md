@@ -237,3 +237,23 @@ root는 AC12의 source 인도를 완료로 판단한다. source·이 현재 인�
 `.local/research/openwebagent-template-history/handoff-closure-20261004/`에 보존한다.
 이번 후속은 새 제품 실험을 하지 않는다. source/임시 설치의 통과를 원 제출판 복구나 모델의 자발적
 요약 갱신 성공으로 바꾸지 않는다. 북극성은 plan/diff/검증의 대조 근거이고 이 완료 요약 절차는 팀의 구체화다.
+
+## 완료 인계 재실험0040 — 2026-10-04 KST
+
+그 뒤 사용자 요청 “재실험해봐”로 source e38477c/0.1.10 미배포 후보를 새 제품 branch에 설치했다.
+[사전 검토 전문](0040-retest-design-review.md), [실제 대화·실행·판정](../../../experiments/0040-completion-handoff-muse.md),
+[새 Sol/high의 독립 검증 전문](0040-retest-validation.md)에 원문과 한계를 연결한다.
+첫 시도는 root가 customized CLAUDE/PROJECT-POLICY를 누락해 제외하고 두 설계 턴/제품판을 보존했다.
+r2는 원0039 업무 baseline11파일+config가 같고 의도한 후보 차이가6파일임을 확인한 뒤 시작했다.
+실제 Muse Spark1.3/xhigh의3대화와 native 검토1회, 제출 dabfba6의6시험·독립 CLI13관찰과 컴파일을
+확인했다. 검토 전 plan/index 갱신, native의 실제 대조/반환과 parent의 결과 대기를 관측했다.
+원15분 예산은 마지막 구현 dispatch 전에 전체20분으로 개정했고, r2는9분5초·전체는17분1초였다.
+원문은 프로젝트 아래 `.local/experiments/private/0040-completion-handoff-muse{,-r2}/`에 유지한다.
+
+root는 핵심 보완의 관측을 통과로 판단한다. 다만 최종 plan/index에서 완료된 독립 검토와 남은 결과
+확인의 담당자를 문서만으로 구분하기 어렵다. 이는 미검토 확정이나0039와 같은 미구현 표기는 아니며
+제품 계약/동작 누락도 아니다. 최종 인계 전체의 명확성에는 한계가 남아0040 전체는 partial이다.
+현재 feedback에 후속 근거와 남은 일을 맞추라는 안내가 이미 있으므로 한 관측으로 새 source 규칙이나
+훅을 추가하지 않는다. 실패 준비·제품 원 제출·리뷰 전문·예산 개정과 이전 partial은 그대로 보존한다.
+제작 결과와 이 현재 인계를 후보 branch에 인도하며 후보 채택/원격 통합·다른 실제 사례·전체 AC04는
+별도 범위다.0040을 source AC12의 과거 실제 행동 통과나 전체 SDLC·수락·통합·배포로 확대하지 않는다.
