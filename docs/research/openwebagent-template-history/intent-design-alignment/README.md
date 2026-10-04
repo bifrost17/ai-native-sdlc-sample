@@ -1,6 +1,6 @@
 # 설계 변경을 현재 의도와 연결하는 보완 설계
 
-Status: activated candidate — 0.1.10 source·설치 확인 완료,0039 핵심 관측 통과/최종 plan 인계 부분
+Status: activated candidate — 0039 핵심 관측 통과/최종 plan 인계 부분, 완료 인도 후속 source·전달·maker 현재 인계 검증 완료
 
 설계 책임자는 추가 요구·추천안·브레인스토밍 선택을 반영하기 전에 **바꾸려는 이유와 현재 의도의
 관계**를 확인한다. 중요한 선택의 근거를 실제 spec의 관련 설계에 남긴다. 현재 목적을 유지하는
@@ -208,3 +208,32 @@ Astra/high의 독립 제안과 Sol/medium의 현재 안내 조사를 root가 정
 첫 설계 스킬은 명시 지정했으며 feedback 본문의 parent 읽기는 미관측이므로 자연 선택이나
 각 자산의 개별 효과를 주장하지 않는다. 전제 반증·큰 설계 누적·새 세션·다른 도구 행동과 전체 AC04는
 남으며, 이번 관측 때문에 새 훅·질문 단계·상태 장부를 추가하지 않는다.
+
+## 완료 인도의 후속 보완 — 2026-10-04 KST
+
+사용자는 부분 판정의 뜻과 남은 보완을 물은 뒤 “보완해”라고 지시했다.0038/0039는 기존 규칙이
+있어도 계약 문서·색인이 갱신된 뒤 plan의 현재 요약을 놓칠 수 있음을 보여 준다.0039의 parent는
+최종 검토 요청도 동작 중심으로 좁혔다. 원 제출판의 계약·시험 통과와 현재 인계 실패는 함께 보존한다.
+추가 지침의 필요성을 모든 에이전트 오류에 일반화하지 않고, 반복된 완료 사건과 기존 검토 입력의
+연결을 이번에 짧게 명시한다.0.1.10 미배포 후보에서 기존 source를 보완하며 새 release를 만들지 않는다.
+
+의미 있는 구현 인도에서 기존 최종 검토 요청 전에 plan의 완료한 일·미검증 범위·남은 의존성·다음
+작업을 실제 대상판/현재 변경과 기존 근거로 갱신한다. 프로젝트가 채택한 색인의 관련 행을 맞추고
+같은 검토에서 세 자료의 일치를 대조한다. 아직 없는 자기 commit SHA와 실행 전문 복제를 요구하지
+않으며 완료·시험 통과를 사람 수락·통합·배포로 바꾸지 않는다. 문서-only 인계의 새 구현 검토나
+매 commit 검토·새 hook/장부/사람 승인도 추가하지 않는다.
+
+root는 기존 feedback·plan 작성 안내·PROCESS/REVIEW를, Sol/medium은 검토자3판을 수정했다.
+[방향/반례 검토 전문](handoff-closure-review.md)은 의미 있는 완료·미채택 색인·미래 자기 SHA·
+문서-only/작은 수정·후속 근거 변경 등11반례를 먼저 대조했고 실제 source 후속 검토에도 중요한
+미해결 지적은 없었다. [검증 기록](handoff-closure-validation.md)에 make check116 Python(1skip)·28hook·
+8harness·managed-settings, Claude strict3, Codex4/OpenCode3 patch의 dry-run/적용, 각16개 자산의
+동반 자료/링크·기준·0.1.10 버전 대조와 OpenCode debug catalog/agent의 실제 결과를 남겼다.
+PyYAML 부재로 quick_validate는 실행 불가였고 검증 도구의 최초 실패와 복구도 구분해 보존했다.
+fresh verifier가 maker의 최신 요약/기록도 같은 검토에서 대조했고 중요한 미해결 발견은 없다.
+root는 AC12의 source 인도를 완료로 판단한다. source·이 현재 인계·검증 원문을 같은 제작 commit으로
+후보 branch에 보존하고 결과판을 실행 snapshot과 대조한다. 각 검토 보고서의 commit 대기는 검토 당시
+관측 상태이며 실제 resulting commit·보호한 WIP·원문 해시 대조는 별도의 delivery 기록에 남긴다. 원문·입력판·해시는
+`.local/research/openwebagent-template-history/handoff-closure-20261004/`에 보존한다.
+이번 후속은 새 제품 실험을 하지 않는다. source/임시 설치의 통과를 원 제출판 복구나 모델의 자발적
+요약 갱신 성공으로 바꾸지 않는다. 북극성은 plan/diff/검증의 대조 근거이고 이 완료 요약 절차는 팀의 구체화다.

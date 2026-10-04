@@ -14,8 +14,13 @@ Upstream: [spec](spec.md)@1872299, [intent](intent.md)@63bb3f6, 사용자의0039
 편입 전 의도 대조·명시 제약 변경·제품 동작은 관측 통과했으나 제품 최종 plan의 현재 요약은 미흡해
 0039 전체는 partial이다. 원본·실패·제출판을 보존했고 최종 verifier의 보고 범위 대조를 완료했다.
 root는 AC11의 source/관측·한계 보존 인도를 완료로 판단한다. 사용자에게 이 branch의 검토 가능한
-결과를 인도했다. 후속 사용자 요청으로 T16/SP12의 완료 인계 보완을 진행한다. 다음 작업은 기존 완료
-진입/검토 입력을 수정하고 source·플랫폼 전달과 반례를 확인하는 것이다. 새 제품 실험·원 제출판 수정·
+결과를 인도했다. T16/SP12의 완료 인계 source를 수정했고 독립 방향/실제 source 반례 검토에 중요한
+미해결 지적이 없다. make check·Claude strict·Codex/OpenCode patch/임시 전달·기준/버전 대조는 통과했다.
+OpenCode catalog의 완전 출력에서도 기대한 local native11·작성3의 경로/본문과 검토자 설정을 확인했다.
+fresh verifier가 최신 요약·기존 원문·실제 근거를 대조했고 중요한 미해결 발견은 없다.
+root는 AC12의 source·전달·현재 인계 검증을 완료로 판단하며 이 결과와 source를 같은 제작 commit으로
+후보 branch에 인도한다. 다음 단계의 후보 채택·원격 통합·제품 재실험은 별도 범위다.
+새 제품 실험·원 제출판 수정·
 전역 설치·원제품·push/merge·전체 AC04 비교는 이번 후속 범위에 포함하지 않는다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
@@ -239,3 +244,20 @@ verifier 결과/현재 maker plan 갱신→source·검증 기록을 같은 제�
 
 Done: 중요한 source 리뷰 지적을 처리하고 AC12의 기존 회귀·전달/기준·현재 maker 요약과 실제 결과를
 독립 대조해 원문을 보존한다. 통과는 source 적용 확인이며 모델 행동 개선이나0039 인계 복구의 통과가 아니다.
+
+현재 T16 인계: 기존 두 스킬·PROCESS/REVIEW·세 검토자의 완료 사건/검토 입력과 patch 위치를 수정했다.
+Sol/high의 최초 방향과 실제 source 반례 검토는 중요한 미해결 지적0이며 원문을 보존했다.
+새 private snapshot에서 make check116 Python(1skip)·28hook·8harness·managed-settings와 Claude strict3,
+Codex4/OpenCode3 patch dry-run/적용·16자산 동반 자료/링크·공통 기준/버전 대조를 확인했다.
+quick_validate는 PyYAML 부재 rc1이며 다른 파싱/설치 검사와 구별한다. 검증 도구의 `.orig` 강제 기대
+오류는 실제 source/설치 diff 대조로 복구했으며 최초 실패를 보존한다. recorder의 메타데이터 덮기 오류도
+명령·rc·원문 해시로 복구했고 원본과 수정 근거를 보존했다. 실행 전후 source는 같다.
+OpenCode debug skill의 첫 불완전 출력은 보존하고 직접 파일 출력으로32항목의 완전 JSON을 확인했다.
+기대한 local native11·작성3은 실제 경로/본문과 같으며 자료용2개는 파일 inventory로 확인했다.
+전역 catalog 격리·모델의 실제 발견/읽기/실행 성공은 주장하지 않는다. debug agent는 설치 본문·steps20·
+읽기 전용 설정 파싱이 같았으며 런타임 권한 집행을 입증하지 않는다.
+fresh verifier가 갱신된 현재 요약/근거를 같은 검토에서 대조했고 중요한 미해결 발견은 없다.
+완료: AC12의 source·의미 검토·위 정적/임시 설치/catalog 확인·현재 maker 인계 대조와 원문 보존.
+source와 이 인계/검증 원문을 같은 제작 commit으로 보존하며 결과판 바이트도 실행 snapshot과 대조한다.
+모델 행동 재실험과 원 제출 인계의 복구는 미입증이다. 다음 단계는 별도 범위의 후보 채택·제품 재실험이며
+이번 source 인도의 후속 필수 작업으로 취급하지 않는다.

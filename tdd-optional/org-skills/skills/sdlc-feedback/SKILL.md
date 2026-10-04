@@ -112,7 +112,14 @@ occurred or the declaration/content is correct; it does not invoke this skill or
 
 ## Completion and review
 
-At a meaningful delivery boundary, before reporting an implementation task complete, delegate a final check to a fresh-context
+At a meaningful implementation delivery boundary, before requesting the existing final review, refresh the
+current plan summary from the actual work and existing evidence: completed work, unverified scope, remaining
+dependencies and the next step. Align the related row of the project's adopted change index when present.
+Identify the checked commit/base and current amendments where relevant; do not require the commit's own future
+SHA, overwrite historical records or copy full logs. Passing checks do not mean human acceptance, integration
+or release. Update the existing account without adding a ledger or a review for every commit or prose edit.
+
+Before reporting that implementation task complete, delegate the existing final check to a fresh-context
 verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills-optional:sdlc-verifier`
 as a default team example. Wait for its result before a final completion report; a pending review
 is still pending. Do not run both for the same purpose. A routine prose correction or a
@@ -125,6 +132,9 @@ independent expectations or a correct verdict.
 For implementation review, give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
 paths, the agreed diff base, and checks already run with their evidence. Also include the declared
 spec document set and the current PR, integration or whole-release scope.
+Include the current plan summary, the related adopted index row and existing execution evidence in that same
+review's scope. Check their agreement with the actual work even when code and tests pass; do not narrow an
+implementation-completion claim to code behavior alone. Do not demand an index the project has not adopted.
 Provide the expectation sources and relevant browser/manual procedures, observations and tool limitations.
 The verifier should understand those expectations before inspecting implementation and test diffs.
 This review still reads implementation; it is not an implementation-hidden test-generation experiment.

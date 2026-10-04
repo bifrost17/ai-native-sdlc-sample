@@ -112,10 +112,14 @@ test generation. A fresh context or another model does not guarantee an independ
   a filename list, old tool output or the author's summary cannot establish current agreement.
   For integration, verify the latest result combined with main and the merged result when available;
   a prior branch pass or conflict resolution alone does not establish the current combined behavior.
-- For a pause, handoff or resume claim, compare the current plan summary and existing execution record
-  with the actual revision, artifacts, Git state and evidence. Check completed versus unverified work,
-  pending dependencies and the next step. Do not require a new ledger, infer forced-stop prevention or
-  issue an all-work-ready verdict. A status question alone is outside execution and completion review.
+- For a pause, handoff, resume or meaningful implementation-completion or delivery claim, compare the
+  current plan summary, relevant development-case index entries when the project uses one, and existing
+  execution evidence in the same review against the actual revision, working tree, artifacts and Git state.
+  Check completed versus unverified work, remaining work and dependencies, and the next step; passing
+  code/tests does not replace this consistency check. Do not require an unadopted index, a future self-commit
+  SHA, copied execution logs, a new ledger, review for every commit or a new implementation review for
+  document-only delivery. Do not infer forced-stop prevention or issue an all-work-ready verdict.
+  A status question alone is outside execution and completion review.
 - Does plan state the selected verification strategy, its reason, behavior/acceptance coverage and
   execution order? TDD, behavior-by-behavior implementation then tests, existing-test reuse and mixes
   are valid choices; non-use of TDD alone is not a finding or an exception needing approval.
