@@ -22,6 +22,23 @@ Do not ask twice when authorization already covers this work; do not invent acce
 Preserve the originating prompt, applied skill versions, and any required draft authorization (who, scope, reason)
 with the versioned spec/PR record (L3 279); a final summary alone does not preserve the original request.
 
+Before incorporating a consequential follow-up request, brainstorming choice, recommendation or changed premise,
+compare its source and reason with the current intent's problem, outcome, fixed constraints and important premises.
+Distinguish a user request, agent proposal, unverified assumption and actual adoption. Reuse relevant intent passages
+and latest decisions already read in this session when their revision/context is unchanged; refresh when it changes
+or is lost. An adopted recommendation authorizes its stated scope, not every attached goal or constraint change.
+Proceed within clear delegation. If a material conflict, missing reason with substantially different outcomes or
+refuted premise leaves a decision open, explain the concrete effect and ask only for that missing decision before
+incorporating the affected choice. Continue independent work. Label inferred reasons; do not invent the user's why.
+When the current intent remains valid, revise affected spec grounds/contracts and plan without a ceremonial intent edit.
+When purpose, constraints or essential background actually change, correct the relevant intent prose first and align
+downstream documents. An explicit authorized change needs no repeated approval; apply existing decision authority.
+Keep the source, relevant intent passage and causal reason/preserved or weakened goal readable at the affected SP
+or shared Approach. Policy/technical choices need their own source and effect on the user goal. Existing prose
+is sufficient: no new intent IDs, exhaustive mapping table, decision ledger or model call for every edit.
+At the existing design handoff, reconsider small choices together when their accumulated effect materially changes
+the target, meaning of success or cost against the current intent. Reuse that review's scope; do not review every edit separately.
+
 Read the changed code, neighboring flows, interfaces and tests. Find applicable installed team skills, read their
 bodies, and apply their decisions to the artifact. A source folder is not proof of installation. Record actual
 skill source/version (or Git revision + dirty hash/limitation), not just a list of names. Use the team's policy review
@@ -73,6 +90,8 @@ Keep provenance/authorization findable in the existing record without overwhelmi
 Before handing the spec to planning or reporting the design ready, apply [the project's review criteria](../../../REVIEW.md)
 to the complete declared design set. Use [design-depth](references/design-depth.md) for shared-contract or recovery questions.
 Confirm needed references are accessible; source names or prior PASS counts do not establish that their contents were reviewed.
+At this review, check that material choices still solve the current intent's problem and that their important
+premises and any purpose change have a basis. Reuse the existing review event and scope; this is no extra approval.
 For important shared boundaries or independent lifetimes, prefer a capable fresh-context reviewer. Keep small changes proportionate.
 Report the contracts/branches actually checked, resolved findings and justified deferrals; design readiness is not runtime proof or acceptance.
 
@@ -80,4 +99,5 @@ Review with the owner: "Does the spec solve the stated problem, and are the open
 or carried forward?" Show linked design documents with it. Model review does not grant owner acceptance.
 When decisions change, update the actual affected requirements/AC/design documents, not only a discussion appendix.
 Align affected plan and reason in the related implementation commit; revisit intent when purpose/constraints change.
+For short examples of these revision boundaries, read [the existing example notes](examples/README.md).
 Record required revised decisions and then repin downstream to a resolvable upstream commit. Leave unrelated documents alone.

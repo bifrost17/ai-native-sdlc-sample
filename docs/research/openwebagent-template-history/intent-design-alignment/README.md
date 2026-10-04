@@ -1,6 +1,6 @@
 # 설계 변경을 현재 의도와 연결하는 보완 설계
 
-Status: design complete — 정본 설계·독립 적대적 검토 완료, 활성 자산 미반영
+Status: activated candidate — 0039 핵심 관측 통과/최종 plan 인계 부분, 완료 인도 후속 source·전달·maker 현재 인계 검증 완료
 
 설계 책임자는 추가 요구·추천안·브레인스토밍 선택을 반영하기 전에 **바꾸려는 이유와 현재 의도의
 관계**를 확인한다. 중요한 선택의 근거를 실제 spec의 관련 설계에 남긴다. 현재 목적을 유지하는
@@ -8,8 +8,8 @@ Status: design complete — 정본 설계·독립 적대적 검토 완료, 활�
 기존 `sdlc-feedback`과 작성 안내를 보완하는 안을 추천한다. 새 의미 검사 훅·스킬·승인 단계는 기본으로 추가하지 않는다.
 
 이 문서는 사용자 설계 위임에 따른 제안이다. source 기준은 `c724213`의 선택형0.1.9이며, 이후
-제작 intent/spec/plan의 이번 설계 범위만 개정했다. 활성 정책·스킬·훅·설치판은 변경하지 않았다.
-설계 검토와 실제 효과를 분리하며 이번에는 개발 실험을 실행하지 않는다.
+제작 intent/spec/plan의 설계 범위만 개정했다. 그 설계 시점에는 활성 정책·스킬·훅·설치판을 변경하지 않았다.
+설계 검토와 실제 효과를 분리한다. 후속 적용은 문서 끝의 2026-10-04 기록으로 구분한다.
 
 ## 사용자 문제와 북극성
 
@@ -189,3 +189,71 @@ Astra/high의 독립 제안과 Sol/medium의 현재 안내 조사를 root가 정
 같은 판/결정의 문맥 재사용과 원문 보존 경로의 후속 표현도 재확인했다. root는 AC10의 설계 범위를 완료로 판단한다.
 이 검토를 실제 실행·의도 보장·누락 감소의 통과로 확대하지 않는다. source/설치판·버전은 그대로이며
 후속 단계는 기존 스킬/정책의 짧은 구현과 그때 정할 효과 검증이다. 이번 요청에서는 둘 다 실행하지 않았다.
+
+## 후속 활성 적용 — 2026-10-04 KST
+
+사용자는 별도 브랜치의 구현과 간단한 OpenCode 실험을 요청했다. main@1d3ffd3에서 파생한
+`codex/intent-design-alignment`에서 공통 feedback·design-spec·기존 검토 기준과 PROCESS를 보강했다.
+패키지는0.1.10 후보이며 새 스킬·검사기·승인 단계와 기존 hook의 동작 변경은 없다.
+[활성 source 적대적 리뷰 전문](activation-review.md)의 F1은 작은 선택의 누적 효과를 기존 인계에서
+대조하는 문장으로 복구·재확인했다. 최초 지적은 보존한다. 설치/실행 검증은
+[활성 검증 기록](activation-validation.md), 실제 대화와 결과는 [0039](../../../experiments/0039-intent-design-alignment-muse.md)에 남긴다.
+설계 당시의 미적용·미실행 범위와0038 부분 판정을 소급해 바꾸지 않는다.
+
+활성 source `b579ebb`를 먼저 커밋해 별도 제품에 설치했다. Claude strict·Codex/OpenCode patch·동반
+자료·criteria와 기존 make check를 확인했다. 실제 Muse Spark1.3/xhigh의3회 대화와1회 native 검토에서
+같은 의도의 spec-only 개정, 충돌 제안의 미편입/질문, 명확한 제약 변경 뒤 intent부터 구현까지의
+갱신·같은 제품 `921432a` commit을 관측했다. 새 clone의5시험·독립 CLI11건·컴파일은 통과했다.
+최종 plan 요약은 끝난 T01을 아직 미검증/다음 작업으로 남겨0039 전체 판정은 partial이다.
+첫 설계 스킬은 명시 지정했으며 feedback 본문의 parent 읽기는 미관측이므로 자연 선택이나
+각 자산의 개별 효과를 주장하지 않는다. 전제 반증·큰 설계 누적·새 세션·다른 도구 행동과 전체 AC04는
+남으며, 이번 관측 때문에 새 훅·질문 단계·상태 장부를 추가하지 않는다.
+
+## 완료 인도의 후속 보완 — 2026-10-04 KST
+
+사용자는 부분 판정의 뜻과 남은 보완을 물은 뒤 “보완해”라고 지시했다.0038/0039는 기존 규칙이
+있어도 계약 문서·색인이 갱신된 뒤 plan의 현재 요약을 놓칠 수 있음을 보여 준다.0039의 parent는
+최종 검토 요청도 동작 중심으로 좁혔다. 원 제출판의 계약·시험 통과와 현재 인계 실패는 함께 보존한다.
+추가 지침의 필요성을 모든 에이전트 오류에 일반화하지 않고, 반복된 완료 사건과 기존 검토 입력의
+연결을 이번에 짧게 명시한다.0.1.10 미배포 후보에서 기존 source를 보완하며 새 release를 만들지 않는다.
+
+의미 있는 구현 인도에서 기존 최종 검토 요청 전에 plan의 완료한 일·미검증 범위·남은 의존성·다음
+작업을 실제 대상판/현재 변경과 기존 근거로 갱신한다. 프로젝트가 채택한 색인의 관련 행을 맞추고
+같은 검토에서 세 자료의 일치를 대조한다. 아직 없는 자기 commit SHA와 실행 전문 복제를 요구하지
+않으며 완료·시험 통과를 사람 수락·통합·배포로 바꾸지 않는다. 문서-only 인계의 새 구현 검토나
+매 commit 검토·새 hook/장부/사람 승인도 추가하지 않는다.
+
+root는 기존 feedback·plan 작성 안내·PROCESS/REVIEW를, Sol/medium은 검토자3판을 수정했다.
+[방향/반례 검토 전문](handoff-closure-review.md)은 의미 있는 완료·미채택 색인·미래 자기 SHA·
+문서-only/작은 수정·후속 근거 변경 등11반례를 먼저 대조했고 실제 source 후속 검토에도 중요한
+미해결 지적은 없었다. [검증 기록](handoff-closure-validation.md)에 make check116 Python(1skip)·28hook·
+8harness·managed-settings, Claude strict3, Codex4/OpenCode3 patch의 dry-run/적용, 각16개 자산의
+동반 자료/링크·기준·0.1.10 버전 대조와 OpenCode debug catalog/agent의 실제 결과를 남겼다.
+PyYAML 부재로 quick_validate는 실행 불가였고 검증 도구의 최초 실패와 복구도 구분해 보존했다.
+fresh verifier가 maker의 최신 요약/기록도 같은 검토에서 대조했고 중요한 미해결 발견은 없다.
+root는 AC12의 source 인도를 완료로 판단한다. source·이 현재 인계·검증 원문을 같은 제작 commit으로
+후보 branch에 보존하고 결과판을 실행 snapshot과 대조한다. 각 검토 보고서의 commit 대기는 검토 당시
+관측 상태이며 실제 resulting commit·보호한 WIP·원문 해시 대조는 별도의 delivery 기록에 남긴다. 원문·입력판·해시는
+`.local/research/openwebagent-template-history/handoff-closure-20261004/`에 보존한다.
+이번 후속은 새 제품 실험을 하지 않는다. source/임시 설치의 통과를 원 제출판 복구나 모델의 자발적
+요약 갱신 성공으로 바꾸지 않는다. 북극성은 plan/diff/검증의 대조 근거이고 이 완료 요약 절차는 팀의 구체화다.
+
+## 완료 인계 재실험0040 — 2026-10-04 KST
+
+그 뒤 사용자 요청 “재실험해봐”로 source e38477c/0.1.10 미배포 후보를 새 제품 branch에 설치했다.
+[사전 검토 전문](0040-retest-design-review.md), [실제 대화·실행·판정](../../../experiments/0040-completion-handoff-muse.md),
+[새 Sol/high의 독립 검증 전문](0040-retest-validation.md)에 원문과 한계를 연결한다.
+첫 시도는 root가 customized CLAUDE/PROJECT-POLICY를 누락해 제외하고 두 설계 턴/제품판을 보존했다.
+r2는 원0039 업무 baseline11파일+config가 같고 의도한 후보 차이가6파일임을 확인한 뒤 시작했다.
+실제 Muse Spark1.3/xhigh의3대화와 native 검토1회, 제출 dabfba6의6시험·독립 CLI13관찰과 컴파일을
+확인했다. 검토 전 plan/index 갱신, native의 실제 대조/반환과 parent의 결과 대기를 관측했다.
+원15분 예산은 마지막 구현 dispatch 전에 전체20분으로 개정했고, r2는9분5초·전체는17분1초였다.
+원문은 프로젝트 아래 `.local/experiments/private/0040-completion-handoff-muse{,-r2}/`에 유지한다.
+
+root는 핵심 보완의 관측을 통과로 판단한다. 다만 최종 plan/index에서 완료된 독립 검토와 남은 결과
+확인의 담당자를 문서만으로 구분하기 어렵다. 이는 미검토 확정이나0039와 같은 미구현 표기는 아니며
+제품 계약/동작 누락도 아니다. 최종 인계 전체의 명확성에는 한계가 남아0040 전체는 partial이다.
+현재 feedback에 후속 근거와 남은 일을 맞추라는 안내가 이미 있으므로 한 관측으로 새 source 규칙이나
+훅을 추가하지 않는다. 실패 준비·제품 원 제출·리뷰 전문·예산 개정과 이전 partial은 그대로 보존한다.
+제작 결과와 이 현재 인계를 후보 branch에 인도하며 후보 채택/원격 통합·다른 실제 사례·전체 AC04는
+별도 범위다.0040을 source AC12의 과거 실제 행동 통과나 전체 SDLC·수락·통합·배포로 확대하지 않는다.

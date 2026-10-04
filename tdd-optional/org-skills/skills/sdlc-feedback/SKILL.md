@@ -1,6 +1,6 @@
 ---
 name: sdlc-feedback
-description: Keep agreed requirements, spec, plan and implementation aligned. Use when preparing a spec or plan handoff, reviewing or revising important design contracts, implementing or departing from a plan, incorporating requirement or acceptance changes, updating plans after test/review evidence, preparing related commits, reporting implementation complete, or reviewing a branch/PR. Questions and status-only requests do not call for completion review.
+description: Keep agreed requirements, spec, plan and implementation aligned. Use when preparing a spec or plan handoff, reviewing or revising important design contracts, implementing or departing from a plan, incorporating follow-up requirements, acceptance changes or design-changing brainstorming choices and recommendations, updating plans after test/review evidence, preparing related commits, reporting implementation complete, or reviewing a branch/PR. Questions and status-only requests do not call for completion review.
 ---
 # SDLC feedback
 
@@ -26,6 +26,10 @@ plan, implementation diff or execution results. Wait for the result before using
 implementation-completion check below: mixed work is scoped by its actual changes and completion claim,
 not a design-only label.
 
+At the existing design or plan handoff, compare cumulative effects with the current intent and constraints
+when individually small choices materially change the target, meaning of success or cost; use that review's
+scope rather than reviewing or recording every choice or adding approval steps.
+
 Summarize the important contracts/branches examined, findings and their resolution, justified deferrals
 and remaining limits in the existing review/handoff record. Do not total PASS votes as proof of readiness.
 Distinguish design sufficiency, executed verification and human acceptance; reuse supplied authorization.
@@ -38,12 +42,25 @@ Keep this scoped plan review separate from implementation completion and from hu
 
 ## Change or acceptance
 
+Before incorporating a follow-up requirement, design-changing brainstorming choice or recommendation,
+compare its reason and important factual premises with the current intent's problem, desired outcome and
+constraints. Distinguish the human's request and actual decision from an agent proposal or unverified assumption;
+do not invent a why or treat adoption of a solution as authorization to change its goal or constraints.
+Reuse relevant intent passages and latest decisions already checked in this conversation while their revision
+and meaning remain current; refresh them when the revision/decisions change or context is lost.
+Proceed within clear delegation and supplied decisions. For a material conflict with the purpose or fixed
+constraints, a disproved important premise, or an unclear reason with substantial impact, explain the effect
+and ask only for the missing decision. Keep that incorporation open while independent work can proceed.
+Do not ask again for a clear current decision or add a separate review to every choice.
+
 Read the applicable project instructions and current intent/spec and any applicable plan, including the
 complete design document set declared by spec. Check the current intent constraints against the changed behavior even
 when the problem and goal are unchanged. Apply the common Review criteria to update the artifacts whose
-meaning changed: requirements/design/acceptance criteria in their spec documents, implementation/verification/PR
-boundaries in plan, and intent only if the problem or constraints changed. A conversation or README
-does not substitute for the affected artifact. Existing planning and policy skills retain their roles.
+meaning changed: requirements/design/acceptance criteria and the important choice's reason, intent connection
+and preserved or weakened outcomes in the actual spec/design documents; affected execution/verification/PR
+boundaries in plan. Revise the relevant intent prose first only when its purpose, constraints or core background
+changed or need correction, then align downstream artifacts. A conversation or README does not substitute
+for the affected artifact. Existing planning and policy skills retain their roles.
 For implementation planning, record the chosen verification strategy (TDD, behavior-by-behavior implementation then tests, existing-test
 reuse or a mix), its reason and coverage in plan. Selection does not create an exception or approval gate.
 Make affected spec/design documents and the plan current before starting the changed behavior's implementation
@@ -53,7 +70,7 @@ Start from the actual diff and trace its meaning through the applicable plan tas
 design unit (SP), requirements/AC and current intent constraints. Do not infer consistency from which
 documents changed. Existing IDs remain valid; older artifacts may use readable paths and sections, and
 no all-ID gate is implied. Distinguish a spec-only or plan-only change, a missing real decision and a code
-bug against an unchanged contract. Leave intent unchanged when its problem, outcome and constraints did not change.
+bug against an unchanged contract. Leave intent unchanged when its purpose, outcome, constraints and core background did not change.
 
 Use human decisions already supplied. If the accepted upstream version changed, update downstream
 references under the project's policy. Ask only for material decisions still missing; do not turn
@@ -80,7 +97,7 @@ Run the chosen feedback loop as work proceeds: use tests, permitted browser inte
 suited to the behavior, with independent expectations, actual results and relevant regression evidence.
 For exploration, record the learning question, constraints, observations and unresolved decisions. Answering
 that question is not product completion; adopting the result requires current spec/AC, regression and integration
-proof. A screenshot alone does not establish interactive behavior. Include affected spec documents and plan changes, with the reason,
+proof. A screenshot alone does not establish interactive behavior. Include affected intent/spec documents and plan changes, with the reason,
 in the same commit as the related implementation. Before committing, inspect the actual staged scope and
 related unstaged or untracked work without sweeping unrelated WIP into the commit. After committing, inspect
 the resulting content. Follow the project's upstream acceptance and
@@ -95,7 +112,14 @@ occurred or the declaration/content is correct; it does not invoke this skill or
 
 ## Completion and review
 
-At a meaningful delivery boundary, before reporting an implementation task complete, delegate a final check to a fresh-context
+At a meaningful implementation delivery boundary, before requesting the existing final review, refresh the
+current plan summary from the actual work and existing evidence: completed work, unverified scope, remaining
+dependencies and the next step. Align the related row of the project's adopted change index when present.
+Identify the checked commit/base and current amendments where relevant; do not require the commit's own future
+SHA, overwrite historical records or copy full logs. Passing checks do not mean human acceptance, integration
+or release. Update the existing account without adding a ledger or a review for every commit or prose edit.
+
+Before reporting that implementation task complete, delegate the existing final check to a fresh-context
 verifier. Prefer an equivalent project verifier; this plugin provides `intent-sdlc-skills-optional:sdlc-verifier`
 as a default team example. Wait for its result before a final completion report; a pending review
 is still pending. Do not run both for the same purpose. A routine prose correction or a
@@ -108,6 +132,9 @@ independent expectations or a correct verdict.
 For implementation review, give the verifier the current task scope, latest human agreements/acceptances, applicable artifact
 paths, the agreed diff base, and checks already run with their evidence. Also include the declared
 spec document set and the current PR, integration or whole-release scope.
+Include the current plan summary, the related adopted index row and existing execution evidence in that same
+review's scope. Check their agreement with the actual work even when code and tests pass; do not narrow an
+implementation-completion claim to code behavior alone. Do not demand an index the project has not adopted.
 Provide the expectation sources and relevant browser/manual procedures, observations and tool limitations.
 The verifier should understand those expectations before inspecting implementation and test diffs.
 This review still reads implementation; it is not an implementation-hidden test-generation experiment.

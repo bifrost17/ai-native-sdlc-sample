@@ -84,7 +84,11 @@ Reassess remaining work when internal completions accumulate while the same deli
 For plan-only changes, update affected paths/order/PR/proof and reason before dependent work and in the related implementation commit.
 For design amendments, update affected spec sources and plan before the next dependent implementation/verification cycle.
 Fix implementation defects against the contract; leave unchanged spec decisions alone. Rewrite the current summary and next
-work from actual input/evidence revisions, completed/unverified scope and dependencies. See execution detail for handoff and review.
+work from actual input/evidence revisions, completed/unverified scope and dependencies. At a meaningful implementation
+delivery, do this before the existing completion review and reporting done; align the adopted change index's related
+row with that account. Include the summary, related index row and existing execution evidence in the same review,
+without duplicating logs or treating checks as acceptance/integration/release. A document-only handoff does not
+add an implementation-completion review. See execution detail for handoff and review.
 Repin downstream only to an existing recorded upstream revision; a document cannot refer to its own future commit hash.
 Use an existing current-change linkage for simultaneous spec/plan edits, as described in execution detail.
 Preserve actual evidence in execution/PR records instead of adding a new state ledger.

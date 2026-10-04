@@ -1,6 +1,6 @@
 # Claude Code 프로젝트별 설치
 
-`intent-sdlc-skills-optional` **0.1.9**는 [팀 스킬 원본](../skills/) 13개와
+`intent-sdlc-skills-optional` **0.1.10**은 [팀 스킬 원본](../skills/) 13개와
 [검증자](../agents/sdlc-verifier.md)를 플러그인으로 전달한다. 작성 스킬 3개는
 같은 배포판의 `project/examples/skills/`에서 제품의 `.claude/skills/`로 따로 복사한다.
 두 묶음 모두 선택 사항이다. 여기에는 Claude 전용 스킬 본문 복제본을 두지 않는다.
@@ -16,7 +16,7 @@ Claude Code와 Git이 필요하다. `claude --version`, `claude plugin install -
 프로젝트 설치 옵션을 확인한다. 아래 명령은 Claude Code 2.1.269의 CLI 형식을 기준으로 한다.
 실제 PR 작업에는 인증된 `gh`와 해당 저장소 권한이 필요하며, 설치 확인에는 필요하지 않다.
 
-`EDITION_SOURCE`는 `project/`, `org-skills/`, `.claude-plugin/`을 포함한 0.1.9 배포판의
+`EDITION_SOURCE`는 `project/`, `org-skills/`, `.claude-plugin/`을 포함한 0.1.10 배포판의
 절대 경로다. `PRODUCT_ROOT`는 그 `project/` 내용을 채택하고 Git을 초기화한 별도 제품이다.
 설치 전에 제품의 `CLAUDE.md`, `PROJECT-POLICY.md`, `REVIEW.md`를 확인한다.
 동명 프로젝트·개인 스킬이나 폐기된 기본형 플러그인이 있으면 실제 출처와 적용 범위를 살피고
