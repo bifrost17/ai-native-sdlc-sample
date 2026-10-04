@@ -1,6 +1,6 @@
 # Codex 프로젝트별 설치 — tdd-optional
 
-현재 선택판 **intent-sdlc-skills-optional 0.1.9**의 13개 팀 스킬, 제품 작성 예시 3개와 독립
+현재 선택판 **intent-sdlc-skills-optional 0.1.10**의 13개 팀 스킬, 제품 작성 예시 3개와 독립
 검토 기준을 한 제품 repo에 설치하는 Codex adapter다. 전체 skill 폴더는 원 source에서
 복사하고, 이 디렉터리는 Codex에 필요한 patch와 완성된 verifier TOML, 얇은 `AGENTS.md` 예시만 둔다.
 사용자 전역 설정·설치와 maker source는 바꾸지 않는다.
@@ -8,6 +8,7 @@
 `project/docs/CHANGE-DELIVERY.md`에서 읽는다. 팀의 `sdlc-feedback`은 Claude 배포판과 같은
 변경 정합성 기준을 전달하되 verifier 호출과 명시 호출 문법은 아래 Codex 경로를 따른다.
 파일 설치 확인은 실제 모델 행동의 검증과 구별한다.
+0.1.10의 편입 전 의도·이유·중요 전제 대조와 spec 근거/영향 plan 갱신은 공통 source와 검토 기준에서 전달한다.
 커밋 전 포함 확인은 [선택 Git hook](../examples/document-sync-hook/README.md)을 별도 채택한다.
 Claude와 같은 파일·신호 계약을 쓰며 위 skill 복사나 patch 적용으로 활성화되지 않는다.
 
@@ -36,7 +37,7 @@ Codex CLI, Git, `patch`가 필요하다. 실제 PR 작업에는 인증된 `gh`�
 프로젝트 경로와 명시 호출 정책을 사용한다. 동명 개인·상위 프로젝트 스킬이 있으면 실제 출처와
 현재 프로젝트의 선택을 확인한다. 설치가 전역 동명 스킬을 제거하지는 않는다.
 
-`SDLC_PACKAGE`는 선택한 0.1.9의 `tdd-optional/org-skills` 절대 경로이고, `CODEX_ADAPTER`는
+`SDLC_PACKAGE`는 선택한 0.1.10의 `tdd-optional/org-skills` 절대 경로이고, `CODEX_ADAPTER`는
 그 package의 `codex/` 경로다. `CODEX_TARGET`에는 같은 판의 `project/` 내용이 이미
 복사돼 있어야 한다. 다음 명령은 깨끗한 대상용이며 기존 설치가 있으면 중단한다.
 

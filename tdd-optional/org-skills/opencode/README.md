@@ -1,6 +1,6 @@
 # OpenCode 프로젝트별 전달 — tdd-optional
 
-현재 선택판 **intent-sdlc-skills-optional 0.1.9**의 스킬과 native 검증자를 프로젝트 안에 복사한다.
+현재 선택판 **intent-sdlc-skills-optional 0.1.10**의 스킬과 native 검증자를 프로젝트 안에 복사한다.
 이 폴더의 원본·patch·검증자·색인은 함께 배포한다. 제작 저장소의 Git 이력이나 다른 판을 실행 중
 읽을 필요가 없다. 사용자 전역 설정·설치·모델을 자동 변경하지 않는다.
 
@@ -10,6 +10,7 @@ Codex0032이며, 이 OpenCode 전달판은 원본 기준 일치·patch 적용만
 
 0.1.9는 0.1.8의 전달 경로로 개발건 색인·단계 수락·PR/커밋 근거 안내를 제공한다.
 원본·patch 확인과 실제 에이전트 행동은 구분하며 설치 확인만으로 이 판의 OpenCode 행동 통과를 주장하지 않는다.
+0.1.10은 공통 feedback·작성 예시·검토 기준에서 편입 전 의도·이유·중요 전제 대조와 영향 문서 갱신을 전달한다.
 개발건 색인과 PR·커밋 전달 기준은 같은 판의 `project/changes/README.md`와
 `project/docs/CHANGE-DELIVERY.md`에 있으며, 이 어댑터는 그 제품 문서를 자동 복사하지 않는다.
 
