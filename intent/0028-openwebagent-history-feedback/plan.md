@@ -1,7 +1,7 @@
 # Plan — openWebAgent 이력에서 개선과 재실험으로
 
 Status: draft
-Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
+Upstream: [spec](spec.md)@f41128a, [intent](intent.md)@4ba9fd2, 사용자의 활성 적용·짧은 OpenCode 실행 요청.
 
 현재 상태: T01의 340 PR·114 브랜치·30 번호 개발건과 4 무번호 개발건 수집 완료. T02 모든 건 보고서와 대형 후속 조사 작성 완료, 실행 원문·세부 감사의 한계는 coverage에 남긴다.
 후속 사용자 지시에 따라 T04의 0037 실제 개발 비교를 중단했다. 실패·부분 수행을 보존하고 AC04의 전체 전후 비교는 유예한다.
@@ -9,7 +9,9 @@ Upstream: [spec](spec.md), [intent](intent.md), 사용자의 실행 요청.
 별도 실행해 AC09의 관측/보존을 완료했다. 계약 갱신·같은 커밋·동작은 통과했으나 현재 plan 요약 누락으로
 인계 상태 갱신은 부분이다. 이는 T04 재개나
 전체 개발 비교 완료가 아니다. 전역 설치·원제품 변경·원격 인도는 범위 밖이다.
-최신 인계: T14의 의도 없는 추가 요구/설계 개정을 줄이는 정본 설계·독립 제안·현재 지침 조사·적대적 리뷰를 완료했다. 활성 구현·새 실험은 진행하지 않았다.
+최신 인계: T14의 정본 설계·독립 검토를 완료했고 사용자 후속 지시로 T15를 진행 중이다. base는 main@1d3ffd3,
+branch는 codex/intent-design-alignment다. 기존 스킬·정책과0.1.10 전달본을 보강하고 source 리뷰/설치 확인 뒤
+0039의 문서 개정·실제 구현 실험을 수행한다. 다음 단계는 중요한 source 리뷰 지적 처리와 설치 검증이다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
@@ -147,3 +149,34 @@ hook·전수 의도 ID·모든 변경의 intent 편집·반복 질문/모델 검
 검토에 중요한 지적은 없고 root는 AC10의 설계 범위를 완료로 판단한다. 사용자 요청 원문·세션 공개 응답/
 도구 값·판/해시도 보존했다. 후속 구현 위치와 미실행 효과 검증은 정본에 남긴다. 현재0.1.9 source·설치판·버전,
 원제품·전역 설치는 그대로다. 다음 단계는 후속 범위에서 활성 자산에 짧게 반영하는 작업이며 이번에는 실행하지 않는다.
+
+## T15 — 의도·설계 연결 활성 적용과 OpenCode smoke
+
+입력은 spec@f41128a의 SP11/FR12/AC11과 [SP10 정본](../../docs/research/openwebagent-template-history/intent-design-alignment/README.md)이다.
+root는 PROCESS·REVIEW·패키지/설치 안내·maker 문서·실험과 최종 인도를 소유한다. Sol/medium 두 worker는
+team feedback/검토자/patch와 작성 예시를 각각 소유하며, 남의 수정은 되돌리지 않는다. 새 Astra/high는
+source의 중요 반례를 독립 검토한다. 검토 지적은 최소 수정 후 해당 범위만 다시 대조한다.
+
+실제 변경 위치:
+
+- `tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md`: 변경 진입·trigger에 편입 전 의도/왜/전제 대조, 빠진 결정·영향 문서 구분.
+- `tdd-optional/org-skills/agents/sdlc-verifier.md`, `tdd-optional/org-skills/codex/agents/sdlc-verifier.toml`, `tdd-optional/org-skills/opencode/agents/sdlc-verifier.md`: 기존 설계 검토의 목적·전제 기준을 플랫폼별 동일 의미로 전달.
+- `tdd-optional/org-skills/codex/patches/sdlc-feedback.patch`, `tdd-optional/org-skills/opencode/patches/sdlc-feedback.patch`: source 변경 뒤 플랫폼 변환 적용 유지.
+- `tdd-optional/project/examples/skills/design-spec/SKILL.md`, `tdd-optional/project/examples/skills/design-spec/examples/README.md`: 실제 spec 편입 전 판단과 정상/충돌/명시 변경의 짧은 기존 예시.
+- `tdd-optional/project/docs/PROCESS.md`, `tdd-optional/project/REVIEW.md`: 짧은 정책·기존 검토에 연결. spec 양식은 현재 근거 자리가 충분해 유지.
+- `.claude-plugin/marketplace.json`, `tdd-optional/.claude-plugin/marketplace.json`, `tdd-optional/org-skills/.claude-plugin/plugin.json`: 버전0.1.10.
+- `README.md`, `docs/decisions/single-template.md`, `tdd-optional/README.md`, `tdd-optional/org-skills/README.md`, `tdd-optional/org-skills/{claude,codex,opencode}/README.md`: 현재 판과 설치 경로/행동 검증 한계 일치.
+- `docs/research/openwebagent-template-history/intent-design-alignment/{README,activation-review,activation-validation}.md`: 설계 당시 기록·원문 리뷰·실제 source 검증과 후속 상태 보존.
+- `docs/experiments/0039-intent-design-alignment-muse.md`, `docs/experiments/datasets/v10/intent-alignment/{public,human}.md`, `docs/experiments/datasets/v10/intent-alignment/requests.json`: 실험 입력/범위와 실제 결과; 기존 v1 원본은 유지.
+- `docs/verification/north-star-playbook.html`: 실제 관측한 범위만 해당 주석에 추가.
+
+검증 방식: 문서/설치 source는 의미 반례 리뷰, 기존 make check, 패키지 strict 검증, Codex/OpenCode 임시
+dry-run/실제 설치·criteria/설치 해시 대조를 사용한다. 새 문구와 동일한 기대를 고정하는 테스트는 만들지 않는다.
+source를 커밋한 뒤 그 판을 별도 제품 template branch→fixture main→실험 branch에 설치하고 원본을 고정한다.
+실험은 v1의 tracker.py/test_tracker.py와 비정렬 fixture에서 첫 두 설계 전용 응답의 코드 무변경·intent 유지/
+충돌 미편입을 snapshot으로 확인한다. 실제 응답을 읽고 질문에 맞춰 명시 변경과 구현을 요청한다.
+마지막에는 기존 회귀와 root의 독립 CLI 관찰, 실제 intent/spec/plan·커밋·현재 인계 문구를 대조한다.
+15분·parent3/native child1을 기본 한도로 두고 초과가 필요하면 미완료를 기록한다. 호출 예산은 모델의
+내부 tool round-trip 수가 아닌 HUMAN parent dispatch와 native child dispatch다. 숨은 추론·인증 값은 보존 대상이 아니다.
+Done: AC11의 source·실제 관측/한계·원본 보존과 fresh verifier 최종 보고. 전역 설치·원제품·push/merge,
+전체 AC04 전후 비교는 수행하지 않는다.
