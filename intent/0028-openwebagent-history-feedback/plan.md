@@ -1,7 +1,7 @@
 # Plan — openWebAgent 이력에서 개선과 재실험으로
 
 Status: draft
-Upstream: [spec](spec.md)@f41128a, [intent](intent.md)@4ba9fd2, 사용자의 활성 적용·짧은 OpenCode 실행 요청.
+Upstream: [spec](spec.md)@1872299, [intent](intent.md)@63bb3f6, 사용자의0039 후속 완료 인계 보완 요청.
 
 현재 상태: T01의 340 PR·114 브랜치·30 번호 개발건과 4 무번호 개발건 수집 완료. T02 모든 건 보고서와 대형 후속 조사 작성 완료, 실행 원문·세부 감사의 한계는 coverage에 남긴다.
 후속 사용자 지시에 따라 T04의 0037 실제 개발 비교를 중단했다. 실패·부분 수행을 보존하고 AC04의 전체 전후 비교는 유예한다.
@@ -14,7 +14,9 @@ Upstream: [spec](spec.md)@f41128a, [intent](intent.md)@4ba9fd2, 사용자의 활
 편입 전 의도 대조·명시 제약 변경·제품 동작은 관측 통과했으나 제품 최종 plan의 현재 요약은 미흡해
 0039 전체는 partial이다. 원본·실패·제출판을 보존했고 최종 verifier의 보고 범위 대조를 완료했다.
 root는 AC11의 source/관측·한계 보존 인도를 완료로 판단한다. 사용자에게 이 branch의 검토 가능한
-결과를 인도한다. 전역 설치·원제품·push/merge·전체 AC04 비교는 후속 범위로 남겨 둔다.
+결과를 인도했다. 후속 사용자 요청으로 T16/SP12의 완료 인계 보완을 진행한다. 다음 작업은 기존 완료
+진입/검토 입력을 수정하고 source·플랫폼 전달과 반례를 확인하는 것이다. 새 제품 실험·원 제출판 수정·
+전역 설치·원제품·push/merge·전체 AC04 비교는 이번 후속 범위에 포함하지 않는다.
 초기 main은 a08295f2f7f492efd3ef4787c4ed3d1a1d8f118e.
 기존 제작 HEAD ad98ade와 미커밋 patch는 start/에 보존한다. 새 보고서를 제품 완료로 주장하지 않는다.
 
@@ -207,3 +209,33 @@ root는 AC11의 한정된 source/관측·실패 보존 범위를 완료로 판�
 필요하며 이는 원 실험 제출판의 복구를 아직 입증하지 않는다. 추가 제품 실험은 이번에 진행하지 않는다.
 미입증: plan 인계 누락의 복구·새 세션/큰 설계·전제 반증/누적 효과·자연 feedback 사용·다른 도구 행동·
 개별 인과/전체 AC04 전후 비교. 제품/전역 설치·main·push/merge는 이번 작업 범위 밖이다.
+
+## T16 — 완료 인계의 적용 시점과 기존 검토 입력 보완
+
+입력은 spec@1872299의 FR13/SP12/AC12와0038/0039 원 제출·partial 기록이다. 같은0.1.10 미배포
+후보에서 기존 갱신 규칙을 완료 인도 사건과 연결한다. root는 feedback·plan 작성 예시·PROCESS/REVIEW와
+제작 기록을 소유하고 Sol/medium worker는 검토자3판만 소유한다. 서로의 수정은 되돌리지 않는다.
+Sol/high 독립 검토자는 의미 있는 완료·문서-only/작은 수정·색인 채택·미래 자기 SHA·로그 복제·수락
+오인의 반례를 판단한다. fresh Sol/high verifier는 source/임시 설치·실제 maker check와 현재 인계의 일치를 확인한다.
+
+실제 변경 위치와 방법:
+
+- `tdd-optional/org-skills/skills/sdlc-feedback/SKILL.md`: 기존 Completion and review 진입에서 요약 정리→같은 검토의 입력/범위를 연결한다.
+- `tdd-optional/project/examples/skills/plan/SKILL.md`: 기존 현재 요약 재작성에 완료 보고 사건·채택 색인/근거를 연결한다.
+- `tdd-optional/project/docs/PROCESS.md`, `tdd-optional/project/REVIEW.md`: 기존 인계/검토 문장에 구현 인도·완료 주장과 현재 상태의 대조를 짧게 명시한다.
+- `tdd-optional/org-skills/agents/sdlc-verifier.md`, `tdd-optional/org-skills/codex/agents/sdlc-verifier.toml`, `tdd-optional/org-skills/opencode/agents/sdlc-verifier.md`: 기존 pause/handoff 항목에서 구현 완료 인도·채택 색인·실행 근거도 대조한다.
+- `tdd-optional/org-skills/{codex,opencode}/patches/sdlc-feedback.patch`: 같은 의미를 유지하며 변경된 hunk 위치를 맞춘다.
+- `tdd-optional/org-skills/README.md`: 같은 후보의 후속 안내와 source/실제 행동 검증 범위를 구분한다.
+- `docs/research/openwebagent-template-history/intent-design-alignment/{README,handoff-closure-review,handoff-closure-validation}.md`: 최초 방향·source 검토 전문, 실제 설치/검사·입력/한계와 인도 판단을 보존한다.
+- `docs/verification/north-star-playbook.html`: V4-11에 source 후속 보완만 연결하며0038/0039 부분 판정을 유지한다.
+
+순서: 기존 사슬의 후속 intent/spec/plan을 각각 commit→root/worker의 분리된 source 수정→최소 반례
+리뷰/필요 수정→make check·Claude strict·Codex/OpenCode 임시 patch/설치와 기준 동등성 확인→fresh
+verifier 결과/현재 maker plan 갱신→source·검증 기록을 같은 제작 commit으로 인도한다.
+해시·prompt·검토/실행 원문은 `.local/research/openwebagent-template-history/handoff-closure-20261004/`에 둔다.
+자기 미래 commit SHA를 쓰거나 그 SHA만 고치는 반복 commit을 요구하지 않는다. 실제 실행판은 source snapshot
+지문·기준 HEAD+현재 변경과 연결하고 인도 뒤 resulting content가 같은지 확인한다.
+새 runtime 실험·제품 복구·의미 검사 훅·검토 횟수/사람 승인·상태 장부는 추가하지 않는다.
+
+Done: 중요한 source 리뷰 지적을 처리하고 AC12의 기존 회귀·전달/기준·현재 maker 요약과 실제 결과를
+독립 대조해 원문을 보존한다. 통과는 source 적용 확인이며 모델 행동 개선이나0039 인계 복구의 통과가 아니다.
